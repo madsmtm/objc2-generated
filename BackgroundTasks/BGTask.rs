@@ -8,7 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtask?language=objc)
+    /// An abstract class representing a task that’s run while the app is in the
+    /// background.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtask?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGTask;
@@ -18,14 +21,38 @@ unsafe impl NSObjectProtocol for BGTask {}
 
 extern_methods!(
     unsafe impl BGTask {
+        /// The string identifier of the task.
+        ///
+        /// The identifier is the same as the one used to register the launch handler in
+        /// ``BGTaskScheduler/registerForTaskWithIdentifier:usingQueue:launchHandler:``.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]
+        /// A handler called shortly before the task’s background time expires.
+        ///
+        /// The time allocated by the system for expiration handlers doesn’t vary with
+        /// the number of background tasks. All expiration handlers must complete before
+        /// the allocated time.
+        ///
+        /// Not setting an expiration handler results in the system marking your task as
+        /// complete and unsuccessful instead of sending a warning.
+        ///
+        /// The manager sets the value `expirationHandler` to `nil` after the handler
+        /// completes.
+        ///
+        /// - Parameters:
+        /// - expirationHandler: The expiration handler takes no arguments and has no
+        /// return value. Use the handler to cancel any ongoing work and to do any
+        /// required cleanup in as short a time as possible.
+        ///
+        /// The handler may be called before the background process uses the full amount of its
+        /// allocated time.
         #[method(expirationHandler)]
         pub unsafe fn expirationHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`expirationHandler`][Self::expirationHandler].
         #[method(setExpirationHandler:)]
         pub unsafe fn setExpirationHandler(
             &self,
@@ -38,13 +65,43 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Informs the background task scheduler that the task is complete.
+        ///
+        /// Not calling ``BGTask/setTaskCompletedWithSuccess:`` before the time for the
+        /// task expires may result in the system killing your app.
+        ///
+        /// You can reschedule an unsuccessful required task.
+        ///
+        /// - Important: If you don’t set an expiration handler, the system will mark
+        /// your task as complete and unsuccessful instead of sending a warning.
+        ///
+        /// - Parameters:
+        /// - success: A `Boolean` indicating if the task completed successfully or not.
         #[method(setTaskCompletedWithSuccess:)]
         pub unsafe fn setTaskCompletedWithSuccess(&self, success: bool);
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgprocessingtask?language=objc)
+    /// A time-consuming processing task that runs while the app is in the
+    /// background.
+    ///
+    /// Use processing tasks for long data updates, processing data, and app
+    /// maintenance. Although processing tasks can run for minutes, the system can
+    /// interrupt the process. Add an expiration handler by setting
+    /// ``BGTask/expirationHandler`` for any required cleanup.
+    ///
+    /// Executing processing tasks requires setting the `processing`
+    /// <doc
+    /// ://com.apple.documentation/documentation/bundleresources/information_property_list/uibackgroundmodes>
+    /// capability. For information on setting this capability, see
+    /// ``BGTaskScheduler``.
+    ///
+    /// Processing tasks run only when the device is idle. The system terminates any
+    /// background processing tasks running when the user starts using the device.
+    /// Background refresh tasks are not affected.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgprocessingtask?language=objc)
     #[unsafe(super(BGTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGProcessingTask;
@@ -68,7 +125,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bghealthresearchtask?language=objc)
+    /// A task meant to perform processing on behalf of health research studies.
+    ///
+    /// Health research tasks may only be used by applications entitled to perform
+    /// studies and user's have opted in to the relevant study. These apps must have the
+    /// `com.apple.developer.backgroundtasks.healthresearch` entitlement.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bghealthresearchtask?language=objc)
     #[unsafe(super(BGProcessingTask, BGTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGHealthResearchTask;
@@ -92,7 +155,19 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgapprefreshtask?language=objc)
+    /// An object representing a short task typically used to refresh content that’s
+    /// run while the app is in the background.
+    ///
+    /// Use app refresh tasks for updating your app with small bits of information,
+    /// such as the latest stock values.
+    ///
+    /// Executing app refresh tasks requires setting the `fetch`
+    /// <doc
+    /// ://com.apple.documentation/documentation/bundleresources/information_property_list/uibackgroundmodes>
+    /// capability. For information on setting this capability, see
+    /// ``BGTaskScheduler``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgapprefreshtask?language=objc)
     #[unsafe(super(BGTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGAppRefreshTask;

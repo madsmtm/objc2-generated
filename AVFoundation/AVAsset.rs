@@ -31,6 +31,13 @@ unsafe impl NSObjectProtocol for AVAsset {}
 
 extern_methods!(
     unsafe impl AVAsset {
+        /// Returns an instance of AVAsset for inspection of a media resource.
+        ///
+        /// Parameter `URL`: An instance of NSURL that references a media resource.
+        ///
+        /// Returns: An instance of AVAsset.
+        ///
+        /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
         #[method_id(@__retain_semantics Other assetWithURL:)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
 
@@ -54,6 +61,9 @@ extern_methods!(
         pub unsafe fn naturalSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates how close to the latest content in a live stream playback can be sustained.
+        ///
+        /// For non-live assets this value is kCMTimeInvalid.
         #[method(minimumTimeOffsetFromLive)]
         pub unsafe fn minimumTimeOffsetFromLive(&self) -> CMTime;
     }
@@ -76,12 +86,30 @@ extern_methods!(
         #[method(providesPreciseDurationAndTiming)]
         pub unsafe fn providesPreciseDurationAndTiming(&self) -> bool;
 
+        /// Cancels the loading of all values for all observers.
+        ///
+        /// Deallocation or finalization of an instance of AVAsset will implicitly cancel loading if any loading requests are still outstanding.
         #[method(cancelLoading)]
         pub unsafe fn cancelLoading(&self);
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions?language=objc)
+/// These constants can be passed in to AVURLAssetReferenceRestrictionsKey to control the resolution of references to external media data.
+///
+///
+/// Indicates that all types of references should be followed.
+///
+/// Indicates that references from a remote asset (e.g. referenced via http URL) to local media data (e.g. stored in a local file) should not be followed.
+///
+/// Indicates that references from a local asset to remote media data should not be followed.
+///
+/// Indicates that references from a remote asset to remote media data stored at a different site should not be followed.
+///
+/// Indicates that references from a local asset to local media data stored outside the asset's container file should not be followed.
+///
+/// Indicates that only references to media data stored within the asset's container file should be allowed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -109,6 +137,9 @@ unsafe impl RefEncode for AVAssetReferenceRestrictions {
 extern_methods!(
     /// AVAssetReferenceRestrictions
     unsafe impl AVAsset {
+        /// Indicates the reference restrictions being used by the receiver.
+        ///
+        /// For AVURLAsset, this property reflects the value passed in for AVURLAssetReferenceRestrictionsKey, if any. See AVURLAssetReferenceRestrictionsKey below for a full discussion of reference restrictions. The default value for this property is AVAssetReferenceRestrictionForbidLocalReferenceToRemote.
         #[method(referenceRestrictions)]
         pub unsafe fn referenceRestrictions(&self) -> AVAssetReferenceRestrictions;
     }
@@ -118,10 +149,20 @@ extern_methods!(
     /// AVAssetTrackInspection
     unsafe impl AVAsset {
         #[cfg(feature = "AVAssetTrack")]
+        /// Provides the array of AVAssetTracks contained by the asset
         #[method_id(@__retain_semantics Other tracks)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVAssetTrack>>;
 
         #[cfg(all(feature = "AVAssetTrack", feature = "objc2-core-media"))]
+        /// Provides an instance of AVAssetTrack that represents the track of the specified trackID.
+        ///
+        /// Parameter `trackID`: The trackID of the requested AVAssetTrack.
+        ///
+        /// Returns: An instance of AVAssetTrack; may be nil if no track of the specified trackID is available.
+        ///
+        /// Becomes callable without blocking when the key
+        /// "
+        /// tracks" has been loaded
         #[deprecated = "Use loadTrackWithTrackID:completionHandler: instead"]
         #[method_id(@__retain_semantics Other trackWithTrackID:)]
         pub unsafe fn trackWithTrackID(
@@ -134,6 +175,11 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-media"
         ))]
+        /// Loads an instance of AVAssetTrack that represents the track of the specified trackID.
+        ///
+        /// Parameter `trackID`: The trackID of the requested AVAssetTrack.
+        ///
+        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
         #[method(loadTrackWithTrackID:completionHandler:)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
@@ -142,6 +188,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMediaFormat"))]
+        /// Provides an array of AVAssetTracks of the asset that present media of the specified media type.
+        ///
+        /// Parameter `mediaType`: The media type according to which AVAsset filters its AVAssetTracks. (Media types are defined in AVMediaFormat.h.)
+        ///
+        /// Returns: An NSArray of AVAssetTracks; may be empty if no tracks of the specified media type are available.
+        ///
+        /// Becomes callable without blocking when the key
+        /// "
+        /// tracks" has been loaded
         #[deprecated = "Use loadTracksWithMediaType:completionHandler: instead"]
         #[method_id(@__retain_semantics Other tracksWithMediaType:)]
         pub unsafe fn tracksWithMediaType(
@@ -154,6 +209,11 @@ extern_methods!(
             feature = "AVMediaFormat",
             feature = "block2"
         ))]
+        /// Loads an array of AVAssetTracks of the asset that present media of the specified media type.
+        ///
+        /// Parameter `mediaType`: The media type according to which AVAsset filters its AVAssetTracks. (Media types are defined in AVMediaFormat.h.)
+        ///
+        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
         #[method(loadTracksWithMediaType:completionHandler:)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
@@ -162,6 +222,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMediaFormat"))]
+        /// Provides an array of AVAssetTracks of the asset that present media with the specified characteristic.
+        ///
+        /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVAssetTracks. (Media characteristics are defined in AVMediaFormat.h.)
+        ///
+        /// Returns: An NSArray of AVAssetTracks; may be empty if no tracks with the specified characteristic are available.
+        ///
+        /// Becomes callable without blocking when the key
+        /// "
+        /// tracks" has been loaded
         #[deprecated = "Use loadTracksWithMediaCharacteristic:completionHandler: instead"]
         #[method_id(@__retain_semantics Other tracksWithMediaCharacteristic:)]
         pub unsafe fn tracksWithMediaCharacteristic(
@@ -174,6 +243,11 @@ extern_methods!(
             feature = "AVMediaFormat",
             feature = "block2"
         ))]
+        /// Loads an array of AVAssetTracks of the asset that present media with the specified characteristic.
+        ///
+        /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVAssetTracks. (Media characteristics are defined in AVMediaFormat.h.)
+        ///
+        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
         #[method(loadTracksWithMediaCharacteristic:completionHandler:)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
@@ -182,6 +256,10 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVAssetTrackGroup")]
+        /// All track groups in the receiver.
+        ///
+        ///
+        /// The value of this property is an NSArray of AVAssetTrackGroups, each representing a different grouping of tracks in the receiver.
         #[method_id(@__retain_semantics Other trackGroups)]
         pub unsafe fn trackGroups(&self) -> Retained<NSArray<AVAssetTrackGroup>>;
     }
@@ -210,6 +288,15 @@ extern_methods!(
         pub unsafe fn availableMetadataFormats(&self) -> Retained<NSArray<AVMetadataFormat>>;
 
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataItem"))]
+        /// Provides an NSArray of AVMetadataItems, one for each metadata item in the container of the specified format; can subsequently be filtered according to language via +[AVMetadataItem metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:], according to locale via +[AVMetadataItem metadataItemsFromArray:withLocale:], or according to key via +[AVMetadataItem metadataItemsFromArray:withKey:keySpace:].
+        ///
+        /// Parameter `format`: The metadata format for which items are requested.
+        ///
+        /// Returns: An NSArray containing AVMetadataItems; may be empty if there is no metadata of the specified format.
+        ///
+        /// Becomes callable without blocking when the key
+        /// "
+        /// availableMetadataFormats" has been loaded
         #[deprecated = "Use loadMetadataForFormat:completionHandler: instead"]
         #[method_id(@__retain_semantics Other metadataForFormat:)]
         pub unsafe fn metadataForFormat(
@@ -222,6 +309,11 @@ extern_methods!(
             feature = "AVMetadataItem",
             feature = "block2"
         ))]
+        /// Loads an NSArray of AVMetadataItems, one for each metadata item in the container of the specified format; can subsequently be filtered according to language via +[AVMetadataItem metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:], according to locale via +[AVMetadataItem metadataItemsFromArray:withLocale:], or according to key via +[AVMetadataItem metadataItemsFromArray:withKey:keySpace:].
+        ///
+        /// Parameter `format`: The metadata format for which items are requested.
+        ///
+        /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending the array of metadata items (which may be empty if there is no metadata of the specified format) or an error.
         #[method(loadMetadataForFormat:completionHandler:)]
         pub unsafe fn loadMetadataForFormat_completionHandler(
             &self,
@@ -238,6 +330,20 @@ extern_methods!(
         pub unsafe fn availableChapterLocales(&self) -> Retained<NSArray<NSLocale>>;
 
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVTimedMetadataGroup"))]
+        /// Provides an array of chapters.
+        ///
+        /// Parameter `locale`: Locale of the metadata items carrying chapter titles to be returned (supports the IETF BCP 47 specification).
+        ///
+        /// Parameter `commonKeys`: Array of common keys of AVMetadataItem to be included; can be nil.
+        /// AVMetadataCommonKeyArtwork is the only supported key for now.
+        ///
+        /// Returns: An NSArray of AVTimedMetadataGroup.
+        ///
+        /// This method returns an array of AVTimedMetadataGroup objects. Each object in the array always contains an AVMetadataItem representing the chapter title; the timeRange property of the AVTimedMetadataGroup object is equal to the time range of the chapter title item.
+        ///
+        /// An AVMetadataItem with the specified common key will be added to an existing AVTimedMetadataGroup object if the time range (timestamp and duration) of the metadata item and the metadata group overlaps. The locale of items not carrying chapter titles need not match the specified locale parameter.
+        ///
+        /// Further filtering of the metadata items in AVTimedMetadataGroups according to language can be accomplished using +[AVMetadataItem metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:]; filtering of the metadata items according to locale can be accomplished using +[AVMetadataItem metadataItemsFromArray:withLocale:].
         #[deprecated = "Use loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler: instead"]
         #[method_id(@__retain_semantics Other chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:)]
         pub unsafe fn chapterMetadataGroupsWithTitleLocale_containingItemsWithCommonKeys(
@@ -251,6 +357,20 @@ extern_methods!(
             feature = "AVTimedMetadataGroup",
             feature = "block2"
         ))]
+        /// Loads an array of chapters.
+        ///
+        /// Parameter `locale`: Locale of the metadata items carrying chapter titles to be returned (supports the IETF BCP 47 specification).
+        ///
+        /// Parameter `commonKeys`: Array of common keys of AVMetadataItem to be included; if no common keys are required, send an empty list.
+        /// AVMetadataCommonKeyArtwork is the only supported key for now.
+        ///
+        /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending the array of timed metadata groups or an error.
+        ///
+        /// This method vends an array of AVTimedMetadataGroup objects. Each object in the array always contains an AVMetadataItem representing the chapter title; the timeRange property of the AVTimedMetadataGroup object is equal to the time range of the chapter title item.
+        ///
+        /// An AVMetadataItem with the specified common key will be added to an existing AVTimedMetadataGroup object if the time range (timestamp and duration) of the metadata item and the metadata group overlaps. The locale of items not carrying chapter titles need not match the specified locale parameter.
+        ///
+        /// Further filtering of the metadata items in AVTimedMetadataGroups according to language can be accomplished using +[AVMetadataItem metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:]; filtering of the metadata items according to locale can be accomplished using +[AVMetadataItem metadataItemsFromArray:withLocale:].
         #[method(loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler:)]
         pub unsafe fn loadChapterMetadataGroupsWithTitleLocale_containingItemsWithCommonKeys_completionHandler(
             &self,
@@ -262,6 +382,20 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVTimedMetadataGroup")]
+        /// Tests, in order of preference, for a match between language identifiers in the specified array of preferred languages and the available chapter locales, and returns the array of chapters corresponding to the first match that's found.
+        ///
+        /// Parameter `preferredLanguages`: An array of language identifiers in order of preference, each of which is an IETF BCP 47 (RFC 4646) language identifier. Use +[NSLocale preferredLanguages] to obtain the user's list of preferred languages.
+        ///
+        /// Returns: An NSArray of AVTimedMetadataGroup.
+        ///
+        /// Safe to call without blocking when the AVAsset key availableChapterLocales has status AVKeyValueStatusLoaded.
+        ///
+        /// Returns an array of AVTimedMetadataGroup objects. Each object in the array always contains an AVMetadataItem representing the chapter title; the timeRange property of the AVTimedMetadataGroup object is equal to the time range of the chapter title item.
+        ///
+        /// All of the available chapter metadata is included in the metadata groups, including items with the common key AVMetadataCommonKeyArtwork, if such items are present. Items not carrying chapter titles will be added to an existing AVTimedMetadataGroup object if the time range (timestamp and duration) of the metadata item and that of the metadata group overlaps. The locale of such items need not match the locale of the chapter titles.
+        ///
+        /// Further filtering of the metadata items in AVTimedMetadataGroups according to language can be accomplished using +[AVMetadataItem metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:]; filtering of the metadata items according to locale can be accomplished using +[AVMetadataItem metadataItemsFromArray:withLocale:].
+        /// .
         #[deprecated = "Use loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler: instead"]
         #[method_id(@__retain_semantics Other chapterMetadataGroupsBestMatchingPreferredLanguages:)]
         pub unsafe fn chapterMetadataGroupsBestMatchingPreferredLanguages(
@@ -270,6 +404,17 @@ extern_methods!(
         ) -> Retained<NSArray<AVTimedMetadataGroup>>;
 
         #[cfg(all(feature = "AVTimedMetadataGroup", feature = "block2"))]
+        /// Tests, in order of preference, for a match between language identifiers in the specified array of preferred languages and the available chapter locales, and loads the array of chapters corresponding to the first match that's found.
+        ///
+        /// Parameter `preferredLanguages`: An array of language identifiers in order of preference, each of which is an IETF BCP 47 (RFC 4646) language identifier. Use +[NSLocale preferredLanguages] to obtain the user's list of preferred languages.
+        ///
+        /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending the array of timed metadata groups or an error.
+        ///
+        /// Returns an array of AVTimedMetadataGroup objects. Each object in the array always contains an AVMetadataItem representing the chapter title; the timeRange property of the AVTimedMetadataGroup object is equal to the time range of the chapter title item.
+        ///
+        /// All of the available chapter metadata is included in the metadata groups, including items with the common key AVMetadataCommonKeyArtwork, if such items are present. Items not carrying chapter titles will be added to an existing AVTimedMetadataGroup object if the time range (timestamp and duration) of the metadata item and that of the metadata group overlaps. The locale of such items need not match the locale of the chapter titles.
+        ///
+        /// Further filtering of the metadata items in AVTimedMetadataGroups according to language can be accomplished using +[AVMetadataItem metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:]; filtering of the metadata items according to locale can be accomplished using +[AVMetadataItem metadataItemsFromArray:withLocale:].
         #[method(loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler:)]
         pub unsafe fn loadChapterMetadataGroupsBestMatchingPreferredLanguages_completionHandler(
             &self,
@@ -291,6 +436,23 @@ extern_methods!(
         ) -> Retained<NSArray<AVMediaCharacteristic>>;
 
         #[cfg(all(feature = "AVMediaFormat", feature = "AVMediaSelectionGroup"))]
+        /// Provides an instance of AVMediaSelectionGroup that contains one or more options with the specified media characteristic.
+        ///
+        /// Parameter `mediaCharacteristic`: A media characteristic for which you wish to obtain the available media selection options. AVMediaCharacteristicAudible, AVMediaCharacteristicLegible, and AVMediaCharacteristicVisual are currently supported.
+        ///
+        /// Pass AVMediaCharacteristicAudible to obtain the group of available options for audio media in various languages and for various purposes, such as descriptive audio.
+        /// Pass AVMediaCharacteristicLegible to obtain the group of available options for subtitles in various languages and for various purposes.
+        /// Pass AVMediaCharacteristicVisual to obtain the group of available options for video media.
+        ///
+        /// Returns: An instance of AVMediaSelectionGroup. May be nil.
+        ///
+        /// Becomes callable without blocking when the key
+        /// "
+        /// availableMediaCharacteristicsWithMediaSelectionOptions" has been loaded.
+        ///
+        /// If the asset has no AVMediaSelectionGroup containing options with the specified media characteristic, the return value will be nil.
+        ///
+        /// Filtering of the options in the returned AVMediaSelectionGroup according to playability, locale, and additional media characteristics can be accomplished using the category AVMediaSelectionOptionFiltering defined on AVMediaSelectionGroup.
         #[deprecated = "Use loadMediaSelectionGroupForMediaCharacteristic:completionHandler: instead"]
         #[method_id(@__retain_semantics Other mediaSelectionGroupForMediaCharacteristic:)]
         pub unsafe fn mediaSelectionGroupForMediaCharacteristic(
@@ -303,6 +465,19 @@ extern_methods!(
             feature = "AVMediaSelectionGroup",
             feature = "block2"
         ))]
+        /// Loads an instance of AVMediaSelectionGroup that contains one or more options with the specified media characteristic.
+        ///
+        /// Parameter `mediaCharacteristic`: A media characteristic for which you wish to obtain the available media selection options. AVMediaCharacteristicAudible, AVMediaCharacteristicLegible, and AVMediaCharacteristicVisual are currently supported.
+        ///
+        /// Pass AVMediaCharacteristicAudible to obtain the group of available options for audio media in various languages and for various purposes, such as descriptive audio.
+        /// Pass AVMediaCharacteristicLegible to obtain the group of available options for subtitles in various languages and for various purposes.
+        /// Pass AVMediaCharacteristicVisual to obtain the group of available options for video media.
+        ///
+        /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending an instance of AVMediaSelectionGroup (which may be nil) or an error.
+        ///
+        /// If the asset has no AVMediaSelectionGroup containing options with the specified media characteristic, the return value will be nil.
+        ///
+        /// Filtering of the options in the returned AVMediaSelectionGroup according to playability, locale, and additional media characteristics can be accomplished using the category AVMediaSelectionOptionFiltering defined on AVMediaSelectionGroup.
         #[method(loadMediaSelectionGroupForMediaCharacteristic:completionHandler:)]
         pub unsafe fn loadMediaSelectionGroupForMediaCharacteristic_completionHandler(
             &self,
@@ -311,10 +486,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVMediaSelection")]
+        /// Provides an instance of AVMediaSelection with default selections for each of the receiver's media selection groups.
         #[method_id(@__retain_semantics Other preferredMediaSelection)]
         pub unsafe fn preferredMediaSelection(&self) -> Retained<AVMediaSelection>;
 
         #[cfg(feature = "AVMediaSelection")]
+        /// Provides an array of all permutations of AVMediaSelection for this asset.
         #[method_id(@__retain_semantics Other allMediaSelections)]
         pub unsafe fn allMediaSelections(&self) -> Retained<NSArray<AVMediaSelection>>;
     }
@@ -323,6 +500,9 @@ extern_methods!(
 extern_methods!(
     /// AVAssetProtectedContent
     unsafe impl AVAsset {
+        /// Indicates whether or not the asset has protected content.
+        ///
+        /// Assets containing protected content may not be playable without successful authorization, even if the value of the "playable" property is YES.  See the properties in the AVAssetUsability category for details on how such an asset may be used.  On macOS, clients can use the interfaces in AVPlayerItemProtectedContentAdditions.h to request authorization to play the asset.
         #[method(hasProtectedContent)]
         pub unsafe fn hasProtectedContent(&self) -> bool;
     }
@@ -331,13 +511,22 @@ extern_methods!(
 extern_methods!(
     /// AVAssetFragments
     unsafe impl AVAsset {
+        /// Indicates whether the asset is capable of being extended by fragments.
+        ///
+        /// For QuickTime movie files and MPEG-4 files, the value of canContainFragments is YES if an 'mvex' box is present in the 'moov' box. For those types, the 'mvex' box signals the possible presence of later 'moof' boxes.
         #[method(canContainFragments)]
         pub unsafe fn canContainFragments(&self) -> bool;
 
+        /// Indicates whether the asset is extended by at least one fragment.
+        ///
+        /// For QuickTime movie files and MPEG-4 files, the value of this property is YES if canContainFragments is YES and at least one 'moof' box is present after the 'moov' box.
         #[method(containsFragments)]
         pub unsafe fn containsFragments(&self) -> bool;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the total duration of fragments that either exist now or may be appended in the future in order to extend the duration of the asset.
+        ///
+        /// For QuickTime movie files and MPEG-4 files, the value of this property is obtained from the 'mehd' box of the 'mvex' box, if present. If no total fragment duration hint is available, the value of this property is kCMTimeInvalid.
         #[method(overallDurationHint)]
         pub unsafe fn overallDurationHint(&self) -> CMTime;
     }
@@ -346,6 +535,9 @@ extern_methods!(
 extern_methods!(
     /// AVAssetUsability
     unsafe impl AVAsset {
+        /// Indicates whether an AVPlayer can play the contents of the asset in a manner that meets user expectations.
+        ///
+        /// A client can attempt playback when playable is NO, this however may lead to a substandard playback experience.
         #[method(isPlayable)]
         pub unsafe fn isPlayable(&self) -> bool;
 
@@ -361,63 +553,133 @@ extern_methods!(
         #[method(isCompatibleWithSavedPhotosAlbum)]
         pub unsafe fn isCompatibleWithSavedPhotosAlbum(&self) -> bool;
 
+        /// Indicates whether the asset is compatible with AirPlay Video.
+        ///
+        /// YES if an AVPlayerItem initialized with the receiver can be played by an external device via AirPlay Video.
         #[method(isCompatibleWithAirPlayVideo)]
         pub unsafe fn isCompatibleWithAirPlayVideo(&self) -> bool;
     }
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetpreferprecisedurationandtimingkey?language=objc)
+    /// Indicates whether the asset should be prepared to indicate a precise duration and provide precise random access by time.
+    /// The value for this key is a boolean NSNumber.
+    ///
+    /// If nil is passed as the value of the options parameter to -[AVURLAsset initWithURL:options:], or if a dictionary that lacks a value for the key AVURLAssetPreferPreciseDurationAndTimingKey is passed instead, a default value of NO is assumed. If the asset is intended to be played only, because AVPlayer will support approximate random access by time when full precision isn't available, the default value of NO will suffice.
+    /// Pass YES if longer loading times are acceptable in cases in which precise timing is required. If the asset is intended to be inserted into an AVMutableComposition, precise random access is typically desirable and the value of YES is recommended.
+    /// Note that such precision may require additional parsing of the resource in advance of operations that make use of any portion of it, depending on the specifics of its container format. Many container formats provide sufficient summary information for precise timing and do not require additional parsing to prepare for it; QuickTime movie files and MPEG-4 files are examples of such formats. Other formats do not provide sufficient summary information, and precise random access for them is possible only after a preliminary examination of a file's contents.
+    /// If you pass YES for an asset that you intend to play via an instance of AVPlayerItem and you are prepared for playback to commence before the value of -[AVPlayerItem duration] becomes available, you can omit the key
+    /// "
+    /// duration" from the array of AVAsset keys you pass to -[AVPlayerItem initWithAsset:automaticallyLoadedAssetKeys:] in order to prevent AVPlayerItem from automatically loading the value of duration while the item becomes ready to play.
+    /// If precise duration and timing is not possible for the timed media resource referenced by the asset's URL, AVAsset.providesPreciseDurationAndTiming will be NO even if precise timing is requested via the use of this key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetpreferprecisedurationandtimingkey?language=objc)
     pub static AVURLAssetPreferPreciseDurationAndTimingKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetoverridemimetypekey?language=objc)
+    /// Indicates the MIME type that should be used to identify the format of the media resource.
+    ///
+    /// When a value for this key is provided, only the specified MIME type is considered in determining how to handle or parse the media resource. Any other information that may be available, such as the URL path extension or a server-provided MIME type, is ignored.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetoverridemimetypekey?language=objc)
     pub static AVURLAssetOverrideMIMETypeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetreferencerestrictionskey?language=objc)
+    /// Indicates the restrictions used by the asset when resolving references to external media data. The value of this key is an NSNumber wrapping an AVAssetReferenceRestrictions enum value or the logical combination of multiple such values.
+    ///
+    /// Some assets can contain references to media data stored outside the asset's container file, for example in another file. This key can be used to specify a policy to use when these references are encountered. If an asset contains one or more references of a type that is forbidden by the reference restrictions, loading of asset properties will fail. In addition, such an asset cannot be used with other AVFoundation modules, such as AVPlayerItem or AVAssetExportSession.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetreferencerestrictionskey?language=objc)
     pub static AVURLAssetReferenceRestrictionsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassethttpcookieskey?language=objc)
+    /// HTTP cookies that the AVURLAsset may send with HTTP requests
+    /// Standard cross-site policy still applies: cookies will only be sent to domains to which they apply.
+    ///
+    /// By default, an AVURLAsset will only have access to cookies in the client's default cookie storage
+    /// that apply to the AVURLAsset's URL.  You can supplement the cookies available to the asset
+    /// via use of this initialization option
+    ///
+    /// HTTP cookies do not apply to non-HTTP(S) URLS.
+    /// In HLS, many HTTP requests (e.g., media, crypt key, variant index) might be issued to different paths or hosts.
+    /// In both of these cases, HTTP requests will be missing any cookies that do not apply to the AVURLAsset's URL.
+    /// This init option allows the AVURLAsset to use additional HTTP cookies for those HTTP(S) requests.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassethttpcookieskey?language=objc)
     pub static AVURLAssetHTTPCookiesKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetallowscellularaccesskey?language=objc)
+    /// Indicates whether network requests on behalf of this asset are allowed to use the cellular interface.
+    ///
+    /// Default is YES.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetallowscellularaccesskey?language=objc)
     pub static AVURLAssetAllowsCellularAccessKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetallowsexpensivenetworkaccesskey?language=objc)
+    /// Indicates whether network requests on behalf of this asset are allowed to use the expensive interface (e.g. cellular, tethered, constrained).
+    ///
+    /// Default is YES.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetallowsexpensivenetworkaccesskey?language=objc)
     pub static AVURLAssetAllowsExpensiveNetworkAccessKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetallowsconstrainednetworkaccesskey?language=objc)
+    /// Indicates whether network requests on behalf of this asset are allowed to use the constrained interface (e.g. interfaces marked as being in data saver mode).
+    ///
+    /// Default is YES.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetallowsconstrainednetworkaccesskey?language=objc)
     pub static AVURLAssetAllowsConstrainedNetworkAccessKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetshouldsupportaliasdatareferenceskey?language=objc)
+    /// Indicates whether alias data references in the asset should be parsed and resolved.
+    ///
+    /// Default is NO. Although the majority of QuickTime movie files contain all of the media data they require, some contain references to media stored in other files. While AVFoundation and CoreMedia typically employ a URL reference for this purpose, older implementations such as QuickTime 7 have commonly employed a Macintosh alias instead, as documented in the QuickTime File Format specification. If your application must work with legacy QuickTime movie files containing alias-based references to media data stored in other files, the use of this AVURLAsset initialization option is appropriate.
+    ///
+    /// If you provide a value for AVURLAssetReferenceRestrictionsKey, restrictions will be observed for resolved alias references just as they are for URL references.
+    ///
+    /// For more details about alias resolution, consult documentation of the bookmark-related interfaces of NSURL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetshouldsupportaliasdatareferenceskey?language=objc)
     pub static AVURLAssetShouldSupportAliasDataReferencesKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlasseturlrequestattributionkey?language=objc)
+    /// Specifies the attribution of the URLs requested by this asset.
+    ///
+    /// Value is an NSNumber whose value is an NSURLRequestAttribution (see NSURLRequest.h).
+    /// Default value is NSURLRequestAttributionDeveloper.
+    /// All NSURLRequests issed on behalf of this AVURLAsset will be attributed with this value and follow the App Privacy Policy accordingly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlasseturlrequestattributionkey?language=objc)
     pub static AVURLAssetURLRequestAttributionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassethttpuseragentkey?language=objc)
+    /// Specifies the value of the User-Agent header to add to HTTP requests made by this asset.
+    ///
+    /// Value is an NSString
+    /// Default value is the systems's default User-Agent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassethttpuseragentkey?language=objc)
     pub static AVURLAssetHTTPUserAgentKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetprimarysessionidentifierkey?language=objc)
+    /// Specifies a UUID to append as the value of the query parameter "_HLS_primary_id" to selected HTTP requests issued on behalf of the asset. Supported for HLS assets only.
+    ///
+    /// Value is an NSUUID. Its UUID string value will be used as the query parameter.
+    /// If you create AVURLAssets for the templateItems of AVPlayerInterstitialEvents and you want the instances of AVURLAsset that you create to be used during interstitial playback rather than equivalent AVURLAssets with the same URL, you must provide a value for this key that's equal to the httpSessionIdentifier of the primary AVPlayerItem's asset. See AVPlayerInterstitialEventController.h. This is especially useful if you require the use of a custom AVAssetResourceLoader delegate for interstitial assets.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetprimarysessionidentifierkey?language=objc)
     pub static AVURLAssetPrimarySessionIdentifierKey: &'static NSString;
 }
 
@@ -452,21 +714,48 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// Provides the file types the AVURLAsset class understands.
+        ///
+        /// Returns: An NSArray of UTIs identifying the file types the AVURLAsset class understands.
         #[method_id(@__retain_semantics Other audiovisualTypes)]
         pub unsafe fn audiovisualTypes() -> Retained<NSArray<AVFileType>>;
 
+        /// Provides the MIME types the AVURLAsset class understands.
+        ///
+        /// Returns: An NSArray of NSStrings containing MIME types the AVURLAsset class understands.
         #[method_id(@__retain_semantics Other audiovisualMIMETypes)]
         pub unsafe fn audiovisualMIMETypes() -> Retained<NSArray<NSString>>;
 
+        /// Returns YES if asset is playable with the codec(s) and container type specified in extendedMIMEType. Returns NO otherwise.
+        ///
+        /// Parameter `extendedMIMEType`:
+        /// Returns: YES or NO.
+        ///
+        /// On releases prior to macOS 14, iOS 17, tvOS 17, and watchOS 10, regardless of the specified MIME type this method interprets all codecs parameters according to the ISO family syntax defined by RFC 6381 and evaluates playability according to whether the indicated codecs are supported when carried in container formats that conform to the ISO BMFF specification, such as the MPEG-4 file format.
+        /// On releases starting with macOS 14, iOS 17, tvOS 17, and watchOS 10, this method interprets codecs parameters according to the syntax and namespace determined by the specified MIME type and evaluates playability according to whether the indicated codecs are supported when carried in the container format indicated by that MIME type. Codecs parameters for each of the following MIME types are supported: video/mp4 (per RFC 6381, ISO/IEC 14496-15 Annex E, et al), video/quicktime (RFC 6381 et al), video/mp2t (ISO/IEC 13818-1), audio/vnd.wave (RFC 2361), audio/aiff (using the CoreAudio AudioFormatID namespace), audio/x-caf (also using the CoreAudio AudioFormatID namespace), and audio/mpeg (e.g. codecs="mp3"). MIME types supported as alternatives for the same container formats, e.g audio/mp4, are equivalently treated. If the indicated MIME type defines no supported syntax and namespace for codecs parameters, when any codecs parameter is present this method returns NO.
         #[method(isPlayableExtendedMIMEType:)]
         pub unsafe fn isPlayableExtendedMIMEType(extended_mime_type: &NSString) -> bool;
 
+        /// Returns an instance of AVURLAsset for inspection of a media resource.
+        ///
+        /// Parameter `URL`: An instance of NSURL that references a media resource.
+        ///
+        /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
+        ///
+        /// Returns: An instance of AVURLAsset.
         #[method_id(@__retain_semantics Other URLAssetWithURL:options:)]
         pub unsafe fn URLAssetWithURL_options(
             url: &NSURL,
             options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
+        /// Initializes an instance of AVURLAsset for inspection of a media resource.
+        ///
+        /// Parameter `URL`: An instance of NSURL that references a media resource.
+        ///
+        /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
+        ///
+        /// Returns: An instance of AVURLAsset.
         #[method_id(@__retain_semantics Init initWithURL:options:)]
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
@@ -474,9 +763,14 @@ extern_methods!(
             options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
+        /// Indicates the URL with which the instance of AVURLAsset was initialized.
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
+        /// Provides the identifier that's automatically included in any HTTP request issued on behalf of this asset in the HTTP header field "X-Playback-Session-Id".
+        ///
+        /// The value is an NSUUID from which the UUID string can be obtained.
+        /// Note that copies of an AVURLAsset vend an equivalent httpSessionIdentifier.
         #[method_id(@__retain_semantics Other httpSessionIdentifier)]
         pub unsafe fn httpSessionIdentifier(&self) -> Retained<NSUUID>;
     }
@@ -485,6 +779,13 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVAsset`
     unsafe impl AVURLAsset {
+        /// Returns an instance of AVAsset for inspection of a media resource.
+        ///
+        /// Parameter `URL`: An instance of NSURL that references a media resource.
+        ///
+        /// Returns: An instance of AVAsset.
+        ///
+        /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
         #[method_id(@__retain_semantics Other assetWithURL:)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
     }
@@ -494,6 +795,9 @@ extern_methods!(
     /// AVURLAssetURLHandling
     unsafe impl AVURLAsset {
         #[cfg(feature = "AVAssetResourceLoader")]
+        /// Provides access to an instance of AVAssetResourceLoader, which offers limited control over the handling of URLs that may be loaded in the course of performing operations on the asset, such as playback.
+        /// The loading of file URLs cannot be mediated via use of AVAssetResourceLoader.
+        /// Note that copies of an AVAsset will vend the same instance of AVAssetResourceLoader.
         #[method_id(@__retain_semantics Other resourceLoader)]
         pub unsafe fn resourceLoader(&self) -> Retained<AVAssetResourceLoader>;
     }
@@ -503,6 +807,7 @@ extern_methods!(
     /// AVURLAssetCache
     unsafe impl AVURLAsset {
         #[cfg(feature = "AVAssetCache")]
+        /// Provides access to an instance of AVAssetCache to use for inspection of locally cached media data. Will be nil if an asset has not been configured to store or access media data from disk.
         #[method_id(@__retain_semantics Other assetCache)]
         pub unsafe fn assetCache(&self) -> Option<Retained<AVAssetCache>>;
     }
@@ -512,6 +817,15 @@ extern_methods!(
     /// AVAssetCompositionUtility
     unsafe impl AVURLAsset {
         #[cfg(all(feature = "AVAssetTrack", feature = "AVCompositionTrack"))]
+        /// Provides a reference to an AVAssetTrack of the target from which any timeRange
+        /// can be inserted into a mutable composition track (via -[AVMutableCompositionTrack insertTimeRange:ofTrack:atTime:error:]).
+        ///
+        /// Parameter `compositionTrack`: The composition track for which a compatible AVAssetTrack is requested.
+        ///
+        /// Returns: an instance of AVAssetTrack
+        ///
+        /// Finds a track of the target with content that can be accommodated by the specified composition track.
+        /// The logical complement of -[AVMutableComposition mutableTrackCompatibleWithTrack:].
         #[deprecated = "Use findCompatibleTrackForCompositionTrack:completionHandler: instead"]
         #[method_id(@__retain_semantics Other compatibleTrackForCompositionTrack:)]
         pub unsafe fn compatibleTrackForCompositionTrack(
@@ -524,6 +838,15 @@ extern_methods!(
             feature = "AVCompositionTrack",
             feature = "block2"
         ))]
+        /// Loads a reference to an AVAssetTrack of the target from which any timeRange
+        /// can be inserted into a mutable composition track (via -[AVMutableCompositionTrack insertTimeRange:ofTrack:atTime:error:]).
+        ///
+        /// Parameter `compositionTrack`: The composition track for which a compatible AVAssetTrack is requested.
+        ///
+        /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending an instance of AVAssetTrack or an error.
+        ///
+        /// Finds a track of the target with content that can be accommodated by the specified composition track.
+        /// The logical complement of -[AVMutableComposition mutableTrackCompatibleWithTrack:].
         #[method(findCompatibleTrackForCompositionTrack:completionHandler:)]
         pub unsafe fn findCompatibleTrackForCompositionTrack_completionHandler(
             &self,
@@ -537,6 +860,9 @@ extern_methods!(
     /// AVAssetVariantInspection
     unsafe impl AVURLAsset {
         #[cfg(feature = "AVAssetVariant")]
+        /// Provides an array of AVAssetVariants contained in the asset
+        ///
+        /// Some variants may not be playable according to the current device configuration.
         #[method_id(@__retain_semantics Other variants)]
         pub unsafe fn variants(&self) -> Retained<NSArray<AVAssetVariant>>;
     }
@@ -544,6 +870,9 @@ extern_methods!(
 
 extern_methods!(
     /// AVURLAssetNSItemProvider
+    /// AVURLAssets can be shared through any interface that supports passing NSItemProviders. Note that only AVURLAssets with file URLs can be added to NSItemProviders. Attempting to share assets with non file URLs will result in an error.
+    ///
+    /// AVURLAssets can be retrieved from NSItemProviders by directly requesting an AVURLAsset through -[NSItemProvider loadObjectOfClass:completionHandler:]. Requesting data representations of AVURLAssets is not supported. File representations of AVURLAssets will be sent without copying the underlying media and the receiver will be extended readonly sandbox access to the sender's original URL until the AVURLAsset is deallocated. Use of NSFileCoordinator and NSFilePresenter is recommended for both the sender and receive to coordinate possible changes in the file's state once sharing has been completed.
     unsafe impl AVURLAsset {}
 );
 
@@ -552,7 +881,12 @@ unsafe impl NSItemProviderReading for AVURLAsset {}
 unsafe impl NSItemProviderWriting for AVURLAsset {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediaextensionproperties?language=objc)
+    /// A class incorporating properties for a MediaExtension
+    ///
+    /// AVMediaExtensionProperties objects are returned from property queries on AVAsset, AVPlayerItemTrack, AVSampleBufferDisplayLayer, or AVSampleBufferVideoRenderer.
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediaextensionproperties?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMediaExtensionProperties;
@@ -578,18 +912,29 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// The identifier of the Media Extension.
+        ///
+        /// The extension identifier string, corresponding to the ClassImplementationID value from the EXAppExtensionAttributes dictionary in the Info.plist file.
         #[method_id(@__retain_semantics Other extensionIdentifier)]
         pub unsafe fn extensionIdentifier(&self) -> Retained<NSString>;
 
+        /// The name of the MediaExtension.
+        ///
+        /// The localized name of the MediaExtension format reader or video decoder, corresponding to the CFBundleDisplayName.
         #[method_id(@__retain_semantics Other extensionName)]
         pub unsafe fn extensionName(&self) -> Retained<NSString>;
 
+        /// The name of the containing application bundle.
+        ///
+        /// The localized name of the application that hosts the MediaExtension.
         #[method_id(@__retain_semantics Other containingBundleName)]
         pub unsafe fn containingBundleName(&self) -> Retained<NSString>;
 
+        /// The file URL of the MediaExtension bundle.
         #[method_id(@__retain_semantics Other extensionURL)]
         pub unsafe fn extensionURL(&self) -> Retained<NSURL>;
 
+        /// The file URL of the host application for the MediaExtension.
         #[method_id(@__retain_semantics Other containingBundleURL)]
         pub unsafe fn containingBundleURL(&self) -> Retained<NSURL>;
     }
@@ -598,6 +943,9 @@ extern_methods!(
 extern_methods!(
     /// AVMediaExtension
     unsafe impl AVURLAsset {
+        /// The properties of the MediaExtension format reader for the asset.
+        ///
+        /// If the asset is being decoded using a MediaExtension format reader, this property will return a AVMediaExtensionProperties object describing the extension. If the asset is not being decoded with a MediaExtension format reader, this property will return nil.
         #[method_id(@__retain_semantics Other mediaExtensionProperties)]
         pub unsafe fn mediaExtensionProperties(
             &self,
@@ -606,33 +954,65 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdurationdidchangenotification?language=objc)
+    /// Posted when the duration of an AVFragmentedAsset changes while it's being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of
+    /// "
+    /// duration" has reached AVKeyValueStatusLoaded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdurationdidchangenotification?language=objc)
     pub static AVAssetDurationDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetcontainsfragmentsdidchangenotification?language=objc)
+    /// Posted after the value of
+    /// "
+    /// containsFragments" has already been loaded and the AVFragmentedAsset is added to an AVFragmentedAssetMinder, either when 1) fragments are detected in the asset on disk after it had previously contained none or when 2) no fragments are detected in the asset on disk after it had previously contained one or more.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetcontainsfragmentsdidchangenotification?language=objc)
     pub static AVAssetContainsFragmentsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwasdefragmentednotification?language=objc)
+    /// Posted when the asset on disk is defragmented while an AVFragmentedAsset is being minded by an AVFragmentedAssetMinder, but only if the defragmentation occurs after the status of the value of
+    /// "
+    /// canContainFragments" has reached AVKeyValueStatusLoaded.
+    ///
+    /// After this notification is posted, the value of the asset properties canContainFragments and containsFragments will both be NO.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwasdefragmentednotification?language=objc)
     pub static AVAssetWasDefragmentedNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetchaptermetadatagroupsdidchangenotification?language=objc)
+    /// Posted when the collection of arrays of timed metadata groups representing chapters of an AVAsset change and when any of the contents of the timed metadata groups change, but only for changes that occur after the status of the value of
+    /// "
+    /// availableChapterLocales" has reached AVKeyValueStatusLoaded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetchaptermetadatagroupsdidchangenotification?language=objc)
     pub static AVAssetChapterMetadataGroupsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetmediaselectiongroupsdidchangenotification?language=objc)
+    /// Posted when the collection of media selection groups provided by an AVAsset changes and when any of the contents of its media selection groups change, but only for changes that occur after the status of the value of
+    /// "
+    /// availableMediaCharacteristicsWithMediaSelectionOptions" has reached AVKeyValueStatusLoaded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetmediaselectiongroupsdidchangenotification?language=objc)
     pub static AVAssetMediaSelectionGroupsDidChangeNotification: &'static NSString;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentminding?language=objc)
+    /// A subclass of AVURLAsset that represents media resources that can be extended in total duration without modifying previously existing data structures.
+    /// Such media resources include QuickTime movie files and MPEG-4 files that indicate, via an 'mvex' box in their 'moov' box, that they accommodate additional fragments. Media resources of other types may also be supported. To check whether a given instance of AVFragmentedAsset can be used to monitor the addition of fragments, check the value of the AVURLAsset property canContainFragments.
+    /// An AVFragmentedAsset is capable of changing the values of certain of its properties and those of its tracks, while an operation that appends fragments to the underlying media resource in in progress, if the AVFragmentedAsset is associated with an instance of AVFragmentedAssetMinder.
+    ///
+    /// While associated with an AVFragmentedAssetMinder, AVFragmentedAsset posts AVAssetDurationDidChangeNotification whenever new fragments are detected, as appropriate. It may also post AVAssetContainsFragmentsDidChangeNotification and AVAssetWasDefragmentedNotification, as discussed in documentation of those notifications.
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentminding?language=objc)
     pub unsafe trait AVFragmentMinding {
+        /// Indicates whether an AVAsset that supports fragment minding is currently associated with a fragment minder, e.g. an instance of AVFragmentedAssetMinder.
+        ///
+        /// AVAssets that support fragment minding post change notifications only while associated with a fragment minder.
         #[method(isAssociatedWithFragmentMinder)]
         unsafe fn isAssociatedWithFragmentMinder(&self) -> bool;
     }
@@ -666,6 +1046,13 @@ unsafe impl NSObjectProtocol for AVFragmentedAsset {}
 
 extern_methods!(
     unsafe impl AVFragmentedAsset {
+        /// Returns an instance of AVFragmentedAsset for inspection of a fragmented media resource.
+        ///
+        /// Parameter `URL`: An instance of NSURL that references a media resource.
+        ///
+        /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVFragmentedAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
+        ///
+        /// Returns: An instance of AVFragmentedAsset.
         #[method_id(@__retain_semantics Other fragmentedAssetWithURL:options:)]
         pub unsafe fn fragmentedAssetWithURL_options(
             url: &NSURL,
@@ -673,6 +1060,9 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVAssetTrack")]
+        /// The tracks in an asset.
+        ///
+        /// The value of this property is an array of tracks the asset contains; the tracks are of type AVFragmentedAssetTrack.
         #[method_id(@__retain_semantics Other tracks)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVFragmentedAssetTrack>>;
     }
@@ -687,12 +1077,26 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Returns an instance of AVURLAsset for inspection of a media resource.
+        ///
+        /// Parameter `URL`: An instance of NSURL that references a media resource.
+        ///
+        /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
+        ///
+        /// Returns: An instance of AVURLAsset.
         #[method_id(@__retain_semantics Other URLAssetWithURL:options:)]
         pub unsafe fn URLAssetWithURL_options(
             url: &NSURL,
             options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
+        /// Initializes an instance of AVURLAsset for inspection of a media resource.
+        ///
+        /// Parameter `URL`: An instance of NSURL that references a media resource.
+        ///
+        /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
+        ///
+        /// Returns: An instance of AVURLAsset.
         #[method_id(@__retain_semantics Init initWithURL:options:)]
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
@@ -705,6 +1109,13 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVAsset`
     unsafe impl AVFragmentedAsset {
+        /// Returns an instance of AVAsset for inspection of a media resource.
+        ///
+        /// Parameter `URL`: An instance of NSURL that references a media resource.
+        ///
+        /// Returns: An instance of AVAsset.
+        ///
+        /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
         #[method_id(@__retain_semantics Other assetWithURL:)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
     }
@@ -714,6 +1125,15 @@ extern_methods!(
     /// AVFragmentedAssetTrackInspection
     unsafe impl AVFragmentedAsset {
         #[cfg(all(feature = "AVAssetTrack", feature = "objc2-core-media"))]
+        /// Provides an instance of AVFragmentedAssetTrack that represents the track of the specified trackID.
+        ///
+        /// Parameter `trackID`: The trackID of the requested AVFragmentedAssetTrack.
+        ///
+        /// Returns: An instance of AVFragmentedAssetTrack; may be nil if no track of the specified trackID is available.
+        ///
+        /// Becomes callable without blocking when the key
+        /// "
+        /// tracks" has been loaded
         #[deprecated = "Use loadTrackWithTrackID:completionHandler: instead"]
         #[method_id(@__retain_semantics Other trackWithTrackID:)]
         pub unsafe fn trackWithTrackID(
@@ -726,6 +1146,11 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-media"
         ))]
+        /// Loads an instance of AVFragmentedAssetTrack that represents the track of the specified trackID.
+        ///
+        /// Parameter `trackID`: The trackID of the requested AVFragmentedAssetTrack.
+        ///
+        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded track (which may be nil if no track of the specified trackID is available) or an error.
         #[method(loadTrackWithTrackID:completionHandler:)]
         pub unsafe fn loadTrackWithTrackID_completionHandler(
             &self,
@@ -734,6 +1159,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMediaFormat"))]
+        /// Provides an array of AVFragmentedAssetTracks of the asset that present media of the specified media type.
+        ///
+        /// Parameter `mediaType`: The media type according to which the receiver filters its AVFragmentedAssetTracks. (Media types are defined in AVMediaFormat.h)
+        ///
+        /// Returns: An NSArray of AVFragmentedAssetTracks; may be empty if no tracks of the specified media type are available.
+        ///
+        /// Becomes callable without blocking when the key
+        /// "
+        /// tracks" has been loaded
         #[deprecated = "Use loadTracksWithMediaType:completionHandler: instead"]
         #[method_id(@__retain_semantics Other tracksWithMediaType:)]
         pub unsafe fn tracksWithMediaType(
@@ -746,6 +1180,11 @@ extern_methods!(
             feature = "AVMediaFormat",
             feature = "block2"
         ))]
+        /// Loads an array of AVFragmentedAssetTracks of the asset that present media of the specified media type.
+        ///
+        /// Parameter `mediaType`: The media type according to which AVAsset filters its AVFragmentedAssetTracks. (Media types are defined in AVMediaFormat.h.)
+        ///
+        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks of the specified media type are available) or an error.
         #[method(loadTracksWithMediaType:completionHandler:)]
         pub unsafe fn loadTracksWithMediaType_completionHandler(
             &self,
@@ -756,6 +1195,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AVAssetTrack", feature = "AVMediaFormat"))]
+        /// Provides an array of AVFragmentedAssetTracks of the asset that present media with the specified characteristic.
+        ///
+        /// Parameter `mediaCharacteristic`: The media characteristic according to which the receiver filters its AVFragmentedAssetTracks. (Media characteristics are defined in AVMediaFormat.h)
+        ///
+        /// Returns: An NSArray of AVFragmentedAssetTracks; may be empty if no tracks with the specified characteristic are available.
+        ///
+        /// Becomes callable without blocking when the key
+        /// "
+        /// tracks" has been loaded
         #[deprecated = "Use loadTracksWithMediaCharacteristic:completionHandler: instead"]
         #[method_id(@__retain_semantics Other tracksWithMediaCharacteristic:)]
         pub unsafe fn tracksWithMediaCharacteristic(
@@ -768,6 +1216,11 @@ extern_methods!(
             feature = "AVMediaFormat",
             feature = "block2"
         ))]
+        /// Loads an array of AVFragmentedAssetTracks of the asset that present media with the specified characteristic.
+        ///
+        /// Parameter `mediaCharacteristic`: The media characteristic according to which AVAsset filters its AVFragmentedAssetTracks. (Media characteristics are defined in AVMediaFormat.h.)
+        ///
+        /// Parameter `completionHandler`: A block that is called when the loading is finished, with either the loaded tracks (which may be empty if no tracks with the specified characteristic are available) or an error.
         #[method(loadTracksWithMediaCharacteristic:completionHandler:)]
         pub unsafe fn loadTracksWithMediaCharacteristic_completionHandler(
             &self,
@@ -790,12 +1243,26 @@ unsafe impl NSObjectProtocol for AVFragmentedAssetMinder {}
 
 extern_methods!(
     unsafe impl AVFragmentedAssetMinder {
+        /// Creates an AVFragmentedAssetMinder, adds the specified asset to it, and sets the mindingInterval to the specified value.
+        ///
+        /// Parameter `asset`: An instance of AVFragmentedAsset to add to the AVFragmentedAssetMinder
+        ///
+        /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedAssetMinder.
+        ///
+        /// Returns: A new instance of AVFragmentedAssetMinder.
         #[method_id(@__retain_semantics Other fragmentedAssetMinderWithAsset:mindingInterval:)]
         pub unsafe fn fragmentedAssetMinderWithAsset_mindingInterval(
             asset: &AVAsset,
             minding_interval: NSTimeInterval,
         ) -> Retained<Self>;
 
+        /// Creates an AVFragmentedAssetMinder, adds the specified asset to it, and sets the mindingInterval to the specified value.
+        ///
+        /// Parameter `asset`: An instance of AVFragmentedAsset to add to the AVFragmentedAssetMinder
+        ///
+        /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedAssetMinder.
+        ///
+        /// Returns: A new instance of AVFragmentedAssetMinder.
         #[method_id(@__retain_semantics Init initWithAsset:mindingInterval:)]
         pub unsafe fn initWithAsset_mindingInterval(
             this: Allocated<Self>,
@@ -803,18 +1270,33 @@ extern_methods!(
             minding_interval: NSTimeInterval,
         ) -> Retained<Self>;
 
+        /// An NSTimeInterval indicating how often a check for additional fragments should be performed. The default interval is 10.0.
+        ///
+        /// This property throws an excepion if a value is set less than one millisecond (0.001) in duration.
         #[method(mindingInterval)]
         pub unsafe fn mindingInterval(&self) -> NSTimeInterval;
 
+        /// Setter for [`mindingInterval`][Self::mindingInterval].
         #[method(setMindingInterval:)]
         pub unsafe fn setMindingInterval(&self, minding_interval: NSTimeInterval);
 
+        /// An NSArray of the AVFragmentedAsset objects being minded.
         #[method_id(@__retain_semantics Other assets)]
         pub unsafe fn assets(&self) -> Retained<NSArray<AVAsset>>;
 
+        /// Adds a fragmented asset to the array of assets being minded.
+        ///
+        /// Parameter `asset`: The fragmented asset to add to the minder.
+        ///
+        /// This method throws an exception if the asset is not a supported type (AVFragmentedAsset, AVFragmentedMovie), or if the asset is already being minded by another fragment minder.
         #[method(addFragmentedAsset:)]
         pub unsafe fn addFragmentedAsset(&self, asset: &AVAsset);
 
+        /// Removes a fragmented asset from the array of assets being minded.
+        ///
+        /// Parameter `asset`: The fragmented asset to remove from the minder.
+        ///
+        /// This method throws an exception if the asset is not a supported type (AVFragmentedAsset, AVFragmentedMovie).
         #[method(removeFragmentedAsset:)]
         pub unsafe fn removeFragmentedAsset(&self, asset: &AVAsset);
     }
@@ -834,6 +1316,7 @@ extern_methods!(
 extern_methods!(
     /// AVURLAssetContentKeyEligibility
     unsafe impl AVURLAsset {
+        /// Allows AVURLAsset to be added as a content key recipient to an AVContentKeySession.
         #[method(mayRequireContentKeysForMediaDataProcessing)]
         pub unsafe fn mayRequireContentKeysForMediaDataProcessing(&self) -> bool;
     }

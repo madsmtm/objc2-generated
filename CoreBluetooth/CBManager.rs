@@ -5,7 +5,18 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate?language=objc)
+/// Represents the current state of a CBManager.
+///
+///
+///
+///
+///
+///
+///
+///
+/// See also: authorization
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,7 +44,13 @@ unsafe impl RefEncode for CBManagerState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerauthorization?language=objc)
+/// Represents the current authorization state of a CBManager.
+///
+///
+///
+/// possibly due to active restrictions such as parental controls being in place.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerauthorization?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -71,13 +88,52 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The current state of the manager, initially set to
+        /// <code>
+        /// CBManagerStateUnknown
+        /// </code>
+        /// .
+        /// Updates are provided by required delegate method {
+        ///
+        /// ```text
+        ///  managerDidUpdateState:}.
+        ///
+        ///  
+        ///
+        /// ```
         #[method(state)]
         pub unsafe fn state(&self) -> CBManagerState;
 
+        /// The current authorization of the manager, initially set to
+        /// <code>
+        /// CBManagerAuthorizationNotDetermined
+        /// </code>
+        /// .
+        /// Updates are provided by required delegate method {
+        ///
+        /// ```text
+        ///  managerDidUpdateState:}.
+        ///   @seealso    state
+        ///  
+        ///
+        /// ```
         #[deprecated]
         #[method(authorization)]
         pub unsafe fn authorization(&self) -> CBManagerAuthorization;
 
+        /// The current authorization of the manager, initially set to
+        /// <code>
+        /// CBManagerAuthorizationNotDetermined
+        /// </code>
+        /// .
+        /// You can check this in your implementation of required delegate method {
+        ///
+        /// ```text
+        ///  managerDidUpdateState:}. You can also use it to check authorization status before allocating CBManager.
+        ///   @seealso    state
+        ///  
+        ///
+        /// ```
         #[method(authorization)]
         pub unsafe fn authorization_class() -> CBManagerAuthorization;
     }

@@ -13,7 +13,33 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lplinkview?language=objc)
+    /// A rich visual representation of a link.
+    ///
+    /// ``LPLinkView`` presents a link based on its available metadata. Use it to
+    /// show a link’s title and icon, associated images, inline audio, video
+    /// playback, and maps in a familiar and consistent style.
+    ///
+    /// ## Present a rich link
+    ///
+    /// To present a rich link in your app, create an ``LPLinkView``, passing an
+    /// ``LPLinkMetadata`` instance into its initializer. Then add the
+    /// ``LPLinkView`` to your view.
+    ///
+    /// For example, to present links in a table view, add an ``LPLinkView``
+    /// instance as a subview when populating each cell.
+    ///
+    /// ```swift
+    /// let linkView = LPLinkView(metadata: metadata)
+    /// cell.contentView.addSubview(linkView)
+    /// linkView.sizeToFit()
+    /// ```
+    ///
+    /// ``LPLinkView`` has an intrinsic size, but it also responds to
+    /// <doc
+    /// ://com.apple.documentation/documentation/uikit/uiview/1622630-sizetofit>
+    /// to present a layout at any size.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lplinkview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -63,10 +89,12 @@ extern_methods!(
         #[method(encodeWithCoder:)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
+        /// Initializes a placeholder link view without metadata for a given URL.
         #[method_id(@__retain_semantics Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "LPLinkMetadata")]
+        /// Initializes a link view with specified metadata.
         #[method_id(@__retain_semantics Init initWithMetadata:)]
         pub unsafe fn initWithMetadata(
             this: Allocated<Self>,
@@ -74,10 +102,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "LPLinkMetadata")]
+        /// The metadata from which to generate a rich presentation.
+        ///
+        /// This can either be generated automatically from a URL by LPMetadataProvider,
+        /// or manually constructed with the desired data.
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Retained<LPLinkMetadata>;
 
         #[cfg(feature = "LPLinkMetadata")]
+        /// Setter for [`metadata`][Self::metadata].
         #[method(setMetadata:)]
         pub unsafe fn setMetadata(&self, metadata: &LPLinkMetadata);
     }

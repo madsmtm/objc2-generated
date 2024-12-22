@@ -97,18 +97,21 @@ extern_methods!(
         pub unsafe fn size(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
 
         #[method(hasAlpha)]
         pub unsafe fn hasAlpha(&self) -> bool;
 
+        /// Setter for [`hasAlpha`][Self::hasAlpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: bool);
 
         #[method(isOpaque)]
         pub unsafe fn isOpaque(&self) -> bool;
 
+        /// Setter for [`isOpaque`][Self::isOpaque].
         #[method(setOpaque:)]
         pub unsafe fn setOpaque(&self, opaque: bool);
 
@@ -117,30 +120,35 @@ extern_methods!(
         pub unsafe fn colorSpaceName(&self) -> Retained<NSColorSpaceName>;
 
         #[cfg(feature = "NSGraphics")]
+        /// Setter for [`colorSpaceName`][Self::colorSpaceName].
         #[method(setColorSpaceName:)]
         pub unsafe fn setColorSpaceName(&self, color_space_name: &NSColorSpaceName);
 
         #[method(bitsPerSample)]
         pub unsafe fn bitsPerSample(&self) -> NSInteger;
 
+        /// Setter for [`bitsPerSample`][Self::bitsPerSample].
         #[method(setBitsPerSample:)]
         pub unsafe fn setBitsPerSample(&self, bits_per_sample: NSInteger);
 
         #[method(pixelsWide)]
         pub unsafe fn pixelsWide(&self) -> NSInteger;
 
+        /// Setter for [`pixelsWide`][Self::pixelsWide].
         #[method(setPixelsWide:)]
         pub unsafe fn setPixelsWide(&self, pixels_wide: NSInteger);
 
         #[method(pixelsHigh)]
         pub unsafe fn pixelsHigh(&self) -> NSInteger;
 
+        /// Setter for [`pixelsHigh`][Self::pixelsHigh].
         #[method(setPixelsHigh:)]
         pub unsafe fn setPixelsHigh(&self, pixels_high: NSInteger);
 
         #[method(layoutDirection)]
         pub unsafe fn layoutDirection(&self) -> NSImageLayoutDirection;
 
+        /// Setter for [`layoutDirection`][Self::layoutDirection].
         #[method(setLayoutDirection:)]
         pub unsafe fn setLayoutDirection(&self, layout_direction: NSImageLayoutDirection);
 

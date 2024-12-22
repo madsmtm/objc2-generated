@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other version)]
         pub unsafe fn version(&self) -> Retained<NSString>;
 
+        /// Setter for [`version`][Self::version].
         #[deprecated]
         #[method(setVersion:)]
         pub unsafe fn setVersion(&self, version: Option<&NSString>);

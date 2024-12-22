@@ -55,12 +55,14 @@ extern_methods!(
         #[method(sceneClass)]
         pub unsafe fn sceneClass(&self) -> Option<&'static AnyClass>;
 
+        /// Setter for [`sceneClass`][Self::sceneClass].
         #[method(setSceneClass:)]
         pub unsafe fn setSceneClass(&self, scene_class: Option<&AnyClass>);
 
         #[method(delegateClass)]
         pub unsafe fn delegateClass(&self) -> Option<&'static AnyClass>;
 
+        /// Setter for [`delegateClass`][Self::delegateClass].
         #[method(setDelegateClass:)]
         pub unsafe fn setDelegateClass(&self, delegate_class: Option<&AnyClass>);
 
@@ -69,6 +71,7 @@ extern_methods!(
         pub unsafe fn storyboard(&self) -> Option<Retained<UIStoryboard>>;
 
         #[cfg(feature = "UIStoryboard")]
+        /// Setter for [`storyboard`][Self::storyboard].
         #[method(setStoryboard:)]
         pub unsafe fn setStoryboard(&self, storyboard: Option<&UIStoryboard>);
     }
@@ -124,6 +127,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stateRestorationActivity)]
         pub unsafe fn stateRestorationActivity(&self) -> Option<Retained<NSUserActivity>>;
 
+        /// Setter for [`stateRestorationActivity`][Self::stateRestorationActivity].
         #[method(setStateRestorationActivity:)]
         pub unsafe fn setStateRestorationActivity(
             &self,
@@ -133,6 +137,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary<NSString, AnyObject>>);
     }

@@ -11,7 +11,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayeridnolongeravailable?language=objc)
+    /// Deprecated methods that previously returned player IDs will return GKPlayerIDNoLongerAvailable instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayeridnolongeravailable?language=objc)
     pub static GKPlayerIDNoLongerAvailable: &'static NSString;
 }
 
@@ -29,18 +31,23 @@ unsafe impl NSObjectProtocol for GKPlayer {}
 extern_methods!(
     #[cfg(feature = "GKBasePlayer")]
     unsafe impl GKPlayer {
+        /// This convenience method checks if the gamePlayerID and the teamPlayerID (scopedIDs) are persistent or unique for the instantiation of this app.
         #[method(scopedIDsArePersistent)]
         pub unsafe fn scopedIDsArePersistent(&self) -> bool;
 
+        /// This is the player's unique and persistent ID that is scoped to this application.
         #[method_id(@__retain_semantics Other gamePlayerID)]
         pub unsafe fn gamePlayerID(&self) -> Retained<NSString>;
 
+        /// This is the player's unique and persistent ID that is scoped to the Apple Store Connect Team identifier of this application.
         #[method_id(@__retain_semantics Other teamPlayerID)]
         pub unsafe fn teamPlayerID(&self) -> Retained<NSString>;
 
+        /// This is player's alias to be displayed. The display name may be very long, so be sure to use appropriate string truncation API when drawing.
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
 
+        /// The alias property contains the player's nickname. When you need to display the name to the user, consider using displayName instead. The nickname is unique but not invariant: the player may change their nickname. The nickname may be very long, so be sure to use appropriate string truncation API when drawing.
         #[method_id(@__retain_semantics Other alias)]
         pub unsafe fn alias(&self) -> Retained<NSString>;
 
@@ -105,7 +112,9 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerdidchangenotificationname?language=objc)
+    /// Notification will be posted whenever the player details changes. The object of the notification will be the player.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerdidchangenotificationname?language=objc)
     pub static GKPlayerDidChangeNotificationName: &'static NSNotificationName;
 }
 
@@ -122,6 +131,11 @@ extern_methods!(
         pub unsafe fn playerID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]
+        /// Load the Game Center players for the playerIDs provided. Error will be nil on success.
+        /// Possible reasons for error:
+        /// 1. Unauthenticated local player
+        /// 2. Communications failure
+        /// 3. Invalid player identifier
         #[deprecated]
         #[method(loadPlayersForIdentifiers:withCompletionHandler:)]
         pub unsafe fn loadPlayersForIdentifiers_withCompletionHandler(

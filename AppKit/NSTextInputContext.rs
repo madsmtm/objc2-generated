@@ -38,24 +38,28 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSTextInputClient")]
+        /// ** Properties ****
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Retained<ProtocolObject<dyn NSTextInputClient>>;
 
         #[method(acceptsGlyphInfo)]
         pub unsafe fn acceptsGlyphInfo(&self) -> bool;
 
+        /// Setter for [`acceptsGlyphInfo`][Self::acceptsGlyphInfo].
         #[method(setAcceptsGlyphInfo:)]
         pub unsafe fn setAcceptsGlyphInfo(&self, accepts_glyph_info: bool);
 
         #[method_id(@__retain_semantics Other allowedInputSourceLocales)]
         pub unsafe fn allowedInputSourceLocales(&self) -> Option<Retained<NSArray<NSString>>>;
 
+        /// Setter for [`allowedInputSourceLocales`][Self::allowedInputSourceLocales].
         #[method(setAllowedInputSourceLocales:)]
         pub unsafe fn setAllowedInputSourceLocales(
             &self,
             allowed_input_source_locales: Option<&NSArray<NSString>>,
         );
 
+        /// ** Activation ****
         #[method(activate)]
         pub unsafe fn activate(&self);
 
@@ -63,6 +67,7 @@ extern_methods!(
         pub unsafe fn deactivate(&self);
 
         #[cfg(feature = "NSEvent")]
+        /// ** Input source interface ***
         #[method(handleEvent:)]
         pub unsafe fn handleEvent(&self, event: &NSEvent) -> bool;
 
@@ -78,6 +83,7 @@ extern_methods!(
         #[method(textInputClientDidEndScrollingOrZooming)]
         pub unsafe fn textInputClientDidEndScrollingOrZooming(&self);
 
+        /// ** Text Input sources handling ***
         #[method_id(@__retain_semantics Other keyboardInputSources)]
         pub unsafe fn keyboardInputSources(
             &self,
@@ -86,12 +92,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selectedKeyboardInputSource)]
         pub fn selectedKeyboardInputSource(&self) -> Option<Retained<NSTextInputSourceIdentifier>>;
 
+        /// Setter for [`selectedKeyboardInputSource`][Self::selectedKeyboardInputSource].
         #[method(setSelectedKeyboardInputSource:)]
         pub unsafe fn setSelectedKeyboardInputSource(
             &self,
             selected_keyboard_input_source: Option<&NSTextInputSourceIdentifier>,
         );
 
+        /// ** Text Input source attributes ***
         #[method_id(@__retain_semantics Other localizedNameForInputSource:)]
         pub unsafe fn localizedNameForInputSource(
             input_source_identifier: &NSTextInputSourceIdentifier,
@@ -109,7 +117,9 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputcontextkeyboardselectiondidchangenotification?language=objc)
+    /// ** Notifications ***
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputcontextkeyboardselectiondidchangenotification?language=objc)
     pub static NSTextInputContextKeyboardSelectionDidChangeNotification:
         &'static NSNotificationName;
 }

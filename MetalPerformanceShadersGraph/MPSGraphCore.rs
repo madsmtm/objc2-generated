@@ -10,7 +10,11 @@ use objc2_metal_performance_shaders::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphobject?language=objc)
+    /// The common base class for all Metal Performance Shaders Graph objects.
+    ///
+    /// Only the child classes should be used.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSGraphObject;
@@ -34,7 +38,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtype?language=objc)
+    /// The base type class for types on tensors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtype?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSGraphType;
@@ -64,7 +70,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphshapedtype?language=objc)
+    /// The shaped type class for types on tensors with a shape and data type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphshapedtype?language=objc)
     #[unsafe(super(MPSGraphType, MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSGraphShapedType;
@@ -81,22 +89,32 @@ unsafe impl NSObjectProtocol for MPSGraphShapedType {}
 extern_methods!(
     unsafe impl MPSGraphShapedType {
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// The Shape of the shaped type.
         #[method_id(@__retain_semantics Other shape)]
         pub unsafe fn shape(&self) -> Option<Retained<MPSShape>>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Setter for [`shape`][Self::shape].
         #[method(setShape:)]
         pub unsafe fn setShape(&self, shape: Option<&MPSShape>);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// The data type of the shaped type.
         #[method(dataType)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Setter for [`dataType`][Self::dataType].
         #[method(setDataType:)]
         pub unsafe fn setDataType(&self, data_type: MPSDataType);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Initializes a shaped type.
+        ///
+        /// - Parameters:
+        /// - shape: The shape of the shaped type.
+        /// - dataType: The dataType of the shaped type.
+        /// - Returns: A valid MPSGraphShapedType, or nil if allocation failure.
         #[method_id(@__retain_semantics Init initWithShape:dataType:)]
         pub unsafe fn initWithShape_dataType(
             this: Allocated<Self>,
@@ -104,6 +122,11 @@ extern_methods!(
             data_type: MPSDataType,
         ) -> Retained<Self>;
 
+        /// Checks if shapes and element data type are the same as the input shaped type.
+        ///
+        /// - Parameters:
+        /// - object: shapedType to compare to
+        /// - Returns: true if equal, false if unequal
         #[method(isEqualTo:)]
         pub unsafe fn isEqualTo(&self, object: Option<&MPSGraphShapedType>) -> bool;
     }
@@ -120,32 +143,45 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout?language=objc)
+/// The tensor layout.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphTensorNamedDataLayout(pub NSUInteger);
 impl MPSGraphTensorNamedDataLayout {
+    /// LayoutNCHW
     #[doc(alias = "MPSGraphTensorNamedDataLayoutNCHW")]
     pub const NCHW: Self = Self(0);
+    /// LayoutNHWC
     #[doc(alias = "MPSGraphTensorNamedDataLayoutNHWC")]
     pub const NHWC: Self = Self(1);
+    /// LayoutOIHW
     #[doc(alias = "MPSGraphTensorNamedDataLayoutOIHW")]
     pub const OIHW: Self = Self(2);
+    /// LayoutHWIO
     #[doc(alias = "MPSGraphTensorNamedDataLayoutHWIO")]
     pub const HWIO: Self = Self(3);
+    /// LayoutCHW
     #[doc(alias = "MPSGraphTensorNamedDataLayoutCHW")]
     pub const CHW: Self = Self(4);
+    /// LayoutHWC
     #[doc(alias = "MPSGraphTensorNamedDataLayoutHWC")]
     pub const HWC: Self = Self(5);
+    /// LayoutHW
     #[doc(alias = "MPSGraphTensorNamedDataLayoutHW")]
     pub const HW: Self = Self(6);
+    /// LayoutNCDHW
     #[doc(alias = "MPSGraphTensorNamedDataLayoutNCDHW")]
     pub const NCDHW: Self = Self(7);
+    /// LayoutNDHWC
     #[doc(alias = "MPSGraphTensorNamedDataLayoutNDHWC")]
     pub const NDHWC: Self = Self(8);
+    /// LayoutOIDHW
     #[doc(alias = "MPSGraphTensorNamedDataLayoutOIDHW")]
     pub const OIDHW: Self = Self(9);
+    /// LayoutDHWIO
     #[doc(alias = "MPSGraphTensorNamedDataLayoutDHWIO")]
     pub const DHWIO: Self = Self(10);
 }
@@ -158,20 +194,27 @@ unsafe impl RefEncode for MPSGraphTensorNamedDataLayout {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingstyle?language=objc)
+/// The tensor padding style.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphPaddingStyle(pub NSUInteger);
 impl MPSGraphPaddingStyle {
+    /// Explicit
     #[doc(alias = "MPSGraphPaddingStyleExplicit")]
     pub const Explicit: Self = Self(0);
+    /// ONNX_SAME_LOWER
     #[doc(alias = "MPSGraphPaddingStyleTF_VALID")]
     pub const TF_VALID: Self = Self(1);
+    /// TF_SAME
     #[doc(alias = "MPSGraphPaddingStyleTF_SAME")]
     pub const TF_SAME: Self = Self(2);
+    /// TF_VALID
     #[doc(alias = "MPSGraphPaddingStyleExplicitOffset")]
     pub const ExplicitOffset: Self = Self(3);
+    /// Explicit offsets
     #[doc(alias = "MPSGraphPaddingStyleONNX_SAME_LOWER")]
     pub const ONNX_SAME_LOWER: Self = Self(4);
 }
@@ -184,24 +227,33 @@ unsafe impl RefEncode for MPSGraphPaddingStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingmode?language=objc)
+/// The tensor padding mode.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphPaddingMode(pub NSInteger);
 impl MPSGraphPaddingMode {
+    /// Constant
     #[doc(alias = "MPSGraphPaddingModeConstant")]
     pub const Constant: Self = Self(0);
+    /// Reflect
     #[doc(alias = "MPSGraphPaddingModeReflect")]
     pub const Reflect: Self = Self(1);
+    /// Symmetric
     #[doc(alias = "MPSGraphPaddingModeSymmetric")]
     pub const Symmetric: Self = Self(2);
+    /// ClampToEdge (PyTorch ReplicationPad)
     #[doc(alias = "MPSGraphPaddingModeClampToEdge")]
     pub const ClampToEdge: Self = Self(3);
+    /// Zero
     #[doc(alias = "MPSGraphPaddingModeZero")]
     pub const Zero: Self = Self(4);
+    /// Periodic `x[-2] -> x[L-3], where L is size of x.`
     #[doc(alias = "MPSGraphPaddingModePeriodic")]
     pub const Periodic: Self = Self(5);
+    /// Anti Periodic `x[-2] -> -x[L-3]`
     #[doc(alias = "MPSGraphPaddingModeAntiPeriodic")]
     pub const AntiPeriodic: Self = Self(6);
 }
@@ -214,22 +266,30 @@ unsafe impl RefEncode for MPSGraphPaddingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreductionmode?language=objc)
+/// The reduction mode.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreductionmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphReductionMode(pub NSUInteger);
 impl MPSGraphReductionMode {
+    /// Min
     #[doc(alias = "MPSGraphReductionModeMin")]
     pub const Min: Self = Self(0);
+    /// Max
     #[doc(alias = "MPSGraphReductionModeMax")]
     pub const Max: Self = Self(1);
+    /// Sum
     #[doc(alias = "MPSGraphReductionModeSum")]
     pub const Sum: Self = Self(2);
+    /// Product
     #[doc(alias = "MPSGraphReductionModeProduct")]
     pub const Product: Self = Self(3);
+    /// Argument Min
     #[doc(alias = "MPSGraphReductionModeArgumentMin")]
     pub const ArgumentMin: Self = Self(4);
+    /// Argument Max
     #[doc(alias = "MPSGraphReductionModeArgumentMax")]
     pub const ArgumentMax: Self = Self(5);
 }

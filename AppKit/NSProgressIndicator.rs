@@ -93,6 +93,7 @@ extern_methods!(
         #[method(isIndeterminate)]
         pub unsafe fn isIndeterminate(&self) -> bool;
 
+        /// Setter for [`isIndeterminate`][Self::isIndeterminate].
         #[method(setIndeterminate:)]
         pub unsafe fn setIndeterminate(&self, indeterminate: bool);
 
@@ -101,12 +102,14 @@ extern_methods!(
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`controlSize`][Self::controlSize].
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
         #[method(doubleValue)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
+        /// Setter for [`doubleValue`][Self::doubleValue].
         #[method(setDoubleValue:)]
         pub unsafe fn setDoubleValue(&self, double_value: c_double);
 
@@ -116,24 +119,28 @@ extern_methods!(
         #[method(minValue)]
         pub unsafe fn minValue(&self) -> c_double;
 
+        /// Setter for [`minValue`][Self::minValue].
         #[method(setMinValue:)]
         pub unsafe fn setMinValue(&self, min_value: c_double);
 
         #[method(maxValue)]
         pub unsafe fn maxValue(&self) -> c_double;
 
+        /// Setter for [`maxValue`][Self::maxValue].
         #[method(setMaxValue:)]
         pub unsafe fn setMaxValue(&self, max_value: c_double);
 
         #[method_id(@__retain_semantics Other observedProgress)]
         pub unsafe fn observedProgress(&self) -> Option<Retained<NSProgress>>;
 
+        /// Setter for [`observedProgress`][Self::observedProgress].
         #[method(setObservedProgress:)]
         pub unsafe fn setObservedProgress(&self, observed_progress: Option<&NSProgress>);
 
         #[method(usesThreadedAnimation)]
         pub unsafe fn usesThreadedAnimation(&self) -> bool;
 
+        /// Setter for [`usesThreadedAnimation`][Self::usesThreadedAnimation].
         #[method(setUsesThreadedAnimation:)]
         pub unsafe fn setUsesThreadedAnimation(&self, uses_threaded_animation: bool);
 
@@ -146,6 +153,7 @@ extern_methods!(
         #[method(style)]
         pub unsafe fn style(&self) -> NSProgressIndicatorStyle;
 
+        /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: NSProgressIndicatorStyle);
 
@@ -155,6 +163,7 @@ extern_methods!(
         #[method(isDisplayedWhenStopped)]
         pub unsafe fn isDisplayedWhenStopped(&self) -> bool;
 
+        /// Setter for [`isDisplayedWhenStopped`][Self::isDisplayedWhenStopped].
         #[method(setDisplayedWhenStopped:)]
         pub unsafe fn setDisplayedWhenStopped(&self, displayed_when_stopped: bool);
     }
@@ -247,6 +256,7 @@ extern_methods!(
         #[method(isBezeled)]
         pub unsafe fn isBezeled(&self) -> bool;
 
+        /// Setter for [`isBezeled`][Self::isBezeled].
         #[deprecated = "The bezeled property is not respected on 10.15 and later"]
         #[method(setBezeled:)]
         pub unsafe fn setBezeled(&self, bezeled: bool);
@@ -257,6 +267,7 @@ extern_methods!(
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`controlTint`][Self::controlTint].
         #[deprecated = "The controlTint property is not respected on 10.15 and later"]
         #[method(setControlTint:)]
         pub unsafe fn setControlTint(&self, control_tint: NSControlTint);

@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
+        /// Setter for [`text`][Self::text].
         #[deprecated]
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other htmlFor)]
         pub unsafe fn htmlFor(&self) -> Retained<NSString>;
 
+        /// Setter for [`htmlFor`][Self::htmlFor].
         #[deprecated]
         #[method(setHtmlFor:)]
         pub unsafe fn setHtmlFor(&self, html_for: Option<&NSString>);
@@ -97,6 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other event)]
         pub unsafe fn event(&self) -> Retained<NSString>;
 
+        /// Setter for [`event`][Self::event].
         #[deprecated]
         #[method(setEvent:)]
         pub unsafe fn setEvent(&self, event: Option<&NSString>);
@@ -105,6 +108,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other charset)]
         pub unsafe fn charset(&self) -> Retained<NSString>;
 
+        /// Setter for [`charset`][Self::charset].
         #[deprecated]
         #[method(setCharset:)]
         pub unsafe fn setCharset(&self, charset: Option<&NSString>);
@@ -113,6 +117,7 @@ extern_methods!(
         #[method(defer)]
         pub unsafe fn defer(&self) -> bool;
 
+        /// Setter for [`defer`][Self::defer].
         #[deprecated]
         #[method(setDefer:)]
         pub unsafe fn setDefer(&self, defer: bool);
@@ -121,6 +126,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other src)]
         pub unsafe fn src(&self) -> Retained<NSString>;
 
+        /// Setter for [`src`][Self::src].
         #[deprecated]
         #[method(setSrc:)]
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
@@ -129,6 +135,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
+        /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);

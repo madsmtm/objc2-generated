@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectdocumentsegmentationrequest?language=objc)
+    /// Performs document detection and segmentation in an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectdocumentsegmentationrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -30,6 +32,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectDocumentSegmentationRequest {
         #[cfg(feature = "VNObservation")]
+        /// VNRectangleObservation results.
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNRectangleObservation>>>;
     }
@@ -39,10 +42,15 @@ extern_methods!(
     /// Methods declared on superclass `VNRequest`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectDocumentSegmentationRequest {
+        /// Creates a new VNRequest with no completion handler.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Creates a new VNRequest with an optional completion handler.
+        ///
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,

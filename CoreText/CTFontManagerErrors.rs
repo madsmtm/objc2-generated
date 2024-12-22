@@ -10,30 +10,84 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrordomain?language=objc)
+    /// CFError domain for CTFontManager errors
+    ///
+    /// CFErrors with this domain will have error codes corresponding to one of the CTFontManagerErrors above.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrordomain?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontManagerErrorDomain: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfonturlskey?language=objc)
+    /// User info key to be used with CFError references returned from registration functions.
+    ///
+    /// The value associated with this key in the user info dictionary of a CFError is a CFArray of font URLs that failed with given error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfonturlskey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontManagerErrorFontURLsKey: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfontdescriptorskey?language=objc)
+    /// User info key to be used with CFError references returned from registration functions.
+    ///
+    /// The value associated with this key in the user info dictionary of a CFError is a CFArray of font descriptors that failed with given error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfontdescriptorskey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontManagerErrorFontDescriptorsKey: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfontassetnamekey?language=objc)
+    /// User info key to be used with CFError references returned from registration functions.
+    ///
+    /// The value associated with this key in the user info dictionary of a CFError is a CFArray of font asset name strings that failed with given error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfontassetnamekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontManagerErrorFontAssetNameKey: CFStringRef;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror?language=objc)
+/// Font registration errors
+///
+/// Errors that would prevent registration of fonts for a specified font file URL.
+///
+/// The file does not exist at the specified URL.
+///
+/// Cannot access the file due to insufficient permissions.
+///
+/// The file is not a recognized or supported font file format.
+///
+/// The file contains invalid font data that could cause system problems.
+///
+/// The file has already been registered in the specified scope.
+///
+/// Errors that would prevent un-registration of fonts for a specified font file URL.
+///
+/// The file is not registered in the specified scope.
+///
+/// The font file is actively in use and cannot be unregistered.
+///
+/// The file is required by the system and cannot be unregistered.
+///
+/// The file could not be processed due to an unexpected FontProvider error.
+///
+/// The file could not be processed because the provider does not have a necessary entitlement.
+///
+/// The font descriptor does not have information to specify a font file.
+///
+/// The operation was cancelled by the user.
+///
+/// The file could not be registered because of a duplicated font name.
+///
+/// The file is not in an allowed location. It must be either in the application's bundle or an on-demand resource.
+///
+/// The operation failed due to a system limitation.
+///
+/// The specified scope is not supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(transparent)]

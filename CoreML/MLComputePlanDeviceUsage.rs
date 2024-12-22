@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeplandeviceusage?language=objc)
+    /// The anticipated compute devices that would be used for executing a layer/operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeplandeviceusage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLComputePlanDeviceUsage;
@@ -28,12 +30,14 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "MLComputeDeviceProtocol")]
+        /// The compute devices that can execute the layer/operation.
         #[method_id(@__retain_semantics Other supportedComputeDevices)]
         pub unsafe fn supportedComputeDevices(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>;
 
         #[cfg(feature = "MLComputeDeviceProtocol")]
+        /// The compute device that the framework prefers to execute the layer/operation.
         #[method_id(@__retain_semantics Other preferredComputeDevice)]
         pub unsafe fn preferredComputeDevice(
             &self,

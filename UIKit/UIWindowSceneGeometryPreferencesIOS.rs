@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenegeometrypreferencesios?language=objc)
+    /// Use this class to express iOS-specific geometry preferences when calling `-[UIWindowScene requestGeometryUpdateWithPreferences:errorHandler:]`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenegeometrypreferencesios?language=objc)
     #[unsafe(super(UIWindowSceneGeometryPreferences, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
@@ -31,10 +33,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIOrientation")]
+        /// The preferred interface orientations. The system will choose the best orientation from the intersection of these
+        /// orientations and the current supported orientations. Defaults to an empty mask to indicate no preference.
         #[method(interfaceOrientations)]
         pub unsafe fn interfaceOrientations(&self) -> UIInterfaceOrientationMask;
 
         #[cfg(feature = "UIOrientation")]
+        /// Setter for [`interfaceOrientations`][Self::interfaceOrientations].
         #[method(setInterfaceOrientations:)]
         pub unsafe fn setInterfaceOrientations(
             &self,

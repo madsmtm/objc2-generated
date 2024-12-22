@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest?language=objc)
+    /// A request that will detect faces in an image.
+    ///
+    ///
+    /// This request will generate VNFaceObservation objects with a defined boundingBox.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -30,6 +35,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectFaceRectanglesRequest {
         #[cfg(feature = "VNObservation")]
+        /// VNFaceObservation results.
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNFaceObservation>>>;
     }
@@ -39,10 +45,15 @@ extern_methods!(
     /// Methods declared on superclass `VNRequest`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectFaceRectanglesRequest {
+        /// Creates a new VNRequest with no completion handler.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Creates a new VNRequest with an optional completion handler.
+        ///
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -63,8 +74,12 @@ extern_methods!(
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision1?language=objc)
 pub static VNDetectFaceRectanglesRequestRevision1: NSUInteger = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision2?language=objc)
+/// This request revision can calculate face roll and yaw properties. See [VNFaceObservation -roll] and [VNFaceObservation -yaw]  respectively.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision2?language=objc)
 pub static VNDetectFaceRectanglesRequestRevision2: NSUInteger = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision3?language=objc)
+/// This request revision can calculate face pitch, in addition to roll and yaw, see [VNFaceObservation -pitch] property. In addition, all three properties - roll, yaw, and pitch are now reported in contiguous manner.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision3?language=objc)
 pub static VNDetectFaceRectanglesRequestRevision3: NSUInteger = 3;

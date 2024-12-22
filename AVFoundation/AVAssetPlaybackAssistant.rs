@@ -12,25 +12,41 @@ use crate::*;
 pub type AVAssetPlaybackConfigurationOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoptionstereovideo?language=objc)
+    /// Indicates whether or not the asset can be rendered as stereo video.
+    ///
+    /// Clients may use this property to determine whether to configure stereo video rendering.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoptionstereovideo?language=objc)
     pub static AVAssetPlaybackConfigurationOptionStereoVideo:
         &'static AVAssetPlaybackConfigurationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoptionstereomultiviewvideo?language=objc)
+    /// Indicates whether or not the asset can rendered as stereo video and is also in a multiview compression format.
+    ///
+    /// Clients may use this property to determine whether to configure stereo video rendering.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoptionstereomultiviewvideo?language=objc)
     pub static AVAssetPlaybackConfigurationOptionStereoMultiviewVideo:
         &'static AVAssetPlaybackConfigurationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoptionspatialvideo?language=objc)
+    /// Indicates whether or not the asset can be rendered as spatial video.
+    ///
+    /// Clients may use this property to determine whether to configure spatial video rendering.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoptionspatialvideo?language=objc)
     pub static AVAssetPlaybackConfigurationOptionSpatialVideo:
         &'static AVAssetPlaybackConfigurationOption;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackassistant?language=objc)
+    /// AVAssetPlaybackAssistant provides playback information for an asset.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackassistant?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetPlaybackAssistant;
@@ -51,10 +67,20 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
+        /// Returns an instance of AVAssetPlaybackAssistant for inspection of an AVAsset object.
+        ///
+        /// Parameter `asset`: An instance of AVAsset.
+        ///
+        /// Returns: An instance of AVAssetPlaybackAssistant.
         #[method_id(@__retain_semantics Other assetPlaybackAssistantWithAsset:)]
         pub unsafe fn assetPlaybackAssistantWithAsset(asset: &AVAsset) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Calls the completionHandler with information about the asset.
+        ///
+        /// Parameter `completionHandler`: Called with an array of AVAssetPlaybackConfigurationOption values describing capabilities of the asset.
+        ///
+        /// completionHandler is called when all of the AVAssetPlaybackConfigurationOption values have been loaded. If AVAssetPlaybackAssistant encounters failures when inspecting the contents of the asset, it will return no AVAssetPlaybackConfigurationOptions associated with those contents.
         #[method(loadPlaybackConfigurationOptionsWithCompletionHandler:)]
         pub unsafe fn loadPlaybackConfigurationOptionsWithCompletionHandler(
             &self,

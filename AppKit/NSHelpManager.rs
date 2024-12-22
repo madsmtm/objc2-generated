@@ -36,6 +36,7 @@ extern_methods!(
         #[method(isContextHelpModeActive)]
         pub unsafe fn isContextHelpModeActive(mtm: MainThreadMarker) -> bool;
 
+        /// Setter for [`isContextHelpModeActive`][Self::isContextHelpModeActive].
         #[method(setContextHelpModeActive:)]
         pub unsafe fn setContextHelpModeActive(
             context_help_mode_active: bool,

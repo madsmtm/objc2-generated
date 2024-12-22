@@ -29,6 +29,7 @@ extern_methods!(
         #[method(buttonMask)]
         pub unsafe fn buttonMask(&self) -> NSUInteger;
 
+        /// Setter for [`buttonMask`][Self::buttonMask].
         #[method(setButtonMask:)]
         pub unsafe fn setButtonMask(&self, button_mask: NSUInteger);
 
@@ -59,6 +60,7 @@ extern_methods!(
         #[method(numberOfTouchesRequired)]
         pub unsafe fn numberOfTouchesRequired(&self) -> NSInteger;
 
+        /// Setter for [`numberOfTouchesRequired`][Self::numberOfTouchesRequired].
         #[method(setNumberOfTouchesRequired:)]
         pub unsafe fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSInteger);
     }

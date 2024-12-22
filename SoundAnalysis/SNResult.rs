@@ -8,16 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snresult?language=objc)
+    /// The base protocol to which analysis results conform
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snresult?language=objc)
     pub unsafe trait SNResult: NSObjectProtocol {}
 
     unsafe impl ProtocolType for dyn SNResult {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snresultsobserving?language=objc)
+    /// The interface through which clients receive the results of an analysis request
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snresultsobserving?language=objc)
     pub unsafe trait SNResultsObserving: NSObjectProtocol {
         #[cfg(feature = "SNRequest")]
+        /// Provides a new analysis result to the client with the specified time range
+        ///
+        /// This function will be called each time a new analysis result is available. Different types of analysis may produce results at different rates, spanning different time ranges.
         #[method(request:didProduceResult:)]
         unsafe fn request_didProduceResult(
             &self,
@@ -26,6 +33,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "SNRequest")]
+        /// Informs the client of an error produced during analysis
+        ///
+        /// If an error is produced by a request, that request will not produce any more results, and is in a terminal state. The request:didFailWithError and requestDidComplete methods are mutually exclusive.
         #[optional]
         #[method(request:didFailWithError:)]
         unsafe fn request_didFailWithError(
@@ -35,6 +45,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "SNRequest")]
+        /// Informs the client that the analysis request was completed normally
+        ///
+        /// If an analysis request completes normally, that request will not produce any more results, and is in a terminal state. The request:didFailWithError and requestDidComplete methods are mutually exclusive.
         #[optional]
         #[method(requestDidComplete:)]
         unsafe fn requestDidComplete(&self, request: &ProtocolObject<dyn SNRequest>);

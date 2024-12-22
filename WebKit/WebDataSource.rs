@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdatasource?language=objc)
+    /// A WebDataSource represents the data associated with a web page.
+    /// A datasource has a WebDocumentRepresentation which holds an appropriate
+    /// representation of the data.  WebDataSources manage a hierarchy of WebFrames.
+    /// WebDataSources are typically related to a view by their containing WebFrame.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdatasource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -19,6 +24,11 @@ unsafe impl NSObjectProtocol for WebDataSource {}
 
 extern_methods!(
     unsafe impl WebDataSource {
+        /// The designated initializer for WebDataSource.
+        ///
+        /// Parameter `request`: The request to use in creating a datasource.
+        ///
+        /// Returns: Returns an initialized WebDataSource.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithRequest:)]
         pub unsafe fn initWithRequest(
@@ -26,11 +36,22 @@ extern_methods!(
             request: Option<&NSURLRequest>,
         ) -> Option<Retained<Self>>;
 
+        /// Returns the raw data associated with the datasource.  Returns nil
+        /// if the datasource hasn't loaded any data.
+        ///
+        /// The data will be incomplete until the datasource has completely loaded.
         #[deprecated]
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         #[cfg(feature = "WebDocument")]
+        /// The representation associated with this datasource.
+        /// Returns nil if the datasource hasn't created its representation.
+        ///
+        /// A representation holds a type specific representation
+        /// of the datasource's data.  The representation class is determined by mapping
+        /// a MIME type to a class.  The representation is created once the MIME type
+        /// of the datasource content has been determined.
         #[deprecated]
         #[method_id(@__retain_semantics Other representation)]
         pub unsafe fn representation(
@@ -38,53 +59,82 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn WebDocumentRepresentation>>>;
 
         #[cfg(feature = "WebFrame")]
+        /// The frame that represents this data source.
         #[deprecated]
         #[method_id(@__retain_semantics Other webFrame)]
         pub unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
 
+        /// A reference to the original request that created the
+        /// datasource.  This request will be unmodified by WebKit.
         #[deprecated]
         #[method_id(@__retain_semantics Other initialRequest)]
         pub unsafe fn initialRequest(&self) -> Option<Retained<NSURLRequest>>;
 
+        /// The request that was used to create this datasource.
         #[deprecated]
         #[method_id(@__retain_semantics Other request)]
         pub unsafe fn request(&self) -> Option<Retained<NSMutableURLRequest>>;
 
+        /// The NSURLResponse for the data source.
         #[deprecated]
         #[method_id(@__retain_semantics Other response)]
         pub unsafe fn response(&self) -> Option<Retained<NSURLResponse>>;
 
+        /// Returns either the override encoding, as set on the WebView for this
+        /// dataSource or the encoding from the response.
         #[deprecated]
         #[method_id(@__retain_semantics Other textEncodingName)]
         pub unsafe fn textEncodingName(&self) -> Retained<NSString>;
 
+        /// Returns YES if there are any pending loads.
         #[deprecated]
         #[method(isLoading)]
         pub unsafe fn isLoading(&self) -> bool;
 
+        /// The page title or nil.
         #[deprecated]
         #[method_id(@__retain_semantics Other pageTitle)]
         pub unsafe fn pageTitle(&self) -> Retained<NSString>;
 
+        /// The unreachableURL for which this dataSource is showing alternate content, or nil.
+        ///
+        /// This will be non-nil only for dataSources created by calls to the
+        /// WebFrame method loadAlternateHTMLString:baseURL:forUnreachableURL:.
         #[deprecated]
         #[method_id(@__retain_semantics Other unreachableURL)]
         pub unsafe fn unreachableURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "WebArchive")]
+        /// A WebArchive representing the data source, its subresources and child frames.
+        /// This method constructs a WebArchive using the original downloaded data.
+        /// In the case of HTML, if the current state of the document is preferred, webArchive should be
+        /// called on the DOM document instead.
         #[deprecated]
         #[method_id(@__retain_semantics Other webArchive)]
         pub unsafe fn webArchive(&self) -> Option<Retained<WebArchive>>;
 
         #[cfg(feature = "WebResource")]
+        /// A WebResource representing the data source.
+        /// This method constructs a WebResource using the original downloaded data.
+        /// This method can be used to construct a WebArchive in case the archive returned by
+        /// WebDataSource's webArchive isn't sufficient.
         #[deprecated]
         #[method_id(@__retain_semantics Other mainResource)]
         pub unsafe fn mainResource(&self) -> Option<Retained<WebResource>>;
 
+        /// All the subresources associated with the data source.
+        /// The returned array only contains subresources that have fully downloaded.
         #[deprecated]
         #[method_id(@__retain_semantics Other subresources)]
         pub unsafe fn subresources(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "WebResource")]
+        /// method subresourceForURL:
+        ///
+        /// Returns a subresource for a given URL.
+        ///
+        /// Parameter `URL`: The URL of the subresource.
+        /// Returns non-nil if the data source has fully downloaded a subresource with the given URL.
         #[deprecated]
         #[method_id(@__retain_semantics Other subresourceForURL:)]
         pub unsafe fn subresourceForURL(
@@ -93,6 +143,15 @@ extern_methods!(
         ) -> Option<Retained<WebResource>>;
 
         #[cfg(feature = "WebResource")]
+        /// Adds a subresource to the data source.
+        ///
+        /// Parameter `subresource`: The subresource to be added.
+        /// addSubresource: adds a subresource to the data source's list of subresources.
+        /// Later, if something causes the data source to load the URL of the subresource, the data source
+        /// will load the data from the subresource instead of from the network. For example, if one wants to add
+        /// an image that is already downloaded to a web page, addSubresource: can be called so that the data source
+        /// uses the downloaded image rather than accessing the network. NOTE: If the data source already has a
+        /// subresource with the same URL, addSubresource: will replace it.
         #[deprecated]
         #[method(addSubresource:)]
         pub unsafe fn addSubresource(&self, subresource: Option<&WebResource>);

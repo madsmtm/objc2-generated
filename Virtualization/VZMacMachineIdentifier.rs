@@ -7,7 +7,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacmachineidentifier?language=objc)
+    /// An identifier to make a virtual machine unique.
+    ///
+    /// The Mac machine identifier is used by macOS guests to uniquely identify the virtual hardware.
+    ///
+    /// Two virtual machines running concurrently should not use the same identifier.
+    ///
+    /// If the virtual machine is serialized to disk, the identifier can be preserved in a binary representation through VZMacMachineIdentifier.dataRepresentation.
+    /// The identifier can then be recreated with -[VZMacMachineIdentifier initWithDataRepresentation:] from the binary representation.
+    ///
+    /// The contents of two identifiers can be compared with -[VZMacMachineIdentifier isEqual:].
+    ///
+    /// See also: VZMacPlatformConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacmachineidentifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMacMachineIdentifier;
@@ -23,15 +36,28 @@ unsafe impl NSObjectProtocol for VZMacMachineIdentifier {}
 
 extern_methods!(
     unsafe impl VZMacMachineIdentifier {
+        /// Create a new unique machine identifier.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Get the machine identifier described by the specified data representation.
+        ///
+        /// Parameter `dataRepresentation`: The opaque data representation of the machine identifier to be obtained.
+        ///
+        /// Returns: A unique identifier identical to the one that generated the dataRepresentation, or nil if the data is invalid.
+        ///
+        /// See: VZMacMachineIdentifier.dataRepresentation
         #[method_id(@__retain_semantics Init initWithDataRepresentation:)]
         pub unsafe fn initWithDataRepresentation(
             this: Allocated<Self>,
             data_representation: &NSData,
         ) -> Option<Retained<Self>>;
 
+        /// Opaque data representation of the machine identifier.
+        ///
+        /// This can be used to recreate the same machine identifier with -[VZMacMachineIdentifier initWithDataRepresentation:].
+        ///
+        /// See: -[VZMacMachineIdentifier initWithDataRepresentation:]
         #[method_id(@__retain_semantics Other dataRepresentation)]
         pub unsafe fn dataRepresentation(&self) -> Retained<NSData>;
     }

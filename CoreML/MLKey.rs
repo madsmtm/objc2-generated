@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlkey?language=objc)
+    /// A class representing key used to store any value against
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlkey?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLKey;

@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdebugenabled?language=objc)
+    /// **************    General        ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdebugenabled?language=objc)
     pub static NSDebugEnabled: Bool;
 }
 
@@ -29,6 +31,7 @@ pub unsafe extern "C-unwind" fn NSIsFreedObject(an_object: Option<&AnyObject>) -
 }
 
 extern "C-unwind" {
+    /// **************    Stack processing    ***************
     pub fn NSFrameAddress(frame: NSUInteger) -> *mut c_void;
 }
 

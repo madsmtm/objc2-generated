@@ -47,16 +47,24 @@ unsafe impl NSObjectProtocol for UIEditMenuConfiguration {}
 
 extern_methods!(
     unsafe impl UIEditMenuConfiguration {
+        /// The unique identifier of the configuration.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<ProtocolObject<dyn NSCopying>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The source location of the menu. The suggested actions menu elements will be derived from this location in the interaction's view.
+        /// By default, the menu will be presented from this location. You can change the presentation source of the menu with the delegate
+        /// method
+        /// `editMenuInteraction:targetRectForConfiguration:`
         #[method(sourcePoint)]
         pub unsafe fn sourcePoint(&self) -> CGPoint;
 
+        /// The preferred arrow direction of the edit menu. Default is
+        /// `UIEditMenuArrowDirectionAutomatic`
         #[method(preferredArrowDirection)]
         pub unsafe fn preferredArrowDirection(&self) -> UIEditMenuArrowDirection;
 
+        /// Setter for [`preferredArrowDirection`][Self::preferredArrowDirection].
         #[method(setPreferredArrowDirection:)]
         pub unsafe fn setPreferredArrowDirection(
             &self,
@@ -64,6 +72,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Creates a new configuration with the specified source location.
         #[method_id(@__retain_semantics Other configurationWithIdentifier:sourcePoint:)]
         pub unsafe fn configurationWithIdentifier_sourcePoint(
             identifier: Option<&ProtocolObject<dyn NSCopying>>,
@@ -94,29 +103,44 @@ unsafe impl UIInteraction for UIEditMenuInteraction {}
 
 extern_methods!(
     unsafe impl UIEditMenuInteraction {
+        /// The object that defines the delegate of the interaction.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIEditMenuInteractionDelegate>>>;
 
+        /// Creates a new edit menu interaction with the specified delegate.
         #[method_id(@__retain_semantics Init initWithDelegate:)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UIEditMenuInteractionDelegate>>,
         ) -> Retained<Self>;
 
+        /// Presents an edit menu with the specified
+        /// `configuration`object.
+        /// If a menu is already presented, it will be dismissed automatically before the new menu is presented.
+        ///
+        /// :
+        /// `presentEditMenuWithConfiguration:`is not supported on Mac Catalyst.
         #[method(presentEditMenuWithConfiguration:)]
         pub unsafe fn presentEditMenuWithConfiguration(
             &self,
             configuration: &UIEditMenuConfiguration,
         );
 
+        /// Dismiss the currently active menu if one is currently presented.
         #[method(dismissMenu)]
         pub unsafe fn dismissMenu(&self);
 
+        /// Reloads the visible menu. This menu has no effect if there is no menu presented. This method will query
+        /// the menu again from the delegate method
+        /// `editMenuInteraction:menuForConfiguration:suggestedActions:`and refresh the UI with the updated menu.
         #[method(reloadVisibleMenu)]
         pub unsafe fn reloadVisibleMenu(&self);
 
+        /// Updates the position of the currently visible menu, with an option to animate the action. This method
+        /// has no effect if no menu is presented. This method will query the position from the delegate method
+        /// `editMenuInteraction:targetRectForConfiguration:`if it is implemented.
         #[method(updateVisibleMenuPositionAnimated:)]
         pub unsafe fn updateVisibleMenuPositionAnimated(&self, animated: bool);
 
@@ -125,6 +149,7 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
+        /// Returns the interaction's location within the given view.
         #[method(locationInView:)]
         pub unsafe fn locationInView(&self, view: Option<&UIView>) -> CGPoint;
 
@@ -157,6 +182,19 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuinteractiondelegate?language=objc)
     pub unsafe trait UIEditMenuInteractionDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
+        /// Called when the interaction begins.
+        ///
+        ///
+        /// Parameter `interaction`: The UIEditMenuInteraction.
+        ///
+        /// Parameter `configuration`: The UIEditMenuConfiguration object used to present the menu.
+        ///
+        /// Parameter `suggestedActions`: An array of suggested actions gathered from the UIResponder chain. You may
+        /// include these actions in the hierarchy to display them in the resulting menu.
+        ///
+        ///
+        /// Returns: Return a UIMenu describing the desired menu hierarchy. Return
+        /// `nil`to present the default system menu.
         #[optional]
         #[method_id(@__retain_semantics Other editMenuInteraction:menuForConfiguration:suggestedActions:)]
         unsafe fn editMenuInteraction_menuForConfiguration_suggestedActions(
@@ -167,6 +205,21 @@ extern_protocol!(
         ) -> Option<Retained<UIMenu>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Called when the interaction begins, or when
+        /// `updateVisibleMenuPosition(animated:)`is called.
+        ///
+        ///
+        /// Parameter `interaction`: The UIEditMenuInteraction.
+        ///
+        /// Parameter `configuration`: The UIEditMenuConfiguration object used to present the menu.
+        ///
+        ///
+        /// Returns: Return a rectangle relative to the interaction's view. The menu will be displayed around
+        /// target rect, space permitting, with the arrow pointing at the edge of the target rectangle
+        /// for the specified arrow direction of the configuration. By default, an empty-sized rectangle
+        /// centered at
+        /// `configuration.sourcePoint`will be used if this method is not implemented. Return
+        /// `CGRectNull`to use the default rect.
         #[optional]
         #[method(editMenuInteraction:targetRectForConfiguration:)]
         unsafe fn editMenuInteraction_targetRectForConfiguration(
@@ -175,6 +228,14 @@ extern_protocol!(
             configuration: &UIEditMenuConfiguration,
         ) -> CGRect;
 
+        /// Called when the interaction is about to present the menu.
+        ///
+        ///
+        /// Parameter `interaction`: The UIEditMenuInteraction.
+        ///
+        /// Parameter `configuration`: The configuration object of the menu about to be presented by this interaction.
+        ///
+        /// Parameter `animator`: Appearance animator. Add animations to this object to run them alongside the appearance transition.
         #[optional]
         #[method(editMenuInteraction:willPresentMenuForConfiguration:animator:)]
         unsafe fn editMenuInteraction_willPresentMenuForConfiguration_animator(
@@ -184,6 +245,14 @@ extern_protocol!(
             animator: &ProtocolObject<dyn UIEditMenuInteractionAnimating>,
         );
 
+        /// Called when the interaction is about to dismiss the menu.
+        ///
+        ///
+        /// Parameter `interaction`: The UIEditMenuInteraction.
+        ///
+        /// Parameter `configuration`: The configuration object of the menu about to be dismissed by this interaction.
+        ///
+        /// Parameter `animator`: Dismiss animator. Add animations to this object to run them alongside the dismiss transition.
         #[optional]
         #[method(editMenuInteraction:willDismissMenuForConfiguration:animator:)]
         unsafe fn editMenuInteraction_willDismissMenuForConfiguration_animator(

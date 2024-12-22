@@ -34,6 +34,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mediaText)]
         pub unsafe fn mediaText(&self) -> Retained<NSString>;
 
+        /// Setter for [`mediaText`][Self::mediaText].
         #[deprecated]
         #[method(setMediaText:)]
         pub unsafe fn setMediaText(&self, media_text: Option<&NSString>);

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcdadocumentsample?language=objc)
+    /// A sample object representing a CDA document.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcdadocumentsample?language=objc)
     #[unsafe(super(HKDocumentSample, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -60,9 +62,34 @@ extern_methods!(
         feature = "HKSample"
     ))]
     unsafe impl HKCDADocumentSample {
+        /// The contents of the document.
+        ///
+        /// Access to each CDA instance must be authorized by the user in order for the document data to be
+        /// accessible to an app.  The authorization request occurs the first time a document matches the predicate
+        /// of an executed HKDocumentQuery.  This property will always be nil if the sample is returned by an
+        /// HKSampleQuery or an HKAnchoredObjectQuery.
         #[method_id(@__retain_semantics Other document)]
         pub unsafe fn document(&self) -> Option<Retained<HKCDADocument>>;
 
+        /// Creates a new document sample with the specified attributes.
+        ///
+        /// Parameter `documentData`: Document contents in an XML format that meets the CDA standard.
+        ///
+        /// Parameter `startDate`: The start date for the document.
+        ///
+        /// Parameter `endDate`: The end date for the document.
+        ///
+        /// Parameter `metadata`: Metadata for the document.
+        ///
+        /// Parameter `validationError`: The XML content will be validated against the standard for CDA content.  If that validation
+        /// fails, then this parameter will be set with the relavant error.  Detailed information about the
+        /// failure may be obtained by examining the value for the HKDetailedCDAValidationErrorKey key of
+        /// the NSError's userInfo dictionary.
+        ///
+        /// Returns: The new instance or nil if the documentData does not pass validation.
+        ///
+        /// Attributes of the document, such as title, patient name, etc. will be extracted automatically
+        /// from the document content.
         #[method_id(@__retain_semantics Other CDADocumentSampleWithData:startDate:endDate:metadata:validationError:_)]
         pub unsafe fn CDADocumentSampleWithData_startDate_endDate_metadata_validationError(
             document_data: &NSData,
@@ -114,18 +141,32 @@ unsafe impl NSObjectProtocol for HKCDADocument {}
 
 extern_methods!(
     unsafe impl HKCDADocument {
+        /// The CDA document content in XML format as specified in the CDA standard. This may be nil if the
+        /// includeDocumentData option in HKDocumentQuery is specified as NO.
         #[method_id(@__retain_semantics Other documentData)]
         pub unsafe fn documentData(&self) -> Option<Retained<NSData>>;
 
+        /// The title of the document.
+        ///
+        /// This property is extracted automatically from the document.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// The name of the patient receiving treatment.
+        ///
+        /// This property is extracted automatically from the document.
         #[method_id(@__retain_semantics Other patientName)]
         pub unsafe fn patientName(&self) -> Retained<NSString>;
 
+        /// The person responsible for authoring the document.  Usually, this is the treating physician.
+        ///
+        /// This property is extracted automatically from the document.
         #[method_id(@__retain_semantics Other authorName)]
         pub unsafe fn authorName(&self) -> Retained<NSString>;
 
+        /// The organization responsible for the document.  This is usually the treating institution name.
+        ///
+        /// This property is extracted automatically from the document.
         #[method_id(@__retain_semantics Other custodianName)]
         pub unsafe fn custodianName(&self) -> Retained<NSString>;
     }
@@ -163,6 +204,10 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdetailedcdavalidationerrorkey?language=objc)
+    /// This may be used with the validationError parameter of
+    /// CDADocumentSampleWithData:startDate:endDate:device:metadata:validationError: to obtain a detailed
+    /// description of the validation errors encountered when creating a CDA document.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdetailedcdavalidationerrorkey?language=objc)
     pub static HKDetailedCDAValidationErrorKey: &'static NSString;
 }

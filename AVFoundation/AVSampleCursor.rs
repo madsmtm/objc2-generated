@@ -35,13 +35,30 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Moves the cursor a given number of samples in decode order.
+        ///
+        /// Parameter `stepCount`: The number of samples to move across. If positive, step forward this many samples. If negative, step backward (-stepCount) samples.
+        ///
+        /// Returns: The number of samples the cursor traversed. If the beginning or the end of the sample sequence was reached before the requested number of samples was traversed, the absolute value of the result will be less than the absolute value of stepCount.
         #[method(stepInDecodeOrderByCount:)]
         pub unsafe fn stepInDecodeOrderByCount(&self, step_count: i64) -> i64;
 
+        /// Moves the cursor a given number of samples in presentation order.
+        ///
+        /// Parameter `stepCount`: The number of samples to move across. If positive, step forward this many samples. If negative, step backward (-stepCount) samples.
+        ///
+        /// Returns: The number of samples the cursor traversed. If the beginning or the end of the sample sequence was reached before the requested number of samples was traversed, the absolute value of the result will be less than the absolute value of stepCount.
         #[method(stepInPresentationOrderByCount:)]
         pub unsafe fn stepInPresentationOrderByCount(&self, step_count: i64) -> i64;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Moves the cursor by a given deltaTime on the decode timeline.
+        ///
+        /// Parameter `deltaDecodeTime`: The amount of time to move in the decode timeline.
+        ///
+        /// Parameter `outWasPinned`: If the beginning or the end of the sample sequence was reached before the requested deltaDecodeTime was traversed, the BOOL value at the address specified by outWasPinned will be set to YES. May be NULL if this information isn't desired.
+        ///
+        /// Returns: The amount of time the cursor was moved along the decode timeline. Because sample cursors snap to sample boundaries when stepped, this value may not be equal to deltaDecodeTime even if the cursor was not pinned.
         #[method(stepByDecodeTime:wasPinned:)]
         pub unsafe fn stepByDecodeTime_wasPinned(
             &self,
@@ -50,6 +67,13 @@ extern_methods!(
         ) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Moves the cursor by a given deltaTime on the presentation timeline.
+        ///
+        /// Parameter `deltaPresentationTime`: The amount of time to move in the presentation timeline.
+        ///
+        /// Parameter `outWasPinned`: If the beginning or the end of the sample sequence was reached before the requested deltaPresentationTime was traversed, the BOOL value at the address specified by outWasPinned will be set to YES. May be NULL if this information isn't desired.
+        ///
+        /// Returns: The amount of time the cursor was moved along the presentation timeline. Because sample cursors snap to sample boundaries when stepped, this value may not be equal to deltaPresentationTime even if the cursor was not pinned.
         #[method(stepByPresentationTime:wasPinned:)]
         pub unsafe fn stepByPresentationTime_wasPinned(
             &self,
@@ -63,25 +87,48 @@ extern_methods!(
     /// AVSampleCursorTemporalPosition
     unsafe impl AVSampleCursor {
         #[cfg(feature = "objc2-core-media")]
+        /// The presentation timestamp (PTS) of the sample at the current position of the cursor.
         #[method(presentationTimeStamp)]
         pub unsafe fn presentationTimeStamp(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The decode timestamp (DTS) of the sample at the current position of the cursor.
         #[method(decodeTimeStamp)]
         pub unsafe fn decodeTimeStamp(&self) -> CMTime;
 
+        /// Compares the relative positions of two AVSampleCursors.
+        ///
+        /// Parameter `cursor`: An instance of AVSampleCursor with which to compare positions.
+        ///
+        /// Returns: kCFCompareLessThan, kCFCompareEqualTo or kCFCompareGreaterThan, depending on whether the receiver points at a sample before, the same as, or after the sample pointed to by the specified AVSampleCursor.
+        ///
+        /// If the receiver and cursor reference different sequences of samples, as when they're created by different instances of AVAssetTrack, results are undefined.
         #[method(comparePositionInDecodeOrderWithPositionOfCursor:)]
         pub unsafe fn comparePositionInDecodeOrderWithPositionOfCursor(
             &self,
             cursor: &AVSampleCursor,
         ) -> NSComparisonResult;
 
+        /// This method tests a boundary in the reordering from decode order to presentation order, determining whether it's possible for any sample earlier in decode order than the sample at the position of the receiver can have a presentation timestamp later than that of the specified sample cursor.
+        ///
+        /// Parameter `cursor`: An instance of AVSampleCursor with which to test the sample reordering boundary.
+        ///
+        /// Returns: YES if it's possible for any sample earlier in decode order than the sample at the position of the receiver can have a presentation timestamp later than that of the specified sample cursor.
+        ///
+        /// If the receiver and cursor reference different sequences of samples, as when they're created by different instances of AVAssetTrack, results are undefined.
         #[method(samplesWithEarlierDecodeTimeStampsMayHaveLaterPresentationTimeStampsThanCursor:)]
         pub unsafe fn samplesWithEarlierDecodeTimeStampsMayHaveLaterPresentationTimeStampsThanCursor(
             &self,
             cursor: &AVSampleCursor,
         ) -> bool;
 
+        /// This method tests a boundary in the reordering from decode order to presentation order, determining whether it's possible for any sample later in decode order than the sample at the position of the receiver can have a presentation timestamp earlier than that of the specified sample cursor.
+        ///
+        /// Parameter `cursor`: An instance of AVSampleCursor with which to test the sample reordering boundary.
+        ///
+        /// Returns: YES if it's possible for any sample later in decode order than the sample at the position of the receiver can have a presentation timestamp earlier than that of the specified sample cursor.
+        ///
+        /// If the receiver and cursor reference different sequences of samples, as when they're created by different instances of AVAssetTrack, results are undefined.
         #[method(samplesWithLaterDecodeTimeStampsMayHaveEarlierPresentationTimeStampsThanCursor:)]
         pub unsafe fn samplesWithLaterDecodeTimeStampsMayHaveEarlierPresentationTimeStampsThanCursor(
             &self,
@@ -90,7 +137,15 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursorsyncinfo?language=objc)
+/// A struct for describing attributes of a media sample for consideration when resynchronizing a decoder.
+/// Field: sampleIsFullSync
+/// Indicates whether the sample is a full sync sample, also known as an Instantaneous Decoder Refresh sample, and is sufficient in itself to completely resynchronize a decoder.
+/// Field: sampleIsPartialSync
+/// Indicates whether the sample is a partial sync sample.
+/// Field: sampleIsDroppable
+/// Indicates whether the sample is droppable.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursorsyncinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug)]
 pub struct AVSampleCursorSyncInfo {
@@ -108,7 +163,21 @@ unsafe impl RefEncode for AVSampleCursorSyncInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursordependencyinfo?language=objc)
+/// A struct for describing dependencies between a media sample and other media samples in the same sample sequence.
+/// Field: sampleIndicatesWhetherItHasDependentSamples
+/// Indicates whether the presence or absence of other samples that are dependent on the sample is known.
+/// Field: sampleHasDependentSamples
+/// If sampleIndicatesWhetherItHasDependentSamples is YES, indicates whether the sample has dependent samples.
+/// Field: sampleIndicatesWhetherItDependsOnOthers
+/// Indicates whether the sample's independency from other samples or dependency on other samples is known.
+/// Field: sampleDependsOnOthers
+/// If sampleIndicatesWhetherItDependsOnOthers is YES, indicates whether the sample depends on other media samples.
+/// Field: sampleIndicatesWhetherItHasRedundantCoding
+/// Indicates whether the presence of redundant coding of the sample is known.
+/// Field: sampleHasRedundantCoding
+/// If sampleIndicatesWhetherItHasRedundantCoding is YES, indicates whether the sample has redundant coding.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursordependencyinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug)]
 pub struct AVSampleCursorDependencyInfo {
@@ -138,7 +207,13 @@ unsafe impl RefEncode for AVSampleCursorDependencyInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursoraudiodependencyinfo?language=objc)
+/// A struct for describing the independent decodability of audio samples
+/// Field: audioSampleIsIndependentlyDecodable
+/// Indicates whether the sample is independently decodable.  Will be YES for Immediate Playout Frames (IPFs) and Independent Frames (IFs).
+/// Field: audioSamplePacketRefreshCount
+/// If audioSampleIsIndependentlyDecodable is YES, indicates how many samples, starting at this sample, must be fed to the decoder to achieve full decoder refresh.  Will be zero for Immediate Playout Frames (IPFs).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursoraudiodependencyinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug)]
 pub struct AVSampleCursorAudioDependencyInfo {
@@ -158,31 +233,64 @@ extern_methods!(
     /// AVSampleCursorCurrentSampleInfo
     unsafe impl AVSampleCursor {
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the decode duration of the sample at the receiver's current position.
+        ///
+        /// If the receiver must be advanced past its current position in order to determine the decode duration of the current sample, the value of currentSampleDuration is equal to kCMTimeIndefinite. This can occur with streaming formats such as MPEG-2 transport streams.
         #[method(currentSampleDuration)]
         pub unsafe fn currentSampleDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Provides the format description of the sample at the receiver's current position.
         #[method(copyCurrentSampleFormatDescription)]
         pub unsafe fn copyCurrentSampleFormatDescription(&self) -> CMFormatDescriptionRef;
 
+        /// Provides information about the current sample for consideration when resynchronizing a decoder, as when scrubbing.
         #[method(currentSampleSyncInfo)]
         pub unsafe fn currentSampleSyncInfo(&self) -> AVSampleCursorSyncInfo;
 
+        /// Provides information about dependencies between a media sample and other media samples in the same sample sequence, if known.
         #[method(currentSampleDependencyInfo)]
         pub unsafe fn currentSampleDependencyInfo(&self) -> AVSampleCursorDependencyInfo;
 
+        /// Provides a dictionary containing dependency related sample buffer attachments, if known.  See kCMSampleAttachmentKey_... in CoreMedia/CMSampleBuffer.h.
         #[method_id(@__retain_semantics Other currentSampleDependencyAttachments)]
         pub unsafe fn currentSampleDependencyAttachments(&self) -> Option<Retained<NSDictionary>>;
 
+        /// Provides information about the independent decodability of an audio sample.
+        ///
+        /// In order to position a sample cursor at the first sample that the audio decoder requires for a full refresh, you will need to walk it back from
+        /// the current sample until you find a sample that is independently decodable, and whose audioSamplePacketRefreshCount is greater than or equal to
+        /// the number of steps back you have taken.  This implies that if the current sample (before this walk) is independently decodable, with an
+        /// audioSampleRefreshCount of zero, no walk is required.
         #[method(currentSampleAudioDependencyInfo)]
         pub unsafe fn currentSampleAudioDependencyInfo(&self) -> AVSampleCursorAudioDependencyInfo;
 
+        /// Count of samples prior to the current sample, in decode order, that the decoder requires in order to achieve fully coherent output at the current decode time, as after a seek. Zero will be returned if no samples are required for decoder refresh or if the track does not contain this information.
+        ///
+        /// Some sample sequences that do not indicate sample dependencies may instead indicate that in order for a specific sample to be decoded with all available accuracy, samples prior to that sample in decode order must be decoded before the specific sample is decoded.
+        ///
+        /// In order to position a sample cursor at the first sample that the decoder requires for a full refresh, you can use code like the following:
+        ///
+        /// NSInteger samplesPriorToCurrentSampleToFeedToDecoder = [mySampleCursor samplesRequiredForDecoderRefresh];
+        /// AVSampleCursor *cursorForObtainingRefreshSamples = [mySampleCursor copy];
+        /// [cursorForObtainingRefreshSamples stepInDecodeOrderByCount: -samplesPriorToCurrentSampleToFeedToDecoder ];
+        ///
+        /// // cursorForObtainingRefreshSamples is now positioned at the first sample that must be provided to the decoder
+        /// // in order to decode the sample at the position of mySampleCursor in full
         #[method(samplesRequiredForDecoderRefresh)]
         pub unsafe fn samplesRequiredForDecoderRefresh(&self) -> NSInteger;
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursorstoragerange?language=objc)
+/// A struct for indicating the offset and length of storage occupied by a media sample or its chunk.
+/// Field: offset
+/// The offset of the first byte of storage occupied by a media sample or its chunk.
+/// Field: length
+/// The count of bytes of storage occupied by a media sample or its chunk.
+///
+/// Like NSRange, but rangier.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursorstoragerange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AVSampleCursorStorageRange {
@@ -198,7 +306,17 @@ unsafe impl RefEncode for AVSampleCursorStorageRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursorchunkinfo?language=objc)
+/// Provides information about a chunk of media samples.
+/// Field: chunkSampleCount
+/// The count of media samples in the chunk.
+/// Field: chunkHasUniformSampleSizes
+/// YES if all of the samples in the chunk occupy the same number of bytes in storage.
+/// Field: currentChunkHasUniformSampleDurations
+/// YES if all of the samples in the chunk have the same duration.
+/// Field: currentChunkHasUniformFormatDescriptions
+/// YES if all of the samples in the chunk have the same format description.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursorchunkinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug)]
 pub struct AVSampleCursorChunkInfo {
@@ -227,18 +345,29 @@ unsafe impl RefEncode for AVSampleCursorChunkInfo {
 extern_methods!(
     /// AVSampleCursorSampleStorageInfo
     unsafe impl AVSampleCursor {
+        /// The URL of the storage container of the current sample, as well as other samples that are intended to be loaded in the same operation as a "chunk".
+        ///
+        /// May be nil; if nil, the storage location of the chunk is the URL of the sample cursor's track's asset, if it has one.
         #[method_id(@__retain_semantics Other currentChunkStorageURL)]
         pub unsafe fn currentChunkStorageURL(&self) -> Option<Retained<NSURL>>;
 
+        /// The offset and length of samples in currentChunkStorageURL that are intended to be loaded together with the current sample as a "chunk".
+        ///
+        /// If the current chunk isn't stored contiguously in its storage container, currentChunkStorageRange.offset will be -1. In such cases you can use AVSampleBufferGenerator to obtain the sample data.
         #[method(currentChunkStorageRange)]
         pub unsafe fn currentChunkStorageRange(&self) -> AVSampleCursorStorageRange;
 
+        /// Provides information about the "chunk" of samples to which the current sample belongs. If the media format that defines the sequence of samples does not signal "chunking" of samples in any way, each sample will be considered by the receiver as belonging to a chunk of one sample only.
         #[method(currentChunkInfo)]
         pub unsafe fn currentChunkInfo(&self) -> AVSampleCursorChunkInfo;
 
+        /// The index of the current sample within the chunk to which it belongs.
         #[method(currentSampleIndexInChunk)]
         pub unsafe fn currentSampleIndexInChunk(&self) -> i64;
 
+        /// The offset and length of the current sample in currentChunkStorageURL.
+        ///
+        /// If the current sample isn't stored contiguously in its storage container, currentSampleStorageRange.offset will be -1. In such cases you can use AVSampleBufferGenerator to obtain the sample data.
         #[method(currentSampleStorageRange)]
         pub unsafe fn currentSampleStorageRange(&self) -> AVSampleCursorStorageRange;
     }

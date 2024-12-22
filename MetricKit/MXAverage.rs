@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxaverage?language=objc)
+    /// A class representing metric data that is averaged.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxaverage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXAverage<UnitType: ?Sized = AnyObject>;
@@ -22,12 +24,19 @@ unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXAverage<Unit
 
 extern_methods!(
     unsafe impl<UnitType: Message> MXAverage<UnitType> {
+        /// An NSMeasurement that contains the average measurement.
         #[method_id(@__retain_semantics Other averageMeasurement)]
         pub unsafe fn averageMeasurement(&self) -> Retained<NSMeasurement<UnitType>>;
 
+        /// An NSInteger representation of the number of samples in the distribution used to formulate the average.
+        ///
+        /// This value is negative if an unknown number of samples was used to compute the average.
         #[method(sampleCount)]
         pub unsafe fn sampleCount(&self) -> NSInteger;
 
+        /// An double representation of the standard deviation of the distribution.
+        ///
+        /// This value is negative an unknown number of samples was used to compute the standard deviation.
         #[method(standardDeviation)]
         pub unsafe fn standardDeviation(&self) -> c_double;
     }

@@ -5,7 +5,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttype?language=objc)
+/// Extensible enumerator for PHProjectType. See PHProjectExtensionController.h for more information.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttype?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type PHProjectType = NSString;
 
@@ -14,7 +16,47 @@ extern "C" {
     pub static PHProjectTypeUndefined: Option<&'static PHProjectType>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory?language=objc)
+/// Extensible enumerator for PHProjectCategory.
+/// Add a PHProjectCategory key to the NSExtensionAttributes dictionary of your project extension's Info.plist.
+/// The value for the key should be an array which can contain any of the PHProjectCategory values declared in this framework.
+///
+/// Sample exerpt from an extension's Info.plist:
+/// <
+/// !-- […] -->
+/// <key
+/// >NSExtension
+/// </key
+/// >
+/// <dict
+/// >
+/// <key
+/// >NSExtensionAttributes
+/// </key
+/// >
+/// <dict
+/// >
+/// <key
+/// >PHProjectCategory
+/// </key
+/// >
+/// <array
+/// >
+/// <string
+/// >book
+/// </string
+/// >
+/// <string
+/// >card
+/// </string
+/// >
+/// </array
+/// >
+/// </dict
+/// >
+/// <
+/// !-- […] -->
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory?language=objc)
 // NS_TYPED_ENUM
 pub type PHProjectCategory = NSString;
 
@@ -54,6 +96,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategoryundefined?language=objc)
+    /// PHProjectCategoryUndefined is used to indicate that -[PHProjectExtensionController typeDescriptionDataSourceForCategory:invalidator:]
+    /// should return the data source which provides all project types descriptions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategoryundefined?language=objc)
     pub static PHProjectCategoryUndefined: Option<&'static PHProjectCategory>;
 }

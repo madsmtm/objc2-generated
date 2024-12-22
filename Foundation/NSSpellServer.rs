@@ -22,6 +22,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSSpellServerDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

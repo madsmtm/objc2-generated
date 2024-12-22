@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxappresponsivenessmetric?language=objc)
+    /// An MXMetric subclass that encapsulates app responsiveness metrics.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxappresponsivenessmetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
@@ -27,6 +29,15 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppResponsivenessMetric {
         #[cfg(feature = "MXHistogram")]
+        /// Histogrammed app hang time data.
+        ///
+        /// Applications are considered to be "hanging" when they are unable to handle user input responsively.
+        ///
+        /// The durations for periods of hangs will be reported in the histogram returned here.
+        ///
+        /// Application hang times that exceeds 9 seconds of wall clock time are reported in the final bucket of the histogram.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other histogrammedApplicationHangTime)]
         pub unsafe fn histogrammedApplicationHangTime(
             &self,

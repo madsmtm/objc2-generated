@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject?language=objc)
+    /// An NSObject that represents a verifiable clinical record subject.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKVerifiableClinicalRecordSubject;
@@ -31,9 +33,11 @@ unsafe impl NSSecureCoding for HKVerifiableClinicalRecordSubject {}
 
 extern_methods!(
     unsafe impl HKVerifiableClinicalRecordSubject {
+        /// The subject's full name.
         #[method_id(@__retain_semantics Other fullName)]
         pub unsafe fn fullName(&self) -> Retained<NSString>;
 
+        /// The subject's date of birth components.
         #[method_id(@__retain_semantics Other dateOfBirthComponents)]
         pub unsafe fn dateOfBirthComponents(&self) -> Option<Retained<NSDateComponents>>;
 

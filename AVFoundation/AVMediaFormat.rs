@@ -54,7 +54,13 @@ extern "C" {
     pub static AVMediaTypeHaptic: Option<&'static AVMediaType>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorange?language=objc)
+/// Indicates that the video range as SDR
+///
+/// Indicates that the video range as HLG
+///
+/// Indicates that the video range as PQ
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideorange?language=objc)
 // NS_TYPED_ENUM
 pub type AVVideoRange = NSString;
 
@@ -74,7 +80,40 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypemetadataobject?language=objc)
+    /// mediaType of AVCaptureInputPorts that provide AVMetadataObjects.
+    ///
+    /// Prior to iOS 9.0, camera AVCaptureDeviceInputs provide metadata (detected faces and barcodes) to an
+    /// AVCaptureMetadataOutput through an AVCaptureInputPort whose mediaType is AVMediaTypeMetadata.  The
+    /// AVCaptureMetadataOutput presents metadata to the client as an array of AVMetadataObjects, which are
+    /// defined by Apple and not externally subclassable.  Starting in iOS 9.0, clients may record arbitrary
+    /// metadata to a movie file using the AVCaptureMovieFileOutput.  The movie file output consumes metadata
+    /// in a different format than the AVCaptureMetadataOutput, namely it accepts CMSampleBuffers of type
+    /// 'meta'.  Starting in iOS 9.0, two types of AVCaptureInput can produce suitable metadata for the
+    /// movie file output.
+    ///
+    /// <ul>
+    /// <li>
+    /// The camera AVCaptureDeviceInput now presents an additional AVCaptureInputPort for recording detected
+    /// faces to a movie file. When linked on or after iOS 9, ports that deliver AVCaptureMetadataObjects have a
+    /// mediaType of AVMediaTypeMetadataObject rather than AVMediaTypeMetadata.  Input ports that deliver CMSampleBuffer
+    /// metadata have a mediaType of AVMediaTypeMetadata.
+    /// </li>
+    ///
+    /// <li>
+    /// New to iOS 9 is the AVCaptureMetadataInput, which allows clients to record arbitrary metadata to a movie
+    /// file.  Clients package metadata as an AVTimedMetadataGroup, the AVCaptureMetadataInput presents a port of mediaType
+    /// AVMediaTypeMetadata, and when connected to a movie file output, transforms the timed metadata group's AVMetadataItems
+    /// into CMSampleBuffers which can be written to the movie file.
+    /// </li>
+    /// </ul>
+    ///
+    /// When linked on or after iOS 9, AVCaptureInputPorts with a mediaType of AVMediaTypeMetadata are handled
+    /// specially by the AVCaptureSession. When inputs and outputs are added to the session, the session does
+    /// not form connections implicitly between eligible AVCaptureOutputs and input ports of type AVMediaTypeMetadata.
+    /// If clients want to record a particular kind of metadata to a movie, they must manually form connections
+    /// between a AVMediaTypeMetadata port and the movie file output using AVCaptureSession's -addConnection API.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypemetadataobject?language=objc)
     pub static AVMediaTypeMetadataObject: Option<&'static AVMediaType>;
 }
 
@@ -84,7 +123,10 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypeauxiliarypicture?language=objc)
+    /// This media type is used only to identify the track type. An Auxiliary Picture track is not intended to be displayed; as such, the track_in_movie flag in TrackHeaderBox of these tracks will be 0.
+    /// A track with this media type contain video samples the media type of the format description of which is AVMediaTypeVideo.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediatypeauxiliarypicture?language=objc)
     pub static AVMediaTypeAuxiliaryPicture: Option<&'static AVMediaType>;
 }
 
@@ -93,124 +135,334 @@ extern "C" {
 pub type AVMediaCharacteristic = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicvisual?language=objc)
+    /// A media characteristic that indicates that a track or media selection option includes visual content.
+    ///
+    /// AVMediaTypeVideo, AVMediaTypeSubtitle, AVMediaTypeClosedCaption are examples of media types with the characteristic AVMediaCharacteristicVisual.
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicvisual?language=objc)
     pub static AVMediaCharacteristicVisual: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicaudible?language=objc)
+    /// A media characteristic that indicates that a track or media selection option includes audible content.
+    ///
+    /// AVMediaTypeAudio is a media type with the characteristic AVMediaCharacteristicAudible.
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicaudible?language=objc)
     pub static AVMediaCharacteristicAudible: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiclegible?language=objc)
+    /// A media characteristic that indicates that a track or media selection option includes legible content.
+    ///
+    /// AVMediaTypeSubtitle and AVMediaTypeClosedCaption are examples of media types with the characteristic AVMediaCharacteristicLegible.
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiclegible?language=objc)
     pub static AVMediaCharacteristicLegible: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicframebased?language=objc)
+    /// A media characteristic that indicates that a track or media selection option includes content that's frame-based.
+    ///
+    /// Frame-based content typically comprises discrete media samples that, once rendered, can remain current for indefinite periods of time without additional processing in support of "time-stretching". Further, any dependencies between samples are always explicitly signalled, so that the operations required to render any single sample can readily be performed on demand. AVMediaTypeVideo is the most common type of frame-based media. AVMediaTypeAudio is the most common counterexample.
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicframebased?language=objc)
     pub static AVMediaCharacteristicFrameBased: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicuseswidegamutcolorspace?language=objc)
+    /// A media characteristic that indicates that a track uses a wide gamut color space and therefore may make use of colors that cannot be accurately represented otherwise.
+    ///
+    /// A wide color space such as AVVideo*_P3_D65 contains additional dynamic range that may benefit from special treatment when compositing. Care should be taken to avoid clamping. Non-wide spaces include AVVideo*_ITU_R_709_2 and AVVideo*_SMPTE_C.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicuseswidegamutcolorspace?language=objc)
     pub static AVMediaCharacteristicUsesWideGamutColorSpace: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccontainshdrvideo?language=objc)
+    /// A media characteristic that indicates that a track contains HDR video.
+    ///
+    /// HDR video contains extended dynamic range that requires explicit support when compositing.
+    /// The value of this characteristic is
+    /// @
+    /// “public.contains-hdr-video".
+    /// Note for content authors: the presence of this characteristic is strictly inferred from the format description of the associated track.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccontainshdrvideo?language=objc)
     pub static AVMediaCharacteristicContainsHDRVideo: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccontainsalphachannel?language=objc)
+    /// A media characteristic that indicates that a track contains an alpha channel.
+    ///
+    /// To determine whether alpha is straight or pre-multiplied, look for the format description extension with key kCMFormatDescriptionExtension_AlphaChannelMode.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccontainsalphachannel?language=objc)
     pub static AVMediaCharacteristicContainsAlphaChannel: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicismainprogramcontent?language=objc)
+    /// A media characteristic that indicates that a track or media selection option includes content that's marked by the content author as intrinsic to the presentation of the asset.
+    ///
+    /// Example: an option that presents the main program audio for the presentation, regardless of locale, would typically have this characteristic.
+    /// The value of this characteristic is
+    /// "
+    /// public.main-program-content".
+    /// Note for content authors: the presence of this characteristic for a media option is inferred; any option that does not have the characteristic AVMediaCharacteristicIsAuxiliaryContent is considered to have the characteristic AVMediaCharacteristicIsMainProgramContent.
+    ///
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicismainprogramcontent?language=objc)
     pub static AVMediaCharacteristicIsMainProgramContent: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicisauxiliarycontent?language=objc)
+    /// A media characteristic that indicates that a track or media selection option includes content that's marked by the content author as auxiliary to the presentation of the asset.
+    ///
+    /// The value of this characteristic is
+    /// "
+    /// public.auxiliary-content".
+    /// Example: an option that presents audio media containing commentary on the presentation would typically have this characteristic.
+    /// Note for content authors: for QuickTime movie and .m4v files a media option is considered to have the characteristic AVMediaCharacteristicIsAuxiliaryContent if it's explicitly tagged with that characteristic or if, as a member of an alternate track group, its associated track is excluded from autoselection.
+    /// See the discussion of the tagging of tracks with media characteristics below.
+    ///
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicisauxiliarycontent?language=objc)
     pub static AVMediaCharacteristicIsAuxiliaryContent: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicisoriginalcontent?language=objc)
+    /// A media characteristic that indicates that a track or media selection option includes content that's marked by the content author as original to the principal production of the media, as opposed to supplementary or derivative content created by means of language translation or by other means.
+    ///
+    /// The value of this characteristic is
+    /// "
+    /// public.original-content".
+    /// Example: an option that presents audio media with dialog in the principal language of the production may be tagged with this characteristic; audio media containing dialog dubbed in a language other than the principal language of the production typically would not be tagged with this characteristic.
+    /// Note for content authors: for QuickTime movie and .m4v files and for HTTP Live Streaming, a media option is considered to have the characteristic AVMediaCharacteristicIsOriginalContent only if it's explicitly tagged with the characteristic.
+    /// See the discussion of the tagging of tracks with media characteristics below.
+    ///
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicisoriginalcontent?language=objc)
     pub static AVMediaCharacteristicIsOriginalContent: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccontainsonlyforcedsubtitles?language=objc)
+    /// A media characteristic that indicates that a track or media selection option presents only forced subtitles.
+    ///
+    /// Media options with forced-only subtitles are typically selected when 1) the user has not selected a legible option with an accessibility characteristic or an auxiliary purpose and 2) its locale matches the locale of the selected audible media selection option.
+    /// The value of this characteristic is
+    /// "
+    /// public.subtitles.forced-only".
+    /// Note for content authors: the presence of this characteristic for a legible media option may be inferred from the format description of the associated track that presents the subtitle media, if the format description carries sufficient information to indicate the presence or absence of forced and non-forced subtitles. If the format description does not carry this information, the legible media option can be explicitly tagged with the characteristic.
+    ///
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccontainsonlyforcedsubtitles?language=objc)
     pub static AVMediaCharacteristicContainsOnlyForcedSubtitles:
         Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristictranscribesspokendialogforaccessibility?language=objc)
+    /// A media characteristic that indicates that a track or media selection option includes legible content in the language of its specified locale that:
+    /// - transcribes spoken dialog and
+    /// - identifies speakers whenever other visual cues are insufficient for a viewer to determine who is speaking.
+    ///
+    /// Legible tracks provided for accessibility purposes are typically tagged both with this characteristic as well as with AVMediaCharacteristicDescribesMusicAndSoundForAccessibility.
+    ///
+    /// A legible track provided for accessibility purposes that's associated with an audio track that has no spoken dialog can be tagged with this characteristic, because it trivially meets these requirements.
+    ///
+    /// The value of this characteristic is
+    /// "
+    /// public.accessibility.transcribes-spoken-dialog".
+    ///
+    /// Note for content authors: for QuickTime movie and .m4v files a media option is considered to have the characteristic AVMediaCharacteristicTranscribesSpokenDialogForAccessibility only if it's explicitly tagged with that characteristic.
+    /// See the discussion of the tagging of tracks with media characteristics below.
+    ///
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristictranscribesspokendialogforaccessibility?language=objc)
     pub static AVMediaCharacteristicTranscribesSpokenDialogForAccessibility:
         Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicdescribesmusicandsoundforaccessibility?language=objc)
+    /// A media characteristic that indicates that a track or media selection option includes legible content in the language of its specified locale that:
+    /// - describes music and
+    /// - describes sound other than spoken dialog, such as sound effects and significant silences, occurring in program audio.
+    ///
+    /// Legible tracks provided for accessibility purposes are typically tagged both with this characteristic as well as with AVMediaCharacteristicTranscribesSpokenDialogForAccessibility.
+    ///
+    /// A legible track provided for accessibility purposes that's associated with an audio track without music and without sound other than spoken dialog -- lacking even significant silences -- can be tagged with this characteristic, because it trivially meets these requirements.
+    ///
+    /// The value of this characteristic is
+    /// "
+    /// public.accessibility.describes-music-and-sound".
+    ///
+    /// Note for content authors: for QuickTime movie and .m4v files a media option is considered to have the characteristic AVMediaCharacteristicDescribesMusicAndSoundForAccessibility only if it's explicitly tagged with that characteristic.
+    /// See the discussion of the tagging of tracks with media characteristics below.
+    ///
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicdescribesmusicandsoundforaccessibility?language=objc)
     pub static AVMediaCharacteristicDescribesMusicAndSoundForAccessibility:
         Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicenhancesspeechintelligibility?language=objc)
+    /// A media characteristic that indicates that a track or media selection option includes audio that has been prepared or otherwise processed to heighten the intelligibility of speech.
+    ///
+    /// The value of this characteristic is
+    /// "
+    /// public.accessibility.enhances-speech-intelligibility".
+    ///
+    /// Note for content authors: for QuickTime movie and .m4v files a media option is considered to have the characteristic AVMediaCharacteristicEnhancesSpeechIntelligibility only if it's explicitly tagged with that characteristic.
+    /// See the discussion of the tagging of tracks with media characteristics below.
+    ///
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicenhancesspeechintelligibility?language=objc)
     pub static AVMediaCharacteristicEnhancesSpeechIntelligibility:
         Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiceasytoread?language=objc)
+    /// A media characteristic that indicates that a track or media selection option provides legible content in the language of its specified locale that has been edited for ease of reading.
+    ///
+    /// The value of this characteristic is
+    /// "
+    /// public.easy-to-read".
+    ///
+    /// Closed caption tracks that carry "easy reader" captions (per the CEA-608 specification) should be tagged with this characteristic. Subtitle tracks can also be tagged with this characteristic, where appropriate.
+    ///
+    /// Note for content authors: for QuickTime movie and .m4v files a track is considered to have the characteristic AVMediaCharacteristicEasyToRead only if it's explicitly tagged with that characteristic.
+    /// See the discussion of the tagging of tracks with media characteristics below.
+    ///
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiceasytoread?language=objc)
     pub static AVMediaCharacteristicEasyToRead: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicdescribesvideoforaccessibility?language=objc)
+    /// A media characteristic that indicates that a track or media selection option provides descriptions of the visual portion of the presentation that are sufficient to comprehend essential information that it depicts, such as action and setting.
+    ///
+    /// See -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    /// The value of this characteristic is
+    /// "
+    /// public.accessibility.describes-video".
+    /// Note for content authors: for QuickTime movie and .m4v files a media option is considered to have the characteristic AVMediaCharacteristicDescribesVideoForAccessibility only if it's explicitly tagged with that characteristic.
+    /// See the discussion of the tagging of tracks with media characteristics below.
+    ///
+    /// Also see -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicdescribesvideoforaccessibility?language=objc)
     pub static AVMediaCharacteristicDescribesVideoForAccessibility:
         Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiclanguagetranslation?language=objc)
+    /// A media characteristic that indicates that a track or media selection option contains a language or dialect translation of originally or previously produced content, intended to be used as a substitute for that content by users who prefer its designated language.
+    ///
+    /// See -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    /// The value of this characteristic is
+    /// "
+    /// public.translation".
+    /// Note for content authors: for QuickTime movie and .m4v files a media option is considered to have the characteristic AVMediaCharacteristicLanguageTranslation only if it's explicitly tagged with that characteristic.
+    /// See the discussion of the tagging of tracks with media characteristics below.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiclanguagetranslation?language=objc)
     pub static AVMediaCharacteristicLanguageTranslation: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicdubbedtranslation?language=objc)
+    /// A media characteristic that indicates that a track or media selection option contains a language or dialect translation of originally or previously produced content, created by substituting most or all of the dialog in a previous mix of audio content with dialog spoken in its designated language.
+    ///
+    /// Tracks to which this characteristic is assigned should typically also be assigned the characteristic AVMediaCharacteristicLanguageTranslation.
+    /// See -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    /// The value of this characteristic is
+    /// "
+    /// public.translation.dubbed".
+    /// Note for content authors: for QuickTime movie and .m4v files a media option is considered to have the characteristic AVMediaCharacteristicDubbedTranslation only if it's explicitly tagged with that characteristic.
+    /// See the discussion of the tagging of tracks with media characteristics below.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicdubbedtranslation?language=objc)
     pub static AVMediaCharacteristicDubbedTranslation: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicvoiceovertranslation?language=objc)
+    /// A media characteristic that indicates that a track or media selection option contains a language translation of originally or previously produced content, created by adding, in its designated language, a verbal interpretation of dialog and translations of other important information to a new mix of the audio content.
+    ///
+    /// Tracks to which this characteristic is assigned should typically also be assigned the characteristic AVMediaCharacteristicLanguageTranslation.
+    /// See -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    /// The value of this characteristic is
+    /// "
+    /// public.translation.voice-over".
+    /// Note for content authors: for QuickTime movie and .m4v files a media option is considered to have the characteristic AVMediaCharacteristicVoiceOverTranslation only if it's explicitly tagged with that characteristic.
+    /// See the discussion of the tagging of tracks with media characteristics below.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicvoiceovertranslation?language=objc)
     pub static AVMediaCharacteristicVoiceOverTranslation: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristictactileminimal?language=objc)
+    /// A media characteristic that indicates that a track or media selection option includes haptic content that's marked by the content author as providing minimal tactile stimulation.
+    ///
+    /// Example: an option that presents low strength haptics feedback when user is actively attending the device, would typically have this characteristic.
+    /// See -[AVAssetTrack hasMediaCharacteristic:] and -[AVMediaSelectionOption hasMediaCharacteristic:].
+    /// The value of this characteristic is
+    /// "
+    /// public.haptics.minimal".
+    /// Note for content authors: for QuickTime movie and MPEG-4 files a track is considered to have the characteristic AVMediaCharacteristicTactileMinimal only if it's explicitly tagged with that characteristic.
+    /// See the discussion of the tagging of tracks with media characteristics below.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristictactileminimal?language=objc)
     pub static AVMediaCharacteristicTactileMinimal: Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccontainsstereomultiviewvideo?language=objc)
+    /// A media characteristic that indicates that a track contains stereoscopic video captured in a multiview compression format.
+    ///
+    /// Stereoscopic video contains two views with one view for the left eye and one view for the right eye. Multiview video contains more than one view (not necessarily stereoscopic) in the same compressed video sample. The combination of stereoscopic and multiview indicates that multiview carriage is used to carry at least two stereoscopic views. It does not imply that there might not be more than two views. Access to the two stereo views may require opt-in to retrieve both views. Accessing only one of the left or right stereoscopic views as a fallback for playback or compositing where stereoscopic rendering is not supported may itself not be supported.
+    /// The value of this characteristic is
+    /// @
+    /// “public.contains-stereo-multiview-video".
+    /// Note for content authors: the presence of this characteristic is strictly inferred from the format description of the associated track.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccontainsstereomultiviewvideo?language=objc)
     pub static AVMediaCharacteristicContainsStereoMultiviewVideo:
         Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccarriesvideostereometadata?language=objc)
+    /// A media characteristic that indicates that the stereoscopic video track carries additional information related to the stereoscopic video.
+    ///
+    /// This is not an indication that the encoded video carries stereoscopic views. It instead indicates that it carries additional information that may influence the interpretation of those views and contribute to a better experience.
+    /// The value of this characteristic is
+    /// @
+    /// “com.apple.quicktime.video.stereo-metadata".
+    /// Note for content authors: the presence of this characteristic is strictly inferred from the format description of the associated track.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristiccarriesvideostereometadata?language=objc)
     pub static AVMediaCharacteristicCarriesVideoStereoMetadata:
         Option<&'static AVMediaCharacteristic>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicindicateshorizontalfieldofview?language=objc)
+    /// A media characteristic that indicates the video track carries information related to the horizontal field of view.
+    ///
+    /// This media characteristic is currently synthesized if the CMVideoFormatDescription includes a kCMFormatDescriptionExtension_HorizontalFieldOfView extension. This is not an indication that the field of view is expanded beyond or more narrow than typical horizontal fields of view.
+    /// The value of this characteristic is
+    /// @
+    /// “public.indicates-horizontal-field-of-view".
+    /// Note for content authors: the presence of this characteristic is strictly inferred from the format description of the associated track.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediacharacteristicindicateshorizontalfieldofview?language=objc)
     pub static AVMediaCharacteristicIndicatesHorizontalFieldOfView:
         Option<&'static AVMediaCharacteristic>;
 }
@@ -220,132 +472,308 @@ extern "C" {
 pub type AVFileType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypequicktimemovie?language=objc)
+    /// A UTI for the QuickTime movie file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// com.apple.quicktime-movie".
+    /// Files are identified with the .mov and .qt extensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypequicktimemovie?language=objc)
     pub static AVFileTypeQuickTimeMovie: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypempeg4?language=objc)
+    /// A UTI for the MPEG-4 file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.mpeg-4".
+    /// Files are identified with the .mp4 extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypempeg4?language=objc)
     pub static AVFileTypeMPEG4: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeapplem4v?language=objc)
+    /// The value of this UTI is
+    /// "
+    /// com.apple.m4v-video".
+    /// Files are identified with the .m4v extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeapplem4v?language=objc)
     pub static AVFileTypeAppleM4V: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeapplem4a?language=objc)
+    /// The value of this UTI is
+    /// "
+    /// com.apple.m4a-audio".
+    /// Files are identified with the .m4a extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeapplem4a?language=objc)
     pub static AVFileTypeAppleM4A: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletype3gpp?language=objc)
+    /// A UTI for the 3GPP file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.3gpp".
+    /// Files are identified with the .3gp, .3gpp, and .sdv extensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletype3gpp?language=objc)
     pub static AVFileType3GPP: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletype3gpp2?language=objc)
+    /// A UTI for the 3GPP file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.3gpp2".
+    /// Files are identified with the .3g2, .3gp2 extensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletype3gpp2?language=objc)
     pub static AVFileType3GPP2: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypecoreaudioformat?language=objc)
+    /// A UTI for the CoreAudio file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// com.apple.coreaudio-format".
+    /// Files are identified with the .caf extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypecoreaudioformat?language=objc)
     pub static AVFileTypeCoreAudioFormat: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypewave?language=objc)
+    /// A UTI for the WAVE audio file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// com.microsoft.waveform-audio".
+    /// Files are identified with the .wav, .wave, and .bwf extensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypewave?language=objc)
     pub static AVFileTypeWAVE: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeaiff?language=objc)
+    /// A UTI for the AIFF audio file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.aiff-audio".
+    /// Files are identified with the .aif and .aiff extensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeaiff?language=objc)
     pub static AVFileTypeAIFF: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeaifc?language=objc)
+    /// A UTI for the AIFC audio file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.aifc-audio".
+    /// Files are identified with the .aifc and .cdda extensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeaifc?language=objc)
     pub static AVFileTypeAIFC: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeamr?language=objc)
+    /// A UTI for the adaptive multi-rate audio file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// org.3gpp.adaptive-multi-rate-audio".
+    /// Files are identified with the .amr extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeamr?language=objc)
     pub static AVFileTypeAMR: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypempeglayer3?language=objc)
+    /// A UTI for the MPEG layer 3 audio file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.mp3".
+    /// Files are identified with the .mp3 extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypempeglayer3?language=objc)
     pub static AVFileTypeMPEGLayer3: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypesunau?language=objc)
+    /// A UTI for the Sun/NeXT audio file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.au-audio".
+    /// Files are identified with the .au and .snd extensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypesunau?language=objc)
     pub static AVFileTypeSunAU: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeac3?language=objc)
+    /// A UTI for the AC-3 audio file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.ac3-audio".
+    /// Files are identified with the .ac3 extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeac3?language=objc)
     pub static AVFileTypeAC3: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeenhancedac3?language=objc)
+    /// A UTI for the enhanced AC-3 audio file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.enhanced-ac3-audio".
+    /// Files are identified with the .eac3 extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeenhancedac3?language=objc)
     pub static AVFileTypeEnhancedAC3: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypejpeg?language=objc)
+    /// A UTI for the JPEG (JFIF) format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.jpeg".
+    /// Files are identified with the .jpg or .jpeg extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypejpeg?language=objc)
     pub static AVFileTypeJPEG: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypedng?language=objc)
+    /// A UTI for the Adobe digital negative file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// com.adobe.raw-image".
+    /// Files are identified with the .dng extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypedng?language=objc)
     pub static AVFileTypeDNG: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeheic?language=objc)
+    /// A UTI for the high efficiency image file format containing HEVC compressed images.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.heic".
+    /// Files are identified with the .heic extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeheic?language=objc)
     pub static AVFileTypeHEIC: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeavci?language=objc)
+    /// A UTI for the high efficiency image file format containing H.264 compressed images.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.avci".
+    /// Files are identified with the .avci extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeavci?language=objc)
     pub static AVFileTypeAVCI: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeheif?language=objc)
+    /// A UTI for the high efficiency image file format containing images compressed with any codec.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.heif".
+    /// Files are identified with the .heif extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeheif?language=objc)
     pub static AVFileTypeHEIF: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypetiff?language=objc)
+    /// A UTI for the tagged image file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.tiff".
+    /// Files are identified with the .tiff or .tif extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypetiff?language=objc)
     pub static AVFileTypeTIFF: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeappleitt?language=objc)
+    /// A UTI for the Apple iTT caption file format
+    ///
+    /// The value of this UTI is
+    /// "
+    /// com.apple.itunes-timed-text".
+    /// Files are identified with the .itt extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeappleitt?language=objc)
     pub static AVFileTypeAppleiTT: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypescc?language=objc)
+    /// A UTI for the Scenarist closed caption file format
+    ///
+    /// The value of this UTI is
+    /// "
+    /// com.scenarist.closed-caption".
+    /// Files are identified with the .scc extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypescc?language=objc)
     pub static AVFileTypeSCC: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeahap?language=objc)
+    /// A UTI for the Apple Haptics Audio Pattern file format.
+    ///
+    /// The value of this UTI is
+    /// "
+    /// public.haptics-content".
+    /// Files are identified with the .ahap extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeahap?language=objc)
     pub static AVFileTypeAHAP: Option<&'static AVFileType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avstreamingkeydeliverycontentkeytype?language=objc)
+    /// A UTI for streaming key delivery content keys
+    ///
+    /// The value of this UTI is
+    /// "
+    /// com.apple.streamingkeydelivery.contentkey".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avstreamingkeydeliverycontentkeytype?language=objc)
     pub static AVStreamingKeyDeliveryContentKeyType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avstreamingkeydeliverypersistentcontentkeytype?language=objc)
+    /// A UTI for persistent streaming key delivery content keys
+    ///
+    /// The value of this UTI is
+    /// "
+    /// com.apple.streamingkeydelivery.persistentcontentkey".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avstreamingkeydeliverypersistentcontentkeytype?language=objc)
     pub static AVStreamingKeyDeliveryPersistentContentKeyType: Option<&'static NSString>;
 }
 
@@ -354,11 +782,19 @@ extern "C" {
 pub type AVFileTypeProfile = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeprofilempeg4applehls?language=objc)
+    /// Apple HTTP Live Streaming profile
+    ///
+    /// The profile that is suitable for Apple HTTP Live Streaming.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeprofilempeg4applehls?language=objc)
     pub static AVFileTypeProfileMPEG4AppleHLS: Option<&'static AVFileTypeProfile>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeprofilempeg4cmafcompliant?language=objc)
+    /// CMAF compliant profile
+    ///
+    /// The profile that is compliance with CMAF format.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypeprofilempeg4cmafcompliant?language=objc)
     pub static AVFileTypeProfileMPEG4CMAFCompliant: Option<&'static AVFileTypeProfile>;
 }

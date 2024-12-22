@@ -8,9 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectextensioncontroller?language=objc)
+    /// The principal view controller for any Photos Project Extension must conform to the PHProjectExtensionController protocol.
+    /// Methods in this protocol define the basic lifecycle of the extension controller as well as optionally allow for
+    /// definition of project types supported by the extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectextensioncontroller?language=objc)
     pub unsafe trait PHProjectExtensionController: NSObjectProtocol {
         #[cfg(feature = "PHProjectTypeDescription")]
+        /// Extensions can define any number of project types which are displayed to the user as choices in the Photos app upon
+        /// initial project creation. To enable this entry point into the extension the Info.plist must include this key/value in
+        /// its NSExtensionAttributes dictionary:
+        /// PHProjectExtensionDefinesProjectTypes: YES
+        /// Once enabled, Photos will first ask the extension for its list of supported project types.
+        /// The option selected by the user on project creation will be passed to the extension as an attribute of PHProjectInfo.
+        ///
+        /// DEPRECATED implement -[PHProjectExtensionController typeDescriptionDataSourceForCategory:invalidator:] instead.
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other supportedProjectTypes)]
@@ -20,6 +32,15 @@ extern_protocol!(
             feature = "PHProjectTypeDescriptionDataSource",
             feature = "PhotosUITypes"
         ))]
+        /// Extensions can define any number of project types which are displayed to the user as choices in the Photos app upon
+        /// initial project creation. To enable this entry point into the extension, the Info.plist must include this key/value in
+        /// its NSExtensionAttributes dictionary:
+        /// PHProjectExtensionDefinesProjectTypes: YES
+        /// The data source is strongly referenced by the system until it is no longer needed.
+        ///
+        /// Parameter `category`: is the category in which the user selected the extension.
+        ///
+        /// Parameter `invalidator`: is an object that can be used to invalidate information returned from the data source
         #[optional]
         #[method_id(@__retain_semantics Other typeDescriptionDataSourceForCategory:invalidator:)]
         unsafe fn typeDescriptionDataSourceForCategory_invalidator(
@@ -33,6 +54,7 @@ extern_protocol!(
             feature = "PHProjectInfo",
             feature = "block2"
         ))]
+        /// Called the first time a project is created.
         #[method(beginProjectWithExtensionContext:projectInfo:completion:)]
         unsafe fn beginProjectWithExtensionContext_projectInfo_completion(
             &self,
@@ -42,6 +64,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "PHProjectExtensionContext", feature = "block2"))]
+        /// Called anytime the user returns to a project that was previously created.
         #[method(resumeProjectWithExtensionContext:completion:)]
         unsafe fn resumeProjectWithExtensionContext_completion(
             &self,
@@ -50,6 +73,8 @@ extern_protocol!(
         );
 
         #[cfg(feature = "block2")]
+        /// Called when a user is switching away from the project or before Photos terminates the extension.
+        /// The receiver should persist any state data to using PHProjectChangeRequest, then call the completion handler.
         #[method(finishProjectWithCompletionHandler:)]
         unsafe fn finishProjectWithCompletionHandler(&self, completion: &block2::Block<dyn Fn()>);
     }

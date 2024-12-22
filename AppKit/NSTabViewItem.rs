@@ -42,6 +42,10 @@ unsafe impl NSObjectProtocol for NSTabViewItem {}
 extern_methods!(
     unsafe impl NSTabViewItem {
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+        /// Creates an autoreleased TabViewItem that wraps the provided ViewController. The viewController is set as the tab view item’s
+        /// `-viewController`property, which sets several of the tab view item’s other properties.
+        ///
+        /// Parameter `viewController`: The view controller to wrap, used to set the viewController property
         #[method_id(@__retain_semantics Other tabViewItemWithViewController:)]
         pub unsafe fn tabViewItemWithViewController(
             view_controller: &NSViewController,
@@ -56,6 +60,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&AnyObject>);
 
@@ -64,20 +69,24 @@ extern_methods!(
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
         #[cfg(feature = "NSImage")]
+        /// Get and set the image for this tab view item. The image may only be used in certain tab view styles and options.  The default value is nil.
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
@@ -86,10 +95,22 @@ extern_methods!(
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// Setter for [`view`][Self::view].
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+        /// The view controller wrapped by the tab view item. This property must be set if the tab view item will be added to an NSTabViewController, but can also be used if the tab view item is added to an NSTabView.
+        /// If this is set, the tab view item will forward
+        /// `-view`calls onto the viewController. Setting a viewController will also set the following properties on the tab view item:
+        /// `-identifier`from the address of the viewController,
+        /// `-label`from the viewController's title, and
+        /// `-image`based on the classname as the view controller.
+        /// An image named "ViewControllerClassName-TabViewItem" will be searched for first, followed by "ViewControllerClassName". It will search first using +[NSImage imageNamed:], then in
+        /// `viewController.nibBundle,`and lastly in the bundle containing the view controller's class.
+        /// As defined by: -[NSImage imageNamed:imageName], -[viewController.nibBundle imageForResource:imageName], -[[NSBundle bundleForClass:[viewController class]] imageForResource:imageName]. One pass with imageName as [NSStringFromClass([viewController class]) stringByAppendingString:
+        /// "
+        /// -TabViewItem"], followed by imageName as NSStringFromClass([viewController class]).
         #[method_id(@__retain_semantics Other viewController)]
         pub unsafe fn viewController(
             &self,
@@ -97,6 +118,7 @@ extern_methods!(
         ) -> Option<Retained<NSViewController>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+        /// Setter for [`viewController`][Self::viewController].
         #[method(setViewController:)]
         pub unsafe fn setViewController(&self, view_controller: Option<&NSViewController>);
 
@@ -116,12 +138,14 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`initialFirstResponder`][Self::initialFirstResponder].
         #[method(setInitialFirstResponder:)]
         pub unsafe fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`toolTip`][Self::toolTip].
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 

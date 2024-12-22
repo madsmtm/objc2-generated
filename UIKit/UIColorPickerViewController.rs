@@ -13,6 +13,7 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// Called when the `selectedColor` changes.
         #[deprecated]
         #[optional]
         #[method(colorPickerViewControllerDidSelectColor:)]
@@ -26,6 +27,15 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIViewController"
         ))]
+        /// Called when the selected color changes.
+        ///
+        ///
+        /// Parameter `viewController`: This color picker.
+        ///
+        /// Parameter `color`: The new selected color
+        ///
+        /// Parameter `continuously`: YES, if this update is part of a continuous user interaction (e.g. dragging through the spectrum). It's recommended
+        /// to show these updates in your UI but to not include them in any undo operations.
         #[optional]
         #[method(colorPickerViewController:didSelectColor:continuously:)]
         unsafe fn colorPickerViewController_didSelectColor_continuously(
@@ -36,6 +46,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// In presentations (except popovers) the color picker shows a close button. If the close button is tapped,
+        /// the view controller is dismissed and `colorPickerViewControllerDidFinish:` is called. Can be used to
+        /// animate alongside the dismissal.
         #[optional]
         #[method(colorPickerViewControllerDidFinish:)]
         unsafe fn colorPickerViewControllerDidFinish(
@@ -98,6 +111,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIColorPickerViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -105,16 +119,23 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIColor")]
+        /// Sets the selected color on the color picker and is updated when the user changes the selection.
+        /// Does support KVO.
         #[method_id(@__retain_semantics Other selectedColor)]
         pub unsafe fn selectedColor(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`selectedColor`][Self::selectedColor].
         #[method(setSelectedColor:)]
         pub unsafe fn setSelectedColor(&self, selected_color: &UIColor);
 
+        /// Controls whether the color picker shows an alpha slider or not.
+        ///
+        /// If set to `NO` users are only able to pick fully opaque colors.
         #[method(supportsAlpha)]
         pub unsafe fn supportsAlpha(&self) -> bool;
 
+        /// Setter for [`supportsAlpha`][Self::supportsAlpha].
         #[method(setSupportsAlpha:)]
         pub unsafe fn setSupportsAlpha(&self, supports_alpha: bool);
 

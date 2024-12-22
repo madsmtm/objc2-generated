@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureprogrambinding?language=objc)
+    /// A class representing a binding in the Program
+    ///
+    /// A Binding is either a previously defined name of a variable or a constant value in the Program.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureprogrambinding?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructureProgramBinding;
@@ -27,10 +31,12 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// The name of the variable in the Program.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MLModelStructureProgramValue")]
+        /// The compile time constant value in the Program.
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Option<Retained<MLModelStructureProgramValue>>;
     }

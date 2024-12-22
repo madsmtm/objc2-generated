@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpoolinglayer?language=objc)
+    /// A pooling layer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpoolinglayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -21,11 +23,17 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCPoolingLayer {
         #[cfg(feature = "MLCPoolingDescriptor")]
+        /// The pooling descriptor
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MLCPoolingDescriptor>;
 
         #[cfg(feature = "MLCPoolingDescriptor")]
+        /// Create a pooling layer
+        ///
+        /// Parameter `descriptor`: The pooling descriptor
+        ///
+        /// Returns: A new pooling layer
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDescriptor:)]
         pub unsafe fn layerWithDescriptor(descriptor: &MLCPoolingDescriptor) -> Retained<Self>;

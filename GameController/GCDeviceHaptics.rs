@@ -7,7 +7,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocality?language=objc)
+/// A GCHapticsLocality represents the locations of haptic actuators on a controller. You can create a haptic engine with a given
+/// GCHapticsLocality, and any patterns you send to that engine will play on all specified actuators.
+///
+/// ```
+/// CHHapticEngine *engine = [controller.haptics createEngineWithLocality:GCHapticsLocalityDefault];
+/// ```
+///
+///
+/// See: GCDeviceHaptics
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocality?language=objc)
 // NS_TYPED_ENUM
 pub type GCHapticsLocality = NSString;
 
@@ -67,6 +77,13 @@ unsafe impl NSObjectProtocol for GCDeviceHaptics {}
 
 extern_methods!(
     unsafe impl GCDeviceHaptics {
+        /// The set of supported haptic localities for this device - representing the locations of its haptic actuators.
+        ///
+        ///
+        /// Note: GCHapticsLocalityDefault and GCHapticsLocalityAll are guaranteed to be supported - and they may be equivalent.
+        ///
+        ///
+        /// See: GCHapticsLocality
         #[method_id(@__retain_semantics Other supportedLocalities)]
         pub unsafe fn supportedLocalities(&self) -> Retained<NSSet<GCHapticsLocality>>;
 

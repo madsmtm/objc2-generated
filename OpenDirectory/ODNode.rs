@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnode?language=objc)
+    /// This class is used to work with OpenDirectory nodes.
+    ///
+    /// OpenDirectory uses nodes to represent different sources of directory information, via the local disk, LDAP, etc.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ODNode;
@@ -18,6 +22,10 @@ unsafe impl NSObjectProtocol for ODNode {}
 extern_methods!(
     unsafe impl ODNode {
         #[cfg(all(feature = "CFOpenDirectoryConstants", feature = "ODSession"))]
+        /// Create an autoreleased ODNode of the given type, optionally in a specific session.
+        ///
+        /// Autoreleased instance of an ODNode with a provided ODSession and ODNodeType.  outError is
+        /// optional parameter, nil can be passed if error details are not needed.
         #[method_id(@__retain_semantics Other nodeWithSession:type:error:)]
         pub unsafe fn nodeWithSession_type_error(
             in_session: Option<&ODSession>,
@@ -26,6 +34,10 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "ODSession")]
+        /// Create an autoreleased ODNode with the given name, optionally in a specific session.
+        ///
+        /// autoreleased instance of an ODNode with a provided ODSession and node name.  outError is
+        /// optional parameter, nil can be passed if error details are not needed.
         #[method_id(@__retain_semantics Other nodeWithSession:name:error:)]
         pub unsafe fn nodeWithSession_name_error(
             in_session: Option<&ODSession>,
@@ -34,6 +46,10 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "CFOpenDirectoryConstants", feature = "ODSession"))]
+        /// Initialize an ODNode instance of the given type, optionally in a specific session.
+        ///
+        /// initialize instance of an ODNode with a provided ODSession and ODNodeType.  outError is
+        /// optional parameter, nil can be passed if error details are not needed.
         #[method_id(@__retain_semantics Init initWithSession:type:error:)]
         pub unsafe fn initWithSession_type_error(
             this: Allocated<Self>,
@@ -43,6 +59,10 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "ODSession")]
+        /// Initialize an ODNode instance with the given name, optionally in a specific session.
+        ///
+        /// initialize instance of an ODNode with a provided ODSession and node name.  outError is optional
+        /// parameter, nil can be passed if error details are not needed.
         #[method_id(@__retain_semantics Init initWithSession:name:error:)]
         pub unsafe fn initWithSession_name_error(
             this: Allocated<Self>,
@@ -51,21 +71,39 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<Self>>;
 
+        /// Returns NSArray of node names for this node, which may contain sub-nodes or search policy nodes
+        ///
+        /// Returns NSArray of node names for this node, which may contain sub-nodes or search policy nodes.
+        /// Commonly used with Search policy nodes.  outError is optional parameter, nil can be passed if error
+        /// details are not needed.
         #[method_id(@__retain_semantics Other subnodeNamesAndReturnError:)]
         pub unsafe fn subnodeNamesAndReturnError(
             &self,
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSArray>>;
 
+        /// Will return NSArray of names of subnodes that are not currently reachable.
+        ///
+        /// Will return NSArray of names of subnodes that are not currently reachable.  Commonly used with Search policy
+        /// nodes to determine if any nodes are currently unreachable, but may also return other subnodes if the
+        /// OpenDirectory plugin supports.  outError is optional parameter, nil can be passed if error details are not needed.
         #[method_id(@__retain_semantics Other unreachableSubnodeNamesAndReturnError:)]
         pub unsafe fn unreachableSubnodeNamesAndReturnError(
             &self,
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSArray>>;
 
+        /// The node name.
+        ///
+        /// The node name, corresponding to its path in OpenDirectory.
         #[method_id(@__retain_semantics Other nodeName)]
         pub unsafe fn nodeName(&self) -> Retained<NSString>;
 
+        /// Returns a dictionary of information about the instance of ODNode
+        ///
+        /// Returns a dictionary of information about the instance of ODNode.  Details such as Trust information
+        /// (kODAttributeTypeTrustInformation) or other Node details can be retrieved.  outError is optional parameter,
+        /// nil can be passed if error details are not needed.
         #[method_id(@__retain_semantics Other nodeDetailsForKeys:error:)]
         pub unsafe fn nodeDetailsForKeys_error(
             &self,
@@ -73,6 +111,11 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSDictionary>>;
 
+        /// Returns a NSArray of the record types supported by this node.
+        ///
+        /// Returns a NSArray of the record types supported by this node.  If node does not support the check
+        /// then all possible types will be returned.  outError is optional parameter, nil can be passed if error details
+        /// are not needed.
         #[method_id(@__retain_semantics Other supportedRecordTypesAndReturnError:)]
         pub unsafe fn supportedRecordTypesAndReturnError(
             &self,
@@ -80,6 +123,11 @@ extern_methods!(
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// Will return a list of attribute types supported for that attribute if possible
+        ///
+        /// Will return a list of attribute types supported for that attribute if possible.  If no specific
+        /// types are available, then all possible values will be returned instead.  outError is optional parameter,
+        /// nil can be passed if error details are not needed.
         #[method_id(@__retain_semantics Other supportedAttributesForRecordType:error:)]
         pub unsafe fn supportedAttributesForRecordType_error(
             &self,
@@ -88,6 +136,12 @@ extern_methods!(
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// Sets the credentials for interaction with the ODNode
+        ///
+        /// Sets the credentials for interaction with the ODNode.  Record references, etc. will use these credentials
+        /// to query or change data.  Setting the credentials on a node referenced by other OD object types will
+        /// change the credentials for all for all references.  outError is optional parameter, nil can be passed if error
+        /// details are not needed.
         #[method(setCredentialsWithRecordType:recordName:password:error:)]
         pub unsafe fn setCredentialsWithRecordType_recordName_password_error(
             &self,
@@ -98,6 +152,12 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// Allows use of other OpenDirectory types of authentications to set the credentials for an ODNode
+        ///
+        /// Allows the caller to use other types of authentications that are available in OpenDirectory, that may
+        /// require response-request loops, etc.  Not all OD plugins will support this call, look for
+        /// kODErrorCredentialsMethodNotSupported in outError.  outError is optional parameter, nil can be passed if
+        /// error details is not needed.
         #[method(setCredentialsWithRecordType:authenticationType:authenticationItems:continueItems:context:error:)]
         pub unsafe fn setCredentialsWithRecordType_authenticationType_authenticationItems_continueItems_context_error(
             &self,
@@ -109,6 +169,9 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Unsupported method.
+        ///
+        /// Unsupported method.
         #[method(setCredentialsUsingKerberosCache:error:)]
         pub unsafe fn setCredentialsUsingKerberosCache_error(
             &self,
@@ -117,6 +180,11 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "CFOpenDirectoryConstants", feature = "ODRecord"))]
+        /// Creates a record in this node, using the given name and attributes.
+        ///
+        /// Takes all the provided attributes and type to create an entire record.  The function will assign a
+        /// UUID to the record automatically.  This UUID can be overwritten by the client by passing with the
+        /// other attributes.  inAttributes is optional, nil can be passed if no other attributes are to be set.
         #[method_id(@__retain_semantics Other createRecordWithRecordType:name:attributes:error:)]
         pub unsafe fn createRecordWithRecordType_name_attributes_error(
             &self,
@@ -127,6 +195,11 @@ extern_methods!(
         ) -> Option<Retained<ODRecord>>;
 
         #[cfg(all(feature = "CFOpenDirectoryConstants", feature = "ODRecord"))]
+        /// Returns an ODRecord object that references the requested type and name
+        ///
+        /// Returns an ODRecord object that references the requested type and name.  The record will have cached the
+        /// attributes requested.  Further attributes can be requested via ODRecord APIs.  For performance it is best
+        /// to ask for as many attributes that are needed as possible up front.
         #[method_id(@__retain_semantics Other recordWithRecordType:name:attributes:error:)]
         pub unsafe fn recordWithRecordType_name_attributes_error(
             &self,
@@ -136,6 +209,10 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<ODRecord>>;
 
+        /// Sends a custom code to the node; input and output data formats are specific to the call.
+        ///
+        /// Sends a custom code to the node; input and output data formats are specific to the call.  outError is
+        /// optional parameter, nil can be passed if error details are not needed.
         #[method_id(@__retain_semantics Other customCall:sendData:error:)]
         pub unsafe fn customCall_sendData_error(
             &self,
@@ -144,6 +221,11 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSData>>;
 
+        /// Sends a custom function call to the node; data is a type specific to the call.
+        ///
+        /// Sends a custom function call to the node; data is a type specific to the call.  'error' is an
+        /// optional parameter therefore nil can be passed if error details are not needed.  Return type is
+        /// defined by the custom function requested.
         #[method_id(@__retain_semantics Other customFunction:payload:error:)]
         pub unsafe fn customFunction_payload_error(
             &self,
@@ -153,9 +235,16 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "ODConfiguration")]
+        /// Returns an ODConfiguration object for the node.
+        ///
+        ///
+        /// Returns an ODConfiguration object for the node.
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Option<Retained<ODConfiguration>>;
 
+        /// This will copy any policies configured for the node.
+        ///
+        /// This will copy any policies configured for the node.
         #[deprecated = "use accountPoliciesAndReturnError:"]
         #[method_id(@__retain_semantics Other policiesAndReturnError:)]
         pub unsafe fn policiesAndReturnError(
@@ -163,6 +252,11 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSDictionary>>;
 
+        /// This will return a dictionary of supported policies.
+        ///
+        /// This will return a dictionary of supported policies, if appropriate, the value will be the maximum value allowed
+        /// for the policy in question.  For example, if password history is available, it will state how much history is
+        /// supported.
         #[deprecated]
         #[method_id(@__retain_semantics Other supportedPoliciesAndReturnError:)]
         pub unsafe fn supportedPoliciesAndReturnError(
@@ -170,6 +264,9 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSDictionary>>;
 
+        /// This will set the policy for the node.
+        ///
+        /// This will set the policy for the node.  Policies are evaluated in combination with record-level policies.
         #[deprecated = "use setAccountPolicies:error:"]
         #[method(setPolicies:error:)]
         pub unsafe fn setPolicies_error(
@@ -179,6 +276,9 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// This will set a specific policy setting for the node.
+        ///
+        /// This will set a specific policy setting for the node.
         #[deprecated = "use addAccountPolicy:toCategory:error:"]
         #[method(setPolicy:value:error:)]
         pub unsafe fn setPolicy_value_error(
@@ -189,6 +289,9 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// This will remove a specific policy setting from the node.
+        ///
+        /// This will remove a specific policy setting from the node.
         #[deprecated = "use removeAccountPolicy:fromCategory:error:"]
         #[method(removePolicy:error:)]
         pub unsafe fn removePolicy_error(
@@ -198,6 +301,27 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// This will add an account policy to the node for the specified category.
+        ///
+        /// This will add an account policy to the node for the specified category.
+        /// The specified policy will be applied to all users in the
+        /// specified node when policies are evaluated.
+        ///
+        /// Parameter `policy`: a dictionary containing the specific policy to be added.
+        /// The dictionary may contain the following keys:
+        /// kODPolicyKeyIdentifier a required key identifying the policy.
+        /// kODPolicyKeyParameters an optional key containing a dictionary of
+        /// parameters that can be used for informational purposes or in
+        /// the policy format string.
+        /// kODPolicyKeyContent a required key specifying the policy,
+        /// from which a predicate will be created for evaluating
+        /// the policy.
+        ///
+        /// Parameter `category`: a valid ODPolicyCategoryType to which the specified policy will be added.
+        ///
+        /// Parameter `error`: an optional NSError reference for error details.
+        ///
+        /// Returns: a BOOL which signifies if the policy addition succeeded, otherwise error is set.
         #[method(addAccountPolicy:toCategory:error:)]
         pub unsafe fn addAccountPolicy_toCategory_error(
             &self,
@@ -207,6 +331,18 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// This will remove an account policy from the node for the specified category.
+        ///
+        /// This will remove an account policy from the node for the specified category.
+        ///
+        /// Parameter `policy`: a dictionary containing the specific policy to be
+        /// removed, with the same format as described in addAccountPolicy.
+        ///
+        /// Parameter `category`: a valid ODPolicyCategoryType from which the specified policy will be removed.
+        ///
+        /// Parameter `error`: an optional NSError reference for error details.
+        ///
+        /// Returns: a BOOL which signifies if the policy removal succeeded, otherwise error is set.
         #[method(removeAccountPolicy:fromCategory:error:)]
         pub unsafe fn removeAccountPolicy_fromCategory_error(
             &self,
@@ -215,6 +351,27 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// This will set the policies for the node.
+        ///
+        /// This will set the policies for the node, replacing any existing
+        /// policies.  All of the policies in the set will be applied to all
+        /// users in the specified node when policies are evaluated.
+        ///
+        /// Parameter `policies`: a dictionary containing all of the policies to be set
+        /// for the node.  The dictionary may contain the following keys:
+        /// kODPolicyCategoryAuthentication an optional key with a value
+        /// of an array of policy dictionaries that specify when
+        /// authentications should be allowed.
+        /// kODPolicyCategoryPasswordContent an optional key with a
+        /// value of an array of policy dictionaries the specify the
+        /// required content of passwords.
+        /// kODPolicyCategoryPasswordChange an optional key with a value
+        /// of an array of policy dictionaries that specify when
+        /// passwords are required to be changed.
+        ///
+        /// Parameter `error`: an optional NSError reference for error details.
+        ///
+        /// Returns: a BOOL which signifies if the policy set succeeded, otherwise error is set.
         #[method(setAccountPolicies:error:)]
         pub unsafe fn setAccountPolicies_error(
             &self,
@@ -222,12 +379,41 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Returns a dictionary containing any policies configured for the node.
+        ///
+        /// Returns a dictionary containing any policies configured for the node.
+        ///
+        /// Parameter `error`: an optional NSError reference for error details.
+        ///
+        /// Returns: an NSDictionary containing all currently set policies.  The
+        /// format of the dictionary is the same as described in
+        /// setAccountPolicies.
         #[method_id(@__retain_semantics Other accountPoliciesAndReturnError:)]
         pub unsafe fn accountPoliciesAndReturnError(
             &self,
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSDictionary>>;
 
+        /// Validates a password against the node's password content policies.
+        ///
+        /// Validates a password against the node's password content policies.
+        /// The node's password content policies will be evaluated to
+        /// determine if the password is acceptable.  May be used prior to
+        /// creating the record.
+        ///
+        /// This check is only definitive at the time it was requested. The
+        /// policy or the environment could change before the password change
+        /// is actually requested.  Errors from the password change request
+        /// should be consulted.
+        ///
+        ///
+        /// Parameter `password`: the password to be evaluated against the content policies.
+        ///
+        /// Parameter `recordName`: the name of the record.
+        ///
+        /// Parameter `error`: an optional NSError reference for error details.
+        ///
+        /// Returns: a bool which signifies if the password passes all content policies, otherwise error is set.
         #[method(passwordContentCheck:forRecordName:error:)]
         pub unsafe fn passwordContentCheck_forRecordName_error(
             &self,

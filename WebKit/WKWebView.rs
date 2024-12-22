@@ -129,10 +129,13 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl WKWebView {
         #[cfg(feature = "WKWebViewConfiguration")]
+        /// A copy of the configuration with which the web view was
+        /// initialized.
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Retained<WKWebViewConfiguration>;
 
         #[cfg(feature = "WKNavigationDelegate")]
+        /// The web view's navigation delegate.
         #[method_id(@__retain_semantics Other navigationDelegate)]
         pub unsafe fn navigationDelegate(
             &self,
@@ -140,6 +143,7 @@ extern_methods!(
 
         #[cfg(feature = "WKNavigationDelegate")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`navigationDelegate`][Self::navigationDelegate].
         #[method(setNavigationDelegate:)]
         pub unsafe fn setNavigationDelegate(
             &self,
@@ -147,19 +151,42 @@ extern_methods!(
         );
 
         #[cfg(feature = "WKUIDelegate")]
+        /// The web view's user interface delegate.
         #[method_id(@__retain_semantics Other UIDelegate)]
         pub unsafe fn UIDelegate(&self) -> Option<Retained<ProtocolObject<dyn WKUIDelegate>>>;
 
         #[cfg(feature = "WKUIDelegate")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`UIDelegate`][Self::UIDelegate].
         #[method(setUIDelegate:)]
         pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&ProtocolObject<dyn WKUIDelegate>>);
 
         #[cfg(feature = "WKBackForwardList")]
+        /// The web view's back-forward list.
         #[method_id(@__retain_semantics Other backForwardList)]
         pub unsafe fn backForwardList(&self) -> Retained<WKBackForwardList>;
 
         #[cfg(all(feature = "WKWebViewConfiguration", feature = "objc2-core-foundation"))]
+        /// Returns a web view initialized with a specified frame and
+        /// configuration.
+        ///
+        /// Parameter `frame`: The frame for the new web view.
+        ///
+        /// Parameter `configuration`: The configuration for the new web view.
+        ///
+        /// Returns: An initialized web view, or nil if the object could not be
+        /// initialized.
+        ///
+        /// This is a designated initializer. You can use
+        ///
+        /// ```text
+        ///  -initWithFrame:
+        /// ```
+        ///
+        /// to initialize an instance with the default
+        /// configuration. The initializer copies the specified configuration, so
+        /// mutating the configuration after invoking the initializer has no effect
+        /// on the web view.
         #[method_id(@__retain_semantics Init initWithFrame:configuration:)]
         pub unsafe fn initWithFrame_configuration(
             this: Allocated<Self>,
@@ -174,10 +201,25 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "WKNavigation")]
+        /// Navigates to a requested URL.
+        ///
+        /// Parameter `request`: The request specifying the URL to which to navigate.
+        ///
+        /// Returns: A new navigation for the given request.
         #[method_id(@__retain_semantics Other loadRequest:)]
         pub unsafe fn loadRequest(&self, request: &NSURLRequest) -> Option<Retained<WKNavigation>>;
 
         #[cfg(feature = "WKNavigation")]
+        /// Navigates to the requested file URL on the filesystem.
+        ///
+        /// Parameter `URL`: The file URL to which to navigate.
+        ///
+        /// Parameter `readAccessURL`: The URL to allow read access to.
+        ///
+        /// If readAccessURL references a single file, only that file may be loaded by WebKit.
+        /// If readAccessURL references a directory, files inside that file may be loaded by WebKit.
+        ///
+        /// Returns: A new navigation for the given file URL.
         #[method_id(@__retain_semantics Other loadFileURL:allowingReadAccessToURL:)]
         pub unsafe fn loadFileURL_allowingReadAccessToURL(
             &self,
@@ -186,6 +228,13 @@ extern_methods!(
         ) -> Option<Retained<WKNavigation>>;
 
         #[cfg(feature = "WKNavigation")]
+        /// Sets the webpage contents and base URL.
+        ///
+        /// Parameter `string`: The string to use as the contents of the webpage.
+        ///
+        /// Parameter `baseURL`: A URL that is used to resolve relative URLs within the document.
+        ///
+        /// Returns: A new navigation.
         #[method_id(@__retain_semantics Other loadHTMLString:baseURL:)]
         pub unsafe fn loadHTMLString_baseURL(
             &self,
@@ -194,6 +243,17 @@ extern_methods!(
         ) -> Option<Retained<WKNavigation>>;
 
         #[cfg(feature = "WKNavigation")]
+        /// Sets the webpage contents and base URL.
+        ///
+        /// Parameter `data`: The data to use as the contents of the webpage.
+        ///
+        /// Parameter `MIMEType`: The MIME type of the data.
+        ///
+        /// Parameter `characterEncodingName`: The data's character encoding name.
+        ///
+        /// Parameter `baseURL`: A URL that is used to resolve relative URLs within the document.
+        ///
+        /// Returns: A new navigation.
         #[method_id(@__retain_semantics Other loadData:MIMEType:characterEncodingName:baseURL:)]
         pub unsafe fn loadData_MIMEType_characterEncodingName_baseURL(
             &self,
@@ -204,49 +264,152 @@ extern_methods!(
         ) -> Option<Retained<WKNavigation>>;
 
         #[cfg(all(feature = "WKBackForwardListItem", feature = "WKNavigation"))]
+        /// Navigates to an item from the back-forward list and sets it
+        /// as the current item.
+        ///
+        /// Parameter `item`: The item to which to navigate. Must be one of the items in the
+        /// web view's back-forward list.
+        ///
+        /// Returns: A new navigation to the requested item, or nil if it is already
+        /// the current item or is not part of the web view's back-forward list.
+        ///
+        /// See also: backForwardList
         #[method_id(@__retain_semantics Other goToBackForwardListItem:)]
         pub unsafe fn goToBackForwardListItem(
             &self,
             item: &WKBackForwardListItem,
         ) -> Option<Retained<WKNavigation>>;
 
+        /// The page title.
+        ///
+        ///
+        /// ```text
+        ///  WKWebView
+        /// ```
+        ///
+        /// is key-value observing (KVO) compliant
+        /// for this property.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// The active URL.
+        ///
+        /// This is the URL that should be reflected in the user
+        /// interface.
+        ///
+        /// ```text
+        ///  WKWebView
+        /// ```
+        ///
+        /// is key-value observing (KVO) compliant for this
+        /// property.
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
+        /// A Boolean value indicating whether the view is currently
+        /// loading content.
+        ///
+        ///
+        /// ```text
+        ///  WKWebView
+        /// ```
+        ///
+        /// is key-value observing (KVO) compliant
+        /// for this property.
         #[method(isLoading)]
         pub unsafe fn isLoading(&self) -> bool;
 
+        /// An estimate of what fraction of the current navigation has been completed.
+        ///
+        /// This value ranges from 0.0 to 1.0 based on the total number of
+        /// bytes expected to be received, including the main document and all of its
+        /// potential subresources. After a navigation completes, the value remains at 1.0
+        /// until a new navigation starts, at which point it is reset to 0.0.
+        ///
+        /// ```text
+        ///  WKWebView
+        /// ```
+        ///
+        /// is key-value observing (KVO) compliant for this
+        /// property.
         #[method(estimatedProgress)]
         pub unsafe fn estimatedProgress(&self) -> c_double;
 
+        /// A Boolean value indicating whether all resources on the page
+        /// have been loaded over securely encrypted connections.
+        ///
+        ///
+        /// ```text
+        ///  WKWebView
+        /// ```
+        ///
+        /// is key-value observing (KVO) compliant
+        /// for this property.
         #[method(hasOnlySecureContent)]
         pub unsafe fn hasOnlySecureContent(&self) -> bool;
 
+        /// A Boolean value indicating whether there is a back item in
+        /// the back-forward list that can be navigated to.
+        ///
+        ///
+        /// ```text
+        ///  WKWebView
+        /// ```
+        ///
+        /// is key-value observing (KVO) compliant
+        /// for this property.
+        ///
+        /// See also: backForwardList.
         #[method(canGoBack)]
         pub unsafe fn canGoBack(&self) -> bool;
 
+        /// A Boolean value indicating whether there is a forward item in
+        /// the back-forward list that can be navigated to.
+        ///
+        ///
+        /// ```text
+        ///  WKWebView
+        /// ```
+        ///
+        /// is key-value observing (KVO) compliant
+        /// for this property.
+        ///
+        /// See also: backForwardList.
         #[method(canGoForward)]
         pub unsafe fn canGoForward(&self) -> bool;
 
         #[cfg(feature = "WKNavigation")]
+        /// Navigates to the back item in the back-forward list.
+        ///
+        /// Returns: A new navigation to the requested item, or nil if there is no back
+        /// item in the back-forward list.
         #[method_id(@__retain_semantics Other goBack)]
         pub unsafe fn goBack(&self) -> Option<Retained<WKNavigation>>;
 
         #[cfg(feature = "WKNavigation")]
+        /// Navigates to the forward item in the back-forward list.
+        ///
+        /// Returns: A new navigation to the requested item, or nil if there is no
+        /// forward item in the back-forward list.
         #[method_id(@__retain_semantics Other goForward)]
         pub unsafe fn goForward(&self) -> Option<Retained<WKNavigation>>;
 
         #[cfg(feature = "WKNavigation")]
+        /// Reloads the current page.
+        ///
+        /// Returns: A new navigation representing the reload.
         #[method_id(@__retain_semantics Other reload)]
         pub unsafe fn reload(&self) -> Option<Retained<WKNavigation>>;
 
         #[cfg(feature = "WKNavigation")]
+        /// Reloads the current page, performing end-to-end revalidation
+        /// using cache-validating conditionals if possible.
+        ///
+        /// Returns: A new navigation representing the reload.
         #[method_id(@__retain_semantics Other reloadFromOrigin)]
         pub unsafe fn reloadFromOrigin(&self) -> Option<Retained<WKNavigation>>;
 
+        /// Stops loading all resources on the current page.
         #[method(stopLoading)]
         pub unsafe fn stopLoading(&self);
 
@@ -288,6 +451,9 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Closes all out-of-window media presentations in a WKWebView.
+        ///
+        /// Includes picture-in-picture and fullscreen.
         #[method(closeAllMediaPresentationsWithCompletionHandler:)]
         pub unsafe fn closeAllMediaPresentationsWithCompletionHandler(
             &self,
@@ -299,6 +465,9 @@ extern_methods!(
         pub unsafe fn closeAllMediaPresentations(&self);
 
         #[cfg(feature = "block2")]
+        /// Pauses media playback in WKWebView.
+        ///
+        /// Pauses media playback. Media in the page can be restarted by calling play() on a media element or resume() on an AudioContext in JavaScript. A user can also use media controls to play media content after it has been paused.
         #[method(pauseAllMediaPlaybackWithCompletionHandler:)]
         pub unsafe fn pauseAllMediaPlaybackWithCompletionHandler(
             &self,
@@ -314,6 +483,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Suspends or resumes all media playback in WKWebView.
+        ///
+        /// Parameter `suspended`: Whether media playback should be suspended or resumed.
+        ///
+        /// If suspended is true, this pauses media playback and blocks all attempts by the page or the user to resume until setAllMediaPlaybackSuspended is called again with suspended set to false. Media playback should always be suspended and resumed in pairs.
         #[method(setAllMediaPlaybackSuspended:completionHandler:)]
         pub unsafe fn setAllMediaPlaybackSuspended_completionHandler(
             &self,
@@ -338,6 +512,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Get the current media playback state of a WKWebView.
+        ///
+        /// Parameter `completionHandler`: A block to invoke with the return value of the function call.
+        ///
+        /// If media playback exists, WKMediaPlaybackState will be one of three
+        /// values: WKMediaPlaybackPaused, WKMediaPlaybackSuspended, or WKMediaPlaybackPlaying.
+        /// If no media playback exists in the current WKWebView, WKMediaPlaybackState will equal
+        /// WKMediaPlaybackStateNone.
         #[method(requestMediaPlaybackStateWithCompletionHandler:)]
         pub unsafe fn requestMediaPlaybackStateWithCompletionHandler(
             &self,
@@ -352,13 +534,40 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(WKMediaPlaybackState)>,
         );
 
+        /// The state of camera capture on a web page.
+        ///
+        ///
+        /// ```text
+        ///  WKWebView
+        /// ```
+        ///
+        /// is key-value observing (KVO) compliant
+        /// for this property.
         #[method(cameraCaptureState)]
         pub unsafe fn cameraCaptureState(&self) -> WKMediaCaptureState;
 
+        /// The state of microphone capture on a web page.
+        ///
+        ///
+        /// ```text
+        ///  WKWebView
+        /// ```
+        ///
+        /// is key-value observing (KVO) compliant
+        /// for this property.
         #[method(microphoneCaptureState)]
         pub unsafe fn microphoneCaptureState(&self) -> WKMediaCaptureState;
 
         #[cfg(feature = "block2")]
+        /// Set camera capture state of a WKWebView.
+        ///
+        /// Parameter `state`: State to apply for capture.
+        ///
+        /// Parameter `completionHandler`: A block to invoke after the camera state has been changed.
+        ///
+        /// If value is WKMediaCaptureStateNone, this will stop any camera capture.
+        /// If value is WKMediaCaptureStateMuted, any active camera capture will become muted.
+        /// If value is WKMediaCaptureStateActive, any muted camera capture will become active.
         #[method(setCameraCaptureState:completionHandler:)]
         pub unsafe fn setCameraCaptureState_completionHandler(
             &self,
@@ -367,6 +576,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Set microphone capture state of a WKWebView.
+        ///
+        /// Parameter `state`: state to apply for capture.
+        ///
+        /// Parameter `completionHandler`: A block to invoke after the microphone state has been changed.
+        ///
+        /// If value is WKMediaCaptureStateNone, this will stop any microphone capture.
+        /// If value is WKMediaCaptureStateMuted, any active microphone capture will become muted.
+        /// If value is WKMediaCaptureStateActive, any muted microphone capture will become active.
         #[method(setMicrophoneCaptureState:completionHandler:)]
         pub unsafe fn setMicrophoneCaptureState_completionHandler(
             &self,
@@ -383,6 +601,16 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "WKPDFConfiguration", feature = "block2"))]
+        /// Create a PDF document representation from the web page currently displayed in the WKWebView
+        ///
+        /// Parameter `pdfConfiguration`: An object that specifies how the PDF capture is configured.
+        ///
+        /// Parameter `completionHandler`: A block to invoke when the pdf document data is ready.
+        ///
+        /// If the WKPDFConfiguration is nil, the method will create a PDF document representing the bounds of the currently displayed web page.
+        /// The completionHandler is passed the resulting PDF document data or an error.
+        /// The data can be used to create a PDFDocument object.
+        /// If the data is written to a file the resulting file is a valid PDF document.
         #[method(createPDFWithConfiguration:completionHandler:)]
         pub unsafe fn createPDFWithConfiguration_completionHandler(
             &self,
@@ -397,30 +625,43 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(NonNull<NSData>, NonNull<NSError>)>,
         );
 
+        /// A Boolean value indicating whether horizontal swipe gestures
+        /// will trigger back-forward list navigations.
+        ///
+        /// The default value is NO.
         #[method(allowsBackForwardNavigationGestures)]
         pub unsafe fn allowsBackForwardNavigationGestures(&self) -> bool;
 
+        /// Setter for [`allowsBackForwardNavigationGestures`][Self::allowsBackForwardNavigationGestures].
         #[method(setAllowsBackForwardNavigationGestures:)]
         pub unsafe fn setAllowsBackForwardNavigationGestures(
             &self,
             allows_back_forward_navigation_gestures: bool,
         );
 
+        /// The custom user agent string or nil if no custom user agent string has been set.
         #[method_id(@__retain_semantics Other customUserAgent)]
         pub unsafe fn customUserAgent(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`customUserAgent`][Self::customUserAgent].
         #[method(setCustomUserAgent:)]
         pub unsafe fn setCustomUserAgent(&self, custom_user_agent: Option<&NSString>);
 
+        /// A Boolean value indicating whether link preview is allowed for any
+        /// links inside this WKWebView.
+        ///
+        /// The default value is YES on Mac and iOS.
         #[method(allowsLinkPreview)]
         pub unsafe fn allowsLinkPreview(&self) -> bool;
 
+        /// Setter for [`allowsLinkPreview`][Self::allowsLinkPreview].
         #[method(setAllowsLinkPreview:)]
         pub unsafe fn setAllowsLinkPreview(&self, allows_link_preview: bool);
 
         #[method(allowsMagnification)]
         pub unsafe fn allowsMagnification(&self) -> bool;
 
+        /// Setter for [`allowsMagnification`][Self::allowsMagnification].
         #[method(setAllowsMagnification:)]
         pub unsafe fn setAllowsMagnification(&self, allows_magnification: bool);
 
@@ -429,6 +670,7 @@ extern_methods!(
         pub unsafe fn magnification(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`magnification`][Self::magnification].
         #[method(setMagnification:)]
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
 
@@ -445,6 +687,7 @@ extern_methods!(
         pub unsafe fn pageZoom(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`pageZoom`][Self::pageZoom].
         #[method(setPageZoom:)]
         pub unsafe fn setPageZoom(&self, page_zoom: CGFloat);
 
@@ -483,16 +726,31 @@ extern_methods!(
         #[method_id(@__retain_semantics Other mediaType)]
         pub unsafe fn mediaType(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`mediaType`][Self::mediaType].
         #[method(setMediaType:)]
         pub unsafe fn setMediaType(&self, media_type: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other interactionState)]
         pub unsafe fn interactionState(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`interactionState`][Self::interactionState].
         #[method(setInteractionState:)]
         pub unsafe fn setInteractionState(&self, interaction_state: Option<&AnyObject>);
 
         #[cfg(feature = "WKNavigation")]
+        /// Sets the webpage contents from the passed data as if it was the
+        /// response to the supplied request. The request is never actually sent to the
+        /// supplied URL, though loads of resources defined in the NSData object would
+        /// be performed.
+        ///
+        /// Parameter `request`: The request specifying the base URL and other loading details
+        /// to be used while interpreting the supplied data object.
+        ///
+        /// Parameter `response`: A response that is used to interpret the supplied data object.
+        ///
+        /// Parameter `data`: The data to use as the contents of the webpage.
+        ///
+        /// Returns: A new navigation.
         #[method_id(@__retain_semantics Other loadSimulatedRequest:response:responseData:)]
         pub unsafe fn loadSimulatedRequest_response_responseData(
             &self,
@@ -512,6 +770,17 @@ extern_methods!(
         ) -> Retained<WKNavigation>;
 
         #[cfg(feature = "WKNavigation")]
+        /// Navigates to the requested file URL on the filesystem.
+        ///
+        /// Parameter `request`: The request specifying the file URL to which to navigate.
+        ///
+        /// Parameter `readAccessURL`: The URL to allow read access to.
+        ///
+        /// If readAccessURL references a single file, only that file may be
+        /// loaded by WebKit.
+        /// If readAccessURL references a directory, files inside that file may be loaded by WebKit.
+        ///
+        /// Returns: A new navigation for the given file URL.
         #[method_id(@__retain_semantics Other loadFileRequest:allowingReadAccessToURL:)]
         pub unsafe fn loadFileRequest_allowingReadAccessToURL(
             &self,
@@ -520,6 +789,17 @@ extern_methods!(
         ) -> Retained<WKNavigation>;
 
         #[cfg(feature = "WKNavigation")]
+        /// Sets the webpage contents from the passed HTML string as if it was
+        /// the response to the supplied request. The request is never actually sent to the
+        /// supplied URL, though loads of resources defined in the HTML string would be
+        /// performed.
+        ///
+        /// Parameter `request`: The request specifying the base URL and other loading details
+        /// to be used while interpreting the supplied data object.
+        ///
+        /// Parameter `string`: The data to use as the contents of the webpage.
+        ///
+        /// Returns: A new navigation.
         #[method_id(@__retain_semantics Other loadSimulatedRequest:responseHTMLString:)]
         pub unsafe fn loadSimulatedRequest_responseHTMLString(
             &self,
@@ -548,12 +828,26 @@ extern_methods!(
         #[method_id(@__retain_semantics Other underPageBackgroundColor)]
         pub unsafe fn underPageBackgroundColor(&self) -> Retained<NSColor>;
 
+        /// Setter for [`underPageBackgroundColor`][Self::underPageBackgroundColor].
         #[method(setUnderPageBackgroundColor:)]
         pub unsafe fn setUnderPageBackgroundColor(
             &self,
             under_page_background_color: Option<&NSColor>,
         );
 
+        /// A WKWebView's fullscreen state.
+        ///
+        ///
+        /// ```text
+        ///  WKWebView @link is key-value observing (KVO) compliant for this property. When an element
+        ///  in the WKWebView enters fullscreen, WebKit will replace the WKWebView in the application view hierarchy with
+        ///  a "placeholder" view, and move the WKWebView into a fullscreen window. When the element exits fullscreen later,
+        ///  the WKWebView will be moved back into the application view hierarchy. An application may need to adjust/restore
+        ///  its native UI components when the fullscreen state changes. The application should observe the fullscreenState
+        ///  property of WKWebView in order to receive notifications regarding the fullscreen state change.
+        ///  
+        ///
+        /// ```
         #[method(fullscreenState)]
         pub unsafe fn fullscreenState(&self) -> WKFullscreenState;
 
@@ -573,12 +867,30 @@ extern_methods!(
             maximum_viewport_inset: NSEdgeInsets,
         );
 
+        /// Controls whether this
+        ///
+        /// ```text
+        ///  WKWebView
+        /// ```
+        ///
+        /// is inspectable in Web Inspector.
+        ///
+        /// The default value is NO.
         #[method(isInspectable)]
         pub unsafe fn isInspectable(&self) -> bool;
 
+        /// Setter for [`isInspectable`][Self::isInspectable].
         #[method(setInspectable:)]
         pub unsafe fn setInspectable(&self, inspectable: bool);
 
+        /// A Boolean value indicating whether Writing Tools is active for the view.
+        ///
+        ///
+        /// ```text
+        ///  WKWebView
+        /// ```
+        ///
+        /// is key-value observing (KVO) compliant for this property.
         #[method(isWritingToolsActive)]
         pub unsafe fn isWritingToolsActive(&self) -> bool;
     }
@@ -620,18 +932,37 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WKWebView {
+        /// Action method that navigates to the back item in the
+        /// back-forward list.
+        ///
+        /// Parameter `sender`: The object that sent this message.
         #[method(goBack:)]
         pub unsafe fn goBack_(&self, sender: Option<&AnyObject>);
 
+        /// Action method that navigates to the forward item in the
+        /// back-forward list.
+        ///
+        /// Parameter `sender`: The object that sent this message.
         #[method(goForward:)]
         pub unsafe fn goForward_(&self, sender: Option<&AnyObject>);
 
+        /// Action method that reloads the current page.
+        ///
+        /// Parameter `sender`: The object that sent this message.
         #[method(reload:)]
         pub unsafe fn reload_(&self, sender: Option<&AnyObject>);
 
+        /// Action method that reloads the current page, performing
+        /// end-to-end revalidation using cache-validating conditionals if possible.
+        ///
+        /// Parameter `sender`: The object that sent this message.
         #[method(reloadFromOrigin:)]
         pub unsafe fn reloadFromOrigin_(&self, sender: Option<&AnyObject>);
 
+        /// Action method that stops loading all resources on the current
+        /// page.
+        ///
+        /// Parameter `sender`: The object that sent this message.
         #[method(stopLoading:)]
         pub unsafe fn stopLoading_(&self, sender: Option<&AnyObject>);
     }

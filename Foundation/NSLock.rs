@@ -48,6 +48,7 @@ extern_methods!(
         pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub fn setName(&self, name: Option<&NSString>);
     }
@@ -126,6 +127,7 @@ extern_methods!(
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }
@@ -171,6 +173,7 @@ extern_methods!(
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }
@@ -222,6 +225,7 @@ extern_methods!(
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }

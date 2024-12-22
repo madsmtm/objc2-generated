@@ -128,6 +128,17 @@ extern_methods!(
     ))]
     unsafe impl NSPopUpButton {
         #[cfg(feature = "NSMenu")]
+        /// Creates a standard pop-up button with a menu, target, and action.
+        ///
+        /// Parameter `menu`: A menu presented by the pop-up button, containing items that the user can choose between.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// If `menu` is non-empty, the pop-up button uses the first item for its initial selection.
+        ///
+        /// Returns: An initialized pop-up button object.
         #[method_id(@__retain_semantics Other popUpButtonWithMenu:target:action:)]
         pub unsafe fn popUpButtonWithMenu_target_action(
             menu: &NSMenu,
@@ -136,6 +147,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSMenu")]
+        /// Creates a standard pull-down button with a title and menu.
+        ///
+        /// Parameter `title`: The localized title string that is displayed on the button.
+        ///
+        /// Parameter `menu`: The pull-down menu to present when interacting with the button.
+        ///
+        /// Pull-down buttons created using this method have the `usesItemFromMenu` property set to `NO`.
+        ///
+        /// Returns: An initialized pull-down button object.
         #[method_id(@__retain_semantics Other pullDownButtonWithTitle:menu:)]
         pub unsafe fn pullDownButtonWithTitle_menu(
             title: &NSString,
@@ -143,6 +163,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSImage", feature = "NSMenu"))]
+        /// Creates a standard pull-down button with an image and menu.
+        ///
+        /// Parameter `image`: The icon that is displayed on the button.
+        ///
+        /// Parameter `menu`: The pull-down menu to present when interacting with the button.
+        ///
+        /// Pull-down buttons created using this method have the `usesItemFromMenu` property set to `NO`.
+        ///
+        /// Returns: An initialized pull-down button object.
         #[method_id(@__retain_semantics Other pullDownButtonWithImage:menu:)]
         pub unsafe fn pullDownButtonWithImage_menu(
             image: &NSImage,
@@ -150,6 +179,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSImage", feature = "NSMenu"))]
+        /// Creates a standard pull-down button with a title, image, and menu.
+        ///
+        /// Parameter `title`: The localized title string that is displayed on the button.
+        ///
+        /// Parameter `image`: The icon that is displayed on the button.
+        ///
+        /// Parameter `menu`: The pull-down menu to present when interacting with the button.
+        ///
+        /// Pull-down buttons created using this method have the `usesItemFromMenu` property set to `NO`.
+        ///
+        /// Returns: An initialized pull-down button object.
         #[method_id(@__retain_semantics Other pullDownButtonWithTitle:image:menu:)]
         pub unsafe fn pullDownButtonWithTitle_image_menu(
             title: &NSString,
@@ -166,40 +206,52 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSMenu")]
+        /// The menu that is presented by the popup button. This overrides the inherited NSView property and replaces NSView's standard context menu behavior.
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
+        /// Setter for [`menu`][Self::menu].
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
 
+        /// When the value of this property is `YES` the button adopts 'pull-down' behavior, displaying static button contents and presenting its menu at the edge of the button. When the value of this property is `NO` the button behaves as a popup, displaying the currently-selected menu item and presenting its menu above the button, positioning the selected menu item to match the button's contents.
         #[method(pullsDown)]
         pub unsafe fn pullsDown(&self) -> bool;
 
+        /// Setter for [`pullsDown`][Self::pullsDown].
         #[method(setPullsDown:)]
         pub unsafe fn setPullsDown(&self, pulls_down: bool);
 
+        /// When the value of this property is `YES`, the popup button automatically enables and disables its menu items according to the `NSMenuValidation` protocol prior to user interaction.
         #[method(autoenablesItems)]
         pub unsafe fn autoenablesItems(&self) -> bool;
 
+        /// Setter for [`autoenablesItems`][Self::autoenablesItems].
         #[method(setAutoenablesItems:)]
         pub unsafe fn setAutoenablesItems(&self, autoenables_items: bool);
 
+        /// For pull-down buttons and for popups under severe screen position restrictions, this property specifies the edge of the control that the menu should present from.
         #[method(preferredEdge)]
         pub unsafe fn preferredEdge(&self) -> NSRectEdge;
 
+        /// Setter for [`preferredEdge`][Self::preferredEdge].
         #[method(setPreferredEdge:)]
         pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
 
+        /// When `usesItemFromMenu` is `YES`, a pull-down button uses the title of the first menu item and hides the first menu item. A pop-up button uses the title of the currently selected menu. The default value is `YES`.
         #[method(usesItemFromMenu)]
         pub unsafe fn usesItemFromMenu(&self) -> bool;
 
+        /// Setter for [`usesItemFromMenu`][Self::usesItemFromMenu].
         #[method(setUsesItemFromMenu:)]
         pub unsafe fn setUsesItemFromMenu(&self, uses_item_from_menu: bool);
 
+        /// When the value of this property is `YES`, the selected menu item's `state` is set to `NSControlStateValueOn`. When the value of this property is `NO`, the menu item's `state` is not changed. When this property changes, the `state` of the currently selected item is updated appropriately. This property is ignored for pull-down buttons.
         #[method(altersStateOfSelectedItem)]
         pub unsafe fn altersStateOfSelectedItem(&self) -> bool;
 
+        /// Setter for [`altersStateOfSelectedItem`][Self::altersStateOfSelectedItem].
         #[method(setAltersStateOfSelectedItem:)]
         pub unsafe fn setAltersStateOfSelectedItem(&self, alters_state_of_selected_item: bool);
 
@@ -311,6 +363,17 @@ extern_methods!(
     ))]
     unsafe impl NSPopUpButton {
         #[cfg(feature = "NSImage")]
+        /// Creates a standard push button with a title and image.
+        ///
+        /// Parameter `title`: The localized title string that is displayed on the button.
+        ///
+        /// Parameter `image`: The image that is displayed alongside the title. In left-to-right localizations, the image is displayed to the left of the title. In right-to-left localizations, it is displayed to the right.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized button object.
         #[method_id(@__retain_semantics Other buttonWithTitle:image:target:action:)]
         pub unsafe fn buttonWithTitle_image_target_action(
             title: &NSString,
@@ -320,6 +383,15 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Creates a standard push button with the provided title.
+        ///
+        /// Parameter `title`: The localized title string that is displayed on the button.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized button object.
         #[method_id(@__retain_semantics Other buttonWithTitle:target:action:)]
         pub unsafe fn buttonWithTitle_target_action(
             title: &NSString,
@@ -329,6 +401,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
+        /// Creates a standard push button with the provided image. Set the image's accessibilityDescription property to ensure accessibility for this control.
+        ///
+        /// Parameter `image`: The image to display in the body of the button.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized button object.
         #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
         pub unsafe fn buttonWithImage_target_action(
             image: &NSImage,
@@ -337,6 +418,15 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Creates a standard checkbox with the provided title.
+        ///
+        /// Parameter `title`: The localized title string that is displayed alongside the checkbox.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized button object.
         #[method_id(@__retain_semantics Other checkboxWithTitle:target:action:)]
         pub unsafe fn checkboxWithTitle_target_action(
             title: &NSString,
@@ -345,6 +435,15 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Creates a standard radio button with the provided title.
+        ///
+        /// Parameter `title`: The localized title string that is displayed alongside the radio button.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized button object.
         #[method_id(@__retain_semantics Other radioButtonWithTitle:target:action:)]
         pub unsafe fn radioButtonWithTitle_target_action(
             title: &NSString,

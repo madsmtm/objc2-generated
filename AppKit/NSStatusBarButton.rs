@@ -10,7 +10,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusbarbutton?language=objc)
+    /// Status bar buttons are the visual representation of `NSStatusItem`s, and are primarily displayed on the right side of the menu bar.
+    /// When a template image is set as the `image` property of the status bar button, it is rendered with the correct menu bar style. This guarantees that the button will look correct in various button states and appearances (such as dark menu bar).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusbarbutton?language=objc)
     #[unsafe(super(NSButton, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -127,9 +130,11 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSStatusBarButton {
+        /// If `YES`, the status bar icon has a disabled/off appearance while still being functional, such as allowing selection and actions. Defaults to `NO`.
         #[method(appearsDisabled)]
         pub unsafe fn appearsDisabled(&self) -> bool;
 
+        /// Setter for [`appearsDisabled`][Self::appearsDisabled].
         #[method(setAppearsDisabled:)]
         pub unsafe fn setAppearsDisabled(&self, appears_disabled: bool);
     }
@@ -145,6 +150,17 @@ extern_methods!(
     ))]
     unsafe impl NSStatusBarButton {
         #[cfg(feature = "NSImage")]
+        /// Creates a standard push button with a title and image.
+        ///
+        /// Parameter `title`: The localized title string that is displayed on the button.
+        ///
+        /// Parameter `image`: The image that is displayed alongside the title. In left-to-right localizations, the image is displayed to the left of the title. In right-to-left localizations, it is displayed to the right.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized button object.
         #[method_id(@__retain_semantics Other buttonWithTitle:image:target:action:)]
         pub unsafe fn buttonWithTitle_image_target_action(
             title: &NSString,
@@ -154,6 +170,15 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Creates a standard push button with the provided title.
+        ///
+        /// Parameter `title`: The localized title string that is displayed on the button.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized button object.
         #[method_id(@__retain_semantics Other buttonWithTitle:target:action:)]
         pub unsafe fn buttonWithTitle_target_action(
             title: &NSString,
@@ -163,6 +188,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
+        /// Creates a standard push button with the provided image. Set the image's accessibilityDescription property to ensure accessibility for this control.
+        ///
+        /// Parameter `image`: The image to display in the body of the button.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized button object.
         #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
         pub unsafe fn buttonWithImage_target_action(
             image: &NSImage,
@@ -171,6 +205,15 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Creates a standard checkbox with the provided title.
+        ///
+        /// Parameter `title`: The localized title string that is displayed alongside the checkbox.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized button object.
         #[method_id(@__retain_semantics Other checkboxWithTitle:target:action:)]
         pub unsafe fn checkboxWithTitle_target_action(
             title: &NSString,
@@ -179,6 +222,15 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Creates a standard radio button with the provided title.
+        ///
+        /// Parameter `title`: The localized title string that is displayed alongside the radio button.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized button object.
         #[method_id(@__retain_semantics Other radioButtonWithTitle:target:action:)]
         pub unsafe fn radioButtonWithTitle_target_action(
             title: &NSString,

@@ -8,9 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcrelativeinput?language=objc)
+    /// An object conforming to
+    /// `GCRelativeInput`represents an input that reports
+    /// its change in position along an axis (delta) since the previous event.
+    /// Relative inputs have no fixed origin from which a coordinate syatem can be
+    /// defined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcrelativeinput?language=objc)
     pub unsafe trait GCRelativeInput: NSObjectProtocol {
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
+        /// Set this block to be notified when the delta of the input changes.
+        ///
+        ///
+        /// Parameter `delta`: The amount that the input has changed since the last time
+        /// `deltaDidChangeHandler`fired.
         #[method(deltaDidChangeHandler)]
         unsafe fn deltaDidChangeHandler(
             &self,
@@ -23,6 +34,7 @@ extern_protocol!(
         >;
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
+        /// Setter for [`deltaDidChangeHandler`][Self::deltaDidChangeHandler].
         #[method(setDeltaDidChangeHandler:)]
         unsafe fn setDeltaDidChangeHandler(
             &self,
@@ -37,19 +49,37 @@ extern_protocol!(
             >,
         );
 
+        /// The last reported delta for the input.
         #[method(delta)]
         unsafe fn delta(&self) -> c_float;
 
+        /// Check if the input can support more than just digital values.
+        ///
+        /// Defaults to
+        /// `YES`for most relative inputs.
         #[method(isAnalog)]
         unsafe fn isAnalog(&self) -> bool;
 
+        /// The timestamp of the last change.
+        ///
+        /// This time interval is not relative to any specific point in time.  You can
+        /// subtract a previous timestamp from the current timestamp to determine the time
+        /// (in seconds) between changes to the value.
         #[method(lastDeltaTimestamp)]
         unsafe fn lastDeltaTimestamp(&self) -> NSTimeInterval;
 
+        /// The interval (in seconds) between the timestamp of the last change and the
+        /// current time.
+        ///
+        /// This should be treated as a lower bound of the event latency.  It may not
+        /// include (wired or wireless) transmission latency, or latency accrued on
+        /// the device before the event was transmitted to the host.
         #[method(lastDeltaLatency)]
         unsafe fn lastDeltaLatency(&self) -> NSTimeInterval;
 
         #[cfg(feature = "GCPhysicalInputSource")]
+        /// An object describing the physical action(s) the user performs to manipulate
+        /// this input.
         #[method_id(@__retain_semantics Other sources)]
         unsafe fn sources(&self) -> Retained<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

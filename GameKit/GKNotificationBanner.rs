@@ -8,7 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gknotificationbanner?language=objc)
+    /// Asynchronously shows a notification banner like the one used for Game Center’s “Welcome Back” message.
+    /// If a banner is already being displayed, additional banners will be shown in sequence. Use this to notify the user of game events, high scores, completed achievements, etc.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gknotificationbanner?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]

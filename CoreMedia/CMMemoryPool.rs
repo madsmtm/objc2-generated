@@ -7,7 +7,36 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypoolref?language=objc)
+/// CMMemoryPool.h
+///
+/// Memory pool for optimizing repeated large block allocation.
+///
+/// CMMemoryPool is a memory allocation service that holds onto a pool of
+/// recently deallocated memory so as to speed up subsequent allocations of the same size.
+/// It's intended for cases where large memory blocks need to be repeatedly allocated --
+/// for example, the compressed data output by a video encoder.
+///
+/// All of its allocations are on the granularity of page sizes; it does not suballocate
+/// memory within pages, so it is a poor choice for allocating tiny blocks.
+/// For example, it's appropriate to use as the blockAllocator argument to
+/// CMBlockBufferCreateWithMemoryBlock, but not the structureAllocator argument --
+/// use kCFAllocatorDefault instead.
+///
+/// When you no longer need to allocate memory from the pool, call CMMemoryPoolInvalidate
+/// and CFRelease.  Calling CMMemoryPoolInvalidate tells the pool to stop holding onto
+/// memory for reuse.  Note that the pool's CFAllocator can outlive the pool, owing
+/// to the way that CoreFoundation is designed: CFAllocators are themselves CF objects,
+/// and every object allocated with a CFAllocator implicitly retains the CFAllocator
+/// until it is finalized.  After the CMMemoryPool is invalidated or finalized,
+/// its CFAllocator allocates and deallocates with no pooling behavior.
+///
+/// CMMemoryPool deallocates memory if it has not been recycled in 0.5 second,
+/// so that short-term peak usage does not cause persistent bloat.
+/// (This period may be overridden by specifying kCMMemoryPoolOption_AgeOutPeriod.)
+/// Such "aging out" is done during the pool's CFAllocatorAllocate and
+/// CFAllocatorDeallocate methods.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypoolref?language=objc)
 pub type CMMemoryPoolRef = *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmemorypoolerror_allocationfailed?language=objc)
@@ -21,25 +50,38 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmemorypooloption_ageoutperiod?language=objc)
+    /// Specifies how long memory should be allowed to hang out in the pool before being deallocated.
+    ///
+    /// Pass this in the options dictionary to CMMemoryPoolCreate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmemorypooloption_ageoutperiod?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMemoryPoolOption_AgeOutPeriod: CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Creates a new CMMemoryPool.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMemoryPoolCreate(options: CFDictionaryRef) -> CMMemoryPoolRef;
 }
 
 extern "C-unwind" {
+    /// Returns the pool's CFAllocator.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMemoryPoolGetAllocator(pool: CMMemoryPoolRef) -> CFAllocatorRef;
 }
 
 extern "C-unwind" {
+    /// Deallocates all memory the pool was holding for recycling.
     pub fn CMMemoryPoolFlush(pool: CMMemoryPoolRef);
 }
 
 extern "C-unwind" {
+    /// Stops the pool from recycling.
+    ///
+    /// When CMMemoryPoolInvalidate is called the pool's allocator stops recycling memory.
+    /// The pool deallocates any memory it was holding for recycling.
+    /// This also happens when the retain count of the CMMemoryPool drops to zero,
+    /// except that under GC it may be delayed.
     pub fn CMMemoryPoolInvalidate(pool: CMMemoryPoolRef);
 }

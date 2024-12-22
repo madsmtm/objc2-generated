@@ -44,6 +44,7 @@ extern_methods!(
         pub unsafe fn gravityDirection(&self) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`gravityDirection`][Self::gravityDirection].
         #[method(setGravityDirection:)]
         pub unsafe fn setGravityDirection(&self, gravity_direction: CGVector);
 
@@ -52,6 +53,7 @@ extern_methods!(
         pub unsafe fn angle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         pub unsafe fn setAngle(&self, angle: CGFloat);
 
@@ -60,6 +62,7 @@ extern_methods!(
         pub unsafe fn magnitude(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`magnitude`][Self::magnitude].
         #[method(setMagnitude:)]
         pub unsafe fn setMagnitude(&self, magnitude: CGFloat);
 

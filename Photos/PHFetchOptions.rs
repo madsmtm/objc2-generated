@@ -27,12 +27,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicate)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
+        /// Setter for [`predicate`][Self::predicate].
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
         #[method_id(@__retain_semantics Other sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Option<Retained<NSArray<NSSortDescriptor>>>;
 
+        /// Setter for [`sortDescriptors`][Self::sortDescriptors].
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(
             &self,
@@ -42,12 +44,14 @@ extern_methods!(
         #[method(includeHiddenAssets)]
         pub unsafe fn includeHiddenAssets(&self) -> bool;
 
+        /// Setter for [`includeHiddenAssets`][Self::includeHiddenAssets].
         #[method(setIncludeHiddenAssets:)]
         pub unsafe fn setIncludeHiddenAssets(&self, include_hidden_assets: bool);
 
         #[method(includeAllBurstAssets)]
         pub unsafe fn includeAllBurstAssets(&self) -> bool;
 
+        /// Setter for [`includeAllBurstAssets`][Self::includeAllBurstAssets].
         #[method(setIncludeAllBurstAssets:)]
         pub unsafe fn setIncludeAllBurstAssets(&self, include_all_burst_assets: bool);
 
@@ -56,6 +60,7 @@ extern_methods!(
         pub unsafe fn includeAssetSourceTypes(&self) -> PHAssetSourceType;
 
         #[cfg(feature = "PhotosTypes")]
+        /// Setter for [`includeAssetSourceTypes`][Self::includeAssetSourceTypes].
         #[method(setIncludeAssetSourceTypes:)]
         pub unsafe fn setIncludeAssetSourceTypes(
             &self,
@@ -65,12 +70,14 @@ extern_methods!(
         #[method(fetchLimit)]
         pub unsafe fn fetchLimit(&self) -> NSUInteger;
 
+        /// Setter for [`fetchLimit`][Self::fetchLimit].
         #[method(setFetchLimit:)]
         pub unsafe fn setFetchLimit(&self, fetch_limit: NSUInteger);
 
         #[method(wantsIncrementalChangeDetails)]
         pub unsafe fn wantsIncrementalChangeDetails(&self) -> bool;
 
+        /// Setter for [`wantsIncrementalChangeDetails`][Self::wantsIncrementalChangeDetails].
         #[method(setWantsIncrementalChangeDetails:)]
         pub unsafe fn setWantsIncrementalChangeDetails(
             &self,

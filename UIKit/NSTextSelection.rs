@@ -123,12 +123,14 @@ extern_methods!(
         pub unsafe fn anchorPositionOffset(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`anchorPositionOffset`][Self::anchorPositionOffset].
         #[method(setAnchorPositionOffset:)]
         pub unsafe fn setAnchorPositionOffset(&self, anchor_position_offset: CGFloat);
 
         #[method(isLogical)]
         pub unsafe fn isLogical(&self) -> bool;
 
+        /// Setter for [`isLogical`][Self::isLogical].
         #[method(setLogical:)]
         pub unsafe fn setLogical(&self, logical: bool);
 
@@ -139,6 +141,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(feature = "NSTextRange")]
+        /// Setter for [`secondarySelectionLocation`][Self::secondarySelectionLocation].
         #[method(setSecondarySelectionLocation:)]
         pub unsafe fn setSecondarySelectionLocation(
             &self,
@@ -150,6 +153,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
+        /// Setter for [`typingAttributes`][Self::typingAttributes].
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
             &self,

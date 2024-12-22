@@ -7,7 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdiagnosticpayload?language=objc)
+    /// A wrapper class which contains a diagnostic payload and associated properties of that payload.
+    ///
+    /// MXDiagnosticPayload encapsulates currently supported diagnostics that can be vended by MetricKit. Arrays of MXDiangostic subclasses on MXDiagnosticPayload are nullable. If an array of MXDiagnostic subclasses is nil, it indicates that the diagnostics are not available for this payload.
+    ///
+    /// MXDiagnosticPayload exposes a convenience function, JSONRepresentation, to convert the contents of the payload to a human readable JSON. This should be used in conjunction with other APIs that accept NSData.
+    ///
+    /// An MXDiagnosticPayload contains diagnostics that cover a 24 hour period of application usage. The properties timeStampBegin and timeStampEnd should be used to determine which time range the payload covers.
+    ///
+    /// It is possible for an MXDiagnosticPayload to cover regions of time where an application was updated, and thus each MXDiagnostic subclass will contain its own application version string. This is in contrast to MXMetricPayload, where only the latest application version string is included as metadata of the payload. Each MXDiagnostic subclass application version string should be inspected prior to processing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdiagnosticpayload?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXDiagnosticPayload;
@@ -22,40 +32,53 @@ unsafe impl NSSecureCoding for MXDiagnosticPayload {}
 extern_methods!(
     unsafe impl MXDiagnosticPayload {
         #[cfg(all(feature = "MXCPUExceptionDiagnostic", feature = "MXDiagnostic"))]
+        /// An array containing CPU exception diagnostics for this application.
         #[method_id(@__retain_semantics Other cpuExceptionDiagnostics)]
         pub unsafe fn cpuExceptionDiagnostics(
             &self,
         ) -> Option<Retained<NSArray<MXCPUExceptionDiagnostic>>>;
 
         #[cfg(all(feature = "MXDiagnostic", feature = "MXDiskWriteExceptionDiagnostic"))]
+        /// An array containing disk write exception diagnostics for this application.
         #[method_id(@__retain_semantics Other diskWriteExceptionDiagnostics)]
         pub unsafe fn diskWriteExceptionDiagnostics(
             &self,
         ) -> Option<Retained<NSArray<MXDiskWriteExceptionDiagnostic>>>;
 
         #[cfg(all(feature = "MXDiagnostic", feature = "MXHangDiagnostic"))]
+        /// An array containing hang diagnostics for this application.
         #[method_id(@__retain_semantics Other hangDiagnostics)]
         pub unsafe fn hangDiagnostics(&self) -> Option<Retained<NSArray<MXHangDiagnostic>>>;
 
         #[cfg(all(feature = "MXAppLaunchDiagnostic", feature = "MXDiagnostic"))]
+        /// An array containing app launch diagnostics for this application.
         #[method_id(@__retain_semantics Other appLaunchDiagnostics)]
         pub unsafe fn appLaunchDiagnostics(
             &self,
         ) -> Option<Retained<NSArray<MXAppLaunchDiagnostic>>>;
 
         #[cfg(all(feature = "MXCrashDiagnostic", feature = "MXDiagnostic"))]
+        /// An array containing crash diagnostics for this application.
         #[method_id(@__retain_semantics Other crashDiagnostics)]
         pub unsafe fn crashDiagnostics(&self) -> Option<Retained<NSArray<MXCrashDiagnostic>>>;
 
+        /// An NSDate object that indicates the start time for which the payload was generated.
         #[method_id(@__retain_semantics Other timeStampBegin)]
         pub unsafe fn timeStampBegin(&self) -> Retained<NSDate>;
 
+        /// An NSDate object that indicates the end time for which the payload was generated.
         #[method_id(@__retain_semantics Other timeStampEnd)]
         pub unsafe fn timeStampEnd(&self) -> Retained<NSDate>;
 
+        /// Convenience method to return a JSON representation of this diagnostic payload.
+        ///
+        /// Returns: An NSData object containing the JSON representation
         #[method_id(@__retain_semantics Other JSONRepresentation)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
+        /// Convenience method to return a NSDictionary representation of this diagnostic payload.
+        ///
+        /// Returns: An NSDictionary object containing the dictionary representation
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }

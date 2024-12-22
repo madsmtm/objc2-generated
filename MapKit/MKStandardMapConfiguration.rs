@@ -80,6 +80,7 @@ extern_methods!(
         #[method(emphasisStyle)]
         pub unsafe fn emphasisStyle(&self) -> MKStandardMapEmphasisStyle;
 
+        /// Setter for [`emphasisStyle`][Self::emphasisStyle].
         #[method(setEmphasisStyle:)]
         pub unsafe fn setEmphasisStyle(&self, emphasis_style: MKStandardMapEmphasisStyle);
 
@@ -88,6 +89,7 @@ extern_methods!(
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
+        /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
@@ -97,6 +99,7 @@ extern_methods!(
         #[method(showsTraffic)]
         pub unsafe fn showsTraffic(&self) -> bool;
 
+        /// Setter for [`showsTraffic`][Self::showsTraffic].
         #[method(setShowsTraffic:)]
         pub unsafe fn setShowsTraffic(&self, shows_traffic: bool);
     }

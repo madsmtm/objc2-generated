@@ -14,6 +14,9 @@ extern_protocol!(
             feature = "GKChallenge",
             feature = "GKPlayer"
         ))]
+        /// Called when a player starts the game with the intent of playing a challenge, or intends to play a challenge after selecting it within the in-game Game Center UI.
+        /// player: The player who selected the challenge
+        /// challenge: The challenge which was selected
         #[optional]
         #[method(player:wantsToPlayChallenge:)]
         unsafe fn player_wantsToPlayChallenge(&self, player: &GKPlayer, challenge: &GKChallenge);
@@ -23,6 +26,9 @@ extern_protocol!(
             feature = "GKChallenge",
             feature = "GKPlayer"
         ))]
+        /// Called when a player has received a challenge, triggered by a push notification from the server. Received only while the game is running.
+        /// player: The player who received the challenge
+        /// challenge: The challenge which was received
         #[optional]
         #[method(player:didReceiveChallenge:)]
         unsafe fn player_didReceiveChallenge(&self, player: &GKPlayer, challenge: &GKChallenge);
@@ -32,6 +38,10 @@ extern_protocol!(
             feature = "GKChallenge",
             feature = "GKPlayer"
         ))]
+        /// Called when a player has completed a challenge, triggered while the game is running, or when the user has tapped a challenge notification banner while outside of the game.
+        /// player: The player who completed the challenge
+        /// challenge: The challenge which the player completed
+        /// friendPlayer: The friend who sent the challenge originally
         #[optional]
         #[method(player:didCompleteChallenge:issuedByFriend:)]
         unsafe fn player_didCompleteChallenge_issuedByFriend(
@@ -46,6 +56,10 @@ extern_protocol!(
             feature = "GKChallenge",
             feature = "GKPlayer"
         ))]
+        /// Called when a player's friend has completed a challenge which the player sent to that friend. Triggered while the game is running, or when the user has tapped a challenge notification banner while outside of the game.
+        /// player: The player who sent the challenge originally
+        /// challenge: The challenge which the player created and sent
+        /// friendPlayer: The friend who completed the challenge
         #[optional]
         #[method(player:issuedChallengeWasCompleted:byFriend:)]
         unsafe fn player_issuedChallengeWasCompleted_byFriend(

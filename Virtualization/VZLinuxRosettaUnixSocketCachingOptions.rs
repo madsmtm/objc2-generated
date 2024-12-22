@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaunixsocketcachingoptions?language=objc)
+    /// Caching options for a Unix Domain Socket.
+    ///
+    /// This object configures Rosetta to communicate with the Rosetta daemon using a Unix Domain Socket.
+    ///
+    /// See: VZLinuxRosettaCachingOptions
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaunixsocketcachingoptions?language=objc)
     #[unsafe(super(VZLinuxRosettaCachingOptions, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZLinuxRosettaCachingOptions")]
@@ -20,18 +26,34 @@ unsafe impl NSObjectProtocol for VZLinuxRosettaUnixSocketCachingOptions {}
 extern_methods!(
     #[cfg(feature = "VZLinuxRosettaCachingOptions")]
     unsafe impl VZLinuxRosettaUnixSocketCachingOptions {
+        /// Initialize options to be set on a VZLinuxRosettaDirectoryShare.
+        ///
+        /// Parameter `path`: The path of the Unix Domain Socket to be used to communicate with the Rosetta translation daemon. This cannot exceed maximumPathLength UTF-8 bytes long.
+        ///
+        /// Parameter `error`: If not nil, assigned with the error if the initialization failed.
+        ///
+        /// Rosetta can be optionally configured to use cached translations from the Rosetta translation daemon communicating through a Unix Domain Socket.
+        /// If path exceeds maximumPathLength UTF-8 bytes, nil is returned and the error is set.
+        /// The guest operating system must have a directory at path created in order for translation caching to operate correctly.
         #[method_id(@__retain_semantics Init initWithPath:error:_)]
         pub unsafe fn initWithPath_error(
             this: Allocated<Self>,
             path: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// Initialize default options to be set on a VZLinuxRosettaDirectoryShare.
+        ///
+        /// The default translation caching configuration uses a Unix Domain Socket at /run/rosettad/rosetta.sock.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Path set by initWithPath.
+        ///
+        /// This is the path of the Unix Domain Socket to be used by Rosetta.
         #[method_id(@__retain_semantics Other path)]
         pub unsafe fn path(&self) -> Retained<NSString>;
 
+        /// The maximum allowed length of path, as defined by the sockaddr_un structure in Linux.
         #[method(maximumPathLength)]
         pub unsafe fn maximumPathLength() -> NSUInteger;
     }

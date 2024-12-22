@@ -12,20 +12,29 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentvieweritem?language=objc)
     pub unsafe trait UILargeContentViewerItem: NSObjectProtocol + MainThreadOnly {
+        /// Returns whether the item shows the large content viewer.
+        /// In general, only views that cannot scale for the full range of Dynamic Type sizes should return YES.
+        /// For this property to take effect, the item or an ancestor view must have a UILargeContentViewerInteraction.
         #[method(showsLargeContentViewer)]
         unsafe fn showsLargeContentViewer(&self) -> bool;
 
+        /// Returns a title that should be shown in the large content viewer.
         #[method_id(@__retain_semantics Other largeContentTitle)]
         unsafe fn largeContentTitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIImage")]
+        /// Returns an image that should be shown in the large content viewer.
         #[method_id(@__retain_semantics Other largeContentImage)]
         unsafe fn largeContentImage(&self) -> Option<Retained<UIImage>>;
 
+        /// Returns whether the image should be scaled to a larger size appropriate for the viewer.
+        /// If not, the image will be shown at its intrinsic size.
+        /// For best results when scaling, use a PDF asset with its "Preserve Vector Data" checkbox checked.
         #[method(scalesLargeContentImage)]
         unsafe fn scalesLargeContentImage(&self) -> bool;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Returns insets appropriate for positioning the image in the viewer so that it appears visually centered.
         #[method(largeContentImageInsets)]
         unsafe fn largeContentImageInsets(&self) -> UIEdgeInsets;
     }
@@ -40,12 +49,14 @@ extern_methods!(
         #[method(showsLargeContentViewer)]
         pub unsafe fn showsLargeContentViewer(&self) -> bool;
 
+        /// Setter for [`showsLargeContentViewer`][Self::showsLargeContentViewer].
         #[method(setShowsLargeContentViewer:)]
         pub unsafe fn setShowsLargeContentViewer(&self, shows_large_content_viewer: bool);
 
         #[method_id(@__retain_semantics Other largeContentTitle)]
         pub unsafe fn largeContentTitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`largeContentTitle`][Self::largeContentTitle].
         #[method(setLargeContentTitle:)]
         pub unsafe fn setLargeContentTitle(&self, large_content_title: Option<&NSString>);
 
@@ -54,12 +65,14 @@ extern_methods!(
         pub unsafe fn largeContentImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`largeContentImage`][Self::largeContentImage].
         #[method(setLargeContentImage:)]
         pub unsafe fn setLargeContentImage(&self, large_content_image: Option<&UIImage>);
 
         #[method(scalesLargeContentImage)]
         pub unsafe fn scalesLargeContentImage(&self) -> bool;
 
+        /// Setter for [`scalesLargeContentImage`][Self::scalesLargeContentImage].
         #[method(setScalesLargeContentImage:)]
         pub unsafe fn setScalesLargeContentImage(&self, scales_large_content_image: bool);
 
@@ -68,6 +81,7 @@ extern_methods!(
         pub unsafe fn largeContentImageInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`largeContentImageInsets`][Self::largeContentImageInsets].
         #[method(setLargeContentImageInsets:)]
         pub unsafe fn setLargeContentImageInsets(&self, large_content_image_insets: UIEdgeInsets);
     }
@@ -77,7 +91,12 @@ extern_methods!(
 unsafe impl UILargeContentViewerItem for UIView {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentviewerinteraction?language=objc)
+    /// UILargeContentViewerInteraction enables a gesture to present and dismiss the large content viewer on a device with relevant settings.
+    /// Use methods in
+    /// <UIKit
+    /// /UIInteraction.h> to add the interaction to an appropriate view, such as a custom tab bar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentviewerinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -103,11 +122,17 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UILargeContentViewerInteractionDelegate>>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
+        /// Returns a gesture recognizer that can be used to set up simultaneous recognition or failure relationships with other gesture recognizers.
         #[method_id(@__retain_semantics Other gestureRecognizerForExclusionRelationship)]
         pub unsafe fn gestureRecognizerForExclusionRelationship(
             &self,
         ) -> Retained<UIGestureRecognizer>;
 
+        /// Returns whether the large content viewer is enabled on the device.
+        /// It is not necessary to check this value before adding a UILargeContentViewerInteraction to a view,
+        /// but it may be helpful if you need to adjust the behavior of coexisting gesture handlers.
+        /// For example, a button with a long press handler might increase its long press duration,
+        /// so that a user can read text in the large content viewer first.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(mtm: MainThreadMarker) -> bool;
     }
@@ -130,6 +155,11 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Performs an action when the large content viewer gesture ends at the location of the given item.
+        /// (The point in the interaction's view's coordinate system is also provided.)
+        /// For example, you may wish to perform the action that would have occurred if the user had tapped on that item.
+        /// If you don’t implement this method and are using standard UIKit controls, the system performs a default action, such as sending a touchUpInside event to the control.
+        /// This method is called only if the gesture ends successfully (not if it fails or gets canceled).
         #[optional]
         #[method(largeContentViewerInteraction:didEndOnItem:atPoint:)]
         unsafe fn largeContentViewerInteraction_didEndOnItem_atPoint(
@@ -140,6 +170,8 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Returns the item at a given point in the interaction's view's coordinate system.
+        /// If this is not implemented, -[UIView pointInside:withEvent:] will be called recursively on the interaction's view to find an appropriate view.
         #[optional]
         #[method_id(@__retain_semantics Other largeContentViewerInteraction:itemAtPoint:)]
         unsafe fn largeContentViewerInteraction_itemAtPoint(
@@ -149,6 +181,8 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn UILargeContentViewerItem>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// Returns the view controller whose region of the screen should be used to display the large content viewer.
+        /// If this is not implemented, a view controller that contains the interaction's view will be chosen.
         #[optional]
         #[method_id(@__retain_semantics Other viewControllerForLargeContentViewerInteraction:)]
         unsafe fn viewControllerForLargeContentViewerInteraction(
@@ -161,7 +195,9 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentviewerinteractionenabledstatusdidchangenotification?language=objc)
+    /// Posted when the large content viewer gets enabled or disabled on the device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentviewerinteractionenabledstatusdidchangenotification?language=objc)
     pub static UILargeContentViewerInteractionEnabledStatusDidChangeNotification:
         &'static NSNotificationName;
 }

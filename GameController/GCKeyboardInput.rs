@@ -8,7 +8,17 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyboardvaluechangedhandler?language=objc)
+/// Set this block if you want to be notified when a value of a key changed. If multiple keys have changed this block will be called
+/// cd  for each key that changed.
+///
+///
+/// Parameter `keyboard`: this keyboard that is being used to map the raw input data into logical values on keyboard keys.
+///
+/// Parameter `key`: the key that has been modified
+///
+/// Parameter `pressed`: the state of the key at the moment of block calling
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyboardvaluechangedhandler?language=objc)
 #[cfg(all(
     feature = "GCControllerButtonInput",
     feature = "GCControllerElement",
@@ -22,7 +32,11 @@ pub type GCKeyboardValueChangedHandler = *mut block2::Block<
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyboardinput?language=objc)
+    /// Keyboard profile. Contains the current state of buttons specified in GCKeyCodes.h.
+    ///
+    /// GCKeyboardInput is designed primarly for input polling. For the best text input experience, UIKit/AppKit usage is recommended.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyboardinput?language=objc)
     #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]
@@ -52,12 +66,14 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// Setter for [`keyChangedHandler`][Self::keyChangedHandler].
         #[method(setKeyChangedHandler:)]
         pub unsafe fn setKeyChangedHandler(
             &self,
             key_changed_handler: GCKeyboardValueChangedHandler,
         );
 
+        /// Before querying any key for a value it might be useful to check if any key is actually pressed
         #[method(isAnyKeyPressed)]
         pub unsafe fn isAnyKeyPressed(&self) -> bool;
 
@@ -67,6 +83,13 @@ extern_methods!(
             feature = "GCKeyCodes",
             feature = "objc2-core-foundation"
         ))]
+        /// Alongside general subscript notation of GCPhysicalInputProfile keys can be accessed using this method.
+        ///
+        ///
+        ///
+        /// Parameter `code`: is a low level key code that can be used for accessing a keyboard button.
+        ///
+        /// Note: Full list of supported key constants can be found in GCKeyCodes.h and GCKeyNames.h
         #[method_id(@__retain_semantics Other buttonForKeyCode:)]
         pub unsafe fn buttonForKeyCode(
             &self,

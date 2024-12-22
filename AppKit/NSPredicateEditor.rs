@@ -105,6 +105,7 @@ extern_methods!(
         pub unsafe fn rowTemplates(&self) -> Retained<NSArray<NSPredicateEditorRowTemplate>>;
 
         #[cfg(feature = "NSPredicateEditorRowTemplate")]
+        /// Setter for [`rowTemplates`][Self::rowTemplates].
         #[method(setRowTemplates:)]
         pub unsafe fn setRowTemplates(&self, row_templates: &NSArray<NSPredicateEditorRowTemplate>);
     }

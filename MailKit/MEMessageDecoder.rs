@@ -7,9 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagedecoder?language=objc)
+    /// Methods in this protocol can be used by a mail app extension to decode messages.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagedecoder?language=objc)
     pub unsafe trait MEMessageDecoder: NSObjectProtocol {
         #[cfg(feature = "MEDecodedMessage")]
+        /// This is invoked while a message is being decoded. The returned value should be an
+        /// `MEDecodedMessage`if the extension is needed for decoding the message. The returned
+        /// `MEDecodedMessage`should be created with unencrypted MIME data. The
+        /// `MEMessageSecurityInformation`property on the
+        /// `MEDecodedMessage`should contain any signing or encryption information about the decoded message. If the extension is not needed for decoding the message it should return quickly with
+        /// `nil.`
+        /// Parameter `data`: - The original data for the message.
         #[method_id(@__retain_semantics Other decodedMessageForMessageData:)]
         unsafe fn decodedMessageForMessageData(
             &self,

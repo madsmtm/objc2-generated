@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocation?language=objc)
+    /// Specify the location of a known folder in the replicated tree.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderKnownFolderLocation;
@@ -19,6 +21,11 @@ unsafe impl NSObjectProtocol for NSFileProviderKnownFolderLocation {}
 extern_methods!(
     unsafe impl NSFileProviderKnownFolderLocation {
         #[cfg(feature = "NSFileProviderItem")]
+        /// Initialize a location with the filename of the folder in a specified parent.
+        ///
+        /// When replicating a known folder the system will reuse a folder located at the specified
+        /// filename within the parent if one exists, or create a new item at this location if none
+        /// exists yet.
         #[method_id(@__retain_semantics Init initWithParentItemIdentifier:filename:)]
         pub unsafe fn initWithParentItemIdentifier_filename(
             this: Allocated<Self>,
@@ -27,6 +34,10 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// Initialize a location with the item identifier of a folder that already exists on the server.
+        ///
+        /// If the known folder already exists on the server, the provider can specify the exact identifier
+        /// of the item that needs to be used to back the known folder.
         #[method_id(@__retain_semantics Init initWithExistingItemIdentifier:)]
         pub unsafe fn initWithExistingItemIdentifier(
             this: Allocated<Self>,
@@ -47,7 +58,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations?language=objc)
+    /// Specify the locations at which known folders should be synced in the replicated tree.
+    ///
+    /// Desktop and Documents candidate items need to have the same parent folder.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderKnownFolderLocations;
@@ -57,30 +72,46 @@ unsafe impl NSObjectProtocol for NSFileProviderKnownFolderLocations {}
 
 extern_methods!(
     unsafe impl NSFileProviderKnownFolderLocations {
+        /// Specify whether the system should create a binary compatibility symlink folders.
+        ///
+        /// If YES, the system creates a symlink from the logical location of the folder in the domain
+        /// sync root to the known folder location. This symlink allows any app that would have hardcoded
+        /// the previous location of the folder to still work after enabling the feature.
+        ///
+        /// Default value is YES.
         #[method(shouldCreateBinaryCompatibilitySymlink)]
         pub unsafe fn shouldCreateBinaryCompatibilitySymlink(&self) -> bool;
 
+        /// Setter for [`shouldCreateBinaryCompatibilitySymlink`][Self::shouldCreateBinaryCompatibilitySymlink].
         #[method(setShouldCreateBinaryCompatibilitySymlink:)]
         pub unsafe fn setShouldCreateBinaryCompatibilitySymlink(
             &self,
             should_create_binary_compatibility_symlink: bool,
         );
 
+        /// Candidate item for ~/Desktop
+        ///
+        /// For user experience reasons, it is strongly recommended to name the target folder "Desktop".
         #[method_id(@__retain_semantics Other desktopLocation)]
         pub unsafe fn desktopLocation(&self)
             -> Option<Retained<NSFileProviderKnownFolderLocation>>;
 
+        /// Setter for [`desktopLocation`][Self::desktopLocation].
         #[method(setDesktopLocation:)]
         pub unsafe fn setDesktopLocation(
             &self,
             desktop_location: Option<&NSFileProviderKnownFolderLocation>,
         );
 
+        /// Candidate item for ~/Documents
+        ///
+        /// For user experience reasons, it is strongly recommended to name the target folder "Documents".
         #[method_id(@__retain_semantics Other documentsLocation)]
         pub unsafe fn documentsLocation(
             &self,
         ) -> Option<Retained<NSFileProviderKnownFolderLocation>>;
 
+        /// Setter for [`documentsLocation`][Self::documentsLocation].
         #[method(setDocumentsLocation:)]
         pub unsafe fn setDocumentsLocation(
             &self,
@@ -105,6 +136,40 @@ extern_methods!(
     #[cfg(feature = "Extension")]
     unsafe impl NSFileProviderManager {
         #[cfg(feature = "block2")]
+        /// Request the specified known folders to be synced by this domain.
+        ///
+        /// This method allows the provider to claim a set of known folders described by the non-null
+        /// properties of the knownFolders parameter. The system will only enable sync for those folders
+        /// in that domain if the set of locations is valid and if the user agrees.
+        ///
+        /// This API should only be called as a result of the user requesting, via UI in the provider's application,
+        /// that they wish to start syncing the Desktop and Document folders.
+        /// If the provider chooses to implement a UI which invokes this API, the provider should also implement a UI
+        /// for the user to request to stop syncing the Desktop and Document folders,
+        /// using the `-[NSFileProviderManager releaseKnownFolders:localizedReason:completionHandler:]` method.
+        ///
+        /// The reason specified in this call is a custom string that the provider can pass and will be
+        /// presented to the user as a way to explain why it is claiming those known folders. One suggested
+        /// phrasing would be:
+        ///
+        /// > Keep your Desktop
+        /// &
+        /// Documents in sync with
+        /// <Provider
+        /// name> and access them from other devices and from
+        /// <Provider
+        /// website>.
+        ///
+        /// If the user denies the transition of the known folders, the call will fail with `NSUserCancelledError`.
+        ///
+        /// The call will fail if:
+        /// - one or more locations are not folders
+        /// - multiple locations are backed by the same folder
+        /// - a known folder doesn't live on the same volume as the root of the domain
+        /// - the known folders don't have the same parent folder
+        /// - ...
+        ///
+        /// Currently, only claiming both ~/Desktop and ~/Documents together is allowed.
         #[method(claimKnownFolders:localizedReason:completionHandler:)]
         pub unsafe fn claimKnownFolders_localizedReason_completionHandler(
             &self,
@@ -114,6 +179,10 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
+        /// Request that the system stops replicating the specified known folders in the domain.
+        ///
+        /// This call can be used by the provider to immediately disable replication of the specified
+        /// known folders.
         #[method(releaseKnownFolders:localizedReason:completionHandler:)]
         pub unsafe fn releaseKnownFolders_localizedReason_completionHandler(
             &self,
@@ -128,6 +197,11 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfoldersupporting?language=objc)
     pub unsafe trait NSFileProviderKnownFolderSupporting: NSObjectProtocol {
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
+        /// Request suitable locations for known folders.
+        ///
+        /// This function is called when the user decides to switch some known folders to the current domain, outside of the `claimKnownFolders` call.
+        /// The system provides a list of folders that the user decides to move to this domain, and expect in return non-nil locations for those known
+        /// folders.
         #[method(getKnownFolderLocations:completionHandler:)]
         unsafe fn getKnownFolderLocations_completionHandler(
             &self,

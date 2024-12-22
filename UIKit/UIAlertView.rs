@@ -115,6 +115,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
@@ -123,6 +124,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -131,6 +133,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other message)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`message`][Self::message].
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method(setMessage:)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
@@ -154,6 +157,7 @@ extern_methods!(
         #[method(cancelButtonIndex)]
         pub unsafe fn cancelButtonIndex(&self) -> NSInteger;
 
+        /// Setter for [`cancelButtonIndex`][Self::cancelButtonIndex].
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[method(setCancelButtonIndex:)]
         pub unsafe fn setCancelButtonIndex(&self, cancel_button_index: NSInteger);
@@ -181,6 +185,7 @@ extern_methods!(
         #[method(alertViewStyle)]
         pub unsafe fn alertViewStyle(&self) -> UIAlertViewStyle;
 
+        /// Setter for [`alertViewStyle`][Self::alertViewStyle].
         #[method(setAlertViewStyle:)]
         pub unsafe fn setAlertViewStyle(&self, alert_view_style: UIAlertViewStyle);
 

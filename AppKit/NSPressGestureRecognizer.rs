@@ -29,12 +29,14 @@ extern_methods!(
         #[method(buttonMask)]
         pub unsafe fn buttonMask(&self) -> NSUInteger;
 
+        /// Setter for [`buttonMask`][Self::buttonMask].
         #[method(setButtonMask:)]
         pub unsafe fn setButtonMask(&self, button_mask: NSUInteger);
 
         #[method(minimumPressDuration)]
         pub unsafe fn minimumPressDuration(&self) -> NSTimeInterval;
 
+        /// Setter for [`minimumPressDuration`][Self::minimumPressDuration].
         #[method(setMinimumPressDuration:)]
         pub unsafe fn setMinimumPressDuration(&self, minimum_press_duration: NSTimeInterval);
 
@@ -43,12 +45,14 @@ extern_methods!(
         pub unsafe fn allowableMovement(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`allowableMovement`][Self::allowableMovement].
         #[method(setAllowableMovement:)]
         pub unsafe fn setAllowableMovement(&self, allowable_movement: CGFloat);
 
         #[method(numberOfTouchesRequired)]
         pub unsafe fn numberOfTouchesRequired(&self) -> NSInteger;
 
+        /// Setter for [`numberOfTouchesRequired`][Self::numberOfTouchesRequired].
         #[method(setNumberOfTouchesRequired:)]
         pub unsafe fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSInteger);
     }

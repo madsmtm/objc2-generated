@@ -11,17 +11,23 @@ use crate::*;
 pub type ASAuthorizationCustomMethod = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethodvideosubscriberaccount?language=objc)
+    /// An authorization method that uses the VideoSubscriberAccount framework to sign in.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethodvideosubscriberaccount?language=objc)
     pub static ASAuthorizationCustomMethodVideoSubscriberAccount:
         &'static ASAuthorizationCustomMethod;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethodrestorepurchase?language=objc)
+    /// An authorization method that restores an in-app purchase to sign in.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethodrestorepurchase?language=objc)
     pub static ASAuthorizationCustomMethodRestorePurchase: &'static ASAuthorizationCustomMethod;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethodother?language=objc)
+    /// An authorization method that uses some other sign-in mechanism.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethodother?language=objc)
     pub static ASAuthorizationCustomMethodOther: &'static ASAuthorizationCustomMethod;
 }

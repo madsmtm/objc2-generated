@@ -260,12 +260,16 @@ unsafe impl RefEncode for UINSToolbarItemPresentationSize {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIImageDynamicRange(pub NSInteger);
 impl UIImageDynamicRange {
+    /// Do not specify a preferred dynamic range.
     #[doc(alias = "UIImageDynamicRangeUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// Restrict the image content dynamic range to the standard range.
     #[doc(alias = "UIImageDynamicRangeStandard")]
     pub const Standard: Self = Self(0);
+    /// Allow image content to use some extended range. This is appropriate for mixing content with standard and high dynamic ranges.
     #[doc(alias = "UIImageDynamicRangeConstrainedHigh")]
     pub const ConstrainedHigh: Self = Self(1);
+    /// Allow image content to use unrestricted extended range.
     #[doc(alias = "UIImageDynamicRangeHigh")]
     pub const High: Self = Self(2);
 }

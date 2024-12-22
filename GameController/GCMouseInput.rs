@@ -7,12 +7,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousemoved?language=objc)
+/// Set this block if you want to be notified when the mouse was moved
+///
+/// Parameter `mouse`: this mouse that is being used for input
+///
+/// Parameter `deltaX`: the value of raw mouse delta along x axis. Not affected by mouse sensitivity settings
+///
+/// Parameter `deltaY`: the value of raw mouse delta along y axis. Not affected by mouse sensitivity settings
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousemoved?language=objc)
 #[cfg(all(feature = "GCPhysicalInputProfile", feature = "block2"))]
 pub type GCMouseMoved = *mut block2::Block<dyn Fn(NonNull<GCMouseInput>, c_float, c_float)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmouseinput?language=objc)
+    /// Mouse profile that represent a physical mouse object with two axis cursor, two axis scroll,
+    /// left button, optional right and middle buttons and optional set of auxiliary buttons.
+    ///
+    /// It only provides information about raw mouse movement deltas. For the valid cursor position
+    /// at given point in time, use UIHoverGestureRecognizer and NSEvent.mouseLocation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmouseinput?language=objc)
     #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]
@@ -30,6 +44,7 @@ extern_methods!(
         pub unsafe fn mouseMovedHandler(&self) -> GCMouseMoved;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`mouseMovedHandler`][Self::mouseMovedHandler].
         #[method(setMouseMovedHandler:)]
         pub unsafe fn setMouseMovedHandler(&self, mouse_moved_handler: GCMouseMoved);
 
@@ -38,10 +53,12 @@ extern_methods!(
             feature = "GCControllerElement",
             feature = "GCDeviceCursor"
         ))]
+        /// Scroll is a dpad with undefined range.
         #[method_id(@__retain_semantics Other scroll)]
         pub unsafe fn scroll(&self) -> Retained<GCDeviceCursor>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
+        /// Mouse buttons that can be used only as digital inputs
         #[method_id(@__retain_semantics Other leftButton)]
         pub unsafe fn leftButton(&self) -> Retained<GCControllerButtonInput>;
 

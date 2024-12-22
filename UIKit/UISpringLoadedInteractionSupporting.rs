@@ -13,6 +13,7 @@ extern_protocol!(
         #[method(isSpringLoaded)]
         unsafe fn isSpringLoaded(&self) -> bool;
 
+        /// Setter for [`isSpringLoaded`][Self::isSpringLoaded].
         #[method(setSpringLoaded:)]
         unsafe fn setSpringLoaded(&self, spring_loaded: bool);
     }

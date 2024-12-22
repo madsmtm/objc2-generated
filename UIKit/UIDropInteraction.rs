@@ -42,6 +42,7 @@ extern_methods!(
         #[method(allowsSimultaneousDropSessions)]
         pub unsafe fn allowsSimultaneousDropSessions(&self) -> bool;
 
+        /// Setter for [`allowsSimultaneousDropSessions`][Self::allowsSimultaneousDropSessions].
         #[method(setAllowsSimultaneousDropSessions:)]
         pub unsafe fn setAllowsSimultaneousDropSessions(
             &self,
@@ -110,12 +111,14 @@ extern_methods!(
         #[method(isPrecise)]
         pub unsafe fn isPrecise(&self) -> bool;
 
+        /// Setter for [`isPrecise`][Self::isPrecise].
         #[method(setPrecise:)]
         pub unsafe fn setPrecise(&self, precise: bool);
 
         #[method(prefersFullSizePreview)]
         pub unsafe fn prefersFullSizePreview(&self) -> bool;
 
+        /// Setter for [`prefersFullSizePreview`][Self::prefersFullSizePreview].
         #[method(setPrefersFullSizePreview:)]
         pub unsafe fn setPrefersFullSizePreview(&self, prefers_full_size_preview: bool);
     }

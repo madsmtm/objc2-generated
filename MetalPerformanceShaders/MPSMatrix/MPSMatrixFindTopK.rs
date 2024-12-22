@@ -9,7 +9,18 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixfindtopk?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// A kernel that find top-K values and their corresponding indices withing a row of a matrix
+    ///
+    ///
+    /// A MPSMatrixFindTopK object computes finds the 'k' largest values within
+    /// a row of a matrix and returns the value found and the index of the entry
+    /// in the source matrix. This operation is performed independently on the
+    /// rows and matrices in batch of the source matrix.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixfindtopk?language=objc)
     #[unsafe(super(MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -36,30 +47,104 @@ unsafe impl NSSecureCoding for MPSMatrixFindTopK {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixFindTopK {
+        /// The number of rows to consider from the source in the operation.
+        /// This property is modifiable and defaults to NSUIntegerMax and the number is
+        /// adjusted dynamically at kernel encode time (see encodeToCommandBuffer) to
+        /// fit into the source matrix available starting from sourceMatrixOrigin.x,
+        /// indicating that by default the whole source matrix is used.
+        /// If a different size is desired then this should be modified prior to
+        /// encoding the kernel.
+        /// It is the user's responsibility to ensure that the resultIndexMatrix and resultValueMatrix
+        /// parameters in encodeToCommandBuffer are large enough to accommodate the results of this
+        /// operation, otherwise the results of the encode call are undefined.
+        /// NOTE: sourceMatrixOrigin and resultMatrixOrigin from MPSMatrixUnaryKernel
+        /// can be used to control the starting points in the source and destination
+        /// at kernel encode time (see encodeToCommandBuffer).
         #[method(sourceRows)]
         pub unsafe fn sourceRows(&self) -> NSUInteger;
 
+        /// Setter for [`sourceRows`][Self::sourceRows].
         #[method(setSourceRows:)]
         pub unsafe fn setSourceRows(&self, source_rows: NSUInteger);
 
+        /// The number of columns to consider from the source in the operation.
+        /// This property is modifiable and defaults to NSUIntegerMax and the number is
+        /// adjusted dynamically at kernel encode time (see encodeToCommandBuffer) to
+        /// fit into the source matrix available starting from sourceMatrixOrigin.y,
+        /// indicating that by default the whole source matrix is used.
+        /// If a different size is desired then this should be modified prior to
+        /// encoding the kernel.
+        /// It is the user's responsibility to ensure that the resultIndexMatrix and resultValueMatrix
+        /// parameters in encodeToCommandBuffer are large enough to accommodate the results of this
+        /// operation, otherwise the results of the encode call are undefined.
+        /// NOTE: sourceMatrixOrigin and resultMatrixOrigin from MPSMatrixUnaryKernel
+        /// can be used to control the starting points in the source and destination
+        /// at kernel encode time (see encodeToCommandBuffer).
         #[method(sourceColumns)]
         pub unsafe fn sourceColumns(&self) -> NSUInteger;
 
+        /// Setter for [`sourceColumns`][Self::sourceColumns].
         #[method(setSourceColumns:)]
         pub unsafe fn setSourceColumns(&self, source_columns: NSUInteger);
 
+        /// Specifies a number that will be added to all the indices written to
+        /// resultIndexMatrix in encodeToCommandBuffer. This value can be used
+        /// to offset later computations for example by adding the value for
+        /// the source matrix column offset sourceMatrixOrigin.y.
+        /// Example: Let numberOfTopKValues be 3, let the source be the following:
+        ///
+        /// source = [ 6.0, 3.0, 8.0, 1.0, 9.0, 4.0, 5.0 ]
+        ///
+        /// and let the sourceMatrixOrigin.y = 2.
+        ///
+        /// Then if indexOffset = 2 then the result value and result index matrices will be:
+        ///
+        /// result values  = [ 9.0, 8.0, 5.0 ]
+        /// result indices = [  4 ,  2 ,  6  ],
+        ///
+        /// which gives the user indices into the original source matrix.
+        ///
+        /// On the other hand if the indexOffset = 0 then the results  are as follows:
+        ///
+        /// result values  = [ 9.0, 8.0, 5.0 ]
+        /// result indices = [  2 ,  0 ,  4  ],
+        ///
+        /// which on the other hand gives the user indices into the submatrix starting
+        /// from sourceMatrixOrigin.y == 2.
+        ///
+        /// This property is modifiable and defaults to 0. If a different behavior
+        /// is desired then this should be modified prior to encoding the kernel.
         #[method(indexOffset)]
         pub unsafe fn indexOffset(&self) -> NSUInteger;
 
+        /// Setter for [`indexOffset`][Self::indexOffset].
         #[method(setIndexOffset:)]
         pub unsafe fn setIndexOffset(&self, index_offset: NSUInteger);
 
+        /// The number of highest values (and their indices) to be found in each row
+        /// by the kernel. This property is initialized in the kernel initialization call
+        /// initWithDevice, but can be modified before encoding the kernel.
+        /// Must be less or equal to 16 and requesting more values results in undefined behavior.
+        /// It is the user's responsibility to ensure that the resultIndexMatrix and resultValueMatrix
+        /// parameters in encodeToCommandBuffer are large enough to accommodate the results of this
+        /// operation, otherwise the results of the encode call are undefined.
         #[method(numberOfTopKValues)]
         pub unsafe fn numberOfTopKValues(&self) -> NSUInteger;
 
+        /// Setter for [`numberOfTopKValues`][Self::numberOfTopKValues].
         #[method(setNumberOfTopKValues:)]
         pub unsafe fn setNumberOfTopKValues(&self, number_of_top_k_values: NSUInteger);
 
+        /// Initialize an MPSMatrixFindTopK object on a device for a given size.
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        /// Parameter `numberOfTopKValues`: The number of largest values to find from each row,
+        /// must be less or equal to 16.
+        ///
+        ///
+        /// Returns: A valid MPSMatrixFindTopK object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:numberOfTopKValues:)]
         pub unsafe fn initWithDevice_numberOfTopKValues(
             this: Allocated<Self>,
@@ -67,6 +152,7 @@ extern_methods!(
             number_of_top_k_values: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Use the above initialization method instead.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -74,6 +160,37 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a MPSMatrixFindTopK object to a command buffer.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        ///
+        /// Parameter `inputMatrix`: A valid MPSMatrix object which specifies the input matrix.
+        ///
+        ///
+        /// Parameter `resultIndexMatrix`: A valid MPSMatrix object which specifies the matrix which will
+        /// be overwritten by the result indices.
+        /// This matrix must have datatype MPSDataTypeUInt32.
+        ///
+        /// Parameter `resultValueMatrix`: A valid MPSMatrix object which specifies the matrix which will
+        /// be overwritten by the result values.
+        ///
+        ///
+        /// Certain constraints apply to the sizes of the matrices depending on the sizes requested at
+        /// initialization time as well as the origins at the time this routine is called:
+        ///
+        /// Both result matrices must be large enough to hold a two dimensional array of 'sourceRows' rows and
+        /// 'numberOfTopKValues' columns beginning at resultMatrixOrigin.
+        ///
+        /// The source matrix must be large enough to contain at least 'numberOfTopKValues' values
+        /// starting from sourceMatrixOrigin.y.
+        ///
+        /// Each matrix within the range specified by batchStart and batchSize, which also specifies a valid
+        /// set of matrices within inputMatrix, resultIndexMatrix and resultValueMatrix, will be processed.
+        ///
+        /// The datatypes of the matrices inputMatrix and resultValueMatrix must match and be either
+        /// MPSDataTypeFloat32 or MPSDataTypeFloat16.
         #[method(encodeToCommandBuffer:inputMatrix:resultIndexMatrix:resultValueMatrix:)]
         pub unsafe fn encodeToCommandBuffer_inputMatrix_resultIndexMatrix_resultValueMatrix(
             &self,
@@ -83,6 +200,15 @@ extern_methods!(
             result_value_matrix: &MPSMatrix,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSMatrixFindTopK
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSMatrixFindTopK
+        ///
+        /// Returns: A new MPSMatrixFindTopK object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -90,6 +216,18 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Make a copy of this kernel for a new device -
+        ///
+        /// See: MPSKernel
+        ///
+        /// Parameter `zone`: The NSZone in which to allocate the object
+        ///
+        /// Parameter `device`: The device for the new MPSKernel. If nil, then use
+        /// self.device.
+        ///
+        /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -103,6 +241,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixFindTopK {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

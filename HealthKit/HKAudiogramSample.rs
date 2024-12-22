@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsample?language=objc)
+    /// A sample object representing the results of a standard hearing test.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsample?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -33,10 +35,22 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKAudiogramSample {
         #[cfg(feature = "HKAudiogramSensitivityPoint")]
+        /// The hearing sensitivity readings associated with a hearing test.
         #[method_id(@__retain_semantics Other sensitivityPoints)]
         pub unsafe fn sensitivityPoints(&self) -> Retained<NSArray<HKAudiogramSensitivityPoint>>;
 
         #[cfg(feature = "HKAudiogramSensitivityPoint")]
+        /// Creates a new audiogram sample with the specified attributes.
+        ///
+        /// Parameter `sensitivityPoints`: Sensitivity data associated with the sample, with a maximum limit of 30 points. Frequencies must be unique, and ordered ascending.
+        ///
+        /// Parameter `startDate`: The start date for the hearing test.
+        ///
+        /// Parameter `endDate`: The end date for the hearing test.
+        ///
+        /// Parameter `metadata`: Optional meta data associated with the sample.
+        ///
+        /// Returns: A new instance of an audiogram sample.
         #[deprecated]
         #[method_id(@__retain_semantics Other audiogramSampleWithSensitivityPoints:startDate:endDate:metadata:)]
         pub unsafe fn audiogramSampleWithSensitivityPoints_startDate_endDate_metadata(
@@ -47,6 +61,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKAudiogramSensitivityPoint", feature = "HKDevice"))]
+        /// Creates a new audiogram sample with the specified attributes.
+        ///
+        /// Parameter `sensitivityPoints`: Sensitivity data associated with the sample, with a maximum limit of 30 points. Frequencies must be unique, and ordered ascending.
+        ///
+        /// Parameter `startDate`: The start date of the hearing test.
+        ///
+        /// Parameter `endDate`: The end date of the hearing test.
+        ///
+        /// Parameter `device`: The device that generated the sample data.
+        ///
+        /// Parameter `metadata`: Optional metadata associated with the sample.
+        ///
+        /// Returns: A new instance of an audiogram sample.
         #[method_id(@__retain_semantics Other audiogramSampleWithSensitivityPoints:startDate:endDate:device:metadata:)]
         pub unsafe fn audiogramSampleWithSensitivityPoints_startDate_endDate_device_metadata(
             sensitivity_points: &NSArray<HKAudiogramSensitivityPoint>,

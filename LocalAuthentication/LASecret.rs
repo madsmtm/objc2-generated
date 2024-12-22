@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lasecret?language=objc)
+    /// Generic secret
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lasecret?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LASecret;
@@ -19,15 +21,24 @@ unsafe impl NSObjectProtocol for LASecret {}
 extern_methods!(
     unsafe impl LASecret {
         #[cfg(feature = "block2")]
+        /// Fetch stored data if any
+        ///
+        /// Parameter `handler`: Completion handler invoked with a generic secret stored along with the right or an error if no secret is found or the fetch operation fails.
         #[method(loadDataWithCompletion:)]
         pub unsafe fn loadDataWithCompletion(
             &self,
             handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
+        /// Clients cannot create
+        /// `LASecret`instances directly. They typically obtain them from a
+        /// `LAPersistedRight`instance.
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Clients cannot create
+        /// `LASecret`instances directly. They typically obtain them from a
+        /// `LAPersistedRight`instance.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

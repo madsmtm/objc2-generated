@@ -111,6 +111,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn NSTextFinderClient>>>;
 
+        /// Setter for [`client`][Self::client].
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn NSTextFinderClient>>);
 
@@ -125,6 +126,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextFinderBarContainer>>>;
 
+        /// Setter for [`findBarContainer`][Self::findBarContainer].
         #[method(setFindBarContainer:)]
         pub unsafe fn setFindBarContainer(
             &self,
@@ -137,18 +139,21 @@ extern_methods!(
         #[method(findIndicatorNeedsUpdate)]
         pub unsafe fn findIndicatorNeedsUpdate(&self) -> bool;
 
+        /// Setter for [`findIndicatorNeedsUpdate`][Self::findIndicatorNeedsUpdate].
         #[method(setFindIndicatorNeedsUpdate:)]
         pub unsafe fn setFindIndicatorNeedsUpdate(&self, find_indicator_needs_update: bool);
 
         #[method(isIncrementalSearchingEnabled)]
         pub unsafe fn isIncrementalSearchingEnabled(&self) -> bool;
 
+        /// Setter for [`isIncrementalSearchingEnabled`][Self::isIncrementalSearchingEnabled].
         #[method(setIncrementalSearchingEnabled:)]
         pub unsafe fn setIncrementalSearchingEnabled(&self, incremental_searching_enabled: bool);
 
         #[method(incrementalSearchingShouldDimContentView)]
         pub unsafe fn incrementalSearchingShouldDimContentView(&self) -> bool;
 
+        /// Setter for [`incrementalSearchingShouldDimContentView`][Self::incrementalSearchingShouldDimContentView].
         #[method(setIncrementalSearchingShouldDimContentView:)]
         pub unsafe fn setIncrementalSearchingShouldDimContentView(
             &self,
@@ -215,6 +220,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other selectedRanges)]
         unsafe fn selectedRanges(&self) -> Retained<NSArray<NSValue>>;
 
+        /// Setter for [`selectedRanges`][Self::selectedRanges].
         #[optional]
         #[method(setSelectedRanges:)]
         unsafe fn setSelectedRanges(&self, selected_ranges: &NSArray<NSValue>);
@@ -277,12 +283,14 @@ extern_protocol!(
         unsafe fn findBarView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// Setter for [`findBarView`][Self::findBarView].
         #[method(setFindBarView:)]
         unsafe fn setFindBarView(&self, find_bar_view: Option<&NSView>);
 
         #[method(isFindBarVisible)]
         unsafe fn isFindBarVisible(&self) -> bool;
 
+        /// Setter for [`isFindBarVisible`][Self::isFindBarVisible].
         #[method(setFindBarVisible:)]
         unsafe fn setFindBarVisible(&self, find_bar_visible: bool);
 

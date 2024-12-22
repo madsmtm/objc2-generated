@@ -8,7 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration?language=objc)
+    /// The platform configuration for a generic Intel or ARM virtual machine.
+    ///
+    /// When a virtual machine is saved to disk then loaded again, the `machineIdentifier`
+    /// must be restored to the original value.
+    ///
+    /// If multiple virtual machines are created from the same configuration, each should have a unique `machineIdentifier`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration?language=objc)
     #[unsafe(super(VZPlatformConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZPlatformConfiguration")]
@@ -33,19 +40,43 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZGenericMachineIdentifier")]
+        /// The unique machine identifier.
+        ///
+        /// Running two virtual machines concurrently with the same identifier results in undefined behavior
+        /// in the guest operating system. When restoring a virtual machine from saved state, this
+        /// `machineIdentifier` must match the `machineIdentifier` of the saved virtual machine.
         #[method_id(@__retain_semantics Other machineIdentifier)]
         pub unsafe fn machineIdentifier(&self) -> Retained<VZGenericMachineIdentifier>;
 
         #[cfg(feature = "VZGenericMachineIdentifier")]
+        /// Setter for [`machineIdentifier`][Self::machineIdentifier].
         #[method(setMachineIdentifier:)]
         pub unsafe fn setMachineIdentifier(&self, machine_identifier: &VZGenericMachineIdentifier);
 
+        /// Indicate whether or not nested virtualization is available.
+        ///
+        /// Nested virtualization is only available on some hardware and software configurations. It may also be disabled by policy.
+        ///
+        /// Use this property to check if support is available for the platform. If nested virtualization is supported,
+        /// use `nestedVirtualizationEnabled` to enable the feature.
+        ///
+        /// See: nestedVirtualizationEnabled.
         #[method(isNestedVirtualizationSupported)]
         pub unsafe fn isNestedVirtualizationSupported() -> bool;
 
+        /// Enable nested virtualization for the platform.
+        ///
+        /// If nested virtualization is available, enable it for the current platform configuration.
+        ///
+        /// You can use `nestedVirtualizationSupported` to discover the nested virtualization availability before enabling it.
+        ///
+        /// The default value is NO, nested virtualization is disabled.
+        ///
+        /// See: nestedVirtualizationSupported.
         #[method(isNestedVirtualizationEnabled)]
         pub unsafe fn isNestedVirtualizationEnabled(&self) -> bool;
 
+        /// Setter for [`isNestedVirtualizationEnabled`][Self::isNestedVirtualizationEnabled].
         #[method(setNestedVirtualizationEnabled:)]
         pub unsafe fn setNestedVirtualizationEnabled(&self, nested_virtualization_enabled: bool);
     }

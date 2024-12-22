@@ -71,12 +71,14 @@ extern_methods!(
         pub unsafe fn timeZone(&self) -> Retained<NSTimeZone>;
 
         #[cfg(feature = "NSTimeZone")]
+        /// Setter for [`timeZone`][Self::timeZone].
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[method(formatOptions)]
         pub unsafe fn formatOptions(&self) -> NSISO8601DateFormatOptions;
 
+        /// Setter for [`formatOptions`][Self::formatOptions].
         #[method(setFormatOptions:)]
         pub unsafe fn setFormatOptions(&self, format_options: NSISO8601DateFormatOptions);
 

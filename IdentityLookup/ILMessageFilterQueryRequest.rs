@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilterqueryrequest?language=objc)
+    /// A request to query a MessageFilter extension about how to interpret a received message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilterqueryrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILMessageFilterQueryRequest;
@@ -21,12 +23,15 @@ unsafe impl NSSecureCoding for ILMessageFilterQueryRequest {}
 
 extern_methods!(
     unsafe impl ILMessageFilterQueryRequest {
+        /// The sender of the message the receiver relates to.
         #[method_id(@__retain_semantics Other sender)]
         pub unsafe fn sender(&self) -> Option<Retained<NSString>>;
 
+        /// The body of the message the receiver relates to.
         #[method_id(@__retain_semantics Other messageBody)]
         pub unsafe fn messageBody(&self) -> Option<Retained<NSString>>;
 
+        /// The ISO Country Code of the receiving phone number, in format specified by the ISO 3166-2 standard
         #[method_id(@__retain_semantics Other receiverISOCountryCode)]
         pub unsafe fn receiverISOCountryCode(&self) -> Option<Retained<NSString>>;
 

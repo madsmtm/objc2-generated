@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactrelation?language=objc)
+    /// An immutable value object representing a related contact.
+    ///
+    ///
+    /// CNContactRelation is thread safe.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactrelation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactRelation;

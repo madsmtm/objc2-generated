@@ -33,18 +33,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
         #[method(isOptional)]
         pub unsafe fn isOptional(&self) -> bool;
 
+        /// Setter for [`isOptional`][Self::isOptional].
         #[method(setOptional:)]
         pub unsafe fn setOptional(&self, optional: bool);
 
         #[method(isTransient)]
         pub unsafe fn isTransient(&self) -> bool;
 
+        /// Setter for [`isTransient`][Self::isTransient].
         #[method(setTransient:)]
         pub unsafe fn setTransient(&self, transient: bool);
 
@@ -64,6 +67,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
+        /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
@@ -71,6 +75,7 @@ extern_methods!(
         #[method(isIndexed)]
         pub unsafe fn isIndexed(&self) -> bool;
 
+        /// Setter for [`isIndexed`][Self::isIndexed].
         #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[method(setIndexed:)]
         pub unsafe fn setIndexed(&self, indexed: bool);
@@ -81,12 +86,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other versionHashModifier)]
         pub unsafe fn versionHashModifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`versionHashModifier`][Self::versionHashModifier].
         #[method(setVersionHashModifier:)]
         pub unsafe fn setVersionHashModifier(&self, version_hash_modifier: Option<&NSString>);
 
         #[method(isIndexedBySpotlight)]
         pub unsafe fn isIndexedBySpotlight(&self) -> bool;
 
+        /// Setter for [`isIndexedBySpotlight`][Self::isIndexedBySpotlight].
         #[method(setIndexedBySpotlight:)]
         pub unsafe fn setIndexedBySpotlight(&self, indexed_by_spotlight: bool);
 
@@ -94,6 +101,7 @@ extern_methods!(
         #[method(isStoredInExternalRecord)]
         pub unsafe fn isStoredInExternalRecord(&self) -> bool;
 
+        /// Setter for [`isStoredInExternalRecord`][Self::isStoredInExternalRecord].
         #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
         #[method(setStoredInExternalRecord:)]
         pub unsafe fn setStoredInExternalRecord(&self, stored_in_external_record: bool);
@@ -101,6 +109,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other renamingIdentifier)]
         pub unsafe fn renamingIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`renamingIdentifier`][Self::renamingIdentifier].
         #[method(setRenamingIdentifier:)]
         pub unsafe fn setRenamingIdentifier(&self, renaming_identifier: Option<&NSString>);
     }

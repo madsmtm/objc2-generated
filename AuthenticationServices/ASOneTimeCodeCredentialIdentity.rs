@@ -7,7 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asonetimecodecredentialidentity?language=objc)
+    /// An ASOneTimeCodeCredentialIdentity is used to describe an identity that can use a service upon successful one time code based authentication.
+    /// Use this class to save entries into ASCredentialIdentityStore.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asonetimecodecredentialidentity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASOneTimeCodeCredentialIdentity;
@@ -34,6 +37,13 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "ASCredentialServiceIdentifier")]
+        /// Initializes an instance of ASOneTimeCodeCredentialIdentity.
+        ///
+        /// Parameter `serviceIdentifier`: The service identifier for which this credential identity is valid.
+        ///
+        /// Parameter `label`: A user-provided label to identify the one time code.
+        ///
+        /// Parameter `recordIdentifier`: An optional string to uniquely identify this record in your local database.
         #[method_id(@__retain_semantics Init initWithServiceIdentifier:label:recordIdentifier:)]
         pub unsafe fn initWithServiceIdentifier_label_recordIdentifier(
             this: Allocated<Self>,
@@ -42,6 +52,8 @@ extern_methods!(
             record_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
+        /// A label to identify the one time code, typically supplied by the user.
+        /// This string will be shown in the AutoFill suggestion for this one time code credential.
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
     }

@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdeviceconfiguration?language=objc)
+    /// Configuration of the Virtio socket device.
+    ///
+    /// This configuration creates a Virtio socket device for the guest which communicates with the host through the Virtio interface.
+    ///
+    /// Only one Virtio socket device can be used per virtual machine.
+    ///
+    /// See: VZVirtioSocketDevice
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdeviceconfiguration?language=objc)
     #[unsafe(super(VZSocketDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZSocketDeviceConfiguration")]

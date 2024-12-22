@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation?language=objc)
+    /// Fetch the
+    /// `CKShareMetadata`for a share URL.
+    ///
+    ///
+    /// Since you can't know what container this share is in before you fetch its metadata, you may run this operation in any container you have access to
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation?language=objc)
     #[unsafe(super(CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CKOperation")]
@@ -33,20 +39,40 @@ extern_methods!(
         #[method_id(@__retain_semantics Other shareURLs)]
         pub unsafe fn shareURLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
+        /// Setter for [`shareURLs`][Self::shareURLs].
         #[method(setShareURLs:)]
         pub unsafe fn setShareURLs(&self, share_ur_ls: Option<&NSArray<NSURL>>);
 
+        /// If set to YES, the resulting
+        /// `CKShareMetadata`will have a
+        /// `rootRecord`object filled out.
+        ///
+        ///
+        /// Defaults to
+        /// `NO.`The resulting
+        /// `CKShareMetadata`will have a
+        /// `rootRecordID`property regardless of the value of this property.
         #[method(shouldFetchRootRecord)]
         pub unsafe fn shouldFetchRootRecord(&self) -> bool;
 
+        /// Setter for [`shouldFetchRootRecord`][Self::shouldFetchRootRecord].
         #[method(setShouldFetchRootRecord:)]
         pub unsafe fn setShouldFetchRootRecord(&self, should_fetch_root_record: bool);
 
         #[cfg(feature = "CKRecord")]
+        /// Declares which user-defined keys should be fetched and added to the resulting
+        /// `rootRecord.`
+        ///
+        /// Only consulted if
+        /// `shouldFetchRootRecord`is
+        /// `YES.`If nil, declares the entire root record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
+        /// Defaults to
+        /// `nil.`
         #[method_id(@__retain_semantics Other rootRecordDesiredKeys)]
         pub unsafe fn rootRecordDesiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
+        /// Setter for [`rootRecordDesiredKeys`][Self::rootRecordDesiredKeys].
         #[method(setRootRecordDesiredKeys:)]
         pub unsafe fn setRootRecordDesiredKeys(
             &self,
@@ -54,12 +80,20 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKShareMetadata", feature = "block2"))]
+        /// Called once for each share URL that the server processed
+        ///
+        ///
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perShareMetadataBlock)]
         pub unsafe fn perShareMetadataBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<NSURL>, *mut CKShareMetadata, *mut NSError)>;
 
         #[cfg(all(feature = "CKShareMetadata", feature = "block2"))]
+        /// Setter for [`perShareMetadataBlock`][Self::perShareMetadataBlock].
         #[method(setPerShareMetadataBlock:)]
         pub unsafe fn setPerShareMetadataBlock(
             &self,
@@ -69,12 +103,31 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// This block is called when the operation completes.
+        ///
+        ///
+        /// The
+        ///
+        /// ```text
+        ///  -[NSOperation completionBlock]
+        /// ```
+        ///
+        /// will also be called if both are set.
+        /// If the error is
+        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of shareURLs to errors keyed off of
+        /// `CKPartialErrorsByItemIDKey.`These errors are repeats of those sent back in previous
+        /// `perShareMetadataBlock`invocations
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(fetchShareMetadataCompletionBlock)]
         pub unsafe fn fetchShareMetadataCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`fetchShareMetadataCompletionBlock`][Self::fetchShareMetadataCompletionBlock].
         #[method(setFetchShareMetadataCompletionBlock:)]
         pub unsafe fn setFetchShareMetadataCompletionBlock(
             &self,

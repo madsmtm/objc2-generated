@@ -53,12 +53,14 @@ extern_methods!(
         pub unsafe fn groupTouchBar(&self) -> Retained<NSTouchBar>;
 
         #[cfg(feature = "NSTouchBar")]
+        /// Setter for [`groupTouchBar`][Self::groupTouchBar].
         #[method(setGroupTouchBar:)]
         pub unsafe fn setGroupTouchBar(&self, group_touch_bar: &NSTouchBar);
 
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
+        /// Setter for [`customizationLabel`][Self::customizationLabel].
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
@@ -67,6 +69,7 @@ extern_methods!(
         pub unsafe fn groupUserInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
         #[cfg(feature = "NSUserInterfaceLayout")]
+        /// Setter for [`groupUserInterfaceLayoutDirection`][Self::groupUserInterfaceLayoutDirection].
         #[method(setGroupUserInterfaceLayoutDirection:)]
         pub unsafe fn setGroupUserInterfaceLayoutDirection(
             &self,
@@ -76,6 +79,7 @@ extern_methods!(
         #[method(prefersEqualWidths)]
         pub unsafe fn prefersEqualWidths(&self) -> bool;
 
+        /// Setter for [`prefersEqualWidths`][Self::prefersEqualWidths].
         #[method(setPrefersEqualWidths:)]
         pub unsafe fn setPrefersEqualWidths(&self, prefers_equal_widths: bool);
 
@@ -84,6 +88,7 @@ extern_methods!(
         pub unsafe fn preferredItemWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredItemWidth`][Self::preferredItemWidth].
         #[method(setPreferredItemWidth:)]
         pub unsafe fn setPreferredItemWidth(&self, preferred_item_width: CGFloat);
 
@@ -100,6 +105,7 @@ extern_methods!(
         ) -> Retained<NSArray<NSUserInterfaceCompressionOptions>>;
 
         #[cfg(feature = "NSUserInterfaceCompression")]
+        /// Setter for [`prioritizedCompressionOptions`][Self::prioritizedCompressionOptions].
         #[method(setPrioritizedCompressionOptions:)]
         pub unsafe fn setPrioritizedCompressionOptions(
             &self,

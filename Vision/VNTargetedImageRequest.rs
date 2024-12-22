@@ -16,7 +16,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntargetedimagerequest?language=objc)
+    /// A request that requires an initial image as a starting point for its work.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntargetedimagerequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -48,6 +50,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-video"))]
+        /// Create a new request that targets an image in a pixel buffer.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options(
             this: Allocated<Self>,
@@ -60,6 +68,14 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-video"
         ))]
+        /// Create a new request that targets an image in a pixel buffer.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
         #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:completionHandler:)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
             this: Allocated<Self>,
@@ -69,6 +85,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-graphics"))]
+        /// Create a new request with a targeted CGImage.
+        ///
+        ///
+        /// Parameter `cgImage`: The CGImageRef of the targeted image.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         #[method_id(@__retain_semantics Init initWithTargetedCGImage:options:)]
         pub unsafe fn initWithTargetedCGImage_options(
             this: Allocated<Self>,
@@ -81,6 +103,14 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-graphics"
         ))]
+        /// Create a new request with a targeted CGImage.
+        ///
+        ///
+        /// Parameter `cgImage`: The CGImageRef of the targeted image.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
         #[method_id(@__retain_semantics Init initWithTargetedCGImage:options:completionHandler:)]
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
             this: Allocated<Self>,
@@ -90,6 +120,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-image"))]
+        /// Create a new request with a targeted CIImage.
+        ///
+        ///
+        /// Parameter `ciImage`: The CIImage of the targeted image.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         #[method_id(@__retain_semantics Init initWithTargetedCIImage:options:)]
         pub unsafe fn initWithTargetedCIImage_options(
             this: Allocated<Self>,
@@ -102,6 +138,14 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-image"
         ))]
+        /// Create a new request with a targeted CIImage.
+        ///
+        ///
+        /// Parameter `ciImage`: The CIImage of the targeted image.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
         #[method_id(@__retain_semantics Init initWithTargetedCIImage:options:completionHandler:)]
         pub unsafe fn initWithTargetedCIImage_options_completionHandler(
             this: Allocated<Self>,
@@ -111,6 +155,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "VNRequestHandler")]
+        /// Create a new request with a targeted image URL.
+        ///
+        ///
+        /// Parameter `imageURL`: The URL of the targeted image.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         #[method_id(@__retain_semantics Init initWithTargetedImageURL:options:)]
         pub unsafe fn initWithTargetedImageURL_options(
             this: Allocated<Self>,
@@ -119,6 +169,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "block2"))]
+        /// Create a new request with a targeted image URL.
+        ///
+        ///
+        /// Parameter `imageURL`: The URL of the targeted image.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
         #[method_id(@__retain_semantics Init initWithTargetedImageURL:options:completionHandler:)]
         pub unsafe fn initWithTargetedImageURL_options_completionHandler(
             this: Allocated<Self>,
@@ -128,6 +186,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "VNRequestHandler")]
+        /// Create a new request with a targeted image data.
+        ///
+        ///
+        /// Parameter `imageData`: The data of the targeted image.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         #[method_id(@__retain_semantics Init initWithTargetedImageData:options:)]
         pub unsafe fn initWithTargetedImageData_options(
             this: Allocated<Self>,
@@ -136,6 +200,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "block2"))]
+        /// Create a new request with a targeted image data.
+        ///
+        ///
+        /// Parameter `imageData`: The data of the targeted image.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
         #[method_id(@__retain_semantics Init initWithTargetedImageData:options:completionHandler:)]
         pub unsafe fn initWithTargetedImageData_options_completionHandler(
             this: Allocated<Self>,
@@ -145,6 +217,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-media"))]
+        /// Create a new request with a targeted CMSampleBuffer.
+        ///
+        ///
+        /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         #[method_id(@__retain_semantics Init initWithTargetedCMSampleBuffer:options:)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options(
             this: Allocated<Self>,
@@ -157,6 +235,14 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-media"
         ))]
+        /// Create a new request with a targeted CMSampleBuffer.
+        ///
+        ///
+        /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked after the request has been performed.
         #[method_id(@__retain_semantics Init initWithTargetedCMSampleBuffer:options:completionHandler:)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
             this: Allocated<Self>,

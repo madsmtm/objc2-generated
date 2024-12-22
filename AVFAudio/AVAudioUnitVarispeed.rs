@@ -10,7 +10,9 @@ use objc2_audio_toolbox::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitvarispeed?language=objc)
+    /// an AVAudioUnitTimeEffect that can be used to control the playback rate
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitvarispeed?language=objc)
     #[unsafe(super(AVAudioUnitTimeEffect, AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -35,9 +37,27 @@ extern_methods!(
         feature = "AVAudioUnitTimeEffect"
     ))]
     unsafe impl AVAudioUnitVarispeed {
+        /// controls the playback rate of the audio signal
+        ///
+        /// Since this unit resamples the input signal, changing the playback rate also changes the pitch.
+        ///
+        /// i.e. changing the rate to 2.0 results in the output audio playing one octave higher.
+        /// Similarly changing the rate to 0.5, results in the output audio playing one octave lower.
+        ///
+        /// The playback rate and pitch can be calculated as
+        /// rate  = pow(2, cents/1200.0)
+        /// pitch in cents  = 1200.0 * log2(rate)
+        ///
+        /// Where,    1 octave  = 1200 cents
+        /// 1 musical semitone  = 100 cents
+        ///
+        /// Range:      0.25 -> 4.0
+        /// Default:    1.0
+        /// Unit:       Generic
         #[method(rate)]
         pub unsafe fn rate(&self) -> c_float;
 
+        /// Setter for [`rate`][Self::rate].
         #[method(setRate:)]
         pub unsafe fn setRate(&self, rate: c_float);
     }
@@ -53,6 +73,12 @@ extern_methods!(
     unsafe impl AVAudioUnitVarispeed {
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// create an AVAudioUnitTimeEffect object
+        ///
+        ///
+        /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be initialized
+        ///
+        /// The componentType must be kAudioUnitType_FormatConverter
         #[method_id(@__retain_semantics Init initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,

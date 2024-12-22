@@ -33,6 +33,7 @@ extern_methods!(
         pub unsafe fn contentView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// Setter for [`contentView`][Self::contentView].
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
@@ -42,12 +43,14 @@ extern_methods!(
         #[method(showsApplicationBadge)]
         pub unsafe fn showsApplicationBadge(&self) -> bool;
 
+        /// Setter for [`showsApplicationBadge`][Self::showsApplicationBadge].
         #[method(setShowsApplicationBadge:)]
         pub unsafe fn setShowsApplicationBadge(&self, shows_application_badge: bool);
 
         #[method_id(@__retain_semantics Other badgeLabel)]
         pub unsafe fn badgeLabel(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`badgeLabel`][Self::badgeLabel].
         #[method(setBadgeLabel:)]
         pub unsafe fn setBadgeLabel(&self, badge_label: Option<&NSString>);
 

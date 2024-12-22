@@ -125,6 +125,13 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImageConfiguration")]
+        /// Retrieve a system-provided image with the specified name and variable value (between 0 and 1).
+        ///
+        /// This will only return system-provided images. If you want a custom image as defined in your own catalogs,
+        /// you should use
+        /// `+imageNamed:inBundle:variableValue:withConfiguration:.`
+        /// Returns
+        /// `nil`if an image with specified name doesn't exist.
         #[method_id(@__retain_semantics Other systemImageNamed:variableValue:withConfiguration:)]
         pub unsafe fn systemImageNamed_variableValue_withConfiguration(
             name: &NSString,
@@ -152,6 +159,13 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImageConfiguration")]
+        /// Retrieve a image with the specified name and variable value (between 0 and 1).
+        ///
+        /// This will only return custom images defined in your own catalogs. If you want a system-provided image,
+        /// you should use
+        /// `+systemImageNamed:variableValue:withConfiguration:.`
+        /// Returns
+        /// `nil`if an image with specified name doesn't exist.
         #[method_id(@__retain_semantics Other imageNamed:inBundle:variableValue:withConfiguration:)]
         pub unsafe fn imageNamed_inBundle_variableValue_withConfiguration(
             name: &NSString,
@@ -455,10 +469,27 @@ extern_methods!(
             rendering_mode: UIImageRenderingMode,
         ) -> Retained<UIImage>;
 
+        /// Decodes an image synchronously and provides a new one for display in views and animations.
+        ///
+        ///
+        /// Returns: A new version of the image object for display. If the system can’t decode the image, this method returns `nil`.
+        ///
+        ///
+        /// Note: The prepared `UIImage` is not related to the original image. If the properties of the screen (such as its resolution or color gamut) change, or if the image is displayed on a different screen that the one it was prepared for, it may not render correctly.
         #[method_id(@__retain_semantics Other imageByPreparingForDisplay)]
         pub unsafe fn imageByPreparingForDisplay(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "block2")]
+        /// Decodes an image asynchronously and provides a new one for display in views and animations.
+        ///
+        /// The completion handler will be invoked on a private queue. Be sure to return to the main queue before assigning the prepared image to an image view.
+        ///
+        ///
+        /// Parameter `completionHandler`: A block to invoke with the prepared image. If preparation failed (for example, because the image data is corrupt),
+        /// `image`will be `nil`.
+        ///
+        ///
+        /// Note: The prepared `UIImage` is not related to the original image. If the properties of the screen (such as its resolution or color gamut) change, or if the image is displayed on a different screen that the one it was prepared for, it may not render correctly.
         #[method(prepareForDisplayWithCompletionHandler:)]
         pub unsafe fn prepareForDisplayWithCompletionHandler(
             &self,
@@ -480,9 +511,11 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(*mut UIImage)>,
         );
 
+        /// Indicates that this image is tagged for display of high dynamic range content.
         #[method(isHighDynamicRange)]
         pub unsafe fn isHighDynamicRange(&self) -> bool;
 
+        /// Returns a new image that will render within the standard range.
         #[method_id(@__retain_semantics Other imageRestrictedToStandardDynamicRange)]
         pub unsafe fn imageRestrictedToStandardDynamicRange(&self) -> Retained<UIImage>;
     }
@@ -577,6 +610,7 @@ extern_category!(
     unsafe impl CIImageUIKitAdditions for CIImage {}
 );
 
+/// return image as PNG. May return nil if image has no CGImageRef or invalid bitmap format
 #[inline]
 pub unsafe extern "C-unwind" fn UIImagePNGRepresentation(
     image: &UIImage,
@@ -588,6 +622,7 @@ pub unsafe extern "C-unwind" fn UIImagePNGRepresentation(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// return image as JPEG. May return nil if image has no CGImageRef or invalid bitmap format. compression is 0(most)..1(least)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn UIImageJPEGRepresentation(
@@ -601,6 +636,7 @@ pub unsafe extern "C-unwind" fn UIImageJPEGRepresentation(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// Returns HEIC data representing the image, or nil if such a representation could not be generated. HEIC is recommended for efficiently storing all kinds of images, including those with high dynamic range content.
 #[inline]
 pub unsafe extern "C-unwind" fn UIImageHEICRepresentation(
     image: &UIImage,

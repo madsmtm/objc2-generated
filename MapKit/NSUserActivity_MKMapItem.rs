@@ -15,6 +15,7 @@ extern_category!(
         unsafe fn mapItem(&self) -> Option<Retained<MKMapItem>>;
 
         #[cfg(feature = "MKMapItem")]
+        /// Setter for [`mapItem`][Self::mapItem].
         #[method(setMapItem:)]
         unsafe fn setMapItem(&self, map_item: Option<&MKMapItem>);
     }

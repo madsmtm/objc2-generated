@@ -29,18 +29,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
+        /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: &NSURL);
 
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`displayName`][Self::displayName].
         #[method(setDisplayName:)]
         pub unsafe fn setDisplayName(&self, display_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other txtRecord)]
         pub unsafe fn txtRecord(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`txtRecord`][Self::txtRecord].
         #[method(setTxtRecord:)]
         pub unsafe fn setTxtRecord(&self, txt_record: Option<&NSData>);
     }

@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleportconfigurationarray?language=objc)
+    /// Virtio Console Port Configuration Array
+    ///
+    /// This array stores a collection of port configurations for a VZVirtioConsoleConfiguration. The index in the array corresponds to the port index used in the virtual machine.
+    ///
+    /// A maximumPortCount value may be set but must be larger than the highest indexed port. If no maximumPortCount value is set, the highest indexed port will be used.
+    ///
+    /// See: VZVirtioConsoleConfiguration
+    ///
+    /// See: VZVirtioConsolePortConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleportconfigurationarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioConsolePortConfigurationArray;
@@ -30,9 +40,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The maximum number of ports allocated by this device. The default is the number of ports attached to this device.
         #[method(maximumPortCount)]
         pub unsafe fn maximumPortCount(&self) -> u32;
 
+        /// Setter for [`maximumPortCount`][Self::maximumPortCount].
         #[method(setMaximumPortCount:)]
         pub unsafe fn setMaximumPortCount(&self, maximum_port_count: u32);
 
@@ -40,6 +52,7 @@ extern_methods!(
             feature = "VZConsolePortConfiguration",
             feature = "VZVirtioConsolePortConfiguration"
         ))]
+        /// Get a port configuration at the specified index.
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
@@ -50,6 +63,7 @@ extern_methods!(
             feature = "VZConsolePortConfiguration",
             feature = "VZVirtioConsolePortConfiguration"
         ))]
+        /// Set a port configuration at the specified index.
         #[method(setObject:atIndexedSubscript:)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,

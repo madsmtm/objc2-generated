@@ -8,17 +8,56 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerycallback?language=objc)
+/// Is called as results are returned from a query.  The incoming result must be retained or copied.
+///
+/// Is called as results are returned from an CFRunLoop-based query.  These results are only partial
+/// and the callback is called repeatedly as results are available.  The incoming result must be retained or copied.  The
+/// array will be released by the CFRunLoop upon return.  Incoming results do not include previous results,
+/// only the most recent results are returned.  inResults can be NULL if an error occurs or the query is complete.  If
+/// inError and inResults are NULL then the query has completed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerycallback?language=objc)
 #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
 pub type ODQueryCallback =
     Option<unsafe extern "C-unwind" fn(ODQueryRef, CFArrayRef, CFErrorRef, *mut c_void)>;
 
 extern "C-unwind" {
+    /// Standard GetTypeID function support for CF-based objects
+    ///
+    /// Returns the typeID for the ODQuery object
+    ///
+    /// Returns: a valid CFTypeID for the ODQuery object
     #[cfg(feature = "objc2-core-foundation")]
     pub fn ODQueryGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
+    /// Creates a query with the node using the parameters provided
+    ///
+    /// Creates a query with the node using the supplied query parameters.  Some parameters can either be CFString or
+    /// CFData or a CFArray of either CFString or CFData.
+    ///
+    /// Parameter `allocator`: a memory allocator to use for this object
+    ///
+    /// Parameter `node`: an ODNodeRef to use
+    ///
+    /// Parameter `recordTypeOrList`: a CFString of a type or CFArray with a list of record types
+    ///
+    /// Parameter `attribute`: a CFStringRef of the attribute name to query
+    ///
+    /// Parameter `matchType`: an ODMatchType value that signifies the type of query
+    ///
+    /// Parameter `queryValueOrList`: a CFStringRef, CFDataRef or CFArrayRef of either type for values to query in attribute
+    ///
+    /// Parameter `returnAttributeOrList`: a CFStringRef or CFArrayRef of CFStrings with the list of attributes to be returned
+    /// from the query.  Passing NULL is equivalent to passing kODAttributeTypeStandardOnly.
+    ///
+    /// Parameter `maxResults`: a CFIndex of the total number of values the caller wants to be returned
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: an ODQueryRef which should be passed into ODQueryCopyResults for immediate results or
+    /// ODQueryScheduleWithRunLoop for background behavior
     #[cfg(all(
         feature = "CFOpenDirectory",
         feature = "CFOpenDirectoryConstants",
@@ -38,6 +77,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a query object that is initialized to a particular node type.
+    ///
+    /// Creates a query object that is initialized to a particular node type using the supplied
+    /// query options.
+    ///
+    /// Parameter `allocator`: a memory allocator to use for this object
+    ///
+    /// Parameter `nodeType`: an ODNodeType to use when doing a query
+    ///
+    /// Parameter `recordTypeOrList`: a ODRecordType of a type or CFArray with a list of record types
+    ///
+    /// Parameter `attribute`: a ODAttributeType or CFStringRef of the attribute name to query
+    ///
+    /// Parameter `matchType`: an ODMatchType value that signifies the type of query
+    ///
+    /// Parameter `queryValueOrList`: a CFStringRef, CFDataRef or CFArrayRef of either type for values to query in attribute
+    ///
+    /// Parameter `returnAttributeOrList`: a CFStringRef or CFArrayRef of CFStrings with the list of attributes to be returned
+    /// from the query.  Passing NULL is equivalent to passing kODAttributeTypeStandardOnly.
+    ///
+    /// Parameter `maxResults`: a CFIndex of the total number of values the caller wants to be returned
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: an ODQueryRef which should be passed into ODQueryCopyResults for immediate results or
+    /// ODQueryScheduleWithRunLoop for background behavior, see ODQueryCallback for details on RunLoop
+    /// behavior.
     #[cfg(all(
         feature = "CFOpenDirectory",
         feature = "CFOpenDirectoryConstants",
@@ -57,6 +123,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns results from a provided ODQueryRef synchronously
+    ///
+    /// Returns results from a provided ODQueryRef synchronously.  Passing false to inAllowPartialResults
+    /// will block the call until all results are returned or an error occurs.  true can be passed at any time
+    /// even if previous calls were made with false.
+    ///
+    /// Parameter `query`: an ODQueryRef to use
+    ///
+    /// Parameter `allowPartialResults`: a bool, passing true to retrieve any currently available results, or false to
+    /// wait for all results
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a CFArrayRef comprised of ODRecord objects.  If partial results were requested but are complete, then
+    /// NULL will be returned with outError set to NULL. If an error occurs, NULL will be returned and
+    /// outError should be checked accordingly.
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODQueryCopyResults(
         query: ODQueryRef,
@@ -66,16 +148,46 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Will dispose of any results and restart the query.
+    ///
+    /// Will dispose of any results and restart the query for subsequent ODQueryCopyResults.  If the query
+    /// is currently scheduled on a RunLoop, then the callback function will be called with inResults == NULL and
+    /// inError.error == kODErrorQuerySynchronize and inError.domain == kODErrorDomainFramework, signifying that
+    /// all existing results should be thrown away in preparation for new results.
+    ///
+    /// Parameter `query`: an ODQueryRef to use
     #[cfg(feature = "CFOpenDirectory")]
     pub fn ODQuerySynchronize(query: ODQueryRef);
 }
 
 extern "C-unwind" {
+    /// This call is used to set the callback function for an asynchronous query
+    ///
+    /// This call is used to set the callback function for an asynchronous query, using a
+    /// CFRunLoop or a dispatch queue.
+    ///
+    /// Parameter `query`: an ODQueryRef to use
+    ///
+    /// Parameter `callback`: a function to call when a query has results to return
+    ///
+    /// Parameter `userInfo`: a user-defined pointer to be passed back to the Query callback function
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODQuerySetCallback(query: ODQueryRef, callback: ODQueryCallback, user_info: *mut c_void);
 }
 
 extern "C-unwind" {
+    /// Allows a query to run off of a runloop, though it will spawn a thread to handle the work
+    ///
+    /// Allows a query to run off of a runloop, though it will spawn a thread to handle the work.
+    /// When query is complete or stopped the callback function will be called with NULL results
+    /// and inError set to NULL.  ODQueryUnscheduleFromRunLoop() must be called to remove this query
+    /// from Runloops if necessary.
+    ///
+    /// Parameter `query`: an ODQueryRef to put on the runloop
+    ///
+    /// Parameter `runLoop`: a CFRunLoopRef to put the ODQueryRef source onto
+    ///
+    /// Parameter `runLoopMode`: a CFStringRef with the runloop mode to add the ODQueryRef to
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODQueryScheduleWithRunLoop(
         query: ODQueryRef,
@@ -85,6 +197,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes the ODQueryRef from the provided runloop
+    ///
+    /// Removes the ODQueryRef from the provided runloop
+    ///
+    /// Parameter `query`: an ODQueryRef to remove from the runloop
+    ///
+    /// Parameter `runLoop`: a CFRunLoopRef to remove the ODQuery source from
+    ///
+    /// Parameter `runLoopMode`: a CFStringRef of the mode to remove the ODQuery from
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODQueryUnscheduleFromRunLoop(
         query: ODQueryRef,

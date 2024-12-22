@@ -38,6 +38,7 @@ extern_category!(
         #[method_id(@__retain_semantics Other teamData)]
         unsafe fn teamData(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`teamData`][Self::teamData].
         #[method(setTeamData:)]
         unsafe fn setTeamData(&self, team_data: Option<&NSData>);
 
@@ -46,12 +47,14 @@ extern_category!(
         unsafe fn preferredPresentationSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredPresentationSize`][Self::preferredPresentationSize].
         #[method(setPreferredPresentationSize:)]
         unsafe fn setPreferredPresentationSize(&self, preferred_presentation_size: CGSize);
 
         #[method(preferredPresentationStyle)]
         unsafe fn preferredPresentationStyle(&self) -> UIPreferredPresentationStyle;
 
+        /// Setter for [`preferredPresentationStyle`][Self::preferredPresentationStyle].
         #[method(setPreferredPresentationStyle:)]
         unsafe fn setPreferredPresentationStyle(
             &self,

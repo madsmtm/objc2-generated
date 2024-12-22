@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsobject?language=objc)
+    /// An object managed by ClassKit.
+    ///
+    /// See
+    /// `CLSContext`for more details.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clsobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLSObject;
@@ -21,9 +26,11 @@ unsafe impl NSSecureCoding for CLSObject {}
 
 extern_methods!(
     unsafe impl CLSObject {
+        /// The date this object was created.
         #[method_id(@__retain_semantics Other dateCreated)]
         pub unsafe fn dateCreated(&self) -> Retained<NSDate>;
 
+        /// The date this object was last modified.
         #[method_id(@__retain_semantics Other dateLastModified)]
         pub unsafe fn dateLastModified(&self) -> Retained<NSDate>;
 

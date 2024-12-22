@@ -37,18 +37,22 @@ extern_methods!(
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UIToolbarAppearance {
         #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// The appearance for plain-style bar button items
         #[method_id(@__retain_semantics Other buttonAppearance)]
         pub unsafe fn buttonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// Setter for [`buttonAppearance`][Self::buttonAppearance].
         #[method(setButtonAppearance:)]
         pub unsafe fn setButtonAppearance(&self, button_appearance: &UIBarButtonItemAppearance);
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// The appearance for done-style bar button items
         #[method_id(@__retain_semantics Other doneButtonAppearance)]
         pub unsafe fn doneButtonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// Setter for [`doneButtonAppearance`][Self::doneButtonAppearance].
         #[method(setDoneButtonAppearance:)]
         pub unsafe fn setDoneButtonAppearance(
             &self,
@@ -61,16 +65,19 @@ extern_methods!(
     /// Methods declared on superclass `UIBarAppearance`
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UIToolbarAppearance {
+        /// Constructs a new bar appearance, configured with default values and targeting the device idiom.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIDevice")]
+        /// Constructs a new bar appearance, targeting the passed-in idiom as a hint. Not all platforms support all available idioms. See the idiom property to determine the resolved idiom.
         #[method_id(@__retain_semantics Init initWithIdiom:)]
         pub unsafe fn initWithIdiom(
             this: Allocated<Self>,
             idiom: UIUserInterfaceIdiom,
         ) -> Retained<Self>;
 
+        /// Constructs a new bar appearance, copying all relevant properties from the given appearance object. This initializer is useful for migrating configuration between UIBarAppearance subclasses. For example, you can initialize a UINavigationBarAppearance with a UIToolbarAppearance instance, and shared attributes will be identical between the two.
         #[method_id(@__retain_semantics Init initWithBarAppearance:)]
         pub unsafe fn initWithBarAppearance(
             this: Allocated<Self>,

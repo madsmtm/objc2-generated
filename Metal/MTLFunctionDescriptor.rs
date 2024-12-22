@@ -14,11 +14,25 @@ use crate::*;
 pub struct MTLFunctionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLFunctionOptions: NSUInteger {
+/// Default usage
         const MTLFunctionOptionNone = 0;
+/// Compiles the found function. This enables dynamic linking of this `MTLFunction`.
+/// Only supported for `visible` functions.
         const MTLFunctionOptionCompileToBinary = 1<<0;
+/// stores and tracks this function in a Metal Pipelines Script
+/// This flag is optional and only supported in the context of binary archives.
+///
+/// This flag is required for inspecting and consuming binary archives with specialized MTLFunctions via the metal-source tool. It is not required for recompilation, nor for storing functions in binary archives. Set this flag only if you intend to use metal-source on a serialized binary archive.
         const MTLFunctionOptionStoreFunctionInMetalPipelinesScript = 1<<1;
+/// stores and tracks this function in a Metal Pipelines Script
+/// This flag is optional and only supported in the context of binary archives.
+///
+/// This flag is required for inspecting and consuming binary archives with specialized MTLFunctions via the metal-source tool. It is not required for recompilation, nor for storing functions in binary archives. Set this flag only if you intend to use metal-source on a serialized binary archive.
 #[deprecated]
         const MTLFunctionOptionStoreFunctionInMetalScript = 1<<1;
+/// Function creation fails (i.e nil is returned) if:
+/// - A lookup binary archive has been specified
+/// - The function has not been found in the archive
         const MTLFunctionOptionFailOnBinaryArchiveMiss = 1<<2;
     }
 }
@@ -48,42 +62,55 @@ unsafe impl NSObjectProtocol for MTLFunctionDescriptor {}
 
 extern_methods!(
     unsafe impl MTLFunctionDescriptor {
+        /// Create an autoreleased function descriptor
         #[method_id(@__retain_semantics Other functionDescriptor)]
         pub fn functionDescriptor() -> Retained<MTLFunctionDescriptor>;
 
+        /// The name of the `visible` function to find.
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub fn setName(&self, name: Option<&NSString>);
 
+        /// An optional new name for a `visible` function to allow reuse with different specializations.
         #[method_id(@__retain_semantics Other specializedName)]
         pub fn specializedName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`specializedName`][Self::specializedName].
         #[method(setSpecializedName:)]
         pub fn setSpecializedName(&self, specialized_name: Option<&NSString>);
 
         #[cfg(feature = "MTLFunctionConstantValues")]
+        /// The set of constant values assigned to the function constants. Compilation fails if you do not provide valid constant values for all required function constants.
         #[method_id(@__retain_semantics Other constantValues)]
         pub fn constantValues(&self) -> Option<Retained<MTLFunctionConstantValues>>;
 
         #[cfg(feature = "MTLFunctionConstantValues")]
+        /// Setter for [`constantValues`][Self::constantValues].
         #[method(setConstantValues:)]
         pub fn setConstantValues(&self, constant_values: Option<&MTLFunctionConstantValues>);
 
+        /// The options to use for this new `MTLFunction`.
         #[method(options)]
         pub fn options(&self) -> MTLFunctionOptions;
 
+        /// Setter for [`options`][Self::options].
         #[method(setOptions:)]
         pub fn setOptions(&self, options: MTLFunctionOptions);
 
         #[cfg(feature = "MTLBinaryArchive")]
+        /// The array of archives to be searched.
+        ///
+        /// Binary archives to be searched for precompiled functions during the compilation of this function.
         #[method_id(@__retain_semantics Other binaryArchives)]
         pub unsafe fn binaryArchives(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
         #[cfg(feature = "MTLBinaryArchive")]
+        /// Setter for [`binaryArchives`][Self::binaryArchives].
         #[method(setBinaryArchives:)]
         pub unsafe fn setBinaryArchives(
             &self,

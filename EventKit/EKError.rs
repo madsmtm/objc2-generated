@@ -6,7 +6,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerrordomain?language=objc)
+    /// Error domain for NSError values stemming from the EventKit Framework API.
+    ///
+    /// This error domain is used as the domain for all NSError instances stemming from the
+    /// EventKit Framework.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerrordomain?language=objc)
     pub static EKErrorDomain: Option<&'static NSString>;
 }
 

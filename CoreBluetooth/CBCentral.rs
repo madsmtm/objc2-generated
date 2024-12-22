@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentral?language=objc)
+    /// Represents a remote central.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentral?language=objc)
     #[unsafe(super(CBPeer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBPeer")]
@@ -28,6 +30,10 @@ unsafe impl NSObjectProtocol for CBCentral {}
 extern_methods!(
     #[cfg(feature = "CBPeer")]
     unsafe impl CBCentral {
+        /// The maximum amount of data, in bytes, that can be received by the central in a single notification or indication.
+        ///
+        ///
+        /// See: updateValue:forCharacteristic:onSubscribedCentrals:
         #[method(maximumUpdateValueLength)]
         pub unsafe fn maximumUpdateValueLength(&self) -> NSUInteger;
     }

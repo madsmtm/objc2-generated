@@ -10,7 +10,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityerrordomain?language=objc)
+    /// Error domain and codes for extensions to report errors before message is delivered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityerrordomain?language=objc)
     pub static MEMessageSecurityErrorDomain: &'static NSErrorDomain;
 }
 
@@ -43,6 +45,9 @@ extern_protocol!(
             feature = "MEMessageSigner",
             feature = "objc2-app-kit"
         ))]
+        /// Invoked by Mail to request a subclass of
+        /// `MEExtensionViewController.`Extensions can maintain any additional state in their subclasses and associate it with
+        /// `messsageComposeSession`instance.
         #[method_id(@__retain_semantics Other extensionViewControllerForMessageSigners:)]
         unsafe fn extensionViewControllerForMessageSigners(
             &self,
@@ -50,6 +55,8 @@ extern_protocol!(
         ) -> Option<Retained<MEExtensionViewController>>;
 
         #[cfg(all(feature = "MEExtensionViewController", feature = "objc2-app-kit"))]
+        /// Invoked by Mail to request a subclass of
+        /// `MEExtensionViewController`when the user clicks a banner or on the extensions icon in the message header view.
         #[method_id(@__retain_semantics Other extensionViewControllerForMessageContext:)]
         unsafe fn extensionViewControllerForMessageContext(
             &self,
@@ -61,6 +68,7 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-app-kit"
         ))]
+        /// Invoked when the primary action for the message banner is clicked. The extension can provide an optional view controller to render any additional information.
         #[method(primaryActionClickedForMessageContext:completionHandler:)]
         unsafe fn primaryActionClickedForMessageContext_completionHandler(
             &self,

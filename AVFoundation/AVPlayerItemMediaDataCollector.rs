@@ -8,7 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmediadatacollector?language=objc)
+    /// AVPlayerItemMediaDataCollector is an abstract class encapsulating the common API for all AVPlayerItemMediaDataCollector subclasses.
+    ///
+    /// Instances of AVPlayerItemMediaDataCollector permit the collection of media data from an AVAsset during playback by an AVPlayer. As opposed to AVPlayerItemOutputs, AVPlayerItemMediaDataCollectors collect all media data across an AVPlayerItem's timebase, relevant to the specific collector being used. Attaching an AVPlayerItemMediaDataCollector may incur additional I/O accordingly.
+    ///
+    /// You manage an association of an AVPlayerItemMediaDataCollector instance with an AVPlayerItem as the source input using the AVPlayerItem methods:
+    ///
+    /// • addMediaDataCollector:
+    /// • removeMediaDataCollector:
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmediadatacollector?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemMediaDataCollector;
@@ -36,7 +47,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadatacollector?language=objc)
+    /// A subclass of AVPlayerItemMediaDataCollector that provides AVMetadataGroups for an AVPlayerItem.
+    ///
+    /// This class can be used to inform clients of the current set of AVMetadataGroups on an AVPlayerItem, and when new AVMetadataGroups become available - e.g. in a Live HLS stream.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadatacollector?language=objc)
     #[unsafe(super(AVPlayerItemMediaDataCollector, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemMetadataCollector;
@@ -50,6 +67,16 @@ unsafe impl NSObjectProtocol for AVPlayerItemMetadataCollector {}
 
 extern_methods!(
     unsafe impl AVPlayerItemMetadataCollector {
+        /// Returns an instance of AVPlayerItemMetadataCollector that can provide all available AVMetadataGroups matching a set of criteria.
+        ///
+        /// Parameter `identifiers`: A array of metadata identifiers indicating the metadata items that the output should provide. See AVMetadataIdentifiers.h for publicly defined metadata identifiers. Pass nil to include metadata with any identifier.
+        ///
+        /// Parameter `classifyingLabels`: If the metadata format supports labeling each metadata group with a string, supplying an array of group labels indicates that the output should provide metadata groups that match one of the supplied labels. Pass nil to include metadata with any (or no) classifying label.
+        ///
+        /// Returns: An instance of AVPlayerItemMetadataCollector.
+        ///
+        /// Some metadata available in some formats - such as timed metadata embedded in HLS segments - is not available for collector output.
+        /// The default init method can be used as an alternative to setting both identifiers and classifyingLabels to nil.
         #[method_id(@__retain_semantics Init initWithIdentifiers:classifyingLabels:)]
         pub unsafe fn initWithIdentifiers_classifyingLabels(
             this: Allocated<Self>,
@@ -57,6 +84,9 @@ extern_methods!(
             classifying_labels: Option<&NSArray<NSString>>,
         ) -> Retained<Self>;
 
+        /// The receiver's delegate.
+        ///
+        /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
@@ -79,6 +109,17 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadatacollectorpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemMetadataCollectorPushDelegate: NSObjectProtocol {
         #[cfg(feature = "AVTimedMetadataGroup")]
+        /// A delegate callback that delivers the total set of AVDateRangeMetadataGroups for this collector.
+        ///
+        /// Parameter `metadataCollector`: The AVPlayerItemMetadataCollector source.
+        ///
+        /// Parameter `metadataGroups`: The set of all metadata groups meeting the criteria of the output.
+        ///
+        /// Parameter `indexesOfNewGroups`: Indexes of metadataGroups added since the last delegate invocation of this method.
+        ///
+        /// Parameter `indexesOfModifiedGroups`: Indexes of metadataGroups modified since the last delegate invocation of this method.
+        ///
+        /// This method will be invoked whenever new AVDateRangeMetadataGroups are added to metadataGroups or whenever any AVDateRangeMetadataGroups in metadataGroups have been modified since previous invocations. The initial invocation will have indexesOfNewGroup referring to every index in metadataGroups. Subsequent invocations may not contain all previously collected metadata groups if they no longer refer to a region in the AVPlayerItem's seekableTimeRanges.
         #[method(metadataCollector:didCollectDateRangeMetadataGroups:indexesOfNewGroups:indexesOfModifiedGroups:)]
         unsafe fn metadataCollector_didCollectDateRangeMetadataGroups_indexesOfNewGroups_indexesOfModifiedGroups(
             &self,

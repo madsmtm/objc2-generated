@@ -32,6 +32,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other acceptableTypeIdentifiers)]
         pub unsafe fn acceptableTypeIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`acceptableTypeIdentifiers`][Self::acceptableTypeIdentifiers].
         #[method(setAcceptableTypeIdentifiers:)]
         pub unsafe fn setAcceptableTypeIdentifiers(
             &self,

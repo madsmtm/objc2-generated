@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequest?language=objc)
+    /// A request that detects barcodes in an image.
+    ///
+    ///
+    /// This request will return zero or more VNBarcodeObservation objects objects which describe the barcodes detected in an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -30,31 +35,50 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectBarcodesRequest {
         #[cfg(feature = "VNTypes")]
+        /// Obtain the collection of barcode symbologies currently recognized by the Vision framework.
+        ///
+        ///
+        /// Calling this method could be a potentially expensive operation.
+        ///
+        ///
+        /// Returns: An array of VNBarcodeSymbology objects describing the symbologies currently supported by the Vision framework.
         #[deprecated]
         #[method_id(@__retain_semantics Other supportedSymbologies)]
         pub unsafe fn supportedSymbologies() -> Retained<NSArray<VNBarcodeSymbology>>;
 
         #[cfg(feature = "VNTypes")]
+        /// Obtain the collection of barcode symbologies that can be recognized by the request in its current configuration.
+        ///
+        ///
+        /// Calling this method could be a potentially expensive operation.
+        ///
+        ///
+        /// Returns: An array of VNBarcodeSymbology objects describing the symbologies recognized by the request in its current configuration.
         #[method_id(@__retain_semantics Other supportedSymbologiesAndReturnError:_)]
         pub unsafe fn supportedSymbologiesAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<VNBarcodeSymbology>>, Retained<NSError>>;
 
         #[cfg(feature = "VNTypes")]
+        /// The collection of barcode symbologies that are to be detected in the image.  The default is to scan for all possible symbologies. Setting a revision on the request will reset the symbologies to all symbologies for the specified revision.
         #[method_id(@__retain_semantics Other symbologies)]
         pub unsafe fn symbologies(&self) -> Retained<NSArray<VNBarcodeSymbology>>;
 
         #[cfg(feature = "VNTypes")]
+        /// Setter for [`symbologies`][Self::symbologies].
         #[method(setSymbologies:)]
         pub unsafe fn setSymbologies(&self, symbologies: &NSArray<VNBarcodeSymbology>);
 
+        /// An option to coalesce multiple codes if applicable based on the symbology
         #[method(coalesceCompositeSymbologies)]
         pub unsafe fn coalesceCompositeSymbologies(&self) -> bool;
 
+        /// Setter for [`coalesceCompositeSymbologies`][Self::coalesceCompositeSymbologies].
         #[method(setCoalesceCompositeSymbologies:)]
         pub unsafe fn setCoalesceCompositeSymbologies(&self, coalesce_composite_symbologies: bool);
 
         #[cfg(feature = "VNObservation")]
+        /// VNBarcodeObservation results.
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNBarcodeObservation>>>;
     }
@@ -64,10 +88,15 @@ extern_methods!(
     /// Methods declared on superclass `VNRequest`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectBarcodesRequest {
+        /// Creates a new VNRequest with no completion handler.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Creates a new VNRequest with an optional completion handler.
+        ///
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,

@@ -64,42 +64,49 @@ extern_methods!(
         #[method_id(@__retain_semantics Other source)]
         pub unsafe fn source(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`source`][Self::source].
         #[method(setSource:)]
         pub unsafe fn setSource(&self, source: Option<&NSString>);
 
         #[method(usesScriptAssistant)]
         pub unsafe fn usesScriptAssistant(&self) -> bool;
 
+        /// Setter for [`usesScriptAssistant`][Self::usesScriptAssistant].
         #[method(setUsesScriptAssistant:)]
         pub unsafe fn setUsesScriptAssistant(&self, uses_script_assistant: bool);
 
         #[method(usesTabs)]
         pub unsafe fn usesTabs(&self) -> bool;
 
+        /// Setter for [`usesTabs`][Self::usesTabs].
         #[method(setUsesTabs:)]
         pub unsafe fn setUsesTabs(&self, uses_tabs: bool);
 
         #[method(tabWidth)]
         pub unsafe fn tabWidth(&self) -> NSUInteger;
 
+        /// Setter for [`tabWidth`][Self::tabWidth].
         #[method(setTabWidth:)]
         pub unsafe fn setTabWidth(&self, tab_width: NSUInteger);
 
         #[method(wrapsLines)]
         pub unsafe fn wrapsLines(&self) -> bool;
 
+        /// Setter for [`wrapsLines`][Self::wrapsLines].
         #[method(setWrapsLines:)]
         pub unsafe fn setWrapsLines(&self, wraps_lines: bool);
 
         #[method(indentsWrappedLines)]
         pub unsafe fn indentsWrappedLines(&self) -> bool;
 
+        /// Setter for [`indentsWrappedLines`][Self::indentsWrappedLines].
         #[method(setIndentsWrappedLines:)]
         pub unsafe fn setIndentsWrappedLines(&self, indents_wrapped_lines: bool);
 
         #[method(indentWidth)]
         pub unsafe fn indentWidth(&self) -> NSUInteger;
 
+        /// Setter for [`indentWidth`][Self::indentWidth].
         #[method(setIndentWidth:)]
         pub unsafe fn setIndentWidth(&self, indent_width: NSUInteger);
     }
@@ -109,6 +116,7 @@ extern_methods!(
     /// Methods declared on superclass `NSTextView`
     unsafe impl OSAScriptView {
         #[cfg(feature = "objc2-core-foundation")]
+        /// ************************** Initializing ***************************
         #[method_id(@__retain_semantics Init initWithFrame:textContainer:)]
         pub unsafe fn initWithFrame_textContainer(
             this: Allocated<Self>,

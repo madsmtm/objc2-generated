@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodel?language=objc)
+    /// MLModel
+    ///
+    /// Construct a model and evaluate on a specific set of input features.
+    /// Inputs and outputs are accessed via the MLFeatureProvider protocol.
+    /// Returns a model or nil if there is an error.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModel;
@@ -19,19 +25,23 @@ unsafe impl NSObjectProtocol for MLModel {}
 extern_methods!(
     unsafe impl MLModel {
         #[cfg(feature = "MLModelDescription")]
+        /// A model holds a description of its required inputs and expected outputs.
         #[method_id(@__retain_semantics Other modelDescription)]
         pub unsafe fn modelDescription(&self) -> Retained<MLModelDescription>;
 
         #[cfg(feature = "MLModelConfiguration")]
+        /// The load-time parameters used to instantiate this MLModel object.
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Retained<MLModelConfiguration>;
 
+        /// Construct a model with a default MLModelConfiguration object
         #[method_id(@__retain_semantics Other modelWithContentsOfURL:error:_)]
         pub unsafe fn modelWithContentsOfURL_error(
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "MLModelConfiguration")]
+        /// Construct a model given the location of its on-disk representation. Returns nil on error.
         #[method_id(@__retain_semantics Other modelWithContentsOfURL:configuration:error:_)]
         pub unsafe fn modelWithContentsOfURL_configuration_error(
             url: &NSURL,
@@ -39,6 +49,16 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLModelConfiguration", feature = "block2"))]
+        /// Construct a model asynchronously given the location of its on-disk representation and configuration.
+        ///
+        /// Model loading may take time when the model content is not immediately available (e.g. encrypted model). Use this factory method especially when the caller is on the main thread.
+        ///
+        ///
+        /// Parameter `url`: the location of its on-disk representation (.mlmodelc directory).
+        ///
+        /// Parameter `configuration`: The model configuration
+        ///
+        /// Parameter `handler`: When the model load completes successfully or unsuccessfully, the completion handler is invoked with a valid MLModel instance or NSError object.
         #[method(loadContentsOfURL:configuration:completionHandler:)]
         pub unsafe fn loadContentsOfURL_configuration_completionHandler(
             url: &NSURL,
@@ -47,6 +67,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "MLFeatureProvider")]
+        /// Run a prediction on a model synchronously.
+        ///
+        /// This is a convenience overload method of `prediction(from:options:)` that uses the default prediction options.
+        ///
+        /// - Parameters
+        /// - input: The input features to make a prediction from.
+        /// - error: The output parameter to be filled with error information on failure.
+        /// - Returns: The output features from the prediction.
         #[method_id(@__retain_semantics Other predictionFromFeatures:error:_)]
         pub unsafe fn predictionFromFeatures_error(
             &self,
@@ -54,6 +82,13 @@ extern_methods!(
         ) -> Result<Retained<ProtocolObject<dyn MLFeatureProvider>>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLFeatureProvider", feature = "MLPredictionOptions"))]
+        /// Run a prediction on a model synchronously
+        ///
+        /// - Parameters
+        /// - input: The input features to make a prediction from.
+        /// - options: Prediction options to modify how the prediction is run.
+        /// - error: The output parameter to be filled with error information on failure.
+        /// - Returns: The output features from the prediction.
         #[method_id(@__retain_semantics Other predictionFromFeatures:options:error:_)]
         pub unsafe fn predictionFromFeatures_options_error(
             &self,
@@ -62,6 +97,13 @@ extern_methods!(
         ) -> Result<Retained<ProtocolObject<dyn MLFeatureProvider>>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLFeatureProvider", feature = "block2"))]
+        /// Run a prediction on a model asynchronously.
+        ///
+        /// This is a convenience overload method of `prediction(from:options:) async` that uses the default prediction options.
+        ///
+        /// - Parameters
+        /// - input: The input features to make a prediction from.
+        /// - completionHandler: A block that will be invoked once the prediction has completed successfully or unsuccessfully. On success, it is invoked with a valid model output. On failure, it is invoked with a nil output and NSError
         #[method(predictionFromFeatures:completionHandler:)]
         pub unsafe fn predictionFromFeatures_completionHandler(
             &self,
@@ -76,6 +118,12 @@ extern_methods!(
             feature = "MLPredictionOptions",
             feature = "block2"
         ))]
+        /// Run a prediction on a model asynchronously.
+        ///
+        /// - Parameters
+        /// - input: The input features to make a prediction from.
+        /// - options: Prediction options to modify how the prediction is run.
+        /// - completionHandler: A block that will be invoked once the prediction has completed successfully or unsuccessfully. On success, it is invoked with a valid model output. On failure, it is invoked with a nil output and NSError
         #[method(predictionFromFeatures:options:completionHandler:)]
         pub unsafe fn predictionFromFeatures_options_completionHandler(
             &self,
@@ -87,6 +135,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "MLBatchProvider")]
+        /// Batch prediction without explicit options
         #[method_id(@__retain_semantics Other predictionsFromBatch:error:_)]
         pub unsafe fn predictionsFromBatch_error(
             &self,
@@ -94,6 +143,7 @@ extern_methods!(
         ) -> Result<Retained<ProtocolObject<dyn MLBatchProvider>>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLBatchProvider", feature = "MLPredictionOptions"))]
+        /// Batch prediction with explicit options
         #[method_id(@__retain_semantics Other predictionsFromBatch:options:error:_)]
         pub unsafe fn predictionsFromBatch_options_error(
             &self,
@@ -102,6 +152,7 @@ extern_methods!(
         ) -> Result<Retained<ProtocolObject<dyn MLBatchProvider>>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
+        /// Provides value for the given parameter. Returns nil on error.
         #[method_id(@__retain_semantics Other parameterValueForKey:error:_)]
         pub unsafe fn parameterValueForKey_error(
             &self,
@@ -113,6 +164,14 @@ extern_methods!(
             feature = "MLModelConfiguration",
             feature = "block2"
         ))]
+        /// Construct a model asynchronously from a compiled model asset.
+        ///
+        ///
+        /// Parameter `asset`: Compiled model asset derived from in-memory or on-disk Core ML model
+        ///
+        /// Parameter `configuration`: Model configuration that hold options for loading a model
+        ///
+        /// Parameter `handler`: When the model load completes successfully or unsuccessfully, the completion handler is invoked with a valid MLModel instance or NSError object.
         #[method(loadModelAsset:configuration:completionHandler:)]
         pub unsafe fn loadModelAsset_configuration_completionHandler(
             asset: &MLModelAsset,

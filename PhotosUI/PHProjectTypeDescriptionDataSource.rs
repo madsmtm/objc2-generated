@@ -11,6 +11,13 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttypedescriptiondatasource?language=objc)
     pub unsafe trait PHProjectTypeDescriptionDataSource: NSObjectProtocol {
         #[cfg(all(feature = "PHProjectTypeDescription", feature = "PhotosUITypes"))]
+        /// Called to get the root level project type descriptions and for any PHProjectTypeDescriptions that promised
+        /// subtypes with canProvideSubtypes == YES
+        ///
+        /// Parameter `projectType`: PHProjectTypeUndefined when fetching the root level.
+        /// Or the type of project types that promised to provide subtypes.
+        ///
+        /// Returns: An array of subtype descriptions for the projectType.
         #[method_id(@__retain_semantics Other subtypesForProjectType:)]
         unsafe fn subtypesForProjectType(
             &self,
@@ -18,6 +25,12 @@ extern_protocol!(
         ) -> Retained<NSArray<PHProjectTypeDescription>>;
 
         #[cfg(all(feature = "PHProjectTypeDescription", feature = "PhotosUITypes"))]
+        /// Called to fetch the updated project type description for previously invalidated project types.
+        ///
+        /// Parameter `projectType`: The previously invalidated project type.
+        ///
+        /// Returns: Return the current PHProjectTypeDescription for the given project type.
+        /// The returned PHProjectTypeDescription's projectType has to be equal to the given projectType.
         #[method_id(@__retain_semantics Other typeDescriptionForProjectType:)]
         unsafe fn typeDescriptionForProjectType(
             &self,
@@ -25,12 +38,20 @@ extern_protocol!(
         ) -> Option<Retained<PHProjectTypeDescription>>;
 
         #[cfg(feature = "PhotosUITypes")]
+        /// Called to fetch the footer text for the subtypes of the given projectType
+        ///
+        /// Parameter `projectType`: PHProjectTypeUndefined for root level, when showing subtypes
+        /// it's the parent project type of the currently visible subtype descriptions.
+        ///
+        /// Returns: Return a footer text for the projectType.
         #[method_id(@__retain_semantics Other footerTextForSubtypesOfProjectType:)]
         unsafe fn footerTextForSubtypesOfProjectType(
             &self,
             project_type: &PHProjectType,
         ) -> Option<Retained<NSAttributedString>>;
 
+        /// Called by the system when the data source is no longer needed.
+        /// After this call the data source is no longer strongly referenced by the extension context.
         #[optional]
         #[method(extensionWillDiscardDataSource)]
         unsafe fn extensionWillDiscardDataSource(&self);
@@ -43,10 +64,20 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttypedescriptioninvalidator?language=objc)
     pub unsafe trait PHProjectTypeDescriptionInvalidator: NSObjectProtocol {
         #[cfg(feature = "PhotosUITypes")]
+        /// Invalidate the properties of the PHProjectTypeDescription with projectType.
+        /// If you call this method for other project types than PHProjectTypeUndefined you have to
+        /// implement -[PHProjectTypeDescriptionDataSource typeDescriptionForProjectType:] accordingly.
+        ///
+        /// Parameter `projectType`: The project type to invalidate.
+        /// Use PHProjectTypeUndefined to invalidate the root level.
         #[method(invalidateTypeDescriptionForProjectType:)]
         unsafe fn invalidateTypeDescriptionForProjectType(&self, project_type: &PHProjectType);
 
         #[cfg(feature = "PhotosUITypes")]
+        /// Invalidate the footer text for the subtypes of the given projectType.
+        ///
+        /// Parameter `projectType`: The project type of the level to invalidate.
+        /// Use PHProjectTypeUndefined to invalidate the root level footer text.
         #[method(invalidateFooterTextForSubtypesOfProjectType:)]
         unsafe fn invalidateFooterTextForSubtypesOfProjectType(&self, project_type: &PHProjectType);
     }

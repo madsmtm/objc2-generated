@@ -9,7 +9,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuierrordomain?language=objc)
+    /// The error domain for errors raised by the File Provider UI extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuierrordomain?language=objc)
     pub static FPUIErrorDomain: &'static NSString;
 }
 
@@ -17,14 +19,18 @@ extern "C" {
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type FPUIActionIdentifier = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiextensionerrorcode?language=objc)
+/// The error codes for errors raised by the File Provider UI extension.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiextensionerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct FPUIExtensionErrorCode(pub NSUInteger);
 impl FPUIExtensionErrorCode {
+    /// An error indicating that the action was canceled by the user.
     #[doc(alias = "FPUIExtensionErrorCodeUserCancelled")]
     pub const UserCancelled: Self = Self(0);
+    /// An error indicating that the action has failed.
     #[doc(alias = "FPUIExtensionErrorCodeFailed")]
     pub const Failed: Self = Self(1);
 }
@@ -38,7 +44,9 @@ unsafe impl RefEncode for FPUIExtensionErrorCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiactionextensioncontext?language=objc)
+    /// An extension context provided to File Provider UI extensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiactionextensioncontext?language=objc)
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FPUIActionExtensionContext;
@@ -48,9 +56,13 @@ unsafe impl NSObjectProtocol for FPUIActionExtensionContext {}
 
 extern_methods!(
     unsafe impl FPUIActionExtensionContext {
+        /// The identifier for the domain managed by the current file provider.
         #[method_id(@__retain_semantics Other domainIdentifier)]
         pub unsafe fn domainIdentifier(&self) -> Option<Retained<NSFileProviderDomainIdentifier>>;
 
+        /// Marks the action as complete.
+        ///
+        /// Call this method when the action completes successfully.
         #[method(completeRequest)]
         pub unsafe fn completeRequest(&self);
 
@@ -62,6 +74,11 @@ extern_methods!(
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         );
 
+        /// Cancels the action and returns the provided error.
+        ///
+        /// Call this method if the action fails. Set the error's domain to
+        /// ``FPUIErrorDomain``. Set the error code to a ``FPUIExtensionErrorCode``
+        /// value.
         #[method(cancelRequestWithError:)]
         pub unsafe fn cancelRequestWithError(&self, error: &NSError);
     }

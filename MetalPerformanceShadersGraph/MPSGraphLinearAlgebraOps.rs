@@ -11,6 +11,32 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the band part of an input tensor.
+        ///
+        /// This operation copies a diagonal band of values from input tensor to a result tensor of the same size.
+        /// A coordinate `[..., i, j]` is in the band if
+        /// ```md
+        /// (numLower
+        /// <
+        /// 0 || (i-j)
+        /// <
+        /// = numLower)
+        /// &
+        /// &
+        /// (numUpper
+        /// <
+        /// 0 || (j-i)
+        /// <
+        /// = numUpper)
+        /// ```
+        /// The values outside of the band are set to 0.
+        ///
+        /// - Parameters:
+        /// - inputTensor: input tensor
+        /// - numLower: the number of diagonals in the lower triangle to keep. If -1, the framework returns all sub diagnols.
+        /// - numUpper: the number of diagonals in the upper triangle to keep. If -1,  the framework returns all super diagnols.
+        /// - name: name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other bandPartWithTensor:numLower:numUpper:name:)]
         pub unsafe fn bandPartWithTensor_numLower_numUpper_name(
             &self,
@@ -21,6 +47,16 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates the band part operation and returns the result.
+        ///
+        /// See above discussion of bandPartWithTensor: numLower: numUpper: name:
+        ///
+        /// - Parameters:
+        /// - inputTensor: The source tensor to copy.
+        /// - numLowerTensor: Scalar Int32 tensor. The number of diagonals in the lower triangle to keep. If -1, keep all.
+        /// - numUpperTensor: Scalar Int32 tensor. The number of diagonals in the upper triangle to keep. If -1, keep all.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other bandPartWithTensor:numLowerTensor:numUpperTensor:name:)]
         pub unsafe fn bandPartWithTensor_numLowerTensor_numUpperTensor_name(
             &self,

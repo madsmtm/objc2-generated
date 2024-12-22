@@ -6,7 +6,14 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrolleraxisvaluechangedhandler?language=objc)
+/// Set this block if you want to be notified when the value on this axis changes.
+///
+///
+/// Parameter `axis`: the element that has been modified.
+///
+/// Parameter `value`: the value the axis was set to at the time the valueChangedHandler fired.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrolleraxisvaluechangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerAxisValueChangedHandler =
     *mut block2::Block<dyn Fn(NonNull<GCControllerAxisInput>, c_float)>;
@@ -30,15 +37,30 @@ extern_methods!(
         pub unsafe fn valueChangedHandler(&self) -> GCControllerAxisValueChangedHandler;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         #[method(setValueChangedHandler:)]
         pub unsafe fn setValueChangedHandler(
             &self,
             value_changed_handler: GCControllerAxisValueChangedHandler,
         );
 
+        /// A normalized value for the input, between -1 and 1 for axis inputs. The values are deadzoned and saturated before they are returned
+        /// so there is no value ouside the range. Deadzoning does not remove values from the range, the full 0 to 1 magnitude of values
+        /// are possible from the input.
+        ///
+        /// As an axis is often used in a digital sense, you can rely on a value of 0 meaning the axis is inside the deadzone.
+        /// Any value greater than or less than zero is not in the deadzone.
         #[method(value)]
         pub unsafe fn value(&self) -> c_float;
 
+        /// Sets the normalized value for the input.
+        ///
+        ///
+        /// Parameter `value`: the value to set the input to.
+        ///
+        /// Note: If the controller's snapshot flag is set to NO, this method has no effect.
+        ///
+        /// See: value
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: c_float);
     }

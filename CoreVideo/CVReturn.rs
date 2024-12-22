@@ -3,7 +3,9 @@
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvreturn?language=objc)
+/// CoreVideo specific error codes
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvreturn?language=objc)
 pub type CVReturn = i32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturnsuccess?language=objc)

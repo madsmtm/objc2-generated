@@ -105,27 +105,32 @@ extern_methods!(
         #[method(minValue)]
         pub unsafe fn minValue(&self) -> c_double;
 
+        /// Setter for [`minValue`][Self::minValue].
         #[method(setMinValue:)]
         pub unsafe fn setMinValue(&self, min_value: c_double);
 
         #[method(maxValue)]
         pub unsafe fn maxValue(&self) -> c_double;
 
+        /// Setter for [`maxValue`][Self::maxValue].
         #[method(setMaxValue:)]
         pub unsafe fn setMaxValue(&self, max_value: c_double);
 
         #[method(altIncrementValue)]
         pub unsafe fn altIncrementValue(&self) -> c_double;
 
+        /// Setter for [`altIncrementValue`][Self::altIncrementValue].
         #[method(setAltIncrementValue:)]
         pub unsafe fn setAltIncrementValue(&self, alt_increment_value: c_double);
 
         #[method(sliderType)]
         pub unsafe fn sliderType(&self) -> NSSliderType;
 
+        /// Setter for [`sliderType`][Self::sliderType].
         #[method(setSliderType:)]
         pub unsafe fn setSliderType(&self, slider_type: NSSliderType);
 
+        /// Setter for [`isVertical`][Self::isVertical].
         #[method(setVertical:)]
         pub unsafe fn setVertical(&self, vertical: bool);
 
@@ -202,18 +207,21 @@ extern_methods!(
         #[method(numberOfTickMarks)]
         pub unsafe fn numberOfTickMarks(&self) -> NSInteger;
 
+        /// Setter for [`numberOfTickMarks`][Self::numberOfTickMarks].
         #[method(setNumberOfTickMarks:)]
         pub unsafe fn setNumberOfTickMarks(&self, number_of_tick_marks: NSInteger);
 
         #[method(tickMarkPosition)]
         pub unsafe fn tickMarkPosition(&self) -> NSTickMarkPosition;
 
+        /// Setter for [`tickMarkPosition`][Self::tickMarkPosition].
         #[method(setTickMarkPosition:)]
         pub unsafe fn setTickMarkPosition(&self, tick_mark_position: NSTickMarkPosition);
 
         #[method(allowsTickMarkValuesOnly)]
         pub unsafe fn allowsTickMarkValuesOnly(&self) -> bool;
 
+        /// Setter for [`allowsTickMarkValuesOnly`][Self::allowsTickMarkValuesOnly].
         #[method(setAllowsTickMarkValuesOnly:)]
         pub unsafe fn setAllowsTickMarkValuesOnly(&self, allows_tick_mark_values_only: bool);
 

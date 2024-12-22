@@ -49,6 +49,7 @@ extern_methods!(
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
+        /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
@@ -58,6 +59,7 @@ extern_methods!(
         #[method(showsTraffic)]
         pub unsafe fn showsTraffic(&self) -> bool;
 
+        /// Setter for [`showsTraffic`][Self::showsTraffic].
         #[method(setShowsTraffic:)]
         pub unsafe fn setShowsTraffic(&self, shows_traffic: bool);
     }

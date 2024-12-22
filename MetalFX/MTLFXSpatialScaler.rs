@@ -50,42 +50,49 @@ extern_methods!(
         #[method(colorTextureFormat)]
         pub unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
 
+        /// Setter for [`colorTextureFormat`][Self::colorTextureFormat].
         #[method(setColorTextureFormat:)]
         pub unsafe fn setColorTextureFormat(&self, color_texture_format: MTLPixelFormat);
 
         #[method(outputTextureFormat)]
         pub unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
 
+        /// Setter for [`outputTextureFormat`][Self::outputTextureFormat].
         #[method(setOutputTextureFormat:)]
         pub unsafe fn setOutputTextureFormat(&self, output_texture_format: MTLPixelFormat);
 
         #[method(inputWidth)]
         pub unsafe fn inputWidth(&self) -> NSUInteger;
 
+        /// Setter for [`inputWidth`][Self::inputWidth].
         #[method(setInputWidth:)]
         pub unsafe fn setInputWidth(&self, input_width: NSUInteger);
 
         #[method(inputHeight)]
         pub unsafe fn inputHeight(&self) -> NSUInteger;
 
+        /// Setter for [`inputHeight`][Self::inputHeight].
         #[method(setInputHeight:)]
         pub unsafe fn setInputHeight(&self, input_height: NSUInteger);
 
         #[method(outputWidth)]
         pub unsafe fn outputWidth(&self) -> NSUInteger;
 
+        /// Setter for [`outputWidth`][Self::outputWidth].
         #[method(setOutputWidth:)]
         pub unsafe fn setOutputWidth(&self, output_width: NSUInteger);
 
         #[method(outputHeight)]
         pub unsafe fn outputHeight(&self) -> NSUInteger;
 
+        /// Setter for [`outputHeight`][Self::outputHeight].
         #[method(setOutputHeight:)]
         pub unsafe fn setOutputHeight(&self, output_height: NSUInteger);
 
         #[method(colorProcessingMode)]
         pub unsafe fn colorProcessingMode(&self) -> MTLFXSpatialScalerColorProcessingMode;
 
+        /// Setter for [`colorProcessingMode`][Self::colorProcessingMode].
         #[method(setColorProcessingMode:)]
         pub unsafe fn setColorProcessingMode(
             &self,
@@ -126,24 +133,28 @@ extern_protocol!(
         #[method(inputContentWidth)]
         unsafe fn inputContentWidth(&self) -> NSUInteger;
 
+        /// Setter for [`inputContentWidth`][Self::inputContentWidth].
         #[method(setInputContentWidth:)]
         unsafe fn setInputContentWidth(&self, input_content_width: NSUInteger);
 
         #[method(inputContentHeight)]
         unsafe fn inputContentHeight(&self) -> NSUInteger;
 
+        /// Setter for [`inputContentHeight`][Self::inputContentHeight].
         #[method(setInputContentHeight:)]
         unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
 
         #[method_id(@__retain_semantics Other colorTexture)]
         unsafe fn colorTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
+        /// Setter for [`colorTexture`][Self::colorTexture].
         #[method(setColorTexture:)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method_id(@__retain_semantics Other outputTexture)]
         unsafe fn outputTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
+        /// Setter for [`outputTexture`][Self::outputTexture].
         #[method(setOutputTexture:)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
@@ -171,6 +182,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other fence)]
         unsafe fn fence(&self) -> Option<Retained<ProtocolObject<dyn MTLFence>>>;
 
+        /// Setter for [`fence`][Self::fence].
         #[method(setFence:)]
         unsafe fn setFence(&self, fence: Option<&ProtocolObject<dyn MTLFence>>);
 

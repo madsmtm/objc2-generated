@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerrordomain?language=objc)
+    /// LocalAuthentication error domain.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerrordomain?language=objc)
     pub static LAErrorDomain: &'static NSString;
 }
 
@@ -17,46 +19,71 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct LAError(pub NSInteger);
 impl LAError {
+    /// Authentication was not successful because user failed to provide valid credentials.
     #[doc(alias = "LAErrorAuthenticationFailed")]
     pub const AuthenticationFailed: Self = Self(-1);
+    /// Authentication was canceled by user (e.g. tapped Cancel button).
     #[doc(alias = "LAErrorUserCancel")]
     pub const UserCancel: Self = Self(-2);
+    /// Authentication was canceled because the user tapped the fallback button (Enter Password).
     #[doc(alias = "LAErrorUserFallback")]
     pub const UserFallback: Self = Self(-3);
+    /// Authentication was canceled by system (e.g. another application went to foreground).
     #[doc(alias = "LAErrorSystemCancel")]
     pub const SystemCancel: Self = Self(-4);
+    /// Authentication could not start because passcode is not set on the device.
     #[doc(alias = "LAErrorPasscodeNotSet")]
     pub const PasscodeNotSet: Self = Self(-5);
+    /// Authentication could not start because Touch ID is not available on the device.
     #[deprecated = "use LAErrorBiometryNotAvailable"]
     #[doc(alias = "LAErrorTouchIDNotAvailable")]
     pub const TouchIDNotAvailable: Self = Self(-6);
+    /// Authentication could not start because Touch ID has no enrolled fingers.
     #[deprecated = "use LAErrorBiometryNotEnrolled"]
     #[doc(alias = "LAErrorTouchIDNotEnrolled")]
     pub const TouchIDNotEnrolled: Self = Self(-7);
+    /// Authentication was not successful because there were too many failed Touch ID attempts and
+    /// Touch ID is now locked. Passcode is required to unlock Touch ID, e.g. evaluating
+    /// LAPolicyDeviceOwnerAuthenticationWithBiometrics will ask for passcode as a prerequisite.
     #[deprecated = "use LAErrorBiometryLockout"]
     #[doc(alias = "LAErrorTouchIDLockout")]
     pub const TouchIDLockout: Self = Self(-8);
+    /// Authentication was canceled by application (e.g. invalidate was called while
+    /// authentication was in progress).
     #[doc(alias = "LAErrorAppCancel")]
     pub const AppCancel: Self = Self(-9);
+    /// LAContext passed to this call has been previously invalidated.
     #[doc(alias = "LAErrorInvalidContext")]
     pub const InvalidContext: Self = Self(-10);
+    /// Authentication could not start because biometry is not available on the device.
     #[doc(alias = "LAErrorBiometryNotAvailable")]
     pub const BiometryNotAvailable: Self = Self(-6);
+    /// Authentication could not start because biometry has no enrolled identities.
     #[doc(alias = "LAErrorBiometryNotEnrolled")]
     pub const BiometryNotEnrolled: Self = Self(-7);
+    /// Authentication was not successful because there were too many failed biometry attempts and
+    /// biometry is now locked. Passcode is required to unlock biometry, e.g. evaluating
+    /// LAPolicyDeviceOwnerAuthenticationWithBiometrics will ask for passcode as a prerequisite.
     #[doc(alias = "LAErrorBiometryLockout")]
     pub const BiometryLockout: Self = Self(-8);
+    /// Authentication failed because it would require showing UI which has been forbidden
+    /// by using interactionNotAllowed property.
     #[doc(alias = "LAErrorNotInteractive")]
     pub const NotInteractive: Self = Self(-1004);
+    /// Authentication could not start because there was no paired watch device nearby.
     #[deprecated]
     #[doc(alias = "LAErrorWatchNotAvailable")]
     pub const WatchNotAvailable: Self = Self(-11);
+    /// Authentication could not start because there was no paired companion device nearby.
     #[doc(alias = "LAErrorCompanionNotAvailable")]
     pub const CompanionNotAvailable: Self = Self(-11);
+    /// Authentication could not start because this device supports biometry only via removable accessories and no accessory has been paired.
     #[doc(alias = "LAErrorBiometryNotPaired")]
     pub const BiometryNotPaired: Self = Self(-12);
+    /// Authentication could not start because this device supports biometry only via removable accessories and the paired accessory is not connected.
     #[doc(alias = "LAErrorBiometryDisconnected")]
     pub const BiometryDisconnected: Self = Self(-13);
+    /// Authentication could not start because dimensions of embedded UI are invalid.
     #[doc(alias = "LAErrorInvalidDimensions")]
     pub const InvalidDimensions: Self = Self(-14);
 }

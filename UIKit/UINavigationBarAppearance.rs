@@ -38,11 +38,13 @@ unsafe impl NSSecureCoding for UINavigationBarAppearance {}
 extern_methods!(
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UINavigationBarAppearance {
+        /// Inline Title text attributes. If the font or color are unspecified, appropriate defaults are supplied.
         #[method_id(@__retain_semantics Other titleTextAttributes)]
         pub unsafe fn titleTextAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
+        /// Setter for [`titleTextAttributes`][Self::titleTextAttributes].
         #[method(setTitleTextAttributes:)]
         pub unsafe fn setTitleTextAttributes(
             &self,
@@ -50,18 +52,22 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// An additional adjustment to the inline title's position.
         #[method(titlePositionAdjustment)]
         pub unsafe fn titlePositionAdjustment(&self) -> UIOffset;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`titlePositionAdjustment`][Self::titlePositionAdjustment].
         #[method(setTitlePositionAdjustment:)]
         pub unsafe fn setTitlePositionAdjustment(&self, title_position_adjustment: UIOffset);
 
+        /// Large Title text attributes. If the font or color are unspecified, appropriate defaults are supplied.
         #[method_id(@__retain_semantics Other largeTitleTextAttributes)]
         pub unsafe fn largeTitleTextAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
+        /// Setter for [`largeTitleTextAttributes`][Self::largeTitleTextAttributes].
         #[method(setLargeTitleTextAttributes:)]
         pub unsafe fn setLargeTitleTextAttributes(
             &self,
@@ -69,18 +75,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// The appearance for plain-style bar button items
         #[method_id(@__retain_semantics Other buttonAppearance)]
         pub unsafe fn buttonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// Setter for [`buttonAppearance`][Self::buttonAppearance].
         #[method(setButtonAppearance:)]
         pub unsafe fn setButtonAppearance(&self, button_appearance: &UIBarButtonItemAppearance);
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// The appearance for done-style bar button items
         #[method_id(@__retain_semantics Other doneButtonAppearance)]
         pub unsafe fn doneButtonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// Setter for [`doneButtonAppearance`][Self::doneButtonAppearance].
         #[method(setDoneButtonAppearance:)]
         pub unsafe fn setDoneButtonAppearance(
             &self,
@@ -88,10 +98,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// The appearance for back buttons. Defaults are drawn from buttonAppearance when appropriate.
         #[method_id(@__retain_semantics Other backButtonAppearance)]
         pub unsafe fn backButtonAppearance(&self) -> Retained<UIBarButtonItemAppearance>;
 
         #[cfg(feature = "UIBarButtonItemAppearance")]
+        /// Setter for [`backButtonAppearance`][Self::backButtonAppearance].
         #[method(setBackButtonAppearance:)]
         pub unsafe fn setBackButtonAppearance(
             &self,
@@ -99,14 +111,21 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIImage")]
+        /// The image shown on the leading edge of the back button.
         #[method_id(@__retain_semantics Other backIndicatorImage)]
         pub unsafe fn backIndicatorImage(&self) -> Retained<UIImage>;
 
         #[cfg(feature = "UIImage")]
+        /// This image is used to mask content flowing underneath the backIndicatorImage during push
+        /// &
+        /// pop transitions
         #[method_id(@__retain_semantics Other backIndicatorTransitionMaskImage)]
         pub unsafe fn backIndicatorTransitionMaskImage(&self) -> Retained<UIImage>;
 
         #[cfg(feature = "UIImage")]
+        /// Set the backIndicatorImage
+        /// &
+        /// backIndicatorTransitionMaskImage images. If either image is nil, then both images will be reset to their default.
         #[method(setBackIndicatorImage:transitionMaskImage:)]
         pub unsafe fn setBackIndicatorImage_transitionMaskImage(
             &self,
@@ -120,16 +139,19 @@ extern_methods!(
     /// Methods declared on superclass `UIBarAppearance`
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UINavigationBarAppearance {
+        /// Constructs a new bar appearance, configured with default values and targeting the device idiom.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIDevice")]
+        /// Constructs a new bar appearance, targeting the passed-in idiom as a hint. Not all platforms support all available idioms. See the idiom property to determine the resolved idiom.
         #[method_id(@__retain_semantics Init initWithIdiom:)]
         pub unsafe fn initWithIdiom(
             this: Allocated<Self>,
             idiom: UIUserInterfaceIdiom,
         ) -> Retained<Self>;
 
+        /// Constructs a new bar appearance, copying all relevant properties from the given appearance object. This initializer is useful for migrating configuration between UIBarAppearance subclasses. For example, you can initialize a UINavigationBarAppearance with a UIToolbarAppearance instance, and shared attributes will be identical between the two.
         #[method_id(@__retain_semantics Init initWithBarAppearance:)]
         pub unsafe fn initWithBarAppearance(
             this: Allocated<Self>,

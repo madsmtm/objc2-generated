@@ -46,6 +46,7 @@ extern_methods!(
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
+        /// Setter for [`duration`][Self::duration].
         #[method(setDuration:)]
         pub unsafe fn setDuration(&self, duration: NSTimeInterval);
 
@@ -56,6 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
+        /// Setter for [`timingFunction`][Self::timingFunction].
         #[method(setTimingFunction:)]
         pub unsafe fn setTimingFunction(&self, timing_function: Option<&CAMediaTimingFunction>);
 
@@ -64,6 +66,7 @@ extern_methods!(
         pub unsafe fn completionHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`completionHandler`][Self::completionHandler].
         #[method(setCompletionHandler:)]
         pub unsafe fn setCompletionHandler(
             &self,
@@ -73,6 +76,7 @@ extern_methods!(
         #[method(allowsImplicitAnimation)]
         pub unsafe fn allowsImplicitAnimation(&self) -> bool;
 
+        /// Setter for [`allowsImplicitAnimation`][Self::allowsImplicitAnimation].
         #[method(setAllowsImplicitAnimation:)]
         pub unsafe fn setAllowsImplicitAnimation(&self, allows_implicit_animation: bool);
     }

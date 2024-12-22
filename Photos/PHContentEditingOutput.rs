@@ -32,21 +32,26 @@ extern_methods!(
         pub unsafe fn adjustmentData(&self) -> Option<Retained<PHAdjustmentData>>;
 
         #[cfg(feature = "PHAdjustmentData")]
+        /// Setter for [`adjustmentData`][Self::adjustmentData].
         #[method(setAdjustmentData:)]
         pub unsafe fn setAdjustmentData(&self, adjustment_data: Option<&PHAdjustmentData>);
 
+        /// File URL where the rendered output in the default format, with adjustments baked-in, needs to be written to.
         #[method_id(@__retain_semantics Other renderedContentURL)]
         pub unsafe fn renderedContentURL(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
+        /// Returns the default type for the rendered content output
         #[method_id(@__retain_semantics Other defaultRenderedContentType)]
         pub unsafe fn defaultRenderedContentType(&self) -> Option<Retained<UTType>>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
+        /// Returns the supported types for the rendered content output
         #[method_id(@__retain_semantics Other supportedRenderedContentTypes)]
         pub unsafe fn supportedRenderedContentTypes(&self) -> Retained<NSArray<UTType>>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
+        /// Returns a file URL where the rendered output in the specified format, with adjustments baked-in, needs to be written to. Returns nil and provides an error identifying the reason if the format is unsupported or the requested content URL cannot be provided
         #[method_id(@__retain_semantics Other renderedContentURLForType:error:_)]
         pub unsafe fn renderedContentURLForType_error(
             &self,

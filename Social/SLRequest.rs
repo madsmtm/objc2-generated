@@ -62,6 +62,7 @@ extern_methods!(
         pub unsafe fn account(&self) -> Option<Retained<ACAccount>>;
 
         #[cfg(feature = "objc2-accounts")]
+        /// Setter for [`account`][Self::account].
         #[method(setAccount:)]
         pub unsafe fn setAccount(&self, account: Option<&ACAccount>);
 

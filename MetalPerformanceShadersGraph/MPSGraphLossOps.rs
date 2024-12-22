@@ -6,18 +6,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlossreductiontype?language=objc)
+/// The type of the reduction the graph applies in the loss operations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlossreductiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphLossReductionType(pub u64);
 impl MPSGraphLossReductionType {
+    /// Computes the loss without reduction.
     #[doc(alias = "MPSGraphLossReductionTypeNone")]
     pub const None: Self = Self(0);
+    /// Computes the loss without reduction.
     #[doc(alias = "MPSGraphLossReductionTypeAxis")]
     pub const Axis: Self = Self(MPSGraphLossReductionType::None.0);
+    /// Reduces the loss down to a scalar with a sum operation.
     #[doc(alias = "MPSGraphLossReductionTypeSum")]
     pub const Sum: Self = Self(1);
+    /// Reduces the loss down to a scalar with a mean operation.
     #[doc(alias = "MPSGraphLossReductionTypeMean")]
     pub const Mean: Self = Self(2);
 }
@@ -35,6 +41,22 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a softmax cross-entropy loss operation and returns the result tensor.
+        ///
+        /// The softmax cross-entropy operation computes:
+        /// ```md
+        /// loss = reduction( - labels*ln( softmax(source) )), where
+        /// sotfmax(source) = exp(source) / sum( exp(source) ), and
+        /// ```
+        /// the operation performs the reduction over the `axis` dimension.
+        ///
+        /// - Parameters:
+        /// - sourceTensor: The source tensor.
+        /// - labelsTensor: The labels tensor.
+        /// - axis: The axis over which the operation computes the softmax reduction.
+        /// - reductionType: The type of reduction MPSGraph uses to reduce across all other axes than `axis`. See: ``MPSGraphLossReductionType``.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other softMaxCrossEntropyWithSourceTensor:labelsTensor:axis:reductionType:name:)]
         pub unsafe fn softMaxCrossEntropyWithSourceTensor_labelsTensor_axis_reductionType_name(
             &self,
@@ -46,6 +68,16 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates the gradient of a softmax cross-entropy loss operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - gradientTensor: The input gradientTensor. Note: in most cases this is the initial gradient tensor, which is a constant tensor with value one.
+        /// - sourceTensor: The source tensor.
+        /// - labelsTensor: The labels tensor.
+        /// - axis: The axis over which the operation computes the softmax reduction.
+        /// - reductionType: The type of reduction MPSGraph uses to reduce across all other axes than `axis`. See: ``MPSGraphLossReductionType``.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other softMaxCrossEntropyGradientWithIncomingGradientTensor:sourceTensor:labelsTensor:axis:reductionType:name:)]
         pub unsafe fn softMaxCrossEntropyGradientWithIncomingGradientTensor_sourceTensor_labelsTensor_axis_reductionType_name(
             &self,

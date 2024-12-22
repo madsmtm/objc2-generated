@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest?language=objc)
+    /// A request that will detect human Torsos in an image.
+    ///
+    ///
+    /// This request will generate VNHumanObservation objects with defined boundingBox and confidence score.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -29,13 +34,16 @@ unsafe impl NSObjectProtocol for VNDetectHumanRectanglesRequest {}
 extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectHumanRectanglesRequest {
+        /// Boolean property to specify whether the human upper body or full body needs to be detected. The default is YES, meaning the request is setup to detect upper body only
         #[method(upperBodyOnly)]
         pub unsafe fn upperBodyOnly(&self) -> bool;
 
+        /// Setter for [`upperBodyOnly`][Self::upperBodyOnly].
         #[method(setUpperBodyOnly:)]
         pub unsafe fn setUpperBodyOnly(&self, upper_body_only: bool);
 
         #[cfg(feature = "VNObservation")]
+        /// VNHumanObservation results.
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNHumanObservation>>>;
     }
@@ -45,10 +53,15 @@ extern_methods!(
     /// Methods declared on superclass `VNRequest`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectHumanRectanglesRequest {
+        /// Creates a new VNRequest with no completion handler.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Creates a new VNRequest with an optional completion handler.
+        ///
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -66,8 +79,12 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequestrevision1?language=objc)
+/// This request revsion can detect human upper body only
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequestrevision1?language=objc)
 pub static VNDetectHumanRectanglesRequestRevision1: NSUInteger = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequestrevision2?language=objc)
+/// This request revsion can detect human full body in addition to upper body only in the previous revision. The choice is controlled by [VNDetectHumanRectanglesRequest -upperBodyOnly] property, which is by default set to YES
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequestrevision2?language=objc)
 pub static VNDetectHumanRectanglesRequestRevision2: NSUInteger = 2;

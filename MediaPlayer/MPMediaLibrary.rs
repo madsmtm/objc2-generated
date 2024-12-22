@@ -83,6 +83,12 @@ extern_methods!(
             feature = "MPMediaPlaylist",
             feature = "block2"
         ))]
+        /// Finds the playlist associated with the UUID.
+        /// If the playlist exists, the creation metadata is ignored.
+        /// If no such playlist exists and creation metadata is valid, a playlist associated the UUID will be created.
+        ///
+        ///
+        /// The UUID should typically be pre-generated to avoid creating a new playlist with every call.
         #[method(getPlaylistWithUUID:creationMetadata:completionHandler:)]
         pub unsafe fn getPlaylistWithUUID_creationMetadata_completionHandler(
             &self,

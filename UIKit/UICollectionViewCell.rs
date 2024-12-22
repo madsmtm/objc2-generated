@@ -237,9 +237,15 @@ extern_methods!(
             feature = "UICellConfigurationState",
             feature = "UIViewConfigurationState"
         ))]
+        /// Returns the current configuration state for the cell.
+        /// To add your own custom state(s), override the getter and call super to obtain an instance with the
+        /// system properties set, then set your own custom states as desired.
         #[method_id(@__retain_semantics Other configurationState)]
         pub unsafe fn configurationState(&self) -> Retained<UICellConfigurationState>;
 
+        /// Requests the cell update its configuration for its current state. This method is called automatically
+        /// when the cell's `configurationState` may have changed, as well as in other circumstances where an
+        /// update may be required. Multiple requests may be coalesced into a single update at the appropriate time.
         #[method(setNeedsUpdateConfiguration)]
         pub unsafe fn setNeedsUpdateConfiguration(&self);
 
@@ -247,6 +253,8 @@ extern_methods!(
             feature = "UICellConfigurationState",
             feature = "UIViewConfigurationState"
         ))]
+        /// Subclasses should override this method and update the cell's configuration using the state provided.
+        /// This method should not be called directly, use `setNeedsUpdateConfiguration` to request an update.
         #[method(updateConfigurationUsingState:)]
         pub unsafe fn updateConfigurationUsingState(&self, state: &UICellConfigurationState);
 
@@ -255,6 +263,8 @@ extern_methods!(
             feature = "UIViewConfigurationState",
             feature = "block2"
         ))]
+        /// Optional block-based alternative to overriding `-updateConfigurationUsingState:` in a subclass. This handler
+        /// is called after `-updateConfigurationUsingState:`. Setting a new handler triggers `setNeedsUpdateConfiguration`.
         #[method(configurationUpdateHandler)]
         pub unsafe fn configurationUpdateHandler(
             &self,
@@ -265,6 +275,7 @@ extern_methods!(
             feature = "UIViewConfigurationState",
             feature = "block2"
         ))]
+        /// Setter for [`configurationUpdateHandler`][Self::configurationUpdateHandler].
         #[method(setConfigurationUpdateHandler:)]
         pub unsafe fn setConfigurationUpdateHandler(
             &self,
@@ -272,21 +283,28 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIContentConfiguration")]
+        /// Setting a content configuration replaces the existing contentView of the cell with a new content view instance from the configuration,
+        /// or directly applies the configuration to the existing content view if the configuration is compatible with the existing content view type.
+        /// The default value is nil. After a configuration has been set, setting this property to nil will replace the current content view with a new content view.
         #[method_id(@__retain_semantics Other contentConfiguration)]
         pub unsafe fn contentConfiguration(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIContentConfiguration>>>;
 
         #[cfg(feature = "UIContentConfiguration")]
+        /// Setter for [`contentConfiguration`][Self::contentConfiguration].
         #[method(setContentConfiguration:)]
         pub unsafe fn setContentConfiguration(
             &self,
             content_configuration: Option<&ProtocolObject<dyn UIContentConfiguration>>,
         );
 
+        /// When YES, the cell will automatically call -updatedConfigurationForState: on its `contentConfiguration` when the cell's
+        /// configuration state changes, and apply the updated configuration back to the cell. The default value is YES.
         #[method(automaticallyUpdatesContentConfiguration)]
         pub unsafe fn automaticallyUpdatesContentConfiguration(&self) -> bool;
 
+        /// Setter for [`automaticallyUpdatesContentConfiguration`][Self::automaticallyUpdatesContentConfiguration].
         #[method(setAutomaticallyUpdatesContentConfiguration:)]
         pub unsafe fn setAutomaticallyUpdatesContentConfiguration(
             &self,
@@ -299,12 +317,14 @@ extern_methods!(
         #[method(isSelected)]
         pub unsafe fn isSelected(&self) -> bool;
 
+        /// Setter for [`isSelected`][Self::isSelected].
         #[method(setSelected:)]
         pub unsafe fn setSelected(&self, selected: bool);
 
         #[method(isHighlighted)]
         pub unsafe fn isHighlighted(&self) -> bool;
 
+        /// Setter for [`isHighlighted`][Self::isHighlighted].
         #[method(setHighlighted:)]
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
@@ -312,24 +332,31 @@ extern_methods!(
         pub unsafe fn dragStateDidChange(&self, drag_state: UICollectionViewCellDragState);
 
         #[cfg(feature = "UIBackgroundConfiguration")]
+        /// Returns a default background configuration for the cell's style.
+        /// This background configuration represents the default appearance that the cell will use.
         #[method_id(@__retain_semantics Other defaultBackgroundConfiguration)]
         pub unsafe fn defaultBackgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
+        /// Setting a background configuration supersedes the cell's backgroundView and selectedBackgroundView. The default value is nil.
         #[method_id(@__retain_semantics Other backgroundConfiguration)]
         pub unsafe fn backgroundConfiguration(&self)
             -> Option<Retained<UIBackgroundConfiguration>>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
+        /// Setter for [`backgroundConfiguration`][Self::backgroundConfiguration].
         #[method(setBackgroundConfiguration:)]
         pub unsafe fn setBackgroundConfiguration(
             &self,
             background_configuration: Option<&UIBackgroundConfiguration>,
         );
 
+        /// When YES, the cell will automatically call -updatedConfigurationForState: on its `backgroundConfiguration` when the cell's
+        /// configuration state changes, and apply the updated configuration back to the cell. The default value is YES.
         #[method(automaticallyUpdatesBackgroundConfiguration)]
         pub unsafe fn automaticallyUpdatesBackgroundConfiguration(&self) -> bool;
 
+        /// Setter for [`automaticallyUpdatesBackgroundConfiguration`][Self::automaticallyUpdatesBackgroundConfiguration].
         #[method(setAutomaticallyUpdatesBackgroundConfiguration:)]
         pub unsafe fn setAutomaticallyUpdatesBackgroundConfiguration(
             &self,
@@ -339,12 +366,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other backgroundView)]
         pub unsafe fn backgroundView(&self) -> Option<Retained<UIView>>;
 
+        /// Setter for [`backgroundView`][Self::backgroundView].
         #[method(setBackgroundView:)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&UIView>);
 
         #[method_id(@__retain_semantics Other selectedBackgroundView)]
         pub unsafe fn selectedBackgroundView(&self) -> Option<Retained<UIView>>;
 
+        /// Setter for [`selectedBackgroundView`][Self::selectedBackgroundView].
         #[method(setSelectedBackgroundView:)]
         pub unsafe fn setSelectedBackgroundView(&self, selected_background_view: Option<&UIView>);
     }

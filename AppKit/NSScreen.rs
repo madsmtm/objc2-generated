@@ -137,18 +137,30 @@ extern_methods!(
 
 extern_methods!(
     unsafe impl NSScreen {
+        /// The maximum frames per second this screen supports.
         #[method(maximumFramesPerSecond)]
         pub unsafe fn maximumFramesPerSecond(&self) -> NSInteger;
 
+        /// The minimum refresh interval this screen supports, in seconds.
+        ///
+        /// This is the shortest amount of time a frame will be present on screen.
+        /// minimumRefreshInterval and maximumRefreshInterval will be the same for displays that do not support variable refresh rates.
         #[method(minimumRefreshInterval)]
         pub unsafe fn minimumRefreshInterval(&self) -> NSTimeInterval;
 
+        /// The maximum refresh interval this screen supports, in seconds.
+        ///
+        /// minimumRefreshInterval and maximumRefreshInterval will be the same for displays that do not support variable refresh rates.
         #[method(maximumRefreshInterval)]
         pub unsafe fn maximumRefreshInterval(&self) -> NSTimeInterval;
 
+        /// The update granularity of the screen's current mode, in seconds.
+        ///
+        /// The display will update at the next boundary defined by the granularity, after the minimum refresh interval has been reached. When 0, the display can update at any time between the minimum and maximum refresh rate intervals of the screen. Fixed refresh rate screen modes will return the refresh interval as the update granularity (e.g. 16.66ms for 60Hz refresh rates), meaning updates only occur at refresh rate boundaries.
         #[method(displayUpdateGranularity)]
         pub unsafe fn displayUpdateGranularity(&self) -> NSTimeInterval;
 
+        /// The time at which the last framebuffer update occurred on the display, in seconds since startup that the system has been awake.
         #[method(lastDisplayUpdateTimestamp)]
         pub unsafe fn lastDisplayUpdateTimestamp(&self) -> NSTimeInterval;
     }

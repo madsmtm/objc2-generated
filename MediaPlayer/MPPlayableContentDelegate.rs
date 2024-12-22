@@ -8,10 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentdelegate?language=objc)
+    /// The MPPlayableContentDelegate is a protocol that allows for external media
+    /// players to send playback commands to an application. For instance,
+    /// the user could browse the application's media content (provided by the
+    /// MPPlayableContentDataSource) and selects a content item to play. If the media
+    /// player decides that it wants to play the item, it will ask the application's
+    /// content delegate to initiate playback.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentdelegate?language=objc)
     #[deprecated = "Use CarPlay framework"]
     pub unsafe trait MPPlayableContentDelegate: NSObjectProtocol {
         #[cfg(all(feature = "MPPlayableContentManager", feature = "block2"))]
+        /// This method is called when a media player interface wants to play a requested
+        /// content item. The application should call the completion handler with an
+        /// appropriate error if there was an error beginning playback for the item.
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[method(playableContentManager:initiatePlaybackOfContentItemAtIndexPath:completionHandler:)]
@@ -23,6 +33,12 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MPPlayableContentManager", feature = "block2"))]
+        /// This method is called when a media player interface wants the now playing
+        /// app to setup a playback queue for later playback. The application should
+        /// load content into its play queue but not start playback until a Play command is
+        /// received or if the playable content manager requests to play something else.
+        /// The app should call the provided completion handler once it is ready to play
+        /// something.
         #[deprecated = "Use Intents framework for initiating playback queues."]
         #[optional]
         #[method(playableContentManager:initializePlaybackQueueWithCompletionHandler:)]
@@ -33,6 +49,15 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MPPlayableContentManager", feature = "block2"))]
+        /// This method is called when a media player interface wants the now playing
+        /// app to setup a playback queue for later playback. The application should
+        /// load content into its play queue based on the provided content items and
+        /// prepare it for playback, but not start playback until a Play command is
+        /// received or if the playable content manager requests to play something else.
+        /// A nil contentItems array means that the app should prepare its queue with
+        /// anything it deems appropriate.
+        /// The app should call the provided completion handler once it is ready to play
+        /// something.
         #[deprecated = "Use Intents framework for initiating playback queues."]
         #[optional]
         #[method(playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:)]
@@ -47,6 +72,7 @@ extern_protocol!(
             feature = "MPPlayableContentManager",
             feature = "MPPlayableContentManagerContext"
         ))]
+        /// This method is called when the content server notifies the manager that the current context has changed.
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[method(playableContentManager:didUpdateContext:)]

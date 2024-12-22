@@ -21,18 +21,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other valueExpression)]
         pub unsafe fn valueExpression(&self) -> Option<Retained<NSExpression>>;
 
+        /// Setter for [`valueExpression`][Self::valueExpression].
         #[method(setValueExpression:)]
         pub unsafe fn setValueExpression(&self, value_expression: Option<&NSExpression>);
 
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
+        /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
     }

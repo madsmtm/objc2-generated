@@ -9,24 +9,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction?language=objc)
+/// Preferred actions available to the user in Settings.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIPencilPreferredAction(pub NSInteger);
 impl UIPencilPreferredAction {
+    /// No action, or the user has disabled pencil interactions in Accessibility settings
     #[doc(alias = "UIPencilPreferredActionIgnore")]
     pub const Ignore: Self = Self(0);
+    /// Switch between the current tool and eraser
     #[doc(alias = "UIPencilPreferredActionSwitchEraser")]
     pub const SwitchEraser: Self = Self(1);
+    /// Switch between the current tool and the previously used tool
     #[doc(alias = "UIPencilPreferredActionSwitchPrevious")]
     pub const SwitchPrevious: Self = Self(2);
+    /// Show and hide the color palette
     #[doc(alias = "UIPencilPreferredActionShowColorPalette")]
     pub const ShowColorPalette: Self = Self(3);
+    /// Show the ink attributes palette
     #[doc(alias = "UIPencilPreferredActionShowInkAttributes")]
     pub const ShowInkAttributes: Self = Self(4);
+    /// Show a contextual palette of markup tools, or undo/redo options if tools are not available
     #[doc(alias = "UIPencilPreferredActionShowContextualPalette")]
     pub const ShowContextualPalette: Self = Self(5);
+    /// The user has selected a system shortcut to run
     #[doc(alias = "UIPencilPreferredActionRunSystemShortcut")]
     pub const RunSystemShortcut: Self = Self(6);
 }
@@ -39,18 +48,26 @@ unsafe impl RefEncode for UIPencilPreferredAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteractionphase?language=objc)
+/// The phase of an interaction gesture performed on the pencil.
+///
+/// If the gesture is discrete, the phase will be ``UIPencilInteractionPhaseEnded``
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteractionphase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIPencilInteractionPhase(pub NSUInteger);
 impl UIPencilInteractionPhase {
+    /// A continuous gesture on the pencil began
     #[doc(alias = "UIPencilInteractionPhaseBegan")]
     pub const Began: Self = Self(0);
+    /// A continuous gesture on the pencil changed
     #[doc(alias = "UIPencilInteractionPhaseChanged")]
     pub const Changed: Self = Self(1);
+    /// A continuous gesture on the pencil ended, or a discrete gesture on the pencil recognized
     #[doc(alias = "UIPencilInteractionPhaseEnded")]
     pub const Ended: Self = Self(2);
+    /// A continuous gesture on the pencil was cancelled
     #[doc(alias = "UIPencilInteractionPhaseCancelled")]
     pub const Cancelled: Self = Self(3);
 }
@@ -78,39 +95,48 @@ unsafe impl UIInteraction for UIPencilInteraction {}
 
 extern_methods!(
     unsafe impl UIPencilInteraction {
+        /// The user’s preferred double-tap action as set in Settings app
         #[method(preferredTapAction)]
         pub unsafe fn preferredTapAction(mtm: MainThreadMarker) -> UIPencilPreferredAction;
 
+        /// The user’s preferred squeeze action as set in Settings app
         #[method(preferredSqueezeAction)]
         pub unsafe fn preferredSqueezeAction(mtm: MainThreadMarker) -> UIPencilPreferredAction;
 
+        /// The user's preference for drawing with pencil only as set in Settings app or the system tool picker
         #[method(prefersPencilOnlyDrawing)]
         pub unsafe fn prefersPencilOnlyDrawing(mtm: MainThreadMarker) -> bool;
 
+        /// The user's preference for if hovering with pencil should show a preview of the current drawing tool as set in Settings app
         #[method(prefersHoverToolPreview)]
         pub unsafe fn prefersHoverToolPreview(mtm: MainThreadMarker) -> bool;
 
+        /// Initialize an interaction and set the provided delegate
         #[method_id(@__retain_semantics Init initWithDelegate:)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: &ProtocolObject<dyn UIPencilInteractionDelegate>,
         ) -> Retained<Self>;
 
+        /// The interaction's delegate
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPencilInteractionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIPencilInteractionDelegate>>,
         );
 
+        /// Whether the interaction is enabled or not
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
     }
@@ -128,7 +154,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilhoverpose?language=objc)
+    /// An object that describes the hover pose of the pencil while performing a gesture on the pencil
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilhoverpose?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -146,33 +174,44 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The hover location of the pencil in the interaction's view while performing the associated action. If the pencil is removed from hover range during a continuous interaction,
+        /// this will be the last reported location.
         #[method(location)]
         pub unsafe fn location(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The normalized distance from the screen of the hovering pencil. This value will be 1 at the maximum distance from the screen and will approach 0 as the pencil gets
+        /// closer to the screen.
         #[method(zOffset)]
         pub unsafe fn zOffset(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The azimuth angle in radians of the pencil in the interaction's view while performing the associated action. Zero radians points along the positive X axis.
         #[method(azimuthAngle)]
         pub unsafe fn azimuthAngle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The azimuth unit vector of the pencil in the interaction's view while performing the associated action. The unit vector points in the direction of the azimuth angle.
         #[method(azimuthUnitVector)]
         pub unsafe fn azimuthUnitVector(&self) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The altitude angle in radians of the pencil while performing the associated action. Zero radians indicates that the stylus is parallel to the screen surface, while `M_PI/2`
+        /// radians indicates that it is normal to the screen surface.
         #[method(altitudeAngle)]
         pub unsafe fn altitudeAngle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The roll angle in radians of the pencil while performing the associated action. For pencils that don't support roll, this value will be 0.
         #[method(rollAngle)]
         pub unsafe fn rollAngle(&self) -> CGFloat;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteractiontap?language=objc)
+    /// An object that describes a tap performed on the pencil
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteractiontap?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -189,16 +228,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The time in seconds from system start up when this tap occured
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
+        /// The hover pose of the pencil while performing a tap. Returns `nil` if the pencil was not in hover range or if hover is not supported on the device.
         #[method_id(@__retain_semantics Other hoverPose)]
         pub unsafe fn hoverPose(&self) -> Option<Retained<UIPencilHoverPose>>;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteractionsqueeze?language=objc)
+    /// An object that describes a squeeze performed on the pencil
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteractionsqueeze?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -215,12 +258,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The time in seconds from system start up when this squeeze occured
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
+        /// The phase of the squeeze
         #[method(phase)]
         pub unsafe fn phase(&self) -> UIPencilInteractionPhase;
 
+        /// The hover pose of the pencil while performing a squeeze. Returns `nil` if the pencil was not in hover range or if hover is not supported on the device.
         #[method_id(@__retain_semantics Other hoverPose)]
         pub unsafe fn hoverPose(&self) -> Option<Retained<UIPencilHoverPose>>;
     }
@@ -229,11 +275,23 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteractiondelegate?language=objc)
     pub unsafe trait UIPencilInteractionDelegate: NSObjectProtocol + MainThreadOnly {
+        /// Called when the user taps on the side of the pencil if the interaction's view is in a visible view hierarchy.
+        ///
+        /// The delegate may do anything in this method.  To perform the user's preferred tap action (as set in Settings), consult the ``preferredTapAction`` class property
+        /// of ``UIPencilInteraction``.
+        ///
+        /// - Note: If ``pencilInteraction(_:didReceiveTap:)`` is implemented, this method will not be called.
         #[deprecated = "Use pencilInteraction(_:didReceiveTap:) instead"]
         #[optional]
         #[method(pencilInteractionDidTap:)]
         unsafe fn pencilInteractionDidTap(&self, interaction: &UIPencilInteraction);
 
+        /// Called when the user taps on the side of the pencil if the interaction's view is in a visible view hierarchy.
+        ///
+        /// The delegate may do anything in this method.  To perform the user's preferred tap action (as set in Settings), consult the ``preferredTapAction`` class property
+        /// of ``UIPencilInteraction``.
+        ///
+        /// - Note: If both this method and the deprecated ``pencilInteractionDidTap(_:)`` are implemented, then only this method will be called.
         #[optional]
         #[method(pencilInteraction:didReceiveTap:)]
         unsafe fn pencilInteraction_didReceiveTap(
@@ -242,6 +300,10 @@ extern_protocol!(
             tap: &UIPencilInteractionTap,
         );
 
+        /// Called when the user squeezes side of the pencil if the interaction's view is in a visible view hierarchy.
+        ///
+        /// The delegate may do anything in this method.  To perform the user's preferred squeeze action (as set in Settings), consult the ``preferredSqueezeAction`` class
+        /// property of ``UIPencilInteraction``.
         #[optional]
         #[method(pencilInteraction:didReceiveSqueeze:)]
         unsafe fn pencilInteraction_didReceiveSqueeze(

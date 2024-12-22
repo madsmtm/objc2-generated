@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cols)]
         pub unsafe fn cols(&self) -> Retained<NSString>;
 
+        /// Setter for [`cols`][Self::cols].
         #[deprecated]
         #[method(setCols:)]
         pub unsafe fn setCols(&self, cols: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rows)]
         pub unsafe fn rows(&self) -> Retained<NSString>;
 
+        /// Setter for [`rows`][Self::rows].
         #[deprecated]
         #[method(setRows:)]
         pub unsafe fn setRows(&self, rows: Option<&NSString>);

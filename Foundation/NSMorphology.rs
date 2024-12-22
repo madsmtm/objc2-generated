@@ -272,48 +272,56 @@ extern_methods!(
         #[method(grammaticalGender)]
         pub unsafe fn grammaticalGender(&self) -> NSGrammaticalGender;
 
+        /// Setter for [`grammaticalGender`][Self::grammaticalGender].
         #[method(setGrammaticalGender:)]
         pub unsafe fn setGrammaticalGender(&self, grammatical_gender: NSGrammaticalGender);
 
         #[method(partOfSpeech)]
         pub unsafe fn partOfSpeech(&self) -> NSGrammaticalPartOfSpeech;
 
+        /// Setter for [`partOfSpeech`][Self::partOfSpeech].
         #[method(setPartOfSpeech:)]
         pub unsafe fn setPartOfSpeech(&self, part_of_speech: NSGrammaticalPartOfSpeech);
 
         #[method(number)]
         pub unsafe fn number(&self) -> NSGrammaticalNumber;
 
+        /// Setter for [`number`][Self::number].
         #[method(setNumber:)]
         pub unsafe fn setNumber(&self, number: NSGrammaticalNumber);
 
         #[method(grammaticalCase)]
         pub unsafe fn grammaticalCase(&self) -> NSGrammaticalCase;
 
+        /// Setter for [`grammaticalCase`][Self::grammaticalCase].
         #[method(setGrammaticalCase:)]
         pub unsafe fn setGrammaticalCase(&self, grammatical_case: NSGrammaticalCase);
 
         #[method(determination)]
         pub unsafe fn determination(&self) -> NSGrammaticalDetermination;
 
+        /// Setter for [`determination`][Self::determination].
         #[method(setDetermination:)]
         pub unsafe fn setDetermination(&self, determination: NSGrammaticalDetermination);
 
         #[method(grammaticalPerson)]
         pub unsafe fn grammaticalPerson(&self) -> NSGrammaticalPerson;
 
+        /// Setter for [`grammaticalPerson`][Self::grammaticalPerson].
         #[method(setGrammaticalPerson:)]
         pub unsafe fn setGrammaticalPerson(&self, grammatical_person: NSGrammaticalPerson);
 
         #[method(pronounType)]
         pub unsafe fn pronounType(&self) -> NSGrammaticalPronounType;
 
+        /// Setter for [`pronounType`][Self::pronounType].
         #[method(setPronounType:)]
         pub unsafe fn setPronounType(&self, pronoun_type: NSGrammaticalPronounType);
 
         #[method(definiteness)]
         pub unsafe fn definiteness(&self) -> NSGrammaticalDefiniteness;
 
+        /// Setter for [`definiteness`][Self::definiteness].
         #[method(setDefiniteness:)]
         pub unsafe fn setDefiniteness(&self, definiteness: NSGrammaticalDefiniteness);
     }
@@ -446,6 +454,7 @@ extern_methods!(
         pub unsafe fn subjectForm(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`subjectForm`][Self::subjectForm].
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method(setSubjectForm:)]
         pub unsafe fn setSubjectForm(&self, subject_form: Option<&NSString>);
@@ -456,6 +465,7 @@ extern_methods!(
         pub unsafe fn objectForm(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`objectForm`][Self::objectForm].
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method(setObjectForm:)]
         pub unsafe fn setObjectForm(&self, object_form: Option<&NSString>);
@@ -466,6 +476,7 @@ extern_methods!(
         pub unsafe fn possessiveForm(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`possessiveForm`][Self::possessiveForm].
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method(setPossessiveForm:)]
         pub unsafe fn setPossessiveForm(&self, possessive_form: Option<&NSString>);
@@ -476,6 +487,7 @@ extern_methods!(
         pub unsafe fn possessiveAdjectiveForm(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`possessiveAdjectiveForm`][Self::possessiveAdjectiveForm].
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method(setPossessiveAdjectiveForm:)]
         pub unsafe fn setPossessiveAdjectiveForm(
@@ -489,6 +501,7 @@ extern_methods!(
         pub unsafe fn reflexiveForm(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`reflexiveForm`][Self::reflexiveForm].
         #[deprecated = "Use NSTermOfAddress instead"]
         #[method(setReflexiveForm:)]
         pub unsafe fn setReflexiveForm(&self, reflexive_form: Option<&NSString>);

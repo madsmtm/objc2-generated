@@ -51,6 +51,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pressureConfiguration)]
         pub unsafe fn pressureConfiguration(&self) -> Option<Retained<NSPressureConfiguration>>;
 
+        /// Setter for [`pressureConfiguration`][Self::pressureConfiguration].
         #[method(setPressureConfiguration:)]
         pub unsafe fn setPressureConfiguration(
             &self,

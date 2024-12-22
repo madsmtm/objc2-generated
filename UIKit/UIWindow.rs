@@ -91,12 +91,14 @@ extern_methods!(
 
         #[cfg(all(feature = "UIScene", feature = "UIWindowScene"))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`windowScene`][Self::windowScene].
         #[method(setWindowScene:)]
         pub unsafe fn setWindowScene(&self, window_scene: Option<&UIWindowScene>);
 
         #[method(canResizeToFitContent)]
         pub unsafe fn canResizeToFitContent(&self) -> bool;
 
+        /// Setter for [`canResizeToFitContent`][Self::canResizeToFitContent].
         #[method(setCanResizeToFitContent:)]
         pub unsafe fn setCanResizeToFitContent(&self, can_resize_to_fit_content: bool);
 
@@ -105,6 +107,7 @@ extern_methods!(
         pub fn screen(&self) -> Retained<UIScreen>;
 
         #[cfg(feature = "UIScreen")]
+        /// Setter for [`screen`][Self::screen].
         #[method(setScreen:)]
         pub fn setScreen(&self, screen: &UIScreen);
 
@@ -113,6 +116,7 @@ extern_methods!(
         pub unsafe fn windowLevel(&self) -> UIWindowLevel;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`windowLevel`][Self::windowLevel].
         #[method(setWindowLevel:)]
         pub unsafe fn setWindowLevel(&self, window_level: UIWindowLevel);
 
@@ -139,6 +143,7 @@ extern_methods!(
         pub fn rootViewController(&self) -> Option<Retained<UIViewController>>;
 
         #[cfg(feature = "UIViewController")]
+        /// Setter for [`rootViewController`][Self::rootViewController].
         #[method(setRootViewController:)]
         pub fn setRootViewController(&self, root_view_controller: Option<&UIViewController>);
 
@@ -212,10 +217,13 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutguideaspectfitting?language=objc)
     pub unsafe trait UILayoutGuideAspectFitting: NSObjectProtocol {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Update the aspect ratio (width / height) for the given content
+        /// Defaults to 1.0. Must be > 0.0 and values may be clamped within a reasonable range of approximately 1:100 to 100:1.
         #[method(aspectRatio)]
         unsafe fn aspectRatio(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`aspectRatio`][Self::aspectRatio].
         #[method(setAspectRatio:)]
         unsafe fn setAspectRatio(&self, aspect_ratio: CGFloat);
     }
@@ -228,6 +236,18 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIWindow {
         #[cfg(feature = "UILayoutGuide")]
+        /// This layout guide is designed specifically for full-screen media content, and attaching constraints from deep in the window's view hierarchy will raise an exception.
+        ///
+        /// This guide provides a layout area for placing media content of a given aspect ratio (width over height) such that the content will be completely visible within the window.
+        /// Compared to the standard `safeAreaLayoutGuide` on a view, this guide takes into account the aspect ratio of the content, allowing it the maximum size within the window's
+        /// true safe area, including the actual shape of the screen when that is the only factor contributing to the safe area. The rect defined by this guide will be centered within the
+        /// window.
+        ///
+        /// This layout guide should only be used for fixed aspect ratio content that is intended to fill the window (such as image or video content) and is not a replacement for the
+        /// standard `safeAreaLayoutGuide` on each UIView which should be used for most content layout. The `safeAreaAspectFitLayoutGuide` should only be used with views
+        /// that are direct subviews of, or very close descendants of, the guide's window. Creating constraints from this layout guide to views deeper in the view hierarchy or across
+        /// views owned by child view controllers can significantly degrade performance and possibly raise an exception. Additionally, the safe area insets added by child view
+        /// controllers will not be reflected in these cases. For anything other than full-screen/window media content, the standard `safeAreaLayoutGuide` on UIView should be used.
         #[method_id(@__retain_semantics Other safeAreaAspectFitLayoutGuide)]
         pub unsafe fn safeAreaAspectFitLayoutGuide(&self) -> Retained<UILayoutGuide>;
     }

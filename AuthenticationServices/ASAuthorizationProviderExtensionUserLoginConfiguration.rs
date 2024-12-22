@@ -24,36 +24,69 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// The user name to use when authenticating with the identity provider.
         #[method_id(@__retain_semantics Other loginUserName)]
         pub unsafe fn loginUserName(&self) -> Retained<NSString>;
 
+        /// Setter for [`loginUserName`][Self::loginUserName].
         #[method(setLoginUserName:)]
         pub unsafe fn setLoginUserName(&self, login_user_name: &NSString);
 
+        /// Creates an instance with the required values.
+        ///
+        /// Parameter `loginUserName`: The login user name to use.
         #[method_id(@__retain_semantics Init initWithLoginUserName:)]
         pub unsafe fn initWithLoginUserName(
             this: Allocated<Self>,
             login_user_name: &NSString,
         ) -> Retained<Self>;
 
+        /// Sets custom claims to be added to the embedded assertion request header.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomAssertionRequestHeaderClaims:returningError:_)]
         pub unsafe fn setCustomAssertionRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Sets custom claims to be added to the embedded assertion request body.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomAssertionRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomAssertionRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Sets custom claims to be added to the login request header.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomLoginRequestHeaderClaims:returningError:_)]
         pub unsafe fn setCustomLoginRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Sets custom claims to be added to the login request body.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomLoginRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomLoginRequestBodyClaims_returningError(
             &self,

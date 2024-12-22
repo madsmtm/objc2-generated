@@ -61,12 +61,14 @@ extern_methods!(
         #[method(unitOptions)]
         pub unsafe fn unitOptions(&self) -> NSMeasurementFormatterUnitOptions;
 
+        /// Setter for [`unitOptions`][Self::unitOptions].
         #[method(setUnitOptions:)]
         pub unsafe fn setUnitOptions(&self, unit_options: NSMeasurementFormatterUnitOptions);
 
         #[method(unitStyle)]
         pub unsafe fn unitStyle(&self) -> NSFormattingUnitStyle;
 
+        /// Setter for [`unitStyle`][Self::unitStyle].
         #[method(setUnitStyle:)]
         pub unsafe fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
@@ -75,6 +77,7 @@ extern_methods!(
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
+        /// Setter for [`locale`][Self::locale].
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
@@ -83,6 +86,7 @@ extern_methods!(
         pub unsafe fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
 
         #[cfg(feature = "NSNumberFormatter")]
+        /// Setter for [`numberFormatter`][Self::numberFormatter].
         #[method(setNumberFormatter:)]
         pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 

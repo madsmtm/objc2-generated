@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresidencysetdescriptor?language=objc)
+    /// Specifies the parameters for MTLResidencySet creation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresidencysetdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLResidencySetDescriptor;
@@ -24,15 +26,19 @@ unsafe impl NSObjectProtocol for MTLResidencySetDescriptor {}
 
 extern_methods!(
     unsafe impl MTLResidencySetDescriptor {
+        /// An optional label for the MTLResidencySet.
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
+        /// If non-zero, defines the number of allocations for which to initialize the internal arrays. Defaults to zero.
         #[method(initialCapacity)]
         pub unsafe fn initialCapacity(&self) -> NSUInteger;
 
+        /// Setter for [`initialCapacity`][Self::initialCapacity].
         #[method(setInitialCapacity:)]
         pub unsafe fn setInitialCapacity(&self, initial_capacity: NSUInteger);
     }
@@ -50,29 +56,41 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresidencyset?language=objc)
+    /// A residency set is responsible for managing resource and heap residency and is referenced
+    /// by a command buffer or command queue in order to ensure that resources and heaps are resident.
+    /// Resources and heaps are added and removed uncommitted and a subsequent commit call applies all
+    /// of the changes in bulk.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresidencyset?language=objc)
     pub unsafe trait MTLResidencySet: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
+        /// The device that created the residency set
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
+        /// The label specified at creation.
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
+        /// The memory footprint of the set in bytes at the last commit operation. This may include internal allocations as well.
         #[method(allocatedSize)]
         unsafe fn allocatedSize(&self) -> u64;
 
+        /// Requests that the set and all the committed resources and heaps are made resident.
         #[method(requestResidency)]
         unsafe fn requestResidency(&self);
 
+        /// Requests that the set and all the committed resources and heaps are made non-resident.
         #[method(endResidency)]
         unsafe fn endResidency(&self);
 
         #[cfg(feature = "MTLAllocation")]
+        /// Adds one allocation to the set, leaving it uncommitted until commit is called.
         #[method(addAllocation:)]
         unsafe fn addAllocation(&self, allocation: &ProtocolObject<dyn MTLAllocation>);
 
         #[cfg(feature = "MTLAllocation")]
+        /// Adds allocations to the set, leaving them uncommitted until commit is called.
         #[method(addAllocations:count:)]
         unsafe fn addAllocations_count(
             &self,
@@ -81,10 +99,12 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLAllocation")]
+        /// Marks an allocation to be removed from the set on the next commit call.
         #[method(removeAllocation:)]
         unsafe fn removeAllocation(&self, allocation: &ProtocolObject<dyn MTLAllocation>);
 
         #[cfg(feature = "MTLAllocation")]
+        /// Marks allocations to be removed from the set on the next commit call.
         #[method(removeAllocations:count:)]
         unsafe fn removeAllocations_count(
             &self,
@@ -92,10 +112,14 @@ extern_protocol!(
             count: NSUInteger,
         );
 
+        /// Marks all allocations to be removed from the set on the next commit call.
         #[method(removeAllAllocations)]
         unsafe fn removeAllAllocations(&self);
 
         #[cfg(feature = "MTLAllocation")]
+        /// Returns a boolean indicating whether the allocation is present in the set or not.
+        ///
+        /// This check includes non-committed allocations in the set.
         #[method(containsAllocation:)]
         unsafe fn containsAllocation(
             &self,
@@ -103,12 +127,21 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "MTLAllocation")]
+        /// Array of all allocations associated with the set.
+        ///
+        /// This property includes non-committed allocations in the set.
         #[method_id(@__retain_semantics Other allAllocations)]
         unsafe fn allAllocations(&self) -> Retained<NSArray<ProtocolObject<dyn MTLAllocation>>>;
 
+        /// Returns the current number of unique allocations present in the set.
+        ///
+        /// This property includes non-committed allocations in the set.
         #[method(allocationCount)]
         unsafe fn allocationCount(&self) -> NSUInteger;
 
+        /// Commits any pending adds/removes.
+        ///
+        /// If the residency set is resident, this will try to make added resources and heaps resident instantly, and make removed resources and heaps non-resident.
         #[method(commit)]
         unsafe fn commit(&self);
     }

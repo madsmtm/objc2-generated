@@ -29,17 +29,29 @@ unsafe impl NSObjectProtocol for UIKey {}
 
 extern_methods!(
     unsafe impl UIKey {
+        /// Returns: a string representing what would be inserted into a text field when this key is pressed.
+        ///
+        /// if a modifier key is held, this property will contain the modified characters according
+        /// the rules for that particular modifier key (i.e., if shift is held on a Latin keyboard, this will
+        /// contain capital letters).
         #[method_id(@__retain_semantics Other characters)]
         pub unsafe fn characters(&self) -> Retained<NSString>;
 
+        /// Returns: a string representing which characters would be inserted into a text field when this key is
+        /// pressed, not taking any held modifiers into account.
+        ///
+        /// for Latin based languages, expect this to be always in lowercase (unmodified meaning not
+        /// taking shift key into account). If only a modifier key was pressed, this property will contain an empty string.
         #[method_id(@__retain_semantics Other charactersIgnoringModifiers)]
         pub unsafe fn charactersIgnoringModifiers(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UICommand")]
+        /// Returns: a bitfield representing which modifier keys are currently being held in addition to this key.
         #[method(modifierFlags)]
         pub unsafe fn modifierFlags(&self) -> UIKeyModifierFlags;
 
         #[cfg(all(feature = "UIKeyConstants", feature = "objc2-core-foundation"))]
+        /// Returns: the raw HID usage code for the pressed key. See UIKeyConstants.h.
         #[method(keyCode)]
         pub unsafe fn keyCode(&self) -> UIKeyboardHIDUsage;
     }

@@ -39,7 +39,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkhttpcookiestore?language=objc)
+    /// A WKHTTPCookieStore object allows managing the HTTP cookies associated with a particular WKWebsiteDataStore.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkhttpcookiestore?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -54,6 +56,9 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Fetches all stored cookies.
+        ///
+        /// Parameter `completionHandler`: A block to invoke with the fetched cookies.
         #[method(getAllCookies:)]
         pub unsafe fn getAllCookies(
             &self,
@@ -61,6 +66,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Set a cookie.
+        ///
+        /// Parameter `cookie`: The cookie to set.
+        ///
+        /// Parameter `completionHandler`: A block to invoke once the cookie has been stored.
         #[method(setCookie:completionHandler:)]
         pub unsafe fn setCookie_completionHandler(
             &self,
@@ -69,6 +79,9 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Delete the specified cookie.
+        ///
+        /// Parameter `completionHandler`: A block to invoke once the cookie has been deleted.
         #[method(deleteCookie:completionHandler:)]
         pub unsafe fn deleteCookie_completionHandler(
             &self,
@@ -76,9 +89,18 @@ extern_methods!(
             completion_handler: Option<&block2::Block<dyn Fn()>>,
         );
 
+        /// Adds a WKHTTPCookieStoreObserver object with the cookie store.
+        ///
+        /// Parameter `observer`: The observer object to add.
+        ///
+        /// The observer is not retained by the receiver. It is your responsibility
+        /// to unregister the observer before it becomes invalid.
         #[method(addObserver:)]
         pub unsafe fn addObserver(&self, observer: &ProtocolObject<dyn WKHTTPCookieStoreObserver>);
 
+        /// Removes a WKHTTPCookieStoreObserver object from the cookie store.
+        ///
+        /// Parameter `observer`: The observer to remove.
         #[method(removeObserver:)]
         pub unsafe fn removeObserver(
             &self,
@@ -86,6 +108,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Set whether cookies are allowed.
+        ///
+        /// Parameter `policy`: A value indicating whether cookies are allowed. The default value is WKCookiePolicyAllow.
+        ///
+        /// Parameter `completionHandler`: A block to invoke once the cookie policy has been set.
         #[method(setCookiePolicy:completionHandler:)]
         pub unsafe fn setCookiePolicy_completionHandler(
             &self,
@@ -94,6 +121,9 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Get whether cookies are allowed.
+        ///
+        /// Parameter `completionHandler`: A block to invoke with the value of whether cookies are allowed.
         #[method(getCookiePolicy:)]
         pub unsafe fn getCookiePolicy(
             &self,

@@ -46,6 +46,7 @@ extern_methods!(
         #[method(preferredPresentationStyle)]
         pub unsafe fn preferredPresentationStyle(&self) -> UIWindowScenePresentationStyle;
 
+        /// Setter for [`preferredPresentationStyle`][Self::preferredPresentationStyle].
         #[deprecated = "Place use .placement with an appropriate UIWindowScenePlacement."]
         #[method(setPreferredPresentationStyle:)]
         pub unsafe fn setPreferredPresentationStyle(
@@ -54,10 +55,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIWindowScenePlacement")]
+        /// The preferred placement of the window scene to be activated. Scene placements influence how the
+        /// system positions the activated scene. A `nil` value indicates that the system should determine
+        /// the most appropriate placement to use.
         #[method_id(@__retain_semantics Other placement)]
         pub unsafe fn placement(&self) -> Option<Retained<UIWindowScenePlacement>>;
 
         #[cfg(feature = "UIWindowScenePlacement")]
+        /// Setter for [`placement`][Self::placement].
         #[method(setPlacement:)]
         pub unsafe fn setPlacement(&self, placement: Option<&UIWindowScenePlacement>);
     }

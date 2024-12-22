@@ -32,6 +32,7 @@ extern_methods!(
         pub unsafe fn transitionProgress(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`transitionProgress`][Self::transitionProgress].
         #[method(setTransitionProgress:)]
         pub unsafe fn setTransitionProgress(&self, transition_progress: CGFloat);
 

@@ -9,7 +9,22 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreduceunary?language=objc)
+    /// The MPSNNReduce performs a reduction operation
+    /// The reduction operations supported are:
+    /// - Reduce row min
+    /// - Reduce column min
+    /// - Reduce feature channels min
+    /// - Reduce row max
+    /// - Reduce column max
+    /// - Reduce feature channels max
+    /// - Reduce row mean
+    /// - Reduce column mean
+    /// - Reduce feature channels mean
+    /// - Reduce row sum
+    /// - Reduce column sum
+    /// - Reduce feature channels sum
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreduceunary?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -36,18 +51,28 @@ unsafe impl NSSecureCoding for MPSNNReduceUnary {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceUnary {
+        /// The source rectangle to use when reading data.
+        ///
+        /// A MTLRegion that indicates which part of the source to read. If the clipRectSource does not lie
+        /// completely within the source image, the intersection of the image bounds and clipRectSource will
+        /// be used. The clipRectSource replaces the MPSCNNKernel offset parameter for this filter.
+        /// The latter is ignored.   Default: MPSRectNoClip, use the entire source texture.
         #[method(clipRectSource)]
         pub unsafe fn clipRectSource(&self) -> MTLRegion;
 
+        /// Setter for [`clipRectSource`][Self::clipRectSource].
         #[method(setClipRectSource:)]
         pub unsafe fn setClipRectSource(&self, clip_rect_source: MTLRegion);
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Since the clipRectSource replaces the MPSCNNKernel offset parameter for this filter,
+        /// this property is deprecated..
         #[deprecated]
         #[method(offset)]
         pub unsafe fn offset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`offset`][Self::offset].
         #[deprecated]
         #[method(setOffset:)]
         pub unsafe fn setOffset(&self, offset: MPSOffset);
@@ -64,6 +89,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceUnary {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -77,6 +115,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceUnary {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -98,7 +144,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowmin?language=objc)
+    /// The MPSNNReduceRowMin performs a reduction operation returning the mininmum value for each row of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowmin?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -125,12 +173,26 @@ unsafe impl NSSecureCoding for MPSNNReduceRowMin {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceRowMin {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceRowMin object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceRowMin object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -144,6 +206,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceRowMin {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -165,7 +235,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnmin?language=objc)
+    /// The MPSNNReduceColumnMin performs a reduction operation returning the mininmum value for each column of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnmin?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -192,12 +264,26 @@ unsafe impl NSSecureCoding for MPSNNReduceColumnMin {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceColumnMin {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceColumnMin object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceColumnMin object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -211,6 +297,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceColumnMin {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -232,7 +326,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmin?language=objc)
+    /// The MPSNNReduceFeatureChannelsMin performs a reduction operation returning the mininmum value for feature channels of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmin?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -259,12 +355,26 @@ unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsMin {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsMin {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceFeatureChannelsMin object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceFeatureChannelsMin object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -278,6 +388,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsMin {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -299,7 +417,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmin?language=objc)
+    /// The MPSNNReduceFeatureChannelsArgumentMin returns the argument index that is the
+    /// location of the minimum value for feature channels of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmin?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -326,12 +447,26 @@ unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsArgumentMin {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsArgumentMin {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceFeatureChannelsArgumentMin object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceFeatureChannelsArgumentMin object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -345,6 +480,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsArgumentMin {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -366,7 +509,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowmax?language=objc)
+    /// The MPSNNReduceRowMax performs a reduction operation returning the maximum value for each row of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowmax?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -393,12 +538,26 @@ unsafe impl NSSecureCoding for MPSNNReduceRowMax {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceRowMax {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceRowMax object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceRowMax object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -412,6 +571,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceRowMax {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -433,7 +600,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnmax?language=objc)
+    /// The MPSNNReduceColumnMax performs a reduction operation returning the maximum value for each column of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnmax?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -460,12 +629,26 @@ unsafe impl NSSecureCoding for MPSNNReduceColumnMax {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceColumnMax {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceColumnMax object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceColumnMax object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -479,6 +662,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceColumnMax {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -500,7 +691,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmax?language=objc)
+    /// The MPSNNReduceFeatureChannelsMax performs a reduction operation returning the maximum value for feature channels of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmax?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -527,12 +720,26 @@ unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsMax {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsMax {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceFeatureChannelsMax object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceFeatureChannelsMax object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -546,6 +753,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsMax {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -567,7 +782,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmax?language=objc)
+    /// The MPSNNReduceFeatureChannelsArgumentMax performs returns the argument index that is the
+    /// location of the maximum value for feature channels of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmax?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -594,12 +812,26 @@ unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsArgumentMax {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsArgumentMax {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceFeatureChannelsArgumentMax object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceFeatureChannelsArgumentMax object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -613,6 +845,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsArgumentMax {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -634,7 +874,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowmean?language=objc)
+    /// The MPSNNReduceRowMean performs a reduction operation returning the mean value for each row of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowmean?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -661,12 +903,26 @@ unsafe impl NSSecureCoding for MPSNNReduceRowMean {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceRowMean {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceRowMean object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceRowMean object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -680,6 +936,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceRowMean {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -701,7 +965,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnmean?language=objc)
+    /// The MPSNNReduceColumnMean performs a reduction operation returning the mean value for each column of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnmean?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -728,12 +994,26 @@ unsafe impl NSSecureCoding for MPSNNReduceColumnMean {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceColumnMean {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceColumnMean object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceColumnMean object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -747,6 +1027,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceColumnMean {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -768,7 +1056,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmean?language=objc)
+    /// The MPSNNReduceFeatureChannelsMean performs a reduction operation returning the mean value for each column of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmean?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -795,12 +1085,26 @@ unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsMean {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsMean {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceFeatureChannelsMean object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceFeatureChannelsMean object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -814,6 +1118,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsMean {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -835,7 +1147,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowsum?language=objc)
+    /// The MPSNNReduceRowSum performs a reduction operation returning the sum for each row of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowsum?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -862,12 +1176,26 @@ unsafe impl NSSecureCoding for MPSNNReduceRowSum {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceRowSum {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceRowSum object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceRowSum object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -881,6 +1209,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceRowSum {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -902,7 +1238,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnsum?language=objc)
+    /// The MPSNNReduceColumnSum performs a reduction operation returning the sum for each column of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnsum?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -929,12 +1267,26 @@ unsafe impl NSSecureCoding for MPSNNReduceColumnSum {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceColumnSum {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceColumnSum object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceColumnSum object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -948,6 +1300,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceColumnSum {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -969,7 +1329,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelssum?language=objc)
+    /// The MPSNNReduceFeatureChannelsSum performs a reduction operation returning the sum for each column of an image
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelssum?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -996,18 +1358,37 @@ unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsSum {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsSum {
+        /// The scale factor to apply to each feature channel value
+        ///
+        /// Each feature channel is multiplied by the weight value to compute a weighted sum or mean across feature channels
+        /// The default value is 1.0.
         #[method(weight)]
         pub unsafe fn weight(&self) -> c_float;
 
+        /// Setter for [`weight`][Self::weight].
         #[method(setWeight:)]
         pub unsafe fn setWeight(&self, weight: c_float);
 
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceFeatureChannelsSum object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSNNReduceFeatureChannelsSum object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1021,6 +1402,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsSum {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1042,7 +1431,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducebinary?language=objc)
+    /// The MPSNNReduce performs a reduction operation
+    /// The reduction operations supported are:
+    /// - Reduce feature channels mean
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducebinary?language=objc)
     #[unsafe(super(MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -1069,34 +1462,60 @@ unsafe impl NSSecureCoding for MPSNNReduceBinary {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceBinary {
+        /// The source rectangle to use when reading data from primary source
+        ///
+        /// A MTLRegion that indicates which part of the primary source to read. If the clipRectPrimarySource does not lie
+        /// completely within the primary source image, the intersection of the image bounds and clipRectPrimarySource will
+        /// be used. The primarySourceClipRect replaces the MPSBinaryImageKernel primaryOffset parameter for this filter.
+        /// The latter is ignored.   Default: MPSRectNoClip, use the entire source texture.
+        ///
+        /// The clipRect specified in MPSBinaryImageKernel is used to control the origin in the destination texture
+        /// where the min, max values are written.  The clipRect.width must be >=2.  The clipRect.height must be >= 1.
         #[method(primarySourceClipRect)]
         pub unsafe fn primarySourceClipRect(&self) -> MTLRegion;
 
+        /// Setter for [`primarySourceClipRect`][Self::primarySourceClipRect].
         #[method(setPrimarySourceClipRect:)]
         pub unsafe fn setPrimarySourceClipRect(&self, primary_source_clip_rect: MTLRegion);
 
+        /// The source rectangle to use when reading data from secondary source
+        ///
+        /// A MTLRegion that indicates which part of the secondary source to read. If the clipRectSecondarySource does not lie
+        /// completely within the secondary source image, the intersection of the image bounds and clipRectSecondarySource will
+        /// be used. The secondarySourceClipRect replaces the MPSBinaryImageKernel secondaryOffset parameter for this filter.
+        /// The latter is ignored.   Default: MPSRectNoClip, use the entire source texture.
+        ///
+        /// The clipRect specified in MPSBinaryImageKernel is used to control the origin in the destination texture
+        /// where the min, max values are written.  The clipRect.width must be >=2.  The clipRect.height must be >= 1.
         #[method(secondarySourceClipRect)]
         pub unsafe fn secondarySourceClipRect(&self) -> MTLRegion;
 
+        /// Setter for [`secondarySourceClipRect`][Self::secondarySourceClipRect].
         #[method(setSecondarySourceClipRect:)]
         pub unsafe fn setSecondarySourceClipRect(&self, secondary_source_clip_rect: MTLRegion);
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Since the clipRectSource replaces the MPSCNNKernel offset parameter for this filter,
+        /// this property is deprecated..
         #[deprecated]
         #[method(primaryOffset)]
         pub unsafe fn primaryOffset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`primaryOffset`][Self::primaryOffset].
         #[deprecated]
         #[method(setPrimaryOffset:)]
         pub unsafe fn setPrimaryOffset(&self, primary_offset: MPSOffset);
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Since the clipRectSource replaces the MPSCNNKernel offset parameter for this filter,
+        /// this property is deprecated..
         #[deprecated]
         #[method(secondaryOffset)]
         pub unsafe fn secondaryOffset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`secondaryOffset`][Self::secondaryOffset].
         #[deprecated]
         #[method(setSecondaryOffset:)]
         pub unsafe fn setSecondaryOffset(&self, secondary_offset: MPSOffset);
@@ -1113,6 +1532,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNBinaryKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceBinary {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1126,6 +1558,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceBinary {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1174,12 +1614,26 @@ unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsAndWeightsMean {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsAndWeightsMean {
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceFeatureChannelsAndWeightsMean object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSCNNPooling object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1193,6 +1647,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsAndWeightsMean {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1241,15 +1703,32 @@ unsafe impl NSSecureCoding for MPSNNReduceFeatureChannelsAndWeightsSum {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsAndWeightsSum {
+        /// A boolean to indicate whether the reduction should perform a weighted sum of feature channels with non-zero weights
+        ///
+        /// If false, computes a dot product of the feature channels and weights.
+        /// If true, computes a dot product of the feature channels and weights divided by the number of non-zero weights
         #[method(doWeightedSumByNonZeroWeights)]
         pub unsafe fn doWeightedSumByNonZeroWeights(&self) -> bool;
 
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceFeatureChannelsAndWeightsMean object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Specifies information to apply the reduction operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `doWeightedSumByNonZeroWeights`: A boolean to indicate whether to compute a weighted sum or
+        /// weighted sum divided by the number of non-zero weights
+        ///
+        /// Returns: A valid MPSNNReduceFeatureChannelsAndWeightsSum object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:doWeightedSumByNonZeroWeights:)]
         pub unsafe fn initWithDevice_doWeightedSumByNonZeroWeights(
             this: Allocated<Self>,
@@ -1257,6 +1736,15 @@ extern_methods!(
             do_weighted_sum_by_non_zero_weights: bool,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSCNNPooling object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1270,6 +1758,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReduceFeatureChannelsAndWeightsSum {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1291,7 +1787,21 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation?language=objc)
+    /// The MPSNNLocalCorrelation filter computes the correlation between two images locally with a
+    /// varying offset on x-y plane between the two source images (controlled by the window and
+    /// stride properties) and the end result is summed over the feature channels. The results are
+    /// stored in the different feature channels of the destination image, ordered such that the offset
+    /// in the x direction is the faster running index.
+    ///
+    /// Given two images A and B, the output image has (2*windowInX + 1)*(2*windowInY + 1)
+    /// feature channels, with each feature channel computed as:
+    /// O(x, y, f(m, n)) = sum_z{A(x, y, z) * B(x + M[m], y + N[n], z)}
+    /// where m runs from {0, 1, ... , (2*windowInX)}, n runs from {0, 1, ... , (2*windowInY)},
+    /// f(m, n) = n * (2*windowInY + 1) + m,
+    /// M = {-windowInX*strideInX, (-windowInX + 1)*strideInX,  ... 0 ... , (windowInX - 1)*strideInX, windowInX*strideInX},
+    /// N = {-windowInY*strideInY, (-windowInY + 1)*strideInY,  ... 0 ... , (windowInY - 1)*strideInY, windowInX*strideInY}
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation?language=objc)
     #[unsafe(super(MPSNNReduceBinary, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -1318,36 +1828,72 @@ unsafe impl NSSecureCoding for MPSNNLocalCorrelation {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNLocalCorrelation {
+        /// Specifies a symmetric window around 0 for offsetting the secondary source in the x dimension.
+        ///
+        /// The default value for windowInX is 0.
         #[method(windowInX)]
         pub unsafe fn windowInX(&self) -> NSUInteger;
 
+        /// Setter for [`windowInX`][Self::windowInX].
         #[method(setWindowInX:)]
         pub unsafe fn setWindowInX(&self, window_in_x: NSUInteger);
 
+        /// Specifies a symmetric window around 0 for offsetting the secondary source in the y dimension.
+        ///
+        /// The default value for windowInY is 0.
         #[method(windowInY)]
         pub unsafe fn windowInY(&self) -> NSUInteger;
 
+        /// Setter for [`windowInY`][Self::windowInY].
         #[method(setWindowInY:)]
         pub unsafe fn setWindowInY(&self, window_in_y: NSUInteger);
 
+        /// Specifies the stride for the offset in the x dimension.
+        ///
+        /// strideInX must be > 0. The default value for strideInX is 1.
         #[method(strideInX)]
         pub unsafe fn strideInX(&self) -> NSUInteger;
 
+        /// Setter for [`strideInX`][Self::strideInX].
         #[method(setStrideInX:)]
         pub unsafe fn setStrideInX(&self, stride_in_x: NSUInteger);
 
+        /// Specifies the stride for the offset in the y dimension.
+        ///
+        /// strideInY must be > 0. The default value for strideInY is 1.
         #[method(strideInY)]
         pub unsafe fn strideInY(&self) -> NSUInteger;
 
+        /// Setter for [`strideInY`][Self::strideInY].
         #[method(setStrideInY:)]
         pub unsafe fn setStrideInY(&self, stride_in_y: NSUInteger);
 
+        /// Initialize the MPSNNLocalCorrelation filter with default property values.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReduceLocalCorrelation object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Specifies information to apply the local correlation operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `windowInX`: Specifies a symmetric window around 0 for offsetting
+        /// the secondary source in the x dimension.
+        ///
+        /// Parameter `windowInY`: Specifies a symmetric window around 0 for offsetting
+        /// the secondary source in the y dimension.
+        ///
+        /// Parameter `strideInX`: Specifies the stride for the offset in the x dimension.
+        ///
+        /// Parameter `strideInY`: Specifies the stride for the offset in the y dimension.
+        ///
+        /// Returns: A valid MPSNNReduceLocalCorrelation object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:windowInX:windowInY:strideInX:strideInY:)]
         pub unsafe fn initWithDevice_windowInX_windowInY_strideInX_strideInY(
             this: Allocated<Self>,
@@ -1358,6 +1904,15 @@ extern_methods!(
             stride_in_y: NSUInteger,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSCNNPooling
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSCNNPooling
+        ///
+        /// Returns: A new MPSCNNPooling object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1371,6 +1926,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNLocalCorrelation {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

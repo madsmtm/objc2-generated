@@ -7,7 +7,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznetworkdevice?language=objc)
+    /// Class representing a network device in a virtual machine.
+    ///
+    /// VZNetworkDevice should not be instantiated directly.
+    ///
+    /// Network devices are first configured on the VZVirtualMachineConfiguration through a subclass of VZNetworkDeviceConfiguration.
+    /// When a VZVirtualMachine is created from the configuration, the network devices are available through the VZVirtualMachine.networkDevices property.
+    ///
+    ///
+    /// See: VZNetworkDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznetworkdevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZNetworkDevice;
@@ -24,10 +34,18 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZNetworkDeviceAttachment")]
+        /// The network attachment that's currently connected to this network device.
+        ///
+        /// Setting this property will result in an attempt to change the network device attachment which may fail, in which case
+        /// the -[VZVirtualMachineDelegate virtualMachine:networkDevice:attachmentWasDisconnectedWithError:] will be invoked and this property
+        /// will be set to nil.
+        ///
+        /// This property may change at any time while the VM is running based on the state of the host network.
         #[method_id(@__retain_semantics Other attachment)]
         pub unsafe fn attachment(&self) -> Option<Retained<VZNetworkDeviceAttachment>>;
 
         #[cfg(feature = "VZNetworkDeviceAttachment")]
+        /// Setter for [`attachment`][Self::attachment].
         #[method(setAttachment:)]
         pub unsafe fn setAttachment(&self, attachment: Option<&VZNetworkDeviceAttachment>);
     }

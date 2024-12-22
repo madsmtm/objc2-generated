@@ -6,7 +6,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicecursor?language=objc)
+    /// A cursor is a Direction Pad that has its axis extended from [-1; 1] to [width; height] range
+    /// Up, down, left, right allows to use mouse to simulate DirectionaPad or Thumbstick since values are normalized for these elements
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicecursor?language=objc)
     #[unsafe(super(GCControllerDirectionPad, GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]

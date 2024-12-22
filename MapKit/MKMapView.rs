@@ -115,6 +115,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn MKMapViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn MKMapViewDelegate>>);
 
@@ -124,6 +125,7 @@ extern_methods!(
         pub unsafe fn mapType(&self) -> MKMapType;
 
         #[cfg(feature = "MKTypes")]
+        /// Setter for [`mapType`][Self::mapType].
         #[deprecated]
         #[method(setMapType:)]
         pub unsafe fn setMapType(&self, map_type: MKMapType);
@@ -133,6 +135,7 @@ extern_methods!(
         pub unsafe fn preferredConfiguration(&self) -> Retained<MKMapConfiguration>;
 
         #[cfg(feature = "MKMapConfiguration")]
+        /// Setter for [`preferredConfiguration`][Self::preferredConfiguration].
         #[method(setPreferredConfiguration:)]
         pub unsafe fn setPreferredConfiguration(
             &self,
@@ -144,6 +147,7 @@ extern_methods!(
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
+        /// Setter for [`region`][Self::region].
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
@@ -156,6 +160,7 @@ extern_methods!(
         pub unsafe fn centerCoordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "objc2-core-location")]
+        /// Setter for [`centerCoordinate`][Self::centerCoordinate].
         #[method(setCenterCoordinate:)]
         pub unsafe fn setCenterCoordinate(&self, center_coordinate: CLLocationCoordinate2D);
 
@@ -176,6 +181,7 @@ extern_methods!(
         pub unsafe fn visibleMapRect(&self) -> MKMapRect;
 
         #[cfg(feature = "MKGeometry")]
+        /// Setter for [`visibleMapRect`][Self::visibleMapRect].
         #[method(setVisibleMapRect:)]
         pub unsafe fn setVisibleMapRect(&self, visible_map_rect: MKMapRect);
 
@@ -209,6 +215,7 @@ extern_methods!(
         pub unsafe fn camera(&self) -> Retained<MKMapCamera>;
 
         #[cfg(feature = "MKMapCamera")]
+        /// Setter for [`camera`][Self::camera].
         #[method(setCamera:)]
         pub unsafe fn setCamera(&self, camera: &MKMapCamera);
 
@@ -221,6 +228,7 @@ extern_methods!(
         pub unsafe fn cameraZoomRange(&self) -> Retained<MKMapCameraZoomRange>;
 
         #[cfg(feature = "MKMapCameraZoomRange")]
+        /// Setter for [`cameraZoomRange`][Self::cameraZoomRange].
         #[method(setCameraZoomRange:)]
         pub unsafe fn setCameraZoomRange(&self, camera_zoom_range: Option<&MKMapCameraZoomRange>);
 
@@ -237,6 +245,7 @@ extern_methods!(
         pub unsafe fn cameraBoundary(&self) -> Option<Retained<MKMapCameraBoundary>>;
 
         #[cfg(feature = "MKMapCameraBoundary")]
+        /// Setter for [`cameraBoundary`][Self::cameraBoundary].
         #[method(setCameraBoundary:)]
         pub unsafe fn setCameraBoundary(&self, camera_boundary: Option<&MKMapCameraBoundary>);
 
@@ -291,30 +300,35 @@ extern_methods!(
         #[method(isZoomEnabled)]
         pub unsafe fn isZoomEnabled(&self) -> bool;
 
+        /// Setter for [`isZoomEnabled`][Self::isZoomEnabled].
         #[method(setZoomEnabled:)]
         pub unsafe fn setZoomEnabled(&self, zoom_enabled: bool);
 
         #[method(isScrollEnabled)]
         pub unsafe fn isScrollEnabled(&self) -> bool;
 
+        /// Setter for [`isScrollEnabled`][Self::isScrollEnabled].
         #[method(setScrollEnabled:)]
         pub unsafe fn setScrollEnabled(&self, scroll_enabled: bool);
 
         #[method(isRotateEnabled)]
         pub unsafe fn isRotateEnabled(&self) -> bool;
 
+        /// Setter for [`isRotateEnabled`][Self::isRotateEnabled].
         #[method(setRotateEnabled:)]
         pub unsafe fn setRotateEnabled(&self, rotate_enabled: bool);
 
         #[method(isPitchEnabled)]
         pub unsafe fn isPitchEnabled(&self) -> bool;
 
+        /// Setter for [`isPitchEnabled`][Self::isPitchEnabled].
         #[method(setPitchEnabled:)]
         pub unsafe fn setPitchEnabled(&self, pitch_enabled: bool);
 
         #[method(showsUserTrackingButton)]
         pub unsafe fn showsUserTrackingButton(&self) -> bool;
 
+        /// Setter for [`showsUserTrackingButton`][Self::showsUserTrackingButton].
         #[method(setShowsUserTrackingButton:)]
         pub unsafe fn setShowsUserTrackingButton(&self, shows_user_tracking_button: bool);
 
@@ -323,30 +337,35 @@ extern_methods!(
         pub unsafe fn pitchButtonVisibility(&self) -> MKFeatureVisibility;
 
         #[cfg(feature = "MKTypes")]
+        /// Setter for [`pitchButtonVisibility`][Self::pitchButtonVisibility].
         #[method(setPitchButtonVisibility:)]
         pub unsafe fn setPitchButtonVisibility(&self, pitch_button_visibility: MKFeatureVisibility);
 
         #[method(showsPitchControl)]
         pub unsafe fn showsPitchControl(&self) -> bool;
 
+        /// Setter for [`showsPitchControl`][Self::showsPitchControl].
         #[method(setShowsPitchControl:)]
         pub unsafe fn setShowsPitchControl(&self, shows_pitch_control: bool);
 
         #[method(showsZoomControls)]
         pub unsafe fn showsZoomControls(&self) -> bool;
 
+        /// Setter for [`showsZoomControls`][Self::showsZoomControls].
         #[method(setShowsZoomControls:)]
         pub unsafe fn setShowsZoomControls(&self, shows_zoom_controls: bool);
 
         #[method(showsCompass)]
         pub unsafe fn showsCompass(&self) -> bool;
 
+        /// Setter for [`showsCompass`][Self::showsCompass].
         #[method(setShowsCompass:)]
         pub unsafe fn setShowsCompass(&self, shows_compass: bool);
 
         #[method(showsScale)]
         pub unsafe fn showsScale(&self) -> bool;
 
+        /// Setter for [`showsScale`][Self::showsScale].
         #[method(setShowsScale:)]
         pub unsafe fn setShowsScale(&self, shows_scale: bool);
 
@@ -356,6 +375,7 @@ extern_methods!(
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
+        /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
         #[deprecated]
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
@@ -367,6 +387,7 @@ extern_methods!(
         #[method(showsPointsOfInterest)]
         pub unsafe fn showsPointsOfInterest(&self) -> bool;
 
+        /// Setter for [`showsPointsOfInterest`][Self::showsPointsOfInterest].
         #[deprecated = "Use pointOfInterestFilter"]
         #[method(setShowsPointsOfInterest:)]
         pub unsafe fn setShowsPointsOfInterest(&self, shows_points_of_interest: bool);
@@ -375,6 +396,7 @@ extern_methods!(
         #[method(showsBuildings)]
         pub unsafe fn showsBuildings(&self) -> bool;
 
+        /// Setter for [`showsBuildings`][Self::showsBuildings].
         #[deprecated = "None"]
         #[method(setShowsBuildings:)]
         pub unsafe fn setShowsBuildings(&self, shows_buildings: bool);
@@ -383,6 +405,7 @@ extern_methods!(
         #[method(showsTraffic)]
         pub unsafe fn showsTraffic(&self) -> bool;
 
+        /// Setter for [`showsTraffic`][Self::showsTraffic].
         #[deprecated]
         #[method(setShowsTraffic:)]
         pub unsafe fn setShowsTraffic(&self, shows_traffic: bool);
@@ -390,6 +413,7 @@ extern_methods!(
         #[method(showsUserLocation)]
         pub unsafe fn showsUserLocation(&self) -> bool;
 
+        /// Setter for [`showsUserLocation`][Self::showsUserLocation].
         #[method(setShowsUserLocation:)]
         pub unsafe fn setShowsUserLocation(&self, shows_user_location: bool);
 
@@ -400,6 +424,7 @@ extern_methods!(
         #[method(userTrackingMode)]
         pub unsafe fn userTrackingMode(&self) -> MKUserTrackingMode;
 
+        /// Setter for [`userTrackingMode`][Self::userTrackingMode].
         #[method(setUserTrackingMode:)]
         pub unsafe fn setUserTrackingMode(&self, user_tracking_mode: MKUserTrackingMode);
 
@@ -494,6 +519,7 @@ extern_methods!(
         ) -> Retained<NSArray<ProtocolObject<dyn MKAnnotation>>>;
 
         #[cfg(feature = "MKAnnotation")]
+        /// Setter for [`selectedAnnotations`][Self::selectedAnnotations].
         #[method(setSelectedAnnotations:)]
         pub unsafe fn setSelectedAnnotations(
             &self,

@@ -7,7 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacaddress?language=objc)
+    /// VZMACAddress represents a media access control address (MAC address), the 48-bit ethernet address.
+    ///
+    /// The easiest way to obtain a MAC address is with +[VZMACAddress randomLocallyAdministeredAddress]. The method
+    /// returns a valid local MAC address typically used with network interfaces.
+    ///
+    /// See: VZNetworkDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacaddress?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMACAddress;
@@ -29,30 +36,52 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initialize the VZMACAddress from a string representation of a MAC address.
+        ///
+        /// Parameter `string`: The string should be formatted representing the 6 bytes in hexadecimal separated by a colon character.
+        /// e.g. "01:23:45:ab:cd:ef"
+        ///
+        /// The alphabetical characters can appear lowercase or uppercase.
+        ///
+        /// Returns: A VZMACAddress or nil if the string is not formatted correctly.
         #[method_id(@__retain_semantics Init initWithString:)]
         pub unsafe fn initWithString(
             this: Allocated<Self>,
             string: &NSString,
         ) -> Option<Retained<Self>>;
 
+        /// Create a valid, random, unicast, locally administered address.
+        ///
+        /// The generated address is not guaranteed to be unique.
         #[method_id(@__retain_semantics Other randomLocallyAdministeredAddress)]
         pub unsafe fn randomLocallyAdministeredAddress() -> Retained<Self>;
 
+        /// The address represented as a string.
+        ///
+        /// The 6 bytes are represented in hexadecimal form, separated by a colon character.
+        /// Alphabetical characters are lowercase.
+        ///
+        /// The address is compatible with the parameter of -[VZMACAddress initWithString:].
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Retained<NSString>;
 
+        /// True if the address is the broadcast address, false otherwise.
         #[method(isBroadcastAddress)]
         pub unsafe fn isBroadcastAddress(&self) -> bool;
 
+        /// True if the address is a multicast address, false otherwise.
         #[method(isMulticastAddress)]
         pub unsafe fn isMulticastAddress(&self) -> bool;
 
+        /// True if the address is a unicast address, false otherwise.
         #[method(isUnicastAddress)]
         pub unsafe fn isUnicastAddress(&self) -> bool;
 
+        /// True if the address is a locally administered addresses (LAA), false otherwise.
         #[method(isLocallyAdministeredAddress)]
         pub unsafe fn isLocallyAdministeredAddress(&self) -> bool;
 
+        /// True if the address is a universally administered addresses (UAA), false otherwise.
         #[method(isUniversallyAdministeredAddress)]
         pub unsafe fn isUniversallyAdministeredAddress(&self) -> bool;
     }

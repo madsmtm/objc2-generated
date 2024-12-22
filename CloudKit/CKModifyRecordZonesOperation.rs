@@ -37,6 +37,7 @@ extern_methods!(
         pub unsafe fn recordZonesToSave(&self) -> Option<Retained<NSArray<CKRecordZone>>>;
 
         #[cfg(feature = "CKRecordZone")]
+        /// Setter for [`recordZonesToSave`][Self::recordZonesToSave].
         #[method(setRecordZonesToSave:)]
         pub unsafe fn setRecordZonesToSave(
             &self,
@@ -48,6 +49,7 @@ extern_methods!(
         pub unsafe fn recordZoneIDsToDelete(&self) -> Option<Retained<NSArray<CKRecordZoneID>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// Setter for [`recordZoneIDsToDelete`][Self::recordZoneIDsToDelete].
         #[method(setRecordZoneIDsToDelete:)]
         pub unsafe fn setRecordZoneIDsToDelete(
             &self,
@@ -59,6 +61,13 @@ extern_methods!(
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
+        /// Called on success or failure of a record zone save
+        ///
+        ///
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perRecordZoneSaveBlock)]
         pub unsafe fn perRecordZoneSaveBlock(
             &self,
@@ -69,6 +78,7 @@ extern_methods!(
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
+        /// Setter for [`perRecordZoneSaveBlock`][Self::perRecordZoneSaveBlock].
         #[method(setPerRecordZoneSaveBlock:)]
         pub unsafe fn setPerRecordZoneSaveBlock(
             &self,
@@ -78,12 +88,20 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
+        /// Called on success or failure of a record zone deletion
+        ///
+        ///
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perRecordZoneDeleteBlock)]
         pub unsafe fn perRecordZoneDeleteBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordZoneID>, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
+        /// Setter for [`perRecordZoneDeleteBlock`][Self::perRecordZoneDeleteBlock].
         #[method(setPerRecordZoneDeleteBlock:)]
         pub unsafe fn setPerRecordZoneDeleteBlock(
             &self,
@@ -97,6 +115,26 @@ extern_methods!(
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
+        /// This block is called when the operation completes.
+        ///
+        ///
+        /// The
+        ///
+        /// ```text
+        ///  -[NSOperation completionBlock]
+        /// ```
+        ///
+        /// will also be called if both are set.
+        /// If the error is
+        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of recordZoneIDs to errors keyed off of
+        /// `CKPartialErrorsByItemIDKey.``savedRecordZones,``deletedRecordZoneIDs`and any
+        /// `CKPartialErrorsByItemIDKey`errors are repeats of the data sent back in previous
+        /// `perRecordZoneSaveBlock`and
+        /// `perRecordZoneDeleteBlock`invocations
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(modifyRecordZonesCompletionBlock)]
         pub unsafe fn modifyRecordZonesCompletionBlock(
             &self,
@@ -109,6 +147,7 @@ extern_methods!(
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
+        /// Setter for [`modifyRecordZonesCompletionBlock`][Self::modifyRecordZonesCompletionBlock].
         #[method(setModifyRecordZonesCompletionBlock:)]
         pub unsafe fn setModifyRecordZonesCompletionBlock(
             &self,

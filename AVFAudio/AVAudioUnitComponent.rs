@@ -66,7 +66,10 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent?language=objc)
+    /// Provides details about an audio unit such as type, subtype, manufacturer, location etc. User
+    /// tags can be added to the AVAudioUnitComponent which can be queried later for display.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioUnitComponent;
@@ -76,72 +79,96 @@ unsafe impl NSObjectProtocol for AVAudioUnitComponent {}
 
 extern_methods!(
     unsafe impl AVAudioUnitComponent {
+        /// the name of an audio component
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// standard audio component types returned as strings
         #[method_id(@__retain_semantics Other typeName)]
         pub unsafe fn typeName(&self) -> Retained<NSString>;
 
+        /// localized string of typeName for display
         #[method_id(@__retain_semantics Other localizedTypeName)]
         pub unsafe fn localizedTypeName(&self) -> Retained<NSString>;
 
+        /// the manufacturer name, extracted from the manufacturer key defined in Info.plist dictionary
         #[method_id(@__retain_semantics Other manufacturerName)]
         pub unsafe fn manufacturerName(&self) -> Retained<NSString>;
 
+        /// version number comprised of a hexadecimal number with major, minor, dot-release format: 0xMMMMmmDD
         #[method(version)]
         pub unsafe fn version(&self) -> NSUInteger;
 
+        /// version number as string
         #[method_id(@__retain_semantics Other versionString)]
         pub unsafe fn versionString(&self) -> Retained<NSString>;
 
+        /// URL representing location of component
         #[deprecated]
         #[method_id(@__retain_semantics Other componentURL)]
         pub unsafe fn componentURL(&self) -> Option<Retained<NSURL>>;
 
+        /// NSArray of NSNumbers each of which corresponds to one of the constants in Mach-O Architecture in NSBundle Class Reference
         #[method_id(@__retain_semantics Other availableArchitectures)]
         pub unsafe fn availableArchitectures(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// On OSX, YES if the AudioComponent can be loaded into a sandboxed process otherwise NO.
+        /// On iOS, this is always YES.
         #[method(isSandboxSafe)]
         pub unsafe fn isSandboxSafe(&self) -> bool;
 
+        /// YES if AudioComponent has midi input, otherwise NO
         #[method(hasMIDIInput)]
         pub unsafe fn hasMIDIInput(&self) -> bool;
 
+        /// YES if AudioComponent has midi output, otherwise NO
         #[method(hasMIDIOutput)]
         pub unsafe fn hasMIDIOutput(&self) -> bool;
 
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// the audioComponent that can be used in AudioComponent APIs.
         #[method(audioComponent)]
         pub unsafe fn audioComponent(&self) -> AudioComponent;
 
+        /// User tags represent the tags from the current user.
         #[method_id(@__retain_semantics Other userTagNames)]
         pub unsafe fn userTagNames(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`userTagNames`][Self::userTagNames].
         #[method(setUserTagNames:)]
         pub unsafe fn setUserTagNames(&self, user_tag_names: &NSArray<NSString>);
 
+        /// represent the tags from the current user and the system tags defined by AudioComponent.
         #[method_id(@__retain_semantics Other allTagNames)]
         pub unsafe fn allTagNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// description of the audio component that can be used in AudioComponent APIs.
         #[method(audioComponentDescription)]
         pub unsafe fn audioComponentDescription(&self) -> AudioComponentDescription;
 
+        /// A URL that will specify the location of an icon file that can be used when presenting UI
+        /// for this audio component.
         #[method_id(@__retain_semantics Other iconURL)]
         pub unsafe fn iconURL(&self) -> Option<Retained<NSURL>>;
 
+        /// YES if the AudioComponent has passed the AU validation tests, otherwise NO
         #[method(passesAUVal)]
         pub unsafe fn passesAUVal(&self) -> bool;
 
+        /// YES if the AudioComponent provides custom view, otherwise NO
         #[method(hasCustomView)]
         pub unsafe fn hasCustomView(&self) -> bool;
 
+        /// A NSDictionary that contains information describing the capabilities of the AudioComponent.
+        /// The specific information depends on the type and the keys are defined in AudioUnitProperties.h
         #[method_id(@__retain_semantics Other configurationDictionary)]
         pub unsafe fn configurationDictionary(&self)
             -> Retained<NSDictionary<NSString, AnyObject>>;
 
+        /// returns YES if the AudioComponent supports the input/output channel configuration
         #[method(supportsNumberInputChannels:outputChannels:)]
         pub unsafe fn supportsNumberInputChannels_outputChannels(
             &self,
@@ -168,7 +195,24 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager?language=objc)
+    /// A singleton object that provides an easy way to find audio components that are
+    /// registered with the system.
+    ///
+    /// AVAudioUnitComponentManager provides methods to search and query various information about the
+    /// audio components without opening them.
+    ///
+    /// Currently audio components that are audio units can only be searched.
+    ///
+    /// The class also supports predefined system tags and arbitrary user tags. Each audio unit can be
+    /// tagged as part of its definition. Refer to AudioComponent.h for more details. AudioUnit Hosts
+    /// such as Logic or GarageBand can present groupings of audio units based on the tags.
+    ///
+    /// Searching for audio units can be done in various ways
+    /// - using a NSPredicate that contains search strings for tags or descriptions
+    /// - using a block to match on custom criteria
+    /// - using an AudioComponentDescription
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioUnitComponentManager;
@@ -178,15 +222,22 @@ unsafe impl NSObjectProtocol for AVAudioUnitComponentManager {}
 
 extern_methods!(
     unsafe impl AVAudioUnitComponentManager {
+        /// returns all tags associated with the current user as well as all system tags defined by
+        /// the audio unit(s).
         #[method_id(@__retain_semantics Other tagNames)]
         pub unsafe fn tagNames(&self) -> Retained<NSArray<NSString>>;
 
+        /// returns the localized standard system tags defined by the audio unit(s).
         #[method_id(@__retain_semantics Other standardLocalizedTagNames)]
         pub unsafe fn standardLocalizedTagNames(&self) -> Retained<NSArray<NSString>>;
 
         #[method_id(@__retain_semantics Other sharedAudioUnitComponentManager)]
         pub unsafe fn sharedAudioUnitComponentManager() -> Retained<Self>;
 
+        /// returns an array of AVAudioUnitComponent objects that match the search predicate.
+        ///
+        /// AudioComponent's information or tags can be used to build a search criteria.
+        /// For example, "typeName CONTAINS 'Effect'" or tags IN {'Sampler', 'MIDI'}"
         #[method_id(@__retain_semantics Other componentsMatchingPredicate:)]
         pub unsafe fn componentsMatchingPredicate(
             &self,
@@ -194,6 +245,11 @@ extern_methods!(
         ) -> Retained<NSArray<AVAudioUnitComponent>>;
 
         #[cfg(feature = "block2")]
+        /// returns an array of AVAudioUnitComponent objects that pass the user provided block method.
+        ///
+        /// For each AudioComponent found by the manager, the block method will be called. If the return
+        /// value is YES then the AudioComponent is added to the resulting array else it will excluded.
+        /// This gives more control to the block provider to filter out the components returned.
         #[method_id(@__retain_semantics Other componentsPassingTest:)]
         pub unsafe fn componentsPassingTest(
             &self,
@@ -204,6 +260,11 @@ extern_methods!(
 
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// returns an array of AVAudioUnitComponent objects that match the description.
+        ///
+        /// This method provides a mechanism to search for AudioComponents using AudioComponentDescription
+        /// structure. The type, subtype and manufacturer fields are used to search for audio units. A
+        /// value of 0 for any of these fields is a wildcard and returns the first match found.
         #[method_id(@__retain_semantics Other componentsMatchingDescription:)]
         pub unsafe fn componentsMatchingDescription(
             &self,
@@ -224,7 +285,20 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanagerregistrationschangednotification?language=objc)
+    /// A notification generated when AVAudioUnitComponentManager updates its list of components.
+    ///
+    /// Register for this notification on the shared AVAudioUnitComponentManager instance,
+    /// as follows:
+    ///
+    /// ```
+    /// [[NSNotificationCenter defaultCenter] addObserver: myObject
+    /// selector:
+    /// sel!(registrationsChanged:)
+    /// name:        AVAudioUnitComponentManagerRegistrationsChangedNotification
+    /// object:      [AVAudioUnitComponentManager sharedAudioUnitComponentManager]];
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanagerregistrationschangednotification?language=objc)
     pub static AVAudioUnitComponentManagerRegistrationsChangedNotification:
         &'static NSNotificationName;
 }

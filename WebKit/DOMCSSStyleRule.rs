@@ -54,6 +54,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selectorText)]
         pub unsafe fn selectorText(&self) -> Retained<NSString>;
 
+        /// Setter for [`selectorText`][Self::selectorText].
         #[deprecated]
         #[method(setSelectorText:)]
         pub unsafe fn setSelectorText(&self, selector_text: Option<&NSString>);

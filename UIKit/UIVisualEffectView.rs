@@ -84,6 +84,7 @@ extern_methods!(
         pub unsafe fn effect(&self) -> Option<Retained<UIVisualEffect>>;
 
         #[cfg(feature = "UIVisualEffect")]
+        /// Setter for [`effect`][Self::effect].
         #[method(setEffect:)]
         pub unsafe fn setEffect(&self, effect: Option<&UIVisualEffect>);
 

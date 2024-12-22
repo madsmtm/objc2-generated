@@ -11,7 +11,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice?language=objc)
+    /// The representation of a provided voice that is available for speech synthesis.
+    ///
+    /// `AVSpeechSynthesisProviderVoice`is distinct from
+    /// `AVSpeechSynthesisVoice,`in that it is a voice provided to the system by an
+    /// `AVSpeechSynthesisProviderAudioUnit.`An
+    /// `AVSpeechSynthesisProviderVoice`will surface as an
+    /// `AVSpeechSynthesisVoice`when using
+    /// `AVSpeechSynthesisVoice.speechVoices().`The quality will always be listed as
+    /// `.enhanced`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSpeechSynthesisProviderVoice;
@@ -35,41 +45,70 @@ unsafe impl NSSecureCoding for AVSpeechSynthesisProviderVoice {}
 
 extern_methods!(
     unsafe impl AVSpeechSynthesisProviderVoice {
+        /// The localized name of the voice
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// A unique identifier for the voice
+        ///
+        /// The recommended format is reverse domain notation.
+        /// Behavior is undefined if identifiers are not unique for all voices within a given extension.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
+        /// A set of BCP 47 codes identifying the languages this synthesizer is primarily used for.
+        ///
+        /// These languages are what a user would expect a synthesizer to fully support and be primarily used for.
         #[method_id(@__retain_semantics Other primaryLanguages)]
         pub unsafe fn primaryLanguages(&self) -> Retained<NSArray<NSString>>;
 
+        /// A superset of BCP 47 codes identifying the voice’s supported languages.
+        ///
+        /// These languages are what a user would expect a voice to be able to speak such that if the voice is given a multi-lingual phrase, it would be able to speak the entire phrase without a need to to switch voices. For example, a zh-CN voice could have
+        /// `["zh-CN"]`as its
+        /// `primaryLanguages,`but in
+        /// `supportedLanguages`have
+        /// `["zh-CN","en-US"]`indicating if it received "你好 means Hello", it would be able to speak the entire phrase.
         #[method_id(@__retain_semantics Other supportedLanguages)]
         pub unsafe fn supportedLanguages(&self) -> Retained<NSArray<NSString>>;
 
+        /// The size of the voice (optional)
+        ///
+        /// This reported size of the voice package on disk, in bytes. Defaults to 0.
         #[method(voiceSize)]
         pub unsafe fn voiceSize(&self) -> i64;
 
+        /// Setter for [`voiceSize`][Self::voiceSize].
         #[method(setVoiceSize:)]
         pub unsafe fn setVoiceSize(&self, voice_size: i64);
 
+        /// The voice version (optional)
+        ///
+        /// This is an optional property for bookkeeping. This value does not affect system behavior.
         #[method_id(@__retain_semantics Other version)]
         pub unsafe fn version(&self) -> Retained<NSString>;
 
+        /// Setter for [`version`][Self::version].
         #[method(setVersion:)]
         pub unsafe fn setVersion(&self, version: &NSString);
 
         #[cfg(feature = "AVSpeechSynthesis")]
+        /// The gender of the voice (optional)
         #[method(gender)]
         pub unsafe fn gender(&self) -> AVSpeechSynthesisVoiceGender;
 
         #[cfg(feature = "AVSpeechSynthesis")]
+        /// Setter for [`gender`][Self::gender].
         #[method(setGender:)]
         pub unsafe fn setGender(&self, gender: AVSpeechSynthesisVoiceGender);
 
+        /// The age of the voice in years (optional)
+        ///
+        /// This is an optional property that indicates the age of this voice, to be treated as a personality trait. Defaults to 0.
         #[method(age)]
         pub unsafe fn age(&self) -> NSInteger;
 
+        /// Setter for [`age`][Self::age].
         #[method(setAge:)]
         pub unsafe fn setAge(&self, age: NSInteger);
 
@@ -88,13 +127,22 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// A call that indicates that a new voice or set of voices is available, or no longer available, for system use.
+        ///
+        /// Call this method to indicate to the system that there has been change in the availability of the voices your application is providing to the system.
         #[method(updateSpeechVoices)]
         pub unsafe fn updateSpeechVoices();
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisproviderrequest?language=objc)
+    /// An
+    /// `AVSpeechSynthesisProviderRequest`gets delivered to an
+    /// `AVSpeechSynthesisProviderAudioUnit`in order to synthesize audio.
+    /// This is distinct from an
+    /// `AVSpeechUtterance,`which is a generic utterance to be spoken.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisproviderrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSpeechSynthesisProviderRequest;
@@ -118,9 +166,13 @@ unsafe impl NSSecureCoding for AVSpeechSynthesisProviderRequest {}
 
 extern_methods!(
     unsafe impl AVSpeechSynthesisProviderRequest {
+        /// The SSML representation of the text to be synthesized with the corresponding speech synthesis attributes for customization of pitch, rate, intonation, and more.
+        ///
+        /// See: https://www.w3.org/TR/speech-synthesis11/
         #[method_id(@__retain_semantics Other ssmlRepresentation)]
         pub unsafe fn ssmlRepresentation(&self) -> Retained<NSString>;
 
+        /// The voice to be used in this speech request
         #[method_id(@__retain_semantics Other voice)]
         pub unsafe fn voice(&self) -> Retained<AVSpeechSynthesisProviderVoice>;
 
@@ -139,7 +191,13 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideroutputblock?language=objc)
+/// A block of information that is relevant to the generation of speech synthesis.
+///
+/// Parameter `metadata`: An array of speech synthesis metadata
+///
+/// Parameter `speechRequest`: The speech request associated with the metadata
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideroutputblock?language=objc)
 #[cfg(all(feature = "AVSpeechSynthesis", feature = "block2"))]
 pub type AVSpeechSynthesisProviderOutputBlock = *mut block2::Block<
     dyn Fn(NonNull<NSArray<AVSpeechSynthesisMarker>>, NonNull<AVSpeechSynthesisProviderRequest>),
@@ -162,9 +220,14 @@ extern_methods!(
     #[cfg(feature = "objc2-audio-toolbox")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSpeechSynthesisProviderAudioUnit {
+        /// Returns the voices this audio unit has available and ready for synthesis.
+        ///
+        /// This method should fetch and return the voices ready to synthesize that a user can select from (usually through Settings).
+        /// Required for speech synthesizer audio unit extensions. An audio unit with a dynamic list of voices can override this property's getter to perform a more complex fetch.
         #[method_id(@__retain_semantics Other speechVoices)]
         pub unsafe fn speechVoices(&self) -> Retained<NSArray<AVSpeechSynthesisProviderVoice>>;
 
+        /// Setter for [`speechVoices`][Self::speechVoices].
         #[method(setSpeechVoices:)]
         pub unsafe fn setSpeechVoices(
             &self,
@@ -172,24 +235,37 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AVSpeechSynthesis", feature = "block2"))]
+        /// A property set by the host that is called by the audio unit to supply metadata for a speech request.
+        ///
+        /// A synthesizer should call this method when it has produced relevant data to the audio buffers it is sending back to the host. In some cases speech output may be delayed until these markers are delivered. For example, word highlighting depends on marker data from synthesizers in order to properly time which words are highlighted. Many speech synthesizers generate this information on the fly, while synthesizing the audio. The array of markers can reference future audio buffers that have yet to be delivered.
+        ///
+        /// There may be cases in which marker data is not fully known until further audio processing is done. In these cases, and other casers where marker data has changed, calling this block with marker data that contains perviously delivered audio buffer ranges will replace that audio buffer range's marker data, as it will be considered stale.
         #[method(speechSynthesisOutputMetadataBlock)]
         pub unsafe fn speechSynthesisOutputMetadataBlock(
             &self,
         ) -> AVSpeechSynthesisProviderOutputBlock;
 
         #[cfg(all(feature = "AVSpeechSynthesis", feature = "block2"))]
+        /// Setter for [`speechSynthesisOutputMetadataBlock`][Self::speechSynthesisOutputMetadataBlock].
         #[method(setSpeechSynthesisOutputMetadataBlock:)]
         pub unsafe fn setSpeechSynthesisOutputMetadataBlock(
             &self,
             speech_synthesis_output_metadata_block: AVSpeechSynthesisProviderOutputBlock,
         );
 
+        /// Sends a new speech request to be synthesized
+        ///
+        /// Sends a new speech request to the synthesizer to render. When the synthesizer audio unit is finished generating audio buffers for the speech request, it should indicate this within its internal render block,
+        /// `AUInternalRenderBlock,`specifically through the
+        /// `AudioUnitRenderActionFlags`flag
+        /// `kAudioOfflineUnitRenderAction_Complete.`
         #[method(synthesizeSpeechRequest:)]
         pub unsafe fn synthesizeSpeechRequest(
             &self,
             speech_request: &AVSpeechSynthesisProviderRequest,
         );
 
+        /// Informs the audio unit that the speech request job should be discarded.
         #[method(cancelSpeechRequest)]
         pub unsafe fn cancelSpeechRequest(&self);
     }
@@ -203,6 +279,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Designated initializer.
+        ///
+        /// Parameter `componentDescription`: A single AUAudioUnit subclass may implement multiple audio units, for example, an effect
+        /// that can also function as a generator, or a cluster of related effects. The component
+        /// description specifies the component which was instantiated.
+        ///
+        /// Parameter `options`: Options for loading the unit in-process or out-of-process.
+        ///
+        /// Parameter `outError`: Returned in the event of failure.
         #[method_id(@__retain_semantics Init initWithComponentDescription:options:error:_)]
         pub unsafe fn initWithComponentDescription_options_error(
             this: Allocated<Self>,
@@ -210,6 +295,7 @@ extern_methods!(
             options: AudioComponentInstantiationOptions,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// Convenience initializer (omits options).
         #[method_id(@__retain_semantics Init initWithComponentDescription:error:_)]
         pub unsafe fn initWithComponentDescription_error(
             this: Allocated<Self>,

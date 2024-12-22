@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzsocketdeviceconfiguration?language=objc)
+    /// Base class for a socket device configuration.
+    ///
+    /// VZSocketDeviceConfiguration should not be instantiated directly.
+    /// One of its subclasses like VZVirtioSocketDeviceConfiguration should be used instead.
+    ///
+    ///
+    /// See: VZVirtioSocketDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzsocketdeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZSocketDeviceConfiguration;

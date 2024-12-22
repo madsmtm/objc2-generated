@@ -81,6 +81,7 @@ extern_methods!(
         pub unsafe fn barStyle(&self) -> UIBarStyle;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`barStyle`][Self::barStyle].
         #[method(setBarStyle:)]
         pub unsafe fn setBarStyle(&self, bar_style: UIBarStyle);
 
@@ -89,12 +90,14 @@ extern_methods!(
         pub unsafe fn items(&self) -> Option<Retained<NSArray<UIBarButtonItem>>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        /// Setter for [`items`][Self::items].
         #[method(setItems:)]
         pub unsafe fn setItems(&self, items: Option<&NSArray<UIBarButtonItem>>);
 
         #[method(isTranslucent)]
         pub unsafe fn isTranslucent(&self) -> bool;
 
+        /// Setter for [`isTranslucent`][Self::isTranslucent].
         #[method(setTranslucent:)]
         pub unsafe fn setTranslucent(&self, translucent: bool);
 
@@ -111,6 +114,7 @@ extern_methods!(
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`tintColor`][Self::tintColor].
         #[method(setTintColor:)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
@@ -119,6 +123,7 @@ extern_methods!(
         pub unsafe fn barTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`barTintColor`][Self::barTintColor].
         #[method(setBarTintColor:)]
         pub unsafe fn setBarTintColor(&self, bar_tint_color: Option<&UIColor>);
 
@@ -155,26 +160,32 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
+        /// Describes the appearance attributes for the toolbar to use when it is displayed with its standard height.
         #[method_id(@__retain_semantics Other standardAppearance)]
         pub unsafe fn standardAppearance(&self) -> Retained<UIToolbarAppearance>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
+        /// Setter for [`standardAppearance`][Self::standardAppearance].
         #[method(setStandardAppearance:)]
         pub unsafe fn setStandardAppearance(&self, standard_appearance: &UIToolbarAppearance);
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
+        /// Describes the appearance attributes for the toolbar to use when it is displayed with its compact height. If not set, the standardAppearance will be used instead.
         #[method_id(@__retain_semantics Other compactAppearance)]
         pub unsafe fn compactAppearance(&self) -> Option<Retained<UIToolbarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
+        /// Setter for [`compactAppearance`][Self::compactAppearance].
         #[method(setCompactAppearance:)]
         pub unsafe fn setCompactAppearance(&self, compact_appearance: Option<&UIToolbarAppearance>);
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
+        /// Describes the appearance attributes for the toolbar to use at standard height when an observable scroll view is scrolled to the bottom. If not set, standardAppearance will be used instead.
         #[method_id(@__retain_semantics Other scrollEdgeAppearance)]
         pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UIToolbarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
+        /// Setter for [`scrollEdgeAppearance`][Self::scrollEdgeAppearance].
         #[method(setScrollEdgeAppearance:)]
         pub unsafe fn setScrollEdgeAppearance(
             &self,
@@ -182,10 +193,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
+        /// Describes the appearance attributes for the toolbar to use at compact height when an observable scroll view is scrolled to the bottom. If not set, will fall back to scrollEdgeAppearance followed by compactAppearance and finally standardAppearance.
         #[method_id(@__retain_semantics Other compactScrollEdgeAppearance)]
         pub unsafe fn compactScrollEdgeAppearance(&self) -> Option<Retained<UIToolbarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
+        /// Setter for [`compactScrollEdgeAppearance`][Self::compactScrollEdgeAppearance].
         #[method(setCompactScrollEdgeAppearance:)]
         pub unsafe fn setCompactScrollEdgeAppearance(
             &self,
@@ -198,6 +211,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarCommon")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UIToolbarDelegate>>);
     }

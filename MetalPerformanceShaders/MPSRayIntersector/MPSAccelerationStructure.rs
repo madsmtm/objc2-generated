@@ -8,12 +8,16 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructurecompletionhandler?language=objc)
+/// A block of code invoked when an operation on an MPSAccelerationStructure is completed
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructurecompletionhandler?language=objc)
 #[cfg(all(feature = "MPSKernel", feature = "block2"))]
 pub type MPSAccelerationStructureCompletionHandler =
     *mut block2::Block<dyn Fn(*mut MPSAccelerationStructure)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructureusage?language=objc)
+/// Options describing how an acceleration structure will be used
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructureusage?language=objc)
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
@@ -21,18 +25,36 @@ pub type MPSAccelerationStructureCompletionHandler =
 pub struct MPSAccelerationStructureUsage(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSAccelerationStructureUsage: NSUInteger {
+/// No usage options specified
 #[deprecated]
         #[doc(alias = "MPSAccelerationStructureUsageNone")]
         const None = 0;
+/// Enable support for refitting the acceleration structure after it has been built.
+/// This option may reduce raytracing performance so do not use it unless the acceleration
+/// structure will be refit.
 #[deprecated]
         #[doc(alias = "MPSAccelerationStructureUsageRefit")]
         const Refit = 1;
+/// Option indicating that the acceleration structure will be rebuilt frequently. In this
+/// case, the acceleration structure may choose a higher performance but lower quality
+/// acceleration structure construction algorithm. This option may reduce raytracing performance
+/// performance so do not use it unless reduced acceleration structure build time is
+/// worth reduced raytracing performance. This option may be useful if, for example, the user
+/// is interactively editing a live view of the scene.
 #[deprecated]
         #[doc(alias = "MPSAccelerationStructureUsageFrequentRebuild")]
         const FrequentRebuild = 2;
+/// Prefer building the acceleration structure on the GPU. By default, the acceleration
+/// structure will be built on the GPU when possible. However, in some cases such as very small
+/// triangle counts, the acceleration structure may be built on the CPU. This option will force
+/// the acceleration structure to be always be built on the GPU whenever possible.
 #[deprecated]
         #[doc(alias = "MPSAccelerationStructureUsagePreferGPUBuild")]
         const PreferGPUBuild = 4;
+/// Prefer building the acceleration structure on the CPU. By default, the acceleration
+/// structure will be built on the GPU when possible, which is typically much faster than
+/// building on the CPU. However, in some cases it may be preferable to build on the CPU such as
+/// to avoid framerate hitches when the GPU is rendering the user interface.
 #[deprecated]
         #[doc(alias = "MPSAccelerationStructureUsagePreferCPUBuild")]
         const PreferCPUBuild = 8;
@@ -47,16 +69,20 @@ unsafe impl RefEncode for MPSAccelerationStructureUsage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructurestatus?language=objc)
+/// Possible values of the acceleration structure status property
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructurestatus?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSAccelerationStructureStatus(pub NSUInteger);
 impl MPSAccelerationStructureStatus {
+    /// The acceleration structure has not been built yet
     #[deprecated]
     #[doc(alias = "MPSAccelerationStructureStatusUnbuilt")]
     pub const Unbuilt: Self = Self(0);
+    /// The acceleration structure has finished building
     #[deprecated]
     #[doc(alias = "MPSAccelerationStructureStatusBuilt")]
     pub const Built: Self = Self(1);
@@ -71,7 +97,254 @@ unsafe impl RefEncode for MPSAccelerationStructureStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure?language=objc)
+    /// A data structure built over geometry used to accelerate ray tracing
+    ///
+    ///
+    /// Do not use this base class directly. Use one of the derived classes instead.
+    /// The general pattern for creating an acceleration structure is as follows. First, create the
+    /// acceleration structure:
+    ///
+    ///
+    /// ```text
+    ///      MPSTriangleAccelerationStructure *accelerationStructure = nil;
+    ///      accelerationStructure = [[MPSTriangleAccelerationStructure alloc] initWithDevice:device];
+    /// ```
+    ///
+    /// Then, assign values to the acceleration structure's properties:
+    ///
+    ///
+    /// ```text
+    ///      accelerationStructure.vertexBuffer = vertexBuffer;
+    ///      accelerationStructure.triangleCount = triangleCount;
+    /// ```
+    ///
+    /// Finally, the acceleration structure must be built:
+    ///
+    ///
+    /// ```text
+    ///      [accelerationStructure rebuild];
+    /// ```
+    ///
+    /// The acceleration structure can then be used to encode ray intersection tests with an
+    /// MPSRayIntersector:
+    ///
+    ///
+    /// ```text
+    ///      [raytracer encodeIntersectionToCommandBuffer:commandBuffer
+    ///                                  intersectionType:MPSIntersectionTypeNearest
+    ///                                         rayBuffer:rayBuffer
+    ///                                   rayBufferOffset:0
+    ///                                intersectionBuffer:intersectionBuffer
+    ///                          intersectionBufferOffset:0
+    ///                                          rayCount:rayCount
+    ///                             accelerationStructure:accelerationStructure];
+    /// ```
+    ///
+    /// Asynchronous Acceleration Structure Builds: Rebuilding an acceleration structure is an expensive
+    /// operation. Note that there is also a method to rebuild the acceleration structure asynchronously
+    /// to avoid blocking the main thread.
+    ///
+    ///
+    /// ```text
+    ///      [accelerationStructure rebuildWithCompletionHandler:^(MPSAccelerationStructure *accel) {
+    ///          // Kick off ray intersection work
+    ///      }];
+    /// ```
+    ///
+    /// Streaming Geometry Updates: It is generally safe to change buffer properties such as the vertex
+    /// buffer after intersection tests have been encoded into a command buffer, but the contents of
+    /// those buffers cannot be safely changed by the CPU until the command buffer has finished
+    /// executing on the GPU. It is also not safe to rebuild the acceleration structure until the
+    /// command buffer has completed.
+    ///
+    /// If the CPU needs to stream geometry updates to the GPU, ensure the vertex and other buffers are
+    /// double or triple buffered.
+    ///
+    ///
+    /// ```text
+    ///      #define MAX_ASYNC_OPERATIONS 3
+    ///
+    ///      // Initialization:
+    ///
+    ///      // Create a semaphore with the maximum number of asynchronous operations in flight
+    ///      dispatch_semaphore_t asyncOperationSemaphore = dispatch_semaphore_create(MAX_ASYNC_OPERATIONS);
+    ///
+    ///      // Create an acceleration structure for each vertex buffer range
+    ///      NSMutableArray *accelerationStructures = [NSMutableArray array];
+    ///
+    ///      NSUInteger vertexBufferLength = sizeof(float3) * vertexCount * MAX_ASYNC_OPERATIONS;
+    ///      id <MTLBuffer> vertexBuffer = [device newBufferWithLength:vertexBufferLength
+    ///                                                        options:MTLResourceStorageModeManaged];
+    ///
+    ///      for (NSUInteger i = 0; i < MAX_ASYNC_OPERATIONS; i++) {
+    ///          MPSTriangleAccelerationStructure *accel = nil;
+    ///          accel = [[MPSTriangleAccelerationStructure alloc] initWithDevice:device];
+    ///
+    ///          // Configure acceleration structure
+    ///          accel.vertexBuffer = vertexBuffer;
+    ///          accel.vertexBufferOffset = i * sizeof(float3) * vertexCount;
+    ///
+    ///          [accelerationStructures addObject:accel];
+    ///      }
+    ///
+    ///      NSUInteger asyncOperationIndex = 0;
+    ///
+    ///      // Encode intersection testing:
+    ///
+    ///      // Wait until there is a free acceleration structure
+    ///      dispatch_semaphore_wait(asyncOperationSemaphore, DISPATCH_TIME_FOREVER);
+    ///
+    ///      MPSTriangleAccelerationStructure *accel = accelerationStructures[asyncOperationIndex];
+    ///      asyncOperationIndex = (asyncOperationIndex + 1) % MAX_ASYNC_OPERATIONS;
+    ///
+    ///      float3 *vertices = (float3 *)((uint8_t *)vertexBuffer.contents + accel.vertexBufferOffset);
+    ///      // Update vertices
+    ///      MPSDidModifyRange(vertexBuffer, NSMakeRange(accel.vertexBufferOffset, sizeof(float3) * vertexCount));
+    ///
+    ///      // Rebuild the acceleration structure
+    ///      [accel rebuild];
+    ///
+    ///      // Encode actual intersection work
+    ///      [raytracer encodeIntersectionToCommandBuffer:commandBuffer
+    ///                                  intersectionType:MPSIntersectionTypeNearest
+    ///                                         rayBuffer:rayBuffer
+    ///                                   rayBufferOffset:rayBufferOffset
+    ///                                intersectionBuffer:intersectionBuffer
+    ///                          intersectionBufferOffset:intersectionBufferOffset
+    ///                                          rayCount:rayCount
+    ///                             accelerationStructure:accel];
+    ///
+    ///      // Register a completion handler to run when the GPU finishes executing
+    ///      [commandBuffer addCompletedHandler:^(id <MTLCommandBuffer> commandBuffer) {
+    ///          Intersection *intersections = (Intersection *)((uint8_t *)intersectionBuffer.contents +
+    ///              intersectionBufferOffset);
+    ///
+    ///          // Process intersections
+    ///
+    ///          // Signal that the acceleration structure is now available for reuse
+    ///          dispatch_semaphore_signal(asyncOperationSemaphore);
+    ///      }];
+    ///
+    ///      // Commit the command buffer to allow the GPU to start executing
+    ///      [commandBuffer commit];
+    /// ```
+    ///
+    /// Refitting acceleration structures: If geometry has only moved slightly and not added or removed
+    /// from the scene, it can be much faster to refit the existing topology of an acceleration
+    /// structure to the new geometry than to rebuild the acceleration structure from scratch. Refitting
+    /// can also be pipelined with other GPU work such as intersection testing. If the geometry is
+    /// transformed entirely on the GPU, it is not necessary to use double or triple buffering. For
+    /// example:
+    ///
+    ///
+    /// ```text
+    ///      id <MTLCommandBuffer> commandBuffer = [commandQueue commandBuffer];
+    ///
+    ///      id <MTLComputeCommandEncoder> encoder = [commandBuffer computeCommandEncoder];
+    ///
+    ///      [encoder setBuffer:untransformedVertexBuffer offset:0 atIndex:0];
+    ///
+    ///      [encoder setBuffer:accelerationStructure.vertexBuffer
+    ///                  offset:accelerationStructure.vertexBufferOffset
+    ///                 atIndex:1];
+    ///
+    ///      [encoder setBuffer:transformationMatrices offset:0 atIndex:2];
+    ///
+    ///      [encoder setComputePipelineState:transformVerticesPipeline];
+    ///
+    ///      [encoder dispatchThreads:MTLSizeMake(accelerationStructure.triangleCount * 3, 1, 1)
+    ///         threadsPerThreadgroup:MTLSizeMake(64, 1, 1)];
+    ///
+    ///      [encoder endEncoding];
+    ///
+    ///      [accelerationStructure encodeRefitToCommandBuffer:commandBuffer];
+    ///
+    ///      [commandBuffer commit];
+    /// ```
+    ///
+    /// Serializing Acceleration Structures: Instead of rebuilding acceleration structures from scratch
+    /// they can be built offline, serialized, and reloaded at runtime using the NSSecureCoding
+    /// protocol:
+    ///
+    ///
+    /// ```text
+    ///      // Build time:
+    ///      NSError *error = nil;
+    ///      NSData *data = [NSKeyedArchiver archivedDataWithRootObject:accel
+    ///                                           requiringSecureCoding:YES
+    ///                                                           error:&error];
+    ///         
+    ///      if (!data)
+    ///          NSLog(@"Error archiving MPSAccelerationStructure: %@",
+    ///              error.localizedDescription);
+    ///
+    ///      // Runtime:
+    ///      MPSTriangleAccelerationStructure *accel;
+    ///      accel = [NSKeyedUnarchiver unarchivedObjectOfClass:[MPSTriangleAccelerationStructure class]
+    ///                                                fromData:data
+    ///                                                   error:&error];
+    ///
+    ///      if (!accel)
+    ///          NSLog(@"Error unarchiving MPSAccelerationStructure: %@",
+    ///              error.localizedDescription);
+    /// ```
+    ///
+    /// Copying Acceleration Structures: Acceleration structures can be copied using the NSCopying
+    /// protocol, even to a different Metal device. This can be used for multi-GPU raytracing. Buffer
+    /// properties are not copied to the new acceleration structure. These buffers must instead be
+    /// copied to the new Metal device and assigned to the new acceleration structure. For example:
+    ///
+    ///
+    /// ```text
+    ///      MPSTriangleAccelerationStructure *copy = [accelerationStructure copyWithZone:nil
+    ///                                                                            device:newDevice];
+    ///
+    ///      copy.vertexBuffer = [self copyBuffer:accelerationStructure.vertexBuffer
+    ///                                withDevice:newDevice];
+    /// ```
+    ///
+    /// Performance Guidelines:
+    ///
+    /// - Provide accurate acceleration structure hints: if an acceleration structure does not
+    /// require support for refitting, a higher quality construction algorithm can be used.
+    /// However, if an acceleration structure must be rebuilt frequently, a lower quality
+    /// but higher performance construction algorithm can be used.
+    ///
+    /// - Consider refitting existing acceleration structures rather than rebuilding them from
+    /// scratch. This is typically much faster and can result in a reasonably high quality
+    /// tree if the geometry has not been modified dramatically. Refitting can also be pipelined
+    /// with other GPU work. If objects have been added to or removed from the scene, it is
+    /// typically necessary to rebuild the acceleration structure rather than refit it.
+    ///
+    /// - Rebuild acceleration structures asynchronously when possible to avoid blocking the main
+    /// thread. Consider presenting a UI indicating that work is happening in the background while
+    /// allowing the user to consider interacting with your application.
+    ///
+    /// - If you need to mix intersection testing with acceleration structure builds (e.g. if the
+    /// user is interactively editing the scene while rendering or if objects are moving
+    /// significantly) consider allocating two independent acceleration structures that refer to
+    /// two copies of the scene data. Then, asynchronously rebuild one acceleration structure
+    /// while the other one is used for rendering. Once the rebuild has completed, swap the
+    /// acceleration structures. The intermediate frames could be filled by refitting the
+    /// rendering acceleration structure until the rebuilt acceleration structure is ready.
+    ///
+    /// - When running in Xcode, disable "Enable Backtrace Recording" in your scheme settings.
+    /// Enabling this setting can significantly increase acceleration structure build time.
+    ///
+    /// - Consider using quadrilaterals instead of triangles to represent your geometry.
+    /// The cost of intersecting a quadrilateral is typically less than the cost of intersecting
+    /// two triangles, so quadrilaterals can improve performance. Quadrilaterals also typically
+    /// require 30-40% less memory than triangles including vertex data and internal buffers
+    /// allocated by the acceleration structure. Whether quadrilaterals improve or hurt
+    /// performance can depend on the geometry and ray distribution, so you should choose
+    /// whichever performs better for your application.
+    ///
+    /// Thread Safety: MPSAccelerationStructures are generally not thread safe. Changing properties
+    /// and rebuilding acceleration structures from multiple threads result in undefined behavior.
+    /// However, it is safe to encode intersection tests with a single acceleration structure
+    /// from multiple threads as long as each thread uses its own MPSRayIntersector.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -100,18 +373,23 @@ extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSAccelerationStructure {
         #[cfg(feature = "MPSAccelerationStructureGroup")]
+        /// The group this acceleration structure was created with
         #[deprecated]
         #[method_id(@__retain_semantics Other group)]
         pub unsafe fn group(&self) -> Retained<MPSAccelerationStructureGroup>;
 
+        /// Status indicating whether the acceleration structure has finished building
         #[deprecated]
         #[method(status)]
         pub unsafe fn status(&self) -> MPSAccelerationStructureStatus;
 
+        /// Acceleration structure usage options. Changes to this property require rebuilding the
+        /// acceleration structure. Defaults to MPSAccelerationStructureUsageNone.
         #[deprecated]
         #[method(usage)]
         pub unsafe fn usage(&self) -> MPSAccelerationStructureUsage;
 
+        /// Setter for [`usage`][Self::usage].
         #[deprecated]
         #[method(setUsage:)]
         pub unsafe fn setUsage(&self, usage: MPSAccelerationStructureUsage);
@@ -120,6 +398,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initialize the acceleration structure with a Metal device
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -127,6 +406,9 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Initialize the acceleration structure with an NSCoder and a Metal device. Buffer
+        /// properties such as the vertex buffer, instance buffer, etc. are set to nil. Encode and decode
+        /// these buffers along with the acceleration structure instead.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
@@ -136,6 +418,12 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MPSAccelerationStructureGroup")]
+        /// Initialize the acceleration structure with an acceleration structure group, if the
+        /// acceleration structure will be used in an instance hierarchy.
+        ///
+        ///
+        /// The Metal device is determined from the acceleration structure group. All
+        /// acceleration structures in the instance hierarchy must share the same group.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithGroup:)]
         pub unsafe fn initWithGroup(
@@ -144,6 +432,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSAccelerationStructureGroup")]
+        /// Initialize the acceleration structure with an NSCoder and an acceleration structure
+        /// group, if the acceleration structure will be used in an instance hierarchy. All acceleration
+        /// structures in the instance hierarchy must share the same group. Buffer properties such as the
+        /// vertex buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with
+        /// the acceleration structure instead.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithCoder:group:)]
         pub unsafe fn initWithCoder_group(
@@ -152,11 +445,43 @@ extern_methods!(
             group: &MPSAccelerationStructureGroup,
         ) -> Option<Retained<Self>>;
 
+        /// Rebuild the acceleration structure
+        ///
+        ///
+        /// This method must be called before any intersection tests can be scheduled with this
+        /// acceleration structure. Before calling this method, fill out the properties of the acceleration
+        /// structure such as vertex buffer, instance buffer, etc. The acceleration structure should be
+        /// rebuilt when its contents (e.g. vertices in a triangle acceleration structure) have been
+        /// modified significantly and must be rebuilt when properties such as triangle count,
+        /// vertex stride, etc. have changed. When the contents of the acceleration structure have only been
+        /// modified slightly, it may be cheaper to refit the acceleration structure instead.
+        ///
+        /// This method blocks until the acceleration structure has been rebuilt. Until the rebuild has
+        /// completed, the acceleration structure cannot be copied, encoded with NSSecureCoding, rebuilt, or
+        /// refit. Before this method can be called, any pending GPU writes to the vertex buffer, index
+        /// buffer, etc. must be completed (and, for managed buffers, synchronized). Any prior intersection
+        /// tests must also be completed before the acceleration structure can be rebuilt.
         #[deprecated]
         #[method(rebuild)]
         pub unsafe fn rebuild(&self);
 
         #[cfg(feature = "block2")]
+        /// Rebuild the acceleration structure asynchronously
+        ///
+        ///
+        /// This method must be called before any intersection tests can be scheduled with this
+        /// acceleration structure. Before calling this method, fill out the properties of the acceleration
+        /// structure such as vertex buffer, instance buffer, etc. The acceleration structure should be
+        /// rebuilt when its contents (e.g. vertices in a triangle acceleration structure) have been
+        /// modified significantly and must be rebuilt when properties such as triangle count,
+        /// vertex stride, etc. have changed. When the contents of the acceleration structure have only been
+        /// modified slightly, it may be cheaper to refit the acceleration structure instead.
+        ///
+        /// Until the rebuild has completed, the acceleration structure cannot be copied, encoded with
+        /// NSSecureCoding, rebuilt, or refit. Before this method can be called, any pending GPU writes to
+        /// the vertex buffer, index buffer, etc. must be completed (and, for managed buffers,
+        /// synchronized). Any prior intersection tests must also be completed before the acceleration
+        /// structure can be rebuilt.
         #[deprecated]
         #[method(rebuildWithCompletionHandler:)]
         pub unsafe fn rebuildWithCompletionHandler(
@@ -164,6 +489,19 @@ extern_methods!(
             completion_handler: MPSAccelerationStructureCompletionHandler,
         );
 
+        /// Refit the existing acceleration structure to new data
+        ///
+        ///
+        /// This method is used to refit the acceleration structure to new vertex data,
+        /// index data, instance data, etc. while preserving the existing acceleration structure topology.
+        /// This is typically much faster than a full rebuild of the acceleration structure. Refitting can
+        /// also be pipelined with other GPU work such as ray intersection.
+        ///
+        /// Until the command buffer has completed, the acceleration structure cannot be copied,
+        /// encoded with NSSecureCoding, or rebuilt. Changes to properties such as the triangle count or
+        /// instance count might not be reflected. These changes require that the acceleration structure be
+        /// rebuilt instead. The acceleration structure must be rebuilt at least once before this method can
+        /// be called.
         #[deprecated]
         #[method(encodeRefitToCommandBuffer:)]
         pub unsafe fn encodeRefitToCommandBuffer(
@@ -171,6 +509,19 @@ extern_methods!(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
         );
 
+        /// Create a a copy of this acceleration structure
+        ///
+        ///
+        /// The acceleration structure may be copied to a different Metal device. Buffer
+        /// properties of the acceleration structure such as the vertex buffer, instance, buffer, etc. are
+        /// set to nil. Copy these buffers to the new Metal device and assign them to the new acceleration
+        /// structure instead. Do not copy the acceleration structure until any prior refit or rebuild
+        /// operations have completed.
+        ///
+        ///
+        /// Parameter `zone`: This parameter is ignored. Memory zones are no longer used by Objective-C.
+        ///
+        /// Parameter `device`: New Metal device
         #[deprecated]
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
@@ -180,6 +531,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSAccelerationStructureGroup")]
+        /// Create a a copy of this acceleration structure
+        ///
+        ///
+        /// The acceleration structure may be copied with a different acceleration structure
+        /// group. Buffer properties of the acceleration structure such as the vertex buffer, instance
+        /// buffer, etc. are set to nil. Copy these buffers with the new Metal device and assign them to
+        /// the new acceleration structure instead. Do not copy the acceleration structure until any prior
+        /// refit or rebuild operations have completed.
+        ///
+        ///
+        /// Parameter `zone`: This parameter is ignored. Memory zones are no longer used by Objective-C.
+        ///
+        /// Parameter `group`: New acceleration structure group
         #[deprecated]
         #[method_id(@__retain_semantics Copy copyWithZone:group:)]
         pub unsafe fn copyWithZone_group(
@@ -188,6 +552,15 @@ extern_methods!(
             group: &MPSAccelerationStructureGroup,
         ) -> Retained<Self>;
 
+        /// Encode the acceleration structure with an NSCoder
+        ///
+        ///
+        /// Buffer properties such as the vertex buffer, index buffer, etc. are not be encoded.
+        /// Encode and decode these buffers along with the acceleration structure instead. Do not encode
+        /// the acceleration structure until any prior refit or rebuild operations have completed.
+        ///
+        ///
+        /// Parameter `coder`: An archiver object
         #[deprecated]
         #[method(encodeWithCoder:)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
@@ -198,6 +571,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSAccelerationStructure {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

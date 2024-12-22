@@ -7,29 +7,50 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature?language=objc)
+/// Signature defining what data is provided to an intersection function. The signature
+/// must match across the shading language declaration of the intersection function table,
+/// intersection functions in the table, and the intersector using the table.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLIntersectionFunctionSignature(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLIntersectionFunctionSignature: NSUInteger {
+/// No signature
         #[doc(alias = "MTLIntersectionFunctionSignatureNone")]
         const None = 0;
+/// The intersection functions can read the built-in instance_id as described in
+/// the Metal Shading Language Guide.
         #[doc(alias = "MTLIntersectionFunctionSignatureInstancing")]
         const Instancing = 1<<0;
+/// The triangle intersection functions can read the built-in barycentric_coord
+/// and front_facing as described in the Metal Shading Language Guide.
         #[doc(alias = "MTLIntersectionFunctionSignatureTriangleData")]
         const TriangleData = 1<<1;
+/// The intersection functions can query world_space_origin and
+/// world_space_direction as described in the Metal Shading Language Guide.
         #[doc(alias = "MTLIntersectionFunctionSignatureWorldSpaceData")]
         const WorldSpaceData = 1<<2;
+/// The intersection functions may be called from intersectors using the
+/// instance_motion intersection tag as described in the Metal Shading Language Guide.
         #[doc(alias = "MTLIntersectionFunctionSignatureInstanceMotion")]
         const InstanceMotion = 1<<3;
+/// The intersection functions can query time, motion_start_time,
+/// motion_end_time and key_frame_count as described in the Metal Shading Language Guide.
         #[doc(alias = "MTLIntersectionFunctionSignaturePrimitiveMotion")]
         const PrimitiveMotion = 1<<4;
+/// The intersection functions may be called from intersectors using the
+/// extended_limits intersection tag as described in the Metal Shading Language Guide.
         #[doc(alias = "MTLIntersectionFunctionSignatureExtendedLimits")]
         const ExtendedLimits = 1<<5;
+/// The intersection functions may be called from intersectors using the
+/// max_levels intersection tag as described in the Metal Shading Language Guide.
         #[doc(alias = "MTLIntersectionFunctionSignatureMaxLevels")]
         const MaxLevels = 1<<6;
+/// The curve intersection functions can read the built-in curve_parameter
+/// as described in the Metal Shading Language Guide.
         #[doc(alias = "MTLIntersectionFunctionSignatureCurveData")]
         const CurveData = 1<<7;
     }
@@ -60,13 +81,16 @@ unsafe impl NSObjectProtocol for MTLIntersectionFunctionTableDescriptor {}
 
 extern_methods!(
     unsafe impl MTLIntersectionFunctionTableDescriptor {
+        /// Create an autoreleased intersection function table descriptor
         #[method_id(@__retain_semantics Other intersectionFunctionTableDescriptor)]
         pub unsafe fn intersectionFunctionTableDescriptor(
         ) -> Retained<MTLIntersectionFunctionTableDescriptor>;
 
+        /// The number of functions in the table.
         #[method(functionCount)]
         pub unsafe fn functionCount(&self) -> NSUInteger;
 
+        /// Setter for [`functionCount`][Self::functionCount].
         #[method(setFunctionCount:)]
         pub fn setFunctionCount(&self, function_count: NSUInteger);
     }
@@ -113,6 +137,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLTypes")]
+        /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 

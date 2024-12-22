@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksample?language=objc)
+    /// An abstract class representing measurements taken over a period of time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksample?language=objc)
     #[unsafe(super(HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKObject")]
@@ -42,6 +44,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
+        /// Indicates whether a sample has an undetermined duration.
+        ///
+        /// Computed based on the endDate of a sample.
         #[method(hasUndeterminedDuration)]
         pub unsafe fn hasUndeterminedDuration(&self) -> bool;
     }

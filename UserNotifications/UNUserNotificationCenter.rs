@@ -56,6 +56,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UNUserNotificationCenterDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

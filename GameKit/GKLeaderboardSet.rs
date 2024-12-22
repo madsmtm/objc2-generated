@@ -11,7 +11,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardset?language=objc)
+    /// GKLeaderboardSet represents the sets that leaderboards can be broken out into.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKLeaderboardSet;
@@ -25,19 +27,28 @@ unsafe impl NSSecureCoding for GKLeaderboardSet {}
 
 extern_methods!(
     unsafe impl GKLeaderboardSet {
+        /// Localized set title.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// set when leaderboardSets have been designated a game group; set when loadLeaderboardSetsWithCompletionHandler has been called for leaderboards that support game groups
         #[method_id(@__retain_semantics Other groupIdentifier)]
         pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// leaderboard set.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
         #[cfg(feature = "block2")]
+        /// Loads array with all sets for game
+        /// Possible reasons for error:
+        /// 1. Communications problem
+        /// 2. Unauthenticated player
+        /// 3. Set not present
         #[method(loadLeaderboardSetsWithCompletionHandler:)]
         pub unsafe fn loadLeaderboardSetsWithCompletionHandler(
             completion_handler: Option<
@@ -46,6 +57,10 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "GKLeaderboard", feature = "block2"))]
+        /// Loads array with all classic leaderboards and current instances of recurring leaderboards for this leaderboardSet
+        /// Possible reasons for error:
+        /// 1. Communications problem
+        /// 2. Unauthenticated player
         #[method(loadLeaderboardsWithHandler:)]
         pub unsafe fn loadLeaderboardsWithHandler(
             &self,
@@ -69,6 +84,10 @@ extern_methods!(
     /// Deprecated
     unsafe impl GKLeaderboardSet {
         #[cfg(all(feature = "GKLeaderboard", feature = "block2"))]
+        /// Loads array with all leaderboards for the leaderboardSet
+        /// Possible reasons for error:
+        /// 1. Communications problem
+        /// 2. Unauthenticated player
         #[deprecated]
         #[method(loadLeaderboardsWithCompletionHandler:)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(

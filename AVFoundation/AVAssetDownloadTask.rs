@@ -10,37 +10,71 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskminimumrequiredmediabitratekey?language=objc)
+    /// The lowest media bitrate greater than or equal to this value will be selected. Value should be a NSNumber in bps. If no suitable media bitrate is found, the highest media bitrate will be selected.
+    /// The value for this key should be a NSNumber.
+    ///
+    /// By default, the highest media bitrate will be selected for download.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskminimumrequiredmediabitratekey?language=objc)
     pub static AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskminimumrequiredpresentationsizekey?language=objc)
+    /// The lowest media presentation size greater than or equal to this value will be selected. If no suitable media presentation size is found, the highest media presentation size will be selected.
+    /// The value for this key should be a NSValue of CGSize.
+    ///
+    /// By default, the highest media presentation size will be selected for download.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskminimumrequiredpresentationsizekey?language=objc)
     pub static AVAssetDownloadTaskMinimumRequiredPresentationSizeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskmediaselectionkey?language=objc)
+    /// The media selection for this download.
+    /// The value for this key should be an AVMediaSelection.
+    ///
+    /// By default, media selections for AVAssetDownloadTask will be automatically selected.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskmediaselectionkey?language=objc)
     pub static AVAssetDownloadTaskMediaSelectionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskmediaselectionprefersmultichannelkey?language=objc)
+    /// Download the specified media selections with or without support for multichannel playback.
+    /// The value for this key should be an NSNumber representing a BOOL.
+    ///
+    /// By default AVAssetDownloadTask will prefer multichannel by downloading the most capable multichannel rendition available in additon to stereo.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskmediaselectionprefersmultichannelkey?language=objc)
     pub static AVAssetDownloadTaskMediaSelectionPrefersMultichannelKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskpreferslosslessaudiokey?language=objc)
+    /// Download the specified media selections in lossless audio representation.
+    /// The value for this key should be an NSNumber representing a BOOL.
+    ///
+    /// By default AVAssetDownloadTask will prefer lossy audio representation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskpreferslosslessaudiokey?language=objc)
     pub static AVAssetDownloadTaskPrefersLosslessAudioKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskprefershdrkey?language=objc)
+    /// Download the specified media selections with or without HDR content.
+    /// The value for this key should be an NSNumber representing a BOOL.
+    ///
+    /// By default AVAssetDownloadTask will prefer HDR content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskprefershdrkey?language=objc)
     pub static AVAssetDownloadTaskPrefersHDRKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtask?language=objc)
+    /// A NSURLSessionTask that accepts remote AVURLAssets to download locally.
+    ///
+    /// Should be created with -[AVAssetDownloadURLSession assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options:]. To utilize local data for playback for downloads that are in-progress, re-use the URLAsset supplied in initialization. An AVAssetDownloadTask may be instantiated with a destinationURL pointing to an existing asset on disk, for the purpose of completing or augmenting a downloaded asset.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtask?language=objc)
     #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetDownloadTask;
@@ -59,17 +93,25 @@ unsafe impl NSProgressReporting for AVAssetDownloadTask {}
 extern_methods!(
     unsafe impl AVAssetDownloadTask {
         #[cfg(feature = "AVAsset")]
+        /// The asset supplied to the download task upon initialization.
         #[method_id(@__retain_semantics Other URLAsset)]
         pub unsafe fn URLAsset(&self) -> Retained<AVURLAsset>;
 
+        /// The file URL supplied to the download task upon initialization.
+        ///
+        /// This URL may have been appended with the appropriate extension for the asset.
         #[deprecated = "Use the URL property of URLAsset instead"]
         #[method_id(@__retain_semantics Other destinationURL)]
         pub unsafe fn destinationURL(&self) -> Retained<NSURL>;
 
+        /// The options supplied to the download task upon initialization.
         #[deprecated = "Use AVAssetDownloadConfiguration instead"]
         #[method_id(@__retain_semantics Other options)]
         pub unsafe fn options(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// This property provides a collection of time ranges for which the download task has media data already downloaded and playable. The ranges provided might be discontinuous.
+        ///
+        /// Returns an NSArray of NSValues containing CMTimeRanges.
         #[deprecated = "Use NSURLSessionTask.progress instead"]
         #[method_id(@__retain_semantics Other loadedTimeRanges)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
@@ -92,7 +134,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration?language=objc)
+    /// Configuration parameters for the download task.
+    ///
+    /// Download configuration consists of primary and auxiliary content configurations. Primary content configuration represents the primary set of renditions essential for offline playback. Auxiliary content configurations represent additional configurations to complement the primary.
+    /// For example, the primary content configuration may represent stereo audio renditions and auxiliary configuration may represent complementing multichannel audio renditions.
+    ///
+    /// It is important to configure your download configuration object appropriately before using it to create a download task. Download task makes a copy of the configuration settings you provide and use those settings to configure the task. Once configured, the task object ignores any changes you make to the NSURLSessionConfiguration object. If you need to modify your settings, you must update the download configuration object and use it to create a new download task object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetDownloadConfiguration;
@@ -109,53 +158,77 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
+        /// Creates and initializes a download configuration object.
+        ///
+        /// This method will throw an exception if AVURLAsset has been invalidated.
+        ///
+        /// Parameter `asset`: The asset to create the download configuration for.
+        ///
+        /// Parameter `title`: A human readable title for this asset, expected to be as suitable as possible for the user's preferred languages. Will show up in the usage pane of the settings app.
         #[method_id(@__retain_semantics Other downloadConfigurationWithAsset:title:)]
         pub unsafe fn downloadConfigurationWithAsset_title(
             asset: &AVURLAsset,
             title: &NSString,
         ) -> Retained<Self>;
 
+        /// NSData representing artwork data for this asset. Optional. May be displayed, for example, by the usage pane of the Settings app. Must work with +[UIImage imageWithData:].
         #[method_id(@__retain_semantics Other artworkData)]
         pub unsafe fn artworkData(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`artworkData`][Self::artworkData].
         #[method(setArtworkData:)]
         pub unsafe fn setArtworkData(&self, artwork_data: Option<&NSData>);
 
+        /// The primary content for the download.
         #[method_id(@__retain_semantics Other primaryContentConfiguration)]
         pub unsafe fn primaryContentConfiguration(
             &self,
         ) -> Retained<AVAssetDownloadContentConfiguration>;
 
+        /// The auxiliary content for the download. Optional.
+        ///
+        /// By default, auxiliaryContentConfigurations will have one or more default auxiliary content configurations. These content configurations can be augmented with additional content configurations or removed entirely if no auxiliary content is desired.
         #[method_id(@__retain_semantics Other auxiliaryContentConfigurations)]
         pub unsafe fn auxiliaryContentConfigurations(
             &self,
         ) -> Retained<NSArray<AVAssetDownloadContentConfiguration>>;
 
+        /// Setter for [`auxiliaryContentConfigurations`][Self::auxiliaryContentConfigurations].
         #[method(setAuxiliaryContentConfigurations:)]
         pub unsafe fn setAuxiliaryContentConfigurations(
             &self,
             auxiliary_content_configurations: &NSArray<AVAssetDownloadContentConfiguration>,
         );
 
+        /// Optimizes auxiliary content selection depending on the primary to minimize total number of video renditions downloaded. True by default.
+        ///
+        /// For example, if the primary content configuration represents stereo renditions and auxiliary content configuration represents multichannel audio renditions, auxiliary multichannel variant will be chosen so as to avoid downloading duplicate video renditions.
         #[method(optimizesAuxiliaryContentConfigurations)]
         pub unsafe fn optimizesAuxiliaryContentConfigurations(&self) -> bool;
 
+        /// Setter for [`optimizesAuxiliaryContentConfigurations`][Self::optimizesAuxiliaryContentConfigurations].
         #[method(setOptimizesAuxiliaryContentConfigurations:)]
         pub unsafe fn setOptimizesAuxiliaryContentConfigurations(
             &self,
             optimizes_auxiliary_content_configurations: bool,
         );
 
+        /// Download interstitial assets as listed in the index file. False by default.
+        ///
+        /// Ordinarily, interstitial assets are skipped when downloading content for later playback. Setting this property to true will cause interstitial assets to be downloaded as well. Playback of the downloaded content can then match the experience of online streaming playback as closely as possible.
         #[method(downloadsInterstitialAssets)]
         pub unsafe fn downloadsInterstitialAssets(&self) -> bool;
 
+        /// Setter for [`downloadsInterstitialAssets`][Self::downloadsInterstitialAssets].
         #[method(setDownloadsInterstitialAssets:)]
         pub unsafe fn setDownloadsInterstitialAssets(&self, downloads_interstitial_assets: bool);
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadcontentconfiguration?language=objc)
+    /// Represents the configuration consisting of variant and the variant's media options.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadcontentconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetDownloadContentConfiguration;
@@ -172,10 +245,16 @@ unsafe impl NSObjectProtocol for AVAssetDownloadContentConfiguration {}
 extern_methods!(
     unsafe impl AVAssetDownloadContentConfiguration {
         #[cfg(feature = "AVAssetVariant")]
+        /// An array of variant qualifiers.
+        ///
+        /// The qualifiers are expected to be added in the preferential order and will be evaluated in that order until the qualifier matches one or more AVAssetVariants. Only those variants which can be played on the current device configuration will be initially chosen for evaluation. If there is more than one match, automatic variant selection will be used to choose among the matched.
+        /// If a variant qualifier is constructed to explicitly choose a variant, no evaluation is performed and the variant provided will be downloaded as is, even if it is not playable on current device configuration.
+        /// If a variant qualifier has not been provided, or if the variant qualifier when evaluated does not match any of the variants which can be played according to the current device configuration, automatic variant selection will be used.
         #[method_id(@__retain_semantics Other variantQualifiers)]
         pub unsafe fn variantQualifiers(&self) -> Retained<NSArray<AVAssetVariantQualifier>>;
 
         #[cfg(feature = "AVAssetVariant")]
+        /// Setter for [`variantQualifiers`][Self::variantQualifiers].
         #[method(setVariantQualifiers:)]
         pub unsafe fn setVariantQualifiers(
             &self,
@@ -183,10 +262,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVMediaSelection")]
+        /// An array of media selections obtained from the AVAsset.
+        ///
+        /// If a media selection is not provided, automatic media selection associated with the asset will be used.
         #[method_id(@__retain_semantics Other mediaSelections)]
         pub unsafe fn mediaSelections(&self) -> Retained<NSArray<AVMediaSelection>>;
 
         #[cfg(feature = "AVMediaSelection")]
+        /// Setter for [`mediaSelections`][Self::mediaSelections].
         #[method(setMediaSelections:)]
         pub unsafe fn setMediaSelections(&self, media_selections: &NSArray<AVMediaSelection>);
     }
@@ -204,7 +287,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaggregateassetdownloadtask?language=objc)
+    /// An AVAssetDownloadTask used for downloading multiple AVMediaSelections for a single AVAsset, under the umbrella of a single download task.
+    ///
+    /// Should be created with -[AVAssetDownloadURLSession aggregateAssetDownloadTaskWithURLAsset:mediaSelections:assetTitle:assetArtworkData:options:. For progress tracking, monitor the delegate callbacks for each childAssetDownloadTask.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaggregateassetdownloadtask?language=objc)
     #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
@@ -224,6 +313,7 @@ unsafe impl NSProgressReporting for AVAggregateAssetDownloadTask {}
 extern_methods!(
     unsafe impl AVAggregateAssetDownloadTask {
         #[cfg(feature = "AVAsset")]
+        /// The asset supplied to the download task upon initialization.
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
         #[method_id(@__retain_semantics Other URLAsset)]
         pub unsafe fn URLAsset(&self) -> Retained<AVURLAsset>;
@@ -251,8 +341,20 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloaddelegate?language=objc)
+    /// Delegate methods to implement when adopting AVAssetDownloadTask.
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloaddelegate?language=objc)
     pub unsafe trait AVAssetDownloadDelegate: NSURLSessionTaskDelegate {
+        /// Sent when a download task that has completed a download.
+        ///
+        /// Unlike NSURLSessionDownloadDelegate, the delegate should NOT move the file from this directory after it has been called. Downloaded assets must remain at the system provided URL. URLSession:task:didCompleteWithError: will still be called.
+        ///
+        /// Parameter `session`: The session the asset download task is on.
+        ///
+        /// Parameter `assetDownloadTask`: The AVAssetDownloadTask whose downloaded completed.
+        ///
+        /// Parameter `location`: The location the asset has been downloaded to.
         #[deprecated = "Use URLSession:assetDownloadTask:willDownloadToURL: instead"]
         #[optional]
         #[method(URLSession:assetDownloadTask:didFinishDownloadingToURL:)]
@@ -264,6 +366,17 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-core-media")]
+        /// Method to adopt to subscribe to progress updates of an AVAssetDownloadTask.
+        ///
+        /// Parameter `session`: The session the asset download task is on.
+        ///
+        /// Parameter `assetDownloadTask`: The AVAssetDownloadTask which is being updated.
+        ///
+        /// Parameter `timeRange`: A CMTimeRange indicating the time range loaded since the last time this method was called.
+        ///
+        /// Parameter `loadedTimeRanges`: A NSArray of NSValues of CMTimeRanges indicating all the time ranges loaded by this asset download task.
+        ///
+        /// Parameter `timeRangeExpectedToLoad`: A CMTimeRange indicating the single time range that is expected to be loaded when the download is complete.
         #[deprecated = "Use NSURLSessionTask.progress instead"]
         #[optional]
         #[method(URLSession:assetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:)]
@@ -331,6 +444,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AVAssetVariant")]
+        /// Sent when a download task has completed the variant selection.
+        ///
+        /// Parameter `session`: The session the asset download task is on.
+        ///
+        /// Parameter `assetDownloadTask`: The asset download task.
+        ///
+        /// Parameter `variants`: The variants chosen. Depends on the environmental condition when the download starts.
         #[optional]
         #[method(URLSession:assetDownloadTask:willDownloadVariants:)]
         unsafe fn URLSession_assetDownloadTask_willDownloadVariants(
@@ -345,7 +465,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadurlsession?language=objc)
+    /// A subclass of NSURLSession to support AVAssetDownloadTask.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadurlsession?language=objc)
     #[unsafe(super(NSURLSession, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetDownloadURLSession;
@@ -355,6 +477,13 @@ unsafe impl NSObjectProtocol for AVAssetDownloadURLSession {}
 
 extern_methods!(
     unsafe impl AVAssetDownloadURLSession {
+        /// Creates and initializes an AVAssetDownloadURLSession for use with AVAssetDownloadTasks.
+        ///
+        /// Parameter `configuration`: The configuration for this URLSession. Must be a background configuration.
+        ///
+        /// Parameter `delegate`: The delegate object to handle asset download progress updates and other session related events.
+        ///
+        /// Parameter `delegateQueue`: The queue to receive delegate callbacks on. If nil, a serial queue will be provided.
         #[method_id(@__retain_semantics Other sessionWithConfiguration:assetDownloadDelegate:delegateQueue:)]
         pub unsafe fn sessionWithConfiguration_assetDownloadDelegate_delegateQueue(
             configuration: &NSURLSessionConfiguration,
@@ -363,6 +492,15 @@ extern_methods!(
         ) -> Retained<AVAssetDownloadURLSession>;
 
         #[cfg(feature = "AVAsset")]
+        /// Creates and initializes an AVAssetDownloadTask to be used with this AVAssetDownloadURLSession.
+        ///
+        /// This method may return nil if the URLSession has been invalidated.
+        ///
+        /// Parameter `URLAsset`: The AVURLAsset to download locally.
+        ///
+        /// Parameter `destinationURL`: The local URL to download the asset to. This must be a file URL.
+        ///
+        /// Parameter `options`: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task. Using this parameter is required for downloading non-default media selections for HLS assets.
         #[deprecated = "Use assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options: instead"]
         #[method_id(@__retain_semantics Other assetDownloadTaskWithURLAsset:destinationURL:options:)]
         pub unsafe fn assetDownloadTaskWithURLAsset_destinationURL_options(
@@ -373,6 +511,17 @@ extern_methods!(
         ) -> Option<Retained<AVAssetDownloadTask>>;
 
         #[cfg(feature = "AVAsset")]
+        /// Creates and initializes an AVAssetDownloadTask to be used with this AVAssetDownloadURLSession.
+        ///
+        /// This method may return nil if the URLSession has been invalidated.
+        ///
+        /// Parameter `URLAsset`: The AVURLAsset to download locally.
+        ///
+        /// Parameter `title`: A human readable title for this asset, expected to be as suitable as possible for the user's preferred languages. Will show up in the usage pane of the settings app.
+        ///
+        /// Parameter `artworkData`: NSData representing artwork data for this asset. Optional. Will show up in the usage pane of the settings app. Must work with +[UIImage imageWithData:].
+        ///
+        /// Parameter `options`: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task. Using this parameter is required for downloading non-default media selections for HLS assets.
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
         #[method_id(@__retain_semantics Other assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options:)]
         pub unsafe fn assetDownloadTaskWithURLAsset_assetTitle_assetArtworkData_options(
@@ -384,6 +533,19 @@ extern_methods!(
         ) -> Option<Retained<AVAssetDownloadTask>>;
 
         #[cfg(all(feature = "AVAsset", feature = "AVMediaSelection"))]
+        /// Creates and initializes an AVAggregateAssetDownloadTask to download multiple AVMediaSelections on an AVURLAsset.
+        ///
+        /// This method may return nil if the URLSession has been invalidated. The value of AVAssetDownloadTaskMediaSelectionKey will be ignored.
+        ///
+        /// Parameter `URLAsset`: The AVURLAsset to download locally.
+        ///
+        /// Parameter `mediaSelections`: A list of AVMediaSelections. Each AVMediaSelection will correspond to a childAssetDownloadTask. Use -[AVAsset allMediaSelections] to download all AVMediaSelections on this AVAsset.
+        ///
+        /// Parameter `title`: A human readable title for this asset, expected to be as suitable as possible for the user's preferred languages. Will show up in the usage pane of the settings app.
+        ///
+        /// Parameter `artworkData`: Artwork data for this asset. Optional. Will show up in the usage pane of the settings app.
+        ///
+        /// Parameter `options`: See AVAssetDownloadTask*Key above. Configures non-default behavior for the download task.
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
         #[method_id(@__retain_semantics Other aggregateAssetDownloadTaskWithURLAsset:mediaSelections:assetTitle:assetArtworkData:options:)]
         pub unsafe fn aggregateAssetDownloadTaskWithURLAsset_mediaSelections_assetTitle_assetArtworkData_options(
@@ -395,6 +557,11 @@ extern_methods!(
             options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Option<Retained<AVAggregateAssetDownloadTask>>;
 
+        /// Creates and initializes an AVAssetDownloadTask to be used with this AVAssetDownloadURLSession.
+        ///
+        /// This method will throw an exception if the URLSession has been invalidated.
+        ///
+        /// Parameter `downloadConfiguration`: The configuration to be used to create the download task.
         #[method_id(@__retain_semantics Other assetDownloadTaskWithConfiguration:)]
         pub unsafe fn assetDownloadTaskWithConfiguration(
             &self,

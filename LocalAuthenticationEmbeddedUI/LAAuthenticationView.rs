@@ -14,7 +14,15 @@ use objc2_local_authentication::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthenticationembeddedui/laauthenticationview?language=objc)
+    /// Compact authentication view providing authentication similar to
+    /// `LAContext`evaluatePolicy API.
+    ///
+    /// This view is non-textual, it displays only a compact icon hinting
+    /// users to use Touch ID or Watch to authenticate. The reason for the
+    /// authentication must be apparent from the surrounding UI to avoid confusion and
+    /// security risks.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthenticationembeddedui/laauthenticationview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -65,10 +73,42 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
+        /// Creates a new view and pairs it with the specified authentication context.
+        ///
+        /// The authentication is controlled using the provided authentication
+        /// context. When `evaluatePolicy` or `evaluateAccessControl` is called on this
+        /// context, the UI will be presented using this view rather than using the standard
+        /// authentication alert.
+        /// Since the view is designed for authentication with Touch ID or Watch
+        /// the only supported policies for calling `evaluatePolicy` on the context are
+        /// - `LAPolicyDeviceOwnerAuthenticationWithBiometrics`
+        /// - `LAPolicyDeviceOwnerAuthenticationWithCompanion`
+        /// - `LAPolicyDeviceOwnerAuthenticationWitchBiometricsOrCompanion`
+        /// - `LAPolicyDeviceOwnerAuthentication` (This one is supported just for convenience. If neither biometric nor watch authentication is available, the evaluation of the policy fails)
+        ///
+        /// Parameter `context`: `LAContext`instance to control the authentication.
         #[method_id(@__retain_semantics Init initWithContext:)]
         pub unsafe fn initWithContext(this: Allocated<Self>, context: &LAContext)
             -> Retained<Self>;
 
+        /// Creates a new view and pairs it with the specified authentication context.
+        ///
+        /// The authentication is controlled using the provided authentication
+        /// context. When `evaluatePolicy` or `evaluateAccessControl` is called on this
+        /// context, the UI will be presented using this view rather than using the standard
+        /// authentication alert.
+        /// Since the view is designed for authentication with Touch ID or Watch
+        /// the only supported policies for calling `evaluatePolicy` on the context are
+        /// - `LAPolicyDeviceOwnerAuthenticationWithBiometrics`
+        /// - `LAPolicyDeviceOwnerAuthenticationWithCompanion`
+        /// - `LAPolicyDeviceOwnerAuthenticationWitchBiometricsOrCompanion`
+        /// - `LAPolicyDeviceOwnerAuthentication` (This one is supported just for convenience. If neither biometric nor watch authentication is available, the evaluation of the policy fails)
+        ///
+        /// Parameter `context`: `LAContext`instance to control the authentication.
+        ///
+        /// Parameter `controlSize`: Preferred size of
+        /// `LAAuthenticationView`provided using
+        /// `NSControlSize`
         #[method_id(@__retain_semantics Init initWithContext:controlSize:)]
         pub unsafe fn initWithContext_controlSize(
             this: Allocated<Self>,
@@ -76,9 +116,11 @@ extern_methods!(
             control_size: NSControlSize,
         ) -> Retained<Self>;
 
+        /// `LAContext`instance passed to the initializer.
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Retained<LAContext>;
 
+        /// `NSControlSize`instance passed to the initializer.
         #[method(controlSize)]
         pub unsafe fn controlSize(&self) -> NSControlSize;
     }

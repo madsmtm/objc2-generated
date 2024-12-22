@@ -6,7 +6,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramconductiontype?language=objc)
+/// Represents the conduction type used for an HKAudiogramSensitivityTest
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramconductiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,7 +26,9 @@ unsafe impl RefEncode for HKAudiogramConductionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytestside?language=objc)
+/// Represents the test side used for an HKAudiogramSensitivityTest
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytestside?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -70,19 +74,25 @@ unsafe impl NSSecureCoding for HKAudiogramSensitivityTest {}
 extern_methods!(
     unsafe impl HKAudiogramSensitivityTest {
         #[cfg(feature = "HKQuantity")]
+        /// Ear sensitivity measured in dB from a baseline of 0 dB. Reduced hearing sensitivity corresponds to an increase from 0 dB.
+        /// The unit of measurement is `HKUnit.decibelHearingLevelUnit` or "dBHL".
         #[method_id(@__retain_semantics Other sensitivity)]
         pub unsafe fn sensitivity(&self) -> Retained<HKQuantity>;
 
+        /// The conduction type
         #[method(type)]
         pub unsafe fn r#type(&self) -> HKAudiogramConductionType;
 
+        /// Indicates if the test was conducted with or without masking
         #[method(masked)]
         pub unsafe fn masked(&self) -> bool;
 
+        /// The test side
         #[method(side)]
         pub unsafe fn side(&self) -> HKAudiogramSensitivityTestSide;
 
         #[cfg(feature = "HKAudiogramSensitivityPointClampingRange")]
+        /// If present, indicates that the range within which the sensitivity point should be clamped.
         #[method_id(@__retain_semantics Other clampingRange)]
         pub unsafe fn clampingRange(
             &self,
@@ -92,6 +102,22 @@ extern_methods!(
             feature = "HKAudiogramSensitivityPointClampingRange",
             feature = "HKQuantity"
         ))]
+        /// Creates a sensitivity test which can be added to a HKAudiogramSensitivityPoint
+        ///
+        /// Parameter `sensitivity`: The ear sensitivity measured in dB from a baseline of 0 dB with unit `HKUnit.decibelHearingLevelUnit` or "dBHL".
+        ///
+        /// Parameter `type`: The type of test
+        ///
+        /// Parameter `masked`: If the test was conducted with or without masking
+        ///
+        /// Parameter `side`: The test side which was tested
+        ///
+        /// Parameter `clampingRange`: The clamping range (if any)
+        ///
+        /// Parameter `errorOut`: If there was a problem creating this instance this will contain the error.
+        ///
+        /// Returns: New instance of a Sensitivity Test or nil if there were problems
+        /// creating the instance.  Errors may include incorrect quantity units or sensitivity out of range
         #[method_id(@__retain_semantics Init initWithSensitivity:type:masked:side:clampingRange:error:_)]
         pub unsafe fn initWithSensitivity_type_masked_side_clampingRange_error(
             this: Allocated<Self>,

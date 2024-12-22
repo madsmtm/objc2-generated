@@ -58,6 +58,7 @@ extern_methods!(
         #[method(threadPriority)]
         pub unsafe fn threadPriority(&self) -> c_double;
 
+        /// Setter for [`threadPriority`][Self::threadPriority].
         #[method(setThreadPriority:)]
         pub unsafe fn setThreadPriority(&self, thread_priority: c_double);
 
@@ -66,6 +67,7 @@ extern_methods!(
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Setter for [`qualityOfService`][Self::qualityOfService].
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
@@ -82,12 +84,14 @@ extern_methods!(
         pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method(stackSize)]
         pub unsafe fn stackSize(&self) -> NSUInteger;
 
+        /// Setter for [`stackSize`][Self::stackSize].
         #[method(setStackSize:)]
         pub unsafe fn setStackSize(&self, stack_size: NSUInteger);
 

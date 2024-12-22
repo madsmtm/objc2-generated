@@ -342,6 +342,7 @@ extern_category!(
         #[method(observationInfo)]
         unsafe fn observationInfo(&self) -> *mut c_void;
 
+        /// Setter for [`observationInfo`][Self::observationInfo].
         #[method(setObservationInfo:)]
         unsafe fn setObservationInfo(&self, observation_info: *mut c_void);
     }

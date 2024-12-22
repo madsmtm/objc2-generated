@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wksecurityorigin?language=objc)
+    /// A WKSecurityOrigin object contains information about a security origin.
+    ///
+    /// An instance of this class is a transient, data-only object;
+    /// it does not uniquely identify a security origin across multiple delegate method
+    /// calls.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wksecurityorigin?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -21,12 +27,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The security origin's protocol.
         #[method_id(@__retain_semantics Other protocol)]
         pub unsafe fn protocol(&self) -> Retained<NSString>;
 
+        /// The security origin's host.
         #[method_id(@__retain_semantics Other host)]
         pub unsafe fn host(&self) -> Retained<NSString>;
 
+        /// The security origin's port.
         #[method(port)]
         pub unsafe fn port(&self) -> NSInteger;
     }

@@ -99,6 +99,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn GKTurnBasedMatchmakerViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`turnBasedMatchmakerDelegate`][Self::turnBasedMatchmakerDelegate].
         #[method(setTurnBasedMatchmakerDelegate:)]
         pub unsafe fn setTurnBasedMatchmakerDelegate(
             &self,
@@ -110,14 +111,17 @@ extern_methods!(
         #[method(showExistingMatches)]
         pub unsafe fn showExistingMatches(&self) -> bool;
 
+        /// Setter for [`showExistingMatches`][Self::showExistingMatches].
         #[method(setShowExistingMatches:)]
         pub unsafe fn setShowExistingMatches(&self, show_existing_matches: bool);
 
         #[cfg(feature = "GKMatchmakerViewController")]
+        /// This controls the mode of matchmaking to support in the UI (all, nearby only, automatch only, invite only). Throws an exception if you can not set to the desired mode (due to restrictions)
         #[method(matchmakingMode)]
         pub unsafe fn matchmakingMode(&self) -> GKMatchmakingMode;
 
         #[cfg(feature = "GKMatchmakerViewController")]
+        /// Setter for [`matchmakingMode`][Self::matchmakingMode].
         #[method(setMatchmakingMode:)]
         pub unsafe fn setMatchmakingMode(&self, matchmaking_mode: GKMatchmakingMode);
 
@@ -135,6 +139,7 @@ extern_protocol!(
     pub unsafe trait GKTurnBasedMatchmakerViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// The user has cancelled
         #[method(turnBasedMatchmakerViewControllerWasCancelled:)]
         unsafe fn turnBasedMatchmakerViewControllerWasCancelled(
             &self,
@@ -143,6 +148,7 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Matchmaking has failed with an error
         #[method(turnBasedMatchmakerViewController:didFailWithError:)]
         unsafe fn turnBasedMatchmakerViewController_didFailWithError(
             &self,

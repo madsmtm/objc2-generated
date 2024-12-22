@@ -31,6 +31,13 @@ unsafe impl NSSecureCoding for ASPasskeyAssertionCredential {}
 
 extern_methods!(
     unsafe impl ASPasskeyAssertionCredential {
+        /// Initializes an ASPasskeyCredential object.
+        ///
+        /// Parameter `userHandle`: The identifier for the account the passkey is associated with.
+        ///
+        /// Parameter `relyingParty`: the relying party.
+        ///
+        /// Parameter `signature`: the signature for the assertion challenge.
         #[method_id(@__retain_semantics Init initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:)]
         pub unsafe fn initWithUserHandle_relyingParty_signature_clientDataHash_authenticatorData_credentialID(
             this: Allocated<Self>,
@@ -43,6 +50,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "ASPasskeyAssertionCredentialExtensionOutput")]
+        /// Initializes an ASPasskeyCredential object.
+        ///
+        /// Parameter `userHandle`: The identifier for the account the passkey is associated with.
+        ///
+        /// Parameter `relyingParty`: The relying party.
+        ///
+        /// Parameter `signature`: The signature for the assertion challenge.
+        ///
+        /// Parameter `extensionOutput`: The outputs of WebAuthn extensions processed by the credential provider.
         #[method_id(@__retain_semantics Init initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:)]
         pub unsafe fn initWithUserHandle_relyingParty_signature_clientDataHash_authenticatorData_credentialID_extensionOutput(
             this: Allocated<Self>,
@@ -55,6 +71,13 @@ extern_methods!(
             extension_output: Option<&ASPasskeyAssertionCredentialExtensionOutput>,
         ) -> Retained<Self>;
 
+        /// Creates and initializes a new ASPasskeyCredential object.
+        ///
+        /// Parameter `userHandle`: The identifier for the account the passkey is associated with.
+        ///
+        /// Parameter `relyingParty`: the relying party.
+        ///
+        /// Parameter `signature`: the signature for the assertion challenge.
         #[method_id(@__retain_semantics Other credentialWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:)]
         pub unsafe fn credentialWithUserHandle_relyingParty_signature_clientDataHash_authenticatorData_credentialID(
             user_handle: &NSData,
@@ -65,31 +88,39 @@ extern_methods!(
             credential_id: &NSData,
         ) -> Retained<Self>;
 
+        /// The user handle of this passkey.
         #[method_id(@__retain_semantics Other userHandle)]
         pub unsafe fn userHandle(&self) -> Retained<NSData>;
 
+        /// The relying party of this credential.
         #[method_id(@__retain_semantics Other relyingParty)]
         pub unsafe fn relyingParty(&self) -> Retained<NSString>;
 
+        /// The signature of this credential.
         #[method_id(@__retain_semantics Other signature)]
         pub unsafe fn signature(&self) -> Retained<NSData>;
 
+        /// The hash of the client data for this assertion result.
         #[method_id(@__retain_semantics Other clientDataHash)]
         pub unsafe fn clientDataHash(&self) -> Retained<NSData>;
 
+        /// The authenticator data of the application that created this credential.
         #[method_id(@__retain_semantics Other authenticatorData)]
         pub unsafe fn authenticatorData(&self) -> Retained<NSData>;
 
+        /// The raw credential ID for this passkey credential.
         #[method_id(@__retain_semantics Other credentialID)]
         pub unsafe fn credentialID(&self) -> Retained<NSData>;
 
         #[cfg(feature = "ASPasskeyAssertionCredentialExtensionOutput")]
+        /// The outputs of WebAuthn extensions processed by the credential provider.
         #[method_id(@__retain_semantics Other extensionOutput)]
         pub unsafe fn extensionOutput(
             &self,
         ) -> Option<Retained<ASPasskeyAssertionCredentialExtensionOutput>>;
 
         #[cfg(feature = "ASPasskeyAssertionCredentialExtensionOutput")]
+        /// Setter for [`extensionOutput`][Self::extensionOutput].
         #[method(setExtensionOutput:)]
         pub unsafe fn setExtensionOutput(
             &self,

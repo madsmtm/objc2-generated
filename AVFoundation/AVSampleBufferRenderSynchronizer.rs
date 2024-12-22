@@ -10,13 +10,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizerratedidchangenotification?language=objc)
+    /// A notification that fires whenever the value of the "rate" property changes.
+    ///
+    /// The rate can change as a result of setting the rate property, either by directly setting the property or calling -setRate:time:.  The rate can also change at any time, without any action by the client of the render synchronizer.  For example, on iOS if the app's playback is interrupted (e.g. by a phone call or another non-mixable app starting playback), the rate will automatically be set to zero.  This notification will be sent in all of those cases.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizerratedidchangenotification?language=objc)
     pub static AVSampleBufferRenderSynchronizerRateDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer?language=objc)
+    /// AVSampleBufferRenderSynchronizer can synchronize multiple objects conforming to AVQueuedSampleBufferRendering to a single timebase.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSampleBufferRenderSynchronizer;
@@ -27,24 +33,78 @@ unsafe impl NSObjectProtocol for AVSampleBufferRenderSynchronizer {}
 extern_methods!(
     unsafe impl AVSampleBufferRenderSynchronizer {
         #[cfg(feature = "objc2-core-media")]
+        /// The synchronizer's rendering timebase, which governs how time stamps are interpreted.
+        ///
+        /// By default, this timebase will be driven by the clock of an added AVSampleBufferAudioRenderer.
+        ///
+        /// If no AVSampleBufferAudioRenderer has been added, the source clock will be the host time clock (mach_absolute_time with the appropriate timescale conversion; this is the same as Core Animation's CACurrentMediaTime).
+        ///
+        /// The timebase is a read-only timebase.  Use the rate property and corresponding methods to adjust the timebase.
         #[method(timebase)]
         pub unsafe fn timebase(&self) -> CMTimebaseRef;
 
+        /// Playback rate.
+        ///
+        /// Indicates the current rate of rendering.  A value of 0.0 means "stopped"; a value of 1.0 means "play at the natural rate of the media".  Must be greater than or equal to 0.0.
         #[method(rate)]
         pub unsafe fn rate(&self) -> c_float;
 
+        /// Setter for [`rate`][Self::rate].
         #[method(setRate:)]
         pub unsafe fn setRate(&self, rate: c_float);
 
         #[cfg(feature = "objc2-core-media")]
+        /// Returns the current time of the synchronizer.
+        ///
+        /// Returns: A CMTime
+        ///
+        /// Returns the current time of the synchronizer. Not key-value observable; use -addPeriodicTimeObserverForInterval:queue:usingBlock: instead.
         #[method(currentTime)]
         pub unsafe fn currentTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Sets the timebase's time and rate.
+        ///
+        /// Parameter `rate`: A new timebase rate to set.  Must be greater than or equal to 0.0
+        ///
+        /// Parameter `time`: A new time to set.  Must be greater than or equal to kCMTimeZero, or kCMTimeInvalid
+        ///
+        /// Sets the timebase's time to time and then sets the rendering rate to rate.  A rate value of 0.0 means "stopped"; a rate value of 1.0 means "play at the natural rate of the media".  Use kCMTimeInvalid for time to not modify the timebase's time.
+        /// Note that this method updates the rate property synchronously, but the timebase is updated asynchronously.
         #[method(setRate:time:)]
         pub unsafe fn setRate_time(&self, rate: c_float, time: CMTime);
 
         #[cfg(feature = "objc2-core-media")]
+        /// Simultaneously sets the playback rate and the relationship between the current time and host time.
+        ///
+        /// Parameter `rate`: A new timebase rate to set.  Must be greater than or equal to 0.0
+        ///
+        /// Parameter `time`: A new timebase time to set.  Must be greater than or equal to kCMTimeZero, or kCMTimeInvalid
+        ///
+        /// Parameter `hostTime`: A new hostTime to set.  Must be greater than or equal to kCMTimeZero, or kCMTimeInvalid
+        ///
+        /// You can use this function to synchronize playback with an external activity.
+        ///
+        /// The timebase is adjusted so that its time will be (or was) time when host time is (or was) hostTime.
+        /// In other words: if hostTime is in the past, the timebase's time will be interpolated as though the timebase has been running at the requested rate since that time.  If hostTime is in the future, the timebase will immediately start running at the requested rate from an earlier time so that it will reach the requested time at the requested hostTime.
+        /// It is a responsibility of the client to ensure that proper time and hostTime is set.  This method will not attempt to validate improper time, hostTime values.
+        /// In addition, it is also the caller’s responsibility to enqueue samples in the connected renderers that match the timeline defined here.
+        /// Note that any buffers that are in the past of the defined timeline will still be processed by the renderers.
+        ///
+        /// The recommended approach is to use the output presentation time of the first buffer enqueued in the renderers as time and and an associated hostTime in the future.
+        /// Example use:
+        /// CMTime startTime = …;
+        /// __block CMTime nextBufferTime = startTime;
+        /// [renderer requestMediaDataWhenReadyOnQueue:queue usingBlock:^{
+        /// …
+        /// CMSampleBufferRef sampleBuffer = [self generateSampleBufferFor: nextBufferTime];
+        /// [renderer enqueueSampleBuffer:sampleBuffer];
+        /// ...
+        /// }];
+        /// CMTime inOneSecond = CMTimeAdd(CMClockGetTime(CMClockGetHostTimeClock()), CMTimeMake(1, 1));
+        /// [synchronizer setRate:rate time:startTime atHostTime:inOneSecond];
+        ///
+        /// Also note that this method updates the rate property synchronously, but the timebase is updated asynchronously.
         #[method(setRate:time:atHostTime:)]
         pub unsafe fn setRate_time_atHostTime(
             &self,
@@ -53,9 +113,13 @@ extern_methods!(
             host_time: CMTime,
         );
 
+        /// Indicates whether the playback should be started immediately on rate change request.
+        ///
+        /// If set to YES, playback will be delayed if the value of hasSufficientMediaDataForReliablePlaybackStart of any added renderer is NO. If set to NO, playback will attempt to start immediately regardless of the value of hasSufficientMediaDataForReliablePlaybackStart of added renderers. Default is YES.
         #[method(delaysRateChangeUntilHasSufficientMediaData)]
         pub unsafe fn delaysRateChangeUntilHasSufficientMediaData(&self) -> bool;
 
+        /// Setter for [`delaysRateChangeUntilHasSufficientMediaData`][Self::delaysRateChangeUntilHasSufficientMediaData].
         #[method(setDelaysRateChangeUntilHasSufficientMediaData:)]
         pub unsafe fn setDelaysRateChangeUntilHasSufficientMediaData(
             &self,
@@ -79,12 +143,26 @@ extern_methods!(
     /// AVSampleBufferRenderSynchronizerRendererManagement
     unsafe impl AVSampleBufferRenderSynchronizer {
         #[cfg(feature = "AVQueuedSampleBufferRendering")]
+        /// Array of id
+        /// <AVQueuedSampleBufferRendering
+        /// > currently attached to the synchronizer.
+        ///
+        /// A list of renderers added to and not removed from the synchronizer.  The list also includes renderers that have been scheduled to be removed but have not yet been removed.
+        ///
+        /// This property is not KVO observable.
         #[method_id(@__retain_semantics Other renderers)]
         pub unsafe fn renderers(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn AVQueuedSampleBufferRendering>>>;
 
         #[cfg(feature = "AVQueuedSampleBufferRendering")]
+        /// Adds a renderer to the list of renderers under the synchronizer's control.
+        ///
+        /// Parameter `renderer`: An object conforming to AVQueuedSampleBufferRendering to be synchronized by this synchronizer.
+        ///
+        /// Adds a renderer to begin operating with the synchronizer's timebase.
+        ///
+        /// This method can be called while rate is non-0.0.
         #[method(addRenderer:)]
         pub unsafe fn addRenderer(
             &self,
@@ -96,6 +174,25 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-media"
         ))]
+        /// Removes a renderer from the list of renderers under the synchronizer's control.
+        ///
+        /// Parameter `renderer`: An object conforming to AVQueuedSampleBufferRendering currently synchronized by this synchronizer to no longer be synchronized by the synchronizer.
+        ///
+        /// Parameter `time`: The time on the timebase's timeline at which the renderer should be removed.
+        ///
+        /// Parameter `completionHandler`: Optional.  A block called when the renderer is removed from the synchronizer.  If provided, this block will always be called with didRemoveRenderer indicating whether the renderer was removed by this scheduled removal.
+        ///
+        /// This method can be called while rate is non-0.0.
+        ///
+        /// time is used to schedule future removals.  If the time is in the past, the renderer will be removed immediately.  kCMTimeInvalid can also be used to force immediate removal.
+        ///
+        /// This method removes the renderer asynchronously.  The method can be called more than once, with a subsequent scheduled removal replacing a previously scheduled removal.
+        ///
+        /// Clients may provide an optional completionHandler block to be notified when the scheduled removal completes.  If provided, completionHandler will always be called with the following values for didRemoveRenderer:
+        ///
+        /// - If the renderer has not been added to this synchronizer, completionHandler will be called and didRemoveRenderer will be NO.
+        /// - If a removal of a particular renderer is scheduled after another removal of that same renderer has already been scheduled but not yet occurred, the previously-scheduled removal's completionHandler will be called and didRemoveRenderer will be NO.  The new scheduled removal's completionHandler will not be called until it is replaced by another scheduled removal or the renderer is actually removed.
+        /// - When the renderer is removed due to a scheduled removal, the completionHandler provided when that removal was scheduled will be called and didRemoveRenderer will be YES.
         #[method(removeRenderer:atTime:completionHandler:)]
         pub unsafe fn removeRenderer_atTime_completionHandler(
             &self,
@@ -109,6 +206,17 @@ extern_methods!(
 extern_methods!(
     /// AVSampleBufferRenderSynchronizerTimeObservation
     unsafe impl AVSampleBufferRenderSynchronizer {
+        /// Cancels a previously registered time observer.
+        ///
+        /// Parameter `observer`: An object returned by a previous call to -addPeriodicTimeObserverForInterval:queue:usingBlock: or -addBoundaryTimeObserverForTimes:queue:usingBlock:.
+        ///
+        /// Upon return, the caller is guaranteed that no new time observer blocks will begin executing.  Depending on the calling thread and the queue used to add the time observer, an in-flight block may continue to execute after this method returns.  You can guarantee synchronous time observer removal by enqueuing the call to -removeTimeObserver: on that queue.  Alternatively, call dispatch_sync(queue, ^{}) after -removeTimeObserver: to wait for any in-flight blocks to finish executing.  -removeTimeObserver: should be used to explicitly cancel each time observer added using -addPeriodicTimeObserverForInterval:queue:usingBlock: and -addBoundaryTimeObserverForTimes:queue:usingBlock:.
+        ///
+        /// This method throws an exception for any of the following reasons:
+        /// - observer was added by another AVSampleBufferRenderSynchronizer
+        /// - observer was not returned by either
+        /// -addPeriodicTimeObserverForInterval:queue:usingBlock:
+        /// -addBoundaryTimeObserverForTimes:queue:usingBlock:
         #[method(removeTimeObserver:)]
         pub unsafe fn removeTimeObserver(&self, observer: &AnyObject);
     }

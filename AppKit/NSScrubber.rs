@@ -81,7 +81,9 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSScrubberDelegate {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubbermode?language=objc)
+/// Determines the interaction mode for a NSScrubber control.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubbermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -101,7 +103,9 @@ unsafe impl RefEncode for NSScrubberMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberalignment?language=objc)
+/// NSScrubberAlignment specifies the preferred alignment of elements within the control.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -126,7 +130,11 @@ unsafe impl RefEncode for NSScrubberAlignment {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberselectionstyle?language=objc)
+    /// `NSScrubberSelectionStyle`is an abstract class that provides decorative accessory views for selected and highlighted items within a NSScrubber control. Class properties provide convenient access to built-in styles. For a completely custom style, subclassers can override
+    /// `-makeSelectionView`to create and configure arbitrary
+    /// `NSScrubberSelectionView`subclasses.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberselectionstyle?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -174,7 +182,18 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubber?language=objc)
+    /// `NSScrubber`is a control designed for the NSTouchBar environment.
+    ///
+    /// `NSScrubber`arranges a finite number of "items" (represented by views of type
+    /// `NSScrubberItemView`) according to a layout object (see
+    /// `NSScrubberLayout`), and provides several methods for navigating and selecting those items.
+    ///
+    /// Clients provide data to
+    /// `NSScrubber`via a data source object (see the
+    /// `NSScrubberDataSource`protocol) and react to user interaction via a delegate object (see the
+    /// `NSScrubberDelegate`protocol).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubber?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -226,6 +245,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSScrubberDataSource>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`dataSource`][Self::dataSource].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
@@ -236,6 +256,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSScrubberDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSScrubberDelegate>>);
 
@@ -244,73 +265,118 @@ extern_methods!(
         pub unsafe fn scrubberLayout(&self) -> Retained<NSScrubberLayout>;
 
         #[cfg(feature = "NSScrubberLayout")]
+        /// Setter for [`scrubberLayout`][Self::scrubberLayout].
         #[method(setScrubberLayout:)]
         pub unsafe fn setScrubberLayout(&self, scrubber_layout: &NSScrubberLayout);
 
+        /// Returns the number of items represented by the scrubber control.
         #[method(numberOfItems)]
         pub unsafe fn numberOfItems(&self) -> NSInteger;
 
+        /// The index of the currently highlighted item within the control. If there is no highlighted item, the value of this property is (-1).
         #[method(highlightedIndex)]
         pub unsafe fn highlightedIndex(&self) -> NSInteger;
 
+        /// The index of the selected item within the control. If there is no selected item, the value of this property is (-1). Setting this property through the animator proxy will animate the selection change. Programmatic selection changes do not trigger delegate callbacks.
         #[method(selectedIndex)]
         pub unsafe fn selectedIndex(&self) -> NSInteger;
 
+        /// Setter for [`selectedIndex`][Self::selectedIndex].
         #[method(setSelectedIndex:)]
         pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
+        /// Describes the interaction mode for the scrubber control. See the
+        /// `NSScrubberMode`enumeration for a list of possible values. The default value is
+        /// `NSScrubberModeFixed.`
         #[method(mode)]
         pub unsafe fn mode(&self) -> NSScrubberMode;
 
+        /// Setter for [`mode`][Self::mode].
         #[method(setMode:)]
         pub unsafe fn setMode(&self, mode: NSScrubberMode);
 
+        /// If the value of
+        /// `itemAlignment`is not
+        /// `NSScrubberAlignmentNone,`the scrubber will ensure that some item rests at the preferred alignment within the control following a scrolling or paging interaction. The default value is
+        /// `NSScrubberAlignmentNone.`
         #[method(itemAlignment)]
         pub unsafe fn itemAlignment(&self) -> NSScrubberAlignment;
 
+        /// Setter for [`itemAlignment`][Self::itemAlignment].
         #[method(setItemAlignment:)]
         pub unsafe fn setItemAlignment(&self, item_alignment: NSScrubberAlignment);
 
+        /// When
+        /// `continuous`is
+        /// `YES,`panning over the control in
+        /// `NSScrubberModeFixed`will immediately select the item under the user's finger, and scrolling in
+        /// `NSScrubberModeFree`will continuously select items as they pass through the current
+        /// `itemAlignment.`The default is
+        /// `NO.`
         #[method(isContinuous)]
         pub unsafe fn isContinuous(&self) -> bool;
 
+        /// Setter for [`isContinuous`][Self::isContinuous].
         #[method(setContinuous:)]
         pub unsafe fn setContinuous(&self, continuous: bool);
 
+        /// When
+        /// `floatsSelectionViews`is
+        /// `YES,`the selection decorations provided by
+        /// `selectionBackgroundStyle`and
+        /// `selectionOverlayStyle`will smoothly float between selected items, rather than animating their entrance/exit in-place. The default is
+        /// `NO.`
         #[method(floatsSelectionViews)]
         pub unsafe fn floatsSelectionViews(&self) -> bool;
 
+        /// Setter for [`floatsSelectionViews`][Self::floatsSelectionViews].
         #[method(setFloatsSelectionViews:)]
         pub unsafe fn setFloatsSelectionViews(&self, floats_selection_views: bool);
 
+        /// Specifies a style of decoration to place behind items that are selected and/or highlighted. The default value is
+        /// `nil,`indicating no built-in background decoration.
         #[method_id(@__retain_semantics Other selectionBackgroundStyle)]
         pub unsafe fn selectionBackgroundStyle(&self)
             -> Option<Retained<NSScrubberSelectionStyle>>;
 
+        /// Setter for [`selectionBackgroundStyle`][Self::selectionBackgroundStyle].
         #[method(setSelectionBackgroundStyle:)]
         pub unsafe fn setSelectionBackgroundStyle(
             &self,
             selection_background_style: Option<&NSScrubberSelectionStyle>,
         );
 
+        /// Specifies a style of decoration to place above items that are selected and/or highlighted. The default value is
+        /// `nil,`indicating no built-in overlay decoration.
         #[method_id(@__retain_semantics Other selectionOverlayStyle)]
         pub unsafe fn selectionOverlayStyle(&self) -> Option<Retained<NSScrubberSelectionStyle>>;
 
+        /// Setter for [`selectionOverlayStyle`][Self::selectionOverlayStyle].
         #[method(setSelectionOverlayStyle:)]
         pub unsafe fn setSelectionOverlayStyle(
             &self,
             selection_overlay_style: Option<&NSScrubberSelectionStyle>,
         );
 
+        /// If
+        /// `showsArrowButtons`is
+        /// `YES,`the control provides leading and trailing arrow buttons. Tapping an arrow button moves the selection index by one element; pressing and holding repeatedly moves the selection. The default is
+        /// `NO.`
         #[method(showsArrowButtons)]
         pub unsafe fn showsArrowButtons(&self) -> bool;
 
+        /// Setter for [`showsArrowButtons`][Self::showsArrowButtons].
         #[method(setShowsArrowButtons:)]
         pub unsafe fn setShowsArrowButtons(&self, shows_arrow_buttons: bool);
 
+        /// If
+        /// `showsAdditionalContentIndicators`is
+        /// `YES,`the control will draw a fade effect to indicate that there is additional unscrolled content. The default is
+        /// `NO.`
         #[method(showsAdditionalContentIndicators)]
         pub unsafe fn showsAdditionalContentIndicators(&self) -> bool;
 
+        /// Setter for [`showsAdditionalContentIndicators`][Self::showsAdditionalContentIndicators].
         #[method(setShowsAdditionalContentIndicators:)]
         pub unsafe fn setShowsAdditionalContentIndicators(
             &self,
@@ -318,16 +384,27 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSColor")]
+        /// If set,
+        /// `backgroundColor`is displayed behind the scrubber content. The background color is suppressed if the scrubber is assigned a non-nil
+        /// `backgroundView.`The default value is
+        /// `nil.`
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
+        /// If non-nil, the
+        /// `backgroundView`is displayed below the scrubber content. The view's layout is managed by
+        /// `NSScrubber`to match the content area. If this property is non-nil, the
+        /// `backgroundColor`property has no effect. The default value is
+        /// `nil.`
         #[method_id(@__retain_semantics Other backgroundView)]
         pub unsafe fn backgroundView(&self) -> Option<Retained<NSView>>;
 
+        /// Setter for [`backgroundView`][Self::backgroundView].
         #[method(setBackgroundView:)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&NSView>);
 
@@ -338,28 +415,45 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
+        /// Invalidate all data within the scrubber control, triggering a reload of all content, and clearing the current selection.
         #[method(reloadData)]
         pub unsafe fn reloadData(&self);
 
         #[cfg(feature = "block2")]
+        /// Updates inside the
+        /// `performSequentialBatchUpdates`block are processed and displayed all at once, including insertion, removal, moving, reloading items, and changing the selected index. Changes are performed iteratively using the same semantics as
+        /// `NSMutableArray.`NSScrubber expects its dataSource to reflect the changes made inside
+        /// `-performSequentialBatchUpdates:`immediately after the
+        /// `updateBlock`finishes executing.
         #[method(performSequentialBatchUpdates:)]
         pub unsafe fn performSequentialBatchUpdates(
             &self,
             update_block: &block2::Block<dyn Fn() + '_>,
         );
 
+        /// Inserts new items at the specified indexes. NSScrubber will request views for each new index from the
+        /// `dataSource.`This method uses the same semantics as
+        /// `NSMutableArray;`each index in the set specifies the destination index after all previous insertions have occurred. Therefore, an NSIndexSet of [1,2,3] will result in three new contiguous items.
         #[method(insertItemsAtIndexes:)]
         pub unsafe fn insertItemsAtIndexes(&self, indexes: &NSIndexSet);
 
+        /// Removes the items at the specified indexes. This method uses the same semantics as
+        /// `NSMutableArray.`
         #[method(removeItemsAtIndexes:)]
         pub unsafe fn removeItemsAtIndexes(&self, indexes: &NSIndexSet);
 
+        /// Reloads the items at the specified indexes. NSScrubber will request new views for each item and smoothly crossfade between them before discarding the original views.
         #[method(reloadItemsAtIndexes:)]
         pub unsafe fn reloadItemsAtIndexes(&self, indexes: &NSIndexSet);
 
+        /// Moves an item from one index to another.
+        /// `oldIndex`refers to the item's index prior to the movement, whereas
+        /// `newIndex`refers to the item's final location.
         #[method(moveItemAtIndex:toIndex:)]
         pub unsafe fn moveItemAtIndex_toIndex(&self, old_index: NSInteger, new_index: NSInteger);
 
+        /// Scrolls an item to a given alignment within the control. If
+        /// `NSScrubberAlignmentNone`is provided, then the control scrolls the minimum amount necessary to make the item visible. Scrolling is animated if called on the animator proxy.
         #[method(scrollItemAtIndex:toAlignment:)]
         pub unsafe fn scrollItemAtIndex_toAlignment(
             &self,
@@ -368,6 +462,9 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSScrubberItemView")]
+        /// Returns the
+        /// `NSScrubberItemView`for the given index, if one currently exists; returns
+        /// `nil`otherwise.
         #[method_id(@__retain_semantics Other itemViewForItemAtIndex:)]
         pub unsafe fn itemViewForItemAtIndex(
             &self,
@@ -375,6 +472,13 @@ extern_methods!(
         ) -> Option<Retained<NSScrubberItemView>>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
+        /// Registers a
+        /// `NSScrubberItemView`class to be instantiated for the given
+        /// `itemIdentifier.`Raises an exception if
+        /// `itemViewClass`is not a subclass of
+        /// `NSScrubberItemView.`Passing
+        /// `nil`for
+        /// `itemViewClass`removes a previous registration. Registrations made through this method do not persist through NSCoding.
         #[method(registerClass:forItemIdentifier:)]
         pub unsafe fn registerClass_forItemIdentifier(
             &self,
@@ -383,6 +487,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSNib", feature = "NSUserInterfaceItemIdentification"))]
+        /// Register a nib to be instantiated for the given
+        /// `itemIdentifier.`The nib must contain a top-level object which is a subclass of NSScrubberItemView; otherwise,
+        /// `-makeItemWithIdentifier:`may return
+        /// `nil`for this identifier. Passing
+        /// `nil`for
+        /// `nib`removes a previous registration.
         #[method(registerNib:forItemIdentifier:)]
         pub unsafe fn registerNib_forItemIdentifier(
             &self,
@@ -394,6 +504,11 @@ extern_methods!(
             feature = "NSScrubberItemView",
             feature = "NSUserInterfaceItemIdentification"
         ))]
+        /// Creates or reuses a
+        /// `NSScrubberItemView`corresponding to the provided
+        /// `itemIdentifier.``NSScrubber`searches, in order: the reuse queue, the list of registered classes, and then the list of registered nibs. If the reuse queue is empty, and there is no Class or Interface Builder archive registered for the
+        /// `itemIdentifier,`this method returns
+        /// `nil.`
         #[method_id(@__retain_semantics Other makeItemWithIdentifier:owner:)]
         pub unsafe fn makeItemWithIdentifier_owner(
             &self,

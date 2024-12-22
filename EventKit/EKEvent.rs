@@ -58,7 +58,9 @@ unsafe impl RefEncode for EKEventStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekevent?language=objc)
+    /// The EKEvent class represents an occurrence of an event.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekevent?language=objc)
     #[unsafe(super(EKCalendarItem, EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
@@ -72,72 +74,166 @@ extern_methods!(
     #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     unsafe impl EKEvent {
         #[cfg(feature = "EKEventStore")]
+        /// Creates a new autoreleased event object.
         #[method_id(@__retain_semantics Other eventWithEventStore:)]
         pub unsafe fn eventWithEventStore(event_store: &EKEventStore) -> Retained<EKEvent>;
 
+        /// A unique identifier for this event.
+        ///
+        /// This identifier can be used to look the event up using [EKEventStore eventWithIdentifier:].
+        /// You can use this not only to simply fetch the event, but also to validate the event
+        /// has not been deleted out from under you when you get an external change notification
+        /// via the EKEventStore database changed notification. If eventWithIdentifier: returns nil,
+        /// the event was deleted.
+        ///
+        /// Please note that if you change the calendar of an event, this ID will likely change. It is
+        /// currently also possible for the ID to change due to a sync operation. For example, if
+        /// a user moved an event on a different client to another calendar, we'd see it as a
+        /// completely new event here.
+        ///
+        /// This may be nil for events that have not been saved.
         #[method_id(@__retain_semantics Other eventIdentifier)]
         pub unsafe fn eventIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Indicates this event is an 'all day' event.
         #[method(isAllDay)]
         pub unsafe fn isAllDay(&self) -> bool;
 
+        /// Setter for [`isAllDay`][Self::isAllDay].
         #[method(setAllDay:)]
         pub unsafe fn setAllDay(&self, all_day: bool);
 
+        /// The start date for the event.
+        ///
+        /// This property represents the start date for this event. Floating events (such
+        /// as all-day events) are currently always returned in the default time zone.
+        /// ([NSTimeZone defaultTimeZone])
+        ///
+        /// This will be nil for new events until you set it.
         #[method_id(@__retain_semantics Other startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
+        /// Setter for [`startDate`][Self::startDate].
         #[method(setStartDate:)]
         pub unsafe fn setStartDate(&self, start_date: Option<&NSDate>);
 
+        /// The end date for the event.
+        ///
+        /// This will be nil for new events until you set it.
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
+        /// Setter for [`endDate`][Self::endDate].
         #[method(setEndDate:)]
         pub unsafe fn setEndDate(&self, end_date: Option<&NSDate>);
 
         #[cfg(feature = "EKStructuredLocation")]
+        /// Allows you to set a structured location (a location with a potential geo-coordinate) on an
+        /// event. The getter for EKEvent’s location property just returns the structured location’s title.
+        /// The setter for EKEvent’s location property is equivalent to
+        /// [event setStructuredLocation:[EKStructuredLocation locationWithTitle:…]].
         #[method_id(@__retain_semantics Other structuredLocation)]
         pub unsafe fn structuredLocation(&self) -> Option<Retained<EKStructuredLocation>>;
 
         #[cfg(feature = "EKStructuredLocation")]
+        /// Setter for [`structuredLocation`][Self::structuredLocation].
         #[method(setStructuredLocation:)]
         pub unsafe fn setStructuredLocation(
             &self,
             structured_location: Option<&EKStructuredLocation>,
         );
 
+        /// Comparison function you can pass to sort NSArrays of EKEvents by start date.
         #[method(compareStartDateWithEvent:)]
         pub unsafe fn compareStartDateWithEvent(&self, other: &EKEvent) -> NSComparisonResult;
 
         #[cfg(feature = "EKParticipant")]
+        /// The organizer of this event, or nil.
         #[method_id(@__retain_semantics Other organizer)]
         pub unsafe fn organizer(&self) -> Option<Retained<EKParticipant>>;
 
+        /// The availability setting for this event.
+        ///
+        /// The availability setting is used by CalDAV and Exchange servers to indicate
+        /// how the time should be treated for scheduling. If the calendar the event is
+        /// currently in does not support event availability, EKEventAvailabilityNotSupported
+        /// is returned.
         #[method(availability)]
         pub unsafe fn availability(&self) -> EKEventAvailability;
 
+        /// Setter for [`availability`][Self::availability].
         #[method(setAvailability:)]
         pub unsafe fn setAvailability(&self, availability: EKEventAvailability);
 
+        /// The status of the event.
+        ///
+        /// While the status offers four different values in the EKEventStatus enumeration,
+        /// in practice, the only actionable and reliable status is canceled. Any other status
+        /// should be considered informational at best. You cannot set this property. If you
+        /// wish to cancel an event, you should simply remove it using removeEvent:.
         #[method(status)]
         pub unsafe fn status(&self) -> EKEventStatus;
 
+        /// Represents whether this event is detached from a recurring series.
+        ///
+        /// If this EKEvent is an instance of a repeating event, and an attribute of this
+        /// EKEvent has been changed from the default value generated by the repeating event,
+        /// isDetached will return YES. If the EKEvent is unchanged from its default state, or
+        /// is not a repeating event, isDetached returns NO.
         #[method(isDetached)]
         pub unsafe fn isDetached(&self) -> bool;
 
+        /// The occurrence date of an event if it is part of a recurring series.
+        ///
+        /// This is only set if the event is part of a recurring series. It returns
+        /// the date on which this event was originally scheduled to occur. For occurrences
+        /// that are unmodified from the recurring series, this is the same as the start date.
+        /// This value will remain the same even if the event has been detached and its start
+        /// date has changed. Floating events (such as all-day events) are currently returned
+        /// in the default time zone. ([NSTimeZone defaultTimeZone])
+        ///
+        /// This will be nil for new events until you set startDate.
         #[method_id(@__retain_semantics Other occurrenceDate)]
         pub unsafe fn occurrenceDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Refreshes an event object to ensure it's still valid.
+        ///
+        /// When the database changes, your application is sent an EKEventStoreChangedNotification
+        /// note. You should generally consider all EKEvent instances to be invalid as soon as
+        /// you receive the notification. However, for events you truly care to keep around, you
+        /// can call this method. It ensures the record is still valid by ensuring the event and
+        /// start date are still valid. It also attempts to refresh all properties except those
+        /// you might have modified. If this method returns NO, the record has been deleted or is
+        /// otherwise invalid. You should not continue to use it. If it returns YES, all is still
+        /// well, and the record is ready for continued use. You should only call this method on
+        /// events that are more critical to keep around if possible, such as an event that is
+        /// being actively edited, as this call is fairly heavyweight. Do not use it to refresh
+        /// the entire selected range of events you might have had selected. It is mostly pointless
+        /// anyway, as recurrence information may have changed.
         #[method(refresh)]
         pub unsafe fn refresh(&self) -> bool;
 
+        /// Specifies the contact identifier of the person this event was created for.
+        ///
+        /// This property is only valid for events in the built-in Birthdays calendar. It specifies
+        /// the contact identifier (for use with the Contacts framework) of the person this event was
+        /// created for. For any other type of event, this property returns nil.
         #[method_id(@__retain_semantics Other birthdayContactIdentifier)]
         pub unsafe fn birthdayContactIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Specifies the address book ID of the person this event was created for.
+        ///
+        /// This property is only valid for events in the built-in Birthdays calendar. It specifies
+        /// the Address Book ID of the person this event was created for. For any other type of event,
+        /// this property returns -1.
         #[method(birthdayPersonID)]
         pub unsafe fn birthdayPersonID(&self) -> NSInteger;
 
+        /// Specifies the address book unique ID of the person this event was created for.
+        ///
+        /// This property is only valid for events in the built-in Birthdays calendar. It specifies
+        /// the Address Book unique ID of the person this event was created for. For any other type of event,
+        /// this property returns nil.
         #[deprecated = "Use birthdayContactIdentifier instead"]
         #[method_id(@__retain_semantics Other birthdayPersonUniqueID)]
         pub unsafe fn birthdayPersonUniqueID(&self) -> Option<Retained<NSString>>;

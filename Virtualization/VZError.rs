@@ -10,7 +10,63 @@ extern "C" {
     pub static VZErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerrorcode?language=objc)
+/// Error type returned by the Virtualization framework.
+/// The NSError domain is VZErrorDomain, the code is one of the VZErrorCode constants.
+///
+/// The virtualization framework can also report errors from other domains when the error originates from a lower level component.
+///
+///
+/// Internal error such as the virtual machine unexpectedly stopping.
+///
+/// Invalid machine configuration.
+///
+/// API used with a machine in the wrong state (e.g. interacting with a machine before it is running).
+///
+/// Invalid change of state (e.g. pausing a virtual machine that is not started).
+///
+/// Unrecognized disk image format or invalid disk image.
+///
+/// The running virtual machine limit was exceeded.
+///
+/// Network error occurred.
+///
+/// Machine ran out of disk space.
+///
+/// The operation was cancelled.
+///
+/// The operation is not supported.
+///
+/// The save operation failed.
+///
+/// The restore operation failed.
+///
+/// The restore image catalog failed to load.
+///
+/// The restore image catalog is invalid.
+///
+/// The restore image catalog has no supported restore images.
+///
+/// The restore image failed to load.
+///
+/// The restore image is invalid.
+///
+/// A software update is required to complete the installation.
+///
+/// An error occurred during installation.
+///
+/// The connection or the negotiation with the NBD server failed.
+///
+/// The NBD client is disconnected from the server.
+///
+/// Controller not found.
+///
+/// Device is already attached.
+///
+/// Device initialization failure.
+///
+/// Device not found.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

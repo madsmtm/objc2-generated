@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIFindSessionSearchResultDisplayStyle(pub NSInteger);
 impl UIFindSessionSearchResultDisplayStyle {
+    /// Displays the total number of reported results, and which result index is currently highlighted (i.e., "1 of 5").
     #[doc(alias = "UIFindSessionSearchResultDisplayStyleCurrentAndTotal")]
     pub const CurrentAndTotal: Self = Self(0);
+    /// Displays only the total number of reported results (i.e., "5 results").
     #[doc(alias = "UIFindSessionSearchResultDisplayStyleTotal")]
     pub const Total: Self = Self(1);
+    /// Do not display number of reported results.
     #[doc(alias = "UIFindSessionSearchResultDisplayStyleNone")]
     pub const None: Self = Self(2);
 }
@@ -35,10 +38,13 @@ unsafe impl RefEncode for UIFindSessionSearchResultDisplayStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITextSearchMatchMethod(pub NSInteger);
 impl UITextSearchMatchMethod {
+    /// Word contains search string.
     #[doc(alias = "UITextSearchMatchMethodContains")]
     pub const Contains: Self = Self(0);
+    /// Word contains the search string as a prefix.
     #[doc(alias = "UITextSearchMatchMethodStartsWith")]
     pub const StartsWith: Self = Self(1);
+    /// Word is an exact match for the search string.
     #[doc(alias = "UITextSearchMatchMethodFullWord")]
     pub const FullWord: Self = Self(2);
 }
@@ -63,9 +69,11 @@ unsafe impl NSObjectProtocol for UITextSearchOptions {}
 
 extern_methods!(
     unsafe impl UITextSearchOptions {
+        /// See UITextSearchMatchMethod above.
         #[method(wordMatchMethod)]
         pub unsafe fn wordMatchMethod(&self) -> UITextSearchMatchMethod;
 
+        /// Comparison options to use when searching for strings.
         #[method(stringCompareOptions)]
         pub unsafe fn stringCompareOptions(&self) -> NSStringCompareOptions;
     }
@@ -83,7 +91,16 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindsession?language=objc)
+    /// An abstract base class for managing a find session.
+    ///
+    /// A UIFindSession instance is returned by UIFindInteractionDelegate when a find session is initiated
+    /// by the user. You can choose to implement a subclass of UIFindSession to handle all state, decoration,
+    /// and behavior yourself. This would be the preferred choice if the view your find interaction is attached to
+    /// is very custom in the way it handles the presentation of found results. Other clients are encouraged to
+    /// instead use UISearchableObjectFindSession and the UITextSearching protocol, which manages the
+    /// state of a find session automatically using behavior consistent with the rest of the system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindsession?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -94,27 +111,48 @@ unsafe impl NSObjectProtocol for UIFindSession {}
 
 extern_methods!(
     unsafe impl UIFindSession {
+        /// Returns the total number of results.
+        /// You may call UIFindInteraction's
+        /// `updateResultCount`to update the system find panel's UI if already visible.
         #[method(resultCount)]
         pub unsafe fn resultCount(&self) -> NSInteger;
 
+        /// Returns the index of the currently highlighted result, out of
+        /// `resultCount.`If no result is currently highlighted, return NSNotFound.
+        /// You may call UIFindInteraction's
+        /// `updateResultCount`to update the system find panel's UI if already visible.
         #[method(highlightedResultIndex)]
         pub unsafe fn highlightedResultIndex(&self) -> NSInteger;
 
+        /// Defines how results are reported through the find panel's UI. The default style is
+        /// `CurrentAndTotal.`
         #[method(searchResultDisplayStyle)]
         pub unsafe fn searchResultDisplayStyle(&self) -> UIFindSessionSearchResultDisplayStyle;
 
+        /// Setter for [`searchResultDisplayStyle`][Self::searchResultDisplayStyle].
         #[method(setSearchResultDisplayStyle:)]
         pub unsafe fn setSearchResultDisplayStyle(
             &self,
             search_result_display_style: UIFindSessionSearchResultDisplayStyle,
         );
 
+        /// Return YES if replacement is supported. This gates the appearance of replace UI in the find navigator panel. Default is NO.
         #[method(supportsReplacement)]
         pub unsafe fn supportsReplacement(&self) -> bool;
 
+        /// Return YES if replacement is allowed for the currently highlighted item. This property controls the enabled state
+        /// of the "replace" button in the find navigator, as well as various hardware keyboard shortcuts involving replacement.
+        /// Default is YES, if supportsReplacement is YES.
         #[method(allowsReplacementForCurrentlyHighlightedResult)]
         pub unsafe fn allowsReplacementForCurrentlyHighlightedResult(&self) -> bool;
 
+        /// Called when the user requests a search to be performed for
+        /// `query,`using
+        /// `options.`
+        ///
+        /// Parameter `query`: The search string entered into the search text field in the system find panel.
+        ///
+        /// Parameter `options`: Object representing all configured search options for this search.
         #[method(performSearchWithQuery:options:)]
         pub unsafe fn performSearchWithQuery_options(
             &self,
@@ -122,6 +160,15 @@ extern_methods!(
             options: Option<&UITextSearchOptions>,
         );
 
+        /// Called when the user requests a single replacement to occur given
+        /// `searchQuery`and
+        /// `replacementString.`
+        ///
+        /// Parameter `searchQuery`: The search string entered into the search text field in the system find panel.
+        ///
+        /// Parameter `replacementString`: The replacement string entered into the replace text field in the system find panel.
+        ///
+        /// Parameter `options`: Object representing all configured search options for this replacement.
         #[method(performSingleReplacementWithSearchQuery:replacementString:options:)]
         pub unsafe fn performSingleReplacementWithSearchQuery_replacementString_options(
             &self,
@@ -130,6 +177,14 @@ extern_methods!(
             options: Option<&UITextSearchOptions>,
         );
 
+        /// Called when the user requests a document-wide replacement to occur.
+        ///
+        ///
+        /// Parameter `searchQuery`: The search string entered into the search text field in the system find panel.
+        ///
+        /// Parameter `replacementString`: The replacement string entered into the replace text field in the system find panel.
+        ///
+        /// Parameter `options`: Object representing all configured search options for this replacement.
         #[method(replaceAllInstancesOfSearchQuery:withReplacementString:options:)]
         pub unsafe fn replaceAllInstancesOfSearchQuery_withReplacementString_options(
             &self,
@@ -139,9 +194,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "UITextInput")]
+        /// Called when either the next or previous button is activated, or when return or shift+return is pressed in the search field.
+        ///
+        ///
+        /// Parameter `direction`: Which direction the user intends to move, either forward or backward.
         #[method(highlightNextResultInDirection:)]
         pub unsafe fn highlightNextResultInDirection(&self, direction: UITextStorageDirection);
 
+        /// This method will be called whenever the current find session's found/highlighted results are to be invalidated. For instance,
+        /// when the search query is cleared, options changed, or any other event where we may not perform another search right away.
         #[method(invalidateFoundResults)]
         pub unsafe fn invalidateFoundResults(&self);
 
@@ -163,7 +224,20 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchingfindsession?language=objc)
+    /// A
+    /// `UIFindSession`implementation for clients who adopt the
+    /// `UITextSearching`protocol.
+    ///
+    /// `UITextSearchingFindSession`is a concrete implementation of
+    /// `UIFindSession`which manages
+    /// all of the state associated with a find session (i.e., the way results are presented to the user, the
+    /// order in which they are cycled through, etc.). A
+    /// `UITextSearchingFindSession`would be ideal
+    /// for clients who already implement the
+    /// `UITextInput`protocol, since many of the concepts defined there are
+    /// compatible with this class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchingfindsession?language=objc)
     #[unsafe(super(UIFindSession, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -175,6 +249,8 @@ unsafe impl NSObjectProtocol for UITextSearchingFindSession {}
 extern_methods!(
     unsafe impl UITextSearchingFindSession {
         #[cfg(feature = "UITextSearching")]
+        /// The object responsible for actually performing the search operation and decorating found text results.
+        /// See `UITextSearching.h` for more information.
         #[method_id(@__retain_semantics Other searchableObject)]
         pub unsafe fn searchableObject(
             &self,

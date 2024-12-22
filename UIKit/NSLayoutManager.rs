@@ -112,6 +112,7 @@ unsafe impl NSSecureCoding for NSLayoutManager {}
 
 extern_methods!(
     unsafe impl NSLayoutManager {
+        /// ************************** Initialization ***************************
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -122,14 +123,17 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSTextStorage")]
+        /// ************************* Text storage **************************
         #[method_id(@__retain_semantics Other textStorage)]
         pub unsafe fn textStorage(&self) -> Option<Retained<NSTextStorage>>;
 
         #[cfg(feature = "NSTextStorage")]
+        /// Setter for [`textStorage`][Self::textStorage].
         #[method(setTextStorage:)]
         pub unsafe fn setTextStorage(&self, text_storage: Option<&NSTextStorage>);
 
         #[cfg(feature = "NSTextContainer")]
+        /// ************************** Text containers ***************************
         #[method_id(@__retain_semantics Other textContainers)]
         pub unsafe fn textContainers(&self) -> Retained<NSArray<NSTextContainer>>;
 
@@ -152,39 +156,46 @@ extern_methods!(
         #[method(textContainerChangedGeometry:)]
         pub unsafe fn textContainerChangedGeometry(&self, container: &NSTextContainer);
 
+        /// ************************** Delegate ***************************
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSLayoutManagerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSLayoutManagerDelegate>>,
         );
 
+        /// ********************* Global layout manager options **********************
         #[method(showsInvisibleCharacters)]
         pub unsafe fn showsInvisibleCharacters(&self) -> bool;
 
+        /// Setter for [`showsInvisibleCharacters`][Self::showsInvisibleCharacters].
         #[method(setShowsInvisibleCharacters:)]
         pub unsafe fn setShowsInvisibleCharacters(&self, shows_invisible_characters: bool);
 
         #[method(showsControlCharacters)]
         pub unsafe fn showsControlCharacters(&self) -> bool;
 
+        /// Setter for [`showsControlCharacters`][Self::showsControlCharacters].
         #[method(setShowsControlCharacters:)]
         pub unsafe fn setShowsControlCharacters(&self, shows_control_characters: bool);
 
         #[method(usesFontLeading)]
         pub unsafe fn usesFontLeading(&self) -> bool;
 
+        /// Setter for [`usesFontLeading`][Self::usesFontLeading].
         #[method(setUsesFontLeading:)]
         pub unsafe fn setUsesFontLeading(&self, uses_font_leading: bool);
 
         #[method(allowsNonContiguousLayout)]
         pub unsafe fn allowsNonContiguousLayout(&self) -> bool;
 
+        /// Setter for [`allowsNonContiguousLayout`][Self::allowsNonContiguousLayout].
         #[method(setAllowsNonContiguousLayout:)]
         pub unsafe fn setAllowsNonContiguousLayout(&self, allows_non_contiguous_layout: bool);
 
@@ -194,6 +205,7 @@ extern_methods!(
         #[method(limitsLayoutForSuspiciousContents)]
         pub unsafe fn limitsLayoutForSuspiciousContents(&self) -> bool;
 
+        /// Setter for [`limitsLayoutForSuspiciousContents`][Self::limitsLayoutForSuspiciousContents].
         #[method(setLimitsLayoutForSuspiciousContents:)]
         pub unsafe fn setLimitsLayoutForSuspiciousContents(
             &self,
@@ -203,9 +215,11 @@ extern_methods!(
         #[method(usesDefaultHyphenation)]
         pub unsafe fn usesDefaultHyphenation(&self) -> bool;
 
+        /// Setter for [`usesDefaultHyphenation`][Self::usesDefaultHyphenation].
         #[method(setUsesDefaultHyphenation:)]
         pub unsafe fn setUsesDefaultHyphenation(&self, uses_default_hyphenation: bool);
 
+        /// ************************ Invalidation *************************
         #[method(invalidateGlyphsForCharacterRange:changeInLength:actualCharacterRange:)]
         pub unsafe fn invalidateGlyphsForCharacterRange_changeInLength_actualCharacterRange(
             &self,
@@ -238,6 +252,7 @@ extern_methods!(
             invalidated_char_range: NSRange,
         );
 
+        /// ********************** Causing glyph generation and layout ***********************
         #[method(ensureGlyphsForCharacterRange:)]
         pub unsafe fn ensureGlyphsForCharacterRange(&self, char_range: NSRange);
 
@@ -263,6 +278,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIFont", feature = "objc2-core-graphics"))]
+        /// ********************** Set glyphs and glyph properties ***********************
         #[method(setGlyphs:properties:characterIndexes:font:forGlyphRange:)]
         pub unsafe fn setGlyphs_properties_characterIndexes_font_forGlyphRange(
             &self,
@@ -273,6 +289,7 @@ extern_methods!(
             glyph_range: NSRange,
         );
 
+        /// ********************** Get glyphs and glyph properties ***********************
         #[method(numberOfGlyphs)]
         pub unsafe fn numberOfGlyphs(&self) -> NSUInteger;
 
@@ -367,6 +384,7 @@ extern_methods!(
             glyph_range: NSRange,
         );
 
+        /// ********************** Get layout information ***********************
         #[method(getFirstUnlaidCharacterIndex:glyphIndex:)]
         pub unsafe fn getFirstUnlaidCharacterIndex_glyphIndex(
             &self,
@@ -470,6 +488,7 @@ extern_methods!(
             glyph_index: NSUInteger,
         ) -> NSRange;
 
+        /// ********************** More sophisticated queries ***********************
         #[method(glyphRangeForCharacterRange:actualCharacterRange:)]
         pub unsafe fn glyphRangeForCharacterRange_actualCharacterRange(
             &self,
@@ -592,6 +611,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// ********************** Drawing support ***********************
         #[method(drawBackgroundForGlyphRange:atPoint:)]
         pub unsafe fn drawBackgroundForGlyphRange_atPoint(
             &self,
@@ -694,6 +714,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanagerdelegate?language=objc)
     pub unsafe trait NSLayoutManagerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UIFont", feature = "objc2-core-graphics"))]
+        /// ********************** Glyph generation ***********************
         #[optional]
         #[method(layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:)]
         unsafe fn layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange(
@@ -707,6 +728,7 @@ extern_protocol!(
         ) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// ********************** Line layout ***********************
         #[optional]
         #[method(layoutManager:lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:)]
         unsafe fn layoutManager_lineSpacingAfterGlyphAtIndex_withProposedLineFragmentRect(
@@ -787,6 +809,7 @@ extern_protocol!(
             glyph_range: NSRange,
         ) -> bool;
 
+        /// ********************** Layout processing ***********************
         #[optional]
         #[method(layoutManagerDidInvalidateLayout:)]
         unsafe fn layoutManagerDidInvalidateLayout(&self, sender: &NSLayoutManager);
@@ -836,6 +859,7 @@ extern_methods!(
         pub unsafe fn hyphenationFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`hyphenationFactor`][Self::hyphenationFactor].
         #[deprecated = "Please use usesDefaultHyphenation or -[NSParagraphStyle hyphenationFactor] instead."]
         #[method(setHyphenationFactor:)]
         pub unsafe fn setHyphenationFactor(&self, hyphenation_factor: CGFloat);

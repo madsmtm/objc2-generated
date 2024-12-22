@@ -24,6 +24,7 @@ extern_methods!(
         pub unsafe fn source(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`source`][Self::source].
         #[method(setSource:)]
         pub unsafe fn setSource(&self, source: Option<&AnyObject>);
 
@@ -31,12 +32,14 @@ extern_methods!(
         pub unsafe fn destination(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`destination`][Self::destination].
         #[method(setDestination:)]
         pub unsafe fn setDestination(&self, destination: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 

@@ -9,7 +9,26 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymatrixmultiplication?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// A matrix multiplication kernel operating on MPSNDArray objects.
+    ///
+    ///
+    /// A MPSNDArrayMatrixMultiplication object computes, for each 2-D matrix within
+    /// a 4-D MPSNDArray object:
+    ///
+    /// D = alpha * A * B + beta * C
+    ///
+    /// A, B, C, and D are matrices which are represented by objects stored
+    /// in the two most major dimensions of the MPSNDArray. alpha and beta
+    /// are scalar values (of the same data type as values of D and C) which
+    /// are applied as shown above.
+    ///
+    /// If an input's 3rd or 4th dimension is 1 its data will be broadcast as
+    /// appropriate to the remaining input's 3rd or 4th dimension respectively.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymatrixmultiplication?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
@@ -36,15 +55,25 @@ unsafe impl NSSecureCoding for MPSNDArrayMatrixMultiplication {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
     unsafe impl MPSNDArrayMatrixMultiplication {
+        /// The scale factor to apply to the product.  Specified in double
+        /// precision.  Will be converted to the appropriate precision in the
+        /// implementation subject to rounding and/or clamping as necessary.
+        /// Defaults to 1.0 at initialization time.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_double;
 
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: c_double);
 
+        /// The scale factor to apply to the addend if available.  Specified in double
+        /// precision.  Will be converted to the appropriate precision in the
+        /// implementation subject to rounding and/or clamping as necessary.
+        /// Defaults to 1.0 at initialization time.
         #[method(beta)]
         pub unsafe fn beta(&self) -> c_double;
 
+        /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
         pub unsafe fn setBeta(&self, beta: c_double);
     }
@@ -86,6 +115,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
     unsafe impl MPSNDArrayMatrixMultiplication {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

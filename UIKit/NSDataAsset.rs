@@ -10,7 +10,10 @@ use crate::*;
 pub type NSDataAssetName = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdataasset?language=objc)
+    /// NSDataAsset represents the contents of data entries in your asset catalog.
+    /// Data assets are not in the same class of stored content as images, so you cannot use a data asset to get image data for an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdataasset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDataAsset;
@@ -33,12 +36,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Equivalent to -initWithName:name bundle:[NSBundle mainBundle];
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(
             this: Allocated<Self>,
             name: &NSDataAssetName,
         ) -> Option<Retained<Self>>;
 
+        /// Create a data asset with the given name from the given bundle. Returns nil if the asset was not found.
         #[method_id(@__retain_semantics Init initWithName:bundle:)]
         pub unsafe fn initWithName_bundle(
             this: Allocated<Self>,
@@ -46,12 +51,15 @@ extern_methods!(
             bundle: &NSBundle,
         ) -> Option<Retained<Self>>;
 
+        /// The name used to reference the data asset
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSDataAssetName>;
 
+        /// The data for this asset, as stored in the asset catalog
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
+        /// The Uniform Type Identifier for this data object.
         #[method_id(@__retain_semantics Other typeIdentifier)]
         pub unsafe fn typeIdentifier(&self) -> Retained<NSString>;
     }

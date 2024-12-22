@@ -7,7 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmackeyboardconfiguration?language=objc)
+    /// Configuration for a Mac keyboard.
+    ///
+    /// This device can be used by VZVirtualMachineView to send keyboard events to the virtual machine.
+    /// This keyboard supports Apple-specific features such as the globe key.
+    /// Note: this device is only recognized by virtual machines running macOS 13.0 and later. In order to support both macOS 13.0 and earlier
+    /// guests, VZVirtualMachineConfiguration.keyboards can be set to an array containing both a VZMacKeyboardConfiguration and
+    /// a VZUSBKeyboardConfiguration object. macOS 13.0 and later guests will use the Mac keyboard device,
+    /// while earlier versions of macOS will use the USB keyboard device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmackeyboardconfiguration?language=objc)
     #[unsafe(super(VZKeyboardConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZKeyboardConfiguration")]

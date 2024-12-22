@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestfacelandmarksconstellation?language=objc)
+/// Constellation type defines how many landmark points are used to map a face. Revisions 1, 2, and 3 support 65 points, where Rev3 also supports 76 points.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestfacelandmarksconstellation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,7 +30,12 @@ unsafe impl RefEncode for VNRequestFaceLandmarksConstellation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest?language=objc)
+    /// A request that will produce face landmark information.
+    ///
+    ///
+    /// This request will generate VNFaceObservation objects with the landmarks property populated with information describing face landmarks. If VNFaceObservations are provided via the VNFaceObservationAccepting protocol without the landmarks property populated, new observations will be created as copies of the input VNFaceObservations with the landmarks property populated. If the landmarks property has already been populated, the original VNFaceObservations will be returned. If no VNFaceObservations are provided, face detection will be run first.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -58,13 +65,16 @@ extern_methods!(
             constellation: VNRequestFaceLandmarksConstellation,
         ) -> bool;
 
+        /// Constellation type defines how many landmark points are used to map a face. Revisions 1, 2, and 3 of the request support 65 points, where Revision 3 also supports 76 points.
         #[method(constellation)]
         pub unsafe fn constellation(&self) -> VNRequestFaceLandmarksConstellation;
 
+        /// Setter for [`constellation`][Self::constellation].
         #[method(setConstellation:)]
         pub unsafe fn setConstellation(&self, constellation: VNRequestFaceLandmarksConstellation);
 
         #[cfg(feature = "VNObservation")]
+        /// VNFaceObservation with populated landmarks-related properties results.
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNFaceObservation>>>;
     }
@@ -74,10 +84,15 @@ extern_methods!(
     /// Methods declared on superclass `VNRequest`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectFaceLandmarksRequest {
+        /// Creates a new VNRequest with no completion handler.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Creates a new VNRequest with an optional completion handler.
+        ///
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,

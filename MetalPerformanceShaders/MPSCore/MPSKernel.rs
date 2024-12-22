@@ -9,7 +9,70 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpskernel?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSKernel class is the base class for all MPS objects.  It defines a standard interface for
+    /// MPS kernels.   You should not use the MPSKernel class directly. Instead, a  number of MPSKernel
+    /// subclasses are available in MetalPerformanceShaders.framework that define specific high-performance
+    /// image processing operations.
+    ///
+    /// The basic sequence for applying a MPSKernel to an image is as follows:
+    ///
+    /// 1.  Create a MPSKernel corresponding to the operation you wish to perform:
+    ///
+    /// ```text
+    ///                   MPSImageSobel *sobel = [[MPSImageSobel alloc] initWithDevice: mtlDevice];
+    /// ```
+    ///
+    /// 2.  Encode the filter into a command buffer:
+    ///
+    /// ```text
+    ///                   sobel.offset = ...;
+    ///                   sobel.clipRect = ...;
+    ///                   sobel.options = ...;
+    ///                   [sobel encodeToCommandBuffer: commandBuffer
+    ///                                  sourceTexture: inputImage
+    ///                             destinationTexture: resultImage ];
+    /// ```
+    ///
+    /// Encoding the kernel merely encodes the operation into a MTLCommandBuffer. It does not modify any pixels, yet.
+    /// All MPSKernel state has been copied to the command buffer. MPSKernels may be reused.  If the texture was previously
+    /// operated on by another command encoder (e.g. MTLRenderCommandEncoder), you should call -endEncoding on the other
+    /// encoder before encoding the filter.
+    ///
+    /// Some MPS filters work in place (inputImage = resultImage) even in situations where Metal might not
+    /// normally allow in place operation on textures. If in-place operation is desired, you may attempt to call
+    /// [MPSKernel encodeKernelInPlace...]. If the operation can not be completed in place, then
+    /// NO will be returned and you will have to create a new result texture and try again. To make an in-place
+    /// image filter reliable, pass a fallback MPSCopyAllocator to the method to create a new texture to write
+    /// to in the event that a filter can not operate in place.
+    ///
+    /// (Repeat steps 2 for more filters, as desired.)
+    ///
+    /// It should be self evident that step 2 may not be thread safe. That is, you can not have
+    /// multiple threads manipulating the same properties on the same MPSKernel object at the
+    /// same time and achieve coherent output. In common usage, the MPSKernel properties don't
+    /// often need to be changed from their default values, but if you need to apply the same
+    /// filter to multiple images on multiple threads with cropping / tiling, make additional
+    /// MPSKernel objects per thread. They are cheap. You can use multiple MPSKernel objects on
+    /// multiple threads, as long as only one thread is operating on any particular MPSKernel
+    /// object at a time.
+    ///
+    /// 3.  After encoding any additional work to the command buffer using other encoders, submit the MTLCommandBuffer
+    /// to your MTLCommandQueue, using:
+    ///
+    /// ```text
+    ///                   [mtlCommandBuffer commit];
+    /// ```
+    ///
+    /// A MPSKernel can be saved to disk / network using NSCoders such as NSKeyedArchiver.
+    /// When decoding, the system default MTLDevice will be chosen unless the NSCoder adopts
+    /// the
+    /// <MPSDeviceProvider
+    /// > protocol.  To accomplish this, subclass or extend your unarchiver
+    /// to add this method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpskernel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSKernel;
@@ -30,28 +93,62 @@ unsafe impl NSSecureCoding for MPSKernel {}
 extern_methods!(
     unsafe impl MPSKernel {
         #[cfg(feature = "MPSCoreTypes")]
+        /// The set of options used to run the kernel.
+        /// subsubsection_options
         #[method(options)]
         pub unsafe fn options(&self) -> MPSKernelOptions;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`options`][Self::options].
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: MPSKernelOptions);
 
+        /// The device on which the kernel will be used
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
+        /// A string to help identify this object.
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: a pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Make a copy of this MPSKernel for a new device
+        ///
+        /// -copyWithZone: will call this API to make a copy of the
+        /// MPSKernel on the same device.  This interface may also be
+        /// called directly to make a copy of the MPSKernel on a new
+        /// device. Typically, the same MPSKernels should not be used
+        /// to encode kernels on multiple command buffers from multiple
+        /// threads. Many MPSKernels have mutable properties that might
+        /// be changed by the other thread while this one is trying to
+        /// encode. If you need to use a MPSKernel from multiple threads
+        /// make a copy of it for each additional thread using -copyWithZone:
+        /// or -copyWithZone:device:
+        ///
+        /// Parameter `zone`: The NSZone in which to allocate the object
+        ///
+        /// Parameter `device`: The device for the new MPSKernel. If nil, then use
+        /// self.device.
+        ///
+        /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -59,12 +156,33 @@ extern_methods!(
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
 
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,

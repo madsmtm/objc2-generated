@@ -77,7 +77,17 @@ unsafe impl RefEncode for UIEventSubtype {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieventbuttonmask?language=objc)
+/// Set of buttons pressed for the current event
+/// Raw format of: 1
+/// <
+/// <
+/// (buttonNumber - 1)
+/// UIEventButtonMaskPrimary = 1
+/// <
+/// <
+/// 0
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uieventbuttonmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -100,6 +110,9 @@ unsafe impl RefEncode for UIEventButtonMask {
 }
 
 extern "C-unwind" {
+    /// Convenience initializer for a button mask where `buttonNumber` is a one-based index of the button on the input device
+    /// .button(1) == .primary
+    /// .button(2) == .secondary
     pub fn UIEventButtonMaskForButtonNumber(button_number: NSInteger) -> UIEventButtonMask;
 }
 

@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoperformancemetrics?language=objc)
+    /// [SPI] An instance of AVVideoPerformanceMetrics provides current performance metrics.
+    ///
+    /// An instance of AVVideoPerformanceMetrics provides named properties for accessing the video playback quality metrics.
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoperformancemetrics?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoPerformanceMetrics;
@@ -28,36 +33,51 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// [SPI] The total number of frames that would have been displayed if no frames are dropped.
         #[method(totalNumberOfFrames)]
         pub unsafe fn totalNumberOfFrames(&self) -> NSInteger;
 
+        /// [SPI] The total number of frames dropped prior to decoding or dropped because a frame missed its display deadline.
         #[method(numberOfDroppedFrames)]
         pub unsafe fn numberOfDroppedFrames(&self) -> NSInteger;
 
+        /// [SPI] The total number of corrupted frames that have been detected.
         #[method(numberOfCorruptedFrames)]
         pub unsafe fn numberOfCorruptedFrames(&self) -> NSInteger;
 
+        /// [SPI] The total number of full screen frames that were rendered in a special power-efficient mode that didn't require the frame to be composited with other UI elements.
         #[method(numberOfFramesDisplayedUsingOptimizedCompositing)]
         pub unsafe fn numberOfFramesDisplayedUsingOptimizedCompositing(&self) -> NSInteger;
 
+        /// [SPI] The accumulated amount of time between the prescribed presentation times of displayed video frames and the actual time at which they were displayed.
+        ///
+        /// This delay is always greater than or equal to zero since frames must never be displayed before their presentation time. Non-zero delays are a sign of playback jitter and possible loss of A/V sync.
         #[method(totalAccumulatedFrameDelay)]
         pub unsafe fn totalAccumulatedFrameDelay(&self) -> NSTimeInterval;
 
+        /// [SPI] The total number of frames that would have been displayed if no frames are dropped. Same as totalNumberOfFrames.
         #[method(totalNumberOfVideoFrames)]
         pub unsafe fn totalNumberOfVideoFrames(&self) -> c_ulong;
 
+        /// [SPI] The total number of frames dropped prior to decoding or dropped because a frame missed its display deadline. Same as numberOfDroppedFrames.
         #[method(numberOfDroppedVideoFrames)]
         pub unsafe fn numberOfDroppedVideoFrames(&self) -> c_ulong;
 
+        /// [SPI] The total number of corrupted frames that have been detected. Same as numberOfCorruptedFrames.
         #[method(numberOfCorruptedVideoFrames)]
         pub unsafe fn numberOfCorruptedVideoFrames(&self) -> c_ulong;
 
+        /// [SPI] The total number of frames that were composited in detached mode.  Same as numberOfFramesDisplayedUsingOptimizedCompositing.
         #[method(numberOfDisplayCompositedVideoFrames)]
         pub unsafe fn numberOfDisplayCompositedVideoFrames(&self) -> c_ulong;
 
+        /// [SPI] The total number of frames that were composited in undetached mode.
         #[method(numberOfNonDisplayCompositedVideoFrames)]
         pub unsafe fn numberOfNonDisplayCompositedVideoFrames(&self) -> c_ulong;
 
+        /// [SPI] The accumulated amount of time, in microseconds, between the prescribed presentation times of displayed video frames and the actual time at which they were displayed.
+        ///
+        /// This delay is always greater than or equal to zero since frames must never be displayed before their presentation time. Non-zero delays are a sign of playback jitter and possible loss of A/V sync. Same as totalAccumulatedFrameDelay.
         #[method(totalFrameDelay)]
         pub unsafe fn totalFrameDelay(&self) -> c_double;
     }

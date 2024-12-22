@@ -51,6 +51,7 @@ extern_methods!(
         pub unsafe fn resultType(&self) -> NSBatchDeleteRequestResultType;
 
         #[cfg(feature = "NSPersistentStoreResult")]
+        /// Setter for [`resultType`][Self::resultType].
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, result_type: NSBatchDeleteRequestResultType);
 

@@ -7,7 +7,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrencedayofweek?language=objc)
+    /// Class which represents a day of the week this recurrence will occur.
+    ///
+    /// EKRecurrenceDayOfWeek specifies either a simple day of the week, or the nth instance
+    /// of a particular day of the week, such as the third Tuesday of every month. The week
+    /// number is only valid when used with monthly or yearly recurrences, since it would
+    /// be otherwise meaningless.
+    ///
+    /// Valid values for dayOfTheWeek are integers 1-7, which correspond to days of the week
+    /// with Sunday = 1. Valid values for weekNumber portion are (+/-)1-53, where a negative
+    /// value indicates a value from the end of the range. For example, in a yearly event -1
+    /// means last week of the year. -1 in a Monthly recurrence indicates the last week of
+    /// the month.
+    ///
+    /// The value 0 also indicates the weekNumber is irrelevant (every Sunday, etc.).
+    ///
+    /// Day-of-week weekNumber values that are out of bounds for the recurrence type will
+    /// result in an exception when trying to initialize the recurrence. In particular,
+    /// weekNumber must be zero when passing EKRecurrenceDayOfWeek objects to initialize a weekly
+    /// recurrence.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrencedayofweek?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKRecurrenceDayOfWeek;
@@ -28,10 +48,12 @@ unsafe impl NSSecureCoding for EKRecurrenceDayOfWeek {}
 extern_methods!(
     unsafe impl EKRecurrenceDayOfWeek {
         #[cfg(feature = "EKTypes")]
+        /// Creates an autoreleased object with a day of the week and week number of zero.
         #[method_id(@__retain_semantics Other dayOfWeek:)]
         pub unsafe fn dayOfWeek(day_of_the_week: EKWeekday) -> Retained<Self>;
 
         #[cfg(feature = "EKTypes")]
+        /// Creates an autoreleased object with a specific day of week and week number.
         #[method_id(@__retain_semantics Other dayOfWeek:weekNumber:)]
         pub unsafe fn dayOfWeek_weekNumber(
             day_of_the_week: EKWeekday,
@@ -39,6 +61,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "EKTypes")]
+        /// Creates an day-of-week object with a specific day of week and week number.
         #[method_id(@__retain_semantics Init initWithDayOfTheWeek:weekNumber:)]
         pub unsafe fn initWithDayOfTheWeek_weekNumber(
             this: Allocated<Self>,
@@ -47,9 +70,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "EKTypes")]
+        /// The day of the week.
         #[method(dayOfTheWeek)]
         pub unsafe fn dayOfTheWeek(&self) -> EKWeekday;
 
+        /// The week number.
         #[method(weekNumber)]
         pub unsafe fn weekNumber(&self) -> NSInteger;
     }

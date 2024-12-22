@@ -9,7 +9,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequestqualitylevel?language=objc)
+/// Person segmentation level options to favor speed over recognition accuracy.
+/// VNGeneratePersonSegmentationRequestQualityLevelAccurate is the default option.
+///
+/// fast - generates a low accuracy segmentation mask that can be used in streaming scenarios on devices that have a neural engine
+/// balanced - generates a high accuracy segmentation mask
+/// accurate - generates a mask based on the balanced output that includes matting refinement
+/// The request may hold on to previous masks to improve temporal stability.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequestqualitylevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,7 +40,9 @@ unsafe impl RefEncode for VNGeneratePersonSegmentationRequestQualityLevel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest?language=objc)
+    /// Performs person segmentation on an image generating a mask.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest?language=objc)
     #[unsafe(super(VNStatefulRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
@@ -74,23 +84,28 @@ extern_methods!(
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        /// The quality level selects which techniques will be used during the person segmentation. There are trade-offs between performance and accuracy.
         #[method(qualityLevel)]
         pub unsafe fn qualityLevel(&self) -> VNGeneratePersonSegmentationRequestQualityLevel;
 
+        /// Setter for [`qualityLevel`][Self::qualityLevel].
         #[method(setQualityLevel:)]
         pub unsafe fn setQualityLevel(
             &self,
             quality_level: VNGeneratePersonSegmentationRequestQualityLevel,
         );
 
+        /// Obtain the collection of supported output pixel formats for the configured request.
         #[method_id(@__retain_semantics Other supportedOutputPixelFormatsAndReturnError:_)]
         pub unsafe fn supportedOutputPixelFormatsAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<NSNumber>>, Retained<NSError>>;
 
+        /// Pixel format type of the output buffer. Valid values are kCVPixelFormatType_OneComponent32Float, kCVPixelFormatType_OneComponent16Half, and kCVPixelFormatType_OneComponent8. Default is kCVPixelFormatType_OneComponent8.
         #[method(outputPixelFormat)]
         pub unsafe fn outputPixelFormat(&self) -> OSType;
 
+        /// Setter for [`outputPixelFormat`][Self::outputPixelFormat].
         #[method(setOutputPixelFormat:)]
         pub unsafe fn setOutputPixelFormat(&self, output_pixel_format: OSType);
 

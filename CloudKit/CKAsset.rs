@@ -23,9 +23,11 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Initialize an asset to be saved with the content at the given file URL
         #[method_id(@__retain_semantics Init initWithFileURL:)]
         pub unsafe fn initWithFileURL(this: Allocated<Self>, file_url: &NSURL) -> Retained<Self>;
 
+        /// Local file URL where fetched records are cached and saved records originate from.
         #[method_id(@__retain_semantics Other fileURL)]
         pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
     }

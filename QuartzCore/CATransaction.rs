@@ -85,7 +85,9 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransactionanimationduration?language=objc)
+    /// Transaction property ids. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransactionanimationduration?language=objc)
     pub static kCATransactionAnimationDuration: &'static NSString;
 }
 

@@ -6,7 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorydualsense?language=objc)
+    /// Game Controller Product Categories
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorydualsense?language=objc)
     pub static GCProductCategoryDualSense: Option<&'static NSString>;
 }
 
@@ -36,32 +38,49 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorysiriremote1stgen?language=objc)
+    /// The Siri Remote (1st generation), or Apple TV Remote (1st generation), was first introduced in 2015. It features a Touch surface for touch navigation, and supports device motion.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorysiriremote1stgen?language=objc)
     pub static GCProductCategorySiriRemote1stGen: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorysiriremote2ndgen?language=objc)
+    /// The Siri Remote (2nd generation), or Apple TV Remote (2nd generation), was first introduced in 2021. It features a touch-enabled clickpad for navigation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorysiriremote2ndgen?language=objc)
     pub static GCProductCategorySiriRemote2ndGen: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorycontrolcenterremote?language=objc)
+    /// Users can use Apple TV Remote controls in Control Center on an iOS or iPadOS device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorycontrolcenterremote?language=objc)
     pub static GCProductCategoryControlCenterRemote: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryuniversalelectronicsremote?language=objc)
+    /// The Universal Electronics remote is an infrared and Bluetooth Low Energy remote designed to work with the Apple TV.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryuniversalelectronicsremote?language=objc)
     pub static GCProductCategoryUniversalElectronicsRemote: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorycoalescedremote?language=objc)
+    /// If multiple remotes have been combined into one, the device will have the GCProductCategoryCoalescedRemote product category.
+    ///
+    ///
+    /// By default, the Game Controller framework will try to coalesce, or combine, the physical Apple TV Remote and the
+    /// virtual Control Center remote and treat them as a single GCDevice instance. By setting GCSupportsMultipleMicroGamepads in your
+    /// app's plist to true, you can disable this behavior.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorycoalescedremote?language=objc)
     pub static GCProductCategoryCoalescedRemote: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorymouse?language=objc)
+    /// Keyboards and Mice Product Categories
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorymouse?language=objc)
     pub static GCProductCategoryMouse: Option<&'static NSString>;
 }
 

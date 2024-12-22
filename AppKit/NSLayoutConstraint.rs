@@ -188,12 +188,14 @@ extern_methods!(
         #[method(priority)]
         pub unsafe fn priority(&self) -> NSLayoutPriority;
 
+        /// Setter for [`priority`][Self::priority].
         #[method(setPriority:)]
         pub unsafe fn setPriority(&self, priority: NSLayoutPriority);
 
         #[method(shouldBeArchived)]
         pub unsafe fn shouldBeArchived(&self) -> bool;
 
+        /// Setter for [`shouldBeArchived`][Self::shouldBeArchived].
         #[method(setShouldBeArchived:)]
         pub unsafe fn setShouldBeArchived(&self, should_be_archived: bool);
 
@@ -229,12 +231,14 @@ extern_methods!(
         pub unsafe fn constant(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`constant`][Self::constant].
         #[method(setConstant:)]
         pub unsafe fn setConstant(&self, constant: CGFloat);
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
+        /// Setter for [`isActive`][Self::isActive].
         #[method(setActive:)]
         pub unsafe fn setActive(&self, active: bool);
 
@@ -263,6 +267,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
     }
@@ -369,6 +374,7 @@ extern_methods!(
         #[method(needsUpdateConstraints)]
         pub unsafe fn needsUpdateConstraints(&self) -> bool;
 
+        /// Setter for [`needsUpdateConstraints`][Self::needsUpdateConstraints].
         #[method(setNeedsUpdateConstraints:)]
         pub unsafe fn setNeedsUpdateConstraints(&self, needs_update_constraints: bool);
     }
@@ -381,6 +387,7 @@ extern_methods!(
         #[method(translatesAutoresizingMaskIntoConstraints)]
         pub unsafe fn translatesAutoresizingMaskIntoConstraints(&self) -> bool;
 
+        /// Setter for [`translatesAutoresizingMaskIntoConstraints`][Self::translatesAutoresizingMaskIntoConstraints].
         #[method(setTranslatesAutoresizingMaskIntoConstraints:)]
         pub unsafe fn setTranslatesAutoresizingMaskIntoConstraints(
             &self,
@@ -468,6 +475,7 @@ extern_methods!(
         #[method(isHorizontalContentSizeConstraintActive)]
         pub unsafe fn isHorizontalContentSizeConstraintActive(&self) -> bool;
 
+        /// Setter for [`isHorizontalContentSizeConstraintActive`][Self::isHorizontalContentSizeConstraintActive].
         #[method(setHorizontalContentSizeConstraintActive:)]
         pub unsafe fn setHorizontalContentSizeConstraintActive(
             &self,
@@ -477,6 +485,7 @@ extern_methods!(
         #[method(isVerticalContentSizeConstraintActive)]
         pub unsafe fn isVerticalContentSizeConstraintActive(&self) -> bool;
 
+        /// Setter for [`isVerticalContentSizeConstraintActive`][Self::isVerticalContentSizeConstraintActive].
         #[method(setVerticalContentSizeConstraintActive:)]
         pub unsafe fn setVerticalContentSizeConstraintActive(
             &self,

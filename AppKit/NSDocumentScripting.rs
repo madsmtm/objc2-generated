@@ -14,6 +14,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other lastComponentOfFileName)]
         pub unsafe fn lastComponentOfFileName(&self) -> Retained<NSString>;
 
+        /// Setter for [`lastComponentOfFileName`][Self::lastComponentOfFileName].
         #[method(setLastComponentOfFileName:)]
         pub unsafe fn setLastComponentOfFileName(&self, last_component_of_file_name: &NSString);
 

@@ -19,9 +19,11 @@ unsafe impl NSObjectProtocol for MPRemoteCommandEvent {}
 extern_methods!(
     unsafe impl MPRemoteCommandEvent {
         #[cfg(feature = "MPRemoteCommand")]
+        /// The command that sent the event.
         #[method_id(@__retain_semantics Other command)]
         pub unsafe fn command(&self) -> Retained<MPRemoteCommand>;
 
+        /// The time when the event occurred.
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
     }
@@ -49,6 +51,7 @@ unsafe impl NSObjectProtocol for MPSkipIntervalCommandEvent {}
 
 extern_methods!(
     unsafe impl MPSkipIntervalCommandEvent {
+        /// The chosen interval for this skip command event.
         #[method(interval)]
         pub unsafe fn interval(&self) -> NSTimeInterval;
     }
@@ -96,6 +99,8 @@ unsafe impl NSObjectProtocol for MPSeekCommandEvent {}
 
 extern_methods!(
     unsafe impl MPSeekCommandEvent {
+        /// The type of seek command event, which specifies whether an external player
+        /// began or ended seeking.
         #[method(type)]
         pub unsafe fn r#type(&self) -> MPSeekCommandEventType;
     }
@@ -123,6 +128,8 @@ unsafe impl NSObjectProtocol for MPRatingCommandEvent {}
 
 extern_methods!(
     unsafe impl MPRatingCommandEvent {
+        /// The chosen rating for this command event. This value will be within the
+        /// minimumRating and maximumRating values set for the MPRatingCommand object.
         #[method(rating)]
         pub unsafe fn rating(&self) -> c_float;
     }
@@ -150,6 +157,9 @@ unsafe impl NSObjectProtocol for MPChangePlaybackRateCommandEvent {}
 
 extern_methods!(
     unsafe impl MPChangePlaybackRateCommandEvent {
+        /// The chosen playback rate for this command event. This value will be equal
+        /// to one of the values specified in the supportedPlaybackRates array for the
+        /// MPChangePlaybackRateCommand object.
         #[method(playbackRate)]
         pub unsafe fn playbackRate(&self) -> c_float;
     }
@@ -177,6 +187,14 @@ unsafe impl NSObjectProtocol for MPFeedbackCommandEvent {}
 
 extern_methods!(
     unsafe impl MPFeedbackCommandEvent {
+        /// Whether the command event is a negative operation. For example, the command
+        /// might ask that the app remove a bookmark for a particular track, rather than
+        /// add it. In this case, the handler for the bookmark command should check this
+        /// flag and remove the bookmark if it is set to YES.
+        ///
+        /// For like/dislike, a "negative like" might be treated differently from a
+        /// dislike command. The app might want to remove the "like" flag from the
+        /// current track, but not treat it as a dislike command.
         #[method(isNegative)]
         pub unsafe fn isNegative(&self) -> bool;
     }
@@ -205,10 +223,15 @@ unsafe impl NSObjectProtocol for MPChangeLanguageOptionCommandEvent {}
 extern_methods!(
     unsafe impl MPChangeLanguageOptionCommandEvent {
         #[cfg(feature = "MPNowPlayingInfoLanguageOption")]
+        /// The requested language option to change.
+        /// The supplied language option may be the Automatic Legible Language Option
+        /// which would mean that best legible language option based on user preferences
+        /// is being requested. See MPNowPlayingInfoLanguageOption isAutomaticLegibleLanguageOption
         #[method_id(@__retain_semantics Other languageOption)]
         pub unsafe fn languageOption(&self) -> Retained<MPNowPlayingInfoLanguageOption>;
 
         #[cfg(feature = "MPRemoteControlTypes")]
+        /// Describes the extent of the changed language option
         #[method(setting)]
         pub unsafe fn setting(&self) -> MPChangeLanguageOptionSetting;
     }
@@ -236,6 +259,7 @@ unsafe impl NSObjectProtocol for MPChangePlaybackPositionCommandEvent {}
 
 extern_methods!(
     unsafe impl MPChangePlaybackPositionCommandEvent {
+        /// The desired playback position to use when setting the current time of the player.
         #[method(positionTime)]
         pub unsafe fn positionTime(&self) -> NSTimeInterval;
     }
@@ -264,9 +288,11 @@ unsafe impl NSObjectProtocol for MPChangeShuffleModeCommandEvent {}
 extern_methods!(
     unsafe impl MPChangeShuffleModeCommandEvent {
         #[cfg(feature = "MPRemoteControlTypes")]
+        /// The desired shuffle type to use when fulfilling the request.
         #[method(shuffleType)]
         pub unsafe fn shuffleType(&self) -> MPShuffleType;
 
+        /// Whether or not the selection should be preserved between playback sessions
         #[method(preservesShuffleMode)]
         pub unsafe fn preservesShuffleMode(&self) -> bool;
     }
@@ -295,9 +321,11 @@ unsafe impl NSObjectProtocol for MPChangeRepeatModeCommandEvent {}
 extern_methods!(
     unsafe impl MPChangeRepeatModeCommandEvent {
         #[cfg(feature = "MPRemoteControlTypes")]
+        /// The desired repeat type to use when fulfilling the request.
         #[method(repeatType)]
         pub unsafe fn repeatType(&self) -> MPRepeatType;
 
+        /// Whether or not the selection should be preserved between playback sessions
         #[method(preservesRepeatMode)]
         pub unsafe fn preservesRepeatMode(&self) -> bool;
     }

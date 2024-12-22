@@ -35,6 +35,12 @@ unsafe impl RefEncode for MTLIOCompressionMethod {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Returns a reference to the preferred system default Metal device.
+///
+/// On Mac OS X systems that support automatic graphics switching, calling
+/// this API to get a Metal device will cause the system to switch to the high power
+/// GPU.  On other systems that support more than one GPU it will return the GPU that
+/// is associated with the main display.
 #[inline]
 pub extern "C-unwind" fn MTLCreateSystemDefaultDevice(
 ) -> Option<Retained<ProtocolObject<dyn MTLDevice>>> {
@@ -45,6 +51,10 @@ pub extern "C-unwind" fn MTLCreateSystemDefaultDevice(
     unsafe { Retained::from_raw(ret) }
 }
 
+/// Returns all Metal devices in the system.
+///
+/// On macOS and macCatalyst, this API will not cause the system to switch devices and leaves the decision about which GPU to use up to the application based on whatever criteria it deems appropriate.
+/// On iOS, tvOS and visionOS, this API returns an array containing the same device that MTLCreateSystemDefaultDevice would have returned, or an empty array if it would have failed.
 #[inline]
 pub extern "C-unwind" fn MTLCopyAllDevices() -> Retained<NSArray<ProtocolObject<dyn MTLDevice>>> {
     extern "C-unwind" {
@@ -55,32 +65,47 @@ pub extern "C-unwind" fn MTLCopyAllDevices() -> Retained<NSArray<ProtocolObject<
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationname?language=objc)
+/// Type for device notifications
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationname?language=objc)
 // NS_TYPED_ENUM
 pub type MTLDeviceNotificationName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicewasaddednotification?language=objc)
+    /// This notification is posted when a new Metal device is added to the system
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicewasaddednotification?language=objc)
     pub static MTLDeviceWasAddedNotification: &'static MTLDeviceNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldeviceremovalrequestednotification?language=objc)
+    /// This notification is posted when the user has requested that applications cease using a particular device.  Applications
+    /// should assume that the device will be removed (terminated) imminently.  Additionally, the device will be removed from the internal
+    /// device array prior to this notification being posted.  Applications should immediately begin the process of releasing all resources
+    /// created on the given device, as well as any references to the device itself.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldeviceremovalrequestednotification?language=objc)
     pub static MTLDeviceRemovalRequestedNotification: &'static MTLDeviceNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicewasremovednotification?language=objc)
+    /// This notification is posted if the device is removed while there are still outstanding references to it, due to either a surprise
+    /// or forced disconnect by the user.  Applications must expect that any attempt to use the device after this point will fail.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicewasremovednotification?language=objc)
     pub static MTLDeviceWasRemovedNotification: &'static MTLDeviceNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationhandler?language=objc)
+/// Block signature for device notifications
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLDeviceNotificationHandler = *mut block2::Block<
     dyn Fn(NonNull<ProtocolObject<dyn MTLDevice>>, NonNull<MTLDeviceNotificationName>),
 >;
 
 extern "C-unwind" {
+    /// Removes a previously installed observer for device change notifications.
     pub fn MTLRemoveDeviceObserver(observer: &ProtocolObject<dyn NSObjectProtocol>);
 }
 
@@ -221,7 +246,9 @@ unsafe impl RefEncode for MTLGPUFamily {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation?language=objc)
+/// Specifies the location of the GPU on macOS
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -245,7 +272,9 @@ unsafe impl RefEncode for MTLDeviceLocation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption?language=objc)
+/// Controls the creation of the pipeline
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -274,7 +303,9 @@ unsafe impl RefEncode for MTLPipelineOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlreadwritetexturetier?language=objc)
+/// MTLReadWriteTextureTier determines support level for read-write texture formats.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlreadwritetexturetier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -294,7 +325,9 @@ unsafe impl RefEncode for MTLReadWriteTextureTier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentbufferstier?language=objc)
+/// MTLArgumentBuffersTier determines support level for argument buffers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentbufferstier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -312,7 +345,9 @@ unsafe impl RefEncode for MTLArgumentBuffersTier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetextureregionalignmentmode?language=objc)
+/// MTLSparseTextureRegionAlignmentMode determines type of alignment used when converting from pixel region to tile region.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetextureregionalignmentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -332,7 +367,9 @@ unsafe impl RefEncode for MTLSparseTextureRegionAlignmentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsepagesize?language=objc)
+/// Physical size of sparse resource page in KBs.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsepagesize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -351,12 +388,17 @@ unsafe impl RefEncode for MTLSparsePageSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuresizes?language=objc)
+/// Describes the memory requirements for an acceleration structure
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuresizes?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLAccelerationStructureSizes {
+    /// The required size, in bytes, of the built acceleration structure
     pub accelerationStructureSize: NSUInteger,
+    /// The required size, in bytes, of the scratch buffer used to build the acceleration structure
     pub buildScratchBufferSize: NSUInteger,
+    /// The required size, in bytes, of the scratch buffer used to refit the acceleration structure
     pub refitScratchBufferSize: NSUInteger,
 }
 
@@ -375,7 +417,24 @@ unsafe impl RefEncode for MTLAccelerationStructureSizes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint?language=objc)
+/// MTLCounterSamplingPoint determines type of sampling points that are supported on given device.
+///
+///
+/// Counter sampling points at render, compute, and blit command encoder stage boundary are supported.
+///
+///
+/// Counter sampling at draw boundary is supported, render encoder method sampleCountersInBuffer can be used for sampling.
+///
+///
+/// Counter sampling at compute dispatch boundary is supported, compute encoder method sampleCountersInBuffer can be used for sampling.
+///
+///
+/// Counter sampling at tile shader dispatch boundary is supported.
+///
+///
+/// Counter sampling at blit boundary is supported, blit encoder method sampleCountersInBuffer can be used for sampling.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -401,7 +460,9 @@ unsafe impl RefEncode for MTLCounterSamplingPoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsizeandalign?language=objc)
+/// Represent a memory size and alignment in bytes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsizeandalign?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLSizeAndAlign {
@@ -454,7 +515,9 @@ pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut block2
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentdescriptor?language=objc)
+    /// Represents a member of an argument buffer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLArgumentDescriptor;
@@ -470,48 +533,65 @@ unsafe impl NSObjectProtocol for MTLArgumentDescriptor {}
 
 extern_methods!(
     unsafe impl MTLArgumentDescriptor {
+        /// Create an autoreleased default argument descriptor
         #[method_id(@__retain_semantics Other argumentDescriptor)]
         pub fn argumentDescriptor() -> Retained<MTLArgumentDescriptor>;
 
         #[cfg(feature = "MTLArgument")]
+        /// For constants, the data type. Otherwise, MTLDataTypeTexture, MTLDataTypeSampler, or
+        /// MTLDataTypePointer.
         #[method(dataType)]
         pub unsafe fn dataType(&self) -> MTLDataType;
 
         #[cfg(feature = "MTLArgument")]
+        /// Setter for [`dataType`][Self::dataType].
         #[method(setDataType:)]
         pub fn setDataType(&self, data_type: MTLDataType);
 
+        /// The binding point index of the argument
         #[method(index)]
         pub unsafe fn index(&self) -> NSUInteger;
 
+        /// Setter for [`index`][Self::index].
         #[method(setIndex:)]
         pub fn setIndex(&self, index: NSUInteger);
 
+        /// The length of an array of constants, textures, or samplers, or 0 for non-array arguments
         #[method(arrayLength)]
         pub unsafe fn arrayLength(&self) -> NSUInteger;
 
+        /// Setter for [`arrayLength`][Self::arrayLength].
         #[method(setArrayLength:)]
         pub unsafe fn setArrayLength(&self, array_length: NSUInteger);
 
         #[cfg(feature = "MTLArgument")]
+        /// Access flags for the argument
         #[method(access)]
         pub unsafe fn access(&self) -> MTLBindingAccess;
 
         #[cfg(feature = "MTLArgument")]
+        /// Setter for [`access`][Self::access].
         #[method(setAccess:)]
         pub fn setAccess(&self, access: MTLBindingAccess);
 
         #[cfg(feature = "MTLTexture")]
+        /// For texture arguments, the texture type
         #[method(textureType)]
         pub unsafe fn textureType(&self) -> MTLTextureType;
 
         #[cfg(feature = "MTLTexture")]
+        /// Setter for [`textureType`][Self::textureType].
         #[method(setTextureType:)]
         pub fn setTextureType(&self, texture_type: MTLTextureType);
 
+        /// if set forces the constant block to be aligned to the given alignment
+        ///
+        /// Should only be set on the first constant of the block and is only valid if a corresponding
+        /// explicit "alignas" is applied to the constant in the metal shader language.
         #[method(constantBlockAlignment)]
         pub unsafe fn constantBlockAlignment(&self) -> NSUInteger;
 
+        /// Setter for [`constantBlockAlignment`][Self::constantBlockAlignment].
         #[method(setConstantBlockAlignment:)]
         pub unsafe fn setConstantBlockAlignment(&self, constant_block_alignment: NSUInteger);
     }
@@ -529,7 +609,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlarchitecture?language=objc)
+    /// Contains information about the device's architecture
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlarchitecture?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLArchitecture;
@@ -545,6 +627,7 @@ unsafe impl NSObjectProtocol for MTLArchitecture {}
 
 extern_methods!(
     unsafe impl MTLArchitecture {
+        /// The device's architecture name.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
     }
@@ -565,83 +648,157 @@ extern_methods!(
 pub type MTLTimestamp = u64;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevice?language=objc)
+    /// MTLDevice represents a processor capable of data parallel computations
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevice?language=objc)
     pub unsafe trait MTLDevice: NSObjectProtocol {
+        /// The full name of the vendor device.
         #[method_id(@__retain_semantics Other name)]
         fn name(&self) -> Retained<NSString>;
 
+        /// Returns the IORegistry ID for the Metal device
+        ///
+        /// The registryID value for a Metal device is global to all tasks, and may be used
+        /// to identify the GPU across task boundaries.
         #[method(registryID)]
         fn registryID(&self) -> u64;
 
+        /// Returns the device's architecture information.
         #[method_id(@__retain_semantics Other architecture)]
         unsafe fn architecture(&self) -> Retained<MTLArchitecture>;
 
         #[cfg(feature = "MTLTypes")]
+        /// The maximum number of threads along each dimension.
         #[method(maxThreadsPerThreadgroup)]
         fn maxThreadsPerThreadgroup(&self) -> MTLSize;
 
+        /// On systems that support automatic graphics switching, this will return YES for the the low power device.
         #[method(isLowPower)]
         fn isLowPower(&self) -> bool;
 
+        /// On systems that include more that one GPU, this will return YES for any device that does not support any displays.  Only available on Mac OS X.
         #[method(isHeadless)]
         fn isHeadless(&self) -> bool;
 
+        /// If this GPU is removable, this property will return YES.
+        ///
+        /// If a GPU is is removed without warning, APIs may fail even with good input, even before a notification can get posted informing
+        /// the application that the device has been removed.
         #[method(isRemovable)]
         fn isRemovable(&self) -> bool;
 
+        /// Returns YES if this GPU shares its memory with the rest of the machine (CPU, etc.)
+        ///
+        /// Some GPU architectures do not have dedicated local memory and instead only use the same memory shared with the rest
+        /// of the machine.  This property will return YES for GPUs that fall into that category.
         #[method(hasUnifiedMemory)]
         fn hasUnifiedMemory(&self) -> bool;
 
+        /// Returns an approximation of how much memory this device can use with good performance.
+        ///
+        /// Performance may be improved by keeping the total size of all resources (texture and buffers)
+        /// and heaps less than this threshold, beyond which the device is likely to be overcommitted and incur a
+        /// performance penalty.
         #[method(recommendedMaxWorkingSetSize)]
         fn recommendedMaxWorkingSetSize(&self) -> u64;
 
+        /// Returns an enum that indicates where the GPU is located relative to the host computer.
+        ///
+        /// The returned value indicates if the GPU is built into the computer, inserted into
+        /// a slot internal to the computer, or external to the computer. Otherwise it is Unspecified
         #[method(location)]
         fn location(&self) -> MTLDeviceLocation;
 
+        /// Returns a value that further specifies the GPU's location
+        ///
+        /// The returned value indicates which slot or Thunderbolt port the GPU is attached
+        /// to. For Built-in GPUs, if LowPower this value is 0, otherwise it is 1.  It is possible for multiple GPUs to have
+        /// the same location and locationNumber; e.g.: A PCI card with multiple GPUs, or an eGPU
+        /// daisy-chained off of another eGPU attached to a host Thunderbolt port.
         #[method(locationNumber)]
         fn locationNumber(&self) -> NSUInteger;
 
+        /// Upper bound of System RAM
+        /// <
+        /// => VRAM transfer rate in bytes/sec
+        ///
+        /// The returned value indicates the theoretical maximum data rate in bytes/second
+        /// from host memory to the GPU's VRAM. This is derived from the raw data clock rate and as
+        /// such may not be reachable under real-world conditions. For Built-in GPUs this value is 0.
         #[method(maxTransferRate)]
         fn maxTransferRate(&self) -> u64;
 
+        /// If YES, device supports MTLPixelFormatDepth24Unorm_Stencil8.
         #[method(isDepth24Stencil8PixelFormatSupported)]
         fn isDepth24Stencil8PixelFormatSupported(&self) -> bool;
 
+        /// Query support tier for read-write texture formats.
+        ///
+        /// Returns: MTLReadWriteTextureTier enum value.
         #[method(readWriteTextureSupport)]
         fn readWriteTextureSupport(&self) -> MTLReadWriteTextureTier;
 
+        /// Query support tier for Argument Buffers.
+        ///
+        /// Returns: MTLArgumentBuffersTier enum value.
         #[method(argumentBuffersSupport)]
         fn argumentBuffersSupport(&self) -> MTLArgumentBuffersTier;
 
+        /// Query device for raster order groups support.
+        ///
+        /// Returns: BOOL value. If YES, the device supports raster order groups. If NO, the device does not.
         #[method(areRasterOrderGroupsSupported)]
         unsafe fn areRasterOrderGroupsSupported(&self) -> bool;
 
+        /// Query device for 32-bit Float texture filtering support. Specifically, R32Float, RG32Float, and RGBA32Float.
+        ///
+        /// Returns: BOOL value. If YES, the device supports filtering 32-bit Float textures. If NO, the device does not.
         #[method(supports32BitFloatFiltering)]
         fn supports32BitFloatFiltering(&self) -> bool;
 
+        /// Query device for 32-bit MSAA texture support. Specifically, added support for allocating 32-bit Integer format textures (R32Uint, R32Sint, RG32Uint, RG32Sint, RGBA32Uint, and RGBA32Sint) and resolving 32-bit Float format textures (R32Float, RG32Float, and RGBA32Float).
+        ///
+        /// Returns: BOOL value. If YES, the device supports these additional 32-bit MSAA texture capabilities. If NO, the devices does not.
         #[method(supports32BitMSAA)]
         fn supports32BitMSAA(&self) -> bool;
 
+        /// Query device for whether it supports the `calculate_clampled_lod` and `calculate_unclamped_lod` Metal shading language functionality.
+        ///
+        /// Returns: BOOL value. If YES, the device supports the calculate LOD functionality. If NO, the device does not.
         #[method(supportsQueryTextureLOD)]
         fn supportsQueryTextureLOD(&self) -> bool;
 
+        /// Query device for BC Texture format support
+        ///
+        /// Returns: BOOL value. If YES, the device supports compressed BC Texture formats. If NO, the device does not.
         #[method(supportsBCTextureCompression)]
         fn supportsBCTextureCompression(&self) -> bool;
 
+        /// Query device for pull model interpolation support which allows a fragment shader to compute multiple interpolations (at center, at centroid, at offset, at sample) of a fragment input.
+        ///
+        /// Returns: BOOL value. If YES, the device supports pull model interpolation. If NO, the device does not.
         #[method(supportsPullModelInterpolation)]
         fn supportsPullModelInterpolation(&self) -> bool;
 
+        /// Query device for Barycentric coordinates support; deprecated, use supportsShaderBarycentricCoordinates
+        ///
+        /// Returns: BOOL value. If YES, the device barycentric coordinates
         #[deprecated]
         #[method(areBarycentricCoordsSupported)]
         unsafe fn areBarycentricCoordsSupported(&self) -> bool;
 
+        /// Query device for Barycentric Coordinates support.
+        ///
+        /// Returns: BOOL value. If YES, the device supports barycentric coordinates. If NO, the device does not.
         #[method(supportsShaderBarycentricCoordinates)]
         fn supportsShaderBarycentricCoordinates(&self) -> bool;
 
+        /// The current size in bytes of all resources allocated by this device
         #[method(currentAllocatedSize)]
         fn currentAllocatedSize(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLLogState")]
+        /// This method will create a new MTLLogState.
         #[method_id(@__retain_semantics New newLogStateWithDescriptor:error:_)]
         unsafe fn newLogStateWithDescriptor_error(
             &self,
@@ -649,10 +806,16 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLLogState>>, Retained<NSError>>;
 
         #[cfg(feature = "MTLCommandQueue")]
+        /// Create and return a new command queue.   Command Queues created via this method will only allow up to 64 non-completed command buffers.
+        ///
+        /// Returns: The new command queue object
         #[method_id(@__retain_semantics New newCommandQueue)]
         fn newCommandQueue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
 
         #[cfg(feature = "MTLCommandQueue")]
+        /// Create and return a new command queue with a given upper bound on non-completed command buffers.
+        ///
+        /// Returns: The new command queue object
         #[method_id(@__retain_semantics New newCommandQueueWithMaxCommandBufferCount:)]
         fn newCommandQueueWithMaxCommandBufferCount(
             &self,
@@ -660,6 +823,7 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
 
         #[cfg(feature = "MTLCommandQueue")]
+        /// Create a MTLCommandQueue according to MTLCommandQueueDescriptor.
         #[method_id(@__retain_semantics New newCommandQueueWithDescriptor:)]
         unsafe fn newCommandQueueWithDescriptor(
             &self,
@@ -667,6 +831,9 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
 
         #[cfg(feature = "MTLTexture")]
+        /// Determine the byte size of textures when sub-allocated from a heap.
+        ///
+        /// This method can be used to help determine the required heap size.
         #[method(heapTextureSizeAndAlignWithDescriptor:)]
         fn heapTextureSizeAndAlignWithDescriptor(
             &self,
@@ -674,6 +841,9 @@ extern_protocol!(
         ) -> MTLSizeAndAlign;
 
         #[cfg(feature = "MTLResource")]
+        /// Determine the byte size of buffers when sub-allocated from a heap.
+        ///
+        /// This method can be used to help determine the required heap size.
         #[method(heapBufferSizeAndAlignWithLength:options:)]
         fn heapBufferSizeAndAlignWithLength_options(
             &self,
@@ -682,6 +852,7 @@ extern_protocol!(
         ) -> MTLSizeAndAlign;
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLHeap"))]
+        /// Create a new heap with the given descriptor.
         #[method_id(@__retain_semantics New newHeapWithDescriptor:)]
         fn newHeapWithDescriptor(
             &self,
@@ -693,6 +864,7 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// Create a buffer by allocating new memory.
         #[method_id(@__retain_semantics New newBufferWithLength:options:)]
         fn newBufferWithLength_options(
             &self,
@@ -705,6 +877,7 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// Create a buffer by allocating new memory and specifing the initial contents to be copied into it.
         #[method_id(@__retain_semantics New newBufferWithBytes:length:options:)]
         unsafe fn newBufferWithBytes_length_options(
             &self,
@@ -719,6 +892,7 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "block2"
         ))]
+        /// Create a buffer by wrapping an existing part of the address space.
         #[method_id(@__retain_semantics New newBufferWithBytesNoCopy:length:options:deallocator:)]
         unsafe fn newBufferWithBytesNoCopy_length_options_deallocator(
             &self,
@@ -729,6 +903,7 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(feature = "MTLDepthStencil")]
+        /// Create a depth/stencil test state object.
         #[method_id(@__retain_semantics New newDepthStencilStateWithDescriptor:)]
         fn newDepthStencilStateWithDescriptor(
             &self,
@@ -740,6 +915,7 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTexture"
         ))]
+        /// Allocate a new texture with privately owned storage.
         #[method_id(@__retain_semantics New newTextureWithDescriptor:)]
         fn newTextureWithDescriptor(
             &self,
@@ -752,6 +928,15 @@ extern_protocol!(
             feature = "MTLTexture",
             feature = "objc2-io-surface"
         ))]
+        /// Create a new texture from an IOSurface.
+        ///
+        /// Parameter `descriptor`: A description of the properties for the new texture.
+        ///
+        /// Parameter `iosurface`: The IOSurface to use as storage for the new texture.
+        ///
+        /// Parameter `plane`: The plane within the IOSurface to use.
+        ///
+        /// Returns: A new texture object.
         #[method_id(@__retain_semantics New newTextureWithDescriptor:iosurface:plane:)]
         unsafe fn newTextureWithDescriptor_iosurface_plane(
             &self,
@@ -765,6 +950,14 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTexture"
         ))]
+        /// Create a new texture that can be shared across process boundaries.
+        ///
+        /// This texture can be shared between process boundaries
+        /// but not between different GPUs, by passing its MTLSharedTextureHandle.
+        ///
+        /// Parameter `descriptor`: A description of the properties for the new texture.
+        ///
+        /// Returns: A new texture object.
         #[method_id(@__retain_semantics New newSharedTextureWithDescriptor:)]
         unsafe fn newSharedTextureWithDescriptor(
             &self,
@@ -776,6 +969,16 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTexture"
         ))]
+        /// Recreate shared texture from received texture handle.
+        ///
+        /// This texture was shared between process boundaries by other
+        /// process using MTLSharedTextureHandle. Current process will now share
+        /// it with other processes and will be able to interact with it (but still
+        /// in scope of the same GPUs).
+        ///
+        /// Parameter `sharedHandle`: Handle to shared texture in this process space.
+        ///
+        /// Returns: A new texture object.
         #[method_id(@__retain_semantics New newSharedTextureWithHandle:)]
         unsafe fn newSharedTextureWithHandle(
             &self,
@@ -783,6 +986,7 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "MTLSampler")]
+        /// Create a new sampler.
         #[method_id(@__retain_semantics New newSamplerStateWithDescriptor:)]
         fn newSamplerStateWithDescriptor(
             &self,
@@ -790,6 +994,9 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLSamplerState>>>;
 
         #[cfg(feature = "MTLLibrary")]
+        /// Returns the default library for the main bundle.
+        ///
+        /// use newDefaultLibraryWithBundle:error: to get an NSError in case of failure.
         #[method_id(@__retain_semantics New newDefaultLibrary)]
         fn newDefaultLibrary(&self) -> Option<Retained<ProtocolObject<dyn MTLLibrary>>>;
 
@@ -801,6 +1008,7 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLLibrary>>, Retained<NSError>>;
 
         #[cfg(feature = "MTLLibrary")]
+        /// Load a MTLLibrary from a metallib file.
         #[deprecated = "Use -newLibraryWithURL:error: instead"]
         #[method_id(@__retain_semantics New newLibraryWithFile:error:_)]
         fn newLibraryWithFile_error(
@@ -809,6 +1017,7 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLLibrary>>, Retained<NSError>>;
 
         #[cfg(feature = "MTLLibrary")]
+        /// Load a MTLLibrary from a metallib file.
         #[method_id(@__retain_semantics New newLibraryWithURL:error:_)]
         unsafe fn newLibraryWithURL_error(
             &self,
@@ -816,6 +1025,7 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLLibrary>>, Retained<NSError>>;
 
         #[cfg(feature = "MTLLibrary")]
+        /// Load a MTLLibrary from source.
         #[method_id(@__retain_semantics New newLibraryWithSource:options:error:_)]
         fn newLibraryWithSource_options_error(
             &self,
@@ -824,6 +1034,7 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLLibrary>>, Retained<NSError>>;
 
         #[cfg(all(feature = "MTLLibrary", feature = "block2"))]
+        /// Load a MTLLibrary from source.
         #[method(newLibraryWithSource:options:completionHandler:)]
         unsafe fn newLibraryWithSource_options_completionHandler(
             &self,
@@ -833,6 +1044,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MTLFunctionStitching", feature = "MTLLibrary"))]
+        /// Returns a library generated using the graphs in the descriptor.
         #[method_id(@__retain_semantics New newLibraryWithStitchedDescriptor:error:_)]
         unsafe fn newLibraryWithStitchedDescriptor_error(
             &self,
@@ -844,6 +1056,7 @@ extern_protocol!(
             feature = "MTLLibrary",
             feature = "block2"
         ))]
+        /// Generates a new library using the graphs in the descriptor.
         #[method(newLibraryWithStitchedDescriptor:completionHandler:)]
         unsafe fn newLibraryWithStitchedDescriptor_completionHandler(
             &self,
@@ -852,6 +1065,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLRenderPipeline")]
+        /// Create and compile a new MTLRenderPipelineState object synchronously.
         #[method_id(@__retain_semantics New newRenderPipelineStateWithDescriptor:error:_)]
         fn newRenderPipelineStateWithDescriptor_error(
             &self,
@@ -859,6 +1073,7 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
 
         #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
+        /// Create and compile a new MTLRenderPipelineState object asynchronously.
         #[method(newRenderPipelineStateWithDescriptor:completionHandler:)]
         unsafe fn newRenderPipelineStateWithDescriptor_completionHandler(
             &self,
@@ -867,6 +1082,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
+        /// Create and compile a new MTLRenderPipelineState object asynchronously and returns additional reflection information
         #[method(newRenderPipelineStateWithDescriptor:options:completionHandler:)]
         unsafe fn newRenderPipelineStateWithDescriptor_options_completionHandler(
             &self,
@@ -876,6 +1092,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MTLComputePipeline", feature = "MTLLibrary"))]
+        /// Create and compile a new MTLComputePipelineState object synchronously.
         #[method_id(@__retain_semantics New newComputePipelineStateWithFunction:error:_)]
         fn newComputePipelineStateWithFunction_error(
             &self,
@@ -887,6 +1104,7 @@ extern_protocol!(
             feature = "MTLLibrary",
             feature = "block2"
         ))]
+        /// Create and compile a new MTLComputePipelineState object asynchronously.
         #[method(newComputePipelineStateWithFunction:completionHandler:)]
         unsafe fn newComputePipelineStateWithFunction_completionHandler(
             &self,
@@ -899,6 +1117,7 @@ extern_protocol!(
             feature = "MTLLibrary",
             feature = "block2"
         ))]
+        /// Create and compile a new MTLComputePipelineState object asynchronously.
         #[method(newComputePipelineStateWithFunction:options:completionHandler:)]
         unsafe fn newComputePipelineStateWithFunction_options_completionHandler(
             &self,
@@ -908,6 +1127,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MTLComputePipeline", feature = "block2"))]
+        /// Create and compile a new MTLComputePipelineState object asynchronously.
         #[method(newComputePipelineStateWithDescriptor:options:completionHandler:)]
         unsafe fn newComputePipelineStateWithDescriptor_options_completionHandler(
             &self,
@@ -917,30 +1137,39 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLFence")]
+        /// Create a new MTLFence object
         #[method_id(@__retain_semantics New newFence)]
         fn newFence(&self) -> Option<Retained<ProtocolObject<dyn MTLFence>>>;
 
+        /// Returns TRUE if the feature set is supported by this MTLDevice.
         #[deprecated = "Use supportsFamily instead"]
         #[method(supportsFeatureSet:)]
         fn supportsFeatureSet(&self, feature_set: MTLFeatureSet) -> bool;
 
+        /// Returns TRUE if the GPU Family is supported by this MTLDevice.
         #[method(supportsFamily:)]
         fn supportsFamily(&self, gpu_family: MTLGPUFamily) -> bool;
 
+        /// Query device if it support textures with a given sampleCount.
+        ///
+        /// Returns: BOOL value. If YES, device supports the given sampleCount for textures. If NO, device does not support the given sampleCount.
         #[method(supportsTextureSampleCount:)]
         fn supportsTextureSampleCount(&self, sample_count: NSUInteger) -> bool;
 
         #[cfg(feature = "MTLPixelFormat")]
+        /// Returns the minimum alignment required for offset and rowBytes when creating a linear texture. An error is thrown for queries with invalid pixel formats (depth, stencil, or compressed formats).
         #[method(minimumLinearTextureAlignmentForPixelFormat:)]
         fn minimumLinearTextureAlignmentForPixelFormat(&self, format: MTLPixelFormat)
             -> NSUInteger;
 
         #[cfg(feature = "MTLPixelFormat")]
+        /// Returns the minimum alignment required for offset and rowBytes when creating a texture buffer from a buffer.
         #[method(minimumTextureBufferAlignmentForPixelFormat:)]
         fn minimumTextureBufferAlignmentForPixelFormat(&self, format: MTLPixelFormat)
             -> NSUInteger;
 
         #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
+        /// Create and compile a new MTLRenderPipelineState object asynchronously given a MTLTileRenderPipelineDescriptor.
         #[method(newRenderPipelineStateWithTileDescriptor:options:completionHandler:)]
         unsafe fn newRenderPipelineStateWithTileDescriptor_options_completionHandler(
             &self,
@@ -950,6 +1179,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
+        /// Create and compile a new MTLRenderPipelineState object asynchronously given a MTLMeshRenderPipelineDescriptor.
         #[method(newRenderPipelineStateWithMeshDescriptor:options:completionHandler:)]
         unsafe fn newRenderPipelineStateWithMeshDescriptor_options_completionHandler(
             &self,
@@ -958,16 +1188,28 @@ extern_protocol!(
             completion_handler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
         );
 
+        /// The maximum threadgroup memory available, in bytes.
         #[method(maxThreadgroupMemoryLength)]
         fn maxThreadgroupMemoryLength(&self) -> NSUInteger;
 
+        /// The maximum number of unique argument buffer samplers per app.
+        ///
+        /// This limit is only applicable to samplers that have their supportArgumentBuffers property set to true. A MTLSamplerState object is considered unique if the configuration of its originating MTLSamplerDescriptor properties is unique. For example, two samplers with equal minFilter values but different magFilter values are considered unique.
         #[method(maxArgumentBufferSamplerCount)]
         fn maxArgumentBufferSamplerCount(&self) -> NSUInteger;
 
+        /// Query device for programmable sample position support.
+        ///
+        /// Returns: BOOL value. If YES, the device supports programmable sample positions. If NO, the device does not.
         #[method(areProgrammableSamplePositionsSupported)]
         unsafe fn areProgrammableSamplePositionsSupported(&self) -> bool;
 
         #[cfg(feature = "MTLTypes")]
+        /// Retrieve the default sample positions.
+        ///
+        /// Parameter `positions`: The destination array for default sample position data.
+        ///
+        /// Parameter `count`: Specifies the sample count for which to retrieve the default positions, the length of the positions array, and must be set to a valid sample count.
         #[method(getDefaultSamplePositions:count:)]
         unsafe fn getDefaultSamplePositions_count(
             &self,
@@ -976,12 +1218,18 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLArgumentEncoder")]
+        /// Creates an argument encoder for an array of argument descriptors which will be encoded sequentially.
         #[method_id(@__retain_semantics New newArgumentEncoderWithArguments:)]
         fn newArgumentEncoderWithArguments(
             &self,
             arguments: &NSArray<MTLArgumentDescriptor>,
         ) -> Option<Retained<ProtocolObject<dyn MTLArgumentEncoder>>>;
 
+        /// Query device for variable rasterization rate support with the given number of layers.
+        ///
+        /// Parameter `layerCount`: The number of layers for which to query device support.
+        ///
+        /// Returns: YES if the device supports creation of rendering using a MTLRasterizationRateMap with the given number of layers.
         #[method(supportsRasterizationRateMapWithLayerCount:)]
         unsafe fn supportsRasterizationRateMapWithLayerCount(
             &self,
@@ -989,6 +1237,11 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "MTLRasterizationRate")]
+        /// Creates a new variable rasterization rate map with the given descriptor.
+        ///
+        /// If '[self supportsRasterizationRateMapWithLayerCount:descriptor.layerCount]' returns NO, or descriptor.screenSize describes an empty region, the result will always be nil.
+        ///
+        /// Returns: A MTLRasterizationRateMap instance that can be used for rendering on this MTLDevice, or nil if the device does not support the combination of parameters stored in the descriptor.
         #[method_id(@__retain_semantics New newRasterizationRateMapWithDescriptor:)]
         unsafe fn newRasterizationRateMapWithDescriptor(
             &self,
@@ -1000,6 +1253,15 @@ extern_protocol!(
             feature = "MTLIndirectCommandBuffer",
             feature = "MTLResource"
         ))]
+        /// Creates a new indirect command buffer with the given descriptor and count.
+        ///
+        /// Parameter `descriptor`: The descriptor encodes the maximum logical stride of each command.
+        ///
+        /// Parameter `maxCount`: The maximum number of commands that this buffer can contain.
+        ///
+        /// Parameter `options`: The options for the indirect command buffer.
+        ///
+        /// The returned buffer can be safely executed without first encoding into (but is wasteful).
         #[method_id(@__retain_semantics New newIndirectCommandBufferWithDescriptor:maxCommandCount:options:)]
         unsafe fn newIndirectCommandBufferWithDescriptor_maxCommandCount_options(
             &self,
@@ -1009,30 +1271,42 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLIndirectCommandBuffer>>>;
 
         #[cfg(feature = "MTLEvent")]
+        /// Returns a new single-device non-shareable Metal event object
         #[method_id(@__retain_semantics New newEvent)]
         fn newEvent(&self) -> Option<Retained<ProtocolObject<dyn MTLEvent>>>;
 
         #[cfg(feature = "MTLEvent")]
+        /// Returns a shareable multi-device event.
         #[method_id(@__retain_semantics New newSharedEvent)]
         fn newSharedEvent(&self) -> Option<Retained<ProtocolObject<dyn MTLSharedEvent>>>;
 
         #[cfg(feature = "MTLEvent")]
+        /// Creates a shareable multi-device event from an existing shared event handle.
         #[method_id(@__retain_semantics New newSharedEventWithHandle:)]
         unsafe fn newSharedEventWithHandle(
             &self,
             shared_event_handle: &MTLSharedEventHandle,
         ) -> Option<Retained<ProtocolObject<dyn MTLSharedEvent>>>;
 
+        /// If a device supports peer to peer transfers with another device (or devices), this property will return
+        /// a unique 64-bit identifier associated with all devices in the same peer group.
         #[method(peerGroupID)]
         unsafe fn peerGroupID(&self) -> u64;
 
+        /// All Metal devices that are part of the same peer group will have a unique index value within the group in
+        /// the range from 0 to peerCount - 1.
         #[method(peerIndex)]
         unsafe fn peerIndex(&self) -> u32;
 
+        /// For Metal devices that are part of a peer group, this property returns the total number of devices in that group.
         #[method(peerCount)]
         unsafe fn peerCount(&self) -> u32;
 
         #[cfg(feature = "MTLIOCommandQueue")]
+        /// Create and return a handle that points to a raw file on disk. This object can be used by
+        /// MTLIOCommandBuffer load commands to source data for MTLResources. If the creation
+        /// of the handle fails the return value will be nil and the optional error if passed in will be non-nil
+        /// with details of the error.
         #[deprecated]
         #[method_id(@__retain_semantics New newIOHandleWithURL:error:_)]
         unsafe fn newIOHandleWithURL_error(
@@ -1041,6 +1315,9 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLIOFileHandle>>, Retained<NSError>>;
 
         #[cfg(feature = "MTLIOCommandQueue")]
+        /// Create and return an IO queue. If the creation
+        /// of the queue fails the return value will be nil and the optional error if passed in will be non-nil
+        /// with details of the error.
         #[method_id(@__retain_semantics New newIOCommandQueueWithDescriptor:error:_)]
         unsafe fn newIOCommandQueueWithDescriptor_error(
             &self,
@@ -1048,6 +1325,11 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLIOCommandQueue>>, Retained<NSError>>;
 
         #[cfg(feature = "MTLIOCommandQueue")]
+        /// Create and return a handle that points to a compressed file on disk (a file that was
+        /// created with MTLIOCompressionContext). This object can be used by
+        /// MTLIOCommandBuffer load commands to source data for MTLResources. If the creation
+        /// of the handle fails the return value will be nil and the optional error if passed in will be non-nil
+        /// with details of the error.
         #[deprecated]
         #[method_id(@__retain_semantics New newIOHandleWithURL:compressionMethod:error:_)]
         unsafe fn newIOHandleWithURL_compressionMethod_error(
@@ -1057,6 +1339,10 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLIOFileHandle>>, Retained<NSError>>;
 
         #[cfg(feature = "MTLIOCommandQueue")]
+        /// Create and return a handle that points to a raw file on disk. This object can be used by
+        /// MTLIOCommandBuffer load commands to source data for MTLResources. If the creation
+        /// of the handle fails the return value will be nil and the optional error if passed in will be non-nil
+        /// with details of the error.
         #[method_id(@__retain_semantics New newIOFileHandleWithURL:error:_)]
         unsafe fn newIOFileHandleWithURL_error(
             &self,
@@ -1064,6 +1350,11 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLIOFileHandle>>, Retained<NSError>>;
 
         #[cfg(feature = "MTLIOCommandQueue")]
+        /// Create and return a handle that points to a compressed file on disk (a file that was
+        /// created with MTLIOCompressionContext). This object can be used by
+        /// MTLIOCommandBuffer load commands to source data for MTLResources. If the creation
+        /// of the handle fails the return value will be nil and the optional error if passed in will be non-nil
+        /// with details of the error.
         #[method_id(@__retain_semantics New newIOFileHandleWithURL:compressionMethod:error:_)]
         unsafe fn newIOFileHandleWithURL_compressionMethod_error(
             &self,
@@ -1076,6 +1367,7 @@ extern_protocol!(
             feature = "MTLTexture",
             feature = "MTLTypes"
         ))]
+        /// Returns tile size for sparse texture with given type, pixel format and sample count.
         #[method(sparseTileSizeWithTextureType:pixelFormat:sampleCount:)]
         unsafe fn sparseTileSizeWithTextureType_pixelFormat_sampleCount(
             &self,
@@ -1084,10 +1376,13 @@ extern_protocol!(
             sample_count: NSUInteger,
         ) -> MTLSize;
 
+        /// Returns the number of bytes required to map one sparse texture tile.
         #[method(sparseTileSizeInBytes)]
         unsafe fn sparseTileSizeInBytes(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLTypes")]
+        /// Converts regions in pixels to regions in sparse tiles using specified alignment mode.
+        /// Tile size can be obtained from tileSizeWithTextureType:pixelFormat:sampleCount: method.
         #[optional]
         #[method(convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:)]
         unsafe fn convertSparsePixelRegions_toTileRegions_withTileSize_alignmentMode_numRegions(
@@ -1100,6 +1395,8 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLTypes")]
+        /// Convertes region in sparse tiles to region in pixels
+        /// Tile size can be obtained from tileSizeWithTextureType:pixelFormat:sampleCount: method.
         #[optional]
         #[method(convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:)]
         unsafe fn convertSparseTileRegions_toPixelRegions_withTileSize_numRegions(
@@ -1110,6 +1407,7 @@ extern_protocol!(
             num_regions: NSUInteger,
         );
 
+        /// Returns the number of bytes required to map one sparse texture tile for a given MTLSparsePageSize
         #[method(sparseTileSizeInBytesForSparsePageSize:)]
         unsafe fn sparseTileSizeInBytesForSparsePageSize(
             &self,
@@ -1121,6 +1419,7 @@ extern_protocol!(
             feature = "MTLTexture",
             feature = "MTLTypes"
         ))]
+        /// Returns tile size for sparse texture with given type, pixel format and sample count.
         #[method(sparseTileSizeWithTextureType:pixelFormat:sampleCount:sparsePageSize:)]
         unsafe fn sparseTileSizeWithTextureType_pixelFormat_sampleCount_sparsePageSize(
             &self,
@@ -1134,18 +1433,31 @@ extern_protocol!(
         fn maxBufferLength(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLCounters")]
+        /// Returns the set of Counter Sets exposed by the device.
         #[method_id(@__retain_semantics Other counterSets)]
         unsafe fn counterSets(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLCounterSet>>>>;
 
         #[cfg(feature = "MTLCounters")]
+        /// Given a counter sample buffer descriptor, allocate a new counter
+        /// sample buffer.
+        /// This may return nil if the counters may not all be collected simultaneously.
+        ///
+        /// Parameter `descriptor`: The descriptor to create a sample buffer for
+        ///
+        /// Parameter `error`: An error return on failure.
         #[method_id(@__retain_semantics New newCounterSampleBufferWithDescriptor:error:_)]
         unsafe fn newCounterSampleBufferWithDescriptor_error(
             &self,
             descriptor: &MTLCounterSampleBufferDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>, Retained<NSError>>;
 
+        /// Sample the CPU and GPU timestamps as closely as possible.
+        ///
+        /// Parameter `cpuTimestamp`: The timestamp on the CPU
+        ///
+        /// Parameter `gpuTimestamp`: The timestamp on the GPU
         #[method(sampleTimestamps:gpuTimestamp:)]
         unsafe fn sampleTimestamps_gpuTimestamp(
             &self,
@@ -1160,19 +1472,44 @@ extern_protocol!(
             buffer_binding: &ProtocolObject<dyn MTLBufferBinding>,
         ) -> Retained<ProtocolObject<dyn MTLArgumentEncoder>>;
 
+        /// Query device for counter sampling points support.
+        ///
+        /// Parameter `samplingPoint`: Query index
+        ///
+        /// Returns: BOOL value. If YES, the device supports counter sampling at given point.
         #[method(supportsCounterSampling:)]
         fn supportsCounterSampling(&self, sampling_point: MTLCounterSamplingPoint) -> bool;
 
+        /// Query device for vertex amplification support.
+        ///
+        /// Parameter `count`: The amplification count to check
+        ///
+        /// Returns: BOOL value. If YES, the device supports vertex amplification with the given count. If NO, the device does not.
         #[method(supportsVertexAmplificationCount:)]
         fn supportsVertexAmplificationCount(&self, count: NSUInteger) -> bool;
 
+        /// Query device support for creating and using dynamic libraries in a compute pipeline.
+        ///
+        /// Returns: BOOL value. If YES, the device supports creating and using dynamic libraries in a compute pipeline. If NO, the device does not.
         #[method(supportsDynamicLibraries)]
         fn supportsDynamicLibraries(&self) -> bool;
 
+        /// Query device support for creating and using dynamic libraries in render pipeline stages.
+        ///
+        /// Returns: BOOL value. If YES, the device supports creating and using dynamic libraries in render pipeline stages. If NO, the device does not.
         #[method(supportsRenderDynamicLibraries)]
         unsafe fn supportsRenderDynamicLibraries(&self) -> bool;
 
         #[cfg(all(feature = "MTLDynamicLibrary", feature = "MTLLibrary"))]
+        /// Creates a MTLDynamicLibrary by compiling the code in a MTLLibrary.
+        ///
+        /// See: MTLDynamicLibrary
+        ///
+        /// Parameter `library`: The MTLLibrary from which to compile code. This library must have .type set to MTLLibraryTypeDynamic.
+        ///
+        /// Parameter `error`: If an error occurs during creation, this parameter is updated to describe the failure.
+        ///
+        /// Returns: On success, the MTLDynamicLibrary containing compiled code. On failure, nil.
         #[method_id(@__retain_semantics New newDynamicLibrary:error:_)]
         fn newDynamicLibrary_error(
             &self,
@@ -1180,6 +1517,15 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLDynamicLibrary>>, Retained<NSError>>;
 
         #[cfg(feature = "MTLDynamicLibrary")]
+        /// Creates a MTLDynamicLibrary by loading compiled code from a file.
+        ///
+        /// See: MTLDynamicLibrary
+        ///
+        /// Parameter `url`: The file URL from which to load. If the file contains no compiled code for this device, compilation is attempted as with newDynamicLibrary:error:
+        ///
+        /// Parameter `error`: If an error occurs during creation, this parameter is updated to describe the failure.
+        ///
+        /// Returns: On success, the MTLDynamicLibrary containing compiled code (either loaded or compiled). On failure, nil.
         #[method_id(@__retain_semantics New newDynamicLibraryWithURL:error:_)]
         fn newDynamicLibraryWithURL_error(
             &self,
@@ -1187,12 +1533,24 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLDynamicLibrary>>, Retained<NSError>>;
 
         #[cfg(feature = "MTLBinaryArchive")]
+        /// Creates a MTLBinaryArchive using the configuration in the descriptor.
+        ///
+        /// See: MTLBinaryArchive
+        ///
+        /// Parameter `descriptor`: The descriptor for the configuration of the binary archive to create.
+        ///
+        /// Parameter `error`: If an error occurs during creation, this parameter is updated to describe the failure.
+        ///
+        /// Returns: On success, the created MTLBinaryArchive. On failure, nil.
         #[method_id(@__retain_semantics New newBinaryArchiveWithDescriptor:error:_)]
         fn newBinaryArchiveWithDescriptor_error(
             &self,
             descriptor: &MTLBinaryArchiveDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLBinaryArchive>>, Retained<NSError>>;
 
+        /// Query device support for using ray tracing from compute pipelines.
+        ///
+        /// Returns: BOOL value. If YES, the device supports ray tracing from compute pipelines. If NO, the device does not.
         #[method(supportsRaytracing)]
         fn supportsRaytracing(&self) -> bool;
 
@@ -1225,6 +1583,9 @@ extern_protocol!(
             descriptor: &MTLAccelerationStructureDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
 
+        /// Determine the byte size of acceleration structures when sub-allocated from a heap.
+        ///
+        /// This method can be used to help determine the required heap size.
         #[method(heapAccelerationStructureSizeAndAlignWithSize:)]
         unsafe fn heapAccelerationStructureSizeAndAlignWithSize(
             &self,
@@ -1232,37 +1593,60 @@ extern_protocol!(
         ) -> MTLSizeAndAlign;
 
         #[cfg(feature = "MTLAccelerationStructure")]
+        /// Determine the byte size of acceleration structures when sub-allocated from a heap. This is a convenience method which computes the acceleration structure size based on the descriptor.
+        ///
+        /// This method can be used to help determine the required heap size.
         #[method(heapAccelerationStructureSizeAndAlignWithDescriptor:)]
         unsafe fn heapAccelerationStructureSizeAndAlignWithDescriptor(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
         ) -> MTLSizeAndAlign;
 
+        /// Query device support for using function pointers from compute pipelines.
+        ///
+        /// Returns: BOOL value. If YES, the device supports function pointers from compute pipelines. If NO, the device does not.
         #[method(supportsFunctionPointers)]
         fn supportsFunctionPointers(&self) -> bool;
 
+        /// Query device support for using function pointers from render pipeline stages.
+        ///
+        /// Returns: BOOL value. If YES, the device supports function pointers from render pipeline stages. If NO, the device does not.
         #[method(supportsFunctionPointersFromRender)]
         unsafe fn supportsFunctionPointersFromRender(&self) -> bool;
 
+        /// Query device support for using ray tracing from render pipeline stages.
+        ///
+        /// Returns: BOOL value. If YES, the device supports ray tracing from render pipeline stages. If NO, the device does not.
         #[method(supportsRaytracingFromRender)]
         unsafe fn supportsRaytracingFromRender(&self) -> bool;
 
+        /// Query device support for using ray tracing primitive motion blur.
+        ///
+        /// Returns: BOOL value. If YES, the device supports the primitive motion blur api. If NO, the device does not.
         #[method(supportsPrimitiveMotionBlur)]
         unsafe fn supportsPrimitiveMotionBlur(&self) -> bool;
 
+        /// Allow this device to use additional CPU threads (scaled automatically to the host machine) to be used for compilation tasks. Default is `NO`.
+        ///
+        /// Use the `maximumConcurrentCompilationTaskCount` property to determine the current number of concurrent CPU threads that this device is using.
         #[method(shouldMaximizeConcurrentCompilation)]
         unsafe fn shouldMaximizeConcurrentCompilation(&self) -> bool;
 
+        /// Setter for [`shouldMaximizeConcurrentCompilation`][Self::shouldMaximizeConcurrentCompilation].
         #[method(setShouldMaximizeConcurrentCompilation:)]
         unsafe fn setShouldMaximizeConcurrentCompilation(
             &self,
             should_maximize_concurrent_compilation: bool,
         );
 
+        /// Returns the maximum count of concurrent executing compilation tasks.
+        ///
+        /// The property returns a different value depending on the value of the property `shouldMaximizeConcurrentCompilation`.
         #[method(maximumConcurrentCompilationTaskCount)]
         unsafe fn maximumConcurrentCompilationTaskCount(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLResidencySet")]
+        /// Creates a new residency set with a descriptor.
         #[method_id(@__retain_semantics New newResidencySetWithDescriptor:error:_)]
         unsafe fn newResidencySetWithDescriptor_error(
             &self,

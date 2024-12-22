@@ -43,6 +43,7 @@ unsafe impl NSSecureCoding for NSTextStorage {}
 extern_methods!(
     unsafe impl NSTextStorage {
         #[cfg(feature = "NSLayoutManager")]
+        /// ************************** Layout manager ***************************
         #[method_id(@__retain_semantics Other layoutManagers)]
         pub unsafe fn layoutManagers(&self) -> Retained<NSArray<NSLayoutManager>>;
 
@@ -54,6 +55,7 @@ extern_methods!(
         #[method(removeLayoutManager:)]
         pub unsafe fn removeLayoutManager(&self, a_layout_manager: &NSLayoutManager);
 
+        /// ************************** Pending edit info ***************************
         #[method(editedMask)]
         pub unsafe fn editedMask(&self) -> NSTextStorageEditActions;
 
@@ -63,18 +65,21 @@ extern_methods!(
         #[method(changeInLength)]
         pub unsafe fn changeInLength(&self) -> NSInteger;
 
+        /// ************************** Delegate ***************************
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextStorageDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSTextStorageDelegate>>,
         );
 
+        /// ************************** Edit management ***************************
         #[method(edited:range:changeInLength:)]
         pub unsafe fn edited_range_changeInLength(
             &self,
@@ -86,6 +91,7 @@ extern_methods!(
         #[method(processEditing)]
         pub unsafe fn processEditing(&self);
 
+        /// ************************** Attribute fixing ***************************
         #[method(fixesAttributesLazily)]
         pub unsafe fn fixesAttributesLazily(&self) -> bool;
 
@@ -95,12 +101,14 @@ extern_methods!(
         #[method(ensureAttributesAreFixedInRange:)]
         pub unsafe fn ensureAttributesAreFixedInRange(&self, range: NSRange);
 
+        /// ************************** NSTextStorageObserving ***************************
         #[method_id(@__retain_semantics Other textStorageObserver)]
         pub unsafe fn textStorageObserver(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextStorageObserving>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`textStorageObserver`][Self::textStorageObserver].
         #[method(setTextStorageObserver:)]
         pub unsafe fn setTextStorageObserver(
             &self,
@@ -121,7 +129,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstoragedelegate?language=objc)
+    /// **  NSTextStorage delegate methods ***
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstoragedelegate?language=objc)
     pub unsafe trait NSTextStorageDelegate: NSObjectProtocol {
         #[optional]
         #[method(textStorage:willProcessEditing:range:changeInLength:)]
@@ -148,7 +158,9 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstoragewillprocesseditingnotification?language=objc)
+    /// ** Notifications ***
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstoragewillprocesseditingnotification?language=objc)
     pub static NSTextStorageWillProcessEditingNotification: &'static NSNotificationName;
 }
 
@@ -163,6 +175,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other textStorage)]
         unsafe fn textStorage(&self) -> Option<Retained<NSTextStorage>>;
 
+        /// Setter for [`textStorage`][Self::textStorage].
         #[method(setTextStorage:)]
         unsafe fn setTextStorage(&self, text_storage: Option<&NSTextStorage>);
 
@@ -188,5 +201,7 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSTextStorageObserving {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstorageeditedoptions?language=objc)
+/// ** Deprecations ***
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstorageeditedoptions?language=objc)
 pub type NSTextStorageEditedOptions = NSUInteger;

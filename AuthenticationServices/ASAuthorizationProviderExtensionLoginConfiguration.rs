@@ -18,48 +18,66 @@ unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionKerberosMapping
 
 extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionKerberosMapping {
+        /// The keypath in the response JSON that uses this set of mappings.
+        ///
+        /// If the response tokens from login contain this keypath, then the mapping in this class will be used to create a Kerberos ticket. The expected response is a JSON dictionary with the supplied key names.
         #[method_id(@__retain_semantics Other ticketKeyPath)]
         pub unsafe fn ticketKeyPath(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`ticketKeyPath`][Self::ticketKeyPath].
         #[method(setTicketKeyPath:)]
         pub unsafe fn setTicketKeyPath(&self, ticket_key_path: Option<&NSString>);
 
+        /// The key name that contains the base64 encoded kerberos AS-REP string.
         #[method_id(@__retain_semantics Other messageBufferKeyName)]
         pub unsafe fn messageBufferKeyName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`messageBufferKeyName`][Self::messageBufferKeyName].
         #[method(setMessageBufferKeyName:)]
         pub unsafe fn setMessageBufferKeyName(&self, message_buffer_key_name: Option<&NSString>);
 
+        /// The key name that contains the Kerberos Realm string.
         #[method_id(@__retain_semantics Other realmKeyName)]
         pub unsafe fn realmKeyName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`realmKeyName`][Self::realmKeyName].
         #[method(setRealmKeyName:)]
         pub unsafe fn setRealmKeyName(&self, realm_key_name: Option<&NSString>);
 
+        /// The key name that contains the Kerberos service name string.
         #[method_id(@__retain_semantics Other serviceNameKeyName)]
         pub unsafe fn serviceNameKeyName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`serviceNameKeyName`][Self::serviceNameKeyName].
         #[method(setServiceNameKeyName:)]
         pub unsafe fn setServiceNameKeyName(&self, service_name_key_name: Option<&NSString>);
 
+        /// The key name that contains the Kerberos client name string.
         #[method_id(@__retain_semantics Other clientNameKeyName)]
         pub unsafe fn clientNameKeyName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`clientNameKeyName`][Self::clientNameKeyName].
         #[method(setClientNameKeyName:)]
         pub unsafe fn setClientNameKeyName(&self, client_name_key_name: Option<&NSString>);
 
+        /// The key name that contains the Kerberos session key type number.
+        ///
+        /// The value for this key should be the correct encryption type per RFC3962, section 7 for the session key.
         #[method_id(@__retain_semantics Other encryptionKeyTypeKeyName)]
         pub unsafe fn encryptionKeyTypeKeyName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`encryptionKeyTypeKeyName`][Self::encryptionKeyTypeKeyName].
         #[method(setEncryptionKeyTypeKeyName:)]
         pub unsafe fn setEncryptionKeyTypeKeyName(
             &self,
             encryption_key_type_key_name: Option<&NSString>,
         );
 
+        /// The key name that contains the Kerberos session key.
         #[method_id(@__retain_semantics Other sessionKeyKeyName)]
         pub unsafe fn sessionKeyKeyName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`sessionKeyKeyName`][Self::sessionKeyKeyName].
         #[method(setSessionKeyKeyName:)]
         pub unsafe fn setSessionKeyKeyName(&self, session_key_key_name: Option<&NSString>);
     }
@@ -131,25 +149,37 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionUserSecureEnclaveKeyBi
 pub type ASAuthorizationProviderExtensionEncryptionAlgorithm = NSNumber;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmecdhe_a256gcm?language=objc)
+    /// A encryption algorithm that uses NIST P-256 elliptic curve key agreement, ConcatKDF key derivation
+    /// with a 256-bit digest, and the Advanced Encryption Standard cipher in Galois/Counter Mode with a key length of 256 bits.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmecdhe_a256gcm?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmECDHE_A256GCM:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmhpke_p256_sha256_aes_gcm_256?language=objc)
+    /// A cipher suite for HPKE that uses NIST P-256 elliptic curve key agreement, SHA-2 key derivation
+    /// with a 256-bit digest, and the Advanced Encryption Standard cipher in Galois/Counter Mode with a key length of 256 bits.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmhpke_p256_sha256_aes_gcm_256?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_P256_SHA256_AES_GCM_256:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmhpke_p384_sha384_aes_gcm_256?language=objc)
+    /// A cipher suite that you use for HPKE using NIST P-384 elliptic curve key agreement, SHA-2 key derivation
+    /// with a 384-bit digest, and the Advanced Encryption Standard cipher in Galois/Counter Mode with a key length of 256 bits.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmhpke_p384_sha384_aes_gcm_256?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_P384_SHA384_AES_GCM_256:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmhpke_curve25519_sha256_chachapoly?language=objc)
+    /// A cipher suite for HPKE that uses X25519 elliptic curve key agreement, SHA-2 key derivation
+    /// with a 256-bit digest, and the ChaCha20 stream cipher with the Poly1305 message authentication code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmhpke_curve25519_sha256_chachapoly?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_Curve25519_SHA256_ChachaPoly:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
@@ -193,6 +223,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initializes an ASAuthorizationProviderExtensionLoginConfiguration class with the required values.
+        ///
+        /// Parameter `clientID`: The client_id for the Apple platform SSO login at the identity provider.
+        ///
+        /// Parameter `issuer`: The issuer for the requests, used to validate responses.
+        ///
+        /// Parameter `tokenEndpointURL`: The token endpoint at the idP for login.
+        ///
+        /// Parameter `jwksEndpointURL`: The JWKS URL at the idP for validating tokens.
+        ///
+        /// Parameter `audience`: The audience used for signed assertions.  This should be the tenent at the idP.
+        ///
+        /// Returns: An instance of a ASAuthorizationProviderExtensionLoginConfiguration.
         #[method_id(@__retain_semantics Init initWithClientID:issuer:tokenEndpointURL:jwksEndpointURL:audience:)]
         pub unsafe fn initWithClientID_issuer_tokenEndpointURL_jwksEndpointURL_audience(
             this: Allocated<Self>,
@@ -204,6 +247,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Creates a login configuration using the OpenID configuration.
+        ///
+        /// Parameter `openIDConfigurationURL`: The base URL to load the .well-known/openid-configuration.
+        ///
+        /// Parameter `clientID`: The client_id for the Apple platform SSO login at the identity provider.
+        ///
+        /// Parameter `issuer`: The issuer for the requests, used to validate responses.
+        ///
+        /// Parameter `completion`: The completion called when it is complete or the error.
         #[method(configurationWithOpenIDConfigurationURL:clientID:issuer:completion:)]
         pub unsafe fn configurationWithOpenIDConfigurationURL_clientID_issuer_completion(
             open_id_configuration_url: &NSURL,
@@ -214,386 +266,542 @@ extern_methods!(
             >,
         );
 
+        /// Predicate string used to identify invalid credential errors.
+        ///
+        /// If there is an HTTP 400 or HTTP 401 error when authenticating, this predicate will be used on the response body JSON to determine if the error is due to an invalid password or something else.  If nil, then only an HTTP 401 will be used for an invalid credential.
         #[method_id(@__retain_semantics Other invalidCredentialPredicate)]
         pub unsafe fn invalidCredentialPredicate(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`invalidCredentialPredicate`][Self::invalidCredentialPredicate].
         #[method(setInvalidCredentialPredicate:)]
         pub unsafe fn setInvalidCredentialPredicate(
             &self,
             invalid_credential_predicate: Option<&NSString>,
         );
 
+        /// The display name for the account.  Used for notifications and login prompts.
         #[method_id(@__retain_semantics Other accountDisplayName)]
         pub unsafe fn accountDisplayName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`accountDisplayName`][Self::accountDisplayName].
         #[method(setAccountDisplayName:)]
         pub unsafe fn setAccountDisplayName(&self, account_display_name: Option<&NSString>);
 
+        /// The login client_id.
         #[method_id(@__retain_semantics Other clientID)]
         pub unsafe fn clientID(&self) -> Retained<NSString>;
 
+        /// The issuer for validation.
         #[method_id(@__retain_semantics Other issuer)]
         pub unsafe fn issuer(&self) -> Retained<NSString>;
 
+        /// The audience for validation and requests.
         #[method_id(@__retain_semantics Other audience)]
         pub unsafe fn audience(&self) -> Retained<NSString>;
 
+        /// Setter for [`audience`][Self::audience].
         #[method(setAudience:)]
         pub unsafe fn setAudience(&self, audience: &NSString);
 
+        /// Token Endpoint URL for login request.
         #[method_id(@__retain_semantics Other tokenEndpointURL)]
         pub unsafe fn tokenEndpointURL(&self) -> Retained<NSURL>;
 
+        /// Setter for [`tokenEndpointURL`][Self::tokenEndpointURL].
         #[method(setTokenEndpointURL:)]
         pub unsafe fn setTokenEndpointURL(&self, token_endpoint_url: &NSURL);
 
+        /// JWKS Endpoint URL for keys.
         #[method_id(@__retain_semantics Other jwksEndpointURL)]
         pub unsafe fn jwksEndpointURL(&self) -> Retained<NSURL>;
 
+        /// Setter for [`jwksEndpointURL`][Self::jwksEndpointURL].
         #[method(setJwksEndpointURL:)]
         pub unsafe fn setJwksEndpointURL(&self, jwks_endpoint_url: &NSURL);
 
+        /// The root certificates to use for trust evaluation of jwks keys.
+        ///
+        /// if set, certificates will be required in jwks responses and evaluated using the supplied certificates.  If the jwks certificates are missing or fail trust evaluation the login will fail.
         #[method_id(@__retain_semantics Other jwksTrustedRootCertificates)]
         pub unsafe fn jwksTrustedRootCertificates(&self) -> Retained<NSArray>;
 
+        /// Setter for [`jwksTrustedRootCertificates`][Self::jwksTrustedRootCertificates].
         #[method(setJwksTrustedRootCertificates:)]
         pub unsafe fn setJwksTrustedRootCertificates(
             &self,
             jwks_trusted_root_certificates: &NSArray,
         );
 
+        /// The device context for storing device meta data.
         #[method_id(@__retain_semantics Other deviceContext)]
         pub unsafe fn deviceContext(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`deviceContext`][Self::deviceContext].
         #[method(setDeviceContext:)]
         pub unsafe fn setDeviceContext(&self, device_context: Option<&NSData>);
 
+        /// The biometric policy for User Secure Enclave Key authentication.
         #[method(userSecureEnclaveKeyBiometricPolicy)]
         pub unsafe fn userSecureEnclaveKeyBiometricPolicy(
             &self,
         ) -> ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy;
 
+        /// Setter for [`userSecureEnclaveKeyBiometricPolicy`][Self::userSecureEnclaveKeyBiometricPolicy].
         #[method(setUserSecureEnclaveKeyBiometricPolicy:)]
         pub unsafe fn setUserSecureEnclaveKeyBiometricPolicy(
             &self,
             user_secure_enclave_key_biometric_policy: ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy,
         );
 
+        /// Nonce Endpoint URL, defaults to token tokenEndpointURL.
         #[method_id(@__retain_semantics Other nonceEndpointURL)]
         pub unsafe fn nonceEndpointURL(&self) -> Retained<NSURL>;
 
+        /// Setter for [`nonceEndpointURL`][Self::nonceEndpointURL].
         #[method(setNonceEndpointURL:)]
         pub unsafe fn setNonceEndpointURL(&self, nonce_endpoint_url: &NSURL);
 
+        /// The keypath in the nonce response that contains the nonce value.
         #[method_id(@__retain_semantics Other nonceResponseKeypath)]
         pub unsafe fn nonceResponseKeypath(&self) -> Retained<NSString>;
 
+        /// Setter for [`nonceResponseKeypath`][Self::nonceResponseKeypath].
         #[method(setNonceResponseKeypath:)]
         pub unsafe fn setNonceResponseKeypath(&self, nonce_response_keypath: &NSString);
 
+        /// The name of the server nonce claim when included in authentication requests.
         #[method_id(@__retain_semantics Other serverNonceClaimName)]
         pub unsafe fn serverNonceClaimName(&self) -> Retained<NSString>;
 
+        /// Setter for [`serverNonceClaimName`][Self::serverNonceClaimName].
         #[method(setServerNonceClaimName:)]
         pub unsafe fn setServerNonceClaimName(&self, server_nonce_claim_name: &NSString);
 
+        /// Custom values added to the server nonce POST request body.
         #[method_id(@__retain_semantics Other customNonceRequestValues)]
         pub unsafe fn customNonceRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
+        /// Setter for [`customNonceRequestValues`][Self::customNonceRequestValues].
         #[method(setCustomNonceRequestValues:)]
         pub unsafe fn setCustomNonceRequestValues(
             &self,
             custom_nonce_request_values: &NSArray<NSURLQueryItem>,
         );
 
+        /// Sets custom claims to be added to the embedded assertion request header.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomAssertionRequestHeaderClaims:returningError:_)]
         pub unsafe fn setCustomAssertionRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Sets custom claims to be added to the embedded assertion request body.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomAssertionRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomAssertionRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Additional login scopes.
         #[method_id(@__retain_semantics Other additionalScopes)]
         pub unsafe fn additionalScopes(&self) -> Retained<NSString>;
 
+        /// Setter for [`additionalScopes`][Self::additionalScopes].
         #[method(setAdditionalScopes:)]
         pub unsafe fn setAdditionalScopes(&self, additional_scopes: &NSString);
 
+        /// Additional authorization scopes.
         #[method_id(@__retain_semantics Other additionalAuthorizationScopes)]
         pub unsafe fn additionalAuthorizationScopes(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`additionalAuthorizationScopes`][Self::additionalAuthorizationScopes].
         #[method(setAdditionalAuthorizationScopes:)]
         pub unsafe fn setAdditionalAuthorizationScopes(
             &self,
             additional_authorization_scopes: Option<&NSString>,
         );
 
+        /// If true and there is a refresh token for the user in the SSO tokens, it will be included in the login request.
         #[method(includePreviousRefreshTokenInLoginRequest)]
         pub unsafe fn includePreviousRefreshTokenInLoginRequest(&self) -> bool;
 
+        /// Setter for [`includePreviousRefreshTokenInLoginRequest`][Self::includePreviousRefreshTokenInLoginRequest].
         #[method(setIncludePreviousRefreshTokenInLoginRequest:)]
         pub unsafe fn setIncludePreviousRefreshTokenInLoginRequest(
             &self,
             include_previous_refresh_token_in_login_request: bool,
         );
 
+        /// The claim name for the previous SSO token value in the login request.
         #[method_id(@__retain_semantics Other previousRefreshTokenClaimName)]
         pub unsafe fn previousRefreshTokenClaimName(&self) -> Retained<NSString>;
 
+        /// Setter for [`previousRefreshTokenClaimName`][Self::previousRefreshTokenClaimName].
         #[method(setPreviousRefreshTokenClaimName:)]
         pub unsafe fn setPreviousRefreshTokenClaimName(
             &self,
             previous_refresh_token_claim_name: &NSString,
         );
 
+        /// The request parameter name for the JWT.  The default is "assertion".
         #[method_id(@__retain_semantics Other customRequestJWTParameterName)]
         pub unsafe fn customRequestJWTParameterName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`customRequestJWTParameterName`][Self::customRequestJWTParameterName].
         #[method(setCustomRequestJWTParameterName:)]
         pub unsafe fn setCustomRequestJWTParameterName(
             &self,
             custom_request_jwt_parameter_name: Option<&NSString>,
         );
 
+        /// Custom values added to the login POST request body.
         #[method_id(@__retain_semantics Other customLoginRequestValues)]
         pub unsafe fn customLoginRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
+        /// Setter for [`customLoginRequestValues`][Self::customLoginRequestValues].
         #[method(setCustomLoginRequestValues:)]
         pub unsafe fn setCustomLoginRequestValues(
             &self,
             custom_login_request_values: &NSArray<NSURLQueryItem>,
         );
 
+        /// Sets custom claims to be added to the login request header.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomLoginRequestHeaderClaims:returningError:_)]
         pub unsafe fn setCustomLoginRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Sets custom claims to be added to the login request body.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomLoginRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomLoginRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// The claim name for the user unique identifier in the id token. Defaults to "sub".
         #[method_id(@__retain_semantics Other uniqueIdentifierClaimName)]
         pub unsafe fn uniqueIdentifierClaimName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`uniqueIdentifierClaimName`][Self::uniqueIdentifierClaimName].
         #[method(setUniqueIdentifierClaimName:)]
         pub unsafe fn setUniqueIdentifierClaimName(
             &self,
             unique_identifier_claim_name: Option<&NSString>,
         );
 
+        /// The claim name for group membership request.
         #[method_id(@__retain_semantics Other groupRequestClaimName)]
         pub unsafe fn groupRequestClaimName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`groupRequestClaimName`][Self::groupRequestClaimName].
         #[method(setGroupRequestClaimName:)]
         pub unsafe fn setGroupRequestClaimName(&self, group_request_claim_name: Option<&NSString>);
 
+        /// The claim name for group responses in the id_token.
         #[method_id(@__retain_semantics Other groupResponseClaimName)]
         pub unsafe fn groupResponseClaimName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`groupResponseClaimName`][Self::groupResponseClaimName].
         #[method(setGroupResponseClaimName:)]
         pub unsafe fn setGroupResponseClaimName(
             &self,
             group_response_claim_name: Option<&NSString>,
         );
 
+        /// The Kerberos ticket mappings to use.
         #[method_id(@__retain_semantics Other kerberosTicketMappings)]
         pub unsafe fn kerberosTicketMappings(
             &self,
         ) -> Retained<NSArray<ASAuthorizationProviderExtensionKerberosMapping>>;
 
+        /// Setter for [`kerberosTicketMappings`][Self::kerberosTicketMappings].
         #[method(setKerberosTicketMappings:)]
         pub unsafe fn setKerberosTicketMappings(
             &self,
             kerberos_ticket_mappings: &NSArray<ASAuthorizationProviderExtensionKerberosMapping>,
         );
 
+        /// Token Refresh Endpoint URL for login request.  Defaults to the tokenEndpointURL.
         #[method_id(@__retain_semantics Other refreshEndpointURL)]
         pub unsafe fn refreshEndpointURL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`refreshEndpointURL`][Self::refreshEndpointURL].
         #[method(setRefreshEndpointURL:)]
         pub unsafe fn setRefreshEndpointURL(&self, refresh_endpoint_url: Option<&NSURL>);
 
+        /// Custom values added to the refresh POST request body.
         #[method_id(@__retain_semantics Other customRefreshRequestValues)]
         pub unsafe fn customRefreshRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
+        /// Setter for [`customRefreshRequestValues`][Self::customRefreshRequestValues].
         #[method(setCustomRefreshRequestValues:)]
         pub unsafe fn setCustomRefreshRequestValues(
             &self,
             custom_refresh_request_values: &NSArray<NSURLQueryItem>,
         );
 
+        /// Sets custom claims to be added to the refresh request header.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomRefreshRequestHeaderClaims:returningError:_)]
         pub unsafe fn setCustomRefreshRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Sets custom claims to be added to the refresh request bode.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomRefreshRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomRefreshRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// The federation method to use.
         #[method(federationType)]
         pub unsafe fn federationType(&self) -> ASAuthorizationProviderExtensionFederationType;
 
+        /// Setter for [`federationType`][Self::federationType].
         #[method(setFederationType:)]
         pub unsafe fn setFederationType(
             &self,
             federation_type: ASAuthorizationProviderExtensionFederationType,
         );
 
+        /// The URN to request when performing a federated login.
         #[method_id(@__retain_semantics Other federationRequestURN)]
         pub unsafe fn federationRequestURN(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`federationRequestURN`][Self::federationRequestURN].
         #[method(setFederationRequestURN:)]
         pub unsafe fn setFederationRequestURN(&self, federation_request_urn: Option<&NSString>);
 
+        /// The federation MEX URL to use.  This can be overwritten when using dynamic federation.
         #[method_id(@__retain_semantics Other federationMEXURL)]
         pub unsafe fn federationMEXURL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`federationMEXURL`][Self::federationMEXURL].
         #[method(setFederationMEXURL:)]
         pub unsafe fn setFederationMEXURL(&self, federation_mexurl: Option<&NSURL>);
 
+        /// The URL to use when performing dynamic federation.
         #[method_id(@__retain_semantics Other federationUserPreauthenticationURL)]
         pub unsafe fn federationUserPreauthenticationURL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`federationUserPreauthenticationURL`][Self::federationUserPreauthenticationURL].
         #[method(setFederationUserPreauthenticationURL:)]
         pub unsafe fn setFederationUserPreauthenticationURL(
             &self,
             federation_user_preauthentication_url: Option<&NSURL>,
         );
 
+        /// The claim in the preauthentication response that contains the MEX URL.
         #[method_id(@__retain_semantics Other federationMEXURLKeypath)]
         pub unsafe fn federationMEXURLKeypath(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`federationMEXURLKeypath`][Self::federationMEXURLKeypath].
         #[method(setFederationMEXURLKeypath:)]
         pub unsafe fn setFederationMEXURLKeypath(
             &self,
             federation_mexurl_keypath: Option<&NSString>,
         );
 
+        /// The predicate to apply to the preauthentication response to perform federation or not.
         #[method_id(@__retain_semantics Other federationPredicate)]
         pub unsafe fn federationPredicate(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`federationPredicate`][Self::federationPredicate].
         #[method(setFederationPredicate:)]
         pub unsafe fn setFederationPredicate(&self, federation_predicate: Option<&NSString>);
 
+        /// The custom query string values to add when making the preauthenticaion request.
         #[method_id(@__retain_semantics Other customFederationUserPreauthenticationRequestValues)]
         pub unsafe fn customFederationUserPreauthenticationRequestValues(
             &self,
         ) -> Retained<NSArray<NSURLQueryItem>>;
 
+        /// Setter for [`customFederationUserPreauthenticationRequestValues`][Self::customFederationUserPreauthenticationRequestValues].
         #[method(setCustomFederationUserPreauthenticationRequestValues:)]
         pub unsafe fn setCustomFederationUserPreauthenticationRequestValues(
             &self,
             custom_federation_user_preauthentication_request_values: &NSArray<NSURLQueryItem>,
         );
 
+        /// The APV prefix used for encrypted embedded login assertions.
         #[method_id(@__retain_semantics Other loginRequestEncryptionAPVPrefix)]
         pub unsafe fn loginRequestEncryptionAPVPrefix(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`loginRequestEncryptionAPVPrefix`][Self::loginRequestEncryptionAPVPrefix].
         #[method(setLoginRequestEncryptionAPVPrefix:)]
         pub unsafe fn setLoginRequestEncryptionAPVPrefix(
             &self,
             login_request_encryption_apv_prefix: Option<&NSData>,
         );
 
+        /// The encryption algorithm to use for the embedded login assertion.
         #[method_id(@__retain_semantics Other loginRequestEncryptionAlgorithm)]
         pub unsafe fn loginRequestEncryptionAlgorithm(
             &self,
         ) -> Retained<ASAuthorizationProviderExtensionEncryptionAlgorithm>;
 
+        /// Setter for [`loginRequestEncryptionAlgorithm`][Self::loginRequestEncryptionAlgorithm].
         #[method(setLoginRequestEncryptionAlgorithm:)]
         pub unsafe fn setLoginRequestEncryptionAlgorithm(
             &self,
             login_request_encryption_algorithm: &ASAuthorizationProviderExtensionEncryptionAlgorithm,
         );
 
+        /// The PreSharedKey to be used for HKPE for embedded login assertions. Setting this value will change the mode to PSK if the loginRequestHPKEPreSharedKeyID is also set. Must be at least 32 bytes.
         #[method_id(@__retain_semantics Other loginRequestHPKEPreSharedKey)]
         pub unsafe fn loginRequestHPKEPreSharedKey(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`loginRequestHPKEPreSharedKey`][Self::loginRequestHPKEPreSharedKey].
         #[method(setLoginRequestHPKEPreSharedKey:)]
         pub unsafe fn setLoginRequestHPKEPreSharedKey(
             &self,
             login_request_hpke_pre_shared_key: Option<&NSData>,
         );
 
+        /// The PreSharedKey Id to be used for HPKE PSK for embedded login assertions.  This is required if the loginRequestHPKEPreSharedKey is set.
         #[method_id(@__retain_semantics Other loginRequestHPKEPreSharedKeyID)]
         pub unsafe fn loginRequestHPKEPreSharedKeyID(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`loginRequestHPKEPreSharedKeyID`][Self::loginRequestHPKEPreSharedKeyID].
         #[method(setLoginRequestHPKEPreSharedKeyID:)]
         pub unsafe fn setLoginRequestHPKEPreSharedKeyID(
             &self,
             login_request_hpke_pre_shared_key_id: Option<&NSData>,
         );
 
+        /// The url endpoint for key service, defaults to token tokenEndpointURL.
         #[method_id(@__retain_semantics Other keyEndpointURL)]
         pub unsafe fn keyEndpointURL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`keyEndpointURL`][Self::keyEndpointURL].
         #[method(setKeyEndpointURL:)]
         pub unsafe fn setKeyEndpointURL(&self, key_endpoint_url: Option<&NSURL>);
 
+        /// Custom values added to the key exchange POST request body.
         #[method_id(@__retain_semantics Other customKeyExchangeRequestValues)]
         pub unsafe fn customKeyExchangeRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
+        /// Setter for [`customKeyExchangeRequestValues`][Self::customKeyExchangeRequestValues].
         #[method(setCustomKeyExchangeRequestValues:)]
         pub unsafe fn setCustomKeyExchangeRequestValues(
             &self,
             custom_key_exchange_request_values: &NSArray<NSURLQueryItem>,
         );
 
+        /// Sets custom claims to be added to the key exchange request header.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomKeyExchangeRequestHeaderClaims:returningError:_)]
         pub unsafe fn setCustomKeyExchangeRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Sets custom claims to be added to the key exchange request body.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomKeyExchangeRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomKeyExchangeRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Custom values added to the key request POST request body.
         #[method_id(@__retain_semantics Other customKeyRequestValues)]
         pub unsafe fn customKeyRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
+        /// Setter for [`customKeyRequestValues`][Self::customKeyRequestValues].
         #[method(setCustomKeyRequestValues:)]
         pub unsafe fn setCustomKeyRequestValues(
             &self,
             custom_key_request_values: &NSArray<NSURLQueryItem>,
         );
 
+        /// Sets custom claims to be added to the key request header.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomKeyRequestHeaderClaims:returningError:_)]
         pub unsafe fn setCustomKeyRequestHeaderClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Sets custom claims to be added to the key request body.
+        ///
+        /// Parameter `claims`: The claims to be added. It must serialize as valid JSON to be accepted.
+        ///
+        /// Parameter `error`: Nil or an NSError indicating why the claims were rejected.
+        ///
+        /// Returns: YES when successful and NO when claims are rejected.
         #[method(setCustomKeyRequestBodyClaims:returningError:_)]
         pub unsafe fn setCustomKeyRequestBodyClaims_returningError(
             &self,
             claims: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// The PreSharedKey to be used for HKPE. Setting this value will change the mode to PSK or AuthPSK if the hpkeAuthPublicKey is also set. Must be at least 32 bytes.
         #[method_id(@__retain_semantics Other hpkePreSharedKey)]
         pub unsafe fn hpkePreSharedKey(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`hpkePreSharedKey`][Self::hpkePreSharedKey].
         #[method(setHpkePreSharedKey:)]
         pub unsafe fn setHpkePreSharedKey(&self, hpke_pre_shared_key: Option<&NSData>);
 
+        /// The PreSharedKey Id to be used for HPKE PSK or AuthPSK mode.  This is requred if the hpkePreSharedKey is set.
         #[method_id(@__retain_semantics Other hpkePreSharedKeyID)]
         pub unsafe fn hpkePreSharedKeyID(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`hpkePreSharedKeyID`][Self::hpkePreSharedKeyID].
         #[method(setHpkePreSharedKeyID:)]
         pub unsafe fn setHpkePreSharedKeyID(&self, hpke_pre_shared_key_id: Option<&NSData>);
     }

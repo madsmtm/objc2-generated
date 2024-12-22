@@ -9,16 +9,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysispolicy?language=objc)
+/// SensitivityAnalysis Policy on device, represents type of interventions when enabled
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysispolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SCSensitivityAnalysisPolicy(pub NSInteger);
 impl SCSensitivityAnalysisPolicy {
+    /// No feature enabled that is requiring Sensitive Analysis on device, analysis will be disabled
     #[doc(alias = "SCSensitivityAnalysisPolicyDisabled")]
     pub const Disabled: Self = Self(0);
+    /// Sensitive Analysis is enabled on device through "Sensitive Content Warning" in Settings.
+    /// It is expected that brief/inline UI, like simple "show" button.
     #[doc(alias = "SCSensitivityAnalysisPolicySimpleInterventions")]
     pub const SimpleInterventions: Self = Self(1);
+    /// Sensitive Analysis is enabled for kids or teens in ScreenTime through "Communications Safety" feature.
+    /// It's expected to have more descriptive UI for the user, explaining potential risks.
     #[doc(alias = "SCSensitivityAnalysisPolicyDescriptiveInterventions")]
     pub const DescriptiveInterventions: Self = Self(2);
 }
@@ -32,7 +39,9 @@ unsafe impl RefEncode for SCSensitivityAnalysisPolicy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalyzer?language=objc)
+    /// Main class for content sensitivity analysis
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalyzer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCSensitivityAnalyzer;
@@ -49,10 +58,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Current SCSensitivityAnalysisPolicy set on device. Can be used to determine whether analysis is available or not
         #[method(analysisPolicy)]
         pub unsafe fn analysisPolicy(&self) -> SCSensitivityAnalysisPolicy;
 
         #[cfg(all(feature = "SCSensitivityAnalysis", feature = "block2"))]
+        /// Analyze sensitivity of Image File on disk (only local fileURL)
+        ///
+        /// Parameter `fileURL`: Image file location on disk
+        ///
+        /// Parameter `completionHandler`: Block to be called on completion (callback is called on unspecified queue)
         #[method(analyzeImageFile:completionHandler:)]
         pub unsafe fn analyzeImageFile_completionHandler(
             &self,
@@ -65,6 +80,11 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-graphics"
         ))]
+        /// Analyze sensitivity of CGImage in memory
+        ///
+        /// Parameter `image`: CGImage reference
+        ///
+        /// Parameter `completionHandler`: Block to be called on completion (callback is called on unspecified queue)
         #[method(analyzeCGImage:completionHandler:)]
         pub unsafe fn analyzeCGImage_completionHandler(
             &self,
@@ -73,6 +93,13 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "SCSensitivityAnalysis", feature = "block2"))]
+        /// Analyze sensitivity of Video File on disk.
+        ///
+        /// Parameter `fileURL`: Video file location on disk
+        ///
+        /// Parameter `completionHandler`: Block to be called on completion (callback is called on unspecified queue)
+        ///
+        /// Returns: An NSProgress instance for tracking video file analysis progress
         #[method_id(@__retain_semantics Other analyzeVideoFile:completionHandler:)]
         pub unsafe fn analyzeVideoFile_completionHandler(
             &self,

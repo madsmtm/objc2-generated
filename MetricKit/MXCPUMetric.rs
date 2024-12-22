@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcpumetric?language=objc)
+    /// An MXMetric subclass that encapsulates CPU metrics.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcpumetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
@@ -26,9 +28,19 @@ unsafe impl NSSecureCoding for MXCPUMetric {}
 extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXCPUMetric {
+        /// CPU time aggregated cumulatively.
+        ///
+        /// The data here represents the total CPU time an application consumed over the date range of the containing payload.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other cumulativeCPUTime)]
         pub unsafe fn cumulativeCPUTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
+        /// CPU instructions retired aggregated cumulatively.
+        ///
+        /// The data here represents the total number of CPU instructions an application retired over the date range of the containing payload.
+        ///
+        /// Dimensionless.
         #[method_id(@__retain_semantics Other cumulativeCPUInstructions)]
         pub unsafe fn cumulativeCPUInstructions(&self) -> Retained<NSMeasurement<NSUnit>>;
     }

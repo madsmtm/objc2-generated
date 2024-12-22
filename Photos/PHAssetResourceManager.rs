@@ -37,6 +37,7 @@ extern_methods!(
         #[method(isNetworkAccessAllowed)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
 
+        /// Setter for [`isNetworkAccessAllowed`][Self::isNetworkAccessAllowed].
         #[method(setNetworkAccessAllowed:)]
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
@@ -45,6 +46,7 @@ extern_methods!(
         pub unsafe fn progressHandler(&self) -> PHAssetResourceProgressHandler;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`progressHandler`][Self::progressHandler].
         #[method(setProgressHandler:)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetResourceProgressHandler);
     }

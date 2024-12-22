@@ -5,31 +5,45 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelmetadatakey?language=objc)
+/// Keys to a dictionary that holds useful information about a model.
+/// All are optional with the aim of being helpful to a developer or user
+/// for descriptive purposes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelmetadatakey?language=objc)
 // NS_TYPED_ENUM
 pub type MLModelMetadataKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodeldescriptionkey?language=objc)
+    /// A short description of what the model does and/or its purpose
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodeldescriptionkey?language=objc)
     pub static MLModelDescriptionKey: Option<&'static MLModelMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelversionstringkey?language=objc)
+    /// A version number encoded as a string
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelversionstringkey?language=objc)
     pub static MLModelVersionStringKey: Option<&'static MLModelMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelauthorkey?language=objc)
+    /// The author of this model
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelauthorkey?language=objc)
     pub static MLModelAuthorKey: Option<&'static MLModelMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodellicensekey?language=objc)
+    /// License information for the model
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodellicensekey?language=objc)
     pub static MLModelLicenseKey: Option<&'static MLModelMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelcreatordefinedkey?language=objc)
+    /// Any additional pertinent information specified by the model creator
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelcreatordefinedkey?language=objc)
     pub static MLModelCreatorDefinedKey: Option<&'static MLModelMetadataKey>;
 }

@@ -95,6 +95,7 @@ extern_methods!(
         pub unsafe fn state(&self) -> NSControlStateValue;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`state`][Self::state].
         #[method(setState:)]
         pub unsafe fn setState(&self, state: NSControlStateValue);
     }

@@ -167,6 +167,7 @@ extern_methods!(
         #[method(autosavingDelay)]
         pub unsafe fn autosavingDelay(&self) -> NSTimeInterval;
 
+        /// Setter for [`autosavingDelay`][Self::autosavingDelay].
         #[method(setAutosavingDelay:)]
         pub unsafe fn setAutosavingDelay(&self, autosaving_delay: NSTimeInterval);
 

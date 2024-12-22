@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttrackinglevel?language=objc)
+/// Tracking level options to favor speed or location accuracy. The VNRequestTrackingLevelFast is the default option used by trackers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttrackinglevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,7 +30,11 @@ unsafe impl RefEncode for VNRequestTrackingLevel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackingrequest?language=objc)
+    /// A base class for all tracking requests.
+    ///
+    /// Since this class is not meant to be directly instantiated, no initializers are available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackingrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -50,22 +56,28 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNTrackingRequest {
         #[cfg(feature = "VNObservation")]
+        /// The observation object that defines a region to track. Providing an observation not returned from a tracker (e.g. user-defined, or from a detector) begins a new tracker for the sequence. Providing an observation that was returned from a tracker continues the use of that tracker, to track the region to the next frame. In general, unless documented in the request's documentation, the rectangle must be defined in normalized coordinates (both dimensions normalized to [0,1] with the origin at the lower-left corner).
         #[method_id(@__retain_semantics Other inputObservation)]
         pub unsafe fn inputObservation(&self) -> Retained<VNDetectedObjectObservation>;
 
         #[cfg(feature = "VNObservation")]
+        /// Setter for [`inputObservation`][Self::inputObservation].
         #[method(setInputObservation:)]
         pub unsafe fn setInputObservation(&self, input_observation: &VNDetectedObjectObservation);
 
+        /// Tracking level allows tuning tracking algorithm to prefer speed (VNRequestTrackingLevelFast) vs. tracking object location accuracy (VNRequestTrackingLevelAccurate). This property has no effect on general purpose object tracker (VNTrackObjectRequest) revision 2 (VNTrackObjectRequestRevision2)
         #[method(trackingLevel)]
         pub unsafe fn trackingLevel(&self) -> VNRequestTrackingLevel;
 
+        /// Setter for [`trackingLevel`][Self::trackingLevel].
         #[method(setTrackingLevel:)]
         pub unsafe fn setTrackingLevel(&self, tracking_level: VNRequestTrackingLevel);
 
+        /// This property allows marking the last frame for tracking using current tracker. If set to YES, the results for this frame will be processed and returned and the current tracker will be released to the pool of available trackers
         #[method(isLastFrame)]
         pub unsafe fn isLastFrame(&self) -> bool;
 
+        /// Setter for [`isLastFrame`][Self::isLastFrame].
         #[method(setLastFrame:)]
         pub unsafe fn setLastFrame(&self, last_frame: bool);
 

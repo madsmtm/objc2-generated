@@ -40,6 +40,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIPopoverControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -53,6 +54,7 @@ extern_methods!(
         pub unsafe fn contentViewController(&self) -> Retained<UIViewController>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// Setter for [`contentViewController`][Self::contentViewController].
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[method(setContentViewController:)]
         pub unsafe fn setContentViewController(&self, content_view_controller: &UIViewController);
@@ -72,6 +74,7 @@ extern_methods!(
         pub unsafe fn popoverContentSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`popoverContentSize`][Self::popoverContentSize].
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[method(setPopoverContentSize:)]
         pub unsafe fn setPopoverContentSize(&self, popover_content_size: CGSize);
@@ -96,6 +99,7 @@ extern_methods!(
         pub unsafe fn passthroughViews(&self) -> Option<Retained<NSArray<UIView>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Setter for [`passthroughViews`][Self::passthroughViews].
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[method(setPassthroughViews:)]
         pub unsafe fn setPassthroughViews(&self, passthrough_views: Option<&NSArray<UIView>>);
@@ -139,6 +143,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
 
@@ -147,12 +152,14 @@ extern_methods!(
         pub unsafe fn popoverLayoutMargins(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`popoverLayoutMargins`][Self::popoverLayoutMargins].
         #[method(setPopoverLayoutMargins:)]
         pub unsafe fn setPopoverLayoutMargins(&self, popover_layout_margins: UIEdgeInsets);
 
         #[method(popoverBackgroundViewClass)]
         pub unsafe fn popoverBackgroundViewClass(&self) -> Option<&'static AnyClass>;
 
+        /// Setter for [`popoverBackgroundViewClass`][Self::popoverBackgroundViewClass].
         #[method(setPopoverBackgroundViewClass:)]
         pub unsafe fn setPopoverBackgroundViewClass(
             &self,

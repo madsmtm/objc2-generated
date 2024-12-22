@@ -11,7 +11,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcchatbuttonstyle?language=objc)
+/// BCChatButtonStyle is used to define the visual style of the button.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcchatbuttonstyle?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -70,6 +72,13 @@ unsafe impl NSUserInterfaceItemIdentification for BCChatButton {}
 extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl BCChatButton {
+        /// Creates and returns a BCChatButton configured for a given style.
+        ///
+        ///
+        /// Parameter `style`: The visual style of the button.
+        ///
+        ///
+        /// Returns: BCChatButton instance.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithStyle:)]
         pub unsafe fn initWithStyle(

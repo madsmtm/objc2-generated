@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxlocationactivitymetric?language=objc)
+    /// An MXMetric subclass that encapsulates location metrics
+    ///
+    /// The metrics contained in this class describe properties of location activity. See MXAppRunTimeMetric for time spent performing location activities.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxlocationactivitymetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
@@ -26,29 +30,47 @@ unsafe impl NSSecureCoding for MXLocationActivityMetric {}
 extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXLocationActivityMetric {
+        /// Cumulative time spent acquiring location at kCLLocationAccuracyBest.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other cumulativeBestAccuracyTime)]
         pub unsafe fn cumulativeBestAccuracyTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
+        /// Cumulative time spent acquiring location at kCLLocationAccuracyBestForNavigation.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other cumulativeBestAccuracyForNavigationTime)]
         pub unsafe fn cumulativeBestAccuracyForNavigationTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
 
+        /// Cumulative time spent acquiring location at kCLLocationAccuracyNearestTenMeters.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other cumulativeNearestTenMetersAccuracyTime)]
         pub unsafe fn cumulativeNearestTenMetersAccuracyTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
 
+        /// Cumulative time spent acquiring location at kCLLocationAccuracyHundredMeters.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other cumulativeHundredMetersAccuracyTime)]
         pub unsafe fn cumulativeHundredMetersAccuracyTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
 
+        /// Cumulative time spent acquiring location at kCLLocationAccuracyKilometer.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other cumulativeKilometerAccuracyTime)]
         pub unsafe fn cumulativeKilometerAccuracyTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
 
+        /// Cumulative time spent acquiring location at kCLLocationAccuracyThreeKilometers.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other cumulativeThreeKilometersAccuracyTime)]
         pub unsafe fn cumulativeThreeKilometersAccuracyTime(
             &self,

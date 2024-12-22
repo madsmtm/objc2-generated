@@ -50,6 +50,7 @@ unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialRegi
 extern_methods!(
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+        /// A list of transports that the authenticator is believed to support, if this could be determined.
         #[method_id(@__retain_semantics Other transports)]
         pub unsafe fn transports(
             &self,

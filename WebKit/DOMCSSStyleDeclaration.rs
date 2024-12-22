@@ -34,6 +34,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cssText)]
         pub unsafe fn cssText(&self) -> Retained<NSString>;
 
+        /// Setter for [`cssText`][Self::cssText].
         #[deprecated]
         #[method(setCssText:)]
         pub unsafe fn setCssText(&self, css_text: Option<&NSString>);

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneprominentplacement?language=objc)
+    /// Positions a window scene more prominently than others in the current space.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneprominentplacement?language=objc)
     #[unsafe(super(UIWindowScenePlacement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowScenePlacement")]
@@ -28,6 +30,7 @@ unsafe impl NSObjectProtocol for UIWindowSceneProminentPlacement {}
 extern_methods!(
     #[cfg(feature = "UIWindowScenePlacement")]
     unsafe impl UIWindowSceneProminentPlacement {
+        /// Creates a prominent placement.
         #[method_id(@__retain_semantics Other prominentPlacement)]
         pub unsafe fn prominentPlacement() -> Retained<Self>;
     }

@@ -56,30 +56,35 @@ extern_methods!(
         #[method(minValue)]
         pub unsafe fn minValue(&self) -> c_double;
 
+        /// Setter for [`minValue`][Self::minValue].
         #[method(setMinValue:)]
         pub unsafe fn setMinValue(&self, min_value: c_double);
 
         #[method(maxValue)]
         pub unsafe fn maxValue(&self) -> c_double;
 
+        /// Setter for [`maxValue`][Self::maxValue].
         #[method(setMaxValue:)]
         pub unsafe fn setMaxValue(&self, max_value: c_double);
 
         #[method(increment)]
         pub unsafe fn increment(&self) -> c_double;
 
+        /// Setter for [`increment`][Self::increment].
         #[method(setIncrement:)]
         pub unsafe fn setIncrement(&self, increment: c_double);
 
         #[method(valueWraps)]
         pub unsafe fn valueWraps(&self) -> bool;
 
+        /// Setter for [`valueWraps`][Self::valueWraps].
         #[method(setValueWraps:)]
         pub unsafe fn setValueWraps(&self, value_wraps: bool);
 
         #[method(autorepeat)]
         pub unsafe fn autorepeat(&self) -> bool;
 
+        /// Setter for [`autorepeat`][Self::autorepeat].
         #[method(setAutorepeat:)]
         pub unsafe fn setAutorepeat(&self, autorepeat: bool);
     }

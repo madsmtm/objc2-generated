@@ -8,7 +8,11 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayidentity?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// An efficient kernel to handle copies, transposed-copies and reshapes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayidentity?language=objc)
     #[unsafe(super(
         MPSNDArrayUnaryKernel,
         MPSNDArrayMultiaryKernel,
@@ -48,6 +52,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MPSCoreTypes", feature = "MPSNDArray"))]
+        /// Do a reshape operation, either by trying to alias the array, returning an arrayview, or by copying.
+        ///
+        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel, or to create a temporary array alias.
+        ///
+        /// Parameter `sourceArray`: Source array. If this function returns a non-nil result, then the readCount of `sourceArray` is decremented.
+        ///
+        /// Parameter `shape`: The new shape, given in TF dimension ordering (as always with MPSShape).
+        ///
+        /// Parameter `destinationArray`: If not nil, then the result of reshape will be copied to this. Shape of `destinationArray` must match `shape`.
+        ///
+        /// Returns: If `destinationArray` is not nil, then `destinationArray`. Otherwise aliasing is tried, and if aliasing is not possible
+        /// due to existing slices or transposes nil is returned. If aliasing is successful, then a new arrayview of `sourceArray`
+        /// is returned; If `sourceArray` is a `MPSTemporaryArray` then a `MPSTemporaryArray` is returned referencing the same data,
+        /// otherwise a `MPSNDArray` type result is returned.
         #[method_id(@__retain_semantics Other reshapeWithCommandBuffer:sourceArray:shape:destinationArray:)]
         pub unsafe fn reshapeWithCommandBuffer_sourceArray_shape_destinationArray(
             &self,
@@ -117,6 +135,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
     unsafe impl MPSNDArrayIdentity {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

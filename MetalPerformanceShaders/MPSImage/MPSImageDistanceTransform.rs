@@ -9,7 +9,9 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageeuclideandistancetransform?language=objc)
+    /// Perform a Euclidean Distance Transform
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageeuclideandistancetransform?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -36,18 +38,47 @@ unsafe impl NSSecureCoding for MPSImageEuclideanDistanceTransform {}
 extern_methods!(
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageEuclideanDistanceTransform {
+        /// Defines a search scope size around output pixel to limit closest non-zero pixel search. Optional variable.
+        ///
+        /// When the non-zeroes in the input image are on average very far away from each other (ie. the distances are large),
+        /// the distance calculation algorithm has to work harder to find the closest pixel. If you don't care about getting exact
+        /// results beyond a certain distance you can use this property to limit the search space and speed up the kernels.
+        /// In case there are no non-zero pixels within this search scope around the output pixel, then the output value will
+        /// be some number that is larger than this search limit. Normally you should be fine with the default value of FLT_MAX,
+        /// which results in the exact EDT, so use this only if you need additional performance.
+        /// Typical good values are: 32, 64, 96, 128.
+        /// Default: FLT_MAX
         #[method(searchLimitRadius)]
         pub unsafe fn searchLimitRadius(&self) -> c_float;
 
+        /// Setter for [`searchLimitRadius`][Self::searchLimitRadius].
         #[method(setSearchLimitRadius:)]
         pub unsafe fn setSearchLimitRadius(&self, search_limit_radius: c_float);
 
+        /// Specifies information to apply the statistics min-max operation on an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSImageEuclideanDistanceTransform object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -61,6 +92,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageEuclideanDistanceTransform {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

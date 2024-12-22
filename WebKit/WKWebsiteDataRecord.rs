@@ -77,7 +77,9 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatarecord?language=objc)
+    /// A WKWebsiteDataRecord represents website data, grouped by domain name using the public suffix list.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatarecord?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -88,9 +90,11 @@ unsafe impl NSObjectProtocol for WKWebsiteDataRecord {}
 
 extern_methods!(
     unsafe impl WKWebsiteDataRecord {
+        /// The display name for the data record. This is usually the domain name.
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
 
+        /// The various types of website data that exist for this data record.
         #[method_id(@__retain_semantics Other dataTypes)]
         pub unsafe fn dataTypes(&self) -> Retained<NSSet<NSString>>;
     }

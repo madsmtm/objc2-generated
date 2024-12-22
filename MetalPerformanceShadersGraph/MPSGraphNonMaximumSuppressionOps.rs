@@ -7,7 +7,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphnonmaximumsuppressioncoordinatemode?language=objc)
+/// The non-maximum suppression coordinate mode.
+///
+/// The coordinate mode to use. At initialization defaults to MPSGraphNonMaximumSuppressionCoordinateModeCornersHeightFirst.
+/// This mode specifies the representation used for the 4 box coordinate values.
+/// Center coordinate modes define a centered box and the box dimensions.
+/// ```md
+/// CornersHeightFirst:
+/// [h_start, w_start, h_end, w_end]
+/// CornersWidthFirst:
+/// [w_start, h_start, w_end, h_end]
+/// CentersHeightFirst:
+/// [h_center, w_center, box_height, box_width]
+/// CentersWidthFirst:
+/// [w_center, w_center, box_height, box_width]
+/// ```
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphnonmaximumsuppressioncoordinatemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -36,6 +52,15 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a nonMaximumumSuppression operation and returns the result tensor.
+        /// - Parameters:
+        /// - boxesTensor: A tensor containing the coordinates of the input boxes. Must be a rank 3 tensor of shape [N,B,4] of type ``MPSDataTypeFloat32``
+        /// - scoresTensor: A tensor containing the scores of the input boxes. Must be a rank 3 tensor of shape [N,B,K] of type ``MPSDataTypeFloat32``
+        /// - IOUThreshold: The threshold for when to reject boxes based on their Intersection Over Union. Valid range is [0,1].
+        /// - scoreThreshold: The threshold for when to reject boxes based on their score, before IOU suppression.
+        /// - perClassSuppression: When this is specified a box will only suppress another box if they have the same class.
+        /// - coordinateMode: The coordinate mode the box coordinates are provided in.
+        /// - name: The name for the operation.
         #[method_id(@__retain_semantics Other nonMaximumSuppressionWithBoxesTensor:scoresTensor:IOUThreshold:scoreThreshold:perClassSuppression:coordinateMode:name:)]
         pub unsafe fn nonMaximumSuppressionWithBoxesTensor_scoresTensor_IOUThreshold_scoreThreshold_perClassSuppression_coordinateMode_name(
             &self,
@@ -49,6 +74,16 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a nonMaximumumSuppression operation and returns the result tensor.
+        /// - Parameters:
+        /// - boxesTensor: A tensor containing the coordinates of the input boxes. Must be a rank 3 tensor of shape [N,B,4] of type ``MPSDataTypeFloat32``
+        /// - scoresTensor: A tensor containing the scores of the input boxes. Must be a rank 3 tensor of shape [N,B,1] of type ``MPSDataTypeFloat32``
+        /// - classIndicesTensor: A tensor containing the class indices of the input boxes. Must be a rank 2 tensor of shape [N,B] of type ``MPSDataTypeInt32``
+        /// - IOUThreshold: The threshold for when to reject boxes based on their Intersection Over Union. Valid range is [0,1].
+        /// - scoreThreshold: The threshold for when to reject boxes based on their score, before IOU suppression.
+        /// - perClassSuppression: When this is specified a box will only suppress another box if they have the same class.
+        /// - coordinateMode: The coordinate mode the box coordinates are provided in.
+        /// - name: The name for the operation.
         #[method_id(@__retain_semantics Other nonMaximumSuppressionWithBoxesTensor:scoresTensor:classIndicesTensor:IOUThreshold:scoreThreshold:perClassSuppression:coordinateMode:name:)]
         pub unsafe fn nonMaximumSuppressionWithBoxesTensor_scoresTensor_classIndicesTensor_IOUThreshold_scoreThreshold_perClassSuppression_coordinateMode_name(
             &self,

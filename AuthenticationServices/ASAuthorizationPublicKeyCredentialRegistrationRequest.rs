@@ -12,40 +12,51 @@ extern_protocol!(
     pub unsafe trait ASAuthorizationPublicKeyCredentialRegistrationRequest:
         NSCopying + NSObjectProtocol + NSSecureCoding
     {
+        /// The Relying Party identifier used to scope this request.
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
         unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
+        /// An arbitrary byte sequence which will be stored alongside the credential and will be returned with the credential when authenticating with it in the future. May be used by a relying party to identify the user account this credential is associated with.
         #[method_id(@__retain_semantics Other userID)]
         unsafe fn userID(&self) -> Retained<NSData>;
 
+        /// Setter for [`userID`][Self::userID].
         #[method(setUserID:)]
         unsafe fn setUserID(&self, user_id: &NSData);
 
+        /// A human readable name to associate with a credential, which a user should be able to use to identify the credential.
         #[method_id(@__retain_semantics Other name)]
         unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         unsafe fn setName(&self, name: &NSString);
 
+        /// A high level human readable name to associate with a credential, which should only be used for display.
         #[method_id(@__retain_semantics Other displayName)]
         unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`displayName`][Self::displayName].
         #[method(setDisplayName:)]
         unsafe fn setDisplayName(&self, display_name: Option<&NSString>);
 
+        /// The challenge which can be used to verify the authenticator's attestation, if attestation is requested.
         #[method_id(@__retain_semantics Other challenge)]
         unsafe fn challenge(&self) -> Retained<NSData>;
 
+        /// Setter for [`challenge`][Self::challenge].
         #[method(setChallenge:)]
         unsafe fn setChallenge(&self, challenge: &NSData);
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
+        /// A preference for whether the authenticator should attempt to verify that it is being used by its owner, such as through a PIN or biometrics.
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         unsafe fn userVerificationPreference(
             &self,
         ) -> Retained<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
+        /// Setter for [`userVerificationPreference`][Self::userVerificationPreference].
         #[method(setUserVerificationPreference:)]
         unsafe fn setUserVerificationPreference(
             &self,
@@ -53,12 +64,14 @@ extern_protocol!(
         );
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
+        /// A preference for the type of attestation that the authenticator should attempt to perform.
         #[method_id(@__retain_semantics Other attestationPreference)]
         unsafe fn attestationPreference(
             &self,
         ) -> Retained<ASAuthorizationPublicKeyCredentialAttestationKind>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
+        /// Setter for [`attestationPreference`][Self::attestationPreference].
         #[method(setAttestationPreference:)]
         unsafe fn setAttestationPreference(
             &self,

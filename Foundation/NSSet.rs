@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsset?language=objc)
+    /// **************    Immutable Set    ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSSet<ObjectType: ?Sized = AnyObject>;
@@ -267,7 +269,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableset?language=objc)
+    /// **************    Mutable Set    ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableset?language=objc)
     #[unsafe(super(NSSet<ObjectType, >, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableSet<ObjectType: ?Sized = AnyObject>;
@@ -383,7 +387,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountedset?language=objc)
+    /// **************    Counted Set    ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountedset?language=objc)
     #[unsafe(super(NSMutableSet<ObjectType, >, NSSet<ObjectType, >, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSCountedSet<ObjectType: ?Sized = AnyObject>;

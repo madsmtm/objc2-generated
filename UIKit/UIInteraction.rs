@@ -39,6 +39,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other interactions)]
         pub unsafe fn interactions(&self) -> Retained<NSArray<ProtocolObject<dyn UIInteraction>>>;
 
+        /// Setter for [`interactions`][Self::interactions].
         #[method(setInteractions:)]
         pub unsafe fn setInteractions(
             &self,

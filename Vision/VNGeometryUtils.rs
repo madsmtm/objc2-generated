@@ -19,6 +19,27 @@ unsafe impl NSObjectProtocol for VNGeometryUtils {}
 extern_methods!(
     unsafe impl VNGeometryUtils {
         #[cfg(feature = "VNGeometry")]
+        /// Calculates a bounding circle that includes a collection of points or a VNContour object. Note that because this is based on a geometric shape the aspect ratio is important when using normalized points.
+        /// This takes the aspect ratio of the contour into account when using a VNContour as an input.
+        /// boundingCircleForPoints and boundingCircleForSIMDPoints assume that the aspect ratio is correctly applied to the points.
+        ///
+        ///
+        /// Parameter `contour`: A contour around which to find the bounding circle.
+        ///
+        ///
+        /// Parameter `points`: A collection of points around which to find the bounding circle.
+        ///
+        ///
+        /// Parameter `pointCount`: Number of points in points
+        ///
+        ///
+        /// Parameter `contour`: VNContour object whose bounding circle needs to be calculated
+        ///
+        ///
+        /// Parameter `error`: An output parameter, populated only in case of algorithmic failure
+        ///
+        ///
+        /// Returns: the VNCircle object describing the bounding circle or nil, if the algorithm failed. The latter case is accompanied by populating an 'error' output parameter
         #[method_id(@__retain_semantics Other boundingCircleForContour:error:_)]
         pub unsafe fn boundingCircleForContour_error(
             contour: &VNContour,
@@ -31,6 +52,26 @@ extern_methods!(
         ) -> Result<Retained<VNCircle>, Retained<NSError>>;
 
         #[cfg(feature = "VNGeometry")]
+        /// Calculates a closed contour area using Green's theorem. The contour is represented by a set of points in VNContour object,
+        /// It's important to note that a random set of points, or a contour with self-crossing edges will likely produce undefined results
+        /// Note that because this is based on a geometric shape the aspect ratio is important when using normalized points.
+        /// This takes the aspect ratio of the contour into account when using a VNContour as an input.
+        ///
+        ///
+        /// Parameter `area`: Output parameter to be populated with calculated contour area
+        ///
+        ///
+        /// Parameter `contour`: A VNContour object whose area is being calculated
+        ///
+        ///
+        /// Parameter `orientedArea`: If true, returns signed area - positive for CCW oriented contours and negative for CW oriented contours.
+        /// If false, returned area is always positive.
+        ///
+        ///
+        /// Parameter `error`: An output parameter, populated only in case of algorithmic failure
+        ///
+        ///
+        /// Returns: Area calculation status, YES indicates success, NO - failure. The failure case is accompanied by populating an 'error' output parameter
         #[method(calculateArea:forContour:orientedArea:error:_)]
         pub unsafe fn calculateArea_forContour_orientedArea_error(
             area: NonNull<c_double>,
@@ -39,6 +80,21 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "VNGeometry")]
+        /// Calculates perimeter, or a sum of all arc-lengths (edges), of a closed contour. The contour is represented by a set of points in VNContour object.
+        /// Note that because this is based on a geometric shape the aspect ratio is important when using normalized points.
+        /// This takes the aspect ratio of the contour into account when using a VNContour as an input.
+        ///
+        ///
+        /// Parameter `perimeter`: Output parameter to be populated with calculated contour perimeter
+        ///
+        ///
+        /// Parameter `contour`: A VNContour object whose perimeter is being calculated
+        ///
+        ///
+        /// Parameter `error`: An output parameter, populated only in case of algorithmic failure
+        ///
+        ///
+        /// Returns: Perimeter calculation status, YES indicates success, NO - failure. The failure case is accompanied by populating an 'error' output parameter
         #[method(calculatePerimeter:forContour:error:_)]
         pub unsafe fn calculatePerimeter_forContour_error(
             perimeter: NonNull<c_double>,

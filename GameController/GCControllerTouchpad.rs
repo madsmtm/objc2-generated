@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gctouchstate?language=objc)
+/// Represents the current state of a touch event on a touchpad.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gctouchstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,13 +30,30 @@ unsafe impl RefEncode for GCTouchState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpadhandler?language=objc)
+/// Set this block if you want to be notified when an axis or the touch state changes.
+///
+///
+/// Parameter `touchpad`: the touchpad collection whose axes or touch state has been modified.
+///
+/// Parameter `xValue`: the value x axis was set to at the time the handler fired.
+///
+/// Parameter `yValue`: the value y axis was set to at the time the handler fired.
+///
+/// Parameter `buttonValue`: the value of the touch surface button at the time the handler fired.
+///
+/// Parameter `buttonPressed`: the pressed state of the touch surface button at the time the handler fired.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpadhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerTouchpadHandler =
     *mut block2::Block<dyn Fn(NonNull<GCControllerTouchpad>, c_float, c_float, c_float, Bool)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad?language=objc)
+    /// A touchpad is a touch-based two axis input with a notion of "touch state". It keeps track of
+    /// whether the touchpad is actively being touched, and generates events based on a
+    /// change in touch state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad?language=objc)
     #[unsafe(super(GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCControllerElement")]
@@ -48,49 +67,80 @@ extern_methods!(
     #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerTouchpad {
         #[cfg(feature = "GCControllerButtonInput")]
+        /// Button is the button built into the touch surface.
         #[method_id(@__retain_semantics Other button)]
         pub unsafe fn button(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "block2")]
+        /// Called when a touch event begins on the touchpad.
         #[method(touchDown)]
         pub unsafe fn touchDown(&self) -> GCControllerTouchpadHandler;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`touchDown`][Self::touchDown].
         #[method(setTouchDown:)]
         pub unsafe fn setTouchDown(&self, touch_down: GCControllerTouchpadHandler);
 
         #[cfg(feature = "block2")]
+        /// Called when a touch event continues on the touchpad, but not when it begins or ends.
         #[method(touchMoved)]
         pub unsafe fn touchMoved(&self) -> GCControllerTouchpadHandler;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`touchMoved`][Self::touchMoved].
         #[method(setTouchMoved:)]
         pub unsafe fn setTouchMoved(&self, touch_moved: GCControllerTouchpadHandler);
 
         #[cfg(feature = "block2")]
+        /// Called when a touch event ends on the touchpad.
         #[method(touchUp)]
         pub unsafe fn touchUp(&self) -> GCControllerTouchpadHandler;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`touchUp`][Self::touchUp].
         #[method(setTouchUp:)]
         pub unsafe fn setTouchUp(&self, touch_up: GCControllerTouchpadHandler);
 
         #[cfg(feature = "GCControllerDirectionPad")]
+        /// The touch surface is a 2-axis control that represents the position of a touch event on the touchpad.
+        ///
+        /// The axes will indicate the most recent touch position - a non-zero value does not indicate that the
+        /// surface is being touched, and a value of (0, 0) does not indicate the surface is not being touched.
+        ///
+        ///
+        /// See: touchState - Should be polled in conjunction with touchSurface to determine if values are valid
         #[method_id(@__retain_semantics Other touchSurface)]
         pub unsafe fn touchSurface(&self) -> Retained<GCControllerDirectionPad>;
 
+        /// Indicates the current state of the touch event on the touchpad.
         #[method(touchState)]
         pub unsafe fn touchState(&self) -> GCTouchState;
 
+        /// The touchpad can use the raw position values of its surface as D-pad values, or it can create a virtual dpad centered around the first contact point with the surface.
+        ///
+        /// If NO; a smaller sliding window is created around the initial touch point and subsequent movement is relative to that center. Movement outside the window will slide the window with it to re-center it. This is great for surfaces where there is no clear sense of a middle and drift over time is an issue.
+        ///
+        /// If YES; the absolute values are used and any drift will have to managed manually either through user traning or by a developer using the dpad.
+        ///
+        /// The default value for this property is YES, meaning the touch surface's raw positional values are reported.
         #[method(reportsAbsoluteTouchSurfaceValues)]
         pub unsafe fn reportsAbsoluteTouchSurfaceValues(&self) -> bool;
 
+        /// Setter for [`reportsAbsoluteTouchSurfaceValues`][Self::reportsAbsoluteTouchSurfaceValues].
         #[method(setReportsAbsoluteTouchSurfaceValues:)]
         pub unsafe fn setReportsAbsoluteTouchSurfaceValues(
             &self,
             reports_absolute_touch_surface_values: bool,
         );
 
+        /// Sets the normalized value for the touchpad's axes, as well as its current touch and button state.
+        ///
+        ///
+        /// Note: If the controller's snapshot flag is set to NO, this method has no effect.
+        ///
+        /// See: touchSurface
+        ///
+        /// See: touchState
         #[method(setValueForXAxis:yAxis:touchDown:buttonValue:)]
         pub unsafe fn setValueForXAxis_yAxis_touchDown_buttonValue(
             &self,

@@ -81,6 +81,7 @@ extern_methods!(
         #[method(width)]
         pub unsafe fn width(&self) -> c_int;
 
+        /// Setter for [`width`][Self::width].
         #[deprecated]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: c_int);
@@ -88,6 +89,7 @@ extern_methods!(
         #[method(wrap)]
         pub unsafe fn wrap(&self) -> bool;
 
+        /// Setter for [`wrap`][Self::wrap].
         #[method(setWrap:)]
         pub unsafe fn setWrap(&self, wrap: bool);
     }

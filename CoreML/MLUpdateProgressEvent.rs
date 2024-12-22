@@ -4,7 +4,13 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlupdateprogressevent?language=objc)
+/// Events on which update task is capable of invoking progress handler.
+///
+///
+/// Note: MLUpdateProgressEventMiniBatchEnd may induce performance problems
+/// during pipeline execution.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlupdateprogressevent?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

@@ -11,7 +11,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat?language=objc)
+/// A format other than one of the common ones below.
+///
+/// Native-endian floats (this is the standard format).
+///
+/// Native-endian doubles.
+///
+/// Signed 16-bit native-endian integers.
+///
+/// Signed 32-bit native-endian integers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -33,7 +43,15 @@ unsafe impl RefEncode for AVAudioCommonFormat {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioformat?language=objc)
+    /// A representation of an audio format.
+    ///
+    /// AVAudioFormat wraps a Core Audio AudioStreamBasicDescription struct, with convenience
+    /// initializers and accessors for common formats, including Core Audio's standard deinterleaved
+    /// 32-bit floating point.
+    ///
+    /// Instances of this class are immutable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioformat?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioFormat;
@@ -48,6 +66,11 @@ unsafe impl NSSecureCoding for AVAudioFormat {}
 extern_methods!(
     unsafe impl AVAudioFormat {
         #[cfg(feature = "objc2-core-audio-types")]
+        /// Initialize from an AudioStreamBasicDescription.
+        ///
+        /// Parameter `asbd`: the AudioStreamBasicDescription
+        ///
+        /// If the format specifies more than 2 channels, this method fails (returns nil).
         #[method_id(@__retain_semantics Init initWithStreamDescription:)]
         pub unsafe fn initWithStreamDescription(
             this: Allocated<Self>,
@@ -55,6 +78,14 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "AVAudioChannelLayout", feature = "objc2-core-audio-types"))]
+        /// Initialize from an AudioStreamBasicDescription and optional channel layout.
+        ///
+        /// Parameter `asbd`: the AudioStreamBasicDescription
+        ///
+        /// Parameter `layout`: the channel layout. Can be nil only if asbd specifies 1 or 2 channels.
+        ///
+        /// If the format specifies more than 2 channels, this method fails (returns nil) unless layout
+        /// is non-nil.
         #[method_id(@__retain_semantics Init initWithStreamDescription:channelLayout:)]
         pub unsafe fn initWithStreamDescription_channelLayout(
             this: Allocated<Self>,
@@ -63,6 +94,13 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Initialize to deinterleaved float with the specified sample rate and channel count.
+        ///
+        /// Parameter `sampleRate`: the sample rate
+        ///
+        /// Parameter `channels`: the channel count
+        ///
+        /// If the format specifies more than 2 channels, this method fails (returns nil).
         #[method_id(@__retain_semantics Init initStandardFormatWithSampleRate:channels:)]
         pub unsafe fn initStandardFormatWithSampleRate_channels(
             this: Allocated<Self>,
@@ -71,6 +109,11 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "AVAudioChannelLayout")]
+        /// Initialize to deinterleaved float with the specified sample rate and channel layout.
+        ///
+        /// Parameter `sampleRate`: the sample rate
+        ///
+        /// Parameter `layout`: the channel layout. must not be nil.
         #[method_id(@__retain_semantics Init initStandardFormatWithSampleRate:channelLayout:)]
         pub unsafe fn initStandardFormatWithSampleRate_channelLayout(
             this: Allocated<Self>,
@@ -79,6 +122,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Initialize to float with the specified sample rate, channel count and interleavedness.
+        ///
+        /// Parameter `format`: the common format type
+        ///
+        /// Parameter `sampleRate`: the sample rate
+        ///
+        /// Parameter `channels`: the channel count
+        ///
+        /// Parameter `interleaved`: true if interleaved
+        ///
+        /// If the format specifies more than 2 channels, this method fails (returns nil).
         #[method_id(@__retain_semantics Init initWithCommonFormat:sampleRate:channels:interleaved:)]
         pub unsafe fn initWithCommonFormat_sampleRate_channels_interleaved(
             this: Allocated<Self>,
@@ -89,6 +143,15 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "AVAudioChannelLayout")]
+        /// Initialize to float with the specified sample rate, channel layout and interleavedness.
+        ///
+        /// Parameter `format`: the common format type
+        ///
+        /// Parameter `sampleRate`: the sample rate
+        ///
+        /// Parameter `interleaved`: true if interleaved
+        ///
+        /// Parameter `layout`: the channel layout. must not be nil.
         #[method_id(@__retain_semantics Init initWithCommonFormat:sampleRate:interleaved:channelLayout:)]
         pub unsafe fn initWithCommonFormat_sampleRate_interleaved_channelLayout(
             this: Allocated<Self>,
@@ -98,6 +161,17 @@ extern_methods!(
             layout: &AVAudioChannelLayout,
         ) -> Retained<Self>;
 
+        /// Initialize using a settings dictionary.
+        ///
+        /// See AVAudioSettings.h. Note that many settings dictionary elements pertain to encoder
+        /// settings, not the basic format, and will be ignored.
+        ///
+        /// Returns nil if a format cannot be constructed with the provided settings, e.g. when:
+        /// - AVNumberOfChannelsKey specifies more than 2 channels, but AVChannelLayoutKey hasn't
+        /// been specified or the layout does not match
+        /// - AVLinearPCMBitDepthKey for linear PCM format specifies less than 8 or greater
+        /// than 32 bits
+        /// - values for the keys are not of the expected types
         #[method_id(@__retain_semantics Init initWithSettings:)]
         pub unsafe fn initWithSettings(
             this: Allocated<Self>,
@@ -105,49 +179,82 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// initialize from a CMAudioFormatDescriptionRef.
+        ///
+        /// Parameter `formatDescription`: the CMAudioFormatDescriptionRef.
+        ///
+        /// If formatDescription is invalid, this method fails (returns nil).
         #[method_id(@__retain_semantics Init initWithCMAudioFormatDescription:)]
         pub unsafe fn initWithCMAudioFormatDescription(
             this: Allocated<Self>,
             format_description: CMAudioFormatDescriptionRef,
         ) -> Retained<Self>;
 
+        /// Determine whether another format is functionally equivalent.
+        ///
+        /// Parameter `object`: the format to compare against
+        ///
+        /// For PCM, interleavedness is ignored for mono. Differences in the AudioStreamBasicDescription
+        /// alignment and packedness are ignored when they are not significant (e.g. with 1 channel, 2
+        /// bytes per frame and 16 bits per channel, neither alignment, the format is implicitly packed
+        /// and can be interpreted as either high- or low-aligned.)
+        /// For AVAudioChannelLayout, a layout with standard mono/stereo tag is considered to be
+        /// equivalent to a nil layout. Otherwise, the layouts are compared for equality.
         #[method(isEqual:)]
         pub unsafe fn isEqual(&self, object: &AnyObject) -> bool;
 
+        /// Describes whether the format is deinterleaved native-endian float.
         #[method(isStandard)]
         pub unsafe fn isStandard(&self) -> bool;
 
+        /// An `AVAudioCommonFormat` identifying the format
         #[method(commonFormat)]
         pub unsafe fn commonFormat(&self) -> AVAudioCommonFormat;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// The number of channels of audio data.
         #[method(channelCount)]
         pub unsafe fn channelCount(&self) -> AVAudioChannelCount;
 
+        /// A sampling rate in Hertz.
         #[method(sampleRate)]
         pub unsafe fn sampleRate(&self) -> c_double;
 
+        /// Describes whether the samples are interleaved.
+        ///
+        /// For non-PCM formats, the value is undefined.
         #[method(isInterleaved)]
         pub unsafe fn isInterleaved(&self) -> bool;
 
         #[cfg(feature = "objc2-core-audio-types")]
+        /// Returns the AudioStreamBasicDescription, for use with lower-level audio API's.
         #[method(streamDescription)]
         pub unsafe fn streamDescription(&self) -> NonNull<AudioStreamBasicDescription>;
 
         #[cfg(feature = "AVAudioChannelLayout")]
+        /// The underlying AVAudioChannelLayout, if any.
+        ///
+        /// Only formats with more than 2 channels are required to have channel layouts.
         #[method_id(@__retain_semantics Other channelLayout)]
         pub unsafe fn channelLayout(&self) -> Option<Retained<AVAudioChannelLayout>>;
 
+        /// The underlying magic cookie, if any.
+        ///
+        /// A magic cookie contains metadata associated with encoders and decoders.
+        /// Encoders produce a magic cookie, and some decoders require a magic cookie to decode properly.
         #[method_id(@__retain_semantics Other magicCookie)]
         pub unsafe fn magicCookie(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`magicCookie`][Self::magicCookie].
         #[method(setMagicCookie:)]
         pub unsafe fn setMagicCookie(&self, magic_cookie: Option<&NSData>);
 
+        /// Returns the format represented as a dictionary with keys from AVAudioSettings.h.
         #[method_id(@__retain_semantics Other settings)]
         pub unsafe fn settings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Converts to a CMAudioFormatDescriptionRef, for use with Core Media API's.
         #[method(formatDescription)]
         pub unsafe fn formatDescription(&self) -> CMAudioFormatDescriptionRef;
     }

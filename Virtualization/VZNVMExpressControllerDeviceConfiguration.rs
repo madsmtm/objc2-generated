@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznvmexpresscontrollerdeviceconfiguration?language=objc)
+    /// Configuration of an NVM Express Controller storage device.
+    ///
+    /// This device configuration creates a storage device that conforms to the NVM Express specification revision 1.1b.
+    ///
+    /// The device configuration is valid only if used with VZGenericPlatformConfiguration.
+    ///
+    /// See: VZGenericPlatformConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznvmexpresscontrollerdeviceconfiguration?language=objc)
     #[unsafe(super(VZStorageDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDeviceConfiguration")]
@@ -29,6 +37,11 @@ extern_methods!(
     #[cfg(feature = "VZStorageDeviceConfiguration")]
     unsafe impl VZNVMExpressControllerDeviceConfiguration {
         #[cfg(feature = "VZStorageDeviceAttachment")]
+        /// Initialize a VZNVMExpressControllerDeviceConfiguration with a device attachment.
+        ///
+        /// Parameter `attachment`: The storage device attachment. This defines how the virtualized device operates on the host side.
+        ///
+        /// See: VZDiskImageStorageDeviceAttachment
         #[method_id(@__retain_semantics Init initWithAttachment:)]
         pub unsafe fn initWithAttachment(
             this: Allocated<Self>,

@@ -8,7 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdevice?language=objc)
+    /// Virtio Socket Device
+    ///
+    /// This is a paravirtualized socket device which facilitates data transfer between the guest and the host without using Ethernet or IP protocols.
+    /// This device is created through instantiating a VZVirtioSocketDeviceConfiguration in a VZVirtualMachineConfiguration and is available in the VZVirtualMachine.socketDevices property.
+    ///
+    /// See: VZVirtioSocketDeviceConfiguration
+    ///
+    /// See: VZVirtioSocketDeviceConnection
+    ///
+    /// See: VZVirtioSocketDeviceListener
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdevice?language=objc)
     #[unsafe(super(VZSocketDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZSocketDevice")]
@@ -28,6 +39,15 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtioSocketListener")]
+        /// Sets a listener at a specified port.
+        ///
+        /// There is only one listener per port, any existing listener will be removed, and the specified listener here will be set instead.
+        /// The same listener can be registered on multiple ports.
+        /// The listener's delegate will be called whenever the guest connects to that port.
+        ///
+        /// Parameter `listener`: The VZVirtioSocketListener object to be set.
+        ///
+        /// Parameter `port`: The port number to set the listener at.
         #[method(setSocketListener:forPort:)]
         pub unsafe fn setSocketListener_forPort(
             &self,
@@ -35,10 +55,23 @@ extern_methods!(
             port: u32,
         );
 
+        /// Removes the listener at a specified port.
+        ///
+        /// Does nothing if the port had no listener.
+        ///
+        /// Parameter `port`: The port number at which the listener is to be removed.
         #[method(removeSocketListenerForPort:)]
         pub unsafe fn removeSocketListenerForPort(&self, port: u32);
 
         #[cfg(all(feature = "VZVirtioSocketConnection", feature = "block2"))]
+        /// Connects to a specified port.
+        ///
+        /// Does nothing if the guest does not listen on that port.
+        ///
+        /// Parameter `port`: The port number to connect to.
+        ///
+        /// Parameter `completionHandler`: Block called after the connection has been successfully established or on error.
+        /// The error parameter passed to the block is nil if the connection was successful.
         #[method(connectToPort:completionHandler:)]
         pub unsafe fn connectToPort_completionHandler(
             &self,

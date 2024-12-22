@@ -166,6 +166,7 @@ extern_methods!(
         #[method(startingItemNumber)]
         pub unsafe fn startingItemNumber(&self) -> NSInteger;
 
+        /// Setter for [`startingItemNumber`][Self::startingItemNumber].
         #[method(setStartingItemNumber:)]
         pub unsafe fn setStartingItemNumber(&self, starting_item_number: NSInteger);
 

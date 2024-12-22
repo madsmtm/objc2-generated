@@ -37,24 +37,28 @@ extern_methods!(
         pub unsafe fn tileSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`tileSize`][Self::tileSize].
         #[method(setTileSize:)]
         pub unsafe fn setTileSize(&self, tile_size: CGSize);
 
         #[method(isGeometryFlipped)]
         pub unsafe fn isGeometryFlipped(&self) -> bool;
 
+        /// Setter for [`isGeometryFlipped`][Self::isGeometryFlipped].
         #[method(setGeometryFlipped:)]
         pub unsafe fn setGeometryFlipped(&self, geometry_flipped: bool);
 
         #[method(minimumZ)]
         pub unsafe fn minimumZ(&self) -> NSInteger;
 
+        /// Setter for [`minimumZ`][Self::minimumZ].
         #[method(setMinimumZ:)]
         pub unsafe fn setMinimumZ(&self, minimum_z: NSInteger);
 
         #[method(maximumZ)]
         pub unsafe fn maximumZ(&self) -> NSInteger;
 
+        /// Setter for [`maximumZ`][Self::maximumZ].
         #[method(setMaximumZ:)]
         pub unsafe fn setMaximumZ(&self, maximum_z: NSInteger);
 
@@ -64,6 +68,7 @@ extern_methods!(
         #[method(canReplaceMapContent)]
         pub unsafe fn canReplaceMapContent(&self) -> bool;
 
+        /// Setter for [`canReplaceMapContent`][Self::canReplaceMapContent].
         #[method(setCanReplaceMapContent:)]
         pub unsafe fn setCanReplaceMapContent(&self, can_replace_map_content: bool);
     }

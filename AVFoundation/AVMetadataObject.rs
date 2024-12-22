@@ -14,12 +14,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttype?language=objc)
+/// AVMetadataObjectType string constants
+///
+///
+/// Constants indicating the type of an AVMetadataObject.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttype?language=objc)
 // NS_TYPED_ENUM
 pub type AVMetadataObjectType = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject?language=objc)
+    /// AVMetadataObject is an abstract class that defines an interface for a metadata object used by AVFoundation.
+    ///
+    ///
+    /// AVMetadataObject provides an abstract interface for metadata associated with a piece of media. One example is face metadata that might be detected in a picture. All metadata objects have a time, duration, bounds, and type.
+    ///
+    /// The concrete AVMetadataFaceObject is used by AVCaptureMetadataOutput for face detection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataObject;
@@ -36,24 +48,45 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The media time associated with this metadata object.
+        ///
+        ///
+        /// The value of this property is a CMTime associated with the metadata object. For capture, it is the time at which this object was captured. If this metadata object originates from a CMSampleBuffer, its time matches the sample buffer's presentation time. This property may return kCMTimeInvalid.
         #[method(time)]
         pub unsafe fn time(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The media duration associated with this metadata object.
+        ///
+        ///
+        /// The value of this property is a CMTime representing the duration of the metadata object. If this metadata object originates from a CMSampleBuffer, its duration matches the sample buffer's duration. This property may return kCMTimeInvalid.
         #[method(duration)]
         pub unsafe fn duration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The bounding rectangle of the receiver.
+        ///
+        ///
+        /// The value of this property is a CGRect representing the bounding rectangle of the object with respect to the picture in which it resides. The rectangle's origin is top left. If the metadata originates from video, bounds may be expressed as scalar values from 0. - 1. If the original video has been scaled down, the bounds of the metadata object still are meaningful. This property may return CGRectZero if the metadata has no bounds.
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> CGRect;
 
+        /// An identifier for the metadata object.
+        ///
+        ///
+        /// The value of this property is an AVMetadataObjectType representing the type of the metadata object. Clients inspecting a collection of metadata objects can use this property to filter objects with a matching type.
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<AVMetadataObjectType>;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatabodyobject?language=objc)
+    /// AVMetadataBodyObject is an abstract class that defines an interface for a body metadata object used by AVFoundation.
+    ///
+    ///
+    /// AVMetadataBodyObject represents a single detected body in a picture. It is the base object used to represent bodies, for example AVMetadataHumanBodyObject, AVMetadataCatBodyObject, AVMetadataDogBodyObject.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatabodyobject?language=objc)
     #[unsafe(super(AVMetadataObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataBodyObject;
@@ -69,6 +102,10 @@ unsafe impl NSObjectProtocol for AVMetadataBodyObject {}
 
 extern_methods!(
     unsafe impl AVMetadataBodyObject {
+        /// A unique number associated with the receiver.
+        ///
+        ///
+        /// The value of this property is an NSInteger indicating the unique identifier of this body type (Human, Dog, Cat) in the picture. When a new body enters the picture, it is assigned a new unique identifier. bodyIDs are not re-used as bodies leave the picture and new ones enter. Bodies that leave the picture then re-enter are assigned a new bodyID.
         #[method(bodyID)]
         pub unsafe fn bodyID(&self) -> NSInteger;
     }
@@ -86,12 +123,24 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypehumanbody?language=objc)
+    /// An identifier for an instance of AVMetadataHumanBodyObject.
+    ///
+    ///
+    /// AVMetadataHumanBodyObject objects return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypehumanbody?language=objc)
     pub static AVMetadataObjectTypeHumanBody: &'static AVMetadataObjectType;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatahumanbodyobject?language=objc)
+    /// AVMetadataHumanBodyObject is a concrete subclass of AVMetadataBodyObject defining a detected human body.
+    ///
+    ///
+    /// AVMetadataHumanBodyObject represents a single detected human body in a picture. It is an immutable object describing the various features found in the body.
+    ///
+    /// On supported platforms, AVCaptureMetadataOutput outputs arrays of detected human body objects. See AVCaptureOutput.h.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatahumanbodyobject?language=objc)
     #[unsafe(super(AVMetadataBodyObject, AVMetadataObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataHumanBodyObject;
@@ -121,12 +170,24 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypehumanfullbody?language=objc)
+    /// An identifier for an instance of AVMetadataHumanFullBodyObject.
+    ///
+    ///
+    /// AVMetadataHumanFullBodyObject objects return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypehumanfullbody?language=objc)
     pub static AVMetadataObjectTypeHumanFullBody: &'static AVMetadataObjectType;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatahumanfullbodyobject?language=objc)
+    /// AVMetadataHumanFullBodyObject is a concrete subclass of AVMetadataBodyObject defining a detected human full body.
+    ///
+    ///
+    /// AVMetadataHumanFullBodyObject represents a single detected human full body in a picture. It is an immutable object describing the various features found in the body.
+    ///
+    /// On supported platforms, AVCaptureMetadataOutput outputs arrays of detected human full body objects. See AVCaptureOutput.h.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatahumanfullbodyobject?language=objc)
     #[unsafe(super(AVMetadataBodyObject, AVMetadataObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataHumanFullBodyObject;
@@ -156,12 +217,24 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecatbody?language=objc)
+    /// An identifier for an instance of AVMetadataCatBodyObject.
+    ///
+    ///
+    /// AVMetadataCatBodyObject objects return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecatbody?language=objc)
     pub static AVMetadataObjectTypeCatBody: &'static AVMetadataObjectType;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacatbodyobject?language=objc)
+    /// AVMetadataCatBodyObject is a concrete subclass of AVMetadataBodyObject defining a detected cat body.
+    ///
+    ///
+    /// AVMetadataCatBodyObject represents a single detected cat body in a picture. It is an immutable object describing the various features found in the body.
+    ///
+    /// On supported platforms, AVCaptureMetadataOutput outputs arrays of detected cat body objects. See AVCaptureOutput.h.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacatbodyobject?language=objc)
     #[unsafe(super(AVMetadataBodyObject, AVMetadataObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataCatBodyObject;
@@ -191,12 +264,24 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypedogbody?language=objc)
+    /// An identifier for an instance of AVMetadataDogBodyObject.
+    ///
+    ///
+    /// AVMetadataDogBodyObject objects return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypedogbody?language=objc)
     pub static AVMetadataObjectTypeDogBody: &'static AVMetadataObjectType;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatadogbodyobject?language=objc)
+    /// AVMetadataDogBodyObject is a concrete subclass of AVMetadataBodyObject defining a detected dog body.
+    ///
+    ///
+    /// AVMetadataDogBodyObject represents a single detected dog body in a picture. It is an immutable object describing the various features found in the body.
+    ///
+    /// On supported platforms, AVCaptureMetadataOutput outputs arrays of detected dog body objects. See AVCaptureOutput.h.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatadogbodyobject?language=objc)
     #[unsafe(super(AVMetadataBodyObject, AVMetadataObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataDogBodyObject;
@@ -226,12 +311,24 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypesalientobject?language=objc)
+    /// An identifier for an instance of AVMetadataSalientObject.
+    ///
+    ///
+    /// AVMetadataSalientObject objects return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypesalientobject?language=objc)
     pub static AVMetadataObjectTypeSalientObject: &'static AVMetadataObjectType;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatasalientobject?language=objc)
+    /// AVMetadataSalientObject is a concrete subclass of AVMetadataObject defining the features of a salient object.
+    ///
+    ///
+    /// AVMetadataSalientObject represents a single detected salient area in a picture. It is an immutable object describing the salient object.
+    ///
+    /// On supported platforms, AVCaptureMetadataOutput outputs arrays of detected salient objects. See AVCaptureOutput.h.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatasalientobject?language=objc)
     #[unsafe(super(AVMetadataObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataSalientObject;
@@ -247,6 +344,10 @@ unsafe impl NSObjectProtocol for AVMetadataSalientObject {}
 
 extern_methods!(
     unsafe impl AVMetadataSalientObject {
+        /// A unique number associated with the receiver.
+        ///
+        ///
+        /// The value of this property is an NSInteger indicating the unique identifier of this object in the picture. When a new object enters the picture, it is assigned a new unique identifier. objectIDs are not re-used as object leave the picture and new ones enter. Objects that leave the picture then re-enter are assigned a new objectID.
         #[method(objectID)]
         pub unsafe fn objectID(&self) -> NSInteger;
     }
@@ -264,12 +365,24 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeface?language=objc)
+    /// An identifier for an instance of AVMetadataFaceObject.
+    ///
+    ///
+    /// AVMetadataFaceObject objects return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeface?language=objc)
     pub static AVMetadataObjectTypeFace: &'static AVMetadataObjectType;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject?language=objc)
+    /// AVMetadataFaceObject is a concrete subclass of AVMetadataObject defining the features of a detected face.
+    ///
+    ///
+    /// AVMetadataFaceObject represents a single detected face in a picture. It is an immutable object describing the various features found in the face.
+    ///
+    /// On supported platforms, AVCaptureMetadataOutput outputs arrays of detected face objects. See AVCaptureOutput.h.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatafaceobject?language=objc)
     #[unsafe(super(AVMetadataObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataFaceObject;
@@ -285,20 +398,34 @@ unsafe impl NSObjectProtocol for AVMetadataFaceObject {}
 
 extern_methods!(
     unsafe impl AVMetadataFaceObject {
+        /// A unique number associated with the receiver.
+        ///
+        ///
+        /// The value of this property is an NSInteger indicating the unique identifier of this face in the picture. When a new face enters the picture, it is assigned a new unique identifier. faceIDs are not re-used as faces leave the picture and new ones enter. Faces that leave the picture then re-enter are assigned a new faceID.
         #[method(faceID)]
         pub unsafe fn faceID(&self) -> NSInteger;
 
+        /// A BOOL indicating whether the rollAngle property is valid for this receiver.
         #[method(hasRollAngle)]
         pub unsafe fn hasRollAngle(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The roll angle of the face in degrees.
+        ///
+        ///
+        /// The value of this property is a CGFloat indicating the face's angle of roll (or tilt) in degrees. A value of 0.0 indicates that the face is level in the picture. If -hasRollAngle returns NO, then reading this property throws an NSGenericException.
         #[method(rollAngle)]
         pub unsafe fn rollAngle(&self) -> CGFloat;
 
+        /// A BOOL indicating whether the yawAngle property is valid for this receiver.
         #[method(hasYawAngle)]
         pub unsafe fn hasYawAngle(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The yaw angle of the face in degrees.
+        ///
+        ///
+        /// The value of this property is a CGFloat indicating the face's angle of yaw (or turn) in degrees. A value of 0.0 indicates that the face is straight on in the picture. If -hasYawAngle returns NO, then reading this property throws an NSGenericException.
         #[method(yawAngle)]
         pub unsafe fn yawAngle(&self) -> CGFloat;
     }
@@ -316,102 +443,204 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeupcecode?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeUPCECode.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from UPC-E codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeupcecode?language=objc)
     pub static AVMetadataObjectTypeUPCECode: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecode39code?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeCode39Code.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from Code 39 codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecode39code?language=objc)
     pub static AVMetadataObjectTypeCode39Code: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecode39mod43code?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeCode39Mod43Code.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from Code 39 mod 43 codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecode39mod43code?language=objc)
     pub static AVMetadataObjectTypeCode39Mod43Code: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeean13code?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeEAN13Code.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from EAN-13 (including UPC-A) codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeean13code?language=objc)
     pub static AVMetadataObjectTypeEAN13Code: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeean8code?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeEAN8Code.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from EAN-8 codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeean8code?language=objc)
     pub static AVMetadataObjectTypeEAN8Code: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecode93code?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeCode93Code.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from Code 93 codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecode93code?language=objc)
     pub static AVMetadataObjectTypeCode93Code: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecode128code?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeCode128Code.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from Code 128 codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecode128code?language=objc)
     pub static AVMetadataObjectTypeCode128Code: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypepdf417code?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypePDF417Code.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from PDF417 codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypepdf417code?language=objc)
     pub static AVMetadataObjectTypePDF417Code: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeqrcode?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeQRCode.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from QR codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeqrcode?language=objc)
     pub static AVMetadataObjectTypeQRCode: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeazteccode?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeAztecCode.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from Aztec codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeazteccode?language=objc)
     pub static AVMetadataObjectTypeAztecCode: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeinterleaved2of5code?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeInterleaved2of5Code.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from Interleaved 2 of 5 codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeinterleaved2of5code?language=objc)
     pub static AVMetadataObjectTypeInterleaved2of5Code: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeitf14code?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeITF14Code.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from ITF14 codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeitf14code?language=objc)
     pub static AVMetadataObjectTypeITF14Code: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypedatamatrixcode?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeDataMatrixCode.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from DataMatrix codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypedatamatrixcode?language=objc)
     pub static AVMetadataObjectTypeDataMatrixCode: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecodabarcode?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeCodabarCode.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from Codabar codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecodabarcode?language=objc)
     pub static AVMetadataObjectTypeCodabarCode: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypegs1databarcode?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeGS1DataBarCode.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from GS1DataBar codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypegs1databarcode?language=objc)
     pub static AVMetadataObjectTypeGS1DataBarCode: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypegs1databarexpandedcode?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeGS1DataBarExpandedCode.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from GS1DataBarExpanded codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypegs1databarexpandedcode?language=objc)
     pub static AVMetadataObjectTypeGS1DataBarExpandedCode: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypegs1databarlimitedcode?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeGS1DataBarLimitedCode.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from GS1DataBarLimited codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypegs1databarlimitedcode?language=objc)
     pub static AVMetadataObjectTypeGS1DataBarLimitedCode: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypemicroqrcode?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeMicroQRCode.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from MicroQR codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypemicroqrcode?language=objc)
     pub static AVMetadataObjectTypeMicroQRCode: &'static AVMetadataObjectType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypemicropdf417code?language=objc)
+    /// An identifier for an instance of AVMetadataMachineReadableCodeObject having a type AVMetadataObjectTypeMicroPDF417Code.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject objects generated from MicroPDF417 codes return this constant as their type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypemicropdf417code?language=objc)
     pub static AVMetadataObjectTypeMicroPDF417Code: &'static AVMetadataObjectType;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject?language=objc)
+    /// AVMetadataMachineReadableCodeObject is a concrete subclass of AVMetadataObject defining the features of a detected one-dimensional or two-dimensional barcode.
+    ///
+    ///
+    /// AVMetadataMachineReadableCodeObject represents a single detected machine readable code in a picture. It is an immutable object describing the features and payload of a barcode.
+    ///
+    /// On supported platforms, AVCaptureMetadataOutput outputs arrays of detected machine readable code objects. See AVCaptureMetadataOutput.h.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject?language=objc)
     #[unsafe(super(AVMetadataObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataMachineReadableCodeObject;
@@ -421,9 +650,17 @@ unsafe impl NSObjectProtocol for AVMetadataMachineReadableCodeObject {}
 
 extern_methods!(
     unsafe impl AVMetadataMachineReadableCodeObject {
+        /// The points defining the (X,Y) locations of the corners of the machine-readable code.
+        ///
+        ///
+        /// The value of this property is an NSArray of NSDictionaries, each of which has been created from a CGPoint using CGPointCreateDictionaryRepresentation(), representing the coordinates of the corners of the object with respect to the image in which it resides. If the metadata originates from video, the points may be expressed as scalar values from 0. - 1. The points in the corners differ from the bounds rectangle in that bounds is axis-aligned to orientation of the captured image, and the values of the corners reside within the bounds rectangle. The points are arranged in counter-clockwise order (clockwise if the code or image is mirrored), starting with the top-left of the code in its canonical orientation.
         #[method_id(@__retain_semantics Other corners)]
         pub unsafe fn corners(&self) -> Retained<NSArray<NSDictionary>>;
 
+        /// Returns the receiver's errorCorrectedData decoded into a human-readable string.
+        ///
+        ///
+        /// The value of this property is an NSString created by decoding the binary payload according to the format of the machine readable code. Returns nil if a string representation cannot be created from the payload.
         #[method_id(@__retain_semantics Other stringValue)]
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
     }
@@ -445,6 +682,10 @@ extern_methods!(
     unsafe impl AVMetadataMachineReadableCodeObject {
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
+        /// An abstract representation of a machine readable code's symbol attributes.
+        ///
+        ///
+        /// The value may be nil if an abstract representation of a machine readable code object is not defined for the code type or could not be detected.
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor(&self) -> Option<Retained<CIBarcodeDescriptor>>;
     }

@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorsampler?language=objc)
+    /// Manages a color sampling interface to allow the user to select a color from their screen.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorsampler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSColorSampler;
@@ -18,6 +20,11 @@ unsafe impl NSObjectProtocol for NSColorSampler {}
 extern_methods!(
     unsafe impl NSColorSampler {
         #[cfg(all(feature = "NSColor", feature = "block2"))]
+        /// The primary method for NSColorSampler.
+        ///
+        /// Begins or attaches to an existing color sampling session which presents UI to the user for selecting a color from their screen. The handler will be called on the main thread when the user completes the session (either by selection, or cancelation). In the event of user-cancellation, `colorSelectionHandler` will be called with `nil`.
+        ///
+        /// The calling NSColorSampler instance is retained until the sampling session is completed.
         #[method(showSamplerWithSelectionHandler:)]
         pub unsafe fn showSamplerWithSelectionHandler(
             &self,

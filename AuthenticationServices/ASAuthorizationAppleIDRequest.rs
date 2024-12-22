@@ -56,9 +56,14 @@ extern_methods!(
         feature = "ASAuthorizationRequest"
     ))]
     unsafe impl ASAuthorizationAppleIDRequest {
+        /// If you have been previously vended a 'user' value through ASAuthorization response, you may set it here to provide additional context to identity provider.
+        ///
+        ///
+        /// See: ASAuthorizationAppleIDCredential doc for the description of this property in context of response.
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`user`][Self::user].
         #[method(setUser:)]
         pub unsafe fn setUser(&self, user: Option<&NSString>);
     }

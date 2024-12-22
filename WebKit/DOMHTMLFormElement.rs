@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other acceptCharset)]
         pub unsafe fn acceptCharset(&self) -> Retained<NSString>;
 
+        /// Setter for [`acceptCharset`][Self::acceptCharset].
         #[deprecated]
         #[method(setAcceptCharset:)]
         pub unsafe fn setAcceptCharset(&self, accept_charset: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other action)]
         pub unsafe fn action(&self) -> Retained<NSString>;
 
+        /// Setter for [`action`][Self::action].
         #[deprecated]
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<&NSString>);
@@ -97,6 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other enctype)]
         pub unsafe fn enctype(&self) -> Retained<NSString>;
 
+        /// Setter for [`enctype`][Self::enctype].
         #[deprecated]
         #[method(setEnctype:)]
         pub unsafe fn setEnctype(&self, enctype: Option<&NSString>);
@@ -104,6 +107,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other encoding)]
         pub unsafe fn encoding(&self) -> Retained<NSString>;
 
+        /// Setter for [`encoding`][Self::encoding].
         #[method(setEncoding:)]
         pub unsafe fn setEncoding(&self, encoding: Option<&NSString>);
 
@@ -111,6 +115,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other method)]
         pub unsafe fn method(&self) -> Retained<NSString>;
 
+        /// Setter for [`method`][Self::method].
         #[deprecated]
         #[method(setMethod:)]
         pub unsafe fn setMethod(&self, method: Option<&NSString>);
@@ -119,6 +124,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -127,6 +133,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
+        /// Setter for [`target`][Self::target].
         #[deprecated]
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&NSString>);

@@ -55,6 +55,7 @@ extern_methods!(
         #[method(displayMode)]
         pub unsafe fn displayMode(&self) -> UIPasteControlDisplayMode;
 
+        /// Setter for [`displayMode`][Self::displayMode].
         #[method(setDisplayMode:)]
         pub unsafe fn setDisplayMode(&self, display_mode: UIPasteControlDisplayMode);
 
@@ -63,6 +64,7 @@ extern_methods!(
         pub unsafe fn cornerStyle(&self) -> UIButtonConfigurationCornerStyle;
 
         #[cfg(feature = "UIButtonConfiguration")]
+        /// Setter for [`cornerStyle`][Self::cornerStyle].
         #[method(setCornerStyle:)]
         pub unsafe fn setCornerStyle(&self, corner_style: UIButtonConfigurationCornerStyle);
 
@@ -71,6 +73,7 @@ extern_methods!(
         pub unsafe fn cornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`cornerRadius`][Self::cornerRadius].
         #[method(setCornerRadius:)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
@@ -79,6 +82,7 @@ extern_methods!(
         pub unsafe fn imagePlacement(&self) -> NSDirectionalRectEdge;
 
         #[cfg(feature = "UIGeometry")]
+        /// Setter for [`imagePlacement`][Self::imagePlacement].
         #[method(setImagePlacement:)]
         pub unsafe fn setImagePlacement(&self, image_placement: NSDirectionalRectEdge);
 
@@ -87,6 +91,7 @@ extern_methods!(
         pub unsafe fn baseForegroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`baseForegroundColor`][Self::baseForegroundColor].
         #[method(setBaseForegroundColor:)]
         pub unsafe fn setBaseForegroundColor(&self, base_foreground_color: Option<&UIColor>);
 
@@ -95,6 +100,7 @@ extern_methods!(
         pub unsafe fn baseBackgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`baseBackgroundColor`][Self::baseBackgroundColor].
         #[method(setBaseBackgroundColor:)]
         pub unsafe fn setBaseBackgroundColor(&self, base_background_color: Option<&UIColor>);
     }
@@ -211,6 +217,7 @@ extern_methods!(
 
         #[cfg(feature = "UIPasteConfigurationSupporting")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
         pub unsafe fn setTarget(
             &self,
@@ -244,6 +251,7 @@ extern_methods!(
             feature = "UIMenuElement",
             feature = "objc2-core-foundation"
         ))]
+        /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
         #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,

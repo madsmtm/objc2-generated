@@ -113,6 +113,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIActionSheetDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -124,6 +125,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead"]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -132,6 +134,7 @@ extern_methods!(
         #[method(actionSheetStyle)]
         pub unsafe fn actionSheetStyle(&self) -> UIActionSheetStyle;
 
+        /// Setter for [`actionSheetStyle`][Self::actionSheetStyle].
         #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead"]
         #[method(setActionSheetStyle:)]
         pub unsafe fn setActionSheetStyle(&self, action_sheet_style: UIActionSheetStyle);
@@ -155,6 +158,7 @@ extern_methods!(
         #[method(cancelButtonIndex)]
         pub unsafe fn cancelButtonIndex(&self) -> NSInteger;
 
+        /// Setter for [`cancelButtonIndex`][Self::cancelButtonIndex].
         #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead"]
         #[method(setCancelButtonIndex:)]
         pub unsafe fn setCancelButtonIndex(&self, cancel_button_index: NSInteger);
@@ -163,6 +167,7 @@ extern_methods!(
         #[method(destructiveButtonIndex)]
         pub unsafe fn destructiveButtonIndex(&self) -> NSInteger;
 
+        /// Setter for [`destructiveButtonIndex`][Self::destructiveButtonIndex].
         #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead"]
         #[method(setDestructiveButtonIndex:)]
         pub unsafe fn setDestructiveButtonIndex(&self, destructive_button_index: NSInteger);

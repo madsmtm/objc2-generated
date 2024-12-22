@@ -7,7 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetcache?language=objc)
+    /// AVAssetCache is a class vended by an AVAsset used for the inspection of locally available media data.
+    ///
+    ///
+    /// AVAssetCaches are vended by AVURLAsset's assetCache property.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetcache?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetCache;

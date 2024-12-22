@@ -31,6 +31,7 @@ extern_methods!(
         pub unsafe fn magnification(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`magnification`][Self::magnification].
         #[method(setMagnification:)]
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
     }

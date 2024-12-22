@@ -9,7 +9,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationinteractionconfigurationprovider?language=objc)
+/// Return a
+/// `UIWindowSceneActivationConfiguration`
+///
+/// Parameter `interaction`: The
+/// `UIWindowSceneActivationInteraction`requesting a configuration.
+///
+/// Parameter `location`: Location in the interaction's view for which a configuration is being requested.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationinteractionconfigurationprovider?language=objc)
 #[cfg(all(
     feature = "UIWindowSceneActivationConfiguration",
     feature = "block2",
@@ -23,7 +31,10 @@ pub type UIWindowSceneActivationInteractionConfigurationProvider = *mut block2::
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationinteraction?language=objc)
+    /// An interaction that facilitates activating a
+    /// `UIWindowScene`when the user pinches out on the interaction's view.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -42,6 +53,13 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// Returns a new
+        /// `UIWindowSceneActivationInteraction`
+        ///
+        /// Parameter `configurationProvider`: Called when the interaction has been triggered. It should return a
+        /// `UIWindowSceneActivationConfiguration`whose user activity will be used to request scene activation.
+        ///
+        /// Parameter `errorHandler`: Called when the activation request fails.
         #[method_id(@__retain_semantics Init initWithConfigurationProvider:errorHandler:)]
         pub unsafe fn initWithConfigurationProvider_errorHandler(
             this: Allocated<Self>,

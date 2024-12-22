@@ -8,7 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot?language=objc)
+    /// A GCExtendedGamepadSnapshot snapshot is a concrete GCExtendedGamepad implementation. It can be used directly in an
+    /// application to implement controller input replays. It is also returned as the result of polling a controller.
+    ///
+    /// The current snapshotData is readily available to access as NSData. A developer can serialize this to any
+    /// destination necessary using the NSData API.
+    ///
+    /// The data contains some version of a GCExtendedGamepadSnapShotData structure.
+    ///
+    ///
+    /// See: -[GCExtendedGamepad saveSnapshot]
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot?language=objc)
     #[unsafe(super(GCExtendedGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
@@ -26,6 +37,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other snapshotData)]
         pub unsafe fn snapshotData(&self) -> Retained<NSData>;
 
+        /// Setter for [`snapshotData`][Self::snapshotData].
         #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
         #[method(setSnapshotData:)]
         pub unsafe fn setSnapshotData(&self, snapshot_data: &NSData);
@@ -83,6 +95,10 @@ extern "C" {
     pub static GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion;
 }
 
+/// Fills out a snapshot from any compatible NSData source
+///
+///
+/// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
 #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn GCExtendedGamepadSnapshotDataFromNSData(
@@ -98,6 +114,11 @@ pub unsafe extern "C-unwind" fn GCExtendedGamepadSnapshotDataFromNSData(
     unsafe { GCExtendedGamepadSnapshotDataFromNSData(snapshot_data, data) }.as_bool()
 }
 
+/// Creates an NSData object from a snapshot.
+/// If the version and size is not set in the snapshot the data will automatically have the version GCCurrentExtendedGamepadSnapshotDataVersion and sizeof(GCExtendedGamepadSnapshotData) set as the values implicitly.
+///
+///
+/// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCExtendedGamepadSnapshot.snapshotData
 #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCExtendedGamepadSnapshotData(
@@ -162,6 +183,10 @@ unsafe impl RefEncode for GCExtendedGamepadSnapShotDataV100 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Fills out a v100 snapshot from any compatible NSData source
+///
+///
+/// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
 #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn GCExtendedGamepadSnapShotDataV100FromNSData(
@@ -177,6 +202,11 @@ pub unsafe extern "C-unwind" fn GCExtendedGamepadSnapShotDataV100FromNSData(
     unsafe { GCExtendedGamepadSnapShotDataV100FromNSData(snapshot_data, data) }.as_bool()
 }
 
+/// Creates an NSData object from a v100 snapshot.
+/// If the version and size is not set in the snapshot the data will automatically have version 0x100 and sizeof(GCExtendedGamepadSnapShotDataV100) set as the values implicitly.
+///
+///
+/// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCExtendedGamepadSnapshot.snapshotData
 #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCExtendedGamepadSnapShotDataV100(

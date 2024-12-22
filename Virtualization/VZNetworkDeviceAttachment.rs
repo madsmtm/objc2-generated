@@ -6,7 +6,24 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznetworkdeviceattachment?language=objc)
+    /// Base class for a network device attachment.
+    ///
+    /// A network device attachment defines how a virtual network device interfaces with the host system.
+    ///
+    /// VZNetworkDeviceAttachment should not be instantiated directly. One of its subclasses should be used instead.
+    ///
+    /// Common attachment types include:
+    /// - VZNATNetworkDeviceAttachment
+    /// - VZFileHandleNetworkDeviceAttachment
+    ///
+    ///
+    /// See: VZBridgedNetworkDeviceAttachment
+    ///
+    /// See: VZFileHandleNetworkDeviceAttachment
+    ///
+    /// See: VZNATNetworkDeviceAttachment
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznetworkdeviceattachment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZNetworkDeviceAttachment;

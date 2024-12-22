@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureprogramvaluetype?language=objc)
+    /// A class representing the type of a value or a variable in the Program.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureprogramvaluetype?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructureProgramValueType;

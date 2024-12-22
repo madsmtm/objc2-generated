@@ -81,6 +81,7 @@ extern_methods!(
         #[method(compact)]
         pub unsafe fn compact(&self) -> bool;
 
+        /// Setter for [`compact`][Self::compact].
         #[deprecated]
         #[method(setCompact:)]
         pub unsafe fn setCompact(&self, compact: bool);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
+        /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);

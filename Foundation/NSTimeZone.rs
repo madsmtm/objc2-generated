@@ -119,6 +119,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultTimeZone)]
         pub unsafe fn defaultTimeZone() -> Retained<NSTimeZone>;
 
+        /// Setter for [`defaultTimeZone`][Self::defaultTimeZone].
         #[method(setDefaultTimeZone:)]
         pub unsafe fn setDefaultTimeZone(default_time_zone: &NSTimeZone);
 
@@ -134,6 +135,7 @@ extern_methods!(
         pub unsafe fn abbreviationDictionary() -> Retained<NSDictionary<NSString, NSString>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Setter for [`abbreviationDictionary`][Self::abbreviationDictionary].
         #[method(setAbbreviationDictionary:)]
         pub unsafe fn setAbbreviationDictionary(
             abbreviation_dictionary: &NSDictionary<NSString, NSString>,

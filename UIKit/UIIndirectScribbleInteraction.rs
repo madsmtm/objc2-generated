@@ -10,7 +10,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteraction?language=objc)
+    /// An interaction that allows using Scribble to enter text by handwriting on a view that is not formally a text input. Use UIIndirectScribbleInteraction if your app has a view that looks to the user as a text input but does not implement UITextInput. It makes the view act as a container of one or more virtual "Text Input Elements", each of which defines an area the user can write into without having to tap first.
+    /// Some examples of when UIIndirectScribbleInteraction can be used:
+    /// - A view that looks like a search field or a text field that in reality is a button, but installs a real text field when tapped
+    /// - A view that contains multiple virtual text fields which the user can normally tap and type into, but are not full blown text fields all the time
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -36,25 +41,38 @@ extern_methods!(
             delegate: &ProtocolObject<dyn UIIndirectScribbleInteractionDelegate>,
         ) -> Retained<Self>;
 
+        /// The delegate for the interaction, to supply and customize writable elements in the interaction's view.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIIndirectScribbleInteractionDelegate>>>;
 
+        /// : Indicates if the user is actively writing. It will be set to YES in between calls to -indirectScribbleInteraction:willBeginWritingInElement: and -indirectScribbleInteraction:didFinishWritingInElement: calls.
         #[method(isHandlingWriting)]
         pub unsafe fn isHandlingWriting(&self) -> bool;
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscribbleelementidentifier?language=objc)
+/// Element identifiers are used to identify writable elements in the interaction's view, and will be supplied in every delegate callback. Any object that conforms to NSCopying and that can be compared for equality can be used. It is recommended to use simple immutable values, like NSString, NSNumber, or NSUUID.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscribbleelementidentifier?language=objc)
 pub type UIScribbleElementIdentifier = AnyObject;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteractiondelegate?language=objc)
+    /// The protocol to be implemented by the delegate of UIIndirectScribbleInteraction. It will be responsible for supplying a list of writable elements, focusing them, and ultimately providing a real UITextInput that will handle text editing operations.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteractiondelegate?language=objc)
     pub unsafe trait UIIndirectScribbleInteractionDelegate:
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// This method will be called to request the text input elements in a certain rect of the view, each of which represents an area where the user can start writing even if it's not a text input field itself.
+        ///
+        /// Parameter `interaction`: The interaction asking for the elements.
+        ///
+        /// Parameter `rect`: The rect around the area where the user is trying to write, in the interaction's view coordinate system. Only elements intersecting this rect should be returned.
+        ///
+        /// Parameter `completion`: You must call the completion handler, synchronously or asynchronously, with an array of identifiers of the available elements, or an empty array if no elements are available.
         #[method(indirectScribbleInteraction:requestElementsInRect:completion:)]
         unsafe fn indirectScribbleInteraction_requestElementsInRect_completion(
             &self,
@@ -63,6 +81,13 @@ extern_protocol!(
             completion: &block2::Block<dyn Fn(NonNull<NSArray<UIScribbleElementIdentifier>>)>,
         );
 
+        /// Asks the delegate if an element is currently focused, according to the internal state of the interaction's view.
+        ///
+        /// Parameter `interaction`: The interaction asking for the focused state.
+        ///
+        /// Parameter `elementIdentifier`: The identifier of the element the interaction is asking about.
+        ///
+        /// Returns: Return YES if the element is the one currently focused.
         #[method(indirectScribbleInteraction:isElementFocused:)]
         unsafe fn indirectScribbleInteraction_isElementFocused(
             &self,
@@ -71,6 +96,13 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Asks the delegate to provide the frame of an element.
+        ///
+        /// Parameter `interaction`: The interaction asking for the element's frame.
+        ///
+        /// Parameter `elementIdentifier`: The identifier of the element the interaction is asking about.
+        ///
+        /// Returns: Frame for the element, in the interactions's view coordinate system.
         #[method(indirectScribbleInteraction:frameForElement:)]
         unsafe fn indirectScribbleInteraction_frameForElement(
             &self,
@@ -85,6 +117,15 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// Asks the delegate to focus an element to handle text edits. In response, it should make the element the currently focused one, and make the corresponding UITextInput become first responder.
+        /// If the element was not focused already, text selection should be set to the character location closest to focusReferencePoint, to avoid any scrolling or shifting of content.
+        /// If the element was focused already, no changes in selection should be made and this call can be ignored, but you must still call the completion handler with a reference to the text input.
+        ///
+        /// Parameter `interaction`: The interaction that is requesting to focus an element.
+        ///
+        /// Parameter `elementIdentifier`: The identifier of the element that should be focused.
+        ///
+        /// Parameter `completion`: You must always call the completion handler, either synchronously or asynchronously. On success, the first parameter should be the text input that became first responder and that will handle text operations for this element. On failure, call the completion with a nil parameter.
         #[method(indirectScribbleInteraction:focusElementIfNeeded:referencePoint:completion:)]
         unsafe fn indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion(
             &self,
@@ -94,6 +135,14 @@ extern_protocol!(
             completion: &block2::Block<dyn Fn(*mut UIResponder)>,
         );
 
+        /// Allow the delegate to delay focusing an element. Normally, Scribble will focus the element as soon as the user begins writing, but if you return YES from this callback, it will wait until the user makes a brief pause. This is useful in cases where the element's frame will shift or transform when becoming focused, which can be disruptive to a user trying to handwrite into it.
+        /// Wherever possible it is preferable to adjust the UI behavior to avoid the layout changes, and only use delayed focus as a last resort, since transcription will happen all at once instead of incrementally.
+        ///
+        /// Parameter `interaction`: The interaction asking about delaying focus.
+        ///
+        /// Parameter `elementIdentifier`: The identifier of the element the interaction is asking about.
+        ///
+        /// Returns: Return YES to delay focusing the element.
         #[optional]
         #[method(indirectScribbleInteraction:shouldDelayFocusForElement:)]
         unsafe fn indirectScribbleInteraction_shouldDelayFocusForElement(
@@ -102,6 +151,11 @@ extern_protocol!(
             element_identifier: &UIScribbleElementIdentifier,
         ) -> bool;
 
+        /// Will be called when the user begins writing into an element. This call will always be paired with a corresponding call to indirectScribbleInteraction:didFinishWritingInElement:. It is recommended to use this call to hide custom placeholders or other UI elements that can interfere with writing.
+        ///
+        /// Parameter `interaction`: The interaction notifying about writing state changes.
+        ///
+        /// Parameter `elementIdentifier`: The identifier of the element the user is writing into.
         #[optional]
         #[method(indirectScribbleInteraction:willBeginWritingInElement:)]
         unsafe fn indirectScribbleInteraction_willBeginWritingInElement(
@@ -110,6 +164,11 @@ extern_protocol!(
             element_identifier: &UIScribbleElementIdentifier,
         );
 
+        /// Will be called when the user finished writing into an element, after the last word has been transcribed and committed.
+        ///
+        /// Parameter `interaction`: The interaction notifying about writing state changes.
+        ///
+        /// Parameter `elementIdentifier`: The identifier of the element the user finished writing into.
         #[optional]
         #[method(indirectScribbleInteraction:didFinishWritingInElement:)]
         unsafe fn indirectScribbleInteraction_didFinishWritingInElement(

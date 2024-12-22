@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxgpumetric?language=objc)
+    /// An MXMetric subclass that encapsulates GPU metrics.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxgpumetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
@@ -26,6 +28,11 @@ unsafe impl NSSecureCoding for MXGPUMetric {}
 extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXGPUMetric {
+        /// GPU time aggregated cumulatively.
+        ///
+        /// The data here represents the total GPU time an application consumed over the date range of the containing payload.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other cumulativeGPUTime)]
         pub unsafe fn cumulativeGPUTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
     }

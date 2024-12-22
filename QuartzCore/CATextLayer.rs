@@ -45,6 +45,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`string`][Self::string].
         #[method(setString:)]
         pub unsafe fn setString(&self, string: Option<&AnyObject>);
 
@@ -53,6 +54,7 @@ extern_methods!(
         pub unsafe fn font(&self) -> CFTypeRef;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`font`][Self::font].
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: CFTypeRef);
 
@@ -61,6 +63,7 @@ extern_methods!(
         pub unsafe fn fontSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`fontSize`][Self::fontSize].
         #[method(setFontSize:)]
         pub unsafe fn setFontSize(&self, font_size: CGFloat);
 
@@ -69,30 +72,35 @@ extern_methods!(
         pub unsafe fn foregroundColor(&self) -> CGColorRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`foregroundColor`][Self::foregroundColor].
         #[method(setForegroundColor:)]
         pub unsafe fn setForegroundColor(&self, foreground_color: CGColorRef);
 
         #[method(isWrapped)]
         pub unsafe fn isWrapped(&self) -> bool;
 
+        /// Setter for [`isWrapped`][Self::isWrapped].
         #[method(setWrapped:)]
         pub unsafe fn setWrapped(&self, wrapped: bool);
 
         #[method_id(@__retain_semantics Other truncationMode)]
         pub unsafe fn truncationMode(&self) -> Retained<CATextLayerTruncationMode>;
 
+        /// Setter for [`truncationMode`][Self::truncationMode].
         #[method(setTruncationMode:)]
         pub unsafe fn setTruncationMode(&self, truncation_mode: &CATextLayerTruncationMode);
 
         #[method_id(@__retain_semantics Other alignmentMode)]
         pub unsafe fn alignmentMode(&self) -> Retained<CATextLayerAlignmentMode>;
 
+        /// Setter for [`alignmentMode`][Self::alignmentMode].
         #[method(setAlignmentMode:)]
         pub unsafe fn setAlignmentMode(&self, alignment_mode: &CATextLayerAlignmentMode);
 
         #[method(allowsFontSubpixelQuantization)]
         pub unsafe fn allowsFontSubpixelQuantization(&self) -> bool;
 
+        /// Setter for [`allowsFontSubpixelQuantization`][Self::allowsFontSubpixelQuantization].
         #[method(setAllowsFontSubpixelQuantization:)]
         pub unsafe fn setAllowsFontSubpixelQuantization(
             &self,
@@ -105,6 +113,7 @@ extern_methods!(
     /// Methods declared on superclass `CALayer`
     #[cfg(feature = "CALayer")]
     unsafe impl CATextLayer {
+        /// Layer creation and initialization. *
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 

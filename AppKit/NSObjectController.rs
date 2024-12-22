@@ -49,6 +49,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other content)]
         pub unsafe fn content(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`content`][Self::content].
         #[method(setContent:)]
         pub unsafe fn setContent(&self, content: Option<&AnyObject>);
 
@@ -61,6 +62,7 @@ extern_methods!(
         #[method(automaticallyPreparesContent)]
         pub unsafe fn automaticallyPreparesContent(&self) -> bool;
 
+        /// Setter for [`automaticallyPreparesContent`][Self::automaticallyPreparesContent].
         #[method(setAutomaticallyPreparesContent:)]
         pub unsafe fn setAutomaticallyPreparesContent(&self, automatically_prepares_content: bool);
 
@@ -70,6 +72,7 @@ extern_methods!(
         #[method(objectClass)]
         pub unsafe fn objectClass(&self) -> Option<&'static AnyClass>;
 
+        /// Setter for [`objectClass`][Self::objectClass].
         #[method(setObjectClass:)]
         pub unsafe fn setObjectClass(&self, object_class: Option<&AnyClass>);
 
@@ -85,6 +88,7 @@ extern_methods!(
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        /// Setter for [`isEditable`][Self::isEditable].
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
@@ -138,6 +142,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
+        /// Setter for [`managedObjectContext`][Self::managedObjectContext].
         #[method(setManagedObjectContext:)]
         pub unsafe fn setManagedObjectContext(
             &self,
@@ -147,12 +152,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other entityName)]
         pub unsafe fn entityName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`entityName`][Self::entityName].
         #[method(setEntityName:)]
         pub unsafe fn setEntityName(&self, entity_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other fetchPredicate)]
         pub unsafe fn fetchPredicate(&self) -> Option<Retained<NSPredicate>>;
 
+        /// Setter for [`fetchPredicate`][Self::fetchPredicate].
         #[method(setFetchPredicate:)]
         pub unsafe fn setFetchPredicate(&self, fetch_predicate: Option<&NSPredicate>);
 
@@ -171,6 +178,7 @@ extern_methods!(
         #[method(usesLazyFetching)]
         pub unsafe fn usesLazyFetching(&self) -> bool;
 
+        /// Setter for [`usesLazyFetching`][Self::usesLazyFetching].
         #[method(setUsesLazyFetching:)]
         pub unsafe fn setUsesLazyFetching(&self, uses_lazy_fetching: bool);
 

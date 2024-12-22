@@ -7,9 +7,20 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotocolclient?language=objc)
+    /// NSURLProtocolClient provides the interface to the URL
+    /// loading system that is intended for use by NSURLProtocol
+    /// implementors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotocolclient?language=objc)
     pub unsafe trait NSURLProtocolClient: NSObjectProtocol {
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
+        /// Indicates to an NSURLProtocolClient that a redirect has
+        /// occurred.
+        ///
+        /// Parameter `protocol`: the NSURLProtocol object sending the message.
+        ///
+        /// Parameter `request`: the NSURLRequest to which the protocol implementation
+        /// has redirected.
         #[method(URLProtocol:wasRedirectedToRequest:redirectResponse:)]
         unsafe fn URLProtocol_wasRedirectedToRequest_redirectResponse(
             &self,
@@ -19,6 +30,14 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSURLCache")]
+        /// Indicates to an NSURLProtocolClient that the protocol
+        /// implementation has examined a cached response and has
+        /// determined that it is valid.
+        ///
+        /// Parameter `protocol`: the NSURLProtocol object sending the message.
+        ///
+        /// Parameter `cachedResponse`: the NSCachedURLResponse object that has
+        /// examined and is valid.
         #[method(URLProtocol:cachedResponseIsValid:)]
         unsafe fn URLProtocol_cachedResponseIsValid(
             &self,
@@ -27,6 +46,17 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSURLCache", feature = "NSURLResponse"))]
+        /// Indicates to an NSURLProtocolClient that the protocol
+        /// implementation has created an NSURLResponse for the current load.
+        ///
+        /// Parameter `protocol`: the NSURLProtocol object sending the message.
+        ///
+        /// Parameter `response`: the NSURLResponse object the protocol implementation
+        /// has created.
+        ///
+        /// Parameter `policy`: The NSURLCacheStoragePolicy the protocol
+        /// has determined should be used for the given response if the
+        /// response is to be stored in a cache.
         #[method(URLProtocol:didReceiveResponse:cacheStoragePolicy:)]
         unsafe fn URLProtocol_didReceiveResponse_cacheStoragePolicy(
             &self,
@@ -36,17 +66,47 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSData")]
+        /// Indicates to an NSURLProtocolClient that the protocol
+        /// implementation has loaded URL data.
+        ///
+        /// The data object must contain only new data loaded since
+        /// the previous call to this method (if any), not cumulative data for
+        /// the entire load.
+        ///
+        /// Parameter `protocol`: the NSURLProtocol object sending the message.
+        ///
+        /// Parameter `data`: URL load data being made available.
         #[method(URLProtocol:didLoadData:)]
         unsafe fn URLProtocol_didLoadData(&self, protocol: &NSURLProtocol, data: &NSData);
 
+        /// Indicates to an NSURLProtocolClient that the protocol
+        /// implementation has finished loading successfully.
+        ///
+        /// Parameter `protocol`: the NSURLProtocol object sending the message.
         #[method(URLProtocolDidFinishLoading:)]
         unsafe fn URLProtocolDidFinishLoading(&self, protocol: &NSURLProtocol);
 
         #[cfg(feature = "NSError")]
+        /// Indicates to an NSURLProtocolClient that the protocol
+        /// implementation has failed to load successfully.
+        ///
+        /// Parameter `protocol`: the NSURLProtocol object sending the message.
+        ///
+        /// Parameter `error`: The error that caused the load to fail.
         #[method(URLProtocol:didFailWithError:)]
         unsafe fn URLProtocol_didFailWithError(&self, protocol: &NSURLProtocol, error: &NSError);
 
         #[cfg(feature = "NSURLAuthenticationChallenge")]
+        /// Start authentication for the specified request
+        ///
+        /// Parameter `protocol`: The protocol object requesting authentication.
+        ///
+        /// Parameter `challenge`: The authentication challenge.
+        ///
+        /// The protocol client guarantees that it will answer the
+        /// request on the same thread that called this method. It may add a
+        /// default credential to the challenge it issues to the connection delegate,
+        /// if the protocol did not provide one.
         #[method(URLProtocol:didReceiveAuthenticationChallenge:)]
         unsafe fn URLProtocol_didReceiveAuthenticationChallenge(
             &self,
@@ -55,6 +115,11 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSURLAuthenticationChallenge")]
+        /// Cancel authentication for the specified request
+        ///
+        /// Parameter `protocol`: The protocol object cancelling authentication.
+        ///
+        /// Parameter `challenge`: The authentication challenge.
         #[method(URLProtocol:didCancelAuthenticationChallenge:)]
         unsafe fn URLProtocol_didCancelAuthenticationChallenge(
             &self,
@@ -67,7 +132,12 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotocol?language=objc)
+    /// NSURLProtocol is an abstract class which provides the
+    /// basic structure for performing protocol-specific loading of URL
+    /// data. Concrete subclasses handle the specifics associated with one
+    /// or more protocols or URL schemes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotocol?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLProtocol;
@@ -78,6 +148,19 @@ unsafe impl NSObjectProtocol for NSURLProtocol {}
 extern_methods!(
     unsafe impl NSURLProtocol {
         #[cfg(all(feature = "NSURLCache", feature = "NSURLRequest"))]
+        /// Initializes an NSURLProtocol given request,
+        /// cached response, and client.
+        ///
+        /// Parameter `request`: The request to load.
+        ///
+        /// Parameter `cachedResponse`: A response that has been retrieved from the
+        /// cache for the given request. The protocol implementation should
+        /// apply protocol-specific validity checks if such tests are
+        /// necessary.
+        ///
+        /// Parameter `client`: The NSURLProtocolClient object that serves as the
+        /// interface the protocol implementation can use to report results back
+        /// to the URL loading system.
         #[method_id(@__retain_semantics Init initWithRequest:cachedResponse:client:)]
         pub unsafe fn initWithRequest_cachedResponse_client(
             this: Allocated<Self>,
@@ -86,39 +169,107 @@ extern_methods!(
             client: Option<&ProtocolObject<dyn NSURLProtocolClient>>,
         ) -> Retained<Self>;
 
+        /// Returns the NSURLProtocolClient of the receiver.
+        ///
+        /// Returns: The NSURLProtocolClient of the receiver.
         #[method_id(@__retain_semantics Other client)]
         pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn NSURLProtocolClient>>>;
 
         #[cfg(feature = "NSURLRequest")]
+        /// Returns the NSURLRequest of the receiver.
+        ///
+        /// Returns: The NSURLRequest of the receiver.
         #[method_id(@__retain_semantics Other request)]
         pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLCache")]
+        /// Returns the NSCachedURLResponse of the receiver.
+        ///
+        /// Returns: The NSCachedURLResponse of the receiver.
         #[method_id(@__retain_semantics Other cachedResponse)]
         pub unsafe fn cachedResponse(&self) -> Option<Retained<NSCachedURLResponse>>;
 
         #[cfg(feature = "NSURLRequest")]
+        /// This method determines whether this protocol can handle
+        /// the given request.
+        ///
+        /// A concrete subclass should inspect the given request and
+        /// determine whether or not the implementation can perform a load with
+        /// that request. This is an abstract method. Subclasses must provide an
+        /// implementation.
+        ///
+        /// Parameter `request`: A request to inspect.
+        ///
+        /// Returns: YES if the protocol can handle the given request, NO if not.
         #[method(canInitWithRequest:)]
         pub unsafe fn canInitWithRequest(request: &NSURLRequest) -> bool;
 
         #[cfg(feature = "NSURLRequest")]
+        /// This method returns a canonical version of the given
+        /// request.
+        ///
+        /// It is up to each concrete protocol implementation to
+        /// define what "canonical" means. However, a protocol should
+        /// guarantee that the same input request always yields the same
+        /// canonical form. Special consideration should be given when
+        /// implementing this method since the canonical form of a request is
+        /// used to look up objects in the URL cache, a process which performs
+        /// equality checks between NSURLRequest objects.
+        /// <p>
+        /// This is an abstract method; subclasses must provide an
+        /// implementation.
+        ///
+        /// Parameter `request`: A request to make canonical.
+        ///
+        /// Returns: The canonical form of the given request.
         #[method_id(@__retain_semantics Other canonicalRequestForRequest:)]
         pub unsafe fn canonicalRequestForRequest(request: &NSURLRequest) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLRequest")]
+        /// Compares two requests for equivalence with regard to caching.
+        ///
+        /// Requests are considered equivalent for cache purposes
+        /// if and only if they would be handled by the same protocol AND that
+        /// protocol declares them equivalent after performing
+        /// implementation-specific checks.
+        ///
+        /// Returns: YES if the two requests are cache-equivalent, NO otherwise.
         #[method(requestIsCacheEquivalent:toRequest:)]
         pub unsafe fn requestIsCacheEquivalent_toRequest(
             a: &NSURLRequest,
             b: &NSURLRequest,
         ) -> bool;
 
+        /// Starts protocol-specific loading of a request.
+        ///
+        /// When this method is called, the protocol implementation
+        /// should start loading a request.
         #[method(startLoading)]
         pub unsafe fn startLoading(&self);
 
+        /// Stops protocol-specific loading of a request.
+        ///
+        /// When this method is called, the protocol implementation
+        /// should end the work of loading a request. This could be in response
+        /// to a cancel operation, so protocol implementations must be able to
+        /// handle this call while a load is in progress.
         #[method(stopLoading)]
         pub unsafe fn stopLoading(&self);
 
         #[cfg(all(feature = "NSString", feature = "NSURLRequest"))]
+        /// Returns the property in the given request previously
+        /// stored with the given key.
+        ///
+        /// The purpose of this method is to provide an interface
+        /// for protocol implementors to access protocol-specific information
+        /// associated with NSURLRequest objects.
+        ///
+        /// Parameter `key`: The string to use for the property lookup.
+        ///
+        /// Parameter `request`: The request to use for the property lookup.
+        ///
+        /// Returns: The property stored with the given key, or nil if no property
+        /// had previously been stored with the given key in the given request.
         #[method_id(@__retain_semantics Other propertyForKey:inRequest:)]
         pub unsafe fn propertyForKey_inRequest(
             key: &NSString,
@@ -126,6 +277,18 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSString", feature = "NSURLRequest"))]
+        /// Stores the given property in the given request using the
+        /// given key.
+        ///
+        /// The purpose of this method is to provide an interface
+        /// for protocol implementors to customize protocol-specific
+        /// information associated with NSMutableURLRequest objects.
+        ///
+        /// Parameter `value`: The property to store.
+        ///
+        /// Parameter `key`: The string to use for the property storage.
+        ///
+        /// Parameter `request`: The request in which to store the property.
         #[method(setProperty:forKey:inRequest:)]
         pub unsafe fn setProperty_forKey_inRequest(
             value: &AnyObject,
@@ -134,12 +297,61 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSString", feature = "NSURLRequest"))]
+        /// Remove any property stored under the given key
+        ///
+        /// Like setProperty:forKey:inRequest: above, the purpose of this
+        /// method is to give protocol implementors the ability to store
+        /// protocol-specific information in an NSURLRequest
+        ///
+        /// Parameter `key`: The key whose value should be removed
+        ///
+        /// Parameter `request`: The request to be modified
         #[method(removePropertyForKey:inRequest:)]
         pub unsafe fn removePropertyForKey_inRequest(key: &NSString, request: &NSMutableURLRequest);
 
+        /// This method registers a protocol class, making it visible
+        /// to several other NSURLProtocol class methods.
+        ///
+        /// When the URL loading system begins to load a request,
+        /// each protocol class that has been registered is consulted in turn to
+        /// see if it can be initialized with a given request. The first
+        /// protocol handler class to provide a YES answer to
+        /// <tt>
+        /// +canInitWithRequest:
+        /// </tt>
+        /// "wins" and that protocol
+        /// implementation is used to perform the URL load. There is no
+        /// guarantee that all registered protocol classes will be consulted.
+        /// Hence, it should be noted that registering a class places it first
+        /// on the list of classes that will be consulted in calls to
+        /// <tt>
+        /// +canInitWithRequest:
+        /// </tt>
+        /// , moving it in front of all classes
+        /// that had been registered previously.
+        /// <p>
+        /// A similar design governs the process to create the canonical form
+        /// of a request with the
+        /// <tt>
+        /// +canonicalRequestForRequest:
+        /// </tt>
+        /// class
+        /// method.
+        ///
+        /// Parameter `protocolClass`: the class to register.
+        ///
+        /// Returns: YES if the protocol was registered successfully, NO if not.
+        /// The only way that failure can occur is if the given class is not a
+        /// subclass of NSURLProtocol.
         #[method(registerClass:)]
         pub unsafe fn registerClass(protocol_class: &AnyClass) -> bool;
 
+        /// This method unregisters a protocol.
+        ///
+        /// After unregistration, a protocol class is no longer
+        /// consulted in calls to NSURLProtocol class methods.
+        ///
+        /// Parameter `protocolClass`: The class to unregister.
         #[method(unregisterClass:)]
         pub unsafe fn unregisterClass(protocol_class: &AnyClass);
     }

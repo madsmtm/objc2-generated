@@ -9,7 +9,12 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraystridedslice?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// Extracts a subset of the source array using the specified slice strides.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraystridedslice?language=objc)
     #[unsafe(super(
         MPSNDArrayUnaryKernel,
         MPSNDArrayMultiaryKernel,
@@ -43,10 +48,12 @@ extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
     unsafe impl MPSNDArrayStridedSlice {
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// The strides to use when slicing the input array.
         #[method(strides)]
         pub unsafe fn strides(&self) -> MPSNDArrayOffsets;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// Setter for [`strides`][Self::strides].
         #[method(setStrides:)]
         pub unsafe fn setStrides(&self, strides: MPSNDArrayOffsets);
     }
@@ -82,6 +89,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
     unsafe impl MPSNDArrayStridedSlice {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -103,7 +118,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraystridedslicegradient?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// Perform the gradient operation corresponding to a strided slice.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraystridedslicegradient?language=objc)
     #[unsafe(super(
         MPSNDArrayUnaryGradientKernel,
         MPSNDArrayMultiaryGradientKernel,
@@ -182,6 +202,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
     unsafe impl MPSNDArrayStridedSliceGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

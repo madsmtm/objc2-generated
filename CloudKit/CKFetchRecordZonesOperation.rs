@@ -39,6 +39,7 @@ extern_methods!(
         pub unsafe fn recordZoneIDs(&self) -> Option<Retained<NSArray<CKRecordZoneID>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// Setter for [`recordZoneIDs`][Self::recordZoneIDs].
         #[method(setRecordZoneIDs:)]
         pub unsafe fn setRecordZoneIDs(&self, record_zone_i_ds: Option<&NSArray<CKRecordZoneID>>);
 
@@ -47,6 +48,13 @@ extern_methods!(
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
+        /// Called on success or failure for each record zone.
+        ///
+        ///
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perRecordZoneCompletionBlock)]
         pub unsafe fn perRecordZoneCompletionBlock(
             &self,
@@ -57,6 +65,7 @@ extern_methods!(
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
+        /// Setter for [`perRecordZoneCompletionBlock`][Self::perRecordZoneCompletionBlock].
         #[method(setPerRecordZoneCompletionBlock:)]
         pub unsafe fn setPerRecordZoneCompletionBlock(
             &self,
@@ -70,6 +79,25 @@ extern_methods!(
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
+        /// This block is called when the operation completes.
+        ///
+        ///
+        /// The
+        ///
+        /// ```text
+        ///  -[NSOperation completionBlock]
+        /// ```
+        ///
+        /// will also be called if both are set.
+        /// If the error is
+        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of zoneIDs to errors keyed off of
+        /// `CKPartialErrorsByItemIDKey.``recordZonesByZoneID`and any
+        /// `CKPartialErrorsByItemIDKey`errors are repeats of the data sent back in previous
+        /// `perRecordZoneCompletionBlock`invocations
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(fetchRecordZonesCompletionBlock)]
         pub unsafe fn fetchRecordZonesCompletionBlock(
             &self,
@@ -80,6 +108,7 @@ extern_methods!(
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
+        /// Setter for [`fetchRecordZonesCompletionBlock`][Self::fetchRecordZonesCompletionBlock].
         #[method(setFetchRecordZonesCompletionBlock:)]
         pub unsafe fn setFetchRecordZonesCompletionBlock(
             &self,

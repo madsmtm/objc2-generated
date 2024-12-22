@@ -9,7 +9,14 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygathergradientstate?language=objc)
+    /// at the time an -encode call was made.
+    ///
+    /// Must be created with the appropriate MPSNDArray kernel method, for example:
+    ///
+    /// MPSNDArrayGather* gather = [[MPSNDArrayGather alloc] initWithDevice: device];
+    /// MPSNDArrayGatherGradientState* state = [gather resultStateForSourceArrays:...];
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygathergradientstate?language=objc)
     #[unsafe(super(MPSNDArrayGradientState, MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSNDArrayGradientState", feature = "MPSState"))]
@@ -28,18 +35,31 @@ extern_methods!(
     /// Methods declared on superclass `MPSState`
     #[cfg(all(feature = "MPSNDArrayGradientState", feature = "MPSState"))]
     unsafe impl MPSNDArrayGatherGradientState {
+        /// Create a MPSState holding a temporary MTLBuffer
+        ///
+        /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
+        ///
+        /// Parameter `bufferSize`: The size of the buffer in bytes
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:bufferSize:)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             buffer_size: usize,
         ) -> Retained<Self>;
 
+        /// Create a MPSState holding a temporary MTLTexture
+        ///
+        /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
+        ///
+        /// Parameter `descriptor`: A descriptor for the new temporary texture
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:textureDescriptor:)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor: &MTLTextureDescriptor,
         ) -> Retained<Self>;
 
+        /// Create a new autoreleased temporary state object without underlying resource
+        ///
+        /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -59,6 +79,9 @@ extern_methods!(
             descriptor: &MTLTextureDescriptor,
         ) -> Retained<Self>;
 
+        /// Create a MPSState with a non-temporary MTLResource
+        ///
+        /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
         #[method_id(@__retain_semantics Init initWithResource:)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
@@ -68,6 +91,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
+        /// Initialize a non-temporary state to hold a number of textures and buffers
+        ///
+        /// The allocation of each resource will be deferred  until it is needed.
+        /// This occurs when -resource or -resourceAtIndex: is called.
+        ///
+        /// Parameter `resourceList`: The list of resources to create.
         #[method_id(@__retain_semantics Init initWithDevice:resourceList:)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
@@ -75,12 +104,21 @@ extern_methods!(
             resource_list: &MPSStateResourceList,
         ) -> Retained<Self>;
 
+        /// Initialize a temporary state to hold a number of textures and buffers
+        ///
+        /// The textures occur first in sequence
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:resourceList:)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             resource_list: &MPSStateResourceList,
         ) -> Retained<Self>;
 
+        /// Create a state object with a list of MTLResources
+        ///
+        /// Because MPS prefers deferred allocation of resources
+        /// your application should use -initWithTextures:bufferSizes:bufferCount:
+        /// whenever possible. This method is useful for cases when the
+        /// MTLResources must be initialized by the CPU.
         #[method_id(@__retain_semantics Init initWithResources:)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
@@ -99,7 +137,27 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygather?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// Applies a gather operation along a given axis.  The encoded primary source array
+    /// contains the data and the secondary array is a 1-D MPSNDArray containing the
+    /// indices.
+    ///
+    /// For each dimension other than axis
+    /// result[i] = source[i]; 0
+    /// <
+    /// = i
+    /// <
+    /// array slice length along dimension
+    /// Along the specified axis
+    /// result[i] = source[indices[i]]; 0
+    /// <
+    /// = i
+    /// <
+    /// number of indices
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygather?language=objc)
     #[unsafe(super(
         MPSNDArrayBinaryKernel,
         MPSNDArrayMultiaryKernel,
@@ -132,9 +190,12 @@ unsafe impl NSSecureCoding for MPSNDArrayGather {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
     unsafe impl MPSNDArrayGather {
+        /// The axis along which to apply the gather operation.
+        /// Defaults to zero.
         #[method(axis)]
         pub unsafe fn axis(&self) -> NSUInteger;
 
+        /// Setter for [`axis`][Self::axis].
         #[method(setAxis:)]
         pub unsafe fn setAxis(&self, axis: NSUInteger);
     }
@@ -170,6 +231,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
     unsafe impl MPSNDArrayGather {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -191,7 +260,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygathergradient?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// Applies the gradient operation corresponding to a forward gather operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygathergradient?language=objc)
     #[unsafe(super(
         MPSNDArrayBinaryPrimaryGradientKernel,
         MPSNDArrayMultiaryGradientKernel,
@@ -270,6 +344,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
     unsafe impl MPSNDArrayGatherGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

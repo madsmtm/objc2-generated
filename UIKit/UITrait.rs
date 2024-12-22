@@ -12,14 +12,20 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdefinition?language=objc)
     pub unsafe trait UITraitDefinition: MainThreadOnly {
+        /// A unique identifier string for the trait (reverse-DNS format recommended).
+        /// Allows the trait to be encoded/decoded, and to map both a Swift and Objective-C trait to the same data.
         #[optional]
         #[method_id(@__retain_semantics Other identifier)]
         unsafe fn identifier(mtm: MainThreadMarker) -> Retained<NSString>;
 
+        /// A short human-readable name for the trait, e.g. for printing and debugging output.
+        /// By default, the trait's class name is used when not implemented.
         #[optional]
         #[method_id(@__retain_semantics Other name)]
         unsafe fn name(mtm: MainThreadMarker) -> Retained<NSString>;
 
+        /// Whether the trait is used to resolve dynamic colors (or images), and changes to the trait should
+        /// automatically trigger views using dynamic colors/images to update their appearance. Default is NO.
         #[optional]
         #[method(affectsColorAppearance)]
         unsafe fn affectsColorAppearance(mtm: MainThreadMarker) -> bool;
@@ -35,6 +41,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicgfloattraitdefinition?language=objc)
     pub unsafe trait UICGFloatTraitDefinition: UITraitDefinition + MainThreadOnly {
         #[cfg(feature = "objc2-core-foundation")]
+        /// The default value for this trait in a trait collection when no value has been set.
         #[method(defaultValue)]
         unsafe fn defaultValue(mtm: MainThreadMarker) -> CGFloat;
     }
@@ -48,6 +55,7 @@ pub type UICGFloatTrait = AnyClass;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinsintegertraitdefinition?language=objc)
     pub unsafe trait UINSIntegerTraitDefinition: UITraitDefinition + MainThreadOnly {
+        /// The default value for this trait in a trait collection when no value has been set.
         #[method(defaultValue)]
         unsafe fn defaultValue(mtm: MainThreadMarker) -> NSInteger;
     }
@@ -61,6 +69,7 @@ pub type UINSIntegerTrait = AnyClass;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiobjecttraitdefinition?language=objc)
     pub unsafe trait UIObjectTraitDefinition: UITraitDefinition + MainThreadOnly {
+        /// The default value for this trait in a trait collection when no value has been set.
         #[method_id(@__retain_semantics Other defaultValue)]
         unsafe fn defaultValue(
             mtm: MainThreadMarker,

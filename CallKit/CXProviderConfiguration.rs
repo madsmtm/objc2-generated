@@ -24,49 +24,60 @@ unsafe impl NSObjectProtocol for CXProviderConfiguration {}
 
 extern_methods!(
     unsafe impl CXProviderConfiguration {
+        /// Localized name of the provider
         #[deprecated = "No longer supported"]
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
+        /// Name of resource in app's bundle to play as ringtone for incoming call
         #[method_id(@__retain_semantics Other ringtoneSound)]
         pub unsafe fn ringtoneSound(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`ringtoneSound`][Self::ringtoneSound].
         #[method(setRingtoneSound:)]
         pub unsafe fn setRingtoneSound(&self, ringtone_sound: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other iconTemplateImageData)]
         pub unsafe fn iconTemplateImageData(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`iconTemplateImageData`][Self::iconTemplateImageData].
         #[method(setIconTemplateImageData:)]
         pub unsafe fn setIconTemplateImageData(&self, icon_template_image_data: Option<&NSData>);
 
         #[method(maximumCallGroups)]
         pub unsafe fn maximumCallGroups(&self) -> NSUInteger;
 
+        /// Setter for [`maximumCallGroups`][Self::maximumCallGroups].
         #[method(setMaximumCallGroups:)]
         pub unsafe fn setMaximumCallGroups(&self, maximum_call_groups: NSUInteger);
 
         #[method(maximumCallsPerCallGroup)]
         pub unsafe fn maximumCallsPerCallGroup(&self) -> NSUInteger;
 
+        /// Setter for [`maximumCallsPerCallGroup`][Self::maximumCallsPerCallGroup].
         #[method(setMaximumCallsPerCallGroup:)]
         pub unsafe fn setMaximumCallsPerCallGroup(&self, maximum_calls_per_call_group: NSUInteger);
 
+        /// Whether this provider's calls should be included in the system's Recents list at the end of each call.
+        /// Default: YES
         #[method(includesCallsInRecents)]
         pub unsafe fn includesCallsInRecents(&self) -> bool;
 
+        /// Setter for [`includesCallsInRecents`][Self::includesCallsInRecents].
         #[method(setIncludesCallsInRecents:)]
         pub unsafe fn setIncludesCallsInRecents(&self, includes_calls_in_recents: bool);
 
         #[method(supportsVideo)]
         pub unsafe fn supportsVideo(&self) -> bool;
 
+        /// Setter for [`supportsVideo`][Self::supportsVideo].
         #[method(setSupportsVideo:)]
         pub unsafe fn setSupportsVideo(&self, supports_video: bool);
 
         #[method_id(@__retain_semantics Other supportedHandleTypes)]
         pub unsafe fn supportedHandleTypes(&self) -> Retained<NSSet<NSNumber>>;
 
+        /// Setter for [`supportedHandleTypes`][Self::supportedHandleTypes].
         #[method(setSupportedHandleTypes:)]
         pub unsafe fn setSupportedHandleTypes(&self, supported_handle_types: &NSSet<NSNumber>);
 

@@ -34,6 +34,7 @@ extern_protocol!(
 extern_category!(
     /// Category "NSCoderMethods" on [`NSObject`].
     #[doc(alias = "NSCoderMethods")]
+    /// *********    Base class        **********
     pub unsafe trait NSObjectNSCoderMethods {
         #[method(version)]
         unsafe fn version() -> NSInteger;
@@ -53,7 +54,9 @@ extern_category!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdiscardablecontent?language=objc)
+    /// *********    Discardable Content        **********
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdiscardablecontent?language=objc)
     pub unsafe trait NSDiscardableContent {
         #[method(beginContentAccess)]
         unsafe fn beginContentAccess(&self) -> bool;
@@ -82,6 +85,7 @@ extern_category!(
     unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}
 );
 
+/// *********    Object Allocation / Deallocation        ******
 #[cfg(feature = "NSZone")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSAllocateObject(

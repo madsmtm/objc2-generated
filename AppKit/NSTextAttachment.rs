@@ -80,6 +80,7 @@ unsafe impl NSTextAttachmentLayout for NSTextAttachment {}
 
 extern_methods!(
     unsafe impl NSTextAttachment {
+        /// ************************** Initialization ***************************
         #[method_id(@__retain_semantics Init initWithData:ofType:)]
         pub unsafe fn initWithData_ofType(
             this: Allocated<Self>,
@@ -93,23 +94,28 @@ extern_methods!(
             file_wrapper: Option<&NSFileWrapper>,
         ) -> Retained<Self>;
 
+        /// ************************** Content properties ***************************
         #[method_id(@__retain_semantics Other contents)]
         pub unsafe fn contents(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`contents`][Self::contents].
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&NSData>);
 
         #[method_id(@__retain_semantics Other fileType)]
         pub unsafe fn fileType(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`fileType`][Self::fileType].
         #[method(setFileType:)]
         pub unsafe fn setFileType(&self, file_type: Option<&NSString>);
 
         #[cfg(feature = "NSImage")]
+        /// ************************** Rendering/layout properties ***************************
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
@@ -118,12 +124,15 @@ extern_methods!(
         pub unsafe fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`bounds`][Self::bounds].
         #[method(setBounds:)]
         pub unsafe fn setBounds(&self, bounds: CGRect);
 
+        /// ************************** Non-image contents properties ***************************
         #[method_id(@__retain_semantics Other fileWrapper)]
         pub unsafe fn fileWrapper(&self) -> Option<Retained<NSFileWrapper>>;
 
+        /// Setter for [`fileWrapper`][Self::fileWrapper].
         #[method(setFileWrapper:)]
         pub unsafe fn setFileWrapper(&self, file_wrapper: Option<&NSFileWrapper>);
 
@@ -134,6 +143,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSTextAttachmentCellProtocol>>>;
 
         #[cfg(feature = "NSTextAttachmentCell")]
+        /// Setter for [`attachmentCell`][Self::attachmentCell].
         #[method(setAttachmentCell:)]
         pub unsafe fn setAttachmentCell(
             &self,
@@ -145,6 +155,7 @@ extern_methods!(
         pub unsafe fn lineLayoutPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`lineLayoutPadding`][Self::lineLayoutPadding].
         #[method(setLineLayoutPadding:)]
         pub unsafe fn setLineLayoutPadding(&self, line_layout_padding: CGFloat);
 
@@ -162,6 +173,7 @@ extern_methods!(
         #[method(allowsTextAttachmentView)]
         pub unsafe fn allowsTextAttachmentView(&self) -> bool;
 
+        /// Setter for [`allowsTextAttachmentView`][Self::allowsTextAttachmentView].
         #[method(setAllowsTextAttachmentView:)]
         pub unsafe fn setAllowsTextAttachmentView(&self, allows_text_attachment_view: bool);
 
@@ -247,6 +259,7 @@ extern_methods!(
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// Setter for [`view`][Self::view].
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
@@ -256,6 +269,7 @@ extern_methods!(
         #[method(tracksTextAttachmentViewBounds)]
         pub unsafe fn tracksTextAttachmentViewBounds(&self) -> bool;
 
+        /// Setter for [`tracksTextAttachmentViewBounds`][Self::tracksTextAttachmentViewBounds].
         #[method(setTracksTextAttachmentViewBounds:)]
         pub unsafe fn setTracksTextAttachmentViewBounds(
             &self,

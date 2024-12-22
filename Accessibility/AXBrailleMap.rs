@@ -65,6 +65,7 @@ extern_protocol!(
         unsafe fn accessibilityBrailleMapRenderRegion(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`accessibilityBrailleMapRenderRegion`][Self::accessibilityBrailleMapRenderRegion].
         #[optional]
         #[method(setAccessibilityBrailleMapRenderRegion:)]
         unsafe fn setAccessibilityBrailleMapRenderRegion(
@@ -80,6 +81,7 @@ extern_protocol!(
         ) -> NonNull<block2::Block<dyn Fn(NonNull<AXBrailleMap>)>>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`accessibilityBrailleMapRenderer`][Self::accessibilityBrailleMapRenderer].
         #[optional]
         #[method(setAccessibilityBrailleMapRenderer:)]
         unsafe fn setAccessibilityBrailleMapRenderer(

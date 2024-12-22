@@ -22,6 +22,7 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
@@ -30,6 +31,7 @@ extern_protocol!(
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
@@ -38,12 +40,14 @@ extern_protocol!(
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
         unsafe fn setColor1(&self, color1: &CIColor);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -59,24 +63,28 @@ extern_protocol!(
         #[method(value)]
         unsafe fn value(&self) -> c_float;
 
+        /// Setter for [`value`][Self::value].
         #[method(setValue:)]
         unsafe fn setValue(&self, value: c_float);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(softness)]
         unsafe fn softness(&self) -> c_float;
 
+        /// Setter for [`softness`][Self::softness].
         #[method(setSoftness:)]
         unsafe fn setSoftness(&self, softness: c_float);
 
         #[method(dither)]
         unsafe fn dither(&self) -> c_float;
 
+        /// Setter for [`dither`][Self::dither].
         #[method(setDither:)]
         unsafe fn setDither(&self, dither: c_float);
 
@@ -85,6 +93,7 @@ extern_protocol!(
         unsafe fn colorSpace(&self) -> CGColorSpaceRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
         unsafe fn setColorSpace(&self, color_space: CGColorSpaceRef);
     }
@@ -102,6 +111,7 @@ extern_protocol!(
         unsafe fn point0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point0`][Self::point0].
         #[method(setPoint0:)]
         unsafe fn setPoint0(&self, point0: CGPoint);
 
@@ -110,6 +120,7 @@ extern_protocol!(
         unsafe fn point1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point1`][Self::point1].
         #[method(setPoint1:)]
         unsafe fn setPoint1(&self, point1: CGPoint);
 
@@ -118,6 +129,7 @@ extern_protocol!(
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
@@ -126,6 +138,7 @@ extern_protocol!(
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
         unsafe fn setColor1(&self, color1: &CIColor);
     }
@@ -143,18 +156,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius0)]
         unsafe fn radius0(&self) -> c_float;
 
+        /// Setter for [`radius0`][Self::radius0].
         #[method(setRadius0:)]
         unsafe fn setRadius0(&self, radius0: c_float);
 
         #[method(radius1)]
         unsafe fn radius1(&self) -> c_float;
 
+        /// Setter for [`radius1`][Self::radius1].
         #[method(setRadius1:)]
         unsafe fn setRadius1(&self, radius1: c_float);
 
@@ -163,6 +179,7 @@ extern_protocol!(
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
@@ -171,6 +188,7 @@ extern_protocol!(
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
         unsafe fn setColor1(&self, color1: &CIColor);
     }
@@ -188,6 +206,7 @@ extern_protocol!(
         unsafe fn point0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point0`][Self::point0].
         #[method(setPoint0:)]
         unsafe fn setPoint0(&self, point0: CGPoint);
 
@@ -196,6 +215,7 @@ extern_protocol!(
         unsafe fn point1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point1`][Self::point1].
         #[method(setPoint1:)]
         unsafe fn setPoint1(&self, point1: CGPoint);
 
@@ -204,6 +224,7 @@ extern_protocol!(
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
@@ -212,6 +233,7 @@ extern_protocol!(
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
         unsafe fn setColor1(&self, color1: &CIColor);
     }
@@ -229,18 +251,21 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(sharpness)]
         unsafe fn sharpness(&self) -> c_float;
 
+        /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -258,18 +283,21 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(intensity)]
         unsafe fn intensity(&self) -> c_float;
 
+        /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
@@ -287,6 +315,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -295,18 +324,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(sharpness)]
         unsafe fn sharpness(&self) -> c_float;
 
+        /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
@@ -324,6 +356,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -332,36 +365,42 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(sharpness)]
         unsafe fn sharpness(&self) -> c_float;
 
+        /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
 
         #[method(grayComponentReplacement)]
         unsafe fn grayComponentReplacement(&self) -> c_float;
 
+        /// Setter for [`grayComponentReplacement`][Self::grayComponentReplacement].
         #[method(setGrayComponentReplacement:)]
         unsafe fn setGrayComponentReplacement(&self, gray_component_replacement: c_float);
 
         #[method(underColorRemoval)]
         unsafe fn underColorRemoval(&self) -> c_float;
 
+        /// Setter for [`underColorRemoval`][Self::underColorRemoval].
         #[method(setUnderColorRemoval:)]
         unsafe fn setUnderColorRemoval(&self, under_color_removal: c_float);
     }
@@ -379,6 +418,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -387,24 +427,28 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(sharpness)]
         unsafe fn sharpness(&self) -> c_float;
 
+        /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
@@ -422,6 +466,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -430,24 +475,28 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(sharpness)]
         unsafe fn sharpness(&self) -> c_float;
 
+        /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
@@ -465,6 +514,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -473,24 +523,28 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(sharpness)]
         unsafe fn sharpness(&self) -> c_float;
 
+        /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
@@ -508,6 +562,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -516,6 +571,7 @@ extern_protocol!(
         unsafe fn topLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`topLeft`][Self::topLeft].
         #[method(setTopLeft:)]
         unsafe fn setTopLeft(&self, top_left: CGPoint);
 
@@ -524,6 +580,7 @@ extern_protocol!(
         unsafe fn topRight(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`topRight`][Self::topRight].
         #[method(setTopRight:)]
         unsafe fn setTopRight(&self, top_right: CGPoint);
 
@@ -532,6 +589,7 @@ extern_protocol!(
         unsafe fn bottomRight(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`bottomRight`][Self::bottomRight].
         #[method(setBottomRight:)]
         unsafe fn setBottomRight(&self, bottom_right: CGPoint);
 
@@ -540,6 +598,7 @@ extern_protocol!(
         unsafe fn bottomLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`bottomLeft`][Self::bottomLeft].
         #[method(setBottomLeft:)]
         unsafe fn setBottomLeft(&self, bottom_left: CGPoint);
     }
@@ -557,30 +616,35 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
 
         #[method(aspectRatio)]
         unsafe fn aspectRatio(&self) -> c_float;
 
+        /// Setter for [`aspectRatio`][Self::aspectRatio].
         #[method(setAspectRatio:)]
         unsafe fn setAspectRatio(&self, aspect_ratio: c_float);
 
         #[method(parameterB)]
         unsafe fn parameterB(&self) -> c_float;
 
+        /// Setter for [`parameterB`][Self::parameterB].
         #[method(setParameterB:)]
         unsafe fn setParameterB(&self, parameter_b: c_float);
 
         #[method(parameterC)]
         unsafe fn parameterC(&self) -> c_float;
 
+        /// Setter for [`parameterC`][Self::parameterC].
         #[method(setParameterC:)]
         unsafe fn setParameterC(&self, parameter_c: c_float);
     }
@@ -598,6 +662,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -606,18 +671,21 @@ extern_protocol!(
         unsafe fn smallImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`smallImage`][Self::smallImage].
         #[method(setSmallImage:)]
         unsafe fn setSmallImage(&self, small_image: Option<&CIImage>);
 
         #[method(spatialSigma)]
         unsafe fn spatialSigma(&self) -> c_float;
 
+        /// Setter for [`spatialSigma`][Self::spatialSigma].
         #[method(setSpatialSigma:)]
         unsafe fn setSpatialSigma(&self, spatial_sigma: c_float);
 
         #[method(lumaSigma)]
         unsafe fn lumaSigma(&self) -> c_float;
 
+        /// Setter for [`lumaSigma`][Self::lumaSigma].
         #[method(setLumaSigma:)]
         unsafe fn setLumaSigma(&self, luma_sigma: c_float);
     }
@@ -633,6 +701,7 @@ extern_protocol!(
         #[method(focalLength)]
         unsafe fn focalLength(&self) -> c_float;
 
+        /// Setter for [`focalLength`][Self::focalLength].
         #[method(setFocalLength:)]
         unsafe fn setFocalLength(&self, focal_length: c_float);
     }
@@ -648,6 +717,7 @@ extern_protocol!(
         #[method(focalLength)]
         unsafe fn focalLength(&self) -> c_float;
 
+        /// Setter for [`focalLength`][Self::focalLength].
         #[method(setFocalLength:)]
         unsafe fn setFocalLength(&self, focal_length: c_float);
     }
@@ -663,6 +733,7 @@ extern_protocol!(
         #[method(focalLength)]
         unsafe fn focalLength(&self) -> c_float;
 
+        /// Setter for [`focalLength`][Self::focalLength].
         #[method(setFocalLength:)]
         unsafe fn setFocalLength(&self, focal_length: c_float);
     }
@@ -680,18 +751,21 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
 
         #[method(aspectRatio)]
         unsafe fn aspectRatio(&self) -> c_float;
 
+        /// Setter for [`aspectRatio`][Self::aspectRatio].
         #[method(setAspectRatio:)]
         unsafe fn setAspectRatio(&self, aspect_ratio: c_float);
     }
@@ -709,18 +783,21 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
 
         #[method(aspectRatio)]
         unsafe fn aspectRatio(&self) -> c_float;
 
+        /// Setter for [`aspectRatio`][Self::aspectRatio].
         #[method(setAspectRatio:)]
         unsafe fn setAspectRatio(&self, aspect_ratio: c_float);
     }
@@ -736,6 +813,7 @@ extern_protocol!(
         #[method(crop)]
         unsafe fn crop(&self) -> bool;
 
+        /// Setter for [`crop`][Self::crop].
         #[method(setCrop:)]
         unsafe fn setCrop(&self, crop: bool);
     }
@@ -753,30 +831,35 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(focalLength)]
         unsafe fn focalLength(&self) -> c_float;
 
+        /// Setter for [`focalLength`][Self::focalLength].
         #[method(setFocalLength:)]
         unsafe fn setFocalLength(&self, focal_length: c_float);
 
         #[method(pitch)]
         unsafe fn pitch(&self) -> c_float;
 
+        /// Setter for [`pitch`][Self::pitch].
         #[method(setPitch:)]
         unsafe fn setPitch(&self, pitch: c_float);
 
         #[method(yaw)]
         unsafe fn yaw(&self) -> c_float;
 
+        /// Setter for [`yaw`][Self::yaw].
         #[method(setYaw:)]
         unsafe fn setYaw(&self, yaw: c_float);
 
         #[method(roll)]
         unsafe fn roll(&self) -> c_float;
 
+        /// Setter for [`roll`][Self::roll].
         #[method(setRoll:)]
         unsafe fn setRoll(&self, roll: c_float);
     }
@@ -805,6 +888,7 @@ extern_protocol!(
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
         unsafe fn setExtent(&self, extent: CGRect);
     }
@@ -822,12 +906,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
@@ -845,6 +931,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -853,12 +940,14 @@ extern_protocol!(
         unsafe fn targetImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`targetImage`][Self::targetImage].
         #[method(setTargetImage:)]
         unsafe fn setTargetImage(&self, target_image: Option<&CIImage>);
 
         #[method(time)]
         unsafe fn time(&self) -> c_float;
 
+        /// Setter for [`time`][Self::time].
         #[method(setTime:)]
         unsafe fn setTime(&self, time: c_float);
     }
@@ -874,18 +963,21 @@ extern_protocol!(
         #[method(bottomHeight)]
         unsafe fn bottomHeight(&self) -> c_float;
 
+        /// Setter for [`bottomHeight`][Self::bottomHeight].
         #[method(setBottomHeight:)]
         unsafe fn setBottomHeight(&self, bottom_height: c_float);
 
         #[method(numberOfFolds)]
         unsafe fn numberOfFolds(&self) -> c_float;
 
+        /// Setter for [`numberOfFolds`][Self::numberOfFolds].
         #[method(setNumberOfFolds:)]
         unsafe fn setNumberOfFolds(&self, number_of_folds: c_float);
 
         #[method(foldShadowAmount)]
         unsafe fn foldShadowAmount(&self) -> c_float;
 
+        /// Setter for [`foldShadowAmount`][Self::foldShadowAmount].
         #[method(setFoldShadowAmount:)]
         unsafe fn setFoldShadowAmount(&self, fold_shadow_amount: c_float);
     }
@@ -901,18 +993,21 @@ extern_protocol!(
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(barOffset)]
         unsafe fn barOffset(&self) -> c_float;
 
+        /// Setter for [`barOffset`][Self::barOffset].
         #[method(setBarOffset:)]
         unsafe fn setBarOffset(&self, bar_offset: c_float);
     }
@@ -930,6 +1025,7 @@ extern_protocol!(
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
         unsafe fn setExtent(&self, extent: CGRect);
 
@@ -938,24 +1034,28 @@ extern_protocol!(
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(opacity)]
         unsafe fn opacity(&self) -> c_float;
 
+        /// Setter for [`opacity`][Self::opacity].
         #[method(setOpacity:)]
         unsafe fn setOpacity(&self, opacity: c_float);
     }
@@ -973,18 +1073,21 @@ extern_protocol!(
         unsafe fn maskImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`maskImage`][Self::maskImage].
         #[method(setMaskImage:)]
         unsafe fn setMaskImage(&self, mask_image: Option<&CIImage>);
 
         #[method(shadowRadius)]
         unsafe fn shadowRadius(&self) -> c_float;
 
+        /// Setter for [`shadowRadius`][Self::shadowRadius].
         #[method(setShadowRadius:)]
         unsafe fn setShadowRadius(&self, shadow_radius: c_float);
 
         #[method(shadowDensity)]
         unsafe fn shadowDensity(&self) -> c_float;
 
+        /// Setter for [`shadowDensity`][Self::shadowDensity].
         #[method(setShadowDensity:)]
         unsafe fn setShadowDensity(&self, shadow_density: c_float);
 
@@ -993,6 +1096,7 @@ extern_protocol!(
         unsafe fn shadowOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`shadowOffset`][Self::shadowOffset].
         #[method(setShadowOffset:)]
         unsafe fn setShadowOffset(&self, shadow_offset: CGPoint);
     }
@@ -1019,6 +1123,7 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
@@ -1027,6 +1132,7 @@ extern_protocol!(
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
         unsafe fn setExtent(&self, extent: CGRect);
 
@@ -1035,30 +1141,35 @@ extern_protocol!(
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(maxStriationRadius)]
         unsafe fn maxStriationRadius(&self) -> c_float;
 
+        /// Setter for [`maxStriationRadius`][Self::maxStriationRadius].
         #[method(setMaxStriationRadius:)]
         unsafe fn setMaxStriationRadius(&self, max_striation_radius: c_float);
 
         #[method(striationStrength)]
         unsafe fn striationStrength(&self) -> c_float;
 
+        /// Setter for [`striationStrength`][Self::striationStrength].
         #[method(setStriationStrength:)]
         unsafe fn setStriationStrength(&self, striation_strength: c_float);
 
         #[method(striationContrast)]
         unsafe fn striationContrast(&self) -> c_float;
 
+        /// Setter for [`striationContrast`][Self::striationContrast].
         #[method(setStriationContrast:)]
         unsafe fn setStriationContrast(&self, striation_contrast: c_float);
 
         #[method(fadeThreshold)]
         unsafe fn fadeThreshold(&self) -> c_float;
 
+        /// Setter for [`fadeThreshold`][Self::fadeThreshold].
         #[method(setFadeThreshold:)]
         unsafe fn setFadeThreshold(&self, fade_threshold: c_float);
     }
@@ -1076,24 +1187,28 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(compression)]
         unsafe fn compression(&self) -> c_float;
 
+        /// Setter for [`compression`][Self::compression].
         #[method(setCompression:)]
         unsafe fn setCompression(&self, compression: c_float);
     }
@@ -1111,6 +1226,7 @@ extern_protocol!(
         unsafe fn backsideImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`backsideImage`][Self::backsideImage].
         #[method(setBacksideImage:)]
         unsafe fn setBacksideImage(&self, backside_image: Option<&CIImage>);
 
@@ -1119,6 +1235,7 @@ extern_protocol!(
         unsafe fn shadingImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`shadingImage`][Self::shadingImage].
         #[method(setShadingImage:)]
         unsafe fn setShadingImage(&self, shading_image: Option<&CIImage>);
 
@@ -1127,18 +1244,21 @@ extern_protocol!(
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -1156,6 +1276,7 @@ extern_protocol!(
         unsafe fn backsideImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`backsideImage`][Self::backsideImage].
         #[method(setBacksideImage:)]
         unsafe fn setBacksideImage(&self, backside_image: Option<&CIImage>);
 
@@ -1164,30 +1285,35 @@ extern_protocol!(
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(shadowSize)]
         unsafe fn shadowSize(&self) -> c_float;
 
+        /// Setter for [`shadowSize`][Self::shadowSize].
         #[method(setShadowSize:)]
         unsafe fn setShadowSize(&self, shadow_size: c_float);
 
         #[method(shadowAmount)]
         unsafe fn shadowAmount(&self) -> c_float;
 
+        /// Setter for [`shadowAmount`][Self::shadowAmount].
         #[method(setShadowAmount:)]
         unsafe fn setShadowAmount(&self, shadow_amount: c_float);
 
@@ -1196,6 +1322,7 @@ extern_protocol!(
         unsafe fn shadowExtent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`shadowExtent`][Self::shadowExtent].
         #[method(setShadowExtent:)]
         unsafe fn setShadowExtent(&self, shadow_extent: CGRect);
     }
@@ -1213,6 +1340,7 @@ extern_protocol!(
         unsafe fn shadingImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`shadingImage`][Self::shadingImage].
         #[method(setShadingImage:)]
         unsafe fn setShadingImage(&self, shading_image: Option<&CIImage>);
 
@@ -1221,6 +1349,7 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
@@ -1229,18 +1358,21 @@ extern_protocol!(
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
@@ -1258,6 +1390,7 @@ extern_protocol!(
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
         unsafe fn setExtent(&self, extent: CGRect);
 
@@ -1266,24 +1399,28 @@ extern_protocol!(
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(opacity)]
         unsafe fn opacity(&self) -> c_float;
 
+        /// Setter for [`opacity`][Self::opacity].
         #[method(setOpacity:)]
         unsafe fn setOpacity(&self, opacity: c_float);
     }
@@ -1301,6 +1438,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -1309,6 +1447,7 @@ extern_protocol!(
         unsafe fn backgroundImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`backgroundImage`][Self::backgroundImage].
         #[method(setBackgroundImage:)]
         unsafe fn setBackgroundImage(&self, background_image: Option<&CIImage>);
     }
@@ -1326,6 +1465,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -1334,6 +1474,7 @@ extern_protocol!(
         unsafe fn inputImage2(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage2`][Self::inputImage2].
         #[method(setInputImage2:)]
         unsafe fn setInputImage2(&self, input_image2: Option<&CIImage>);
     }
@@ -1351,6 +1492,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -1359,6 +1501,7 @@ extern_protocol!(
         unsafe fn minComponents(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`minComponents`][Self::minComponents].
         #[method(setMinComponents:)]
         unsafe fn setMinComponents(&self, min_components: &CIVector);
 
@@ -1367,6 +1510,7 @@ extern_protocol!(
         unsafe fn maxComponents(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`maxComponents`][Self::maxComponents].
         #[method(setMaxComponents:)]
         unsafe fn setMaxComponents(&self, max_components: &CIVector);
     }
@@ -1384,24 +1528,28 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(saturation)]
         unsafe fn saturation(&self) -> c_float;
 
+        /// Setter for [`saturation`][Self::saturation].
         #[method(setSaturation:)]
         unsafe fn setSaturation(&self, saturation: c_float);
 
         #[method(brightness)]
         unsafe fn brightness(&self) -> c_float;
 
+        /// Setter for [`brightness`][Self::brightness].
         #[method(setBrightness:)]
         unsafe fn setBrightness(&self, brightness: c_float);
 
         #[method(contrast)]
         unsafe fn contrast(&self) -> c_float;
 
+        /// Setter for [`contrast`][Self::contrast].
         #[method(setContrast:)]
         unsafe fn setContrast(&self, contrast: c_float);
     }
@@ -1419,6 +1567,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -1427,6 +1576,7 @@ extern_protocol!(
         unsafe fn RVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`RVector`][Self::RVector].
         #[method(setRVector:)]
         unsafe fn setRVector(&self, r_vector: &CIVector);
 
@@ -1435,6 +1585,7 @@ extern_protocol!(
         unsafe fn GVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`GVector`][Self::GVector].
         #[method(setGVector:)]
         unsafe fn setGVector(&self, g_vector: &CIVector);
 
@@ -1443,6 +1594,7 @@ extern_protocol!(
         unsafe fn BVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`BVector`][Self::BVector].
         #[method(setBVector:)]
         unsafe fn setBVector(&self, b_vector: &CIVector);
 
@@ -1451,6 +1603,7 @@ extern_protocol!(
         unsafe fn AVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`AVector`][Self::AVector].
         #[method(setAVector:)]
         unsafe fn setAVector(&self, a_vector: &CIVector);
 
@@ -1459,6 +1612,7 @@ extern_protocol!(
         unsafe fn biasVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`biasVector`][Self::biasVector].
         #[method(setBiasVector:)]
         unsafe fn setBiasVector(&self, bias_vector: &CIVector);
     }
@@ -1476,6 +1630,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -1484,6 +1639,7 @@ extern_protocol!(
         unsafe fn redCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`redCoefficients`][Self::redCoefficients].
         #[method(setRedCoefficients:)]
         unsafe fn setRedCoefficients(&self, red_coefficients: &CIVector);
 
@@ -1492,6 +1648,7 @@ extern_protocol!(
         unsafe fn greenCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`greenCoefficients`][Self::greenCoefficients].
         #[method(setGreenCoefficients:)]
         unsafe fn setGreenCoefficients(&self, green_coefficients: &CIVector);
 
@@ -1500,6 +1657,7 @@ extern_protocol!(
         unsafe fn blueCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`blueCoefficients`][Self::blueCoefficients].
         #[method(setBlueCoefficients:)]
         unsafe fn setBlueCoefficients(&self, blue_coefficients: &CIVector);
 
@@ -1508,6 +1666,7 @@ extern_protocol!(
         unsafe fn alphaCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`alphaCoefficients`][Self::alphaCoefficients].
         #[method(setAlphaCoefficients:)]
         unsafe fn setAlphaCoefficients(&self, alpha_coefficients: &CIVector);
     }
@@ -1525,12 +1684,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(threshold)]
         unsafe fn threshold(&self) -> c_float;
 
+        /// Setter for [`threshold`][Self::threshold].
         #[method(setThreshold:)]
         unsafe fn setThreshold(&self, threshold: c_float);
     }
@@ -1548,6 +1709,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -1565,6 +1727,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -1582,6 +1745,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -1599,12 +1763,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(EV)]
         unsafe fn EV(&self) -> c_float;
 
+        /// Setter for [`EV`][Self::EV].
         #[method(setEV:)]
         unsafe fn setEV(&self, ev: c_float);
     }
@@ -1622,12 +1788,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(power)]
         unsafe fn power(&self) -> c_float;
 
+        /// Setter for [`power`][Self::power].
         #[method(setPower:)]
         unsafe fn setPower(&self, power: c_float);
     }
@@ -1645,12 +1813,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
@@ -1668,6 +1838,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -1685,6 +1856,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -1702,6 +1874,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -1710,6 +1883,7 @@ extern_protocol!(
         unsafe fn neutral(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`neutral`][Self::neutral].
         #[method(setNeutral:)]
         unsafe fn setNeutral(&self, neutral: &CIVector);
 
@@ -1718,6 +1892,7 @@ extern_protocol!(
         unsafe fn targetNeutral(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`targetNeutral`][Self::targetNeutral].
         #[method(setTargetNeutral:)]
         unsafe fn setTargetNeutral(&self, target_neutral: &CIVector);
     }
@@ -1735,6 +1910,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -1743,6 +1919,7 @@ extern_protocol!(
         unsafe fn point0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point0`][Self::point0].
         #[method(setPoint0:)]
         unsafe fn setPoint0(&self, point0: CGPoint);
 
@@ -1751,6 +1928,7 @@ extern_protocol!(
         unsafe fn point1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point1`][Self::point1].
         #[method(setPoint1:)]
         unsafe fn setPoint1(&self, point1: CGPoint);
 
@@ -1759,6 +1937,7 @@ extern_protocol!(
         unsafe fn point2(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point2`][Self::point2].
         #[method(setPoint2:)]
         unsafe fn setPoint2(&self, point2: CGPoint);
 
@@ -1767,6 +1946,7 @@ extern_protocol!(
         unsafe fn point3(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point3`][Self::point3].
         #[method(setPoint3:)]
         unsafe fn setPoint3(&self, point3: CGPoint);
 
@@ -1775,6 +1955,7 @@ extern_protocol!(
         unsafe fn point4(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point4`][Self::point4].
         #[method(setPoint4:)]
         unsafe fn setPoint4(&self, point4: CGPoint);
     }
@@ -1792,18 +1973,21 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(sourceHeadroom)]
         unsafe fn sourceHeadroom(&self) -> c_float;
 
+        /// Setter for [`sourceHeadroom`][Self::sourceHeadroom].
         #[method(setSourceHeadroom:)]
         unsafe fn setSourceHeadroom(&self, source_headroom: c_float);
 
         #[method(targetHeadroom)]
         unsafe fn targetHeadroom(&self) -> c_float;
 
+        /// Setter for [`targetHeadroom`][Self::targetHeadroom].
         #[method(setTargetHeadroom:)]
         unsafe fn setTargetHeadroom(&self, target_headroom: c_float);
     }
@@ -1821,12 +2005,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(amount)]
         unsafe fn amount(&self) -> c_float;
 
+        /// Setter for [`amount`][Self::amount].
         #[method(setAmount:)]
         unsafe fn setAmount(&self, amount: c_float);
     }
@@ -1844,6 +2030,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -1852,6 +2039,7 @@ extern_protocol!(
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
     }
@@ -1869,6 +2057,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -1877,6 +2066,7 @@ extern_protocol!(
         unsafe fn redCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`redCoefficients`][Self::redCoefficients].
         #[method(setRedCoefficients:)]
         unsafe fn setRedCoefficients(&self, red_coefficients: &CIVector);
 
@@ -1885,6 +2075,7 @@ extern_protocol!(
         unsafe fn greenCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`greenCoefficients`][Self::greenCoefficients].
         #[method(setGreenCoefficients:)]
         unsafe fn setGreenCoefficients(&self, green_coefficients: &CIVector);
 
@@ -1893,6 +2084,7 @@ extern_protocol!(
         unsafe fn blueCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`blueCoefficients`][Self::blueCoefficients].
         #[method(setBlueCoefficients:)]
         unsafe fn setBlueCoefficients(&self, blue_coefficients: &CIVector);
     }
@@ -1910,24 +2102,28 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(cubeDimension)]
         unsafe fn cubeDimension(&self) -> c_float;
 
+        /// Setter for [`cubeDimension`][Self::cubeDimension].
         #[method(setCubeDimension:)]
         unsafe fn setCubeDimension(&self, cube_dimension: c_float);
 
         #[method_id(@__retain_semantics Other cubeData)]
         unsafe fn cubeData(&self) -> Retained<NSData>;
 
+        /// Setter for [`cubeData`][Self::cubeData].
         #[method(setCubeData:)]
         unsafe fn setCubeData(&self, cube_data: &NSData);
 
         #[method(extrapolate)]
         unsafe fn extrapolate(&self) -> bool;
 
+        /// Setter for [`extrapolate`][Self::extrapolate].
         #[method(setExtrapolate:)]
         unsafe fn setExtrapolate(&self, extrapolate: bool);
     }
@@ -1945,6 +2141,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -1953,24 +2150,28 @@ extern_protocol!(
         unsafe fn maskImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`maskImage`][Self::maskImage].
         #[method(setMaskImage:)]
         unsafe fn setMaskImage(&self, mask_image: Option<&CIImage>);
 
         #[method(cubeDimension)]
         unsafe fn cubeDimension(&self) -> c_float;
 
+        /// Setter for [`cubeDimension`][Self::cubeDimension].
         #[method(setCubeDimension:)]
         unsafe fn setCubeDimension(&self, cube_dimension: c_float);
 
         #[method_id(@__retain_semantics Other cube0Data)]
         unsafe fn cube0Data(&self) -> Retained<NSData>;
 
+        /// Setter for [`cube0Data`][Self::cube0Data].
         #[method(setCube0Data:)]
         unsafe fn setCube0Data(&self, cube0_data: &NSData);
 
         #[method_id(@__retain_semantics Other cube1Data)]
         unsafe fn cube1Data(&self) -> Retained<NSData>;
 
+        /// Setter for [`cube1Data`][Self::cube1Data].
         #[method(setCube1Data:)]
         unsafe fn setCube1Data(&self, cube1_data: &NSData);
 
@@ -1979,12 +2180,14 @@ extern_protocol!(
         unsafe fn colorSpace(&self) -> CGColorSpaceRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
         unsafe fn setColorSpace(&self, color_space: CGColorSpaceRef);
 
         #[method(extrapolate)]
         unsafe fn extrapolate(&self) -> bool;
 
+        /// Setter for [`extrapolate`][Self::extrapolate].
         #[method(setExtrapolate:)]
         unsafe fn setExtrapolate(&self, extrapolate: bool);
     }
@@ -2002,18 +2205,21 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(cubeDimension)]
         unsafe fn cubeDimension(&self) -> c_float;
 
+        /// Setter for [`cubeDimension`][Self::cubeDimension].
         #[method(setCubeDimension:)]
         unsafe fn setCubeDimension(&self, cube_dimension: c_float);
 
         #[method_id(@__retain_semantics Other cubeData)]
         unsafe fn cubeData(&self) -> Retained<NSData>;
 
+        /// Setter for [`cubeData`][Self::cubeData].
         #[method(setCubeData:)]
         unsafe fn setCubeData(&self, cube_data: &NSData);
 
@@ -2022,12 +2228,14 @@ extern_protocol!(
         unsafe fn colorSpace(&self) -> CGColorSpaceRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
         unsafe fn setColorSpace(&self, color_space: CGColorSpaceRef);
 
         #[method(extrapolate)]
         unsafe fn extrapolate(&self) -> bool;
 
+        /// Setter for [`extrapolate`][Self::extrapolate].
         #[method(setExtrapolate:)]
         unsafe fn setExtrapolate(&self, extrapolate: bool);
     }
@@ -2045,12 +2253,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method_id(@__retain_semantics Other curvesData)]
         unsafe fn curvesData(&self) -> Retained<NSData>;
 
+        /// Setter for [`curvesData`][Self::curvesData].
         #[method(setCurvesData:)]
         unsafe fn setCurvesData(&self, curves_data: &NSData);
 
@@ -2059,6 +2269,7 @@ extern_protocol!(
         unsafe fn curvesDomain(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`curvesDomain`][Self::curvesDomain].
         #[method(setCurvesDomain:)]
         unsafe fn setCurvesDomain(&self, curves_domain: &CIVector);
 
@@ -2067,6 +2278,7 @@ extern_protocol!(
         unsafe fn colorSpace(&self) -> CGColorSpaceRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
         unsafe fn setColorSpace(&self, color_space: CGColorSpaceRef);
     }
@@ -2084,6 +2296,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -2101,6 +2314,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2109,6 +2323,7 @@ extern_protocol!(
         unsafe fn gradientImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`gradientImage`][Self::gradientImage].
         #[method(setGradientImage:)]
         unsafe fn setGradientImage(&self, gradient_image: Option<&CIImage>);
     }
@@ -2126,6 +2341,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2134,12 +2350,14 @@ extern_protocol!(
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(intensity)]
         unsafe fn intensity(&self) -> c_float;
 
+        /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
@@ -2157,12 +2375,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(levels)]
         unsafe fn levels(&self) -> c_float;
 
+        /// Setter for [`levels`][Self::levels].
         #[method(setLevels:)]
         unsafe fn setLevels(&self, levels: c_float);
     }
@@ -2180,12 +2400,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(normalize)]
         unsafe fn normalize(&self) -> bool;
 
+        /// Setter for [`normalize`][Self::normalize].
         #[method(setNormalize:)]
         unsafe fn setNormalize(&self, normalize: bool);
     }
@@ -2203,12 +2425,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(intensity)]
         unsafe fn intensity(&self) -> c_float;
 
+        /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
@@ -2226,12 +2450,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(amount)]
         unsafe fn amount(&self) -> c_float;
 
+        /// Setter for [`amount`][Self::amount].
         #[method(setAmount:)]
         unsafe fn setAmount(&self, amount: c_float);
     }
@@ -2249,6 +2475,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2257,6 +2484,7 @@ extern_protocol!(
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
@@ -2265,6 +2493,7 @@ extern_protocol!(
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
         unsafe fn setColor1(&self, color1: &CIColor);
     }
@@ -2282,6 +2511,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2290,6 +2520,7 @@ extern_protocol!(
         unsafe fn image2(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`image2`][Self::image2].
         #[method(setImage2:)]
         unsafe fn setImage2(&self, image2: Option<&CIImage>);
     }
@@ -2307,6 +2538,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -2324,6 +2556,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -2341,6 +2574,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -2358,6 +2592,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2366,12 +2601,14 @@ extern_protocol!(
         unsafe fn paletteImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`paletteImage`][Self::paletteImage].
         #[method(setPaletteImage:)]
         unsafe fn setPaletteImage(&self, palette_image: Option<&CIImage>);
 
         #[method(perceptual)]
         unsafe fn perceptual(&self) -> bool;
 
+        /// Setter for [`perceptual`][Self::perceptual].
         #[method(setPerceptual:)]
         unsafe fn setPerceptual(&self, perceptual: bool);
     }
@@ -2389,6 +2626,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2397,12 +2635,14 @@ extern_protocol!(
         unsafe fn paletteImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`paletteImage`][Self::paletteImage].
         #[method(setPaletteImage:)]
         unsafe fn setPaletteImage(&self, palette_image: Option<&CIImage>);
 
         #[method(perceptual)]
         unsafe fn perceptual(&self) -> bool;
 
+        /// Setter for [`perceptual`][Self::perceptual].
         #[method(setPerceptual:)]
         unsafe fn setPerceptual(&self, perceptual: bool);
     }
@@ -2420,12 +2660,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(extrapolate)]
         unsafe fn extrapolate(&self) -> bool;
 
+        /// Setter for [`extrapolate`][Self::extrapolate].
         #[method(setExtrapolate:)]
         unsafe fn setExtrapolate(&self, extrapolate: bool);
     }
@@ -2443,12 +2685,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(intensity)]
         unsafe fn intensity(&self) -> c_float;
 
+        /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
@@ -2466,6 +2710,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -2483,18 +2728,21 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(intensity)]
         unsafe fn intensity(&self) -> c_float;
 
+        /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -2512,6 +2760,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2520,24 +2769,28 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(intensity)]
         unsafe fn intensity(&self) -> c_float;
 
+        /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
 
         #[method(falloff)]
         unsafe fn falloff(&self) -> c_float;
 
+        /// Setter for [`falloff`][Self::falloff].
         #[method(setFalloff:)]
         unsafe fn setFalloff(&self, falloff: c_float);
     }
@@ -2555,6 +2808,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -2572,6 +2826,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2580,18 +2835,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
@@ -2609,6 +2867,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2617,24 +2876,28 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
@@ -2652,6 +2915,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2660,12 +2924,14 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -2683,6 +2949,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2691,18 +2958,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
@@ -2720,6 +2990,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2728,12 +2999,14 @@ extern_protocol!(
         unsafe fn displacementImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`displacementImage`][Self::displacementImage].
         #[method(setDisplacementImage:)]
         unsafe fn setDisplacementImage(&self, displacement_image: Option<&CIImage>);
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
@@ -2751,6 +3024,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2759,6 +3033,7 @@ extern_protocol!(
         unsafe fn insetPoint0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`insetPoint0`][Self::insetPoint0].
         #[method(setInsetPoint0:)]
         unsafe fn setInsetPoint0(&self, inset_point0: CGPoint);
 
@@ -2767,30 +3042,35 @@ extern_protocol!(
         unsafe fn insetPoint1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`insetPoint1`][Self::insetPoint1].
         #[method(setInsetPoint1:)]
         unsafe fn setInsetPoint1(&self, inset_point1: CGPoint);
 
         #[method(strands)]
         unsafe fn strands(&self) -> c_float;
 
+        /// Setter for [`strands`][Self::strands].
         #[method(setStrands:)]
         unsafe fn setStrands(&self, strands: c_float);
 
         #[method(periodicity)]
         unsafe fn periodicity(&self) -> c_float;
 
+        /// Setter for [`periodicity`][Self::periodicity].
         #[method(setPeriodicity:)]
         unsafe fn setPeriodicity(&self, periodicity: c_float);
 
         #[method(rotation)]
         unsafe fn rotation(&self) -> c_float;
 
+        /// Setter for [`rotation`][Self::rotation].
         #[method(setRotation:)]
         unsafe fn setRotation(&self, rotation: c_float);
 
         #[method(zoom)]
         unsafe fn zoom(&self) -> c_float;
 
+        /// Setter for [`zoom`][Self::zoom].
         #[method(setZoom:)]
         unsafe fn setZoom(&self, zoom: c_float);
     }
@@ -2808,6 +3088,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2816,6 +3097,7 @@ extern_protocol!(
         unsafe fn textureImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`textureImage`][Self::textureImage].
         #[method(setTextureImage:)]
         unsafe fn setTextureImage(&self, texture_image: Option<&CIImage>);
 
@@ -2824,12 +3106,14 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
@@ -2847,6 +3131,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2855,6 +3140,7 @@ extern_protocol!(
         unsafe fn point0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point0`][Self::point0].
         #[method(setPoint0:)]
         unsafe fn setPoint0(&self, point0: CGPoint);
 
@@ -2863,18 +3149,21 @@ extern_protocol!(
         unsafe fn point1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point1`][Self::point1].
         #[method(setPoint1:)]
         unsafe fn setPoint1(&self, point1: CGPoint);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(refraction)]
         unsafe fn refraction(&self) -> c_float;
 
+        /// Setter for [`refraction`][Self::refraction].
         #[method(setRefraction:)]
         unsafe fn setRefraction(&self, refraction: c_float);
     }
@@ -2892,6 +3181,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2900,12 +3190,14 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -2923,6 +3215,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2931,18 +3224,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(rotation)]
         unsafe fn rotation(&self) -> c_float;
 
+        /// Setter for [`rotation`][Self::rotation].
         #[method(setRotation:)]
         unsafe fn setRotation(&self, rotation: c_float);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -2960,6 +3256,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -2968,6 +3265,7 @@ extern_protocol!(
         unsafe fn breakpoint0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`breakpoint0`][Self::breakpoint0].
         #[method(setBreakpoint0:)]
         unsafe fn setBreakpoint0(&self, breakpoint0: CGPoint);
 
@@ -2976,6 +3274,7 @@ extern_protocol!(
         unsafe fn breakpoint1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`breakpoint1`][Self::breakpoint1].
         #[method(setBreakpoint1:)]
         unsafe fn setBreakpoint1(&self, breakpoint1: CGPoint);
 
@@ -2984,6 +3283,7 @@ extern_protocol!(
         unsafe fn growAmount(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`growAmount`][Self::growAmount].
         #[method(setGrowAmount:)]
         unsafe fn setGrowAmount(&self, grow_amount: CGPoint);
     }
@@ -3001,6 +3301,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3009,6 +3310,7 @@ extern_protocol!(
         unsafe fn breakpoint0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`breakpoint0`][Self::breakpoint0].
         #[method(setBreakpoint0:)]
         unsafe fn setBreakpoint0(&self, breakpoint0: CGPoint);
 
@@ -3017,6 +3319,7 @@ extern_protocol!(
         unsafe fn breakpoint1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`breakpoint1`][Self::breakpoint1].
         #[method(setBreakpoint1:)]
         unsafe fn setBreakpoint1(&self, breakpoint1: CGPoint);
 
@@ -3025,12 +3328,14 @@ extern_protocol!(
         unsafe fn growAmount(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`growAmount`][Self::growAmount].
         #[method(setGrowAmount:)]
         unsafe fn setGrowAmount(&self, grow_amount: CGPoint);
 
         #[method(flipYTiles)]
         unsafe fn flipYTiles(&self) -> bool;
 
+        /// Setter for [`flipYTiles`][Self::flipYTiles].
         #[method(setFlipYTiles:)]
         unsafe fn setFlipYTiles(&self, flip_y_tiles: bool);
     }
@@ -3048,6 +3353,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3056,18 +3362,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
@@ -3085,6 +3394,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3093,18 +3403,21 @@ extern_protocol!(
         unsafe fn size(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         unsafe fn setSize(&self, size: CGPoint);
 
         #[method(cropAmount)]
         unsafe fn cropAmount(&self) -> c_float;
 
+        /// Setter for [`cropAmount`][Self::cropAmount].
         #[method(setCropAmount:)]
         unsafe fn setCropAmount(&self, crop_amount: c_float);
 
         #[method(centerStretchAmount)]
         unsafe fn centerStretchAmount(&self) -> c_float;
 
+        /// Setter for [`centerStretchAmount`][Self::centerStretchAmount].
         #[method(setCenterStretchAmount:)]
         unsafe fn setCenterStretchAmount(&self, center_stretch_amount: c_float);
     }
@@ -3122,6 +3435,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3130,24 +3444,28 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(refraction)]
         unsafe fn refraction(&self) -> c_float;
 
+        /// Setter for [`refraction`][Self::refraction].
         #[method(setRefraction:)]
         unsafe fn setRefraction(&self, refraction: c_float);
     }
@@ -3165,6 +3483,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3173,18 +3492,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
@@ -3202,6 +3524,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3210,18 +3533,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
@@ -3239,6 +3565,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3247,6 +3574,7 @@ extern_protocol!(
         unsafe fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`transform`][Self::transform].
         #[method(setTransform:)]
         unsafe fn setTransform(&self, transform: CGAffineTransform);
     }
@@ -3264,6 +3592,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3272,6 +3601,7 @@ extern_protocol!(
         unsafe fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`transform`][Self::transform].
         #[method(setTransform:)]
         unsafe fn setTransform(&self, transform: CGAffineTransform);
     }
@@ -3289,6 +3619,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3297,18 +3628,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
@@ -3326,6 +3660,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3334,24 +3669,28 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(acuteAngle)]
         unsafe fn acuteAngle(&self) -> c_float;
 
+        /// Setter for [`acuteAngle`][Self::acuteAngle].
         #[method(setAcuteAngle:)]
         unsafe fn setAcuteAngle(&self, acute_angle: c_float);
     }
@@ -3369,6 +3708,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3377,18 +3717,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
@@ -3406,6 +3749,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3414,24 +3758,28 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(acuteAngle)]
         unsafe fn acuteAngle(&self) -> c_float;
 
+        /// Setter for [`acuteAngle`][Self::acuteAngle].
         #[method(setAcuteAngle:)]
         unsafe fn setAcuteAngle(&self, acute_angle: c_float);
     }
@@ -3449,6 +3797,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3457,18 +3806,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
@@ -3486,12 +3838,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(count)]
         unsafe fn count(&self) -> NSInteger;
 
+        /// Setter for [`count`][Self::count].
         #[method(setCount:)]
         unsafe fn setCount(&self, count: NSInteger);
 
@@ -3500,12 +3854,14 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
@@ -3523,6 +3879,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3531,24 +3888,28 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
@@ -3566,6 +3927,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3574,24 +3936,28 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(acuteAngle)]
         unsafe fn acuteAngle(&self) -> c_float;
 
+        /// Setter for [`acuteAngle`][Self::acuteAngle].
         #[method(setAcuteAngle:)]
         unsafe fn setAcuteAngle(&self, acute_angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
@@ -3609,6 +3975,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3617,6 +3984,7 @@ extern_protocol!(
         unsafe fn topLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`topLeft`][Self::topLeft].
         #[method(setTopLeft:)]
         unsafe fn setTopLeft(&self, top_left: CGPoint);
 
@@ -3625,6 +3993,7 @@ extern_protocol!(
         unsafe fn topRight(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`topRight`][Self::topRight].
         #[method(setTopRight:)]
         unsafe fn setTopRight(&self, top_right: CGPoint);
 
@@ -3633,6 +4002,7 @@ extern_protocol!(
         unsafe fn bottomRight(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`bottomRight`][Self::bottomRight].
         #[method(setBottomRight:)]
         unsafe fn setBottomRight(&self, bottom_right: CGPoint);
 
@@ -3641,6 +4011,7 @@ extern_protocol!(
         unsafe fn bottomLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`bottomLeft`][Self::bottomLeft].
         #[method(setBottomLeft:)]
         unsafe fn setBottomLeft(&self, bottom_left: CGPoint);
     }
@@ -3658,6 +4029,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3666,18 +4038,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
@@ -3695,6 +4070,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3703,18 +4079,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
@@ -3732,6 +4111,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3740,24 +4120,28 @@ extern_protocol!(
         unsafe fn point(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point`][Self::point].
         #[method(setPoint:)]
         unsafe fn setPoint(&self, point: CGPoint);
 
         #[method(size)]
         unsafe fn size(&self) -> c_float;
 
+        /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         unsafe fn setSize(&self, size: c_float);
 
         #[method(rotation)]
         unsafe fn rotation(&self) -> c_float;
 
+        /// Setter for [`rotation`][Self::rotation].
         #[method(setRotation:)]
         unsafe fn setRotation(&self, rotation: c_float);
 
         #[method(decay)]
         unsafe fn decay(&self) -> c_float;
 
+        /// Setter for [`decay`][Self::decay].
         #[method(setDecay:)]
         unsafe fn setDecay(&self, decay: c_float);
     }
@@ -3775,6 +4159,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3783,18 +4168,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
@@ -3812,6 +4200,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -3820,18 +4209,21 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
@@ -3847,18 +4239,21 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other text)]
         unsafe fn text(&self) -> Retained<NSAttributedString>;
 
+        /// Setter for [`text`][Self::text].
         #[method(setText:)]
         unsafe fn setText(&self, text: &NSAttributedString);
 
         #[method(scaleFactor)]
         unsafe fn scaleFactor(&self) -> c_float;
 
+        /// Setter for [`scaleFactor`][Self::scaleFactor].
         #[method(setScaleFactor:)]
         unsafe fn setScaleFactor(&self, scale_factor: c_float);
 
         #[method(padding)]
         unsafe fn padding(&self) -> c_float;
 
+        /// Setter for [`padding`][Self::padding].
         #[method(setPadding:)]
         unsafe fn setPadding(&self, padding: c_float);
     }
@@ -3874,24 +4269,28 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other message)]
         unsafe fn message(&self) -> Retained<NSData>;
 
+        /// Setter for [`message`][Self::message].
         #[method(setMessage:)]
         unsafe fn setMessage(&self, message: &NSData);
 
         #[method(correctionLevel)]
         unsafe fn correctionLevel(&self) -> c_float;
 
+        /// Setter for [`correctionLevel`][Self::correctionLevel].
         #[method(setCorrectionLevel:)]
         unsafe fn setCorrectionLevel(&self, correction_level: c_float);
 
         #[method(layers)]
         unsafe fn layers(&self) -> c_float;
 
+        /// Setter for [`layers`][Self::layers].
         #[method(setLayers:)]
         unsafe fn setLayers(&self, layers: c_float);
 
         #[method(compactStyle)]
         unsafe fn compactStyle(&self) -> c_float;
 
+        /// Setter for [`compactStyle`][Self::compactStyle].
         #[method(setCompactStyle:)]
         unsafe fn setCompactStyle(&self, compact_style: c_float);
     }
@@ -3909,6 +4308,7 @@ extern_protocol!(
         unsafe fn barcodeDescriptor(&self) -> Retained<CIBarcodeDescriptor>;
 
         #[cfg(feature = "CIBarcodeDescriptor")]
+        /// Setter for [`barcodeDescriptor`][Self::barcodeDescriptor].
         #[method(setBarcodeDescriptor:)]
         unsafe fn setBarcodeDescriptor(&self, barcode_descriptor: &CIBarcodeDescriptor);
     }
@@ -3926,12 +4326,14 @@ extern_protocol!(
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[method(sigma)]
         unsafe fn sigma(&self) -> c_float;
 
+        /// Setter for [`sigma`][Self::sigma].
         #[method(setSigma:)]
         unsafe fn setSigma(&self, sigma: c_float);
 
@@ -3940,6 +4342,7 @@ extern_protocol!(
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
     }
@@ -3957,6 +4360,7 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
@@ -3965,6 +4369,7 @@ extern_protocol!(
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
@@ -3973,18 +4378,21 @@ extern_protocol!(
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
         unsafe fn setColor1(&self, color1: &CIColor);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(sharpness)]
         unsafe fn sharpness(&self) -> c_float;
 
+        /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
@@ -4000,18 +4408,21 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other message)]
         unsafe fn message(&self) -> Retained<NSData>;
 
+        /// Setter for [`message`][Self::message].
         #[method(setMessage:)]
         unsafe fn setMessage(&self, message: &NSData);
 
         #[method(quietSpace)]
         unsafe fn quietSpace(&self) -> c_float;
 
+        /// Setter for [`quietSpace`][Self::quietSpace].
         #[method(setQuietSpace:)]
         unsafe fn setQuietSpace(&self, quiet_space: c_float);
 
         #[method(barcodeHeight)]
         unsafe fn barcodeHeight(&self) -> c_float;
 
+        /// Setter for [`barcodeHeight`][Self::barcodeHeight].
         #[method(setBarcodeHeight:)]
         unsafe fn setBarcodeHeight(&self, barcode_height: c_float);
     }
@@ -4029,6 +4440,7 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
@@ -4037,42 +4449,49 @@ extern_protocol!(
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(haloRadius)]
         unsafe fn haloRadius(&self) -> c_float;
 
+        /// Setter for [`haloRadius`][Self::haloRadius].
         #[method(setHaloRadius:)]
         unsafe fn setHaloRadius(&self, halo_radius: c_float);
 
         #[method(haloWidth)]
         unsafe fn haloWidth(&self) -> c_float;
 
+        /// Setter for [`haloWidth`][Self::haloWidth].
         #[method(setHaloWidth:)]
         unsafe fn setHaloWidth(&self, halo_width: c_float);
 
         #[method(haloOverlap)]
         unsafe fn haloOverlap(&self) -> c_float;
 
+        /// Setter for [`haloOverlap`][Self::haloOverlap].
         #[method(setHaloOverlap:)]
         unsafe fn setHaloOverlap(&self, halo_overlap: c_float);
 
         #[method(striationStrength)]
         unsafe fn striationStrength(&self) -> c_float;
 
+        /// Setter for [`striationStrength`][Self::striationStrength].
         #[method(setStriationStrength:)]
         unsafe fn setStriationStrength(&self, striation_strength: c_float);
 
         #[method(striationContrast)]
         unsafe fn striationContrast(&self) -> c_float;
 
+        /// Setter for [`striationContrast`][Self::striationContrast].
         #[method(setStriationContrast:)]
         unsafe fn setStriationContrast(&self, striation_contrast: c_float);
 
         #[method(time)]
         unsafe fn time(&self) -> c_float;
 
+        /// Setter for [`time`][Self::time].
         #[method(setTime:)]
         unsafe fn setTime(&self, time: c_float);
     }
@@ -4088,6 +4507,7 @@ extern_protocol!(
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
@@ -4096,12 +4516,14 @@ extern_protocol!(
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method_id(@__retain_semantics Other mesh)]
         unsafe fn mesh(&self) -> Retained<NSArray>;
 
+        /// Setter for [`mesh`][Self::mesh].
         #[method(setMesh:)]
         unsafe fn setMesh(&self, mesh: &NSArray);
     }
@@ -4117,72 +4539,84 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other message)]
         unsafe fn message(&self) -> Retained<NSData>;
 
+        /// Setter for [`message`][Self::message].
         #[method(setMessage:)]
         unsafe fn setMessage(&self, message: &NSData);
 
         #[method(minWidth)]
         unsafe fn minWidth(&self) -> c_float;
 
+        /// Setter for [`minWidth`][Self::minWidth].
         #[method(setMinWidth:)]
         unsafe fn setMinWidth(&self, min_width: c_float);
 
         #[method(maxWidth)]
         unsafe fn maxWidth(&self) -> c_float;
 
+        /// Setter for [`maxWidth`][Self::maxWidth].
         #[method(setMaxWidth:)]
         unsafe fn setMaxWidth(&self, max_width: c_float);
 
         #[method(minHeight)]
         unsafe fn minHeight(&self) -> c_float;
 
+        /// Setter for [`minHeight`][Self::minHeight].
         #[method(setMinHeight:)]
         unsafe fn setMinHeight(&self, min_height: c_float);
 
         #[method(maxHeight)]
         unsafe fn maxHeight(&self) -> c_float;
 
+        /// Setter for [`maxHeight`][Self::maxHeight].
         #[method(setMaxHeight:)]
         unsafe fn setMaxHeight(&self, max_height: c_float);
 
         #[method(dataColumns)]
         unsafe fn dataColumns(&self) -> c_float;
 
+        /// Setter for [`dataColumns`][Self::dataColumns].
         #[method(setDataColumns:)]
         unsafe fn setDataColumns(&self, data_columns: c_float);
 
         #[method(rows)]
         unsafe fn rows(&self) -> c_float;
 
+        /// Setter for [`rows`][Self::rows].
         #[method(setRows:)]
         unsafe fn setRows(&self, rows: c_float);
 
         #[method(preferredAspectRatio)]
         unsafe fn preferredAspectRatio(&self) -> c_float;
 
+        /// Setter for [`preferredAspectRatio`][Self::preferredAspectRatio].
         #[method(setPreferredAspectRatio:)]
         unsafe fn setPreferredAspectRatio(&self, preferred_aspect_ratio: c_float);
 
         #[method(compactionMode)]
         unsafe fn compactionMode(&self) -> c_float;
 
+        /// Setter for [`compactionMode`][Self::compactionMode].
         #[method(setCompactionMode:)]
         unsafe fn setCompactionMode(&self, compaction_mode: c_float);
 
         #[method(compactStyle)]
         unsafe fn compactStyle(&self) -> c_float;
 
+        /// Setter for [`compactStyle`][Self::compactStyle].
         #[method(setCompactStyle:)]
         unsafe fn setCompactStyle(&self, compact_style: c_float);
 
         #[method(correctionLevel)]
         unsafe fn correctionLevel(&self) -> c_float;
 
+        /// Setter for [`correctionLevel`][Self::correctionLevel].
         #[method(setCorrectionLevel:)]
         unsafe fn setCorrectionLevel(&self, correction_level: c_float);
 
         #[method(alwaysSpecifyCompaction)]
         unsafe fn alwaysSpecifyCompaction(&self) -> c_float;
 
+        /// Setter for [`alwaysSpecifyCompaction`][Self::alwaysSpecifyCompaction].
         #[method(setAlwaysSpecifyCompaction:)]
         unsafe fn setAlwaysSpecifyCompaction(&self, always_specify_compaction: c_float);
     }
@@ -4198,12 +4632,14 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other message)]
         unsafe fn message(&self) -> Retained<NSData>;
 
+        /// Setter for [`message`][Self::message].
         #[method(setMessage:)]
         unsafe fn setMessage(&self, message: &NSData);
 
         #[method_id(@__retain_semantics Other correctionLevel)]
         unsafe fn correctionLevel(&self) -> Retained<NSString>;
 
+        /// Setter for [`correctionLevel`][Self::correctionLevel].
         #[method(setCorrectionLevel:)]
         unsafe fn setCorrectionLevel(&self, correction_level: &NSString);
     }
@@ -4230,12 +4666,14 @@ extern_protocol!(
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
@@ -4244,6 +4682,7 @@ extern_protocol!(
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
     }
@@ -4261,18 +4700,21 @@ extern_protocol!(
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
@@ -4281,6 +4723,7 @@ extern_protocol!(
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
     }
@@ -4298,6 +4741,7 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
@@ -4306,42 +4750,49 @@ extern_protocol!(
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(crossScale)]
         unsafe fn crossScale(&self) -> c_float;
 
+        /// Setter for [`crossScale`][Self::crossScale].
         #[method(setCrossScale:)]
         unsafe fn setCrossScale(&self, cross_scale: c_float);
 
         #[method(crossAngle)]
         unsafe fn crossAngle(&self) -> c_float;
 
+        /// Setter for [`crossAngle`][Self::crossAngle].
         #[method(setCrossAngle:)]
         unsafe fn setCrossAngle(&self, cross_angle: c_float);
 
         #[method(crossOpacity)]
         unsafe fn crossOpacity(&self) -> c_float;
 
+        /// Setter for [`crossOpacity`][Self::crossOpacity].
         #[method(setCrossOpacity:)]
         unsafe fn setCrossOpacity(&self, cross_opacity: c_float);
 
         #[method(crossWidth)]
         unsafe fn crossWidth(&self) -> c_float;
 
+        /// Setter for [`crossWidth`][Self::crossWidth].
         #[method(setCrossWidth:)]
         unsafe fn setCrossWidth(&self, cross_width: c_float);
 
         #[method(epsilon)]
         unsafe fn epsilon(&self) -> c_float;
 
+        /// Setter for [`epsilon`][Self::epsilon].
         #[method(setEpsilon:)]
         unsafe fn setEpsilon(&self, epsilon: c_float);
     }
@@ -4359,6 +4810,7 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
@@ -4367,6 +4819,7 @@ extern_protocol!(
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
@@ -4375,18 +4828,21 @@ extern_protocol!(
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
         unsafe fn setColor1(&self, color1: &CIColor);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(sharpness)]
         unsafe fn sharpness(&self) -> c_float;
 
+        /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
@@ -4404,6 +4860,7 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
@@ -4412,36 +4869,42 @@ extern_protocol!(
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(sunRadius)]
         unsafe fn sunRadius(&self) -> c_float;
 
+        /// Setter for [`sunRadius`][Self::sunRadius].
         #[method(setSunRadius:)]
         unsafe fn setSunRadius(&self, sun_radius: c_float);
 
         #[method(maxStriationRadius)]
         unsafe fn maxStriationRadius(&self) -> c_float;
 
+        /// Setter for [`maxStriationRadius`][Self::maxStriationRadius].
         #[method(setMaxStriationRadius:)]
         unsafe fn setMaxStriationRadius(&self, max_striation_radius: c_float);
 
         #[method(striationStrength)]
         unsafe fn striationStrength(&self) -> c_float;
 
+        /// Setter for [`striationStrength`][Self::striationStrength].
         #[method(setStriationStrength:)]
         unsafe fn setStriationStrength(&self, striation_strength: c_float);
 
         #[method(striationContrast)]
         unsafe fn striationContrast(&self) -> c_float;
 
+        /// Setter for [`striationContrast`][Self::striationContrast].
         #[method(setStriationContrast:)]
         unsafe fn setStriationContrast(&self, striation_contrast: c_float);
 
         #[method(time)]
         unsafe fn time(&self) -> c_float;
 
+        /// Setter for [`time`][Self::time].
         #[method(setTime:)]
         unsafe fn setTime(&self, time: c_float);
     }
@@ -4457,30 +4920,35 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other text)]
         unsafe fn text(&self) -> Retained<NSString>;
 
+        /// Setter for [`text`][Self::text].
         #[method(setText:)]
         unsafe fn setText(&self, text: &NSString);
 
         #[method_id(@__retain_semantics Other fontName)]
         unsafe fn fontName(&self) -> Retained<NSString>;
 
+        /// Setter for [`fontName`][Self::fontName].
         #[method(setFontName:)]
         unsafe fn setFontName(&self, font_name: &NSString);
 
         #[method(fontSize)]
         unsafe fn fontSize(&self) -> c_float;
 
+        /// Setter for [`fontSize`][Self::fontSize].
         #[method(setFontSize:)]
         unsafe fn setFontSize(&self, font_size: c_float);
 
         #[method(scaleFactor)]
         unsafe fn scaleFactor(&self) -> c_float;
 
+        /// Setter for [`scaleFactor`][Self::scaleFactor].
         #[method(setScaleFactor:)]
         unsafe fn setScaleFactor(&self, scale_factor: c_float);
 
         #[method(padding)]
         unsafe fn padding(&self) -> c_float;
 
+        /// Setter for [`padding`][Self::padding].
         #[method(setPadding:)]
         unsafe fn setPadding(&self, padding: c_float);
     }
@@ -4498,6 +4966,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -4506,6 +4975,7 @@ extern_protocol!(
         unsafe fn backgroundImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`backgroundImage`][Self::backgroundImage].
         #[method(setBackgroundImage:)]
         unsafe fn setBackgroundImage(&self, background_image: Option<&CIImage>);
 
@@ -4514,6 +4984,7 @@ extern_protocol!(
         unsafe fn maskImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`maskImage`][Self::maskImage].
         #[method(setMaskImage:)]
         unsafe fn setMaskImage(&self, mask_image: Option<&CIImage>);
     }
@@ -4531,18 +5002,21 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(intensity)]
         unsafe fn intensity(&self) -> c_float;
 
+        /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
@@ -4560,36 +5034,42 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(gaussianSigma)]
         unsafe fn gaussianSigma(&self) -> c_float;
 
+        /// Setter for [`gaussianSigma`][Self::gaussianSigma].
         #[method(setGaussianSigma:)]
         unsafe fn setGaussianSigma(&self, gaussian_sigma: c_float);
 
         #[method(perceptual)]
         unsafe fn perceptual(&self) -> bool;
 
+        /// Setter for [`perceptual`][Self::perceptual].
         #[method(setPerceptual:)]
         unsafe fn setPerceptual(&self, perceptual: bool);
 
         #[method(thresholdHigh)]
         unsafe fn thresholdHigh(&self) -> c_float;
 
+        /// Setter for [`thresholdHigh`][Self::thresholdHigh].
         #[method(setThresholdHigh:)]
         unsafe fn setThresholdHigh(&self, threshold_high: c_float);
 
         #[method(thresholdLow)]
         unsafe fn thresholdLow(&self) -> c_float;
 
+        /// Setter for [`thresholdLow`][Self::thresholdLow].
         #[method(setThresholdLow:)]
         unsafe fn setThresholdLow(&self, threshold_low: c_float);
 
         #[method(hysteresisPasses)]
         unsafe fn hysteresisPasses(&self) -> NSInteger;
 
+        /// Setter for [`hysteresisPasses`][Self::hysteresisPasses].
         #[method(setHysteresisPasses:)]
         unsafe fn setHysteresisPasses(&self, hysteresis_passes: NSInteger);
     }
@@ -4607,6 +5087,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -4624,6 +5105,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -4632,12 +5114,14 @@ extern_protocol!(
         unsafe fn weights(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`weights`][Self::weights].
         #[method(setWeights:)]
         unsafe fn setWeights(&self, weights: &CIVector);
 
         #[method(bias)]
         unsafe fn bias(&self) -> c_float;
 
+        /// Setter for [`bias`][Self::bias].
         #[method(setBias:)]
         unsafe fn setBias(&self, bias: c_float);
     }
@@ -4655,6 +5139,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -4663,18 +5148,21 @@ extern_protocol!(
         unsafe fn model(&self) -> Retained<MLModel>;
 
         #[cfg(feature = "objc2-core-ml")]
+        /// Setter for [`model`][Self::model].
         #[method(setModel:)]
         unsafe fn setModel(&self, model: &MLModel);
 
         #[method(headIndex)]
         unsafe fn headIndex(&self) -> c_float;
 
+        /// Setter for [`headIndex`][Self::headIndex].
         #[method(setHeadIndex:)]
         unsafe fn setHeadIndex(&self, head_index: c_float);
 
         #[method(softmaxNormalization)]
         unsafe fn softmaxNormalization(&self) -> bool;
 
+        /// Setter for [`softmaxNormalization`][Self::softmaxNormalization].
         #[method(setSoftmaxNormalization:)]
         unsafe fn setSoftmaxNormalization(&self, softmax_normalization: bool);
     }
@@ -4692,12 +5180,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
@@ -4706,6 +5196,7 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
     }
@@ -4723,6 +5214,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -4731,6 +5223,7 @@ extern_protocol!(
         unsafe fn point0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point0`][Self::point0].
         #[method(setPoint0:)]
         unsafe fn setPoint0(&self, point0: CGPoint);
 
@@ -4739,30 +5232,35 @@ extern_protocol!(
         unsafe fn point1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`point1`][Self::point1].
         #[method(setPoint1:)]
         unsafe fn setPoint1(&self, point1: CGPoint);
 
         #[method(saturation)]
         unsafe fn saturation(&self) -> c_float;
 
+        /// Setter for [`saturation`][Self::saturation].
         #[method(setSaturation:)]
         unsafe fn setSaturation(&self, saturation: c_float);
 
         #[method(unsharpMaskRadius)]
         unsafe fn unsharpMaskRadius(&self) -> c_float;
 
+        /// Setter for [`unsharpMaskRadius`][Self::unsharpMaskRadius].
         #[method(setUnsharpMaskRadius:)]
         unsafe fn setUnsharpMaskRadius(&self, unsharp_mask_radius: c_float);
 
         #[method(unsharpMaskIntensity)]
         unsafe fn unsharpMaskIntensity(&self) -> c_float;
 
+        /// Setter for [`unsharpMaskIntensity`][Self::unsharpMaskIntensity].
         #[method(setUnsharpMaskIntensity:)]
         unsafe fn setUnsharpMaskIntensity(&self, unsharp_mask_intensity: c_float);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -4780,12 +5278,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(intensity)]
         unsafe fn intensity(&self) -> c_float;
 
+        /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
@@ -4803,12 +5303,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -4826,6 +5328,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -4843,18 +5346,21 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(intensity)]
         unsafe fn intensity(&self) -> c_float;
 
+        /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
@@ -4872,12 +5378,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -4895,6 +5403,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -4903,12 +5412,14 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
@@ -4926,24 +5437,28 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(shadowAmount)]
         unsafe fn shadowAmount(&self) -> c_float;
 
+        /// Setter for [`shadowAmount`][Self::shadowAmount].
         #[method(setShadowAmount:)]
         unsafe fn setShadowAmount(&self, shadow_amount: c_float);
 
         #[method(highlightAmount)]
         unsafe fn highlightAmount(&self) -> c_float;
 
+        /// Setter for [`highlightAmount`][Self::highlightAmount].
         #[method(setHighlightAmount:)]
         unsafe fn setHighlightAmount(&self, highlight_amount: c_float);
     }
@@ -4961,36 +5476,42 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(NRNoiseLevel)]
         unsafe fn NRNoiseLevel(&self) -> c_float;
 
+        /// Setter for [`NRNoiseLevel`][Self::NRNoiseLevel].
         #[method(setNRNoiseLevel:)]
         unsafe fn setNRNoiseLevel(&self, nr_noise_level: c_float);
 
         #[method(NRSharpness)]
         unsafe fn NRSharpness(&self) -> c_float;
 
+        /// Setter for [`NRSharpness`][Self::NRSharpness].
         #[method(setNRSharpness:)]
         unsafe fn setNRSharpness(&self, nr_sharpness: c_float);
 
         #[method(edgeIntensity)]
         unsafe fn edgeIntensity(&self) -> c_float;
 
+        /// Setter for [`edgeIntensity`][Self::edgeIntensity].
         #[method(setEdgeIntensity:)]
         unsafe fn setEdgeIntensity(&self, edge_intensity: c_float);
 
         #[method(threshold)]
         unsafe fn threshold(&self) -> c_float;
 
+        /// Setter for [`threshold`][Self::threshold].
         #[method(setThreshold:)]
         unsafe fn setThreshold(&self, threshold: c_float);
 
         #[method(contrast)]
         unsafe fn contrast(&self) -> c_float;
 
+        /// Setter for [`contrast`][Self::contrast].
         #[method(setContrast:)]
         unsafe fn setContrast(&self, contrast: c_float);
     }
@@ -5008,6 +5529,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -5016,12 +5538,14 @@ extern_protocol!(
         unsafe fn backgroundImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`backgroundImage`][Self::backgroundImage].
         #[method(setBackgroundImage:)]
         unsafe fn setBackgroundImage(&self, background_image: Option<&CIImage>);
 
         #[method(amount)]
         unsafe fn amount(&self) -> c_float;
 
+        /// Setter for [`amount`][Self::amount].
         #[method(setAmount:)]
         unsafe fn setAmount(&self, amount: c_float);
     }
@@ -5039,12 +5563,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(qualityLevel)]
         unsafe fn qualityLevel(&self) -> NSUInteger;
 
+        /// Setter for [`qualityLevel`][Self::qualityLevel].
         #[method(setQualityLevel:)]
         unsafe fn setQualityLevel(&self, quality_level: NSUInteger);
     }
@@ -5062,6 +5588,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -5070,12 +5597,14 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
@@ -5093,12 +5622,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
@@ -5107,6 +5638,7 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
     }
@@ -5124,6 +5656,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -5141,6 +5674,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -5149,12 +5683,14 @@ extern_protocol!(
         unsafe fn shadingImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`shadingImage`][Self::shadingImage].
         #[method(setShadingImage:)]
         unsafe fn setShadingImage(&self, shading_image: Option<&CIImage>);
 
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
@@ -5172,6 +5708,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -5189,6 +5726,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -5197,6 +5735,7 @@ extern_protocol!(
         unsafe fn centerColor1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`centerColor1`][Self::centerColor1].
         #[method(setCenterColor1:)]
         unsafe fn setCenterColor1(&self, center_color1: &CIColor);
 
@@ -5205,18 +5744,21 @@ extern_protocol!(
         unsafe fn replacementColor1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`replacementColor1`][Self::replacementColor1].
         #[method(setReplacementColor1:)]
         unsafe fn setReplacementColor1(&self, replacement_color1: &CIColor);
 
         #[method(closeness1)]
         unsafe fn closeness1(&self) -> c_float;
 
+        /// Setter for [`closeness1`][Self::closeness1].
         #[method(setCloseness1:)]
         unsafe fn setCloseness1(&self, closeness1: c_float);
 
         #[method(contrast1)]
         unsafe fn contrast1(&self) -> c_float;
 
+        /// Setter for [`contrast1`][Self::contrast1].
         #[method(setContrast1:)]
         unsafe fn setContrast1(&self, contrast1: c_float);
 
@@ -5225,6 +5767,7 @@ extern_protocol!(
         unsafe fn centerColor2(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`centerColor2`][Self::centerColor2].
         #[method(setCenterColor2:)]
         unsafe fn setCenterColor2(&self, center_color2: &CIColor);
 
@@ -5233,18 +5776,21 @@ extern_protocol!(
         unsafe fn replacementColor2(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`replacementColor2`][Self::replacementColor2].
         #[method(setReplacementColor2:)]
         unsafe fn setReplacementColor2(&self, replacement_color2: &CIColor);
 
         #[method(closeness2)]
         unsafe fn closeness2(&self) -> c_float;
 
+        /// Setter for [`closeness2`][Self::closeness2].
         #[method(setCloseness2:)]
         unsafe fn setCloseness2(&self, closeness2: c_float);
 
         #[method(contrast2)]
         unsafe fn contrast2(&self) -> c_float;
 
+        /// Setter for [`contrast2`][Self::contrast2].
         #[method(setContrast2:)]
         unsafe fn setContrast2(&self, contrast2: c_float);
 
@@ -5253,6 +5799,7 @@ extern_protocol!(
         unsafe fn centerColor3(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`centerColor3`][Self::centerColor3].
         #[method(setCenterColor3:)]
         unsafe fn setCenterColor3(&self, center_color3: &CIColor);
 
@@ -5261,18 +5808,21 @@ extern_protocol!(
         unsafe fn replacementColor3(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`replacementColor3`][Self::replacementColor3].
         #[method(setReplacementColor3:)]
         unsafe fn setReplacementColor3(&self, replacement_color3: &CIColor);
 
         #[method(closeness3)]
         unsafe fn closeness3(&self) -> c_float;
 
+        /// Setter for [`closeness3`][Self::closeness3].
         #[method(setCloseness3:)]
         unsafe fn setCloseness3(&self, closeness3: c_float);
 
         #[method(contrast3)]
         unsafe fn contrast3(&self) -> c_float;
 
+        /// Setter for [`contrast3`][Self::contrast3].
         #[method(setContrast3:)]
         unsafe fn setContrast3(&self, contrast3: c_float);
     }
@@ -5290,6 +5840,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -5298,6 +5849,7 @@ extern_protocol!(
         unsafe fn lightPosition(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`lightPosition`][Self::lightPosition].
         #[method(setLightPosition:)]
         unsafe fn setLightPosition(&self, light_position: &CIVector);
 
@@ -5306,18 +5858,21 @@ extern_protocol!(
         unsafe fn lightPointsAt(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
+        /// Setter for [`lightPointsAt`][Self::lightPointsAt].
         #[method(setLightPointsAt:)]
         unsafe fn setLightPointsAt(&self, light_points_at: &CIVector);
 
         #[method(brightness)]
         unsafe fn brightness(&self) -> c_float;
 
+        /// Setter for [`brightness`][Self::brightness].
         #[method(setBrightness:)]
         unsafe fn setBrightness(&self, brightness: c_float);
 
         #[method(concentration)]
         unsafe fn concentration(&self) -> c_float;
 
+        /// Setter for [`concentration`][Self::concentration].
         #[method(setConcentration:)]
         unsafe fn setConcentration(&self, concentration: c_float);
 
@@ -5326,6 +5881,7 @@ extern_protocol!(
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
     }
@@ -5343,30 +5899,35 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(ringAmount)]
         unsafe fn ringAmount(&self) -> c_float;
 
+        /// Setter for [`ringAmount`][Self::ringAmount].
         #[method(setRingAmount:)]
         unsafe fn setRingAmount(&self, ring_amount: c_float);
 
         #[method(ringSize)]
         unsafe fn ringSize(&self) -> c_float;
 
+        /// Setter for [`ringSize`][Self::ringSize].
         #[method(setRingSize:)]
         unsafe fn setRingSize(&self, ring_size: c_float);
 
         #[method(softness)]
         unsafe fn softness(&self) -> c_float;
 
+        /// Setter for [`softness`][Self::softness].
         #[method(setSoftness:)]
         unsafe fn setSoftness(&self, softness: c_float);
     }
@@ -5384,12 +5945,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -5407,12 +5970,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -5430,12 +5995,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -5453,6 +6020,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -5461,12 +6029,14 @@ extern_protocol!(
         unsafe fn mask(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`mask`][Self::mask].
         #[method(setMask:)]
         unsafe fn setMask(&self, mask: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -5484,6 +6054,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
@@ -5501,12 +6072,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -5524,12 +6097,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -5547,12 +6122,14 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
@@ -5570,18 +6147,21 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(height)]
         unsafe fn height(&self) -> c_float;
 
+        /// Setter for [`height`][Self::height].
         #[method(setHeight:)]
         unsafe fn setHeight(&self, height: c_float);
     }
@@ -5599,18 +6179,21 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(width)]
         unsafe fn width(&self) -> c_float;
 
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(height)]
         unsafe fn height(&self) -> c_float;
 
+        /// Setter for [`height`][Self::height].
         #[method(setHeight:)]
         unsafe fn setHeight(&self, height: c_float);
     }
@@ -5628,18 +6211,21 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
         unsafe fn radius(&self) -> c_float;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(angle)]
         unsafe fn angle(&self) -> c_float;
 
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
@@ -5657,18 +6243,21 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(noiseLevel)]
         unsafe fn noiseLevel(&self) -> c_float;
 
+        /// Setter for [`noiseLevel`][Self::noiseLevel].
         #[method(setNoiseLevel:)]
         unsafe fn setNoiseLevel(&self, noise_level: c_float);
 
         #[method(sharpness)]
         unsafe fn sharpness(&self) -> c_float;
 
+        /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
@@ -5686,6 +6275,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -5694,12 +6284,14 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(amount)]
         unsafe fn amount(&self) -> c_float;
 
+        /// Setter for [`amount`][Self::amount].
         #[method(setAmount:)]
         unsafe fn setAmount(&self, amount: c_float);
     }
@@ -5717,6 +6309,7 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
@@ -5725,6 +6318,7 @@ extern_protocol!(
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
         unsafe fn setExtent(&self, extent: CGRect);
     }
@@ -5758,12 +6352,14 @@ extern_protocol!(
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
 
         #[method(count)]
         unsafe fn count(&self) -> NSInteger;
 
+        /// Setter for [`count`][Self::count].
         #[method(setCount:)]
         unsafe fn setCount(&self, count: NSInteger);
     }
@@ -5779,24 +6375,28 @@ extern_protocol!(
         #[method(scale)]
         unsafe fn scale(&self) -> c_float;
 
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
 
         #[method(count)]
         unsafe fn count(&self) -> NSInteger;
 
+        /// Setter for [`count`][Self::count].
         #[method(setCount:)]
         unsafe fn setCount(&self, count: NSInteger);
 
         #[method(minimumStop)]
         unsafe fn minimumStop(&self) -> c_float;
 
+        /// Setter for [`minimumStop`][Self::minimumStop].
         #[method(setMinimumStop:)]
         unsafe fn setMinimumStop(&self, minimum_stop: c_float);
 
         #[method(maximumStop)]
         unsafe fn maximumStop(&self) -> c_float;
 
+        /// Setter for [`maximumStop`][Self::maximumStop].
         #[method(setMaximumStop:)]
         unsafe fn setMaximumStop(&self, maximum_stop: c_float);
     }
@@ -5877,24 +6477,28 @@ extern_protocol!(
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(height)]
         unsafe fn height(&self) -> c_float;
 
+        /// Setter for [`height`][Self::height].
         #[method(setHeight:)]
         unsafe fn setHeight(&self, height: c_float);
 
         #[method(highLimit)]
         unsafe fn highLimit(&self) -> c_float;
 
+        /// Setter for [`highLimit`][Self::highLimit].
         #[method(setHighLimit:)]
         unsafe fn setHighLimit(&self, high_limit: c_float);
 
         #[method(lowLimit)]
         unsafe fn lowLimit(&self) -> c_float;
 
+        /// Setter for [`lowLimit`][Self::lowLimit].
         #[method(setLowLimit:)]
         unsafe fn setLowLimit(&self, low_limit: c_float);
     }
@@ -5912,24 +6516,28 @@ extern_protocol!(
         unsafe fn inputMeans(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
+        /// Setter for [`inputMeans`][Self::inputMeans].
         #[method(setInputMeans:)]
         unsafe fn setInputMeans(&self, input_means: Option<&CIImage>);
 
         #[method(count)]
         unsafe fn count(&self) -> NSInteger;
 
+        /// Setter for [`count`][Self::count].
         #[method(setCount:)]
         unsafe fn setCount(&self, count: NSInteger);
 
         #[method(passes)]
         unsafe fn passes(&self) -> c_float;
 
+        /// Setter for [`passes`][Self::passes].
         #[method(setPasses:)]
         unsafe fn setPasses(&self, passes: c_float);
 
         #[method(perceptual)]
         unsafe fn perceptual(&self) -> bool;
 
+        /// Setter for [`perceptual`][Self::perceptual].
         #[method(setPerceptual:)]
         unsafe fn setPerceptual(&self, perceptual: bool);
     }

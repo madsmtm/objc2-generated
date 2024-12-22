@@ -15,6 +15,7 @@ extern_methods!(
     ))]
     unsafe impl DOMNode {
         #[cfg(feature = "WebArchive")]
+        /// A WebArchive representing the node and the children of the node.
         #[deprecated]
         #[method_id(@__retain_semantics Other webArchive)]
         pub unsafe fn webArchive(&self) -> Option<Retained<WebArchive>>;
@@ -31,10 +32,16 @@ extern_methods!(
     ))]
     unsafe impl DOMDocument {
         #[cfg(feature = "WebFrame")]
+        /// The frame of the DOM document.
         #[deprecated]
         #[method_id(@__retain_semantics Other webFrame)]
         pub unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
 
+        /// Constructs a URL given an attribute string.
+        ///
+        /// This method constructs a URL given an attribute string just as WebKit does.
+        /// An attribute string is the value of an attribute of an element such as the href attribute on
+        /// the DOMHTMLAnchorElement class. This method is only applicable to attributes that refer to URLs.
         #[deprecated]
         #[method_id(@__retain_semantics Other URLWithAttributeString:)]
         pub unsafe fn URLWithAttributeString(
@@ -53,10 +60,12 @@ extern_methods!(
     ))]
     unsafe impl DOMRange {
         #[cfg(feature = "WebArchive")]
+        /// A WebArchive representing the range.
         #[deprecated]
         #[method_id(@__retain_semantics Other webArchive)]
         pub unsafe fn webArchive(&self) -> Option<Retained<WebArchive>>;
 
+        /// A markup string representing the range.
         #[deprecated]
         #[method_id(@__retain_semantics Other markupString)]
         pub unsafe fn markupString(&self) -> Retained<NSString>;
@@ -75,6 +84,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLFrameElement {
         #[cfg(feature = "WebFrame")]
+        /// The content frame of the element.
         #[deprecated]
         #[method_id(@__retain_semantics Other contentFrame)]
         pub unsafe fn contentFrame(&self) -> Option<Retained<WebFrame>>;
@@ -93,6 +103,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLIFrameElement {
         #[cfg(feature = "WebFrame")]
+        /// Returns the content frame of the element.
         #[deprecated]
         #[method_id(@__retain_semantics Other contentFrame)]
         pub unsafe fn contentFrame(&self) -> Option<Retained<WebFrame>>;
@@ -111,6 +122,10 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLObjectElement {
         #[cfg(feature = "WebFrame")]
+        /// The content frame of the element.
+        ///
+        /// Returns non-nil only if the object represents a child frame
+        /// such as if the data of the object is HTML content.
         #[deprecated]
         #[method_id(@__retain_semantics Other contentFrame)]
         pub unsafe fn contentFrame(&self) -> Option<Retained<WebFrame>>;

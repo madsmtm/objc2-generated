@@ -9,7 +9,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiochannellayout?language=objc)
+    /// A description of the roles of a set of audio channels.
+    ///
+    /// This object is a thin wrapper for the AudioChannelLayout structure, described
+    /// in
+    /// <CoreAudio
+    /// /CoreAudioTypes.h>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiochannellayout?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioChannelLayout;
@@ -31,6 +38,12 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-audio-types")]
+        /// Initialize from a layout tag.
+        ///
+        /// Parameter `layoutTag`: The tag.
+        ///
+        /// Returns nil if the tag is either kAudioChannelLayoutTag_UseChannelDescriptions or
+        /// kAudioChannelLayoutTag_UseChannelBitmap.
         #[method_id(@__retain_semantics Init initWithLayoutTag:)]
         pub unsafe fn initWithLayoutTag(
             this: Allocated<Self>,
@@ -38,32 +51,48 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-audio-types")]
+        /// Initialize from an AudioChannelLayout.
+        ///
+        /// Parameter `layout`: The AudioChannelLayout.
+        ///
+        /// If the provided layout's tag is kAudioChannelLayoutTag_UseChannelDescriptions, this
+        /// initializer attempts to convert it to a more specific tag.
         #[method_id(@__retain_semantics Init initWithLayout:)]
         pub unsafe fn initWithLayout(
             this: Allocated<Self>,
             layout: NonNull<AudioChannelLayout>,
         ) -> Retained<Self>;
 
+        /// Determine whether another AVAudioChannelLayout is exactly equal to this layout.
+        ///
+        /// Parameter `object`: The AVAudioChannelLayout to compare against.
+        ///
+        /// The underlying AudioChannelLayoutTag and AudioChannelLayout are compared for equality.
         #[method(isEqual:)]
         pub unsafe fn isEqual(&self, object: &AnyObject) -> bool;
 
         #[cfg(feature = "objc2-core-audio-types")]
+        /// Create from a layout tag.
         #[method_id(@__retain_semantics Other layoutWithLayoutTag:)]
         pub unsafe fn layoutWithLayoutTag(layout_tag: AudioChannelLayoutTag) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-audio-types")]
+        /// Create from an AudioChannelLayout
         #[method_id(@__retain_semantics Other layoutWithLayout:)]
         pub unsafe fn layoutWithLayout(layout: NonNull<AudioChannelLayout>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-audio-types")]
+        /// The layout's tag.
         #[method(layoutTag)]
         pub unsafe fn layoutTag(&self) -> AudioChannelLayoutTag;
 
         #[cfg(feature = "objc2-core-audio-types")]
+        /// The underlying AudioChannelLayout.
         #[method(layout)]
         pub unsafe fn layout(&self) -> NonNull<AudioChannelLayout>;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// The number of channels of audio data.
         #[method(channelCount)]
         pub unsafe fn channelCount(&self) -> AVAudioChannelCount;
     }

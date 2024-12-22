@@ -32,42 +32,54 @@ unsafe impl NSSecureCoding for UIShadowProperties {}
 extern_methods!(
     unsafe impl UIShadowProperties {
         #[cfg(feature = "UIColor")]
+        /// The color to use when rendering the shadow. Defaults to `UIColor.blackColor`.
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &UIColor);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The shadow's opacity. Defaults to `0.0`.
         #[method(opacity)]
         pub unsafe fn opacity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`opacity`][Self::opacity].
         #[method(setOpacity:)]
         pub unsafe fn setOpacity(&self, opacity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The blur radius, in points, used to render the shadow. Defaults to `0.0`.
         #[method(radius)]
         pub unsafe fn radius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         pub unsafe fn setRadius(&self, radius: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The offset, in points, of the layer's shadow. Defaults to `CGSizeZero`.
         #[method(offset)]
         pub unsafe fn offset(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`offset`][Self::offset].
         #[method(setOffset:)]
         pub unsafe fn setOffset(&self, offset: CGSize);
 
         #[cfg(feature = "UIBezierPath")]
+        /// The path that is used to create the shadow. When `nil`, the shadow will be rendered to match
+        /// the bounds of the view that it is applied to.
+        /// Defaults to `nil`.
         #[method_id(@__retain_semantics Other path)]
         pub unsafe fn path(&self) -> Option<Retained<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]
+        /// Setter for [`path`][Self::path].
         #[method(setPath:)]
         pub unsafe fn setPath(&self, path: Option<&UIBezierPath>);
     }

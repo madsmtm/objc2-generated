@@ -8,19 +8,47 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputstate?language=objc)
+    /// An object conforming to
+    /// `GCDevicePhysicalInputState`contains the state of
+    /// a device's physical inputs.  This may be either the "live" physical input
+    /// state if the same object also conforms to
+    /// `GCDevicePhysicalInput,`or a
+    /// snapshot of the physical input state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputstate?language=objc)
     pub unsafe trait GCDevicePhysicalInputState: NSObjectProtocol {
         #[cfg(feature = "GCDevice")]
+        /// The device that this profile is mapping input from.
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn GCDevice>>>;
 
+        /// The internal time stamp of the last event.
+        ///
+        /// This time interval is not relative to any specific point in time.  Your
+        /// application can subtract a previous timestamp from the returned timestamp to
+        /// determine the time (in seconds) between events.  The
+        /// `lastEventTimestamp`of
+        /// the inputs from two different devices can be compared to determine which event
+        /// occurred first.
         #[method(lastEventTimestamp)]
         unsafe fn lastEventTimestamp(&self) -> NSTimeInterval;
 
+        /// The interval (in seconds) between the timestamp of the last event and the
+        /// current time.
+        ///
+        /// This value should be treated as a lower bound of the event latency.  It may
+        /// not include (wired or wireless) transmission latency, or latency accrued on
+        /// the device before the event was transmitted to the host.
+        ///
+        ///
+        /// Note: If the system has gone to sleep between when the event occurred and when this
+        /// property is read, the returned value may not reflect the true latency.
         #[method(lastEventLatency)]
         unsafe fn lastEventLatency(&self) -> NSTimeInterval;
 
         #[cfg(all(feature = "GCInputNames", feature = "GCPhysicalInputElement"))]
+        /// The following properties allow for runtime lookup of any input element on a
+        /// profile, when provided with a valid alias.
         #[method_id(@__retain_semantics Other elements)]
         unsafe fn elements(
             &self,
@@ -71,6 +99,12 @@ extern_protocol!(
         >;
 
         #[cfg(feature = "GCPhysicalInputElement")]
+        /// Profile elements can be accessed using keyed subscript notation, with a valid alias of its inputs.
+        ///
+        ///
+        ///
+        ///
+        /// Note: Equivalent to -elements
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
         unsafe fn objectForKeyedSubscript(
             &self,

@@ -16,17 +16,27 @@ use crate::*;
 extern_methods!(
     #[cfg(feature = "AVPictureInPictureController")]
     unsafe impl AVPictureInPictureController {
+        /// Informs Picture in Picture controller that it should request an updated playback state from its sampleBufferPlaybackDelegate.
+        ///
+        /// This should always be called whenever playback is paused or unpaused, or the underlying content duration changes.
         #[method(invalidatePlaybackState)]
         pub unsafe fn invalidatePlaybackState(&self);
     }
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avpictureinpicturesamplebufferplaybackdelegate?language=objc)
+    /// A protocol for controlling playback from an AVSampleBufferDisplayLayer in Picture in Picture.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avpictureinpicturesamplebufferplaybackdelegate?language=objc)
     pub unsafe trait AVPictureInPictureSampleBufferPlaybackDelegate:
         NSObjectProtocol
     {
         #[cfg(feature = "AVPictureInPictureController")]
+        /// Parameter `pictureInPictureController`: The Picture in Picture controller.
+        ///
+        /// Parameter `playing`: Whether the content should play or pause.
+        ///
+        /// Informs delegate that the user initiated a request to play or pause the content.
         #[method(pictureInPictureController:setPlaying:)]
         unsafe fn pictureInPictureController_setPlaying(
             &self,
@@ -35,6 +45,13 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "AVPictureInPictureController", feature = "objc2-core-media"))]
+        /// Parameter `pictureInPictureController`: The Picture in Picture controller.
+        ///
+        /// Allows delegate to inform Picture in Picture controller of the current playable time range. May be called multiple times during playback. Time ranges with finite duration should always contain the current time of the sample buffer display layer's timebase.
+        ///
+        /// Clients should return a time range with a duration of kCMTimeInfinity to indicate live content. When there is no content to play, they should return kCMTimeRangeInvalid. This method will be called whenever -[AVPictureInPictureController invalidatePlaybackState] is called and at other times as needed by the system.
+        ///
+        /// Returns: A CMTimeRange indicating the content's time range.
         #[method(pictureInPictureControllerTimeRangeForPlayback:)]
         unsafe fn pictureInPictureControllerTimeRangeForPlayback(
             &self,
@@ -42,6 +59,13 @@ extern_protocol!(
         ) -> CMTimeRange;
 
         #[cfg(feature = "AVPictureInPictureController")]
+        /// Parameter `pictureInPictureController`: The Picture in Picture controller.
+        ///
+        /// Allows delegate to indicate whether the playback UI should reflect a playing or paused state, regardless of what the current playback rate might be. May be called multiple times during playback.
+        ///
+        /// This method will be called whenever -[AVPictureInPictureController invalidatePlaybackState] is called and at other times as needed by the system.
+        ///
+        /// Returns: A boolean value indicating whether or not the playback UI should indicate playback has been paused or is playing.
         #[method(pictureInPictureControllerIsPlaybackPaused:)]
         unsafe fn pictureInPictureControllerIsPlaybackPaused(
             &self,
@@ -49,6 +73,11 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AVPictureInPictureController", feature = "objc2-core-media"))]
+        /// Parameter `pictureInPictureController`: The Picture in Picture controller.
+        ///
+        /// Parameter `newRenderSize`: The rendered size, in pixels, of Picture in Picture content.
+        ///
+        /// This method is called when the system Picture in Picture window changes size. Delegate take the new render size and AVPictureInPictureController.isPictureInPictureActive into account when choosing media variants in order to avoid uncessary decoding overhead.
         #[method(pictureInPictureController:didTransitionToRenderSize:)]
         unsafe fn pictureInPictureController_didTransitionToRenderSize(
             &self,
@@ -61,6 +90,15 @@ extern_protocol!(
             feature = "block2",
             feature = "objc2-core-media"
         ))]
+        /// Parameter `pictureInPictureController`: The Picture in Picture controller.
+        ///
+        /// Parameter `skipInterval`: The interval by which to skip playback.
+        ///
+        /// Parameter `completionHandler`: A closure that must be invoked to indicate that the skip operation has completed.
+        ///
+        /// Informs delegate that the user has requested skipping forward or backward by the time indicated by the interval.
+        ///
+        /// Clients may choose to seek by a different interval for efficiency reasons (for example, seeking to a keyframe) or if the requested interval falls outside of the playable timeline. Clients must invoke the completion handler to indicate the seek operation has finished or failed. By the time the completion handler has been invoked, the timebase should reflect the current time and playback rate. Failure to invoke this completion handler is an application error and will result in playback UI permanently stuck in a “seeking” state.
         #[method(pictureInPictureController:skipByInterval:completionHandler:)]
         unsafe fn pictureInPictureController_skipByInterval_completionHandler(
             &self,
@@ -70,6 +108,15 @@ extern_protocol!(
         );
 
         #[cfg(feature = "AVPictureInPictureController")]
+        /// Parameter `pictureInPictureController`: The Picture in Picture controller.
+        ///
+        /// Allows the delegate to indicate whether background audio playback should always be prohibited.
+        ///
+        /// If implemented, this optional method will be called once for each invocation of invalidatePlaybackState to allow the delegate to indicate whether or not audio playback should be prohibited when the picture in picture window is in the background.
+        ///
+        /// Note that background in this context has a seperate meaning from application background used in UIKit. Here, background defines the state of the picture in picture window itself rather than the application.
+        ///
+        /// Returns: A boolean value indicating whether or not background audio playback is always prohibited.
         #[optional]
         #[method(pictureInPictureControllerShouldProhibitBackgroundAudioPlayback:)]
         unsafe fn pictureInPictureControllerShouldProhibitBackgroundAudioPlayback(
@@ -87,6 +134,11 @@ extern_methods!(
     unsafe impl AVPictureInPictureControllerContentSource {
         #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
+        /// Parameter `sampleBufferDisplayLayer`: The sample buffer display layer to be shown in Picture in Picture.
+        ///
+        /// Parameter `playbackDelegate`: The playback delegate for controlling sample buffer display layer's playback in Picture in Picture.
+        ///
+        /// Use this initializer for a content source with a sample buffer display layer and playback delegate.
         #[method_id(@__retain_semantics Init initWithSampleBufferDisplayLayer:playbackDelegate:)]
         pub unsafe fn initWithSampleBufferDisplayLayer_playbackDelegate(
             this: Allocated<Self>,
@@ -96,11 +148,13 @@ extern_methods!(
 
         #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
+        /// The receiver's sample buffer display layer.
         #[method_id(@__retain_semantics Other sampleBufferDisplayLayer)]
         pub unsafe fn sampleBufferDisplayLayer(
             &self,
         ) -> Option<Retained<AVSampleBufferDisplayLayer>>;
 
+        /// The receiver's sample buffer playback delegate.
         #[method_id(@__retain_semantics Other sampleBufferPlaybackDelegate)]
         pub unsafe fn sampleBufferPlaybackDelegate(
             &self,

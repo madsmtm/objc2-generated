@@ -10,11 +10,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webframeloaddelegate?language=objc)
+    /// A WebView's WebFrameLoadDelegate tracks the loading progress of its frames.
+    /// When a data source of a frame starts to load, the data source is considered "provisional".
+    /// Once at least one byte is received, the data source is considered "committed". This is done
+    /// so the contents of the frame will not be lost if the new data source fails to successfully load.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webframeloaddelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebFrameLoadDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that the provisional load of a frame has started
+        ///
+        /// Parameter `sender`: The WebView sending the message
+        ///
+        /// Parameter `frame`: The frame for which the provisional load has started
+        ///
+        /// This method is called after the provisional data source of a frame
+        /// has started to load.
         #[deprecated]
         #[optional]
         #[method(webView:didStartProvisionalLoadForFrame:)]
@@ -26,6 +39,11 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that a server redirect occurred during the provisional load
+        ///
+        /// Parameter `sender`: The WebView sending the message
+        ///
+        /// Parameter `frame`: The frame for which the redirect occurred
         #[deprecated]
         #[optional]
         #[method(webView:didReceiveServerRedirectForProvisionalLoadForFrame:)]
@@ -37,6 +55,16 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that the provisional load has failed
+        ///
+        /// Parameter `sender`: The WebView sending the message
+        ///
+        /// Parameter `error`: The error that occurred
+        ///
+        /// Parameter `frame`: The frame for which the error occurred
+        ///
+        /// This method is called after the provisional data source has failed to load.
+        /// The frame will continue to display the contents of the committed data source if there is one.
         #[deprecated]
         #[optional]
         #[method(webView:didFailProvisionalLoadWithError:forFrame:)]
@@ -49,6 +77,19 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that the load has changed from provisional to committed
+        ///
+        /// Parameter `sender`: The WebView sending the message
+        ///
+        /// Parameter `frame`: The frame for which the load has committed
+        ///
+        /// This method is called after the provisional data source has become the
+        /// committed data source.
+        ///
+        /// In some cases, a single load may be committed more than once. This happens
+        /// in the case of multipart/x-mixed-replace, also known as "server push". In this case,
+        /// a single location change leads to multiple documents that are loaded in sequence. When
+        /// this happens, a new commit will be sent for each document.
         #[deprecated]
         #[optional]
         #[method(webView:didCommitLoadForFrame:)]
@@ -60,6 +101,15 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that the page title for a frame has been received
+        ///
+        /// Parameter `sender`: The WebView sending the message
+        ///
+        /// Parameter `title`: The new page title
+        ///
+        /// Parameter `frame`: The frame for which the title has been received
+        ///
+        /// The title may update during loading; clients should be prepared for this.
         #[deprecated]
         #[optional]
         #[method(webView:didReceiveTitle:forFrame:)]
@@ -72,6 +122,13 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that a page icon image for a frame has been received
+        ///
+        /// Parameter `webView`: The WebView sending the message
+        ///
+        /// Parameter `image`: The icon image. Also known as a "favicon".
+        ///
+        /// Parameter `frame`: The frame for which a page icon has been received
         #[deprecated]
         #[optional]
         #[method(webView:didReceiveIcon:forFrame:)]
@@ -84,6 +141,15 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that the committed load of a frame has completed
+        ///
+        /// Parameter `sender`: The WebView sending the message
+        ///
+        /// Parameter `frame`: The frame that finished loading
+        ///
+        /// This method is called after the committed data source of a frame has successfully loaded
+        /// and will only be called when all subresources such as images and stylesheets are done loading.
+        /// Plug-In content and JavaScript-requested loads may occur after this method is called.
         #[deprecated]
         #[optional]
         #[method(webView:didFinishLoadForFrame:)]
@@ -95,6 +161,15 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that the committed load of a frame has failed
+        ///
+        /// Parameter `sender`: The WebView sending the message
+        ///
+        /// Parameter `error`: The error that occurred
+        ///
+        /// Parameter `frame`: The frame that failed to load
+        ///
+        /// This method is called after a data source has committed but failed to completely load.
         #[deprecated]
         #[optional]
         #[method(webView:didFailLoadWithError:forFrame:)]
@@ -107,6 +182,13 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that the scroll position in a frame has changed
+        ///
+        /// Parameter `sender`: The WebView sending the message
+        ///
+        /// Parameter `frame`: The frame that scrolled
+        ///
+        /// This method is called when anchors within a page have been clicked.
         #[deprecated]
         #[optional]
         #[method(webView:didChangeLocationWithinPageForFrame:)]
@@ -118,6 +200,20 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that a frame will perform a client-side redirect
+        ///
+        /// Parameter `sender`: The WebView sending the message
+        ///
+        /// Parameter `URL`: The URL to be redirected to
+        ///
+        /// Parameter `seconds`: Seconds in which the redirect will happen
+        ///
+        /// Parameter `date`: The fire date
+        ///
+        /// Parameter `frame`: The frame on which the redirect will occur
+        ///
+        /// This method can be used to continue progress feedback while a client-side
+        /// redirect is pending.
         #[deprecated]
         #[optional]
         #[method(webView:willPerformClientRedirectToURL:delay:fireDate:forFrame:)]
@@ -132,6 +228,13 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that a pending client-side redirect has been cancelled
+        ///
+        /// Parameter `sender`: The WebView sending the message
+        ///
+        /// Parameter `frame`: The frame for which the pending redirect was cancelled
+        ///
+        /// A client-side redirect can be cancelled if a frame changes location before the timeout.
         #[deprecated]
         #[optional]
         #[method(webView:didCancelClientRedirectForFrame:)]
@@ -143,6 +246,14 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that a frame will be closed
+        ///
+        /// Parameter `sender`: The WebView sending the message
+        ///
+        /// Parameter `frame`: The frame that will be closed
+        ///
+        /// This method is called right before WebKit is done with the frame
+        /// and the objects that it contains.
         #[deprecated]
         #[optional]
         #[method(webView:willCloseFrame:)]
@@ -155,6 +266,20 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that the JavaScript window object in a frame has
+        /// been cleared in preparation for a new load. This is the preferred place to set custom
+        /// properties on the window object using the WebScriptObject and JavaScriptCore APIs.
+        ///
+        /// Parameter `webView`: The webView sending the message.
+        ///
+        /// Parameter `windowObject`: The WebScriptObject representing the frame's JavaScript window object.
+        ///
+        /// Parameter `frame`: The WebFrame to which windowObject belongs.
+        ///
+        /// If a delegate implements both webView:didClearWindowObject:forFrame:
+        /// and webView:windowScriptObjectAvailable:, only webView:didClearWindowObject:forFrame:
+        /// will be invoked. This enables a delegate to implement both methods for backwards
+        /// compatibility with older versions of WebKit.
         #[deprecated]
         #[optional]
         #[method(webView:didClearWindowObject:forFrame:)]
@@ -171,6 +296,15 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Notifies the delegate that the scripting object for a page is available.  This is called
+        /// before the page is loaded.  It may be useful to allow delegates to bind native objects to the window.
+        ///
+        /// Parameter `webView`: The webView sending the message.
+        ///
+        /// Parameter `windowScriptObject`: The WebScriptObject for the window in the scripting environment.
+        ///
+        /// This method is deprecated. Consider using webView:didClearWindowObject:forFrame:
+        /// instead.
         #[deprecated]
         #[optional]
         #[method(webView:windowScriptObjectAvailable:)]

@@ -10,7 +10,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesession?language=objc)
+    /// An instance of this class is associated with the lifecycle of a single mail compose window. This object associates the actions performed by the user in a mail compose window to a unique session. An instance of this class is passed to the methods in
+    /// `MEComposeSessionHandler.`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEComposeSession;
@@ -30,24 +33,37 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// A unique identifier for the session.
         #[method_id(@__retain_semantics Other sessionID)]
         pub unsafe fn sessionID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "MEMessage")]
+        /// An instance of
+        /// `MEMessage`that represents properties of the mail message that author is composing in this
+        /// `MEComposeSession`
         #[method_id(@__retain_semantics Other mailMessage)]
         pub unsafe fn mailMessage(&self) -> Retained<MEMessage>;
 
         #[cfg(feature = "MEComposeContext")]
+        /// An instance of
+        /// `MEComposeContext`that provides additional information about the compose session.
         #[method_id(@__retain_semantics Other composeContext)]
         pub unsafe fn composeContext(&self) -> Retained<MEComposeContext>;
 
+        /// Requests Mail to refresh compose session with new information that the extension has.
+        ///
+        /// Extensions can use this call this method to regenerate
+        /// `MEAddressAnnotation`instances to replace those that were previously generated for this session. This will result in invocations to
+        /// `-[MEComposeSessionHandler``session:annotateAddressesWithCompletionHandler:].`
         #[method(reloadSession)]
         pub unsafe fn reloadSession(&self);
     }
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionerrordomain?language=objc)
+    /// Error domain and codes for extensions to report errors before message is delivered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionerrordomain?language=objc)
     pub static MEComposeSessionErrorDomain: &'static NSErrorDomain;
 }
 
@@ -74,15 +90,28 @@ unsafe impl RefEncode for MEComposeSessionErrorCode {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionhandler?language=objc)
+    /// Methods in this protocol can be used by a mail app extension to keep track of new messages composed by the user and to make changes to the recipeint email address tokens.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionhandler?language=objc)
     pub unsafe trait MEComposeSessionHandler: NSObjectProtocol + MainThreadOnly {
+        /// This is invoked when a new message compose window is created.
+        ///
+        /// Parameter `session`: -
+        /// `MEComposeSession`instance that is tied to the compose window that is opened.
         #[method(mailComposeSessionDidBegin:)]
         unsafe fn mailComposeSessionDidBegin(&self, session: &MEComposeSession);
 
+        /// This is invoked when a message compose window is closed.
+        ///
+        /// Parameter `session`: -
+        /// `MEComposeSession`instance that is tied to the compose window that was closed.
         #[method(mailComposeSessionDidEnd:)]
         unsafe fn mailComposeSessionDidEnd(&self, session: &MEComposeSession);
 
         #[cfg(all(feature = "MEExtensionViewController", feature = "objc2-app-kit"))]
+        /// A view controller to be presented in Mail compose window.
+        ///
+        /// Mail will call this method when user clicks on the extension's button.
         #[method_id(@__retain_semantics Other viewControllerForSession:)]
         unsafe fn viewControllerForSession(
             &self,
@@ -94,6 +123,9 @@ extern_protocol!(
             feature = "MEEmailAddress",
             feature = "block2"
         ))]
+        /// Delegate method to annotate mail addresses.
+        ///
+        /// Mail will call this method based on user's input in To, Cc or Bcc fields.
         #[optional]
         #[method(session:annotateAddressesWithCompletionHandler:)]
         unsafe fn session_annotateAddressesWithCompletionHandler(
@@ -105,6 +137,10 @@ extern_protocol!(
         );
 
         #[cfg(feature = "block2")]
+        /// Validate if the message is ready to be delivered to recipients.
+        ///
+        /// Mail will call this method when user clicks on the send message button. Extensions can provide an error from the
+        /// `MEComposeSessionErrorDomain`error domain to indicate why message validation has failed.
         #[optional]
         #[method(session:canSendMessageWithCompletionHandler:)]
         unsafe fn session_canSendMessageWithCompletionHandler(
@@ -113,6 +149,11 @@ extern_protocol!(
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
 
+        /// Set Additional headers on outgoing mail message.
+        ///
+        /// Mail will call this method to request additional headers to be set on the
+        /// `MEMessage`that user is composing as part of this
+        /// `MEComposeSession.`Keys in this dictionary will be normalized to lowercase before they are set on the message.
         #[optional]
         #[method_id(@__retain_semantics Other additionalHeadersForSession:)]
         unsafe fn additionalHeadersForSession(

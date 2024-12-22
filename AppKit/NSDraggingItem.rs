@@ -51,12 +51,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other key)]
         pub unsafe fn key(&self) -> Retained<NSDraggingImageComponentKey>;
 
+        /// Setter for [`key`][Self::key].
         #[method(setKey:)]
         pub unsafe fn setKey(&self, key: &NSDraggingImageComponentKey);
 
         #[method_id(@__retain_semantics Other contents)]
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`contents`][Self::contents].
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
 
@@ -65,6 +67,7 @@ extern_methods!(
         pub unsafe fn frame(&self) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
     }
@@ -107,6 +110,7 @@ extern_methods!(
         pub unsafe fn draggingFrame(&self) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`draggingFrame`][Self::draggingFrame].
         #[method(setDraggingFrame:)]
         pub unsafe fn setDraggingFrame(&self, dragging_frame: NSRect);
 
@@ -117,6 +121,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn() -> NonNull<NSArray<NSDraggingImageComponent>>>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`imageComponentsProvider`][Self::imageComponentsProvider].
         #[method(setImageComponentsProvider:)]
         pub unsafe fn setImageComponentsProvider(
             &self,

@@ -8,12 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectdistancenotavailable?language=objc)
+    /// A sentinel value indicating that a distance measurement could not be produced
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectdistancenotavailable?language=objc)
     pub static NINearbyObjectDistanceNotAvailable: c_float;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectanglenotavailable?language=objc)
+    /// A sentinel value indicating that an angle could not be produced
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectanglenotavailable?language=objc)
     pub static NINearbyObjectAngleNotAvailable: c_float;
 }
 
@@ -25,12 +29,16 @@ pub struct NINearbyObjectVerticalDirectionEstimate(pub NSInteger);
 impl NINearbyObjectVerticalDirectionEstimate {
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Represents the nearby object is approximately equal
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateSame")]
     pub const Same: Self = Self(1);
+    /// Represents the nearby object is above the current device
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateAbove")]
     pub const Above: Self = Self(2);
+    /// Represents the nearby object  is below the current device
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateBelow")]
     pub const Below: Self = Self(3);
+    /// Represents the nearby object  is above or below the current device - i.e. not the same level
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateAboveOrBelow")]
     pub const AboveOrBelow: Self = Self(4);
 }
@@ -44,7 +52,9 @@ unsafe impl RefEncode for NINearbyObjectVerticalDirectionEstimate {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject?language=objc)
+    /// A nearby object with distance and direction measurements.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NINearbyObject;
@@ -65,18 +75,27 @@ unsafe impl NSSecureCoding for NINearbyObject {}
 extern_methods!(
     unsafe impl NINearbyObject {
         #[cfg(feature = "NIConfiguration")]
+        /// Nearby interaction discovery token
+        ///
+        /// This discovery token will be equal to the token provided in the configuration with which the session was run.
         #[method_id(@__retain_semantics Other discoveryToken)]
         pub unsafe fn discoveryToken(&self) -> Retained<NIDiscoveryToken>;
 
+        /// Distance to the nearby object in meters. If not available in this update, the value of this property will be equal to NINearbyObjectDistanceNotAvailable in Objective C, or nil in Swift.
         #[method(distance)]
         pub unsafe fn distance(&self) -> c_float;
 
+        /// An indication of the positional relationship to the nearby object in the vertical dimension.
         #[method(verticalDirectionEstimate)]
         pub unsafe fn verticalDirectionEstimate(&self) -> NINearbyObjectVerticalDirectionEstimate;
 
+        /// An angle in radians indicating the azimuthal direction to the nearby object.
+        ///
+        /// when unavailable, the value will be set to `NINearbyObjectAngleNotAvailable`.
         #[method(horizontalAngle)]
         pub unsafe fn horizontalAngle(&self) -> c_float;
 
+        /// Unavailable
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 

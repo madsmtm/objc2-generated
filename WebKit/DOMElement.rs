@@ -105,6 +105,7 @@ extern_methods!(
         #[method(scrollLeft)]
         pub unsafe fn scrollLeft(&self) -> c_int;
 
+        /// Setter for [`scrollLeft`][Self::scrollLeft].
         #[deprecated]
         #[method(setScrollLeft:)]
         pub unsafe fn setScrollLeft(&self, scroll_left: c_int);
@@ -113,6 +114,7 @@ extern_methods!(
         #[method(scrollTop)]
         pub unsafe fn scrollTop(&self) -> c_int;
 
+        /// Setter for [`scrollTop`][Self::scrollTop].
         #[deprecated]
         #[method(setScrollTop:)]
         pub unsafe fn setScrollTop(&self, scroll_top: c_int);
@@ -133,6 +135,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other innerHTML)]
         pub unsafe fn innerHTML(&self) -> Retained<NSString>;
 
+        /// Setter for [`innerHTML`][Self::innerHTML].
         #[deprecated]
         #[method(setInnerHTML:)]
         pub unsafe fn setInnerHTML(&self, inner_html: Option<&NSString>);
@@ -141,6 +144,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other outerHTML)]
         pub unsafe fn outerHTML(&self) -> Retained<NSString>;
 
+        /// Setter for [`outerHTML`][Self::outerHTML].
         #[deprecated]
         #[method(setOuterHTML:)]
         pub unsafe fn setOuterHTML(&self, outer_html: Option<&NSString>);
@@ -149,6 +153,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other className)]
         pub unsafe fn className(&self) -> Retained<NSString>;
 
+        /// Setter for [`className`][Self::className].
         #[deprecated]
         #[method(setClassName:)]
         pub unsafe fn setClassName(&self, class_name: Option<&NSString>);

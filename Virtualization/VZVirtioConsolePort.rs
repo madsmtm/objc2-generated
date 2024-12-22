@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleport?language=objc)
+    /// Class representing a Virtio console port in a virtual machine.
+    ///
+    /// VZVirtioConsolePort should not be instantiated directly. This object can be retrieved from the VZVirtioConsoleDevice ports property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleport?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioConsolePort;
@@ -24,14 +28,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The console port name currently being used by this port.
+        ///
+        /// This property may not change while the VM is running. A null value indicates no name has been set.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "VZSerialPortAttachment")]
+        /// The console port attachment that's currently connected to this console port.
+        ///
+        /// This property may change at any time while the VM is running.
         #[method_id(@__retain_semantics Other attachment)]
         pub unsafe fn attachment(&self) -> Option<Retained<VZSerialPortAttachment>>;
 
         #[cfg(feature = "VZSerialPortAttachment")]
+        /// Setter for [`attachment`][Self::attachment].
         #[method(setAttachment:)]
         pub unsafe fn setAttachment(&self, attachment: Option<&VZSerialPortAttachment>);
     }

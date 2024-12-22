@@ -94,54 +94,63 @@ extern_methods!(
         #[method(isDraftModeEnabled)]
         pub unsafe fn isDraftModeEnabled(&self) -> bool;
 
+        /// Setter for [`isDraftModeEnabled`][Self::isDraftModeEnabled].
         #[method(setDraftModeEnabled:)]
         pub unsafe fn setDraftModeEnabled(&self, draft_mode_enabled: bool);
 
         #[method_id(@__retain_semantics Other decoderVersion)]
         pub unsafe fn decoderVersion(&self) -> Retained<CIRAWDecoderVersion>;
 
+        /// Setter for [`decoderVersion`][Self::decoderVersion].
         #[method(setDecoderVersion:)]
         pub unsafe fn setDecoderVersion(&self, decoder_version: &CIRAWDecoderVersion);
 
         #[method(scaleFactor)]
         pub unsafe fn scaleFactor(&self) -> c_float;
 
+        /// Setter for [`scaleFactor`][Self::scaleFactor].
         #[method(setScaleFactor:)]
         pub unsafe fn setScaleFactor(&self, scale_factor: c_float);
 
         #[method(exposure)]
         pub unsafe fn exposure(&self) -> c_float;
 
+        /// Setter for [`exposure`][Self::exposure].
         #[method(setExposure:)]
         pub unsafe fn setExposure(&self, exposure: c_float);
 
         #[method(baselineExposure)]
         pub unsafe fn baselineExposure(&self) -> c_float;
 
+        /// Setter for [`baselineExposure`][Self::baselineExposure].
         #[method(setBaselineExposure:)]
         pub unsafe fn setBaselineExposure(&self, baseline_exposure: c_float);
 
         #[method(shadowBias)]
         pub unsafe fn shadowBias(&self) -> c_float;
 
+        /// Setter for [`shadowBias`][Self::shadowBias].
         #[method(setShadowBias:)]
         pub unsafe fn setShadowBias(&self, shadow_bias: c_float);
 
         #[method(boostAmount)]
         pub unsafe fn boostAmount(&self) -> c_float;
 
+        /// Setter for [`boostAmount`][Self::boostAmount].
         #[method(setBoostAmount:)]
         pub unsafe fn setBoostAmount(&self, boost_amount: c_float);
 
         #[method(boostShadowAmount)]
         pub unsafe fn boostShadowAmount(&self) -> c_float;
 
+        /// Setter for [`boostShadowAmount`][Self::boostShadowAmount].
         #[method(setBoostShadowAmount:)]
         pub unsafe fn setBoostShadowAmount(&self, boost_shadow_amount: c_float);
 
         #[method(isGamutMappingEnabled)]
         pub unsafe fn isGamutMappingEnabled(&self) -> bool;
 
+        /// Setter for [`isGamutMappingEnabled`][Self::isGamutMappingEnabled].
         #[method(setGamutMappingEnabled:)]
         pub unsafe fn setGamutMappingEnabled(&self, gamut_mapping_enabled: bool);
 
@@ -151,6 +160,7 @@ extern_methods!(
         #[method(isLensCorrectionEnabled)]
         pub unsafe fn isLensCorrectionEnabled(&self) -> bool;
 
+        /// Setter for [`isLensCorrectionEnabled`][Self::isLensCorrectionEnabled].
         #[method(setLensCorrectionEnabled:)]
         pub unsafe fn setLensCorrectionEnabled(&self, lens_correction_enabled: bool);
 
@@ -160,6 +170,7 @@ extern_methods!(
         #[method(luminanceNoiseReductionAmount)]
         pub unsafe fn luminanceNoiseReductionAmount(&self) -> c_float;
 
+        /// Setter for [`luminanceNoiseReductionAmount`][Self::luminanceNoiseReductionAmount].
         #[method(setLuminanceNoiseReductionAmount:)]
         pub unsafe fn setLuminanceNoiseReductionAmount(
             &self,
@@ -172,6 +183,7 @@ extern_methods!(
         #[method(colorNoiseReductionAmount)]
         pub unsafe fn colorNoiseReductionAmount(&self) -> c_float;
 
+        /// Setter for [`colorNoiseReductionAmount`][Self::colorNoiseReductionAmount].
         #[method(setColorNoiseReductionAmount:)]
         pub unsafe fn setColorNoiseReductionAmount(&self, color_noise_reduction_amount: c_float);
 
@@ -181,6 +193,7 @@ extern_methods!(
         #[method(sharpnessAmount)]
         pub unsafe fn sharpnessAmount(&self) -> c_float;
 
+        /// Setter for [`sharpnessAmount`][Self::sharpnessAmount].
         #[method(setSharpnessAmount:)]
         pub unsafe fn setSharpnessAmount(&self, sharpness_amount: c_float);
 
@@ -190,6 +203,7 @@ extern_methods!(
         #[method(contrastAmount)]
         pub unsafe fn contrastAmount(&self) -> c_float;
 
+        /// Setter for [`contrastAmount`][Self::contrastAmount].
         #[method(setContrastAmount:)]
         pub unsafe fn setContrastAmount(&self, contrast_amount: c_float);
 
@@ -199,6 +213,7 @@ extern_methods!(
         #[method(detailAmount)]
         pub unsafe fn detailAmount(&self) -> c_float;
 
+        /// Setter for [`detailAmount`][Self::detailAmount].
         #[method(setDetailAmount:)]
         pub unsafe fn setDetailAmount(&self, detail_amount: c_float);
 
@@ -208,6 +223,7 @@ extern_methods!(
         #[method(moireReductionAmount)]
         pub unsafe fn moireReductionAmount(&self) -> c_float;
 
+        /// Setter for [`moireReductionAmount`][Self::moireReductionAmount].
         #[method(setMoireReductionAmount:)]
         pub unsafe fn setMoireReductionAmount(&self, moire_reduction_amount: c_float);
 
@@ -217,12 +233,14 @@ extern_methods!(
         #[method(localToneMapAmount)]
         pub unsafe fn localToneMapAmount(&self) -> c_float;
 
+        /// Setter for [`localToneMapAmount`][Self::localToneMapAmount].
         #[method(setLocalToneMapAmount:)]
         pub unsafe fn setLocalToneMapAmount(&self, local_tone_map_amount: c_float);
 
         #[method(extendedDynamicRangeAmount)]
         pub unsafe fn extendedDynamicRangeAmount(&self) -> c_float;
 
+        /// Setter for [`extendedDynamicRangeAmount`][Self::extendedDynamicRangeAmount].
         #[method(setExtendedDynamicRangeAmount:)]
         pub unsafe fn setExtendedDynamicRangeAmount(&self, extended_dynamic_range_amount: c_float);
 
@@ -231,6 +249,7 @@ extern_methods!(
         pub unsafe fn neutralChromaticity(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`neutralChromaticity`][Self::neutralChromaticity].
         #[method(setNeutralChromaticity:)]
         pub unsafe fn setNeutralChromaticity(&self, neutral_chromaticity: CGPoint);
 
@@ -239,24 +258,28 @@ extern_methods!(
         pub unsafe fn neutralLocation(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`neutralLocation`][Self::neutralLocation].
         #[method(setNeutralLocation:)]
         pub unsafe fn setNeutralLocation(&self, neutral_location: CGPoint);
 
         #[method(neutralTemperature)]
         pub unsafe fn neutralTemperature(&self) -> c_float;
 
+        /// Setter for [`neutralTemperature`][Self::neutralTemperature].
         #[method(setNeutralTemperature:)]
         pub unsafe fn setNeutralTemperature(&self, neutral_temperature: c_float);
 
         #[method(neutralTint)]
         pub unsafe fn neutralTint(&self) -> c_float;
 
+        /// Setter for [`neutralTint`][Self::neutralTint].
         #[method(setNeutralTint:)]
         pub unsafe fn setNeutralTint(&self, neutral_tint: c_float);
 
         #[method_id(@__retain_semantics Other linearSpaceFilter)]
         pub unsafe fn linearSpaceFilter(&self) -> Option<Retained<CIFilter>>;
 
+        /// Setter for [`linearSpaceFilter`][Self::linearSpaceFilter].
         #[method(setLinearSpaceFilter:)]
         pub unsafe fn setLinearSpaceFilter(&self, linear_space_filter: Option<&CIFilter>);
 

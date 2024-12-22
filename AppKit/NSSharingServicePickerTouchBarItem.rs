@@ -32,6 +32,7 @@ extern_methods!(
 
         #[cfg(feature = "NSSharingService")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -41,12 +42,14 @@ extern_methods!(
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method_id(@__retain_semantics Other buttonTitle)]
         pub unsafe fn buttonTitle(&self) -> Retained<NSString>;
 
+        /// Setter for [`buttonTitle`][Self::buttonTitle].
         #[method(setButtonTitle:)]
         pub unsafe fn setButtonTitle(&self, button_title: &NSString);
 
@@ -55,6 +58,7 @@ extern_methods!(
         pub unsafe fn buttonImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`buttonImage`][Self::buttonImage].
         #[method(setButtonImage:)]
         pub unsafe fn setButtonImage(&self, button_image: Option<&NSImage>);
     }

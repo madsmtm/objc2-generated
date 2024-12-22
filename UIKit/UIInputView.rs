@@ -99,6 +99,7 @@ extern_methods!(
         #[method(allowsSelfSizing)]
         pub unsafe fn allowsSelfSizing(&self) -> bool;
 
+        /// Setter for [`allowsSelfSizing`][Self::allowsSelfSizing].
         #[method(setAllowsSelfSizing:)]
         pub unsafe fn setAllowsSelfSizing(&self, allows_self_sizing: bool);
 

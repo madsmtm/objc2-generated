@@ -74,9 +74,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other audioMix)]
         pub unsafe fn audioMix() -> Retained<Self>;
 
+        /// Indicates parameters for inputs to the mix; an NSArray of instances of AVAudioMixInputParameters.
+        ///
+        /// Note that an instance of AVAudioMixInputParameters is not required for each audio track that contributes to the mix; audio for those without associated AVAudioMixInputParameters will be included in the mix, processed according to default behavior.
         #[method_id(@__retain_semantics Other inputParameters)]
         pub unsafe fn inputParameters(&self) -> Retained<NSArray<AVAudioMixInputParameters>>;
 
+        /// Setter for [`inputParameters`][Self::inputParameters].
         #[method(setInputParameters:)]
         pub unsafe fn setInputParameters(
             &self,
@@ -120,10 +124,15 @@ unsafe impl NSObjectProtocol for AVAudioMixInputParameters {}
 extern_methods!(
     unsafe impl AVAudioMixInputParameters {
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the trackID of the audio track to which the parameters should be applied.
         #[method(trackID)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
+        /// Indicates the processing algorithm used to manage audio pitch at varying rates and for scaled audio edits.
+        ///
+        /// Constants for various time pitch algorithms, e.g. AVAudioTimePitchSpectral, are defined in AVAudioProcessingSettings.h.
+        /// Can be nil, in which case the audioTimePitchAlgorithm set on the AVPlayerItem, AVAssetExportSession, or AVAssetReaderAudioMixOutput on which the AVAudioMix is set will be used for the associated track.
         #[method_id(@__retain_semantics Other audioTimePitchAlgorithm)]
         pub unsafe fn audioTimePitchAlgorithm(&self)
             -> Option<Retained<AVAudioTimePitchAlgorithm>>;
@@ -184,19 +193,26 @@ extern_methods!(
         pub unsafe fn audioMixInputParameters() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the trackID of the audio track to which the parameters should be applied.
         #[method(trackID)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`trackID`][Self::trackID].
         #[method(setTrackID:)]
         pub unsafe fn setTrackID(&self, track_id: CMPersistentTrackID);
 
         #[cfg(feature = "AVAudioProcessingSettings")]
+        /// Indicates the processing algorithm used to manage audio pitch at varying rates and for scaled audio edits.
+        ///
+        /// Constants for various time pitch algorithms, e.g. AVAudioTimePitchSpectral, are defined in AVAudioProcessingSettings.h.
+        /// Can be nil, in which case the audioTimePitchAlgorithm set on the AVPlayerItem, AVAssetExportSession, or AVAssetReaderAudioMixOutput on which the AVAudioMix is set will be used for the associated track.
         #[method_id(@__retain_semantics Other audioTimePitchAlgorithm)]
         pub unsafe fn audioTimePitchAlgorithm(&self)
             -> Option<Retained<AVAudioTimePitchAlgorithm>>;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
+        /// Setter for [`audioTimePitchAlgorithm`][Self::audioTimePitchAlgorithm].
         #[method(setAudioTimePitchAlgorithm:)]
         pub unsafe fn setAudioTimePitchAlgorithm(
             &self,

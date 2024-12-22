@@ -9,7 +9,17 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnarithmeticgradientstate?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// The MPSCNNArithmeticGradientState is used to hold the clamp mask used by both
+    /// MPSCNNArithmetic forward filter and MPSCNNArithmeticGradient backward filter.
+    /// The MPSCNNArithmetic forward filter populates the MPSCNNArithmeticGradientState
+    /// object and the MPSCNNArithmeticGradient backward filter consumes the state
+    /// object.
+    ///
+    /// The clamp mask is stored internally and is not accessible by the user.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnarithmeticgradientstate?language=objc)
     #[unsafe(super(MPSNNBinaryGradientState, MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
@@ -31,18 +41,31 @@ extern_methods!(
     /// Methods declared on superclass `MPSState`
     #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
     unsafe impl MPSCNNArithmeticGradientState {
+        /// Create a MPSState holding a temporary MTLBuffer
+        ///
+        /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
+        ///
+        /// Parameter `bufferSize`: The size of the buffer in bytes
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:bufferSize:)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             buffer_size: usize,
         ) -> Retained<Self>;
 
+        /// Create a MPSState holding a temporary MTLTexture
+        ///
+        /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
+        ///
+        /// Parameter `descriptor`: A descriptor for the new temporary texture
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:textureDescriptor:)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor: &MTLTextureDescriptor,
         ) -> Retained<Self>;
 
+        /// Create a new autoreleased temporary state object without underlying resource
+        ///
+        /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -62,12 +85,21 @@ extern_methods!(
             descriptor: &MTLTextureDescriptor,
         ) -> Retained<Self>;
 
+        /// Create a MPSState with a non-temporary MTLResource
+        ///
+        /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
         #[method_id(@__retain_semantics Init initWithResource:)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
+        /// Initialize a non-temporary state to hold a number of textures and buffers
+        ///
+        /// The allocation of each resource will be deferred  until it is needed.
+        /// This occurs when -resource or -resourceAtIndex: is called.
+        ///
+        /// Parameter `resourceList`: The list of resources to create.
         #[method_id(@__retain_semantics Init initWithDevice:resourceList:)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
@@ -75,12 +107,21 @@ extern_methods!(
             resource_list: &MPSStateResourceList,
         ) -> Retained<Self>;
 
+        /// Initialize a temporary state to hold a number of textures and buffers
+        ///
+        /// The textures occur first in sequence
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:resourceList:)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             resource_list: &MPSStateResourceList,
         ) -> Retained<Self>;
 
+        /// Create a state object with a list of MTLResources
+        ///
+        /// Because MPS prefers deferred allocation of resources
+        /// your application should use -initWithTextures:bufferSizes:bufferCount:
+        /// whenever possible. This method is useful for cases when the
+        /// MTLResources must be initialized by the CPU.
         #[method_id(@__retain_semantics Init initWithResources:)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
@@ -103,7 +144,49 @@ extern_methods!(
 pub type MPSCNNArithmeticGradientStateBatch = NSArray<MPSCNNArithmeticGradientState>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnarithmetic?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSCNNArithmetic filter takes two source images, a primary source image and a
+    /// secondary source image, and outputs a single destination image. It applies an
+    /// element-wise arithmetic operator to each pixel in a primary source image and a
+    /// corresponding pixel in a secondary source image over a specified region.
+    ///
+    /// The supported arithmetic operators are the following:
+    /// - Addition
+    /// - Subtraction
+    /// - Multiplication
+    /// - Division
+    /// - Comparison
+    ///
+    /// This filter takes additional parameters: primaryScale, secondaryScale, and bias. The default
+    /// value for primaryScale and secondaryScale is 1.0f. The default value for bias is 0.0f. This
+    /// filter applies primaryScale, secondaryScale, and bias to the primary source pixel (x) and
+    /// secondary source pixel (y) in the following way:
+    /// - Addition:         result = ((primaryScale * x) + (secondaryScale * y)) + bias
+    /// - Subtraction:      result = ((primaryScale * x) - (secondaryScale * y)) + bias
+    /// - Multiplicaton:    result = ((primaryScale * x) * (secondaryScale * y)) + bias
+    /// - Division:         result = ((primaryScale * x) / (secondaryScale * y)) + bias
+    /// - Comparison:       Unused.
+    ///
+    /// To clamp the result of an arithmetic operation, where
+    /// result = clamp(result, minimumValue, maximumValue),
+    /// set the minimumValue and maximumValue appropriately. The default value of minimumValue
+    /// is -FLT_MAX. The default value of maximumValue is FLT_MAX.
+    ///
+    /// This filter also takes the following additional parameters:
+    /// - primaryStrideInPixelsX, primaryStrideInPixelsY, primaryStrideInFeatureChannels
+    /// - secondaryStrideInPixelsX, secondaryStrideInPixelsY, secondaryStrideInFeatureChannels
+    /// These parameters can be used to control broadcasting for the data stored in the primary and
+    /// secondary source images. For example, setting all strides for the primary source image to 0
+    /// will result in the primarySource image being treated as a scalar value. The only supported
+    /// values are 0 or 1. The default value of these parameters is 1.
+    ///
+    /// The number of output feature channels remains the same as the number of input feature
+    /// channels.
+    ///
+    /// You must use one of the sub-classes of MPSImageArithmetic.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnarithmetic?language=objc)
     #[unsafe(super(MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -133,48 +216,65 @@ extern_methods!(
         #[method(primaryScale)]
         pub unsafe fn primaryScale(&self) -> c_float;
 
+        /// Setter for [`primaryScale`][Self::primaryScale].
         #[method(setPrimaryScale:)]
         pub unsafe fn setPrimaryScale(&self, primary_scale: c_float);
 
         #[method(secondaryScale)]
         pub unsafe fn secondaryScale(&self) -> c_float;
 
+        /// Setter for [`secondaryScale`][Self::secondaryScale].
         #[method(setSecondaryScale:)]
         pub unsafe fn setSecondaryScale(&self, secondary_scale: c_float);
 
         #[method(bias)]
         pub unsafe fn bias(&self) -> c_float;
 
+        /// Setter for [`bias`][Self::bias].
         #[method(setBias:)]
         pub unsafe fn setBias(&self, bias: c_float);
 
+        /// The primarySource stride in the feature channel dimension. The only supported values are 0 or 1.
+        /// The default value for each dimension is 1.
         #[method(primaryStrideInFeatureChannels)]
         pub unsafe fn primaryStrideInFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`primaryStrideInFeatureChannels`][Self::primaryStrideInFeatureChannels].
         #[method(setPrimaryStrideInFeatureChannels:)]
         pub unsafe fn setPrimaryStrideInFeatureChannels(
             &self,
             primary_stride_in_feature_channels: NSUInteger,
         );
 
+        /// The secondarySource stride in the feature channel dimension. The only supported values are 0 or 1.
+        /// The default value for each dimension is 1.
         #[method(secondaryStrideInFeatureChannels)]
         pub unsafe fn secondaryStrideInFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`secondaryStrideInFeatureChannels`][Self::secondaryStrideInFeatureChannels].
         #[method(setSecondaryStrideInFeatureChannels:)]
         pub unsafe fn setSecondaryStrideInFeatureChannels(
             &self,
             secondary_stride_in_feature_channels: NSUInteger,
         );
 
+        /// minimumValue is to clamp the result of an arithmetic operation:
+        /// result = clamp(result, minimumValue, maximumValue).
+        /// The default value of minimumValue is -FLT_MAX.
         #[method(minimumValue)]
         pub unsafe fn minimumValue(&self) -> c_float;
 
+        /// Setter for [`minimumValue`][Self::minimumValue].
         #[method(setMinimumValue:)]
         pub unsafe fn setMinimumValue(&self, minimum_value: c_float);
 
+        /// maximumValue is used to clamp the result of an arithmetic operation:
+        /// result = clamp(result, minimumValue, maximumValue).
+        /// The default value of maximumValue is FLT_MAX.
         #[method(maximumValue)]
         pub unsafe fn maximumValue(&self) -> c_float;
 
+        /// Setter for [`maximumValue`][Self::maximumValue].
         #[method(setMaximumValue:)]
         pub unsafe fn setMaximumValue(&self, maximum_value: c_float);
 
@@ -189,6 +289,21 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode call that operates on a state for later consumption by a gradient kernel in training
+        ///
+        /// This is the older style of encode which reads the offset, doesn't change it,
+        /// and ignores the padding method.
+        ///
+        /// Parameter `commandBuffer`: The command buffer
+        ///
+        /// Parameter `primaryImage`: A MPSImage to use as the source images for the filter.
+        ///
+        /// Parameter `secondaryImage`: A MPSImage to use as the source images for the filter.
+        ///
+        /// Parameter `destinationState`: MPSCNNArithmeticGradientState to be consumed by the gradient layer
+        ///
+        /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. destinationImage
+        /// may not alias primarySourceImage or secondarySourceImage.
         #[method(encodeToCommandBuffer:primaryImage:secondaryImage:destinationState:destinationImage:)]
         pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage_destinationState_destinationImage(
             &self,
@@ -205,6 +320,23 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode call that operates on a state for later consumption by a gradient kernel in training
+        ///
+        /// This is the older style of encode which reads the offset, doesn't change it,
+        /// and ignores the padding method. Multiple images are processed concurrently.
+        /// All images must have MPSImage.numberOfImages = 1.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `primaryImages`: An array of MPSImage objects containing the primary source images.
+        ///
+        /// Parameter `secondaryImages`: An array MPSImage objects containing the secondary source images.
+        ///
+        /// Parameter `destinationStates`: An array of MPSCNNArithmeticGradientStateBatch to be consumed by the gradient layer
+        ///
+        /// Parameter `destinationImages`: An array of MPSImage objects to contain the result images.
+        /// destinationImages may not alias primarySourceImages or secondarySourceImages
+        /// in any manner.
         #[method(encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationStates:destinationImages:)]
         pub unsafe fn encodeBatchToCommandBuffer_primaryImages_secondaryImages_destinationStates_destinationImages(
             &self,
@@ -221,6 +353,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNBinaryKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNArithmetic {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -234,6 +379,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNArithmetic {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -255,7 +408,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnadd?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the addition operator.
+    /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
+    /// it applies the following function: result = ((primaryScale * x) + (secondaryScale * y)) + bias.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnadd?language=objc)
     #[unsafe(super(MPSCNNArithmetic, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -282,6 +441,11 @@ unsafe impl NSSecureCoding for MPSCNNAdd {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNAdd {
+        /// Initialize the addition operator.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Returns: A valid MPSCNNAdd object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -294,6 +458,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNBinaryKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNAdd {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -307,6 +484,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNAdd {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -328,7 +513,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsubtract?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the subtraction operator.
+    /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
+    /// it applies the following function: result = ((primaryScale * x) - (secondaryScale * y)) + bias.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsubtract?language=objc)
     #[unsafe(super(MPSCNNArithmetic, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -355,6 +546,11 @@ unsafe impl NSSecureCoding for MPSCNNSubtract {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNSubtract {
+        /// Initialize the subtraction operator
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Returns: A valid MPSCNNSubtract object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -367,6 +563,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNBinaryKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNSubtract {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -380,6 +589,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNSubtract {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -401,7 +618,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiply?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the multiplication operator.
+    /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
+    /// it applies the following function: result = ((primaryScale * x) * (secondaryScale * y)) + bias.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiply?language=objc)
     #[unsafe(super(MPSCNNArithmetic, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -428,6 +651,11 @@ unsafe impl NSSecureCoding for MPSCNNMultiply {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiply {
+        /// Initialize the multiplication operator
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Returns: A valid MPSCNNMultiply object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -440,6 +668,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNBinaryKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiply {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -453,6 +694,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiply {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -474,7 +723,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndivide?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the division operator.
+    /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
+    /// it applies the following function: result = ((primaryScale * x) / (secondaryScale * y)) + bias.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndivide?language=objc)
     #[unsafe(super(MPSCNNArithmetic, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -501,6 +756,11 @@ unsafe impl NSSecureCoding for MPSCNNDivide {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNDivide {
+        /// Initialize the division operator
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Returns: A valid MPSCNNDivide object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -513,6 +773,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNBinaryKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNDivide {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -526,6 +799,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNDivide {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -577,7 +858,15 @@ unsafe impl RefEncode for MPSNNComparisonType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncompare?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the elementwise comparison operator.
+    /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
+    /// it applies the following function: result = (abs(x-y))
+    /// <
+    /// = threshold
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncompare?language=objc)
     #[unsafe(super(MPSCNNArithmetic, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -604,18 +893,32 @@ unsafe impl NSSecureCoding for MPSNNCompare {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNCompare {
+        /// The comparison type to use
         #[method(comparisonType)]
         pub unsafe fn comparisonType(&self) -> MPSNNComparisonType;
 
+        /// Setter for [`comparisonType`][Self::comparisonType].
         #[method(setComparisonType:)]
         pub unsafe fn setComparisonType(&self, comparison_type: MPSNNComparisonType);
 
+        /// The threshold to use when comparing for equality.  Two values will
+        /// be considered to be equal if the absolute value of their difference
+        /// is less than, or equal, to the specified threshold:
+        /// result = |b - a|
+        /// <
+        /// = threshold
         #[method(threshold)]
         pub unsafe fn threshold(&self) -> c_float;
 
+        /// Setter for [`threshold`][Self::threshold].
         #[method(setThreshold:)]
         pub unsafe fn setThreshold(&self, threshold: c_float);
 
+        /// Initialize the comparison operator
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Returns: A valid MPSNNCompare object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -628,6 +931,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNBinaryKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNCompare {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -641,6 +957,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNCompare {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -662,7 +986,77 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnarithmeticgradient?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSCNNArithmeticGradient filter is the backward filter for the MPSCNNArithmetic
+    /// forward filter.
+    ///
+    /// The forward filter takes two inputs, primary and secondary source images, and produces
+    /// a single output image. Thus, going backwards requires two separate filters (one for
+    /// the primary source image and one for the secondary source image) that take multiple
+    /// inputs and produce a single output. The secondarySourceFilter property is used to
+    /// indicate whether the filter is operating on the primary or secondary source image from
+    /// the forward pass.
+    ///
+    /// All the arithmetic gradient filters require the following inputs: gradient image from
+    /// the previous layer (going backwards) and all the applicable input source images from
+    /// the forward pass.
+    ///
+    /// The forward filter takes the following additional parameters:
+    /// - primaryStrideInPixelsX, primaryStrideInPixelsY, primaryStrideInFeatureChannels
+    /// - secondaryStrideInPixelsX, secondaryStrideInPixelsY, secondaryStrideInFeatureChannels
+    /// These parameters can be used in the forward filter to control broadcasting for the data
+    /// stored in the primary and secondary source images. For example, setting all strides for
+    /// the primary source image to 0 will result in the primarySource image being treated as a
+    /// single pixel. The only supported values are 0 or 1. The default value of these parameters
+    /// is 1.
+    ///
+    /// The first input to the backward filter is the gradient image from the previous layer
+    /// (going backwards), so there are no broadcasting parameters for this input. For the
+    /// backward filter, the broadcasting parameters for the second input must match the
+    /// broadcasting parameters set for the same image in the forward filter.
+    ///
+    /// In the backward pass, broadcasting results in a reduction operation (sum) across all of the
+    /// applicable broadcasting dimensions (rows, columns, feature channels, or any combination
+    /// thereof) to produce the destination image of the size that matches the primary/secondary
+    /// input images used in the forward pass.
+    ///
+    /// In the case of no broadcasting, the following arithmetic gradient operations are copy
+    /// operations (that can be optimized away by the graph interface):
+    /// - Add (primarySource, secondarySource)
+    /// - Subtract (primarySource)
+    ///
+    /// Similarly to the forward filter, this backward filter takes additional parameters:
+    /// primaryScale, secondaryScale, and bias. The default value for primaryScale and secondaryScale
+    /// is 1.0f. The default value for bias is 0.0f. This filter applies primaryScale to the primary
+    /// source image, applies the secondaryScale to the secondary source image, where appropriate,
+    /// and applies bias to the result, i.e.:
+    /// result = ((primaryScale * x) [insert operation] (secondaryScale * y)) + bias.
+    ///
+    /// The subtraction gradient filter for the secondary source image requires that the primaryScale
+    /// property is set to -1.0f (for x - y, d/dy(x - y) = -1).
+    ///
+    /// In the forward filter, there is support for clamping the result of the available operations,
+    /// where result = clamp(result, minimumValue, maximumValue). The clamp backward operation is
+    /// not supported in the arithmetic gradient filters. If you require this functionality, it can
+    /// be implemented by performing a clamp backward operation before calling the arithmetic gradient
+    /// filters. You would need to apply the following function on the incomping gradient input image:
+    /// f(x) = ((minimumValue
+    /// <
+    /// x)
+    /// &
+    /// &
+    /// (x
+    /// <
+    /// maximumValue)) ? 1 : 0, where x is the original result
+    /// (before clamping) of the forward arithmetic filter.
+    ///
+    /// The number of output feature channels remains the same as the number of input feature
+    /// channels.
+    ///
+    /// You must use one of the sub-classes of MPSImageArithmeticGradient.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnarithmeticgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -692,42 +1086,58 @@ extern_methods!(
         #[method(primaryScale)]
         pub unsafe fn primaryScale(&self) -> c_float;
 
+        /// Setter for [`primaryScale`][Self::primaryScale].
         #[method(setPrimaryScale:)]
         pub unsafe fn setPrimaryScale(&self, primary_scale: c_float);
 
         #[method(secondaryScale)]
         pub unsafe fn secondaryScale(&self) -> c_float;
 
+        /// Setter for [`secondaryScale`][Self::secondaryScale].
         #[method(setSecondaryScale:)]
         pub unsafe fn setSecondaryScale(&self, secondary_scale: c_float);
 
         #[method(bias)]
         pub unsafe fn bias(&self) -> c_float;
 
+        /// Setter for [`bias`][Self::bias].
         #[method(setBias:)]
         pub unsafe fn setBias(&self, bias: c_float);
 
+        /// The secondarySource stride in the feature channel dimension. The only supported values are 0 or 1.
+        /// The default value for each dimension is 1.
         #[method(secondaryStrideInFeatureChannels)]
         pub unsafe fn secondaryStrideInFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`secondaryStrideInFeatureChannels`][Self::secondaryStrideInFeatureChannels].
         #[method(setSecondaryStrideInFeatureChannels:)]
         pub unsafe fn setSecondaryStrideInFeatureChannels(
             &self,
             secondary_stride_in_feature_channels: NSUInteger,
         );
 
+        /// minimumValue is to clamp the result of an arithmetic operation:
+        /// result = clamp(result, minimumValue, maximumValue).
+        /// The default value of minimumValue is -FLT_MAX.
         #[method(minimumValue)]
         pub unsafe fn minimumValue(&self) -> c_float;
 
+        /// Setter for [`minimumValue`][Self::minimumValue].
         #[method(setMinimumValue:)]
         pub unsafe fn setMinimumValue(&self, minimum_value: c_float);
 
+        /// maximumValue is used to clamp the result of an arithmetic operation:
+        /// result = clamp(result, minimumValue, maximumValue).
+        /// The default value of maximumValue is FLT_MAX.
         #[method(maximumValue)]
         pub unsafe fn maximumValue(&self) -> c_float;
 
+        /// Setter for [`maximumValue`][Self::maximumValue].
         #[method(setMaximumValue:)]
         pub unsafe fn setMaximumValue(&self, maximum_value: c_float);
 
+        /// The isSecondarySourceFilter property is used to indicate whether the arithmetic gradient
+        /// filter is operating on the primary or secondary source image from the forward pass.
         #[method(isSecondarySourceFilter)]
         pub unsafe fn isSecondarySourceFilter(&self) -> bool;
 
@@ -750,6 +1160,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNArithmeticGradient {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -763,6 +1186,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNArithmeticGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -784,7 +1215,25 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnaddgradient?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the addition gradient operator.
+    /// This arithmetic gradient filter requires the following inputs: gradient image from
+    /// the previous layer (going backwards) and either the primary or the secondary source
+    /// image from the forward pass. You will need a separate filter for the primary and
+    /// secondary source images.
+    ///
+    /// Without broadcasting, the arithmetic add gradient operation is a copy operation on
+    /// the input gradient image. It is the same operation for both the primary and secondary
+    /// source images (for x + y, d/dx(x + y) = 1, d/dy(x + y) = 1). This copy operation can
+    /// be optimized away by the graph interface.
+    ///
+    /// Setting the broadcasting parameters results in a reduction operation (sum) across all
+    /// of the applicable broadcasting dimensions (rows, columns, feature channels, or any
+    /// combination thereof) to produce the destination image of the size that matches the
+    /// primary/secondary input images used in the forward pass.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnaddgradient?language=objc)
     #[unsafe(super(
         MPSCNNArithmeticGradient,
         MPSCNNGradientKernel,
@@ -817,6 +1266,14 @@ unsafe impl NSSecureCoding for MPSCNNAddGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNAddGradient {
+        /// Initialize the addition gradient operator.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `isSecondarySourceFilter`: A boolean indicating whether the arithmetic gradient
+        /// filter is operating on the primary or secondary source image from the forward pass.
+        ///
+        /// Returns: A valid MPSCNNAddGradient object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:isSecondarySourceFilter:)]
         pub unsafe fn initWithDevice_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -842,6 +1299,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNAddGradient {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -855,6 +1325,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNAddGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -876,7 +1354,27 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsubtractgradient?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the subtraction gradient operator.
+    /// This arithmetic gradient filter requires the following inputs: gradient image from
+    /// the previous layer (going backwards) and either the primary or the secondary source
+    /// image from the forward pass. You will need a separate filter for the primary and
+    /// secondary source images.
+    ///
+    /// Without broadcasting, the arithmetic subtract gradient operation for the primary
+    /// source image is a copy operation on the input gradient image (for x - y, d/dx(x - y) = 1).
+    /// This copy operation can be optimized away by the graph interface.
+    ///
+    /// For the secondary source image, the result is a negation of the gradient image from
+    /// the previous layer (for x - y, d/dy(x - y) = -1).
+    ///
+    /// Setting the broadcasting parameters results in a reduction operation (sum) across all
+    /// of the applicable broadcasting dimensions (rows, columns, feature channels, or any
+    /// combination thereof) to produce the destination image of the size that matches the
+    /// primary/secondary input images used in the forward pass.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsubtractgradient?language=objc)
     #[unsafe(super(
         MPSCNNArithmeticGradient,
         MPSCNNGradientKernel,
@@ -909,6 +1407,14 @@ unsafe impl NSSecureCoding for MPSCNNSubtractGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNSubtractGradient {
+        /// Initialize the subtraction gradient operator.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `isSecondarySourceFilter`: A boolean indicating whether the arithmetic gradient
+        /// filter is operating on the primary or secondary source image from the forward pass.
+        ///
+        /// Returns: A valid MPSCNNSubtractGradient object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:isSecondarySourceFilter:)]
         pub unsafe fn initWithDevice_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -934,6 +1440,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNSubtractGradient {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -947,6 +1466,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNSubtractGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -968,7 +1495,28 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiplygradient?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the multiplication gradient operator.
+    /// This arithmetic gradient filter requires the following inputs: gradient image from
+    /// the previous layer (going backwards) and either the primary or the secondary source
+    /// image from the forward pass. You will need a separate filter for the primary and
+    /// secondary source images.
+    ///
+    /// Without broadcasting, the arithmetic multiply gradient operation is an element-wise
+    /// multiplication operation between the gradient image from the previous layer (going
+    /// backwards) and:
+    /// - The secondary source image from the forward pass for the primary source filter
+    /// (for x * y, d/dx(x * y) = y).
+    /// - The primary source image from the forward pass for the secondary source filter
+    /// (for x * y, d/dy(x * y) = x).
+    ///
+    /// Setting the broadcasting parameters results in a reduction operation (sum) across all
+    /// of the applicable broadcasting dimensions (rows, columns, feature channels, or any
+    /// combination thereof) to produce the destination image of the size that matches the
+    /// primary/secondary input images used in the forward pass.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiplygradient?language=objc)
     #[unsafe(super(
         MPSCNNArithmeticGradient,
         MPSCNNGradientKernel,
@@ -1001,6 +1549,14 @@ unsafe impl NSSecureCoding for MPSCNNMultiplyGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiplyGradient {
+        /// Initialize the multiplication gradient operator.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `isSecondarySourceFilter`: A boolean indicating whether the arithmetic gradient
+        /// filter is operating on the primary or secondary source image from the forward pass.
+        ///
+        /// Returns: A valid MPSCNNMultiplyGradient object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:isSecondarySourceFilter:)]
         pub unsafe fn initWithDevice_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -1026,6 +1582,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiplyGradient {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1039,6 +1608,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiplyGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

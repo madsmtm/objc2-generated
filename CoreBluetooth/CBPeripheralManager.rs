@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerauthorizationstatus?language=objc)
+/// Represents the current state of a CBPeripheralManager.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerauthorizationstatus?language=objc)
 // NS_ENUM
 #[deprecated = "Use CBManagerAuthorization instead"]
 #[repr(transparent)]
@@ -36,7 +38,9 @@ unsafe impl RefEncode for CBPeripheralManagerAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate?language=objc)
+/// Represents the current state of a CBPeripheralManager.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate?language=objc)
 // NS_ENUM
 #[deprecated = "Use CBManagerState instead"]
 #[repr(transparent)]
@@ -77,7 +81,9 @@ unsafe impl RefEncode for CBPeripheralManagerState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerconnectionlatency?language=objc)
+/// The latency of a peripheral-central connection controls how frequently messages can be exchanged.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerconnectionlatency?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -100,7 +106,30 @@ unsafe impl RefEncode for CBPeripheralManagerConnectionLatency {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager?language=objc)
+    /// The
+    /// <code>
+    /// CBPeripheralManager
+    /// </code>
+    /// class is an abstraction of the Peripheral and Broadcaster GAP roles, and the GATT Server
+    /// role. Its primary function is to allow you to manage published services within the GATT database, and to advertise these services
+    /// to other devices.
+    /// Each application has sandboxed access to the shared GATT database. You can add services to the database by calling {
+    ///
+    /// ```text
+    ///  addService:};
+    ///               they can be removed via {@link removeService:} and {@link removeAllServices}, as appropriate. While a service is in the database,
+    ///               it is visible to and can be accessed by any connected GATT Client. However, applications that have not specified the "bluetooth-peripheral"
+    ///               background mode will have the contents of their service(s) "disabled" when in the background. Any remote device trying to access
+    ///               characteristic values or descriptors during this time will receive an error response.
+    ///               Once you've published services that you want to share, you can ask to advertise their availability and allow other devices to connect
+    ///               to you by calling {@link startAdvertising:}. Like the GATT database, advertisement is managed at the system level and shared by all
+    ///               applications. This means that even if you aren't advertising at the moment, someone else might be!
+    ///
+    ///  
+    ///
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager?language=objc)
     #[unsafe(super(CBManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBManager")]
@@ -113,21 +142,37 @@ unsafe impl NSObjectProtocol for CBPeripheralManager {}
 extern_methods!(
     #[cfg(feature = "CBManager")]
     unsafe impl CBPeripheralManager {
+        /// The delegate object that will receive peripheral events.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CBPeripheralManagerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn CBPeripheralManagerDelegate>>,
         );
 
+        /// Whether or not the peripheral is currently advertising data.
         #[method(isAdvertising)]
         pub unsafe fn isAdvertising(&self) -> bool;
 
+        /// This method does not prompt the user for access. You can use it to detect restricted access and simply hide UI instead of
+        /// prompting for access.
+        ///
+        ///
+        /// Returns: The current authorization status for sharing data while backgrounded. For the constants returned, see {
+        ///
+        /// ```text
+        ///  CBPeripheralManagerAuthorizationStatus}.
+        ///
+        ///   @see        CBPeripheralManagerAuthorizationStatus
+        ///  
+        ///
+        /// ```
         #[deprecated = "Use CBManagerAuthorization instead"]
         #[method(authorizationStatus)]
         pub unsafe fn authorizationStatus() -> CBPeripheralManagerAuthorizationStatus;
@@ -135,16 +180,62 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Parameter `advertisementData`: An optional dictionary containing the data to be advertised.
+        ///
+        ///
+        /// Starts advertising. Supported advertising data types are
+        /// <code>
+        /// CBAdvertisementDataLocalNameKey
+        /// </code>
+        /// and
+        /// <code>
+        /// CBAdvertisementDataServiceUUIDsKey
+        /// </code>
+        /// .
+        /// When in the foreground, an application can utilize up to 28 bytes of space in the initial advertisement data for
+        /// any combination of the supported advertising data types. If this space is used up, there are an additional 10 bytes of
+        /// space in the scan response that can be used only for the local name. Note that these sizes do not include the 2 bytes
+        /// of header information that are required for each new data type. Any service UUIDs that do not fit in the allotted space
+        /// will be added to a special "overflow" area, and can only be discovered by an iOS device that is explicitly scanning
+        /// for them.
+        /// While an application is in the background, the local name will not be used and all service UUIDs will be placed in the
+        /// "overflow" area. However, applications that have not specified the "bluetooth-peripheral" background mode will not be able
+        /// to advertise anything while in the background.
+        ///
+        ///
+        /// See: peripheralManagerDidStartAdvertising:error:
+        ///
+        /// See also: CBAdvertisementData.h
         #[method(startAdvertising:)]
         pub unsafe fn startAdvertising(
             &self,
             advertisement_data: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
+        /// Stops advertising.
         #[method(stopAdvertising)]
         pub unsafe fn stopAdvertising(&self);
 
         #[cfg(all(feature = "CBCentral", feature = "CBPeer"))]
+        /// Parameter `latency`: The desired connection latency.
+        ///
+        /// Parameter `central`: A connected central.
+        ///
+        ///
+        /// Sets the desired connection latency for an existing connection to
+        /// <i>
+        /// central
+        /// </i>
+        /// . Connection latency changes are not guaranteed, so the
+        /// resultant latency may vary. If a desired latency is not set, the latency chosen by
+        /// <i>
+        /// central
+        /// </i>
+        /// at the time of connection establishment
+        /// will be used. Typically, it is not necessary to change the latency.
+        ///
+        ///
+        /// See: CBPeripheralManagerConnectionLatency
         #[method(setDesiredConnectionLatency:forCentral:)]
         pub unsafe fn setDesiredConnectionLatency_forCentral(
             &self,
@@ -153,17 +244,58 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CBAttribute", feature = "CBService"))]
+        /// Parameter `service`: A GATT service.
+        ///
+        ///
+        /// Publishes a service and its associated characteristic(s) to the local database. If the service contains included services,
+        /// they must be published first.
+        ///
+        ///
+        /// See: peripheralManager:didAddService:error:
         #[method(addService:)]
         pub unsafe fn addService(&self, service: &CBMutableService);
 
         #[cfg(all(feature = "CBAttribute", feature = "CBService"))]
+        /// Parameter `service`: A GATT service.
+        ///
+        ///
+        /// Removes a published service from the local database. If the service is included by other service(s), they must be removed
+        /// first.
         #[method(removeService:)]
         pub unsafe fn removeService(&self, service: &CBMutableService);
 
+        /// Removes all published services from the local database.
         #[method(removeAllServices)]
         pub unsafe fn removeAllServices(&self);
 
         #[cfg(all(feature = "CBATTRequest", feature = "CBError"))]
+        /// Parameter `request`: The original request that was received from the central.
+        ///
+        /// Parameter `result`: The result of attempting to fulfill
+        /// <i>
+        /// request
+        /// </i>
+        /// .
+        ///
+        ///
+        /// Used to respond to request(s) received via the
+        ///
+        /// ```text
+        ///  peripheralManager:didReceiveReadRequest:
+        /// ```
+        ///
+        /// or
+        ///
+        /// ```text
+        ///  peripheralManager:didReceiveWriteRequests:
+        /// ```
+        ///
+        /// delegate methods.
+        ///
+        ///
+        /// See: peripheralManager:didReceiveReadRequest:
+        ///
+        /// See: peripheralManager:didReceiveWriteRequests:
         #[method(respondToRequest:withResult:)]
         pub unsafe fn respondToRequest_withResult(
             &self,
@@ -177,6 +309,54 @@ extern_methods!(
             feature = "CBCharacteristic",
             feature = "CBPeer"
         ))]
+        /// Parameter `value`: The value to be sent via a notification/indication.
+        ///
+        /// Parameter `characteristic`: The characteristic whose value has changed.
+        ///
+        /// Parameter `centrals`: A list of
+        /// <code>
+        /// CBCentral
+        /// </code>
+        /// objects to receive the update. Note that centrals which have not subscribed to
+        /// <i>
+        /// characteristic
+        /// </i>
+        /// will be ignored. If
+        /// <i>
+        /// nil
+        /// </i>
+        /// , all centrals that are subscribed to
+        /// <i>
+        /// characteristic
+        /// </i>
+        /// will be updated.
+        ///
+        ///
+        /// Sends an updated characteristic value to one or more centrals, via a notification or indication. If
+        /// <i>
+        /// value
+        /// </i>
+        /// exceeds
+        /// {
+        ///
+        /// ```text
+        ///  maximumUpdateValueLength}, it will be truncated to fit.
+        ///
+        ///   @return                 <i>YES</i> if the update could be sent, or <i>NO</i> if the underlying transmit queue is full. If <i>NO</i> was returned,
+        ///                           the delegate method @link peripheralManagerIsReadyToUpdateSubscribers:
+        /// ```
+        ///
+        /// will be called once space has become
+        /// available, and the update should be re-sent if so desired.
+        ///
+        ///
+        /// See: peripheralManager:central:didSubscribeToCharacteristic:
+        ///
+        /// See: peripheralManager:central:didUnsubscribeFromCharacteristic:
+        ///
+        /// See: peripheralManagerIsReadyToUpdateSubscribers:
+        ///
+        /// See also: maximumUpdateValueLength
         #[method(updateValue:forCharacteristic:onSubscribedCentrals:)]
         pub unsafe fn updateValue_forCharacteristic_onSubscribedCentrals(
             &self,
@@ -185,10 +365,28 @@ extern_methods!(
             centrals: Option<&NSArray<CBCentral>>,
         ) -> bool;
 
+        /// Parameter `encryptionRequired`: YES if the service requires the link to be encrypted before a stream can be established.  NO if the service can be used over
+        /// an unsecured link.
+        ///
+        ///
+        /// Create a listener for incoming L2CAP Channel connections.  The system will determine an unused PSM at the time of publishing, which will be returned
+        /// with
+        ///
+        /// ```text
+        ///  peripheralManager:didPublishL2CAPChannel:error:
+        /// ```
+        ///
+        /// .  L2CAP Channels are not discoverable by themselves, so it is the application's
+        /// responsibility to handle PSM discovery on the client.
         #[method(publishL2CAPChannelWithEncryption:)]
         pub unsafe fn publishL2CAPChannelWithEncryption(&self, encryption_required: bool);
 
         #[cfg(feature = "CBL2CAPChannel")]
+        /// Parameter `PSM`: The service PSM to be removed from the system.
+        ///
+        ///
+        /// Removes a published service from the local system.  No new connections for this PSM will be accepted, and any existing L2CAP channels
+        /// using this PSM will be closed.
         #[method(unpublishL2CAPChannel:)]
         pub unsafe fn unpublishL2CAPChannel(&self, psm: CBL2CAPPSM);
     }
@@ -204,13 +402,64 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerdelegate?language=objc)
+    /// The delegate of a
+    ///
+    /// ```text
+    ///  CBPeripheralManager
+    /// ```
+    ///
+    /// object must adopt the
+    /// <code>
+    /// CBPeripheralManagerDelegate
+    /// </code>
+    /// protocol. The
+    /// single required method indicates the availability of the peripheral manager, while the optional methods provide information about
+    /// centrals, which can connect and access the local database.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerdelegate?language=objc)
     pub unsafe trait CBPeripheralManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "CBManager")]
+        /// Parameter `peripheral`: The peripheral manager whose state has changed.
+        ///
+        ///
+        /// Invoked whenever the peripheral manager's state has been updated. Commands should only be issued when the state is
+        /// <code>
+        /// CBPeripheralManagerStatePoweredOn
+        /// </code>
+        /// . A state below
+        /// <code>
+        /// CBPeripheralManagerStatePoweredOn
+        /// </code>
+        /// implies that advertisement has paused and any connected centrals have been disconnected. If the state moves below
+        /// <code>
+        /// CBPeripheralManagerStatePoweredOff
+        /// </code>
+        /// , advertisement is stopped and must be explicitly restarted, and the
+        /// local database is cleared and all services must be re-added.
+        ///
+        ///
+        /// See: state
         #[method(peripheralManagerDidUpdateState:)]
         unsafe fn peripheralManagerDidUpdateState(&self, peripheral: &CBPeripheralManager);
 
         #[cfg(feature = "CBManager")]
+        /// Parameter `peripheral`: The peripheral manager providing this information.
+        ///
+        /// Parameter `dict`: A dictionary containing information about
+        /// <i>
+        /// peripheral
+        /// </i>
+        /// that was preserved by the system at the time the app was terminated.
+        ///
+        ///
+        /// For apps that opt-in to state preservation and restoration, this is the first method invoked when your app is relaunched into
+        /// the background to complete some Bluetooth-related task. Use this method to synchronize your app's state with the state of the
+        /// Bluetooth system.
+        ///
+        ///
+        /// See also: CBPeripheralManagerRestoredStateServicesKey;
+        ///
+        /// See also: CBPeripheralManagerRestoredStateAdvertisementDataKey;
         #[optional]
         #[method(peripheralManager:willRestoreState:)]
         unsafe fn peripheralManager_willRestoreState(
@@ -220,6 +469,23 @@ extern_protocol!(
         );
 
         #[cfg(feature = "CBManager")]
+        /// Parameter `peripheral`: The peripheral manager providing this information.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of a
+        ///
+        /// ```text
+        ///  startAdvertising:
+        /// ```
+        ///
+        /// call. If advertisement could
+        /// not be started, the cause will be detailed in the
+        /// <i>
+        /// error
+        /// </i>
+        /// parameter.
         #[optional]
         #[method(peripheralManagerDidStartAdvertising:error:)]
         unsafe fn peripheralManagerDidStartAdvertising_error(
@@ -229,6 +495,25 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBAttribute", feature = "CBManager", feature = "CBService"))]
+        /// Parameter `peripheral`: The peripheral manager providing this information.
+        ///
+        /// Parameter `service`: The service that was added to the local database.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of an
+        ///
+        /// ```text
+        ///  addService:
+        /// ```
+        ///
+        /// call. If the service could
+        /// not be published to the local database, the cause will be detailed in the
+        /// <i>
+        /// error
+        /// </i>
+        /// parameter.
         #[optional]
         #[method(peripheralManager:didAddService:error:)]
         unsafe fn peripheralManager_didAddService_error(
@@ -245,6 +530,19 @@ extern_protocol!(
             feature = "CBManager",
             feature = "CBPeer"
         ))]
+        /// Parameter `peripheral`: The peripheral manager providing this update.
+        ///
+        /// Parameter `central`: The central that issued the command.
+        ///
+        /// Parameter `characteristic`: The characteristic on which notifications or indications were enabled.
+        ///
+        ///
+        /// This method is invoked when a central configures
+        /// <i>
+        /// characteristic
+        /// </i>
+        /// to notify or indicate.
+        /// It should be used as a cue to start sending updates as the characteristic value changes.
         #[optional]
         #[method(peripheralManager:central:didSubscribeToCharacteristic:)]
         unsafe fn peripheralManager_central_didSubscribeToCharacteristic(
@@ -261,6 +559,18 @@ extern_protocol!(
             feature = "CBManager",
             feature = "CBPeer"
         ))]
+        /// Parameter `peripheral`: The peripheral manager providing this update.
+        ///
+        /// Parameter `central`: The central that issued the command.
+        ///
+        /// Parameter `characteristic`: The characteristic on which notifications or indications were disabled.
+        ///
+        ///
+        /// This method is invoked when a central removes notifications/indications from
+        /// <i>
+        /// characteristic
+        /// </i>
+        /// .
         #[optional]
         #[method(peripheralManager:central:didUnsubscribeFromCharacteristic:)]
         unsafe fn peripheralManager_central_didUnsubscribeFromCharacteristic(
@@ -271,6 +581,30 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBATTRequest", feature = "CBManager"))]
+        /// Parameter `peripheral`: The peripheral manager requesting this information.
+        ///
+        /// Parameter `request`: A
+        /// <code>
+        /// CBATTRequest
+        /// </code>
+        /// object.
+        ///
+        ///
+        /// This method is invoked when
+        /// <i>
+        /// peripheral
+        /// </i>
+        /// receives an ATT request for a characteristic with a dynamic value.
+        /// For every invocation of this method,
+        ///
+        /// ```text
+        ///  respondToRequest:withResult:
+        /// ```
+        ///
+        /// must be called.
+        ///
+        ///
+        /// See: CBATTRequest
         #[optional]
         #[method(peripheralManager:didReceiveReadRequest:)]
         unsafe fn peripheralManager_didReceiveReadRequest(
@@ -280,6 +614,40 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBATTRequest", feature = "CBManager"))]
+        /// Parameter `peripheral`: The peripheral manager requesting this information.
+        ///
+        /// Parameter `requests`: A list of one or more
+        /// <code>
+        /// CBATTRequest
+        /// </code>
+        /// objects.
+        ///
+        ///
+        /// This method is invoked when
+        /// <i>
+        /// peripheral
+        /// </i>
+        /// receives an ATT request or command for one or more characteristics with a dynamic value.
+        /// For every invocation of this method,
+        ///
+        /// ```text
+        ///  respondToRequest:withResult:
+        /// ```
+        ///
+        /// should be called exactly once. If
+        /// <i>
+        /// requests
+        /// </i>
+        /// contains
+        /// multiple requests, they must be treated as an atomic unit. If the execution of one of the requests would cause a failure, the request
+        /// and error reason should be provided to
+        /// <code>
+        /// respondToRequest:withResult:
+        /// </code>
+        /// and none of the requests should be executed.
+        ///
+        ///
+        /// See: CBATTRequest
         #[optional]
         #[method(peripheralManager:didReceiveWriteRequests:)]
         unsafe fn peripheralManager_didReceiveWriteRequests(
@@ -289,6 +657,21 @@ extern_protocol!(
         );
 
         #[cfg(feature = "CBManager")]
+        /// Parameter `peripheral`: The peripheral manager providing this update.
+        ///
+        ///
+        /// This method is invoked after a failed call to
+        ///
+        /// ```text
+        ///  updateValue:forCharacteristic:onSubscribedCentrals:
+        /// ```
+        ///
+        /// , when
+        /// <i>
+        /// peripheral
+        /// </i>
+        /// is again
+        /// ready to send characteristic value updates.
         #[optional]
         #[method(peripheralManagerIsReadyToUpdateSubscribers:)]
         unsafe fn peripheralManagerIsReadyToUpdateSubscribers(
@@ -297,6 +680,21 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBL2CAPChannel", feature = "CBManager"))]
+        /// Parameter `peripheral`: The peripheral manager requesting this information.
+        ///
+        /// Parameter `PSM`: The PSM of the channel that was published.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method is the response to a
+        ///
+        /// ```text
+        ///  publishL2CAPChannel:
+        /// ```
+        ///
+        /// call.  The PSM will contain the PSM that was assigned for the published
+        /// channel
         #[optional]
         #[method(peripheralManager:didPublishL2CAPChannel:error:)]
         unsafe fn peripheralManager_didPublishL2CAPChannel_error(
@@ -307,6 +705,20 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBL2CAPChannel", feature = "CBManager"))]
+        /// Parameter `peripheral`: The peripheral manager requesting this information.
+        ///
+        /// Parameter `PSM`: The PSM of the channel that was published.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method is the response to a
+        ///
+        /// ```text
+        ///  unpublishL2CAPChannel:
+        /// ```
+        ///
+        /// call.
         #[optional]
         #[method(peripheralManager:didUnpublishL2CAPChannel:error:)]
         unsafe fn peripheralManager_didUnpublishL2CAPChannel_error(
@@ -317,6 +729,25 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBL2CAPChannel", feature = "CBManager"))]
+        /// Parameter `peripheral`: The peripheral manager requesting this information.
+        ///
+        /// Parameter `channel`: A
+        /// <code>
+        /// CBL2CAPChannel
+        /// </code>
+        /// object.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of establishing an incoming L2CAP channel , following publishing a channel using
+        ///
+        /// ```text
+        ///  publishL2CAPChannel: @link call.
+        ///
+        ///  
+        ///
+        /// ```
         #[optional]
         #[method(peripheralManager:didOpenL2CAPChannel:error:)]
         unsafe fn peripheralManager_didOpenL2CAPChannel_error(

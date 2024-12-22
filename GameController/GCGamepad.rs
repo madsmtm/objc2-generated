@@ -41,6 +41,7 @@ extern_methods!(
         pub unsafe fn valueChangedHandler(&self) -> GCGamepadValueChangedHandler;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
+        /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         #[deprecated]
         #[method(setValueChangedHandler:)]
         pub unsafe fn setValueChangedHandler(
@@ -49,16 +50,33 @@ extern_methods!(
         );
 
         #[cfg(feature = "GCGamepadSnapshot")]
+        /// Polls the state vector of the controller and saves it to a snapshot. The snapshot is stored in a device independent
+        /// format that can be serialized and used at a later date. This is useful for features such as quality assurance,
+        /// save game or replay functionality among many.
+        ///
+        /// If your application is heavily multithreaded this may also be useful to guarantee atomicity of input handling as
+        /// a snapshot will not change based on user input once it is taken.
         #[deprecated]
         #[method_id(@__retain_semantics Other saveSnapshot)]
         pub unsafe fn saveSnapshot(&self) -> Retained<GCGamepadSnapshot>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
+        /// Required to be analog in the Standard profile. All the elements of this directional input are thus analog.
         #[deprecated]
         #[method_id(@__retain_semantics Other dpad)]
         pub unsafe fn dpad(&self) -> Retained<GCControllerDirectionPad>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
+        /// All face buttons are required to be analog in the Standard profile. These must be arranged
+        /// in the diamond pattern given below:
+        ///
+        /// Y
+        /// /
+        /// \
+        /// X   B
+        /// \
+        /// /
+        /// A
         #[deprecated]
         #[method_id(@__retain_semantics Other buttonA)]
         pub unsafe fn buttonA(&self) -> Retained<GCControllerButtonInput>;
@@ -79,11 +97,13 @@ extern_methods!(
         pub unsafe fn buttonY(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
+        /// Shoulder buttons are required to be analog inputs.
         #[deprecated]
         #[method_id(@__retain_semantics Other leftShoulder)]
         pub unsafe fn leftShoulder(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
+        /// Shoulder buttons are required to be analog inputs.
         #[deprecated]
         #[method_id(@__retain_semantics Other rightShoulder)]
         pub unsafe fn rightShoulder(&self) -> Retained<GCControllerButtonInput>;

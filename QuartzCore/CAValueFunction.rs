@@ -45,7 +45,9 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcavaluefunctionrotatex?language=objc)
+    /// Value function names. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcavaluefunctionrotatex?language=objc)
     pub static kCAValueFunctionRotateX: &'static CAValueFunctionName;
 }
 

@@ -7,16 +7,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaavailability?language=objc)
+/// Availability of Rosetta support for Linux binaries.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaavailability?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct VZLinuxRosettaAvailability(pub NSInteger);
 impl VZLinuxRosettaAvailability {
+    /// Rosetta support for Linux binaries is not available on the host system.
     #[doc(alias = "VZLinuxRosettaAvailabilityNotSupported")]
     pub const NotSupported: Self = Self(0);
+    /// Rosetta support for Linux binaries is not installed on the host system.
     #[doc(alias = "VZLinuxRosettaAvailabilityNotInstalled")]
     pub const NotInstalled: Self = Self(1);
+    /// Rosetta support for Linux is installed on the host system.
     #[doc(alias = "VZLinuxRosettaAvailabilityInstalled")]
     pub const Installed: Self = Self(2);
 }
@@ -30,7 +35,15 @@ unsafe impl RefEncode for VZLinuxRosettaAvailability {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettadirectoryshare?language=objc)
+    /// Directory share to enable Rosetta support for Linux binaries.
+    ///
+    /// This directory share exposes Rosetta within a shared directory in the guest. Linux can use it to translate x86_64 binaries.
+    ///
+    /// See: VZDirectorySharingDeviceConfiguration
+    ///
+    /// See: VZSharedDirectory
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettadirectoryshare?language=objc)
     #[unsafe(super(VZDirectoryShare, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZDirectoryShare")]
@@ -43,25 +56,42 @@ unsafe impl NSObjectProtocol for VZLinuxRosettaDirectoryShare {}
 extern_methods!(
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZLinuxRosettaDirectoryShare {
+        /// Initialize a Rosetta directory share if Rosetta support for Linux binaries is installed.
+        ///
+        /// Parameter `error`: Error object to store the error, if an error exists.
+        ///
+        /// The call returns an error if Rosetta is not available for a directory share. To install Rosetta support, use +[VZLinuxRosettaDirectoryShare installRosettaIfNeeded:].
+        ///
+        /// See: +[VZLinuxRosettaDirectoryShare installRosettaIfNeeded:]
         #[method_id(@__retain_semantics Init initWithError:_)]
         pub unsafe fn initWithError(
             this: Allocated<Self>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "block2")]
+        /// Download and install Rosetta support for Linux binaries if necessary.
+        ///
+        /// Parameter `completionHandler`: The completion handler gets called with a valid error on failure and a nil error on success. It will also be invoked on an arbitrary queue.
+        ///
+        /// The call prompts the user through the download and install flow for Rosetta. This call is successful if the error is nil.
+        ///
+        /// See: +[VZLinuxRosettaDirectoryShare availability]
         #[method(installRosettaWithCompletionHandler:)]
         pub unsafe fn installRosettaWithCompletionHandler(
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "VZLinuxRosettaCachingOptions")]
+        /// Enable translation caching and configure the socket communication type for Rosetta.
         #[method_id(@__retain_semantics Other options)]
         pub unsafe fn options(&self) -> Option<Retained<VZLinuxRosettaCachingOptions>>;
 
         #[cfg(feature = "VZLinuxRosettaCachingOptions")]
+        /// Setter for [`options`][Self::options].
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: Option<&VZLinuxRosettaCachingOptions>);
 
+        /// Check the availability of Rosetta support for the directory share.
         #[method(availability)]
         pub unsafe fn availability() -> VZLinuxRosettaAvailability;
     }

@@ -11,6 +11,18 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a TopK operation and returns the value and indices tensors
+        ///
+        /// Finds the k largest values along the minor dimension of the input. The source must have
+        /// at least k elements along its minor dimension.
+        /// The first element of the result array corresponds to the top values, and the second element of
+        /// the result array corresponds to the indices of the top values.
+        ///
+        /// - Parameters:
+        /// - source: Tensor containing source data
+        /// - k: The number of largest values to return
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor array of size 2
         #[method_id(@__retain_semantics Other topKWithSourceTensor:k:name:)]
         pub unsafe fn topKWithSourceTensor_k_name(
             &self,
@@ -20,6 +32,18 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a TopK operation and returns the result tensor.
+        ///
+        /// Finds the k largest values along the minor dimension of the input. The source must have
+        /// at least k elements along its minor dimension.
+        /// The first element of the result array corresponds to the top values, and the second element of
+        /// the result array corresponds to the indices of the top values.
+        ///
+        /// - Parameters:
+        /// - source: Tensor containing source data.
+        /// - kTensor: Tensor of the number of largest values to return.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor array of size 2.
         #[method_id(@__retain_semantics Other topKWithSourceTensor:kTensor:name:)]
         pub unsafe fn topKWithSourceTensor_kTensor_name(
             &self,
@@ -29,6 +53,19 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a TopK operation and returns the value and indices tensors.
+        ///
+        /// Finds the k largest values along the minor dimension of the input. The source must have
+        /// at least k elements along its minor dimension.
+        /// The first element of the result array corresponds to the top values, and the second
+        /// array corresponds to the indices of the top values.
+        ///
+        /// - Parameters:
+        /// - source: Tensor containing source data.
+        /// - axis: The dimension along which to compute the TopK values.
+        /// - k: The number of largest values to return.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor array of size 2.
         #[method_id(@__retain_semantics Other topKWithSourceTensor:axis:k:name:)]
         pub unsafe fn topKWithSourceTensor_axis_k_name(
             &self,
@@ -39,6 +76,19 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a BottomK operation and returns the value and indices tensors.
+        ///
+        /// Finds the k smallest values along the minor dimension of the input. The source must have
+        /// at least k elements along its minor dimension.
+        /// The first element of the result array corresponds to the bottom values, and the second
+        /// array corresponds to the indices of the bottom values.
+        ///
+        /// - Parameters:
+        /// - source: Tensor containing source data.
+        /// - axis: The dimension along which to compute the BottomK values.
+        /// - k: The number of largest values to return.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor array of size 2.
         #[method_id(@__retain_semantics Other bottomKWithSourceTensor:axis:k:name:)]
         pub unsafe fn bottomKWithSourceTensor_axis_k_name(
             &self,
@@ -49,6 +99,19 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a TopK operation and returns the result tensor.
+        ///
+        /// Finds the k largest values along the minor dimension of the input. The source must have
+        /// at least k elements along its minor dimension.
+        /// The first element of the result array corresponds to the top values, and the second
+        /// array corresponds to the indices of the top values.
+        ///
+        /// - Parameters:
+        /// - source: Tensor containing source data.
+        /// - axisTensor: Tensor containing the dimension along which to compute the TopK values.
+        /// - kTensor: Tensor of the number of largest values to return.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor array of size 2.
         #[method_id(@__retain_semantics Other topKWithSourceTensor:axisTensor:kTensor:name:)]
         pub unsafe fn topKWithSourceTensor_axisTensor_kTensor_name(
             &self,
@@ -59,6 +122,19 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a BottomK operation and returns the result tensor.
+        ///
+        /// Finds the k smallest values along the minor dimension of the input. The source must have
+        /// at least k elements along its minor dimension.
+        /// The first element of the result array corresponds to the bottom values, and the second
+        /// array corresponds to the indices of the bottom values.
+        ///
+        /// - Parameters:
+        /// - source: Tensor containing source data.
+        /// - axisTensor: Tensor containing the dimension along which to compute the BottomK values.
+        /// - kTensor: Tensor of the number of largest values to return.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor array of size 2.
         #[method_id(@__retain_semantics Other bottomKWithSourceTensor:axisTensor:kTensor:name:)]
         pub unsafe fn bottomKWithSourceTensor_axisTensor_kTensor_name(
             &self,
@@ -75,6 +151,17 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a TopKGradient operation and returns the result tensor.
+        ///
+        /// Finds the K largest values along the minor dimension of the input. The input must have
+        /// at least K elements along its minor dimension.
+        ///
+        /// - Parameters:
+        /// - gradient: Tensor containing the incoming gradient.
+        /// - source: Tensor containing source data.
+        /// - k: The number of largest values to return.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other topKWithGradientTensor:source:k:name:)]
         pub unsafe fn topKWithGradientTensor_source_k_name(
             &self,
@@ -85,6 +172,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a TopKGradient operation and returns the result tensor.
+        ///
+        /// Finds the K largest values along the minor dimension of the input. The input must have
+        /// at least K elements along its minor dimension.
+        ///
+        /// - Parameters:
+        /// - gradient: Tensor containing the incoming gradient.
+        /// - source: Tensor containing source data.
+        /// - axis: The dimension along which to compute the TopK values..
+        /// - k: The number of largest values to return.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other topKWithGradientTensor:source:axis:k:name:)]
         pub unsafe fn topKWithGradientTensor_source_axis_k_name(
             &self,
@@ -96,6 +195,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a BottomKGradient operation and returns the result tensor.
+        ///
+        /// Finds the K smallest values along the minor dimension of the input. The input must have
+        /// at least K elements along its minor dimension.
+        ///
+        /// - Parameters:
+        /// - gradient: Tensor containing the incoming gradient.
+        /// - source: Tensor containing source data.
+        /// - axis: The dimension along which to compute the BottomK values.
+        /// - k: The number of largest values to return.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other bottomKWithGradientTensor:source:axis:k:name:)]
         pub unsafe fn bottomKWithGradientTensor_source_axis_k_name(
             &self,
@@ -107,6 +218,17 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a TopKGradient operation and returns the result tensor.
+        ///
+        /// Finds the K largest values along the minor dimension of the input. The input must have
+        /// at least K elements along its minor dimension.
+        ///
+        /// - Parameters:
+        /// - gradient: Tensor containing the incoming gradient.
+        /// - source: Tensor containing source data.
+        /// - kTensor: Tensor of the number of largest values to return.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other topKWithGradientTensor:source:kTensor:name:)]
         pub unsafe fn topKWithGradientTensor_source_kTensor_name(
             &self,
@@ -117,6 +239,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a TopKGradient operation and returns the result tensor.
+        ///
+        /// Finds the K largest values along the minor dimension of the input. The input must have
+        /// at least K elements along its minor dimension.
+        ///
+        /// - Parameters:
+        /// - gradient: Tensor containing the incoming gradient.
+        /// - source: Tensor containing source data.
+        /// - axisTensor: Tensor containing the dimension along which to compute the TopK values.
+        /// - kTensor: Tensor of the number of largest values to return.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other topKWithGradientTensor:source:axisTensor:kTensor:name:)]
         pub unsafe fn topKWithGradientTensor_source_axisTensor_kTensor_name(
             &self,
@@ -128,6 +262,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a BottomKGradient operation and returns the result tensor.
+        ///
+        /// Finds the K smallest values along the minor dimension of the input. The input must have
+        /// at least K elements along its minor dimension.
+        ///
+        /// - Parameters:
+        /// - gradient: Tensor containing the incoming gradient.
+        /// - source: Tensor containing source data.
+        /// - axisTensor: Tensor containing the dimension along which to compute the BottomK values.
+        /// - kTensor: Tensor of the number of largest values to return.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other bottomKWithGradientTensor:source:axisTensor:kTensor:name:)]
         pub unsafe fn bottomKWithGradientTensor_source_axisTensor_kTensor_name(
             &self,

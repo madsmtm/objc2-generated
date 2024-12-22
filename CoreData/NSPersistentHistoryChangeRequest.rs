@@ -70,6 +70,7 @@ extern_methods!(
         pub unsafe fn resultType(&self) -> NSPersistentHistoryResultType;
 
         #[cfg(feature = "NSPersistentStoreResult")]
+        /// Setter for [`resultType`][Self::resultType].
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, result_type: NSPersistentHistoryResultType);
 
@@ -82,6 +83,7 @@ extern_methods!(
         pub unsafe fn fetchRequest(&self) -> Option<Retained<NSFetchRequest>>;
 
         #[cfg(feature = "NSFetchRequest")]
+        /// Setter for [`fetchRequest`][Self::fetchRequest].
         #[method(setFetchRequest:)]
         pub unsafe fn setFetchRequest(&self, fetch_request: Option<&NSFetchRequest>);
     }

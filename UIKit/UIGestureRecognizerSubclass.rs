@@ -11,6 +11,7 @@ extern_methods!(
     /// UIGestureRecognizerProtected
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIGestureRecognizer {
+        /// Setter for [`state`][Self::state].
         #[method(setState:)]
         pub unsafe fn setState(&self, state: UIGestureRecognizerState);
 

@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclayer?language=objc)
+    /// The base class for all MLCompute layers
+    ///
+    /// There are as many MLCLayer subclasses as there are MLCompute neural network layer objects. Make one of those.
+    /// This class defines an polymorphic interface for them.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclayer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -19,33 +24,56 @@ unsafe impl NSObjectProtocol for MLCLayer {}
 
 extern_methods!(
     unsafe impl MLCLayer {
+        /// The layer ID
+        ///
+        /// A unique number to identify each layer.  Assigned when the layer is created.
         #[deprecated]
         #[method(layerID)]
         pub unsafe fn layerID(&self) -> NSUInteger;
 
+        /// A string to help identify this object.
         #[deprecated]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
+        /// Setter for [`label`][Self::label].
         #[deprecated]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
+        /// A flag to identify if we want to debug this layer when executing a graph that includes this layer
+        ///
+        /// If this is set, we will make sure that the result tensor and gradient tensors are available for reading on CPU
+        /// The default is NO.  If isDebuggingEnabled is set to YES,  make sure to set options to enable debugging when
+        /// compiling the graph.  Otherwise this property may be ignored.
         #[deprecated]
         #[method(isDebuggingEnabled)]
         pub unsafe fn isDebuggingEnabled(&self) -> bool;
 
+        /// Setter for [`isDebuggingEnabled`][Self::isDebuggingEnabled].
         #[deprecated]
         #[method(setIsDebuggingEnabled:)]
         pub unsafe fn setIsDebuggingEnabled(&self, is_debugging_enabled: bool);
 
         #[cfg(all(feature = "MLCDevice", feature = "MLCTypes"))]
+        /// Determine whether instances of this layer accept source tensors of the given data type on the given device.
+        ///
+        /// Parameter `dataType`: A data type of a possible input tensor to the layer
+        ///
+        /// Parameter `device`: A device
+        ///
+        /// Returns: A boolean indicating whether the data type is supported
         #[deprecated]
         #[method(supportsDataType:onDevice:)]
         pub unsafe fn supportsDataType_onDevice(data_type: MLCDataType, device: &MLCDevice)
             -> bool;
 
         #[cfg(feature = "MLCTypes")]
+        /// The device type where this layer will be executed
+        ///
+        /// Typically the MLCDevice passed to compileWithOptions will be the device used to execute layers in the graph.
+        /// If MLCDeviceTypeANE is selected, it is possible that some of the layers of the graph may not be executed on the ANE
+        /// but instead on the CPU or GPU.  This property can be used to determine which device type the layer will be executed on.
         #[method(deviceType)]
         pub unsafe fn deviceType(&self) -> MLCDeviceType;
 

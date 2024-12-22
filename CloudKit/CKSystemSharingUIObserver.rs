@@ -37,6 +37,20 @@ extern_methods!(
             feature = "CKShare",
             feature = "block2"
         ))]
+        /// Called on success or failure of a
+        /// `CKShare`save after user modifications via the system sharing UI
+        ///
+        ///
+        /// Following a successful share save by the system sharing UI in the provided
+        /// `CKContainer,`this callback will be invoked with a nonnull
+        /// `recordID,`a nonnull
+        /// `share,`and a nil
+        /// `error.`Following a save failure due to a per-item error (
+        /// `CKErrorServerRecordChanged,`for example), this callback will be invoked with a nonnull
+        /// `recordID,`a nil
+        /// `share,`and a nonnull
+        /// `error`Each
+        /// `CKSystemSharingUIObserver`instance has a private serial queue. This queue is used for all callback block invocations.
         #[method(systemSharingUIDidSaveShareBlock)]
         pub unsafe fn systemSharingUIDidSaveShareBlock(
             &self,
@@ -48,6 +62,7 @@ extern_methods!(
             feature = "CKShare",
             feature = "block2"
         ))]
+        /// Setter for [`systemSharingUIDidSaveShareBlock`][Self::systemSharingUIDidSaveShareBlock].
         #[method(setSystemSharingUIDidSaveShareBlock:)]
         pub unsafe fn setSystemSharingUIDidSaveShareBlock(
             &self,
@@ -57,12 +72,19 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
+        /// Called on success or failure of a
+        /// `CKShare`delete when the user decides to stop sharing via the system sharing UI
+        ///
+        ///
+        /// Each
+        /// `CKSystemSharingUIObserver`instance has a private serial queue. This queue is used for all callback block invocations.
         #[method(systemSharingUIDidStopSharingBlock)]
         pub unsafe fn systemSharingUIDidStopSharingBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
+        /// Setter for [`systemSharingUIDidStopSharingBlock`][Self::systemSharingUIDidStopSharingBlock].
         #[method(setSystemSharingUIDidStopSharingBlock:)]
         pub unsafe fn setSystemSharingUIDidStopSharingBlock(
             &self,

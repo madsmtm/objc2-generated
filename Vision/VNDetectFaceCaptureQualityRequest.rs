@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequest?language=objc)
+    /// A request that will produce or update a VNFaceObservation's property faceCaptureQuality with a float value.
+    /// faceCaptureQuality is a float (wrapped by a NSNumber) that represents the capture quality of a given face in a photo.
+    /// The float will be a value between 0 and 1, with 1 being the highest face capture quality and 0 being the lowest.
+    /// If the request fails or the face observation has never been processed, the property faceCaptureQuality will be nil.
+    ///
+    ///
+    /// This request will generate VNFaceObservation objects with the face quality variable populated with information .
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -33,6 +41,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectFaceCaptureQualityRequest {
         #[cfg(feature = "VNObservation")]
+        /// VNFaceObservation with populated faceCaptureQuality property results.
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNFaceObservation>>>;
     }
@@ -42,10 +51,15 @@ extern_methods!(
     /// Methods declared on superclass `VNRequest`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectFaceCaptureQualityRequest {
+        /// Creates a new VNRequest with no completion handler.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Creates a new VNRequest with an optional completion handler.
+        ///
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -69,5 +83,7 @@ pub static VNDetectFaceCaptureQualityRequestRevision1: NSUInteger = 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequestrevision2?language=objc)
 pub static VNDetectFaceCaptureQualityRequestRevision2: NSUInteger = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequestrevision3?language=objc)
+/// The revision shows better correlation with human judgement on a larger and more diverse dataset. It is also more stable with respect to minor image variations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequestrevision3?language=objc)
 pub static VNDetectFaceCaptureQualityRequestRevision3: NSUInteger = 3;

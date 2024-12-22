@@ -10,7 +10,12 @@ use objc2_metal_performance_shaders::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor?language=objc)
+    /// The class that defines the parameters for a stencil operation.
+    ///
+    /// Use this descriptor with the following ``MPSGraph`` method:
+    /// - ``MPSGraph/stencilWithSourceTensor:weightsTensor:descriptor:name:``
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -31,63 +36,164 @@ unsafe impl NSObjectProtocol for MPSGraphStencilOpDescriptor {}
 extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphStencilOpDescriptor {
+        /// The reduction mode to use within the stencil window.
+        ///
+        /// Default value: `MPSGraphReductionModeSum`.
         #[method(reductionMode)]
         pub unsafe fn reductionMode(&self) -> MPSGraphReductionMode;
 
+        /// Setter for [`reductionMode`][Self::reductionMode].
         #[method(setReductionMode:)]
         pub unsafe fn setReductionMode(&self, reduction_mode: MPSGraphReductionMode);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// An array of length four that determines from which offset to start reading the input tensor.
+        ///
+        /// Only used when `paddingStyle` is `MPSGraphPaddingStyleExplicitOffset`.
+        /// For example zero offset means that the first stencil window will align its top-left corner (in 4 dimensions) to the top-left corner of the input tensor.
+        /// Default value: `
+        /// @
+        /// [
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0 ]`
         #[method_id(@__retain_semantics Other offsets)]
         pub unsafe fn offsets(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Setter for [`offsets`][Self::offsets].
         #[method(setOffsets:)]
         pub unsafe fn setOffsets(&self, offsets: &MPSShape);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// The property that defines strides for spatial dimensions.
+        ///
+        /// Must be four numbers, one for each spatial dimension, fastest running index last.
+        /// Default value: `
+        /// @
+        /// [
+        /// @
+        /// 1,
+        /// @
+        /// 1,
+        /// @
+        /// 1,
+        /// @
+        /// 1 ]`
         #[method_id(@__retain_semantics Other strides)]
         pub unsafe fn strides(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Setter for [`strides`][Self::strides].
         #[method(setStrides:)]
         pub unsafe fn setStrides(&self, strides: &MPSShape);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// The property that defines dilation rates for spatial dimensions.
+        ///
+        /// Must be four numbers, one for each spatial dimension, fastest running index last.
+        /// Default value: `
+        /// @
+        /// [
+        /// @
+        /// 1,
+        /// @
+        /// 1,
+        /// @
+        /// 1,
+        /// @
+        /// 1 ]`
         #[method_id(@__retain_semantics Other dilationRates)]
         pub unsafe fn dilationRates(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Setter for [`dilationRates`][Self::dilationRates].
         #[method(setDilationRates:)]
         pub unsafe fn setDilationRates(&self, dilation_rates: &MPSShape);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// The property that defines padding values for spatial dimensions.
+        ///
+        /// Must be eight numbers, two for each spatial dimension.
+        /// For example `paddingValues[0]` defines the explicit padding
+        /// amount before the first spatial dimension (slowest running index of spatial dimensions),
+        /// `paddingValues[1]` defines the padding amount after the first spatial dimension etc.
+        /// Used only when `paddingStyle = MPSGraphPaddingStyleExplicit`.
+        /// Default value: `
+        /// @
+        /// [
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0 ]`
         #[method_id(@__retain_semantics Other explicitPadding)]
         pub unsafe fn explicitPadding(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Setter for [`explicitPadding`][Self::explicitPadding].
         #[method(setExplicitPadding:)]
         pub unsafe fn setExplicitPadding(&self, explicit_padding: &MPSShape);
 
+        /// The property that determines which values to use for padding the input tensor.
+        ///
+        /// Default value: `MPSGraphPaddingModeZero`.
         #[method(boundaryMode)]
         pub unsafe fn boundaryMode(&self) -> MPSGraphPaddingMode;
 
+        /// Setter for [`boundaryMode`][Self::boundaryMode].
         #[method(setBoundaryMode:)]
         pub unsafe fn setBoundaryMode(&self, boundary_mode: MPSGraphPaddingMode);
 
+        /// The property that defines what kind of padding to apply to the stencil operation.
+        ///
+        /// Default value: `MPSGraphPaddingStyleExplicit`.
         #[method(paddingStyle)]
         pub unsafe fn paddingStyle(&self) -> MPSGraphPaddingStyle;
 
+        /// Setter for [`paddingStyle`][Self::paddingStyle].
         #[method(setPaddingStyle:)]
         pub unsafe fn setPaddingStyle(&self, padding_style: MPSGraphPaddingStyle);
 
+        /// The padding value for `boundaryMode = MPSGraphPaddingModeConstant`.
+        ///
+        /// Default value: 0.
         #[method(paddingConstant)]
         pub unsafe fn paddingConstant(&self) -> c_float;
 
+        /// Setter for [`paddingConstant`][Self::paddingConstant].
         #[method(setPaddingConstant:)]
         pub unsafe fn setPaddingConstant(&self, padding_constant: c_float);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Creates a stencil operation descriptor with given values.
+        ///
+        /// - Parameters:
+        /// - reductionMode: See `reductionMode` property.
+        /// - offsets: See `offsets` property.
+        /// - strides: See `strides` property.
+        /// - dilationRates: See `dilationRates` property.
+        /// - explicitPadding: See `explicitPadding` property.
+        /// - boundaryMode: See `boundaryMode` property.
+        /// - paddingStyle: See `paddingStyle` property.
+        /// - paddingConstant: See `paddingConstant` property.
+        /// - Returns: A valid MPSGraphStencilOpDescriptor object
         #[method_id(@__retain_semantics Other descriptorWithReductionMode:offsets:strides:dilationRates:explicitPadding:boundaryMode:paddingStyle:paddingConstant:)]
         pub unsafe fn descriptorWithReductionMode_offsets_strides_dilationRates_explicitPadding_boundaryMode_paddingStyle_paddingConstant(
             reduction_mode: MPSGraphReductionMode,
@@ -101,6 +207,12 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Creates a stencil operation descriptor with default values.
+        ///
+        /// - Parameters:
+        /// - offsets: See `offsets` property.
+        /// - explicitPadding: See `explicitPadding` property.
+        /// - Returns: A valid MPSGraphStencilOpDescriptor object
         #[method_id(@__retain_semantics Other descriptorWithOffsets:explicitPadding:)]
         pub unsafe fn descriptorWithOffsets_explicitPadding(
             offsets: &MPSShape,
@@ -108,11 +220,21 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Creates a stencil operation descriptor with default values.
+        ///
+        /// - Parameters:
+        /// - explicitPadding: See `explicitPadding` property.
+        /// - Returns: A valid MPSGraphStencilOpDescriptor object
         #[method_id(@__retain_semantics Other descriptorWithExplicitPadding:)]
         pub unsafe fn descriptorWithExplicitPadding(
             explicit_padding: &MPSShape,
         ) -> Option<Retained<Self>>;
 
+        /// Creates a stencil operation descriptor with default values.
+        ///
+        /// - Parameters:
+        /// - paddingStyle: See `paddingStyle` property.
+        /// - Returns: A valid MPSGraphStencilOpDescriptor object
         #[method_id(@__retain_semantics Other descriptorWithPaddingStyle:)]
         pub unsafe fn descriptorWithPaddingStyle(
             padding_style: MPSGraphPaddingStyle,
@@ -137,6 +259,21 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a stencil operation and returns the result tensor.
+        ///
+        /// Performs a weighted reduction operation (See ``MPSGraphStencilOpDescriptor/reductionMode``) on the last 4 dimensions of the `source`
+        /// over the window determined by `weights`, according to the value defined in `descriptor`.
+        /// ```md
+        /// y[i] = reduction{j
+        /// \in w} ( x[ i + j ]w[j] )
+        /// ```
+        ///
+        /// - Parameters:
+        /// - source: The tensor containing the source data. Must be of rank 4 or greater.
+        /// - weights: A 4-D tensor containing the weights data.
+        /// - descriptor: The descriptor object that specifies the parameters for the stencil operation.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other stencilWithSourceTensor:weightsTensor:descriptor:name:)]
         pub unsafe fn stencilWithSourceTensor_weightsTensor_descriptor_name(
             &self,

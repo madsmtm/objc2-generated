@@ -61,18 +61,21 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
+        /// Setter for [`drawsBackground`][Self::drawsBackground].
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[method_id(@__retain_semantics Other documentView)]
         pub unsafe fn documentView(&self) -> Option<Retained<NSView>>;
 
+        /// Setter for [`documentView`][Self::documentView].
         #[method(setDocumentView:)]
         pub unsafe fn setDocumentView(&self, document_view: Option<&NSView>);
 
@@ -85,6 +88,7 @@ extern_methods!(
         pub unsafe fn documentCursor(&self) -> Option<Retained<NSCursor>>;
 
         #[cfg(feature = "NSCursor")]
+        /// Setter for [`documentCursor`][Self::documentCursor].
         #[method(setDocumentCursor:)]
         pub unsafe fn setDocumentCursor(&self, document_cursor: Option<&NSCursor>);
 
@@ -115,12 +119,14 @@ extern_methods!(
         pub unsafe fn contentInsets(&self) -> NSEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentInsets`][Self::contentInsets].
         #[method(setContentInsets:)]
         pub unsafe fn setContentInsets(&self, content_insets: NSEdgeInsets);
 
         #[method(automaticallyAdjustsContentInsets)]
         pub unsafe fn automaticallyAdjustsContentInsets(&self) -> bool;
 
+        /// Setter for [`automaticallyAdjustsContentInsets`][Self::automaticallyAdjustsContentInsets].
         #[method(setAutomaticallyAdjustsContentInsets:)]
         pub unsafe fn setAutomaticallyAdjustsContentInsets(
             &self,
@@ -188,6 +194,7 @@ extern_methods!(
         #[method(copiesOnScroll)]
         pub unsafe fn copiesOnScroll(&self) -> bool;
 
+        /// Setter for [`copiesOnScroll`][Self::copiesOnScroll].
         #[deprecated = "Setting this property has no effect.  NSClipView will always minimize the area of the document view that is invalidated.  To force invalidation of the document view, use -[NSView setNeedsDisplayInRect:]."]
         #[method(setCopiesOnScroll:)]
         pub unsafe fn setCopiesOnScroll(&self, copies_on_scroll: bool);

@@ -36,12 +36,14 @@ extern_methods!(
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
+        /// Setter for [`locale`][Self::locale].
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[method_id(@__retain_semantics Other itemFormatter)]
         pub unsafe fn itemFormatter(&self) -> Option<Retained<NSFormatter>>;
 
+        /// Setter for [`itemFormatter`][Self::itemFormatter].
         #[method(setItemFormatter:)]
         pub unsafe fn setItemFormatter(&self, item_formatter: Option<&NSFormatter>);
 

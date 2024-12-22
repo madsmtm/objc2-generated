@@ -12,7 +12,20 @@ use crate::*;
 #[cfg(feature = "AUComponent")]
 pub const kAUParameterListener_AnyParameter: AudioUnitParameterID = 0xFFFFFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiouniteventtype?language=objc)
+/// Types of Audio Unit Events.
+///
+///
+/// The event is a change to a parameter value
+///
+/// The event signifies a gesture (e.g. mouse-down) beginning a potential series of
+/// related parameter value change events.
+///
+/// The event signifies a gesture (e.g. mouse-up) ending a series of related
+/// parameter value change events.
+///
+/// The event is a change to a property value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiouniteventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,13 +45,28 @@ unsafe impl RefEncode for AudioUnitEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterlistenerref?language=objc)
+/// An object which receives notifications of Audio Unit parameter value changes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterlistenerref?language=objc)
 pub type AUParameterListenerRef = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aueventlistenerref?language=objc)
+/// An object which receives Audio Unit events.
+///
+/// An AUEventListenerRef may be passed to API's taking an AUEventListenerRef
+/// as an argument.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aueventlistenerref?language=objc)
 pub type AUEventListenerRef = AUParameterListenerRef;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterlistenerblock?language=objc)
+/// A block called when a parameter value changes.
+///
+/// Parameter `inObject`: The object which generated the parameter change.
+///
+/// Parameter `inParameter`: Signifies the parameter whose value changed.
+///
+/// Parameter `inValue`: The parameter's new value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterlistenerblock?language=objc)
 #[cfg(all(
     feature = "AUComponent",
     feature = "AudioComponent",
@@ -47,7 +75,17 @@ pub type AUEventListenerRef = AUParameterListenerRef;
 pub type AUParameterListenerBlock =
     *mut block2::Block<dyn Fn(*mut c_void, NonNull<AudioUnitParameter>, AudioUnitParameterValue)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterlistenerproc?language=objc)
+/// A function called when a parameter value changes.
+///
+/// Parameter `inUserData`: The value passed to AUListenerCreate when the callback function was installed.
+///
+/// Parameter `inObject`: The object which generated the parameter change.
+///
+/// Parameter `inParameter`: Signifies the parameter whose value changed.
+///
+/// Parameter `inValue`: The parameter's new value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterlistenerproc?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 pub type AUParameterListenerProc = Option<
     unsafe extern "C-unwind" fn(
@@ -59,6 +97,30 @@ pub type AUParameterListenerProc = Option<
 >;
 
 extern "C-unwind" {
+    /// Create an object for fielding notifications when AudioUnit parameter values change.
+    ///
+    /// Parameter `inProc`: Function called when the parameter's value changes.
+    ///
+    /// Parameter `inUserData`: A reference value for the use of the callback function.
+    ///
+    /// Parameter `inRunLoop`: The run loop on which the callback is called.  If NULL,
+    /// CFRunLoopGetCurrent() is used.
+    ///
+    /// Parameter `inRunLoopMode`: The run loop mode in which the callback's underlying run loop source will be
+    /// attached.  If NULL, kCFRunLoopDefaultMode is used.
+    ///
+    /// Parameter `inNotificationInterval`: The minimum time interval, in seconds, at which the callback will be called.
+    /// If multiple parameter value changes occur within this time interval, the
+    /// listener will only receive a notification for the last value change that
+    /// occurred before the callback.  If inNotificationInterval is 0, the inRunLoop
+    /// and inRunLoopMode arguments are ignored, and the callback will be issued
+    /// immediately, on the thread on which the parameter was changed.
+    ///
+    /// Parameter `outListener`: On successful return, an AUParameterListenerRef.
+    ///
+    /// Note that only parameter changes issued through AUParameterSet will generate
+    /// notifications to listeners; thus, in most cases, AudioUnit clients should use
+    /// AUParameterSet in preference to AudioUnitSetParameter.
     #[cfg(all(
         feature = "AUComponent",
         feature = "AudioComponent",
@@ -75,10 +137,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Dispose a parameter listener object.
+    ///
+    /// Parameter `inListener`: The parameter listener to dispose.
     pub fn AUListenerDispose(in_listener: AUParameterListenerRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Connect a parameter to a listener.
+    ///
+    /// Parameter `inListener`: The parameter listener which will receive the callback.
+    ///
+    /// Parameter `inObject`: The object which is interested in the value of the parameter.  This will be
+    /// passed as the inObject parameter to the listener callback function when the
+    /// parameter changes.
+    ///
+    /// Parameter `inParameter`: The parameter whose value changes are to generate callbacks.
+    ///
+    /// Associates an arbitrary object (often a user interface widget) with an
+    /// AudioUnitParameter, and delivers notifications to the specified listener, telling it
+    /// that the object needs to be informed of the parameter's value change.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUListenerAddParameter(
         in_listener: AUParameterListenerRef,
@@ -88,6 +166,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Remove a parameter/listener connection.
+    ///
+    /// Parameter `inListener`: The parameter listener to stop receiving callbacks.
+    ///
+    /// Parameter `inObject`: The object which is no longer interested in the value of the parameter.
+    ///
+    /// Parameter `inParameter`: The parameter whose value changes are to stop generating callbacks.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUListenerRemoveParameter(
         in_listener: AUParameterListenerRef,
@@ -97,6 +182,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Set an AudioUnit parameter value and notify listeners.
+    ///
+    /// Parameter `inSendingListener`: A parameter listener generating the change and which does not want to
+    /// receive a callback as a result of it. May be NULL.
+    ///
+    /// Parameter `inSendingObject`: The object generating the change and which does not want to receive a
+    /// callback as a result of it. NULL is treated specially when inListener is
+    /// non-null; it signifies that none of the specified listener's objects will
+    /// receive notifications.
+    ///
+    /// Parameter `inParameter`: The parameter being changed.
+    ///
+    /// Parameter `inValue`: The new value of the parameter.
+    ///
+    /// Parameter `inBufferOffsetInFrames`: The offset into the next rendered buffer at which the parameter change will take
+    /// effect.
+    ///
+    /// Calls AudioUnitSetParameter, and performs/schedules notification callbacks to all
+    /// parameter listeners, for that parameter -- except that no callback will be generated to
+    /// the inListener/inObject pair.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterSet(
         in_sending_listener: AUParameterListenerRef,
@@ -108,6 +213,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Notify listeners of a past parameter change.
+    ///
+    /// Parameter `inSendingListener`: A parameter listener generating the change and which does not want to
+    /// receive a callback as a result of it. May be NULL.
+    ///
+    /// Parameter `inSendingObject`: The object generating the change and which does not want to receive a
+    /// callback as a result of it. NULL is treated specially when inListener is
+    /// non-null; it signifies that none of the specified listener's objects will
+    /// receive notifications.
+    ///
+    /// Parameter `inParameter`: The parameter which was changed.
+    ///
+    /// Performs and schedules the notification callbacks of AUParameterSet, without
+    /// actually setting an AudioUnit parameter value.
+    ///
+    /// Clients scheduling ramped parameter changes to AudioUnits must make this call
+    /// dynamically during playback in order for AudioUnitViews to be updated.  When the view's
+    /// listener receives a notification, it will be passed the current value of the parameter.
+    ///
+    /// A special meaning is applied if the mParameterID value of inParameter is equal to
+    /// kAUParameterListener_AnyParameter. In this case, ANY listener for ANY parameter value
+    /// changes on the specified AudioUnit will be notified of the current value of that
+    /// parameter.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterListenerNotify(
         in_sending_listener: AUParameterListenerRef,
@@ -117,6 +245,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a linear value to a parameter value according to the parameter's units.
+    ///
+    ///
+    /// Parameter `inLinearValue`: The linear value (0.0-1.0) to convert.
+    ///
+    /// Parameter `inParameter`: The parameter, including its Audio Unit, that will define the conversion of
+    /// the supplied linear value to a value that is natural to that parameter.
+    ///
+    /// Returns: The converted parameter value, in the parameter's natural units.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterValueFromLinear(
         in_linear_value: f32,
@@ -125,6 +262,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a parameter value to a linear value according to the parameter's units.
+    ///
+    ///
+    /// Parameter `inParameterValue`: The value in the natural units of the specified parameter.
+    ///
+    ///
+    /// Parameter `inParameter`: The parameter, including its Audio Unit, that will define the conversion of
+    /// the supplied parameter value to a corresponding linear value.
+    ///
+    /// Returns: A number 0.0-1.0.
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterValueToLinear(
         in_parameter_value: AudioUnitParameterValue,
@@ -133,6 +280,36 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Format a parameter value into a string.
+    ///
+    /// Parameter `inParameterValue`: The parameter value to be formatted.
+    ///
+    /// Parameter `inParameter`: The Audio Unit, scope, element, and parameter whose value this is.
+    ///
+    /// Parameter `inTextBuffer`: The character array to receive the formatted text.  Should be at least 32
+    /// characters.
+    ///
+    /// Parameter `inDigits`: The resolution of the string (see example above).
+    ///
+    /// Returns: `inTextBuffer`
+    ///
+    ///
+    /// Formats a floating point value into a string.  Computes a power of 10 to which the value
+    /// will be rounded and displayed as follows:  if the the parameter is logarithmic (Hertz),
+    /// the number of significant digits is inDigits - pow10(inParameterValue) + 1.  Otherwise,
+    /// it is inDigits - pow10(maxValue - minValue) + 1.
+    ///
+    /// Example for inDigits=3:
+    ///
+    /// pow10 | range        |  digits after decimal place display
+    /// ------|--------------|------------------------------------
+    /// -2    | .0100-.0999  |  4
+    /// -1    | .100-.999    |  3
+    /// 0     | 1.00-9.99    |  2
+    /// 1     | 10.0-99.9    |  1
+    /// 2     | 100-999      |  0
+    /// 3     | 1000-9990    |  -1
+    /// 4     | 10000-99900  |  -2
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn AUParameterFormatValue(
         in_parameter_value: f64,

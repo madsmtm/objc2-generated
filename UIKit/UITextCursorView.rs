@@ -6,15 +6,22 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcursorview?language=objc)
+    /// A view that displays a flashing cursor (aka "caret") view.
+    ///
+    /// When a selection is not ranged (or has a zero-length), a cursor view is displayed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcursorview?language=objc)
     #[cfg(feature = "UIView")]
     pub unsafe trait UITextCursorView: UICoordinateSpace + MainThreadOnly {
+        /// Enables the blink animation. Disabled by default.
         #[method(isBlinking)]
         unsafe fn isBlinking(&self) -> bool;
 
+        /// Setter for [`isBlinking`][Self::isBlinking].
         #[method(setBlinking:)]
         unsafe fn setBlinking(&self, blinking: bool);
 
+        /// Call this when the cursor is moving (i.e., during typing) to make sure the cursor doesn't blink while text is being inserted.
         #[method(resetBlinkAnimation)]
         unsafe fn resetBlinkAnimation(&self);
     }

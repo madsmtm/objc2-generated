@@ -28,12 +28,14 @@ extern_methods!(
         #[method(includeFaces)]
         pub unsafe fn includeFaces(&self) -> bool;
 
+        /// Setter for [`includeFaces`][Self::includeFaces].
         #[method(setIncludeFaces:)]
         pub unsafe fn setIncludeFaces(&self, include_faces: bool);
 
         #[method(displayUsingSystemFont)]
         pub unsafe fn displayUsingSystemFont(&self) -> bool;
 
+        /// Setter for [`displayUsingSystemFont`][Self::displayUsingSystemFont].
         #[method(setDisplayUsingSystemFont:)]
         pub unsafe fn setDisplayUsingSystemFont(&self, display_using_system_font: bool);
 
@@ -42,6 +44,7 @@ extern_methods!(
         pub unsafe fn filteredTraits(&self) -> UIFontDescriptorSymbolicTraits;
 
         #[cfg(feature = "UIFontDescriptor")]
+        /// Setter for [`filteredTraits`][Self::filteredTraits].
         #[method(setFilteredTraits:)]
         pub unsafe fn setFilteredTraits(&self, filtered_traits: UIFontDescriptorSymbolicTraits);
 
@@ -49,6 +52,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other filteredLanguagesPredicate)]
         pub unsafe fn filteredLanguagesPredicate(&self) -> Option<Retained<NSPredicate>>;
 
+        /// Setter for [`filteredLanguagesPredicate`][Self::filteredLanguagesPredicate].
         #[deprecated = "Use languageFilter"]
         #[method(setFilteredLanguagesPredicate:)]
         pub unsafe fn setFilteredLanguagesPredicate(

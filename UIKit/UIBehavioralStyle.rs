@@ -5,16 +5,21 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibehavioralstyle?language=objc)
+/// Behavioral Styles are values that determine how a class — such as a view or control — behaves. This includes how the control is drawn, and what behaviors it supports. For example, handling certain customizations in one style, but not another.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibehavioralstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIBehavioralStyle(pub NSUInteger);
 impl UIBehavioralStyle {
+    /// The system will choose the most appropriate style for the targetted platform.
     #[doc(alias = "UIBehavioralStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// A style and set of behaviors best for iOS/iPadOS applications
     #[doc(alias = "UIBehavioralStylePad")]
     pub const Pad: Self = Self(1);
+    /// A style and set of behaviors best for macOS applications
     #[doc(alias = "UIBehavioralStyleMac")]
     pub const Mac: Self = Self(2);
 }
@@ -36,12 +41,15 @@ extern_methods!(
         feature = "UIView"
     ))]
     unsafe impl UIButton {
+        /// The button's behavioral style. This property always returns a concrete, resolved style (never UIBehavioralStyleAutomatic).
         #[method(behavioralStyle)]
         pub unsafe fn behavioralStyle(&self) -> UIBehavioralStyle;
 
+        /// Request a style for the button. If the style changed, the button will redraw and its metrics may change.
         #[method(preferredBehavioralStyle)]
         pub unsafe fn preferredBehavioralStyle(&self) -> UIBehavioralStyle;
 
+        /// Setter for [`preferredBehavioralStyle`][Self::preferredBehavioralStyle].
         #[method(setPreferredBehavioralStyle:)]
         pub unsafe fn setPreferredBehavioralStyle(
             &self,
@@ -59,12 +67,15 @@ extern_methods!(
         feature = "UIView"
     ))]
     unsafe impl UISlider {
+        /// The slider's behavioral style. This property always returns a concrete, resolved style (never UIBehavioralStyleAutomatic).
         #[method(behavioralStyle)]
         pub unsafe fn behavioralStyle(&self) -> UIBehavioralStyle;
 
+        /// Request a style for the slider. If the style changes, the slider will redraw and its metrics may change.
         #[method(preferredBehavioralStyle)]
         pub unsafe fn preferredBehavioralStyle(&self) -> UIBehavioralStyle;
 
+        /// Setter for [`preferredBehavioralStyle`][Self::preferredBehavioralStyle].
         #[method(setPreferredBehavioralStyle:)]
         pub unsafe fn setPreferredBehavioralStyle(
             &self,

@@ -13,10 +13,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITabGroupSidebarAppearance(pub NSUInteger);
 impl UITabGroupSidebarAppearance {
+    /// The default appearance showing the group and its children appropriately depending
+    /// on the group level it is in.
     #[doc(alias = "UITabGroupSidebarAppearanceAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Displays only the children alongside the group's siblings.
     #[doc(alias = "UITabGroupSidebarAppearanceInline")]
     pub const Inline: Self = Self(1);
+    /// Displays the group and its children as a top-level group of the sidebar.
     #[doc(alias = "UITabGroupSidebarAppearanceRootSection")]
     pub const RootSection: Self = Self(2);
 }
@@ -44,42 +48,62 @@ unsafe impl NSObjectProtocol for UITabGroup {}
 extern_methods!(
     #[cfg(feature = "UITab")]
     unsafe impl UITabGroup {
+        /// The currently selected tab. The tab must be part of `children`.
         #[method_id(@__retain_semantics Other selectedChild)]
         pub unsafe fn selectedChild(&self) -> Option<Retained<UITab>>;
 
+        /// Setter for [`selectedChild`][Self::selectedChild].
         #[method(setSelectedChild:)]
         pub unsafe fn setSelectedChild(&self, selected_child: Option<&UITab>);
 
+        /// The default child tab to select for when a selection is required and `selectedChild` is nil.
+        /// If this is nil, then the default selected element is the first element of `children`. Default is nil.
         #[method_id(@__retain_semantics Other defaultChildIdentifier)]
         pub unsafe fn defaultChildIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`defaultChildIdentifier`][Self::defaultChildIdentifier].
         #[method(setDefaultChildIdentifier:)]
         pub unsafe fn setDefaultChildIdentifier(&self, default_child_identifier: Option<&NSString>);
 
+        /// Child tabs of the tab group. Default is an empty array.
         #[method_id(@__retain_semantics Other children)]
         pub unsafe fn children(&self) -> Retained<NSArray<UITab>>;
 
+        /// Setter for [`children`][Self::children].
         #[method(setChildren:)]
         pub unsafe fn setChildren(&self, children: &NSArray<UITab>);
 
+        /// The display order of the children, represented by the identifiers. Default is empty.
+        /// Any tab in `children` not contained in `displayOrderIdentifiers` will be appended after
+        /// sorted items. Identifiers that do not match tabs in `children` will be ignored.
         #[method_id(@__retain_semantics Other displayOrderIdentifiers)]
         pub unsafe fn displayOrderIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`displayOrderIdentifiers`][Self::displayOrderIdentifiers].
         #[method(setDisplayOrderIdentifiers:)]
         pub unsafe fn setDisplayOrderIdentifiers(
             &self,
             display_order_identifiers: &NSArray<NSString>,
         );
 
+        /// Determines if elements in `children` can be reordered from the sidebar. Default is NO.
+        /// Changes in the display order are notified via `tabBarController:didCustomizeDisplayOrderForGroup:`
+        /// in `UITabBarControllerDelegate`.
         #[method(allowsReordering)]
         pub unsafe fn allowsReordering(&self) -> bool;
 
+        /// Setter for [`allowsReordering`][Self::allowsReordering].
         #[method(setAllowsReordering:)]
         pub unsafe fn setAllowsReordering(&self, allows_reordering: bool);
 
+        /// Returns the `children` array sorted by `displayOrderIdentifiers` if it is specified.
+        /// Any tab in `children` not contained in the identifiers will be appended after
+        /// sorted items. Identifiers that do not match tabs in `children` will be ignored.
         #[method_id(@__retain_semantics Other displayOrder)]
         pub unsafe fn displayOrder(&self) -> Retained<NSArray<UITab>>;
 
+        /// Returns the `tab` matching the specified `identifier` in the group's children and its descendants.
+        /// Returns nil if no tab is found matching the `identifier`.
         #[method_id(@__retain_semantics Other tabForIdentifier:)]
         pub unsafe fn tabForIdentifier(&self, identifier: &NSString) -> Option<Retained<UITab>>;
 
@@ -88,6 +112,18 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIViewController"
         ))]
+        /// A navigation controller used to automatically manage the view controller hierarchy of the group.
+        /// Set a `UINavigationController` to allow the tab group to manage the hierarchy automatically.
+        /// The navigation stack of the managing navigation controller will be managed by the tab group based on
+        /// the selected tab of the group. When multiple navigation controllers are set on nested groups, the rootmost
+        /// controller is used. Default is nil.
+        ///
+        /// By default, the navigation stack is represented by the view controller of each tab of the selected tree, if a
+        /// view controller is provided for that level. If no view controller is provided for that level, then it will be ignored.
+        ///
+        /// To customize the displayed view controllers per tab level of selection, implement the delegate method
+        /// `tabBarController:displayedViewControllersForTab:proposedViewControllers:`
+        /// on `UITabBarControllerDelegate`, which will propose a set of view controllers per level.
         #[method_id(@__retain_semantics Other managingNavigationController)]
         pub unsafe fn managingNavigationController(
             &self,
@@ -98,6 +134,7 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIViewController"
         ))]
+        /// Setter for [`managingNavigationController`][Self::managingNavigationController].
         #[method(setManagingNavigationController:)]
         pub unsafe fn setManagingNavigationController(
             &self,
@@ -105,16 +142,20 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// Actions to display in the sidebar, after all tabs. Default is nil.
         #[method_id(@__retain_semantics Other sidebarActions)]
         pub unsafe fn sidebarActions(&self) -> Retained<NSArray<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// Setter for [`sidebarActions`][Self::sidebarActions].
         #[method(setSidebarActions:)]
         pub unsafe fn setSidebarActions(&self, sidebar_actions: &NSArray<UIAction>);
 
+        /// The preferred appearance of the group and its children in the sidebar. Default is `automatic`
         #[method(sidebarAppearance)]
         pub unsafe fn sidebarAppearance(&self) -> UITabGroupSidebarAppearance;
 
+        /// Setter for [`sidebarAppearance`][Self::sidebarAppearance].
         #[method(setSidebarAppearance:)]
         pub unsafe fn setSidebarAppearance(&self, sidebar_appearance: UITabGroupSidebarAppearance);
 
@@ -124,6 +165,7 @@ extern_methods!(
             feature = "UIViewController",
             feature = "block2"
         ))]
+        /// Creates a `UITabGroup` using the specified parameters.
         #[method_id(@__retain_semantics Init initWithTitle:image:identifier:children:viewControllerProvider:)]
         pub unsafe fn initWithTitle_image_identifier_children_viewControllerProvider(
             this: Allocated<Self>,
@@ -148,6 +190,9 @@ extern_methods!(
             feature = "UIViewController",
             feature = "block2"
         ))]
+        /// Creates a tab with the specified identifier, title, image, and view controller provider.
+        /// The view controller provider is called when a view controller is requested and is currently nil.
+        /// For root level tabs on `UITabBarController`, the resolved view controller must be non-nil.
         #[method_id(@__retain_semantics Init initWithTitle:image:identifier:viewControllerProvider:)]
         pub unsafe fn initWithTitle_image_identifier_viewControllerProvider(
             this: Allocated<Self>,

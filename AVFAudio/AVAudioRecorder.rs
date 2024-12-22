@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiorecorder?language=objc)
+    /// An object that records audio data to a file.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiorecorder?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioRecorder;
@@ -22,6 +24,9 @@ unsafe impl NSObjectProtocol for AVAudioRecorder {}
 
 extern_methods!(
     unsafe impl AVAudioRecorder {
+        /// Init the AudioRecorder with a specified url and settings.
+        ///
+        /// The file type to create can be set through the corresponding settings key. If not set, it will be inferred from the file extension. Will overwrite a file at the specified url if a file exists.
         #[method_id(@__retain_semantics Init initWithURL:settings:error:_)]
         pub unsafe fn initWithURL_settings_error(
             this: Allocated<Self>,
@@ -30,6 +35,9 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "AVAudioFormat")]
+        /// Init the AudioRecorder with a specified url and format.
+        ///
+        /// The file type to create can be set through the corresponding settings key. If not set, it will be inferred from the file extension. Will overwrite a file at the specified url if a file exists.
         #[method_id(@__retain_semantics Init initWithURL:format:error:_)]
         pub unsafe fn initWithURL_format_error(
             this: Allocated<Self>,
@@ -37,18 +45,33 @@ extern_methods!(
             format: &AVAudioFormat,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// Creates the output file and gets ready to record.
+        ///
+        /// This method is called automatically on record. Returns YES on success and NO on failure.
         #[method(prepareToRecord)]
         pub unsafe fn prepareToRecord(&self) -> bool;
 
+        /// Start or resume recording to file.
+        ///
+        /// Returns YES on success and NO on failure.
         #[method(record)]
         pub unsafe fn record(&self) -> bool;
 
+        /// Start recording at specified time in the future.
+        ///
+        /// Time is an absolute time based on and greater than deviceCurrentTime. Returns YES on success and NO on failure.
         #[method(recordAtTime:)]
         pub unsafe fn recordAtTime(&self, time: NSTimeInterval) -> bool;
 
+        /// Record for a specified duration.
+        ///
+        /// The recorder will stop when it has recorded this length of audio. Returns YES on success and NO on failure.
         #[method(recordForDuration:)]
         pub unsafe fn recordForDuration(&self, duration: NSTimeInterval) -> bool;
 
+        /// Record for a specified duration at a specified time in the future.
+        ///
+        /// Time is an absolute time based on and greater than deviceCurrentTime. Returns YES on success and NO on failure.
         #[method(recordAtTime:forDuration:)]
         pub unsafe fn recordAtTime_forDuration(
             &self,
@@ -56,68 +79,102 @@ extern_methods!(
             duration: NSTimeInterval,
         ) -> bool;
 
+        /// Pause recording.
         #[method(pause)]
         pub unsafe fn pause(&self);
 
+        /// Stop recording.
+        ///
+        /// This method also closes the output file.
         #[method(stop)]
         pub unsafe fn stop(&self);
 
+        /// Delete the recorded file.
+        ///
+        /// AudioRecorder must be stopped. Returns YES on success and NO on failure.
         #[method(deleteRecording)]
         pub unsafe fn deleteRecording(&self) -> bool;
 
+        /// Returns YES if the AudioRecorder is currently recording.
         #[method(isRecording)]
         pub unsafe fn isRecording(&self) -> bool;
 
+        /// URL of the recorded file.
         #[method_id(@__retain_semantics Other url)]
         pub unsafe fn url(&self) -> Retained<NSURL>;
 
+        /// A dictionary of settings for the AudioRecorder.
+        ///
+        /// These settings are fully valid only when prepareToRecord has been called. For supported key-value pairs, see https://developer.apple.com/documentation/avfaudio/avaudiorecorder/1388386-initwithurl?language=objc
         #[method_id(@__retain_semantics Other settings)]
         pub unsafe fn settings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "AVAudioFormat")]
+        /// The audio format of the AudioRecorder.
+        ///
+        /// This property is fully valid only when prepareToRecord has been called.
         #[method_id(@__retain_semantics Other format)]
         pub unsafe fn format(&self) -> Retained<AVAudioFormat>;
 
+        /// A delegate object to the AudioRecorder that conforms to the AVAudioRecorderDelegate protocol.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVAudioRecorderDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn AVAudioRecorderDelegate>>,
         );
 
+        /// Get the current time of the recording.
+        ///
+        /// This method is only vaild while recording.
         #[method(currentTime)]
         pub unsafe fn currentTime(&self) -> NSTimeInterval;
 
+        /// Get the device current time.
+        ///
+        /// This method is always valid.
         #[method(deviceCurrentTime)]
         pub unsafe fn deviceCurrentTime(&self) -> NSTimeInterval;
 
+        /// Turns level metering on or off.
+        ///
+        /// Default is off.
         #[method(isMeteringEnabled)]
         pub unsafe fn isMeteringEnabled(&self) -> bool;
 
+        /// Setter for [`isMeteringEnabled`][Self::isMeteringEnabled].
         #[method(setMeteringEnabled:)]
         pub unsafe fn setMeteringEnabled(&self, metering_enabled: bool);
 
+        /// Call this method to refresh meter values.
         #[method(updateMeters)]
         pub unsafe fn updateMeters(&self);
 
+        /// Returns peak power in decibels for a given channel.
         #[method(peakPowerForChannel:)]
         pub unsafe fn peakPowerForChannel(&self, channel_number: NSUInteger) -> c_float;
 
+        /// Returns average power in decibels for a given channel.
         #[method(averagePowerForChannel:)]
         pub unsafe fn averagePowerForChannel(&self, channel_number: NSUInteger) -> c_float;
 
         #[cfg(feature = "AVAudioSessionRoute")]
+        /// Array of AVAudioSessionChannelDescription objects
+        ///
+        /// The channels property lets you assign the output to record specific channels as described by AVAudioSessionPortDescription's channels property. This property is nil valued until set. The array must have the same number of channels as returned by the numberOfChannels property.
         #[method_id(@__retain_semantics Other channelAssignments)]
         pub unsafe fn channelAssignments(
             &self,
         ) -> Option<Retained<NSArray<AVAudioSessionChannelDescription>>>;
 
         #[cfg(feature = "AVAudioSessionRoute")]
+        /// Setter for [`channelAssignments`][Self::channelAssignments].
         #[method(setChannelAssignments:)]
         pub unsafe fn setChannelAssignments(
             &self,
@@ -138,8 +195,13 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiorecorderdelegate?language=objc)
+    /// A protocol for delegates of AVAudioRecorder.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiorecorderdelegate?language=objc)
     pub unsafe trait AVAudioRecorderDelegate: NSObjectProtocol {
+        /// This callback method is called when a recording has been finished or stopped.
+        ///
+        /// This method is NOT called if the recorder is stopped due to an interruption.
         #[optional]
         #[method(audioRecorderDidFinishRecording:successfully:)]
         unsafe fn audioRecorderDidFinishRecording_successfully(
@@ -148,6 +210,9 @@ extern_protocol!(
             flag: bool,
         );
 
+        /// This callback method is called when an error occurs while encoding.
+        ///
+        /// If an error occurs while encoding it will be reported to the delegate.
         #[optional]
         #[method(audioRecorderEncodeErrorDidOccur:error:)]
         unsafe fn audioRecorderEncodeErrorDidOccur_error(

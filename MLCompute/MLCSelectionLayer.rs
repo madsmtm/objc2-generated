@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcselectionlayer?language=objc)
+    /// Selection layer is used to select elements from two tensors
+    ///
+    /// The selection layer takes a condition tensor which acts as a mask that chooses whether the corresponding element / row
+    /// in the output should be taken from tensor x (if the element in condition is true) or tensor y (if it is false).
+    /// The order of source tensors of the layer must be condition tensor, tensor x, and tensor y.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcselectionlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -20,6 +26,9 @@ unsafe impl NSObjectProtocol for MLCSelectionLayer {}
 extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCSelectionLayer {
+        /// Create a select layer
+        ///
+        /// Returns: A new layer for selecting elements between two tensors.
         #[deprecated]
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Retained<Self>;

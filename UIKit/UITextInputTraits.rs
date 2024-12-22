@@ -285,12 +285,16 @@ unsafe impl RefEncode for UIReturnKeyType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIWritingToolsBehavior(pub NSInteger);
 impl UIWritingToolsBehavior {
+    /// Writing Tools will ignore this view
     #[doc(alias = "UIWritingToolsBehaviorNone")]
     pub const None: Self = Self(-1);
+    /// System-defined behavior, may resolve to `None`, `Complete`, or `Limited`
     #[doc(alias = "UIWritingToolsBehaviorDefault")]
     pub const Default: Self = Self(0);
+    /// The complete inline-editing experience will be provided if possible.
     #[doc(alias = "UIWritingToolsBehaviorComplete")]
     pub const Complete: Self = Self(1);
+    /// The limited, overlay-panel experience will be provided if possible.
     #[doc(alias = "UIWritingToolsBehaviorLimited")]
     pub const Limited: Self = Self(2);
 }
@@ -310,10 +314,15 @@ unsafe impl RefEncode for UIWritingToolsBehavior {
 pub struct UIWritingToolsResultOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIWritingToolsResultOptions: NSUInteger {
+/// System-defined behavior
         const UIWritingToolsResultDefault = 0;
+/// Writing Tools will provide plain text in proofreading suggestions or rewrites
         const UIWritingToolsResultPlainText = 1<<0;
+/// As well as plain text, Writing Tools will provide text attributes in proofreading suggestions or rewrites that are natively supported or known to be easily adopted (such as lists)
         const UIWritingToolsResultRichText = 1<<1;
+/// implies `RichText`,  and Writing Tools may provide attributes for list layout
         const UIWritingToolsResultList = 1<<2;
+/// implies `RichText`,  and Writing Tools may provide attributes for tabular layout
         const UIWritingToolsResultTable = 1<<3;
     }
 }
@@ -376,6 +385,7 @@ extern_protocol!(
         #[method(autocapitalizationType)]
         unsafe fn autocapitalizationType(&self) -> UITextAutocapitalizationType;
 
+        /// Setter for [`autocapitalizationType`][Self::autocapitalizationType].
         #[optional]
         #[method(setAutocapitalizationType:)]
         unsafe fn setAutocapitalizationType(
@@ -387,6 +397,7 @@ extern_protocol!(
         #[method(autocorrectionType)]
         unsafe fn autocorrectionType(&self) -> UITextAutocorrectionType;
 
+        /// Setter for [`autocorrectionType`][Self::autocorrectionType].
         #[optional]
         #[method(setAutocorrectionType:)]
         unsafe fn setAutocorrectionType(&self, autocorrection_type: UITextAutocorrectionType);
@@ -395,6 +406,7 @@ extern_protocol!(
         #[method(spellCheckingType)]
         unsafe fn spellCheckingType(&self) -> UITextSpellCheckingType;
 
+        /// Setter for [`spellCheckingType`][Self::spellCheckingType].
         #[optional]
         #[method(setSpellCheckingType:)]
         unsafe fn setSpellCheckingType(&self, spell_checking_type: UITextSpellCheckingType);
@@ -403,6 +415,7 @@ extern_protocol!(
         #[method(smartQuotesType)]
         unsafe fn smartQuotesType(&self) -> UITextSmartQuotesType;
 
+        /// Setter for [`smartQuotesType`][Self::smartQuotesType].
         #[optional]
         #[method(setSmartQuotesType:)]
         unsafe fn setSmartQuotesType(&self, smart_quotes_type: UITextSmartQuotesType);
@@ -411,6 +424,7 @@ extern_protocol!(
         #[method(smartDashesType)]
         unsafe fn smartDashesType(&self) -> UITextSmartDashesType;
 
+        /// Setter for [`smartDashesType`][Self::smartDashesType].
         #[optional]
         #[method(setSmartDashesType:)]
         unsafe fn setSmartDashesType(&self, smart_dashes_type: UITextSmartDashesType);
@@ -419,6 +433,7 @@ extern_protocol!(
         #[method(smartInsertDeleteType)]
         unsafe fn smartInsertDeleteType(&self) -> UITextSmartInsertDeleteType;
 
+        /// Setter for [`smartInsertDeleteType`][Self::smartInsertDeleteType].
         #[optional]
         #[method(setSmartInsertDeleteType:)]
         unsafe fn setSmartInsertDeleteType(
@@ -430,6 +445,7 @@ extern_protocol!(
         #[method(inlinePredictionType)]
         unsafe fn inlinePredictionType(&self) -> UITextInlinePredictionType;
 
+        /// Setter for [`inlinePredictionType`][Self::inlinePredictionType].
         #[optional]
         #[method(setInlinePredictionType:)]
         unsafe fn setInlinePredictionType(
@@ -441,6 +457,7 @@ extern_protocol!(
         #[method(mathExpressionCompletionType)]
         unsafe fn mathExpressionCompletionType(&self) -> UITextMathExpressionCompletionType;
 
+        /// Setter for [`mathExpressionCompletionType`][Self::mathExpressionCompletionType].
         #[optional]
         #[method(setMathExpressionCompletionType:)]
         unsafe fn setMathExpressionCompletionType(
@@ -452,6 +469,7 @@ extern_protocol!(
         #[method(keyboardType)]
         unsafe fn keyboardType(&self) -> UIKeyboardType;
 
+        /// Setter for [`keyboardType`][Self::keyboardType].
         #[optional]
         #[method(setKeyboardType:)]
         unsafe fn setKeyboardType(&self, keyboard_type: UIKeyboardType);
@@ -460,6 +478,7 @@ extern_protocol!(
         #[method(keyboardAppearance)]
         unsafe fn keyboardAppearance(&self) -> UIKeyboardAppearance;
 
+        /// Setter for [`keyboardAppearance`][Self::keyboardAppearance].
         #[optional]
         #[method(setKeyboardAppearance:)]
         unsafe fn setKeyboardAppearance(&self, keyboard_appearance: UIKeyboardAppearance);
@@ -468,6 +487,7 @@ extern_protocol!(
         #[method(returnKeyType)]
         unsafe fn returnKeyType(&self) -> UIReturnKeyType;
 
+        /// Setter for [`returnKeyType`][Self::returnKeyType].
         #[optional]
         #[method(setReturnKeyType:)]
         unsafe fn setReturnKeyType(&self, return_key_type: UIReturnKeyType);
@@ -476,6 +496,7 @@ extern_protocol!(
         #[method(enablesReturnKeyAutomatically)]
         unsafe fn enablesReturnKeyAutomatically(&self) -> bool;
 
+        /// Setter for [`enablesReturnKeyAutomatically`][Self::enablesReturnKeyAutomatically].
         #[optional]
         #[method(setEnablesReturnKeyAutomatically:)]
         unsafe fn setEnablesReturnKeyAutomatically(&self, enables_return_key_automatically: bool);
@@ -484,6 +505,7 @@ extern_protocol!(
         #[method(isSecureTextEntry)]
         unsafe fn isSecureTextEntry(&self) -> bool;
 
+        /// Setter for [`isSecureTextEntry`][Self::isSecureTextEntry].
         #[optional]
         #[method(setSecureTextEntry:)]
         unsafe fn setSecureTextEntry(&self, secure_text_entry: bool);
@@ -492,6 +514,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other textContentType)]
         unsafe fn textContentType(&self) -> Retained<UITextContentType>;
 
+        /// Setter for [`textContentType`][Self::textContentType].
         #[optional]
         #[method(setTextContentType:)]
         unsafe fn setTextContentType(&self, text_content_type: Option<&UITextContentType>);
@@ -500,6 +523,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other passwordRules)]
         unsafe fn passwordRules(&self) -> Option<Retained<UITextInputPasswordRules>>;
 
+        /// Setter for [`passwordRules`][Self::passwordRules].
         #[optional]
         #[method(setPasswordRules:)]
         unsafe fn setPasswordRules(&self, password_rules: Option<&UITextInputPasswordRules>);
@@ -508,6 +532,7 @@ extern_protocol!(
         #[method(writingToolsBehavior)]
         unsafe fn writingToolsBehavior(&self) -> UIWritingToolsBehavior;
 
+        /// Setter for [`writingToolsBehavior`][Self::writingToolsBehavior].
         #[optional]
         #[method(setWritingToolsBehavior:)]
         unsafe fn setWritingToolsBehavior(&self, writing_tools_behavior: UIWritingToolsBehavior);
@@ -516,6 +541,7 @@ extern_protocol!(
         #[method(allowedWritingToolsResultOptions)]
         unsafe fn allowedWritingToolsResultOptions(&self) -> UIWritingToolsResultOptions;
 
+        /// Setter for [`allowedWritingToolsResultOptions`][Self::allowedWritingToolsResultOptions].
         #[optional]
         #[method(setAllowedWritingToolsResultOptions:)]
         unsafe fn setAllowedWritingToolsResultOptions(
@@ -663,17 +689,23 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeshipmenttrackingnumber?language=objc)
+    /// Parcel tracking numbers such as "FedEx 8602 9191 3550", "1Z50T0536891664106", and "729445720428778".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeshipmenttrackingnumber?language=objc)
     pub static UITextContentTypeShipmentTrackingNumber: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeflightnumber?language=objc)
+    /// Airline flight numbers such as "CZ # 1234", "AA212", and "SW Flight 573".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeflightnumber?language=objc)
     pub static UITextContentTypeFlightNumber: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypedatetime?language=objc)
+    /// Dates, times, or durations such as "7-3-2021" or "This Saturday", "12:30", and "10-11am", respectively.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypedatetime?language=objc)
     pub static UITextContentTypeDateTime: &'static UITextContentType;
 }
 
@@ -743,7 +775,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecellulareid?language=objc)
+    /// eSIM activation
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecellulareid?language=objc)
     pub static UITextContentTypeCellularEID: &'static UITextContentType;
 }
 

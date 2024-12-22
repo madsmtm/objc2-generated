@@ -89,6 +89,7 @@ extern_methods!(
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
+        /// Setter for [`count`][Self::count].
         #[method(setCount:)]
         pub unsafe fn setCount(&self, count: NSUInteger);
     }

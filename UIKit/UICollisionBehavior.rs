@@ -115,12 +115,14 @@ extern_methods!(
         #[method(collisionMode)]
         pub unsafe fn collisionMode(&self) -> UICollisionBehaviorMode;
 
+        /// Setter for [`collisionMode`][Self::collisionMode].
         #[method(setCollisionMode:)]
         pub unsafe fn setCollisionMode(&self, collision_mode: UICollisionBehaviorMode);
 
         #[method(translatesReferenceBoundsIntoBoundary)]
         pub unsafe fn translatesReferenceBoundsIntoBoundary(&self) -> bool;
 
+        /// Setter for [`translatesReferenceBoundsIntoBoundary`][Self::translatesReferenceBoundsIntoBoundary].
         #[method(setTranslatesReferenceBoundsIntoBoundary:)]
         pub unsafe fn setTranslatesReferenceBoundsIntoBoundary(
             &self,
@@ -178,6 +180,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UICollisionBehaviorDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`collisionDelegate`][Self::collisionDelegate].
         #[method(setCollisionDelegate:)]
         pub unsafe fn setCollisionDelegate(
             &self,

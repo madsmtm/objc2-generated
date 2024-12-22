@@ -8,7 +8,48 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lpmetadataprovider?language=objc)
+    /// An object that retrieves metadata for a URL.
+    ///
+    /// Use ``LPMetadataProvider`` to fetch metadata for a URL, including its title,
+    /// icon, and image or video links. All properties on the resulting
+    /// ``LPLinkMetadata`` instance are optional.
+    ///
+    /// - Note: To enable macOS clients to fetch metadata for remote URLs, add the
+    /// <doc
+    /// ://com.apple.documentation/documentation/bundleresources/entitlements/com_apple_security_network_client>
+    /// entitlement.
+    ///
+    /// ## Fetch link metadata from a URL
+    ///
+    /// For each metadata request, create an instance of ``LPMetadataProvider`` and
+    /// call ``LPMetadataProvider/startFetchingMetadataForURL:completionHandler:``.
+    ///
+    /// In the completion handler, check the error. If your user doesn’t have a
+    /// network connection, the fetch can fail. If the server doesn’t respond or is
+    /// too slow, the fetch can time out. Alternatively, the app may cancel the
+    /// request, or an unknown error may occur.
+    ///
+    /// Otherwise, use the metadata however you want, for example, to populate the
+    /// title for a table view cell.
+    ///
+    /// ```swift
+    /// let metadataProvider = LPMetadataProvider()
+    /// let url = URL(string: "https://www.apple.com/ipad")!
+    ///
+    /// metadataProvider.startFetchingMetadata(for: url) { metadata, error in
+    /// if error != nil {
+    /// // The fetch failed; handle the error.
+    /// return
+    /// }
+    ///
+    /// // Make use of fetched metadata.
+    /// }
+    /// ```
+    ///
+    /// For more information about handling errors, see
+    /// ``LinkPresentation/LPError``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lpmetadataprovider?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LPMetadataProvider;
@@ -19,6 +60,28 @@ unsafe impl NSObjectProtocol for LPMetadataProvider {}
 extern_methods!(
     unsafe impl LPMetadataProvider {
         #[cfg(all(feature = "LPLinkMetadata", feature = "block2"))]
+        /// Fetches metadata for the given URL.
+        ///
+        /// Call this method once per ``LPMetadataProvider`` instance. If you attempt to
+        /// fetch metadata multiple times on a single ``LPMetadataProvider`` instance,
+        /// it throws an error.
+        ///
+        /// The completion handler executes on a background queue. Dispatch any
+        /// necessary UI updates back to the main queue. When the completion handler
+        /// returns, it deletes any file URLs returned in the resulting
+        /// ``LPLinkMetadata``.
+        ///
+        /// > Concurrency Note: You can call this method from synchronous code using a completion handler,
+        /// > as shown on this page, or you can call it as an asynchronous method that has the
+        /// > following declaration:
+        /// >
+        /// > ```swift
+        /// >  func startFetchingMetadata(for url: URL) async throws -> LPLinkMetadata
+        /// > ```
+        /// >
+        /// > For information about concurrency and asynchronous code in Swift, see
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
         #[method(startFetchingMetadataForURL:completionHandler:)]
         pub unsafe fn startFetchingMetadataForURL_completionHandler(
             &self,
@@ -27,6 +90,28 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "LPLinkMetadata", feature = "block2"))]
+        /// Fetches metadata for the given ``NSURLRequest``.
+        ///
+        /// Call this method once per ``LPMetadataProvider`` instance. If you attempt to
+        /// fetch metadata multiple times on a single ``LPMetadataProvider`` instance,
+        /// it throws an error.
+        ///
+        /// The completion handler executes on a background queue. Dispatch any
+        /// necessary UI updates back to the main queue. When the completion handler
+        /// returns, it deletes any file URLs returned in the resulting
+        /// ``LPLinkMetadata``.
+        ///
+        /// > Concurrency Note: You can call this method from synchronous code using a completion handler,
+        /// > as shown on this page, or you can call it as an asynchronous method that has the
+        /// > following declaration:
+        /// >
+        /// > ```swift
+        /// >  func startFetchingMetadata(for request: URLRequest) async throws -> LPLinkMetadata
+        /// > ```
+        /// >
+        /// > For information about concurrency and asynchronous code in Swift, see
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
         #[method(startFetchingMetadataForRequest:completionHandler:)]
         pub unsafe fn startFetchingMetadataForRequest_completionHandler(
             &self,
@@ -34,18 +119,40 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(*mut LPLinkMetadata, *mut NSError)>,
         );
 
+        /// Cancels a metadata request.
+        ///
+        /// This method invokes the completion handler with the error code
+        /// ``LPErrorCode/LPErrorMetadataFetchCancelled`` if the request hasn’t already
+        /// completed.
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 
+        /// A Boolean value indicating whether to download subresources specified by the
+        /// metadata.
+        ///
+        /// Subresources include the icon, image, or video. When set to `false`, the
+        /// returned ``LPLinkMetadata`` object consists only of metadata retrieved from
+        /// the main resource identified by the url passed to
+        /// ``LPMetadataProvider/startFetchingMetadataForURL:completionHandler:``.
+        ///
+        /// The default value is `true`.
         #[method(shouldFetchSubresources)]
         pub unsafe fn shouldFetchSubresources(&self) -> bool;
 
+        /// Setter for [`shouldFetchSubresources`][Self::shouldFetchSubresources].
         #[method(setShouldFetchSubresources:)]
         pub unsafe fn setShouldFetchSubresources(&self, should_fetch_subresources: bool);
 
+        /// The time interval after which the request automatically fails if it hasn’t
+        /// already completed.
+        ///
+        /// The default timeout interval is 30 seconds. If a metadata fetch takes longer
+        /// than the timeout interval, the completion handler is called with the error
+        /// code ``LPErrorCode/LPErrorMetadataFetchTimedOut``.
         #[method(timeout)]
         pub unsafe fn timeout(&self) -> NSTimeInterval;
 
+        /// Setter for [`timeout`][Self::timeout].
         #[method(setTimeout:)]
         pub unsafe fn setTimeout(&self, timeout: NSTimeInterval);
     }

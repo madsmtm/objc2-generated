@@ -69,6 +69,12 @@ extern_methods!(
         pub unsafe fn keyWindow(&self) -> Option<Retained<UIWindow>>;
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
+        /// An optional object used as a source of scene-level activity items configuration
+        ///
+        /// If this property returns
+        /// `nil,`the
+        /// `activityItemsConfiguration`property of the most-presented view controller
+        /// of the scene's key window will be used for scene-level sharing and activities.
         #[method_id(@__retain_semantics Other activityItemsConfigurationSource)]
         pub unsafe fn activityItemsConfigurationSource(
             &self,
@@ -76,6 +82,7 @@ extern_methods!(
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`activityItemsConfigurationSource`][Self::activityItemsConfigurationSource].
         #[method(setActivityItemsConfigurationSource:)]
         pub unsafe fn setActivityItemsConfigurationSource(
             &self,
@@ -85,6 +92,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UISceneWindowingBehaviors")]
+        /// Additional window behaviors which may be platform specific. This property will be nil on unsupported platforms, otherwise will provide a mutable object for window behavior customization.
         #[method_id(@__retain_semantics Other windowingBehaviors)]
         pub unsafe fn windowingBehaviors(&self) -> Option<Retained<UISceneWindowingBehaviors>>;
 
@@ -146,6 +154,7 @@ extern_protocol!(
         unsafe fn window(&self) -> Option<Retained<UIWindow>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
+        /// Setter for [`window`][Self::window].
         #[optional]
         #[method(setWindow:)]
         unsafe fn setWindow(&self, window: Option<&UIWindow>);
@@ -258,6 +267,7 @@ extern_methods!(
         #[method(windowDismissalAnimation)]
         pub unsafe fn windowDismissalAnimation(&self) -> UIWindowSceneDismissalAnimation;
 
+        /// Setter for [`windowDismissalAnimation`][Self::windowDismissalAnimation].
         #[method(setWindowDismissalAnimation:)]
         pub unsafe fn setWindowDismissalAnimation(
             &self,
@@ -301,6 +311,7 @@ extern_methods!(
         pub unsafe fn minimumSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumSize`][Self::minimumSize].
         #[method(setMinimumSize:)]
         pub unsafe fn setMinimumSize(&self, minimum_size: CGSize);
 
@@ -309,12 +320,14 @@ extern_methods!(
         pub unsafe fn maximumSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumSize`][Self::maximumSize].
         #[method(setMaximumSize:)]
         pub unsafe fn setMaximumSize(&self, maximum_size: CGSize);
 
         #[method(allowsFullScreen)]
         pub unsafe fn allowsFullScreen(&self) -> bool;
 
+        /// Setter for [`allowsFullScreen`][Self::allowsFullScreen].
         #[method(setAllowsFullScreen:)]
         pub unsafe fn setAllowsFullScreen(&self, allows_full_screen: bool);
     }

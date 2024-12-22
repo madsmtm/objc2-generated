@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesigner?language=objc)
+    /// Contains information about a message signer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesigner?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEMessageSigner;
@@ -22,12 +24,16 @@ unsafe impl NSSecureCoding for MEMessageSigner {}
 extern_methods!(
     unsafe impl MEMessageSigner {
         #[cfg(feature = "MEEmailAddress")]
+        /// Email addresses associated with the signature.
         #[method_id(@__retain_semantics Other emailAddresses)]
         pub unsafe fn emailAddresses(&self) -> Retained<NSArray<MEEmailAddress>>;
 
+        /// The message signers label. Shown in the message header view. For instance, "John Smith".
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
+        /// The context for the message signature. This might include the signing certificate. This will be passed back to the extension for
+        /// either verifying the signature or if the user wishes to view signature information.
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Retained<NSData>;
 

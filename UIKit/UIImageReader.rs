@@ -26,31 +26,39 @@ unsafe impl NSObjectProtocol for UIImageReaderConfiguration {}
 
 extern_methods!(
     unsafe impl UIImageReaderConfiguration {
+        /// For image types that may decode as either SDR or HDR, prefer the HDR variant. Images that may only decode as either SDR or HDR are unaffected. Default depends on system capabilities.
         #[method(prefersHighDynamicRange)]
         pub unsafe fn prefersHighDynamicRange(&self) -> bool;
 
+        /// Setter for [`prefersHighDynamicRange`][Self::prefersHighDynamicRange].
         #[method(setPrefersHighDynamicRange:)]
         pub unsafe fn setPrefersHighDynamicRange(&self, prefers_high_dynamic_range: bool);
 
+        /// If set, images vended by the loader are automatically prepared for display. Default is NO.
         #[method(preparesImagesForDisplay)]
         pub unsafe fn preparesImagesForDisplay(&self) -> bool;
 
+        /// Setter for [`preparesImagesForDisplay`][Self::preparesImagesForDisplay].
         #[method(setPreparesImagesForDisplay:)]
         pub unsafe fn setPreparesImagesForDisplay(&self, prepares_images_for_display: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// If set, images loaded will be thumbnails of approximately the given size. Default value is CGSizeZero, indicating that thumb-nailing is disabled. This size is always in pixels.
         #[method(preferredThumbnailSize)]
         pub unsafe fn preferredThumbnailSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredThumbnailSize`][Self::preferredThumbnailSize].
         #[method(setPreferredThumbnailSize:)]
         pub unsafe fn setPreferredThumbnailSize(&self, preferred_thumbnail_size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// If non-zero when generating images, image metadata information (if present) will be used to determine the scale to assign to the image. If zero all images will be assigned a scale of 1.0. Always assigns integral scales. Defaults to 0.
         #[method(pixelsPerInch)]
         pub unsafe fn pixelsPerInch(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`pixelsPerInch`][Self::pixelsPerInch].
         #[method(setPixelsPerInch:)]
         pub unsafe fn setPixelsPerInch(&self, pixels_per_inch: CGFloat);
     }
@@ -78,9 +86,11 @@ unsafe impl NSObjectProtocol for UIImageReader {}
 
 extern_methods!(
     unsafe impl UIImageReader {
+        /// Returns a reader that uses the default configuration options. This method is thread safe.
         #[method_id(@__retain_semantics Other defaultReader)]
         pub unsafe fn defaultReader() -> Retained<UIImageReader>;
 
+        /// Returns a loader of the given configuration. Loaders are thread safe and sharable.
         #[method_id(@__retain_semantics Other readerWithConfiguration:)]
         pub unsafe fn readerWithConfiguration(
             configuration: &UIImageReaderConfiguration,
@@ -90,14 +100,17 @@ extern_methods!(
         pub unsafe fn configuration(&self) -> Retained<UIImageReaderConfiguration>;
 
         #[cfg(feature = "UIImage")]
+        /// Synchronously generate an image from the given file URL. If an image could not be generated, returns nil.
         #[method_id(@__retain_semantics Other imageWithContentsOfFileURL:)]
         pub unsafe fn imageWithContentsOfFileURL(&self, url: &NSURL) -> Retained<UIImage>;
 
         #[cfg(feature = "UIImage")]
+        /// Synchronously generate an image from the given data. If an image could not be generated, returns nil.
         #[method_id(@__retain_semantics Other imageWithData:)]
         pub unsafe fn imageWithData(&self, data: &NSData) -> Retained<UIImage>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
+        /// Asynchronously generate an image from the given file URL. If an image could not be generated, the completion will be called with nil.
         #[method(imageWithContentsOfFileURL:completion:)]
         pub unsafe fn imageWithContentsOfFileURL_completion(
             &self,
@@ -106,6 +119,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
+        /// Asynchronously generate an image from the given data. If an image could not be generated, the completion will be called with nil.
         #[method(imageWithData:completion:)]
         pub unsafe fn imageWithData_completion(
             &self,

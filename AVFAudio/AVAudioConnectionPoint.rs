@@ -6,7 +6,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconnectionpoint?language=objc)
+    /// A representation of either a source or destination connection point in AVAudioEngine.
+    ///
+    /// AVAudioConnectionPoint describes either a source or destination connection point (node, bus)
+    /// in AVAudioEngine's graph.
+    ///
+    /// Instances of this class are immutable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconnectionpoint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioConnectionPoint;
@@ -17,6 +24,13 @@ unsafe impl NSObjectProtocol for AVAudioConnectionPoint {}
 extern_methods!(
     unsafe impl AVAudioConnectionPoint {
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioTypes"))]
+        /// Create a connection point object.
+        ///
+        /// Parameter `node`: the source or destination node
+        ///
+        /// Parameter `bus`: the output or input bus on the node
+        ///
+        /// If the node is nil, this method fails (returns nil).
         #[method_id(@__retain_semantics Init initWithNode:bus:)]
         pub unsafe fn initWithNode_bus(
             this: Allocated<Self>,
@@ -28,10 +42,12 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioNode")]
+        /// Returns the node in the connection point.
         #[method_id(@__retain_semantics Other node)]
         pub unsafe fn node(&self) -> Option<Retained<AVAudioNode>>;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Returns the bus on the node in the connection point.
         #[method(bus)]
         pub unsafe fn bus(&self) -> AVAudioNodeBus;
     }

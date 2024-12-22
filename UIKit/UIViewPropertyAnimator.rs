@@ -42,36 +42,47 @@ extern_methods!(
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
+        /// Defaults to 0. This property is set when calling -[UIView startAnimationAfterDelay:].
         #[method(delay)]
         pub unsafe fn delay(&self) -> NSTimeInterval;
 
+        /// Defaults to YES. Raises if set on an active animator.
         #[method(isUserInteractionEnabled)]
         pub unsafe fn isUserInteractionEnabled(&self) -> bool;
 
+        /// Setter for [`isUserInteractionEnabled`][Self::isUserInteractionEnabled].
         #[method(setUserInteractionEnabled:)]
         pub unsafe fn setUserInteractionEnabled(&self, user_interaction_enabled: bool);
 
+        /// Defaults to NO. Set if you need to manage the the hit-testing of animating view hierarchies
         #[method(isManualHitTestingEnabled)]
         pub unsafe fn isManualHitTestingEnabled(&self) -> bool;
 
+        /// Setter for [`isManualHitTestingEnabled`][Self::isManualHitTestingEnabled].
         #[method(setManualHitTestingEnabled:)]
         pub unsafe fn setManualHitTestingEnabled(&self, manual_hit_testing_enabled: bool);
 
+        /// Defaults to YES. Raises if set on an active animator.
         #[method(isInterruptible)]
         pub unsafe fn isInterruptible(&self) -> bool;
 
+        /// Setter for [`isInterruptible`][Self::isInterruptible].
         #[method(setInterruptible:)]
         pub unsafe fn setInterruptible(&self, interruptible: bool);
 
+        /// Defaults to YES. Provides the ability for an animator to pause and scrub either linearly or using the animator’s current timing.
         #[method(scrubsLinearly)]
         pub unsafe fn scrubsLinearly(&self) -> bool;
 
+        /// Setter for [`scrubsLinearly`][Self::scrubsLinearly].
         #[method(setScrubsLinearly:)]
         pub unsafe fn setScrubsLinearly(&self, scrubs_linearly: bool);
 
+        /// Defaults to NO. Provides the ability for an animator to pause on completion instead of transitioning to the .inactive state.
         #[method(pausesOnCompletion)]
         pub unsafe fn pausesOnCompletion(&self) -> bool;
 
+        /// Setter for [`pausesOnCompletion`][Self::pausesOnCompletion].
         #[method(setPausesOnCompletion:)]
         pub unsafe fn setPausesOnCompletion(&self, pauses_on_completion: bool);
 
@@ -84,6 +95,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIView", feature = "block2"))]
+        /// All convenience initializers return an animator which is not running.
         #[method_id(@__retain_semantics Init initWithDuration:curve:animations:)]
         pub unsafe fn initWithDuration_curve_animations(
             this: Allocated<Self>,
@@ -112,6 +124,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIView", feature = "UIViewAnimating", feature = "block2"))]
+        /// This method provides compatibility with the old style [UIView
+        /// animationWithDuration:...]  method. It is also useful for controlling
+        /// how animations options are inherited.
+        ///
+        /// Creates a UIViewPropertyAnimator, sets the duration, options, etc. And starts the
+        /// animation with the associated animation and completion blocks. The animator
+        /// returned is interruptible only if it is not called from within the execution
+        /// block of another animation (animator or legacy). Note that if it is called
+        /// within the execution block of another animation it will inherit the duration
+        /// and other characteristics of that animation UNLESS the appropriate override
+        /// options have been specified. Also note that if is called within the execution
+        /// block of another propertyAnimator that is interruptible, the implicit
+        /// animations defined by this call will be tracked by the outer
+        /// propertyAnimator.
         #[method_id(@__retain_semantics Other runningPropertyAnimatorWithDuration:delay:options:animations:completion:)]
         pub unsafe fn runningPropertyAnimatorWithDuration_delay_options_animations_completion(
             duration: NSTimeInterval,
@@ -123,6 +149,10 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// Animatable view properties that are set by the animation block will be
+        /// animated to their new values. The animations will commence at delayFactor *
+        /// animator.duration seconds into the animation. The duration of the animation
+        /// will be (1 - delayFactor) * animator.duration seconds.
         #[method(addAnimations:delayFactor:)]
         pub unsafe fn addAnimations_delayFactor(
             &self,
@@ -131,6 +161,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Animatable view properties that are set by the animation block will be
+        /// animated to their new values. Starting an animator that does not contain any animation blocks
+        /// will start the animator in a transient paused state. While in this state, submitting an animation
+        /// block will automatically start animating any animatable view properties set therein. When the
+        /// animator is stopped, either naturally completing or explicitly, any animation blocks and completion
+        /// handlers are invalidated. Immediately calling `startAnimation` again on the animator, since there
+        /// are no animation blocks, will start the animator in a transient paused state.
         #[method(addAnimations:)]
         pub unsafe fn addAnimations(&self, animation: &block2::Block<dyn Fn()>);
 
@@ -142,6 +179,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UITimingCurveProvider", feature = "objc2-core-foundation"))]
+        /// Provides a means to continue an animation in either the forward or reversed
+        /// directions with new timing parameters and duration.  The durationFactor is in
+        /// terms of a unit duration defined by the originally specified duration of the
+        /// animator. It is used to specify the remaining time for the animation. When
+        /// called, it behaves as if the animation was started from its current position
+        /// with a new duration and timing parameters.
         #[method(continueAnimationWithTimingParameters:durationFactor:)]
         pub unsafe fn continueAnimationWithTimingParameters_durationFactor(
             &self,

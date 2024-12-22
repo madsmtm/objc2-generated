@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
+        /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
@@ -97,6 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
+        /// Setter for [`value`][Self::value].
         #[deprecated]
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
@@ -105,6 +108,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other valueType)]
         pub unsafe fn valueType(&self) -> Retained<NSString>;
 
+        /// Setter for [`valueType`][Self::valueType].
         #[deprecated]
         #[method(setValueType:)]
         pub unsafe fn setValueType(&self, value_type: Option<&NSString>);

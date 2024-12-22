@@ -13,7 +13,9 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconversion?language=objc)
+    /// The MPSImageConversion filter performs a conversion from source to destination
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconversion?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -41,10 +43,22 @@ extern_methods!(
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageConversion {
         #[cfg(feature = "MPSImageTypes")]
+        /// Premultiplication description for the source texture
+        ///
+        /// Most colorspace conversion operations can not work directly on premultiplied data.
+        /// Use this property to tag premultiplied data so that the source texture can
+        /// be unpremultiplied prior to application of these transforms.
+        /// Default: MPSPixelAlpha_AlphaIsOne
         #[method(sourceAlpha)]
         pub unsafe fn sourceAlpha(&self) -> MPSAlphaType;
 
         #[cfg(feature = "MPSImageTypes")]
+        /// Premultiplication description for the destinationAlpha texture
+        ///
+        /// Colorspace conversion operations produce non-premultiplied data.
+        /// Use this property to tag cases where premultiplied results are required.
+        /// If MPSPixelAlpha_AlphaIsOne is used, the alpha channel will be set to 1.
+        /// Default: MPSPixelAlpha_AlphaIsOne
         #[method(destinationAlpha)]
         pub unsafe fn destinationAlpha(&self) -> MPSAlphaType;
 
@@ -53,6 +67,26 @@ extern_methods!(
             feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
+        /// Create a converter that can convert texture colorspace, alpha and texture format
+        ///
+        /// Create a converter that can convert texture colorspace, alpha and MTLPixelFormat.
+        /// Optimized cases exist for NULL color space converter and no alpha conversion.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `srcAlpha`: The alpha encoding for the source texture
+        ///
+        /// Parameter `destAlpha`: The alpha encoding for the destination texture
+        ///
+        /// Parameter `backgroundColor`: An array of CGFloats giving the background color to use when flattening an image.
+        /// The color is in the source colorspace.  The length of the array is the number
+        /// of color channels in the src colorspace. If NULL, use {0}.
+        ///
+        /// Parameter `conversionInfo`: The colorspace conversion to use. May be NULL, indicating no
+        /// color space conversions need to be done.
+        ///
+        ///
+        /// Returns: An initialized MPSImageConversion object.
         #[method_id(@__retain_semantics Init initWithDevice:srcAlpha:destAlpha:backgroundColor:conversionInfo:)]
         pub unsafe fn initWithDevice_srcAlpha_destAlpha_backgroundColor_conversionInfo(
             this: Allocated<Self>,
@@ -69,12 +103,32 @@ extern_methods!(
     /// Methods declared on superclass `MPSUnaryImageKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageConversion {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: a pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -88,6 +142,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageConversion {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

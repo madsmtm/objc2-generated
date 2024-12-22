@@ -52,12 +52,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nodeName)]
         pub unsafe fn nodeName(&self) -> Retained<NSString>;
 
+        /// Setter for [`nodeName`][Self::nodeName].
         #[method(setNodeName:)]
         pub unsafe fn setNodeName(&self, node_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other comment)]
         pub unsafe fn comment(&self) -> Retained<NSString>;
 
+        /// Setter for [`comment`][Self::comment].
         #[method(setComment:)]
         pub unsafe fn setComment(&self, comment: Option<&NSString>);
 
@@ -66,30 +68,35 @@ extern_methods!(
         pub unsafe fn defaultMappings(&self) -> Option<Retained<ODMappings>>;
 
         #[cfg(feature = "ODMappings")]
+        /// Setter for [`defaultMappings`][Self::defaultMappings].
         #[method(setDefaultMappings:)]
         pub unsafe fn setDefaultMappings(&self, default_mappings: Option<&ODMappings>);
 
         #[method_id(@__retain_semantics Other templateName)]
         pub unsafe fn templateName(&self) -> Retained<NSString>;
 
+        /// Setter for [`templateName`][Self::templateName].
         #[method(setTemplateName:)]
         pub unsafe fn setTemplateName(&self, template_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other virtualSubnodes)]
         pub unsafe fn virtualSubnodes(&self) -> Retained<NSArray>;
 
+        /// Setter for [`virtualSubnodes`][Self::virtualSubnodes].
         #[method(setVirtualSubnodes:)]
         pub unsafe fn setVirtualSubnodes(&self, virtual_subnodes: Option<&NSArray>);
 
         #[method(hideRegistration)]
         pub unsafe fn hideRegistration(&self) -> bool;
 
+        /// Setter for [`hideRegistration`][Self::hideRegistration].
         #[method(setHideRegistration:)]
         pub unsafe fn setHideRegistration(&self, hide_registration: bool);
 
         #[method_id(@__retain_semantics Other preferredDestinationHostName)]
         pub unsafe fn preferredDestinationHostName(&self) -> Retained<NSString>;
 
+        /// Setter for [`preferredDestinationHostName`][Self::preferredDestinationHostName].
         #[method(setPreferredDestinationHostName:)]
         pub unsafe fn setPreferredDestinationHostName(
             &self,
@@ -99,6 +106,7 @@ extern_methods!(
         #[method(preferredDestinationHostPort)]
         pub unsafe fn preferredDestinationHostPort(&self) -> u16;
 
+        /// Setter for [`preferredDestinationHostPort`][Self::preferredDestinationHostPort].
         #[method(setPreferredDestinationHostPort:)]
         pub unsafe fn setPreferredDestinationHostPort(&self, preferred_destination_host_port: u16);
 
@@ -126,30 +134,35 @@ extern_methods!(
         #[method(packetSigning)]
         pub unsafe fn packetSigning(&self) -> NSInteger;
 
+        /// Setter for [`packetSigning`][Self::packetSigning].
         #[method(setPacketSigning:)]
         pub unsafe fn setPacketSigning(&self, packet_signing: NSInteger);
 
         #[method(packetEncryption)]
         pub unsafe fn packetEncryption(&self) -> NSInteger;
 
+        /// Setter for [`packetEncryption`][Self::packetEncryption].
         #[method(setPacketEncryption:)]
         pub unsafe fn setPacketEncryption(&self, packet_encryption: NSInteger);
 
         #[method(manInTheMiddleProtection)]
         pub unsafe fn manInTheMiddleProtection(&self) -> bool;
 
+        /// Setter for [`manInTheMiddleProtection`][Self::manInTheMiddleProtection].
         #[method(setManInTheMiddleProtection:)]
         pub unsafe fn setManInTheMiddleProtection(&self, man_in_the_middle_protection: bool);
 
         #[method(queryTimeoutInSeconds)]
         pub unsafe fn queryTimeoutInSeconds(&self) -> NSInteger;
 
+        /// Setter for [`queryTimeoutInSeconds`][Self::queryTimeoutInSeconds].
         #[method(setQueryTimeoutInSeconds:)]
         pub unsafe fn setQueryTimeoutInSeconds(&self, query_timeout_in_seconds: NSInteger);
 
         #[method(connectionSetupTimeoutInSeconds)]
         pub unsafe fn connectionSetupTimeoutInSeconds(&self) -> NSInteger;
 
+        /// Setter for [`connectionSetupTimeoutInSeconds`][Self::connectionSetupTimeoutInSeconds].
         #[method(setConnectionSetupTimeoutInSeconds:)]
         pub unsafe fn setConnectionSetupTimeoutInSeconds(
             &self,
@@ -159,6 +172,7 @@ extern_methods!(
         #[method(connectionIdleTimeoutInSeconds)]
         pub unsafe fn connectionIdleTimeoutInSeconds(&self) -> NSInteger;
 
+        /// Setter for [`connectionIdleTimeoutInSeconds`][Self::connectionIdleTimeoutInSeconds].
         #[method(setConnectionIdleTimeoutInSeconds:)]
         pub unsafe fn setConnectionIdleTimeoutInSeconds(
             &self,
@@ -168,12 +182,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultModuleEntries)]
         pub unsafe fn defaultModuleEntries(&self) -> Retained<NSArray>;
 
+        /// Setter for [`defaultModuleEntries`][Self::defaultModuleEntries].
         #[method(setDefaultModuleEntries:)]
         pub unsafe fn setDefaultModuleEntries(&self, default_module_entries: Option<&NSArray>);
 
         #[method_id(@__retain_semantics Other authenticationModuleEntries)]
         pub unsafe fn authenticationModuleEntries(&self) -> Retained<NSArray>;
 
+        /// Setter for [`authenticationModuleEntries`][Self::authenticationModuleEntries].
         #[method(setAuthenticationModuleEntries:)]
         pub unsafe fn setAuthenticationModuleEntries(
             &self,
@@ -183,26 +199,49 @@ extern_methods!(
         #[method_id(@__retain_semantics Other discoveryModuleEntries)]
         pub unsafe fn discoveryModuleEntries(&self) -> Retained<NSArray>;
 
+        /// Setter for [`discoveryModuleEntries`][Self::discoveryModuleEntries].
         #[method(setDiscoveryModuleEntries:)]
         pub unsafe fn setDiscoveryModuleEntries(&self, discovery_module_entries: Option<&NSArray>);
 
         #[method_id(@__retain_semantics Other generalModuleEntries)]
         pub unsafe fn generalModuleEntries(&self) -> Retained<NSArray>;
 
+        /// Setter for [`generalModuleEntries`][Self::generalModuleEntries].
         #[method(setGeneralModuleEntries:)]
         pub unsafe fn setGeneralModuleEntries(&self, general_module_entries: Option<&NSArray>);
 
+        /// Returns an initialized and autoreleased ODConfiguration object.
+        ///
+        ///
+        /// Returns an initialized and autoreleased ODConfiguration object.
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration() -> Option<Retained<Self>>;
 
+        /// Returns a suggested name to use for the trust account.
+        ///
+        ///
+        /// Returns a suggested name to use for a trust account.  This name will be derived from the hostname
+        /// (if provided), otherwise it will be derived from the local hostname removing special characters
+        /// that may not be allowed by many systems.
         #[method_id(@__retain_semantics Other suggestedTrustAccount:)]
         pub unsafe fn suggestedTrustAccount(
             hostname: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
 
+        /// Returns a suggested password to be used for trust account with the requested length.
+        ///
+        ///
+        /// Returns a suggested password to be used for trust account with the requested length.
         #[method_id(@__retain_semantics Other suggestedTrustPassword:)]
         pub unsafe fn suggestedTrustPassword(length: usize) -> Option<Retained<NSString>>;
 
+        /// Adds a trust account with the provided name and password using the credentials provided by the user.
+        ///
+        ///
+        /// Adds a trust account with the provided name and password using the credentials provided by the user.  User can
+        /// request that the trust be forcibly created (replacing existing trust if found in directory).  A trust should be
+        /// established only after enough configuration is available and the configuration been saved.  If the trust is
+        /// required, then the configuration can be deleted if necessary upon failure.
         #[method(addTrustType:trustAccount:trustPassword:username:password:joinExisting:error:)]
         pub unsafe fn addTrustType_trustAccount_trustPassword_username_password_joinExisting_error(
             &self,
@@ -215,6 +254,10 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Removes trust using the provided username and password.
+        ///
+        ///
+        /// Removes trust using the provided username and password.  The trust account will be removed from the directory only if requested.
         #[method(removeTrustUsingUsername:password:deleteTrustAccount:error:)]
         pub unsafe fn removeTrustUsingUsername_password_deleteTrustAccount_error(
             &self,

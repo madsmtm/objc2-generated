@@ -28,13 +28,16 @@ unsafe impl NSSecureCoding for CXTransaction {}
 
 extern_methods!(
     unsafe impl CXTransaction {
+        /// Unique ID
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
+        /// Whether all actions have been completed
         #[method(isComplete)]
         pub unsafe fn isComplete(&self) -> bool;
 
         #[cfg(feature = "CXAction")]
+        /// The list of actions contained by the receiver
         #[method_id(@__retain_semantics Other actions)]
         pub unsafe fn actions(&self) -> Retained<NSArray<CXAction>>;
 
@@ -50,6 +53,7 @@ extern_methods!(
         pub unsafe fn initWithAction(this: Allocated<Self>, action: &CXAction) -> Retained<Self>;
 
         #[cfg(feature = "CXAction")]
+        /// Add the provided action to the receiver's list of actions
         #[method(addAction:)]
         pub unsafe fn addAction(&self, action: &CXAction);
     }

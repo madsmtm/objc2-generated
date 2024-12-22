@@ -129,6 +129,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A sliding attachment allows for relative translation of two items along a specified axis with respect to the anchor point. A sliding
+        /// attachment prevents all relative rotation of the dynamic items.
+        ///
+        /// Parameter `item1`: The first of two dynamic items connected by the attachment behavior.
+        ///
+        /// Parameter `item2`: The second of two dynamic items connected by the attachment behavior.
+        ///
+        /// Parameter `point`: The point for which each item will be attached. The anchor point will be converted to each items local coordinate system.
+        ///
+        /// Parameter `axis`: Axis of allowed relative translation between local anchor point. Must be a unit vector.
+        ///
+        /// See: attachmentRange, Represents the slidable range of the attachment with respect to the anchor point along the specified axis, this range must include 0
         #[method_id(@__retain_semantics Other slidingAttachmentWithItem:attachedToItem:attachmentAnchor:axisOfTranslation:)]
         pub unsafe fn slidingAttachmentWithItem_attachedToItem_attachmentAnchor_axisOfTranslation(
             item1: &ProtocolObject<dyn UIDynamicItem>,
@@ -138,6 +150,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A sliding attachment allows for translation of the item along a specified axis with respect to the anchor point. A sliding
+        /// attachment prevents all relative rotation of the dynamic items.
+        ///
+        /// Parameter `item1`: The dynamic item connected by the attachment behavior.
+        ///
+        /// Parameter `point`: The point for the item will be anchored by the attachment.
+        ///
+        /// Parameter `axis`: Axis of allowed translation for the item. Must be a unit vector.
+        ///
+        /// See: attachmentRange, Represents the slidable range of the attachment with respect to the anchor point along the specified axis, this range must include 0
         #[method_id(@__retain_semantics Other slidingAttachmentWithItem:attachmentAnchor:axisOfTranslation:)]
         pub unsafe fn slidingAttachmentWithItem_attachmentAnchor_axisOfTranslation(
             item: &ProtocolObject<dyn UIDynamicItem>,
@@ -146,6 +168,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// A limit attachment imposes a maximum distance between two dynamic items, as if they were connected by a rope.
+        ///
+        /// Parameter `item1`: The first of two dynamic items connected by the attachment behavior.
+        ///
+        /// Parameter `offset1`: The point, within the dynamic item and described as an offset from its center point, for the attachment behavior.
+        ///
+        /// Parameter `item2`: The second of two dynamic items connected by the attachment behavior.
+        ///
+        /// Parameter `offset2`: The point, within the dynamic item and described as an offset from its center point, for the attachment behavior.
+        ///
+        /// See: length
         #[method_id(@__retain_semantics Other limitAttachmentWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:)]
         pub unsafe fn limitAttachmentWithItem_offsetFromCenter_attachedToItem_offsetFromCenter(
             item1: &ProtocolObject<dyn UIDynamicItem>,
@@ -155,6 +188,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A fixed attachment fuses two dynamic items together at a reference point.
+        /// Fixed attachments are useful for creating complex shapes that can be broken apart later.
+        ///
+        /// Parameter `item1`: The first of two dynamic items connected by the attachment behavior.
+        ///
+        /// Parameter `item2`: The second of two dynamic items connected by the attachment behavior.
+        ///
+        /// Parameter `point`: The point for which each item will be attached. The anchor point will be converted to each items local coordinate system.
         #[method_id(@__retain_semantics Other fixedAttachmentWithItem:attachedToItem:attachmentAnchor:)]
         pub unsafe fn fixedAttachmentWithItem_attachedToItem_attachmentAnchor(
             item1: &ProtocolObject<dyn UIDynamicItem>,
@@ -163,6 +204,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A pin attachment allows two dynamic items to independently rotate around the anchor point as if pinned together.
+        /// You can configure how far the two objects may rotate and the resistance to rotation
+        ///
+        /// Parameter `item1`: The first of two dynamic items connected by the attachment behavior.
+        ///
+        /// Parameter `item2`: The second of two dynamic items connected by the attachment behavior.
+        ///
+        /// Parameter `point`: The point for which each item will be attached. The anchor point will be converted to each items local coordinate system
+        ///
+        /// See: frictionTorque, resistance to rotation
         #[method_id(@__retain_semantics Other pinAttachmentWithItem:attachedToItem:attachmentAnchor:)]
         pub unsafe fn pinAttachmentWithItem_attachedToItem_attachmentAnchor(
             item1: &ProtocolObject<dyn UIDynamicItem>,
@@ -181,6 +232,7 @@ extern_methods!(
         pub unsafe fn anchorPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`anchorPoint`][Self::anchorPoint].
         #[method(setAnchorPoint:)]
         pub unsafe fn setAnchorPoint(&self, anchor_point: CGPoint);
 
@@ -189,6 +241,7 @@ extern_methods!(
         pub unsafe fn length(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`length`][Self::length].
         #[method(setLength:)]
         pub unsafe fn setLength(&self, length: CGFloat);
 
@@ -197,6 +250,7 @@ extern_methods!(
         pub unsafe fn damping(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`damping`][Self::damping].
         #[method(setDamping:)]
         pub unsafe fn setDamping(&self, damping: CGFloat);
 
@@ -205,6 +259,7 @@ extern_methods!(
         pub unsafe fn frequency(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`frequency`][Self::frequency].
         #[method(setFrequency:)]
         pub unsafe fn setFrequency(&self, frequency: CGFloat);
 
@@ -213,6 +268,7 @@ extern_methods!(
         pub unsafe fn frictionTorque(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`frictionTorque`][Self::frictionTorque].
         #[method(setFrictionTorque:)]
         pub unsafe fn setFrictionTorque(&self, friction_torque: CGFloat);
 
@@ -221,6 +277,7 @@ extern_methods!(
         pub unsafe fn attachmentRange(&self) -> UIFloatRange;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`attachmentRange`][Self::attachmentRange].
         #[method(setAttachmentRange:)]
         pub unsafe fn setAttachmentRange(&self, attachment_range: UIFloatRange);
     }

@@ -162,6 +162,7 @@ extern_methods!(
             -> Option<Retained<ProtocolObject<dyn NSRuleEditorDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -171,6 +172,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other formattingStringsFilename)]
         pub unsafe fn formattingStringsFilename(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`formattingStringsFilename`][Self::formattingStringsFilename].
         #[method(setFormattingStringsFilename:)]
         pub unsafe fn setFormattingStringsFilename(
             &self,
@@ -182,6 +184,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
+        /// Setter for [`formattingDictionary`][Self::formattingDictionary].
         #[method(setFormattingDictionary:)]
         pub unsafe fn setFormattingDictionary(
             &self,
@@ -194,6 +197,7 @@ extern_methods!(
         #[method(nestingMode)]
         pub unsafe fn nestingMode(&self) -> NSRuleEditorNestingMode;
 
+        /// Setter for [`nestingMode`][Self::nestingMode].
         #[method(setNestingMode:)]
         pub unsafe fn setNestingMode(&self, nesting_mode: NSRuleEditorNestingMode);
 
@@ -202,18 +206,21 @@ extern_methods!(
         pub unsafe fn rowHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`rowHeight`][Self::rowHeight].
         #[method(setRowHeight:)]
         pub unsafe fn setRowHeight(&self, row_height: CGFloat);
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        /// Setter for [`isEditable`][Self::isEditable].
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
         #[method(canRemoveAllRows)]
         pub unsafe fn canRemoveAllRows(&self) -> bool;
 
+        /// Setter for [`canRemoveAllRows`][Self::canRemoveAllRows].
         #[method(setCanRemoveAllRows:)]
         pub unsafe fn setCanRemoveAllRows(&self, can_remove_all_rows: bool);
 
@@ -290,30 +297,35 @@ extern_methods!(
         #[method(rowClass)]
         pub unsafe fn rowClass(&self) -> &'static AnyClass;
 
+        /// Setter for [`rowClass`][Self::rowClass].
         #[method(setRowClass:)]
         pub unsafe fn setRowClass(&self, row_class: &AnyClass);
 
         #[method_id(@__retain_semantics Other rowTypeKeyPath)]
         pub unsafe fn rowTypeKeyPath(&self) -> Retained<NSString>;
 
+        /// Setter for [`rowTypeKeyPath`][Self::rowTypeKeyPath].
         #[method(setRowTypeKeyPath:)]
         pub unsafe fn setRowTypeKeyPath(&self, row_type_key_path: &NSString);
 
         #[method_id(@__retain_semantics Other subrowsKeyPath)]
         pub unsafe fn subrowsKeyPath(&self) -> Retained<NSString>;
 
+        /// Setter for [`subrowsKeyPath`][Self::subrowsKeyPath].
         #[method(setSubrowsKeyPath:)]
         pub unsafe fn setSubrowsKeyPath(&self, subrows_key_path: &NSString);
 
         #[method_id(@__retain_semantics Other criteriaKeyPath)]
         pub unsafe fn criteriaKeyPath(&self) -> Retained<NSString>;
 
+        /// Setter for [`criteriaKeyPath`][Self::criteriaKeyPath].
         #[method(setCriteriaKeyPath:)]
         pub unsafe fn setCriteriaKeyPath(&self, criteria_key_path: &NSString);
 
         #[method_id(@__retain_semantics Other displayValuesKeyPath)]
         pub unsafe fn displayValuesKeyPath(&self) -> Retained<NSString>;
 
+        /// Setter for [`displayValuesKeyPath`][Self::displayValuesKeyPath].
         #[method(setDisplayValuesKeyPath:)]
         pub unsafe fn setDisplayValuesKeyPath(&self, display_values_key_path: &NSString);
     }

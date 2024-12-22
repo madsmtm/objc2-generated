@@ -90,15 +90,19 @@ unsafe impl RefEncode for UITableViewRowAnimation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcontenthuggingelements?language=objc)
+/// A setting for which items in the table view should tightly hug their content
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcontenthuggingelements?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITableViewContentHuggingElements(pub NSInteger);
 bitflags::bitflags! {
     impl UITableViewContentHuggingElements: NSInteger {
+/// A content hugging mode where none of the items in the table view tightly hug their content
         #[doc(alias = "UITableViewContentHuggingElementsNone")]
         const None = 0;
+/// A content hugging mode where section headers in the table view tightly hug their content
         #[doc(alias = "UITableViewContentHuggingElementsSectionHeaders")]
         const SectionHeaders = 1<<0;
     }
@@ -186,6 +190,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`title`][Self::title].
         #[deprecated = "Use UIContextualAction and related APIs instead."]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -196,6 +201,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[deprecated = "Use UIContextualAction and related APIs instead."]
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
@@ -206,6 +212,7 @@ extern_methods!(
         pub unsafe fn backgroundEffect(&self) -> Option<Retained<UIVisualEffect>>;
 
         #[cfg(feature = "UIVisualEffect")]
+        /// Setter for [`backgroundEffect`][Self::backgroundEffect].
         #[deprecated = "Use UIContextualAction and related APIs instead."]
         #[method(setBackgroundEffect:)]
         pub unsafe fn setBackgroundEffect(&self, background_effect: Option<&UIVisualEffect>);
@@ -515,6 +522,18 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Called to determine if a primary action can be performed for the row at the given indexPath.
+        /// See
+        /// `tableView:performPrimaryActionForRowAtIndexPath:`for more details about primary actions.
+        ///
+        ///
+        /// Parameter `tableView`: This UITableView
+        ///
+        /// Parameter `indexPath`: NSIndexPath of the row
+        ///
+        ///
+        /// Returns: `YES` if the primary action can be performed; otherwise `NO`. If not implemented defaults to `YES` when not editing
+        /// and `NO` when editing.
         #[optional]
         #[method(tableView:canPerformPrimaryActionForRowAtIndexPath:)]
         unsafe fn tableView_canPerformPrimaryActionForRowAtIndexPath(
@@ -524,6 +543,24 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Called when the primary action should be performed for the row at the given indexPath.
+        ///
+        ///
+        /// Primary actions allow you to distinguish between a change of selection (which can be based on focus changes or
+        /// other indirect selection changes) and distinct user actions. Primary actions are performed when the user selects a cell without extending
+        /// an existing selection. This is called after
+        /// `willSelectRow`and
+        /// `didSelectRow`, regardless of whether the cell's selection
+        /// state was allowed to change.
+        ///
+        /// As an example, use
+        /// `didSelectRowAtIndexPath`for updating state in the current view controller (i.e. buttons, title, etc) and
+        /// use the primary action for navigation or showing another split view column.
+        ///
+        ///
+        /// Parameter `tableView`: This UITableView
+        ///
+        /// Parameter `indexPath`: NSIndexPath of the row to perform the action on
         #[optional]
         #[method(tableView:performPrimaryActionForRowAtIndexPath:)]
         unsafe fn tableView_performPrimaryActionForRowAtIndexPath(
@@ -712,6 +749,8 @@ extern_protocol!(
         ) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Determines if the row at the specified index path should also become selected when focus moves to it.
+        /// If the table view's global selectionFollowsFocus is enabled, this method will allow you to override that behavior on a per-index path basis. This method is not called if selectionFollowsFocus is disabled.
         #[optional]
         #[method(tableView:selectionFollowsFocusForRowAtIndexPath:)]
         unsafe fn tableView_selectionFollowsFocusForRowAtIndexPath(
@@ -763,6 +802,20 @@ extern_protocol!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
+        /// Called when the interaction begins.
+        ///
+        ///
+        /// Parameter `tableView`: This UITableView.
+        ///
+        /// Parameter `indexPath`: IndexPath of the row for which a configuration is being requested.
+        ///
+        /// Parameter `point`: Location of the interaction in the table view's coordinate space
+        ///
+        ///
+        /// Returns: A UIContextMenuConfiguration describing the menu to be presented. Return nil to prevent the interaction from beginning.
+        /// Returning an empty configuration causes the interaction to begin then fail with a cancellation effect. You might use this
+        /// to indicate to users that it's possible for a menu to be presented from this element, but that there are no actions to
+        /// present at this particular time.
         #[optional]
         #[method_id(@__retain_semantics Other tableView:contextMenuConfigurationForRowAtIndexPath:point:)]
         unsafe fn tableView_contextMenuConfigurationForRowAtIndexPath_point(
@@ -778,6 +831,12 @@ extern_protocol!(
             feature = "UITargetedPreview",
             feature = "UIView"
         ))]
+        /// Called when the interaction begins. Return a UITargetedPreview to override the default preview created by the table view.
+        ///
+        ///
+        /// Parameter `tableView`: This UITableView.
+        ///
+        /// Parameter `configuration`: The configuration of the menu about to be displayed by this interaction.
         #[optional]
         #[method_id(@__retain_semantics Other tableView:previewForHighlightingContextMenuWithConfiguration:)]
         unsafe fn tableView_previewForHighlightingContextMenuWithConfiguration(
@@ -792,6 +851,13 @@ extern_protocol!(
             feature = "UITargetedPreview",
             feature = "UIView"
         ))]
+        /// Called when the interaction is about to dismiss. Return a UITargetedPreview describing the desired dismissal target.
+        /// The interaction will animate the presented menu to the target. Use this to customize the dismissal animation.
+        ///
+        ///
+        /// Parameter `tableView`: This UITableView.
+        ///
+        /// Parameter `configuration`: The configuration of the menu displayed by this interaction.
         #[optional]
         #[method_id(@__retain_semantics Other tableView:previewForDismissingContextMenuWithConfiguration:)]
         unsafe fn tableView_previewForDismissingContextMenuWithConfiguration(
@@ -806,6 +872,14 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
+        /// Called when the interaction is about to "commit" in response to the user tapping the preview.
+        ///
+        ///
+        /// Parameter `tableView`: This UITableView.
+        ///
+        /// Parameter `configuration`: Configuration of the currently displayed menu.
+        ///
+        /// Parameter `animator`: Commit animator. Add animations to this object to run them alongside the commit transition.
         #[optional]
         #[method(tableView:willPerformPreviewActionForMenuWithConfiguration:animator:)]
         unsafe fn tableView_willPerformPreviewActionForMenuWithConfiguration_animator(
@@ -821,6 +895,14 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
+        /// Called when the table view is about to display a menu.
+        ///
+        ///
+        /// Parameter `tableView`: This UITableView.
+        ///
+        /// Parameter `configuration`: The configuration of the menu about to be displayed.
+        ///
+        /// Parameter `animator`: Appearance animator. Add animations to run them alongside the appearance transition.
         #[optional]
         #[method(tableView:willDisplayContextMenuWithConfiguration:animator:)]
         unsafe fn tableView_willDisplayContextMenuWithConfiguration_animator(
@@ -836,6 +918,14 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
+        /// Called when the table view's context menu interaction is about to end.
+        ///
+        ///
+        /// Parameter `tableView`: This UITableView.
+        ///
+        /// Parameter `configuration`: Ending configuration.
+        ///
+        /// Parameter `animator`: Disappearance animator. Add animations to run them alongside the disappearance transition.
         #[optional]
         #[method(tableView:willEndContextMenuInteractionWithConfiguration:animator:)]
         unsafe fn tableView_willEndContextMenuInteractionWithConfiguration_animator(
@@ -879,10 +969,14 @@ unsafe impl RefEncode for UITableViewSeparatorInsetReference {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITableViewSelfSizingInvalidation(pub NSInteger);
 impl UITableViewSelfSizingInvalidation {
+    /// No updates will take place when -invalidateIntrinsicContentSize is called on a self-sizing cell or its contentView.
     #[doc(alias = "UITableViewSelfSizingInvalidationDisabled")]
     pub const Disabled: Self = Self(0);
+    /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary.
     #[doc(alias = "UITableViewSelfSizingInvalidationEnabled")]
     pub const Enabled: Self = Self(1);
+    /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary, and
+    /// any Auto Layout changes within the contentView of a self-sizing cell will automatically trigger -invalidateIntrinsicContentSize.
     #[doc(alias = "UITableViewSelfSizingInvalidationEnabledIncludingConstraints")]
     pub const EnabledIncludingConstraints: Self = Self(2);
 }
@@ -1023,6 +1117,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDataSource>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`dataSource`][Self::dataSource].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
@@ -1033,6 +1128,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITableViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -1045,6 +1141,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDataSourcePrefetching>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`prefetchDataSource`][Self::prefetchDataSource].
         #[method(setPrefetchDataSource:)]
         pub unsafe fn setPrefetchDataSource(
             &self,
@@ -1054,6 +1151,7 @@ extern_methods!(
         #[method(isPrefetchingEnabled)]
         pub unsafe fn isPrefetchingEnabled(&self) -> bool;
 
+        /// Setter for [`isPrefetchingEnabled`][Self::isPrefetchingEnabled].
         #[method(setPrefetchingEnabled:)]
         pub unsafe fn setPrefetchingEnabled(&self, prefetching_enabled: bool);
 
@@ -1063,6 +1161,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDragDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`dragDelegate`][Self::dragDelegate].
         #[method(setDragDelegate:)]
         pub unsafe fn setDragDelegate(
             &self,
@@ -1075,6 +1174,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDropDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`dropDelegate`][Self::dropDelegate].
         #[method(setDropDelegate:)]
         pub unsafe fn setDropDelegate(
             &self,
@@ -1086,6 +1186,7 @@ extern_methods!(
         pub unsafe fn rowHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`rowHeight`][Self::rowHeight].
         #[method(setRowHeight:)]
         pub unsafe fn setRowHeight(&self, row_height: CGFloat);
 
@@ -1094,6 +1195,7 @@ extern_methods!(
         pub unsafe fn sectionHeaderHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`sectionHeaderHeight`][Self::sectionHeaderHeight].
         #[method(setSectionHeaderHeight:)]
         pub unsafe fn setSectionHeaderHeight(&self, section_header_height: CGFloat);
 
@@ -1102,6 +1204,7 @@ extern_methods!(
         pub unsafe fn sectionFooterHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`sectionFooterHeight`][Self::sectionFooterHeight].
         #[method(setSectionFooterHeight:)]
         pub unsafe fn setSectionFooterHeight(&self, section_footer_height: CGFloat);
 
@@ -1110,6 +1213,7 @@ extern_methods!(
         pub unsafe fn estimatedRowHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`estimatedRowHeight`][Self::estimatedRowHeight].
         #[method(setEstimatedRowHeight:)]
         pub unsafe fn setEstimatedRowHeight(&self, estimated_row_height: CGFloat);
 
@@ -1118,6 +1222,7 @@ extern_methods!(
         pub unsafe fn estimatedSectionHeaderHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`estimatedSectionHeaderHeight`][Self::estimatedSectionHeaderHeight].
         #[method(setEstimatedSectionHeaderHeight:)]
         pub unsafe fn setEstimatedSectionHeaderHeight(
             &self,
@@ -1129,6 +1234,7 @@ extern_methods!(
         pub unsafe fn estimatedSectionFooterHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`estimatedSectionFooterHeight`][Self::estimatedSectionFooterHeight].
         #[method(setEstimatedSectionFooterHeight:)]
         pub unsafe fn setEstimatedSectionFooterHeight(
             &self,
@@ -1136,18 +1242,23 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The height for filler rows added below the last row when there aren't enough rows to fill a plain style table view.
+        /// Set 0 to disable filler rows entirely, use `UITableViewAutomaticDimension` for the default height.
         #[method(fillerRowHeight)]
         pub unsafe fn fillerRowHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`fillerRowHeight`][Self::fillerRowHeight].
         #[method(setFillerRowHeight:)]
         pub unsafe fn setFillerRowHeight(&self, filler_row_height: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Padding above each section header. The default value is `UITableViewAutomaticDimension`.
         #[method(sectionHeaderTopPadding)]
         pub unsafe fn sectionHeaderTopPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`sectionHeaderTopPadding`][Self::sectionHeaderTopPadding].
         #[method(setSectionHeaderTopPadding:)]
         pub unsafe fn setSectionHeaderTopPadding(&self, section_header_top_padding: CGFloat);
 
@@ -1156,12 +1267,14 @@ extern_methods!(
         pub unsafe fn separatorInset(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`separatorInset`][Self::separatorInset].
         #[method(setSeparatorInset:)]
         pub unsafe fn setSeparatorInset(&self, separator_inset: UIEdgeInsets);
 
         #[method(separatorInsetReference)]
         pub unsafe fn separatorInsetReference(&self) -> UITableViewSeparatorInsetReference;
 
+        /// Setter for [`separatorInsetReference`][Self::separatorInsetReference].
         #[method(setSeparatorInsetReference:)]
         pub unsafe fn setSeparatorInsetReference(
             &self,
@@ -1171,6 +1284,7 @@ extern_methods!(
         #[method(selfSizingInvalidation)]
         pub unsafe fn selfSizingInvalidation(&self) -> UITableViewSelfSizingInvalidation;
 
+        /// Setter for [`selfSizingInvalidation`][Self::selfSizingInvalidation].
         #[method(setSelfSizingInvalidation:)]
         pub unsafe fn setSelfSizingInvalidation(
             &self,
@@ -1180,6 +1294,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other backgroundView)]
         pub unsafe fn backgroundView(&self) -> Option<Retained<UIView>>;
 
+        /// Setter for [`backgroundView`][Self::backgroundView].
         #[method(setBackgroundView:)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&UIView>);
 
@@ -1354,6 +1469,7 @@ extern_methods!(
         #[method(isEditing)]
         pub unsafe fn isEditing(&self) -> bool;
 
+        /// Setter for [`isEditing`][Self::isEditing].
         #[method(setEditing:)]
         pub unsafe fn setEditing(&self, editing: bool);
 
@@ -1363,24 +1479,28 @@ extern_methods!(
         #[method(allowsSelection)]
         pub unsafe fn allowsSelection(&self) -> bool;
 
+        /// Setter for [`allowsSelection`][Self::allowsSelection].
         #[method(setAllowsSelection:)]
         pub unsafe fn setAllowsSelection(&self, allows_selection: bool);
 
         #[method(allowsSelectionDuringEditing)]
         pub unsafe fn allowsSelectionDuringEditing(&self) -> bool;
 
+        /// Setter for [`allowsSelectionDuringEditing`][Self::allowsSelectionDuringEditing].
         #[method(setAllowsSelectionDuringEditing:)]
         pub unsafe fn setAllowsSelectionDuringEditing(&self, allows_selection_during_editing: bool);
 
         #[method(allowsMultipleSelection)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
+        /// Setter for [`allowsMultipleSelection`][Self::allowsMultipleSelection].
         #[method(setAllowsMultipleSelection:)]
         pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
         #[method(allowsMultipleSelectionDuringEditing)]
         pub unsafe fn allowsMultipleSelectionDuringEditing(&self) -> bool;
 
+        /// Setter for [`allowsMultipleSelectionDuringEditing`][Self::allowsMultipleSelectionDuringEditing].
         #[method(setAllowsMultipleSelectionDuringEditing:)]
         pub unsafe fn setAllowsMultipleSelectionDuringEditing(
             &self,
@@ -1411,6 +1531,7 @@ extern_methods!(
         #[method(sectionIndexMinimumDisplayRowCount)]
         pub unsafe fn sectionIndexMinimumDisplayRowCount(&self) -> NSInteger;
 
+        /// Setter for [`sectionIndexMinimumDisplayRowCount`][Self::sectionIndexMinimumDisplayRowCount].
         #[method(setSectionIndexMinimumDisplayRowCount:)]
         pub unsafe fn setSectionIndexMinimumDisplayRowCount(
             &self,
@@ -1422,6 +1543,7 @@ extern_methods!(
         pub unsafe fn sectionIndexColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`sectionIndexColor`][Self::sectionIndexColor].
         #[method(setSectionIndexColor:)]
         pub unsafe fn setSectionIndexColor(&self, section_index_color: Option<&UIColor>);
 
@@ -1430,6 +1552,7 @@ extern_methods!(
         pub unsafe fn sectionIndexBackgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`sectionIndexBackgroundColor`][Self::sectionIndexBackgroundColor].
         #[method(setSectionIndexBackgroundColor:)]
         pub unsafe fn setSectionIndexBackgroundColor(
             &self,
@@ -1441,6 +1564,7 @@ extern_methods!(
         pub unsafe fn sectionIndexTrackingBackgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`sectionIndexTrackingBackgroundColor`][Self::sectionIndexTrackingBackgroundColor].
         #[method(setSectionIndexTrackingBackgroundColor:)]
         pub unsafe fn setSectionIndexTrackingBackgroundColor(
             &self,
@@ -1452,6 +1576,7 @@ extern_methods!(
         pub unsafe fn separatorStyle(&self) -> UITableViewCellSeparatorStyle;
 
         #[cfg(feature = "UITableViewCell")]
+        /// Setter for [`separatorStyle`][Self::separatorStyle].
         #[method(setSeparatorStyle:)]
         pub unsafe fn setSeparatorStyle(&self, separator_style: UITableViewCellSeparatorStyle);
 
@@ -1460,6 +1585,7 @@ extern_methods!(
         pub unsafe fn separatorColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`separatorColor`][Self::separatorColor].
         #[method(setSeparatorColor:)]
         pub unsafe fn setSeparatorColor(&self, separator_color: Option<&UIColor>);
 
@@ -1468,12 +1594,14 @@ extern_methods!(
         pub unsafe fn separatorEffect(&self) -> Option<Retained<UIVisualEffect>>;
 
         #[cfg(feature = "UIVisualEffect")]
+        /// Setter for [`separatorEffect`][Self::separatorEffect].
         #[method(setSeparatorEffect:)]
         pub unsafe fn setSeparatorEffect(&self, separator_effect: Option<&UIVisualEffect>);
 
         #[method(cellLayoutMarginsFollowReadableWidth)]
         pub unsafe fn cellLayoutMarginsFollowReadableWidth(&self) -> bool;
 
+        /// Setter for [`cellLayoutMarginsFollowReadableWidth`][Self::cellLayoutMarginsFollowReadableWidth].
         #[method(setCellLayoutMarginsFollowReadableWidth:)]
         pub unsafe fn setCellLayoutMarginsFollowReadableWidth(
             &self,
@@ -1483,6 +1611,7 @@ extern_methods!(
         #[method(insetsContentViewsToSafeArea)]
         pub unsafe fn insetsContentViewsToSafeArea(&self) -> bool;
 
+        /// Setter for [`insetsContentViewsToSafeArea`][Self::insetsContentViewsToSafeArea].
         #[method(setInsetsContentViewsToSafeArea:)]
         pub unsafe fn setInsetsContentViewsToSafeArea(
             &self,
@@ -1492,12 +1621,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other tableHeaderView)]
         pub unsafe fn tableHeaderView(&self) -> Option<Retained<UIView>>;
 
+        /// Setter for [`tableHeaderView`][Self::tableHeaderView].
         #[method(setTableHeaderView:)]
         pub unsafe fn setTableHeaderView(&self, table_header_view: Option<&UIView>);
 
         #[method_id(@__retain_semantics Other tableFooterView)]
         pub unsafe fn tableFooterView(&self) -> Option<Retained<UIView>>;
 
+        /// Setter for [`tableFooterView`][Self::tableFooterView].
         #[method(setTableFooterView:)]
         pub unsafe fn setTableFooterView(&self, table_footer_view: Option<&UIView>);
 
@@ -1558,33 +1689,46 @@ extern_methods!(
         #[method(remembersLastFocusedIndexPath)]
         pub unsafe fn remembersLastFocusedIndexPath(&self) -> bool;
 
+        /// Setter for [`remembersLastFocusedIndexPath`][Self::remembersLastFocusedIndexPath].
         #[method(setRemembersLastFocusedIndexPath:)]
         pub unsafe fn setRemembersLastFocusedIndexPath(
             &self,
             remembers_last_focused_index_path: bool,
         );
 
+        /// When enabled, the table view ensures that selection is automatically triggered when focus moves to a cell.
+        /// Defaults to a system derived value based on platform and other properties of the table view.
         #[method(selectionFollowsFocus)]
         pub unsafe fn selectionFollowsFocus(&self) -> bool;
 
+        /// Setter for [`selectionFollowsFocus`][Self::selectionFollowsFocus].
         #[method(setSelectionFollowsFocus:)]
         pub unsafe fn setSelectionFollowsFocus(&self, selection_follows_focus: bool);
 
+        /// Determines if the table view allows its cells to become focused.
+        /// When tableView:canFocusRowAtIndexPath: is implemented, its return value takes precedence over this method.
+        /// Defaults to a system derived value based on platform and other properties of the table view.
         #[method(allowsFocus)]
         pub unsafe fn allowsFocus(&self) -> bool;
 
+        /// Setter for [`allowsFocus`][Self::allowsFocus].
         #[method(setAllowsFocus:)]
         pub unsafe fn setAllowsFocus(&self, allows_focus: bool);
 
+        /// Determines if the table view allows its cells to become focused while editing.
+        /// When tableView:canFocusRowAtIndexPath: is implemented, its return value takes precedence over this method.
+        /// Defaults to a system derived value based on platform and other properties of the table view.
         #[method(allowsFocusDuringEditing)]
         pub unsafe fn allowsFocusDuringEditing(&self) -> bool;
 
+        /// Setter for [`allowsFocusDuringEditing`][Self::allowsFocusDuringEditing].
         #[method(setAllowsFocusDuringEditing:)]
         pub unsafe fn setAllowsFocusDuringEditing(&self, allows_focus_during_editing: bool);
 
         #[method(dragInteractionEnabled)]
         pub unsafe fn dragInteractionEnabled(&self) -> bool;
 
+        /// Setter for [`dragInteractionEnabled`][Self::dragInteractionEnabled].
         #[method(setDragInteractionEnabled:)]
         pub unsafe fn setDragInteractionEnabled(&self, drag_interaction_enabled: bool);
 
@@ -1594,9 +1738,14 @@ extern_methods!(
         #[method(hasActiveDrop)]
         pub unsafe fn hasActiveDrop(&self) -> bool;
 
+        /// Determines the type of items that will tightly hug their content.
+        ///
+        /// The default value for this property is `UITableViewContentHuggingElementsSectionHeaders` on visionOS for plain style table views and `UITableViewContentHuggingElementsNone` on all other platforms.
+        /// When the value of this property is `UITableViewContentHuggingElementsSectionHeaders`, any header view will not stretch the width of the table view if their content's intrinsic content size is less than the table view's width.
         #[method(contentHuggingElements)]
         pub unsafe fn contentHuggingElements(&self) -> UITableViewContentHuggingElements;
 
+        /// Setter for [`contentHuggingElements`][Self::contentHuggingElements].
         #[method(setContentHuggingElements:)]
         pub unsafe fn setContentHuggingElements(
             &self,
@@ -2176,6 +2325,7 @@ extern_methods!(
             feature = "UIView",
             feature = "block2"
         ))]
+        /// Setter for [`cellUpdateHandler`][Self::cellUpdateHandler].
         #[method(setCellUpdateHandler:)]
         pub unsafe fn setCellUpdateHandler(
             &self,
@@ -2217,6 +2367,7 @@ extern_methods!(
             feature = "UIView",
             feature = "block2"
         ))]
+        /// Setter for [`previewParametersProvider`][Self::previewParametersProvider].
         #[method(setPreviewParametersProvider:)]
         pub unsafe fn setPreviewParametersProvider(
             &self,

@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other profile)]
         pub unsafe fn profile(&self) -> Retained<NSString>;
 
+        /// Setter for [`profile`][Self::profile].
         #[deprecated]
         #[method(setProfile:)]
         pub unsafe fn setProfile(&self, profile: Option<&NSString>);

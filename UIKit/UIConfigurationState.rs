@@ -17,6 +17,7 @@ extern_protocol!(
         NSCopying + NSObjectProtocol + NSSecureCoding + MainThreadOnly
     {
         #[cfg(feature = "UITraitCollection")]
+        /// Returns a new instance with the specified trait collection.
         #[method_id(@__retain_semantics Init initWithTraitCollection:)]
         unsafe fn initWithTraitCollection(
             this: Allocated<Self>,
@@ -28,15 +29,18 @@ extern_protocol!(
         unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITraitCollection")]
+        /// Setter for [`traitCollection`][Self::traitCollection].
         #[method(setTraitCollection:)]
         unsafe fn setTraitCollection(&self, trait_collection: &UITraitCollection);
 
+        /// Returns the custom state for the specified key.
         #[method_id(@__retain_semantics Other customStateForKey:)]
         unsafe fn customStateForKey(
             &self,
             key: &UIConfigurationStateCustomKey,
         ) -> Option<Retained<AnyObject>>;
 
+        /// Sets the custom state for the specified key.
         #[method(setCustomState:forKey:)]
         unsafe fn setCustomState_forKey(
             &self,

@@ -17,7 +17,14 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicalrecord?language=objc)
+    /// An HKObject subclass representing a health record.
+    ///
+    /// The startDate and endDate properties (inherited from HKSample) are set to the date the sample was
+    /// added to Health. Unlike other HKObject subclasses, UUID is not a stable identifier
+    /// for a given sample. Use a combination of HKSource, FHIRResource.resourceType, and
+    /// FHIRResource.identifier instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicalrecord?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -54,10 +61,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clinicalType)]
         pub unsafe fn clinicalType(&self) -> Retained<HKClinicalType>;
 
+        /// The primary display name used in Health.
+        ///
+        /// The display name is not localized, and is generally expected to be US English.
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HKFHIRResource")]
+        /// The FHIR resource (where applicable) backing this sample.
         #[method_id(@__retain_semantics Other FHIRResource)]
         pub unsafe fn FHIRResource(&self) -> Option<Retained<HKFHIRResource>>;
 

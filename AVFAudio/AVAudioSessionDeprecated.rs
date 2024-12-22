@@ -16,6 +16,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVAudioSessionDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "No longer supported"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

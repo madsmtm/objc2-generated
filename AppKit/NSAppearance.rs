@@ -33,6 +33,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentAppearance)]
         pub unsafe fn currentAppearance() -> Option<Retained<NSAppearance>>;
 
+        /// Setter for [`currentAppearance`][Self::currentAppearance].
         #[deprecated = "Use -performAsCurrentDrawingAppearance: to temporarily set the drawing appearance, or +currentDrawingAppearance to access the currently drawing appearance."]
         #[method(setCurrentAppearance:)]
         pub unsafe fn setCurrentAppearance(current_appearance: Option<&NSAppearance>);
@@ -136,6 +137,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other appearance)]
         unsafe fn appearance(&self) -> Option<Retained<NSAppearance>>;
 
+        /// Setter for [`appearance`][Self::appearance].
         #[method(setAppearance:)]
         unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
 

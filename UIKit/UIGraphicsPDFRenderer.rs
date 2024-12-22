@@ -39,6 +39,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other documentInfo)]
         pub unsafe fn documentInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
+        /// Setter for [`documentInfo`][Self::documentInfo].
         #[method(setDocumentInfo:)]
         pub unsafe fn setDocumentInfo(&self, document_info: &NSDictionary<NSString, AnyObject>);
     }

@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcrmspropoptimizer?language=objc)
+    /// The MLCRMSPropOptimizer specifies the RMSProp optimizer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcrmspropoptimizer?language=objc)
     #[unsafe(super(MLCOptimizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCOptimizer")]
@@ -30,23 +32,38 @@ unsafe impl NSObjectProtocol for MLCRMSPropOptimizer {}
 extern_methods!(
     #[cfg(feature = "MLCOptimizer")]
     unsafe impl MLCRMSPropOptimizer {
+        /// The momentum factor.  A hyper-parameter.
+        ///
+        /// The default is 0.0.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
         #[method(momentumScale)]
         pub unsafe fn momentumScale(&self) -> c_float;
 
+        /// The smoothing constant.
+        ///
+        /// The default is 0.99.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
+        /// A term added to improve numerical stability.
+        ///
+        /// The default is 1e-8.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
         #[method(epsilon)]
         pub unsafe fn epsilon(&self) -> c_float;
 
+        /// If True, compute the centered RMSProp, the gradient is normalized by an estimation of its variance.
+        ///
+        /// The default is false.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
         #[method(isCentered)]
         pub unsafe fn isCentered(&self) -> bool;
 
         #[cfg(feature = "MLCOptimizerDescriptor")]
+        /// Create a MLCRMSPropOptimizer object with defaults
+        ///
+        /// Returns: A new MLCRMSPropOptimizer object.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
         #[method_id(@__retain_semantics Other optimizerWithDescriptor:)]
         pub unsafe fn optimizerWithDescriptor(
@@ -54,6 +71,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCOptimizerDescriptor")]
+        /// Create a MLCRMSPropOptimizer object
+        ///
+        /// Parameter `optimizerDescriptor`: The optimizer descriptor object
+        ///
+        /// Parameter `momentumScale`: The momentum scale
+        ///
+        /// Parameter `alpha`: The smoothing constant value
+        ///
+        /// Parameter `epsilon`: The epsilon value to use to improve numerical stability
+        ///
+        /// Parameter `isCentered`: A boolean to specify whether to compute the centered RMSProp or not
+        ///
+        /// Returns: A new MLCRMSPropOptimizer object.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
         #[method_id(@__retain_semantics Other optimizerWithDescriptor:momentumScale:alpha:epsilon:isCentered:)]
         pub unsafe fn optimizerWithDescriptor_momentumScale_alpha_epsilon_isCentered(

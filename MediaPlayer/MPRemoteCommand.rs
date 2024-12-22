@@ -13,14 +13,25 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPRemoteCommandHandlerStatus(pub NSInteger);
 impl MPRemoteCommandHandlerStatus {
+    /// There was no error executing the requested command.
     #[doc(alias = "MPRemoteCommandHandlerStatusSuccess")]
     pub const Success: Self = Self(0);
+    /// The command could not be executed because the requested content does not
+    /// exist in the current application state.
     #[doc(alias = "MPRemoteCommandHandlerStatusNoSuchContent")]
     pub const NoSuchContent: Self = Self(100);
+    /// The command could not be executed because there is no now playing item
+    /// available that is required for this command. As an example, an
+    /// application would return this error code if an "enable language option"
+    /// command is received, but nothing is currently playing.
     #[doc(alias = "MPRemoteCommandHandlerStatusNoActionableNowPlayingItem")]
     pub const NoActionableNowPlayingItem: Self = Self(110);
+    /// The command could not be executed because a device required
+    /// is not available. For instance, if headphones are required, or if a watch
+    /// app realizes that it needs the companion to fulfull a request.
     #[doc(alias = "MPRemoteCommandHandlerStatusDeviceNotFound")]
     pub const DeviceNotFound: Self = Self(120);
+    /// The command could not be executed for another reason.
     #[doc(alias = "MPRemoteCommandHandlerStatusCommandFailed")]
     pub const CommandFailed: Self = Self(200);
 }
@@ -50,9 +61,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Whether a button (for example) should be enabled and tappable for this
+        /// particular command.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
@@ -66,6 +80,7 @@ extern_methods!(
         pub unsafe fn removeTarget(&self, target: Option<&AnyObject>);
 
         #[cfg(all(feature = "MPRemoteCommandEvent", feature = "block2"))]
+        /// Returns an opaque object to act as the target.
         #[method_id(@__retain_semantics Other addTargetWithHandler:)]
         pub unsafe fn addTargetWithHandler(
             &self,
@@ -87,9 +102,11 @@ unsafe impl NSObjectProtocol for MPSkipIntervalCommand {}
 
 extern_methods!(
     unsafe impl MPSkipIntervalCommand {
+        /// An array of NSNumbers (NSTimeIntervals) that contain preferred skip intervals.
         #[method_id(@__retain_semantics Other preferredIntervals)]
         pub unsafe fn preferredIntervals(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`preferredIntervals`][Self::preferredIntervals].
         #[method(setPreferredIntervals:)]
         pub unsafe fn setPreferredIntervals(&self, preferred_intervals: &NSArray<NSNumber>);
     }
@@ -117,21 +134,31 @@ unsafe impl NSObjectProtocol for MPFeedbackCommand {}
 
 extern_methods!(
     unsafe impl MPFeedbackCommand {
+        /// Whether the feedback command is in an "active" state. An example of when a
+        /// feedback command would be active is if the user already "liked" a particular
+        /// content item.
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
+        /// Setter for [`isActive`][Self::isActive].
         #[method(setActive:)]
         pub unsafe fn setActive(&self, active: bool);
 
+        /// A localized string briefly describing the context of the command.
         #[method_id(@__retain_semantics Other localizedTitle)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
+        /// Setter for [`localizedTitle`][Self::localizedTitle].
         #[method(setLocalizedTitle:)]
         pub unsafe fn setLocalizedTitle(&self, localized_title: &NSString);
 
+        /// An optional shorter version of the localized title for this feedback
+        /// command. MediaPlayer uses this property to display this command's title on
+        /// remote control interfaces with little screen space.
         #[method_id(@__retain_semantics Other localizedShortTitle)]
         pub unsafe fn localizedShortTitle(&self) -> Retained<NSString>;
 
+        /// Setter for [`localizedShortTitle`][Self::localizedShortTitle].
         #[method(setLocalizedShortTitle:)]
         pub unsafe fn setLocalizedShortTitle(&self, localized_short_title: &NSString);
     }
@@ -159,15 +186,19 @@ unsafe impl NSObjectProtocol for MPRatingCommand {}
 
 extern_methods!(
     unsafe impl MPRatingCommand {
+        /// Minimum rating for the command.
         #[method(minimumRating)]
         pub unsafe fn minimumRating(&self) -> c_float;
 
+        /// Setter for [`minimumRating`][Self::minimumRating].
         #[method(setMinimumRating:)]
         pub unsafe fn setMinimumRating(&self, minimum_rating: c_float);
 
+        /// Maximum rating for the command.
         #[method(maximumRating)]
         pub unsafe fn maximumRating(&self) -> c_float;
 
+        /// Setter for [`maximumRating`][Self::maximumRating].
         #[method(setMaximumRating:)]
         pub unsafe fn setMaximumRating(&self, maximum_rating: c_float);
     }
@@ -195,9 +226,12 @@ unsafe impl NSObjectProtocol for MPChangePlaybackRateCommand {}
 
 extern_methods!(
     unsafe impl MPChangePlaybackRateCommand {
+        /// An array of NSNumbers (floats) that contain supported playback rates that
+        /// the command can send.
         #[method_id(@__retain_semantics Other supportedPlaybackRates)]
         pub unsafe fn supportedPlaybackRates(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`supportedPlaybackRates`][Self::supportedPlaybackRates].
         #[method(setSupportedPlaybackRates:)]
         pub unsafe fn setSupportedPlaybackRates(
             &self,
@@ -218,7 +252,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackpositioncommand?language=objc)
+    /// Command for changing the current playback position in a now playing item.
+    /// Sends out MPChangePlaybackPositionCommandEvents.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackpositioncommand?language=objc)
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangePlaybackPositionCommand;
@@ -242,7 +279,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommand?language=objc)
+    /// Command for changing the current shuffle mode to use during playback. To
+    /// update the system's current representation of your app's shuffle mode, set
+    /// the currentShuffleType property on this command to the proper shuffle type
+    /// value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommand?language=objc)
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeShuffleModeCommand;
@@ -253,10 +295,12 @@ unsafe impl NSObjectProtocol for MPChangeShuffleModeCommand {}
 extern_methods!(
     unsafe impl MPChangeShuffleModeCommand {
         #[cfg(feature = "MPRemoteControlTypes")]
+        /// The app's current shuffle type.
         #[method(currentShuffleType)]
         pub unsafe fn currentShuffleType(&self) -> MPShuffleType;
 
         #[cfg(feature = "MPRemoteControlTypes")]
+        /// Setter for [`currentShuffleType`][Self::currentShuffleType].
         #[method(setCurrentShuffleType:)]
         pub unsafe fn setCurrentShuffleType(&self, current_shuffle_type: MPShuffleType);
     }
@@ -274,7 +318,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommand?language=objc)
+    /// Command for changing the current repeat mode to use during playback. To
+    /// update the system's current representation of your app's repeat mode, set
+    /// the currentRepeatType property on this command to the proper repeat type
+    /// value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommand?language=objc)
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeRepeatModeCommand;
@@ -285,10 +334,12 @@ unsafe impl NSObjectProtocol for MPChangeRepeatModeCommand {}
 extern_methods!(
     unsafe impl MPChangeRepeatModeCommand {
         #[cfg(feature = "MPRemoteControlTypes")]
+        /// The app's current repeat mode.
         #[method(currentRepeatType)]
         pub unsafe fn currentRepeatType(&self) -> MPRepeatType;
 
         #[cfg(feature = "MPRemoteControlTypes")]
+        /// Setter for [`currentRepeatType`][Self::currentRepeatType].
         #[method(setCurrentRepeatType:)]
         pub unsafe fn setCurrentRepeatType(&self, current_repeat_type: MPRepeatType);
     }

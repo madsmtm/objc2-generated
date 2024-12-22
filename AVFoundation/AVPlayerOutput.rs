@@ -12,7 +12,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayervideooutput?language=objc)
+    /// AVPlayerVideoOutput offers a way to attach to an AVPlayer and receive video frames and video-related data vended through CMTaggedBufferGroups.
+    ///
+    /// AVPlayerVideoOutput can be attached to an AVPlayer using AVPlayer's method addVideoOutput:
+    /// Note:  An AVPlayerVideoOutput can only be attached to a single player at a time, attempting to attach to multiple player will result in an exception being thrown.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayervideooutput?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerVideoOutput;
@@ -28,6 +33,18 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Creates an instance of AVPlayerVideoOutput, initialized with the specified video output specification.
+        ///
+        /// Parameter `specification`: An instance of AVVideoOutputSpecification, used to recommend data channels to the AVPlayer associated with this AVPlayerVideoOutput.
+        /// The tag collections owned by the AVVideoOutputSpecification will be given a priority based on their position in the array which they are held by AVVideoOutputSpecification, meaning position i takes priority over position i+1.
+        /// This means that the player will first check if the tag collection at index 0 matches the shape of the current item's data channels.
+        /// If the item's data channels would not be able satisfy the shape of the requested tag collection, it will fall back to the next collection and repeat this process.
+        /// This continues until a tag collection or set of tag collection can be selected, otherwise if no collections match the shape of the item’s data channels then samples cannot be vended for that item.
+        ///
+        /// Returns: An instance of AVPlayerVideoOutput.
+        ///
+        /// Output settings will be selected from the input AVVideoOutputSpecification based on the data channels selected for an item.
+        /// If no output settings were set for the selected tag collection, then the default output settings from the AVVideoOutputSpecification will be used if those were set.
         #[method_id(@__retain_semantics Init initWithSpecification:)]
         pub unsafe fn initWithSpecification(
             this: Allocated<Self>,
@@ -35,6 +52,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Retrieves a tagged buffer group that is appropriate for display at the specified host time.
+        ///
+        /// Parameter `hostTime`: A CMTime that expresses a desired host time.
+        ///
+        /// Parameter `presentationTimeStamp`: On return points to a CMTime whose value is the presentation time in terms of the corresponding AVPlayerItem's timebase for the copied tagged buffer group, or kCMTimeInvalid if no sample is available for the provided hostTime.
+        /// Note: This timestamp is in terms of the timebase of the AVPlayerItem for which this sample is associated.
+        ///
+        /// Parameter `activeConfiguration`: On return points to the active configuration associated with the copied tagged buffer group, or nil, if no sample is available for the provided hostTime.
+        ///
+        /// Returns: A tagged buffer group for the specified host time if a sample is available, and NULL otherwise.
+        ///
+        /// The client is responsible for releasing the returned CMTaggedBufferGroup.
         #[method(copyTaggedBufferGroupForHostTime:presentationTimeStamp:activeConfiguration:)]
         pub unsafe fn copyTaggedBufferGroupForHostTime_presentationTimeStamp_activeConfiguration(
             &self,
@@ -47,7 +76,13 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/cmtagcollectionvideooutputpreset?language=objc)
+/// Video output presets supported by CMTagCollectionCreateWithVideoOutputPreset.
+///
+/// Used for video output where there is no stereo view, e.g. kCMTagStereoNone.
+///
+/// Used for video output where there are two stereo views, for both left and right eyes, e.g. kCMTagStereoLeftAndRight.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/cmtagcollectionvideooutputpreset?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -66,6 +101,17 @@ unsafe impl RefEncode for CMTagCollectionVideoOutputPreset {
 }
 
 extern "C-unwind" {
+    /// Creates a CMTagCollection with the required tags to describe the specified video output requirements.
+    ///
+    /// Convenience constructor to create a CMTagCollection with all of the required tags for use with video output interfaces.
+    ///
+    /// Parameter `allocator`: CFAllocator to use to create the collection and internal data structures.
+    ///
+    /// Parameter `preset`: CMTagCollectionVideoOutputPreset representing the desired video output scenario.
+    ///
+    /// Parameter `newCollectionOut`: Address of a location to the newly created CMTagCollection.  The client is responsible for releasing the returned CMTagCollection.
+    ///
+    /// Returns: noErr if successful. Otherwise, an error describing why a tag collection could not be created.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMTagCollectionCreateWithVideoOutputPreset(
         allocator: CFAllocatorRef,
@@ -75,7 +121,13 @@ extern "C-unwind" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideooutputspecification?language=objc)
+    /// AVVideoOutputSpecification offers a way to package CMTagCollections together with output settings. Allowing for direct association between output settings and specific tag collections, as well as default output settings which can be associated with all tag collections which do not have a specified mapping.
+    ///
+    /// For more information about working with CMTagCollections and CMTags first look at
+    /// <CoreMedia
+    /// /CMTagCollection.h>
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideooutputspecification?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoOutputSpecification;
@@ -97,6 +149,13 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Creates an instance of AVVideoOutputSpecification initialized with the specified tag collections.
+        ///
+        /// Parameter `tagCollections`: Expects a non-empty array of CMTagCollections.  Tag collections are given priority based on their position in the array, where position i take priority over position i+1.
+        ///
+        /// This method throws an exception for the following reasons:
+        /// - tagCollections is nil or has a count of 0.
+        /// - tagCollections contains elements that are not of the type CMTagCollection.
         #[method_id(@__retain_semantics Init initWithTagCollections:)]
         pub unsafe fn initWithTagCollections(
             this: Allocated<Self>,
@@ -104,6 +163,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Specifies a mapping between a tag collection and a set of pixel buffer attributes.
+        ///
+        /// Parameter `pixelBufferAttributes`: The client requirements for CVPixelBuffers related to the tags in tagCollection, expressed using the constants in
+        /// <CoreVideo
+        /// /CVPixelBuffer.h>.
+        ///
+        /// Parameter `tagCollection`: A single tag collection for which these pixel buffer attributes should map to.
+        ///
+        /// If this method is called twice on the same tag collection, the first requested pixel buffer attributes will be overridden.
+        ///
+        /// Note: Pixel buffer attributes are translated into output settings, therefore, the rules of `-setOutputSettings:forTagCollection` apply to this method as well.
+        /// Namely, if you set pixel buffer attributes for a tag collection and then output settings for that same tag collection, your pixel buffer attributes will be overridden and vice-versa.
         #[deprecated]
         #[method(setOutputPixelBufferAttributes:forTagCollection:)]
         pub unsafe fn setOutputPixelBufferAttributes_forTagCollection(
@@ -113,6 +184,23 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-media")]
+        /// Specifies a mapping between a tag collection and a set of output settings.
+        ///
+        /// Parameter `outputSettings`: The client requirements for output CVPixelBuffers related to the tags in tagCollection, expressed using the constants in AVVideoSettings.h.
+        /// For uncompressed video output, start with kCVPixelBuffer* keys in
+        /// <CoreVideo
+        /// /CVPixelBuffer.h>.
+        /// In addition to the keys in CVPixelBuffer.h, uncompressed video settings dictionaries may also contain the following keys:
+        /// - AVVideoAllowWideColorKey
+        ///
+        /// Parameter `tagCollection`: A single tag collection for which these output settings should map to.
+        ///
+        /// If this method is called twice on the same tag collection, the first requested output settings will be overridden.
+        ///
+        /// Note: This method throws an exception for any of the following reasons:
+        /// - The settings will yield compressed output
+        /// - The settings do not honor the requirements list above for outputSettings.
+        /// - tagCollection does not match with any tag collection in -preferredTagCollections.
         #[method(setOutputSettings:forTagCollection:)]
         pub unsafe fn setOutputSettings_forTagCollection(
             &self,
@@ -120,15 +208,28 @@ extern_methods!(
             tag_collection: CMTagCollectionRef,
         );
 
+        /// Tag collections held by AVVideoOutputSpecification.
+        ///
+        /// Returns an array of CMTagCollections.
         #[method_id(@__retain_semantics Other preferredTagCollections)]
         pub unsafe fn preferredTagCollections(&self) -> Retained<NSArray>;
 
+        /// The default client requirements for CVPixelBuffers related to all tag collections not explicitly set with setOutputPixelBufferAttributes:forTagCollection:, expressed using the constants in
+        /// <CoreVideo
+        /// /CVPixelBuffer.h>.
+        ///
+        /// NSDictionary where keys are of type NSString, values should match the type specified by the corresponding keys documentation in
+        /// <CoreVideo
+        /// /CVPixelBuffer.h>
+        ///
+        /// Note: Pixel buffer attributes are translated into output settings, therefore, the rules of defaultOutputSettings apply to defaultPixelBufferAttributes as well.  If defaultPixelBufferAttributes are set after setting defaultOutputSettings, the set output settings will be overridden and vice-versa.
         #[deprecated]
         #[method_id(@__retain_semantics Other defaultPixelBufferAttributes)]
         pub unsafe fn defaultPixelBufferAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// Setter for [`defaultPixelBufferAttributes`][Self::defaultPixelBufferAttributes].
         #[deprecated]
         #[method(setDefaultPixelBufferAttributes:)]
         pub unsafe fn setDefaultPixelBufferAttributes(
@@ -136,11 +237,28 @@ extern_methods!(
             default_pixel_buffer_attributes: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
+        /// The default client requirements for output CVPixelBuffers related to all tag collections not explicitly set with -setOutputSettings:forTagCollection, expressed using the constants in AVVideoSettings.h.
+        /// For uncompressed video output, start with kCVPixelBuffer* keys in
+        /// <CoreVideo
+        /// /CVPixelBuffer.h>.
+        /// In addition to the keys in CVPixelBuffer.h, uncompressed video settings dictionaries may also contain the following keys:
+        /// - AVVideoAllowWideColorKey
+        ///
+        /// NSDictionary where keys are of type NSString, values should match the type specified by the corresponding keys documentation in
+        /// <AVFoundation
+        /// /AVVideoSettings.h> and
+        /// <CoreVideo
+        /// /CVPixelBuffer.h>.
+        ///
+        /// Note: The setter for this property throws an exception for any of the following reasons:
+        /// - The settings will yield compressed output
+        /// - The settings do not honor the requirements list above for outputSettings.
         #[method_id(@__retain_semantics Other defaultOutputSettings)]
         pub unsafe fn defaultOutputSettings(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// Setter for [`defaultOutputSettings`][Self::defaultOutputSettings].
         #[method(setDefaultOutputSettings:)]
         pub unsafe fn setDefaultOutputSettings(
             &self,
@@ -150,7 +268,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayervideooutputconfiguration?language=objc)
+    /// An AVPlayerVideoOutputConfiguration carries an identifier for the AVPlayerItem the configuration is associated with as well as presentation settings for that item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayervideooutputconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerVideoOutputConfiguration;
@@ -167,20 +287,30 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVPlayerItem")]
+        /// The AVPlayerItem which is the source of this configuration.
+        ///
+        /// This AVPlayerItem can be seen as the source of all samples this configuration vended alongside.
         #[method_id(@__retain_semantics Other sourcePlayerItem)]
         pub unsafe fn sourcePlayerItem(
             &self,
             mtm: MainThreadMarker,
         ) -> Option<Retained<AVPlayerItem>>;
 
+        /// List of data channels, represented as CMTagCollections, selected for this configuration.
+        ///
+        /// Returns an Array of CMTagCollections
         #[method_id(@__retain_semantics Other dataChannelDescriptions)]
         pub unsafe fn dataChannelDescriptions(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The preferred transformation of the visual media data vended with this configuration. This transformation is acquired from the AVAssetTrack that was used to source the media data accompanying this configuration.
+        ///
+        /// If no transform was specified by the source track a default value of CGAffineTransformIdentity is returned.
         #[method(preferredTransform)]
         pub unsafe fn preferredTransform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Host time when this configuration became active on the player the vending output is attached to.
         #[method(activationTime)]
         pub unsafe fn activationTime(&self) -> CMTime;
     }

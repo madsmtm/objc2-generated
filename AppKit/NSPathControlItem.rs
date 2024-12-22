@@ -21,12 +21,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[method_id(@__retain_semantics Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Retained<NSAttributedString>;
 
+        /// Setter for [`attributedTitle`][Self::attributedTitle].
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
 
@@ -35,6 +37,7 @@ extern_methods!(
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 

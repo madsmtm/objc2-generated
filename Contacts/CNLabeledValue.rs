@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabeledvalue?language=objc)
+    /// A contact property that has a value and label.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabeledvalue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNLabeledValue<ValueType: ?Sized = AnyObject>;
@@ -27,6 +29,7 @@ unsafe impl<ValueType: ?Sized + NSSecureCoding> NSSecureCoding for CNLabeledValu
 
 extern_methods!(
     unsafe impl<ValueType: Message> CNLabeledValue<ValueType> {
+        /// The identifier is unique among contacts on the device. It can be saved and used for finding labeled values next application launch.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
@@ -36,12 +39,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Retained<ValueType>;
 
+        /// Returns a new CNLabeledValue with a new identifier.
         #[method_id(@__retain_semantics Other labeledValueWithLabel:value:)]
         pub unsafe fn labeledValueWithLabel_value(
             label: Option<&NSString>,
             value: &ValueType,
         ) -> Retained<Self>;
 
+        /// Initializes the CNLabeledValue with a new identifier.
         #[method_id(@__retain_semantics Init initWithLabel:value:)]
         pub unsafe fn initWithLabel_value(
             this: Allocated<Self>,
@@ -49,13 +54,16 @@ extern_methods!(
             value: &ValueType,
         ) -> Retained<Self>;
 
+        /// Returns a new CNLabeledValue with the existing value and identifier.
         #[method_id(@__retain_semantics Other labeledValueBySettingLabel:)]
         pub unsafe fn labeledValueBySettingLabel(&self, label: Option<&NSString>)
             -> Retained<Self>;
 
+        /// Returns a new CNLabeledValue with the existing label and identifier.
         #[method_id(@__retain_semantics Other labeledValueBySettingValue:)]
         pub unsafe fn labeledValueBySettingValue(&self, value: &ValueType) -> Retained<Self>;
 
+        /// Returns a new CNLabeledValue with the existing identifier.
         #[method_id(@__retain_semantics Other labeledValueBySettingLabel:value:)]
         pub unsafe fn labeledValueBySettingLabel_value(
             &self,
@@ -63,6 +71,15 @@ extern_methods!(
             value: &ValueType,
         ) -> Retained<Self>;
 
+        /// Get a localized label.
+        ///
+        ///
+        /// Some labels are special keys representing generic labels. Use this to obtain a localized string for a label to display to a user.
+        ///
+        ///
+        /// Parameter `label`: to localize.
+        ///
+        /// Returns: The localized string if a Contacts framework defined label, otherwise just returns the label.
         #[method_id(@__retain_semantics Other localizedStringForLabel:)]
         pub unsafe fn localizedStringForLabel(label: &NSString) -> Retained<NSString>;
     }

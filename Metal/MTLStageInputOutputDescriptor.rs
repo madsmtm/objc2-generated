@@ -205,18 +205,21 @@ extern_methods!(
         #[method(stride)]
         pub fn stride(&self) -> NSUInteger;
 
+        /// Setter for [`stride`][Self::stride].
         #[method(setStride:)]
         pub fn setStride(&self, stride: NSUInteger);
 
         #[method(stepFunction)]
         pub fn stepFunction(&self) -> MTLStepFunction;
 
+        /// Setter for [`stepFunction`][Self::stepFunction].
         #[method(setStepFunction:)]
         pub fn setStepFunction(&self, step_function: MTLStepFunction);
 
         #[method(stepRate)]
         pub fn stepRate(&self) -> NSUInteger;
 
+        /// Setter for [`stepRate`][Self::stepRate].
         #[method(setStepRate:)]
         pub fn setStepRate(&self, step_rate: NSUInteger);
     }
@@ -290,18 +293,21 @@ extern_methods!(
         #[method(format)]
         pub fn format(&self) -> MTLAttributeFormat;
 
+        /// Setter for [`format`][Self::format].
         #[method(setFormat:)]
         pub fn setFormat(&self, format: MTLAttributeFormat);
 
         #[method(offset)]
         pub fn offset(&self) -> NSUInteger;
 
+        /// Setter for [`offset`][Self::offset].
         #[method(setOffset:)]
         pub fn setOffset(&self, offset: NSUInteger);
 
         #[method(bufferIndex)]
         pub fn bufferIndex(&self) -> NSUInteger;
 
+        /// Setter for [`bufferIndex`][Self::bufferIndex].
         #[method(setBufferIndex:)]
         pub unsafe fn setBufferIndex(&self, buffer_index: NSUInteger);
     }
@@ -384,12 +390,14 @@ extern_methods!(
         #[method(indexType)]
         pub fn indexType(&self) -> MTLIndexType;
 
+        /// Setter for [`indexType`][Self::indexType].
         #[method(setIndexType:)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
 
         #[method(indexBufferIndex)]
         pub fn indexBufferIndex(&self) -> NSUInteger;
 
+        /// Setter for [`indexBufferIndex`][Self::indexBufferIndex].
         #[method(setIndexBufferIndex:)]
         pub unsafe fn setIndexBufferIndex(&self, index_buffer_index: NSUInteger);
 

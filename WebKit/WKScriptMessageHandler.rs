@@ -7,9 +7,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkscriptmessagehandler?language=objc)
+    /// A class conforming to the WKScriptMessageHandler protocol provides a
+    /// method for receiving messages from JavaScript running in a webpage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkscriptmessagehandler?language=objc)
     pub unsafe trait WKScriptMessageHandler: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "WKScriptMessage", feature = "WKUserContentController"))]
+        /// Invoked when a script message is received from a webpage.
+        ///
+        /// Parameter `userContentController`: The user content controller invoking the
+        /// delegate method.
+        ///
+        /// Parameter `message`: The script message received.
         #[method(userContentController:didReceiveScriptMessage:)]
         unsafe fn userContentController_didReceiveScriptMessage(
             &self,

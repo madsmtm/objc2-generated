@@ -6,18 +6,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectioneventuserresolution?language=objc)
+/// Fall Detection Event Resolution
+///
+/// See also: CMFallDetectionEvent
+///
+///
+/// This enumeration defines the different states in which a Fall Detection event can be resolved
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectioneventuserresolution?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMFallDetectionEventUserResolution(pub NSInteger);
 impl CMFallDetectionEventUserResolution {
+    /// the user confirmed the fall alert
     #[doc(alias = "CMFallDetectionEventUserResolutionConfirmed")]
     pub const Confirmed: Self = Self(0);
+    /// the user dismissed the fall alert either immediately or after a sequence of haptics and chimes
     #[doc(alias = "CMFallDetectionEventUserResolutionDismissed")]
     pub const Dismissed: Self = Self(1);
+    /// the user rejected the fall alert, indicating that they didn't fall
     #[doc(alias = "CMFallDetectionEventUserResolutionRejected")]
     pub const Rejected: Self = Self(2);
+    /// the user did not respond to the fall alert and no recovery motion was detected
     #[doc(alias = "CMFallDetectionEventUserResolutionUnresponsive")]
     pub const Unresponsive: Self = Self(3);
 }
@@ -31,7 +42,13 @@ unsafe impl RefEncode for CMFallDetectionEventUserResolution {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionevent?language=objc)
+    /// Fall Detection Event
+    ///
+    /// See also: CMFallDetectionEventResolution
+    ///
+    /// This object represents a Fall Detection event and how it was resolved
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMFallDetectionEvent;
@@ -44,9 +61,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// date
+        ///
+        /// The time a fall was detected
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
+        /// resolution
+        ///
+        /// enum value representing how the Fall Detection event was resolved
+        ///
+        /// See also: CMFallDetectionEventResolution
         #[method(resolution)]
         pub unsafe fn resolution(&self) -> CMFallDetectionEventUserResolution;
     }

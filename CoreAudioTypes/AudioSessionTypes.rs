@@ -6,10 +6,58 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiosessionid?language=objc)
+/// Defines a unique identifier for an audio session.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiosessionid?language=objc)
 pub type AudioSessionID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosessionerrorcode?language=objc)
+/// Error codes returned from the AVAudioSession API.
+///
+/// Operation succeeded.
+///
+/// The app attempted to use the audio session during or after a Media Services failure.  App
+/// should wait for a AVAudioSessionMediaServicesWereResetNotification and then rebuild all
+/// its state.
+///
+/// The app attempted to set its audio session inactive or change its AVAudioSessionIOType,
+/// but it is still actively playing and/or recording.
+///
+/// The app tried to perform an operation on a session but its category does not support it.
+/// For instance, if the app calls setPreferredInputNumberOfChannels: while in a playback-only
+/// category.
+///
+/// The app's audio session is non-mixable and trying to go active while in the background.
+/// This is allowed only when the app is the NowPlaying app.
+///
+/// The app does not have the required entitlements to perform an operation.
+///
+/// The app tried to do something with the audio session that is not allowed while Siri is
+/// recording.
+///
+/// The app is not allowed to start recording and/or playing, usually because of a lack of audio
+/// key in its Info.plist.  This could also happen if the app has this key but uses a category
+/// that can't record and/or play in the background (AVAudioSessionCategoryAmbient,
+/// AVAudioSessionCategorySoloAmbient, etc.).
+///
+/// The app is not allowed to start recording, usually because it is starting a mixable
+/// recording from the background and is not an Inter-App Audio app.
+///
+/// An illegal value was used for a property.
+///
+/// The app was not allowed to set the audio category because another app (Phone, etc.) is
+/// controlling it.
+///
+/// The operation failed because the device does not have sufficient hardware resources to
+/// complete the action. For example, the operation requires audio input hardware, but the
+/// device has no audio input available.
+///
+/// The operation failed because the associated session has been destroyed.
+///
+/// An unspecified error has occurred.
+///
+/// The operation failed because the session is not active.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosessionerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

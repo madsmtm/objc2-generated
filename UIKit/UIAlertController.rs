@@ -105,6 +105,7 @@ extern_methods!(
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
     }
@@ -183,6 +184,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other preferredAction)]
         pub unsafe fn preferredAction(&self) -> Option<Retained<UIAlertAction>>;
 
+        /// Setter for [`preferredAction`][Self::preferredAction].
         #[method(setPreferredAction:)]
         pub unsafe fn setPreferredAction(&self, preferred_action: Option<&UIAlertAction>);
 
@@ -205,12 +207,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other message)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`message`][Self::message].
         #[method(setMessage:)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
 
@@ -220,6 +224,7 @@ extern_methods!(
         #[method(severity)]
         pub unsafe fn severity(&self) -> UIAlertControllerSeverity;
 
+        /// Setter for [`severity`][Self::severity].
         #[method(setSeverity:)]
         pub unsafe fn setSeverity(&self, severity: UIAlertControllerSeverity);
     }

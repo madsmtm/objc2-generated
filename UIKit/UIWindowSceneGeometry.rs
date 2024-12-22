@@ -15,12 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIWindowSceneResizingRestrictions(pub NSInteger);
 impl UIWindowSceneResizingRestrictions {
+    /// App has no preference on user resize
     #[doc(alias = "UIWindowSceneResizingRestrictionsUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// The user cannot resize the scene
     #[doc(alias = "UIWindowSceneResizingRestrictionsNone")]
     pub const None: Self = Self(1);
+    /// User resizes are restricted to the current aspect ratio
     #[doc(alias = "UIWindowSceneResizingRestrictionsUniform")]
     pub const Uniform: Self = Self(2);
+    /// User resizes are only restricted by the system and other restrictions put in place
     #[doc(alias = "UIWindowSceneResizingRestrictionsFreeform")]
     pub const Freeform: Self = Self(3);
 }
@@ -50,6 +54,7 @@ unsafe impl NSObjectProtocol for UIWindowSceneGeometry {}
 
 extern_methods!(
     unsafe impl UIWindowSceneGeometry {
+        /// Geometry objects are readonly and should only be created by the framework. To set a window scene's geometry, see UIWindowSceneGeometryPreferences and -[UIWindowScene requestGeometryUpdateWithPreferences:].
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -65,13 +70,16 @@ extern_methods!(
         pub unsafe fn interfaceOrientation(&self) -> UIInterfaceOrientation;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The current app specified minimumSize. A value of 0,0 is returned if a minimum is not set by the application
         #[method(minimumSize)]
         pub unsafe fn minimumSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The current app specified maximumSize. A value of CGFLOAT_MAX,CGFLOAT_MAX is returned if a maximum is not set by the application
         #[method(maximumSize)]
         pub unsafe fn maximumSize(&self) -> CGSize;
 
+        /// The current app specified resizingRestriction. Default value UIWindowSceneResizingRestrictionsUnspecified
         #[method(resizingRestrictions)]
         pub unsafe fn resizingRestrictions(&self) -> UIWindowSceneResizingRestrictions;
     }

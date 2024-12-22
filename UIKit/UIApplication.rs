@@ -220,6 +220,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIApplicationDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -241,6 +242,7 @@ extern_methods!(
         #[method(isIdleTimerDisabled)]
         pub unsafe fn isIdleTimerDisabled(&self) -> bool;
 
+        /// Setter for [`isIdleTimerDisabled`][Self::isIdleTimerDisabled].
         #[method(setIdleTimerDisabled:)]
         pub unsafe fn setIdleTimerDisabled(&self, idle_timer_disabled: bool);
 
@@ -288,6 +290,7 @@ extern_methods!(
         #[method(isNetworkActivityIndicatorVisible)]
         pub unsafe fn isNetworkActivityIndicatorVisible(&self) -> bool;
 
+        /// Setter for [`isNetworkActivityIndicatorVisible`][Self::isNetworkActivityIndicatorVisible].
         #[deprecated = "Provide a custom network activity UI in your app if desired."]
         #[method(setNetworkActivityIndicatorVisible:)]
         pub unsafe fn setNetworkActivityIndicatorVisible(
@@ -315,6 +318,7 @@ extern_methods!(
         #[method(applicationIconBadgeNumber)]
         pub unsafe fn applicationIconBadgeNumber(&self) -> NSInteger;
 
+        /// Setter for [`applicationIconBadgeNumber`][Self::applicationIconBadgeNumber].
         #[deprecated = "Use -[UNUserNotificationCenter setBadgeCount:withCompletionHandler:] instead."]
         #[method(setApplicationIconBadgeNumber:)]
         pub unsafe fn setApplicationIconBadgeNumber(
@@ -325,6 +329,7 @@ extern_methods!(
         #[method(applicationSupportsShakeToEdit)]
         pub unsafe fn applicationSupportsShakeToEdit(&self) -> bool;
 
+        /// Setter for [`applicationSupportsShakeToEdit`][Self::applicationSupportsShakeToEdit].
         #[method(setApplicationSupportsShakeToEdit:)]
         pub unsafe fn setApplicationSupportsShakeToEdit(
             &self,
@@ -355,6 +360,14 @@ extern_methods!(
         #[method(endBackgroundTask:)]
         pub unsafe fn endBackgroundTask(&self, identifier: UIBackgroundTaskIdentifier);
 
+        /// The system guarantees that it will not wake up your application for a background fetch more
+        /// frequently than the interval provided. Set to UIApplicationBackgroundFetchIntervalMinimum to be
+        /// woken as frequently as the system desires, or to UIApplicationBackgroundFetchIntervalNever (the
+        /// default) to never be woken for a background fetch.
+        ///
+        /// This setter will have no effect unless your application has the "fetch"
+        /// UIBackgroundMode. See the UIApplicationDelegate method
+        /// `application:performFetchWithCompletionHandler:` for more.
         #[deprecated = "Use a BGAppRefreshTask in the BackgroundTasks framework instead"]
         #[method(setMinimumBackgroundFetchInterval:)]
         pub unsafe fn setMinimumBackgroundFetchInterval(
@@ -362,6 +375,9 @@ extern_methods!(
             minimum_background_fetch_interval: NSTimeInterval,
         );
 
+        /// When background refresh is available for an application, it may launched or resumed in the background to handle significant
+        /// location changes, remote notifications, background fetches, etc. Observe UIApplicationBackgroundRefreshStatusDidChangeNotification to
+        /// be notified of changes.
         #[method(backgroundRefreshStatus)]
         pub unsafe fn backgroundRefreshStatus(&self) -> UIBackgroundRefreshStatus;
 
@@ -388,6 +404,10 @@ extern_methods!(
         pub unsafe fn supportsMultipleScenes(&self) -> bool;
 
         #[cfg(all(feature = "UISceneSessionActivationRequest", feature = "block2"))]
+        /// Asks the system to activate an existing scene, or create a new scene and associate it with your app.
+        /// - Parameters:
+        /// - request: The activation request.
+        /// - errorHandler: A handler to be called if the request fails.
         #[method(activateSceneSessionForRequest:errorHandler:)]
         pub unsafe fn activateSceneSessionForRequest_errorHandler(
             &self,
@@ -495,6 +515,7 @@ extern_methods!(
         ) -> Option<Retained<NSArray<UILocalNotification>>>;
 
         #[cfg(feature = "UILocalNotification")]
+        /// Setter for [`scheduledLocalNotifications`][Self::scheduledLocalNotifications].
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter getPendingNotificationRequestsWithCompletionHandler:]"]
         #[method(setScheduledLocalNotifications:)]
         pub unsafe fn setScheduledLocalNotifications(
@@ -557,6 +578,7 @@ extern_methods!(
         pub unsafe fn shortcutItems(&self) -> Option<Retained<NSArray<UIApplicationShortcutItem>>>;
 
         #[cfg(feature = "UIApplicationShortcutItem")]
+        /// Setter for [`shortcutItems`][Self::shortcutItems].
         #[method(setShortcutItems:)]
         pub unsafe fn setShortcutItems(
             &self,
@@ -625,16 +647,21 @@ unsafe impl RefEncode for UIApplicationCategory {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatus?language=objc)
+/// The default status of an application for some category.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIApplicationCategoryDefaultStatus(pub NSInteger);
 impl UIApplicationCategoryDefaultStatus {
+    /// The status was not available. This is an error condition and the returned error object has more information.
     #[doc(alias = "UIApplicationCategoryDefaultStatusUnavailable")]
     pub const Unavailable: Self = Self(0);
+    /// The application is the default for the category.
     #[doc(alias = "UIApplicationCategoryDefaultStatusIsDefault")]
     pub const IsDefault: Self = Self(1);
+    /// The application is not the default for the category.
     #[doc(alias = "UIApplicationCategoryDefaultStatusNotDefault")]
     pub const NotDefault: Self = Self(2);
 }
@@ -658,6 +685,7 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIApplicationCategoryDefaultErrorCode(pub NSInteger);
 impl UIApplicationCategoryDefaultErrorCode {
+    /// The application is rate-limited.
     pub const UIApplicationCategoryDefaultErrorRateLimited: Self = Self(1);
 }
 
@@ -670,13 +698,19 @@ unsafe impl RefEncode for UIApplicationCategoryDefaultErrorCode {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatuslastprovideddateerrorkey?language=objc)
+    /// Supplied in userInfo when the application is rate-limited: the last date on which data was
+    /// retrieved.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatuslastprovideddateerrorkey?language=objc)
     pub static UIApplicationCategoryDefaultStatusLastProvidedDateErrorKey:
         &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultretryavailabilitydateerrorkey?language=objc)
+    /// Supplied in userInfo when the application is rate-limited: the date after which the app will no
+    /// longer be rate-limited
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultretryavailabilitydateerrorkey?language=objc)
     pub static UIApplicationCategoryDefaultRetryAvailabilityDateErrorKey:
         &'static NSErrorUserInfoKey;
 }
@@ -930,6 +964,9 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
+        /// This delegate method offers an opportunity for applications with the "remote-notification" background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
+        ///
+        /// This method will be invoked even if the application was launched or resumed because of the remote notification. The respective delegate methods will be invoked first. Note that this behavior is in contrast to application:didReceiveRemoteNotification:, which is not called in those cases, and which will not be invoked if this method is implemented. !
         #[optional]
         #[method(application:didReceiveRemoteNotification:fetchCompletionHandler:)]
         unsafe fn application_didReceiveRemoteNotification_fetchCompletionHandler(
@@ -940,6 +977,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
+        /// Applications with the "fetch" background mode may be given opportunities to fetch updated content in the background or when it is convenient for the system. This method will be called in these situations. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
         #[deprecated = "Use a BGAppRefreshTask in the BackgroundTasks framework instead"]
         #[optional]
         #[method(application:performFetchWithCompletionHandler:)]
@@ -1014,6 +1052,7 @@ extern_protocol!(
         unsafe fn window(&self) -> Option<Retained<UIWindow>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
+        /// Setter for [`window`][Self::window].
         #[optional]
         #[method(setWindow:)]
         unsafe fn setWindow(&self, window: Option<&UIWindow>);
@@ -1203,6 +1242,7 @@ extern_methods!(
         #[method(isProximitySensingEnabled)]
         pub unsafe fn isProximitySensingEnabled(&self) -> bool;
 
+        /// Setter for [`isProximitySensingEnabled`][Self::isProximitySensingEnabled].
         #[deprecated]
         #[method(setProximitySensingEnabled:)]
         pub unsafe fn setProximitySensingEnabled(&self, proximity_sensing_enabled: bool);
@@ -1212,6 +1252,7 @@ extern_methods!(
         pub unsafe fn setStatusBarHidden_animated(&self, hidden: bool, animated: bool);
 
         #[cfg(feature = "UIOrientation")]
+        /// Setter for [`statusBarOrientation`][Self::statusBarOrientation].
         #[deprecated = "Explicit setting of the status bar orientation is more limited in iOS 6.0 and later"]
         #[method(setStatusBarOrientation:)]
         pub unsafe fn setStatusBarOrientation(
@@ -1228,6 +1269,7 @@ extern_methods!(
             animated: bool,
         );
 
+        /// Setter for [`statusBarStyle`][Self::statusBarStyle].
         #[deprecated = "Use -[UIViewController preferredStatusBarStyle]"]
         #[method(setStatusBarStyle:)]
         pub unsafe fn setStatusBarStyle(&self, status_bar_style: UIStatusBarStyle);
@@ -1240,6 +1282,7 @@ extern_methods!(
             animated: bool,
         );
 
+        /// Setter for [`isStatusBarHidden`][Self::isStatusBarHidden].
         #[deprecated = "Use -[UIViewController prefersStatusBarHidden]"]
         #[method(setStatusBarHidden:)]
         pub unsafe fn setStatusBarHidden(&self, status_bar_hidden: bool);
@@ -1453,7 +1496,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopendefaultapplicationssettingsurlstring?language=objc)
+    /// The URL string you use to deep link to settings for default app selection in the Settings app.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopendefaultapplicationssettingsurlstring?language=objc)
     pub static UIApplicationOpenDefaultApplicationsSettingsURLString: &'static NSString;
 }
 

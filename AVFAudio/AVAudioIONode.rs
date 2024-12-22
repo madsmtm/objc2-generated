@@ -12,7 +12,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioionodeinputblock?language=objc)
+/// A block which will be called by AVAudioEngine's render call when operating in the manual
+/// rendering mode, to get input data as needed.
+///
+/// Parameter `inNumberOfFrames`: The number of frames required to complete the request. You may supply either these many
+/// frames or none.
+///
+/// Returns: An AudioBufferList containing data to be rendered, or null if no data is available.
+/// The data in the returned buffer must not be cleared or re-filled until the input block is
+/// called again or the rendering has finished.
+/// The format of the returned buffer must match the format specified when registering the
+/// block.
+///
+/// If you are out of data and return null or less than the requested number of frames, this
+/// data will not be used for rendering. The engine will try to render from other active
+/// sources in the processing graph, and will inform about the input node's status in the error
+/// returned from its render call.
+///
+/// Note that when the engine is configured to operate in
+/// `AVAudioEngineManualRenderingModeRealtime`, this block will be called from a realtime
+/// context. Care should be taken not to make any blocking call (e.g. calling libdispatch,
+/// blocking on a mutex, allocating memory etc.) which may cause an overload at the lower layers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioionodeinputblock?language=objc)
 #[cfg(all(
     feature = "AVAudioTypes",
     feature = "block2",
@@ -21,7 +43,13 @@ use crate::*;
 pub type AVAudioIONodeInputBlock =
     *mut block2::Block<dyn Fn(AVAudioFrameCount) -> *const AudioBufferList>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingspeechactivityevent?language=objc)
+/// Types of speech activity events.
+///
+/// Speech activity has started.
+///
+/// Speech activity has ended.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingspeechactivityevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -39,7 +67,14 @@ unsafe impl RefEncode for AVAudioVoiceProcessingSpeechActivityEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckinglevel?language=objc)
+/// Ducking level applied to other (i.e. non-voice) audio by AVAudio voice processing AU.
+///
+/// DuckingLevelDefault = Default ducking level to other audio for typical voice chat.
+/// DuckingLevelMin = minimum ducking to other audio.
+/// DuckingLevelMid = medium ducking to other audio.
+/// DuckingLevelMax = maximum ducking to other audio.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckinglevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -64,7 +99,18 @@ unsafe impl RefEncode for AVAudioVoiceProcessingOtherAudioDuckingLevel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioionode?language=objc)
+    /// Base class for a node that performs audio input or output in the engine.
+    ///
+    /// When the engine is configured to render to/from an audio device, on macOS, AVAudioInputNode
+    /// and AVAudioOutputNode communicate with the system's default input and output devices.
+    /// On iOS, they communicate with the devices appropriate to the app's AVAudioSession category
+    /// and other configuration, also considering the user's actions such as
+    /// connecting/disconnecting external devices.
+    ///
+    /// In the manual rendering mode, the AVAudioInputNode and AVAudioOutputNode perform the input
+    /// and output in the engine, in response to client's request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioionode?language=objc)
     #[unsafe(super(AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]
@@ -77,17 +123,48 @@ unsafe impl NSObjectProtocol for AVAudioIONode {}
 extern_methods!(
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioIONode {
+        /// The presentation or hardware latency, applicable when the engine is rendering to/from an
+        /// audio device.
+        ///
+        /// This corresponds to kAudioDevicePropertyLatency and kAudioStreamPropertyLatency.
+        /// See
+        /// <CoreAudio
+        /// /AudioHardwareBase.h>.
         #[method(presentationLatency)]
         pub unsafe fn presentationLatency(&self) -> NSTimeInterval;
 
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// The node's underlying AudioUnit, if any.
+        ///
+        /// This is only necessary for certain advanced usages.
         #[method(audioUnit)]
         pub unsafe fn audioUnit(&self) -> AudioUnit;
 
+        /// Indicates whether voice processing is enabled.
         #[method(isVoiceProcessingEnabled)]
         pub unsafe fn isVoiceProcessingEnabled(&self) -> bool;
 
+        /// Enable or disable voice processing on the IO node.
+        ///
+        /// Parameter `enabled`: Whether voice processing is to be enabled.
+        ///
+        /// Parameter `outError`: On exit, if the IO node cannot enable or diable voice processing, a description of the error
+        ///
+        /// Returns: YES for success
+        ///
+        /// If enabled, the input node does signal processing on the incoming audio (taking out any
+        /// of the audio that is played from the device at a given time from the incoming audio).
+        /// Disabling this mode on either of the IO nodes automatically disabled it on the other IO node.
+        ///
+        /// Voice processing requires both input and output nodes to be in the voice processing mode.
+        /// Enabling this mode on either of the IO nodes automatically enables it on the other IO node.
+        /// Voice processing is only supported when the engine is rendering to the audio device and not
+        /// in the manual rendering mode.
+        /// Voice processing can only be be enabled or disabled when the engine is in a stopped state.
+        ///
+        /// The output format of the input node and the input format of the output node have to be
+        /// the same and they can only be changed when the engine is in a stopped state.
         #[method(setVoiceProcessingEnabled:error:_)]
         pub unsafe fn setVoiceProcessingEnabled_error(
             &self,
@@ -109,7 +186,27 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioinputnode?language=objc)
+    /// A node that performs audio input in the engine.
+    ///
+    /// When the engine is rendering to/from an audio device, this node connects to the system's
+    /// audio input.
+    /// When the engine is operating in manual rendering mode, this node can be used to supply
+    /// the input data to the engine.
+    ///
+    /// This node has one element.
+    /// The format of the input scope reflects:
+    /// - the audio hardware sample rate and channel count, when connected to the hardware
+    /// - the format of the PCM audio data that the node will supply to the engine, in the
+    /// manual rendering mode (see `setManualRenderingInputPCMFormat:inputBlock:`)
+    ///
+    /// When rendering from an audio device, the input node does not support format conversion.
+    /// Hence the format of the output scope must be same as that of the input, as well as the
+    /// formats for all the nodes connected in the input node chain.
+    ///
+    /// In the manual rendering mode, the format of the output scope is initially the same as that
+    /// of the input, but you may set it to a different format, in which case the node will convert.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioinputnode?language=objc)
     #[unsafe(super(AVAudioIONode, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]
@@ -140,6 +237,19 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-audio-types"
         ))]
+        /// Supply the data through the input node to the engine operating in the manual rendering mode.
+        ///
+        /// Parameter `format`: The format of the PCM audio data the block will supply to the engine
+        ///
+        /// Parameter `block`: The block the engine will call on the input node to get the audio to send to the output,
+        /// when operating in the manual rendering mode. See `AVAudioIONodeInputBlock` for more details
+        ///
+        /// Returns: YES for success
+        ///
+        /// This block must be set if the input node is being used when the engine is operating in
+        /// manual rendering mode.
+        /// Switching the engine to render to/from an audio device invalidates any previously set block,
+        /// and makes this method ineffective.
         #[method(setManualRenderingInputPCMFormat:inputBlock:)]
         pub unsafe fn setManualRenderingInputPCMFormat_inputBlock(
             &self,
@@ -147,25 +257,47 @@ extern_methods!(
             block: AVAudioIONodeInputBlock,
         ) -> bool;
 
+        /// Bypass all processing for microphone uplink done by the voice processing unit.
+        ///
+        /// Querying this property when voice processing is disabled will return false.
         #[method(isVoiceProcessingBypassed)]
         pub unsafe fn isVoiceProcessingBypassed(&self) -> bool;
 
+        /// Setter for [`isVoiceProcessingBypassed`][Self::isVoiceProcessingBypassed].
         #[method(setVoiceProcessingBypassed:)]
         pub unsafe fn setVoiceProcessingBypassed(&self, voice_processing_bypassed: bool);
 
+        /// Enable automatic gain control on the processed microphone uplink.
+        /// signal. Enabled by default.
+        ///
+        /// Querying this property when voice processing is disabled will return false.
         #[method(isVoiceProcessingAGCEnabled)]
         pub unsafe fn isVoiceProcessingAGCEnabled(&self) -> bool;
 
+        /// Setter for [`isVoiceProcessingAGCEnabled`][Self::isVoiceProcessingAGCEnabled].
         #[method(setVoiceProcessingAGCEnabled:)]
         pub unsafe fn setVoiceProcessingAGCEnabled(&self, voice_processing_agc_enabled: bool);
 
+        /// Mutes the input of the voice processing unit.
+        ///
+        /// Querying this property when voice processing is disabled will return false.
         #[method(isVoiceProcessingInputMuted)]
         pub unsafe fn isVoiceProcessingInputMuted(&self) -> bool;
 
+        /// Setter for [`isVoiceProcessingInputMuted`][Self::isVoiceProcessingInputMuted].
         #[method(setVoiceProcessingInputMuted:)]
         pub unsafe fn setVoiceProcessingInputMuted(&self, voice_processing_input_muted: bool);
 
         #[cfg(feature = "block2")]
+        /// Register a listener to be notified when speech activity event occurs while the input is muted.
+        ///
+        /// Parameter `listenerBlock`: The block the engine will call when speech activity event occurs while the input is muted.
+        /// Passing nil will remove an already set block.
+        ///
+        /// Returns: YES for success
+        ///
+        /// Continuous presence of or lack of speech activity during mute will not cause redundant notification.
+        /// In order to use this API, it's expected to implement the mute via the voiceProcessingInputMuted.
         #[method(setMutedSpeechActivityEventListener:)]
         pub unsafe fn setMutedSpeechActivityEventListener(
             &self,
@@ -186,7 +318,23 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiooutputnode?language=objc)
+    /// A node that performs audio output in the engine.
+    ///
+    /// When the engine is rendering to/from an audio device, this node connects to the system's
+    /// audio output.
+    /// When the engine is operating in manual rendering mode, this node performs output in
+    /// response to client's requests.
+    ///
+    /// This node has one element.
+    /// The format of the output scope reflects:
+    /// - the audio hardware sample rate and channel count, when connected to the hardware
+    /// - the engine's manual rendering mode output format (see
+    /// `AVAudioEngine(manualRenderingFormat)`), in the manual rendering mode
+    ///
+    /// The format of the input scope is initially the same as that of the
+    /// output, but you may set it to a different format, in which case the node will convert.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiooutputnode?language=objc)
     #[unsafe(super(AVAudioIONode, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]

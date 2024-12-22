@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nisession?language=objc)
+    /// Nearby interaction session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nisession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NISession;
@@ -18,36 +20,59 @@ unsafe impl NSObjectProtocol for NISession {}
 
 extern_methods!(
     unsafe impl NISession {
+        /// Whether or not this device is capable of participating in a nearby interaction session.
         #[deprecated]
         #[method(isSupported)]
         pub unsafe fn isSupported() -> bool;
 
         #[cfg(feature = "NIDeviceCapability")]
+        /// Get the protocol that describes nearby interaction capabilities on this device.
+        ///
+        /// Detailed description on the capability protocol is in NIDeviceCapability.h.
         #[method_id(@__retain_semantics Other deviceCapabilities)]
         pub unsafe fn deviceCapabilities() -> Retained<ProtocolObject<dyn NIDeviceCapability>>;
 
+        /// A delegate for receiving NISession updates.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NISessionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NISessionDelegate>>);
 
         #[cfg(feature = "NIConfiguration")]
+        /// A unique nearby interaction identifier for this session.
+        ///
+        ///
+        /// Copy this discoveryToken and share it with a peer device.
+        /// The discoveryToken is unique to this device and this session.
         #[method_id(@__retain_semantics Other discoveryToken)]
         pub unsafe fn discoveryToken(&self) -> Option<Retained<NIDiscoveryToken>>;
 
         #[cfg(feature = "NIConfiguration")]
+        /// The nearby interaction configuration currently being used by the session.
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Option<Retained<NIConfiguration>>;
 
         #[cfg(feature = "NIConfiguration")]
+        /// Start a nearby interaction session.
+        ///
+        /// Parameter `configuration`: Nearby interaction configuration for this session.
+        /// Both devices must call -runWithConfiguration: with a valid configuration identifying the other device in order to receive nearby object updates.
         #[method(runWithConfiguration:)]
         pub unsafe fn runWithConfiguration(&self, configuration: &NIConfiguration);
 
+        /// Pause an ongoing nearby interaction session.
+        ///
+        /// Paused sessions may be restarted by calling -runWithConfiguration:. The same local discoveryToken will be used.
         #[method(pause)]
         pub unsafe fn pause(&self);
 
+        /// Invalidate an ongoing nearby interaction session.
+        ///
+        /// Invalidate sessions you wish to terminate and do not intend to restart. A peer device in a nearby interaction session will receive a callback to -didRemoveNearbyObject:withReason: some time after a call to invalidate (see NINearbyObjectRemovalReason).
+        /// calling -runWithConfiguration: after invalidation will result in an error.
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
     }
@@ -64,14 +89,19 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectremovalreason?language=objc)
+/// Reasons to remove a nearby object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectremovalreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NINearbyObjectRemovalReason(pub NSInteger);
 impl NINearbyObjectRemovalReason {
+    /// The system has not received new activity from this object for over the allowed period.
     #[doc(alias = "NINearbyObjectRemovalReasonTimeout")]
     pub const Timeout: Self = Self(0);
+    /// The peer device has signaled that it will no longer participate in the session.
+    /// This removal reason is delivered on a best effort basis and is not guaranteed to be received.
     #[doc(alias = "NINearbyObjectRemovalReasonPeerEnded")]
     pub const PeerEnded: Self = Self(1);
 }
@@ -84,16 +114,21 @@ unsafe impl RefEncode for NINearbyObjectRemovalReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatus?language=objc)
+/// Expose algorithm state to make it possible for apps to coach users.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NIAlgorithmConvergenceStatus(pub NSInteger);
 impl NIAlgorithmConvergenceStatus {
+    /// Algorithm convergence status is unknown.
     #[doc(alias = "NIAlgorithmConvergenceStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Algorithm is not converged.
     #[doc(alias = "NIAlgorithmConvergenceStatusNotConverged")]
     pub const NotConverged: Self = Self(1);
+    /// Algorithm is converged.
     #[doc(alias = "NIAlgorithmConvergenceStatusConverged")]
     pub const Converged: Self = Self(2);
 }
@@ -134,6 +169,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other reasons)]
         pub unsafe fn reasons(&self) -> Retained<NSArray<NIAlgorithmConvergenceStatusReason>>;
 
+        /// Unavailable
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -143,9 +179,16 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate?language=objc)
+    /// Delegate for nearby interaction session updates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate?language=objc)
     pub unsafe trait NISessionDelegate: NSObjectProtocol {
         #[cfg(feature = "NINearbyObject")]
+        /// This is called when new updates about nearby objects are available.
+        ///
+        /// Parameter `session`: The nearby interaction session being run.
+        ///
+        /// Parameter `nearbyObjects`: The nearby objects that have been updated.
         #[optional]
         #[method(session:didUpdateNearbyObjects:)]
         unsafe fn session_didUpdateNearbyObjects(
@@ -155,6 +198,15 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NINearbyObject")]
+        /// This is called when the system is no longer attempting to interact with some nearby objects.
+        ///
+        /// The system was unable to interact with a peer device for some time, or the peer device signaled that it is leaving the session. After this callback is received, the session with the peer is no longer active. To retry interacting with the peer, issue a new call to -runWithConfiguration:.
+        ///
+        /// Parameter `session`: The nearby interaction session that removed the nearby object(s).
+        ///
+        /// Parameter `nearbyObjects`: The nearby objects that were removed.
+        ///
+        /// Parameter `reason`: The reason the nearby object(s) were removed.  All objects in nearbyObjects are removed for the same reason. If multiple nearby objects are removed for different reasons, -didRemoveNearbyObjects:reason: will be called multiple times.
         #[optional]
         #[method(session:didRemoveNearbyObjects:withReason:)]
         unsafe fn session_didRemoveNearbyObjects_withReason(
@@ -164,19 +216,46 @@ extern_protocol!(
             reason: NINearbyObjectRemovalReason,
         );
 
+        /// This is called when a session is suspended.
+        ///
+        /// A session will be suspended in various app and system scenarios.
+        /// A suspended session may be run again only after -sessionSuspensionEnded: has been called.  Restart a session by issuing a new call to -runWithConfiguration:.
+        ///
+        /// Parameter `session`: The nearby interaction session that was suspended.
         #[optional]
         #[method(sessionWasSuspended:)]
         unsafe fn sessionWasSuspended(&self, session: &NISession);
 
+        /// This is called when a session may be resumed.
+        ///
+        /// Parameter `session`: The nearby interaction session that was suspended.
         #[optional]
         #[method(sessionSuspensionEnded:)]
         unsafe fn sessionSuspensionEnded(&self, session: &NISession);
 
+        /// This is called when a session is invalidated.
+        ///
+        /// Parameter `session`: The session that has become invalid. Your app should discard any references it has to this session.
+        ///
+        /// Parameter `error`: The error indicating the reason for invalidation of the session (see NIError.h).
         #[optional]
         #[method(session:didInvalidateWithError:)]
         unsafe fn session_didInvalidateWithError(&self, session: &NISession, error: &NSError);
 
         #[cfg(feature = "NINearbyObject")]
+        /// Provides configuration data that needs to be shared with the accessory.
+        ///
+        /// Note: Shareable configuration data is only provided when running an NINearbyAccessoryConfiguration.
+        ///
+        /// After invoking this callback, the session will go into a special preparedness state for a limited amount of time.
+        /// The interaction on the accessory must start within this time window. If activity is not detected from the accessory, the session will call
+        /// the -[session:didRemoveNearbyObjects:reason:] delegate callback. To restart the session, coordinate with the accessory and call -[runWithConfiguration] again.
+        ///
+        /// Parameter `session`: The session which produced the configuration data.
+        ///
+        /// Parameter `shareableConfigurationData`: The configuration data that needs to be shared with the accessory.
+        ///
+        /// Parameter `object`: A representation of the accessory as a NINearbyObject. The discoveryToken property will be equal to the one in the configuration used to run the session.
         #[optional]
         #[method(session:didGenerateShareableConfigurationData:forObject:)]
         unsafe fn session_didGenerateShareableConfigurationData_forObject(
@@ -187,6 +266,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NINearbyObject")]
+        /// Called when the algorithm state is updated for a specific nearby object.
+        ///
+        /// Parameter `session`: the session interacting with this object.
+        ///
+        /// Parameter `convergence`: the algoriothm convergence context of the estimator for the session or nearby object
+        ///
+        /// Parameter `object`: which nearby object this state was updated, if null, applies to the entire session
         #[optional]
         #[method(session:didUpdateAlgorithmConvergence:forObject:)]
         unsafe fn session_didUpdateAlgorithmConvergence_forObject(
@@ -196,6 +282,19 @@ extern_protocol!(
             object: Option<&NINearbyObject>,
         );
 
+        /// The delegate may implement this method to be informed that the session started running.
+        ///
+        ///
+        /// Parameter `session`: The session which started running
+        ///
+        ///
+        /// a call to -runWithConfiguration: will result in one of the following outcomes:
+        /// 1. The session successfully starts running. This delegate callback will be subsequently invoked.
+        /// 2. Resources are not ready, and the session is immediately suspended. This delegate callback will not be invoked.
+        /// 3. An error is encountered, and the session is immediately invalidated. This delegate callback will not be invoked.
+        ///
+        /// This delegate method provides a way to monitor #1.
+        /// Note that #2 and #3 can be monitored by other delegate methods such as -sessionWasSuspended: and -session:didInvalidateWithError:
         #[optional]
         #[method(sessionDidStartRunning:)]
         unsafe fn sessionDidStartRunning(&self, session: &NISession);

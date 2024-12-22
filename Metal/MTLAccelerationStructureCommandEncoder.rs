@@ -7,14 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurerefitoptions?language=objc)
+/// Controls the acceleration structure refit operation
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurerefitoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLAccelerationStructureRefitOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLAccelerationStructureRefitOptions: NSUInteger {
+/// Refitting shall result in updated vertex data from the provided geometry descriptor.
+/// If not set, vertex buffers shall be ignored on the geometry descriptor and vertex data previously
+/// encoded shall be copied.
         const MTLAccelerationStructureRefitOptionVertexData = 1<<0;
+/// Refitting shall result in updated per primitive data from the provided geometry descriptor.
+/// If not set, per primitive data buffers shall be ignored on the geometry descriptor and per primitive
+/// data previously encoded shall be copied.
         const MTLAccelerationStructureRefitOptionPerPrimitiveData = 1<<1;
     }
 }
@@ -37,6 +45,28 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// Encode an acceleration structure build into the command buffer. All bottom-level acceleration
+        /// structure builds must have completed before a top-level acceleration structure build may begin. The
+        /// resulting acceleration structure will not retain any references to the input vertex buffer, instance buffer, etc.
+        ///
+        /// The acceleration structure build will not be completed until the command buffer has been committed
+        /// and finished executing. However, it is safe to encode ray tracing work against the acceleration
+        /// structure as long as the command buffers are scheduled and synchronized such that the command buffer
+        /// will have completed by the time the ray tracing starts.
+        ///
+        /// The acceleration structure and scratch buffer must be at least the size returned by the
+        /// [MTLDevice accelerationStructureSizesWithDescriptor:] query.
+        ///
+        ///
+        /// Parameter `accelerationStructure`: Acceleration structure storage to build into
+        ///
+        /// Parameter `descriptor`: Object describing the acceleration structure to build
+        ///
+        /// Parameter `scratchBuffer`: Scratch buffer to use while building the acceleration structure. The
+        /// contents may be overwritten and are undefined after the build has
+        /// started/completed.
+        ///
+        /// Parameter `scratchBufferOffset`: Offset into the scratch buffer
         #[method(buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:)]
         fn buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset(
             &self,
@@ -52,6 +82,35 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// Encode an acceleration structure refit into the command buffer. Refitting can be used to
+        /// update the acceleration structure when geometry changes and is much faster than rebuilding from
+        /// scratch. However, the quality of the acceleration structure and the subsequent ray tracing
+        /// performance will degrade depending on how much the geometry changes.
+        ///
+        /// Refitting can not be used after certain changes, such as adding or removing geometry. Acceleration
+        /// structures can be refit in place by specifying the same source and destination acceleration structures
+        /// or by providing a nil destination acceleration structure. If the source and destination acceleration
+        /// structures are not the same, they must not overlap in memory.
+        ///
+        /// The destination acceleration structure must be at least as large as the source acceleration structure,
+        /// unless the source acceleration structure has been compacted, in which case the destination acceleration
+        /// structure must be at least as large as the compacted size of the source acceleration structure.
+        ///
+        /// The scratch buffer must be at least the size returned by the accelerationStructureSizesWithDescriptor
+        /// method of the MTLDevice.
+        ///
+        ///
+        /// Parameter `descriptor`: Object describing the acceleration structure to build
+        ///
+        /// Parameter `sourceAccelerationStructure`: Acceleration structure to copy from
+        ///
+        /// Parameter `destinationAccelerationStructure`: Acceleration structure to copy to
+        ///
+        /// Parameter `scratchBuffer`: Scratch buffer to use while refitting the acceleration
+        /// structure. The contents may be overwritten and are undefined
+        /// after the refit has started/completed.
+        ///
+        /// Parameter `scratchBufferOffset`: Offset into the scratch buffer.
         #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset(
             &self,
@@ -70,6 +129,37 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// Encode an acceleration structure refit into the command buffer. Refitting can be used to
+        /// update the acceleration structure when geometry changes and is much faster than rebuilding from
+        /// scratch. However, the quality of the acceleration structure and the subsequent ray tracing
+        /// performance will degrade depending on how much the geometry changes.
+        ///
+        /// Refitting can not be used after certain changes, such as adding or removing geometry. Acceleration
+        /// structures can be refit in place by specifying the same source and destination acceleration structures
+        /// or by providing a nil destination acceleration structure. If the source and destination acceleration
+        /// structures are not the same, they must not overlap in memory.
+        ///
+        /// The destination acceleration structure must be at least as large as the source acceleration structure,
+        /// unless the source acceleration structure has been compacted, in which case the destination acceleration
+        /// structure must be at least as large as the compacted size of the source acceleration structure.
+        ///
+        /// The scratch buffer must be at least the size returned by the accelerationStructureSizesWithDescriptor
+        /// method of the MTLDevice.
+        ///
+        ///
+        /// Parameter `descriptor`: Object describing the acceleration structure to build
+        ///
+        /// Parameter `sourceAccelerationStructure`: Acceleration structure to copy from
+        ///
+        /// Parameter `destinationAccelerationStructure`: Acceleration structure to copy to
+        ///
+        /// Parameter `scratchBuffer`: Scratch buffer to use while refitting the acceleration
+        /// structure. The contents may be overwritten and are undefined
+        /// after the refit has started/completed.
+        ///
+        /// Parameter `scratchBufferOffset`: Offset into the scratch buffer.
+        ///
+        /// Parameter `options`: Options specifying the elements of the acceleration structure to refit.
         #[method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options(
             &self,
@@ -88,6 +178,18 @@ extern_protocol!(
             feature = "MTLAllocation",
             feature = "MTLResource"
         ))]
+        /// Copy an acceleration structure. The source and destination acceleration structures must not
+        /// overlap in memory. If this is a top level acceleration structure, references to bottom level
+        /// acceleration structures will be preserved.
+        ///
+        /// The destination acceleration structure must be at least as large as the source acceleration structure,
+        /// unless the source acceleration structure has been compacted, in which case the destination acceleration
+        /// structure must be at least as large as the compacted size of the source acceleration structure.
+        ///
+        ///
+        /// Parameter `sourceAccelerationStructure`: Acceleration structure to copy from
+        ///
+        /// Parameter `destinationAccelerationStructure`: Acceleration structure to copy to
         #[method(copyAccelerationStructure:toAccelerationStructure:)]
         unsafe fn copyAccelerationStructure_toAccelerationStructure(
             &self,
@@ -101,6 +203,20 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// Compute the compacted size for an acceleration structure and write it into a buffer.
+        ///
+        /// This size is potentially smaller than the source acceleration structure. To perform compaction,
+        /// read this size from the buffer once the command buffer has completed and use it to allocate a
+        /// smaller acceleration structure. Then create another encoder and call the
+        /// copyAndCompactAccelerationStructure method.
+        ///
+        ///
+        /// Parameter `accelerationStructure`: Source acceleration structure
+        ///
+        /// Parameter `buffer`: Destination size buffer. The compacted size will be written as a 32 bit
+        /// unsigned integer representing the compacted size in bytes.
+        ///
+        /// Parameter `offset`: Offset into the size buffer
         #[method(writeCompactedAccelerationStructureSize:toBuffer:offset:)]
         fn writeCompactedAccelerationStructureSize_toBuffer_offset(
             &self,
@@ -116,6 +232,24 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// Compute the compacted size for an acceleration structure and write it into a buffer.
+        ///
+        /// This size is potentially smaller than the source acceleration structure. To perform compaction,
+        /// read this size from the buffer once the command buffer has completed and use it to allocate a
+        /// smaller acceleration structure. Then create another encoder and call the
+        /// copyAndCompactAccelerationStructure method.
+        ///
+        ///
+        /// Parameter `accelerationStructure`: Source acceleration structure
+        ///
+        /// Parameter `buffer`: Destination size buffer. The compacted size will be written as either
+        /// a 32 bit or 64 bit value depending on the sizeDataType argument
+        /// unsigned integer representing the compacted size in bytes.
+        ///
+        /// Parameter `offset`: Offset into the size buffer
+        ///
+        /// Parameter `sizeDataType`: Data type of the size to write into the buffer. Must be either
+        /// MTLDataTypeUInt (32 bit) or MTLDataTypeULong (64 bit)
         #[method(writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:)]
         unsafe fn writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType(
             &self,
@@ -130,6 +264,17 @@ extern_protocol!(
             feature = "MTLAllocation",
             feature = "MTLResource"
         ))]
+        /// Copy and compact an acceleration structure. The source and destination acceleration structures
+        /// must not overlap in memory. If this is a top level acceleration structure, references to bottom level
+        /// acceleration structures will be preserved.
+        ///
+        /// The destination acceleration structure must be at least as large as the compacted size of the source
+        /// acceleration structure, which is computed by the writeCompactedAccelerationStructureSize method.
+        ///
+        ///
+        /// Parameter `sourceAccelerationStructure`: Acceleration structure to copy and compact
+        ///
+        /// Parameter `destinationAccelerationStructure`: Acceleration structure to copy to
         #[method(copyAndCompactAccelerationStructure:toAccelerationStructure:)]
         fn copyAndCompactAccelerationStructure_toAccelerationStructure(
             &self,
@@ -138,14 +283,28 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLFence")]
+        /// Update the fence to capture all GPU work so far enqueued by this encoder.
+        ///
+        /// The fence is updated at build submission to maintain global order and prevent deadlock.
+        /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
         #[method(updateFence:)]
         unsafe fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
         #[cfg(feature = "MTLFence")]
+        /// Prevent further GPU work until the fence is reached.
+        ///
+        /// The fence is evaluated at build submission to maintain global order and prevent deadlock.
+        /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
         #[method(waitForFence:)]
         unsafe fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
+        /// Declare that a resource may be accessed by the command encoder through an argument buffer
+        ///
+        ///
+        /// For tracked MTLResources, this method protects against data hazards. This method must be called before encoding any acceleration structure commands which may access the resource through an argument buffer.
+        ///
+        /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
         #[method(useResource:usage:)]
         unsafe fn useResource_usage(
             &self,
@@ -154,6 +313,11 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
+        /// Declare that an array of resources may be accessed through an argument buffer by the command encoder
+        ///
+        /// For tracked MTL Resources, this method protects against data hazards. This method must be called before encoding any acceleration structure commands which may access the resources through an argument buffer.
+        ///
+        /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
         #[method(useResources:count:usage:)]
         unsafe fn useResources_count_usage(
             &self,
@@ -163,10 +327,20 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLHeap"))]
+        /// Declare that the resources allocated from a heap may be accessed as readonly by the encoder through an argument buffer
+        ///
+        /// For tracked MTLHeaps, this method protects against data hazards. This method must be called before encoding any acceleration structure commands which may access the resources allocated from the heap through an argument buffer. This method may cause all of the color attachments allocated from the heap to become decompressed. Therefore, it is recommended that the useResource:usage: or useResources:count:usage: methods be used for color attachments instead, with a minimal (i.e. read-only) usage.
+        ///
+        /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
         #[method(useHeap:)]
         unsafe fn useHeap(&self, heap: &ProtocolObject<dyn MTLHeap>);
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLHeap"))]
+        /// Declare that the resources allocated from an array of heaps may be accessed as readonly by the encoder through an argument buffer
+        ///
+        /// For tracked MTLHeaps, this method protects against data hazards. This method must be called before encoding any acceleration structure commands which may access the resources allocated from the heaps through an argument buffer. This method may cause all of the color attachments allocated from the heaps to become decompressed. Therefore, it is recommended that the useResource:usage: or useResources:count:usage: methods be used for color attachments instead, with a minimal (i.e. read-only) usage.
+        ///
+        /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
         #[method(useHeaps:count:)]
         unsafe fn useHeaps_count(
             &self,
@@ -175,6 +349,21 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLCounters")]
+        /// Sample hardware counters at this point in the acceleration structure
+        /// encoder and store the counter sample into the sample buffer at the specified index.
+        ///
+        /// Parameter `sampleBuffer`: The sample buffer to sample into
+        ///
+        /// Parameter `sampleIndex`: The index into the counter buffer to write the sample
+        ///
+        /// Parameter `barrier`: Insert a barrier before taking the sample.  Passing
+        /// YES will ensure that all work encoded before this operation in the encoder is
+        /// complete but does not isolate the work with respect to other encoders.  Passing
+        /// NO will allow the sample to be taken concurrently with other operations in this
+        /// encoder.
+        /// In general, passing YES will lead to more repeatable counter results but
+        /// may negatively impact performance.  Passing NO will generally be higher performance
+        /// but counter results may not be repeatable.
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
@@ -206,30 +395,52 @@ unsafe impl NSObjectProtocol for MTLAccelerationStructurePassSampleBufferAttachm
 extern_methods!(
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
         #[cfg(feature = "MTLCounters")]
+        /// The sample buffer to store samples for the acceleration structure pass defined samples.
+        /// If sampleBuffer is non-nil, the sample indices will be used to store samples into
+        /// the sample buffer.  If no sample buffer is provided, no samples will be taken.
+        /// If any of the sample indices are specified as MTLCounterDontSample, no sample
+        /// will be taken for that action.
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub unsafe fn sampleBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
         #[cfg(feature = "MTLCounters")]
+        /// Setter for [`sampleBuffer`][Self::sampleBuffer].
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
             &self,
             sample_buffer: Option<&ProtocolObject<dyn MTLCounterSampleBuffer>>,
         );
 
+        /// The sample index to use to store the sample taken at the start of
+        /// command encoder processing.  Setting the value to MTLCounterDontSample will cause
+        /// this sample to be omitted.
+        ///
+        /// On devices where MTLCounterSamplingPointAtStageBoundary is unsupported,
+        /// this sample index is invalid and must be set to MTLCounterDontSample or creation of an
+        /// acceleration structure pass will fail.
         #[method(startOfEncoderSampleIndex)]
         pub unsafe fn startOfEncoderSampleIndex(&self) -> NSUInteger;
 
+        /// Setter for [`startOfEncoderSampleIndex`][Self::startOfEncoderSampleIndex].
         #[method(setStartOfEncoderSampleIndex:)]
         pub unsafe fn setStartOfEncoderSampleIndex(
             &self,
             start_of_encoder_sample_index: NSUInteger,
         );
 
+        /// The sample index to use to store the sample taken at the end of
+        /// command encoder processing.  Setting the value to MTLCounterDontSample will cause
+        /// this sample to be omitted.
+        ///
+        /// On devices where MTLCounterSamplingPointAtStageBoundary is unsupported,
+        /// this sample index is invalid and must be set to MTLCounterDontSample or creation of an
+        /// acceleration structure pass will fail.
         #[method(endOfEncoderSampleIndex)]
         pub unsafe fn endOfEncoderSampleIndex(&self) -> NSUInteger;
 
+        /// Setter for [`endOfEncoderSampleIndex`][Self::endOfEncoderSampleIndex].
         #[method(setEndOfEncoderSampleIndex:)]
         pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
     }
@@ -284,7 +495,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurepassdescriptor?language=objc)
+    /// MTLAccelerationStructurePassDescriptor represents a collection of attachments to be used to create a concrete acceleration structure encoder.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurepassdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructurePassDescriptor;
@@ -300,10 +513,12 @@ unsafe impl NSObjectProtocol for MTLAccelerationStructurePassDescriptor {}
 
 extern_methods!(
     unsafe impl MTLAccelerationStructurePassDescriptor {
+        /// Create an autoreleased default acceleration structure pass descriptor
         #[method_id(@__retain_semantics Other accelerationStructurePassDescriptor)]
         pub unsafe fn accelerationStructurePassDescriptor(
         ) -> Retained<MTLAccelerationStructurePassDescriptor>;
 
+        /// An array of sample buffers and associated sample indices.
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,

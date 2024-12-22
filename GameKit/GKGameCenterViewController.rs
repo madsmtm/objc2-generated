@@ -129,12 +129,14 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn GKGameCenterControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`gameCenterDelegate`][Self::gameCenterDelegate].
         #[method(setGameCenterDelegate:)]
         pub unsafe fn setGameCenterDelegate(
             &self,
             game_center_delegate: Option<&ProtocolObject<dyn GKGameCenterControllerDelegate>>,
         );
 
+        /// Use this to display content associated with the specified state. For example setting the state to GKGameCenterViewControllerStateLeaderboards will display a list of leaderboard sets or leaderboards (if no sets). Setting state to GKGameCenterViewControllerStateAchievements will display a list of achievements.
         #[method_id(@__retain_semantics Init initWithState:)]
         pub unsafe fn initWithState(
             this: Allocated<Self>,
@@ -142,6 +144,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "GKLeaderboard")]
+        /// Use this to display the scores for the specified leaderboardID, player scope and time scope. The time scope is only applicable to classic leaderboards. Recurring leaderboards will always be displayed initially with the results (scores) associated with the current instance of the leaderboard.
         #[method_id(@__retain_semantics Init initWithLeaderboardID:playerScope:timeScope:)]
         pub unsafe fn initWithLeaderboardID_playerScope_timeScope(
             this: Allocated<Self>,
@@ -151,6 +154,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "GKLeaderboard")]
+        /// Use this to display the scores for the specified leaderboard and player scope. Both classic and recurring leaderboards can use this method to initialize the view with their scores.
         #[method_id(@__retain_semantics Init initWithLeaderboard:playerScope:)]
         pub unsafe fn initWithLeaderboard_playerScope(
             this: Allocated<Self>,
@@ -158,12 +162,14 @@ extern_methods!(
             player_scope: GKLeaderboardPlayerScope,
         ) -> Retained<Self>;
 
+        /// Use this to display the leaderboard sets for the specified leaderboardSetID.
         #[method_id(@__retain_semantics Init initWithLeaderboardSetID:)]
         pub unsafe fn initWithLeaderboardSetID(
             this: Allocated<Self>,
             leaderboard_set_id: &NSString,
         ) -> Retained<Self>;
 
+        /// Use this to display the details associated with the specified achievementID
         #[method_id(@__retain_semantics Init initWithAchievementID:)]
         pub unsafe fn initWithAchievementID(
             this: Allocated<Self>,
@@ -171,6 +177,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// Use this to display the profile page associated with the specified player.
         #[method_id(@__retain_semantics Init initWithPlayer:)]
         pub unsafe fn initWithPlayer(this: Allocated<Self>, player: &GKPlayer) -> Retained<Self>;
     }
@@ -185,6 +192,7 @@ extern_methods!(
         #[method(viewState)]
         pub unsafe fn viewState(&self) -> GKGameCenterViewControllerState;
 
+        /// Setter for [`viewState`][Self::viewState].
         #[deprecated]
         #[method(setViewState:)]
         pub unsafe fn setViewState(&self, view_state: GKGameCenterViewControllerState);
@@ -195,6 +203,7 @@ extern_methods!(
         pub unsafe fn leaderboardTimeScope(&self) -> GKLeaderboardTimeScope;
 
         #[cfg(feature = "GKLeaderboard")]
+        /// Setter for [`leaderboardTimeScope`][Self::leaderboardTimeScope].
         #[deprecated]
         #[method(setLeaderboardTimeScope:)]
         pub unsafe fn setLeaderboardTimeScope(
@@ -206,6 +215,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other leaderboardIdentifier)]
         pub unsafe fn leaderboardIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`leaderboardIdentifier`][Self::leaderboardIdentifier].
         #[deprecated]
         #[method(setLeaderboardIdentifier:)]
         pub unsafe fn setLeaderboardIdentifier(&self, leaderboard_identifier: Option<&NSString>);
@@ -214,6 +224,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other leaderboardCategory)]
         pub unsafe fn leaderboardCategory(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`leaderboardCategory`][Self::leaderboardCategory].
         #[deprecated]
         #[method(setLeaderboardCategory:)]
         pub unsafe fn setLeaderboardCategory(&self, leaderboard_category: Option<&NSString>);

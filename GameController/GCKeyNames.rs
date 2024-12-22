@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeya?language=objc)
+    /// A set of strings that can be used to access keyboard buttons
+    ///
+    ///
+    ///
+    /// See: GCKeyboardInput.h
+    ///
+    /// See: GCPhysicalInputProfile.h
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeya?language=objc)
     pub static GCKeyA: &'static NSString;
 }
 

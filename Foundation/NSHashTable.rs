@@ -161,7 +161,9 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashenumerator?language=objc)
+/// **************    (void *) Hash table operations    ***************
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashenumerator?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSHashEnumerator {
@@ -276,7 +278,9 @@ pub unsafe extern "C-unwind" fn NSAllHashTableObjects(table: &NSHashTable) -> Re
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablecallbacks?language=objc)
+/// **************    Legacy    ***************
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablecallbacks?language=objc)
 #[cfg(feature = "NSString")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]

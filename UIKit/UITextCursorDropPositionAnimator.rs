@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcursordroppositionanimator?language=objc)
+    /// Provides a mechanism for displaying and animating a temporary text cursor to indicate a drop location.
+    ///
+    /// For custom text view implementations that implement drag and drop functionality, use this animator providing either your own UITextCursorView
+    /// implementation or a concrete implementation to indicate at which point in your document the dropped item will be inserted. Using this animator provides
+    /// you with all of the default system animations for how the text cursor would behave.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcursordroppositionanimator?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -23,6 +29,7 @@ extern_methods!(
             feature = "UITextCursorView",
             feature = "UIView"
         ))]
+        /// The cursor view to be animated.
         #[method_id(@__retain_semantics Other cursorView)]
         pub unsafe fn cursorView(&self) -> Option<Retained<UIView>>;
 
@@ -32,6 +39,7 @@ extern_methods!(
             feature = "UITextInputTraits",
             feature = "UIView"
         ))]
+        /// The object that implements the UITextInput protocol, used to query for geometry information regarding cursor placement.
         #[method_id(@__retain_semantics Other textInput)]
         pub unsafe fn textInput(&self) -> Option<Retained<UIView>>;
 
@@ -42,6 +50,7 @@ extern_methods!(
             feature = "UITextInputTraits",
             feature = "UIView"
         ))]
+        /// Creates an animator for the given text cursor view implementation, and the document object that implements the UITextInput protocol.
         #[method_id(@__retain_semantics Init initWithTextCursorView:textInput:)]
         pub unsafe fn initWithTextCursorView_textInput(
             this: Allocated<Self>,
@@ -49,10 +58,14 @@ extern_methods!(
             text_input: Option<&UIView>,
         ) -> Option<Retained<Self>>;
 
+        /// Controls the visibility of the cursor.
         #[method(setCursorVisible:animated:)]
         pub unsafe fn setCursorVisible_animated(&self, visible: bool, animated: bool);
 
         #[cfg(feature = "UITextInput")]
+        /// Controls the placement of the cursor, using
+        /// `textInput`and
+        /// `position`to compute the final frame for the cursor view.
         #[method(placeCursorAtPosition:animated:)]
         pub unsafe fn placeCursorAtPosition_animated(
             &self,
@@ -61,6 +74,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Optionally, provide an animation block or completion block to run alongside cursor appearance or position update animations.
         #[method(animateAlongsideChanges:completion:)]
         pub unsafe fn animateAlongsideChanges_completion(
             &self,

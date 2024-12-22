@@ -10,7 +10,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsepsimagerep?language=objc)
+    /// An object that can render an image from encapsulated PostScript (EPS) code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsepsimagerep?language=objc)
     #[unsafe(super(NSImageRep, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSImageRep")]
@@ -35,9 +37,13 @@ unsafe impl NSObjectProtocol for NSEPSImageRep {}
 extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSEPSImageRep {
+        /// Creates and returns a representation of an image initialized with the specified EPS data. Convenience of `-initWithData:`.
+        /// - Note: This method always returns `nil` on macOS 14.0 and later.
         #[method_id(@__retain_semantics Other imageRepWithData:)]
         pub unsafe fn imageRepWithData(eps_data: &NSData) -> Option<Retained<Self>>;
 
+        /// Returns a representation of an image initialized with the specified EPS data.
+        /// - Note: This method always returns `nil` on macOS 14.0 and later.
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
             this: Allocated<Self>,
@@ -45,12 +51,15 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The rectangle that bounds the image representation.
         #[method(boundingBox)]
         pub unsafe fn boundingBox(&self) -> NSRect;
 
+        /// The EPS representation of the image representation.
         #[method_id(@__retain_semantics Other EPSRepresentation)]
         pub unsafe fn EPSRepresentation(&self) -> Retained<NSData>;
 
+        /// The `-[NSEPSImageRep draw]` method sends this message to itself just before rendering the EPS code. The default implementation of this method does nothing. It can be overridden in a subclass to prepare the graphics state as needed.
         #[deprecated]
         #[method(prepareGState)]
         pub unsafe fn prepareGState(&self);

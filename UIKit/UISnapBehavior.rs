@@ -36,6 +36,7 @@ extern_methods!(
         pub unsafe fn snapPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`snapPoint`][Self::snapPoint].
         #[method(setSnapPoint:)]
         pub unsafe fn setSnapPoint(&self, snap_point: CGPoint);
 
@@ -44,6 +45,7 @@ extern_methods!(
         pub unsafe fn damping(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`damping`][Self::damping].
         #[method(setDamping:)]
         pub unsafe fn setDamping(&self, damping: CGFloat);
     }

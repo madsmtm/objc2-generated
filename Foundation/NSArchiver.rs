@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsarchiver?language=objc)
+    /// **********        Archiving: Writing    ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsarchiver?language=objc)
     #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]
@@ -88,7 +90,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunarchiver?language=objc)
+    /// **********        Archiving: Reading        ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunarchiver?language=objc)
     #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]
@@ -191,6 +195,7 @@ extern_methods!(
 extern_category!(
     /// Category "NSArchiverCallback" on [`NSObject`].
     #[doc(alias = "NSArchiverCallback")]
+    /// **********        Object call back        ***************
     pub unsafe trait NSObjectNSArchiverCallback {
         #[method(classForArchiver)]
         unsafe fn classForArchiver(&self) -> Option<&'static AnyClass>;

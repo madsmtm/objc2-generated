@@ -16,8 +16,14 @@ pub struct MPSNNRegularizationType(pub NSUInteger);
 impl MPSNNRegularizationType {
     #[doc(alias = "MPSNNRegularizationTypeNone")]
     pub const None: Self = Self(0);
+    /// Apply L1 regularization. L1 norm of weights, will be considered to be added to the loss to be minimized.
+    /// the gradient of the regularization loss turns to be 1 scaled with regularizationScale,
+    /// so we add that to the incoming gradient of value.
     #[doc(alias = "MPSNNRegularizationTypeL1")]
     pub const L1: Self = Self(1);
+    /// Apply L2 regularization. L2 norm of weights, will be considered to be added to the loss to be minimized.
+    /// the gradient of the regularization loss turns to be the original value scaled with regularizationScale,
+    /// so we add that to the incoming gradient of value.
     #[doc(alias = "MPSNNRegularizationTypeL2")]
     pub const L2: Self = Self(2);
 }
@@ -31,7 +37,13 @@ unsafe impl RefEncode for MPSNNRegularizationType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizerdescriptor?language=objc)
+    /// The MPSNNOptimizerDescriptor base class. Optimizers are generally used to update trainable neural network parameters.
+    /// Users are usually expected to call these MPSKernels from the update methods on their Convolution or BatchNormalization data sources.
+    ///
+    /// Before the gradient is used to update the original value, some preprocessing occurs on each gradient where it is scaled or clipped
+    /// If regularization is chosen the appropriate regularization loss gradient is added to the value gradient.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizerdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNOptimizerDescriptor;
@@ -41,45 +53,69 @@ unsafe impl NSObjectProtocol for MPSNNOptimizerDescriptor {}
 
 extern_methods!(
     unsafe impl MPSNNOptimizerDescriptor {
+        /// The learningRate at which we update values
+        ///
+        /// The default value is 0.001f
         #[method(learningRate)]
         pub unsafe fn learningRate(&self) -> c_float;
 
+        /// Setter for [`learningRate`][Self::learningRate].
         #[method(setLearningRate:)]
         pub unsafe fn setLearningRate(&self, learning_rate: c_float);
 
+        /// The gradientRescale at which we apply to incoming gradient values
+        ///
+        /// The default value is 1.0
         #[method(gradientRescale)]
         pub unsafe fn gradientRescale(&self) -> c_float;
 
+        /// Setter for [`gradientRescale`][Self::gradientRescale].
         #[method(setGradientRescale:)]
         pub unsafe fn setGradientRescale(&self, gradient_rescale: c_float);
 
+        /// A bool which decides if gradient will be clipped
+        ///
+        /// The default value is NO
         #[method(applyGradientClipping)]
         pub unsafe fn applyGradientClipping(&self) -> bool;
 
+        /// Setter for [`applyGradientClipping`][Self::applyGradientClipping].
         #[method(setApplyGradientClipping:)]
         pub unsafe fn setApplyGradientClipping(&self, apply_gradient_clipping: bool);
 
+        /// The maximum value at which incoming gradient will be clipped before rescaling, applyGradientClipping must be true
         #[method(gradientClipMax)]
         pub unsafe fn gradientClipMax(&self) -> c_float;
 
+        /// Setter for [`gradientClipMax`][Self::gradientClipMax].
         #[method(setGradientClipMax:)]
         pub unsafe fn setGradientClipMax(&self, gradient_clip_max: c_float);
 
+        /// The minimum value at which incoming gradient will be clipped before rescaling, applyGradientClipping must be true
         #[method(gradientClipMin)]
         pub unsafe fn gradientClipMin(&self) -> c_float;
 
+        /// Setter for [`gradientClipMin`][Self::gradientClipMin].
         #[method(setGradientClipMin:)]
         pub unsafe fn setGradientClipMin(&self, gradient_clip_min: c_float);
 
+        /// The regularizationScale at which we apply L1 or L2 regularization, it gets ignored if regularization is None
+        ///
+        /// The default value is 0.0
         #[method(regularizationScale)]
         pub unsafe fn regularizationScale(&self) -> c_float;
 
+        /// Setter for [`regularizationScale`][Self::regularizationScale].
         #[method(setRegularizationScale:)]
         pub unsafe fn setRegularizationScale(&self, regularization_scale: c_float);
 
+        /// The regularizationType which we apply.
+        ///
+        /// The default value is MPSRegularizationTypeNone
         #[method(regularizationType)]
         pub unsafe fn regularizationType(&self) -> MPSNNRegularizationType;
 
+        /// Setter for [`regularizationType`][Self::regularizationType].
         #[method(setRegularizationType:)]
         pub unsafe fn setRegularizationType(&self, regularization_type: MPSNNRegularizationType);
 
@@ -137,7 +173,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizer?language=objc)
+    /// The MPSNNOptimizer base class, use one of the child classes, not to be directly used. Optimizers are generally used to update trainable neural network parameters.
+    /// Users are usually expected to call these MPSKernels from the update methods on their Convolution or BatchNormalization data sources.
+    ///
+    /// Before the gradient is used to update the original value, some preprocessing occurs on each gradient where it is scaled or clipped
+    /// If regularization is chosen the appropriate regularization loss gradient is added to the value gradient.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizer?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -164,27 +206,45 @@ unsafe impl NSSecureCoding for MPSNNOptimizer {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNNOptimizer {
+        /// The learningRate at which we update values
+        ///
+        /// The default value is 1e-3
         #[method(learningRate)]
         pub unsafe fn learningRate(&self) -> c_float;
 
+        /// The gradientRescale at which we apply to incoming gradient values
+        ///
+        /// The default value is 1.0
         #[method(gradientRescale)]
         pub unsafe fn gradientRescale(&self) -> c_float;
 
+        /// A bool which decides if gradient will be clipped
+        ///
+        /// The default value is NO
         #[method(applyGradientClipping)]
         pub unsafe fn applyGradientClipping(&self) -> bool;
 
+        /// Setter for [`applyGradientClipping`][Self::applyGradientClipping].
         #[method(setApplyGradientClipping:)]
         pub unsafe fn setApplyGradientClipping(&self, apply_gradient_clipping: bool);
 
+        /// The maximum value at which incoming gradient will be clipped before rescaling, applyGradientClipping must be true
         #[method(gradientClipMax)]
         pub unsafe fn gradientClipMax(&self) -> c_float;
 
+        /// The minimum value at which incoming gradient will be clipped before rescaling, applyGradientClipping must be true
         #[method(gradientClipMin)]
         pub unsafe fn gradientClipMin(&self) -> c_float;
 
+        /// The regularizationScale at which we apply L1 or L2 regularization, it gets ignored if regularization is None
+        ///
+        /// The default value is 0.0
         #[method(regularizationScale)]
         pub unsafe fn regularizationScale(&self) -> c_float;
 
+        /// The regularizationType which we apply.
+        ///
+        /// The default value is MPSRegularizationTypeNone
         #[method(regularizationType)]
         pub unsafe fn regularizationType(&self) -> MPSNNRegularizationType;
 
@@ -203,12 +263,33 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNNOptimizer {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -231,7 +312,22 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizerstochasticgradientdescent?language=objc)
+    /// The MPSNNOptimizerStochasticGradientDescent performs a gradient descent with an optional momentum Update
+    /// RMSProp is also known as root mean square propagation.
+    ///
+    /// useNesterov == NO:
+    /// m[t]     = momentumScale * m[t-1] + learningRate * g
+    /// variable = variable - m[t]
+    ///
+    /// useNesterov == YES:
+    /// m[t]     = momentumScale * m[t-1] + g
+    /// variable = variable - (learningRate * (g + m[t] * momentumScale))
+    ///
+    /// where,
+    /// g    is gradient of error wrt variable
+    /// m[t] is momentum of gradients it is a state we keep updating every update iteration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizerstochasticgradientdescent?language=objc)
     #[unsafe(super(MPSNNOptimizer, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -258,9 +354,17 @@ unsafe impl NSSecureCoding for MPSNNOptimizerStochasticGradientDescent {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNNOptimizerStochasticGradientDescent {
+        /// The momentumScale at which we update momentum for values array
+        ///
+        /// Default value is 0.0
         #[method(momentumScale)]
         pub unsafe fn momentumScale(&self) -> c_float;
 
+        /// Nesterov momentum is considered an improvement on the usual momentum update
+        ///
+        /// Default value is NO
+        ///
+        /// Note: Maps to old useNestrovMomentum property
         #[method(useNesterovMomentum)]
         pub unsafe fn useNesterovMomentum(&self) -> bool;
 
@@ -273,6 +377,15 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Convenience initialization for the momentum update
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        /// Parameter `learningRate`: The learningRate which will be applied
+        ///
+        ///
+        /// Returns: A valid MPSNNOptimizerStochasticGradientDescent object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:learningRate:)]
         pub unsafe fn initWithDevice_learningRate(
             this: Allocated<Self>,
@@ -280,6 +393,19 @@ extern_methods!(
             learning_rate: c_float,
         ) -> Retained<Self>;
 
+        /// Full initialization for the momentum update
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        /// Parameter `momentumScale`: The momentumScale to update momentum for values array
+        ///
+        /// Parameter `useNesterovMomentum`: Use the Nesterov style momentum update
+        ///
+        /// Parameter `optimizerDescriptor`: The optimizerDescriptor which will have a bunch of properties to be applied
+        ///
+        ///
+        /// Returns: A valid MPSNNOptimizerMomentum object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:momentumScale:useNesterovMomentum:optimizerDescriptor:)]
         pub unsafe fn initWithDevice_momentumScale_useNesterovMomentum_optimizerDescriptor(
             this: Allocated<Self>,
@@ -299,6 +425,38 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode an MPSNNOptimizerStochasticGradientDescent object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `inputGradientVector`: A valid MPSVector object which specifies the input vector of gradients for this update.
+        ///
+        /// Parameter `inputValuesVector`: A valid MPSVector object which specifies the input vector of values to be updated.
+        ///
+        /// Parameter `inputMomentumVector`: A valid MPSVector object which specifies the gradient momentum vector which will
+        /// be updated and overwritten.
+        ///
+        /// Parameter `resultValuesVector`: A valid MPSVector object which specifies the resultValues vector which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        ///
+        /// useNesterov == NO:
+        /// m[t]     = momentumScale * m[t-1] + learningRate * g
+        /// variable = variable - m[t]
+        ///
+        /// useNesterov == YES:
+        /// m[t]     = momentumScale * m[t-1] + g
+        /// variable = variable - (learningRate * (g + m[t] * momentumScale))
+        ///
+        /// inputMomentumVector == nil
+        /// variable = variable - (learningRate * g)
+        ///
+        /// where,
+        /// g    is gradient of error wrt variable
+        /// m[t] is momentum of gradients it is a state we keep updating every update iteration
         #[method(encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:resultValuesVector:)]
         pub unsafe fn encodeToCommandBuffer_inputGradientVector_inputValuesVector_inputMomentumVector_resultValuesVector(
             &self,
@@ -326,6 +484,39 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode an MPSNNOptimizerStochasticGradientDescent object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `convolutionGradientState`: A valid MPSCNNConvolutionGradientState object which specifies the input state with gradients for this update.
+        ///
+        /// Parameter `convolutionSourceState`: A valid MPSCNNConvolutionWeightsAndBiasesState object which specifies the input state with values to be updated.
+        ///
+        /// Parameter `inputMomentumVectors`: An array MPSVector object which specifies the gradient momentum vectors which will
+        /// be updated and overwritten. The index 0 corresponds to weights, index 1 corresponds to biases, array can be of
+        /// size 1 in which case biases won't be updated
+        ///
+        /// Parameter `resultState`: A valid MPSCNNConvolutionWeightsAndBiasesState object which specifies the resultValues state which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        ///
+        /// useNesterov == NO:
+        /// m[t]     = momentumScale * m[t-1] + learningRate * g
+        /// variable = variable - m[t]
+        ///
+        /// useNesterov == YES:
+        /// m[t]     = momentumScale * m[t-1] + g
+        /// variable = variable - (learningRate * (g + m[t] * momentumScale))
+        ///
+        /// inputMomentumVector == nil
+        /// variable = variable - (learningRate * g)
+        ///
+        /// where,
+        /// g    is gradient of error wrt variable
+        /// m[t] is momentum of gradients it is a state we keep updating every update iteration
         #[method(encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:resultState:)]
         pub unsafe fn encodeToCommandBuffer_convolutionGradientState_convolutionSourceState_inputMomentumVectors_resultState(
             &self,
@@ -343,6 +534,37 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode an MPSNNOptimizerStochasticGradientDescent object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `batchNormalizationState`: A valid MPSCNNBatchNormalizationState object which specifies the input state with gradients and original gamma/beta for this update.
+        ///
+        /// Parameter `inputMomentumVectors`: An array MPSVector object which specifies the gradient momentum vectors which will
+        /// be updated and overwritten. The index 0 corresponds to gamma, index 1 corresponds to beta, array can be of
+        /// size 1 in which case beta won't be updated
+        ///
+        /// Parameter `resultState`: A valid MPSCNNNormalizationGammaAndBetaState object which specifies the resultValues state which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        ///
+        /// useNesterov == NO:
+        /// m[t]     = momentumScale * m[t-1] + learningRate * g
+        /// variable = variable - m[t]
+        ///
+        /// useNesterov == YES:
+        /// m[t]     = momentumScale * m[t-1] + g
+        /// variable = variable - (learningRate * (g + m[t] * momentumScale))
+        ///
+        /// inputMomentumVector == nil
+        /// variable = variable - (learningRate * g)
+        ///
+        /// where,
+        /// g    is gradient of error wrt variable
+        /// m[t] is momentum of gradients it is a state we keep updating every update iteration
         #[method(encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:resultState:)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationState_inputMomentumVectors_resultState(
             &self,
@@ -359,6 +581,39 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode an MPSNNOptimizerStochasticGradientDescent object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `batchNormalizationGradientState`: A valid MPSCNNBatchNormalizationState object which specifies the input state with gradients for this update.
+        ///
+        /// Parameter `batchNormalizationSourceState`: A valid MPSCNNBatchNormalizationState object which specifies the input state with original gamma/beta for this update.
+        ///
+        /// Parameter `inputMomentumVectors`: An array MPSVector object which specifies the gradient momentum vectors which will
+        /// be updated and overwritten. The index 0 corresponds to gamma, index 1 corresponds to beta, array can be of
+        /// size 1 in which case beta won't be updated
+        ///
+        /// Parameter `resultState`: A valid MPSCNNNormalizationGammaAndBetaState object which specifies the resultValues state which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        ///
+        /// useNesterov == NO:
+        /// m[t]     = momentumScale * m[t-1] + learningRate * g
+        /// variable = variable - m[t]
+        ///
+        /// useNesterov == YES:
+        /// m[t]     = momentumScale * m[t-1] + g
+        /// variable = variable - (learningRate * (g + m[t] * momentumScale))
+        ///
+        /// inputMomentumVector == nil
+        /// variable = variable - (learningRate * g)
+        ///
+        /// where,
+        /// g    is gradient of error wrt variable
+        /// m[t] is momentum of gradients it is a state we keep updating every update iteration
         #[method(encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:resultState:)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationGradientState_batchNormalizationSourceState_inputMomentumVectors_resultState(
             &self,
@@ -375,12 +630,33 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNNOptimizerStochasticGradientDescent {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -403,7 +679,17 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizerrmsprop?language=objc)
+    /// The MPSNNOptimizerRMSProp performs an RMSProp Update
+    /// RMSProp is also known as root mean square propagation.
+    ///
+    /// s[t]     = decay * s[t-1] + (1 - decay) * (g ^ 2)
+    /// variable = variable - learningRate * g / (sqrt(s[t]) + epsilon)
+    ///
+    /// where,
+    /// g    is gradient of error wrt variable
+    /// s[t] is weighted sum of squares of gradients
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizerrmsprop?language=objc)
     #[unsafe(super(MPSNNOptimizer, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -430,9 +716,15 @@ unsafe impl NSSecureCoding for MPSNNOptimizerRMSProp {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNNOptimizerRMSProp {
+        /// The decay at which we update sumOfSquares
+        ///
+        /// Default value is 0.9
         #[method(decay)]
         pub unsafe fn decay(&self) -> c_double;
 
+        /// The epsilon at which we update values
+        ///
+        /// This value is usually used to ensure to avoid divide by 0, default value is 1e-8
         #[method(epsilon)]
         pub unsafe fn epsilon(&self) -> c_float;
 
@@ -442,6 +734,15 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Convenience initialization for the RMSProp update
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        /// Parameter `learningRate`: The learningRate which will be applied
+        ///
+        ///
+        /// Returns: A valid MPSNNOptimizerRMSProp object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:learningRate:)]
         pub unsafe fn initWithDevice_learningRate(
             this: Allocated<Self>,
@@ -449,6 +750,19 @@ extern_methods!(
             learning_rate: c_float,
         ) -> Retained<Self>;
 
+        /// Full initialization for the rmsProp update
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        /// Parameter `decay`: The decay to update sumOfSquares
+        ///
+        /// Parameter `epsilon`: The epsilon which will be applied
+        ///
+        /// Parameter `optimizerDescriptor`: The optimizerDescriptor which will have a bunch of properties to be applied
+        ///
+        ///
+        /// Returns: A valid MPSNNOptimizerRMSProp object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:decay:epsilon:optimizerDescriptor:)]
         pub unsafe fn initWithDevice_decay_epsilon_optimizerDescriptor(
             this: Allocated<Self>,
@@ -459,6 +773,30 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode an MPSNNOptimizerRMSProp object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `inputGradientVector`: A valid MPSVector object which specifies the input vector of gradients for this update.
+        ///
+        /// Parameter `inputValuesVector`: A valid MPSVector object which specifies the input vector of values to be updated.
+        ///
+        /// Parameter `inputSumOfSquaresVector`: A valid MPSVector object which specifies the gradient velocity vector which will
+        /// be updated and overwritten.
+        ///
+        /// Parameter `resultValuesVector`: A valid MPSVector object which specifies the resultValues vector which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        ///
+        /// s[t]     = decay * s[t-1] + (1 - decay) * (g ^ 2)
+        /// variable = variable - learningRate * g / (sqrt(s[t]) + epsilon)
+        ///
+        /// where,
+        /// g    is gradient of error wrt variable
+        /// s[t] is weighted sum of squares of gradients
         #[method(encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputSumOfSquaresVector:resultValuesVector:)]
         pub unsafe fn encodeToCommandBuffer_inputGradientVector_inputValuesVector_inputSumOfSquaresVector_resultValuesVector(
             &self,
@@ -486,6 +824,31 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode an MPSNNOptimizerRMSProp object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `convolutionGradientState`: A valid MPSCNNConvolutionGradientState object which specifies the input state with gradients for this update.
+        ///
+        /// Parameter `convolutionSourceState`: A valid MPSCNNConvolutionWeightsAndBiasesState object which specifies the input state with values to be updated.
+        ///
+        /// Parameter `inputSumOfSquaresVectors`: An array MPSVector object which specifies the gradient sumOfSquares vectors which will
+        /// be updated and overwritten. The index 0 corresponds to weights, index 1 corresponds to biases, array can be of
+        /// size 1 in which case biases won't be updated
+        ///
+        /// Parameter `resultState`: A valid MPSCNNConvolutionWeightsAndBiasesState object which specifies the resultValues state which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        ///
+        /// s[t]     = decay * s[t-1] + (1 - decay) * (g ^ 2)
+        /// variable = variable - learningRate * g / (sqrt(s[t]) + epsilon)
+        ///
+        /// where,
+        /// g    is gradient of error wrt variable
+        /// s[t] is weighted sum of squares of gradients
         #[method(encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputSumOfSquaresVectors:resultState:)]
         pub unsafe fn encodeToCommandBuffer_convolutionGradientState_convolutionSourceState_inputSumOfSquaresVectors_resultState(
             &self,
@@ -503,6 +866,29 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode an MPSNNOptimizerRMSProp object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `batchNormalizationState`: A valid MPSCNNBatchNormalizationState object which specifies the input state with gradients and original gamma/beta for this update.
+        ///
+        /// Parameter `inputSumOfSquaresVectors`: An array MPSVector object which specifies the gradient sumOfSquares vectors which will
+        /// be updated and overwritten. The index 0 corresponds to gamma, index 1 corresponds to beta, array can be of
+        /// size 1 in which case beta won't be updated
+        ///
+        /// Parameter `resultState`: A valid MPSCNNNormalizationGammaAndBetaState object which specifies the resultValues state which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        ///
+        /// s[t]     = decay * s[t-1] + (1 - decay) * (g ^ 2)
+        /// variable = variable - learningRate * g / (sqrt(s[t]) + epsilon)
+        ///
+        /// where,
+        /// g    is gradient of error wrt variable
+        /// s[t] is weighted sum of squares of gradients
         #[method(encodeToCommandBuffer:batchNormalizationState:inputSumOfSquaresVectors:resultState:)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationState_inputSumOfSquaresVectors_resultState(
             &self,
@@ -519,6 +905,31 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode an MPSNNOptimizerRMSProp object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `batchNormalizationGradientState`: A valid MPSCNNBatchNormalizationState object which specifies the input state with gradients for this update.
+        ///
+        /// Parameter `batchNormalizationSourceState`: A valid MPSCNNBatchNormalizationState object which specifies the input state with original gamma/beta for this update.
+        ///
+        /// Parameter `inputSumOfSquaresVectors`: An array MPSVector object which specifies the gradient sumOfSquares vectors which will
+        /// be updated and overwritten. The index 0 corresponds to gamma, index 1 corresponds to beta, array can be of
+        /// size 1 in which case beta won't be updated
+        ///
+        /// Parameter `resultState`: A valid MPSCNNNormalizationGammaAndBetaState object which specifies the resultValues state which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        ///
+        /// s[t]     = decay * s[t-1] + (1 - decay) * (g ^ 2)
+        /// variable = variable - learningRate * g / (sqrt(s[t]) + epsilon)
+        ///
+        /// where,
+        /// g    is gradient of error wrt variable
+        /// s[t] is weighted sum of squares of gradients
         #[method(encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputSumOfSquaresVectors:resultState:)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationGradientState_batchNormalizationSourceState_inputSumOfSquaresVectors_resultState(
             &self,
@@ -535,12 +946,33 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNNOptimizerRMSProp {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -563,7 +995,29 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizeradam?language=objc)
+    /// The MPSNNOptimizerAdam performs an Adam Update
+    ///
+    /// Initialization time
+    /// m[0] = 0 (Initialize initial 1st moment vector aka momentum, user is responsible for this)
+    /// v[0] = 0 (Initialize initial 2nd moment vector aka velocity, user is responsible for this)
+    /// t    = 0 (Initialize timestep)
+    ///
+    /// https://arxiv.org/abs/1412.6980
+    ///
+    /// At update time:
+    /// t = t + 1
+    /// lr[t] = learningRate * sqrt(1 - beta2^t) / (1 - beta1^t)
+    ///
+    /// m[t]     = beta1 * m[t-1] + (1 - beta1) * g
+    /// v[t]     = beta2 * v[t-1] + (1 - beta2) * (g ^ 2)
+    /// variable = variable - lr[t] * m[t] / (sqrt(v[t]) + epsilon)
+    ///
+    /// where,
+    /// g    is gradient of error wrt variable
+    /// v[t] is velocity
+    /// m[t] is momentum
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizeradam?language=objc)
     #[unsafe(super(MPSNNOptimizer, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -590,18 +1044,29 @@ unsafe impl NSSecureCoding for MPSNNOptimizerAdam {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNNOptimizerAdam {
+        /// The beta1 at which we update values
+        ///
+        /// Default value is 0.9
         #[method(beta1)]
         pub unsafe fn beta1(&self) -> c_double;
 
+        /// The beta2 at which we update values
+        ///
+        /// Default value is 0.999
         #[method(beta2)]
         pub unsafe fn beta2(&self) -> c_double;
 
+        /// The epsilon at which we update values
+        ///
+        /// This value is usually used to ensure to avoid divide by 0, default value is 1e-8
         #[method(epsilon)]
         pub unsafe fn epsilon(&self) -> c_float;
 
+        /// Current timeStep for the update, number of times update has occurred
         #[method(timeStep)]
         pub unsafe fn timeStep(&self) -> NSUInteger;
 
+        /// Setter for [`timeStep`][Self::timeStep].
         #[method(setTimeStep:)]
         pub unsafe fn setTimeStep(&self, time_step: NSUInteger);
 
@@ -611,6 +1076,15 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Convenience initialization for the adam update
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        /// Parameter `learningRate`: The learningRate at which we will update values
+        ///
+        ///
+        /// Returns: A valid MPSNNOptimizerAdam object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:learningRate:)]
         pub unsafe fn initWithDevice_learningRate(
             this: Allocated<Self>,
@@ -618,6 +1092,23 @@ extern_methods!(
             learning_rate: c_float,
         ) -> Retained<Self>;
 
+        /// Full initialization for the adam update
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        /// Parameter `beta1`: The beta1 to update values
+        ///
+        /// Parameter `beta2`: The beta2 to update values
+        ///
+        /// Parameter `epsilon`: The epsilon at which we update values
+        ///
+        /// Parameter `timeStep`: The timeStep at which values will start updating
+        ///
+        /// Parameter `optimizerDescriptor`: The optimizerDescriptor which will have a bunch of properties to be applied
+        ///
+        ///
+        /// Returns: A valid MPSNNOptimizerAdam object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:beta1:beta2:epsilon:timeStep:optimizerDescriptor:)]
         pub unsafe fn initWithDevice_beta1_beta2_epsilon_timeStep_optimizerDescriptor(
             this: Allocated<Self>,
@@ -630,6 +1121,33 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode an MPSNNOptimizerAdam object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `inputGradientVector`: A valid MPSVector object which specifies the input vector of gradients for this update.
+        ///
+        /// Parameter `inputValuesVector`: A valid MPSVector object which specifies the input vector of values to be updated.
+        ///
+        /// Parameter `inputMomentumVector`: A valid MPSVector object which specifies the gradient momentum vector which will
+        /// be updated and overwritten.
+        ///
+        /// Parameter `inputVelocityVector`: A valid MPSVector object which specifies the gradient velocity vector which will
+        /// be updated and overwritten.
+        ///
+        /// Parameter `resultValuesVector`: A valid MPSVector object which specifies the resultValues vector which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        ///
+        /// t = t + 1
+        /// lr[t] = learningRate * sqrt(1 - beta2^t) / (1 - beta1^t)
+        ///
+        /// m[t]     = beta1 * m[t-1] + (1 - beta1) * g
+        /// v[t]     = beta2 * v[t-1] + (1 - beta2) * (g ^ 2)
+        /// variable = variable - lr[t] * m[t] / (sqrt(v[t]) + epsilon)
         #[method(encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:inputVelocityVector:resultValuesVector:)]
         pub unsafe fn encodeToCommandBuffer_inputGradientVector_inputValuesVector_inputMomentumVector_inputVelocityVector_resultValuesVector(
             &self,
@@ -654,6 +1172,36 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode an AMSGrad variant of MPSNNOptimizerAdam object to a command buffer to perform out of place update
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `inputGradientVector`: A valid MPSVector object which specifies the input vector of gradients for this update.
+        ///
+        /// Parameter `inputValuesVector`: A valid MPSVector object which specifies the input vector of values to be updated.
+        ///
+        /// Parameter `inputMomentumVector`: A valid MPSVector object which specifies the gradient momentum vector which will
+        /// be updated and overwritten.
+        ///
+        /// Parameter `inputVelocityVector`: A valid MPSVector object which specifies the gradient velocity vector which will
+        /// be updated and overwritten.
+        ///
+        /// Parameter `maximumVelocityVector`: A valid MPSVector object which specifies the maximum velocity vector which will
+        /// be updated and overwritten. May be nil, if nil then normal Adam optimizer behaviour is followed.
+        ///
+        /// Parameter `resultValuesVector`: A valid MPSCNNConvolutionWeightsAndBiasesState object which specifies the resultValues state which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        /// At update time:
+        /// t = t + 1
+        /// lr[t] = learningRate * sqrt(1 - beta2^t) / (1 - beta1^t)
+        ///
+        /// m[t]     = beta1 * m[t-1] + (1 - beta1) * g
+        /// v[t]     = beta2 * v[t-1] + (1 - beta2) * (g ^ 2)
+        /// maxVel[t] = max(maxVel[t-1],v[t])
+        /// variable = variable - lr[t] * m[t] / (sqrt(maxVel[t]) + epsilon)
         #[method(encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:inputVelocityVector:maximumVelocityVector:resultValuesVector:)]
         pub unsafe fn encodeToCommandBuffer_inputGradientVector_inputValuesVector_inputMomentumVector_inputVelocityVector_maximumVelocityVector_resultValuesVector(
             &self,
@@ -685,6 +1233,35 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode an MPSNNOptimizerAdam object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `convolutionGradientState`: A valid MPSCNNConvolutionGradientState object which specifies the input state with gradients for this update.
+        ///
+        /// Parameter `convolutionSourceState`: A valid MPSCNNConvolutionWeightsAndBiasesState object which specifies the input state with values to be updated.
+        ///
+        /// Parameter `inputMomentumVectors`: An array MPSVector object which specifies the gradient momentum vectors which will
+        /// be updated and overwritten. The index 0 corresponds to weights, index 1 corresponds to biases, array can be of
+        /// size 1 in which case biases won't be updated
+        ///
+        /// Parameter `inputVelocityVectors`: An array MPSVector object which specifies the gradient velocity vectors which will
+        /// be updated and overwritten. The index 0 corresponds to weights, index 1 corresponds to biases, array can be of
+        /// size 1 in which case biases won't be updated
+        ///
+        /// Parameter `resultState`: A valid MPSCNNConvolutionWeightsAndBiasesState object which specifies the resultValues state which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        ///
+        /// t = t + 1
+        /// lr[t] = learningRate * sqrt(1 - beta2^t) / (1 - beta1^t)
+        ///
+        /// m[t]     = beta1 * m[t-1] + (1 - beta1) * g
+        /// v[t]     = beta2 * v[t-1] + (1 - beta2) * (g ^ 2)
+        /// variable = variable - lr[t] * m[t] / (sqrt(v[t]) + epsilon)
         #[method(encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:inputVelocityVectors:resultState:)]
         pub unsafe fn encodeToCommandBuffer_convolutionGradientState_convolutionSourceState_inputMomentumVectors_inputVelocityVectors_resultState(
             &self,
@@ -702,6 +1279,40 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode an AMSGrad variant of MPSNNOptimizerAdam object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `convolutionGradientState`: A valid MPSCNNConvolutionGradientState object which specifies the input state with gradients for this update.
+        ///
+        /// Parameter `convolutionSourceState`: A valid MPSCNNConvolutionWeightsAndBiasesState object which specifies the input state with values to be updated.
+        ///
+        /// Parameter `inputMomentumVectors`: An array MPSVector object which specifies the gradient momentum vectors which will
+        /// be updated and overwritten. The index 0 corresponds to weights, index 1 corresponds to biases, array can be of
+        /// size 1 in which case biases won't be updated
+        ///
+        /// Parameter `inputVelocityVectors`: An array MPSVector object which specifies the gradient velocity vectors which will
+        /// be updated and overwritten. The index 0 corresponds to weights, index 1 corresponds to biases, array can be of
+        /// size 1 in which case biases won't be updated
+        ///
+        /// Parameter `maximumVelocityVectors`: An array MPSVector object which specifies the maximum velocity vectors which will
+        /// be updated and overwritten. The index 0 corresponds to weights, index 1 corresponds to biases, array can be of
+        /// size 1 in which case biases won't be updated. May be nil, if nil then normal Adam optimizer behaviour is followed.
+        ///
+        /// Parameter `resultState`: A valid MPSCNNConvolutionWeightsAndBiasesState object which specifies the resultValues state which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        /// At update time:
+        /// t = t + 1
+        /// lr[t] = learningRate * sqrt(1 - beta2^t) / (1 - beta1^t)
+        ///
+        /// m[t]     = beta1 * m[t-1] + (1 - beta1) * g
+        /// v[t]     = beta2 * v[t-1] + (1 - beta2) * (g ^ 2)
+        /// maxVel[t] = max(maxVel[t-1],v[t])
+        /// variable = variable - lr[t] * m[t] / (sqrt(maxVel[t]) + epsilon)
         #[method(encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:inputVelocityVectors:maximumVelocityVectors:resultState:)]
         pub unsafe fn encodeToCommandBuffer_convolutionGradientState_convolutionSourceState_inputMomentumVectors_inputVelocityVectors_maximumVelocityVectors_resultState(
             &self,
@@ -721,6 +1332,33 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode an MPSNNOptimizerAdam object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `batchNormalizationState`: A valid MPSCNNBatchNormalizationState object which specifies the input state with gradients and original gamma/beta for this update.
+        ///
+        /// Parameter `inputMomentumVectors`: An array MPSVector object which specifies the gradient momentum vectors which will
+        /// be updated and overwritten. The index 0 corresponds to gamma, index 1 corresponds to beta, array can be of
+        /// size 1 in which case beta won't be updated
+        ///
+        /// Parameter `inputVelocityVectors`: An array MPSVector object which specifies the gradient velocity vectors which will
+        /// be updated and overwritten. The index 0 corresponds to gamma, index 1 corresponds to beta, array can be of
+        /// size 1 in which case beta won't be updated
+        ///
+        /// Parameter `resultState`: A valid MPSCNNNormalizationGammaAndBetaState object which specifies the resultValues state which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        ///
+        /// t = t + 1
+        /// lr[t] = learningRate * sqrt(1 - beta2^t) / (1 - beta1^t)
+        ///
+        /// m[t]     = beta1 * m[t-1] + (1 - beta1) * g
+        /// v[t]     = beta2 * v[t-1] + (1 - beta2) * (g ^ 2)
+        /// variable = variable - lr[t] * m[t] / (sqrt(v[t]) + epsilon)
         #[method(encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:inputVelocityVectors:resultState:)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationState_inputMomentumVectors_inputVelocityVectors_resultState(
             &self,
@@ -738,6 +1376,38 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode an AMSGrad variant of  MPSNNOptimizerAdam object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `batchNormalizationState`: A valid MPSCNNBatchNormalizationState object which specifies the input state with gradients and original gamma/beta for this update.
+        ///
+        /// Parameter `inputMomentumVectors`: An array MPSVector object which specifies the gradient momentum vectors which will
+        /// be updated and overwritten. The index 0 corresponds to gamma, index 1 corresponds to beta, array can be of
+        /// size 1 in which case beta won't be updated
+        ///
+        /// Parameter `inputVelocityVectors`: An array MPSVector object which specifies the gradient velocity vectors which will
+        /// be updated and overwritten. The index 0 corresponds to gamma, index 1 corresponds to beta, array can be of
+        /// size 1 in which case beta won't be updated
+        ///
+        /// Parameter `maximumVelocityVectors`: An array MPSVector object which specifies the maximum velocity vectors which will
+        /// be updated and overwritten. The index 0 corresponds to weights, index 1 corresponds to biases, array can be of
+        /// size 1 in which case biases won't be updated. May be nil, if nil then normal Adam optimizer behaviour is followed.
+        ///
+        /// Parameter `resultState`: A valid MPSCNNNormalizationGammaAndBetaState object which specifies the resultValues state which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        /// At update time:
+        /// t = t + 1
+        /// lr[t] = learningRate * sqrt(1 - beta2^t) / (1 - beta1^t)
+        ///
+        /// m[t]     = beta1 * m[t-1] + (1 - beta1) * g
+        /// v[t]     = beta2 * v[t-1] + (1 - beta2) * (g ^ 2)
+        /// maxVel[t] = max(maxVel[t-1],v[t])
+        /// variable = variable - lr[t] * m[t] / (sqrt(maxVel[t]) + epsilon)
         #[method(encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:inputVelocityVectors:maximumVelocityVectors:resultState:)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationState_inputMomentumVectors_inputVelocityVectors_maximumVelocityVectors_resultState(
             &self,
@@ -756,6 +1426,35 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode an MPSNNOptimizerAdam object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `batchNormalizationGradientState`: A valid MPSCNNBatchNormalizationState object which specifies the input state with gradients for this update.
+        ///
+        /// Parameter `batchNormalizationSourceState`: A valid MPSCNNBatchNormalizationState object which specifies the input state with original gamma/beta for this update.
+        ///
+        /// Parameter `inputMomentumVectors`: An array MPSVector object which specifies the gradient momentum vectors which will
+        /// be updated and overwritten. The index 0 corresponds to gamma, index 1 corresponds to beta, array can be of
+        /// size 1 in which case beta won't be updated
+        ///
+        /// Parameter `inputVelocityVectors`: An array MPSVector object which specifies the gradient velocity vectors which will
+        /// be updated and overwritten. The index 0 corresponds to gamma, index 1 corresponds to beta, array can be of
+        /// size 1 in which case beta won't be updated
+        ///
+        /// Parameter `resultState`: A valid MPSCNNNormalizationGammaAndBetaState object which specifies the resultValues state which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        ///
+        /// t = t + 1
+        /// lr[t] = learningRate * sqrt(1 - beta2^t) / (1 - beta1^t)
+        ///
+        /// m[t]     = beta1 * m[t-1] + (1 - beta1) * g
+        /// v[t]     = beta2 * v[t-1] + (1 - beta2) * (g ^ 2)
+        /// variable = variable - lr[t] * m[t] / (sqrt(v[t]) + epsilon)
         #[method(encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:inputVelocityVectors:resultState:)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationGradientState_batchNormalizationSourceState_inputMomentumVectors_inputVelocityVectors_resultState(
             &self,
@@ -774,6 +1473,40 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Encode an AMSGrad variant of MPSNNOptimizerAdam object to a command buffer to perform out of place update
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        /// Parameter `batchNormalizationGradientState`: A valid MPSCNNBatchNormalizationState object which specifies the input state with gradients for this update.
+        ///
+        /// Parameter `batchNormalizationSourceState`: A valid MPSCNNBatchNormalizationState object which specifies the input state with original gamma/beta for this update.
+        ///
+        /// Parameter `inputMomentumVectors`: An array MPSVector object which specifies the gradient momentum vectors which will
+        /// be updated and overwritten. The index 0 corresponds to gamma, index 1 corresponds to beta, array can be of
+        /// size 1 in which case beta won't be updated
+        ///
+        /// Parameter `inputVelocityVectors`: An array MPSVector object which specifies the gradient velocity vectors which will
+        /// be updated and overwritten. The index 0 corresponds to gamma, index 1 corresponds to beta, array can be of
+        /// size 1 in which case beta won't be updated
+        ///
+        /// Parameter `maximumVelocityVectors`: An array MPSVector object which specifies the maximum velocity vectors which will
+        /// be updated and overwritten. The index 0 corresponds to weights, index 1 corresponds to biases, array can be of
+        /// size 1 in which case biases won't be updated. May be nil, if nil then normal Adam optimizer behaviour is followed.
+        ///
+        /// Parameter `resultState`: A valid MPSCNNNormalizationGammaAndBetaState object which specifies the resultValues state which will
+        /// be updated and overwritten.
+        ///
+        ///
+        /// The following operations would be applied
+        /// At update time:
+        /// t = t + 1
+        /// lr[t] = learningRate * sqrt(1 - beta2^t) / (1 - beta1^t)
+        ///
+        /// m[t]     = beta1 * m[t-1] + (1 - beta1) * g
+        /// v[t]     = beta2 * v[t-1] + (1 - beta2) * (g ^ 2)
+        /// maxVel[t] = max(maxVel[t-1],v[t])
+        /// variable = variable - lr[t] * m[t] / (sqrt(maxVel[t]) + epsilon)
         #[method(encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:inputVelocityVectors:maximumVelocityVectors:resultState:)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationGradientState_batchNormalizationSourceState_inputMomentumVectors_inputVelocityVectors_maximumVelocityVectors_resultState(
             &self,
@@ -792,12 +1525,33 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNNOptimizerAdam {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,

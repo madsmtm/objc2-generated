@@ -5,204 +5,329 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionport?language=objc)
+/// A port describes a specific type of audio input or output device or connector.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionport?language=objc)
 // NS_TYPED_ENUM
 pub type AVAudioSessionPort = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportcontinuitymicrophone?language=objc)
+    /// Continuity microphone for appletv.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportcontinuitymicrophone?language=objc)
     pub static AVAudioSessionPortContinuityMicrophone: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportlinein?language=objc)
+    /// Line level input on a dock connector
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportlinein?language=objc)
     pub static AVAudioSessionPortLineIn: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbuiltinmic?language=objc)
+    /// Built-in microphone on an iOS device
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbuiltinmic?language=objc)
     pub static AVAudioSessionPortBuiltInMic: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportheadsetmic?language=objc)
+    /// Microphone on a wired headset.  Headset refers to an accessory that has headphone outputs paired with a
+    /// microphone.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportheadsetmic?language=objc)
     pub static AVAudioSessionPortHeadsetMic: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportlineout?language=objc)
+    /// Line level output on a dock connector
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportlineout?language=objc)
     pub static AVAudioSessionPortLineOut: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportheadphones?language=objc)
+    /// Headphone or headset output
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportheadphones?language=objc)
     pub static AVAudioSessionPortHeadphones: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbluetootha2dp?language=objc)
+    /// Output on a Bluetooth A2DP device
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbluetootha2dp?language=objc)
     pub static AVAudioSessionPortBluetoothA2DP: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbuiltinreceiver?language=objc)
+    /// The speaker you hold to your ear when on a phone call
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbuiltinreceiver?language=objc)
     pub static AVAudioSessionPortBuiltInReceiver: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbuiltinspeaker?language=objc)
+    /// Built-in speaker on an iOS device
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbuiltinspeaker?language=objc)
     pub static AVAudioSessionPortBuiltInSpeaker: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionporthdmi?language=objc)
+    /// Output via High-Definition Multimedia Interface
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionporthdmi?language=objc)
     pub static AVAudioSessionPortHDMI: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportairplay?language=objc)
+    /// Output on a remote Air Play device
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportairplay?language=objc)
     pub static AVAudioSessionPortAirPlay: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbluetoothle?language=objc)
+    /// Output on a Bluetooth Low Energy device
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbluetoothle?language=objc)
     pub static AVAudioSessionPortBluetoothLE: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbluetoothhfp?language=objc)
+    /// Input or output on a Bluetooth Hands-Free Profile device
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportbluetoothhfp?language=objc)
     pub static AVAudioSessionPortBluetoothHFP: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportusbaudio?language=objc)
+    /// Input or output on a Universal Serial Bus device
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportusbaudio?language=objc)
     pub static AVAudioSessionPortUSBAudio: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportcaraudio?language=objc)
+    /// Input or output via Car Audio
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportcaraudio?language=objc)
     pub static AVAudioSessionPortCarAudio: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportvirtual?language=objc)
+    /// Input or output that does not correspond to real audio hardware
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportvirtual?language=objc)
     pub static AVAudioSessionPortVirtual: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportpci?language=objc)
+    /// Input or output connected via the PCI (Peripheral Component Interconnect) bus
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportpci?language=objc)
     pub static AVAudioSessionPortPCI: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportfirewire?language=objc)
+    /// Input or output connected via FireWire
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportfirewire?language=objc)
     pub static AVAudioSessionPortFireWire: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportdisplayport?language=objc)
+    /// Input or output connected via DisplayPort
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportdisplayport?language=objc)
     pub static AVAudioSessionPortDisplayPort: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportavb?language=objc)
+    /// Input or output connected via AVB (Audio Video Bridging)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportavb?language=objc)
     pub static AVAudioSessionPortAVB: Option<&'static AVAudioSessionPort>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportthunderbolt?language=objc)
+    /// Input or output connected via Thunderbolt
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportthunderbolt?language=objc)
     pub static AVAudioSessionPortThunderbolt: Option<&'static AVAudioSessionPort>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategory?language=objc)
+/// A category defines a broad set of behaviors for a session.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategory?language=objc)
 // NS_TYPED_ENUM
 pub type AVAudioSessionCategory = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryambient?language=objc)
+    /// Use this category for background sounds such as rain, car engine noise, etc.
+    /// Mixes with other music.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryambient?language=objc)
     pub static AVAudioSessionCategoryAmbient: Option<&'static AVAudioSessionCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategorysoloambient?language=objc)
+    /// Use this category for background sounds.  Other music will stop playing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategorysoloambient?language=objc)
     pub static AVAudioSessionCategorySoloAmbient: Option<&'static AVAudioSessionCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryplayback?language=objc)
+    /// Use this category for music tracks.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryplayback?language=objc)
     pub static AVAudioSessionCategoryPlayback: Option<&'static AVAudioSessionCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryrecord?language=objc)
+    /// Use this category when recording audio.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryrecord?language=objc)
     pub static AVAudioSessionCategoryRecord: Option<&'static AVAudioSessionCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryplayandrecord?language=objc)
+    /// Use this category when recording and playing back audio.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryplayandrecord?language=objc)
     pub static AVAudioSessionCategoryPlayAndRecord: Option<&'static AVAudioSessionCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryaudioprocessing?language=objc)
+    /// Use this category when using a hardware codec or signal processor while
+    /// not playing or recording audio.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryaudioprocessing?language=objc)
     pub static AVAudioSessionCategoryAudioProcessing: Option<&'static AVAudioSessionCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategorymultiroute?language=objc)
+    /// Use this category to customize the usage of available audio accessories and built-in audio hardware.
+    /// For example, this category provides an application with the ability to use an available USB output
+    /// and headphone output simultaneously for separate, distinct streams of audio data. Use of
+    /// this category by an application requires a more detailed knowledge of, and interaction with,
+    /// the capabilities of the available audio routes.  May be used for input, output, or both.
+    /// Note that not all output types and output combinations are eligible for multi-route.  Input is limited
+    /// to the last-in input port. Eligible inputs consist of the following:
+    /// AVAudioSessionPortUSBAudio, AVAudioSessionPortHeadsetMic, and AVAudioSessionPortBuiltInMic.
+    /// Eligible outputs consist of the following:
+    /// AVAudioSessionPortUSBAudio, AVAudioSessionPortLineOut, AVAudioSessionPortHeadphones, AVAudioSessionPortHDMI,
+    /// and AVAudioSessionPortBuiltInSpeaker.
+    /// Note that AVAudioSessionPortBuiltInSpeaker is only allowed to be used when there are no other eligible
+    /// outputs connected.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategorymultiroute?language=objc)
     pub static AVAudioSessionCategoryMultiRoute: Option<&'static AVAudioSessionCategory>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmode?language=objc)
+/// Modes modify the audio category in order to introduce behavior that is tailored to the specific
+/// use of audio within an application.  Available in iOS 5.0 and greater.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmode?language=objc)
 // NS_TYPED_ENUM
 pub type AVAudioSessionMode = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodedefault?language=objc)
+    /// The default mode
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodedefault?language=objc)
     pub static AVAudioSessionModeDefault: Option<&'static AVAudioSessionMode>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodevoicechat?language=objc)
+    /// Only valid with AVAudioSessionCategoryPlayAndRecord.  Appropriate for Voice over IP
+    /// (VoIP) applications.  Reduces the number of allowable audio routes to be only those
+    /// that are appropriate for VoIP applications and may engage appropriate system-supplied
+    /// signal processing.  Has the side effect of setting AVAudioSessionCategoryOptionAllowBluetooth.
+    /// Using this mode without the VoiceProcessing IO unit or AVAudioEngine with voice processing enabled will result in the following:
+    /// - Chat-specific signal processing such as echo cancellation or automatic gain correction will not be loaded
+    /// - Dynamic processing on input and output will be disabled resulting in a lower output playback level.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodevoicechat?language=objc)
     pub static AVAudioSessionModeVoiceChat: Option<&'static AVAudioSessionMode>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodegamechat?language=objc)
+    /// Set by Game Kit on behalf of an application that uses a GKVoiceChat object; valid
+    /// only with the AVAudioSessionCategoryPlayAndRecord category.
+    /// Do not set this mode directly. If you need similar behavior and are not using
+    /// a GKVoiceChat object, use AVAudioSessionModeVoiceChat instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodegamechat?language=objc)
     pub static AVAudioSessionModeGameChat: Option<&'static AVAudioSessionMode>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodevideorecording?language=objc)
+    /// Only valid with AVAudioSessionCategoryPlayAndRecord or AVAudioSessionCategoryRecord.
+    /// Modifies the audio routing options and may engage appropriate system-supplied signal processing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodevideorecording?language=objc)
     pub static AVAudioSessionModeVideoRecording: Option<&'static AVAudioSessionMode>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodemeasurement?language=objc)
+    /// Appropriate for applications that wish to minimize the effect of system-supplied signal
+    /// processing for input and/or output audio signals.
+    /// This mode disables some dynamics processing on input and output resulting in a lower output playback level.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodemeasurement?language=objc)
     pub static AVAudioSessionModeMeasurement: Option<&'static AVAudioSessionMode>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodemovieplayback?language=objc)
+    /// Appropriate for applications playing movie content. Only valid with AVAudioSessionCategoryPlayback.
+    /// Setting this mode engages appropriate output signal processing for movie playback scenarios.
+    /// Content using this mode is eligible for Enhance Dialogue processing on supported routes with capable hardware
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodemovieplayback?language=objc)
     pub static AVAudioSessionModeMoviePlayback: Option<&'static AVAudioSessionMode>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodevideochat?language=objc)
+    /// Only valid with kAudioSessionCategory_PlayAndRecord. Reduces the number of allowable audio
+    /// routes to be only those that are appropriate for video chat applications. May engage appropriate
+    /// system-supplied signal processing.  Has the side effect of setting
+    /// AVAudioSessionCategoryOptionAllowBluetooth and AVAudioSessionCategoryOptionDefaultToSpeaker.
+    /// Using this mode without the VoiceProcessing IO unit or AVAudioEngine with voice processing enabled will result in the following:
+    /// - Chat-specific signal processing such as echo cancellation or automatic gain correction will not be loaded
+    /// - Dynamic processing on input and output will be disabled resulting in a lower output playback level.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodevideochat?language=objc)
     pub static AVAudioSessionModeVideoChat: Option<&'static AVAudioSessionMode>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodespokenaudio?language=objc)
+    /// Appropriate for applications which play spoken audio and wish to be paused (via audio session interruption) rather than ducked
+    /// if another app (such as a navigation app) plays a spoken audio prompt.  Examples of apps that would use this are podcast players and
+    /// audio books.  For more information, see the related category option AVAudioSessionCategoryOptionInterruptSpokenAudioAndMixWithOthers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodespokenaudio?language=objc)
     pub static AVAudioSessionModeSpokenAudio: Option<&'static AVAudioSessionMode>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodevoiceprompt?language=objc)
+    /// Appropriate for applications which play audio using text to speech. Setting this mode allows for different routing behaviors when
+    /// connected to certain audio devices such as CarPlay. An example of an app that would use this mode is a turn by turn navigation app that
+    /// plays short prompts to the user. Typically, these same types of applications would also configure their session to use
+    /// AVAudioSessionCategoryOptionDuckOthers and AVAudioSessionCategoryOptionInterruptSpokenAudioAndMixWithOthers
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodevoiceprompt?language=objc)
     pub static AVAudioSessionModeVoicePrompt: Option<&'static AVAudioSessionMode>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionactivationoptions?language=objc)
+/// For use with activateWithOptions:completionHandler:
+///
+/// Reserved for future use. Added in watchOS 5.0.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionactivationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -221,14 +346,19 @@ unsafe impl RefEncode for AVAudioSessionActivationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportoverride?language=objc)
+/// For use with overrideOutputAudioPort:error:
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportoverride?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioSessionPortOverride(pub NSUInteger);
 impl AVAudioSessionPortOverride {
+    /// No override.  Return audio routing to the default state for the current audio category.
     #[doc(alias = "AVAudioSessionPortOverrideNone")]
     pub const None: Self = Self(0);
+    /// Route audio output to speaker.  Use this override with AVAudioSessionCategoryPlayAndRecord,
+    /// which by default routes the output to the receiver.
     #[doc(alias = "AVAudioSessionPortOverrideSpeaker")]
     pub const Speaker: Self = Self(0x73706b72);
 }
@@ -241,26 +371,42 @@ unsafe impl RefEncode for AVAudioSessionPortOverride {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangereason?language=objc)
+/// Values for AVAudioSessionRouteChangeReasonKey in AVAudioSessionRouteChangeNotification's
+/// userInfo dictionary
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangereason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioSessionRouteChangeReason(pub NSUInteger);
 impl AVAudioSessionRouteChangeReason {
+    /// The reason is unknown.
     #[doc(alias = "AVAudioSessionRouteChangeReasonUnknown")]
     pub const Unknown: Self = Self(0);
+    /// A new device became available (e.g. headphones have been plugged in).
     #[doc(alias = "AVAudioSessionRouteChangeReasonNewDeviceAvailable")]
     pub const NewDeviceAvailable: Self = Self(1);
+    /// The old device became unavailable (e.g. headphones have been unplugged).
     #[doc(alias = "AVAudioSessionRouteChangeReasonOldDeviceUnavailable")]
     pub const OldDeviceUnavailable: Self = Self(2);
+    /// The audio category has changed (e.g. AVAudioSessionCategoryPlayback has been changed to
+    /// AVAudioSessionCategoryPlayAndRecord).
     #[doc(alias = "AVAudioSessionRouteChangeReasonCategoryChange")]
     pub const CategoryChange: Self = Self(3);
+    /// The route has been overridden (e.g. category is AVAudioSessionCategoryPlayAndRecord and
+    /// the output has been changed from the receiver, which is the default, to the speaker).
     #[doc(alias = "AVAudioSessionRouteChangeReasonOverride")]
     pub const Override: Self = Self(4);
+    /// The device woke from sleep.
     #[doc(alias = "AVAudioSessionRouteChangeReasonWakeFromSleep")]
     pub const WakeFromSleep: Self = Self(6);
+    /// Returned when there is no route for the current category (for instance, the category is
+    /// AVAudioSessionCategoryRecord but no input device is available).
     #[doc(alias = "AVAudioSessionRouteChangeReasonNoSuitableRouteForCategory")]
     pub const NoSuitableRouteForCategory: Self = Self(7);
+    /// Indicates that the set of input and/our output ports has not changed, but some aspect of
+    /// their configuration has changed.  For example, a port's selected data source has changed.
+    /// (Introduced in iOS 7.0, watchOS 2.0, tvOS 9.0).
     #[doc(alias = "AVAudioSessionRouteChangeReasonRouteConfigurationChange")]
     pub const RouteConfigurationChange: Self = Self(8);
 }
@@ -273,7 +419,150 @@ unsafe impl RefEncode for AVAudioSessionRouteChangeReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryoptions?language=objc)
+/// Customization of various aspects of a category's behavior. Use with
+/// setCategory:mode:options:error:.
+///
+/// Applications must be prepared for changing category options to fail as behavior may change
+/// in future releases. If an application changes its category, it should reassert the options,
+/// since they are not sticky across category changes. Introduced in iOS 6.0 / watchOS 2.0 /
+/// tvOS 9.0.
+///
+///
+/// Controls whether other active audio apps will be interrupted or mixed with when your app's
+/// audio session goes active. Details depend on the category.
+///
+/// AVAudioSessionCategoryPlayAndRecord or AVAudioSessionCategoryMultiRoute:
+/// MixWithOthers defaults to false, but can be set to true, allowing other applications to
+/// play in the background while your app has both audio input and output enabled.
+///
+/// AVAudioSessionCategoryPlayback:
+/// MixWithOthers defaults to false, but can be set to true, allowing other applications to
+/// play in the background. Your app will still be able to play regardless of the setting
+/// of the ringer switch.
+///
+/// Other categories:
+/// MixWithOthers defaults to false and cannot be changed.
+///
+/// MixWithOthers is only valid with AVAudioSessionCategoryPlayAndRecord,
+/// AVAudioSessionCategoryPlayback, and AVAudioSessionCategoryMultiRoute.
+///
+///
+/// Controls whether or not other active audio apps will be ducked when when your app's audio
+/// session goes active. An example of this is a workout app, which provides periodic updates to
+/// the user. It reduces the volume of any music currently being played while it provides its
+/// status.
+///
+/// Defaults to off. Note that the other audio will be ducked for as long as the current session
+/// is active. You will need to deactivate your audio session when you want to restore full
+/// volume playback (un-duck) other sessions.
+///
+/// Setting this option will also make your session mixable with others
+/// (AVAudioSessionCategoryOptionMixWithOthers will be set).
+///
+/// DuckOthers is only valid with AVAudioSessionCategoryAmbient,
+/// AVAudioSessionCategoryPlayAndRecord, AVAudioSessionCategoryPlayback, and
+/// AVAudioSessionCategoryMultiRoute.
+///
+///
+/// Allows an application to change the default behavior of some audio session categories with
+/// regard to whether Bluetooth Hands-Free Profile (HFP) devices are available for routing. The
+/// exact behavior depends on the category.
+///
+/// AVAudioSessionCategoryPlayAndRecord:
+/// AllowBluetooth defaults to false, but can be set to true, allowing a paired bluetooth
+/// HFP device to appear as an available route for input, while playing through the
+/// category-appropriate output.
+///
+/// AVAudioSessionCategoryRecord:
+/// AllowBluetooth defaults to false, but can be set to true, allowing a paired Bluetooth
+/// HFP device to appear as an available route for input
+///
+/// Other categories:
+/// AllowBluetooth defaults to false and cannot be changed. Enabling Bluetooth for input in
+/// these categories is not allowed.
+///
+///
+/// Allows an application to change the default behavior of some audio session categories with
+/// regard to the audio route. The exact behavior depends on the category.
+///
+/// AVAudioSessionCategoryPlayAndRecord:
+/// DefaultToSpeaker will default to false, but can be set to true, routing to Speaker
+/// (instead of Receiver) when no other audio route is connected.
+///
+/// Other categories:
+/// DefaultToSpeaker is always false and cannot be changed.
+///
+///
+/// When a session with InterruptSpokenAudioAndMixWithOthers set goes active, then if there is
+/// another playing app whose session mode is AVAudioSessionModeSpokenAudio (for podcast
+/// playback in the background, for example), then the spoken-audio session will be
+/// interrupted. A good use of this is for a navigation app that provides prompts to its user:
+/// it pauses any spoken audio currently being played while it plays the prompt.
+///
+/// InterruptSpokenAudioAndMixWithOthers defaults to off. Note that the other app's audio will
+/// be paused for as long as the current session is active. You will need to deactivate your
+/// audio session to allow the other session to resume playback. Setting this option will also
+/// make your category mixable with others (AVAudioSessionCategoryOptionMixWithOthers will be
+/// set). If you want other non-spoken audio apps to duck their audio when your app's session
+/// goes active, also set AVAudioSessionCategoryOptionDuckOthers.
+///
+/// Only valid with AVAudioSessionCategoryPlayAndRecord, AVAudioSessionCategoryPlayback, and
+/// AVAudioSessionCategoryMultiRoute. Introduced in iOS 9.0 / watchOS 2.0 / tvOS 9.0.
+///
+///
+/// Allows an application to change the default behavior of some audio session categories with
+/// regard to whether Bluetooth Advanced Audio Distribution Profile (A2DP) devices are
+/// available for routing. The exact behavior depends on the category.
+///
+/// AVAudioSessionCategoryPlayAndRecord:
+/// AllowBluetoothA2DP defaults to false, but can be set to true, allowing a paired
+/// Bluetooth A2DP device to appear as an available route for output, while recording
+/// through the category-appropriate input.
+///
+/// AVAudioSessionCategoryMultiRoute and AVAudioSessionCategoryRecord:
+/// AllowBluetoothA2DP is false, and cannot be set to true.
+///
+/// Other categories:
+/// AllowBluetoothA2DP is always implicitly true and cannot be changed; Bluetooth A2DP ports
+/// are always supported in output-only categories.
+///
+/// Setting both AVAudioSessionCategoryOptionAllowBluetooth and
+/// AVAudioSessionCategoryOptionAllowBluetoothA2DP is allowed. In cases where a single
+/// Bluetooth device supports both HFP and A2DP, the HFP ports will be given a higher priority
+/// for routing. For HFP and A2DP ports on separate hardware devices, the last-in wins rule
+/// applies.
+///
+/// Introduced in iOS 10.0 / watchOS 3.0 / tvOS 10.0.
+///
+///
+/// Allows an application to change the default behavior of some audio session categories
+/// with regard to showing AirPlay devices as available routes. This option applies to
+/// various categories in the same way as AVAudioSessionCategoryOptionAllowBluetoothA2DP;
+/// see above for details.
+///
+/// Only valid with AVAudioSessionCategoryPlayAndRecord. Introduced in iOS 10.0 / tvOS 10.0.
+///
+///
+/// Some devices include a privacy feature that mutes the built-in microphone at a hardware level
+/// under certain conditions e.g. when the Smart Folio of an iPad is closed. The default behavior is
+/// to interrupt the session using the built-in microphone when that microphone is muted in hardware.
+/// This option allows an application to opt out of the default behavior if it is using a category that
+/// supports both input and output, such as AVAudioSessionCategoryPlayAndRecord, and wants to
+/// allow its session to stay activated even when the microphone has been muted. The result would be
+/// that playback continues as normal, and microphone sample buffers would continue to be produced
+/// but all microphone samples would have a value of zero.
+///
+/// This may be useful if an application knows that it wants to allow playback to continue and
+/// recording/monitoring a muted microphone will not lead to a poor user experience. Attempting to use
+/// this option with a session category that doesn't support the use of audio input will result in an error.
+///
+/// Note that under the default policy, a session will be interrupted if it is running input at the time when
+/// the microphone is muted in hardware. Similarly, attempting to start input when the microphone is
+/// muted will fail.
+/// Note that this option has no relation to the recordPermission property, which indicates whether or
+/// not the user has granted permission to use microphone input.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -299,14 +588,19 @@ unsafe impl RefEncode for AVAudioSessionCategoryOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptiontype?language=objc)
+/// Values for AVAudioSessionInterruptionTypeKey in AVAudioSessionInterruptionNotification's
+/// userInfo dictionary.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioSessionInterruptionType(pub NSUInteger);
 impl AVAudioSessionInterruptionType {
+    /// the system has interrupted your audio session
     #[doc(alias = "AVAudioSessionInterruptionTypeBegan")]
     pub const Began: Self = Self(1);
+    /// the interruption has ended
     #[doc(alias = "AVAudioSessionInterruptionTypeEnded")]
     pub const Ended: Self = Self(0);
 }
@@ -319,13 +613,17 @@ unsafe impl RefEncode for AVAudioSessionInterruptionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionoptions?language=objc)
+/// Values for AVAudioSessionInterruptionOptionKey in AVAudioSessionInterruptionNotification's
+/// userInfo dictionary.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioSessionInterruptionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSessionInterruptionOptions: NSUInteger {
+/// Indicates that you should resume playback now that the interruption has ended.
         const AVAudioSessionInterruptionOptionShouldResume = 1;
     }
 }
@@ -338,7 +636,25 @@ unsafe impl RefEncode for AVAudioSessionInterruptionOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionreason?language=objc)
+/// Values for AVAudioSessionInterruptionReasonKey in AVAudioSessionInterruptionNotification's userInfo dictionary.
+///
+///
+/// The audio session was interrupted because another session was activated.
+///
+///
+/// The audio session was interrupted due to the app being suspended by the operating sytem.
+/// Deprecated. Interruption notifications with reason 'wasSuspended' not present from iOS 16 onwards.
+///
+///
+/// The audio session was interrupted due to the built-in mic being muted e.g. due to an iPad's Smart Folio being closed.
+///
+///
+/// The audio session was interrupted due to route getting disconnected.
+///
+///
+/// The audio session was interrupted due to device being doffed or locked.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -351,6 +667,7 @@ impl AVAudioSessionInterruptionReason {
     pub const AppWasSuspended: Self = Self(1);
     #[doc(alias = "AVAudioSessionInterruptionReasonBuiltInMicMuted")]
     pub const BuiltInMicMuted: Self = Self(2);
+    /// The audio session was interrupted because route was disconnected.
     #[doc(alias = "AVAudioSessionInterruptionReasonRouteDisconnected")]
     pub const RouteDisconnected: Self = Self(4);
 }
@@ -363,13 +680,17 @@ unsafe impl RefEncode for AVAudioSessionInterruptionReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsetactiveoptions?language=objc)
+/// options for use when calling setActive:withOptions:error:
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsetactiveoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioSessionSetActiveOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSessionSetActiveOptions: NSUInteger {
+/// Notify an interrupted app that the interruption has ended and it may resume playback. Only
+/// valid on session deactivation.
         const AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation = 1;
     }
 }
@@ -382,14 +703,20 @@ unsafe impl RefEncode for AVAudioSessionSetActiveOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsilencesecondaryaudiohinttype?language=objc)
+/// Values for AVAudioSessionSilenceSecondaryAudioHintTypeKey in
+/// AVAudioSessionSilenceSecondaryAudioHintNotification's userInfo dictionary, to indicate whether
+/// optional secondary audio muting should begin or end.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsilencesecondaryaudiohinttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioSessionSilenceSecondaryAudioHintType(pub NSUInteger);
 impl AVAudioSessionSilenceSecondaryAudioHintType {
+    /// Another application's primary audio has started.
     #[doc(alias = "AVAudioSessionSilenceSecondaryAudioHintTypeBegin")]
     pub const Begin: Self = Self(1);
+    /// Another application's primary audio has stopped.
     #[doc(alias = "AVAudioSessionSilenceSecondaryAudioHintTypeEnd")]
     pub const End: Self = Self(0);
 }
@@ -402,7 +729,46 @@ unsafe impl RefEncode for AVAudioSessionSilenceSecondaryAudioHintType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioniotype?language=objc)
+/// Values to be used by setAggregatedIOPreference:error: method.
+///
+/// Starting in iOS 10, applications that use AVCaptureSession on iPads and iPhones that
+/// support taking Live Photos, will have non-aggregated audio I/O unless the app opts out by
+/// setting its AVAudioSessionIOType to Aggregated. Non-aggregated audio I/O means that separate
+/// threads will be used to service audio I/O for input and output directions.
+///
+/// Note that in cases where the I/O is not aggregated, the sample rate and IO buffer duration
+/// properties will map to the output audio device. In this scenario, the input and
+/// output audio hardware may be running at different sample rates and with different IO buffer
+/// durations. If your app requires input and output audio to be presented in the same realtime
+/// I/O callback, or requires that input and output audio have the same sample rate or IO buffer
+/// duration, or if your app requires the ability to set a preferred sample rate or IO buffer duration
+/// for audio input, set the AVAudioSessionIOType to Aggregated.
+///
+/// Apps that don't use AVCaptureSession and use AVAudioSessionCategoryPlayAndRecord will continue
+/// to have aggregated audio I/O, as in previous versions of iOS.
+///
+///
+/// The default value.  If your app does not use AVCaptureSession or does not have any specific
+/// requirement for aggregating input and output audio in the same realtime I/O callback, use this
+/// value. Note that if your app does not use AVCaptureSession, it will get aggregated I/O when using
+/// AVAudioSessionCategoryPlayAndRecord.
+///
+/// If your app does utilize AVCaptureSession, use of this value will allow AVCaptureSession to
+/// start recording without glitching already running output audio and will allow the system to
+/// utilize power-saving optimizations.
+///
+///
+/// Use this value if your session uses AVAudioSessionCategoryPlayAndRecord and requires input and
+/// output audio to be presented in the same realtime I/O callback. For example, if your app will be using
+/// a RemoteIO with both input and output enabled.
+///
+/// Note that your session's preference to use aggregated IO will not be honored if it specifies
+/// AVAudioSessionCategoryOptionMixWithOthers AND another app's audio session was already active
+/// with non-mixable, non-aggregated input/output.
+///
+/// Added in iOS 10.0. Not applicable on watchos, tvos, macos.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioniotype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -422,7 +788,40 @@ unsafe impl RefEncode for AVAudioSessionIOType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutesharingpolicy?language=objc)
+/// Starting in iOS 11, tvOS 11, and watchOS 5, the route sharing policy allows a session
+/// to specify that its output audio should be routed somewhere other than the default system output,
+/// when appropriate alternative routes are available.
+///
+/// Follow normal rules for routing audio output.
+///
+/// Route output to the shared long-form audio output. A session whose primary use case is as a
+/// music or podcast player may use this value to play to the same output as the built-in Music (iOS),
+/// Podcasts, or iTunes (macOS) applications. Typically applications that use this policy will also
+/// want sign up for remote control events as documented in “Event Handling Guide for UIKit Apps”
+/// and will want to utilize MediaPlayer framework’s MPNowPlayingInfoCenter class. All applications
+/// on the system that use the long-form audio route sharing policy will have their audio routed to the
+/// same location.
+/// Apps running on watchOS using this policy will also be able to play audio in the background,
+/// as long as an eligible audio route can be activated. Apps running on watchOS using this policy
+/// must use -activateWithOptions:completionHandler: instead of -setActive:withOptions:error: in
+/// order to ensure that the user will be given the opportunity to pick an appropriate audio route
+/// in cases where the system is unable to automatically pick the route.
+///
+/// Deprecated. Replaced by AVAudioSessionRouteSharingPolicyLongFormAudio.
+///
+/// Applications should not attempt to set this value directly. On iOS, this value will be set by
+/// the system in cases where route picker UI is used to direct video to a wireless route.
+///
+/// Route output to the shared long-form video output. A session whose primary use case is as a
+/// movie or other long-form video content player may use this value to play to the same output as
+/// other long-form video content applications such as the built-in TV (iOS) application. Applications
+/// that use this policy will also want to also set the AVInitialRouteSharingPolicy key
+/// in their Info.plist to "LongFormVideo". All applications on the system that use the long-form video
+/// route sharing policy will have their audio and video routed to the same location (e.g. AppleTV when
+/// an AirPlay route is selected). Video content not using this route sharing policy will remain local
+/// to the playback device even when long form video content is being routed to AirPlay.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutesharingpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -449,7 +848,23 @@ unsafe impl RefEncode for AVAudioSessionRouteSharingPolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionpromptstyle?language=objc)
+/// The prompt style is a hint to sessions that use AVAudioSessionModeVoicePrompt to modify the type of
+/// prompt they play in response to other audio activity on the system, such as Siri or phone calls.
+/// Sessions that issue voice prompts are encouraged to pay attention to changes in the prompt style and
+/// modify their prompts in response. Apple encourages the use of non-verbal prompts when the Short
+/// style is requested.
+///
+/// Indicates that another session is actively using microphone input and would be negatively impacted
+/// by having prompts play at that time. For example if Siri is recognizing speech, having navigation or
+/// exercise prompts play, could interfere with its ability to accurately recognize the user’s speech.
+/// Client sessions should refrain from playing any prompts while the prompt style is None.
+///
+/// Indicates one of three states: Siri is active but not recording, voicemail playback is active, or
+/// voice call is active. Short, non-verbal versions of prompts should be used.
+///
+/// Indicates that normal (long, verbal) versions of prompts may be used.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionpromptstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -471,7 +886,20 @@ unsafe impl RefEncode for AVAudioSessionPromptStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiostereoorientation?language=objc)
+/// Constants indicating stereo input audio orientation, for use with built-in mic input data sources with a stereo polar pattern selected.
+///
+///
+/// Indicates that audio capture orientation is not applicable (on mono capture, for instance).
+///
+/// Indicates that audio capture should be oriented vertically, Lightning connector on the bottom.
+///
+/// Indicates that audio capture should be oriented vertically, Lightning connector on the top.
+///
+/// Indicates that audio capture should be oriented horizontally, Lightning connector on the right.
+///
+/// Indicates that audio capture should be oriented horizontally, Lightning connector on the left.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiostereoorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -497,7 +925,17 @@ unsafe impl RefEncode for AVAudioStereoOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrecordpermission?language=objc)
+/// These are the values returned by recordPermission.
+///
+/// The user has not yet been asked for permission.
+///
+/// The user has been asked and has denied permission.
+///
+/// The user has been asked and has granted permission.
+///
+/// Introduced: ios(8.0), watchos(4.0)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrecordpermission?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -528,16 +966,22 @@ unsafe impl RefEncode for AVAudioSessionRecordPermission {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioSessionRenderingMode(pub NSInteger);
 impl AVAudioSessionRenderingMode {
+    /// Default Mode when no asset is loaded or playing
     #[doc(alias = "AVAudioSessionRenderingModeNotApplicable")]
     pub const NotApplicable: Self = Self(0);
+    /// Default mode for non multi-channel cases
     #[doc(alias = "AVAudioSessionRenderingModeMonoStereo")]
     pub const MonoStereo: Self = Self(1);
+    /// Default mode for multi-channel cases that do not fall into the modes below
     #[doc(alias = "AVAudioSessionRenderingModeSurround")]
     pub const Surround: Self = Self(2);
+    /// Fallback mode if provided content is Dolby variant but hardware capabilities don't support it
     #[doc(alias = "AVAudioSessionRenderingModeSpatialAudio")]
     pub const SpatialAudio: Self = Self(3);
+    /// Dolby Audio mode
     #[doc(alias = "AVAudioSessionRenderingModeDolbyAudio")]
     pub const DolbyAudio: Self = Self(4);
+    /// Dolby Atmos mode
     #[doc(alias = "AVAudioSessionRenderingModeDolbyAtmos")]
     pub const DolbyAtmos: Self = Self(5);
 }
@@ -550,14 +994,23 @@ unsafe impl RefEncode for AVAudioSessionRenderingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectionmode?language=objc)
+/// Various modes to inject audio coming from a session to another app’s input stream
+///
+/// Applications can state their intent to mix locally generated audio, which should consist primarily of
+/// synthesized speech, to another app's input stream. This feature is intended to be used by accessibility apps
+/// implementing augmentative and alternative communication systems that enable users with disabilities to
+/// communicate with synthesized speech. When input is muted, microphone injection will also be muted.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectionmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioSessionMicrophoneInjectionMode(pub NSInteger);
 impl AVAudioSessionMicrophoneInjectionMode {
+    /// Default state, microphone injection is not preferred
     #[doc(alias = "AVAudioSessionMicrophoneInjectionModeNone")]
     pub const None: Self = Self(0);
+    /// Inject Spoken Audio, like synthesized speech, with microphone audio
     #[doc(alias = "AVAudioSessionMicrophoneInjectionModeSpokenAudio")]
     pub const SpokenAudio: Self = Self(1);
 }

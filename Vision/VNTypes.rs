@@ -46,16 +46,29 @@ unsafe impl RefEncode for VNImageCropAndScaleOption {
 pub type VNComputeStage = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vncomputestagemain?language=objc)
+    /// The stage of a request where the main functionality is being performed.
+    ///
+    /// All requests will have this compute stage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncomputestagemain?language=objc)
     pub static VNComputeStageMain: Option<&'static VNComputeStage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vncomputestagepostprocessing?language=objc)
+    /// A compute stage for additional analysis and/or conversion of the data produced by the `VNComputeStageMain`.
+    ///
+    /// This is an optional compute stage that some requests may expose.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncomputestagepostprocessing?language=objc)
     pub static VNComputeStagePostProcessing: Option<&'static VNComputeStage>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology?language=objc)
+/// Barcode symbologies that are supported by the Vision framework.
+///
+///
+/// The actual set of barcode symbologies that can actually be recognized by a specific version of the Vision framework should be determined by using the VNRequestNameSupportedBarcodeSymbologies request.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology?language=objc)
 // NS_TYPED_ENUM
 pub type VNBarcodeSymbology = NSString;
 
@@ -484,7 +497,9 @@ extern "C" {
         Option<&'static VNAnimalBodyPoseObservationJointsGroupName>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointname?language=objc)
+/// Human Body 3D Pose Joints that are suppported by Vision framework
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationjointname?language=objc)
 // NS_TYPED_ENUM
 pub type VNHumanBodyPose3DObservationJointName = VNRecognizedPointKey;
 

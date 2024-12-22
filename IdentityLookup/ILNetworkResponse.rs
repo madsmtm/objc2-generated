@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilnetworkresponse?language=objc)
+    /// A response to an HTTPS network request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilnetworkresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILNetworkResponse;
@@ -21,9 +23,11 @@ unsafe impl NSSecureCoding for ILNetworkResponse {}
 
 extern_methods!(
     unsafe impl ILNetworkResponse {
+        /// Represents the URL response itself. See documentation for NSHTTPURLResponse.
         #[method_id(@__retain_semantics Other urlResponse)]
         pub unsafe fn urlResponse(&self) -> Retained<NSHTTPURLResponse>;
 
+        /// Data returned in the HTTPS response.
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 

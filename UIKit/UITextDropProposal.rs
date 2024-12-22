@@ -95,24 +95,28 @@ extern_methods!(
         #[method(dropAction)]
         pub unsafe fn dropAction(&self) -> UITextDropAction;
 
+        /// Setter for [`dropAction`][Self::dropAction].
         #[method(setDropAction:)]
         pub unsafe fn setDropAction(&self, drop_action: UITextDropAction);
 
         #[method(dropProgressMode)]
         pub unsafe fn dropProgressMode(&self) -> UITextDropProgressMode;
 
+        /// Setter for [`dropProgressMode`][Self::dropProgressMode].
         #[method(setDropProgressMode:)]
         pub unsafe fn setDropProgressMode(&self, drop_progress_mode: UITextDropProgressMode);
 
         #[method(useFastSameViewOperations)]
         pub unsafe fn useFastSameViewOperations(&self) -> bool;
 
+        /// Setter for [`useFastSameViewOperations`][Self::useFastSameViewOperations].
         #[method(setUseFastSameViewOperations:)]
         pub unsafe fn setUseFastSameViewOperations(&self, use_fast_same_view_operations: bool);
 
         #[method(dropPerformer)]
         pub unsafe fn dropPerformer(&self) -> UITextDropPerformer;
 
+        /// Setter for [`dropPerformer`][Self::dropPerformer].
         #[method(setDropPerformer:)]
         pub unsafe fn setDropPerformer(&self, drop_performer: UITextDropPerformer);
     }

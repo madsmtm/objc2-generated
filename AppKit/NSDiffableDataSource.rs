@@ -265,6 +265,7 @@ extern_methods!(
             feature = "NSView",
             feature = "block2"
         ))]
+        /// Setter for [`supplementaryViewProvider`][Self::supplementaryViewProvider].
         #[method(setSupplementaryViewProvider:)]
         pub unsafe fn setSupplementaryViewProvider(
             &self,

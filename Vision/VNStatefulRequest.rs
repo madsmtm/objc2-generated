@@ -10,7 +10,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnstatefulrequest?language=objc)
+    /// A request that builds evidence over time by being reused on multiple images.
+    ///
+    /// The request requires the use of CMSampleBuffers with timestamps as input; otherwise, a VNErrorTimeStampNotFound error will be returned. VNStatefulRequest is used as a base class of other requests, so no objects of this class should be created directly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnstatefulrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -45,6 +49,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Create a new video-based stateful request.
+        ///
+        ///
+        /// Parameter `frameAnalysisSpacing`: The reciprocal of maximum rate at which buffers will be processed. The request will not process buffers that fall within the frameAnalysisSpacing after it has performed the analysis. The analysis is not done by wall time but by analysis of of the time stamps of the samplebuffers being processed.
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithFrameAnalysisSpacing:completionHandler:)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,
@@ -52,10 +62,16 @@ extern_methods!(
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        /// The minimum number of frames that the request has to process on before reporting back any observation. This information is provided by the request once initialized with its required paramters.
+        ///
+        /// Video based request often need a minimum number of frames before they can report back any observation. An example would be that a movement detection requires at least 5 frames to be detected. The minimumLatencyFrameCount for that request would report 5 and only after 5 frames have been processed an observation would be returned in the results. This latency is indicative of how responsive a request is in respect to the incoming data.
         #[method(minimumLatencyFrameCount)]
         pub unsafe fn minimumLatencyFrameCount(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The reciprocal of maximum rate at which buffers will be processed.
+        ///
+        /// The request will not process buffers that fall within the `frameAnalysisSpacing` after it has performed the analysis. The analysis is not done by wall time but by analysis of of the time stamps of the samplebuffers being processed.
         #[method(frameAnalysisSpacing)]
         pub unsafe fn frameAnalysisSpacing(&self) -> CMTime;
     }

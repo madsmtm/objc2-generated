@@ -45,6 +45,7 @@ extern_methods!(
         #[method(isModalInPopover)]
         pub unsafe fn isModalInPopover(&self) -> bool;
 
+        /// Setter for [`isModalInPopover`][Self::isModalInPopover].
         #[deprecated]
         #[method(setModalInPopover:)]
         pub unsafe fn setModalInPopover(&self, modal_in_popover: bool);
@@ -55,6 +56,7 @@ extern_methods!(
         pub unsafe fn contentSizeForViewInPopover(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentSizeForViewInPopover`][Self::contentSizeForViewInPopover].
         #[deprecated]
         #[method(setContentSizeForViewInPopover:)]
         pub unsafe fn setContentSizeForViewInPopover(

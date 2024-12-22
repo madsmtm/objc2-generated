@@ -12,7 +12,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/screcordingoutputconfiguration?language=objc)
+    /// SCRecordingOutputConfiguration
+    ///
+    /// SCRecordingOutputConfiguration is an object that encapsulates the configuration for recording.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/screcordingoutputconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCRecordingOutputConfiguration;
@@ -22,33 +26,42 @@ unsafe impl NSObjectProtocol for SCRecordingOutputConfiguration {}
 
 extern_methods!(
     unsafe impl SCRecordingOutputConfiguration {
+        /// Specifies output URL to save the recording.
         #[method_id(@__retain_semantics Other outputURL)]
         pub unsafe fn outputURL(&self) -> Retained<NSURL>;
 
+        /// Setter for [`outputURL`][Self::outputURL].
         #[method(setOutputURL:)]
         pub unsafe fn setOutputURL(&self, output_url: &NSURL);
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// Specifies video codec for the recording output, default is AVVideoCodecTypeH264, supported values can be obtained using availableVideoCodecTypes
         #[method_id(@__retain_semantics Other videoCodecType)]
         pub unsafe fn videoCodecType(&self) -> Retained<AVVideoCodecType>;
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// Setter for [`videoCodecType`][Self::videoCodecType].
         #[method(setVideoCodecType:)]
         pub unsafe fn setVideoCodecType(&self, video_codec_type: &AVVideoCodecType);
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// Specifies file type for the recording output, default is AVFileTypeMPEG4, supported values can be obtained using availableOutputFileTypes
         #[method_id(@__retain_semantics Other outputFileType)]
         pub unsafe fn outputFileType(&self) -> Retained<AVFileType>;
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// Setter for [`outputFileType`][Self::outputFileType].
         #[method(setOutputFileType:)]
         pub unsafe fn setOutputFileType(&self, output_file_type: &AVFileType);
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// Returns an array of supported video codec formats that can be specified in SCRecordingOutputConfiguration for videoCodecType
         #[method_id(@__retain_semantics Other availableVideoCodecTypes)]
         pub unsafe fn availableVideoCodecTypes(&self) -> Retained<NSArray<AVVideoCodecType>>;
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// Returns an array of supported file types that can be specified in SCRecordingOutputConfiguration for outputFileType
+        /// Provides the file types AVCaptureAudioFileOutput can write.
         #[method_id(@__retain_semantics Other availableOutputFileTypes)]
         pub unsafe fn availableOutputFileTypes(&self) -> Retained<NSArray<AVFileType>>;
     }
@@ -66,12 +79,26 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/screcordingoutputdelegate?language=objc)
+    /// Defines an interface for delegates of SCRecordingOutput to respond to events that occur in the process of recording to file.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/screcordingoutputdelegate?language=objc)
     pub unsafe trait SCRecordingOutputDelegate: NSObjectProtocol {
+        /// recordingOutputDidStartRecording:
+        ///
+        /// Parameter `recordingOutput`: the SCRecordingOutput object
+        ///
+        /// notifies the delegate that recording has succesfully started.
         #[optional]
         #[method(recordingOutputDidStartRecording:)]
         unsafe fn recordingOutputDidStartRecording(&self, recording_output: &SCRecordingOutput);
 
+        /// recordingOutput:didFailWithError:
+        ///
+        /// Parameter `recordingOutput`: the SCRecordingOutput object
+        ///
+        /// Parameter `error`: error describing why the recording failed.
+        ///
+        /// notifies the delegate that recording has failed with error associated.
         #[optional]
         #[method(recordingOutput:didFailWithError:)]
         unsafe fn recordingOutput_didFailWithError(
@@ -80,6 +107,9 @@ extern_protocol!(
             error: &NSError,
         );
 
+        /// recordingOutputDidFinishRecording:
+        ///
+        /// notifies the delegate that recording has finished successfully.
         #[optional]
         #[method(recordingOutputDidFinishRecording:)]
         unsafe fn recordingOutputDidFinishRecording(&self, recording_output: &SCRecordingOutput);
@@ -100,12 +130,21 @@ unsafe impl NSObjectProtocol for SCRecordingOutput {}
 extern_methods!(
     unsafe impl SCRecordingOutput {
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates current duration of recording to the output file.
         #[method(recordedDuration)]
         pub unsafe fn recordedDuration(&self) -> CMTime;
 
+        /// Indicates current size, in bytes, of the data recorded to the output file.
         #[method(recordedFileSize)]
         pub unsafe fn recordedFileSize(&self) -> NSInteger;
 
+        /// initialize SCRecordingOutput object with SCRecordingOutputConfiguration and SCRecordingOutputDelegate
+        ///
+        /// Parameter `recordingOutputConfiguration`: the requested recording configuration to be applied to the SCRecordingOutput
+        ///
+        /// Parameter `delegate`: object conforming SCRecordingOutputDelegate protocol. Clients must specify a delegate so that they can be notified about recording event.
+        ///
+        /// Client can create a SCRecordingOutput with this initializer and add to SCStream to record all captured media into one recording file given output url specified in recordingOutputConfig. The recording will be using H264 and file format is MPEG-4.
         #[method_id(@__retain_semantics Init initWithConfiguration:delegate:)]
         pub unsafe fn initWithConfiguration_delegate(
             this: Allocated<Self>,

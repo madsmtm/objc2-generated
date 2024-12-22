@@ -9,7 +9,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequestcomputationaccuracy?language=objc)
+/// The level of optical flow computational accuracy.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequestcomputationaccuracy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -34,7 +36,48 @@ unsafe impl RefEncode for VNTrackOpticalFlowRequestComputationAccuracy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest?language=objc)
+    /// `VNTrackOpticalFlowRequest` will determine directional change vectors for each pixel from a previous to current image, reporting this result with a single `VNPixelBufferObservation`.
+    ///
+    ///
+    /// Because this request works at the pixel level, both images must have the same dimensions in order for the request to be successfully performed.
+    /// Setting a region of interest will isolate where the change determination is performed; however, the resultant observation will still be reported
+    /// with a full resolution `VNPixelBufferObservation.
+    ///
+    /// Being a stateful request, at least two images must me processed in order to produce an observation.
+    ///
+    /// Optical flow requests are very resource intensive, so it is recommended that only one request at a time be created and that the handler
+    /// where the request was issued be released immediately after generating optical flows.
+    ///
+    /// Example usage:
+    ///
+    /// - (nullable VNPixelBufferObservation*) opticalFlowFromImage:(CVPixelBufferRef)fromImage toImage:(CVPixelBuffer)toImage error:(NSError**)error
+    /// {
+    /// VNTrackOpticalFlowRequest* request = [[VNTrackOpticalFlowRequest alloc] init];
+    ///
+    /// VNImageRequestHandler* imageRequestHandler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:fromImage options:
+    /// @
+    /// {}];
+    /// if (![imageRequestHandler performRequests:
+    /// @
+    /// [ request ] error:error])
+    /// {
+    /// return nil;
+    /// }
+    ///
+    /// imageRequestHandler = [[VNImageRequestHandler alloc] initWithCVPixelBuffer:toImage options:
+    /// @
+    /// {}];
+    /// if (![imageRequestHandler performRequests:
+    /// @
+    /// [ request ] error:error])
+    /// {
+    /// return nil;
+    /// }
+    ///
+    /// return [[request results] firstObject];
+    /// }
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest?language=objc)
     #[unsafe(super(VNStatefulRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
@@ -55,38 +98,55 @@ unsafe impl NSObjectProtocol for VNTrackOpticalFlowRequest {}
 extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNTrackOpticalFlowRequest {
+        /// Create a new request that can statefully track the optical from from one image to another.
+        ///
+        /// This is a convenience initializer for a frame analysis spacing of kCMTimeZero and a nil completion handler.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Create a new request that can statefully track the optical from from one image to another.
+        ///
+        /// This is a convenience initializer for a frame analysis spacing of kCMTimeZero.
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        /// The level of accuracy used to compute the optical flow. Default is VNTrackOpticalFlowRequestComputationAccuracyMedium.
+        ///
+        /// The computational time typically trends with the accuracy level.  This parameter allows for selective tuning by the client application.
         #[method(computationAccuracy)]
         pub unsafe fn computationAccuracy(&self) -> VNTrackOpticalFlowRequestComputationAccuracy;
 
+        /// Setter for [`computationAccuracy`][Self::computationAccuracy].
         #[method(setComputationAccuracy:)]
         pub unsafe fn setComputationAccuracy(
             &self,
             computation_accuracy: VNTrackOpticalFlowRequestComputationAccuracy,
         );
 
+        /// Pixel format type of the output buffer. Valid values are `kCVPixelFormatType_TwoComponent32Float` and `kCVPixelFormatType_TwoComponent16Half`.  Default is `kCVPixelFormatType_TwoComponent32Float`.
         #[method(outputPixelFormat)]
         pub unsafe fn outputPixelFormat(&self) -> OSType;
 
+        /// Setter for [`outputPixelFormat`][Self::outputPixelFormat].
         #[method(setOutputPixelFormat:)]
         pub unsafe fn setOutputPixelFormat(&self, output_pixel_format: OSType);
 
+        /// Setting this to `YES` will keep the raw pixel buffer coming from the the ML network. The default is `NO`.
+        ///
+        /// When set to `YES`, the outputPixelFormat is ignored.
         #[method(keepNetworkOutput)]
         pub unsafe fn keepNetworkOutput(&self) -> bool;
 
+        /// Setter for [`keepNetworkOutput`][Self::keepNetworkOutput].
         #[method(setKeepNetworkOutput:)]
         pub unsafe fn setKeepNetworkOutput(&self, keep_network_output: bool);
 
         #[cfg(feature = "VNObservation")]
+        /// VNPixelBufferObservation results.
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNPixelBufferObservation>>>;
     }
@@ -100,6 +160,12 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Create a new video-based stateful request.
+        ///
+        ///
+        /// Parameter `frameAnalysisSpacing`: The reciprocal of maximum rate at which buffers will be processed. The request will not process buffers that fall within the frameAnalysisSpacing after it has performed the analysis. The analysis is not done by wall time but by analysis of of the time stamps of the samplebuffers being processed.
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithFrameAnalysisSpacing:completionHandler:)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,

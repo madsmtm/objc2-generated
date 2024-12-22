@@ -178,6 +178,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// * Persistent representations. **
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPointCreateDictionaryRepresentation(point: CGPoint) -> CFDictionaryRef;
 }

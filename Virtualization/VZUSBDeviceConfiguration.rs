@@ -8,11 +8,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbdeviceconfiguration?language=objc)
+    /// Protocol for USB Device configuration.
+    ///
+    /// Classes that conform to this protocol represent hot-pluggable USB device configurations.
+    /// VZUSBDeviceConfiguration protocol should not be used with objects outside of Virtualization framework.
+    /// This protocol only describes capabilities of Virtualization framework objects.
+    ///
+    /// See: VZUSBMassStorageDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbdeviceconfiguration?language=objc)
     pub unsafe trait VZUSBDeviceConfiguration: NSObjectProtocol {
+        /// Device UUID.
+        ///
+        /// Device UUID is auto-generated.
+        /// Before restoring the virtual machine, it should be replaced with the uuid of a previously attached device when the virtual machine was saved.
         #[method_id(@__retain_semantics Other uuid)]
         unsafe fn uuid(&self) -> Retained<NSUUID>;
 
+        /// Setter for [`uuid`][Self::uuid].
         #[method(setUuid:)]
         unsafe fn setUuid(&self, uuid: &NSUUID);
     }

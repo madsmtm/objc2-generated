@@ -4,7 +4,111 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr?language=objc)
+/// Error codes corresponding to the CWErrorDomain domain.
+///
+///
+/// Success.
+///
+///
+/// EAPOL-related error.
+///
+///
+/// Parameter error.
+///
+///
+/// Memory allocation failed.
+///
+///
+/// Unexpected error condition encountered for which no error code exists.
+///
+///
+/// Operation not supported.
+///
+///
+/// Invalid protocol element field detected.
+///
+///
+/// Operation timed out.
+///
+///
+/// Access point did not specify a reason for authentication/association failure.
+///
+///
+/// Access point cannot support all requested capabilities.
+///
+///
+/// Reassociation was denied because the access point was unable to determine that an association exists.
+///
+///
+/// Association was denied for an unspecified reason.
+///
+///
+/// Specified authentication algorithm is not supported.
+///
+///
+/// Authentication frame received with an authentication sequence number out of expected sequence.
+///
+///
+/// Authentication was rejected because of a challenge failure.
+///
+///
+/// Access point is unable to handle another associated station.
+///
+///
+/// Interface does not support all of the rates in the basic rate set of the access point.
+///
+///
+/// Association denied because short slot time option is not supported by requesting station.
+///
+///
+/// Association denied because DSSS-OFDM is not supported by requesting station.
+///
+///
+/// Invalid information element included in association request.
+///
+///
+/// Invalid group cipher requested.
+///
+///
+/// Invalid pairwise cipher requested.
+///
+///
+/// Invalid authentication selector requested.
+///
+///
+/// Invalid WPA/WPA2 version specified.
+///
+///
+/// Invalid RSN capabilities specified in association request.
+///
+///
+/// Cipher suite rejected due to network security policy.
+///
+///
+/// PMK rejected by the access point.
+///
+///
+/// WPA/WPA2 handshake timed out.
+///
+///
+/// Association was denied because the requesting station does not support HT features.
+///
+///
+/// Association was denied because the requesting station does not support the PCO transition time required by the AP.
+///
+///
+/// No interface is bound to the CWInterface object.
+///
+///
+/// Error communicating with a separate process.
+///
+///
+/// Calling process does not have permission to perform this operation.
+///
+///
+/// Generic error, no specific error code exists to describe the error condition.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -54,7 +158,28 @@ unsafe impl RefEncode for CWErr {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwphymode?language=objc)
+/// Type describing the IEEE 802.11 physical layer mode.
+///
+///
+///
+/// IEEE 802.11a physical layer mode.
+///
+///
+/// IEEE 802.11b physical layer mode.
+///
+///
+/// IEEE 802.11g physical layer mode.
+///
+///
+/// IEEE 802.11n physical layer mode.
+///
+///
+/// IEEE 802.11ac physical layer mode.
+///
+///
+/// IEEE 802.11ax physical layer mode.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwphymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -77,7 +202,21 @@ unsafe impl RefEncode for CWPHYMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwinterfacemode?language=objc)
+/// Wi-Fi interface operating modes returned by -[CWInterface interfaceMode].
+///
+///
+/// Interface is not in any mode.
+///
+///
+/// Interface is participating in an infrastructure network as a non-AP station.
+///
+///
+/// Interface is participating in an IBSS network.
+///
+///
+/// Interface is participating in an infrastructure network as an access point.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwinterfacemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -97,7 +236,54 @@ unsafe impl RefEncode for CWInterfaceMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity?language=objc)
+/// Wi-Fi security types.
+///
+///
+/// Open System authentication.
+///
+///
+/// WEP security.
+///
+///
+/// WPA Personal authentication.
+///
+///
+/// WPA/WPA2 Personal authentication.
+///
+///
+/// WPA2 Personal authentication.
+///
+///
+/// Dynamic WEP security.
+///
+///
+/// WPA Enterprise authentication.
+///
+///
+/// WPA/WPA2 Enterprise authentication.
+///
+///
+/// WPA2 Enterprise authentication.
+///
+///
+/// WPA3 Enterprise authentication.
+///
+///
+/// WPA3 Personal authentication.
+///
+///
+/// WPA3 Transition (WPA3/WPA2 Personal) authentication.
+///
+///
+/// OWE security.
+///
+///
+/// OWE Transition.
+///
+///
+/// Unknown security type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -130,7 +316,18 @@ unsafe impl RefEncode for CWSecurity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwibssmodesecurity?language=objc)
+/// IBSS security types used in -[CWInterface startIBSSModeWithSSID:security:channel:password:error:].
+///
+///
+/// Open System authentication.
+///
+///
+/// WEP security.
+///
+///
+/// WPA Personal authentication.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwibssmodesecurity?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -153,7 +350,24 @@ unsafe impl RefEncode for CWIBSSModeSecurity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelwidth?language=objc)
+/// Channel width values returned by -[CWChannel channelWidth].
+///
+///
+/// Unknown channel width.
+///
+///
+/// 20MHz channel width.
+///
+///
+/// 40MHz channel width.
+///
+///
+/// 80MHz channel width.
+///
+///
+/// 160MHz channel width.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelwidth?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -174,7 +388,21 @@ unsafe impl RefEncode for CWChannelWidth {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelband?language=objc)
+/// Channel band values returned by -[CWChannel channelBand].
+///
+///
+/// Unknown channel band.
+///
+///
+/// 2.4GHz channel band.
+///
+///
+/// 5GHz channel band.
+///
+///
+/// 6GHz channel band.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelband?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -194,7 +422,24 @@ unsafe impl RefEncode for CWChannelBand {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwcipherkeyflags?language=objc)
+/// Cipher key flags used in -[CWInterface setWEPKey:flags:index:error:].
+///
+///
+/// Open System authentication.
+///
+///
+/// Cipher key will be used for unicast packets.
+///
+///
+/// Cipher key will be used for multicast packets.
+///
+///
+/// Cipher key will be used for packets sent from the interface.
+///
+///
+/// Cipher key will be used for packets received by the interface.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwcipherkeyflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -217,7 +462,18 @@ unsafe impl RefEncode for CWCipherKeyFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaindomain?language=objc)
+/// Keychain domain types used by CoreWLAN keychain methods.
+///
+///
+/// No keychain domain specified.
+///
+///
+/// The user keychain domain. If iCloud Keychain is enabled, the iCloud keychain is the user keychain.
+///
+///
+/// The system keychain domain.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaindomain?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -236,7 +492,39 @@ unsafe impl RefEncode for CWKeychainDomain {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype?language=objc)
+/// Wi-Fi event types used in -[CWWiFiClient startMonitoringEventWithType:error:].
+///
+///
+/// No event type specified.
+///
+///
+/// Posted when the power state of any Wi-Fi interface changes.
+///
+///
+/// Posted when the current SSID of any Wi-Fi interface changes.
+///
+///
+/// Posted when the current BSSID of any Wi-Fi interface changes.
+///
+///
+/// Posted when the adopted country code of any Wi-Fi interface changes.
+///
+///
+/// Posted when the link state for any Wi-Fi interface changes.
+///
+///
+/// Posted when the RSSI or transmit rate for any Wi-Fi interface changes.
+///
+///
+/// Posted when the operating mode of any Wi-Fi interface changes.
+///
+///
+/// Posted when the scan cache of any Wi-Fi interface is updated with new scan results.
+///
+///
+/// Unknown event type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

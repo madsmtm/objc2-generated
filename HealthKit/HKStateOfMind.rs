@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindvalenceclassification?language=objc)
+/// A general region of pleasantness derived from valence logged on a state of mind sample.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindvalenceclassification?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -37,6 +39,9 @@ unsafe impl RefEncode for HKStateOfMindValenceClassification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Returns the valence classification appropriate for a valence value.
+/// If the given valence is outside the supported range of values, this function returns
+/// `nil.`
 #[inline]
 pub unsafe extern "C-unwind" fn HKStateOfMindValenceClassificationForValence(
     valence: c_double,
@@ -48,7 +53,9 @@ pub unsafe extern "C-unwind" fn HKStateOfMindValenceClassificationForValence(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindlabel?language=objc)
+/// A specific word describing a felt experience.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindlabel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -140,7 +147,9 @@ unsafe impl RefEncode for HKStateOfMindLabel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindassociation?language=objc)
+/// A general facet of life with which a felt experience may be associated.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindassociation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -192,7 +201,9 @@ unsafe impl RefEncode for HKStateOfMindAssociation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindkind?language=objc)
+/// The kind of feeling type captured by a state of mind log, considering the period of time the reflection concerns.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindkind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -213,7 +224,9 @@ unsafe impl RefEncode for HKStateOfMindKind {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind?language=objc)
+    /// Represents how one feels, including descriptors of a feeling and optionally, its source.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -246,21 +259,31 @@ unsafe impl NSSecureCoding for HKStateOfMind {}
 extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKStateOfMind {
+        /// A description of the kind of feeling type captured by this state of mind.
+        ///
+        /// Feeling types can be understood by the timeframe considered to create this log, possibly indicated by the context used to create it.
+        /// For example, a `momentary emotion` log might be in response to 'how are you feeling right now?' while a `daily mood` log
+        /// might be in response to 'how have you been feeling today?'.
         #[method(kind)]
         pub unsafe fn kind(&self) -> HKStateOfMindKind;
 
+        /// A signed, self-reported measure of how positive or negative one is feeling, on a continuous scale from -1 to +1.
         #[method(valence)]
         pub unsafe fn valence(&self) -> c_double;
 
+        /// A general region of pleasantness based on this sample's valence value.
         #[method(valenceClassification)]
         pub unsafe fn valenceClassification(&self) -> HKStateOfMindValenceClassification;
 
+        /// Zero or more specific sentiments selected to represent a felt experience.
         #[method_id(@__retain_semantics Other labels)]
         pub unsafe fn labels(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Zero or more facets of life with which this felt experience is associated.
         #[method_id(@__retain_semantics Other associations)]
         pub unsafe fn associations(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Creates a new log describing an experienced emotion at a moment in time.
         #[method_id(@__retain_semantics Other stateOfMindWithDate:kind:valence:labels:associations:)]
         pub unsafe fn stateOfMindWithDate_kind_valence_labels_associations(
             date: &NSDate,
@@ -270,6 +293,7 @@ extern_methods!(
             associations: &NSArray<NSNumber>,
         ) -> Retained<Self>;
 
+        /// Creates a new log describing an experienced emotion at a moment in time.
         #[method_id(@__retain_semantics Other stateOfMindWithDate:kind:valence:labels:associations:metadata:)]
         pub unsafe fn stateOfMindWithDate_kind_valence_labels_associations_metadata(
             date: &NSDate,

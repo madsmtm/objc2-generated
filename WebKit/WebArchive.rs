@@ -7,12 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webarchivepboardtype?language=objc)
+    /// The pasteboard type constant used when adding or accessing a WebArchive on the pasteboard.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webarchivepboardtype?language=objc)
     pub static WebArchivePboardType: Option<&'static NSString>;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webarchive?language=objc)
+    /// WebArchive represents a main resource as well as all the subresources and subframes associated with the main resource.
+    /// The main resource can be an entire web page, a portion of a web page, or some other kind of data such as an image.
+    /// This class can be used for saving standalone web pages, representing portions of a web page on the pasteboard, or any other
+    /// application where one class is needed to represent rich web content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webarchive?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -32,6 +39,15 @@ unsafe impl NSObjectProtocol for WebArchive {}
 extern_methods!(
     unsafe impl WebArchive {
         #[cfg(feature = "WebResource")]
+        /// The initializer for WebArchive.
+        ///
+        /// Parameter `mainResource`: The main resource of the archive.
+        ///
+        /// Parameter `subresources`: The subresources of the archive (can be nil).
+        ///
+        /// Parameter `subframeArchives`: The archives representing the subframes of the archive (can be nil).
+        ///
+        /// Returns: An initialized WebArchive.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithMainResource:subresources:subframeArchives:)]
         pub unsafe fn initWithMainResource_subresources_subframeArchives(
@@ -41,6 +57,11 @@ extern_methods!(
             subframe_archives: Option<&NSArray>,
         ) -> Option<Retained<Self>>;
 
+        /// The initializer for creating a WebArchive from data.
+        ///
+        /// Parameter `data`: The data representing the archive. This can be obtained using WebArchive's data method.
+        ///
+        /// Returns: An initialized WebArchive.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(
@@ -49,18 +70,25 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "WebResource")]
+        /// The main resource of the archive.
         #[deprecated]
         #[method_id(@__retain_semantics Other mainResource)]
         pub unsafe fn mainResource(&self) -> Option<Retained<WebResource>>;
 
+        /// The subresource of the archive (can be nil).
         #[deprecated]
         #[method_id(@__retain_semantics Other subresources)]
         pub unsafe fn subresources(&self) -> Retained<NSArray>;
 
+        /// The archives representing the subframes of the archive (can be nil).
         #[deprecated]
         #[method_id(@__retain_semantics Other subframeArchives)]
         pub unsafe fn subframeArchives(&self) -> Retained<NSArray>;
 
+        /// The data representation of the archive.
+        ///
+        /// The data returned by this method can be used to save a web archive to a file or to place a web archive on the pasteboard
+        /// using WebArchivePboardType. To create a WebArchive using the returned data, call initWithData:.
         #[deprecated]
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Retained<NSData>;

@@ -7,42 +7,74 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyname?language=objc)
+    /// Used with predicateForObjectsWithDeviceProperty to specify a device name.
+    ///
+    /// The expected value type is an NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyname?language=objc)
     pub static HKDevicePropertyKeyName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeymanufacturer?language=objc)
+    /// Used with predicateForObjectsWithDeviceProperty to specify a device manufacturer.
+    ///
+    /// The expected value type is an NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeymanufacturer?language=objc)
     pub static HKDevicePropertyKeyManufacturer: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeymodel?language=objc)
+    /// Used with predicateForObjectsWithDeviceProperty to specify a device model.
+    ///
+    /// The expected value type is an NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeymodel?language=objc)
     pub static HKDevicePropertyKeyModel: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyhardwareversion?language=objc)
+    /// Used with predicateForObjectsWithDeviceProperty to specify a hardware version.
+    ///
+    /// The expected value type is an NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyhardwareversion?language=objc)
     pub static HKDevicePropertyKeyHardwareVersion: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyfirmwareversion?language=objc)
+    /// Used with predicateForObjectsWithDeviceProperty to specify a firmware version.
+    ///
+    /// The expected value type is an NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyfirmwareversion?language=objc)
     pub static HKDevicePropertyKeyFirmwareVersion: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeysoftwareversion?language=objc)
+    /// Used with predicateForObjectsWithDeviceProperty to specify a software version.
+    ///
+    /// The expected value type is an NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeysoftwareversion?language=objc)
     pub static HKDevicePropertyKeySoftwareVersion: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeylocalidentifier?language=objc)
+    /// Used with predicateForObjectsWithDeviceProperty to specify a local identifier.
+    ///
+    /// The expected value type is an NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeylocalidentifier?language=objc)
     pub static HKDevicePropertyKeyLocalIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyudideviceidentifier?language=objc)
+    /// Used with predicateForObjectsWithDeviceProperty to specify a UDI device identifier.
+    ///
+    /// The expected value type is an NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyudideviceidentifier?language=objc)
     pub static HKDevicePropertyKeyUDIDeviceIdentifier: &'static NSString;
 }
 
@@ -71,30 +103,56 @@ unsafe impl NSSecureCoding for HKDevice {}
 
 extern_methods!(
     unsafe impl HKDevice {
+        /// The name of the receiver.
+        ///
+        /// The user-facing name, such as the one displayed in the Bluetooth Settings for a BLE device.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// The manufacturer of the receiver.
         #[method_id(@__retain_semantics Other manufacturer)]
         pub unsafe fn manufacturer(&self) -> Option<Retained<NSString>>;
 
+        /// The model of the receiver.
         #[method_id(@__retain_semantics Other model)]
         pub unsafe fn model(&self) -> Option<Retained<NSString>>;
 
+        /// The hardware revision of the receiver.
         #[method_id(@__retain_semantics Other hardwareVersion)]
         pub unsafe fn hardwareVersion(&self) -> Option<Retained<NSString>>;
 
+        /// The firmware revision of the receiver.
         #[method_id(@__retain_semantics Other firmwareVersion)]
         pub unsafe fn firmwareVersion(&self) -> Option<Retained<NSString>>;
 
+        /// The software revision of the receiver.
         #[method_id(@__retain_semantics Other softwareVersion)]
         pub unsafe fn softwareVersion(&self) -> Option<Retained<NSString>>;
 
+        /// A unique identifier for the receiver.
+        ///
+        /// This property is available to clients for a local identifier.
+        /// For example, Bluetooth peripherals managed by HealthKit use this
+        /// for the CoreBluetooth UUID which is valid only on the local
+        /// device and thus distinguish the same Bluetooth peripheral used
+        /// between multiple devices.
         #[method_id(@__retain_semantics Other localIdentifier)]
         pub unsafe fn localIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Represents the device identifier portion of a device's FDA UDI (Unique Device Identifier).
+        ///
+        /// The device identifier can be used to reference the FDA's GUDID (Globally Unique Device
+        /// Identifier Database). Note that for user privacy concerns this field should not be used to
+        /// persist the production identifier portion of the device UDI. HealthKit clients should manage
+        /// the production identifier independently, if needed.
+        /// See http://www.fda.gov/MedicalDevices/DeviceRegulationandGuidance/UniqueDeviceIdentification/ for more information.
         #[method_id(@__retain_semantics Other UDIDeviceIdentifier)]
         pub unsafe fn UDIDeviceIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Initialize a new HKDevice with the specified values.
+        ///
+        /// This allows initialization of an HKDevice object based on the
+        /// information provided.
         #[method_id(@__retain_semantics Init initWithName:manufacturer:model:hardwareVersion:firmwareVersion:softwareVersion:localIdentifier:UDIDeviceIdentifier:)]
         pub unsafe fn initWithName_manufacturer_model_hardwareVersion_firmwareVersion_softwareVersion_localIdentifier_UDIDeviceIdentifier(
             this: Allocated<Self>,
@@ -111,6 +169,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Returns a device representing the host.
+        ///
+        /// If an app chooses to save samples that were retrieved from the local device, e.g. an HKWorkout with a
+        /// totalDistance HKQuantity gathered from CoreLocation GPS distances, then this would be an appropriate
+        /// HKDevice to use.
         #[method_id(@__retain_semantics Other localDevice)]
         pub unsafe fn localDevice() -> Retained<HKDevice>;
     }

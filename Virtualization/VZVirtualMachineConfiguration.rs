@@ -8,7 +8,46 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration?language=objc)
+    /// Virtual machine configuration.
+    ///
+    /// VZVirtualMachineConfiguration defines the configuration of a VZVirtualMachine.
+    ///
+    /// The configuration of devices is often done in two parts:
+    /// - Device configuration
+    /// - Device attachment
+    ///
+    /// The device configuration defines the characteristics of the emulated hardware device.
+    /// For example, for a network device, the device configuration defines the type of network adapter present
+    /// in the virtual machine and its MAC address.
+    ///
+    /// The device attachment defines the host machine's resources that are exposed by the virtual device.
+    /// For example, for a network device, the device attachment can be virtual network interface with a NAT
+    /// to the real network.
+    ///
+    /// Creating a virtual machine using the Virtualization framework requires the app to have the "com.apple.security.virtualization" entitlement.
+    /// A VZVirtualMachineConfiguration is considered invalid if the application does not have the entitlement.
+    ///
+    /// ## Configuring a virtual machine to run macOS
+    ///
+    /// To configure a virtual machine running macOS:
+    /// - Set up a platform configuration of type VZMacPlatformConfiguration and set it on the `platform` property.
+    /// - Set up a VZMacOSBootLoader on the `bootLoader` property.
+    /// - Set the CPUCount and memorySize based on the guest's VZMacOSConfigurationRequirements.
+    /// - Set up the main storage device as first device on `storageDevices`. Additional storage devices can be set up after the main storage.
+    /// - Set up the `keyboards`, `pointingDevices` and `graphicsDevices` devices.
+    /// - Set up any additional device as needed.
+    ///
+    /// ## Configuring a virtual machine to run Linux
+    ///
+    /// To configure a virtual machine running Linux:
+    /// - Set up a VZLinuxBootLoader on the `bootLoader` property.
+    /// - Set the CPUCount and memorySize.
+    /// - Set up any additional device as needed.
+    ///
+    ///
+    /// See: VZVirtualMachine
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtualMachineConfiguration;
@@ -25,46 +64,92 @@ unsafe impl NSObjectProtocol for VZVirtualMachineConfiguration {}
 extern_methods!(
     unsafe impl VZVirtualMachineConfiguration {
         #[cfg(feature = "VZBootLoader")]
+        /// Boot loader used when the virtual machine starts.
+        ///
+        /// See: VZLinuxBootLoader
+        ///
+        /// See: VZMacOSBootLoader
         #[method_id(@__retain_semantics Other bootLoader)]
         pub unsafe fn bootLoader(&self) -> Option<Retained<VZBootLoader>>;
 
         #[cfg(feature = "VZBootLoader")]
+        /// Setter for [`bootLoader`][Self::bootLoader].
         #[method(setBootLoader:)]
         pub unsafe fn setBootLoader(&self, boot_loader: Option<&VZBootLoader>);
 
+        /// Virtual machine memory size in bytes.
+        ///
+        /// The memory size must be a multiple of a 1 megabyte (1024 * 1024 bytes) between VZVirtualMachineConfiguration.minimumAllowedMemorySize
+        /// and VZVirtualMachineConfiguration.maximumAllowedMemorySize.
+        ///
+        /// The memorySize represents the total physical memory seen by a guest OS running in the virtual machine.
+        /// Not all memory is allocated on start, the virtual machine allocates memory on demand.
+        ///
+        /// See: VZVirtualMachineConfiguration.minimumAllowedMemorySize
+        ///
+        /// See: VZVirtualMachineConfiguration.maximumAllowedMemorySize
         #[method(memorySize)]
         pub unsafe fn memorySize(&self) -> u64;
 
+        /// Setter for [`memorySize`][Self::memorySize].
         #[method(setMemorySize:)]
         pub unsafe fn setMemorySize(&self, memory_size: u64);
 
+        /// Number of CPUs.
+        ///
+        /// The number of CPUs must be a value between VZVirtualMachineConfiguration.minimumAllowedCPUCount
+        /// and VZVirtualMachineConfiguration.maximumAllowedCPUCount.
+        ///
+        ///
+        /// See: VZVirtualMachineConfiguration.minimumAllowedCPUCount
+        ///
+        /// See: VZVirtualMachineConfiguration.maximumAllowedCPUCount
         #[method(CPUCount)]
         pub unsafe fn CPUCount(&self) -> NSUInteger;
 
+        /// Setter for [`CPUCount`][Self::CPUCount].
         #[method(setCPUCount:)]
         pub unsafe fn setCPUCount(&self, cpu_count: NSUInteger);
 
         #[cfg(feature = "VZPlatformConfiguration")]
+        /// The hardware platform to use.
+        ///
+        /// Can be an instance of a VZGenericPlatformConfiguration or VZMacPlatformConfiguration. Defaults to VZGenericPlatformConfiguration.
+        /// When restoring from saved state you must ensure your configuration matches that of the saved virtual machine.
+        ///
+        ///
+        /// See: VZGenericPlatformConfiguration
+        ///
+        /// See: VZMacPlatformConfiguration
         #[method_id(@__retain_semantics Other platform)]
         pub unsafe fn platform(&self) -> Retained<VZPlatformConfiguration>;
 
         #[cfg(feature = "VZPlatformConfiguration")]
+        /// Setter for [`platform`][Self::platform].
         #[method(setPlatform:)]
         pub unsafe fn setPlatform(&self, platform: &VZPlatformConfiguration);
 
         #[cfg(feature = "VZAudioDeviceConfiguration")]
+        /// List of audio devices. Empty by default.
+        ///
+        /// See: VZVirtioSoundDeviceConfiguration
         #[method_id(@__retain_semantics Other audioDevices)]
         pub unsafe fn audioDevices(&self) -> Retained<NSArray<VZAudioDeviceConfiguration>>;
 
         #[cfg(feature = "VZAudioDeviceConfiguration")]
+        /// Setter for [`audioDevices`][Self::audioDevices].
         #[method(setAudioDevices:)]
         pub unsafe fn setAudioDevices(&self, audio_devices: &NSArray<VZAudioDeviceConfiguration>);
 
         #[cfg(feature = "VZConsoleDeviceConfiguration")]
+        /// List of console devices. Empty by default.
+        ///
+        /// See: VZVirtioConsoleDeviceConfiguration
         #[method_id(@__retain_semantics Other consoleDevices)]
         pub unsafe fn consoleDevices(&self) -> Retained<NSArray<VZConsoleDeviceConfiguration>>;
 
         #[cfg(feature = "VZConsoleDeviceConfiguration")]
+        /// Setter for [`consoleDevices`][Self::consoleDevices].
         #[method(setConsoleDevices:)]
         pub unsafe fn setConsoleDevices(
             &self,
@@ -72,12 +157,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
+        /// List of directory sharing devices. Empty by default.
+        ///
+        /// See: VZVirtioFileSystemDeviceConfiguration
         #[method_id(@__retain_semantics Other directorySharingDevices)]
         pub unsafe fn directorySharingDevices(
             &self,
         ) -> Retained<NSArray<VZDirectorySharingDeviceConfiguration>>;
 
         #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
+        /// Setter for [`directorySharingDevices`][Self::directorySharingDevices].
         #[method(setDirectorySharingDevices:)]
         pub unsafe fn setDirectorySharingDevices(
             &self,
@@ -85,10 +174,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "VZEntropyDeviceConfiguration")]
+        /// List of entropy devices. Empty by default.
+        ///
+        /// See: VZVirtioEntropyDeviceConfiguration
         #[method_id(@__retain_semantics Other entropyDevices)]
         pub unsafe fn entropyDevices(&self) -> Retained<NSArray<VZEntropyDeviceConfiguration>>;
 
         #[cfg(feature = "VZEntropyDeviceConfiguration")]
+        /// Setter for [`entropyDevices`][Self::entropyDevices].
         #[method(setEntropyDevices:)]
         pub unsafe fn setEntropyDevices(
             &self,
@@ -96,12 +189,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]
+        /// List of memory balloon devices. Empty by default.
+        ///
+        /// See: VZVirtioTraditionalMemoryBalloonDeviceConfiguration
         #[method_id(@__retain_semantics Other memoryBalloonDevices)]
         pub unsafe fn memoryBalloonDevices(
             &self,
         ) -> Retained<NSArray<VZMemoryBalloonDeviceConfiguration>>;
 
         #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]
+        /// Setter for [`memoryBalloonDevices`][Self::memoryBalloonDevices].
         #[method(setMemoryBalloonDevices:)]
         pub unsafe fn setMemoryBalloonDevices(
             &self,
@@ -109,10 +206,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "VZNetworkDeviceConfiguration")]
+        /// List of network adapters. Empty by default.
+        ///
+        /// See: VZVirtioNetworkDeviceConfiguration
         #[method_id(@__retain_semantics Other networkDevices)]
         pub unsafe fn networkDevices(&self) -> Retained<NSArray<VZNetworkDeviceConfiguration>>;
 
         #[cfg(feature = "VZNetworkDeviceConfiguration")]
+        /// Setter for [`networkDevices`][Self::networkDevices].
         #[method(setNetworkDevices:)]
         pub unsafe fn setNetworkDevices(
             &self,
@@ -120,18 +221,26 @@ extern_methods!(
         );
 
         #[cfg(feature = "VZSerialPortConfiguration")]
+        /// List of serial ports. Empty by default.
+        ///
+        /// See: VZVirtioConsoleDeviceSerialPortConfiguration
         #[method_id(@__retain_semantics Other serialPorts)]
         pub unsafe fn serialPorts(&self) -> Retained<NSArray<VZSerialPortConfiguration>>;
 
         #[cfg(feature = "VZSerialPortConfiguration")]
+        /// Setter for [`serialPorts`][Self::serialPorts].
         #[method(setSerialPorts:)]
         pub unsafe fn setSerialPorts(&self, serial_ports: &NSArray<VZSerialPortConfiguration>);
 
         #[cfg(feature = "VZSocketDeviceConfiguration")]
+        /// List of socket devices. Empty by default.
+        ///
+        /// See: VZVirtioSocketDeviceConfiguration
         #[method_id(@__retain_semantics Other socketDevices)]
         pub unsafe fn socketDevices(&self) -> Retained<NSArray<VZSocketDeviceConfiguration>>;
 
         #[cfg(feature = "VZSocketDeviceConfiguration")]
+        /// Setter for [`socketDevices`][Self::socketDevices].
         #[method(setSocketDevices:)]
         pub unsafe fn setSocketDevices(
             &self,
@@ -139,10 +248,18 @@ extern_methods!(
         );
 
         #[cfg(feature = "VZStorageDeviceConfiguration")]
+        /// List of disk devices. Empty by default.
+        ///
+        /// See: VZNVMExpressControllerDeviceConfiguration
+        ///
+        /// See: VZUSBMassStorageDeviceConfiguration
+        ///
+        /// See: VZVirtioBlockDeviceConfiguration
         #[method_id(@__retain_semantics Other storageDevices)]
         pub unsafe fn storageDevices(&self) -> Retained<NSArray<VZStorageDeviceConfiguration>>;
 
         #[cfg(feature = "VZStorageDeviceConfiguration")]
+        /// Setter for [`storageDevices`][Self::storageDevices].
         #[method(setStorageDevices:)]
         pub unsafe fn setStorageDevices(
             &self,
@@ -150,18 +267,30 @@ extern_methods!(
         );
 
         #[cfg(feature = "VZKeyboardConfiguration")]
+        /// List of keyboards. Empty by default.
+        ///
+        /// See: VZUSBKeyboardConfiguration
+        ///
+        /// See: VZMacKeyboardConfiguration
         #[method_id(@__retain_semantics Other keyboards)]
         pub unsafe fn keyboards(&self) -> Retained<NSArray<VZKeyboardConfiguration>>;
 
         #[cfg(feature = "VZKeyboardConfiguration")]
+        /// Setter for [`keyboards`][Self::keyboards].
         #[method(setKeyboards:)]
         pub unsafe fn setKeyboards(&self, keyboards: &NSArray<VZKeyboardConfiguration>);
 
         #[cfg(feature = "VZPointingDeviceConfiguration")]
+        /// List of pointing devices. Empty by default.
+        ///
+        /// See: VZUSBScreenCoordinatePointingDeviceConfiguration
+        ///
+        /// See: VZMacTrackpadConfiguration
         #[method_id(@__retain_semantics Other pointingDevices)]
         pub unsafe fn pointingDevices(&self) -> Retained<NSArray<VZPointingDeviceConfiguration>>;
 
         #[cfg(feature = "VZPointingDeviceConfiguration")]
+        /// Setter for [`pointingDevices`][Self::pointingDevices].
         #[method(setPointingDevices:)]
         pub unsafe fn setPointingDevices(
             &self,
@@ -169,10 +298,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "VZGraphicsDeviceConfiguration")]
+        /// List of graphics devices. Empty by default.
+        ///
+        /// See: VZMacGraphicsDeviceConfiguration
         #[method_id(@__retain_semantics Other graphicsDevices)]
         pub unsafe fn graphicsDevices(&self) -> Retained<NSArray<VZGraphicsDeviceConfiguration>>;
 
         #[cfg(feature = "VZGraphicsDeviceConfiguration")]
+        /// Setter for [`graphicsDevices`][Self::graphicsDevices].
         #[method(setGraphicsDevices:)]
         pub unsafe fn setGraphicsDevices(
             &self,
@@ -180,10 +313,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "VZUSBControllerConfiguration")]
+        /// List of USB Controllers. Empty by default.
+        ///
+        /// This list represents a set of USB controllers that the virtual machine will start with.
+        /// For each entry in this list, there will be a corresponding runtime object created in VZVirtualMachine.usbControllers property.
+        ///
+        /// See: VZUSBControllerConfiguration
         #[method_id(@__retain_semantics Other usbControllers)]
         pub unsafe fn usbControllers(&self) -> Retained<NSArray<VZUSBControllerConfiguration>>;
 
         #[cfg(feature = "VZUSBControllerConfiguration")]
+        /// Setter for [`usbControllers`][Self::usbControllers].
         #[method(setUsbControllers:)]
         pub unsafe fn setUsbControllers(
             &self,
@@ -205,22 +345,49 @@ extern_methods!(
 
 extern_methods!(
     /// VZVirtualMachineConfigurationValidation
+    /// Virtual machine configuration runtime validation.
     unsafe impl VZVirtualMachineConfiguration {
+        /// Validate the configuration.
+        ///
+        /// Parameter `error`: If not nil, assigned with the validation error if the validation failed.
+        ///
+        /// Returns: YES if the configuration is valid.
         #[method(validateWithError:_)]
         pub unsafe fn validateWithError(&self) -> Result<(), Retained<NSError>>;
 
+        /// Validate the configuration is savable.
+        ///
+        /// Verify that a virtual machine with this configuration is savable.
+        /// Not all configuration options can be safely saved and restored from file.
+        /// If this evaluates to NO, the caller should expect future calls to saveMachineStateToURL:completionHandler: to fail.
+        ///
+        /// Parameter `error`: If not nil, assigned with an error describing the unsupported configuration option.
+        ///
+        /// Returns: YES if the configuration is savable.
         #[method(validateSaveRestoreSupportWithError:_)]
         pub unsafe fn validateSaveRestoreSupportWithError(&self) -> Result<(), Retained<NSError>>;
 
+        /// : Minimum amount of memory required by virtual machines.
+        ///
+        /// See: VZVirtualMachineConfiguration.memorySize
         #[method(minimumAllowedMemorySize)]
         pub unsafe fn minimumAllowedMemorySize() -> u64;
 
+        /// : Maximum amount of memory allowed for a virtual machine.
+        ///
+        /// See: VZVirtualMachineConfiguration.memorySize
         #[method(maximumAllowedMemorySize)]
         pub unsafe fn maximumAllowedMemorySize() -> u64;
 
+        /// : Minimum number of CPUs for a virtual machine.
+        ///
+        /// See: VZVirtualMachineConfiguration.CPUCount
         #[method(minimumAllowedCPUCount)]
         pub unsafe fn minimumAllowedCPUCount() -> NSUInteger;
 
+        /// : Maximum number of CPUs for a virtual machine.
+        ///
+        /// See: VZVirtualMachineConfiguration.CPUCount
         #[method(maximumAllowedCPUCount)]
         pub unsafe fn maximumAllowedCPUCount() -> NSUInteger;
     }

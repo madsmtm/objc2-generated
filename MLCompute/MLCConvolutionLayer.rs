@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer?language=objc)
+    /// A convolution layer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -21,31 +23,45 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCConvolutionLayer {
         #[cfg(feature = "MLCConvolutionDescriptor")]
+        /// The convolution descriptor
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MLCConvolutionDescriptor>;
 
         #[cfg(feature = "MLCTensor")]
+        /// The weights tensor used by the convolution layer
         #[deprecated]
         #[method_id(@__retain_semantics Other weights)]
         pub unsafe fn weights(&self) -> Retained<MLCTensor>;
 
         #[cfg(feature = "MLCTensor")]
+        /// The bias tensor used by the convolution layer
         #[deprecated]
         #[method_id(@__retain_semantics Other biases)]
         pub unsafe fn biases(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensorParameter")]
+        /// The weights tensor parameter used for optimizer update
         #[deprecated]
         #[method_id(@__retain_semantics Other weightsParameter)]
         pub unsafe fn weightsParameter(&self) -> Retained<MLCTensorParameter>;
 
         #[cfg(feature = "MLCTensorParameter")]
+        /// The bias tensor parameter used for optimizer update
         #[deprecated]
         #[method_id(@__retain_semantics Other biasesParameter)]
         pub unsafe fn biasesParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
         #[cfg(all(feature = "MLCConvolutionDescriptor", feature = "MLCTensor"))]
+        /// Create a convolution layer
+        ///
+        /// Parameter `weights`: The weights tensor
+        ///
+        /// Parameter `biases`: The bias tensor
+        ///
+        /// Parameter `descriptor`: The convolution descriptor
+        ///
+        /// Returns: A new convolution layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithWeights:biases:descriptor:)]
         pub unsafe fn layerWithWeights_biases_descriptor(

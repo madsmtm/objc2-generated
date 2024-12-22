@@ -14,6 +14,13 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the matrix multiplication of 2 input tensors with support for broadcasting.
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The left-hand side tensor.
+        /// - secondaryTensor: The right-hand side tensor.
+        /// - name: The name for the operation.
+        /// - Returns: A valid tensor containing the product of the input matrices.
         #[method_id(@__retain_semantics Other matrixMultiplicationWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn matrixMultiplicationWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -26,6 +33,17 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Computes the hamming distance of two input tensors with support for broadcasting.
+        ///
+        /// The hamming distance is computed between 2 sets of vectors and the last dimension(s) of each
+        /// input tensor is considered a vector.
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The first input tensor.
+        /// - secondaryTensor: The second input tensor.
+        /// - resultDataType: The datatype of the return MPSGraphTensor. Must be either ``MPSDataTypeUInt32`` or ``MPSDataTypeUInt16``.
+        /// - name: The name for the operation.
+        /// - Returns: A valid tensor containing the hamming distance between the input tensors.
         #[method_id(@__retain_semantics Other HammingDistanceWithPrimaryTensor:secondaryTensor:resultDataType:name:)]
         pub unsafe fn HammingDistanceWithPrimaryTensor_secondaryTensor_resultDataType_name(
             &self,
@@ -36,6 +54,23 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a scaled dot product attention (SDPA) operation and returns the result tensor.
+        ///
+        /// SDPA Op computes attention by computing softmax(scale * QK^T + M)V.
+        /// queryTensor Q with shape [B, Hq, Nq, F] and keyTensor K with shape [B, Hq, Nkv, F],
+        /// with Q's H dimension expandable to satisfy matmul QK^T. maskTensor M's shape
+        /// should be broadcast compatible to satisfy (QK^T + M). valueTensor V with shape
+        /// [B, Hv, Nkv, F] should satisfy the matmul (QK^T + M)V.
+        ///
+        /// - Parameters:
+        /// - queryTensor: A tensor that represents the query projection.
+        /// - keyTensor: A tensor that represents the key projection.
+        /// - valueTensor: A tensor that represents the value projection.
+        /// - maskTensor: An optional tensor that contains a mask that is applied to the scaled, matrix
+        /// multiplied query and value matrices. If mask tensor is nil, the QK^T is not element-wise masked.
+        /// - scale: A scale that is applied to the result of query and value matrix multiply.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:maskTensor:scale:name:)]
         pub unsafe fn scaledDotProductAttentionWithQueryTensor_keyTensor_valueTensor_maskTensor_scale_name(
             &self,
@@ -48,6 +83,15 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a scaled dot product attention (SDPA) operation (without a mask) and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - queryTensor: A tensor that represents the query projection.
+        /// - keyTensor: A tensor that represents the key projection.
+        /// - valueTensor: A tensor that represents the value projection.
+        /// - scale: A scale that is applied on the result of query and value matrix multiply.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:scale:name:)]
         pub unsafe fn scaledDotProductAttentionWithQueryTensor_keyTensor_valueTensor_scale_name(
             &self,

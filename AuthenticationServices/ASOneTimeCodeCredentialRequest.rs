@@ -34,6 +34,9 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "ASOneTimeCodeCredentialIdentity")]
+        /// Initializes an instance of ASOneTimeCodeCredentialRequest.
+        ///
+        /// Parameter `credentialIdentity`: the credential identity to use for this request.
         #[method_id(@__retain_semantics Init initWithCredentialIdentity:)]
         pub unsafe fn initWithCredentialIdentity(
             this: Allocated<Self>,

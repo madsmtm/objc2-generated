@@ -62,6 +62,7 @@ extern_methods!(
         #[method(usesFontLeading)]
         pub unsafe fn usesFontLeading(&self) -> bool;
 
+        /// Setter for [`usesFontLeading`][Self::usesFontLeading].
         #[method(setUsesFontLeading:)]
         pub unsafe fn setUsesFontLeading(&self, uses_font_leading: bool);
 
@@ -70,12 +71,14 @@ extern_methods!(
         pub unsafe fn typesetterBehavior(&self) -> NSTypesetterBehavior;
 
         #[cfg(feature = "NSLayoutManager")]
+        /// Setter for [`typesetterBehavior`][Self::typesetterBehavior].
         #[method(setTypesetterBehavior:)]
         pub unsafe fn setTypesetterBehavior(&self, typesetter_behavior: NSTypesetterBehavior);
 
         #[method(hyphenationFactor)]
         pub unsafe fn hyphenationFactor(&self) -> c_float;
 
+        /// Setter for [`hyphenationFactor`][Self::hyphenationFactor].
         #[method(setHyphenationFactor:)]
         pub unsafe fn setHyphenationFactor(&self, hyphenation_factor: c_float);
 
@@ -84,6 +87,7 @@ extern_methods!(
         pub unsafe fn lineFragmentPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`lineFragmentPadding`][Self::lineFragmentPadding].
         #[method(setLineFragmentPadding:)]
         pub unsafe fn setLineFragmentPadding(&self, line_fragment_padding: CGFloat);
 
@@ -107,12 +111,14 @@ extern_methods!(
         #[method(bidiProcessingEnabled)]
         pub unsafe fn bidiProcessingEnabled(&self) -> bool;
 
+        /// Setter for [`bidiProcessingEnabled`][Self::bidiProcessingEnabled].
         #[method(setBidiProcessingEnabled:)]
         pub unsafe fn setBidiProcessingEnabled(&self, bidi_processing_enabled: bool);
 
         #[method_id(@__retain_semantics Other attributedString)]
         pub unsafe fn attributedString(&self) -> Option<Retained<NSAttributedString>>;
 
+        /// Setter for [`attributedString`][Self::attributedString].
         #[method(setAttributedString:)]
         pub unsafe fn setAttributedString(&self, attributed_string: Option<&NSAttributedString>);
 

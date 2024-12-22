@@ -7,24 +7,53 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/devicecheck/dcerrordomain?language=objc)
+    /// The error domain for errors associated with DeviceCheck APIs.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicecheck/dcerrordomain?language=objc)
     pub static DCErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/devicecheck/dcerror?language=objc)
+/// DeviceCheck error codes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/devicecheck/dcerror?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct DCError(pub NSInteger);
 impl DCError {
+    /// A failure has occurred, such as the failure to generate a token.
     #[doc(alias = "DCErrorUnknownSystemFailure")]
     pub const UnknownSystemFailure: Self = Self(0);
+    /// DeviceCheck is unavailable on this device.
     #[doc(alias = "DCErrorFeatureUnsupported")]
     pub const FeatureUnsupported: Self = Self(1);
+    /// An error code that indicates when your app provides data that isn’t
+    /// formatted correctly.
     #[doc(alias = "DCErrorInvalidInput")]
     pub const InvalidInput: Self = Self(2);
+    /// An error caused by a failed attempt to use the App Attest key.
+    ///
+    /// You receive this error if something goes wrong with generating,
+    /// retrieving, or using an App Attest cryptographic key, when:
+    ///
+    /// - You call
+    /// ``DeviceCheck/DCAppAttestService/attestKey:clientDataHash:completionHandler:``
+    /// for a key that’s already been attested.
+    /// - You call
+    /// ``DeviceCheck/DCAppAttestService/generateAssertion:clientDataHash:completionHandler:``
+    /// with an unattested key.
+    /// - The App Attest service rejects the key.
     #[doc(alias = "DCErrorInvalidKey")]
     pub const InvalidKey: Self = Self(3);
+    /// An error that indicates a failed attempt to contact the App Attest service
+    /// during an attestation.
+    ///
+    /// You receive this error when you call
+    /// ``DeviceCheck/DCAppAttestService/attestKey:clientDataHash:completionHandler:``
+    /// and the framework isn’t able to complete the attestation. If you receive
+    /// this error, try the attestation again later using the same key and the same
+    /// value for the `clientDataHash` parameter. Retrying with the same inputs
+    /// helps to preserve the risk metric for a given device.
     #[doc(alias = "DCErrorServerUnavailable")]
     pub const ServerUnavailable: Self = Self(4);
 }

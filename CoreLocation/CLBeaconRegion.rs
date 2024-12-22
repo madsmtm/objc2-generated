@@ -137,6 +137,7 @@ extern_methods!(
         #[method(notifyEntryStateOnDisplay)]
         pub unsafe fn notifyEntryStateOnDisplay(&self) -> bool;
 
+        /// Setter for [`notifyEntryStateOnDisplay`][Self::notifyEntryStateOnDisplay].
         #[deprecated]
         #[method(setNotifyEntryStateOnDisplay:)]
         pub unsafe fn setNotifyEntryStateOnDisplay(&self, notify_entry_state_on_display: bool);

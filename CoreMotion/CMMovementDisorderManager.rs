@@ -28,15 +28,19 @@ unsafe impl NSSecureCoding for CMDyskineticSymptomResult {}
 
 extern_methods!(
     unsafe impl CMDyskineticSymptomResult {
+        /// The date and time representing the start of the result.
         #[method_id(@__retain_semantics Other startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
+        /// The date and time representing the end of the result.
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
+        /// The percentage of time dyskinetic symptoms were unlikely for the result.
         #[method(percentUnlikely)]
         pub unsafe fn percentUnlikely(&self) -> c_float;
 
+        /// The percentage of time dyskinetic symptoms were likely for the result.
         #[method(percentLikely)]
         pub unsafe fn percentLikely(&self) -> c_float;
     }
@@ -54,7 +58,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmtremorresult?language=objc)
+    /// A CMTremorResult object describes the presence and prevalence of tremor symptoms (specifically, resting tremor) during a one minute result period when subjects wear the Apple Watch on their most affected arm.
+    /// percentUnknown + percentNoTremor + percentTremorSlight + percentTremorMild + percentTremorModerate + percentTremorStrong = 1.0
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmtremorresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMTremorResult;
@@ -74,27 +81,38 @@ unsafe impl NSSecureCoding for CMTremorResult {}
 
 extern_methods!(
     unsafe impl CMTremorResult {
+        /// The date and time representing the start of the result.
         #[method_id(@__retain_semantics Other startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
+        /// The date and time representing the end of the result.
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
+        /// The percentage of time tremor was unknown for the result.
+        /// Unknown periods include times when:
+        /// 1. the subject is moving and therefore a resting tremor cannot be assessed, and
+        /// 2. the signal strength is too low to measure tremor confidently.
         #[method(percentUnknown)]
         pub unsafe fn percentUnknown(&self) -> c_float;
 
+        /// The percentage of time no tremor was detected for the result.
         #[method(percentNone)]
         pub unsafe fn percentNone(&self) -> c_float;
 
+        /// The percentage of time tremor was likely and displacement amplitude was slight for the result.
         #[method(percentSlight)]
         pub unsafe fn percentSlight(&self) -> c_float;
 
+        /// The percentage of time tremor was likely and displacement amplitude was mild for the result.
         #[method(percentMild)]
         pub unsafe fn percentMild(&self) -> c_float;
 
+        /// The percentage of time tremor was likely and displacement amplitude was moderate for the result.
         #[method(percentModerate)]
         pub unsafe fn percentModerate(&self) -> c_float;
 
+        /// The percentage of time tremor was likely and displacement amplitude was strong for the result.
         #[method(percentStrong)]
         pub unsafe fn percentStrong(&self) -> c_float;
     }
@@ -111,18 +129,24 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdyskineticsymptomresulthandler?language=objc)
+/// Completion handler for CMDyskineticSymptomResult values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdyskineticsymptomresulthandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMDyskineticSymptomResultHandler =
     *mut block2::Block<dyn Fn(NonNull<NSArray<CMDyskineticSymptomResult>>, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmtremorresulthandler?language=objc)
+/// Completion handler for CMTremorResult values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmtremorresulthandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMTremorResultHandler =
     *mut block2::Block<dyn Fn(NonNull<NSArray<CMTremorResult>>, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmovementdisordermanager?language=objc)
+    /// A CMMovementDisorderManager object with methods for persistence and query of movement disorder results.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmovementdisordermanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMMovementDisorderManager;
@@ -132,20 +156,44 @@ unsafe impl NSObjectProtocol for CMMovementDisorderManager {}
 
 extern_methods!(
     unsafe impl CMMovementDisorderManager {
+        /// Whether movement disorder results are available on this platform.
+        ///
+        /// Returns: Returns the availability of movement disorder results on this platform.
         #[method(isAvailable)]
         pub unsafe fn isAvailable() -> bool;
 
+        /// What version of movement disorder software is available on this platform.
+        ///
+        /// Returns: Returns the version number of the movement disorder software available on this platform, nil if not.
+        /// Format follows Major.Minor.Fix format (e.g. 1.0.0)
         #[method_id(@__retain_semantics Other version)]
         pub unsafe fn version() -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CMAuthorization")]
+        /// Authorization status of movement disorder results for this user.
+        ///
+        /// Returns: Returns the authorization status of movement disorder results for this user.
         #[method(authorizationStatus)]
         pub unsafe fn authorizationStatus() -> CMAuthorizationStatus;
 
+        /// Enables the calculation and persistence of result values for the specified duration in seconds.
+        ///
+        /// Parameter `duration`: The duration in seconds to enable the calculation and persistence of result values.
+        ///
+        /// Warning: Please note that the maximum duration allowed is seven (7) days.
         #[method(monitorKinesiasForDuration:)]
         pub unsafe fn monitorKinesiasForDuration(&self, duration: NSTimeInterval);
 
         #[cfg(feature = "block2")]
+        /// Queries the system for result values for the specified date range.
+        ///
+        /// Parameter `fromDate`: The begin date for the query range.
+        ///
+        /// Parameter `toDate`: The end date for the query range.
+        ///
+        /// Parameter `handler`: The completion handler for accessing and processing result values.
+        ///
+        /// Warning: Please note that movement disorder results are available for a maximum of seven (7) days.
         #[method(queryDyskineticSymptomFromDate:toDate:withHandler:)]
         pub unsafe fn queryDyskineticSymptomFromDate_toDate_withHandler(
             &self,
@@ -155,6 +203,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Queries the system for result values for the specified date range.
+        ///
+        /// Parameter `fromDate`: The begin date for the query range.
+        ///
+        /// Parameter `toDate`: The end date for the query range.
+        ///
+        /// Parameter `handler`: The completion handler for accessing and processing result values.
+        ///
+        /// Warning: Please note that movement disorder results are available for a maximum of seven (7) days.
         #[method(queryTremorFromDate:toDate:withHandler:)]
         pub unsafe fn queryTremorFromDate_toDate_withHandler(
             &self,
@@ -163,9 +220,15 @@ extern_methods!(
             handler: CMTremorResultHandler,
         );
 
+        /// The last time that data has been processed; queries for periods before this point will return their final results. Data after this point may become available later if monitoring is continuing.
+        ///
+        /// Warning: Returns nil if no data has been processed or monitoring was not enabled.
         #[method_id(@__retain_semantics Other lastProcessedDate)]
         pub unsafe fn lastProcessedDate(&self) -> Option<Retained<NSDate>>;
 
+        /// The expiration date for the most recent monitoring period.
+        ///
+        /// Warning: Returns nil if no previous monitoring period is available.
         #[method_id(@__retain_semantics Other monitorKinesiasExpirationDate)]
         pub unsafe fn monitorKinesiasExpirationDate(&self) -> Option<Retained<NSDate>>;
     }

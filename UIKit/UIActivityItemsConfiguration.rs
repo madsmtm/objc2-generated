@@ -27,6 +27,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localObject)]
         pub unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`localObject`][Self::localObject].
         #[method(setLocalObject:)]
         pub unsafe fn setLocalObject(&self, local_object: Option<&AnyObject>);
 
@@ -37,6 +38,7 @@ extern_methods!(
         ) -> Retained<NSArray<UIActivityItemsConfigurationInteraction>>;
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
+        /// Setter for [`supportedInteractions`][Self::supportedInteractions].
         #[method(setSupportedInteractions:)]
         pub unsafe fn setSupportedInteractions(
             &self,
@@ -52,6 +54,7 @@ extern_methods!(
         >;
 
         #[cfg(all(feature = "UIActivityItemsConfigurationReading", feature = "block2"))]
+        /// Setter for [`metadataProvider`][Self::metadataProvider].
         #[method(setMetadataProvider:)]
         pub unsafe fn setMetadataProvider(
             &self,
@@ -71,6 +74,7 @@ extern_methods!(
         >;
 
         #[cfg(all(feature = "UIActivityItemsConfigurationReading", feature = "block2"))]
+        /// Setter for [`perItemMetadataProvider`][Self::perItemMetadataProvider].
         #[method(setPerItemMetadataProvider:)]
         pub unsafe fn setPerItemMetadataProvider(
             &self,
@@ -105,6 +109,7 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// Setter for [`previewProvider`][Self::previewProvider].
         #[method(setPreviewProvider:)]
         pub unsafe fn setPreviewProvider(
             &self,
@@ -126,6 +131,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn() -> NonNull<NSArray<UIActivity>>>;
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
+        /// Setter for [`applicationActivitiesProvider`][Self::applicationActivitiesProvider].
         #[method(setApplicationActivitiesProvider:)]
         pub unsafe fn setApplicationActivitiesProvider(
             &self,

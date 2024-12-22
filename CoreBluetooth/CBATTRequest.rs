@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattrequest?language=objc)
+    /// Represents a read or write request from a central.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBATTRequest;
@@ -22,19 +24,40 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CBCentral", feature = "CBPeer"))]
+        /// The central that originated the request.
         #[method_id(@__retain_semantics Other central)]
         pub unsafe fn central(&self) -> Retained<CBCentral>;
 
         #[cfg(all(feature = "CBAttribute", feature = "CBCharacteristic"))]
+        /// The characteristic whose value will be read or written.
         #[method_id(@__retain_semantics Other characteristic)]
         pub unsafe fn characteristic(&self) -> Retained<CBCharacteristic>;
 
+        /// The zero-based index of the first byte for the read or write.
         #[method(offset)]
         pub unsafe fn offset(&self) -> NSUInteger;
 
+        /// The data being read or written.
+        /// For read requests,
+        /// <i>
+        /// value
+        /// </i>
+        /// will be nil and should be set before responding via
+        ///
+        /// ```text
+        ///  respondToRequest:withResult:
+        /// ```
+        ///
+        /// .
+        /// For write requests,
+        /// <i>
+        /// value
+        /// </i>
+        /// will contain the data to be written.
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`value`][Self::value].
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSData>);
     }

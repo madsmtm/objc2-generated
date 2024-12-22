@@ -70,18 +70,26 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn ASWebAuthenticationSessionRequestDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn ASWebAuthenticationSessionRequestDelegate>>,
         );
 
+        /// Additional headers to be sent when loading the initial URL.
+        /// These should _only_ apply to the initial page, and should not overwrite any headers normally sent by the browser.
+        /// Add `AdditionalHeaderFieldsAreSupported: true` to `ASWebAuthenticationSessionWebBrowserSupportCapabilities` in your browser's Info.plist file to indicate support for this.
         #[method_id(@__retain_semantics Other additionalHeaderFields)]
         pub unsafe fn additionalHeaderFields(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         #[cfg(feature = "ASWebAuthenticationSessionCallback")]
+        /// The callback to listen for to complete this request.
+        /// Check all main-frame navigations loaded during the request with this callback. It is used to handle all callback types, including custom schemes and HTTPS navigations.
+        /// When a match is found, invoke `-completeWithCallbackURL:` with that URL.
+        /// Add `CallbackURLMatchingIsSupported: true` to `ASWebAuthenticationSessionWebBrowserSupportCapabilities` in your browser's Info.plist file to indicate support for this.
         #[method_id(@__retain_semantics Other callback)]
         pub unsafe fn callback(&self) -> Option<Retained<ASWebAuthenticationSessionCallback>>;
 

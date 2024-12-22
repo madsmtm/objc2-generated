@@ -80,6 +80,7 @@ extern_methods!(
         #[method(autofocus)]
         pub unsafe fn autofocus(&self) -> bool;
 
+        /// Setter for [`autofocus`][Self::autofocus].
         #[method(setAutofocus:)]
         pub unsafe fn setAutofocus(&self, autofocus: bool);
 
@@ -87,6 +88,7 @@ extern_methods!(
         #[method(disabled)]
         pub unsafe fn disabled(&self) -> bool;
 
+        /// Setter for [`disabled`][Self::disabled].
         #[deprecated]
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
@@ -100,6 +102,7 @@ extern_methods!(
         #[method(multiple)]
         pub unsafe fn multiple(&self) -> bool;
 
+        /// Setter for [`multiple`][Self::multiple].
         #[deprecated]
         #[method(setMultiple:)]
         pub unsafe fn setMultiple(&self, multiple: bool);
@@ -108,6 +111,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -116,6 +120,7 @@ extern_methods!(
         #[method(size)]
         pub unsafe fn size(&self) -> c_int;
 
+        /// Setter for [`size`][Self::size].
         #[deprecated]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: c_int);
@@ -137,6 +142,7 @@ extern_methods!(
         #[method(selectedIndex)]
         pub unsafe fn selectedIndex(&self) -> c_int;
 
+        /// Setter for [`selectedIndex`][Self::selectedIndex].
         #[deprecated]
         #[method(setSelectedIndex:)]
         pub unsafe fn setSelectedIndex(&self, selected_index: c_int);
@@ -145,6 +151,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
+        /// Setter for [`value`][Self::value].
         #[deprecated]
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);

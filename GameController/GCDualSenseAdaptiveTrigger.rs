@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggerdiscretepositioncount?language=objc)
+/// The number of discrete control positions supported by the DualSense adaptive triggers. Each of these positions can be configured separately in multi-position feedback and multi-position vibration modes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggerdiscretepositioncount?language=objc)
 pub const GCDualSenseAdaptiveTriggerDiscretePositionCount: c_uint = 10;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggermode?language=objc)
@@ -15,14 +17,19 @@ pub const GCDualSenseAdaptiveTriggerDiscretePositionCount: c_uint = 10;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GCDualSenseAdaptiveTriggerMode(pub NSInteger);
 impl GCDualSenseAdaptiveTriggerMode {
+    /// The adaptive trigger effect is disabled.
     #[doc(alias = "GCDualSenseAdaptiveTriggerModeOff")]
     pub const Off: Self = Self(0);
+    /// The adaptive trigger effect provides constant feedback from the start position onwards.
     #[doc(alias = "GCDualSenseAdaptiveTriggerModeFeedback")]
     pub const Feedback: Self = Self(1);
+    /// The adaptive trigger effect provides feedback from the start position to the end position, emulating the feeling of pulling the trigger on a weapon.
     #[doc(alias = "GCDualSenseAdaptiveTriggerModeWeapon")]
     pub const Weapon: Self = Self(2);
+    /// The adaptive trigger effect provides a constant vibration effect from the start position onwards.
     #[doc(alias = "GCDualSenseAdaptiveTriggerModeVibration")]
     pub const Vibration: Self = Self(3);
+    /// The adaptive trigger effect provides feedback from the start position to the end position, linearly interpolated between the start and end strengths.
     #[doc(alias = "GCDualSenseAdaptiveTriggerModeSlopeFeedback")]
     pub const SlopeFeedback: Self = Self(4);
 }
@@ -41,26 +48,37 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GCDualSenseAdaptiveTriggerStatus(pub NSInteger);
 impl GCDualSenseAdaptiveTriggerStatus {
+    /// The adaptive trigger status cannot be determined.
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusUnknown")]
     pub const Unknown: Self = Self(-1);
+    /// The adaptive trigger is in feedback mode, and a resistive load has not been applied yet.
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusFeedbackNoLoad")]
     pub const FeedbackNoLoad: Self = Self(0);
+    /// The adaptive trigger is in feedback mode, and a resistive load is applied.
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusFeedbackLoadApplied")]
     pub const FeedbackLoadApplied: Self = Self(1);
+    /// The adaptive trigger is in weapon mode, the trigger is ready to fire, and a resistive load has not been applied yet.
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponReady")]
     pub const WeaponReady: Self = Self(2);
+    /// The adaptive trigger is in weapon mode, the trigger is firing, and a resistive load is currently being applied.
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponFiring")]
     pub const WeaponFiring: Self = Self(3);
+    /// The adaptive trigger is in weapon mode, the trigger has fired, and a resistive load is no longer being applied.
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusWeaponFired")]
     pub const WeaponFired: Self = Self(4);
+    /// The adaptive trigger is in vibration mode, and the trigger is not vibrating.
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusVibrationNotVibrating")]
     pub const VibrationNotVibrating: Self = Self(5);
+    /// The adaptive trigger is in vibration mode, and the trigger is currently vibrating.
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusVibrationIsVibrating")]
     pub const VibrationIsVibrating: Self = Self(6);
+    /// The adaptive trigger is in slope feedback mode, the trigger is ready to apply a resistive load, but a resistive load has not been applied yet.
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackReady")]
     pub const SlopeFeedbackReady: Self = Self(7);
+    /// The adaptive trigger is in slope feedback mode, and a resistive load is currently being applied to the trigger.
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackApplyingLoad")]
     pub const SlopeFeedbackApplyingLoad: Self = Self(8);
+    /// The adaptive trigger is in slope feedback mode, a resistive load has previously been applied, but is no longer being applied.
     #[doc(alias = "GCDualSenseAdaptiveTriggerStatusSlopeFeedbackFinished")]
     pub const SlopeFeedbackFinished: Self = Self(9);
 }
@@ -77,6 +95,7 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerStatus {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCDualSenseAdaptiveTriggerPositionalAmplitudes {
+    /// An array of amplitudes associated with the GCDualSenseAdaptiveTriggerDiscretePositionCount control positions supported by the DualSense adaptive triggers.
     pub values: [c_float; 10],
 }
 
@@ -92,6 +111,7 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerPositionalAmplitudes {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct GCDualSenseAdaptiveTriggerPositionalResistiveStrengths {
+    /// An array of resistive strengths associated with the GCDualSenseAdaptiveTriggerDiscretePositionCount control positions supported by the DualSense adaptive triggers.
     pub values: [c_float; 10],
 }
 
@@ -104,7 +124,15 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerPositionalResistiveStrengths
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger?language=objc)
+    /// DualSense triggers are required to be analog inputs. Common uses would be acceleration and decelleration in a driving game for example.
+    ///
+    /// GCDualSenseAdaptiveTrigger represents an adaptive trigger on the Sony DualSense controller, allowing you to specify a dynamic resistance force
+    /// that is applied when pulling the trigger. This can, for example, be used to emulate the feeling of pulling back a bow string, firing a weapon, or pulling a lever.
+    ///
+    ///
+    /// See: GCDualSenseGamepad
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger?language=objc)
     #[unsafe(super(GCControllerButtonInput, GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
@@ -117,15 +145,39 @@ unsafe impl NSObjectProtocol for GCDualSenseAdaptiveTrigger {}
 extern_methods!(
     #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
     unsafe impl GCDualSenseAdaptiveTrigger {
+        /// The mode that the adaptive trigger is currently in. This property reflects the physical state of the triggers - and requires a response from the controller.
+        /// It does not update immediately after calling -[GCDualSenseAdaptiveTrigger setMode...].
+        ///
+        ///
+        /// See: GCDualSenseAdaptiveTriggerMode
         #[method(mode)]
         pub unsafe fn mode(&self) -> GCDualSenseAdaptiveTriggerMode;
 
+        /// The current status of the adaptive trigger - whether it is ready to apply a load, is currently applying a load, or has finished applying a load.
+        ///
+        ///
+        /// See: GCDualSenseAdaptiveTriggerStatus
         #[method(status)]
         pub unsafe fn status(&self) -> GCDualSenseAdaptiveTriggerStatus;
 
+        /// A normalized float from [0-1], with 0 representing the lowest possible trigger arm position and 1 representing the maximum trigger arm position.
+        ///
+        ///
+        /// See: GCDualSenseAdaptiveTriggerStatus
         #[method(armPosition)]
         pub unsafe fn armPosition(&self) -> c_float;
 
+        /// Sets the adaptive trigger to slope feedback mode. The start position, end position, start strength, and end strength of the effect can be set arbitrarily; however the end position must be larger than the start position.
+        /// The trigger arm will provide a linearly interpolated degree of feedback whenever it is depressed between the start and end positions based on the starting and ending strengths.
+        ///
+        ///
+        /// Parameter `startPosition`: - A normalized float from [0-1], with 0 representing the smallest possible trigger depression and 1 representing the maximum trigger depression. The effect will begin once the trigger is depressed beyond this point.
+        ///
+        /// Parameter `endPosition`: - A normalized float from [0-1], with 0 representing the smallest possible depression and 1 representing the maximum trigger depression. Must be greater than startPosition. The effect will end once the trigger is depressed beyond this point.
+        ///
+        /// Parameter `startStrength`: - A normalized float from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength. The effect will begin at startStrength once the trigger is depressed beyond startPosition.
+        ///
+        /// Parameter `endStrength`: - A normalized float from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength. The effect will end at endStrength once the trigger is depressed to endPosition.
         #[method(setModeSlopeFeedbackWithStartPosition:endPosition:startStrength:endStrength:)]
         pub unsafe fn setModeSlopeFeedbackWithStartPosition_endPosition_startStrength_endStrength(
             &self,
@@ -135,6 +187,13 @@ extern_methods!(
             end_strength: c_float,
         );
 
+        /// Sets the adaptive trigger to feedback mode. The start position and strength of the effect can be set arbitrarily. The trigger arm will continue to provide a
+        /// constant degree of feedback whenever it is depressed further than the start position.
+        ///
+        ///
+        /// Parameter `startPosition`: - A normalized float from [0-1], with 0 representing the smallest possible trigger depression and 1 representing the maximum trigger depression.
+        ///
+        /// Parameter `resistiveStrength`: - A normalized float from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength.
         #[method(setModeFeedbackWithStartPosition:resistiveStrength:)]
         pub unsafe fn setModeFeedbackWithStartPosition_resistiveStrength(
             &self,
@@ -142,12 +201,26 @@ extern_methods!(
             resistive_strength: c_float,
         );
 
+        /// Sets the adaptive trigger to feedback mode. The strength of the effect can be set for each possible trigger position. The trigger arm will provide a degree of feedback based on the resistive strength for a given position.
+        ///
+        ///
+        /// Parameter `positionalResistiveStrengths`: - Positional normalized floats from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength.
         #[method(setModeFeedbackWithResistiveStrengths:)]
         pub unsafe fn setModeFeedbackWithResistiveStrengths(
             &self,
             positional_resistive_strengths: GCDualSenseAdaptiveTriggerPositionalResistiveStrengths,
         );
 
+        /// Sets the adaptive trigger to weapon mode. The start position, end position, and strength of the effect can be set arbitrarily; however the end position must be larger than the start position.
+        /// The trigger arm will continue to provide a constant degree of feedback whenever it is depressed further than the start position. Once the trigger arm has been depressed past the end
+        /// position, the strength of the effect will immediately fall to zero, providing a "sense of release" similar to that provided by pulling the trigger of a weapon.
+        ///
+        ///
+        /// Parameter `startPosition`: - A normalized float from [0-1], with 0 representing the smallest possible depression and 1 representing the maximum trigger depression. The effect will begin once the trigger is depressed beyond this point.
+        ///
+        /// Parameter `endPosition`: - A normalized float from [0-1], with 0 representing the smallest possible depression and 1 representing the maximum trigger depression. Must be greater than startPosition. The effect will end once the trigger is depressed beyond this point.
+        ///
+        /// Parameter `resistiveStrength`: - A normalized float from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength.
         #[method(setModeWeaponWithStartPosition:endPosition:resistiveStrength:)]
         pub unsafe fn setModeWeaponWithStartPosition_endPosition_resistiveStrength(
             &self,
@@ -156,6 +229,15 @@ extern_methods!(
             resistive_strength: c_float,
         );
 
+        /// Sets the adaptive trigger to vibration mode. The start position, amplitude, and frequency of the effect can be set arbitrarily. The trigger arm will continue to strike against
+        /// the trigger whenever it is depressed further than the start position, providing a "sense of vibration".
+        ///
+        ///
+        /// Parameter `startPosition`: - A normalized float from [0-1], with 0 representing the smallest possible depression and 1 representing the maximum trigger depression. The effect will begin once the trigger is depressed beyond this point.
+        ///
+        /// Parameter `amplitude`: - A normalized float from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength.
+        ///
+        /// Parameter `frequency`: - A normalized float from [0-1], with 0 representing the minimum frequency and 1 representing the maximum frequency of the vibration effect.
         #[method(setModeVibrationWithStartPosition:amplitude:frequency:)]
         pub unsafe fn setModeVibrationWithStartPosition_amplitude_frequency(
             &self,
@@ -164,6 +246,12 @@ extern_methods!(
             frequency: c_float,
         );
 
+        /// Sets the adaptive trigger to vibration mode. The amplitude of the effect can be set for each possible trigger position. The trigger arm will provide a degree of feedback based on the amplitude for a given position. The trigger arm will continue to strike against the trigger, providing a "sense of vibration".
+        ///
+        ///
+        /// Parameter `positionalAmplitudes`: - Positional normalized floats from [0-1], with 0 representing the minimum effect strength (off entirely) and 1 representing the maximum effect strength.
+        ///
+        /// Parameter `frequency`: - A normalized float from [0-1], with 0 representing the minimum frequency and 1 representing the maximum frequency of the vibration effect.
         #[method(setModeVibrationWithAmplitudes:frequency:)]
         pub unsafe fn setModeVibrationWithAmplitudes_frequency(
             &self,
@@ -171,6 +259,7 @@ extern_methods!(
             frequency: c_float,
         );
 
+        /// Sets the adaptive trigger to off mode. This turns off the adaptive trigger effect.
         #[method(setModeOff)]
         pub unsafe fn setModeOff(&self);
     }

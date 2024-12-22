@@ -70,48 +70,56 @@ extern_methods!(
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
+        /// Setter for [`action`][Self::action].
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;
 
+        /// Setter for [`tag`][Self::tag].
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: NSInteger);
 
         #[method(ignoresMultiClick)]
         pub unsafe fn ignoresMultiClick(&self) -> bool;
 
+        /// Setter for [`ignoresMultiClick`][Self::ignoresMultiClick].
         #[method(setIgnoresMultiClick:)]
         pub unsafe fn setIgnoresMultiClick(&self, ignores_multi_click: bool);
 
         #[method(isContinuous)]
         pub unsafe fn isContinuous(&self) -> bool;
 
+        /// Setter for [`isContinuous`][Self::isContinuous].
         #[method(setContinuous:)]
         pub unsafe fn setContinuous(&self, continuous: bool);
 
         #[method(isEnabled)]
         pub fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub fn setEnabled(&self, enabled: bool);
 
         #[method(refusesFirstResponder)]
         pub unsafe fn refusesFirstResponder(&self) -> bool;
 
+        /// Setter for [`refusesFirstResponder`][Self::refusesFirstResponder].
         #[method(setRefusesFirstResponder:)]
         pub unsafe fn setRefusesFirstResponder(&self, refuses_first_responder: bool);
 
         #[method(isHighlighted)]
         pub unsafe fn isHighlighted(&self) -> bool;
 
+        /// Setter for [`isHighlighted`][Self::isHighlighted].
         #[method(setHighlighted:)]
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
@@ -120,54 +128,63 @@ extern_methods!(
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`controlSize`][Self::controlSize].
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
         #[method_id(@__retain_semantics Other formatter)]
         pub unsafe fn formatter(&self) -> Option<Retained<NSFormatter>>;
 
+        /// Setter for [`formatter`][Self::formatter].
         #[method(setFormatter:)]
         pub unsafe fn setFormatter(&self, formatter: Option<&NSFormatter>);
 
         #[method_id(@__retain_semantics Other objectValue)]
         pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`objectValue`][Self::objectValue].
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other stringValue)]
         pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
+        /// Setter for [`stringValue`][Self::stringValue].
         #[method(setStringValue:)]
         pub unsafe fn setStringValue(&self, string_value: &NSString);
 
         #[method_id(@__retain_semantics Other attributedStringValue)]
         pub unsafe fn attributedStringValue(&self) -> Retained<NSAttributedString>;
 
+        /// Setter for [`attributedStringValue`][Self::attributedStringValue].
         #[method(setAttributedStringValue:)]
         pub unsafe fn setAttributedStringValue(&self, attributed_string_value: &NSAttributedString);
 
         #[method(intValue)]
         pub unsafe fn intValue(&self) -> c_int;
 
+        /// Setter for [`intValue`][Self::intValue].
         #[method(setIntValue:)]
         pub unsafe fn setIntValue(&self, int_value: c_int);
 
         #[method(integerValue)]
         pub unsafe fn integerValue(&self) -> NSInteger;
 
+        /// Setter for [`integerValue`][Self::integerValue].
         #[method(setIntegerValue:)]
         pub unsafe fn setIntegerValue(&self, integer_value: NSInteger);
 
         #[method(floatValue)]
         pub unsafe fn floatValue(&self) -> c_float;
 
+        /// Setter for [`floatValue`][Self::floatValue].
         #[method(setFloatValue:)]
         pub unsafe fn setFloatValue(&self, float_value: c_float);
 
         #[method(doubleValue)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
+        /// Setter for [`doubleValue`][Self::doubleValue].
         #[method(setDoubleValue:)]
         pub unsafe fn setDoubleValue(&self, double_value: c_double);
 
@@ -216,12 +233,14 @@ extern_methods!(
         pub unsafe fn font(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "NSFont")]
+        /// Setter for [`font`][Self::font].
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
         #[method(usesSingleLineMode)]
         pub unsafe fn usesSingleLineMode(&self) -> bool;
 
+        /// Setter for [`usesSingleLineMode`][Self::usesSingleLineMode].
         #[method(setUsesSingleLineMode:)]
         pub unsafe fn setUsesSingleLineMode(&self, uses_single_line_mode: bool);
 
@@ -230,6 +249,7 @@ extern_methods!(
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
         #[cfg(feature = "NSParagraphStyle")]
+        /// Setter for [`lineBreakMode`][Self::lineBreakMode].
         #[method(setLineBreakMode:)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
@@ -238,6 +258,7 @@ extern_methods!(
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
         #[cfg(feature = "NSText")]
+        /// Setter for [`alignment`][Self::alignment].
         #[method(setAlignment:)]
         pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
 
@@ -246,12 +267,14 @@ extern_methods!(
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
         #[cfg(feature = "NSText")]
+        /// Setter for [`baseWritingDirection`][Self::baseWritingDirection].
         #[method(setBaseWritingDirection:)]
         pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
         #[method(allowsExpansionToolTips)]
         pub unsafe fn allowsExpansionToolTips(&self) -> bool;
 
+        /// Setter for [`allowsExpansionToolTips`][Self::allowsExpansionToolTips].
         #[method(setAllowsExpansionToolTips:)]
         pub unsafe fn setAllowsExpansionToolTips(&self, allows_expansion_tool_tips: bool);
 
@@ -459,6 +482,7 @@ extern_methods!(
         #[method(cellClass)]
         pub unsafe fn cellClass(mtm: MainThreadMarker) -> Option<&'static AnyClass>;
 
+        /// Setter for [`cellClass`][Self::cellClass].
         #[method(setCellClass:)]
         pub unsafe fn setCellClass(cell_class: Option<&AnyClass>, mtm: MainThreadMarker);
 
@@ -467,6 +491,7 @@ extern_methods!(
         pub unsafe fn cell(&self) -> Option<Retained<NSCell>>;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`cell`][Self::cell].
         #[method(setCell:)]
         pub unsafe fn setCell(&self, cell: Option<&NSCell>);
 

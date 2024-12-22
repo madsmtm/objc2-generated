@@ -6,34 +6,47 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreason?language=objc)
+/// Reasons for the convergence state.
+///
+/// Multiple reasons may be present simultaenously.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreason?language=objc)
 // NS_TYPED_ENUM
 pub type NIAlgorithmConvergenceStatusReason = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasoninsufficienthorizontalsweep?language=objc)
+    /// Tell user to sweep device horizontally from side to side.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasoninsufficienthorizontalsweep?language=objc)
     pub static NIAlgorithmConvergenceStatusReasonInsufficientHorizontalSweep:
         &'static NIAlgorithmConvergenceStatusReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasoninsufficientverticalsweep?language=objc)
+    /// Tell user to sweep device verically up and down.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasoninsufficientverticalsweep?language=objc)
     pub static NIAlgorithmConvergenceStatusReasonInsufficientVerticalSweep:
         &'static NIAlgorithmConvergenceStatusReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasoninsufficientmovement?language=objc)
+    /// Tell user to move around.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasoninsufficientmovement?language=objc)
     pub static NIAlgorithmConvergenceStatusReasonInsufficientMovement:
         &'static NIAlgorithmConvergenceStatusReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasoninsufficientlighting?language=objc)
+    /// Tell user to turn on the light.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasoninsufficientlighting?language=objc)
     pub static NIAlgorithmConvergenceStatusReasonInsufficientLighting:
         &'static NIAlgorithmConvergenceStatusReason;
 }
 
+/// Helper methods for getting the localized description of the convergence reason
 #[inline]
 pub unsafe extern "C-unwind" fn NIAlgorithmConvergenceStatusReasonDescription(
     reason: &NIAlgorithmConvergenceStatusReason,

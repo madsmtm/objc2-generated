@@ -5,25 +5,37 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformer?language=objc)
+/// A color transformer returns a modified output color based on an input color.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformer?language=objc)
 #[cfg(all(feature = "UIColor", feature = "block2"))]
 pub type UIConfigurationColorTransformer =
     *mut block2::Block<dyn Fn(NonNull<UIColor>) -> NonNull<UIColor>>;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformergrayscale?language=objc)
+    /// A color transformer that returns a grayscale version of the color.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformergrayscale?language=objc)
     #[cfg(all(feature = "UIColor", feature = "block2"))]
     pub static UIConfigurationColorTransformerGrayscale: UIConfigurationColorTransformer;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformerpreferredtint?language=objc)
+    /// A color transformer that either passes the original color through, or replaces it with the system accent color.
+    /// - When the system accent color is set to Multicolor: Returns the original color.
+    /// - When the system accent color is configured to any other color:  Returns that color.
+    /// - On platforms without a system accent color: Returns the original color.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformerpreferredtint?language=objc)
     #[cfg(all(feature = "UIColor", feature = "block2"))]
     pub static UIConfigurationColorTransformerPreferredTint: UIConfigurationColorTransformer;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformermonochrometint?language=objc)
+    /// A color transformer that gives the color a monochrome tint. Use this to deemphasize the tinted item.
+    /// It remains monochrome regardless of the system accent color (if the platform has one).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformermonochrometint?language=objc)
     #[cfg(all(feature = "UIColor", feature = "block2"))]
     pub static UIConfigurationColorTransformerMonochromeTint: UIConfigurationColorTransformer;
 }

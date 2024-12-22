@@ -106,6 +106,7 @@ extern_methods!(
         #[method(accessibilityIgnoresInvertColors)]
         pub unsafe fn accessibilityIgnoresInvertColors(&self) -> bool;
 
+        /// Setter for [`accessibilityIgnoresInvertColors`][Self::accessibilityIgnoresInvertColors].
         #[method(setAccessibilityIgnoresInvertColors:)]
         pub unsafe fn setAccessibilityIgnoresInvertColors(
             &self,

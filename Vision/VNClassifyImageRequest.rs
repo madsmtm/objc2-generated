@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnclassifyimagerequest?language=objc)
+    /// A request for classifying an image.
+    ///
+    ///
+    /// This request will produce a collection of VNClassificationObservation objects which describe an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnclassifyimagerequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -30,18 +35,38 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNClassifyImageRequest {
         #[cfg(feature = "VNObservation")]
+        /// Obtain the collection of classifications currently recognized by the Vision framework.
+        ///
+        ///
+        /// Parameter `requestRevision`: The revision of the request for which classifications should be reported.
+        ///
+        ///
+        /// Parameter `error`: The address of the variable that will be populated with the error when the call fails.
+        ///
+        ///
+        /// Returns: the collection of classifications for the revision, or nil if an error was encountered.
         #[deprecated]
         #[method_id(@__retain_semantics Other knownClassificationsForRevision:error:_)]
         pub unsafe fn knownClassificationsForRevision_error(
             request_revision: NSUInteger,
         ) -> Result<Retained<NSArray<VNClassificationObservation>>, Retained<NSError>>;
 
+        /// Obtain the collection of identifiers supported by the target request.
+        ///
+        /// This method will return the collection of all possible classification identifiers that are produced by the target request based on its current state of configuration at the time of the call.
+        ///
+        ///
+        /// Parameter `error`: The address of the variable that will be populated with the error if the call fails.
+        ///
+        ///
+        /// Returns: The collection of classification identifiers, or nil if a failure occurs.
         #[method_id(@__retain_semantics Other supportedIdentifiersAndReturnError:_)]
         pub unsafe fn supportedIdentifiersAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<NSString>>, Retained<NSError>>;
 
         #[cfg(feature = "VNObservation")]
+        /// VNClassificationObservation results.
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNClassificationObservation>>>;
     }
@@ -51,10 +76,15 @@ extern_methods!(
     /// Methods declared on superclass `VNRequest`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNClassifyImageRequest {
+        /// Creates a new VNRequest with no completion handler.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Creates a new VNRequest with an optional completion handler.
+        ///
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -72,8 +102,12 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnclassifyimagerequestrevision1?language=objc)
+/// Classification with a taxonomy of 1,303 possible identifiers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnclassifyimagerequestrevision1?language=objc)
 pub static VNClassifyImageRequestRevision1: NSUInteger = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnclassifyimagerequestrevision2?language=objc)
+/// The same taxonomy as `VNClassifyImageRequestRevision1` but with improved accuracy, reduced latency and memory utilization.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnclassifyimagerequestrevision2?language=objc)
 pub static VNClassifyImageRequestRevision2: NSUInteger = 2;

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkseriessample?language=objc)
+    /// This class represents a type of HKSample that references a series of data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkseriessample?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -32,6 +34,8 @@ unsafe impl NSSecureCoding for HKSeriesSample {}
 extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKSeriesSample {
+        /// The number of individual series datum represented by the receiver and accessible
+        /// through the appropriate HKQuery series subclass.
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
     }

@@ -13,9 +13,13 @@ use crate::*;
 pub struct CKRecordZoneCapabilities(pub NSUInteger);
 bitflags::bitflags! {
     impl CKRecordZoneCapabilities: NSUInteger {
+/// This zone supports CKFetchRecordChangesOperation
         const CKRecordZoneCapabilityFetchChanges = 1<<0;
+/// Batched changes to this zone happen atomically
         const CKRecordZoneCapabilityAtomic = 1<<1;
+/// Records in this zone can be shared
         const CKRecordZoneCapabilitySharing = 1<<2;
+/// This zone supports a single CKShare record that shares all records in the zone
         const CKRecordZoneCapabilityZoneWideSharing = 1<<3;
     }
 }
@@ -80,10 +84,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Other zoneID)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
+        /// Capabilities on locally-created record zones are not valid until the record zone is saved. Capabilities on record zones fetched from the server are valid.
         #[method(capabilities)]
         pub unsafe fn capabilities(&self) -> CKRecordZoneCapabilities;
 
         #[cfg(feature = "CKReference")]
+        /// The share property on a record zone will only be set on zones fetched from the server and only if a
+        /// corresponding zone-wide share record for the zone exists on the server.
+        ///
+        /// You can create a zone-wide share for a zone using
+        ///
+        /// ```text
+        ///  -[CKShare initWithRecordZoneID:]
+        /// ```
+        ///
+        /// .
+        ///
+        /// Zone-wide sharing is only supported in zones with the
+        /// `CKRecordZoneCapabilityZoneWideSharing`sharing capability.
+        /// You cannot share a zone if it already contains shared records.
         #[method_id(@__retain_semantics Other share)]
         pub unsafe fn share(&self) -> Option<Retained<CKReference>>;
     }

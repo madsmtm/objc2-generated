@@ -44,6 +44,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other persistentStoreOptions)]
         pub unsafe fn persistentStoreOptions(&self) -> Option<Retained<NSDictionary>>;
 
+        /// Setter for [`persistentStoreOptions`][Self::persistentStoreOptions].
         #[method(setPersistentStoreOptions:)]
         pub unsafe fn setPersistentStoreOptions(
             &self,
@@ -53,6 +54,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other modelConfiguration)]
         pub unsafe fn modelConfiguration(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`modelConfiguration`][Self::modelConfiguration].
         #[method(setModelConfiguration:)]
         pub unsafe fn setModelConfiguration(&self, model_configuration: Option<&NSString>);
 

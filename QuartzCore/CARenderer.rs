@@ -43,6 +43,7 @@ extern_methods!(
         pub fn layer(&self) -> Option<Retained<CALayer>>;
 
         #[cfg(feature = "CALayer")]
+        /// Setter for [`layer`][Self::layer].
         #[method(setLayer:)]
         pub fn setLayer(&self, layer: Option<&CALayer>);
 
@@ -51,6 +52,7 @@ extern_methods!(
         pub fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`bounds`][Self::bounds].
         #[method(setBounds:)]
         pub fn setBounds(&self, bounds: CGRect);
 
@@ -94,7 +96,9 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcarenderercolorspace?language=objc)
+    /// Options for the renderer options dictionary. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcarenderercolorspace?language=objc)
     pub static kCARendererColorSpace: &'static NSString;
 }
 

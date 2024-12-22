@@ -38,6 +38,7 @@ extern_methods!(
         #[method(accelerometerUpdateInterval)]
         pub unsafe fn accelerometerUpdateInterval(&self) -> NSTimeInterval;
 
+        /// Setter for [`accelerometerUpdateInterval`][Self::accelerometerUpdateInterval].
         #[method(setAccelerometerUpdateInterval:)]
         pub unsafe fn setAccelerometerUpdateInterval(
             &self,
@@ -71,6 +72,7 @@ extern_methods!(
         #[method(gyroUpdateInterval)]
         pub unsafe fn gyroUpdateInterval(&self) -> NSTimeInterval;
 
+        /// Setter for [`gyroUpdateInterval`][Self::gyroUpdateInterval].
         #[method(setGyroUpdateInterval:)]
         pub unsafe fn setGyroUpdateInterval(&self, gyro_update_interval: NSTimeInterval);
 
@@ -101,6 +103,7 @@ extern_methods!(
         #[method(magnetometerUpdateInterval)]
         pub unsafe fn magnetometerUpdateInterval(&self) -> NSTimeInterval;
 
+        /// Setter for [`magnetometerUpdateInterval`][Self::magnetometerUpdateInterval].
         #[method(setMagnetometerUpdateInterval:)]
         pub unsafe fn setMagnetometerUpdateInterval(
             &self,
@@ -134,6 +137,7 @@ extern_methods!(
         #[method(deviceMotionUpdateInterval)]
         pub unsafe fn deviceMotionUpdateInterval(&self) -> NSTimeInterval;
 
+        /// Setter for [`deviceMotionUpdateInterval`][Self::deviceMotionUpdateInterval].
         #[method(setDeviceMotionUpdateInterval:)]
         pub unsafe fn setDeviceMotionUpdateInterval(
             &self,
@@ -196,6 +200,7 @@ extern_methods!(
         #[method(showsDeviceMovementDisplay)]
         pub unsafe fn showsDeviceMovementDisplay(&self) -> bool;
 
+        /// Setter for [`showsDeviceMovementDisplay`][Self::showsDeviceMovementDisplay].
         #[method(setShowsDeviceMovementDisplay:)]
         pub unsafe fn setShowsDeviceMovementDisplay(&self, shows_device_movement_display: bool);
     }

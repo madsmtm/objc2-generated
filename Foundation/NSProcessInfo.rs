@@ -91,6 +91,7 @@ extern_methods!(
         pub fn processName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`processName`][Self::processName].
         #[method(setProcessName:)]
         pub unsafe fn setProcessName(&self, process_name: &NSString);
 
@@ -153,6 +154,7 @@ extern_methods!(
         #[method(automaticTerminationSupportEnabled)]
         pub unsafe fn automaticTerminationSupportEnabled(&self) -> bool;
 
+        /// Setter for [`automaticTerminationSupportEnabled`][Self::automaticTerminationSupportEnabled].
         #[method(setAutomaticTerminationSupportEnabled:)]
         pub unsafe fn setAutomaticTerminationSupportEnabled(
             &self,

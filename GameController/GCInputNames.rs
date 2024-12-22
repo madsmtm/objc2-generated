@@ -41,7 +41,10 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputleftbumper?language=objc)
+    /// Identifies the button element located at the top-left/right of a gamepad,
+    /// between the left/right shoulder button and the gamepad's horizontal center.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputleftbumper?language=objc)
     pub static GCInputLeftBumper: Option<&'static GCInputButtonName>;
 }
 

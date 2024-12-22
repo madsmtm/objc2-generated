@@ -55,6 +55,7 @@ extern_methods!(
         #[method(isMuted)]
         pub unsafe fn isMuted(&self) -> bool;
 
+        /// Setter for [`isMuted`][Self::isMuted].
         #[method(setMuted:)]
         pub unsafe fn setMuted(&self, muted: bool);
     }

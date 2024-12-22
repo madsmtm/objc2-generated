@@ -724,43 +724,72 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatafullframerateplaybackintent?language=objc)
+    /// A value of type kCMMetadataBaseDataType_UInt8 indicating whether this movie is intended to be played back at the full frame rate (1), or at a slow motion rate (0).
+    ///
+    /// Historically, some apps have played movies recorded at frame rates of 120fps or higher in slow motion by default. With the introduction of this metadata, apps that record high-frame-rate movies may add this movie-level metadata to indicate whether the movie is intended to be played at the full frame rate (1) or at a slow motion rate (0). Apps that play movies may use this metadata, when present, to guide their behavior.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatafullframerateplaybackintent?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataFullFrameRatePlaybackIntent:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataautolivephoto?language=objc)
+    /// A value of type kCMMetadataBaseDataType_UInt8 indicating whether this Live Photo movie was captured in "Auto" mode.
+    ///
+    /// Clients capturing LivePhoto content may add this movie-level metadata to signify that the movie content should only be used (when swiping between photos, or force-touching a photo) if it's sufficiently dynamic. For instance, photos of static scenes or documents are to be excluded from the Live Photo experience.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataautolivephoto?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataAutoLivePhoto:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalivephotovitalityscore?language=objc)
+    /// A value of type kCMMetadataBaseDataType_Float32.
+    ///
+    /// Live Photo movies may be algorithmically scored from 0. to 1. on their level of vitality. A Live Photo movie with a low vitality score offers little dynamism to the still photo it accompanies. The vitality score is normalized and independent of the vitality scoring version of the algorithm (see AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScoringVersion). If a Live Photo movie contains the AVMetadataIdentifierQuickTimeMetadataAutoLivePhoto key and its value is non-zero, apps should read the AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScore value and only display the movie's content if the score is 0.5 or higher.
+    /// If the capture session includes a metadata output configured to provide face, dog, or cat metadata objects, their presence will greatly increase the vitality score.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalivephotovitalityscore?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScore:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalivephotovitalityscoringversion?language=objc)
+    /// A value of type kCMMetadataBaseDataType_UInt32.
+    ///
+    /// The version of the algorithm that scored the Live Photo movie for vitality.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalivephotovitalityscoringversion?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScoringVersion:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataspatialovercapturequalityscore?language=objc)
+    /// A value of type kCMMetadataBaseDataType_Float32.
+    ///
+    /// The video may be scored by a heuristic which considers factors such as exposure and focus.  The value ranges from 0-1, where a score below 0.5 indicates the asset has serious flaws.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataspatialovercapturequalityscore?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScore:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataspatialovercapturequalityscoringversion?language=objc)
+    /// A value of type kCMMetadataBaseDataType_UInt32.
+    ///
+    /// The version of the algorithm that provided the spatial over capture quality score.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataspatialovercapturequalityscoringversion?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScoringVersion:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalocationhorizontalaccuracyinmeters?language=objc)
+    /// A value of type kCMMetadataBaseDataType_Float32.
+    ///
+    /// The horizontal accuracy of the provided location data (usually specified by AVMetadataIdentifierQuickTimeMetadataLocationISO6709).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalocationhorizontalaccuracyinmeters?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLocationHorizontalAccuracyInMeters:
         Option<&'static AVMetadataIdentifier>;
 }

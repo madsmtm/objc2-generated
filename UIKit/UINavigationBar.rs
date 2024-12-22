@@ -105,6 +105,7 @@ extern_methods!(
         pub unsafe fn barStyle(&self) -> UIBarStyle;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`barStyle`][Self::barStyle].
         #[method(setBarStyle:)]
         pub unsafe fn setBarStyle(&self, bar_style: UIBarStyle);
 
@@ -116,6 +117,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarCommon")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -125,6 +127,7 @@ extern_methods!(
         #[method(isTranslucent)]
         pub unsafe fn isTranslucent(&self) -> bool;
 
+        /// Setter for [`isTranslucent`][Self::isTranslucent].
         #[method(setTranslucent:)]
         pub unsafe fn setTranslucent(&self, translucent: bool);
 
@@ -152,6 +155,7 @@ extern_methods!(
         pub unsafe fn items(&self) -> Option<Retained<NSArray<UINavigationItem>>>;
 
         #[cfg(feature = "UINavigationItem")]
+        /// Setter for [`items`][Self::items].
         #[method(setItems:)]
         pub unsafe fn setItems(&self, items: Option<&NSArray<UINavigationItem>>);
 
@@ -163,24 +167,30 @@ extern_methods!(
             animated: bool,
         );
 
+        /// When set to YES, the navigation bar will use a larger out-of-line title view when requested by the current navigation item. To specify when the large out-of-line title view appears, see UINavigationItem.largeTitleDisplayMode. Defaults to NO.
         #[method(prefersLargeTitles)]
         pub unsafe fn prefersLargeTitles(&self) -> bool;
 
+        /// Setter for [`prefersLargeTitles`][Self::prefersLargeTitles].
         #[method(setPrefersLargeTitles:)]
         pub unsafe fn setPrefersLargeTitles(&self, prefers_large_titles: bool);
 
+        /// The toolbar section that this navigation bar is currently using.
         #[method(currentNSToolbarSection)]
         pub unsafe fn currentNSToolbarSection(&self) -> UINavigationBarNSToolbarSection;
 
         #[cfg(feature = "UIBehavioralStyle")]
+        /// The concrete behavioral style chosen for the navigation bar. When this resolves to .mac, the navigation bar's contents are placed in the NSToolbar.
         #[method(behavioralStyle)]
         pub unsafe fn behavioralStyle(&self) -> UIBehavioralStyle;
 
         #[cfg(feature = "UIBehavioralStyle")]
+        /// The requested behavioral style for the navigation bar.
         #[method(preferredBehavioralStyle)]
         pub unsafe fn preferredBehavioralStyle(&self) -> UIBehavioralStyle;
 
         #[cfg(feature = "UIBehavioralStyle")]
+        /// Setter for [`preferredBehavioralStyle`][Self::preferredBehavioralStyle].
         #[method(setPreferredBehavioralStyle:)]
         pub unsafe fn setPreferredBehavioralStyle(
             &self,
@@ -192,6 +202,7 @@ extern_methods!(
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`tintColor`][Self::tintColor].
         #[method(setTintColor:)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
@@ -200,6 +211,7 @@ extern_methods!(
         pub unsafe fn barTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`barTintColor`][Self::barTintColor].
         #[method(setBarTintColor:)]
         pub unsafe fn setBarTintColor(&self, bar_tint_color: Option<&UIColor>);
 
@@ -240,6 +252,7 @@ extern_methods!(
         pub unsafe fn shadowImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`shadowImage`][Self::shadowImage].
         #[method(setShadowImage:)]
         pub unsafe fn setShadowImage(&self, shadow_image: Option<&UIImage>);
 
@@ -248,6 +261,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
+        /// Setter for [`titleTextAttributes`][Self::titleTextAttributes].
         #[method(setTitleTextAttributes:)]
         pub unsafe fn setTitleTextAttributes(
             &self,
@@ -259,6 +273,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
+        /// Setter for [`largeTitleTextAttributes`][Self::largeTitleTextAttributes].
         #[method(setLargeTitleTextAttributes:)]
         pub unsafe fn setLargeTitleTextAttributes(
             &self,
@@ -285,6 +300,7 @@ extern_methods!(
         pub unsafe fn backIndicatorImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`backIndicatorImage`][Self::backIndicatorImage].
         #[method(setBackIndicatorImage:)]
         pub unsafe fn setBackIndicatorImage(&self, back_indicator_image: Option<&UIImage>);
 
@@ -293,6 +309,7 @@ extern_methods!(
         pub unsafe fn backIndicatorTransitionMaskImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`backIndicatorTransitionMaskImage`][Self::backIndicatorTransitionMaskImage].
         #[method(setBackIndicatorTransitionMaskImage:)]
         pub unsafe fn setBackIndicatorTransitionMaskImage(
             &self,
@@ -300,18 +317,22 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// Describes the appearance attributes for the navigation bar to use when it is displayed with its standard height.
         #[method_id(@__retain_semantics Other standardAppearance)]
         pub unsafe fn standardAppearance(&self) -> Retained<UINavigationBarAppearance>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// Setter for [`standardAppearance`][Self::standardAppearance].
         #[method(setStandardAppearance:)]
         pub unsafe fn setStandardAppearance(&self, standard_appearance: &UINavigationBarAppearance);
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// Describes the appearance attributes for the navigation bar to use when it is displayed with its compact height. If not set, the standardAppearance will be used instead.
         #[method_id(@__retain_semantics Other compactAppearance)]
         pub unsafe fn compactAppearance(&self) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// Setter for [`compactAppearance`][Self::compactAppearance].
         #[method(setCompactAppearance:)]
         pub unsafe fn setCompactAppearance(
             &self,
@@ -319,10 +340,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// Describes the appearance attributes for the navigation bar to use when an associated UIScrollView has reached the edge abutting the bar (the top edge for the navigation bar). If not set, a modified standardAppearance will be used instead.
         #[method_id(@__retain_semantics Other scrollEdgeAppearance)]
         pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// Setter for [`scrollEdgeAppearance`][Self::scrollEdgeAppearance].
         #[method(setScrollEdgeAppearance:)]
         pub unsafe fn setScrollEdgeAppearance(
             &self,
@@ -330,12 +353,14 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// Describes the appearance attributes for the navigation bar to use when it is displayed with its compact heights, and an associated UIScrollView has reached the edge abutting the bar. If not set, first the scrollEdgeAppearance will be tried, and if that is nil then compactAppearance followed by a modified standardAppearance.
         #[method_id(@__retain_semantics Other compactScrollEdgeAppearance)]
         pub unsafe fn compactScrollEdgeAppearance(
             &self,
         ) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// Setter for [`compactScrollEdgeAppearance`][Self::compactScrollEdgeAppearance].
         #[method(setCompactScrollEdgeAppearance:)]
         pub unsafe fn setCompactScrollEdgeAppearance(
             &self,
@@ -431,6 +456,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Which section of the NSToolbar this navigation bar should use when attempting to host in an NSToolbar. Returning 'None' will disable NSToolbar hosting as if preferredBehavioralStyle were set to 'Pad' The specific section returned will also affect how the navigation bar presents in that section.
         #[optional]
         #[method(navigationBarNSToolbarSection:)]
         unsafe fn navigationBarNSToolbarSection(

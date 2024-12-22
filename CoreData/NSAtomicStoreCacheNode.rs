@@ -34,6 +34,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSMutableDictionary<NSString, AnyObject>>>;
 
+        /// Setter for [`propertyCache`][Self::propertyCache].
         #[method(setPropertyCache:)]
         pub unsafe fn setPropertyCache(
             &self,

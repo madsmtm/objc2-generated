@@ -29,12 +29,15 @@ extern_methods!(
             is_encrypted: bool,
         ) -> Retained<Self>;
 
+        /// The full encoded RFC822 message including headers and body.
         #[method_id(@__retain_semantics Other rawData)]
         pub unsafe fn rawData(&self) -> Retained<NSData>;
 
+        /// Whether or not the encoded message is signed
         #[method(isSigned)]
         pub unsafe fn isSigned(&self) -> bool;
 
+        /// Whether or not the encoded message is encrypted
         #[method(isEncrypted)]
         pub unsafe fn isEncrypted(&self) -> bool;
     }

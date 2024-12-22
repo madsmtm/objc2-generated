@@ -8,11 +8,15 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagekeypointrangeinfo?language=objc)
+/// Specifies information to find the keypoints in an image.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagekeypointrangeinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSImageKeypointRangeInfo {
+    /// maximum number of keypoints
     pub maximumKeypoints: NSUInteger,
+    /// minimum threshold value -  value between 0.0 and 1.0f
     pub minimumThresholdValue: c_float,
 }
 
@@ -26,7 +30,11 @@ unsafe impl RefEncode for MPSImageKeypointRangeInfo {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefindkeypoints?language=objc)
+    /// The MPSImageFindKeypoints kernel is used to find a list of keypoints whose values are >= minimumPixelThresholdValue
+    /// in MPSImageKeypointRangeInfo. The keypoints are generated for a specified region in the image.
+    /// The pixel format of the source image must be MTLPixelFormatR8Unorm.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefindkeypoints?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -53,9 +61,19 @@ unsafe impl NSSecureCoding for MPSImageFindKeypoints {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSImageFindKeypoints {
+        /// Return a structure describing the keypoint range info
+        ///
+        /// Returns a MPSImageKeypointRangeInfo structure
         #[method(keypointRangeInfo)]
         pub unsafe fn keypointRangeInfo(&self) -> MPSImageKeypointRangeInfo;
 
+        /// Specifies information to find keypoints in an image.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `info`: Pointer to the MPSImageKeypointRangeInfo struct
+        ///
+        /// Returns: A valid MPSImageFindKeypoints object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:info:)]
         pub unsafe fn initWithDevice_info(
             this: Allocated<Self>,
@@ -69,6 +87,19 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -76,6 +107,31 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Encode the filter to a command buffer using a MTLComputeCommandEncoder.
+        ///
+        /// The filter will not begin to execute until after the command
+        /// buffer has been enqueued and committed.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer.
+        ///
+        /// Parameter `source`: A valid MTLTexture containing the source image for the filter.
+        ///
+        /// Parameter `regions`: An array of rectangles that describe regions in the image.
+        /// The list of keypoints is generated for each individual rectangle specifed.
+        ///
+        /// Parameter `keypointCountBuffer`: The list of keypoints for each specified region
+        ///
+        /// Parameter `keypointCountBufferOffset`: Byte offset into keypointCountBufferOffset buffer at which to write the keypoint results.
+        /// Must be a multiple of 32 bytes.
+        ///
+        /// Parameter `keypointDataBuffer`: A valid MTLBuffer to receive the keypoint data results for each rectangle.
+        /// The keypoint data for keypoints in each rectangle are stored consecutively.
+        /// The keypoint data for each rectangle starts at the following offset:
+        /// MPSImageKeypointRangeInfo.maximumKeyPoints * rectangle index
+        ///
+        /// Parameter `keypointDataBufferOffset`: Byte offset into keypointData buffer at which to write the keypoint results.
+        /// Must be a multiple of 32 bytes.
         #[method(encodeToCommandBuffer:sourceTexture:regions:numberOfRegions:keypointCountBuffer:keypointCountBufferOffset:keypointDataBuffer:keypointDataBufferOffset:)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_regions_numberOfRegions_keypointCountBuffer_keypointCountBufferOffset_keypointDataBuffer_keypointDataBufferOffset(
             &self,
@@ -95,6 +151,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSImageFindKeypoints {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

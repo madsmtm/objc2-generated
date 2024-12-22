@@ -9,7 +9,59 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Describes a convolution neural network kernel.
+    ///
+    /// A MPSCNNKernel consumes one MPSImage and produces one MPSImage.
+    ///
+    /// The region overwritten in the destination MPSImage is described
+    /// by the clipRect.  The top left corner of the region consumed (ignoring
+    /// adjustments for filter size -- e.g. convolution filter size) is given
+    /// by the offset. The size of the region consumed is a function of the
+    /// clipRect size and any subsampling caused by pixel strides at work,
+    /// e.g. MPSCNNPooling.strideInPixelsX/Y.  Where the offset + clipRect
+    /// would cause a {x,y} pixel address not in the image to be read, the
+    /// edgeMode is used to determine what value to read there.
+    ///
+    /// The Z/depth component of the offset, clipRect.origin and clipRect.size
+    /// indexes which images to use. If the MPSImage contains only a single image
+    /// then these should be offset.z = 0, clipRect.origin.z = 0
+    /// and clipRect.size.depth = 1. If the MPSImage contains multiple images,
+    /// clipRect.size.depth refers to number of images to process. Both source
+    /// and destination MPSImages must have at least this many images. offset.z
+    /// refers to starting source image index. Thus offset.z + clipRect.size.depth must
+    /// be
+    /// <
+    /// = source.numberOfImages. Similarly, clipRect.origin.z refers to starting
+    /// image index in destination. So clipRect.origin.z + clipRect.size.depth must be
+    /// <
+    /// = destination.numberOfImage.
+    ///
+    /// destinationFeatureChannelOffset property can be used to control where the MPSKernel will
+    /// start writing in feature channel dimension. For example, if the destination image has
+    /// 64 channels, and MPSKernel outputs 32 channels, by default channels 0-31 of destination
+    /// will be populated by MPSKernel. But if we want this MPSKernel to populate channel 32-63
+    /// of the destination, we can set destinationFeatureChannelOffset = 32.
+    /// A good example of this is concat (concatenation) operation in Tensor Flow. Suppose
+    /// we have a src = w x h x Ni which goes through CNNConvolution_0 which produces
+    /// output O0 = w x h x N0 and CNNConvolution_1 which produces output O1 = w x h x N1 followed
+    /// by concatenation which produces O = w x h x (N0 + N1). We can achieve this by creating
+    /// an MPSImage with dimensions O = w x h x (N0 + N1) and using this as destination of
+    /// both convolutions as follows
+    /// CNNConvolution0: destinationFeatureChannelOffset = 0, this will output N0 channels starting at
+    /// channel 0 of destination thus populating [0,N0-1] channels.
+    /// CNNConvolution1: destinationFeatureChannelOffset = N0, this will output N1 channels starting at
+    /// channel N0 of destination thus populating [N0,N0+N1-1] channels.
+    ///
+    /// A MPSCNNKernel can be saved to disk / network using NSCoders such as NSKeyedArchiver.
+    /// When decoding, the system default MTLDevice will be chosen unless the NSCoder adopts
+    /// the
+    /// <MPSDeviceProvider
+    /// > protocol.  To accomplish this you will likely need to subclass your
+    /// unarchiver to add this method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -36,6 +88,13 @@ unsafe impl NSSecureCoding for MPSCNNKernel {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSCNNKernel {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: A pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -43,40 +102,98 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The position of the destination clip rectangle origin relative to the source buffer.
+        ///
+        /// The offset is defined to be the position of clipRect.origin in source coordinates.
+        /// Default: {0,0,0}, indicating that the top left corners of the clipRect and source image align.
+        /// offset.z is the index of starting source image in batch processing mode.
+        ///
+        /// See Also:
+        /// MetalPerformanceShaders.hsubsubsection_mpsoffset
         #[method(offset)]
         pub unsafe fn offset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`offset`][Self::offset].
         #[method(setOffset:)]
         pub unsafe fn setOffset(&self, offset: MPSOffset);
 
+        /// An optional clip rectangle to use when writing data. Only the pixels in the rectangle will be overwritten.
+        ///
+        /// A MTLRegion that indicates which part of the destination to overwrite. If the clipRect does not lie
+        /// completely within the destination image, the intersection between clip rectangle and destination bounds is
+        /// used.   Default: MPSRectNoClip (MPSKernel::MPSRectNoClip) indicating the entire image.
+        /// clipRect.origin.z is the index of starting destination image in batch processing mode. clipRect.size.depth
+        /// is the number of images to process in batch processing mode.
+        ///
+        /// See Also:
+        /// MetalPerformanceShaders.hsubsubsection_clipRect
         #[method(clipRect)]
         pub unsafe fn clipRect(&self) -> MTLRegion;
 
+        /// Setter for [`clipRect`][Self::clipRect].
         #[method(setClipRect:)]
         pub unsafe fn setClipRect(&self, clip_rect: MTLRegion);
 
+        /// The number of channels in the destination MPSImage to skip before writing output.
+        ///
+        /// This is the starting offset into the destination image in the feature channel dimension
+        /// at which destination data is written.
+        /// This allows an application to pass a subset of all the channels in MPSImage as output of MPSKernel.
+        /// E.g. Suppose MPSImage has 24 channels and a MPSKernel outputs 8 channels. If
+        /// we want channels 8 to 15 of this MPSImage to be used as output, we can set destinationFeatureChannelOffset = 8.
+        /// Note that this offset applies independently to each image when the MPSImage
+        /// is a container for multiple images and the MPSCNNKernel is processing multiple images (clipRect.size.depth > 1).
+        /// The default value is 0 and any value specifed shall be a multiple of 4. If MPSKernel outputs N channels,
+        /// the destination image MUST have at least destinationFeatureChannelOffset + N channels. Using a destination
+        /// image with insufficient number of feature channels will result in an error.
+        /// E.g. if the MPSCNNConvolution outputs 32 channels, and the destination has 64 channels, then it is an error to set
+        /// destinationFeatureChannelOffset > 32.
         #[method(destinationFeatureChannelOffset)]
         pub unsafe fn destinationFeatureChannelOffset(&self) -> NSUInteger;
 
+        /// Setter for [`destinationFeatureChannelOffset`][Self::destinationFeatureChannelOffset].
         #[method(setDestinationFeatureChannelOffset:)]
         pub unsafe fn setDestinationFeatureChannelOffset(
             &self,
             destination_feature_channel_offset: NSUInteger,
         );
 
+        /// The number of channels in the source MPSImage to skip before reading the input.
+        ///
+        /// This is the starting offset into the source image in the feature channel dimension
+        /// at which source data is read. Unit: feature channels
+        /// This allows an application to read a subset of all the channels in MPSImage as input of MPSKernel.
+        /// E.g. Suppose MPSImage has 24 channels and a MPSKernel needs to read 8 channels. If
+        /// we want channels 8 to 15 of this MPSImage to be used as input, we can set sourceFeatureChannelOffset = 8.
+        /// Note that this offset applies independently to each image when the MPSImage
+        /// is a container for multiple images and the MPSCNNKernel is processing multiple images (clipRect.size.depth > 1).
+        /// The default value is 0 and any value specifed shall be a multiple of 4. If MPSKernel inputs N channels,
+        /// the source image MUST have at least sourceFeatureChannelOffset + N channels. Using a source
+        /// image with insufficient number of feature channels will result in an error.
+        /// E.g. if the MPSCNNConvolution inputs 32 channels, and the source has 64 channels, then it is an error to set
+        /// sourceFeatureChannelOffset > 32.
         #[method(sourceFeatureChannelOffset)]
         pub unsafe fn sourceFeatureChannelOffset(&self) -> NSUInteger;
 
+        /// Setter for [`sourceFeatureChannelOffset`][Self::sourceFeatureChannelOffset].
         #[method(setSourceFeatureChannelOffset:)]
         pub unsafe fn setSourceFeatureChannelOffset(
             &self,
             source_feature_channel_offset: NSUInteger,
         );
 
+        /// The maximum number of channels in the source MPSImage to use
+        ///
+        /// Most filters can insert a slice operation into the filter for free.
+        /// Use this to limit the size of the feature channel slice taken from
+        /// the input image. If the value is too large, it is truncated to be
+        /// the remaining size in the image after the sourceFeatureChannelOffset
+        /// is taken into account.  Default: ULONG_MAX
         #[method(sourceFeatureChannelMaxCount)]
         pub unsafe fn sourceFeatureChannelMaxCount(&self) -> NSUInteger;
 
+        /// Setter for [`sourceFeatureChannelMaxCount`][Self::sourceFeatureChannelMaxCount].
         #[method(setSourceFeatureChannelMaxCount:)]
         pub unsafe fn setSourceFeatureChannelMaxCount(
             &self,
@@ -84,58 +201,139 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The MPSImageEdgeMode to use when texture reads stray off the edge of an image
+        ///
+        /// Most MPSKernel objects can read off the edge of the source image. This can happen
+        /// because of a negative offset property, because the offset + clipRect.size is larger
+        /// than the source image or because the filter looks at neighboring pixels, such as a
+        /// Convolution filter.   Default:  MPSImageEdgeModeZero.
+        ///
+        /// See Also:
+        /// MetalPerformanceShaders.hsubsubsection_edgemode
+        /// Note: For
+        /// MPSCNNPoolingAveragespecifying edge mode
+        /// MPSImageEdgeModeClampis interpreted as a "shrink-to-edge" operation, which shrinks the effective
+        /// filtering window to remain within the source image borders.
         #[method(edgeMode)]
         pub unsafe fn edgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`edgeMode`][Self::edgeMode].
         #[method(setEdgeMode:)]
         pub unsafe fn setEdgeMode(&self, edge_mode: MPSImageEdgeMode);
 
+        /// The width of the MPSCNNKernel filter window
+        ///
+        /// This is the horizontal diameter of the region read by the filter for each
+        /// result pixel. If the MPSCNNKernel does not have a filter window, then
+        /// 1 will be returned.
+        ///
+        /// Warning: This property was lowered to this class in ios/tvos 11
+        /// The property may not be available on iOS/tvOS 10 for
+        /// all subclasses of MPSCNNKernel
         #[method(kernelWidth)]
         pub unsafe fn kernelWidth(&self) -> NSUInteger;
 
+        /// The height of the MPSCNNKernel filter window
+        ///
+        /// This is the vertical diameter of the region read by the filter for each
+        /// result pixel. If the MPSCNNKernel does not have a filter window, then
+        /// 1 will be returned.
+        ///
+        /// Warning: This property was lowered to this class in ios/tvos 11
+        /// The property may not be available on iOS/tvOS 10 for
+        /// all subclasses of MPSCNNKernel
         #[method(kernelHeight)]
         pub unsafe fn kernelHeight(&self) -> NSUInteger;
 
+        /// The downsampling (or upsampling if a backwards filter) factor in the horizontal dimension
+        ///
+        /// If the filter does not do up or downsampling, 1 is returned.
+        ///
+        /// Warning: This property was lowered to this class in ios/tvos 11
+        /// The property may not be available on iOS/tvOS 10 for
+        /// all subclasses of MPSCNNKernel
         #[method(strideInPixelsX)]
         pub unsafe fn strideInPixelsX(&self) -> NSUInteger;
 
+        /// The downsampling (or upsampling if a backwards filter) factor in the vertical dimension
+        ///
+        /// If the filter does not do up or downsampling, 1 is returned.
+        ///
+        /// Warning: This property was lowered to this class in ios/tvos 11
+        /// The property may not be available on iOS/tvOS 10 for
+        /// all subclasses of MPSCNNKernel
         #[method(strideInPixelsY)]
         pub unsafe fn strideInPixelsY(&self) -> NSUInteger;
 
+        /// Stride in source coordinates from one kernel tap to the next in the X dimension.
         #[method(dilationRateX)]
         pub unsafe fn dilationRateX(&self) -> NSUInteger;
 
+        /// Stride in source coordinates from one kernel tap to the next in the Y dimension.
         #[method(dilationRateY)]
         pub unsafe fn dilationRateY(&self) -> NSUInteger;
 
+        /// YES if the filter operates backwards.
+        ///
+        /// This influences how strideInPixelsX/Y should be interpreted.
+        /// Most filters either have stride 1 or are reducing, meaning that
+        /// the result image is smaller than the original by roughly a factor
+        /// of the stride.  A few "backward" filters (e.g convolution transpose) are intended
+        /// to "undo" the effects of an earlier forward filter, and so
+        /// enlarge the image. The stride is in the destination coordinate frame
+        /// rather than the source coordinate frame.
         #[method(isBackwards)]
         pub unsafe fn isBackwards(&self) -> bool;
 
+        /// Returns true if the -encode call modifies the state object it accepts.
         #[method(isStateModified)]
         pub unsafe fn isStateModified(&self) -> bool;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// The padding method used by the filter
+        ///
+        /// This influences how the destination image is sized and how
+        /// the offset into the source image is set.  It is used by the
+        /// -encode methods that return a MPSImage from the left hand side.
         #[method_id(@__retain_semantics Other padding)]
         pub unsafe fn padding(&self) -> Retained<ProtocolObject<dyn MPSNNPadding>>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Setter for [`padding`][Self::padding].
         #[method(setPadding:)]
         pub unsafe fn setPadding(&self, padding: &ProtocolObject<dyn MPSNNPadding>);
 
         #[cfg(feature = "MPSImage")]
+        /// Method to allocate the result image for -encodeToCommandBuffer:sourceImage:
+        ///
+        /// Default: MPSTemporaryImage.defaultAllocator
         #[method_id(@__retain_semantics Other destinationImageAllocator)]
         pub unsafe fn destinationImageAllocator(
             &self,
         ) -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
 
         #[cfg(feature = "MPSImage")]
+        /// Setter for [`destinationImageAllocator`][Self::destinationImageAllocator].
         #[method(setDestinationImageAllocator:)]
         pub unsafe fn setDestinationImageAllocator(
             &self,
             destination_image_allocator: &ProtocolObject<dyn MPSImageAllocator>,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -144,6 +342,16 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MPSImage")]
+        /// Encode a MPSCNNKernel into a command Buffer.  The operation shall proceed out-of-place.
+        ///
+        /// This is the older style of encode which reads the offset, doesn't change it,
+        /// and ignores the padding method.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceImage`: A valid MPSImage object containing the source image.
+        ///
+        /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. destinationImage may not alias sourceImage.
         #[method(encodeToCommandBuffer:sourceImage:destinationImage:)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_destinationImage(
             &self,
@@ -153,6 +361,18 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Encode a MPSCNNKernel with a destination state into a command Buffer.
+        ///
+        /// This is typically used during training. The state is commonly a MPSNNGradientState.
+        /// Please see -resultStateForSourceImages:SourceStates: and batch+temporary variants.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceImage`: A valid MPSImage object containing the source image.
+        ///
+        /// Parameter `destinationState`: A state to be overwritten by additional state information.
+        ///
+        /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. destinationImage may not alias sourceImage.
         #[method(encodeToCommandBuffer:sourceImage:destinationState:destinationImage:)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_destinationState_destinationImage(
             &self,
@@ -163,6 +383,18 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray"))]
+        /// Encode a MPSCNNKernel into a command Buffer.  The operation shall proceed out-of-place.
+        ///
+        /// This is the older style of encode which reads the offset, doesn't change it,
+        /// and ignores the padding method.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceImages`: A valid MPSImage object containing the source images.
+        ///
+        /// Parameter `destinationImages`: A valid MPSImage to be overwritten by result images.
+        /// destinationImages may not alias sourceImages, even at different
+        /// indices.
         #[method(encodeBatchToCommandBuffer:sourceImages:destinationImages:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationImages(
             &self,
@@ -172,6 +404,20 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
+        /// Encode a MPSCNNKernel with a destination state into a command Buffer.
+        ///
+        /// This is typically used during training. The state is commonly a MPSNNGradientState.
+        /// Please see -resultStateForSourceImages:SourceStates:destinationImage and batch+temporary variants.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceImages`: A valid MPSImage object containing the source images.
+        ///
+        /// Parameter `destinationStates`: A list of states to be overwritten by results
+        ///
+        /// Parameter `destinationImages`: A valid MPSImage to be overwritten by result images.
+        /// destinationImages may not alias sourceImages, even at different
+        /// indices.
         #[method(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationImages:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationStates_destinationImages(
             &self,
@@ -182,6 +428,28 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSImage")]
+        /// Encode a MPSCNNKernel into a command Buffer. Create a texture to hold the result and return it.
+        ///
+        /// In the first iteration on this method, encodeToCommandBuffer:sourceImage:destinationImage:
+        /// some work was left for the developer to do in the form of correctly setting the offset property
+        /// and sizing the result buffer. With the introduction of the padding policy (see padding property)
+        /// the filter can do this work itself. If you would like to have some input into what sort of MPSImage
+        /// (e.g. temporary vs. regular) or what size it is or where it is allocated, you may set the
+        /// destinationImageAllocator to allocate the image yourself.
+        ///
+        /// This method uses the MPSNNPadding padding property to figure out how to size
+        /// the result image and to set the offset property. See discussion in MPSNeuralNetworkTypes.h.
+        /// All images in a batch must have MPSImage.numberOfImages = 1.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer
+        ///
+        /// Parameter `sourceImage`: A MPSImage to use as the source images for the filter.
+        ///
+        /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
+        /// The offset property will be adjusted to reflect the offset used during the encode.
+        /// The returned image will be automatically released when the command buffer completes. If you want to
+        /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceImage:)]
         pub unsafe fn encodeToCommandBuffer_sourceImage(
             &self,
@@ -190,6 +458,30 @@ extern_methods!(
         ) -> Retained<MPSImage>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Encode a MPSCNNKernel into a command Buffer. Create a texture and state to hold the results and return them.
+        ///
+        /// In the first iteration on this method, encodeToCommandBuffer:sourceImage:destinationState:destinationImage:
+        /// some work was left for the developer to do in the form of correctly setting the offset property
+        /// and sizing the result buffer. With the introduction of the padding policy (see padding property)
+        /// the filter can do this work itself. If you would like to have some input into what sort of MPSImage
+        /// (e.g. temporary vs. regular) or what size it is or where it is allocated, you may set the
+        /// destinationImageAllocator to allocate the image yourself.
+        ///
+        /// This method uses the MPSNNPadding padding property to figure out how to size
+        /// the result image and to set the offset property. See discussion in MPSNeuralNetworkTypes.h.
+        /// All images in a batch must have MPSImage.numberOfImages = 1.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer
+        ///
+        /// Parameter `sourceImage`: A MPSImage to use as the source images for the filter.
+        ///
+        /// Parameter `outState`: A new state object is returned here.
+        ///
+        /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
+        /// The offset property will be adjusted to reflect the offset used during the encode.
+        /// The returned image will be automatically released when the command buffer completes. If you want to
+        /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_destinationState_destinationStateIsTemporary(
             &self,
@@ -200,6 +492,28 @@ extern_methods!(
         ) -> Retained<MPSImage>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray"))]
+        /// Encode a MPSCNNKernel into a command Buffer. Create a texture to hold the result and return it.
+        ///
+        /// In the first iteration on this method, encodeToCommandBuffer:sourceImage:destinationImage:
+        /// some work was left for the developer to do in the form of correctly setting the offset property
+        /// and sizing the result buffer. With the introduction of the padding policy (see padding property)
+        /// the filter can do this work itself. If you would like to have some input into what sort of MPSImage
+        /// (e.g. temporary vs. regular) or what size it is or where it is allocated, you may set the
+        /// destinationImageAllocator to allocate the image yourself.
+        ///
+        /// This method uses the MPSNNPadding padding property to figure out how to size
+        /// the result image and to set the offset property. See discussion in MPSNeuralNetworkTypes.h.
+        /// All images in a batch must have MPSImage.numberOfImages = 1.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer
+        ///
+        /// Parameter `sourceImages`: A MPSImages to use as the source images for the filter.
+        ///
+        /// Returns: An array of MPSImages or MPSTemporaryImages allocated per the destinationImageAllocator
+        /// containing the output of the graph. The offset property will be adjusted to reflect the
+        /// offset used during the encode. The returned images will be automatically released when
+        /// the command buffer completes. If you want to keep them around for longer, retain the images.
         #[method_id(@__retain_semantics Other encodeBatchToCommandBuffer:sourceImages:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages(
             &self,
@@ -208,6 +522,39 @@ extern_methods!(
         ) -> Retained<MPSImageBatch>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
+        /// Encode a MPSCNNKernel into a command Buffer. Create a MPSImageBatch and MPSStateBatch to hold the results and return them.
+        ///
+        /// In the first iteration on this method, encodeToCommandBuffer:sourceImage:destinationImage:
+        /// some work was left for the developer to do in the form of correctly setting the offset property
+        /// and sizing the result buffer. With the introduction of the padding policy (see padding property)
+        /// the filter can do this work itself. If you would like to have some input into what sort of MPSImage
+        /// (e.g. temporary vs. regular) or what size it is or where it is allocated, you may set the
+        /// destinationImageAllocator to allocate the image yourself.
+        ///
+        /// This method uses the MPSNNPadding padding property to figure out how to size
+        /// the result image and to set the offset property. See discussion in MPSNeuralNetworkTypes.h.
+        /// All images in a batch must have MPSImage.numberOfImages = 1.
+        ///
+        /// Usage:
+        ///
+        /// ```text
+        ///                   MPSStateBatch * outStates = nil;    // autoreleased
+        ///                   MPSImageBatch * result = [k encodeBatchToCommandBuffer: cmdBuf
+        ///                                                             sourceImages: sourceImages
+        ///                                                        destinationStates: &outStates ];
+        /// ```
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer
+        ///
+        /// Parameter `sourceImages`: A MPSImages to use as the source images for the filter.
+        ///
+        /// Parameter `outStates`: A pointer to storage to hold a MPSStateBatch* where output states are returned
+        ///
+        /// Returns: An array of MPSImages or MPSTemporaryImages allocated per the destinationImageAllocator
+        /// containing the output of the graph. The offset property will be adjusted to reflect the
+        /// offset used during the encode. The returned images will be automatically released when
+        /// the command buffer completes. If you want to keep them around for longer, retain the images.
         #[method_id(@__retain_semantics Other encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationStates_destinationStateIsTemporary(
             &self,
@@ -218,6 +565,72 @@ extern_methods!(
         ) -> Retained<MPSImageBatch>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Allocate a MPSState (subclass) to hold the results from a -encodeBatchToCommandBuffer... operation
+        ///
+        /// A graph may need to allocate storage up front before executing.  This may be
+        /// necessary to avoid using too much memory and to manage large batches.  The function
+        /// should allocate any MPSState objects that will be produced by an -encode call
+        /// with the indicated sourceImages and sourceStates inputs. Though the states
+        /// can be further adjusted in the ensuing -encode call, the states should
+        /// be initialized with all important data and all MTLResource storage allocated.
+        /// The data stored in the MTLResource need not be initialized, unless the ensuing
+        /// -encode call expects it to be.
+        ///
+        /// The MTLDevice used by the result is derived from the source image.
+        /// The padding policy will be applied to the filter before this is called
+        /// to give it the chance to configure any properties like MPSCNNKernel.offset.
+        ///
+        /// CAUTION:
+        /// The kernel must have all properties set to values that will ultimately be
+        /// passed to the -encode call that writes to the state, before
+        /// -resultStateForSourceImages:sourceStates:destinationImage: is called or behavior is undefined.
+        /// Please note that -destinationImageDescriptorForSourceImages:sourceStates:
+        /// will alter some of these properties automatically based on the padding policy.
+        /// If you intend to call that to make the destination image, then you should
+        /// call that before -resultStateForSourceImages:sourceStates:destinationImage:. This will ensure the
+        /// properties used in the encode call and in the destination image creation
+        /// match those used to configure the state.
+        ///
+        /// The following order is recommended:
+        ///
+        /// // Configure MPSCNNKernel properties first
+        /// kernel.edgeMode = MPSImageEdgeModeZero;
+        /// kernel.destinationFeatureChannelOffset = 128; // concatenation without the copy
+        /// ...
+        ///
+        /// // ALERT: will change MPSCNNKernel properties
+        /// MPSImageDescriptor * d = [kernel destinationImageDescriptorForSourceImage: source
+        /// sourceStates: states];
+        /// MPSTemporaryImage * dest = [MPSTemporaryImage temporaryImageWithCommandBuffer: cmdBuf
+        /// imageDescriptor: d];
+        ///
+        /// // Now that all properties are configured properly, we can make the result state
+        /// // and call encode.
+        /// MPSState * __nullable destState = [kernel resultStateForSourceImage: source
+        /// sourceStates: states
+        /// destinationImage: dest];
+        ///
+        /// // This form of -encode will be declared by the MPSCNNKernel subclass
+        /// [kernel encodeToCommandBuffer: cmdBuf
+        /// sourceImage: source
+        /// destinationState: destState
+        /// destinationImage: dest ];
+        ///
+        /// Default: returns nil
+        ///
+        ///
+        /// Parameter `sourceImage`: The MPSImage consumed by the associated -encode call.
+        ///
+        /// Parameter `sourceStates`: The list of MPSStates consumed by the associated -encode call,
+        /// for a batch size of 1.
+        ///
+        /// Parameter `destinationImage`: The destination image for the encode call
+        ///
+        /// Returns: The list of states produced by the -encode call for batch size of 1.
+        /// When the batch size is not 1, this function will be called repeatedly unless
+        /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
+        /// returns YES, then it will be called once per batch and the MPSStateBatch array will
+        /// contain MPSStateBatch.length references to the same object.
         #[method_id(@__retain_semantics Other resultStateForSourceImage:sourceStates:destinationImage:)]
         pub unsafe fn resultStateForSourceImage_sourceStates_destinationImage(
             &self,
@@ -236,6 +649,75 @@ extern_methods!(
         ) -> Option<Retained<MPSStateBatch>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Allocate a temporary MPSState (subclass) to hold the results from a -encodeBatchToCommandBuffer... operation
+        ///
+        /// A graph may need to allocate storage up front before executing.  This may be
+        /// necessary to avoid using too much memory and to manage large batches.  The function
+        /// should allocate any MPSState objects that will be produced by an -encode call
+        /// with the indicated sourceImages and sourceStates inputs. Though the states
+        /// can be further adjusted in the ensuing -encode call, the states should
+        /// be initialized with all important data and all MTLResource storage allocated.
+        /// The data stored in the MTLResource need not be initialized, unless the ensuing
+        /// -encode call expects it to be.
+        ///
+        /// The MTLDevice used by the result is derived from the command buffer.
+        /// The padding policy will be applied to the filter before this is called
+        /// to give it the chance to configure any properties like MPSCNNKernel.offset.
+        ///
+        /// CAUTION:
+        /// The kernel must have all properties set to values that will ultimately be
+        /// passed to the -encode call that writes to the state, before
+        /// -resultStateForSourceImages:sourceStates:destinationImage: is called or behavior is undefined.
+        /// Please note that -destinationImageDescriptorForSourceImages:sourceStates:destinationImage:
+        /// will alter some of these properties automatically based on the padding policy.
+        /// If you intend to call that to make the destination image, then you should
+        /// call that before -resultStateForSourceImages:sourceStates:destinationImage:.  This will ensure the
+        /// properties used in the encode call and in the destination image creation
+        /// match those used to configure the state.
+        ///
+        /// The following order is recommended:
+        ///
+        /// // Configure MPSCNNKernel properties first
+        /// kernel.edgeMode = MPSImageEdgeModeZero;
+        /// kernel.destinationFeatureChannelOffset = 128; // concatenation without the copy
+        /// ...
+        ///
+        /// // ALERT: will change MPSCNNKernel properties
+        /// MPSImageDescriptor * d = [kernel destinationImageDescriptorForSourceImage: source
+        /// sourceStates: states];
+        /// MPSTemporaryImage * dest = [MPSTemporaryImage temporaryImageWithCommandBuffer: cmdBuf
+        /// imageDescriptor: d];
+        ///
+        /// // Now that all properties are configured properly, we can make the result state
+        /// // and call encode.
+        /// MPSState * __nullable destState = [kernel temporaryResultStateForCommandBuffer: cmdBuf
+        /// sourceImage: source
+        /// sourceStates: states];
+        ///
+        /// // This form of -encode will be declared by the MPSCNNKernel subclass
+        /// [kernel encodeToCommandBuffer: cmdBuf
+        /// sourceImage: source
+        /// destinationState: destState
+        /// destinationImage: dest ];
+        ///
+        /// Default: returns nil
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer to allocate the temporary storage against
+        /// The state will only be valid on this command buffer.
+        ///
+        /// Parameter `sourceImage`: The MPSImage consumed by the associated -encode call.
+        ///
+        /// Parameter `sourceStates`: The list of MPSStates consumed by the associated -encode call,
+        /// for a batch size of 1.
+        ///
+        /// Parameter `destinationImage`: The destination image for the encode call
+        ///
+        /// Returns: The list of states produced by the -encode call for batch size of 1.
+        /// When the batch size is not 1, this function will be called repeatedly unless
+        /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
+        /// returns YES, then it will be called once per batch and the MPSStateBatch array will
+        /// contain MPSStateBatch.length references to the same object.
         #[method_id(@__retain_semantics Other temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:)]
         pub unsafe fn temporaryResultStateForCommandBuffer_sourceImage_sourceStates_destinationImage(
             &self,
@@ -255,13 +737,126 @@ extern_methods!(
             destination_image: &MPSImageBatch,
         ) -> Option<Retained<MPSStateBatch>>;
 
+        /// Returns YES if the same state is used for every operation in a batch
+        ///
+        /// If NO, then each image in a MPSImageBatch will need a corresponding
+        /// (and different) state to go with it. Set to YES to avoid allocating
+        /// redundant state in the case when the same state is used all the time.
+        /// Default: NO
         #[method(isResultStateReusedAcrossBatch)]
         pub unsafe fn isResultStateReusedAcrossBatch(&self) -> bool;
 
+        /// Returns YES if the filter must be run over the entire batch before its
+        /// results may be used
+        ///
+        /// Nearly all filters do not need to see the entire batch all at once and can
+        /// operate correctly with partial batches. This allows the graph to
+        /// strip-mine the problem, processing the graph top to bottom on a subset
+        /// of the batch at a time, dramatically reducing memory usage. As the full
+        /// nominal working set for a graph is often so large that it may not fit
+        /// in memory, sub-batching may be required forward progress.
+        ///
+        /// Batch normalization statistics on the other hand must complete the batch
+        /// before the statistics may be used to normalize the images in the batch
+        /// in the ensuing normalization filter. Consequently, batch normalization statistics
+        /// requests the graph insert a batch barrier following it by returning
+        /// YES from -appendBatchBarrier. This tells the graph to complete the batch
+        /// before any dependent filters can start. Note that the filter itself may
+        /// still be subject to sub-batching in its operation. All filters must be able to
+        /// function without seeing the entire batch in a single -encode call. Carry
+        /// over state that is accumulated across sub-batches is commonly carried in
+        /// a shared MPSState containing a MTLBuffer. See -isResultStateReusedAcrossBatch.
+        ///
+        /// Caution: on most supported devices, the working set may be so large
+        /// that the graph may be forced to throw away and recalculate most
+        /// intermediate images in cases where strip-mining can not occur because
+        /// -appendBatchBarrier returns YES. A single batch barrier can commonly
+        /// cause a memory size increase and/or performance reduction by many fold
+        /// over the entire graph.  Filters of this variety should be avoided.
+        ///
+        /// Default: NO
         #[method(appendBatchBarrier)]
         pub unsafe fn appendBatchBarrier(&self) -> bool;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Get a suggested destination image descriptor for a source image
+        ///
+        /// Your application is certainly free to pass in any destinationImage
+        /// it likes to encodeToCommandBuffer:sourceImage:destinationImage,
+        /// within reason. This is the basic design for iOS 10. This method
+        /// is therefore not required.
+        ///
+        /// However, calculating the MPSImage size and MPSCNNKernel properties
+        /// for each filter can be tedious and complicated work, so this method
+        /// is made available to automate the process. The application may
+        /// modify the properties of the descriptor before a MPSImage is made from
+        /// it, so long as the choice is sensible for the kernel in question.
+        /// Please see individual kernel descriptions for restrictions.
+        ///
+        /// The expected timeline for use is as follows:
+        ///
+        /// 1) This method is called:
+        /// a) The default MPS padding calculation is applied. It
+        /// uses the MPSNNPaddingMethod of the .padding property to
+        /// provide a consistent addressing scheme over the graph.
+        /// It creates the MPSImageDescriptor and adjusts the .offset
+        /// property of the MPSNNKernel. When using a MPSNNGraph, the
+        /// padding is set using the MPSNNFilterNode as a proxy.
+        ///
+        /// b) This method may be overridden by MPSCNNKernel subclass
+        /// to achieve any customization appropriate to the object type.
+        ///
+        /// c) Source states are then applied in order. These may modify the
+        /// descriptor and may update other object properties. See:
+        /// -destinationImageDescriptorForSourceImages:sourceStates:
+        /// forKernel:suggestedDescriptor:  This is the typical way
+        /// in which MPS may attempt to influence the operation of
+        /// its kernels.
+        ///
+        /// d) If the .padding property has a custom padding policy method
+        /// of the same name, it is called. Similarly, it may also adjust
+        /// the descriptor and any MPSCNNKernel properties. This is the
+        /// typical way in which your application may attempt to influence
+        /// the operation of the MPS kernels.
+        ///
+        /// 2) A result is returned from this method and the caller
+        /// may further adjust the descriptor and kernel properties
+        /// directly.
+        ///
+        /// 3) The caller uses the descriptor to make a new MPSImage to
+        /// use as the destination image for the -encode call in step 5.
+        ///
+        /// 4) The caller calls -resultStateForSourceImage:sourceStates:destinationImage:
+        /// to make any result states needed for the kernel. If there isn't
+        /// one, it will return nil. A variant is available to return a
+        /// temporary state instead.
+        ///
+        /// 5) a -encode method is called to encode the kernel.
+        ///
+        /// The entire process 1-5 is more simply achieved by just calling an -encode...
+        /// method that returns a MPSImage out the left hand sid of the method. Simpler
+        /// still, use the MPSNNGraph to coordinate the entire process from end to end.
+        /// Opportunities to influence the process are of course reduced, as (2) is no longer
+        /// possible with either method. Your application may opt to use the five step method
+        /// if it requires greater customization as described, or if it would like to estimate
+        /// storage in advance based on the sum of MPSImageDescriptors before processing
+        /// a graph. Storage estimation is done by using the MPSImageDescriptor to create
+        /// a MPSImage (without passing it a texture), and then call -resourceSize. As long
+        /// as the MPSImage is not used in an encode call and the .texture property is not
+        /// invoked, the underlying MTLTexture is not created.
+        ///
+        /// No destination state or destination image is provided as an argument to this
+        /// function because it is expected they will be made / configured after this
+        /// is called. This method is expected to auto-configure important object properties
+        /// that may be needed in the ensuing destination image and state creation steps.
+        ///
+        ///
+        /// Parameter `sourceImages`: A array of source images that will be passed into the -encode call
+        /// Since MPSCNNKernel is a unary kernel, it is an array of length 1.
+        ///
+        /// Parameter `sourceStates`: An optional array of source states that will be passed into the -encode call
+        ///
+        /// Returns: an image descriptor allocated on the autorelease pool
         #[method_id(@__retain_semantics Other destinationImageDescriptorForSourceImages:sourceStates:)]
         pub unsafe fn destinationImageDescriptorForSourceImages_sourceStates(
             &self,
@@ -270,6 +865,12 @@ extern_methods!(
         ) -> Retained<MPSImageDescriptor>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// The size of extra MPS heap storage allocated while the kernel is encoding
+        ///
+        /// This is best effort and just describes things that are likely to end up on the MPS heap. It does not
+        /// describe all allocation done by the -encode call.  It is intended for use with high water calculations
+        /// for MTLHeap sizing. Allocations are typically for temporary storage needed for multipass algorithms.
+        /// This interface should not be used to detect multipass algorithms.
         #[method(encodingStorageSizeForSourceImage:sourceStates:destinationImage:)]
         pub unsafe fn encodingStorageSizeForSourceImage_sourceStates_destinationImage(
             &self,
@@ -279,6 +880,12 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
+        /// The size of extra MPS heap storage allocated while the kernel is encoding a batch
+        ///
+        /// This is best effort and just describes things that are likely to end up on the MPS heap. It does not
+        /// describe all allocation done by the -encode call.  It is intended for use with high water calculations
+        /// for MTLHeap sizing. Allocations are typically for temporary storage needed for multipass algorithms.
+        /// This interface should not be used to detect multipass algorithms.
         #[method(batchEncodingStorageSizeForSourceImage:sourceStates:destinationImage:)]
         pub unsafe fn batchEncodingStorageSizeForSourceImage_sourceStates_destinationImage(
             &self,
@@ -293,6 +900,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSCNNKernel {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -314,7 +929,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinarykernel?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Describes a convolution neural network kernel.
+    ///
+    /// A MPSCNNKernel consumes two MPSImages, primary and secondary, and produces one MPSImage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinarykernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -341,6 +962,13 @@ unsafe impl NSSecureCoding for MPSCNNBinaryKernel {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSCNNBinaryKernel {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: A pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -348,66 +976,156 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The position of the destination clip rectangle origin relative to the primary source buffer.
+        ///
+        /// The offset is defined to be the position of clipRect.origin in source coordinates.
+        /// Default: {0,0,0}, indicating that the top left corners of the clipRect and primary source image align.
+        /// offset.z is the index of starting source image in batch processing mode.
+        ///
+        /// See Also:
+        /// subsubsection_mpsoffset
         #[method(primaryOffset)]
         pub unsafe fn primaryOffset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`primaryOffset`][Self::primaryOffset].
         #[method(setPrimaryOffset:)]
         pub unsafe fn setPrimaryOffset(&self, primary_offset: MPSOffset);
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The position of the destination clip rectangle origin relative to the secondary source buffer.
+        ///
+        /// The offset is defined to be the position of clipRect.origin in source coordinates.
+        /// Default: {0,0,0}, indicating that the top left corners of the clipRect and secondary source image align.
+        /// offset.z is the index of starting source image in batch processing mode.
+        ///
+        /// See Also:
+        /// subsubsection_mpsoffset
         #[method(secondaryOffset)]
         pub unsafe fn secondaryOffset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`secondaryOffset`][Self::secondaryOffset].
         #[method(setSecondaryOffset:)]
         pub unsafe fn setSecondaryOffset(&self, secondary_offset: MPSOffset);
 
+        /// An optional clip rectangle to use when writing data. Only the pixels in the rectangle will be overwritten.
+        ///
+        /// A MTLRegion that indicates which part of the destination to overwrite. If the clipRect does not lie
+        /// completely within the destination image, the intersection between clip rectangle and destination bounds is
+        /// used.   Default: MPSRectNoClip (MPSKernel::MPSRectNoClip) indicating the entire image.
+        /// clipRect.origin.z is the index of starting destination image in batch processing mode. clipRect.size.depth
+        /// is the number of images to process in batch processing mode.
+        ///
+        /// See Also:
+        /// subsubsection_clipRect
         #[method(clipRect)]
         pub unsafe fn clipRect(&self) -> MTLRegion;
 
+        /// Setter for [`clipRect`][Self::clipRect].
         #[method(setClipRect:)]
         pub unsafe fn setClipRect(&self, clip_rect: MTLRegion);
 
+        /// The number of channels in the destination MPSImage to skip before writing output.
+        ///
+        /// This is the starting offset into the destination image in the feature channel dimension
+        /// at which destination data is written.
+        /// This allows an application to pass a subset of all the channels in MPSImage as output of MPSKernel.
+        /// E.g. Suppose MPSImage has 24 channels and a MPSKernel outputs 8 channels. If
+        /// we want channels 8 to 15 of this MPSImage to be used as output, we can set destinationFeatureChannelOffset = 8.
+        /// Note that this offset applies independently to each image when the MPSImage
+        /// is a container for multiple images and the MPSCNNKernel is processing multiple images (clipRect.size.depth > 1).
+        /// The default value is 0 and any value specifed shall be a multiple of 4. If MPSKernel outputs N channels,
+        /// destination image MUST have at least destinationFeatureChannelOffset + N channels. Using a destination
+        /// image with insufficient number of feature channels result in an error.
+        /// E.g. if the MPSCNNConvolution outputs 32 channels, and destination has 64 channels, then it is an error to set
+        /// destinationFeatureChannelOffset > 32.
         #[method(destinationFeatureChannelOffset)]
         pub unsafe fn destinationFeatureChannelOffset(&self) -> NSUInteger;
 
+        /// Setter for [`destinationFeatureChannelOffset`][Self::destinationFeatureChannelOffset].
         #[method(setDestinationFeatureChannelOffset:)]
         pub unsafe fn setDestinationFeatureChannelOffset(
             &self,
             destination_feature_channel_offset: NSUInteger,
         );
 
+        /// The number of channels in the primary source MPSImage to skip before reading the input.
+        ///
+        /// This is the starting offset into the primary source image in the feature channel dimension
+        /// at which source data is read. Unit: feature channels
+        /// This allows an application to read a subset of all the channels in MPSImage as input of MPSKernel.
+        /// E.g. Suppose MPSImage has 24 channels and a MPSKernel needs to read 8 channels. If
+        /// we want channels 8 to 15 of this MPSImage to be used as input, we can set primarySourceFeatureChannelOffset = 8.
+        /// Note that this offset applies independently to each image when the MPSImage
+        /// is a container for multiple images and the MPSCNNKernel is processing multiple images (clipRect.size.depth > 1).
+        /// The default value is 0 and any value specifed shall be a multiple of 4. If MPSKernel inputs N channels,
+        /// the source image MUST have at least primarySourceFeatureChannelOffset + N channels. Using a source
+        /// image with insufficient number of feature channels will result in an error.
+        /// E.g. if the MPSCNNConvolution inputs 32 channels, and the source has 64 channels, then it is an error to set
+        /// primarySourceFeatureChannelOffset > 32.
         #[method(primarySourceFeatureChannelOffset)]
         pub unsafe fn primarySourceFeatureChannelOffset(&self) -> NSUInteger;
 
+        /// Setter for [`primarySourceFeatureChannelOffset`][Self::primarySourceFeatureChannelOffset].
         #[method(setPrimarySourceFeatureChannelOffset:)]
         pub unsafe fn setPrimarySourceFeatureChannelOffset(
             &self,
             primary_source_feature_channel_offset: NSUInteger,
         );
 
+        /// The number of channels in the secondary source MPSImage to skip before reading the input.
+        ///
+        /// This is the starting offset into the secondary source image in the feature channel dimension
+        /// at which source data is read. Unit: feature channels
+        /// This allows an application to read a subset of all the channels in MPSImage as input of MPSKernel.
+        /// E.g. Suppose MPSImage has 24 channels and a MPSKernel needs to read 8 channels. If
+        /// we want channels 8 to 15 of this MPSImage to be used as input, we can set secondarySourceFeatureChannelOffset = 8.
+        /// Note that this offset applies independently to each image when the MPSImage
+        /// is a container for multiple images and the MPSCNNKernel is processing multiple images (clipRect.size.depth > 1).
+        /// The default value is 0 and any value specifed shall be a multiple of 4. If MPSKernel inputs N channels,
+        /// the source image MUST have at least primarySourceFeatureChannelOffset + N channels. Using a source
+        /// image with insufficient number of feature channels will result in an error.
+        /// E.g. if the MPSCNNConvolution inputs 32 channels, and the source has 64 channels, then it is an error to set
+        /// primarySourceFeatureChannelOffset > 32.
         #[method(secondarySourceFeatureChannelOffset)]
         pub unsafe fn secondarySourceFeatureChannelOffset(&self) -> NSUInteger;
 
+        /// Setter for [`secondarySourceFeatureChannelOffset`][Self::secondarySourceFeatureChannelOffset].
         #[method(setSecondarySourceFeatureChannelOffset:)]
         pub unsafe fn setSecondarySourceFeatureChannelOffset(
             &self,
             secondary_source_feature_channel_offset: NSUInteger,
         );
 
+        /// The maximum number of channels in the primary source MPSImage to use
+        ///
+        /// Most filters can insert a slice operation into the filter for free.
+        /// Use this to limit the size of the feature channel slice taken from
+        /// the input image. If the value is too large, it is truncated to be
+        /// the remaining size in the image after the sourceFeatureChannelOffset
+        /// is taken into account.  Default: ULONG_MAX
         #[method(primarySourceFeatureChannelMaxCount)]
         pub unsafe fn primarySourceFeatureChannelMaxCount(&self) -> NSUInteger;
 
+        /// Setter for [`primarySourceFeatureChannelMaxCount`][Self::primarySourceFeatureChannelMaxCount].
         #[method(setPrimarySourceFeatureChannelMaxCount:)]
         pub unsafe fn setPrimarySourceFeatureChannelMaxCount(
             &self,
             primary_source_feature_channel_max_count: NSUInteger,
         );
 
+        /// The maximum number of channels in the secondary source MPSImage to use
+        ///
+        /// Most filters can insert a slice operation into the filter for free.
+        /// Use this to limit the size of the feature channel slice taken from
+        /// the input image. If the value is too large, it is truncated to be
+        /// the remaining size in the image after the sourceFeatureChannelOffset
+        /// is taken into account.  Default: ULONG_MAX
         #[method(secondarySourceFeatureChannelMaxCount)]
         pub unsafe fn secondarySourceFeatureChannelMaxCount(&self) -> NSUInteger;
 
+        /// Setter for [`secondarySourceFeatureChannelMaxCount`][Self::secondarySourceFeatureChannelMaxCount].
         #[method(setSecondarySourceFeatureChannelMaxCount:)]
         pub unsafe fn setSecondarySourceFeatureChannelMaxCount(
             &self,
@@ -415,96 +1133,191 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The MPSImageEdgeMode to use when texture reads stray off the edge of the primary source image
+        ///
+        /// Most MPSKernel objects can read off the edge of the source image. This can happen
+        /// because of a negative offset property, because the offset + clipRect.size is larger
+        /// than the source image or because the filter looks at neighboring pixels, such as a
+        /// Convolution filter.   Default:  MPSImageEdgeModeZero.
+        ///
+        /// See Also:
+        /// subsubsection_edgemode
         #[method(primaryEdgeMode)]
         pub unsafe fn primaryEdgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`primaryEdgeMode`][Self::primaryEdgeMode].
         #[method(setPrimaryEdgeMode:)]
         pub unsafe fn setPrimaryEdgeMode(&self, primary_edge_mode: MPSImageEdgeMode);
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The MPSImageEdgeMode to use when texture reads stray off the edge of the primary source image
+        ///
+        /// Most MPSKernel objects can read off the edge of the source image. This can happen
+        /// because of a negative offset property, because the offset + clipRect.size is larger
+        /// than the source image or because the filter looks at neighboring pixels, such as a
+        /// Convolution filter.   Default:  MPSImageEdgeModeZero.
+        ///
+        /// See Also:
+        /// subsubsection_edgemode
         #[method(secondaryEdgeMode)]
         pub unsafe fn secondaryEdgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`secondaryEdgeMode`][Self::secondaryEdgeMode].
         #[method(setSecondaryEdgeMode:)]
         pub unsafe fn setSecondaryEdgeMode(&self, secondary_edge_mode: MPSImageEdgeMode);
 
+        /// The width of the MPSCNNBinaryKernel filter window
+        ///
+        /// This is the horizontal diameter of the region read by the filter for each
+        /// result pixel. If the MPSCNNKernel does not have a filter window, then
+        /// 1 will be returned.
         #[method(primaryKernelWidth)]
         pub unsafe fn primaryKernelWidth(&self) -> NSUInteger;
 
+        /// The height of the MPSCNNBinaryKernel filter window
+        ///
+        /// This is the vertical diameter of the region read by the filter for each
+        /// result pixel. If the MPSCNNKernel does not have a filter window, then
+        /// 1 will be returned.
         #[method(primaryKernelHeight)]
         pub unsafe fn primaryKernelHeight(&self) -> NSUInteger;
 
+        /// The width of the MPSCNNBinaryKernel filter window for the second image source
+        ///
+        /// This is the horizontal diameter of the region read by the filter for each
+        /// result pixel. If the MPSCNNBinaryKernel does not have a filter window, then
+        /// 1 will be returned.
         #[method(secondaryKernelWidth)]
         pub unsafe fn secondaryKernelWidth(&self) -> NSUInteger;
 
+        /// The height of the MPSCNNBinaryKernel filter window for the second image source
+        ///
+        /// This is the vertical diameter of the region read by the filter for each
+        /// result pixel. If the MPSCNNBinaryKernel does not have a filter window, then
+        /// 1 will be returned.
         #[method(secondaryKernelHeight)]
         pub unsafe fn secondaryKernelHeight(&self) -> NSUInteger;
 
+        /// The downsampling (or upsampling if a backwards filter) factor in the horizontal dimension
+        /// for the primary source image
+        ///
+        /// If the filter does not do up or downsampling, 1 is returned.
         #[method(primaryStrideInPixelsX)]
         pub unsafe fn primaryStrideInPixelsX(&self) -> NSUInteger;
 
+        /// Setter for [`primaryStrideInPixelsX`][Self::primaryStrideInPixelsX].
         #[method(setPrimaryStrideInPixelsX:)]
         pub unsafe fn setPrimaryStrideInPixelsX(&self, primary_stride_in_pixels_x: NSUInteger);
 
+        /// The downsampling (or upsampling if a backwards filter) factor in the vertical dimension
+        /// for the primary source image
+        ///
+        /// If the filter does not do up or downsampling, 1 is returned.
         #[method(primaryStrideInPixelsY)]
         pub unsafe fn primaryStrideInPixelsY(&self) -> NSUInteger;
 
+        /// Setter for [`primaryStrideInPixelsY`][Self::primaryStrideInPixelsY].
         #[method(setPrimaryStrideInPixelsY:)]
         pub unsafe fn setPrimaryStrideInPixelsY(&self, primary_stride_in_pixels_y: NSUInteger);
 
+        /// The downsampling (or upsampling if a backwards filter) factor in the horizontal dimension
+        /// for the secondary source image
+        ///
+        /// If the filter does not do up or downsampling, 1 is returned.
         #[method(secondaryStrideInPixelsX)]
         pub unsafe fn secondaryStrideInPixelsX(&self) -> NSUInteger;
 
+        /// Setter for [`secondaryStrideInPixelsX`][Self::secondaryStrideInPixelsX].
         #[method(setSecondaryStrideInPixelsX:)]
         pub unsafe fn setSecondaryStrideInPixelsX(&self, secondary_stride_in_pixels_x: NSUInteger);
 
+        /// The downsampling (or upsampling if a backwards filter) factor in the vertical dimension
+        /// for the secondary source image
+        ///
+        /// If the filter does not do up or downsampling, 1 is returned.
         #[method(secondaryStrideInPixelsY)]
         pub unsafe fn secondaryStrideInPixelsY(&self) -> NSUInteger;
 
+        /// Setter for [`secondaryStrideInPixelsY`][Self::secondaryStrideInPixelsY].
         #[method(setSecondaryStrideInPixelsY:)]
         pub unsafe fn setSecondaryStrideInPixelsY(&self, secondary_stride_in_pixels_y: NSUInteger);
 
+        /// Stride in source coordinates from one kernel tap to the next in the X dimension.
         #[method(primaryDilationRateX)]
         pub unsafe fn primaryDilationRateX(&self) -> NSUInteger;
 
+        /// Stride in source coordinates from one kernel tap to the next in the Y dimension.
         #[method(primaryDilationRateY)]
         pub unsafe fn primaryDilationRateY(&self) -> NSUInteger;
 
+        /// Stride in source coordinates from one kernel tap to the next in the X dimension.
+        ///
+        /// As applied to the secondary source image.
         #[method(secondaryDilationRateX)]
         pub unsafe fn secondaryDilationRateX(&self) -> NSUInteger;
 
+        /// Stride in source coordinates from one kernel tap to the next in the Y dimension.
+        ///
+        /// As applied to the secondary source image.
         #[method(secondaryDilationRateY)]
         pub unsafe fn secondaryDilationRateY(&self) -> NSUInteger;
 
+        /// YES if the filter operates backwards.
+        ///
+        /// This influences how strideInPixelsX/Y should be interpreted.
         #[method(isBackwards)]
         pub unsafe fn isBackwards(&self) -> bool;
 
+        /// Returns true if the -encode call modifies the state object it accepts.
         #[method(isStateModified)]
         pub unsafe fn isStateModified(&self) -> bool;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// The padding method used by the filter
+        ///
+        /// This influences how strideInPixelsX/Y should be interpreted.
+        /// Default:  MPSNNPaddingMethodAlignCentered | MPSNNPaddingMethodAddRemainderToTopLeft | MPSNNPaddingMethodSizeSame
+        /// Some object types (e.g. MPSCNNFullyConnected) may override this default with something appropriate to its operation.
         #[method_id(@__retain_semantics Other padding)]
         pub unsafe fn padding(&self) -> Retained<ProtocolObject<dyn MPSNNPadding>>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Setter for [`padding`][Self::padding].
         #[method(setPadding:)]
         pub unsafe fn setPadding(&self, padding: &ProtocolObject<dyn MPSNNPadding>);
 
         #[cfg(feature = "MPSImage")]
+        /// Method to allocate the result image for -encodeToCommandBuffer:sourceImage:
+        ///
+        /// Default: MPSTemporaryImage.defaultAllocator
         #[method_id(@__retain_semantics Other destinationImageAllocator)]
         pub unsafe fn destinationImageAllocator(
             &self,
         ) -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
 
         #[cfg(feature = "MPSImage")]
+        /// Setter for [`destinationImageAllocator`][Self::destinationImageAllocator].
         #[method(setDestinationImageAllocator:)]
         pub unsafe fn setDestinationImageAllocator(
             &self,
             destination_image_allocator: &ProtocolObject<dyn MPSImageAllocator>,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -513,6 +1326,18 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MPSImage")]
+        /// Encode a MPSCNNKernel into a command Buffer.  The operation shall proceed out-of-place.
+        ///
+        /// This is the older style of encode which reads the offset, doesn't change it,
+        /// and ignores the padding method.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `primaryImage`: A valid MPSImage object containing the primary source image.
+        ///
+        /// Parameter `secondaryImage`: A valid MPSImage object containing the secondary source image.
+        ///
+        /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. destinationImage may not alias primarySourceImage or secondarySourceImage.
         #[method(encodeToCommandBuffer:primaryImage:secondaryImage:destinationImage:)]
         pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage_destinationImage(
             &self,
@@ -523,6 +1348,21 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray"))]
+        /// Encode a MPSCNNKernel into a command Buffer.  The operation shall proceed out-of-place.
+        ///
+        /// This is the older style of encode which reads the offset, doesn't change it,
+        /// and ignores the padding method. Multiple images are processed concurrently.
+        /// All images must have MPSImage.numberOfImages = 1.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `primaryImages`: An array of MPSImage objects containing the primary source images.
+        ///
+        /// Parameter `secondaryImages`: An array MPSImage objects containing the secondary source images.
+        ///
+        /// Parameter `destinationImages`: An array of MPSImage objects to contain the result images.
+        /// destinationImages may not alias primarySourceImages or secondarySourceImages
+        /// in any manner.
         #[method(encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationImages:)]
         pub unsafe fn encodeBatchToCommandBuffer_primaryImages_secondaryImages_destinationImages(
             &self,
@@ -533,6 +1373,28 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSImage")]
+        /// Encode a MPSCNNKernel into a command Buffer. Create a texture to hold the result and return it.
+        ///
+        /// In the first iteration on this method, encodeToCommandBuffer:sourceImage:destinationImage:
+        /// some work was left for the developer to do in the form of correctly setting the offset property
+        /// and sizing the result buffer. With the introduction of the padding policy (see padding property)
+        /// the filter can do this work itself. If you would like to have some input into what sort of MPSImage
+        /// (e.g. temporary vs. regular) or what size it is or where it is allocated, you may set the
+        /// destinationImageAllocator to allocate the image yourself.
+        ///
+        /// This method uses the MPSNNPadding padding property to figure out how to size
+        /// the result image and to set the offset property.  See discussion in MPSNeuralNetworkTypes.h.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer
+        ///
+        /// Parameter `primaryImage`: A MPSImages to use as the primary source images for the filter.
+        ///
+        /// Parameter `secondaryImage`: A MPSImages to use as the secondary source images for the filter.
+        ///
+        /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
+        /// The returned image will be automatically released when the command buffer completes. If you want to
+        /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:primaryImage:secondaryImage:)]
         pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage(
             &self,
@@ -542,6 +1404,29 @@ extern_methods!(
         ) -> Retained<MPSImage>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray"))]
+        /// Encode a MPSCNNKernel into a command Buffer. Create textures to hold the results and return them.
+        ///
+        /// In the first iteration on this method, encodeBatchToCommandBuffer:sourceImage:destinationImage:
+        /// some work was left for the developer to do in the form of correctly setting the offset property
+        /// and sizing the result buffer. With the introduction of the padding policy (see padding property)
+        /// the filter can do this work itself. If you would like to have some input into what sort of MPSImage
+        /// (e.g. temporary vs. regular) or what size it is or where it is allocated, you may set the
+        /// destinationImageAllocator to allocate the image yourself.
+        ///
+        /// This method uses the MPSNNPadding padding property to figure out how to size
+        /// the result image and to set the offset property.  See discussion in MPSNeuralNetworkTypes.h.
+        /// All images in a batch must have MPSImage.numberOfImages = 1.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer
+        ///
+        /// Parameter `primaryImage`: A MPSImages to use as the primary source images for the filter.
+        ///
+        /// Parameter `secondaryImage`: A MPSImages to use as the secondary source images for the filter.
+        ///
+        /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
+        /// The returned image will be automatically released when the command buffer completes. If you want to
+        /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
         #[method_id(@__retain_semantics Other encodeBatchToCommandBuffer:primaryImages:secondaryImages:)]
         pub unsafe fn encodeBatchToCommandBuffer_primaryImages_secondaryImages(
             &self,
@@ -551,6 +1436,34 @@ extern_methods!(
         ) -> Retained<MPSImageBatch>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Encode a MPSCNNKernel into a command Buffer. Create a texture and state to hold the results and return them.
+        ///
+        /// In the first iteration on this method, encodeToCommandBuffer:sourceImage:destinationState:destinationImage:
+        /// some work was left for the developer to do in the form of correctly setting the offset property
+        /// and sizing the result buffer. With the introduction of the padding policy (see padding property)
+        /// the filter can do this work itself. If you would like to have some input into what sort of MPSImage
+        /// (e.g. temporary vs. regular) or what size it is or where it is allocated, you may set the
+        /// destinationImageAllocator to allocate the image yourself.
+        ///
+        /// This method uses the MPSNNPadding padding property to figure out how to size
+        /// the result image and to set the offset property. See discussion in MPSNeuralNetworkTypes.h.
+        /// All images in a batch must have MPSImage.numberOfImages = 1.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer
+        ///
+        /// Parameter `primaryImage`: A MPSImage to use as the source images for the filter.
+        ///
+        /// Parameter `secondaryImage`: A MPSImage to use as the source images for the filter.
+        ///
+        /// Parameter `outState`: The address of location to write the pointer to the result state of the operation
+        ///
+        /// Parameter `isTemporary`: YES if the outState should be a temporary object
+        ///
+        /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
+        /// The offset property will be adjusted to reflect the offset used during the encode.
+        /// The returned image will be automatically released when the command buffer completes. If you want to
+        /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:primaryImage:secondaryImage:destinationState:destinationStateIsTemporary:)]
         pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage_destinationState_destinationStateIsTemporary(
             &self,
@@ -562,6 +1475,34 @@ extern_methods!(
         ) -> Retained<MPSImage>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
+        /// Encode a MPSCNNKernel into a command Buffer. Create a texture and state to hold the results and return them.
+        ///
+        /// In the first iteration on this method, encodeToCommandBuffer:sourceImage:destinationState:destinationImage:
+        /// some work was left for the developer to do in the form of correctly setting the offset property
+        /// and sizing the result buffer. With the introduction of the padding policy (see padding property)
+        /// the filter can do this work itself. If you would like to have some input into what sort of MPSImage
+        /// (e.g. temporary vs. regular) or what size it is or where it is allocated, you may set the
+        /// destinationImageAllocator to allocate the image yourself.
+        ///
+        /// This method uses the MPSNNPadding padding property to figure out how to size
+        /// the result image and to set the offset property. See discussion in MPSNeuralNetworkTypes.h.
+        /// All images in a batch must have MPSImage.numberOfImages = 1.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer
+        ///
+        /// Parameter `primaryImages`: A MPSImage to use as the source images for the filter.
+        ///
+        /// Parameter `secondaryImages`: A MPSImage to use as the source images for the filter.
+        ///
+        /// Parameter `outState`: A new state object is returned here.
+        ///
+        /// Parameter `isTemporary`: YES if the outState should be a temporary object
+        ///
+        /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
+        /// The offset property will be adjusted to reflect the offset used during the encode.
+        /// The returned image will be automatically released when the command buffer completes. If you want to
+        /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
         #[method_id(@__retain_semantics Other encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationStates:destinationStateIsTemporary:)]
         pub unsafe fn encodeBatchToCommandBuffer_primaryImages_secondaryImages_destinationStates_destinationStateIsTemporary(
             &self,
@@ -573,6 +1514,43 @@ extern_methods!(
         ) -> Retained<MPSImageBatch>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Allocate a MPSState (subclass) to hold the results from a -encodeBatchToCommandBuffer... operation
+        ///
+        /// A graph may need to allocate storage up front before executing.  This may be
+        /// necessary to avoid using too much memory and to manage large batches.  The function
+        /// should allocate a MPSState object (if any) that will be produced by an -encode call
+        /// with the indicated sourceImages and sourceStates inputs. Though the states
+        /// can be further adjusted in the ensuing -encode call, the states should
+        /// be initialized with all important data and all MTLResource storage allocated.
+        /// The data stored in the MTLResource need not be initialized, unless the ensuing
+        /// -encode call expects it to be.
+        ///
+        /// The MTLDevice used by the result is derived from the source image.
+        /// The padding policy will be applied to the filter before this is called
+        /// to give it the chance to configure any properties like MPSCNNKernel.offset.
+        ///
+        /// CAUTION: the result state should be made after the kernel properties are
+        /// configured for the -encode call that will write to the state, and
+        /// after -destinationImageDescriptorForSourceImages:sourceStates:
+        /// is called (if it is called). Otherwise, behavior is undefined.
+        /// Please see the description of
+        /// -[MPSCNNKernel resultStateForSourceImage:sourceStates:destinationImage:] for more.
+        ///
+        /// Default: returns nil
+        ///
+        ///
+        /// Parameter `primaryImage`: The MPSImage consumed by the associated -encode call.
+        ///
+        /// Parameter `secondaryImage`: The MPSImage consumed by the associated -encode call.
+        ///
+        /// Parameter `sourceStates`: The list of MPSStates consumed by the associated -encode call,
+        /// for a batch size of 1.
+        ///
+        /// Returns: The list of states produced by the -encode call for batch size of 1.
+        /// When the batch size is not 1, this function will be called repeatedly unless
+        /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
+        /// returns YES, then it will be called once per batch and the MPSStateBatch array will
+        /// contain MPSStateBatch.length references to the same object.
         #[method_id(@__retain_semantics Other resultStateForPrimaryImage:secondaryImage:sourceStates:destinationImage:)]
         pub unsafe fn resultStateForPrimaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
@@ -593,6 +1571,46 @@ extern_methods!(
         ) -> Option<Retained<MPSStateBatch>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Allocate a temporary MPSState (subclass) to hold the results from a -encodeBatchToCommandBuffer... operation
+        ///
+        /// A graph may need to allocate storage up front before executing.  This may be
+        /// necessary to avoid using too much memory and to manage large batches.  The function
+        /// should allocate any MPSState objects that will be produced by an -encode call
+        /// with the indicated sourceImages and sourceStates inputs. Though the states
+        /// can be further adjusted in the ensuing -encode call, the states should
+        /// be initialized with all important data and all MTLResource storage allocated.
+        /// The data stored in the MTLResource need not be initialized, unless the ensuing
+        /// -encode call expects it to be.
+        ///
+        /// The MTLDevice used by the result is derived from the command buffer.
+        /// The padding policy will be applied to the filter before this is called
+        /// to give it the chance to configure any properties like MPSCNNKernel.offset.
+        ///
+        /// CAUTION: the result state should be made after the kernel properties are
+        /// configured for the -encode call that will write to the state, and
+        /// after -destinationImageDescriptorForSourceImages:sourceStates:
+        /// is called (if it is called). Otherwise, behavior is undefined.
+        /// Please see the description of
+        /// -[MPSCNNKernel resultStateForSourceImage:sourceStates:destinationImage] for more.
+        ///
+        /// Default: returns nil
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer to allocate the temporary storage against
+        /// The state will only be valid on this command buffer.
+        ///
+        /// Parameter `primaryImage`: The MPSImage consumed by the associated -encode call.
+        ///
+        /// Parameter `secondaryImage`: The MPSImage consumed by the associated -encode call.
+        ///
+        /// Parameter `sourceStates`: The list of MPSStates consumed by the associated -encode call,
+        /// for a batch size of 1.
+        ///
+        /// Returns: The list of states produced by the -encode call for batch size of 1.
+        /// When the batch size is not 1, this function will be called repeatedly unless
+        /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
+        /// returns YES, then it will be called once per batch and the MPSStateBatch array will
+        /// contain MPSStateBatch.length references to the same object.
         #[method_id(@__retain_semantics Other temporaryResultStateForCommandBuffer:primaryImage:secondaryImage:sourceStates:destinationImage:)]
         pub unsafe fn temporaryResultStateForCommandBuffer_primaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
@@ -614,13 +1632,113 @@ extern_methods!(
             destination_image: &MPSImageBatch,
         ) -> Option<Retained<MPSStateBatch>>;
 
+        /// Returns YES if the same state is used for every operation in a batch
+        ///
+        /// If NO, then each image in a MPSImageBatch will need a corresponding
+        /// (and different) state to go with it. Set to YES to avoid allocating
+        /// redundant state in the case when the same state is used all the time.
+        /// Default: NO
         #[method(isResultStateReusedAcrossBatch)]
         pub unsafe fn isResultStateReusedAcrossBatch(&self) -> bool;
 
+        /// Returns YES if the filter must be run over the entire batch before its
+        /// results may be considered complete
+        ///
+        /// The MPSNNGraph may split batches into sub-batches to save memory. However,
+        /// some filters, like batch statistics calculations, need to operate over
+        /// the entire batch to calculate a valid result, in this case, the mean and
+        /// variance per channel over the set of images.
+        ///
+        /// In such cases, the accumulated result is commonly stored in a MPSState
+        /// containing a MTLBuffer. (MTLTextures may not be able to be read from
+        /// and written to in the same filter on some devices.) -isResultStateReusedAcrossBatch
+        /// is set to YES, so that the state is allocated once and passed in for each
+        /// sub-batch and the filter accumulates its results into it, one sub-batch
+        /// at a time. Note that sub-batches may frequently be as small as 1.
+        ///
+        /// Default: NO
         #[method(appendBatchBarrier)]
         pub unsafe fn appendBatchBarrier(&self) -> bool;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Get a suggested destination image descriptor for a source image
+        ///
+        /// Your application is certainly free to pass in any destinationImage
+        /// it likes to encodeToCommandBuffer:sourceImage:destinationImage,
+        /// within reason. This is the basic design for iOS 10. This method
+        /// is therefore not required.
+        ///
+        /// However, calculating the MPSImage size and MPSCNNBinaryKernel properties
+        /// for each filter can be tedious and complicated work, so this method
+        /// is made available to automate the process. The application may
+        /// modify the properties of the descriptor before a MPSImage is made from
+        /// it, so long as the choice is sensible for the kernel in question.
+        /// Please see individual kernel descriptions for restrictions.
+        ///
+        /// The expected timeline for use is as follows:
+        ///
+        /// 1) This method is called:
+        /// a) The default MPS padding calculation is applied. It
+        /// uses the MPSNNPaddingMethod of the .padding property to
+        /// provide a consistent addressing scheme over the graph.
+        /// It creates the MPSImageDescriptor and adjusts the .offset
+        /// property of the MPSNNKernel. When using a MPSNNGraph, the
+        /// padding is set using the MPSNNFilterNode as a proxy.
+        ///
+        /// b) This method may be overridden by MPSCNNBinaryKernel subclass
+        /// to achieve any customization appropriate to the object type.
+        ///
+        /// c) Source states are then applied in order. These may modify the
+        /// descriptor and may update other object properties. See:
+        /// -destinationImageDescriptorForSourceImages:sourceStates:
+        /// forKernel:suggestedDescriptor:  This is the typical way
+        /// in which MPS may attempt to influence the operation of
+        /// its kernels.
+        ///
+        /// d) If the .padding property has a custom padding policy method
+        /// of the same name, it is called. Similarly, it may also adjust
+        /// the descriptor and any MPSCNNBinaryKernel properties. This is the
+        /// typical way in which your application may attempt to influence
+        /// the operation of the MPS kernels.
+        ///
+        /// 2) A result is returned from this method and the caller
+        /// may further adjust the descriptor and kernel properties
+        /// directly.
+        ///
+        /// 3) The caller uses the descriptor to make a new MPSImage to
+        /// use as the destination image for the -encode call in step 5.
+        ///
+        /// 4) The caller calls -resultStateForSourceImage:sourceStates:destinationImage:
+        /// to make any result states needed for the kernel. If there isn't
+        /// one, it will return nil. A variant is available to return a
+        /// temporary state instead.
+        ///
+        /// 5) a -encode method is called to encode the kernel.
+        ///
+        /// The entire process 1-5 is more simply achieved by just calling an -encode...
+        /// method that returns a MPSImage out the left hand sid of the method. Simpler
+        /// still, use the MPSNNGraph to coordinate the entire process from end to end.
+        /// Opportunities to influence the process are of course reduced, as (2) is no longer
+        /// possible with either method. Your application may opt to use the five step method
+        /// if it requires greater customization as described, or if it would like to estimate
+        /// storage in advance based on the sum of MPSImageDescriptors before processing
+        /// a graph. Storage estimation is done by using the MPSImageDescriptor to create
+        /// a MPSImage (without passing it a texture), and then call -resourceSize. As long
+        /// as the MPSImage is not used in an encode call and the .texture property is not
+        /// invoked, the underlying MTLTexture is not created.
+        ///
+        /// No destination state or destination image is provided as an argument to this
+        /// function because it is expected they will be made / configured after this
+        /// is called. This method is expected to auto-configure important object properties
+        /// that may be needed in the ensuing destination image and state creation steps.
+        ///
+        ///
+        /// Parameter `sourceImages`: A array of source images that will be passed into the -encode call
+        /// Since MPSCNNBinaryKernel is a binary kernel, it is an array of length 2.
+        ///
+        /// Parameter `sourceStates`: An optional array of source states that will be passed into the -encode call
+        ///
+        /// Returns: an image descriptor allocated on the autorelease pool
         #[method_id(@__retain_semantics Other destinationImageDescriptorForSourceImages:sourceStates:)]
         pub unsafe fn destinationImageDescriptorForSourceImages_sourceStates(
             &self,
@@ -629,6 +1747,12 @@ extern_methods!(
         ) -> Retained<MPSImageDescriptor>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// The size of extra MPS heap storage allocated while the kernel is encoding
+        ///
+        /// This is best effort and just describes things that are likely to end up on the MPS heap. It does not
+        /// describe all allocation done by the -encode call.  It is intended for use with high water calculations
+        /// for MTLHeap sizing. Allocations are typically for temporary storage needed for multipass algorithms.
+        /// This interface should not be used to detect multipass algorithms.
         #[method(encodingStorageSizeForPrimaryImage:secondaryImage:sourceStates:destinationImage:)]
         pub unsafe fn encodingStorageSizeForPrimaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
@@ -639,6 +1763,12 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
+        /// The size of extra MPS heap storage allocated while the kernel is encoding a batch
+        ///
+        /// This is best effort and just describes things that are likely to end up on the MPS heap. It does not
+        /// describe all allocation done by the -encode call.  It is intended for use with high water calculations
+        /// for MTLHeap sizing. Allocations are typically for temporary storage needed for multipass algorithms.
+        /// This interface should not be used to detect multipass algorithms.
         #[method(batchEncodingStorageSizeForPrimaryImage:secondaryImage:sourceStates:destinationImage:)]
         pub unsafe fn batchEncodingStorageSizeForPrimaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
@@ -654,6 +1784,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSCNNBinaryKernel {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -675,7 +1813,52 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnngradientkernel?language=objc)
+    /// Gradient kernels are the backwards pass of a MPSCNNKernel
+    /// used during training to calculate gradient back propagation.
+    /// These take as arguments the gradient result from the next filter
+    /// and the source image for the forward version of the filter.
+    /// There is also a MPSNNGradientState passed from MPSCNNKernel
+    /// to MPSCNNGradientKernel that contains information about the
+    /// MPSCNNKernel parameters at the time it encoded and possibly
+    /// also additional MTLResources to enable it to do its job.
+    ///
+    /// ```text
+    ///           Training graph (partial):
+    ///
+    ///               ---> input image ---------> MPSCNNKernel ------>  resultImage ------>-->-->-->.
+    ///                              \                  |                                           |
+    ///                               '------.    MPSNNGradientState                         loss estimation
+    ///                                       \         |                                           |
+    ///                                        V        V                                           V
+    ///               <--- result gradient <- MPSCNNGradientKernel <---  input gradient <--<--<--<---'
+    ///
+    ///               In general operation, starting with the input image, the sequence of events is:
+    ///               1a)  Invoke padding policy to find result size for MPSCNNKernel.  This
+    ///                    also configures some MPSCNNKernel parameters such as offset.
+    ///               1b)  Use the MPSImageDescriptor from 1a to make resultImage.
+    ///               1c)  Call MPSCNNKernel -encode...
+    ///               2) stages 1a-c are repeated for other forward passes in the inference portion of the graph
+    ///               3) We estimate the loss resulting from the whole inference computation so far (see MPSCNNLoss.h>
+    ///               4) stages 5a-c are repeated for corresponding backward gradient passes in the graph
+    ///               5a) Invoke padding policy on the MPSCNNGradientKernel shown above. This sets the
+    ///                   MPSCNNGradientKernel parameters to correspond with those in the forward pass
+    ///               5b) The result gradient for the MPSCNNGradientKernel is created from the MPSImageDescriptor from 5a
+    ///               5c) Call MPSCNNGradientKernel -encode with the input image, input gradient, result gradient and MPSNNGradientState
+    ///               6) pass the result gradient on to leftward gradient passes.
+    /// ```
+    ///
+    /// For MPSCNNKernels that are trained, there may be other accompanying training kernels that
+    /// need to be called in addition to the gradient kernel to update convolution weights or batch
+    /// normalization parameters, for example. Steps 1a-c and 5a-c can be combined in a single -encode
+    /// call. These return the result image or gradient out the left hand side.
+    ///
+    /// For purposes of inheritance the gradient image is the MPSCNNBinaryKernel primary image
+    /// and the source image is the MPSCNNBinaryKernel secondary image. Various secondary properties
+    /// such as kernel size are copies of the forward inference pass parameters of similar name
+    /// are set automatically when -[MPSCNNGradientKernel destinationImageDescriptorForSourceImages:sourceStates:]
+    /// is called.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnngradientkernel?language=objc)
     #[unsafe(super(MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -702,12 +1885,32 @@ unsafe impl NSSecureCoding for MPSCNNGradientKernel {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSCNNGradientKernel {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: A pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -715,19 +1918,66 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Offset in the kernel reference frame to position the kernel in the X dimension
+        ///
+        /// In some cases, the input gradient must be upsampled with zero insertion
+        /// to account for things like strides in the forward MPSCNNKernel pass.
+        /// As such, the offset, which describes a X,Y offset in the source coordinate
+        /// space is insufficient to fully describe the offset applied to a kernel.
+        /// The kernel offset is the offset after upsampling. Both the source offset
+        /// and kernel offset are additive:  effective offset = source offset * stride + kernel offset.
+        /// The offset is applied to the (upsampled) source gradient
         #[method(kernelOffsetX)]
         pub unsafe fn kernelOffsetX(&self) -> NSInteger;
 
+        /// Setter for [`kernelOffsetX`][Self::kernelOffsetX].
         #[method(setKernelOffsetX:)]
         pub unsafe fn setKernelOffsetX(&self, kernel_offset_x: NSInteger);
 
+        /// Offset in the kernel reference frame to position the kernel in the Y dimension
+        ///
+        /// In some cases, the input gradient must be upsampled with zero insertion
+        /// to account for things like strides in the forward MPSCNNKernel pass.
+        /// As such, the offset, which describes a X,Y offset in the source coordinate
+        /// space is insufficient to fully describe the offset applied to a kernel.
+        /// The kernel offset is the offset after upsampling. Both the source offset
+        /// and kernel offset are additive:  effective offset = source offset * stride + kernel offset.
+        /// The offset is applied to the (upsampled) source gradient
         #[method(kernelOffsetY)]
         pub unsafe fn kernelOffsetY(&self) -> NSInteger;
 
+        /// Setter for [`kernelOffsetY`][Self::kernelOffsetY].
         #[method(setKernelOffsetY:)]
         pub unsafe fn setKernelOffsetY(&self, kernel_offset_y: NSInteger);
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Encode a gradient filter and return a gradient
+        ///
+        /// During training, gradient filters are used to calculate the gradient
+        /// associated with the loss for each feature channel in the forward pass
+        /// source image. For those nodes that are trainable, these are then used
+        /// to refine the value used in the trainable parameter. They consume
+        /// a source gradient image which contains the gradients corresponding
+        /// with the forward pass destination image, and calculate the gradients
+        /// corresponding to the forward pass source image.
+        ///
+        /// A gradient filter consumes a MPSNNGradientState object which captured
+        /// various forward pass properties such as offset and edgeMode at the time
+        /// the forward pass was encoded. These are transferred to the MPSCNNBinaryKernel
+        /// secondary image properties automatically when this method creates its
+        /// destination image.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The MTLCommandBuffer on which to encode
+        ///
+        /// Parameter `sourceGradient`: The gradient image from the "next" filter in the graph (in the inference direction)
+        ///
+        /// Parameter `sourceImage`: The image used as source image by the forward inference pass
+        ///
+        /// Parameter `gradientState`: The MPSNNGradientState or MPSNNBinaryGradientState subclass produced by the forward
+        /// inference pass
+        ///
+        /// Returns: The result gradient from the gradient filter
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:)]
         pub unsafe fn encodeToCommandBuffer_sourceGradient_sourceImage_gradientState(
             &self,
@@ -738,6 +1988,36 @@ extern_methods!(
         ) -> Retained<MPSImage>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Encode a gradient filter and return a gradient
+        ///
+        /// During training, gradient filters are used to calculate the gradient
+        /// associated with the loss for each feature channel in the forward pass
+        /// source image. For those nodes that are trainable, these are then used
+        /// to refine the value used in the trainable parameter. They consume
+        /// a source gradient image which contains the gradients corresponding
+        /// with the forward pass destination image, and calculate the gradients
+        /// corresponding to the forward pass source image.
+        ///
+        /// A gradient filter consumes a MPSNNGradientState object which captured
+        /// various forward pass properties such as offset and edgeMode at the time
+        /// the forward pass was encoded. These are transferred to the MPSCNNBinaryKernel
+        /// secondary image properties automatically when you use -[MPSCNNGradientKernel
+        /// destinationImageDescriptorForSourceImages:sourceStates:]. If you do not call
+        /// this method, then you are responsible for configuring all of the primary and
+        /// secondary image properties in MPSCNNBinaryKernel. Please see class description
+        /// for expected ordering of operations.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The MTLCommandBuffer on which to encode
+        ///
+        /// Parameter `sourceGradient`: The gradient image from the "next" filter in the graph
+        ///
+        /// Parameter `sourceImage`: The image used as source image from the forward pass
+        ///
+        /// Parameter `gradientState`: The MPSNNGradientState and MPSNNBinaryGradientState subclass produced by the
+        /// forward pass
+        ///
+        /// Parameter `destinationGradient`: The MPSImage into which to write the filter result
         #[method(encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:destinationGradient:)]
         pub unsafe fn encodeToCommandBuffer_sourceGradient_sourceImage_gradientState_destinationGradient(
             &self,
@@ -749,6 +2029,30 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
+        /// Encode a gradient filter and return a gradient
+        ///
+        /// During training, gradient filters are used to calculate the gradient
+        /// associated with the loss for each feature channel in the forward pass
+        /// source image. For those nodes that are trainable, these are then used
+        /// to refine the value used in the trainable parameter. They consume
+        /// a source gradient image which contains the gradients corresponding
+        /// with the forward pass destination image, and calculate the gradients
+        /// corresponding to the forward pass source image.
+        ///
+        /// A gradient filter consumes a MPSNNGradientState object which captured
+        /// various forward pass properties such as offset and edgeMode at the time
+        /// the forward pass was encoded. These are transferred to the MPSCNNBinaryKernel
+        /// secondary image properties automatically when this method creates its
+        /// destination image.
+        ///
+        /// Parameter `commandBuffer`: The MTLCommandBuffer on which to encode
+        ///
+        /// Parameter `sourceGradients`: The gradient images from the "next" filter in the graph
+        ///
+        /// Parameter `sourceImages`: The images used as source image from the forward pass
+        ///
+        /// Parameter `gradientStates`: The MPSNNGradientState or MPSNNBinaryGradientState subclass produced by the
+        /// forward pass
         #[method_id(@__retain_semantics Other encodeBatchToCommandBuffer:sourceGradients:sourceImages:gradientStates:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceGradients_sourceImages_gradientStates(
             &self,
@@ -759,6 +2063,35 @@ extern_methods!(
         ) -> Retained<MPSImageBatch>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
+        /// Encode a gradient filter and return a gradient
+        ///
+        /// During training, gradient filters are used to calculate the gradient
+        /// associated with the loss for each feature channel in the forward pass
+        /// source image. For those nodes that are trainable, these are then used
+        /// to refine the value used in the trainable parameter. They consume
+        /// a source gradient image which contains the gradients corresponding
+        /// with the forward pass destination image, and calculate the gradients
+        /// corresponding to the forward pass source image.
+        ///
+        /// A gradient filter consumes a MPSNNGradientState object which captured
+        /// various forward pass properties such as offset and edgeMode at the time
+        /// the forward pass was encoded. These are transferred to the MPSCNNBinaryKernel
+        /// secondary image properties automatically when you use -[MPSCNNGradientKernel
+        /// destinationImageDescriptorForSourceImages:sourceStates:]. If you do not call
+        /// this method, then you are responsible for configuring all of the primary and
+        /// secondary image properties in MPSCNNBinaryKernel. Please see class description
+        /// for expected ordering of operations.
+        ///
+        /// Parameter `commandBuffer`: The MTLCommandBuffer on which to encode
+        ///
+        /// Parameter `sourceGradients`: The gradient images from the "next" filter in the graph
+        ///
+        /// Parameter `sourceImages`: The image used as source images from the forward pass
+        ///
+        /// Parameter `gradientStates`: An array of the MPSNNGradientState or MPSNNBinaryGradientState subclass
+        /// produced by the forward pass
+        ///
+        /// Parameter `destinationGradients`: The MPSImages into which to write the filter result
         #[method(encodeBatchToCommandBuffer:sourceGradients:sourceImages:gradientStates:destinationGradients:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceGradients_sourceImages_gradientStates_destinationGradients(
             &self,
@@ -775,6 +2108,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSCNNGradientKernel {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -796,7 +2137,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Describes a  neural network kernel with multiple image sources.
+    ///
+    /// A MPSCNNKernel consumes multiple MPSImages, possibly a MPSState, and produces one MPSImage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -823,6 +2170,15 @@ unsafe impl NSSecureCoding for MPSCNNMultiaryKernel {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSCNNMultiaryKernel {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Parameter `sourceCount`: The number of source images or MPSImageBatches
+        ///
+        /// Returns: A pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
@@ -836,45 +2192,86 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// The number of source images accepted by the kernel
         #[method(sourceCount)]
         pub unsafe fn sourceCount(&self) -> NSUInteger;
 
+        /// An optional clip rectangle to use when writing data. Only the pixels in the rectangle will be overwritten.
+        ///
+        /// A MTLRegion that indicates which part of the destination to overwrite. If the clipRect does not lie
+        /// completely within the destination image, the intersection between clip rectangle and destination bounds is
+        /// used.   Default: MPSRectNoClip (MPSKernel::MPSRectNoClip) indicating the entire image.
+        /// clipRect.origin.z is the index of starting destination image in batch processing mode. clipRect.size.depth
+        /// is the number of images to process in batch processing mode.
+        ///
+        /// See Also:
+        /// subsubsection_clipRect
         #[method(clipRect)]
         pub unsafe fn clipRect(&self) -> MTLRegion;
 
+        /// Setter for [`clipRect`][Self::clipRect].
         #[method(setClipRect:)]
         pub unsafe fn setClipRect(&self, clip_rect: MTLRegion);
 
+        /// The number of channels in the destination MPSImage to skip before writing output.
+        ///
+        /// This is the starting offset into the destination image in the feature channel dimension
+        /// at which destination data is written.
+        /// This allows an application to pass a subset of all the channels in MPSImage as output of MPSKernel.
+        /// E.g. Suppose MPSImage has 24 channels and a MPSKernel outputs 8 channels. If
+        /// we want channels 8 to 15 of this MPSImage to be used as output, we can set destinationFeatureChannelOffset = 8.
+        /// Note that this offset applies independently to each image when the MPSImage
+        /// is a container for multiple images and the MPSCNNKernel is processing multiple images (clipRect.size.depth > 1).
+        /// The default value is 0 and any value specifed shall be a multiple of 4. If MPSKernel outputs N channels,
+        /// destination image MUST have at least destinationFeatureChannelOffset + N channels. Using a destination
+        /// image with insufficient number of feature channels result in an error.
+        /// E.g. if the MPSCNNConvolution outputs 32 channels, and destination has 64 channels, then it is an error to set
+        /// destinationFeatureChannelOffset > 32.
         #[method(destinationFeatureChannelOffset)]
         pub unsafe fn destinationFeatureChannelOffset(&self) -> NSUInteger;
 
+        /// Setter for [`destinationFeatureChannelOffset`][Self::destinationFeatureChannelOffset].
         #[method(setDestinationFeatureChannelOffset:)]
         pub unsafe fn setDestinationFeatureChannelOffset(
             &self,
             destination_feature_channel_offset: NSUInteger,
         );
 
+        /// YES if the filter operates backwards.
+        ///
+        /// This influences how strideInPixelsX/Y should be interpreted.
         #[method(isBackwards)]
         pub unsafe fn isBackwards(&self) -> bool;
 
+        /// Returns true if the -encode call modifies the state object it accepts.
         #[method(isStateModified)]
         pub unsafe fn isStateModified(&self) -> bool;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// The padding method used by the filter
+        ///
+        /// This influences how strideInPixelsX/Y should be interpreted.
+        /// Default:  MPSNNPaddingMethodAlignCentered | MPSNNPaddingMethodAddRemainderToTopLeft | MPSNNPaddingMethodSizeSame
+        /// Some object types (e.g. MPSCNNFullyConnected) may override this default with something appropriate to its operation.
         #[method_id(@__retain_semantics Other padding)]
         pub unsafe fn padding(&self) -> Retained<ProtocolObject<dyn MPSNNPadding>>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Setter for [`padding`][Self::padding].
         #[method(setPadding:)]
         pub unsafe fn setPadding(&self, padding: &ProtocolObject<dyn MPSNNPadding>);
 
         #[cfg(feature = "MPSImage")]
+        /// Method to allocate the result image for -encodeToCommandBuffer:sourceImage:
+        ///
+        /// Default: MPSTemporaryImage.defaultAllocator
         #[method_id(@__retain_semantics Other destinationImageAllocator)]
         pub unsafe fn destinationImageAllocator(
             &self,
         ) -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
 
         #[cfg(feature = "MPSImage")]
+        /// Setter for [`destinationImageAllocator`][Self::destinationImageAllocator].
         #[method(setDestinationImageAllocator:)]
         pub unsafe fn setDestinationImageAllocator(
             &self,
@@ -882,16 +2279,70 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The positon of the destination clip rectangle origin relative to each source buffer
+        ///
+        /// The offset is defined to be the position of clipRect.origin in source coordinates.
+        /// Default: {0,0,0}, indicating that the top left corners of the clipRect and source image align.
+        /// offset.z is the index of starting source image in batch processing mode.
+        ///
+        /// Parameter `index`: The index of the source image described by the offset
+        ///
+        /// Returns: A MPSOffset for that image
         #[method(offsetAtIndex:)]
         pub unsafe fn offsetAtIndex(&self, index: NSUInteger) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Set the positon of the destination clip rectangle origin relative to each source buffer
+        ///
+        /// The offset is defined to be the position of clipRect.origin in source coordinates.
+        /// Default: {0,0,0}, indicating that the top left corners of the clipRect and source image align.
+        /// offset.z is the index of starting source image in batch processing mode.
+        ///
+        /// Parameter `offset`: The new offset
+        ///
+        /// Parameter `index`: The index of the source image described by the offset
         #[method(setOffset:atIndex:)]
         pub unsafe fn setOffset_atIndex(&self, offset: MPSOffset, index: NSUInteger);
 
+        /// The number of channels in the source MPSImage to skip before reading the input.
+        ///
+        /// This is the starting offset into the  source image in the feature channel dimension
+        /// at which source data is read. Unit: feature channels
+        /// This allows an application to read a subset of all the channels in MPSImage as input of MPSKernel.
+        /// E.g. Suppose MPSImage has 24 channels and a MPSKernel needs to read 8 channels. If
+        /// we want channels 8 to 15 of this MPSImage to be used as input, we can set sourceFeatureChannelOffset[0] = 8.
+        /// Note that this offset applies independently to each image when the MPSImage
+        /// is a container for multiple images and the MPSCNNKernel is processing multiple images (clipRect.size.depth > 1).
+        /// The default value is 0 and any value specifed shall be a multiple of 4. If MPSKernel inputs N channels,
+        /// the source image MUST have at least primarySourceFeatureChannelOffset + N channels. Using a source
+        /// image with insufficient number of feature channels will result in an error.
+        /// E.g. if the MPSCNNConvolution inputs 32 channels, and the source has 64 channels, then it is an error to set
+        /// primarySourceFeatureChannelOffset > 32.
+        ///
+        /// Parameter `index`: The index of the source image that the feature channel offset describes
+        ///
+        /// Returns: The source feature channel offset
         #[method(sourceFeatureChannelOffsetAtIndex:)]
         pub unsafe fn sourceFeatureChannelOffsetAtIndex(&self, index: NSUInteger) -> NSUInteger;
 
+        /// Set the number of channels in the source MPSImage to skip before reading the input.
+        ///
+        /// This is the starting offset into the  source image in the feature channel dimension
+        /// at which source data is read. Unit: feature channels
+        /// This allows an application to read a subset of all the channels in MPSImage as input of MPSKernel.
+        /// E.g. Suppose MPSImage has 24 channels and a MPSKernel needs to read 8 channels. If
+        /// we want channels 8 to 15 of this MPSImage to be used as input, we can set sourceFeatureChannelOffset[0] = 8.
+        /// Note that this offset applies independently to each image when the MPSImage
+        /// is a container for multiple images and the MPSCNNKernel is processing multiple images (clipRect.size.depth > 1).
+        /// The default value is 0 and any value specifed shall be a multiple of 4. If MPSKernel inputs N channels,
+        /// the source image MUST have at least primarySourceFeatureChannelOffset + N channels. Using a source
+        /// image with insufficient number of feature channels will result in an error.
+        /// E.g. if the MPSCNNConvolution inputs 32 channels, and the source has 64 channels, then it is an error to set
+        /// primarySourceFeatureChannelOffset > 32.
+        ///
+        /// Parameter `index`: The index of the source image that the feature channel offset describes
+        ///
+        /// Parameter `offset`: The source feature channel offset
         #[method(setSourceFeatureChannelOffset:atIndex:)]
         pub unsafe fn setSourceFeatureChannelOffset_atIndex(
             &self,
@@ -899,9 +2350,31 @@ extern_methods!(
             index: NSUInteger,
         );
 
+        /// The maximum number of channels in the source MPSImage to use
+        ///
+        /// Most filters can insert a slice operation into the filter for free.
+        /// Use this to limit the size of the feature channel slice taken from
+        /// the input image. If the value is too large, it is truncated to be
+        /// the remaining size in the image after the sourceFeatureChannelOffset
+        /// is taken into account.  Default: ULONG_MAX
+        ///
+        /// Parameter `index`: The index of the source image to which the max count refers
+        ///
+        /// Returns: The source feature channel max count
         #[method(sourceFeatureChannelMaxCountAtIndex:)]
         pub unsafe fn sourceFeatureChannelMaxCountAtIndex(&self, index: NSUInteger) -> NSUInteger;
 
+        /// Set the maximum number of channels in the source MPSImage to use
+        ///
+        /// Most filters can insert a slice operation into the filter for free.
+        /// Use this to limit the size of the feature channel slice taken from
+        /// the input image. If the value is too large, it is truncated to be
+        /// the remaining size in the image after the sourceFeatureChannelOffset
+        /// is taken into account.  Default: ULONG_MAX
+        ///
+        /// Parameter `count`: The new source feature channel max count
+        ///
+        /// Parameter `index`: The index of the source image to which the max count refers
         #[method(setSourceFeatureChannelMaxCount:atIndex:)]
         pub unsafe fn setSourceFeatureChannelMaxCount_atIndex(
             &self,
@@ -910,49 +2383,166 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The MPSImageEdgeMode to use when texture reads stray off the edge of the primary source image
+        ///
+        /// Most MPSKernel objects can read off the edge of the source image. This can happen
+        /// because of a negative offset property, because the offset + clipRect.size is larger
+        /// than the source image or because the filter looks at neighboring pixels, such as a
+        /// Convolution filter.   Default:  MPSImageEdgeModeZero.
+        ///
+        /// See Also:
+        /// subsubsection_edgemode
+        /// Parameter `index`: The index of the source image to which the edge mode refers
+        ///
+        /// Returns: The edge mode for that source image
         #[method(edgeModeAtIndex:)]
         pub unsafe fn edgeModeAtIndex(&self, index: NSUInteger) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Set the MPSImageEdgeMode to use when texture reads stray off the edge of the primary source image
+        ///
+        /// Most MPSKernel objects can read off the edge of the source image. This can happen
+        /// because of a negative offset property, because the offset + clipRect.size is larger
+        /// than the source image or because the filter looks at neighboring pixels, such as a
+        /// Convolution filter.   Default:  MPSImageEdgeModeZero.
+        ///
+        /// See Also:
+        /// subsubsection_edgemode
+        /// Parameter `edgeMode`: The new edge mode to use
+        ///
+        /// Parameter `index`: The index of the source image to which the edge mode refers
         #[method(setEdgeMode:atIndex:)]
         pub unsafe fn setEdgeMode_atIndex(&self, edge_mode: MPSImageEdgeMode, index: NSUInteger);
 
+        /// The width of the kernel filter window
+        ///
+        /// This is the horizontal diameter of the region read by the filter for each
+        /// result pixel. If the MPSCNNKernel does not have a filter window, then
+        /// 1 will be returned.
+        ///
+        /// Parameter `index`: The index of the source image to which the kernel width refers
         #[method(kernelWidthAtIndex:)]
         pub unsafe fn kernelWidthAtIndex(&self, index: NSUInteger) -> NSUInteger;
 
+        /// Set the width of the kernel filter window
+        ///
+        /// This is the horizontal diameter of the region read by the filter for each
+        /// result pixel. If the MPSCNNKernel does not have a filter window, then
+        /// 1 will be returned.
+        ///
+        /// Parameter `width`: The new width
+        ///
+        /// Parameter `index`: The index of the source image to which the kernel width refers
         #[method(setKernelWidth:atIndex:)]
         pub unsafe fn setKernelWidth_atIndex(&self, width: NSUInteger, index: NSUInteger);
 
+        /// The height of the kernel filter window
+        ///
+        /// This is the horizontal diameter of the region read by the filter for each
+        /// result pixel. If the MPSCNNKernel does not have a filter window, then
+        /// 1 will be returned.
+        ///
+        /// Parameter `index`: The index of the source image to which the kernel width refers
         #[method(kernelHeightAtIndex:)]
         pub unsafe fn kernelHeightAtIndex(&self, index: NSUInteger) -> NSUInteger;
 
+        /// Set the height of the kernel filter window
+        ///
+        /// This is the horizontal diameter of the region read by the filter for each
+        /// result pixel. If the MPSCNNKernel does not have a filter window, then
+        /// 1 will be returned.
+        ///
+        /// Parameter `height`: The new width
+        ///
+        /// Parameter `index`: The index of the source image to which the kernel width refers
         #[method(setKernelHeight:atIndex:)]
         pub unsafe fn setKernelHeight_atIndex(&self, height: NSUInteger, index: NSUInteger);
 
+        /// The downsampling factor in the horizontal dimension for the source image
+        ///
+        /// Parameter `index`: The index of the source Image
+        ///
+        /// If the filter does not do up or downsampling, 1 is returned.
+        ///
+        /// Returns: The stride
         #[method(strideInPixelsXatIndex:)]
         pub unsafe fn strideInPixelsXatIndex(&self, index: NSUInteger) -> NSUInteger;
 
+        /// The downsampling factor in the horizontal dimension for the source image
+        ///
+        /// If the filter does not do up or downsampling, 1 is returned.  Default: 1
+        ///
+        /// Parameter `index`: The index of the source Image
+        ///
+        /// Parameter `stride`: The stride for the source image
         #[method(setStrideInPixelsX:atIndex:)]
         pub unsafe fn setStrideInPixelsX_atIndex(&self, stride: NSUInteger, index: NSUInteger);
 
+        /// The downsampling factor in the vertical dimension for the source image
+        ///
+        /// Parameter `index`: The index of the source Image
+        ///
+        /// If the filter does not do up or downsampling, 1 is returned.
+        ///
+        /// Returns: The stride
         #[method(strideInPixelsYatIndex:)]
         pub unsafe fn strideInPixelsYatIndex(&self, index: NSUInteger) -> NSUInteger;
 
+        /// The downsampling factor in the vertical dimension for the source image
+        ///
+        /// If the filter does not do up or downsampling, 1 is returned.  Default: 1
+        ///
+        /// Parameter `index`: The index of the source Image
+        ///
+        /// Parameter `stride`: The stride for the source image
         #[method(setStrideInPixelsY:atIndex:)]
         pub unsafe fn setStrideInPixelsY_atIndex(&self, stride: NSUInteger, index: NSUInteger);
 
+        /// Stride in source coordinates from one kernel tap to the next in the X dimension.
+        ///
+        /// Parameter `index`: The index of the source image to which the dilation rate applies
+        ///
+        /// Returns: The dilation rate
         #[method(dilationRateXatIndex:)]
         pub unsafe fn dilationRateXatIndex(&self, index: NSUInteger) -> NSUInteger;
 
+        /// Set the stride in source coordinates from one kernel tap to the next in the X dimension.
+        ///
+        /// Parameter `index`: The index of the source image to which the dilation rate applies
+        ///
+        /// Parameter `dilationRate`: The dilation rate
         #[method(setDilationRateX:atIndex:)]
         pub unsafe fn setDilationRateX_atIndex(&self, dilation_rate: NSUInteger, index: NSUInteger);
 
+        /// Stride in source coordinates from one kernel tap to the next in the Y dimension.
+        ///
+        /// Parameter `index`: The index of the source image to which the dilation rate applies
+        ///
+        /// Returns: The dilation rate
         #[method(dilationRateYatIndex:)]
         pub unsafe fn dilationRateYatIndex(&self, index: NSUInteger) -> NSUInteger;
 
+        /// Set the stride in source coordinates from one kernel tap to the next in the Y dimension.
+        ///
+        /// Parameter `index`: The index of the source image to which the dilation rate applies
+        ///
+        /// Parameter `dilationRate`: The dilation rate
         #[method(setDilationRateY:atIndex:)]
         pub unsafe fn setDilationRateY_atIndex(&self, dilation_rate: NSUInteger, index: NSUInteger);
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -961,6 +2551,16 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MPSImage")]
+        /// Encode a MPSCNNKernel into a command Buffer.  The operation shall proceed out-of-place.
+        ///
+        /// This is the older style of encode which reads the offset, doesn't change it,
+        /// and ignores the padding method.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceImages`: An array containing the source images
+        ///
+        /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. destinationImage may not alias primarySourceImage or secondarySourceImage.
         #[method(encodeToCommandBuffer:sourceImages:destinationImage:)]
         pub unsafe fn encodeToCommandBuffer_sourceImages_destinationImage(
             &self,
@@ -970,6 +2570,19 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray"))]
+        /// Encode a MPSCNNKernel into a command Buffer.  The operation shall proceed out-of-place.
+        ///
+        /// This is the older style of encode which reads the offset, doesn't change it,
+        /// and ignores the padding method. Multiple images are processed concurrently.
+        /// All images must have MPSImage.numberOfImages = 1.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceImages`: An array of image batches containing the source images.
+        ///
+        /// Parameter `destinationImages`: An array of MPSImage objects to contain the result images.
+        /// destinationImages may not alias primarySourceImages or secondarySourceImages
+        /// in any manner.
         #[method(encodeBatchToCommandBuffer:sourceImages:destinationImages:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationImages(
             &self,
@@ -979,6 +2592,26 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSImage")]
+        /// Encode a MPSCNNKernel into a command Buffer. Create a texture to hold the result and return it.
+        ///
+        /// In the first iteration on this method, encodeToCommandBuffer:sourceImage:destinationImage:
+        /// some work was left for the developer to do in the form of correctly setting the offset property
+        /// and sizing the result buffer. With the introduction of the padding policy (see padding property)
+        /// the filter can do this work itself. If you would like to have some input into what sort of MPSImage
+        /// (e.g. temporary vs. regular) or what size it is or where it is allocated, you may set the
+        /// destinationImageAllocator to allocate the image yourself.
+        ///
+        /// This method uses the MPSNNPadding padding property to figure out how to size
+        /// the result image and to set the offset property.  See discussion in MPSNeuralNetworkTypes.h.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer
+        ///
+        /// Parameter `sourceImages`: An array of MPSImages to use as the source images for the filter.
+        ///
+        /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
+        /// The returned image will be automatically released when the command buffer completes. If you want to
+        /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceImages:)]
         pub unsafe fn encodeToCommandBuffer_sourceImages(
             &self,
@@ -987,6 +2620,27 @@ extern_methods!(
         ) -> Retained<MPSImage>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray"))]
+        /// Encode a MPSCNNKernel into a command Buffer. Create textures to hold the results and return them.
+        ///
+        /// In the first iteration on this method, encodeBatchToCommandBuffer:sourceImage:destinationImage:
+        /// some work was left for the developer to do in the form of correctly setting the offset property
+        /// and sizing the result buffer. With the introduction of the padding policy (see padding property)
+        /// the filter can do this work itself. If you would like to have some input into what sort of MPSImage
+        /// (e.g. temporary vs. regular) or what size it is or where it is allocated, you may set the
+        /// destinationImageAllocator to allocate the image yourself.
+        ///
+        /// This method uses the MPSNNPadding padding property to figure out how to size
+        /// the result image and to set the offset property.  See discussion in MPSNeuralNetworkTypes.h.
+        /// All images in a batch must have MPSImage.numberOfImages = 1.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer
+        ///
+        /// Parameter `sourceImageBatches`: An array of image batches to use as the source images for the filter.
+        ///
+        /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
+        /// The returned image will be automatically released when the command buffer completes. If you want to
+        /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
         #[method_id(@__retain_semantics Other encodeBatchToCommandBuffer:sourceImages:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages(
             &self,
@@ -995,6 +2649,32 @@ extern_methods!(
         ) -> Retained<MPSImageBatch>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Encode a MPSCNNKernel into a command Buffer. Create a texture and state to hold the results and return them.
+        ///
+        /// In the first iteration on this method, encodeToCommandBuffer:sourceImage:destinationState:destinationImage:
+        /// some work was left for the developer to do in the form of correctly setting the offset property
+        /// and sizing the result buffer. With the introduction of the padding policy (see padding property)
+        /// the filter can do this work itself. If you would like to have some input into what sort of MPSImage
+        /// (e.g. temporary vs. regular) or what size it is or where it is allocated, you may set the
+        /// destinationImageAllocator to allocate the image yourself.
+        ///
+        /// This method uses the MPSNNPadding padding property to figure out how to size
+        /// the result image and to set the offset property. See discussion in MPSNeuralNetworkTypes.h.
+        /// All images in a batch must have MPSImage.numberOfImages = 1.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer
+        ///
+        /// Parameter `sourceImages`: An array of MPSImages to use as the source images for the filter.
+        ///
+        /// Parameter `outState`: The address of location to write the pointer to the result state of the operation
+        ///
+        /// Parameter `isTemporary`: YES if the outState should be a temporary object
+        ///
+        /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
+        /// The offset property will be adjusted to reflect the offset used during the encode.
+        /// The returned image will be automatically released when the command buffer completes. If you want to
+        /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceImages:destinationState:destinationStateIsTemporary:)]
         pub unsafe fn encodeToCommandBuffer_sourceImages_destinationState_destinationStateIsTemporary(
             &self,
@@ -1005,6 +2685,32 @@ extern_methods!(
         ) -> Retained<MPSImage>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
+        /// Encode a MPSCNNKernel into a command Buffer. Create a texture and state to hold the results and return them.
+        ///
+        /// In the first iteration on this method, encodeToCommandBuffer:sourceImage:destinationState:destinationImage:
+        /// some work was left for the developer to do in the form of correctly setting the offset property
+        /// and sizing the result buffer. With the introduction of the padding policy (see padding property)
+        /// the filter can do this work itself. If you would like to have some input into what sort of MPSImage
+        /// (e.g. temporary vs. regular) or what size it is or where it is allocated, you may set the
+        /// destinationImageAllocator to allocate the image yourself.
+        ///
+        /// This method uses the MPSNNPadding padding property to figure out how to size
+        /// the result image and to set the offset property. See discussion in MPSNeuralNetworkTypes.h.
+        /// All images in a batch must have MPSImage.numberOfImages = 1.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer
+        ///
+        /// Parameter `sourceImageBatches`: An array of batches to use as the source images for the filter.
+        ///
+        /// Parameter `outState`: A new state object is returned here.
+        ///
+        /// Parameter `isTemporary`: YES if the outState should be a temporary object
+        ///
+        /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
+        /// The offset property will be adjusted to reflect the offset used during the encode.
+        /// The returned image will be automatically released when the command buffer completes. If you want to
+        /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
         #[method_id(@__retain_semantics Other encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationStates_destinationStateIsTemporary(
             &self,
@@ -1014,13 +2720,114 @@ extern_methods!(
             is_temporary: bool,
         ) -> Retained<MPSImageBatch>;
 
+        /// Returns YES if the same state is used for every operation in a batch
+        ///
+        /// If NO, then each image in a MPSImageBatch will need a corresponding
+        /// (and different) state to go with it. Set to YES to avoid allocating
+        /// redundant state in the case when the same state is used all the time.
+        /// Default: NO
         #[method(isResultStateReusedAcrossBatch)]
         pub unsafe fn isResultStateReusedAcrossBatch(&self) -> bool;
 
+        /// Returns YES if the filter must be run over the entire batch before its
+        /// results may be used
+        ///
+        /// Nearly all filters do not need to see the entire batch all at once and can
+        /// operate correctly with partial batches. This allows the graph to
+        /// strip-mine the problem, processing the graph top to bottom on a subset
+        /// of the batch at a time, dramatically reducing memory usage. As the full
+        /// nominal working set for a graph is often so large that it may not fit
+        /// in memory, sub-batching may be required forward progress.
+        ///
+        /// Batch normalization statistics on the other hand must complete the batch
+        /// before the statistics may be used to normalize the images in the batch
+        /// in the ensuing normalization filter. Consequently, batch normalization statistics
+        /// requests the graph insert a batch barrier following it by returning
+        /// YES from -appendBatchBarrier. This tells the graph to complete the batch
+        /// before any dependent filters can start. Note that the filter itself may
+        /// still be subject to sub-batching in its operation. All filters must be able to
+        /// function without seeing the entire batch in a single -encode call. Carry
+        /// over state that is accumulated across sub-batches is commonly carried in
+        /// a shared MPSState containing a MTLBuffer. See -isResultStateReusedAcrossBatch.
+        ///
+        /// Caution: on most supported devices, the working set may be so large
+        /// that the graph may be forced to throw away and recalculate most
+        /// intermediate images in cases where strip-mining can not occur because
+        /// -appendBatchBarrier returns YES. A single batch barrier can commonly
+        /// cause a memory size increase and/or performance reduction by many fold
+        /// over the entire graph.  Filters of this variety should be avoided.
+        ///
+        /// Default: NO
         #[method(appendBatchBarrier)]
         pub unsafe fn appendBatchBarrier(&self) -> bool;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Allocate a MPSState (subclass) to hold the results from a -encodeBatchToCommandBuffer... operation
+        ///
+        /// A graph may need to allocate storage up front before executing.  This may be
+        /// necessary to avoid using too much memory and to manage large batches.  The function
+        /// should allocate any MPSState objects that will be produced by an -encode call
+        /// with the indicated sourceImages and sourceStates inputs. Though the states
+        /// can be further adjusted in the ensuing -encode call, the states should
+        /// be initialized with all important data and all MTLResource storage allocated.
+        /// The data stored in the MTLResource need not be initialized, unless the ensuing
+        /// -encode call expects it to be.
+        ///
+        /// The MTLDevice used by the result is derived from the source image.
+        /// The padding policy will be applied to the filter before this is called
+        /// to give it the chance to configure any properties like MPSCNNKernel.offset.
+        ///
+        /// CAUTION:
+        /// The kernel must have all properties set to values that will ultimately be
+        /// passed to the -encode call that writes to the state, before
+        /// -resultStateForSourceImages:sourceStates:destinationImage: is called or behavior is undefined.
+        /// Please note that -destinationImageDescriptorForSourceImages:sourceStates:
+        /// will alter some of these properties automatically based on the padding policy.
+        /// If you intend to call that to make the destination image, then you should
+        /// call that before -resultStateForSourceImages:sourceStates:destinationImage:. This will ensure the
+        /// properties used in the encode call and in the destination image creation
+        /// match those used to configure the state.
+        ///
+        /// The following order is recommended:
+        ///
+        /// // Configure MPSCNNKernel properties first
+        /// kernel.edgeMode = MPSImageEdgeModeZero;
+        /// kernel.destinationFeatureChannelOffset = 128; // concatenation without the copy
+        /// ...
+        ///
+        /// // ALERT: will change MPSCNNKernel properties
+        /// MPSImageDescriptor * d = [kernel destinationImageDescriptorForSourceImage: source
+        /// sourceStates: states];
+        /// MPSTemporaryImage * dest = [MPSTemporaryImage temporaryImageWithCommandBuffer: cmdBuf
+        /// imageDescriptor: d];
+        ///
+        /// // Now that all properties are configured properly, we can make the result state
+        /// // and call encode.
+        /// MPSState * __nullable destState = [kernel resultStateForSourceImage: source
+        /// sourceStates: states
+        /// destinationImage: dest];
+        ///
+        /// // This form of -encode will be declared by the MPSCNNKernel subclass
+        /// [kernel encodeToCommandBuffer: cmdBuf
+        /// sourceImage: source
+        /// destinationState: destState
+        /// destinationImage: dest ];
+        ///
+        /// Default: returns nil
+        ///
+        ///
+        /// Parameter `sourceImages`: The MPSImage consumed by the associated -encode call.
+        ///
+        /// Parameter `sourceStates`: The list of MPSStates consumed by the associated -encode call,
+        /// for a batch size of 1.
+        ///
+        /// Parameter `destinationImage`: The destination image for the encode call
+        ///
+        /// Returns: The list of states produced by the -encode call for batch size of 1.
+        /// When the batch size is not 1, this function will be called repeatedly unless
+        /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
+        /// returns YES, then it will be called once per batch and the MPSStateBatch array will
+        /// contain MPSStateBatch.length references to the same object.
         #[method_id(@__retain_semantics Other resultStateForSourceImages:sourceStates:destinationImage:)]
         pub unsafe fn resultStateForSourceImages_sourceStates_destinationImage(
             &self,
@@ -1039,6 +2846,75 @@ extern_methods!(
         ) -> Option<Retained<MPSStateBatch>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Allocate a temporary MPSState (subclass) to hold the results from a -encodeBatchToCommandBuffer... operation
+        ///
+        /// A graph may need to allocate storage up front before executing.  This may be
+        /// necessary to avoid using too much memory and to manage large batches.  The function
+        /// should allocate any MPSState objects that will be produced by an -encode call
+        /// with the indicated sourceImages and sourceStates inputs. Though the states
+        /// can be further adjusted in the ensuing -encode call, the states should
+        /// be initialized with all important data and all MTLResource storage allocated.
+        /// The data stored in the MTLResource need not be initialized, unless the ensuing
+        /// -encode call expects it to be.
+        ///
+        /// The MTLDevice used by the result is derived from the command buffer.
+        /// The padding policy will be applied to the filter before this is called
+        /// to give it the chance to configure any properties like MPSCNNKernel.offset.
+        ///
+        /// CAUTION:
+        /// The kernel must have all properties set to values that will ultimately be
+        /// passed to the -encode call that writes to the state, before
+        /// -resultStateForSourceImages:sourceStates:destinationImage: is called or behavior is undefined.
+        /// Please note that -destinationImageDescriptorForSourceImages:sourceStates:destinationImage:
+        /// will alter some of these properties automatically based on the padding policy.
+        /// If you intend to call that to make the destination image, then you should
+        /// call that before -resultStateForSourceImages:sourceStates:destinationImage:.  This will ensure the
+        /// properties used in the encode call and in the destination image creation
+        /// match those used to configure the state.
+        ///
+        /// The following order is recommended:
+        ///
+        /// // Configure MPSCNNKernel properties first
+        /// kernel.edgeMode = MPSImageEdgeModeZero;
+        /// kernel.destinationFeatureChannelOffset = 128; // concatenation without the copy
+        /// ...
+        ///
+        /// // ALERT: will change MPSCNNKernel properties
+        /// MPSImageDescriptor * d = [kernel destinationImageDescriptorForSourceImage: source
+        /// sourceStates: states];
+        /// MPSTemporaryImage * dest = [MPSTemporaryImage temporaryImageWithCommandBuffer: cmdBuf
+        /// imageDescriptor: d];
+        ///
+        /// // Now that all properties are configured properly, we can make the result state
+        /// // and call encode.
+        /// MPSState * __nullable destState = [kernel temporaryResultStateForCommandBuffer: cmdBuf
+        /// sourceImage: source
+        /// sourceStates: states];
+        ///
+        /// // This form of -encode will be declared by the MPSCNNKernel subclass
+        /// [kernel encodeToCommandBuffer: cmdBuf
+        /// sourceImage: source
+        /// destinationState: destState
+        /// destinationImage: dest ];
+        ///
+        /// Default: returns nil
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer to allocate the temporary storage against
+        /// The state will only be valid on this command buffer.
+        ///
+        /// Parameter `sourceImage`: The MPSImage consumed by the associated -encode call.
+        ///
+        /// Parameter `sourceStates`: The list of MPSStates consumed by the associated -encode call,
+        /// for a batch size of 1.
+        ///
+        /// Parameter `destinationImage`: The destination image for the encode call
+        ///
+        /// Returns: The list of states produced by the -encode call for batch size of 1.
+        /// When the batch size is not 1, this function will be called repeatedly unless
+        /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
+        /// returns YES, then it will be called once per batch and the MPSStateBatch array will
+        /// contain MPSStateBatch.length references to the same object.
         #[method_id(@__retain_semantics Other temporaryResultStateForCommandBuffer:sourceImages:sourceStates:destinationImage:)]
         pub unsafe fn temporaryResultStateForCommandBuffer_sourceImages_sourceStates_destinationImage(
             &self,
@@ -1059,6 +2935,84 @@ extern_methods!(
         ) -> Option<Retained<MPSStateBatch>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Get a suggested destination image descriptor for a source image
+        ///
+        /// Your application is certainly free to pass in any destinationImage
+        /// it likes to encodeToCommandBuffer:sourceImage:destinationImage,
+        /// within reason. This is the basic design for iOS 10. This method
+        /// is therefore not required.
+        ///
+        /// However, calculating the MPSImage size and MPSCNNKernel properties
+        /// for each filter can be tedious and complicated work, so this method
+        /// is made available to automate the process. The application may
+        /// modify the properties of the descriptor before a MPSImage is made from
+        /// it, so long as the choice is sensible for the kernel in question.
+        /// Please see individual kernel descriptions for restrictions.
+        ///
+        /// The expected timeline for use is as follows:
+        ///
+        /// 1) This method is called:
+        /// a) The default MPS padding calculation is applied. It
+        /// uses the MPSNNPaddingMethod of the .padding property to
+        /// provide a consistent addressing scheme over the graph.
+        /// It creates the MPSImageDescriptor and adjusts the .offset
+        /// property of the MPSNNKernel. When using a MPSNNGraph, the
+        /// padding is set using the MPSNNFilterNode as a proxy.
+        ///
+        /// b) This method may be overridden by MPSCNNKernel subclass
+        /// to achieve any customization appropriate to the object type.
+        ///
+        /// c) Source states are then applied in order. These may modify the
+        /// descriptor and may update other object properties. See:
+        /// -destinationImageDescriptorForSourceImages:sourceStates:
+        /// forKernel:suggestedDescriptor:  This is the typical way
+        /// in which MPS may attempt to influence the operation of
+        /// its kernels.
+        ///
+        /// d) If the .padding property has a custom padding policy method
+        /// of the same name, it is called. Similarly, it may also adjust
+        /// the descriptor and any MPSCNNKernel properties. This is the
+        /// typical way in which your application may attempt to influence
+        /// the operation of the MPS kernels.
+        ///
+        /// 2) A result is returned from this method and the caller
+        /// may further adjust the descriptor and kernel properties
+        /// directly.
+        ///
+        /// 3) The caller uses the descriptor to make a new MPSImage to
+        /// use as the destination image for the -encode call in step 5.
+        ///
+        /// 4) The caller calls -resultStateForSourceImage:sourceStates:destinationImage:
+        /// to make any result states needed for the kernel. If there isn't
+        /// one, it will return nil. A variant is available to return a
+        /// temporary state instead.
+        ///
+        /// 5) a -encode method is called to encode the kernel.
+        ///
+        /// The entire process 1-5 is more simply achieved by just calling an -encode...
+        /// method that returns a MPSImage out the left hand sid of the method. Simpler
+        /// still, use the MPSNNGraph to coordinate the entire process from end to end.
+        /// Opportunities to influence the process are of course reduced, as (2) is no longer
+        /// possible with either method. Your application may opt to use the five step method
+        /// if it requires greater customization as described, or if it would like to estimate
+        /// storage in advance based on the sum of MPSImageDescriptors before processing
+        /// a graph. Storage estimation is done by using the MPSImageDescriptor to create
+        /// a MPSImage (without passing it a texture), and then call -resourceSize. As long
+        /// as the MPSImage is not used in an encode call and the .texture property is not
+        /// invoked, the underlying MTLTexture is not created.
+        ///
+        /// No destination state or destination image is provided as an argument to this
+        /// function because it is expected they will be made / configured after this
+        /// is called. This method is expected to auto-configure important object properties
+        /// that may be needed in the ensuing destination image and state creation steps.
+        ///
+        ///
+        /// Parameter `sourceImages`: A array of source images that will be passed into the -encode call
+        /// Since MPSCNNKernel is a unary kernel, it is an array of length 1.
+        ///
+        /// Parameter `sourceStates`: An optional array of source states that will be passed into the -encode call
+        ///
+        /// Returns: an image descriptor allocated on the autorelease pool
         #[method_id(@__retain_semantics Other destinationImageDescriptorForSourceImages:sourceStates:)]
         pub unsafe fn destinationImageDescriptorForSourceImages_sourceStates(
             &self,
@@ -1072,6 +3026,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSCNNMultiaryKernel {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

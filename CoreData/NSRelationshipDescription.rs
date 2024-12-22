@@ -57,12 +57,14 @@ extern_methods!(
         pub unsafe fn destinationEntity(&self) -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
+        /// Setter for [`destinationEntity`][Self::destinationEntity].
         #[method(setDestinationEntity:)]
         pub unsafe fn setDestinationEntity(&self, destination_entity: Option<&NSEntityDescription>);
 
         #[method_id(@__retain_semantics Other inverseRelationship)]
         pub unsafe fn inverseRelationship(&self) -> Option<Retained<NSRelationshipDescription>>;
 
+        /// Setter for [`inverseRelationship`][Self::inverseRelationship].
         #[method(setInverseRelationship:)]
         pub unsafe fn setInverseRelationship(
             &self,
@@ -72,18 +74,21 @@ extern_methods!(
         #[method(maxCount)]
         pub unsafe fn maxCount(&self) -> NSUInteger;
 
+        /// Setter for [`maxCount`][Self::maxCount].
         #[method(setMaxCount:)]
         pub unsafe fn setMaxCount(&self, max_count: NSUInteger);
 
         #[method(minCount)]
         pub unsafe fn minCount(&self) -> NSUInteger;
 
+        /// Setter for [`minCount`][Self::minCount].
         #[method(setMinCount:)]
         pub unsafe fn setMinCount(&self, min_count: NSUInteger);
 
         #[method(deleteRule)]
         pub unsafe fn deleteRule(&self) -> NSDeleteRule;
 
+        /// Setter for [`deleteRule`][Self::deleteRule].
         #[method(setDeleteRule:)]
         pub unsafe fn setDeleteRule(&self, delete_rule: NSDeleteRule);
 
@@ -96,6 +101,7 @@ extern_methods!(
         #[method(isOrdered)]
         pub unsafe fn isOrdered(&self) -> bool;
 
+        /// Setter for [`isOrdered`][Self::isOrdered].
         #[method(setOrdered:)]
         pub unsafe fn setOrdered(&self, ordered: bool);
     }

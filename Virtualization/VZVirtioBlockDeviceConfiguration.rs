@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioblockdeviceconfiguration?language=objc)
+    /// Configuration of a paravirtualized storage device of type Virtio Block Device.
+    ///
+    /// This device configuration creates a storage device using paravirtualization.
+    /// The emulated device follows the Virtio Block Device specification.
+    ///
+    /// The host implementation of the device is done through an attachment subclassing VZStorageDeviceAttachment
+    /// like VZDiskImageStorageDeviceAttachment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioblockdeviceconfiguration?language=objc)
     #[unsafe(super(VZStorageDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDeviceConfiguration")]
@@ -30,20 +38,41 @@ extern_methods!(
     #[cfg(feature = "VZStorageDeviceConfiguration")]
     unsafe impl VZVirtioBlockDeviceConfiguration {
         #[cfg(feature = "VZStorageDeviceAttachment")]
+        /// Initialize a VZVirtioBlockDeviceConfiguration with a device attachment.
+        ///
+        /// Parameter `attachment`: The storage device attachment. This defines how the virtualized device operates on the host side.
+        ///
+        /// See: VZDiskImageStorageDeviceAttachment
         #[method_id(@__retain_semantics Init initWithAttachment:)]
         pub unsafe fn initWithAttachment(
             this: Allocated<Self>,
             attachment: &VZStorageDeviceAttachment,
         ) -> Retained<Self>;
 
+        /// Check if blockDeviceIdentifier is a valid Virtio block device identifier.
+        ///
+        /// Parameter `blockDeviceIdentifier`: The device identifier to validate.
+        ///
+        /// Parameter `error`: If not nil, assigned with an error describing why the device identifier is not valid.
+        ///
+        /// The device identifier must be at most 20 bytes in length and ASCII-encodable.
         #[method(validateBlockDeviceIdentifier:error:_)]
         pub unsafe fn validateBlockDeviceIdentifier_error(
             block_device_identifier: &NSString,
         ) -> Result<(), Retained<NSError>>;
 
+        /// The device identifier is a string identifying the Virtio block device. Empty string by default.
+        ///
+        /// The identifier can be retrieved in the guest via a VIRTIO_BLK_T_GET_ID request.
+        ///
+        /// The identifier must be encodable as an ASCII string of length at most 20 bytes.
+        /// This property can be checked with +[VZVirtioBlockDeviceConfiguration validateBlockDeviceIdentifier:error:].
+        ///
+        /// See: +[VZVirtioBlockDeviceConfiguration validateBlockDeviceIdentifier:error:]
         #[method_id(@__retain_semantics Other blockDeviceIdentifier)]
         pub unsafe fn blockDeviceIdentifier(&self) -> Retained<NSString>;
 
+        /// Setter for [`blockDeviceIdentifier`][Self::blockDeviceIdentifier].
         #[method(setBlockDeviceIdentifier:)]
         pub unsafe fn setBlockDeviceIdentifier(&self, block_device_identifier: &NSString);
     }

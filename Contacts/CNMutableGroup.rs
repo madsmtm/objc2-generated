@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnmutablegroup?language=objc)
+    /// A mutable value object representing a group.
+    ///
+    ///
+    /// CNMutableGroup is not thread safe.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnmutablegroup?language=objc)
     #[unsafe(super(CNGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CNGroup")]
@@ -46,6 +51,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
     }

@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other accept)]
         pub unsafe fn accept(&self) -> Retained<NSString>;
 
+        /// Setter for [`accept`][Self::accept].
         #[deprecated]
         #[method(setAccept:)]
         pub unsafe fn setAccept(&self, accept: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other alt)]
         pub unsafe fn alt(&self) -> Retained<NSString>;
 
+        /// Setter for [`alt`][Self::alt].
         #[deprecated]
         #[method(setAlt:)]
         pub unsafe fn setAlt(&self, alt: Option<&NSString>);
@@ -96,6 +98,7 @@ extern_methods!(
         #[method(autofocus)]
         pub unsafe fn autofocus(&self) -> bool;
 
+        /// Setter for [`autofocus`][Self::autofocus].
         #[method(setAutofocus:)]
         pub unsafe fn setAutofocus(&self, autofocus: bool);
 
@@ -103,6 +106,7 @@ extern_methods!(
         #[method(defaultChecked)]
         pub unsafe fn defaultChecked(&self) -> bool;
 
+        /// Setter for [`defaultChecked`][Self::defaultChecked].
         #[deprecated]
         #[method(setDefaultChecked:)]
         pub unsafe fn setDefaultChecked(&self, default_checked: bool);
@@ -111,6 +115,7 @@ extern_methods!(
         #[method(checked)]
         pub unsafe fn checked(&self) -> bool;
 
+        /// Setter for [`checked`][Self::checked].
         #[deprecated]
         #[method(setChecked:)]
         pub unsafe fn setChecked(&self, checked: bool);
@@ -119,6 +124,7 @@ extern_methods!(
         #[method(disabled)]
         pub unsafe fn disabled(&self) -> bool;
 
+        /// Setter for [`disabled`][Self::disabled].
         #[deprecated]
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
@@ -133,12 +139,14 @@ extern_methods!(
         pub unsafe fn files(&self) -> Option<Retained<DOMFileList>>;
 
         #[cfg(feature = "DOMFileList")]
+        /// Setter for [`files`][Self::files].
         #[method(setFiles:)]
         pub unsafe fn setFiles(&self, files: Option<&DOMFileList>);
 
         #[method(indeterminate)]
         pub unsafe fn indeterminate(&self) -> bool;
 
+        /// Setter for [`indeterminate`][Self::indeterminate].
         #[method(setIndeterminate:)]
         pub unsafe fn setIndeterminate(&self, indeterminate: bool);
 
@@ -146,6 +154,7 @@ extern_methods!(
         #[method(maxLength)]
         pub unsafe fn maxLength(&self) -> c_int;
 
+        /// Setter for [`maxLength`][Self::maxLength].
         #[deprecated]
         #[method(setMaxLength:)]
         pub unsafe fn setMaxLength(&self, max_length: c_int);
@@ -153,6 +162,7 @@ extern_methods!(
         #[method(multiple)]
         pub unsafe fn multiple(&self) -> bool;
 
+        /// Setter for [`multiple`][Self::multiple].
         #[method(setMultiple:)]
         pub unsafe fn setMultiple(&self, multiple: bool);
 
@@ -160,6 +170,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -168,6 +179,7 @@ extern_methods!(
         #[method(readOnly)]
         pub unsafe fn readOnly(&self) -> bool;
 
+        /// Setter for [`readOnly`][Self::readOnly].
         #[deprecated]
         #[method(setReadOnly:)]
         pub unsafe fn setReadOnly(&self, read_only: bool);
@@ -176,6 +188,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other size)]
         pub unsafe fn size(&self) -> Retained<NSString>;
 
+        /// Setter for [`size`][Self::size].
         #[deprecated]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: Option<&NSString>);
@@ -184,6 +197,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other src)]
         pub unsafe fn src(&self) -> Retained<NSString>;
 
+        /// Setter for [`src`][Self::src].
         #[deprecated]
         #[method(setSrc:)]
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
@@ -192,6 +206,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
+        /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
@@ -200,6 +215,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultValue)]
         pub unsafe fn defaultValue(&self) -> Retained<NSString>;
 
+        /// Setter for [`defaultValue`][Self::defaultValue].
         #[deprecated]
         #[method(setDefaultValue:)]
         pub unsafe fn setDefaultValue(&self, default_value: Option<&NSString>);
@@ -208,6 +224,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
+        /// Setter for [`value`][Self::value].
         #[deprecated]
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
@@ -218,12 +235,14 @@ extern_methods!(
         #[method(selectionStart)]
         pub unsafe fn selectionStart(&self) -> c_int;
 
+        /// Setter for [`selectionStart`][Self::selectionStart].
         #[method(setSelectionStart:)]
         pub unsafe fn setSelectionStart(&self, selection_start: c_int);
 
         #[method(selectionEnd)]
         pub unsafe fn selectionEnd(&self) -> c_int;
 
+        /// Setter for [`selectionEnd`][Self::selectionEnd].
         #[method(setSelectionEnd:)]
         pub unsafe fn setSelectionEnd(&self, selection_end: c_int);
 
@@ -231,6 +250,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other align)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
+        /// Setter for [`align`][Self::align].
         #[deprecated]
         #[method(setAlign:)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
@@ -239,6 +259,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other useMap)]
         pub unsafe fn useMap(&self) -> Retained<NSString>;
 
+        /// Setter for [`useMap`][Self::useMap].
         #[deprecated]
         #[method(setUseMap:)]
         pub unsafe fn setUseMap(&self, use_map: Option<&NSString>);
@@ -247,6 +268,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other accessKey)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
+        /// Setter for [`accessKey`][Self::accessKey].
         #[deprecated]
         #[method(setAccessKey:)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);

@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksession?language=objc)
+    /// The GKSession handles networking between peers for a game, which includes establishing and maintaining connections over a game network, and network data transport.
+    ///
+    /// This a not a Game Center feature. To support Game Center and online play, see GKMatch.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -36,6 +40,7 @@ extern_methods!(
 
         #[cfg(feature = "GKPublicProtocols")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKSessionDelegate>>);
@@ -57,22 +62,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Other peerID)]
         pub unsafe fn peerID(&self) -> Option<Retained<NSString>>;
 
+        /// Toggle availability on the network based on session mode and search criteria.  Delegate will get a callback -session:didReceiveConnectionRequestFromPeer: when a peer attempts a connection.
         #[deprecated]
         #[method(isAvailable)]
         pub unsafe fn isAvailable(&self) -> bool;
 
+        /// Setter for [`isAvailable`][Self::isAvailable].
         #[deprecated]
         #[method(setAvailable:)]
         pub unsafe fn setAvailable(&self, available: bool);
 
+        /// The timeout for disconnecting a peer if it appears that the peer has lost connection to the game network
         #[deprecated]
         #[method(disconnectTimeout)]
         pub unsafe fn disconnectTimeout(&self) -> NSTimeInterval;
 
+        /// Setter for [`disconnectTimeout`][Self::disconnectTimeout].
         #[deprecated]
         #[method(setDisconnectTimeout:)]
         pub unsafe fn setDisconnectTimeout(&self, disconnect_timeout: NSTimeInterval);
 
+        /// Return the application chosen name of a specific peer
         #[deprecated]
         #[method_id(@__retain_semantics Other displayNameForPeer:)]
         pub unsafe fn displayNameForPeer(
@@ -80,6 +90,7 @@ extern_methods!(
             peer_id: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
 
+        /// Set the handler to receive data sent from remote peers.
         #[deprecated]
         #[method(setDataReceiveHandler:withContext:)]
         pub unsafe fn setDataReceiveHandler_withContext(
@@ -88,6 +99,10 @@ extern_methods!(
             context: *mut c_void,
         );
 
+        /// Attempt connection to a remote peer.  Remote peer gets a callback to -session:didReceiveConnectionRequestFromPeer:.
+        ///
+        /// Success results in a call to delegate -session:peer:didChangeState: GKPeerStateConnected
+        /// Failure results in a call to delegate -session:connectionWithPeerFailed:withError:
         #[deprecated]
         #[method(connectToPeer:withTimeout:)]
         pub unsafe fn connectToPeer_withTimeout(
@@ -104,15 +119,18 @@ extern_methods!(
         #[method(denyConnectionFromPeer:)]
         pub unsafe fn denyConnectionFromPeer(&self, peer_id: Option<&NSString>);
 
+        /// Disconnect a peer from the session (the peer gets disconnected from all connected peers).
         #[deprecated]
         #[method(disconnectPeerFromAllPeers:)]
         pub unsafe fn disconnectPeerFromAllPeers(&self, peer_id: Option<&NSString>);
 
+        /// Disconnect local peer
         #[deprecated]
         #[method(disconnectFromAllPeers)]
         pub unsafe fn disconnectFromAllPeers(&self);
 
         #[cfg(feature = "GKPublicConstants")]
+        /// Returns peers according to connection state
         #[deprecated]
         #[method_id(@__retain_semantics Other peersWithConnectionState:)]
         pub unsafe fn peersWithConnectionState(

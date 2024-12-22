@@ -8,8 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusanimationcontext?language=objc)
+    /// UIFocusAnimationContext is used to provide UIKit-determined context about animations that are related to a focus update.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusanimationcontext?language=objc)
     pub unsafe trait UIFocusAnimationContext: NSObjectProtocol + MainThreadOnly {
+        /// The duration of the main animations in seconds.
         #[method(duration)]
         unsafe fn duration(&self) -> NSTimeInterval;
     }
@@ -18,7 +21,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusanimationcoordinator?language=objc)
+    /// UIFocusAnimationCoordinator is used to coordinate disparate animations that are related to a focus update.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusanimationcoordinator?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -30,6 +35,12 @@ unsafe impl NSObjectProtocol for UIFocusAnimationCoordinator {}
 extern_methods!(
     unsafe impl UIFocusAnimationCoordinator {
         #[cfg(feature = "block2")]
+        /// Specifies focus-related animations that should be coordinated with the animations of the focusing or un-focusing view.
+        ///
+        /// Any animations specified will be run in the same animation context as the main animation. The completion block is invoked after the main animation completes.
+        /// (Note that this may not be after all the coordinated animations specified by the call complete if the duration is not inherited.)
+        ///
+        /// It is perfectly legitimate to only specify a completion block.
         #[method(addCoordinatedAnimations:completion:)]
         pub unsafe fn addCoordinatedAnimations_completion(
             &self,
@@ -38,6 +49,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Specifies focus-related animations that should be coordinated with the animations of the focusing item.
+        ///
+        /// Any animations specified will be run in the same animation context as the main animation. The completion block is invoked after the UIKit-defined animations complete.
+        ///
+        /// It is perfectly legitimate to only specify a completion block.
+        ///
+        /// A context object is provided in the animation block with details of the UIKit-defined animations being run for the focusing item.
         #[method(addCoordinatedFocusingAnimations:completion:)]
         pub unsafe fn addCoordinatedFocusingAnimations_completion(
             &self,
@@ -48,6 +66,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Specifies focus-related animations that should be coordinated with the animations of the un-focusing item.
+        ///
+        /// Any animations specified will be run in the same animation context as the main animation. The completion block is invoked after the UIKit-defined animations complete.
+        ///
+        /// It is perfectly legitimate to only specify a completion block.
+        ///
+        /// A context object is provided in the animation block with details of the UIKit-defined animations being run for the un-focusing item.
         #[method(addCoordinatedUnfocusingAnimations:completion:)]
         pub unsafe fn addCoordinatedUnfocusingAnimations_completion(
             &self,

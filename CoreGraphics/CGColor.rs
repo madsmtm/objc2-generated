@@ -135,7 +135,9 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorwhite?language=objc)
+    /// * Names of colors for use with `CGColorGetConstantColor'. **
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorwhite?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCGColorWhite: CFStringRef;
 }

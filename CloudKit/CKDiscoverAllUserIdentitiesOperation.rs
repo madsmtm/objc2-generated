@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation?language=objc)
+    /// Finds all discoverable users in the device's contacts database. No Contacts access dialog will be displayed.
+    ///
+    ///
+    /// This operation scales linearly with the number of email addresses and phone numbers in the device's address book.  It may take some time to complete.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation?language=objc)
     #[unsafe(super(CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CKOperation")]
@@ -27,6 +32,13 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
+        /// Called once for each successfully-discovered user identity from the device's address book.
+        ///
+        ///
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(userIdentityDiscoveredBlock)]
         pub unsafe fn userIdentityDiscoveredBlock(
@@ -34,6 +46,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<CKUserIdentity>)>;
 
         #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
+        /// Setter for [`userIdentityDiscoveredBlock`][Self::userIdentityDiscoveredBlock].
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setUserIdentityDiscoveredBlock:)]
         pub unsafe fn setUserIdentityDiscoveredBlock(
@@ -42,6 +55,20 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// This block is called when the operation completes.
+        ///
+        ///
+        /// The
+        ///
+        /// ```text
+        ///  -[NSOperation completionBlock]
+        /// ```
+        ///
+        /// will also be called if both are set.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverAllUserIdentitiesCompletionBlock)]
         pub unsafe fn discoverAllUserIdentitiesCompletionBlock(
@@ -49,6 +76,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`discoverAllUserIdentitiesCompletionBlock`][Self::discoverAllUserIdentitiesCompletionBlock].
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setDiscoverAllUserIdentitiesCompletionBlock:)]
         pub unsafe fn setDiscoverAllUserIdentitiesCompletionBlock(

@@ -6,7 +6,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperrordomain?language=objc)
+    /// The domain for Link Presentation errors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperrordomain?language=objc)
     pub static LPErrorDomain: Option<&'static NSErrorDomain>;
 }
 
@@ -16,10 +18,15 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct LPErrorCode(pub NSInteger);
 impl LPErrorCode {
+    /// An unknown error.
     pub const LPErrorUnknown: Self = Self(1);
+    /// An error indicating that a metadata fetch failed.
     pub const LPErrorMetadataFetchFailed: Self = Self(2);
+    /// An error indicating that the metadata fetch was canceled by the client.
     pub const LPErrorMetadataFetchCancelled: Self = Self(3);
+    /// An error indicating that the metadata fetch took longer than allowed.
     pub const LPErrorMetadataFetchTimedOut: Self = Self(4);
+    /// An error indicating that the metadata fetch was not allowed due to system policies.
     pub const LPErrorMetadataFetchNotAllowed: Self = Self(5);
 }
 

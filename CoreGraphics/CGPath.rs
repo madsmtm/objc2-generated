@@ -160,6 +160,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// * Path construction functions. **
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathMoveToPoint(
         path: CGMutablePathRef,
@@ -210,6 +211,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// * Path construction convenience functions. **
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathAddRect(path: CGMutablePathRef, m: *const CGAffineTransform, rect: CGRect);
 }
@@ -289,6 +291,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// * Path information functions. **
     pub fn CGPathIsEmpty(path: CGPathRef) -> bool;
 }
 

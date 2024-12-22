@@ -7,7 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzstoragedeviceconfiguration?language=objc)
+    /// Base class for a storage device configuration.
+    ///
+    /// VZStorageDeviceConfiguration should not be instantiated directly.
+    /// One of its subclasses like VZVirtioBlockDeviceConfiguration should be used instead.
+    ///
+    ///
+    /// See: VZNVMExpressControllerDeviceConfiguration
+    ///
+    /// See: VZUSBMassStorageDeviceConfiguration
+    ///
+    /// See: VZVirtioBlockDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzstoragedeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZStorageDeviceConfiguration;
@@ -30,6 +42,9 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZStorageDeviceAttachment")]
+        /// Storage device attachment. Defines what local resource is exposed to the virtual machine as a disk.
+        ///
+        /// See: VZDiskImageStorageDeviceAttachment
         #[method_id(@__retain_semantics Other attachment)]
         pub unsafe fn attachment(&self) -> Retained<VZStorageDeviceAttachment>;
     }

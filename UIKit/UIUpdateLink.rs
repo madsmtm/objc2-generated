@@ -10,7 +10,9 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiupdatelink?language=objc)
+    /// Allows to formally participate in UI updates and influence UI update behavior.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiupdatelink?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -62,40 +64,62 @@ extern_methods!(
             selector: Sel,
         );
 
+        /// It's required to enable the Update Link for it to have effect and for its actions to be invoked.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        /// By default, `UIUpdateLink` is a passive UI update observer. Its actions will only be called when UI update is being
+        /// produced. When this property is set to `YES`, `UIUpdateLink` will request continuous UI updates by itself.
         #[method(requiresContinuousUpdates)]
         pub unsafe fn requiresContinuousUpdates(&self) -> bool;
 
+        /// Setter for [`requiresContinuousUpdates`][Self::requiresContinuousUpdates].
         #[method(setRequiresContinuousUpdates:)]
         pub unsafe fn setRequiresContinuousUpdates(&self, requires_continuous_updates: bool);
 
+        /// Request dispatch of low-latency eligible events in `LowLatencyEventDispatch` phase. Low latency eligible events are
+        /// dispatch in the middle of the UI update, meaning that to handle them application has half the time, compared to
+        /// events dispatched normally. Consult `-[UIUpdateInfo completionDeadlineTime]` for exact completion deadline time.
         #[method(wantsLowLatencyEventDispatch)]
         pub unsafe fn wantsLowLatencyEventDispatch(&self) -> bool;
 
+        /// Setter for [`wantsLowLatencyEventDispatch`][Self::wantsLowLatencyEventDispatch].
         #[method(setWantsLowLatencyEventDispatch:)]
         pub unsafe fn setWantsLowLatencyEventDispatch(
             &self,
             wants_low_latency_event_dispatch: bool,
         );
 
+        /// Request immediate frame presentation. When enabled, system will request immediate rendering of the display frame
+        /// after last `CATransaction` commit for the current UI update. This allows to reduce input to display latency, as
+        /// rendered display frame will be presented one frame duration sooner. However, for this to happen amount of work
+        /// submitted to render server should be minimal, otherwise it will not be able to submit frame for presentation in
+        /// time. This capability is primarily useful for pencil drawing applications where low input to display latency is
+        /// critical for good user experience. Applications that request immediate presentation must be profiled thoroughly to
+        /// ensure that amount of application and render server work is adequate. When application requests immediate
+        /// presentation, but fails to keep work complexity at minimum, user will experience on screen judder, as frames will
+        /// not be presented at their intended time.
         #[method(wantsImmediatePresentation)]
         pub unsafe fn wantsImmediatePresentation(&self) -> bool;
 
+        /// Setter for [`wantsImmediatePresentation`][Self::wantsImmediatePresentation].
         #[method(setWantsImmediatePresentation:)]
         pub unsafe fn setWantsImmediatePresentation(&self, wants_immediate_presentation: bool);
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
+        /// Preferred frame rate range. Even when not forcing periodic updates, this will still express intention to the system.
+        /// Use `CAFrameRateRangeDefault` (default value) to not request any specific frame rate range.
         #[method(preferredFrameRateRange)]
         pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
+        /// Setter for [`preferredFrameRateRange`][Self::preferredFrameRateRange].
         #[method(setPreferredFrameRateRange:)]
         pub unsafe fn setPreferredFrameRateRange(
             &self,
@@ -103,6 +127,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIUpdateInfo")]
+        /// During UI update, returns `UIUpdateInfo` instance describing current UI update state. Returns `nil` outside of UI
+        /// update.
         #[method_id(@__retain_semantics Other currentUpdateInfo)]
         pub unsafe fn currentUpdateInfo(&self) -> Option<Retained<UIUpdateInfo>>;
     }
@@ -112,12 +138,14 @@ extern_methods!(
     /// Convenience
     unsafe impl UIUpdateLink {
         #[cfg(all(feature = "UIUpdateInfo", feature = "block2"))]
+        /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
         #[method(addActionWithHandler:)]
         pub unsafe fn addActionWithHandler(
             &self,
             handler: &block2::Block<dyn Fn(NonNull<UIUpdateLink>, NonNull<UIUpdateInfo>)>,
         );
 
+        /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
         #[method(addActionWithTarget:selector:)]
         pub unsafe fn addActionWithTarget_selector(&self, target: &AnyObject, selector: Sel);
 
@@ -128,6 +156,7 @@ extern_methods!(
             feature = "UIWindowScene",
             feature = "block2"
         ))]
+        /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
         #[method_id(@__retain_semantics Other updateLinkForWindowScene:actionHandler:)]
         pub unsafe fn updateLinkForWindowScene_actionHandler(
             window_scene: &UIWindowScene,
@@ -139,6 +168,7 @@ extern_methods!(
             feature = "UIScene",
             feature = "UIWindowScene"
         ))]
+        /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
         #[method_id(@__retain_semantics Other updateLinkForWindowScene:actionTarget:selector:)]
         pub unsafe fn updateLinkForWindowScene_actionTarget_selector(
             window_scene: &UIWindowScene,
@@ -152,6 +182,7 @@ extern_methods!(
             feature = "UIView",
             feature = "block2"
         ))]
+        /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
         #[method_id(@__retain_semantics Other updateLinkForView:actionHandler:)]
         pub unsafe fn updateLinkForView_actionHandler(
             view: &UIView,
@@ -159,6 +190,7 @@ extern_methods!(
         ) -> Retained<UIUpdateLink>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
         #[method_id(@__retain_semantics Other updateLinkForView:actionTarget:selector:)]
         pub unsafe fn updateLinkForView_actionTarget_selector(
             view: &UIView,

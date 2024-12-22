@@ -10,7 +10,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webresourceloaddelegate?language=objc)
+    /// Implementors of this protocol will receive messages indicating
+    /// that a resource is about to be loaded, data has been received for a resource,
+    /// an error has been received for a resource, and completion of a resource load.
+    /// Implementors are also given the opportunity to mutate requests before they are sent.
+    /// The various progress methods of this protocol all receive an identifier as the
+    /// parameter.  This identifier can be used to track messages associated with a single
+    /// resource.  For example, a single resource may generate multiple
+    /// resource:willSendRequest:redirectResponse:fromDataSource: messages as it's URL is redirected.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webresourceloaddelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebResourceLoadDelegate: NSObjectProtocol {
         #[cfg(all(
@@ -19,6 +28,20 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Parameter `sender`: The WebView sending the message.
+        ///
+        /// Parameter `request`: The request about to be sent.
+        ///
+        /// Parameter `dataSource`: The datasource that initiated the load.
+        ///
+        /// An implementor of WebResourceLoadDelegate should provide an identifier
+        /// that can be used to track the load of a single resource.  This identifier will be
+        /// passed as the first argument for all of the other WebResourceLoadDelegate methods.  The
+        /// identifier is useful to track changes to a resources request, which will be
+        /// provided by one or more calls to resource:willSendRequest:redirectResponse:fromDataSource:.
+        ///
+        /// Returns: An identifier that will be passed back to the implementor for each callback.
+        /// The identifier will be retained.
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:identifierForInitialRequest:fromDataSource:)]
@@ -35,6 +58,23 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// This message is sent before a load is initiated.  The request may be modified
+        /// as necessary by the receiver.
+        ///
+        /// Parameter `sender`: The WebView sending the message.
+        ///
+        /// Parameter `identifier`: An identifier that can be used to track the progress of a resource load across
+        /// multiple call backs.
+        ///
+        /// Parameter `request`: The request about to be sent.
+        ///
+        /// Parameter `redirectResponse`: If the request is being made in response to a redirect we received,
+        /// the response that conveyed that redirect.
+        ///
+        /// Parameter `dataSource`: The dataSource that initiated the load.
+        ///
+        /// Returns: Returns the request, which may be mutated by the implementor, although typically
+        /// will be request.
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:resource:willSendRequest:redirectResponse:fromDataSource:)]
@@ -53,6 +93,15 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Start authentication for the resource, providing a challenge
+        ///
+        /// Call useCredential::, continueWithoutCredential or
+        /// cancel on the challenge when done.
+        ///
+        /// Parameter `challenge`: The NSURLAuthenticationChallenge to start authentication for
+        ///
+        /// If you do not implement this delegate method, WebKit will handle authentication
+        /// automatically by prompting with a sheet on the window that the WebView is associated with.
         #[deprecated]
         #[optional]
         #[method(webView:resource:didReceiveAuthenticationChallenge:fromDataSource:)]
@@ -70,6 +119,9 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Cancel authentication for a given request
+        ///
+        /// Parameter `challenge`: The NSURLAuthenticationChallenge for which to cancel authentication
         #[deprecated]
         #[optional]
         #[method(webView:resource:didCancelAuthenticationChallenge:fromDataSource:)]
@@ -87,6 +139,21 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// This message is sent after a response has been received for this load.
+        ///
+        /// Parameter `sender`: The WebView sending the message.
+        ///
+        /// Parameter `identifier`: An identifier that can be used to track the progress of a resource load across
+        /// multiple call backs.
+        ///
+        /// Parameter `response`: The response for the request.
+        ///
+        /// Parameter `dataSource`: The dataSource that initiated the load.
+        ///
+        /// In some rare cases, multiple responses may be received for a single load.
+        /// This occurs with multipart/x-mixed-replace, or "server push". In this case, the client
+        /// should assume that each new response resets progress so far for the resource back to 0,
+        /// and should check the new response for the expected content length.
         #[deprecated]
         #[optional]
         #[method(webView:resource:didReceiveResponse:fromDataSource:)]
@@ -104,6 +171,16 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Multiple of these messages may be sent as data arrives.
+        ///
+        /// Parameter `sender`: The WebView sending the message.
+        ///
+        /// Parameter `identifier`: An identifier that can be used to track the progress of a resource load across
+        /// multiple call backs.
+        ///
+        /// Parameter `length`: The amount of new data received.  This is not the total amount, just the new amount received.
+        ///
+        /// Parameter `dataSource`: The dataSource that initiated the load.
         #[deprecated]
         #[optional]
         #[method(webView:resource:didReceiveContentLength:fromDataSource:)]
@@ -121,6 +198,14 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// This message is sent after a load has successfully completed.
+        ///
+        /// Parameter `sender`: The WebView sending the message.
+        ///
+        /// Parameter `identifier`: An identifier that can be used to track the progress of a resource load across
+        /// multiple call backs.
+        ///
+        /// Parameter `dataSource`: The dataSource that initiated the load.
         #[deprecated]
         #[optional]
         #[method(webView:resource:didFinishLoadingFromDataSource:)]
@@ -137,6 +222,16 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// This message is sent after a load has failed to load due to an error.
+        ///
+        /// Parameter `sender`: The WebView sending the message.
+        ///
+        /// Parameter `identifier`: An identifier that can be used to track the progress of a resource load across
+        /// multiple call backs.
+        ///
+        /// Parameter `error`: The error associated with this load.
+        ///
+        /// Parameter `dataSource`: The dataSource that initiated the load.
         #[deprecated]
         #[optional]
         #[method(webView:resource:didFailLoadingWithError:fromDataSource:)]
@@ -154,6 +249,18 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Called when a plug-in is not found, fails to load or is not available for some reason.
+        ///
+        /// Parameter `sender`: The WebView sending the message.
+        ///
+        /// Parameter `error`: The plug-in error. In the userInfo dictionary of the error, the object for the
+        /// NSErrorFailingURLKey key is a URL string of the SRC attribute, the object for the WebKitErrorPlugInNameKey
+        /// key is a string of the plug-in's name, the object for the WebKitErrorPlugInPageURLStringKey key is a URL string
+        /// of the PLUGINSPAGE attribute and the object for the WebKitErrorMIMETypeKey key is a string of the TYPE attribute.
+        /// Some, none or all of the mentioned attributes can be present in the userInfo. The error returns nil for userInfo
+        /// when none are present.
+        ///
+        /// Parameter `dataSource`: The dataSource that contains the plug-in.
         #[deprecated]
         #[optional]
         #[method(webView:plugInFailedWithError:dataSource:)]

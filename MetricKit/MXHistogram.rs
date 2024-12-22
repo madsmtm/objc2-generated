@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxhistogrambucket?language=objc)
+    /// A class that represents a bucket within an MXHistogram
+    ///
+    /// Histogram buckets are sorted in ascending order.
+    ///
+    /// Histogram bucket start and end values are exclusive.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxhistogrambucket?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXHistogramBucket<UnitType: ?Sized = AnyObject>;
@@ -21,12 +27,15 @@ unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogramBuc
 
 extern_methods!(
     unsafe impl<UnitType: Message> MXHistogramBucket<UnitType> {
+        /// An NSMeasurement representing the start of a histogram bucket.
         #[method_id(@__retain_semantics Other bucketStart)]
         pub unsafe fn bucketStart(&self) -> Retained<NSMeasurement<UnitType>>;
 
+        /// An NSMeasurement representing the end of a histogram bucket.
         #[method_id(@__retain_semantics Other bucketEnd)]
         pub unsafe fn bucketEnd(&self) -> Retained<NSMeasurement<UnitType>>;
 
+        /// An NSUInteger representing the number of samples in this histogram bucket.
         #[method(bucketCount)]
         pub unsafe fn bucketCount(&self) -> NSUInteger;
     }
@@ -44,7 +53,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxhistogram?language=objc)
+    /// A class representing bucketized histogram data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxhistogram?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXHistogram<UnitType: ?Sized = AnyObject>;
@@ -58,9 +69,13 @@ unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogram<Un
 
 extern_methods!(
     unsafe impl<UnitType: Message> MXHistogram<UnitType> {
+        /// The number of buckets contained within this histogram.
+        ///
+        /// This value can never be negative.
         #[method(totalBucketCount)]
         pub unsafe fn totalBucketCount(&self) -> NSUInteger;
 
+        /// An NSEnumerator that can be used to enumerate the buckets of this histogram.
         #[method_id(@__retain_semantics Other bucketEnumerator)]
         pub unsafe fn bucketEnumerator(
             &self,

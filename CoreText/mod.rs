@@ -12,6 +12,11 @@
 #![allow(clippy::upper_case_acronyms)]
 #![allow(clippy::identity_op)]
 #![allow(clippy::missing_safety_doc)]
+#![allow(clippy::doc_lazy_continuation)]
+#![allow(rustdoc::broken_intra_doc_links)]
+#![allow(rustdoc::bare_urls)]
+#![allow(rustdoc::unportable_markdown)]
+#![allow(rustdoc::invalid_html_tags)]
 
 #[link(name = "CoreText", kind = "framework")]
 extern "C" {}
@@ -2885,6 +2890,29 @@ pub use self::__SFNTTypes::FontVariation;
 use crate::*;
 
 extern "C-unwind" {
+    /// Returns the version of the CoreText framework.
+    ///
+    ///
+    /// This function returns a number indicating the version of the
+    /// CoreText framework. Note that framework version is not always
+    /// an accurate indicator of feature availability. The recommended
+    /// way to use this function is first to check that the function
+    /// pointer is non-NULL, followed by calling it and comparing its
+    /// result to a defined constant (or constants). For example, to
+    /// determine whether the CoreText API is available:
+    /// if (
+    /// &CTGetCoreTextVersion
+    /// != NULL
+    /// &
+    /// &
+    /// CTGetCoreTextVersion() >= kCTVersionNumber10_5) {
+    /// // CoreText API is available
+    /// }
+    ///
+    ///
+    /// Returns: The version number. This value is for comparison with the
+    /// constants beginning with kCTVersionNumber and will not exceed
+    /// kCTVersionNumber11_0.
     #[deprecated = "Use -[NSProcessInfo operatingSystemVersion]"]
     pub fn CTGetCoreTextVersion() -> u32;
 }

@@ -10,7 +10,9 @@ use crate::*;
 pub type EKVirtualConferenceRoomTypeIdentifier = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceroomtypedescriptor?language=objc)
+    /// Describes a virtual conference room type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceroomtypedescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceRoomTypeDescriptor;
@@ -20,6 +22,16 @@ unsafe impl NSObjectProtocol for EKVirtualConferenceRoomTypeDescriptor {}
 
 extern_methods!(
     unsafe impl EKVirtualConferenceRoomTypeDescriptor {
+        /// Initializes an instance of EKVirtualConferenceRoomTypeDescriptor.
+        ///
+        /// Parameter `title`: A user-readable title describing this room type. This string will be
+        /// displayed in UI.
+        ///
+        /// Parameter `identifier`: An EKVirtualConferenceRoomTypeIdentifier that your extension can use to
+        /// distinguish this room type from the other room types that your extension
+        /// provides. This is chosen by your extension and is passed back to your
+        /// extension if the user chooses to create a virtual conference of the
+        /// associated room type.
         #[method_id(@__retain_semantics Init initWithTitle:identifier:)]
         pub unsafe fn initWithTitle_identifier(
             this: Allocated<Self>,
@@ -42,7 +54,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceurldescriptor?language=objc)
+    /// Describes a URL that can be used to join a virtual conference.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceurldescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceURLDescriptor;
@@ -52,6 +66,16 @@ unsafe impl NSObjectProtocol for EKVirtualConferenceURLDescriptor {}
 
 extern_methods!(
     unsafe impl EKVirtualConferenceURLDescriptor {
+        /// Initializes an instance of EKVirtualConferenceURLDescriptor.
+        ///
+        /// Parameter `title`: A user-readable title describing this URL. This string may be displayed
+        /// in the UI. This string is optional and may be left nil. If your virtual
+        /// conference only has one way to join it, then you can probably leave this
+        /// nil. However, if your virtual conference has multiple ways to join it,
+        /// you should have a title for each URL so that users can better understand
+        /// what each URL represents.
+        ///
+        /// Parameter `URL`: A URL that, when opened, will join the virtual conference.
         #[method_id(@__retain_semantics Init initWithTitle:URL:)]
         pub unsafe fn initWithTitle_URL(
             this: Allocated<Self>,
@@ -74,7 +98,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor?language=objc)
+    /// Describes a virtual conference.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceDescriptor;
@@ -84,6 +110,20 @@ unsafe impl NSObjectProtocol for EKVirtualConferenceDescriptor {}
 
 extern_methods!(
     unsafe impl EKVirtualConferenceDescriptor {
+        /// Initializes an instance of EKVirtualConferenceDescriptor.
+        ///
+        /// Parameter `title`: A user-readable title describing this virtual conference. This string
+        /// may be displayed in the UI. This string is optional and may be left nil.
+        ///
+        /// Parameter `URLDescriptors`: An array of EKVirtualConferenceURLDescriptors, representing the various
+        /// ways to join your virtual conference. Do not pass an empty array. Your
+        /// array should be ordered such that the most preferred method of joining
+        /// the virtual conference comes first in the array, with subsequent methods
+        /// of joining appearing in descending priority.
+        ///
+        /// Parameter `conferenceDetails`: A user-readable string containing any other information you wish to
+        /// communicate to the user about this virtual conference. This string will
+        /// be displayed in the UI. This argument is optional and may be left nil.
         #[method_id(@__retain_semantics Init initWithTitle:URLDescriptors:conferenceDetails:)]
         pub unsafe fn initWithTitle_URLDescriptors_conferenceDetails(
             this: Allocated<Self>,

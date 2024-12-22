@@ -36,6 +36,7 @@ extern_methods!(
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSAttributedString")]
+        /// Setter for [`attributedTitle`][Self::attributedTitle].
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
@@ -44,6 +45,7 @@ extern_methods!(
         pub unsafe fn attributedContentText(&self) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSAttributedString")]
+        /// Setter for [`attributedContentText`][Self::attributedContentText].
         #[method(setAttributedContentText:)]
         pub unsafe fn setAttributedContentText(
             &self,
@@ -55,6 +57,7 @@ extern_methods!(
         pub unsafe fn attachments(&self) -> Option<Retained<NSArray<NSItemProvider>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSItemProvider"))]
+        /// Setter for [`attachments`][Self::attachments].
         #[method(setAttachments:)]
         pub unsafe fn setAttachments(&self, attachments: Option<&NSArray<NSItemProvider>>);
 
@@ -63,6 +66,7 @@ extern_methods!(
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
+        /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
     }

@@ -11,6 +11,12 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Copies the input tensor values into the output, behaving as an identity operation.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object which is a copy of the input.
         #[method_id(@__retain_semantics Other identityWithTensor:name:)]
         pub unsafe fn identityWithTensor_name(
             &self,
@@ -19,6 +25,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the natural exponent to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other exponentWithTensor:name:)]
         pub unsafe fn exponentWithTensor_name(
             &self,
@@ -27,6 +39,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies an exponent with base 2 to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other exponentBase2WithTensor:name:)]
         pub unsafe fn exponentBase2WithTensor_name(
             &self,
@@ -35,6 +53,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies an exponent with base 10 to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other exponentBase10WithTensor:name:)]
         pub unsafe fn exponentBase10WithTensor_name(
             &self,
@@ -43,6 +67,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the natural logarithm to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other logarithmWithTensor:name:)]
         pub unsafe fn logarithmWithTensor_name(
             &self,
@@ -51,6 +81,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the logarithm with base 2 to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other logarithmBase2WithTensor:name:)]
         pub unsafe fn logarithmBase2WithTensor_name(
             &self,
@@ -59,6 +95,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the logarithm with base 10 to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other logarithmBase10WithTensor:name:)]
         pub unsafe fn logarithmBase10WithTensor_name(
             &self,
@@ -67,6 +109,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the square operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other squareWithTensor:name:)]
         pub unsafe fn squareWithTensor_name(
             &self,
@@ -75,6 +123,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the square root operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other squareRootWithTensor:name:)]
         pub unsafe fn squareRootWithTensor_name(
             &self,
@@ -83,6 +137,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the reciprocal square root operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other reciprocalSquareRootWithTensor:name:)]
         pub unsafe fn reciprocalSquareRootWithTensor_name(
             &self,
@@ -91,6 +151,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the reverse square root operation to the input tensor elements.
+        ///
+        /// The reverse square root operation is the reciprocal of the square root.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[deprecated]
         #[method_id(@__retain_semantics Other reverseSquareRootWithTensor:name:)]
         pub unsafe fn reverseSquareRootWithTensor_name(
@@ -100,6 +168,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the reciprocal operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other reciprocalWithTensor:name:)]
         pub unsafe fn reciprocalWithTensor_name(
             &self,
@@ -108,6 +182,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the absolute values of the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other absoluteWithTensor:name:)]
         pub unsafe fn absoluteWithTensor_name(
             &self,
@@ -116,6 +196,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the absolute square of the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation..
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other absoluteSquareWithTensor:name:)]
         pub unsafe fn absoluteSquareWithTensor_name(
             &self,
@@ -124,6 +210,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies negative to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other negativeWithTensor:name:)]
         pub unsafe fn negativeWithTensor_name(
             &self,
@@ -132,6 +224,16 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the sign of the input tensor elements.
+        ///
+        /// This operation returns 1.0 if the correspnding input element is greater than 0,
+        /// -1.0 if it is lesser than 0, -0.0 if it is equal to -0.0, and
+        /// +0.0 if it is equal to +0.0.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other signWithTensor:name:)]
         pub unsafe fn signWithTensor_name(
             &self,
@@ -140,6 +242,15 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the sign bit of the input tensor elements.
+        ///
+        /// This operation returns `true` if the sign bit is set for the correspnding floating-point input element,
+        /// otherwise it returns `false`.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other signbitWithTensor:name:)]
         pub unsafe fn signbitWithTensor_name(
             &self,
@@ -148,6 +259,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the ceiling operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other ceilWithTensor:name:)]
         pub unsafe fn ceilWithTensor_name(
             &self,
@@ -156,6 +273,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the floor operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other floorWithTensor:name:)]
         pub unsafe fn floorWithTensor_name(
             &self,
@@ -164,6 +287,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Rounds the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other roundWithTensor:name:)]
         pub unsafe fn roundWithTensor_name(
             &self,
@@ -172,6 +301,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Rounds the input tensor elements by rounding to nearest even.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other rintWithTensor:name:)]
         pub unsafe fn rintWithTensor_name(
             &self,
@@ -180,6 +315,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the sine operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other sinWithTensor:name:)]
         pub unsafe fn sinWithTensor_name(
             &self,
@@ -188,6 +329,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the cosine operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other cosWithTensor:name:)]
         pub unsafe fn cosWithTensor_name(
             &self,
@@ -196,6 +343,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the tangent operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other tanWithTensor:name:)]
         pub unsafe fn tanWithTensor_name(
             &self,
@@ -204,6 +357,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the hyperbolic sine operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other sinhWithTensor:name:)]
         pub unsafe fn sinhWithTensor_name(
             &self,
@@ -212,6 +371,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the hyperbolic cosine operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other coshWithTensor:name:)]
         pub unsafe fn coshWithTensor_name(
             &self,
@@ -220,6 +385,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the hyperbolic tangent operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other tanhWithTensor:name:)]
         pub unsafe fn tanhWithTensor_name(
             &self,
@@ -228,6 +399,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the inverse sine operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other asinWithTensor:name:)]
         pub unsafe fn asinWithTensor_name(
             &self,
@@ -236,6 +413,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the inverse cosine operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other acosWithTensor:name:)]
         pub unsafe fn acosWithTensor_name(
             &self,
@@ -244,6 +427,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the inverse tangent operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other atanWithTensor:name:)]
         pub unsafe fn atanWithTensor_name(
             &self,
@@ -252,6 +441,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the inverse hyperbolic sine operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other asinhWithTensor:name:)]
         pub unsafe fn asinhWithTensor_name(
             &self,
@@ -260,6 +455,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the inverse hyperbolic cosine operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other acoshWithTensor:name:)]
         pub unsafe fn acoshWithTensor_name(
             &self,
@@ -268,6 +469,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the inverse hyperbolic tangent operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other atanhWithTensor:name:)]
         pub unsafe fn atanhWithTensor_name(
             &self,
@@ -276,6 +483,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the logical NOT operation to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other notWithTensor:name:)]
         pub unsafe fn notWithTensor_name(
             &self,
@@ -284,6 +497,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Checks if the input tensor elements are infinite or not.
+        ///
+        /// If the input tensor element is infinite, the operation returns `true`, else it returns `false`.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other isInfiniteWithTensor:name:)]
         pub unsafe fn isInfiniteWithTensor_name(
             &self,
@@ -292,6 +513,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Checks if the input tensor elements are finite or not.
+        ///
+        /// If the input tensor element is finite, the operation returns `true`, else it returns `false`.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other isFiniteWithTensor:name:)]
         pub unsafe fn isFiniteWithTensor_name(
             &self,
@@ -300,6 +529,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Checks if the input tensor elements are `NaN` or not.
+        ///
+        /// If the input tensor element is `NaN`, the operation returns `true`, else it returns `false`.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other isNaNWithTensor:name:)]
         pub unsafe fn isNaNWithTensor_name(
             &self,
@@ -308,6 +545,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the error function to the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other erfWithTensor:name:)]
         pub unsafe fn erfWithTensor_name(
             &self,
@@ -316,6 +559,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the truncate operation to the input tensor elements.
+        ///
+        /// This operation applies the floor operation to positive inputs and ceiling operation to negative inputs.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other truncateWithTensor:name:)]
         pub unsafe fn truncateWithTensor_name(
             &self,
@@ -324,6 +575,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Applies the bitwise NOT operation to the input tensor element.
+        ///
+        /// This operation only accepts integer tensors.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor, which must be of integer type.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other bitwiseNOTWithTensor:name:)]
         pub unsafe fn bitwiseNOTWithTensor_name(
             &self,
@@ -332,6 +591,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the population count of the input tensor elements.
+        ///
+        /// This operation only accepts integer tensors, and returns the number of bits set in the input element.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor, which must be of integer type.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other bitwisePopulationCountWithTensor:name:)]
         pub unsafe fn bitwisePopulationCountWithTensor_name(
             &self,
@@ -340,6 +607,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the complex conjugate of the input tensor elements.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation..
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other conjugateWithTensor:name:)]
         pub unsafe fn conjugateWithTensor_name(
             &self,
@@ -348,6 +621,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Adds two input tensors.
+        ///
+        /// This operation creates an add operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = primaryTensor + secondaryTensor
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other additionWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn additionWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -357,6 +642,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Subtracts the second input tensor from the first.
+        ///
+        /// This operation creates a subtract operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = primaryTensor - secondaryTensor
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other subtractionWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn subtractionWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -366,6 +663,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Multiplies two input tensors.
+        ///
+        /// This operation creates a multiply operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = primaryTensor * secondaryTensor
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other multiplicationWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn multiplicationWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -375,6 +684,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Divides the first input tensor by the second.
+        ///
+        /// This operation creates a divide operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = primaryTensor / secondaryTensor
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other divisionWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn divisionWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -384,6 +705,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the remainder obtained by dividing the first input tensor by the second.
+        ///
+        /// This operation creates a modulo operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = primaryTensor % secondaryTensor
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other moduloWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn moduloWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -393,6 +726,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise result of raising the first tensor to the power of the second tensor.
+        ///
+        /// This operation creates a power operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = pow(primaryTensor, secondaryTensor)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other powerWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn powerWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -402,6 +747,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise minimum of the input tensors.
+        ///
+        /// This operation creates a minimum operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = min(primaryTensor, secondaryTensor)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other minimumWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn minimumWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -411,6 +768,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise maximum of the input tensors.
+        ///
+        /// This operation creates a maximum operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = max(primaryTensor, secondaryTensor)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other maximumWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn maximumWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -420,6 +789,20 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise minimum of the input tensors, while propagating `NaN` values.
+        ///
+        /// This operation creates a minimum with `NaN` propagation operation and returns the result tensor. This means that
+        /// if any of the elementwise operands is `NaN`, the result is `NaN`.
+        /// It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = isNaN(primaryTensor) || isNan(secondaryTensor) ? NaN : min(primaryTensor, secondaryTensor)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other minimumWithNaNPropagationWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn minimumWithNaNPropagationWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -429,6 +812,20 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise maximum of the input tensors, while propagating `NaN` values.
+        ///
+        /// This operation creates a maximum with `NaN` propagation operation and returns the result tensor. This means that
+        /// if any of the elementwise operands is `NaN`, the result is `NaN`.
+        /// It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = isNaN(primaryTensor) || isNan(secondaryTensor) ? NaN : max(primaryTensor, secondaryTensor)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other maximumWithNaNPropagationWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn maximumWithNaNPropagationWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -438,6 +835,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise equality check of the input tensors.
+        ///
+        /// This operation creates a equal operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = primaryTensor == secondaryTensor
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other equalWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn equalWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -447,6 +856,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise inequality check of the input tensors.
+        ///
+        /// This operation creates a not equal operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = primaryTensor != secondaryTensor
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other notEqualWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn notEqualWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -456,6 +877,20 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Checks in an elementwise manner if the first input tensor is less than the second.
+        ///
+        /// This operation creates a `lessThan` operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = primaryTensor
+        /// <
+        /// secondaryTensor
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other lessThanWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn lessThanWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -465,6 +900,20 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Checks in an elementwise manner if the first input tensor is less than or equal to the second.
+        ///
+        /// This operation creates a `lessThanOrEqualTo` operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = primaryTensor
+        /// <
+        /// = secondaryTensor
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other lessThanOrEqualToWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn lessThanOrEqualToWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -474,6 +923,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Checks in an elementwise manner if the first input tensor is greater than the second.
+        ///
+        /// This operation creates a `greaterThan` operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = primaryTensor > secondaryTensor
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other greaterThanWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn greaterThanWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -483,6 +944,20 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Checks in an elementwise manner if the first input tensor is greater than or equal to the second.
+        ///
+        /// This operation creates a `greaterThanOrEqual` operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = primaryTensor
+        /// <
+        /// secondaryTensor
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other greaterThanOrEqualToWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn greaterThanOrEqualToWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -492,6 +967,21 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise logical AND of the input tensors.
+        ///
+        /// This operation creates a logical AND operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = primaryTensor
+        /// &
+        /// &
+        /// secondaryTensor
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other logicalANDWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn logicalANDWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -501,6 +991,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise logical OR of the input tensors.
+        ///
+        /// This operation creates a logical OR operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = primaryTensor || secondaryTensor
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other logicalORWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn logicalORWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -510,6 +1012,21 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise logical NAND of the input tensors.
+        ///
+        /// This operation creates a logical NAND operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = !(primaryTensor
+        /// &
+        /// &
+        /// secondaryTensor)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other logicalNANDWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn logicalNANDWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -519,6 +1036,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise logical NOR of the input tensors.
+        ///
+        /// This operation creates a logical NOR operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = !(primaryTensor || secondaryTensor)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other logicalNORWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn logicalNORWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -528,6 +1057,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise logical XOR of the input tensors.
+        ///
+        /// This operation creates a logical XOR operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = XOR(primaryTensor, secondaryTensor)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other logicalXORWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn logicalXORWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -537,6 +1078,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise logical XNOR of the input tensors.
+        ///
+        /// This operation creates a logical XNOR operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = XNOR(primaryTensor, secondaryTensor)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other logicalXNORWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn logicalXNORWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -546,6 +1099,19 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise two-argument arctangent of the input tensors.
+        ///
+        /// This operation creates a `atan2` operation and returns the result tensor. It supports broadcasting as well.
+        /// Graph computes arc tangent of primaryTensor over secondaryTensor.
+        /// ```md
+        /// resultTensor = atan2(primaryTensor, secondaryTensor)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other atan2WithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn atan2WithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -555,6 +1121,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise bitwise AND of binary representations of two integer tensors.
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The primary input tensor, must be of integer type.
+        /// - secondaryTensor: The secondary input tensor, must be of integer type.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other bitwiseANDWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn bitwiseANDWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -564,6 +1137,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise bitwise OR of binary representations of two integer tensors.
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The primary input tensor, must be of integer type.
+        /// - secondaryTensor: The secondary input tensor, must be of integer type.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other bitwiseORWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn bitwiseORWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -573,6 +1153,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise bitwise XOR of binary representations of two integer tensors.
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The primary input tensor, must be of integer type.
+        /// - secondaryTensor: The secondary input tensor, must be of integer type.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other bitwiseXORWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn bitwiseXORWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -582,6 +1169,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise left-shifted binary representations of the primary integer by the secondary tensor amount.
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The primary input tensor, must be of integer type.
+        /// - secondaryTensor: The secondary input tensor, must be of integer type.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other bitwiseLeftShiftWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn bitwiseLeftShiftWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -591,6 +1185,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the elementwise right-shifted binary representations of the primary integer by the secondary tensor amount.
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The primary input tensor, must be of integer type.
+        /// - secondaryTensor: The secondary input tensor, must be of integer type.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other bitwiseRightShiftWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn bitwiseRightShiftWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -600,6 +1201,19 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Selects values from either the true or false predicate tensor, depending on the values in the first input.
+        ///
+        /// This operation creates a select operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = select(predicateTensor, truePredicateTensor, falseSelectTensor)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - predicateTensor: The predicate tensor.
+        /// - truePredicateTensor: The tensor to select values from if predicate is true.
+        /// - falseSelectTensor: The tensor to select values from if predicate is false.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other selectWithPredicateTensor:truePredicateTensor:falsePredicateTensor:name:)]
         pub unsafe fn selectWithPredicateTensor_truePredicateTensor_falsePredicateTensor_name(
             &self,
@@ -610,6 +1224,19 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Clamps the values in the first tensor between the corresponding values in the minimum and maximum value tensor.
+        ///
+        /// This operation creates a clamp operation and returns the result tensor. It supports broadcasting as well.
+        /// ```md
+        /// resultTensor = clamp(tensor, minValueTensor, maxValueTensor)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - tensor: The tensor to be clamped.
+        /// - minValueTensor: The tensor with min values to clamp to.
+        /// - minValueTensor: The tensor with max values to clamp to.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other clampWithTensor:minValueTensor:maxValueTensor:name:)]
         pub unsafe fn clampWithTensor_minValueTensor_maxValueTensor_name(
             &self,
@@ -620,6 +1247,17 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Divides the first input tensor by the second, with the result being 0 if the denominator is 0.
+        ///
+        /// ```md
+        /// resultTensor = select(secondaryTensor, primaryTensor / secondaryTensor, 0)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other divisionNoNaNWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn divisionNoNaNWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -629,6 +1267,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the remainder of floor divison between the primary and secondary tensor.
+        ///
+        /// Creates a floorModulo operation and returns the result tensor, it supports broadcasting as well, returns 0 if divisor is 0.
+        /// ```md
+        /// resultTensor = primaryTensor - (floor(primaryTensor / secondaryTensor) * secondaryTensor)
+        /// ```
+        ///
+        /// - Parameters:
+        /// - primaryTensor: The LHS tensor of the binary Op.
+        /// - secondaryTensor: The RHS tensor of the binary Op.
+        /// - name: An optional string which serves as an identifier for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other floorModuloWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn floorModuloWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -638,6 +1288,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the real part of a tensor.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation..
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other realPartOfTensor:name:)]
         pub unsafe fn realPartOfTensor_name(
             &self,
@@ -646,6 +1302,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the imaginary part of a tensor.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - name: An optional string which serves as an identifier for the operation..
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other imaginaryPartOfTensor:name:)]
         pub unsafe fn imaginaryPartOfTensor_name(
             &self,
@@ -654,6 +1316,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns a complex tensor from the two input tensors.
+        ///
+        /// - Parameters:
+        /// - realTensor: The real part of the complex tensor.
+        /// - imaginaryTensor: The imaginary part of the complex tensor.
+        /// - name: An optional string which serves as an identifier for the operation..
+        /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[method_id(@__retain_semantics Other complexTensorWithRealTensor:imaginaryTensor:name:)]
         pub unsafe fn complexTensorWithRealTensor_imaginaryTensor_name(
             &self,

@@ -7,12 +7,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbdevice?language=objc)
+    /// Protocol representing a USB Device in a virtual machine.
+    ///
+    /// Classes that conform to this protocol represent hot-pluggable USB devices.
+    /// VZUSBDevice protocol should not be used with objects outside of Virtualization framework.
+    /// This protocol only describes capabilities of Virtualization framework objects.
+    ///
+    /// See: VZUSBMassStorageDevice
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbdevice?language=objc)
     pub unsafe trait VZUSBDevice: NSObjectProtocol {
         #[cfg(feature = "VZUSBController")]
+        /// USB controller that the device is attached to.
+        ///
+        /// If a USB device object that conforms to this protocol is currently attached to a USB controller, this
+        /// property includes a pointer to the USB controller object that the device is attached to.
+        /// Otherwise, it contains nil.
         #[method_id(@__retain_semantics Other usbController)]
         unsafe fn usbController(&self) -> Option<Retained<VZUSBController>>;
 
+        /// Device UUID.
+        ///
+        /// Device UUID from device configuration objects that conform to `VZUSBDeviceConfiguration`.
+        ///
+        /// See: VZUSBDeviceConfiguration
         #[method_id(@__retain_semantics Other uuid)]
         unsafe fn uuid(&self) -> Retained<NSUUID>;
     }

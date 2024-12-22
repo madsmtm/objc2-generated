@@ -168,18 +168,21 @@ extern_methods!(
         #[method(axis)]
         pub unsafe fn axis(&self) -> UILayoutConstraintAxis;
 
+        /// Setter for [`axis`][Self::axis].
         #[method(setAxis:)]
         pub unsafe fn setAxis(&self, axis: UILayoutConstraintAxis);
 
         #[method(distribution)]
         pub unsafe fn distribution(&self) -> UIStackViewDistribution;
 
+        /// Setter for [`distribution`][Self::distribution].
         #[method(setDistribution:)]
         pub unsafe fn setDistribution(&self, distribution: UIStackViewDistribution);
 
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> UIStackViewAlignment;
 
+        /// Setter for [`alignment`][Self::alignment].
         #[method(setAlignment:)]
         pub unsafe fn setAlignment(&self, alignment: UIStackViewAlignment);
 
@@ -188,6 +191,7 @@ extern_methods!(
         pub unsafe fn spacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`spacing`][Self::spacing].
         #[method(setSpacing:)]
         pub unsafe fn setSpacing(&self, spacing: CGFloat);
 
@@ -206,12 +210,14 @@ extern_methods!(
         #[method(isBaselineRelativeArrangement)]
         pub unsafe fn isBaselineRelativeArrangement(&self) -> bool;
 
+        /// Setter for [`isBaselineRelativeArrangement`][Self::isBaselineRelativeArrangement].
         #[method(setBaselineRelativeArrangement:)]
         pub unsafe fn setBaselineRelativeArrangement(&self, baseline_relative_arrangement: bool);
 
         #[method(isLayoutMarginsRelativeArrangement)]
         pub unsafe fn isLayoutMarginsRelativeArrangement(&self) -> bool;
 
+        /// Setter for [`isLayoutMarginsRelativeArrangement`][Self::isLayoutMarginsRelativeArrangement].
         #[method(setLayoutMarginsRelativeArrangement:)]
         pub unsafe fn setLayoutMarginsRelativeArrangement(
             &self,

@@ -24,6 +24,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileType)]
         pub unsafe fn fileType(&self) -> Retained<NSString>;
 
+        /// Setter for [`fileType`][Self::fileType].
         #[method(setFileType:)]
         pub unsafe fn setFileType(&self, file_type: &NSString);
 
@@ -33,6 +34,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSFilePromiseProviderDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -42,6 +44,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&AnyObject>);
 

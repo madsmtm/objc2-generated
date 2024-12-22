@@ -7,8 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecontentblocker?language=objc)
+    /// Methods in this protocol can be used by a mail app extension to block content in mail messages.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecontentblocker?language=objc)
     pub unsafe trait MEContentBlocker: NSObjectProtocol {
+        /// This is invoked when Mail configures its
+        /// `WKWebViewConfiguration`or if the extension is enabled. The returned data should contain UTF8 encoded String data with the filter list.
         #[method_id(@__retain_semantics Other contentRulesJSON)]
         unsafe fn contentRulesJSON(&self) -> Retained<NSData>;
     }

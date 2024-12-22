@@ -31,7 +31,9 @@ unsafe impl RefEncode for CKShareParticipantAcceptanceStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantpermission?language=objc)
+/// These permissions determine what share participants can do with records inside that share
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantpermission?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -55,7 +57,14 @@ unsafe impl RefEncode for CKShareParticipantPermission {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantrole?language=objc)
+/// The participant type determines whether a participant can modify the list of participants on a share.
+///
+///
+/// - Owners can add private users
+/// - Private users can access the share
+/// - Public users are "self-added" when the participant accesses the shareURL.  Owners cannot add public users.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantrole?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -129,6 +138,9 @@ unsafe impl NSSecureCoding for CKShareParticipant {}
 
 extern_methods!(
     unsafe impl CKShareParticipant {
+        /// Use
+        /// `CKFetchShareParticipantsOperation`to create a
+        /// `CKShareParticipant`object
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -139,16 +151,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userIdentity)]
         pub unsafe fn userIdentity(&self) -> Retained<CKUserIdentity>;
 
+        /// The default participant role is
+        /// `CKShareParticipantRolePrivateUser.`
         #[method(role)]
         pub unsafe fn role(&self) -> CKShareParticipantRole;
 
+        /// Setter for [`role`][Self::role].
         #[method(setRole:)]
         pub unsafe fn setRole(&self, role: CKShareParticipantRole);
 
+        /// The default participant type is
+        /// `CKShareParticipantTypePrivateUser.`
         #[deprecated]
         #[method(type)]
         pub unsafe fn r#type(&self) -> CKShareParticipantType;
 
+        /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: CKShareParticipantType);
@@ -156,12 +174,16 @@ extern_methods!(
         #[method(acceptanceStatus)]
         pub unsafe fn acceptanceStatus(&self) -> CKShareParticipantAcceptanceStatus;
 
+        /// The default permission for a new participant is
+        /// `CKShareParticipantPermissionReadOnly.`
         #[method(permission)]
         pub unsafe fn permission(&self) -> CKShareParticipantPermission;
 
+        /// Setter for [`permission`][Self::permission].
         #[method(setPermission:)]
         pub unsafe fn setPermission(&self, permission: CKShareParticipantPermission);
 
+        /// A unique identifier for this participant.
         #[method_id(@__retain_semantics Other participantID)]
         pub unsafe fn participantID(&self) -> Retained<NSString>;
     }

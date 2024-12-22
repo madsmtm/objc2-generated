@@ -36,6 +36,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIDocumentInteractionControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -45,18 +46,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other UTI)]
         pub unsafe fn UTI(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`UTI`][Self::UTI].
         #[method(setUTI:)]
         pub unsafe fn setUTI(&self, uti: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
@@ -67,6 +71,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other annotation)]
         pub unsafe fn annotation(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`annotation`][Self::annotation].
         #[method(setAnnotation:)]
         pub unsafe fn setAnnotation(&self, annotation: Option<&AnyObject>);
 

@@ -323,6 +323,7 @@ extern_methods!(
         pub unsafe fn string(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`string`][Self::string].
         #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
         #[method(setString:)]
         pub unsafe fn setString(&self, string: Option<&NSString>);

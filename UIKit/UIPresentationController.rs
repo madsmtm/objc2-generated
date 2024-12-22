@@ -140,6 +140,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIAdaptivePresentationControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -206,6 +207,7 @@ extern_methods!(
         pub unsafe fn overrideTraitCollection(&self) -> Option<Retained<UITraitCollection>>;
 
         #[cfg(feature = "UITraitCollection")]
+        /// Setter for [`overrideTraitCollection`][Self::overrideTraitCollection].
         #[deprecated = "Use the traitOverrides property instead"]
         #[method(setOverrideTraitCollection:)]
         pub unsafe fn setOverrideTraitCollection(

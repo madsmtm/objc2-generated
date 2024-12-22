@@ -10,32 +10,52 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetype?language=objc)
+/// AVSemanticSegmentationMatteType string constants
+///
+///
+/// AVSemanticSegmentationMatteType string constants describe specific types of semantic segmentation matting images that may be captured and stored along with a primary image and may be used to improve the rendering of various effects on that image.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetype?language=objc)
 // NS_TYPED_ENUM
 pub type AVSemanticSegmentationMatteType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetypeskin?language=objc)
+    /// A matting image segmenting all skin from all persons in the visible field-of-view of an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetypeskin?language=objc)
     pub static AVSemanticSegmentationMatteTypeSkin: &'static AVSemanticSegmentationMatteType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetypehair?language=objc)
+    /// A matting image segmenting all hair from all persons in the visible field-of-view of an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetypehair?language=objc)
     pub static AVSemanticSegmentationMatteTypeHair: &'static AVSemanticSegmentationMatteType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetypeteeth?language=objc)
+    /// A matting image segmenting all teeth from all persons in the visible field-of-view of an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetypeteeth?language=objc)
     pub static AVSemanticSegmentationMatteTypeTeeth: &'static AVSemanticSegmentationMatteType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetypeglasses?language=objc)
+    /// A matting image segmenting all glasses ( e.g. eyeglasses, sunglasses ) from all persons wearing glasses in the visible field-of-view of an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetypeglasses?language=objc)
     pub static AVSemanticSegmentationMatteTypeGlasses: &'static AVSemanticSegmentationMatteType;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte?language=objc)
+    /// An object wrapping a matting image for a particular semantic segmentation.
+    ///
+    ///
+    /// The pixel data in the matting image is represented in CVPixelBuffers as kCVPixelFormatType_OneComponent8 ('L008'). It is stored in image files as an auxiliary image, accessible using CGImageSourceCopyAuxiliaryDataInfoAtIndex using data types defined in
+    /// <ImageIO
+    /// /CGImageProperties.h>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSemanticSegmentationMatte;
@@ -52,32 +72,81 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Returns an AVSemanticSegmentationMatte instance from auxiliary image information in an image file.
+        ///
+        ///
+        /// Parameter `imageSourceAuxiliaryDataType`: The kCGImageAuxiliaryDataType constant corresponding to the semantic segmentation matte being created (see
+        /// <ImageIO
+        /// /CGImageProperties.h>.
+        ///
+        /// Parameter `imageSourceAuxiliaryDataInfoDictionary`: A dictionary of primitive semantic segmentation matte related information obtained from CGImageSourceCopyAuxiliaryDataInfoAtIndex.
+        ///
+        /// Parameter `outError`: On return, if the semantic segmentation matte cannot be created, points to an NSError describing the problem.
+        ///
+        /// Returns: An AVSemanticSegmentationMatte instance, or nil if the auxiliary data info dictionary was malformed.
+        ///
+        ///
+        /// When using ImageIO framework's CGImageSource API to read from a HEIF or JPEG file containing a semantic segmentation matte, AVSemanticSegmentationMatte can be instantiated using the result of CGImageSourceCopyAuxiliaryDataInfoAtIndex, which returns a CFDictionary of primitive segmentation matte information.
         #[method_id(@__retain_semantics Other semanticSegmentationMatteFromImageSourceAuxiliaryDataType:dictionaryRepresentation:error:_)]
         pub unsafe fn semanticSegmentationMatteFromImageSourceAuxiliaryDataType_dictionaryRepresentation_error(
             image_source_auxiliary_data_type: CFStringRef,
             image_source_auxiliary_data_info_dictionary: &NSDictionary,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// Specifies the receiver's semantic segmentation matting image type.
+        ///
+        ///
+        /// An AVSemanticSegmentationMatte's matteType is immutable for the life of the object.
         #[method_id(@__retain_semantics Other matteType)]
         pub unsafe fn matteType(&self) -> Retained<AVSemanticSegmentationMatteType>;
 
         #[cfg(feature = "objc2-core-video")]
+        /// Returns an AVSemanticSegmentationMatte instance wrapping the replacement pixel buffer.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: A pixel buffer containing a semantic segmentation matting image, represented as kCVPixelFormatType_OneComponent8 with a kCVImageBufferTransferFunction_Linear transfer function.
+        ///
+        /// Parameter `outError`: On return, if the AVSemanticSegmentationMatte cannot be created, points to an NSError describing the problem.
+        ///
+        /// Returns: An AVSemanticSegmentationMatte instance, or nil if the pixel buffer is malformed.
+        ///
+        ///
+        /// When applying complex edits to media containing a semantic segmentation matte, you may create a derivative matte with arbitrary transforms applied to it, then use this initializer to create a new AVSemanticSegmentationMatte.
         #[method_id(@__retain_semantics Other semanticSegmentationMatteByReplacingSemanticSegmentationMatteWithPixelBuffer:error:_)]
         pub unsafe fn semanticSegmentationMatteByReplacingSemanticSegmentationMatteWithPixelBuffer_error(
             &self,
             pixel_buffer: CVPixelBufferRef,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// Returns a dictionary of primitive map information to be used when writing an image file with a semantic segmentation matte.
+        ///
+        ///
+        /// Parameter `outAuxDataType`: On output, the auxiliary data type to be used when calling CGImageDestinationAddAuxiliaryDataInfo. Currently supported auxiliary data types are enumerated in
+        /// <ImageIO
+        /// /CGImageProperties.h>
+        ///
+        /// Returns: A dictionary of CGImageDestination compatible semantic segmentation matte information, or nil if the auxDataType is unsupported.
+        ///
+        ///
+        /// When using ImageIO framework's CGImageDestination API to write semantic segmentation matte information to a HEIF or JPEG file, you may use this method to generate a dictionary of primitive map information consumed by CGImageDestinationAddAuxiliaryDataInfo.
         #[method_id(@__retain_semantics Other dictionaryRepresentationForAuxiliaryDataType:)]
         pub unsafe fn dictionaryRepresentationForAuxiliaryDataType(
             &self,
             out_aux_data_type: Option<&mut Option<Retained<NSString>>>,
         ) -> Option<Retained<NSDictionary>>;
 
+        /// Specifies the pixel format type of this object's internal matting image.
+        ///
+        ///
+        /// Currently the only supported CV pixel format type for the matting image is kCVPixelFormatType_OneComponent8.
         #[method(pixelFormatType)]
         pub unsafe fn pixelFormatType(&self) -> OSType;
 
         #[cfg(feature = "objc2-core-video")]
+        /// Provides access to the semantic segmentation matte's internal image.
+        ///
+        ///
+        /// The pixel format can be queried using the pixelFormatType property.
         #[method(mattingImage)]
         pub unsafe fn mattingImage(&self) -> CVPixelBufferRef;
     }

@@ -29,10 +29,14 @@ impl ASAuthorizationError {
     pub const Failed: Self = Self(1004);
     #[doc(alias = "ASAuthorizationErrorNotInteractive")]
     pub const NotInteractive: Self = Self(1005);
+    /// This error should only be returned when specifying
+    /// `excludedCredentials`on a public key credential registration request.
     #[doc(alias = "ASAuthorizationErrorMatchedExcludedCredential")]
     pub const MatchedExcludedCredential: Self = Self(1006);
+    /// This error signals that the import request failed. Details will be available in the `userInfo` of the NSError.
     #[doc(alias = "ASAuthorizationErrorCredentialImport")]
     pub const CredentialImport: Self = Self(1007);
+    /// This error signals that the export request failed. Details will be available in the `userInfo` of the NSError.
     #[doc(alias = "ASAuthorizationErrorCredentialExport")]
     pub const CredentialExport: Self = Self(1008);
 }

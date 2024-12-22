@@ -7,12 +7,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionpriority?language=objc)
+/// AVAssetDownloadedAssetEvictionPriority string constants
+///
+/// Used by AVAssetDownloadStorageManagementPolicy.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionpriority?language=objc)
 // NS_TYPED_ENUM
 pub type AVAssetDownloadedAssetEvictionPriority = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionpriorityimportant?language=objc)
+    /// These constants represents the eviction priority of downloaded assets.
+    ///
+    ///
+    /// Used to mark assets with the highest priority. They will be the last to be purged.
+    ///
+    /// Used to mark assets have the default priority. They will be the first to be purged.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionpriorityimportant?language=objc)
     pub static AVAssetDownloadedAssetEvictionPriorityImportant:
         &'static AVAssetDownloadedAssetEvictionPriority;
 }
@@ -34,9 +45,13 @@ unsafe impl NSObjectProtocol for AVAssetDownloadStorageManager {}
 
 extern_methods!(
     unsafe impl AVAssetDownloadStorageManager {
+        /// returns singleton instance.
         #[method_id(@__retain_semantics Other sharedDownloadStorageManager)]
         pub unsafe fn sharedDownloadStorageManager() -> Retained<AVAssetDownloadStorageManager>;
 
+        /// Sets the policy for asset with disk backing at downloadStorageURL.
+        ///
+        /// Parameter `downloadStorageURL`: The location of downloaded asset.
         #[method(setStorageManagementPolicy:forURL:)]
         pub unsafe fn setStorageManagementPolicy_forURL(
             &self,
@@ -44,6 +59,10 @@ extern_methods!(
             download_storage_url: &NSURL,
         );
 
+        /// Returns the storage management policy for asset downloaded at downloadStorageURL.
+        /// This may be nil if a storageManagementPolicy was never set on the downloaded asset.
+        ///
+        /// Parameter `downloadStorageURL`: The location of downloaded asset.
         #[method_id(@__retain_semantics Other storageManagementPolicyForURL:)]
         pub unsafe fn storageManagementPolicyForURL(
             &self,
@@ -106,7 +125,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutableassetdownloadstoragemanagementpolicy?language=objc)
+    /// A mutable subclass of AVAssetDownloadStorageManagementPolicy.
+    ///
+    ///
+    /// System will put in best-effort to evict all the assets based on expirationDate before evicting based on priority.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutableassetdownloadstoragemanagementpolicy?language=objc)
     #[unsafe(super(AVAssetDownloadStorageManagementPolicy, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableAssetDownloadStorageManagementPolicy;
@@ -131,12 +155,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other priority)]
         pub unsafe fn priority(&self) -> Retained<AVAssetDownloadedAssetEvictionPriority>;
 
+        /// Setter for [`priority`][Self::priority].
         #[method(setPriority:)]
         pub unsafe fn setPriority(&self, priority: &AVAssetDownloadedAssetEvictionPriority);
 
         #[method_id(@__retain_semantics Other expirationDate)]
         pub unsafe fn expirationDate(&self) -> Retained<NSDate>;
 
+        /// Setter for [`expirationDate`][Self::expirationDate].
         #[method(setExpirationDate:)]
         pub unsafe fn setExpirationDate(&self, expiration_date: &NSDate);
     }

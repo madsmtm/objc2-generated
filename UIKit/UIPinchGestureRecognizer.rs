@@ -29,6 +29,7 @@ extern_methods!(
         pub fn scale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         pub unsafe fn setScale(&self, scale: CGFloat);
 

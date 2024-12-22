@@ -7,7 +7,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionlocationtype?language=objc)
+/// This enumerated type is used to represent the location type of a workout session.
+///
+/// This value represents whether a workout is performed indoors or outdoors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionlocationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -30,7 +34,9 @@ unsafe impl RefEncode for HKWorkoutSessionLocationType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutconfiguration?language=objc)
+    /// An HKWorkoutConfiguration is an object that can be used to describe the workout activity.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutConfiguration;
@@ -51,24 +57,30 @@ unsafe impl NSSecureCoding for HKWorkoutConfiguration {}
 extern_methods!(
     unsafe impl HKWorkoutConfiguration {
         #[cfg(feature = "HKWorkout")]
+        /// Indicates the type of workout for the configuration.
         #[method(activityType)]
         pub unsafe fn activityType(&self) -> HKWorkoutActivityType;
 
         #[cfg(feature = "HKWorkout")]
+        /// Setter for [`activityType`][Self::activityType].
         #[method(setActivityType:)]
         pub unsafe fn setActivityType(&self, activity_type: HKWorkoutActivityType);
 
+        /// Indicates the type of location (indoors vs. outdoors) for the configuration.
         #[method(locationType)]
         pub unsafe fn locationType(&self) -> HKWorkoutSessionLocationType;
 
+        /// Setter for [`locationType`][Self::locationType].
         #[method(setLocationType:)]
         pub unsafe fn setLocationType(&self, location_type: HKWorkoutSessionLocationType);
 
         #[cfg(feature = "HKMetadata")]
+        /// Indicates the type of swimming location (pool vs. open water) where the workout will take place.
         #[method(swimmingLocationType)]
         pub unsafe fn swimmingLocationType(&self) -> HKWorkoutSwimmingLocationType;
 
         #[cfg(feature = "HKMetadata")]
+        /// Setter for [`swimmingLocationType`][Self::swimmingLocationType].
         #[method(setSwimmingLocationType:)]
         pub unsafe fn setSwimmingLocationType(
             &self,
@@ -76,10 +88,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "HKQuantity")]
+        /// Indicates the length of the pool, when the workout location type is pool.
+        ///
+        /// This metric represents the length of the pool where the workout takes place. It should be a quantity with
+        /// a unit representing length.
         #[method_id(@__retain_semantics Other lapLength)]
         pub unsafe fn lapLength(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Setter for [`lapLength`][Self::lapLength].
         #[method(setLapLength:)]
         pub unsafe fn setLapLength(&self, lap_length: Option<&HKQuantity>);
     }

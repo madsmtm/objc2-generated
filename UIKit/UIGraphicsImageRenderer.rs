@@ -65,12 +65,14 @@ extern_methods!(
         pub unsafe fn scale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         pub unsafe fn setScale(&self, scale: CGFloat);
 
         #[method(opaque)]
         pub unsafe fn opaque(&self) -> bool;
 
+        /// Setter for [`opaque`][Self::opaque].
         #[method(setOpaque:)]
         pub unsafe fn setOpaque(&self, opaque: bool);
 
@@ -78,6 +80,7 @@ extern_methods!(
         #[method(prefersExtendedRange)]
         pub unsafe fn prefersExtendedRange(&self) -> bool;
 
+        /// Setter for [`prefersExtendedRange`][Self::prefersExtendedRange].
         #[deprecated = "Use the preferredRange property instead"]
         #[method(setPrefersExtendedRange:)]
         pub unsafe fn setPrefersExtendedRange(&self, prefers_extended_range: bool);
@@ -85,9 +88,11 @@ extern_methods!(
         #[method(supportsHighDynamicRange)]
         pub unsafe fn supportsHighDynamicRange(&self) -> bool;
 
+        /// indicates if the format supports high dynamic range rendering.
         #[method(preferredRange)]
         pub unsafe fn preferredRange(&self) -> UIGraphicsImageRendererFormatRange;
 
+        /// Setter for [`preferredRange`][Self::preferredRange].
         #[method(setPreferredRange:)]
         pub unsafe fn setPreferredRange(&self, preferred_range: UIGraphicsImageRendererFormatRange);
 

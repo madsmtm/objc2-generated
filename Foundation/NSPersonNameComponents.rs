@@ -36,6 +36,7 @@ extern_methods!(
         pub unsafe fn namePrefix(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`namePrefix`][Self::namePrefix].
         #[method(setNamePrefix:)]
         pub unsafe fn setNamePrefix(&self, name_prefix: Option<&NSString>);
 
@@ -44,6 +45,7 @@ extern_methods!(
         pub unsafe fn givenName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`givenName`][Self::givenName].
         #[method(setGivenName:)]
         pub unsafe fn setGivenName(&self, given_name: Option<&NSString>);
 
@@ -52,6 +54,7 @@ extern_methods!(
         pub unsafe fn middleName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`middleName`][Self::middleName].
         #[method(setMiddleName:)]
         pub unsafe fn setMiddleName(&self, middle_name: Option<&NSString>);
 
@@ -60,6 +63,7 @@ extern_methods!(
         pub unsafe fn familyName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`familyName`][Self::familyName].
         #[method(setFamilyName:)]
         pub unsafe fn setFamilyName(&self, family_name: Option<&NSString>);
 
@@ -68,6 +72,7 @@ extern_methods!(
         pub unsafe fn nameSuffix(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`nameSuffix`][Self::nameSuffix].
         #[method(setNameSuffix:)]
         pub unsafe fn setNameSuffix(&self, name_suffix: Option<&NSString>);
 
@@ -76,12 +81,14 @@ extern_methods!(
         pub unsafe fn nickname(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`nickname`][Self::nickname].
         #[method(setNickname:)]
         pub unsafe fn setNickname(&self, nickname: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other phoneticRepresentation)]
         pub unsafe fn phoneticRepresentation(&self) -> Option<Retained<NSPersonNameComponents>>;
 
+        /// Setter for [`phoneticRepresentation`][Self::phoneticRepresentation].
         #[method(setPhoneticRepresentation:)]
         pub unsafe fn setPhoneticRepresentation(
             &self,

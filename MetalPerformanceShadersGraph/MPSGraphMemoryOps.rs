@@ -10,7 +10,9 @@ use objc2_metal_performance_shaders::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphvariableop?language=objc)
+    /// The class that defines the parameters for a variable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphvariableop?language=objc)
     #[unsafe(super(MPSGraphOperation, MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
@@ -32,10 +34,12 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
     unsafe impl MPSGraphVariableOp {
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// The shape of the variable.
         #[method_id(@__retain_semantics Other shape)]
         pub unsafe fn shape(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// The data type of the variable.
         #[method(dataType)]
         pub unsafe fn dataType(&self) -> MPSDataType;
     }
@@ -45,6 +49,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSGraphOperation`
     #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
     unsafe impl MPSGraphVariableOp {
+        /// Unavailable, please utilize graph methods to create and initialize operations.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -67,6 +72,13 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a placeholder operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - shape: The shape of the output tensor. A nil shape will result in an unranked tensor.
+        /// - dataType: The dataType of the placeholder tensor.
+        /// - name: The name for the placeholder operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other placeholderWithShape:dataType:name:)]
         pub unsafe fn placeholderWithShape_dataType_name(
             &self,
@@ -79,6 +91,12 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a placeholder operation and returns the result tensor with the dataType of the placeholder tensor set to 32 bit float.
+        ///
+        /// - Parameters:
+        /// - shape: The shape of the output tensor. A nil shape will result in an unranked tensor.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other placeholderWithShape:name:)]
         pub unsafe fn placeholderWithShape_name(
             &self,
@@ -90,6 +108,13 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a constant op with a given shape and data, and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - data: The data for the tensor. The number of bytes should be sizeof(dataType)numberOfElements.
+        /// - shape: The shape of the output tensor. This has to be statically shaped.
+        /// - dataType: The dataType of theconstant tensor.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other constantWithData:shape:dataType:)]
         pub unsafe fn constantWithData_shape_dataType(
             &self,
@@ -102,6 +127,12 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a constant operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - scalar: The scalar value to fill the entire tensor values with.
+        /// - dataType: The dataType of the constant tensor.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other constantWithScalar:dataType:)]
         pub unsafe fn constantWithScalar_dataType(
             &self,
@@ -113,6 +144,13 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a constant op with a given shape and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - scalar: The scalar value to fill the entire tensor values with.
+        /// - shape: The shape of the output tensor.
+        /// - dataType: The dataType of the constant tensor.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other constantWithScalar:shape:dataType:)]
         pub unsafe fn constantWithScalar_shape_dataType(
             &self,
@@ -122,6 +160,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a complex constant op with the MPSDataTypeComplexFloat32 data type and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - realPart: The real part of the complex scalar to fill the entire tensor values with.
+        /// - imaginaryPart: The imaginary part of the complex scalar to fill the entire tensor values with.
+        /// - dataType: The dataType of the constant tensor.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other constantWithRealPart:imaginaryPart:)]
         pub unsafe fn constantWithRealPart_imaginaryPart(
             &self,
@@ -133,6 +178,13 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a complex constant operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - realPart: The real part of the complex scalar to fill the entire tensor values with.
+        /// - imaginaryPart: The imaginary part of the complex scalar to fill the entire tensor values with.
+        /// - dataType: The dataType of the constant tensor.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other constantWithRealPart:imaginaryPart:dataType:)]
         pub unsafe fn constantWithRealPart_imaginaryPart_dataType(
             &self,
@@ -145,6 +197,14 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a complex constant op with a given shape and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - realPart: The real part of the complex scalar to fill the entire tensor values with.
+        /// - imaginaryPart: The imaginary part of the complex scalar to fill the entire tensor values with.
+        /// - shape: The shape of the output tensor. This has to be statically shaped.
+        /// - dataType: The dataType of the constant tensor.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other constantWithRealPart:imaginaryPart:shape:dataType:)]
         pub unsafe fn constantWithRealPart_imaginaryPart_shape_dataType(
             &self,
@@ -158,6 +218,14 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a variable operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - data: The data for the tensor. The number of bytes should be sizeof(dataType)numberOfElements.
+        /// - shape: The shape of the output tensor. This has to be statically shaped.
+        /// - dataType: The dataType of the constant tensor.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other variableWithData:shape:dataType:name:)]
         pub unsafe fn variableWithData_shape_dataType_name(
             &self,
@@ -168,6 +236,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a variable from an input tensor.
+        ///
+        /// - Parameters:
+        /// - tensor: The tensor from which to form the variable.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other variableFromTensorWithTensor:name:)]
         pub unsafe fn variableFromTensorWithTensor_name(
             &self,
@@ -176,6 +250,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a read op which reads at this point of execution of the graph and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - variable: The variable resource tensor to read from.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other readVariable:name:)]
         pub unsafe fn readVariable_name(
             &self,
@@ -184,6 +264,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(all(feature = "MPSGraphOperation", feature = "MPSGraphTensor"))]
+        /// Creates an assign operation which writes at this point of execution of the graph.
+        ///
+        /// - Parameters:
+        /// - variable: The variable resource tensor to assign to.
+        /// - tensor: The tensor to assign to the variable.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other assignVariable:withValueOfTensor:name:)]
         pub unsafe fn assignVariable_withValueOfTensor_name(
             &self,

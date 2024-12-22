@@ -9,7 +9,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmedialibrary?language=objc)
+/// This type is used to configure a media browser for individual media types.
+///
+/// Warning: Though this type is declared as a set of mixable options -- and was originally intended to become that eventually -- you should treat it as an enum.
+///
+/// Warning: In other words, this type should be declared with NS_ENUM rather than NS_OPTIONS, but the latter has historical inertia not worth struggling against.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmedialibrary?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -34,7 +40,11 @@ unsafe impl RefEncode for NSMediaLibrary {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller?language=objc)
+    /// This class configures and displays a media browser panel.
+    ///
+    /// This class provides no direct access to the panel, and its meaningful contents aren't in the calling process.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMediaLibraryBrowserController;
@@ -51,6 +61,7 @@ extern_methods!(
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;
 
+        /// Setter for [`isVisible`][Self::isVisible].
         #[method(setVisible:)]
         pub unsafe fn setVisible(&self, visible: bool);
 
@@ -59,12 +70,14 @@ extern_methods!(
         pub unsafe fn frame(&self) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
 
         #[method(mediaLibraries)]
         pub unsafe fn mediaLibraries(&self) -> NSMediaLibrary;
 
+        /// Setter for [`mediaLibraries`][Self::mediaLibraries].
         #[method(setMediaLibraries:)]
         pub unsafe fn setMediaLibraries(&self, media_libraries: NSMediaLibrary);
 

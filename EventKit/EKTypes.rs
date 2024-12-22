@@ -4,7 +4,15 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekauthorizationstatus?language=objc)
+/// This enumerated type is used to indicate the currently granted authorization status for a specific
+/// entity type.
+///
+/// may access the service.
+///
+/// The user cannot change this application’s status, possibly due to
+/// active restrictions such as parental controls being in place.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -76,7 +84,13 @@ unsafe impl RefEncode for EKWeekday {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrencefrequency?language=objc)
+/// The frequency of a recurrence
+///
+/// EKRecurrenceFrequency designates the unit of time used to describe the recurrence.
+/// It has four possible values, which correspond to recurrence rules that are defined
+/// in terms of days, weeks, months, and years.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrencefrequency?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -100,7 +114,9 @@ unsafe impl RefEncode for EKRecurrenceFrequency {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipanttype?language=objc)
+/// Value representing the type of attendee.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipanttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -126,7 +142,9 @@ unsafe impl RefEncode for EKParticipantType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantrole?language=objc)
+/// Value representing the role of a meeting participant.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantrole?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -152,7 +170,31 @@ unsafe impl RefEncode for EKParticipantRole {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantschedulestatus?language=objc)
+/// Value representing the status of a meeting invite.
+///
+///
+/// invitation has been sent yet.
+///
+/// sent.
+///
+/// no way of determing if it was successfully
+/// delivered.
+///
+/// successfully delivered.
+///
+/// source doesn't recognize the recipient.
+///
+/// insufficient privileges.
+///
+/// likely due to a temporary failure.
+///
+/// we're unsure how to deliver it. This is a
+/// permanent failure.
+///
+/// scheduling with the participant isn't
+/// allowed. This is a permanent failure.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantschedulestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -186,7 +228,9 @@ unsafe impl RefEncode for EKParticipantScheduleStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantstatus?language=objc)
+/// Value representing the status of a meeting participant.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -218,7 +262,9 @@ unsafe impl RefEncode for EKParticipantStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendartype?language=objc)
+/// An enum representing the type of a calendar.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendartype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -295,7 +341,9 @@ unsafe impl RefEncode for EKSourceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekentitytype?language=objc)
+/// A value which specifies an entity type of event or reminder.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekentitytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -315,7 +363,9 @@ unsafe impl RefEncode for EKEntityType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekentitymask?language=objc)
+/// A bitmask based on EKEntityType that can be used to specify multiple entities at once.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekentitymask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -337,7 +387,9 @@ unsafe impl RefEncode for EKEntityMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarmproximity?language=objc)
+/// A value indicating whether an alarm is triggered by entering or exiting a geofence.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarmproximity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -359,7 +411,9 @@ unsafe impl RefEncode for EKAlarmProximity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarmtype?language=objc)
+/// A value which specifies the action that occurs when the alarm is triggered.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarmtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -383,7 +437,14 @@ unsafe impl RefEncode for EKAlarmType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekreminderpriority?language=objc)
+/// A priority for a reminder.
+///
+/// RFC 5545 allows priority to be specified with an integer in the range of 0-9,
+/// with 0 representing an undefined priority, 1 the highest priority, and 9 the lowest priority.
+/// Clients are encouraged to use these values when setting a reminders's priority,
+/// but is is possible to specify any integer value from 0 to 9.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekreminderpriority?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctensorparameter?language=objc)
+    /// A tensor parameter object.  This is used to describe input tensors that are updated by the optimizer during training.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctensorparameter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -20,14 +22,17 @@ unsafe impl NSObjectProtocol for MLCTensorParameter {}
 extern_methods!(
     unsafe impl MLCTensorParameter {
         #[cfg(feature = "MLCTensor")]
+        /// The underlying tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other tensor)]
         pub unsafe fn tensor(&self) -> Retained<MLCTensor>;
 
+        /// Specifies whether this tensor parameter is updatable
         #[deprecated]
         #[method(isUpdatable)]
         pub unsafe fn isUpdatable(&self) -> bool;
 
+        /// Setter for [`isUpdatable`][Self::isUpdatable].
         #[deprecated]
         #[method(setIsUpdatable:)]
         pub unsafe fn setIsUpdatable(&self, is_updatable: bool);
@@ -41,11 +46,23 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensor")]
+        /// Create a tensor parameter
+        ///
+        /// Parameter `tensor`: The unedrlying tensor
+        ///
+        /// Returns: A new tensor parameter object
         #[deprecated]
         #[method_id(@__retain_semantics Other parameterWithTensor:)]
         pub unsafe fn parameterWithTensor(tensor: &MLCTensor) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTensorData"))]
+        /// Create a tensor parameter
+        ///
+        /// Parameter `tensor`: The unedrlying tensor
+        ///
+        /// Parameter `optimizerData`: The optimizer data needed for this input tensor
+        ///
+        /// Returns: A new tensor parameter object
         #[deprecated]
         #[method_id(@__retain_semantics Other parameterWithTensor:optimizerData:)]
         pub unsafe fn parameterWithTensor_optimizerData(

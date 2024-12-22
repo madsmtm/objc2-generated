@@ -12,25 +12,31 @@ extern_protocol!(
     pub unsafe trait ASAuthorizationPublicKeyCredentialAssertionRequest:
         NSCopying + NSObjectProtocol + NSSecureCoding
     {
+        /// The challenge to use when signing the request.
         #[method_id(@__retain_semantics Other challenge)]
         unsafe fn challenge(&self) -> Retained<NSData>;
 
+        /// Setter for [`challenge`][Self::challenge].
         #[method(setChallenge:)]
         unsafe fn setChallenge(&self, challenge: &NSData);
 
+        /// The Relying Party identifier used to scope this request.
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
         unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
+        /// Setter for [`relyingPartyIdentifier`][Self::relyingPartyIdentifier].
         #[method(setRelyingPartyIdentifier:)]
         unsafe fn setRelyingPartyIdentifier(&self, relying_party_identifier: &NSString);
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialDescriptor")]
+        /// A list of credentials to allow for this request. If this list is nonempty, only credentials matching the provided descriptors can be used to sign in.
         #[method_id(@__retain_semantics Other allowedCredentials)]
         unsafe fn allowedCredentials(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn ASAuthorizationPublicKeyCredentialDescriptor>>>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialDescriptor")]
+        /// Setter for [`allowedCredentials`][Self::allowedCredentials].
         #[method(setAllowedCredentials:)]
         unsafe fn setAllowedCredentials(
             &self,
@@ -40,12 +46,14 @@ extern_protocol!(
         );
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
+        /// A preference for whether the authenticator should attempt to verify that it is being used by its owner, such as through a PIN or biometrics.
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         unsafe fn userVerificationPreference(
             &self,
         ) -> Retained<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
+        /// Setter for [`userVerificationPreference`][Self::userVerificationPreference].
         #[method(setUserVerificationPreference:)]
         unsafe fn setUserVerificationPreference(
             &self,

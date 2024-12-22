@@ -37,6 +37,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other projectExtensionData)]
         pub unsafe fn projectExtensionData(&self) -> Retained<NSData>;
 
+        /// Property to determine if a project preview was previously set.
+        /// Use -[PHProjectChangeRequest setProjectPreviewImage:] to set a project preview.
         #[method(hasProjectPreview)]
         pub unsafe fn hasProjectPreview(&self) -> bool;
     }

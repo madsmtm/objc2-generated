@@ -67,12 +67,14 @@ extern_methods!(
         #[method(attributeType)]
         pub unsafe fn attributeType(&self) -> NSAttributeType;
 
+        /// Setter for [`attributeType`][Self::attributeType].
         #[method(setAttributeType:)]
         pub unsafe fn setAttributeType(&self, attribute_type: NSAttributeType);
 
         #[method_id(@__retain_semantics Other attributeValueClassName)]
         pub unsafe fn attributeValueClassName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`attributeValueClassName`][Self::attributeValueClassName].
         #[method(setAttributeValueClassName:)]
         pub unsafe fn setAttributeValueClassName(
             &self,
@@ -82,6 +84,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultValue)]
         pub unsafe fn defaultValue(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`defaultValue`][Self::defaultValue].
         #[method(setDefaultValue:)]
         pub unsafe fn setDefaultValue(&self, default_value: Option<&AnyObject>);
 
@@ -91,12 +94,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other valueTransformerName)]
         pub unsafe fn valueTransformerName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`valueTransformerName`][Self::valueTransformerName].
         #[method(setValueTransformerName:)]
         pub unsafe fn setValueTransformerName(&self, value_transformer_name: Option<&NSString>);
 
         #[method(allowsExternalBinaryDataStorage)]
         pub unsafe fn allowsExternalBinaryDataStorage(&self) -> bool;
 
+        /// Setter for [`allowsExternalBinaryDataStorage`][Self::allowsExternalBinaryDataStorage].
         #[method(setAllowsExternalBinaryDataStorage:)]
         pub unsafe fn setAllowsExternalBinaryDataStorage(
             &self,
@@ -106,6 +111,7 @@ extern_methods!(
         #[method(preservesValueInHistoryOnDeletion)]
         pub unsafe fn preservesValueInHistoryOnDeletion(&self) -> bool;
 
+        /// Setter for [`preservesValueInHistoryOnDeletion`][Self::preservesValueInHistoryOnDeletion].
         #[method(setPreservesValueInHistoryOnDeletion:)]
         pub unsafe fn setPreservesValueInHistoryOnDeletion(
             &self,
@@ -115,6 +121,7 @@ extern_methods!(
         #[method(allowsCloudEncryption)]
         pub unsafe fn allowsCloudEncryption(&self) -> bool;
 
+        /// Setter for [`allowsCloudEncryption`][Self::allowsCloudEncryption].
         #[method(setAllowsCloudEncryption:)]
         pub unsafe fn setAllowsCloudEncryption(&self, allows_cloud_encryption: bool);
     }

@@ -80,12 +80,14 @@ extern_methods!(
         pub unsafe fn titleWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`titleWidth`][Self::titleWidth].
         #[method(setTitleWidth:)]
         pub unsafe fn setTitleWidth(&self, title_width: CGFloat);
 
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
@@ -94,6 +96,7 @@ extern_methods!(
         pub unsafe fn titleFont(&self) -> Retained<NSFont>;
 
         #[cfg(feature = "NSFont")]
+        /// Setter for [`titleFont`][Self::titleFont].
         #[method(setTitleFont:)]
         pub unsafe fn setTitleFont(&self, title_font: &NSFont);
 
@@ -103,12 +106,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other placeholderString)]
         pub unsafe fn placeholderString(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`placeholderString`][Self::placeholderString].
         #[method(setPlaceholderString:)]
         pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other placeholderAttributedString)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Retained<NSAttributedString>>;
 
+        /// Setter for [`placeholderAttributedString`][Self::placeholderAttributedString].
         #[method(setPlaceholderAttributedString:)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
@@ -120,6 +125,7 @@ extern_methods!(
         pub unsafe fn titleAlignment(&self) -> NSTextAlignment;
 
         #[cfg(feature = "NSText")]
+        /// Setter for [`titleAlignment`][Self::titleAlignment].
         #[method(setTitleAlignment:)]
         pub unsafe fn setTitleAlignment(&self, title_alignment: NSTextAlignment);
 
@@ -128,6 +134,7 @@ extern_methods!(
         pub unsafe fn titleBaseWritingDirection(&self) -> NSWritingDirection;
 
         #[cfg(feature = "NSText")]
+        /// Setter for [`titleBaseWritingDirection`][Self::titleBaseWritingDirection].
         #[method(setTitleBaseWritingDirection:)]
         pub unsafe fn setTitleBaseWritingDirection(
             &self,
@@ -139,6 +146,7 @@ extern_methods!(
         pub unsafe fn preferredTextFieldWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredTextFieldWidth`][Self::preferredTextFieldWidth].
         #[method(setPreferredTextFieldWidth:)]
         pub unsafe fn setPreferredTextFieldWidth(&self, preferred_text_field_width: CGFloat);
     }
@@ -179,6 +187,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Retained<NSAttributedString>;
 
+        /// Setter for [`attributedTitle`][Self::attributedTitle].
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
     }

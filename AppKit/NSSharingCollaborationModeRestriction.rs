@@ -6,7 +6,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingcollaborationmode?language=objc)
+/// Represents the types of sharing (collaborating on an item vs. sending a copy of the item)
+/// The share picker supports up to two modes, each of which corresponds to one of these types
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingcollaborationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,7 +30,12 @@ unsafe impl RefEncode for NSSharingCollaborationMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingcollaborationmoderestriction?language=objc)
+    /// Specifies whether a specific type of sharing should be disabled in the share picker, and if so, whether a reason should be provided for the disablement
+    /// If a reason is provided, the corresponding mode will show up as an option, but an alert explaining why it is disabled will show if it is chosen, and the mode will switch back to the supported one
+    /// Optionally, an extra alert button can be provided for a "recovery suggestion". This can give a user a way to fix whatever is causing this type of sharing to be disabled
+    /// If no reason is provided, the corresponding mode will not show up as an option
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingcollaborationmoderestriction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSharingCollaborationModeRestriction;
@@ -47,30 +55,43 @@ unsafe impl NSSecureCoding for NSSharingCollaborationModeRestriction {}
 
 extern_methods!(
     unsafe impl NSSharingCollaborationModeRestriction {
+        /// The type of sharing which should be disabled
         #[method(disabledMode)]
         pub unsafe fn disabledMode(&self) -> NSSharingCollaborationMode;
 
+        /// The title of the alert if a reason for disabling is provided
         #[method_id(@__retain_semantics Other alertTitle)]
         pub unsafe fn alertTitle(&self) -> Option<Retained<NSString>>;
 
+        /// The message of the alert if a reason for disabling is provided
         #[method_id(@__retain_semantics Other alertMessage)]
         pub unsafe fn alertMessage(&self) -> Option<Retained<NSString>>;
 
+        /// The label on the alert button which will simply confirm that the alert was viewed and dismiss it
+        /// Defaults to "OK"
         #[method_id(@__retain_semantics Other alertDismissButtonTitle)]
         pub unsafe fn alertDismissButtonTitle(&self) -> Option<Retained<NSString>>;
 
+        /// The label on the recovery suggestion button if it is provided
         #[method_id(@__retain_semantics Other alertRecoverySuggestionButtonTitle)]
         pub unsafe fn alertRecoverySuggestionButtonTitle(&self) -> Option<Retained<NSString>>;
 
+        /// The URL that is opened when the user selects the recovery suggestion, if any
         #[method_id(@__retain_semantics Other alertRecoverySuggestionButtonLaunchURL)]
         pub unsafe fn alertRecoverySuggestionButtonLaunchURL(&self) -> Option<Retained<NSURL>>;
 
+        /// - Parameters:
+        /// - disabledMode: The disabled type of sharing
         #[method_id(@__retain_semantics Init initWithDisabledMode:)]
         pub unsafe fn initWithDisabledMode(
             this: Allocated<Self>,
             disabled_mode: NSSharingCollaborationMode,
         ) -> Retained<Self>;
 
+        /// - Parameters:
+        /// - disabledMode: The disabled type of sharing
+        /// - alertTitle: The alert title
+        /// - alertMessage: The alert message
         #[method_id(@__retain_semantics Init initWithDisabledMode:alertTitle:alertMessage:)]
         pub unsafe fn initWithDisabledMode_alertTitle_alertMessage(
             this: Allocated<Self>,
@@ -79,6 +100,11 @@ extern_methods!(
             alert_message: &NSString,
         ) -> Retained<Self>;
 
+        /// - Parameters:
+        /// - disabledMode: The disabled type of sharing
+        /// - alertTitle: The alert title
+        /// - alertMessage: The alert message
+        /// - alertDismissButtonTitle: The label on the default alert button
         #[method_id(@__retain_semantics Init initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:)]
         pub unsafe fn initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle(
             this: Allocated<Self>,
@@ -88,6 +114,13 @@ extern_methods!(
             alert_dismiss_button_title: &NSString,
         ) -> Retained<Self>;
 
+        /// - Parameters:
+        /// - disabledMode: The disabled type of sharing
+        /// - alertTitle: The alert title
+        /// - alertMessage: The alert message
+        /// - alertDismissButtonTitle: The label on the default alert button
+        /// - alertRecoverySuggestionButtonTitle: The label on the optional recovery suggestion button on the alert
+        /// - alertRecoverySuggestionButtonLaunchURL: The URL that is opened when the optional recovery suggestion button is selected
         #[method_id(@__retain_semantics Init initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:alertRecoverySuggestionButtonTitle:alertRecoverySuggestionButtonLaunchURL:)]
         pub unsafe fn initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL(
             this: Allocated<Self>,

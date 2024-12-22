@@ -19,7 +19,11 @@ pub type MPSCopyAllocator = *mut block2::Block<
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// A MPSUnaryImageKernel consumes one MTLTexture and produces one MTLTexture.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -47,33 +51,82 @@ extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSUnaryImageKernel {
         #[cfg(feature = "MPSCoreTypes")]
+        /// The position of the destination clip rectangle origin relative to the source buffer.
+        ///
+        /// The offset is defined to be the position of clipRect.origin in source coordinates.
+        /// Default: {0,0,0}, indicating that the top left corners of the clipRect and source image align.
+        ///
+        /// See Also:
+        /// MetalPerformanceShaders.hsubsubsection_mpsoffset
         #[method(offset)]
         pub unsafe fn offset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`offset`][Self::offset].
         #[method(setOffset:)]
         pub unsafe fn setOffset(&self, offset: MPSOffset);
 
+        /// An optional clip rectangle to use when writing data. Only the pixels in the rectangle will be overwritten.
+        ///
+        /// A MTLRegion that indicates which part of the destination to overwrite. If the clipRect does not lie
+        /// completely within the destination image, the intersection between clip rectangle and destination bounds is
+        /// used.   Default: MPSRectNoClip (MPSKernel::MPSRectNoClip) indicating the entire image.
+        ///
+        /// See Also:
+        /// MetalPerformanceShaders.hsubsubsection_clipRect
         #[method(clipRect)]
         pub unsafe fn clipRect(&self) -> MTLRegion;
 
+        /// Setter for [`clipRect`][Self::clipRect].
         #[method(setClipRect:)]
         pub unsafe fn setClipRect(&self, clip_rect: MTLRegion);
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The MPSImageEdgeMode to use when texture reads stray off the edge of an image
+        ///
+        /// Most MPSKernel objects can read off the edge of the source image. This can happen because of a
+        /// negative offset property, because the offset + clipRect.size is larger than the
+        /// source image or because the filter looks at neighboring pixels, such as a Convolution
+        /// or morphology filter.   Default: usually MPSImageEdgeModeZero. (Some MPSKernel types default
+        /// to MPSImageEdgeModeClamp, because MPSImageEdgeModeZero is either not supported or
+        /// would produce unexpected results.)
+        ///
+        /// See Also:
+        /// MetalPerformanceShaders.hsubsubsection_edgemode
         #[method(edgeMode)]
         pub unsafe fn edgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`edgeMode`][Self::edgeMode].
         #[method(setEdgeMode:)]
         pub unsafe fn setEdgeMode(&self, edge_mode: MPSImageEdgeMode);
 
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: a pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -82,6 +135,98 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "block2")]
+        /// This method attempts to apply the MPSKernel in place on a texture.
+        ///
+        /// In-place operation means that the same texture is used both to hold the input
+        /// image and the results. Operating in-place can be an excellent way to reduce
+        /// resource utilization, and save time and energy. While simple Metal kernels can
+        /// not operate in place because textures can not be readable and writable at the
+        /// same time, some MPSKernels can operate in place because they use
+        /// multi-pass algorithms. Whether a MPSKernel can operate in-place can
+        /// depend on current hardware, operating system revision and the parameters
+        /// and properties passed to it. You should never assume that a MPSKernel will
+        /// continue to work in place, even if you have observed it doing so before.
+        ///
+        /// If the operation succeeds in-place, YES is returned.  If the in-place operation
+        /// fails and no copyAllocator is provided, then NO is returned. Without a fallback
+        /// MPSCopyAllocator, in neither case is the pointer held at *texture modified.
+        ///
+        /// Failure during in-place operation is very common and will occur inconsistently across
+        /// different hardware platforms and OS releases. Without a fallback MPSCopyAllocator,
+        /// operating in place may require significant error handling code to accompany each
+        /// call to -encodeToCommandBuffer:..., complicating your code.
+        ///
+        /// You may find it simplifies your code to provide a fallback MPSCopyAllocator so
+        /// that the operation can proceed reliably even when it can not proceed in-place.
+        /// When an in-place filter fails, the MPSCopyAllocator (if any) will be
+        /// invoked to create a new texture in which to write the results, allowing the
+        /// filter to proceed reliably out-of-place. The original texture will be released,
+        /// replaced with a pointer to the new texture and YES will be returned. If the
+        /// allocator returns an invalid texture, it is released, *texture remains unmodified
+        /// and NO is returned.  Please see the MPSCopyAllocator definition for a sample allocator
+        /// implementation.
+        ///
+        /// Sample usage with a copy allocator:
+        ///
+        /// ```text
+        ///   id <MTLTexture> inPlaceTex = ...;
+        ///   MPSImageSobel *sobelFiler = [[MPSImageSobel alloc] initWithDevice: myDevice];
+        ///
+        ///   // With a fallback MPSCopyAllocator, failure should only occur in exceptional
+        ///   // conditions such as MTLTexture allocation failure or programmer error.
+        ///   // That is, the operation is roughly as robust as the MPSCopyAllocator.
+        ///   // Depending on the quality of that, we might decide we are justified here
+        ///   // in not checking the return value.
+        ///   [sobelFilter encodeToCommandBuffer: myCommandBuffer
+        ///                       inPlaceTexture: &inPlaceTex  // may be replaced!
+        ///                fallbackCopyAllocator: myAllocator];
+        ///
+        ///   // If myAllocator was not called:
+        ///   //
+        ///   //      inPlaceTex holds the original texture with the result pixels in it
+        ///   //
+        ///   // else,
+        ///   //
+        ///   //      1) myAllocator creates a new texture.
+        ///   //      2) The new texture pixel data is overwritten by MPSUnaryImageKernel.
+        ///   //      3) The old texture passed in *inPlaceTex is released once.
+        ///   //      4) *inPlaceTex = the new texture
+        ///   //
+        ///   // In either case, the caller should now hold one reference to the texture now held in
+        ///   // inPlaceTex, whether it was replaced or not. Most of the time that means that nothing
+        ///   // further needs to be done here, and you can proceed to the next image encoding operation.
+        ///   // However, if other agents held references to the original texture, they still hold them
+        ///   // and may need to be alerted that the texture has been replaced so that they can retain
+        ///   // the new texture and release the old one.
+        ///
+        ///   [sobelFilter release];  // if not ARC, clean up the MPSImageSobel object
+        /// ```
+        ///
+        /// Note: Image filters that look at neighboring pixel values may actually consume more
+        /// memory when operating in place than out of place. Many such operations are
+        /// tiled internally to save intermediate texture storage, but can not tile when
+        /// operating in place. The memory savings for tiling is however very short term,
+        /// typically the lifetime of the MTLCommandBuffer.
+        ///
+        ///
+        /// Attempt to apply a MPSKernel to a texture in place.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `texture`: A pointer to a valid MTLTexture containing source image.
+        /// On success, the image contents and possibly texture itself
+        /// will be replaced with the result image.
+        ///
+        /// Parameter `copyAllocator`: An optional block to allocate a new texture to hold the
+        /// results, in case in-place operation is not possible. The
+        /// allocator may use a different MTLPixelFormat or size than
+        /// the original texture. You may enqueue operations on the
+        /// provided MTLCommandBuffer using the provided
+        /// MTLComputeCommandEncoder to initialize the texture contents.
+        ///
+        /// Returns: On success, YES is returned. The texture may have been replaced with a new
+        /// texture if a copyAllocator was provided.  On failure, NO is returned. The
+        /// texture is unmodified.
         #[method(encodeToCommandBuffer:inPlaceTexture:fallbackCopyAllocator:)]
         pub unsafe fn encodeToCommandBuffer_inPlaceTexture_fallbackCopyAllocator(
             &self,
@@ -90,6 +235,13 @@ extern_methods!(
             copy_allocator: MPSCopyAllocator,
         ) -> bool;
 
+        /// Encode a MPSKernel into a command Buffer.  The operation shall proceed out-of-place.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceTexture`: A valid MTLTexture containing the source image.
+        ///
+        /// Parameter `destinationTexture`: A valid MTLTexture to be overwritten by result image. DestinationTexture may not alias sourceTexture.
         #[method(encodeToCommandBuffer:sourceTexture:destinationTexture:)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_destinationTexture(
             &self,
@@ -99,6 +251,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSImage")]
+        /// Encode a MPSKernel into a command Buffer.  The operation shall proceed out-of-place.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceImage`: A valid MPSImage containing the source image.
+        ///
+        /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. DestinationImage may not alias sourceImage.
         #[method(encodeToCommandBuffer:sourceImage:destinationImage:)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_destinationImage(
             &self,
@@ -108,6 +267,33 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// sourceRegionForDestinationSize: is used to determine which region of the
+        /// sourceTexture will be read by encodeToCommandBuffer:sourceTexture:destinationTexture
+        /// (and similar) when the filter runs. This information may be needed if the
+        /// source image is broken into multiple textures.  The size of the full
+        /// (untiled) destination image is provided. The region of the full (untiled)
+        /// source image that will be read is returned. You can then piece together an
+        /// appropriate texture containing that information for use in your tiled context.
+        ///
+        /// The function will consult the MPSUnaryImageKernel offset and clipRect parameters,
+        /// to determine the full region read by the function. Other parameters such as
+        /// sourceClipRect, kernelHeight and kernelWidth will be consulted as necessary.
+        /// All properties should be set to intended values prior to calling
+        /// sourceRegionForDestinationSize:.
+        ///
+        /// Caution: This function operates using global image coordinates, but
+        /// -encodeToCommandBuffer:... uses coordinates local to the source and
+        /// destination image textures. Consequently, the offset and clipRect
+        /// attached to this object will need to be updated using a global to
+        /// local coordinate transform before -encodeToCommandBuffer:... is
+        /// called.
+        ///
+        ///
+        /// Determine the region of the source texture that will be read for a encode operation
+        ///
+        /// Parameter `destinationSize`: The size of the full virtual destination image.
+        ///
+        /// Returns: The area in the virtual source image that will be read.
         #[method(sourceRegionForDestinationSize:)]
         pub unsafe fn sourceRegionForDestinationSize(&self, destination_size: MTLSize)
             -> MPSRegion;
@@ -118,6 +304,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSUnaryImageKernel {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -139,7 +333,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsbinaryimagekernel?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// A MPSBinaryImageKernel consumes two MTLTextures and produces one MTLTexture.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsbinaryimagekernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -167,49 +365,118 @@ extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSBinaryImageKernel {
         #[cfg(feature = "MPSCoreTypes")]
+        /// The position of the destination clip rectangle origin relative to the primary source buffer.
+        ///
+        /// The offset is defined to be the position of clipRect.origin in source coordinates.
+        /// Default: {0,0,0}, indicating that the top left corners of the clipRect and primary source image align.
+        ///
+        /// See Also:
+        /// MetalPerformanceShaders.hsubsubsection_mpsoffset
         #[method(primaryOffset)]
         pub unsafe fn primaryOffset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`primaryOffset`][Self::primaryOffset].
         #[method(setPrimaryOffset:)]
         pub unsafe fn setPrimaryOffset(&self, primary_offset: MPSOffset);
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The position of the destination clip rectangle origin relative to the secondary source buffer.
+        ///
+        /// The offset is defined to be the position of clipRect.origin in source coordinates.
+        /// Default: {0,0,0}, indicating that the top left corners of the clipRect and secondary source image align.
+        ///
+        /// See Also:
+        /// MetalPerformanceShaders.hsubsubsection_mpsoffset
         #[method(secondaryOffset)]
         pub unsafe fn secondaryOffset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`secondaryOffset`][Self::secondaryOffset].
         #[method(setSecondaryOffset:)]
         pub unsafe fn setSecondaryOffset(&self, secondary_offset: MPSOffset);
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The MPSImageEdgeMode to use when texture reads stray off the edge of the primary source image
+        ///
+        /// Most MPSKernel objects can read off the edge of a source image. This can happen because of a
+        /// negative offset property, because the offset + clipRect.size is larger than the
+        /// source image or because the filter looks at neighboring pixels, such as a Convolution
+        /// or morphology filter.   Default: usually MPSImageEdgeModeZero. (Some MPSKernel types default
+        /// to MPSImageEdgeModeClamp, because MPSImageEdgeModeZero is either not supported or
+        /// would produce unexpected results.)
+        ///
+        /// See Also:
+        /// MetalPerformanceShaders.hsubsubsection_edgemode
         #[method(primaryEdgeMode)]
         pub unsafe fn primaryEdgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`primaryEdgeMode`][Self::primaryEdgeMode].
         #[method(setPrimaryEdgeMode:)]
         pub unsafe fn setPrimaryEdgeMode(&self, primary_edge_mode: MPSImageEdgeMode);
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The MPSImageEdgeMode to use when texture reads stray off the edge of the secondary source image
+        ///
+        /// Most MPSKernel objects can read off the edge of a source image. This can happen because of a
+        /// negative offset property, because the offset + clipRect.size is larger than the
+        /// source image or because the filter looks at neighboring pixels, such as a Convolution
+        /// or morphology filter.   Default: usually MPSImageEdgeModeZero. (Some MPSKernel types default
+        /// to MPSImageEdgeModeClamp, because MPSImageEdgeModeZero is either not supported or
+        /// would produce unexpected results.)
+        ///
+        /// See Also:
+        /// MetalPerformanceShaders.hsubsubsection_edgemode
         #[method(secondaryEdgeMode)]
         pub unsafe fn secondaryEdgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`secondaryEdgeMode`][Self::secondaryEdgeMode].
         #[method(setSecondaryEdgeMode:)]
         pub unsafe fn setSecondaryEdgeMode(&self, secondary_edge_mode: MPSImageEdgeMode);
 
+        /// An optional clip rectangle to use when writing data. Only the pixels in the rectangle will be overwritten.
+        ///
+        /// A MTLRegion that indicates which part of the destination to overwrite. If the clipRect does not lie
+        /// completely within the destination image, the intersection between clip rectangle and destination bounds is
+        /// used.   Default: MPSRectNoClip (MPSKernel::MPSRectNoClip) indicating the entire image.
+        ///
+        /// See Also:
+        /// MetalPerformanceShaders.hsubsubsection_clipRect
         #[method(clipRect)]
         pub unsafe fn clipRect(&self) -> MTLRegion;
 
+        /// Setter for [`clipRect`][Self::clipRect].
         #[method(setClipRect:)]
         pub unsafe fn setClipRect(&self, clip_rect: MTLRegion);
 
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: a pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -218,6 +485,59 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "block2")]
+        /// This method attempts to apply the MPSKernel in place on a texture.
+        ///
+        /// In-place operation means that the same texture is used both to hold the input
+        /// image and the results. Operating in-place can be an excellent way to reduce
+        /// resource utilization, and save time and energy. While simple Metal kernels can
+        /// not operate in place because textures can not be readable and writable at the
+        /// same time, some MPSKernels can operate in place because they use
+        /// multi-pass algorithms. Whether a MPSKernel can operate in-place can
+        /// depend on current hardware, operating system revision and the parameters
+        /// and properties passed to it. You should never assume that a MPSKernel will
+        /// continue to work in place, even if you have observed it doing so before.
+        ///
+        /// If the operation succeeds in-place, YES is returned.  If the in-place operation
+        /// fails and no copyAllocator is provided, then NO is returned. In neither
+        /// case is the pointer held at *texture modified.
+        ///
+        /// Failure during in-place operation is common. You may find it simplifies your
+        /// code to provide a copyAllocator. When an in-place filter fails, your
+        /// copyAllocator will be invoked to create a new texture in which to write
+        /// the results, allowing the filter to proceed reliably out-of-place. The
+        /// original texture will be released, replaced with a pointer to the new texture
+        /// and YES will be returned. If the allocator returns an invalid texture, it is
+        /// released, *texture remains unmodified and NO is returned.  Please see the
+        /// MPSCopyAllocator definition for a sample allocator implementation.
+        ///
+        /// Note: Image filters that look at neighboring pixel values may actually consume more
+        /// memory when operating in place than out of place. Many such operations are
+        /// tiled internally to save intermediate texture storage, but can not tile when
+        /// operating in place. The memory savings for tiling is however very short term,
+        /// typically the lifetime of the MTLCommandBuffer.
+        ///
+        ///
+        /// Attempt to apply a MPSKernel to a texture in place.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `primaryTexture`: A pointer to a valid MTLTexture containing the
+        /// primary source image. It will not be overwritten.
+        ///
+        /// Parameter `inPlaceSecondaryTexture`: A pointer to a valid MTLTexture containing secondary image.
+        /// On success, the image contents and possibly texture itself
+        /// will be replaced with the result image.
+        ///
+        /// Parameter `copyAllocator`: An optional block to allocate a new texture to hold the
+        /// results, in case in-place operation is not possible. The
+        /// allocator may use a different MTLPixelFormat or size than
+        /// the original texture. You may enqueue operations on the
+        /// provided MTLCommandBuffer using the provided
+        /// MTLComputeCommandEncoder to initialize the texture contents.
+        ///
+        /// Returns: On success, YES is returned. The texture may have been replaced with a new
+        /// texture if a copyAllocator was provided.  On failure, NO is returned. The
+        /// texture is unmodified.
         #[method(encodeToCommandBuffer:primaryTexture:inPlaceSecondaryTexture:fallbackCopyAllocator:)]
         pub unsafe fn encodeToCommandBuffer_primaryTexture_inPlaceSecondaryTexture_fallbackCopyAllocator(
             &self,
@@ -228,6 +548,61 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "block2")]
+        /// Attempt to apply a MPSKernel to a texture in place.
+        ///
+        /// This method attempts to apply the MPSKernel in place on a texture.
+        ///
+        /// ```text
+        ///           In-place operation means that the same texture is used both to hold the input
+        ///           image and the results. Operating in-place can be an excellent way to reduce
+        ///           resource utilization, and save time and energy. While simple Metal kernels can
+        ///           not operate in place because textures can not be readable and writable at the
+        ///           same time, some MPSKernels can operate in place because they use
+        ///           multi-pass algorithms. Whether a MPSKernel can operate in-place can
+        ///           depend on current hardware, operating system revision and the parameters
+        ///           and properties passed to it. You should never assume that a MPSKernel will
+        ///           continue to work in place, even if you have observed it doing so before.
+        /// ```
+        ///
+        /// If the operation succeeds in-place, YES is returned.  If the in-place operation
+        /// fails and no copyAllocator is provided, then NO is returned. In neither
+        /// case is the pointer held at *texture modified.
+        ///
+        /// Failure during in-place operation is common. You may find it simplifies your
+        /// code to provide a copyAllocator. When an in-place filter fails, your
+        /// copyAllocator will be invoked to create a new texture in which to write
+        /// the results, allowing the filter to proceed reliably out-of-place. The
+        /// original texture will be released, replaced with a pointer to the new texture
+        /// and YES will be returned. If the allocator returns an invalid texture, it is
+        /// released, *texture remains unmodified and NO is returned.  Please see the
+        /// MPSCopyAllocator definition for a sample allocator implementation.
+        ///
+        /// Note: Image filters that look at neighboring pixel values may actually consume more
+        /// memory when operating in place than out of place. Many such operations are
+        /// tiled internally to save intermediate texture storage, but can not tile when
+        /// operating in place. The memory savings for tiling is however very short term,
+        /// typically the lifetime of the MTLCommandBuffer.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `inPlacePrimaryTexture`: A pointer to a valid MTLTexture containing secondary image.
+        /// On success, the image contents and possibly texture itself
+        /// will be replaced with the result image.
+        ///
+        /// Parameter `secondaryTexture`: A pointer to a valid MTLTexture containing the
+        /// primary source image. It will not be overwritten.
+        ///
+        /// Parameter `copyAllocator`: An optional block to allocate a new texture to hold the
+        /// results, in case in-place operation is not possible. The
+        /// allocator may use a different MTLPixelFormat or size than
+        /// the original texture. You may enqueue operations on the
+        /// provided MTLCommandBuffer using the provided
+        /// MTLComputeCommandEncoder to initialize the texture contents.
+        ///
+        /// Returns: On success, YES is returned. The texture may have been replaced with a new
+        /// texture if a copyAllocator was provided.  On failure, NO is returned. The
+        /// texture is unmodified.
         #[method(encodeToCommandBuffer:inPlacePrimaryTexture:secondaryTexture:fallbackCopyAllocator:)]
         pub unsafe fn encodeToCommandBuffer_inPlacePrimaryTexture_secondaryTexture_fallbackCopyAllocator(
             &self,
@@ -237,6 +612,15 @@ extern_methods!(
             copy_allocator: MPSCopyAllocator,
         ) -> bool;
 
+        /// Encode a MPSKernel into a command Buffer.  The operation shall proceed out-of-place.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `primaryTexture`: A valid MTLTexture containing the primary source image.
+        ///
+        /// Parameter `secondaryTexture`: A valid MTLTexture containing the secondary source image.
+        ///
+        /// Parameter `destinationTexture`: A valid MTLTexture to be overwritten by result image. destinationTexture may not alias the source textures.
         #[method(encodeToCommandBuffer:primaryTexture:secondaryTexture:destinationTexture:)]
         pub unsafe fn encodeToCommandBuffer_primaryTexture_secondaryTexture_destinationTexture(
             &self,
@@ -247,6 +631,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSImage")]
+        /// Encode a MPSKernel into a command Buffer.  The operation shall proceed out-of-place.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `primaryImage`: A valid MPSImage containing the primary source image.
+        ///
+        /// Parameter `secondaryImage`: A valid MPSImage containing the secondary source image.
+        ///
+        /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. destinationImage may not alias the source images.
         #[method(encodeToCommandBuffer:primaryImage:secondaryImage:destinationImage:)]
         pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage_destinationImage(
             &self,
@@ -257,6 +650,32 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// primarySourceRegionForDestinationSize: is used to determine which region of the
+        /// primaryTexture will be read by encodeToCommandBuffer:primaryTexture:secondaryTexture:destinationTexture
+        /// (and in-place variants) when the filter runs. This information may be needed if the
+        /// primary source image is broken into multiple textures.  The size of the full
+        /// (untiled) destination image is provided. The region of the full (untiled)
+        /// source image that will be read is returned. You can then piece together an
+        /// appropriate texture containing that information for use in your tiled context.
+        ///
+        /// The function will consult the MPSBinaryImageKernel primaryOffset and clipRect parameters,
+        /// to determine the full region read by the function. Other parameters such as
+        /// kernelHeight and kernelWidth will be consulted as necessary. All properties
+        /// should be set to intended values prior to calling primarySourceRegionForDestinationSize:.
+        ///
+        /// Caution: This function operates using global image coordinates, but
+        /// -encodeToCommandBuffer:... uses coordinates local to the source and
+        /// destination image textures. Consequently, the primaryOffset and clipRect
+        /// attached to this object will need to be updated using a global to
+        /// local coordinate transform before -encodeToCommandBuffer:... is
+        /// called.
+        ///
+        ///
+        /// Determine the region of the source texture that will be read for a encode operation
+        ///
+        /// Parameter `destinationSize`: The size of the full virtual destination image.
+        ///
+        /// Returns: The area in the virtual source image that will be read.
         #[method(primarySourceRegionForDestinationSize:)]
         pub unsafe fn primarySourceRegionForDestinationSize(
             &self,
@@ -264,6 +683,32 @@ extern_methods!(
         ) -> MPSRegion;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// secondarySourceRegionForDestinationSize: is used to determine which region of the
+        /// sourceTexture will be read by encodeToCommandBuffer:primaryTexture:secondaryTexture:destinationTexture
+        /// (and in-place variants) when the filter runs. This information may be needed if the
+        /// secondary source image is broken into multiple textures.  The size of the full
+        /// (untiled) destination image is provided. The region of the full (untiled)
+        /// secondary source image that will be read is returned. You can then piece together an
+        /// appropriate texture containing that information for use in your tiled context.
+        ///
+        /// The function will consult the MPSBinaryImageKernel secondaryOffset and clipRect
+        /// parameters, to determine the full region read by the function. Other parameters
+        /// such as kernelHeight and kernelWidth will be consulted as necessary.  All properties
+        /// should be set to intended values prior to calling secondarySourceRegionForDestinationSize:.
+        ///
+        /// Caution: This function operates using global image coordinates, but
+        /// -encodeToCommandBuffer:... uses coordinates local to the source and
+        /// destination image textures. Consequently, the secondaryOffset and clipRect
+        /// attached to this object will need to be updated using a global to
+        /// local coordinate transform before -encodeToCommandBuffer:... is
+        /// called.
+        ///
+        ///
+        /// Determine the region of the source texture that will be read for a encode operation
+        ///
+        /// Parameter `destinationSize`: The size of the full virtual destination image.
+        ///
+        /// Returns: The area in the virtual source image that will be read.
         #[method(secondarySourceRegionForDestinationSize:)]
         pub unsafe fn secondarySourceRegionForDestinationSize(
             &self,
@@ -276,6 +721,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSBinaryImageKernel {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

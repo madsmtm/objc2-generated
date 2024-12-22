@@ -7,7 +7,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistener?language=objc)
+    /// The VZVirtioSocketListener object represents a listener for the Virtio socket device.
+    ///
+    /// The listener encompasses a VZVirtioSocketListenerDelegate object.
+    /// VZVirtioSocketListener is used with VZVirtioSocketDevice to listen to a particular port.
+    /// The delegate is used when a guest connects to a port associated with the listener.
+    ///
+    /// See: VZVirtioSocketDevice
+    ///
+    /// See: VZVirtioSocketListenerDelegate
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistener?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioSocketListener;
@@ -17,12 +27,14 @@ unsafe impl NSObjectProtocol for VZVirtioSocketListener {}
 
 extern_methods!(
     unsafe impl VZVirtioSocketListener {
+        /// Pointer to a delegate object for the listener.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn VZVirtioSocketListenerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -43,13 +55,35 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistenerdelegate?language=objc)
+    /// Delegate object for VZVirtioSocketListener.
+    ///
+    /// A class conforming to VZVirtioSocketListenerDelegate protocol can provide a method to establish a new connection to the socket.
+    ///
+    /// See: VZVirtioSocketDevice
+    ///
+    /// See: VZVirtioSocketListener
+    ///
+    /// See: VZVirtioSocketConnection
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistenerdelegate?language=objc)
     pub unsafe trait VZVirtioSocketListenerDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "VZSocketDevice",
             feature = "VZVirtioSocketConnection",
             feature = "VZVirtioSocketDevice"
         ))]
+        /// Invoked when the Virtio socket device is accepting a new connection.
+        ///
+        /// Parameter `listener`: The listener invoking the delegate method.
+        ///
+        /// Parameter `connection`: The new connection to be established.
+        ///
+        /// Parameter `socketDevice`: The Virtio socket device with which the new connection is to be established.
+        ///
+        /// Returns: YES if the connection should be established, NO otherwise.
+        ///
+        /// The VZVirtioSocketConnection object owns a file descriptor for this connection. Data can be sent and received through that file descriptor.
+        /// If the connection is accepted, the implementation should keep a reference to the connection object to send and receive data.
         #[optional]
         #[method(listener:shouldAcceptNewConnection:fromSocketDevice:)]
         unsafe fn listener_shouldAcceptNewConnection_fromSocketDevice(

@@ -68,6 +68,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[deprecated]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -76,6 +77,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other lang)]
         pub unsafe fn lang(&self) -> Retained<NSString>;
 
+        /// Setter for [`lang`][Self::lang].
         #[deprecated]
         #[method(setLang:)]
         pub unsafe fn setLang(&self, lang: Option<&NSString>);
@@ -84,6 +86,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dir)]
         pub unsafe fn dir(&self) -> Retained<NSString>;
 
+        /// Setter for [`dir`][Self::dir].
         #[deprecated]
         #[method(setDir:)]
         pub unsafe fn setDir(&self, dir: Option<&NSString>);
@@ -92,6 +95,7 @@ extern_methods!(
         #[method(tabIndex)]
         pub unsafe fn tabIndex(&self) -> c_int;
 
+        /// Setter for [`tabIndex`][Self::tabIndex].
         #[deprecated]
         #[method(setTabIndex:)]
         pub unsafe fn setTabIndex(&self, tab_index: c_int);
@@ -99,6 +103,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other accessKey)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
+        /// Setter for [`accessKey`][Self::accessKey].
         #[method(setAccessKey:)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
@@ -106,6 +111,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other innerText)]
         pub unsafe fn innerText(&self) -> Retained<NSString>;
 
+        /// Setter for [`innerText`][Self::innerText].
         #[deprecated]
         #[method(setInnerText:)]
         pub unsafe fn setInnerText(&self, inner_text: Option<&NSString>);
@@ -114,6 +120,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other outerText)]
         pub unsafe fn outerText(&self) -> Retained<NSString>;
 
+        /// Setter for [`outerText`][Self::outerText].
         #[deprecated]
         #[method(setOuterText:)]
         pub unsafe fn setOuterText(&self, outer_text: Option<&NSString>);
@@ -122,6 +129,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contentEditable)]
         pub unsafe fn contentEditable(&self) -> Retained<NSString>;
 
+        /// Setter for [`contentEditable`][Self::contentEditable].
         #[deprecated]
         #[method(setContentEditable:)]
         pub unsafe fn setContentEditable(&self, content_editable: Option<&NSString>);
@@ -134,6 +142,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other idName)]
         pub unsafe fn idName(&self) -> Retained<NSString>;
 
+        /// Setter for [`idName`][Self::idName].
         #[deprecated]
         #[method(setIdName:)]
         pub unsafe fn setIdName(&self, id_name: Option<&NSString>);

@@ -69,12 +69,14 @@ extern_methods!(
         pub unsafe fn menuItem(&self) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
+        /// Setter for [`menuItem`][Self::menuItem].
         #[method(setMenuItem:)]
         pub unsafe fn setMenuItem(&self, menu_item: Option<&NSMenuItem>);
 
         #[method(needsSizing)]
         pub unsafe fn needsSizing(&self) -> bool;
 
+        /// Setter for [`needsSizing`][Self::needsSizing].
         #[method(setNeedsSizing:)]
         pub unsafe fn setNeedsSizing(&self, needs_sizing: bool);
 
@@ -84,6 +86,7 @@ extern_methods!(
         #[method(needsDisplay)]
         pub unsafe fn needsDisplay(&self) -> bool;
 
+        /// Setter for [`needsDisplay`][Self::needsDisplay].
         #[method(setNeedsDisplay:)]
         pub unsafe fn setNeedsDisplay(&self, needs_display: bool);
 
@@ -182,6 +185,7 @@ extern_methods!(
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;
 
+        /// Setter for [`tag`][Self::tag].
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: NSInteger);
     }

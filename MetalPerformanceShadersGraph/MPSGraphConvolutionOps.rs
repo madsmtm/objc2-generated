@@ -10,7 +10,11 @@ use objc2_metal_performance_shaders::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphconvolution2dopdescriptor?language=objc)
+    /// A class that describes the properties of a 2D-convolution operator.
+    ///
+    /// Use an instance of this class is to add a 2D-convolution operator with the desired properties to the graph.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphconvolution2dopdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -31,78 +35,146 @@ unsafe impl NSObjectProtocol for MPSGraphConvolution2DOpDescriptor {}
 extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphConvolution2DOpDescriptor {
+        /// The scale that maps `x`-coordinate of the destination to `x`-coordinate of the source.
+        ///
+        /// Source `x`-coordinate, `sx` is computed from destination `x`-coordinate, `dx` as `sx = strideInX*dx`.
+        /// Default value is 1.
         #[method(strideInX)]
         pub unsafe fn strideInX(&self) -> NSUInteger;
 
+        /// Setter for [`strideInX`][Self::strideInX].
         #[method(setStrideInX:)]
         pub unsafe fn setStrideInX(&self, stride_in_x: NSUInteger);
 
+        /// The scale that maps `y`-coordinate of the destination to `y`-coordinate of the source.
+        ///
+        /// Source `y`-coordinate, `sy` is computed from destination `y`-coordinate, `dy` as `sy = strideInY*dy`.
+        /// Default value is 1.
         #[method(strideInY)]
         pub unsafe fn strideInY(&self) -> NSUInteger;
 
+        /// Setter for [`strideInY`][Self::strideInY].
         #[method(setStrideInY:)]
         pub unsafe fn setStrideInY(&self, stride_in_y: NSUInteger);
 
+        /// The amount by which the weights tensor expands in the `x`-direction.
+        ///
+        /// The weights tensor is dilated by inserting `dilationRateInX-1` zeros between consecutive values in `x`-dimension.
+        /// Dilated weights tensor width is `(dilationRateInX-1)*kernelWidth+1`.
+        /// Default value is 1.
         #[method(dilationRateInX)]
         pub unsafe fn dilationRateInX(&self) -> NSUInteger;
 
+        /// Setter for [`dilationRateInX`][Self::dilationRateInX].
         #[method(setDilationRateInX:)]
         pub unsafe fn setDilationRateInX(&self, dilation_rate_in_x: NSUInteger);
 
+        /// The amount by which the weights tensor expands in the `y`-direction.
+        ///
+        /// The weights tensor is dilated by inserting `dilationRateInY-1` zeros between consecutive values in `y`-dimension.
+        /// Dilated weights tensor width is `(dilationRateInY-1)*kernelHeight+1`.
+        /// Default value is 1.
         #[method(dilationRateInY)]
         pub unsafe fn dilationRateInY(&self) -> NSUInteger;
 
+        /// Setter for [`dilationRateInY`][Self::dilationRateInY].
         #[method(setDilationRateInY:)]
         pub unsafe fn setDilationRateInY(&self, dilation_rate_in_y: NSUInteger);
 
+        /// The number of zeros added on the left side of the source tensor.
         #[method(paddingLeft)]
         pub unsafe fn paddingLeft(&self) -> NSUInteger;
 
+        /// Setter for [`paddingLeft`][Self::paddingLeft].
         #[method(setPaddingLeft:)]
         pub unsafe fn setPaddingLeft(&self, padding_left: NSUInteger);
 
+        /// The number of zeros added on the right side of the source tensor.
         #[method(paddingRight)]
         pub unsafe fn paddingRight(&self) -> NSUInteger;
 
+        /// Setter for [`paddingRight`][Self::paddingRight].
         #[method(setPaddingRight:)]
         pub unsafe fn setPaddingRight(&self, padding_right: NSUInteger);
 
+        /// The number of zeros added at the top of the source tensor.
         #[method(paddingTop)]
         pub unsafe fn paddingTop(&self) -> NSUInteger;
 
+        /// Setter for [`paddingTop`][Self::paddingTop].
         #[method(setPaddingTop:)]
         pub unsafe fn setPaddingTop(&self, padding_top: NSUInteger);
 
+        /// The number of zeros added at the bottom of the source tensor.
         #[method(paddingBottom)]
         pub unsafe fn paddingBottom(&self) -> NSUInteger;
 
+        /// Setter for [`paddingBottom`][Self::paddingBottom].
         #[method(setPaddingBottom:)]
         pub unsafe fn setPaddingBottom(&self, padding_bottom: NSUInteger);
 
+        /// The type of padding applied to the source tensor.
+        ///
+        /// If paddingStyle is `MPSGraphPaddingStyleExplicit`, `paddingLeft`, `laddingRight`, `paddingTop`,
+        /// and `paddingBottom` must to be specified. For all other padding styles, framework compute these values so you dont need to provide these values.
         #[method(paddingStyle)]
         pub unsafe fn paddingStyle(&self) -> MPSGraphPaddingStyle;
 
+        /// Setter for [`paddingStyle`][Self::paddingStyle].
         #[method(setPaddingStyle:)]
         pub unsafe fn setPaddingStyle(&self, padding_style: MPSGraphPaddingStyle);
 
+        /// The named layout of data in the source tensor.
+        ///
+        /// It defines the order of named dimensions (Batch, Channel, Height, Width). The convolution operation uses this to interpret data in the source tensor.
+        /// For example, if `dataLayout` is `MPSGraphTensorNamedDataLayoutNCHW`, frameork interprets data in source tensor as `batch x channels x height x width`
+        /// with `width` as fastest moving dimension.
         #[method(dataLayout)]
         pub unsafe fn dataLayout(&self) -> MPSGraphTensorNamedDataLayout;
 
+        /// Setter for [`dataLayout`][Self::dataLayout].
         #[method(setDataLayout:)]
         pub unsafe fn setDataLayout(&self, data_layout: MPSGraphTensorNamedDataLayout);
 
+        /// The named layout of data in the weights tensor.
+        ///
+        /// It defines the order of named dimensions (Output channels, Input channels, Kernel height, Kernel width). The convolution operation uses this to interpret data in the weights tensor.
+        /// For example, if `weightsLayout` is `MPSGraphTensorNamedDataLayoutOIHW`, frameork interprets data in weights tensor as `outputChannels x inputChannels x kernelHeight x kernelWidth`
+        /// with `kernelWidth` as fastest moving dimension.
         #[method(weightsLayout)]
         pub unsafe fn weightsLayout(&self) -> MPSGraphTensorNamedDataLayout;
 
+        /// Setter for [`weightsLayout`][Self::weightsLayout].
         #[method(setWeightsLayout:)]
         pub unsafe fn setWeightsLayout(&self, weights_layout: MPSGraphTensorNamedDataLayout);
 
+        /// The number of partitions of the input and output channels.
+        ///
+        /// The convolution operation divides input and output channels in `groups` partitions.
+        /// input channels in a group or partition are only connected to output channels in corresponding group.
+        /// Number of weights the convolution needs is `outputFeatureChannels x inputFeatureChannels/groups x kernelWidth x kernelHeight`
         #[method(groups)]
         pub unsafe fn groups(&self) -> NSUInteger;
 
+        /// Setter for [`groups`][Self::groups].
         #[method(setGroups:)]
         pub unsafe fn setGroups(&self, groups: NSUInteger);
 
+        /// Creates a convolution descriptor with given values for parameters.
+        /// - Parameters:
+        /// - strideInX: See ``strideInX`` property.
+        /// - strideInY: See ``strideInY`` property.
+        /// - dilationRateInX: See ``dilationRateInX`` property.
+        /// - dilationRateInY: See ``dilationRateInY`` property.
+        /// - groups: See ``groups`` property.
+        /// - paddingLeft: See ``paddingLeft`` property.
+        /// - paddingRight: See ``paddingRight`` property.
+        /// - paddingTop: See ``paddingTop`` property.
+        /// - paddingBottom: See ``paddingBottom`` property.
+        /// - paddingStyle: See ``paddingStyle`` property.
+        /// - dataLayout: See ``dataLayout`` property.
+        /// - weightsLayout: See ``weightsLayout`` property.
+        /// - Returns: The `MPSGraphConvolution2DOpDescriptor` on autoreleasepool.
         #[method_id(@__retain_semantics Other descriptorWithStrideInX:strideInY:dilationRateInX:dilationRateInY:groups:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:weightsLayout:)]
         pub unsafe fn descriptorWithStrideInX_strideInY_dilationRateInX_dilationRateInY_groups_paddingLeft_paddingRight_paddingTop_paddingBottom_paddingStyle_dataLayout_weightsLayout(
             stride_in_x: NSUInteger,
@@ -119,6 +191,17 @@ extern_methods!(
             weights_layout: MPSGraphTensorNamedDataLayout,
         ) -> Option<Retained<Self>>;
 
+        /// Creates a convolution descriptor with given values for parameters.
+        /// - Parameters:
+        /// - strideInX: See ``strideInX`` property.
+        /// - strideInY: See ``strideInY`` property.
+        /// - dilationRateInX: See ``dilationRateInX`` property.
+        /// - dilationRateInY: See ``dilationRateInY`` property.
+        /// - groups: See ``groups`` property.
+        /// - paddingStyle: See ``paddingStyle`` property.
+        /// - dataLayout: See ``dataLayout`` property.
+        /// - weightsLayout: See ``weightsLayout`` property.
+        /// - Returns: The `MPSGraphConvolution2DOpDescriptor` on autoreleasepool.
         #[method_id(@__retain_semantics Other descriptorWithStrideInX:strideInY:dilationRateInX:dilationRateInY:groups:paddingStyle:dataLayout:weightsLayout:)]
         pub unsafe fn descriptorWithStrideInX_strideInY_dilationRateInX_dilationRateInY_groups_paddingStyle_dataLayout_weightsLayout(
             stride_in_x: NSUInteger,
@@ -131,6 +214,12 @@ extern_methods!(
             weights_layout: MPSGraphTensorNamedDataLayout,
         ) -> Option<Retained<Self>>;
 
+        /// Sets the left, right, top, and bottom padding values.
+        /// - Parameters:
+        /// - paddingLeft: See ``paddingLeft`` property.
+        /// - paddingRight: See ``paddingRight`` property.
+        /// - paddingTop: See ``paddingTop`` property.
+        /// - paddingBottom: See ``paddingBottom`` property.
         #[method(setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:)]
         pub unsafe fn setExplicitPaddingWithPaddingLeft_paddingRight_paddingTop_paddingBottom(
             &self,
@@ -155,7 +244,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphconvolution3dopdescriptor?language=objc)
+    /// A class that describes the properties of a 3D-convolution operator.
+    ///
+    /// Use an instance of this class is to add a 3D-convolution operator with desired properties to the graph.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphconvolution3dopdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -176,102 +269,189 @@ unsafe impl NSObjectProtocol for MPSGraphConvolution3DOpDescriptor {}
 extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphConvolution3DOpDescriptor {
+        /// The scale that maps`x`-coordinate of destination to `x`-coordinate of source.
+        ///
+        /// Source `x`-coordinate, `sx` is computed from destination `x`-coordinate, `dx` as `sx = strideInX*dx`.
+        /// Default value is 1.
         #[method(strideInX)]
         pub unsafe fn strideInX(&self) -> NSUInteger;
 
+        /// Setter for [`strideInX`][Self::strideInX].
         #[method(setStrideInX:)]
         pub unsafe fn setStrideInX(&self, stride_in_x: NSUInteger);
 
+        /// The scale that maps`y`-coordinate of destination to `y`-coordinate of source.
+        ///
+        /// Source `y`-coordinate, `sy` is computed from destination `y`-coordinate, `dy` as `sy = strideInY*dy`.
+        /// Default value is 1.
         #[method(strideInY)]
         pub unsafe fn strideInY(&self) -> NSUInteger;
 
+        /// Setter for [`strideInY`][Self::strideInY].
         #[method(setStrideInY:)]
         pub unsafe fn setStrideInY(&self, stride_in_y: NSUInteger);
 
+        /// The scale that maps`z`-coordinate of destination to `z`-coordinate of source.
+        ///
+        /// Source `z`-coordinate, `sz` is computed from destination `z`-coordinate, `dz` as `sz = strideInZ*dz`.
+        /// Default value is 1.
         #[method(strideInZ)]
         pub unsafe fn strideInZ(&self) -> NSUInteger;
 
+        /// Setter for [`strideInZ`][Self::strideInZ].
         #[method(setStrideInZ:)]
         pub unsafe fn setStrideInZ(&self, stride_in_z: NSUInteger);
 
+        /// The amount by which weights tensor expands in the `x`-direction.
+        ///
+        /// The weights tensor is dilated by inserting `dilationRateInX-1` zeros between consecutive values in `x`-dimension.
+        /// Dilated weights tensor width is `(dilationRateInX-1)*kernelWidth+1`.
+        /// Default value is 1.
         #[method(dilationRateInX)]
         pub unsafe fn dilationRateInX(&self) -> NSUInteger;
 
+        /// Setter for [`dilationRateInX`][Self::dilationRateInX].
         #[method(setDilationRateInX:)]
         pub unsafe fn setDilationRateInX(&self, dilation_rate_in_x: NSUInteger);
 
+        /// The amount by which weights tensor expands in the `y`-direction.
+        ///
+        /// The weights tensor is dilated by inserting `dilationRateInY-1` zeros between consecutive values in `y`-dimension.
+        /// Dilated weights tensor width is `(dilationRateInY-1)*kernelHeight+1`.
+        /// Default value is 1.
         #[method(dilationRateInY)]
         pub unsafe fn dilationRateInY(&self) -> NSUInteger;
 
+        /// Setter for [`dilationRateInY`][Self::dilationRateInY].
         #[method(setDilationRateInY:)]
         pub unsafe fn setDilationRateInY(&self, dilation_rate_in_y: NSUInteger);
 
+        /// The amount by which weights tensor expands in the `z`-direction.
+        ///
+        /// The weights tensor is dilated by inserting `dilationRateInZ-1` zeros between consecutive values in `z`-dimension.
+        /// Dilated weights tensor depth is `(dilationRateInZ-1)*kernelDepth+1`.
+        /// Default value is 1.
         #[method(dilationRateInZ)]
         pub unsafe fn dilationRateInZ(&self) -> NSUInteger;
 
+        /// Setter for [`dilationRateInZ`][Self::dilationRateInZ].
         #[method(setDilationRateInZ:)]
         pub unsafe fn setDilationRateInZ(&self, dilation_rate_in_z: NSUInteger);
 
+        /// The number of zeros added on the left side of the source tensor.
         #[method(paddingLeft)]
         pub unsafe fn paddingLeft(&self) -> NSUInteger;
 
+        /// Setter for [`paddingLeft`][Self::paddingLeft].
         #[method(setPaddingLeft:)]
         pub unsafe fn setPaddingLeft(&self, padding_left: NSUInteger);
 
+        /// The number of zeros added on the right side of the source tensor.
         #[method(paddingRight)]
         pub unsafe fn paddingRight(&self) -> NSUInteger;
 
+        /// Setter for [`paddingRight`][Self::paddingRight].
         #[method(setPaddingRight:)]
         pub unsafe fn setPaddingRight(&self, padding_right: NSUInteger);
 
+        /// The number of zeros added at the top of the source tensor.
         #[method(paddingTop)]
         pub unsafe fn paddingTop(&self) -> NSUInteger;
 
+        /// Setter for [`paddingTop`][Self::paddingTop].
         #[method(setPaddingTop:)]
         pub unsafe fn setPaddingTop(&self, padding_top: NSUInteger);
 
+        /// The number of zeros added at the bottom of the source tensor.
         #[method(paddingBottom)]
         pub unsafe fn paddingBottom(&self) -> NSUInteger;
 
+        /// Setter for [`paddingBottom`][Self::paddingBottom].
         #[method(setPaddingBottom:)]
         pub unsafe fn setPaddingBottom(&self, padding_bottom: NSUInteger);
 
+        /// The number of zeros added at the front of the source tensor.
         #[method(paddingFront)]
         pub unsafe fn paddingFront(&self) -> NSUInteger;
 
+        /// Setter for [`paddingFront`][Self::paddingFront].
         #[method(setPaddingFront:)]
         pub unsafe fn setPaddingFront(&self, padding_front: NSUInteger);
 
+        /// The number of zeros added at the back of the source tensor.
         #[method(paddingBack)]
         pub unsafe fn paddingBack(&self) -> NSUInteger;
 
+        /// Setter for [`paddingBack`][Self::paddingBack].
         #[method(setPaddingBack:)]
         pub unsafe fn setPaddingBack(&self, padding_back: NSUInteger);
 
+        /// The type of padding that is applied to the source tensor.
+        ///
+        /// If paddingStyle is `MPSGraphPaddingStyleExplicit`, `paddingLeft`, `laddingRight`, `paddingTop`,
+        /// `paddingBottom`,   `paddingFront` and `paddingBack` must to be specified. For all other padding styles, framework compute these values so you dont need to provide these values.
         #[method(paddingStyle)]
         pub unsafe fn paddingStyle(&self) -> MPSGraphPaddingStyle;
 
+        /// Setter for [`paddingStyle`][Self::paddingStyle].
         #[method(setPaddingStyle:)]
         pub unsafe fn setPaddingStyle(&self, padding_style: MPSGraphPaddingStyle);
 
+        /// The named layout of data in the source tensor.
+        ///
+        /// It defines the order of named dimensions (Batch, Channel, Depth, Height, Width). The convolution operation uses this to interpret data in the source tensor.
+        /// For example, if `dataLayout` is `MPSGraphTensorNamedDataLayoutNCDHW`, frameork interprets data in source tensor as `batch x channels x depth x height x width`
+        /// with `width` as fastest moving dimension.
         #[method(dataLayout)]
         pub unsafe fn dataLayout(&self) -> MPSGraphTensorNamedDataLayout;
 
+        /// Setter for [`dataLayout`][Self::dataLayout].
         #[method(setDataLayout:)]
         pub unsafe fn setDataLayout(&self, data_layout: MPSGraphTensorNamedDataLayout);
 
+        /// The named layout of data in the weights tensor.
+        ///
+        /// It defines the order of named dimensions (Output channels, Input channels, Kernel depth, Kernel height, Kernel width). The convolution operation uses this to interpret data in the weights tensor.
+        /// For example, if `weightsLayout` is `MPSGraphTensorNamedDataLayoutOIDHW`, frameork interprets data in weights tensor as `outputChannels x inputChannels x kernelDepth x kernelHeight x kernelWidth`
+        /// with `kernelWidth` as fastest moving dimension.
         #[method(weightsLayout)]
         pub unsafe fn weightsLayout(&self) -> MPSGraphTensorNamedDataLayout;
 
+        /// Setter for [`weightsLayout`][Self::weightsLayout].
         #[method(setWeightsLayout:)]
         pub unsafe fn setWeightsLayout(&self, weights_layout: MPSGraphTensorNamedDataLayout);
 
+        /// The number of partitions of the input and output channels.
+        ///
+        /// The convolution operation divides input and output channels in `groups` partitions.
+        /// input channels in a group or partition are only connected to output channels in corresponding group.
+        /// Number of weights the convolution needs is `outputFeatureChannels x inputFeatureChannels/groups x kernelDepth x kernelWidth x kernelHeight`
         #[method(groups)]
         pub unsafe fn groups(&self) -> NSUInteger;
 
+        /// Setter for [`groups`][Self::groups].
         #[method(setGroups:)]
         pub unsafe fn setGroups(&self, groups: NSUInteger);
 
+        /// Creates a convolution descriptor with given values for parameters.
+        /// - Parameters:
+        /// - strideInX: See ``strideInX`` property.
+        /// - strideInY: See ``strideInY`` property.
+        /// - strideInZ: See ``strideInZ`` property.
+        /// - dilationRateInX: See ``dilationRateInX`` property.
+        /// - dilationRateInY: See ``dilationRateInY`` property.
+        /// - dilationRateInZ: See ``dilationRateInZ`` property.
+        /// - groups: See ``groups`` property.
+        /// - paddingLeft: See ``paddingLeft`` property.
+        /// - paddingRight: See ``paddingRight`` property.
+        /// - paddingTop: See ``paddingTop`` property.
+        /// - paddingBottom: See ``paddingBottom`` property.
+        /// - paddingFront: See ``paddingFront`` property.
+        /// - paddingBack: See ``paddingBack`` property.
+        /// - paddingStyle: See ``paddingStyle`` property.
+        /// - dataLayout: See ``dataLayout`` property.
+        /// - weightsLayout: See ``weightsLayout`` property.
+        /// - Returns: The `MPSGraphConvolution3DOpDescriptor` on autoreleasepool.
         #[method_id(@__retain_semantics Other descriptorWithStrideInX:strideInY:strideInZ:dilationRateInX:dilationRateInY:dilationRateInZ:groups:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingFront:paddingBack:paddingStyle:dataLayout:weightsLayout:)]
         pub unsafe fn descriptorWithStrideInX_strideInY_strideInZ_dilationRateInX_dilationRateInY_dilationRateInZ_groups_paddingLeft_paddingRight_paddingTop_paddingBottom_paddingFront_paddingBack_paddingStyle_dataLayout_weightsLayout(
             stride_in_x: NSUInteger,
@@ -292,6 +472,19 @@ extern_methods!(
             weights_layout: MPSGraphTensorNamedDataLayout,
         ) -> Option<Retained<Self>>;
 
+        /// Creates a convolution descriptor with given values for parameters.
+        /// - Parameters:
+        /// - strideInX: See ``strideInX`` property.
+        /// - strideInY: See ``strideInY`` property.
+        /// - strideInZ: See ``strideInZ`` property.
+        /// - dilationRateInX: See ``dilationRateInX`` property.
+        /// - dilationRateInY: See ``dilationRateInY`` property.
+        /// - dilationRateInZ: See ``dilationRateInZ`` property.
+        /// - groups: See ``groups`` property.
+        /// - paddingStyle: See ``paddingStyle`` property.
+        /// - dataLayout: See ``dataLayout`` property.
+        /// - weightsLayout: See ``weightsLayout`` property.
+        /// - Returns: The `MPSGraphConvolution3DOpDescriptor` on autoreleasepool.
         #[method_id(@__retain_semantics Other descriptorWithStrideInX:strideInY:strideInZ:dilationRateInX:dilationRateInY:dilationRateInZ:groups:paddingStyle:dataLayout:weightsLayout:)]
         pub unsafe fn descriptorWithStrideInX_strideInY_strideInZ_dilationRateInX_dilationRateInY_dilationRateInZ_groups_paddingStyle_dataLayout_weightsLayout(
             stride_in_x: NSUInteger,
@@ -306,6 +499,14 @@ extern_methods!(
             weights_layout: MPSGraphTensorNamedDataLayout,
         ) -> Option<Retained<Self>>;
 
+        /// Sets the left, right, top, bottom, front, and back padding values.
+        /// - Parameters:
+        /// - paddingLeft: See ``paddingLeft`` property.
+        /// - paddingRight: See ``paddingRight`` property.
+        /// - paddingTop: See ``paddingTop`` property.
+        /// - paddingBottom: See ``paddingBottom`` property.
+        /// - paddingFront: See ``paddingFront`` property.
+        /// - paddingBottom: See ``paddingBottom`` property.
         #[method(setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:paddingFront:paddingBack:)]
         pub unsafe fn setExplicitPaddingWithPaddingLeft_paddingRight_paddingTop_paddingBottom_paddingFront_paddingBack(
             &self,
@@ -333,9 +534,18 @@ extern_methods!(
 
 extern_methods!(
     /// MPSGraphConvolutionOps
+    /// This is a category that defines the methods which can be used to add 2D-convolution operator to the graph with properties described by an instance of `MPSGraphConvolution2DOpDescriptor`.
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 2D (forward) convolution operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - source: source tensor - must be a rank 4 tensor. The layout is defined by ``descriptor.dataLayout``.
+        /// - weights: weights tensor, must be rank 4. The layout is defined by ``descriptor.weightsLayout``.
+        /// - descriptor: Specifies strides, dilation rates, paddings and layouts.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other convolution2DWithSourceTensor:weightsTensor:descriptor:name:)]
         pub unsafe fn convolution2DWithSourceTensor_weightsTensor_descriptor_name(
             &self,
@@ -349,6 +559,19 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a 2D convolution gradient operation with respect to the source tensor of the forward convolution.
+        ///
+        /// If `S` is source tensor to forward convolution, `R` is the result/returned tensor from forward convolution,
+        /// and `L` is the loss function, `convolution2DDataGradientWithIncomingGradientTensor` returns tensor `dL/dS = dL/dR * dR/dS`,
+        /// where `dL/dR` is the incomingGradient parameter.
+        ///
+        /// - Parameters:
+        /// - incomingGradient: Incoming loss gradient tensor
+        /// - weights: Forward pass weights tensor
+        /// - outputShape: Shape of the forward pass source tensor
+        /// - forwardConvolutionDescriptor: Forward convolution 2D op ``descriptor``
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other convolution2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:forwardConvolutionDescriptor:name:)]
         pub unsafe fn convolution2DDataGradientWithIncomingGradientTensor_weightsTensor_outputShape_forwardConvolutionDescriptor_name(
             &self,
@@ -360,6 +583,19 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 2D convolution gradient operation with respect to the source tensor of the forward convolution.
+        ///
+        /// If `S` is source tensor to forward convolution, `R` is the result/returned tensor of forward convolution,
+        /// and `L` is the loss function, convolution2DDataGradientWithIncomingGradientTensor returns tensor `dL/dS = dL/dR * dR/dS`,
+        /// where `dL/dR` is the incomingGradient parameter.
+        ///
+        /// - Parameters:
+        /// - incomingGradient: Incoming loss gradient tensor
+        /// - weights: Forward pass weights tensor
+        /// - outputShapeTensor: 4D Int32 or Int64 tensor. Shape of the forward pass source tensor
+        /// - forwardConvolutionDescriptor: Forward convolution 2D op ``descriptor``
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other convolution2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShapeTensor:forwardConvolutionDescriptor:name:)]
         pub unsafe fn convolution2DDataGradientWithIncomingGradientTensor_weightsTensor_outputShapeTensor_forwardConvolutionDescriptor_name(
             &self,
@@ -374,6 +610,19 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a 2D convolution gradient operation with respect to the weights tensor of the forward convolution.
+        ///
+        /// If `W` is weights tensor to forward convolution, `R` is the result/returned tensor of forward convolution,
+        /// and `L` is the loss function, convolution2DWeightsGradientWithIncomingGradientTensor returns tensor `dL/dW = dL/dR * dR/dW`,
+        /// where `dL/dR` is the incomingGradient parameter.
+        ///
+        /// - Parameters:
+        /// - incomingGradient: Incoming loss gradient tensor
+        /// - weights: Forward pass weights tensor
+        /// - outputShape: Shape of the forward pass source tensor
+        /// - forwardConvolutionDescriptor: Forward convolution 2D op ``descriptor``
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other convolution2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:forwardConvolutionDescriptor:name:)]
         pub unsafe fn convolution2DWeightsGradientWithIncomingGradientTensor_sourceTensor_outputShape_forwardConvolutionDescriptor_name(
             &self,
@@ -385,6 +634,19 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 2D convolution gradient operation with respect to weights tensor of forward convolution.
+        ///
+        /// If `W` is weights tensor to forward convolution, `R` is the result/returned tensor of forward convolution,
+        /// and `L` is the loss function, convolution2DWeightsGradientWithIncomingGradientTensor returns tensor `dL/dW = dL/dR * dR/dW`,
+        /// where `dL/dR` is the incomingGradient parameter.
+        ///
+        /// - Parameters:
+        /// - incomingGradient: Incoming loss gradient tensor
+        /// - weights: Forward pass weights tensor
+        /// - outputShapeTensor: 4D int32 or Int64 Tensor. Shape of the forward pass source tensor
+        /// - forwardConvolutionDescriptor: Forward convolution 2D op ``descriptor``
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other convolution2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShapeTensor:forwardConvolutionDescriptor:name:)]
         pub unsafe fn convolution2DWeightsGradientWithIncomingGradientTensor_sourceTensor_outputShapeTensor_forwardConvolutionDescriptor_name(
             &self,
@@ -396,6 +658,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 3D forward convolution operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - source: source tensor - must be of rank 5. The layout is defined by ``descriptor.dataLayout``.
+        /// - weights: weights tensor, must be rank 5. The layout is defined by ``descriptor.weightsLayout``.
+        /// - descriptor: Specifies strides, dilation rates, paddings and layouts.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other convolution3DWithSourceTensor:weightsTensor:descriptor:name:)]
         pub unsafe fn convolution3DWithSourceTensor_weightsTensor_descriptor_name(
             &self,
@@ -409,6 +679,19 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a 3D convolution gradient operation with respect to the source tensor of the forward convolution.
+        ///
+        /// If `S` is source tensor to forward convolution, `R` is the result/returned tensor of forward convolution,
+        /// and `L` is the loss function, convolution3DDataGradientWithIncomingGradientTensor returns tensor `dL/dS = dL/dR * dR/dS`,
+        /// where `dL/dR` is the incomingGradient parameter.
+        ///
+        /// - Parameters:
+        /// - incomingGradient: Incoming loss gradient tensor
+        /// - weights: Forward pass weights tensor
+        /// - outputShape: Shape of the forward pass source tensor
+        /// - forwardConvolutionDescriptor: Forward convolution 2D op ``descriptor``
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other convolution3DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:forwardConvolutionDescriptor:name:)]
         pub unsafe fn convolution3DDataGradientWithIncomingGradientTensor_weightsTensor_outputShape_forwardConvolutionDescriptor_name(
             &self,
@@ -420,6 +703,19 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 3D convolution gradient operation with respect to the source tensor of the forward convolution.
+        ///
+        /// If `S` is source tensor to forward convolution, `R` is the result/returned tensor of forward convolution,
+        /// and `L` is the loss function, convolution3DDataGradientWithIncomingGradientTensor returns tensor `dL/dS = dL/dR * dR/dS`,
+        /// where `dL/dR` is the incomingGradient parameter.
+        ///
+        /// - Parameters:
+        /// - incomingGradient: Incoming loss gradient tensor
+        /// - weights: Forward pass weights tensor
+        /// - outputShapeTensor: 4D Int32 or Int64 tensor. Shape of the forward pass source tensor
+        /// - forwardConvolutionDescriptor: Forward convolution 2D op ``descriptor``
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other convolution3DDataGradientWithIncomingGradientTensor:weightsTensor:outputShapeTensor:forwardConvolutionDescriptor:name:)]
         pub unsafe fn convolution3DDataGradientWithIncomingGradientTensor_weightsTensor_outputShapeTensor_forwardConvolutionDescriptor_name(
             &self,
@@ -434,6 +730,19 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a 3D convolution gradient operation with respect to the weights tensor of the forward convolution.
+        ///
+        /// If `W` is weights tensor to forward convolution, `R` is the result/returned tensor of forward convolution,
+        /// and `L` is the loss function, convolution3DWeightsGradientWithIncomingGradientTensor returns tensor `dL/dW = dL/dR * dR/dW`,
+        /// where `dL/dR` is the incomingGradient parameter.
+        ///
+        /// - Parameters:
+        /// - incomingGradient: Incoming loss gradient tensor
+        /// - weights: Forward pass weights tensor
+        /// - outputShape: Shape of the forward pass source tensor
+        /// - forwardConvolutionDescriptor: Forward convolution 2D op ``descriptor``
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other convolution3DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:forwardConvolutionDescriptor:name:)]
         pub unsafe fn convolution3DWeightsGradientWithIncomingGradientTensor_sourceTensor_outputShape_forwardConvolutionDescriptor_name(
             &self,
@@ -445,6 +754,19 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 3D convolution gradient operation with respect to the weights tensor of the forward convolution.
+        ///
+        /// If `W` is weights tensor to forward convolution, `R` is the result/returned tensor of forward convolution,
+        /// and `L` is the loss function, convolution3DWeightsGradientWithIncomingGradientTensor returns tensor `dL/dW = dL/dR * dR/dW`,
+        /// where `dL/dR` is the incomingGradient parameter.
+        ///
+        /// - Parameters:
+        /// - incomingGradient: Incoming loss gradient tensor
+        /// - weights: Forward pass weights tensor
+        /// - outputShapeTensor: 4D int32 or Int64 Tensor. Shape of the forward pass source tensor
+        /// - forwardConvolutionDescriptor: Forward convolution 2D op ``descriptor``
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other convolution3DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShapeTensor:forwardConvolutionDescriptor:name:)]
         pub unsafe fn convolution3DWeightsGradientWithIncomingGradientTensor_sourceTensor_outputShapeTensor_forwardConvolutionDescriptor_name(
             &self,

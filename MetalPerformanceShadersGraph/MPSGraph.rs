@@ -10,18 +10,24 @@ use objc2_metal_performance_shaders::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptions?language=objc)
+/// The options available to a graph.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphOptions(pub u64);
 impl MPSGraphOptions {
+    /// No Options.
     #[doc(alias = "MPSGraphOptionsNone")]
     pub const None: Self = Self(0);
+    /// The graph synchronizes results to the CPU using a blit encoder if on a discrete GPU at the end of execution.
     #[doc(alias = "MPSGraphOptionsSynchronizeResults")]
     pub const SynchronizeResults: Self = Self(1);
+    /// The framework prints more logging info.
     #[doc(alias = "MPSGraphOptionsVerbose")]
     pub const Verbose: Self = Self(2);
+    /// The framework uses these options as default if not overriden.
     #[doc(alias = "MPSGraphOptionsDefault")]
     pub const Default: Self = Self(MPSGraphOptions::SynchronizeResults.0);
 }
@@ -34,14 +40,18 @@ unsafe impl RefEncode for MPSGraphOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimization?language=objc)
+/// The optimization levels to trade compilation time for even more runtime performance by running more passes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimization?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphOptimization(pub u64);
 impl MPSGraphOptimization {
+    /// Graph performs core optimizations only.
     #[doc(alias = "MPSGraphOptimizationLevel0")]
     pub const Level0: Self = Self(0);
+    /// Graph performs additional Optimizations, like using the placement pass to dispatch across different HW blocks like the NeuralEngine and CPU along with the GPU.
     #[doc(alias = "MPSGraphOptimizationLevel1")]
     pub const Level1: Self = Self(1);
 }
@@ -54,14 +64,18 @@ unsafe impl RefEncode for MPSGraphOptimization {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimizationprofile?language=objc)
+/// The optimization profile used as a heuristic as the graph compiler optimizes the network.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimizationprofile?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphOptimizationProfile(pub u64);
 impl MPSGraphOptimizationProfile {
+    /// Default, graph optimized for performance.
     #[doc(alias = "MPSGraphOptimizationProfilePerformance")]
     pub const Performance: Self = Self(0);
+    /// Graph optimized for power efficiency.
     #[doc(alias = "MPSGraphOptimizationProfilePowerEfficiency")]
     pub const PowerEfficiency: Self = Self(1);
 }
@@ -74,12 +88,15 @@ unsafe impl RefEncode for MPSGraphOptimizationProfile {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutionstage?language=objc)
+/// Execution events that can be used with shared events.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutionstage?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphExecutionStage(pub u64);
 impl MPSGraphExecutionStage {
+    /// stage when execution of the graph completes.
     #[doc(alias = "MPSGraphExecutionStageCompleted")]
     pub const Completed: Self = Self(0);
 }
@@ -92,7 +109,9 @@ unsafe impl RefEncode for MPSGraphExecutionStage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordatadictionary?language=objc)
+/// A dictionary of tensors and corresponding tensor data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordatadictionary?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -100,11 +119,19 @@ unsafe impl RefEncode for MPSGraphExecutionStage {
 ))]
 pub type MPSGraphTensorDataDictionary = NSDictionary<MPSGraphTensor, MPSGraphTensorData>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensorshapedtypedictionary?language=objc)
+/// A dictionary of tensors and corresponding shapes for them.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensorshapedtypedictionary?language=objc)
 #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphTensor"))]
 pub type MPSGraphTensorShapedTypeDictionary = NSDictionary<MPSGraphTensor, MPSGraphShapedType>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompletionhandler?language=objc)
+/// A notification that appears when graph execution finishes.
+///
+/// - Parameters:
+/// - resultsDictionary: If no error, the results dictionary produced by the graph operation.
+/// - error: If an error occurs, more information might be found here.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompletionhandler?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -114,7 +141,13 @@ pub type MPSGraphTensorShapedTypeDictionary = NSDictionary<MPSGraphTensor, MPSGr
 pub type MPSGraphCompletionHandler =
     *mut block2::Block<dyn Fn(NonNull<MPSGraphTensorDataDictionary>, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscheduledhandler?language=objc)
+/// A notification that appears when graph execution schedules.
+///
+/// - Parameters:
+/// - resultsDictionary: If no error, the results dictionary produced by the graph operation. If Graph has not yet allocated, the results will be `NSNull`.
+/// - error: If an error occurs, more information might be found here.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscheduledhandler?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -124,7 +157,13 @@ pub type MPSGraphCompletionHandler =
 pub type MPSGraphScheduledHandler =
     *mut block2::Block<dyn Fn(NonNull<MPSGraphTensorDataDictionary>, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationcompletionhandler?language=objc)
+/// A notification that appears when compilation finishes.
+///
+/// - Parameters:
+/// - executable: If no error, the executable produced by the compilation.
+/// - error: If an error occurs, more information might be found here.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationcompletionhandler?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphExecutable",
@@ -133,12 +172,16 @@ pub type MPSGraphScheduledHandler =
 pub type MPSGraphCompilationCompletionHandler =
     *mut block2::Block<dyn Fn(NonNull<MPSGraphExecutable>, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcallablemap?language=objc)
+/// A dictionary of symbol names and the corresponding executables for them.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcallablemap?language=objc)
 #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphExecutable"))]
 pub type MPSGraphCallableMap = NSDictionary<NSString, MPSGraphExecutable>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor?language=objc)
+    /// A class that consists of all the levers for compiling graphs.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -159,36 +202,49 @@ unsafe impl NSObjectProtocol for MPSGraphCompilationDescriptor {}
 extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphCompilationDescriptor {
+        /// Turns off type inference and relies on type inference during runtime.
         #[method(disableTypeInference)]
         pub unsafe fn disableTypeInference(&self);
 
+        /// The optimization level for the graph execution, default is MPSGraphOptimizationLevel1.
         #[method(optimizationLevel)]
         pub unsafe fn optimizationLevel(&self) -> MPSGraphOptimization;
 
+        /// Setter for [`optimizationLevel`][Self::optimizationLevel].
         #[method(setOptimizationLevel:)]
         pub unsafe fn setOptimizationLevel(&self, optimization_level: MPSGraphOptimization);
 
+        /// Flag that makes the compile or specialize call blocking till the entire compilation is complete, defaults to NO.
         #[method(waitForCompilationCompletion)]
         pub unsafe fn waitForCompilationCompletion(&self) -> bool;
 
+        /// Setter for [`waitForCompilationCompletion`][Self::waitForCompilationCompletion].
         #[method(setWaitForCompilationCompletion:)]
         pub unsafe fn setWaitForCompilationCompletion(&self, wait_for_compilation_completion: bool);
 
         #[cfg(all(feature = "MPSGraphExecutable", feature = "block2"))]
+        /// The handler that the graph calls when the compilation completes.
+        ///
+        /// Default value is nil.
         #[method(compilationCompletionHandler)]
         pub unsafe fn compilationCompletionHandler(&self) -> MPSGraphCompilationCompletionHandler;
 
         #[cfg(all(feature = "MPSGraphExecutable", feature = "block2"))]
+        /// Setter for [`compilationCompletionHandler`][Self::compilationCompletionHandler].
         #[method(setCompilationCompletionHandler:)]
         pub unsafe fn setCompilationCompletionHandler(
             &self,
             compilation_completion_handler: MPSGraphCompilationCompletionHandler,
         );
 
+        /// The optimization profile for the graph optimization.
+        ///
+        /// Default is MPSGraphOptimizationProfilePerformance.
         #[deprecated]
         #[method(optimizationProfile)]
         pub unsafe fn optimizationProfile(&self) -> MPSGraphOptimizationProfile;
 
+        /// Setter for [`optimizationProfile`][Self::optimizationProfile].
         #[deprecated]
         #[method(setOptimizationProfile:)]
         pub unsafe fn setOptimizationProfile(
@@ -197,10 +253,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSGraphExecutable")]
+        /// The dictionary used during runtime to lookup the ``MPSGraphExecutable`` which correspond to the ``symbolName``.
         #[method_id(@__retain_semantics Other callables)]
         pub unsafe fn callables(&self) -> Option<Retained<MPSGraphCallableMap>>;
 
         #[cfg(feature = "MPSGraphExecutable")]
+        /// Setter for [`callables`][Self::callables].
         #[method(setCallables:)]
         pub unsafe fn setCallables(&self, callables: Option<&MPSGraphCallableMap>);
     }
@@ -219,7 +277,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor?language=objc)
+    /// A class that consists of all the levers  to synchronize and schedule graph execution.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -237,6 +297,9 @@ extern_methods!(
             feature = "MPSGraphTensorData",
             feature = "block2"
         ))]
+        /// The handler that graph calls when it schedules the execution.
+        ///
+        /// Default value is nil.
         #[method(scheduledHandler)]
         pub unsafe fn scheduledHandler(&self) -> MPSGraphScheduledHandler;
 
@@ -245,6 +308,7 @@ extern_methods!(
             feature = "MPSGraphTensorData",
             feature = "block2"
         ))]
+        /// Setter for [`scheduledHandler`][Self::scheduledHandler].
         #[method(setScheduledHandler:)]
         pub unsafe fn setScheduledHandler(&self, scheduled_handler: MPSGraphScheduledHandler);
 
@@ -253,6 +317,9 @@ extern_methods!(
             feature = "MPSGraphTensorData",
             feature = "block2"
         ))]
+        /// The handler that graph calls at the completion of the execution.
+        ///
+        /// Default value is nil.
         #[method(completionHandler)]
         pub unsafe fn completionHandler(&self) -> MPSGraphCompletionHandler;
 
@@ -261,26 +328,40 @@ extern_methods!(
             feature = "MPSGraphTensorData",
             feature = "block2"
         ))]
+        /// Setter for [`completionHandler`][Self::completionHandler].
         #[method(setCompletionHandler:)]
         pub unsafe fn setCompletionHandler(&self, completion_handler: MPSGraphCompletionHandler);
 
+        /// The flag that blocks the execution call until the entire execution is complete.
+        ///
+        /// Defaults to NO.
         #[method(waitUntilCompleted)]
         pub unsafe fn waitUntilCompleted(&self) -> bool;
 
+        /// Setter for [`waitUntilCompleted`][Self::waitUntilCompleted].
         #[method(setWaitUntilCompleted:)]
         pub unsafe fn setWaitUntilCompleted(&self, wait_until_completed: bool);
 
+        /// The compilation descriptor for the graph.
+        ///
+        /// Default value is nil.
         #[method_id(@__retain_semantics Other compilationDescriptor)]
         pub unsafe fn compilationDescriptor(
             &self,
         ) -> Option<Retained<MPSGraphCompilationDescriptor>>;
 
+        /// Setter for [`compilationDescriptor`][Self::compilationDescriptor].
         #[method(setCompilationDescriptor:)]
         pub unsafe fn setCompilationDescriptor(
             &self,
             compilation_descriptor: Option<&MPSGraphCompilationDescriptor>,
         );
 
+        /// Executable waits on these shared events before scheduling execution on the HW, this does not include encoding which can still continue.
+        ///
+        /// - Parameters:
+        /// - event: shared event graph waits on.
+        /// - value: value of shared event graph waits on.
         #[method(waitForEvent:value:)]
         pub unsafe fn waitForEvent_value(
             &self,
@@ -288,6 +369,12 @@ extern_methods!(
             value: u64,
         );
 
+        /// Executable signals these shared events at execution stage and immediately proceeds.
+        ///
+        /// - Parameters:
+        /// - event: shared event to signal.
+        /// - executionStage: execution stage to signal event at.
+        /// - value: value for shared event to wait on.
         #[method(signalEvent:atExecutionEvent:value:)]
         pub unsafe fn signalEvent_atExecutionEvent_value(
             &self,
@@ -311,7 +398,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph?language=objc)
+    /// The optimized representation of a compute graph of operations and tensors.
+    ///
+    /// An MPSGraph is a symbolic representation of operations to be utilized to execute compute graphs on a device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -324,19 +415,26 @@ unsafe impl NSObjectProtocol for MPSGraph {}
 extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraph {
+        /// Options for the graph.
+        ///
+        /// The default value is `MPSGraphOptionsDefault`.
         #[method(options)]
         pub unsafe fn options(&self) -> MPSGraphOptions;
 
+        /// Setter for [`options`][Self::options].
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: MPSGraphOptions);
 
+        /// Creates a new graph to insert nodes in.
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Initialize an MPSGraph to insert nodes in.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Array of all the placeholder tensors.
         #[method_id(@__retain_semantics Other placeholderTensors)]
         pub unsafe fn placeholderTensors(&self) -> Retained<NSArray<MPSGraphTensor>>;
 
@@ -346,6 +444,17 @@ extern_methods!(
             feature = "MPSGraphOperation",
             feature = "MPSGraphTensor"
         ))]
+        /// Compiles the graph for the given feeds to returns the target tensor values, ensuring all target operations would be executed.
+        ///
+        /// This call blocks until execution has completed. The compilation descriptor helps specialize the executable returned.
+        ///
+        /// - Parameters:
+        /// - device: MPSGraph device to optimize for.
+        /// - feeds: Feeds dictionary for the placeholder tensors.
+        /// - targetTensors: Tensors for which the caller wishes MPSGraphTensorData to be returned.
+        /// - targetOperations: Operations to be completed at the end of the run.
+        /// - compilationDescriptor: compilation descriptor to set different compilation parameters.
+        /// - Returns: A valid MPSGraphExecutable object
         #[method_id(@__retain_semantics Other compileWithDevice:feeds:targetTensors:targetOperations:compilationDescriptor:)]
         pub unsafe fn compileWithDevice_feeds_targetTensors_targetOperations_compilationDescriptor(
             &self,
@@ -361,6 +470,15 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "MPSGraphTensorData"
         ))]
+        /// Runs the graph for the given feeds and returns the target tensor values, ensuring all target operations also executed.
+        ///
+        /// This call blocks until execution has completed.
+        ///
+        /// - Parameters:
+        /// - feeds: Feeds dictionary for the placeholder tensors.
+        /// - targetTensors: Tensors for which the caller wishes MPSGraphTensorData to be returned.
+        /// - targetOperations: Operations to be completed at the end of the run.
+        /// - Returns: A valid MPSGraphTensor : MPSGraphTensorData dictionary with results synchronized to the CPU memory.
         #[method_id(@__retain_semantics Other runWithFeeds:targetTensors:targetOperations:)]
         pub unsafe fn runWithFeeds_targetTensors_targetOperations(
             &self,
@@ -374,6 +492,16 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "MPSGraphTensorData"
         ))]
+        /// Runs the graph for the given feeds and returns the target tensor values, ensuring all target operations also executed.
+        ///
+        /// This call blocks until execution has completed.
+        ///
+        /// - Parameters:
+        /// - commandQueue: CommandQueue passed to exectute the graph on.
+        /// - feeds: Feeds dictionary for the placeholder tensors.
+        /// - targetTensors: Tensors for which the caller wishes MPSGraphTensorData to be returned.
+        /// - targetOperations: Operations to be completed at the end of the run.
+        /// - Returns: A valid MPSGraphTensor : MPSGraphTensorData dictionary with results synchronized to the CPU memory.
         #[method_id(@__retain_semantics Other runWithMTLCommandQueue:feeds:targetTensors:targetOperations:)]
         pub unsafe fn runWithMTLCommandQueue_feeds_targetTensors_targetOperations(
             &self,
@@ -388,6 +516,15 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "MPSGraphTensorData"
         ))]
+        /// Runs the graph for the given feeds and returns the target tensor values in the results dictionary provided by the user.
+        ///
+        /// It also ensures all target operations also executed. This call blocks until execution has completed.
+        ///
+        /// - Parameters:
+        /// - commandQueue: CommandQueue passed to exectute the graph on.
+        /// - feeds: Feeds dictionary for the placeholder tensors.
+        /// - targetOperations: Operations to be completed at the end of the run.
+        /// - resultsDictionary: MPSGraphTensors dictionary passed by user, these will be filled with graph output data.
         #[method(runWithMTLCommandQueue:feeds:targetOperations:resultsDictionary:)]
         pub unsafe fn runWithMTLCommandQueue_feeds_targetOperations_resultsDictionary(
             &self,
@@ -402,6 +539,16 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "MPSGraphTensorData"
         ))]
+        /// Runs the graph for the given feeds and returns the target tensor values, ensuring all target operations also executed.
+        ///
+        /// This call is asynchronous and will return immediately if a completionHandler is set.
+        ///
+        /// - Parameters:
+        /// - feeds: Feeds dictionary for the placeholder tensors.
+        /// - targetTensors: Tensors for which the caller wishes MPSGraphTensorData to be returned.
+        /// - targetOperations: Operations to be completed at the end of the run.
+        /// - executionDescriptor: ExecutionDescriptor to be passed in and used.
+        /// - Returns: A valid MPSGraphTensor : MPSGraphTensorData dictionary with results synchronized to the CPU memory.
         #[method_id(@__retain_semantics Other runAsyncWithFeeds:targetTensors:targetOperations:executionDescriptor:)]
         pub unsafe fn runAsyncWithFeeds_targetTensors_targetOperations_executionDescriptor(
             &self,
@@ -416,6 +563,17 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "MPSGraphTensorData"
         ))]
+        /// Runs the graph for the given feeds and returns the target tensor values, ensuring all target operations also executed.
+        ///
+        /// This call is asynchronous and will return immediately if a completionHandler is set.
+        ///
+        /// - Parameters:
+        /// - commandQueue: CommandQueue passed to exectute the graph on.
+        /// - feeds: Feeds dictionary for the placeholder tensors.
+        /// - targetTensors: Tensors for which the caller wishes MPSGraphTensorData to be returned.
+        /// - targetOperations: Operations to be completed at the end of the run.
+        /// - executionDescriptor: ExecutionDescriptor to be passed in and used.
+        /// - Returns: A valid MPSGraphTensor : MPSGraphTensorData dictionary with results synchronized to the CPU memory if MPSGraphOptionsSynchronizeResults set.
         #[method_id(@__retain_semantics Other runAsyncWithMTLCommandQueue:feeds:targetTensors:targetOperations:executionDescriptor:)]
         pub unsafe fn runAsyncWithMTLCommandQueue_feeds_targetTensors_targetOperations_executionDescriptor(
             &self,
@@ -431,6 +589,16 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "MPSGraphTensorData"
         ))]
+        /// Encodes the graph for the given feeds to returns the target tensor values in the results dictionary provided by the user.
+        ///
+        /// It ensures all target operations also executed. This call is asynchronous and will return immediately if a completionHandler is set.
+        ///
+        /// - Parameters:
+        /// - commandQueue: CommandQueue passed to exectute the graph on.
+        /// - feeds: Feeds dictionary for the placeholder tensors.
+        /// - targetOperations: Operations to be completed at the end of the run.
+        /// - resultsDictionary: MPSGraphTensors dictionary passed by user, these will be filled with graph output data.
+        /// - executionDescriptor: ExecutionDescriptor to be passed in and used.
         #[method(runAsyncWithMTLCommandQueue:feeds:targetOperations:resultsDictionary:executionDescriptor:)]
         pub unsafe fn runAsyncWithMTLCommandQueue_feeds_targetOperations_resultsDictionary_executionDescriptor(
             &self,
@@ -447,6 +615,17 @@ extern_methods!(
             feature = "MPSGraphTensorData",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Encodes the graph for the given feeds to returns the target tensor values, ensuring all target operations also executed.
+        ///
+        /// This call is asynchronous and will return immediately if a completionHandler is set.
+        ///
+        /// - Parameters:
+        /// - commandBuffer: commandBuffer passed to exectute the graph on, it is an MPSCommandBuffer, commitAndContinue might be called, please don't rely on underlying MTLCommandBuffer to remain uncommitted.
+        /// - feeds: Feeds dictionary for the placeholder tensors.
+        /// - targetTensors: Tensors for which the caller wishes MPSGraphTensorData to be returned.
+        /// - targetOperations: Operations to be completed at the end of the run.
+        /// - executionDescriptor: ExecutionDescriptor to be passed in and used.
+        /// - Returns: A valid MPSGraphTensor : MPSGraphTensorData dictionary with results synchronized to the CPU memory if MPSGraphOptionsSynchronizeResults set.
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:feeds:targetTensors:targetOperations:executionDescriptor:)]
         pub unsafe fn encodeToCommandBuffer_feeds_targetTensors_targetOperations_executionDescriptor(
             &self,
@@ -463,6 +642,16 @@ extern_methods!(
             feature = "MPSGraphTensorData",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Encodes the graph for the given feeds to returns the target tensor values in the results dictionary provided by the user.
+        ///
+        /// It ensures all target operations also executed. This call is asynchronous and will return immediately if a completionHandler is set.
+        ///
+        /// - Parameters:
+        /// - commandBuffer: commandBuffer passed to execute the graph on, commitAndContinue might be called, please don't rely on underlying MTLCommandBuffer to remain uncommitted.
+        /// - feeds: Feeds dictionary for the placeholder tensors.
+        /// - targetOperations: Operations to be completed at the end of the run.
+        /// - resultsDictionary: MPSGraphTensors dictionary passed by user, these will be filled with graph output data.
+        /// - executionDescriptor: ExecutionDescriptor to be passed in and used.
         #[method(encodeToCommandBuffer:feeds:targetOperations:resultsDictionary:executionDescriptor:)]
         pub unsafe fn encodeToCommandBuffer_feeds_targetOperations_resultsDictionary_executionDescriptor(
             &self,

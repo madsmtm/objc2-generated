@@ -10,7 +10,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarkregion?language=objc)
+    /// VNFaceLandmarkRegion is an immutable object acting as a collection of landmark points for defining a specific region of the face (including potentially all of the landmark points for a face). The VNFaceLandmarkRegion is an abstract base class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarkregion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarkRegion;
@@ -39,13 +41,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// pointCount returns the amount of points in a given region. This can be zero if no points for a region could be found.
         #[method(pointCount)]
         pub unsafe fn pointCount(&self) -> NSUInteger;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarkregion2d?language=objc)
+    /// VNFaceLandmarkRegion2D gives access to the 2D landmark points for the region. The points are stored as vector_float2 and must not be modified.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarkregion2d?language=objc)
     #[unsafe(super(VNFaceLandmarkRegion, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarkRegion2D;
@@ -69,17 +74,44 @@ unsafe impl VNRequestRevisionProviding for VNFaceLandmarkRegion2D {}
 extern_methods!(
     unsafe impl VNFaceLandmarkRegion2D {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Obtains the array of normalized landmark points.
+        ///
+        ///
+        /// Provides the address of a buffer containing the array of CGPoints representing the landmark points.  This buffer is owned by the target object and is guaranteed to exist as long as the VNFaceLandmarkRegion2D does.
+        ///
+        ///
+        /// Returns: the address of the array of pointCount points.
         #[method(normalizedPoints)]
         pub unsafe fn normalizedPoints(&self) -> *const CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Provides the array of landmark points in the coordinate space of a specific image size.
+        ///
+        ///
+        /// Provides the address of a buffer containing the array of CGPoints representing the landmark points in the coordinate space of a specific image size.  This buffer is owned by the target object and is guaranteed to exist as long as the VNFaceLandmarkRegion2D does.
+        ///
+        ///
+        /// Parameter `imageSize`: The pixel dimensions of the image in which the landmark points are being presented.
+        ///
+        ///
+        /// Returns: the address of the array of pointCount points, or NULL if the conversion could not take place.
         #[method(pointsInImageOfSize:)]
         pub unsafe fn pointsInImageOfSize(&self, image_size: CGSize) -> NonNull<CGPoint>;
 
+        /// Obtains the array of accuracy placement estimates per landmark point.
+        ///
+        ///
+        /// Provides the NSArray object containing landmarks accuracy placement estimates per landmark point. This property is only
+        /// populated when VNDetectFaceLandmarksRequest object is configured with VNRequestFaceLandmarksConstellation76Points. It is
+        /// set to nil for other constellations
+        ///
+        ///
+        /// Returns: NSArray object of NSNumber(s) initialized to floating point values.
         #[method_id(@__retain_semantics Other precisionEstimatesPerPoint)]
         pub unsafe fn precisionEstimatesPerPoint(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[cfg(feature = "VNTypes")]
+        /// Describes how to interpret the points provided by the region.
         #[method(pointsClassification)]
         pub unsafe fn pointsClassification(&self) -> VNPointsClassification;
     }
@@ -97,7 +129,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarks?language=objc)
+    /// VNFaceLandmarks2D is the result of a face landmarks request. It is an abstract base class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarks?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarks;
@@ -124,6 +158,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
+        /// a confidence estimate for the returned landmarks.
         #[method(confidence)]
         pub unsafe fn confidence(&self) -> VNConfidence;
     }
@@ -138,7 +173,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarks2d?language=objc)
+    /// VNFaceLandmarks2D is the result of a face landmarks 2D request, containing detected facial landmark points organized into VNFaceLandmarkRegion2D regions. The points are accessible as a full list, or as sub-gruops representing pre-defined facial regions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarks2d?language=objc)
     #[unsafe(super(VNFaceLandmarks, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarks2D;
@@ -161,42 +198,57 @@ unsafe impl VNRequestRevisionProviding for VNFaceLandmarks2D {}
 
 extern_methods!(
     unsafe impl VNFaceLandmarks2D {
+        /// allPoints the region containing all face landmark points.
         #[method_id(@__retain_semantics Other allPoints)]
         pub unsafe fn allPoints(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
+        /// faceContour the region containing the points that describe the face contour from cheek over chin to cheek.
         #[method_id(@__retain_semantics Other faceContour)]
         pub unsafe fn faceContour(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
+        /// leftEye the region containing the points describing the outline of the left eye.
         #[method_id(@__retain_semantics Other leftEye)]
         pub unsafe fn leftEye(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
+        /// rightEye the region containing the points describing the outline of the right eye.
         #[method_id(@__retain_semantics Other rightEye)]
         pub unsafe fn rightEye(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
+        /// leftEyebrow the region containing the points describing the trace of the left eyebrow.
         #[method_id(@__retain_semantics Other leftEyebrow)]
         pub unsafe fn leftEyebrow(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
+        /// rightEyebrow the region containing the points describing the trace of the right eyebrow.
         #[method_id(@__retain_semantics Other rightEyebrow)]
         pub unsafe fn rightEyebrow(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
+        /// nose the region containing the points describing the outline of the nose.
         #[method_id(@__retain_semantics Other nose)]
         pub unsafe fn nose(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
+        /// noseCrest the region containing the points describing the trace of the center crest of the nose.
         #[method_id(@__retain_semantics Other noseCrest)]
         pub unsafe fn noseCrest(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
+        /// medianLine the region containing the points describing the trace of the center line of the face.
         #[method_id(@__retain_semantics Other medianLine)]
         pub unsafe fn medianLine(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
+        /// outer lips the region containing the points describing the outline of the outside of the lips.
         #[method_id(@__retain_semantics Other outerLips)]
         pub unsafe fn outerLips(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
+        /// innerLips the region containing the points describing the outline of the space between the of the lips.
         #[method_id(@__retain_semantics Other innerLips)]
         pub unsafe fn innerLips(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
+        /// leftPupil the region containing the point where the left pupil is located.  This value may be inaccurate if
+        /// the face isBlinking.
         #[method_id(@__retain_semantics Other leftPupil)]
         pub unsafe fn leftPupil(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
+        /// rightPupil the region containing the point where the right pupil is located.  This value may be inaccurate if
+        /// the face isBlinking.
         #[method_id(@__retain_semantics Other rightPupil)]
         pub unsafe fn rightPupil(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
     }

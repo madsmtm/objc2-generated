@@ -24,6 +24,18 @@ extern_methods!(
     #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
     unsafe impl ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest {
         #[cfg(feature = "ASCredentialServiceIdentifier")]
+        /// Creates a request for a Sign in with Apple upgrade invoked within the extension's containing app.
+        ///
+        /// Parameter `user`: The username for the account to upgrade.
+        ///
+        /// Parameter `serviceIdentifier`: The service identifier of the credential the user wishes to upgrade.
+        ///
+        /// Parameter `userInfo`: A dictionary the app can use to pass information to the extension, most likely to help with authorizing the upgrade.
+        ///
+        /// In this flow, when the extension is invoked from within the containing app, the extension
+        /// will receive an empty password for the credential to upgrade. It should check that it is authorized to perform
+        /// the upgrade. The authorization check should ideally be done with information in userInfo, but may involve
+        /// communicating with a backend server or using a shared data container between the app and extension.
         #[method_id(@__retain_semantics Init initWithUser:serviceIdentifier:userInfo:)]
         pub unsafe fn initWithUser_serviceIdentifier_userInfo(
             this: Allocated<Self>,

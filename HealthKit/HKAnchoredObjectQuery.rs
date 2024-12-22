@@ -34,6 +34,10 @@ extern_methods!(
             feature = "HKSample",
             feature = "block2"
         ))]
+        /// An optional handler to be called when samples matching the given predicate are added or deleted.
+        ///
+        /// This property may not be modified once the query has been executed.  It may only be set if the query has
+        /// no limit.
         #[method(updateHandler)]
         pub unsafe fn updateHandler(
             &self,
@@ -54,6 +58,7 @@ extern_methods!(
             feature = "HKSample",
             feature = "block2"
         ))]
+        /// Setter for [`updateHandler`][Self::updateHandler].
         #[method(setUpdateHandler:)]
         pub unsafe fn setUpdateHandler(
             &self,
@@ -78,6 +83,25 @@ extern_methods!(
             feature = "HKSample",
             feature = "block2"
         ))]
+        /// Returns a query that will retrieve HKSamples and HKDeletedObjects matching the given predicate that are
+        /// newer than the given anchor.
+        ///
+        /// If no updateHandler is set on the query, the query will automatically stop after calling resultsHandler.
+        /// Otherwise, the query continues to run and call updateHandler as samples matching the predicate are
+        /// created or deleted.
+        ///
+        ///
+        /// Parameter `type`: The type of sample to retrieve.
+        ///
+        /// Parameter `predicate`: The predicate which samples should match.
+        ///
+        /// Parameter `anchor`: The anchor which was returned by a previous HKAnchoredObjectQuery result or update
+        /// handler.  Pass nil when querying for the first time.
+        ///
+        /// Parameter `limit`: The maximum number of samples and deleted objects to return.  Pass HKObjectQueryNoLimit
+        /// for no limit.
+        ///
+        /// Parameter `handler`: The block to invoke with results when the query has finished finding.
         #[method_id(@__retain_semantics Init initWithType:predicate:anchor:limit:resultsHandler:)]
         pub unsafe fn initWithType_predicate_anchor_limit_resultsHandler(
             this: Allocated<Self>,
@@ -128,6 +152,24 @@ extern_methods!(
             feature = "HKSample",
             feature = "block2"
         ))]
+        /// Returns a query that will retrieve HKSamples and HKDeletedObjects matching the given query descriptors
+        /// that are newer than the given anchor.
+        ///
+        /// If no updateHandler is set on the query, the query will automatically stop after calling resultsHandler.
+        /// Otherwise, the query continues to run and call updateHandler as samples matching the query descriptors
+        /// are created or deleted.
+        ///
+        ///
+        /// Parameter `queryDescriptors`: An array of query descriptors that describes the sample types and predicates that
+        /// you are interested in getting notified for.
+        ///
+        /// Parameter `anchor`: The anchor which was returned by a previous HKAnchoredObjectQuery result or update
+        /// handler.  Pass nil when querying for the first time.
+        ///
+        /// Parameter `limit`: The maximum number of samples and deleted objects to return. Pass
+        /// HKObjectQueryNoLimit for no limit.
+        ///
+        /// Parameter `handler`: The block to invoke with results when the query has finished finding.
         #[method_id(@__retain_semantics Init initWithQueryDescriptors:anchor:limit:resultsHandler:)]
         pub unsafe fn initWithQueryDescriptors_anchor_limit_resultsHandler(
             this: Allocated<Self>,

@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/assettingshelper?language=objc)
+    /// A helper class to provide static utility methods for quick access to settings related to credential providers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/assettingshelper?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASSettingsHelper;
@@ -19,18 +21,24 @@ unsafe impl NSObjectProtocol for ASSettingsHelper {}
 extern_methods!(
     unsafe impl ASSettingsHelper {
         #[cfg(feature = "block2")]
+        /// Calling this method will open the Settings app and navigate directly to the AutoFill provider settings.
         #[method(openCredentialProviderAppSettingsWithCompletionHandler:)]
         pub unsafe fn openCredentialProviderAppSettingsWithCompletionHandler(
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
+        /// Calling this method will open the Settings app and navigate directly to the Verification Code provider settings.
         #[method(openVerificationCodeAppSettingsWithCompletionHandler:)]
         pub unsafe fn openVerificationCodeAppSettingsWithCompletionHandler(
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
 
         #[cfg(feature = "block2")]
+        /// Call this method from your containing app to request to turn on a contained Credential Provider Extension.
+        /// If the extension is not currently enabled, a prompt will be shown to allow it to be turned on.
+        /// The completion handler is called with YES or NO depending on whether the credential provider is enabled.
+        /// You need to wait 10 seconds in order to make additional request to this API.
         #[method(requestToTurnOnCredentialProviderExtensionWithCompletionHandler:)]
         pub unsafe fn requestToTurnOnCredentialProviderExtensionWithCompletionHandler(
             completion_handler: &block2::Block<dyn Fn(Bool)>,

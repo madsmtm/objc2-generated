@@ -8,7 +8,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcracingwheeldidconnectnotification?language=objc)
+    /// Use these constants with NSNotificationCenter to listen to connection and disconnection events.
+    ///
+    /// Use GCRacingWheelDidConnectNotification for observing connections of racing wheels.
+    /// Use GCRacingWheelDidDisconnectNotification for observing disconnections of racing wheels.
+    ///
+    /// Connections and disconnections of racing wheels will also be reflected in the connectedRacingWheels array
+    /// of the GCRacingWheel class.
+    ///
+    /// The 'object' property of the notification will contain the GCRacingWheel that was connected or disconnected.
+    /// For example:
+    ///
+    /// - (void)wheelDidConnect:(NSNotification *)note {
+    /// GCRacingWheel *controller = note.object;
+    /// ....
+    /// }
+    ///
+    ///
+    /// See: NSNotificationCenter
+    ///
+    /// See: GCRacingWheel.connectedRacingWheels
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcracingwheeldidconnectnotification?language=objc)
     pub static GCRacingWheelDidConnectNotification: &'static NSString;
 }
 
@@ -34,25 +55,55 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Get the collection of racing wheels currently attached to the system.
+        ///
+        ///
+        /// See: GCRacingWheelDidConnectNotification
+        ///
+        /// See: GCRacingWheelDidDisconnectNotification
         #[method_id(@__retain_semantics Other connectedRacingWheels)]
         pub unsafe fn connectedRacingWheels() -> Retained<NSSet<GCRacingWheel>>;
 
+        /// A GCRacingWheel must be acquired before your application can begin receiving
+        /// events from it.  Prior to acquisition, your application may only query the
+        /// properties of the racing wheel.  Acquisition is exclusive and may fail.
         #[method(acquireDeviceWithError:_)]
         pub unsafe fn acquireDeviceWithError(&self) -> Result<(), Retained<NSError>>;
 
+        /// Releases a previous acquisition of the racing wheel.
         #[method(relinquishDevice)]
         pub unsafe fn relinquishDevice(&self);
 
+        /// Checks if the racing wheel has been acquired by the application.
+        ///
+        /// This property is observable.
         #[method(isAcquired)]
         pub unsafe fn isAcquired(&self) -> bool;
 
         #[cfg(feature = "GCRacingWheelInput")]
+        /// Get the physical input profile for the racing wheel.
         #[method_id(@__retain_semantics Other wheelInput)]
         pub unsafe fn wheelInput(&self) -> Retained<GCRacingWheelInput>;
 
+        /// A GCRacingWheel may represent a real device managed by the operating system,
+        /// or a snapshot created by the developer.
+        ///
+        ///
+        /// See: capture
         #[method(isSnapshot)]
         pub unsafe fn isSnapshot(&self) -> bool;
 
+        /// Polls the state vector of the racing wheel and saves it to a new instance of
+        /// GCRacingWheel.
+        ///
+        /// If your application is heavily multithreaded this may also be useful to
+        /// guarantee atomicity of input handling as a snapshot will not change based on
+        /// user input once it is taken.
+        ///
+        ///
+        /// See: snapshot
+        ///
+        /// Returns: A new racing wheel with the duplicated state vector of the receiver.
         #[method_id(@__retain_semantics Other capture)]
         pub unsafe fn capture(&self) -> Retained<GCRacingWheel>;
     }

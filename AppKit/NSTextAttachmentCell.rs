@@ -71,6 +71,7 @@ extern_protocol!(
         unsafe fn attachment(&self) -> Option<Retained<NSTextAttachment>>;
 
         #[cfg(feature = "NSTextAttachment")]
+        /// Setter for [`attachment`][Self::attachment].
         #[method(setAttachment:)]
         unsafe fn setAttachment(&self, attachment: Option<&NSTextAttachment>);
 

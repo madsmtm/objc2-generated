@@ -35,6 +35,7 @@ extern_methods!(
     /// Methods declared on superclass `CALayer`
     #[cfg(feature = "CALayer")]
     unsafe impl CATransformLayer {
+        /// Layer creation and initialization. *
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 

@@ -161,6 +161,7 @@ extern_methods!(
             feature = "NSView",
             feature = "block2"
         ))]
+        /// Setter for [`rowViewProvider`][Self::rowViewProvider].
         #[method(setRowViewProvider:)]
         pub unsafe fn setRowViewProvider(
             &self,
@@ -187,6 +188,7 @@ extern_methods!(
             feature = "NSView",
             feature = "block2"
         ))]
+        /// Setter for [`sectionHeaderViewProvider`][Self::sectionHeaderViewProvider].
         #[method(setSectionHeaderViewProvider:)]
         pub unsafe fn setSectionHeaderViewProvider(
             &self,
@@ -198,6 +200,7 @@ extern_methods!(
         pub unsafe fn defaultRowAnimation(&self) -> NSTableViewAnimationOptions;
 
         #[cfg(feature = "NSTableView")]
+        /// Setter for [`defaultRowAnimation`][Self::defaultRowAnimation].
         #[method(setDefaultRowAnimation:)]
         pub unsafe fn setDefaultRowAnimation(
             &self,

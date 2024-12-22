@@ -38,12 +38,20 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn CXCallDirectoryExtensionContextDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn CXCallDirectoryExtensionContextDelegate>>,
         );
 
+        /// Whether the request should provide incremental data.
+        ///
+        /// If this is called at the beginning of the request (before any entries have been added or removed) and the result is YES,
+        /// then the request must only provide an "incremental" set of entries, i.e. only add or remove entries relative to the last time data
+        /// was loaded for the extension. Otherwise, if this method is not called OR is called and returns NO, then the request must provide
+        /// a "complete" set of entries, adding the full list of entries from scratch (and removing none), regardless of whether data has ever been
+        /// successfully loaded in the past.
         #[method(isIncremental)]
         pub unsafe fn isIncremental(&self) -> bool;
 
@@ -55,12 +63,23 @@ extern_methods!(
         );
 
         #[cfg(feature = "CXCallDirectory")]
+        /// Remove blocking entry with the specified phone number.
+        ///
+        /// May only be used when `-isIncremental` returns YES, indicating that the request should provide incremental entries and thus may use this
+        /// API to remove a previously-added blocking entry.
+        ///
+        ///
+        /// Parameter `phoneNumber`: The blocking entry phone number to remove.
         #[method(removeBlockingEntryWithPhoneNumber:)]
         pub unsafe fn removeBlockingEntryWithPhoneNumber(
             &self,
             phone_number: CXCallDirectoryPhoneNumber,
         );
 
+        /// Remove all currently-stored blocking entries.
+        ///
+        /// May only be used when `-isIncremental` returns YES, indicating that the request should provide incremental entries and thus may use this
+        /// API to remove all previously-added blocking entries.
         #[method(removeAllBlockingEntries)]
         pub unsafe fn removeAllBlockingEntries(&self);
 
@@ -73,12 +92,24 @@ extern_methods!(
         );
 
         #[cfg(feature = "CXCallDirectory")]
+        /// Remove identification entry with the specified phone number.
+        ///
+        /// May only be used when `-isIncremental` returns YES, indicating that the request should provide incremental entries and thus may use this
+        /// API to remove a previously-added identification entry. Removes all identification entries with the specified phone number, even if
+        /// multiple identification entries with different labels are present for a single phone number.
+        ///
+        ///
+        /// Parameter `phoneNumber`: The identification entry phone number to remove.
         #[method(removeIdentificationEntryWithPhoneNumber:)]
         pub unsafe fn removeIdentificationEntryWithPhoneNumber(
             &self,
             phone_number: CXCallDirectoryPhoneNumber,
         );
 
+        /// Remove all currently-stored identification entries.
+        ///
+        /// May only be used when `-isIncremental` returns YES, indicating that the request should provide incremental entries and thus may use this
+        /// API to remove all previously-added identification entries.
         #[method(removeAllIdentificationEntries)]
         pub unsafe fn removeAllIdentificationEntries(&self);
 

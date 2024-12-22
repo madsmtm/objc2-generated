@@ -8,9 +8,18 @@ use crate::*;
 
 extern_methods!(
     /// MLComputeDevice
+    /// MLModel (MLComputeDevice)
+    ///
+    /// Class with utilties for getting the available compute devices.
     #[cfg(feature = "MLModel")]
     unsafe impl MLModel {
         #[cfg(feature = "MLComputeDeviceProtocol")]
+        /// The list of available compute devices for CoreML.
+        ///
+        /// Use the method to get the list of compute devices that MLModel's prediction can use.
+        ///
+        /// Some compute devices on the hardware are exclusive to the domain ML frameworks such as Vision and SoundAnalysis and
+        /// not available to CoreML. See also `MLComputeDevice.allComputeDevices`.
         #[method_id(@__retain_semantics Other availableComputeDevices)]
         pub unsafe fn availableComputeDevices(
         ) -> Retained<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>;

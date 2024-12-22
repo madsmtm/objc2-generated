@@ -7,7 +7,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpurgeablestate?language=objc)
+/// Options for setPurgeable call.
+///
+///
+/// The contents of this resource may not be discarded.
+///
+///
+/// The contents of this resource may be discarded.
+///
+///
+/// The contents of this are discarded.
+///
+///
+/// The purgeabelity state is not changed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpurgeablestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,7 +45,17 @@ unsafe impl RefEncode for MTLPurgeableState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcpucachemode?language=objc)
+/// Describes what CPU cache mode is used for the CPU's mapping of a texture resource.
+///
+/// The default cache mode for the system.
+///
+///
+/// Write combined memory is optimized for resources that the CPU will write into, but never read.  On some implementations, writes may bypass caches avoiding cache pollution, and reads perform very poorly.
+///
+///
+/// Applications should only investigate changing the cache mode if writing to normally cached buffers is known to cause performance issues due to cache pollution, as write combined memory can have surprising performance pitfalls.  Another approach is to use non-temporal stores to normally cached memory (STNP on ARMv8, _mm_stream_* on x86_64).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcpucachemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -51,7 +75,30 @@ unsafe impl RefEncode for MTLCPUCacheMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoragemode?language=objc)
+/// Describes location and CPU mapping of MTLTexture.
+///
+/// In this mode, CPU and device will nominally both use the same underlying memory when accessing the contents of the texture resource.
+/// However, coherency is only guaranteed at command buffer boundaries to minimize the required flushing of CPU and GPU caches.
+/// This is the default storage mode for iOS Textures.
+///
+///
+/// This mode relaxes the coherency requirements and requires that the developer make explicit requests to maintain
+/// coherency between a CPU and GPU version of the texture resource.  In order for CPU to access up to date GPU results,
+/// first, a blit synchronizations must be completed (see synchronize methods of MTLBlitCommandEncoder).
+/// Blit overhead is only incurred if GPU has modified the resource.
+/// This is the default storage mode for OS X Textures.
+///
+///
+/// This mode allows the texture resource data to be kept entirely to GPU (or driver) private memory that will never be accessed by the CPU directly, so no
+/// conherency of any kind must be maintained.
+///
+///
+/// This mode allows creation of resources that do not have a GPU or CPU memory backing, but do have on-chip storage for TBDR
+/// devices. The contents of the on-chip storage is undefined and does not persist, but its configuration is controlled by the
+/// MTLTexture descriptor. Textures created with MTLStorageModeMemoryless dont have an IOAccelResource at any point in their
+/// lifetime. The only way to populate such resource is to perform rendering operations on it. Blit operations are disallowed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoragemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -75,7 +122,9 @@ unsafe impl RefEncode for MTLStorageMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlhazardtrackingmode?language=objc)
+/// Describes how hazard tracking is performed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlhazardtrackingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -129,47 +178,86 @@ unsafe impl RefEncode for MTLResourceOptions {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresource?language=objc)
+    /// Common APIs available for MTLBuffer and MTLTexture instances
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresource?language=objc)
     #[cfg(feature = "MTLAllocation")]
     pub unsafe trait MTLResource: MTLAllocation {
+        /// A string to help identify this object.
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
+        /// The device this resource was created against.  This resource can only be used with this device.
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
+        /// The cache mode used for the CPU mapping for this resource
         #[method(cpuCacheMode)]
         fn cpuCacheMode(&self) -> MTLCPUCacheMode;
 
+        /// The resource storage mode used for the CPU mapping for this resource
         #[method(storageMode)]
         fn storageMode(&self) -> MTLStorageMode;
 
+        /// Whether or not the resource is hazard tracked.
+        ///
+        /// This value can be either MTLHazardTrackingModeUntracked or MTLHazardTrackingModeTracked.
+        /// Resources created from heaps are by default untracked, whereas resources created from the device are by default tracked.
         #[method(hazardTrackingMode)]
         fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
 
+        /// A packed tuple of the storageMode, cpuCacheMode and hazardTrackingMode properties.
         #[method(resourceOptions)]
         fn resourceOptions(&self) -> MTLResourceOptions;
 
+        /// Set (or query) the purgeability state of a resource
+        ///
+        /// Synchronously set the purgeability state of a resource and return what the prior (or current) state is.
+        /// FIXME: If the device is keeping a cached copy of the resource, both the shared copy and cached copy are made purgeable.  Any access to the resource by either the CPU or device will be undefined.
         #[method(setPurgeableState:)]
         fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
 
         #[cfg(feature = "MTLHeap")]
+        /// The heap from which this resouce was created.
+        ///
+        /// Nil when this resource is not backed by a heap.
         #[method_id(@__retain_semantics Other heap)]
         fn heap(&self) -> Option<Retained<ProtocolObject<dyn MTLHeap>>>;
 
+        /// The offset inside the heap at which this resource was created.
+        ///
+        /// Zero when this resource was not created on a heap with MTLHeapTypePlacement.
         #[method(heapOffset)]
         fn heapOffset(&self) -> NSUInteger;
 
+        /// The size in bytes occupied by this resource
         #[method(allocatedSize)]
         fn allocatedSize(&self) -> NSUInteger;
 
+        /// Allow future heap sub-allocations to alias against this resource's memory.
+        ///
+        /// It is illegal to call this method on a non heap-based resource.
+        /// It is also illegal to call this method on texture views created from heap-based textures.
+        /// The debug layer will raise an exception. Calling this method on textures sub-allocated
+        /// from Buffers backed by heap memory has no effect.
+        /// Once a resource is made aliasable, the decision cannot be reverted.
         #[method(makeAliasable)]
         unsafe fn makeAliasable(&self);
 
+        /// Returns whether future heap sub-allocations may alias against this resource's memory.
+        ///
+        /// Returns: YES if
+        /// <st
+        /// >makeAliasable
+        /// </st
+        /// > was previously successfully called on this resource. NO otherwise.
+        /// If resource is sub-allocated from other resource created on the heap, isAliasable returns
+        /// aliasing state of that base resource. Also returns NO when storage mode is memoryless.
         #[method(isAliasable)]
         fn isAliasable(&self) -> bool;
     }

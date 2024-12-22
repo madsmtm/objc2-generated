@@ -7,7 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiotraditionalmemoryballoondeviceconfiguration?language=objc)
+    /// Configuration of the Virtio traditional memory balloon device.
+    ///
+    /// This configuration creates a Virtio traditional memory balloon device which allows for managing guest memory.
+    /// Only one Virtio traditional memory balloon device can be used per virtual machine.
+    ///
+    /// See: VZVirtioTraditionalMemoryBalloonDevice
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiotraditionalmemoryballoondeviceconfiguration?language=objc)
     #[unsafe(super(VZMemoryBalloonDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]

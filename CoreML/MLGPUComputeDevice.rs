@@ -9,7 +9,9 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlgpucomputedevice?language=objc)
+    /// Represents a GPU compute device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlgpucomputedevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLGPUComputeDevice;
@@ -34,6 +36,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
+        /// The underlying metal device.
         #[method_id(@__retain_semantics Other metalDevice)]
         pub unsafe fn metalDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
     }

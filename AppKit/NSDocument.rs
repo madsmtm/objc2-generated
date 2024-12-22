@@ -110,24 +110,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileType)]
         pub unsafe fn fileType(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`fileType`][Self::fileType].
         #[method(setFileType:)]
         pub unsafe fn setFileType(&self, file_type: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other fileURL)]
         pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`fileURL`][Self::fileURL].
         #[method(setFileURL:)]
         pub unsafe fn setFileURL(&self, file_url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other fileModificationDate)]
         pub unsafe fn fileModificationDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Setter for [`fileModificationDate`][Self::fileModificationDate].
         #[method(setFileModificationDate:)]
         pub unsafe fn setFileModificationDate(&self, file_modification_date: Option<&NSDate>);
 
         #[method(isDraft)]
         pub unsafe fn isDraft(&self) -> bool;
 
+        /// Setter for [`isDraft`][Self::isDraft].
         #[method(setDraft:)]
         pub unsafe fn setDraft(&self, draft: bool);
 
@@ -381,6 +385,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other autosavedContentsFileURL)]
         pub unsafe fn autosavedContentsFileURL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`autosavedContentsFileURL`][Self::autosavedContentsFileURL].
         #[method(setAutosavedContentsFileURL:)]
         pub unsafe fn setAutosavedContentsFileURL(
             &self,
@@ -501,6 +506,7 @@ extern_methods!(
         pub unsafe fn printInfo(&self) -> Retained<NSPrintInfo>;
 
         #[cfg(feature = "NSPrintInfo")]
+        /// Setter for [`printInfo`][Self::printInfo].
         #[method(setPrintInfo:)]
         pub unsafe fn setPrintInfo(&self, print_info: &NSPrintInfo);
 
@@ -567,6 +573,7 @@ extern_methods!(
         ) -> Option<Retained<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
 
         #[cfg(feature = "NSPreviewRepresentingActivityItem")]
+        /// Setter for [`previewRepresentableActivityItems`][Self::previewRepresentableActivityItems].
         #[method(setPreviewRepresentableActivityItems:)]
         pub unsafe fn setPreviewRepresentableActivityItems(
             &self,
@@ -600,12 +607,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other undoManager)]
         pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
+        /// Setter for [`undoManager`][Self::undoManager].
         #[method(setUndoManager:)]
         pub unsafe fn setUndoManager(&self, undo_manager: Option<&NSUndoManager>);
 
         #[method(hasUndoManager)]
         pub unsafe fn hasUndoManager(&self) -> bool;
 
+        /// Setter for [`hasUndoManager`][Self::hasUndoManager].
         #[method(setHasUndoManager:)]
         pub unsafe fn setHasUndoManager(&self, has_undo_manager: bool);
 

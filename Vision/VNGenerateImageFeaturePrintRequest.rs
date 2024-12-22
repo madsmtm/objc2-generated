@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest?language=objc)
+    /// A request for generating a feature print of an image.
+    ///
+    ///
+    /// This request will produce a `VNFeaturePrintObservation` object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -30,10 +35,15 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNGenerateImageFeaturePrintRequest {
         #[cfg(feature = "VNTypes")]
+        /// Determine what type of croping and scaling action should be applied to the image before generating the feature print.
+        ///
+        ///
+        /// The default value for this property is `VNImageCropAndScaleOptionScaleFill`.
         #[method(imageCropAndScaleOption)]
         pub unsafe fn imageCropAndScaleOption(&self) -> VNImageCropAndScaleOption;
 
         #[cfg(feature = "VNTypes")]
+        /// Setter for [`imageCropAndScaleOption`][Self::imageCropAndScaleOption].
         #[method(setImageCropAndScaleOption:)]
         pub unsafe fn setImageCropAndScaleOption(
             &self,
@@ -41,6 +51,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "VNObservation")]
+        /// `VNFeaturePrintObservation` results.
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNFeaturePrintObservation>>>;
     }
@@ -50,10 +61,15 @@ extern_methods!(
     /// Methods declared on superclass `VNRequest`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNGenerateImageFeaturePrintRequest {
+        /// Creates a new VNRequest with no completion handler.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Creates a new VNRequest with an optional completion handler.
+        ///
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -71,8 +87,12 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequestrevision1?language=objc)
+/// The feature print produced by the `VNClassifyImageRequestRevision1` classifier.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequestrevision1?language=objc)
 pub static VNGenerateImageFeaturePrintRequestRevision1: NSUInteger = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequestrevision2?language=objc)
+/// The feature print produced by the `VNClassifyImageRequestRevision2` classifier.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequestrevision2?language=objc)
 pub static VNGenerateImageFeaturePrintRequestRevision2: NSUInteger = 2;

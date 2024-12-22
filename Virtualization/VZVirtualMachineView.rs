@@ -12,7 +12,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachineview?language=objc)
+    /// A view that allows user interaction with a virtual machine.
+    ///
+    /// The VZVirtualMachineView shows the contents of the virtual machine framebuffer. If the virtual machine configuration includes a keyboard and a pointing device,
+    /// the view forwards keyboard and mouse events to the virtual machine via those devices.
+    ///
+    /// See also: VZVirtualMachine
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachineview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -47,22 +54,36 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl VZVirtualMachineView {
         #[cfg(feature = "VZVirtualMachine")]
+        /// The virtual machine to display in the view.
         #[method_id(@__retain_semantics Other virtualMachine)]
         pub unsafe fn virtualMachine(&self) -> Option<Retained<VZVirtualMachine>>;
 
         #[cfg(feature = "VZVirtualMachine")]
+        /// Setter for [`virtualMachine`][Self::virtualMachine].
         #[method(setVirtualMachine:)]
         pub unsafe fn setVirtualMachine(&self, virtual_machine: Option<&VZVirtualMachine>);
 
+        /// Whether certain system hot keys should be sent to the guest instead of the host. Defaults to NO.
         #[method(capturesSystemKeys)]
         pub unsafe fn capturesSystemKeys(&self) -> bool;
 
+        /// Setter for [`capturesSystemKeys`][Self::capturesSystemKeys].
         #[method(setCapturesSystemKeys:)]
         pub unsafe fn setCapturesSystemKeys(&self, captures_system_keys: bool);
 
+        /// Automatically reconfigures the graphics display associated with this view with respect to view changes. Defaults to NO.
+        ///
+        /// Automatically resize or reconfigure this graphics display when the view properties update.
+        /// For example, resizing the display when the view has a live resize operation. When enabled,
+        /// the graphics display will automatically be reconfigured to match the host display environment.
+        ///
+        /// This property can only be set on a single VZVirtualMachineView targeting a particular VZGraphicsDisplay
+        /// at a time. If multiple VZVirtualMachineViews targeting the same VZGraphicsDisplay enable this property,
+        /// only one view will respect the property, and the other view will have had the property disabled.
         #[method(automaticallyReconfiguresDisplay)]
         pub unsafe fn automaticallyReconfiguresDisplay(&self) -> bool;
 
+        /// Setter for [`automaticallyReconfiguresDisplay`][Self::automaticallyReconfiguresDisplay].
         #[method(setAutomaticallyReconfiguresDisplay:)]
         pub unsafe fn setAutomaticallyReconfiguresDisplay(
             &self,

@@ -51,6 +51,7 @@ extern_protocol!(
     {
         #[cfg(feature = "ASFoundation")]
         #[cfg(target_os = "macos")]
+        /// Return a view anchor that is most appropriate for athorization UI to be presented over.  This view will be used as a hint if a credential provider requires user interaction.
         #[method_id(@__retain_semantics Other presentationAnchorForAuthorizationController:)]
         unsafe fn presentationAnchorForAuthorizationController(
             &self,
@@ -68,6 +69,7 @@ extern_protocol!(
 pub struct ASAuthorizationControllerRequestOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAuthorizationControllerRequestOptions: NSUInteger {
+/// Tell the authorization controller that it should prefer credentials that are immediately available on the local device.
         const ASAuthorizationControllerRequestOptionPreferImmediatelyAvailableCredentials = 1<<0;
     }
 }
@@ -92,9 +94,12 @@ unsafe impl NSObjectProtocol for ASAuthorizationController {}
 extern_methods!(
     unsafe impl ASAuthorizationController {
         #[cfg(feature = "ASAuthorizationRequest")]
+        /// Authorization requests that are being serviced by this controller
         #[method_id(@__retain_semantics Other authorizationRequests)]
         pub unsafe fn authorizationRequests(&self) -> Retained<NSArray<ASAuthorizationRequest>>;
 
+        /// This delegate will be invoked upon completion of the authorization indicating success or failure.
+        /// Delegate is required to receive the results of authorization.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
@@ -102,12 +107,14 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn ASAuthorizationControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn ASAuthorizationControllerDelegate>>,
         );
 
+        /// This delegate will be invoked upon needing a presentation context to display authorization UI.
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
@@ -117,6 +124,7 @@ extern_methods!(
         >;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`presentationContextProvider`][Self::presentationContextProvider].
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,
@@ -126,12 +134,18 @@ extern_methods!(
         );
 
         #[cfg(feature = "ASAuthorizationCustomMethod")]
+        /// A list of custom authorization methods that may be displayed in the authorization UI.
+        ///
+        /// If the user selects one of these methods, instead of attempting to secure an authorization for the requests, the
+        /// controller will call authorizationController:didCompleteWithCustomMethod: with the selected method, allowing
+        /// the client to perform the requested authorization.
         #[method_id(@__retain_semantics Other customAuthorizationMethods)]
         pub unsafe fn customAuthorizationMethods(
             &self,
         ) -> Retained<NSArray<ASAuthorizationCustomMethod>>;
 
         #[cfg(feature = "ASAuthorizationCustomMethod")]
+        /// Setter for [`customAuthorizationMethods`][Self::customAuthorizationMethods].
         #[method(setCustomAuthorizationMethods:)]
         pub unsafe fn setCustomAuthorizationMethods(
             &self,
@@ -139,24 +153,49 @@ extern_methods!(
         );
 
         #[cfg(feature = "ASAuthorizationRequest")]
+        /// Initialize the controller with authorization requests.
+        ///
+        ///
+        /// Parameter `authorizationRequests`: At least one request should be provided. Requests of same type maybe honored in first in first out order
         #[method_id(@__retain_semantics Init initWithAuthorizationRequests:)]
         pub unsafe fn initWithAuthorizationRequests(
             this: Allocated<Self>,
             authorization_requests: &NSArray<ASAuthorizationRequest>,
         ) -> Retained<Self>;
 
+        /// Initiate the authorization flows. Upon completion, the delegate will be called with either success or failure.
+        /// Certain authorization flows may require a presentation context. The
+        /// `presentationContextProvider`will be called
+        /// to provide it.
+        ///
+        /// The instance will remain retained until the flow is either completed or canceled, and the delegate callback is made.
         #[method(performRequests)]
         pub unsafe fn performRequests(&self);
 
+        /// Initiate the authorization flows for requests that support AutoFill presentation. UI will be shown when
+        /// focusing a text field with the appropriate text content type. Upon completion, the delegate will be called with either success
+        /// or failure.
+        ///
+        /// The instance will remain retained until the flow is either completed or canceled, and the delegate callback is made.
         #[method(performAutoFillAssistedRequests)]
         pub unsafe fn performAutoFillAssistedRequests(&self);
 
+        /// Initiate the authorization flows. Upon completion, the delegate will be called with either success or failure.
+        /// Certain authorization flows may require a presentation context. The
+        /// `presentationContextProvider`will be called
+        /// to provide it.
+        ///
+        /// Calling this method with no options is the same as calling
+        /// `performRequests.`The instance will remain retained until
+        /// the flow is either completed or canceled, and the delegate callback is made.
         #[method(performRequestsWithOptions:)]
         pub unsafe fn performRequestsWithOptions(
             &self,
             options: ASAuthorizationControllerRequestOptions,
         );
 
+        /// Cancel the running authorization flows, if there are any. If a flow is canceled, the delegate callback will
+        /// be made indicating the cancel.
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 

@@ -276,6 +276,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSSpeechSynthesizerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -294,12 +295,14 @@ extern_methods!(
         #[method(rate)]
         pub unsafe fn rate(&self) -> c_float;
 
+        /// Setter for [`rate`][Self::rate].
         #[method(setRate:)]
         pub unsafe fn setRate(&self, rate: c_float);
 
         #[method(volume)]
         pub unsafe fn volume(&self) -> c_float;
 
+        /// Setter for [`volume`][Self::volume].
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
@@ -307,6 +310,7 @@ extern_methods!(
         #[method(usesFeedbackWindow)]
         pub unsafe fn usesFeedbackWindow(&self) -> bool;
 
+        /// Setter for [`usesFeedbackWindow`][Self::usesFeedbackWindow].
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
         #[method(setUsesFeedbackWindow:)]
         pub unsafe fn setUsesFeedbackWindow(&self, uses_feedback_window: bool);

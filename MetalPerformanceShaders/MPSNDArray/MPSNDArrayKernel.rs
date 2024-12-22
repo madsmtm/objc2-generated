@@ -37,27 +37,61 @@ extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNDArrayMultiaryBase {
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// Read offsets to use when addressing a source NDArray
+        ///
+        /// The coordinate of the position read from this source array which is
+        /// used to calculate the result value at [0,0,0,....]
+        /// If the position read is actually a contiguous region (e.g. the area covered by
+        /// a convolution kernel) then this is the center of that region, rounded down, for
+        /// each dimension.
+        ///
+        /// Parameter `sourceIndex`: The index of the source MPSNDArray to which the list of offsets is applied
         #[deprecated]
         #[method(offsetsAtSourceIndex:)]
         pub unsafe fn offsetsAtSourceIndex(&self, source_index: NSUInteger) -> MPSNDArrayOffsets;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The edge mode used for each source NDArray
+        ///
+        /// Parameter `sourceIndex`: The index of the source image
+        ///
+        /// Returns: The MPSImageEdgeMode for that image
         #[deprecated]
         #[method(edgeModeAtSourceIndex:)]
         pub unsafe fn edgeModeAtSourceIndex(&self, source_index: NSUInteger) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// Get the diameters of the point spread function (PSF) in each dimension
+        ///
+        /// Parameter `sourceIndex`: The MPSNDArrayMultiaryKernel source NDArray to which the kernel will be applied
+        ///
+        /// Returns: A list of kernel diameters in each dimension
         #[deprecated]
         #[method(kernelSizesForSourceIndex:)]
         pub unsafe fn kernelSizesForSourceIndex(&self, source_index: NSUInteger)
             -> MPSNDArraySizes;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// Return the downsampling ratio for the kernel in each dimension
+        ///
+        /// If the filter is a "backwards" filter such as a gradient filter
+        /// or convolution transpose, then this is the upsampling ratio and
+        /// zeros are inserted in the result.
+        ///
+        /// Parameter `sourceIndex`: The index of the source for which the strides apply
+        ///
+        /// Returns: The strides from one destination sample to the next in each
+        /// dimension of the corresponding source NDArray
         #[deprecated]
         #[method(stridesForSourceIndex:)]
         pub unsafe fn stridesForSourceIndex(&self, source_index: NSUInteger) -> MPSNDArrayOffsets;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// Get the kernel dilation rate for each dimension
+        ///
+        /// Parameter `sourceIndex`: The index of the source image for which this applies
+        ///
+        /// Returns: The kernel dilation rate for each dimension.
         #[deprecated]
         #[method(dilationRatesForSourceIndex:)]
         pub unsafe fn dilationRatesForSourceIndex(
@@ -66,12 +100,16 @@ extern_methods!(
         ) -> MPSNDArraySizes;
 
         #[cfg(feature = "MPSNDArray")]
+        /// Method to allocate the result image for -encodeToCommandBuffer:sourceImage:
+        ///
+        /// Default: MPSTemporaryImage.defaultAllocator
         #[method_id(@__retain_semantics Other destinationArrayAllocator)]
         pub unsafe fn destinationArrayAllocator(
             &self,
         ) -> Retained<ProtocolObject<dyn MPSNDArrayAllocator>>;
 
         #[cfg(feature = "MPSNDArray")]
+        /// Setter for [`destinationArrayAllocator`][Self::destinationArrayAllocator].
         #[method(setDestinationArrayAllocator:)]
         pub unsafe fn setDestinationArrayAllocator(
             &self,
@@ -84,6 +122,13 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Initialize a MPSNDArrayMultiaryKernel
+        ///
+        /// Parameter `device`: The device on which the kernel will run
+        ///
+        /// Parameter `count`: The maximum number of NDArrays read by the kernel
+        ///
+        /// Returns: A valid MPSNDArrayMultiaryKernel, or nil if allocation failure.
         #[method_id(@__retain_semantics Init initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
@@ -91,6 +136,13 @@ extern_methods!(
             count: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Initialize a MPSNDArrayMultiaryKernel from a NSCoder
+        ///
+        /// Parameter `coder`: The NSCoder that contains the serialized object
+        ///
+        /// Parameter `device`: The device on which the kernel will run
+        ///
+        /// Returns: A valid MPSNDArrayMultiaryKernel, or nil if allocation failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -98,9 +150,19 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Initialize a MPSNDArrayMultiaryKernel from a NSCoder
+        ///
+        /// Parameter `coder`: The NSCoder that contains the serialized object
         #[method(encodeWithCoder:)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
+        /// Create a copy with
+        ///
+        /// Parameter `zone`: The NSZone in which to allocate the MPSNDArrayMultiaryKernel object
+        ///
+        /// Parameter `device`: The device on which the new kernel will run. Pass nil for same device.
+        ///
+        /// Returns: A valid MPSNDArrayMultiaryKernel, or nil if allocation failure.
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -118,6 +180,18 @@ extern_methods!(
         ) -> Option<Retained<MPSState>>;
 
         #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        /// Return a descriptor suitable for allocating a NSArray to receive the result
+        ///
+        /// The object properties (kernelSize, offsets, edgeMode, etc.) should be properly
+        /// configured as if the -encode call was about to be made, before this method is
+        /// called. Those properties may affect the results.
+        ///
+        /// Parameter `sources`: The list of sources passed into the -encode call
+        ///
+        /// Parameter `state`: The source state object, if any passed to the -encode call
+        ///
+        /// Returns: a valid MPSNDArrayDescriptor that may be used to create a MPSNDArray to used to
+        /// hold the results of this kernel.
         #[method_id(@__retain_semantics Other destinationArrayDescriptorForSourceArrays:sourceState:)]
         pub unsafe fn destinationArrayDescriptorForSourceArrays_sourceState(
             &self,
@@ -131,6 +205,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNDArrayMultiaryBase {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -194,6 +276,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSNDArray")]
+        /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
+        ///
+        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
+        ///
+        /// Parameter `sourceArrays`: The list of sources for the filter in a NSArray.
+        /// Ordering to be defined by subclass
+        ///
+        /// Returns: A newly allocated MPSNDArray that will contain the result of the calculation
+        /// when the command buffer completes successfully.
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceArrays:)]
         pub unsafe fn encodeToCommandBuffer_sourceArrays(
             &self,
@@ -202,6 +293,14 @@ extern_methods!(
         ) -> Retained<MPSNDArray>;
 
         #[cfg(feature = "MPSNDArray")]
+        /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
+        ///
+        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
+        ///
+        /// Parameter `sourceArrays`: The list of sources for the filter in a NSArray.
+        /// Ordering to be defined by subclass
+        ///
+        /// Parameter `destination`: The NDArray to receive the result
         #[method(encodeToCommandBuffer:sourceArrays:destinationArray:)]
         pub unsafe fn encodeToCommandBuffer_sourceArrays_destinationArray(
             &self,
@@ -211,6 +310,19 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
+        ///
+        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
+        ///
+        /// Parameter `sourceArrays`: The list of sources for the filter in a NSArray.
+        /// Ordering to be defined by subclass
+        ///
+        /// Parameter `outGradientState`: If non-nil, the address output gradient state is written to this address
+        ///
+        /// Parameter `outputStateIsTemporary`: If YES, the state if any will be allocated to contain temporary textures and buffers as needed
+        ///
+        /// Returns: A newly allocated MPSNDArray that will contain the result of the calculation
+        /// when the command buffer completes successfully.
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceArrays:resultState:outputStateIsTemporary:)]
         pub unsafe fn encodeToCommandBuffer_sourceArrays_resultState_outputStateIsTemporary(
             &self,
@@ -221,6 +333,17 @@ extern_methods!(
         ) -> Retained<MPSNDArray>;
 
         #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
+        ///
+        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
+        ///
+        /// Parameter `sourceArrays`: The list of sources for the filter in a NSArray.
+        /// Ordering to be defined by subclass
+        ///
+        /// Parameter `outGradientState`: The output gradient state to record the operation for later use by gradient
+        ///
+        /// Parameter `destination`: A destination array to contain the result of the calculation
+        /// when the command buffer completes successfully.
         #[method(encodeToCommandBuffer:sourceArrays:resultState:destinationArray:)]
         pub unsafe fn encodeToCommandBuffer_sourceArrays_resultState_destinationArray(
             &self,
@@ -231,6 +354,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSNDArray")]
+        /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
+        ///
+        /// Parameter `encoder`: The MTLComputeCommandEncoder that the kernel will be encoded on
+        ///
+        /// Parameter `commandBuffer`: The command buffer into which to encode the kernel
+        ///
+        /// Parameter `sourceArrays`: The list of sources for the filter in a NSArray.
+        /// Ordering to be defined by subclass
+        ///
+        /// Parameter `destination`: A destination array to contain the result of the calculation
+        /// when the command buffer completes successfully.
         #[method(encodeToCommandEncoder:commandBuffer:sourceArrays:destinationArray:)]
         pub unsafe fn encodeToCommandEncoder_commandBuffer_sourceArrays_destinationArray(
             &self,
@@ -258,6 +392,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNDArrayMultiaryKernel {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -320,6 +462,15 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Initialize a MPSNDArrayMultiaryKernel
+        ///
+        /// Parameter `device`: The device on which the kernel will run
+        ///
+        /// Parameter `count`: The maximum number of NDArrays read by the kernel
+        ///
+        /// Parameter `sourceGradientIndex`: The source index for which gradient will be calculated
+        ///
+        /// Returns: A valid MPSNDArrayMultiaryKernel, or nil if allocation failure.
         #[method_id(@__retain_semantics Init initWithDevice:sourceCount:sourceGradientIndex:)]
         pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
             this: Allocated<Self>,
@@ -367,6 +518,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNDArrayMultiaryGradientKernel {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -416,26 +575,42 @@ extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNDArrayUnaryKernel {
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// The coordinate of the position read from this source array which is
+        /// used to calculate the result value at [0,0,0,....]
+        /// If the position read is actually a contiguous region (e.g. the area covered by
+        /// a convolution kernel) then this is the center of that region, rounded down, for
+        /// each dimension.
+        /// Default: 0,0,0...
         #[deprecated]
         #[method(offsets)]
         pub unsafe fn offsets(&self) -> MPSNDArrayOffsets;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The edge mode used for a source NDArray
+        /// Default: MPSImageEdgeModeZero
         #[deprecated]
         #[method(edgeMode)]
         pub unsafe fn edgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// The diameters of the point spread function in each dimension for a source NDArray
+        /// Default: 1
         #[deprecated]
         #[method(kernelSizes)]
         pub unsafe fn kernelSizes(&self) -> MPSNDArraySizes;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// If the filter is a "backwards" filter such as a gradient filter
+        /// or convolution transpose, then this is the upsampling ratio and
+        /// zeros are inserted in the result.
+        /// Default: 1
         #[deprecated]
         #[method(strides)]
         pub unsafe fn strides(&self) -> MPSNDArrayOffsets;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// The stride in each dimension from one PSF tap to an adjacent
+        /// PSF tap. Default: 1
         #[deprecated]
         #[method(dilationRates)]
         pub unsafe fn dilationRates(&self) -> MPSNDArraySizes;
@@ -461,6 +636,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSNDArray")]
+        /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
+        ///
+        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
+        ///
+        /// Parameter `sourceArray`: The source for the filter in an NSArray.
+        ///
+        /// Returns: A newly allocated MPSNDArray that will contain the result of the calculation
+        /// when the command buffer completes successfully.
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceArray:)]
         pub unsafe fn encodeToCommandBuffer_sourceArray(
             &self,
@@ -469,6 +652,13 @@ extern_methods!(
         ) -> Retained<MPSNDArray>;
 
         #[cfg(feature = "MPSNDArray")]
+        /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
+        ///
+        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
+        ///
+        /// Parameter `sourceArray`: The source for the filter in an NSArray.
+        ///
+        /// Parameter `destination`: The NDArray to receive the result
         #[method(encodeToCommandBuffer:sourceArray:destinationArray:)]
         pub unsafe fn encodeToCommandBuffer_sourceArray_destinationArray(
             &self,
@@ -478,6 +668,18 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
+        ///
+        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
+        ///
+        /// Parameter `sourceArray`: The source for the filter in an NSArray.
+        ///
+        /// Parameter `outGradientState`: If non-nil, the address output gradient state is written to this address
+        ///
+        /// Parameter `outputStateIsTemporary`: If YES, the state if any will be allocated to contain temporary textures and buffers as needed
+        ///
+        /// Returns: A newly allocated MPSNDArray that will contain the result of the calculation
+        /// when the command buffer completes successfully.
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceArray:resultState:outputStateIsTemporary:)]
         pub unsafe fn encodeToCommandBuffer_sourceArray_resultState_outputStateIsTemporary(
             &self,
@@ -488,6 +690,16 @@ extern_methods!(
         ) -> Retained<MPSNDArray>;
 
         #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
+        ///
+        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
+        ///
+        /// Parameter `sourceArray`: The source for the filter in an NSArray.
+        ///
+        /// Parameter `outGradientState`: The output gradient state to record the operation for later use by gradient
+        ///
+        /// Parameter `destination`: A destination array to contain the result of the calculation
+        /// when the command buffer completes successfully.
         #[method(encodeToCommandBuffer:sourceArray:resultState:destinationArray:)]
         pub unsafe fn encodeToCommandBuffer_sourceArray_resultState_destinationArray(
             &self,
@@ -503,6 +715,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNDArrayUnaryKernel {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -617,6 +837,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNDArrayUnaryGradientKernel {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -666,51 +894,83 @@ extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNDArrayBinaryKernel {
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// The coordinate of the position read from this source array which is
+        /// used to calculate the result value at [0,0,0,....]
+        /// If the position read is actually a contiguous region (e.g. the area covered by
+        /// a convolution kernel) then this is the center of that region, rounded down, for
+        /// each dimension.
+        /// Default: 0,0,0...
         #[deprecated]
         #[method(primaryOffsets)]
         pub unsafe fn primaryOffsets(&self) -> MPSNDArrayOffsets;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The edge mode used for a source NDArray
+        /// Default: MPSImageEdgeModeZero
         #[deprecated]
         #[method(primaryEdgeMode)]
         pub unsafe fn primaryEdgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// The diameters of the point spread function in each dimension for a source NDArray
+        /// Default: 1
         #[deprecated]
         #[method(primaryKernelSizes)]
         pub unsafe fn primaryKernelSizes(&self) -> MPSNDArraySizes;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// If the filter is a "backwards" filter such as a gradient filter
+        /// or convolution transpose, then this is the upsampling ratio and
+        /// zeros are inserted in the result.
+        /// Default: 1
         #[deprecated]
         #[method(primaryStrides)]
         pub unsafe fn primaryStrides(&self) -> MPSNDArrayOffsets;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// The stride in each dimension from one PSF tap to an adjacent
+        /// PSF tap. Default: 1
         #[deprecated]
         #[method(primaryDilationRates)]
         pub unsafe fn primaryDilationRates(&self) -> MPSNDArraySizes;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// The coordinate of the position read from this source array which is
+        /// used to calculate the result value at [0,0,0,....]
+        /// If the position read is actually a contiguous region (e.g. the area covered by
+        /// a convolution kernel) then this is the center of that region, rounded down, for
+        /// each dimension.
+        /// Default: 0,0,0...
         #[deprecated]
         #[method(secondaryOffsets)]
         pub unsafe fn secondaryOffsets(&self) -> MPSNDArrayOffsets;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The edge mode used for a source NDArray
+        /// Default: MPSImageEdgeModeZero
         #[deprecated]
         #[method(secondaryEdgeMode)]
         pub unsafe fn secondaryEdgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// The diameters of the point spread function in each dimension for a source NDArray
+        /// Default: 1
         #[deprecated]
         #[method(secondaryKernelSizes)]
         pub unsafe fn secondaryKernelSizes(&self) -> MPSNDArraySizes;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// If the filter is a "backwards" filter such as a gradient filter
+        /// or convolution transpose, then this is the upsampling ratio and
+        /// zeros are inserted in the result.
+        /// Default: 1
         #[deprecated]
         #[method(secondaryStrides)]
         pub unsafe fn secondaryStrides(&self) -> MPSNDArrayOffsets;
 
         #[cfg(feature = "MPSNDArrayTypes")]
+        /// The stride in each dimension from one PSF tap to an adjacent
+        /// PSF tap. Default: 1
         #[deprecated]
         #[method(secondaryDilationRates)]
         pub unsafe fn secondaryDilationRates(&self) -> MPSNDArraySizes;
@@ -736,6 +996,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSNDArray")]
+        /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
+        ///
+        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
+        ///
+        /// Parameter `primarySourceArray`: The primary source for the filter in an NSArray.
+        ///
+        /// Parameter `secondarySourceArray`: The secondary source for the filter in an NSArray.
+        ///
+        /// Returns: A newly allocated MPSNDArray that will contain the result of the calculation
+        /// when the command buffer completes successfully.
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:primarySourceArray:secondarySourceArray:)]
         pub unsafe fn encodeToCommandBuffer_primarySourceArray_secondarySourceArray(
             &self,
@@ -745,6 +1015,15 @@ extern_methods!(
         ) -> Retained<MPSNDArray>;
 
         #[cfg(feature = "MPSNDArray")]
+        /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
+        ///
+        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
+        ///
+        /// Parameter `primarySourceArray`: The primary source for the filter in an NSArray.
+        ///
+        /// Parameter `secondarySourceArray`: The secondary source for the filter in an NSArray.
+        ///
+        /// Parameter `destination`: The NDArray to receive the result
         #[method(encodeToCommandBuffer:primarySourceArray:secondarySourceArray:destinationArray:)]
         pub unsafe fn encodeToCommandBuffer_primarySourceArray_secondarySourceArray_destinationArray(
             &self,
@@ -755,6 +1034,20 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
+        ///
+        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
+        ///
+        /// Parameter `primarySourceArray`: The primary source for the filter in an NSArray.
+        ///
+        /// Parameter `secondarySourceArray`: The secondary source for the filter in an NSArray.
+        ///
+        /// Parameter `outGradientState`: If non-nil, the address output gradient state is written to this address
+        ///
+        /// Parameter `outputStateIsTemporary`: If YES, the state if any will be allocated to contain temporary textures and buffers as needed
+        ///
+        /// Returns: A newly allocated MPSNDArray that will contain the result of the calculation
+        /// when the command buffer completes successfully.
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:primarySourceArray:secondarySourceArray:resultState:outputStateIsTemporary:)]
         pub unsafe fn encodeToCommandBuffer_primarySourceArray_secondarySourceArray_resultState_outputStateIsTemporary(
             &self,
@@ -766,6 +1059,18 @@ extern_methods!(
         ) -> Retained<MPSNDArray>;
 
         #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
+        ///
+        /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
+        ///
+        /// Parameter `primarySourceArray`: The primary source for the filter in an NSArray.
+        ///
+        /// Parameter `secondarySourceArray`: The secondary source for the filter in an NSArray.
+        ///
+        /// Parameter `outGradientState`: The output gradient state to record the operation for later use by gradient
+        ///
+        /// Parameter `destination`: A destination array to contain the result of the calculation
+        /// when the command buffer completes successfully.
         #[method(encodeToCommandBuffer:primarySourceArray:secondarySourceArray:resultState:destinationArray:)]
         pub unsafe fn encodeToCommandBuffer_primarySourceArray_secondarySourceArray_resultState_destinationArray(
             &self,
@@ -782,6 +1087,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNDArrayBinaryKernel {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -803,7 +1116,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinaryprimarygradientkernel?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinaryprimarygradientkernel?language=objc)
     #[unsafe(super(
         MPSNDArrayMultiaryGradientKernel,
         MPSNDArrayMultiaryBase,
@@ -898,6 +1213,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNDArrayBinaryPrimaryGradientKernel {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -919,7 +1242,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarysecondarygradientkernel?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarysecondarygradientkernel?language=objc)
     #[unsafe(super(
         MPSNDArrayMultiaryGradientKernel,
         MPSNDArrayMultiaryBase,
@@ -1014,6 +1339,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSNDArrayBinarySecondaryGradientKernel {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

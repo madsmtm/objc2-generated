@@ -47,6 +47,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other scrollMode)]
         pub unsafe fn scrollMode(&self) -> Retained<CAScrollLayerScrollMode>;
 
+        /// Setter for [`scrollMode`][Self::scrollMode].
         #[method(setScrollMode:)]
         pub unsafe fn setScrollMode(&self, scroll_mode: &CAScrollLayerScrollMode);
     }
@@ -56,6 +57,7 @@ extern_methods!(
     /// Methods declared on superclass `CALayer`
     #[cfg(feature = "CALayer")]
     unsafe impl CAScrollLayer {
+        /// Layer creation and initialization. *
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 

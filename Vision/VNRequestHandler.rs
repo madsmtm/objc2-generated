@@ -14,27 +14,49 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoption?language=objc)
+/// Options keys passed into the VNImageRequestHandler creations or requests that take an auxiliary image. These are options that either describe specific properties of an image like the VNImageOptionCameraIntrinsics or how an image needs to be handled like the VNImageOptionCIContext.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoption?language=objc)
 // NS_TYPED_ENUM
 pub type VNImageOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoptionproperties?language=objc)
+    /// VNImageOptionProperties is the dictionary from CGImageSourceCopyPropertiesAtIndex. This contains metadata that can be used by some algorithms like horizon detection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoptionproperties?language=objc)
     pub static VNImageOptionProperties: &'static VNImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoptioncameraintrinsics?language=objc)
+    /// VNImageOptionCameraIntrinsics  Specifies the camera intrinsics as an NSData or CFData representing a matrix_float3x3. See kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix for details
+    ///
+    /// Camera intrinsic matrix is a CFData containing a matrix_float3x3, which is column-major. It has the following contents:
+    /// fx    0    ox
+    /// 0    fy    oy
+    /// 0    0    1
+    /// fx and fy are the focal length in pixels. For square pixels, they will have the same value.
+    /// ox and oy are the coordinates of the principal point. The origin is the upper left of the frame.
+    ///
+    /// Note: When using a CMSampleBuffer as an input and that sample buffer has camera intrinsics attached to it, Vision will use the camera intrinsic from there unless overwritten by passing in as an explicit option which will take precedence.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoptioncameraintrinsics?language=objc)
     pub static VNImageOptionCameraIntrinsics: &'static VNImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoptioncicontext?language=objc)
+    /// VNImageOptionCIContext  Specifies the CIContext to be used in Core Image operations of request handler. If this is not specified, Vision will create its own CIContext. This option is helpful when the passed in CIImage is the result of a CIFilter chain that has been executed on a CIContext or uses outputs of a CIImage on a given CIContext as they don't have to transfer to other contexts.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoptioncicontext?language=objc)
     pub static VNImageOptionCIContext: &'static VNImageOption;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagerequesthandler?language=objc)
+    /// Performs requests on a single image.
+    ///
+    /// The VNImageRequestHandler is created with an image that is used to be used for the requests a client might want to schedule. The VNImageRequestHandler retains, but never modifies, the image source for its entire lifetime. The client also must not modify the content of the image source once the VNImageRequestHandler is created otherwise the results are undefined.
+    /// The VNImageRequestHandler can choose to also cache intermediate representation of the image or other request-specific information for the purposes of runtime performance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagerequesthandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageRequestHandler;
@@ -48,6 +70,12 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
+        /// initWithCVPixelBuffer:options creates a VNImageRequestHandler to be used for performing requests against the image passed in as buffer.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: A CVPixelBuffer containing the image to be used for performing the requests. The content of the buffer cannot be modified for the lifetime of the VNImageRequestHandler.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
         #[method_id(@__retain_semantics Init initWithCVPixelBuffer:options:)]
         pub unsafe fn initWithCVPixelBuffer_options(
             this: Allocated<Self>,
@@ -56,6 +84,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// initWithCGImage:options creates a VNImageRequestHandler to be used for performing requests against the image passed in as a CGImageRef.
+        ///
+        ///
+        /// Parameter `image`: A CGImageRef containing the image to be used for performing the requests. The content of the image cannot be modified.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
         #[method_id(@__retain_semantics Init initWithCGImage:options:)]
         pub unsafe fn initWithCGImage_options(
             this: Allocated<Self>,
@@ -64,6 +98,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
+        /// initWithCIImage:options creates a VNImageRequestHandler to be used for performing requests against the image passed in as a CIImage.
+        ///
+        ///
+        /// Parameter `image`: A CIImage containing the image to be used for performing the requests. The content of the image cannot be modified.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        ///
+        ///
+        /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator. The orientation of the original image should be applied for instance by using imageByApplyingOrientation or use the initWithCIImage:options:orientation API.
         #[method_id(@__retain_semantics Init initWithCIImage:options:)]
         pub unsafe fn initWithCIImage_options(
             this: Allocated<Self>,
@@ -71,6 +114,15 @@ extern_methods!(
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
+        /// initWithURL:options creates a VNImageRequestHandler to be used for performing requests against an image specified by it's URL
+        ///
+        ///
+        /// Parameter `imageURL`: A URL pointing at an image to be used for performing the requests. The image has to be in a format that is supported by ImageIO. The content of the image cannot be modified.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        ///
+        ///
+        /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator
         #[method_id(@__retain_semantics Init initWithURL:options:)]
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
@@ -78,6 +130,15 @@ extern_methods!(
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
+        /// initWithData:options creates a VNImageRequestHandler to be used for performing requests against an image contained in an NSData object.
+        ///
+        ///
+        /// Parameter `imageData`: An NSData object containing the content of the image to be used for performing the requests. See CIImage imageWithData for supported format. The content of the image cannot be modified.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        ///
+        ///
+        /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator
         #[method_id(@__retain_semantics Init initWithData:options:)]
         pub fn initWithData_options(
             this: Allocated<Self>,
@@ -86,6 +147,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Creates a VNImageRequestHandler to be used for performing requests against the image buffer contained in the CMSampleBufferRef
+        ///
+        ///
+        /// Parameter `sampleBuffer`: A CMSampleBuffer containing the imageBuffer that will be used for performing the requests. Not all types of sample buffers are supported. They need to contain a CVImageBuffer, be valid and ready.
+        ///
+        /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
+        ///
+        /// Note: CMSampleBuffers can contain metadata like camera intrinsics that will be used by algorithms supporting it unless overwritten by the options.
         #[method_id(@__retain_semantics Init initWithCMSampleBuffer:options:)]
         pub unsafe fn initWithCMSampleBuffer_options(
             this: Allocated<Self>,
@@ -94,6 +163,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "VNRequest")]
+        /// performRequests schedules one or more VNRequests to be performed. The function returns once all requests have been finished.
+        ///
+        ///
+        /// The results of the VNRequests as well any possible errors of the individual requests are reported in the VNRequests results and error properties.
+        ///
+        ///
+        /// Parameter `requests`: An NSArray of VNRequests that are to be performed.
+        ///
+        /// Parameter `error`: Returns an error that happened during scheduling of the requests. Check individual requests results and errors for their respective success and failures. This parameter is optional.
+        ///
+        /// Returns: Returns true if all requests were scheduled and performed. Check individual requests results and errors for their respective success and failures.
         #[method(performRequests:error:_)]
         pub fn performRequests_error(
             &self,
@@ -111,7 +191,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnsequencerequesthandler?language=objc)
+    /// Performs requests on a sequence of images.
+    ///
+    /// The VNSequenceRequestHandler is created without any specific image source.  The -performRequests:on
+    /// <ImageSource
+    /// >:error: methods will retain the image source for no longer than the lifetime of the call.
+    /// The VNSequenceRequestHandler can choose to also cache state information related to the previously-processed image sources.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnsequencerequesthandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNSequenceRequestHandler;
@@ -121,10 +208,21 @@ unsafe impl NSObjectProtocol for VNSequenceRequestHandler {}
 
 extern_methods!(
     unsafe impl VNSequenceRequestHandler {
+        /// Creates a new object.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequest", feature = "objc2-core-video"))]
+        /// Perform requests on an image in a CVPixelBuffer.
+        ///
+        ///
+        /// Parameter `requests`: The VNRequests to be performed on the image.
+        ///
+        ///
+        /// Parameter `pixelBuffer`: The CVPixelBuffer containing the image to be processed.
+        ///
+        ///
+        /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
         #[method(performRequests:onCVPixelBuffer:error:_)]
         pub unsafe fn performRequests_onCVPixelBuffer_error(
             &self,
@@ -133,6 +231,16 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "VNRequest", feature = "objc2-core-graphics"))]
+        /// Perform requests on an image in a CGImageRef.
+        ///
+        ///
+        /// Parameter `requests`: The VNRequests to be performed on the image.
+        ///
+        ///
+        /// Parameter `image`: The CGImageRef containing the image to be processed.
+        ///
+        ///
+        /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
         #[method(performRequests:onCGImage:error:_)]
         pub unsafe fn performRequests_onCGImage_error(
             &self,
@@ -141,6 +249,16 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "VNRequest", feature = "objc2-core-image"))]
+        /// Perform requests on an image in a CIImage.
+        ///
+        ///
+        /// Parameter `requests`: The VNRequests to be performed on the image.
+        ///
+        ///
+        /// Parameter `image`: The CIImage containing the image to be processed.
+        ///
+        ///
+        /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
         #[method(performRequests:onCIImage:error:_)]
         pub unsafe fn performRequests_onCIImage_error(
             &self,
@@ -149,6 +267,16 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "VNRequest")]
+        /// Perform requests on an image referenced by an URL.
+        ///
+        ///
+        /// Parameter `requests`: The VNRequests to be performed on the image.
+        ///
+        ///
+        /// Parameter `imageURL`: The URL of the image to be processed.  If this is not a file-based URL, the method will fail.
+        ///
+        ///
+        /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
         #[method(performRequests:onImageURL:error:_)]
         pub unsafe fn performRequests_onImageURL_error(
             &self,
@@ -157,6 +285,16 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "VNRequest")]
+        /// Perform requests on an image with its source format in memory.
+        ///
+        ///
+        /// Parameter `requests`: The VNRequests to be performed on the image.
+        ///
+        ///
+        /// Parameter `imageData`: The data representing the source format of the image to be processed.
+        ///
+        ///
+        /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
         #[method(performRequests:onImageData:error:_)]
         pub unsafe fn performRequests_onImageData_error(
             &self,
@@ -165,6 +303,16 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "VNRequest", feature = "objc2-core-media"))]
+        /// Perform requests on the image buffer contained in the CMSampleBufferRef.
+        ///
+        ///
+        /// Parameter `requests`: The VNRequests to be performed on the image.
+        ///
+        ///
+        /// Parameter `sampleBuffer`: A CMSampleBuffer containing an image that will be used for performing the requests. Not all types of sample buffers are supported. They need to contain a CVImageBuffer, be valid and ready.
+        ///
+        ///
+        /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
         #[method(performRequests:onCMSampleBuffer:error:_)]
         pub unsafe fn performRequests_onCMSampleBuffer_error(
             &self,

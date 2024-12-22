@@ -94,6 +94,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIFontPickerViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -105,6 +106,7 @@ extern_methods!(
         pub unsafe fn selectedFontDescriptor(&self) -> Option<Retained<UIFontDescriptor>>;
 
         #[cfg(feature = "UIFontDescriptor")]
+        /// Setter for [`selectedFontDescriptor`][Self::selectedFontDescriptor].
         #[method(setSelectedFontDescriptor:)]
         pub unsafe fn setSelectedFontDescriptor(
             &self,

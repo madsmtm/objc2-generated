@@ -8,7 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatch?language=objc)
+    /// A base class for common types of data that the data detection system
+    /// matches.
+    ///
+    /// The DataDetection framework returns results in objects that are subclasses
+    /// of `DDMatch`, which are specific to the type of matching data. Each object
+    /// contains the matched string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatch?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatch;
@@ -18,6 +25,11 @@ unsafe impl NSObjectProtocol for DDMatch {}
 
 extern_methods!(
     unsafe impl DDMatch {
+        /// A substring that the data detection system identifies from an original
+        /// string as a common type of data.
+        ///
+        /// Use `DDMatch` subclasses that the data detection system provides for a
+        /// semantic interpretation of this string.
         #[method_id(@__retain_semantics Other matchedString)]
         pub unsafe fn matchedString(&self) -> Retained<NSString>;
 
@@ -35,7 +47,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchlink?language=objc)
+    /// An object that contains a web link that the data detection system matches.
+    ///
+    /// The DataDetection framework returns a link match in a `DDMatchLink` object, which contains a
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/url> (Swift) or
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/nsurl> (Objective-C).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchlink?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchLink;
@@ -45,6 +65,7 @@ unsafe impl NSObjectProtocol for DDMatchLink {}
 
 extern_methods!(
     unsafe impl DDMatchLink {
+        /// An address for a web resource, such as a webpage or image.
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
     }
@@ -67,7 +88,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchphonenumber?language=objc)
+    /// An object that contains a phone number that the data detection system
+    /// matches.
+    ///
+    /// The DataDetection framework returns a phone number match in a
+    /// `DDMatchPhoneNumber` object, which contains a phone number, and optionally a
+    /// label that categorizes the phone number.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchphonenumber?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchPhoneNumber;
@@ -77,9 +105,11 @@ unsafe impl NSObjectProtocol for DDMatchPhoneNumber {}
 
 extern_methods!(
     unsafe impl DDMatchPhoneNumber {
+        /// A string that represents a phone number.
         #[method_id(@__retain_semantics Other phoneNumber)]
         pub unsafe fn phoneNumber(&self) -> Retained<NSString>;
 
+        /// A string that categorizes a phone number, such as Home or Work.
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
     }
@@ -102,7 +132,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchemailaddress?language=objc)
+    /// An object that contains an email address that the data detection system
+    /// matches.
+    ///
+    /// The DataDetection framework returns an email match in a
+    /// `DDMatchEmailAddress` object, which includes an email address, and
+    /// optionally a label that categorizes the email address.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchemailaddress?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchEmailAddress;
@@ -112,9 +149,11 @@ unsafe impl NSObjectProtocol for DDMatchEmailAddress {}
 
 extern_methods!(
     unsafe impl DDMatchEmailAddress {
+        /// A string that represents an email address.
         #[method_id(@__retain_semantics Other emailAddress)]
         pub unsafe fn emailAddress(&self) -> Retained<NSString>;
 
+        /// A string that categorizes an email address, such as Home or Work.
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
     }
@@ -137,7 +176,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchpostaladdress?language=objc)
+    /// An object that contains a postal address that the data detection system
+    /// matches.
+    ///
+    /// The DataDetection framework returns a postal address match in a
+    /// `DDMatchPostalAddress` object, which optionally contains the matching parts
+    /// of a postal address: street, city, state, postal code, and country.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchpostaladdress?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchPostalAddress;
@@ -147,18 +193,23 @@ unsafe impl NSObjectProtocol for DDMatchPostalAddress {}
 
 extern_methods!(
     unsafe impl DDMatchPostalAddress {
+        /// The street name in a postal address.
         #[method_id(@__retain_semantics Other street)]
         pub unsafe fn street(&self) -> Option<Retained<NSString>>;
 
+        /// The city name in a postal address.
         #[method_id(@__retain_semantics Other city)]
         pub unsafe fn city(&self) -> Option<Retained<NSString>>;
 
+        /// The state name in a postal address.
         #[method_id(@__retain_semantics Other state)]
         pub unsafe fn state(&self) -> Option<Retained<NSString>>;
 
+        /// The postal code in a postal address.
         #[method_id(@__retain_semantics Other postalCode)]
         pub unsafe fn postalCode(&self) -> Option<Retained<NSString>>;
 
+        /// The country or region name in a postal address.
         #[method_id(@__retain_semantics Other country)]
         pub unsafe fn country(&self) -> Option<Retained<NSString>>;
     }
@@ -181,7 +232,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchcalendarevent?language=objc)
+    /// An object that represents a calendar date or date range that the data
+    /// detection system matches.
+    ///
+    /// The DataDetection framework returns a calendar event match in a
+    /// `DDMatchCalendarEvent` object, which has only a beginning date, only an end
+    /// date, or both a beginning date and an end date.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchcalendarevent?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchCalendarEvent;
@@ -191,18 +249,23 @@ unsafe impl NSObjectProtocol for DDMatchCalendarEvent {}
 
 extern_methods!(
     unsafe impl DDMatchCalendarEvent {
+        /// A Boolean value that indicates whether the event is an all-day event.
         #[method(isAllDay)]
         pub unsafe fn isAllDay(&self) -> bool;
 
+        /// A date that represents the start of the event.
         #[method_id(@__retain_semantics Other startDate)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
+        /// The time zone for the event’s start date.
         #[method_id(@__retain_semantics Other startTimeZone)]
         pub unsafe fn startTimeZone(&self) -> Option<Retained<NSTimeZone>>;
 
+        /// A date that represents the end of the event.
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
+        /// The time zone for the event’s end date.
         #[method_id(@__retain_semantics Other endTimeZone)]
         pub unsafe fn endTimeZone(&self) -> Option<Retained<NSTimeZone>>;
     }
@@ -225,7 +288,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchshipmenttrackingnumber?language=objc)
+    /// An object that contains parcel tracking information that the data detection
+    /// system matches.
+    ///
+    /// The DataDetection framework returns a shipment tracking number match in a
+    /// `DDMatchShipmentTrackingNumber` object, which contains a carrier name and
+    /// tracking identifier.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchshipmenttrackingnumber?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchShipmentTrackingNumber;
@@ -235,9 +305,11 @@ unsafe impl NSObjectProtocol for DDMatchShipmentTrackingNumber {}
 
 extern_methods!(
     unsafe impl DDMatchShipmentTrackingNumber {
+        /// The name of a parcel carrier.
         #[method_id(@__retain_semantics Other carrier)]
         pub unsafe fn carrier(&self) -> Retained<NSString>;
 
+        /// A string that represents a carrier’s tracking identifier for a parcel.
         #[method_id(@__retain_semantics Other trackingNumber)]
         pub unsafe fn trackingNumber(&self) -> Retained<NSString>;
     }
@@ -260,7 +332,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchflightnumber?language=objc)
+    /// An object that contains a flight number that the data detection system
+    /// matches.
+    ///
+    /// The DataDetection framework returns a flight number match in a
+    /// `DDMatchFlightNumber` object, which contains an airline name and flight
+    /// number.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchflightnumber?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchFlightNumber;
@@ -270,9 +349,11 @@ unsafe impl NSObjectProtocol for DDMatchFlightNumber {}
 
 extern_methods!(
     unsafe impl DDMatchFlightNumber {
+        /// The name of an airline.
         #[method_id(@__retain_semantics Other airline)]
         pub unsafe fn airline(&self) -> Retained<NSString>;
 
+        /// A string that represents a flight number.
         #[method_id(@__retain_semantics Other flightNumber)]
         pub unsafe fn flightNumber(&self) -> Retained<NSString>;
     }
@@ -295,7 +376,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchmoneyamount?language=objc)
+    /// An object that contains an amount of money that the data detection system
+    /// matches.
+    ///
+    /// The DataDetection framework returns a match for an amount of money in a
+    /// `DDMatchMoneyAmount` object, which contains an amount of money and an ISO
+    /// currency code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchmoneyamount?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchMoneyAmount;
@@ -305,9 +393,12 @@ unsafe impl NSObjectProtocol for DDMatchMoneyAmount {}
 
 extern_methods!(
     unsafe impl DDMatchMoneyAmount {
+        /// A string that contains an ISO currency code, which the data detection system
+        /// identifies from the matched string and user preferences.
         #[method_id(@__retain_semantics Other currency)]
         pub unsafe fn currency(&self) -> Retained<NSString>;
 
+        /// A number that represents an amount of money.
         #[method(amount)]
         pub unsafe fn amount(&self) -> c_double;
     }

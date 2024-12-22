@@ -27,18 +27,21 @@ extern_methods!(
         #[method(numberOfTapsRequired)]
         pub unsafe fn numberOfTapsRequired(&self) -> NSUInteger;
 
+        /// Setter for [`numberOfTapsRequired`][Self::numberOfTapsRequired].
         #[method(setNumberOfTapsRequired:)]
         pub unsafe fn setNumberOfTapsRequired(&self, number_of_taps_required: NSUInteger);
 
         #[method(numberOfTouchesRequired)]
         pub unsafe fn numberOfTouchesRequired(&self) -> NSUInteger;
 
+        /// Setter for [`numberOfTouchesRequired`][Self::numberOfTouchesRequired].
         #[method(setNumberOfTouchesRequired:)]
         pub unsafe fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSUInteger);
 
         #[method(minimumPressDuration)]
         pub unsafe fn minimumPressDuration(&self) -> NSTimeInterval;
 
+        /// Setter for [`minimumPressDuration`][Self::minimumPressDuration].
         #[method(setMinimumPressDuration:)]
         pub unsafe fn setMinimumPressDuration(&self, minimum_press_duration: NSTimeInterval);
 
@@ -47,6 +50,7 @@ extern_methods!(
         pub unsafe fn allowableMovement(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`allowableMovement`][Self::allowableMovement].
         #[method(setAllowableMovement:)]
         pub unsafe fn setAllowableMovement(&self, allowable_movement: CGFloat);
     }

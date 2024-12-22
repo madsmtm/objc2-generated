@@ -7,7 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiomixernode?language=objc)
+    /// A node that mixes its inputs to a single output.
+    ///
+    /// Mixers may have any number of inputs.
+    ///
+    /// The mixer accepts input at any sample rate and efficiently combines sample rate
+    /// conversions. It also accepts any channel count and will correctly upmix or downmix
+    /// to the output channel count.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiomixernode?language=objc)
     #[unsafe(super(AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]
@@ -32,13 +40,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The mixer's output volume.
+        ///
+        /// This accesses the mixer's output volume (0.0-1.0, inclusive).
         #[method(outputVolume)]
         pub unsafe fn outputVolume(&self) -> c_float;
 
+        /// Setter for [`outputVolume`][Self::outputVolume].
         #[method(setOutputVolume:)]
         pub unsafe fn setOutputVolume(&self, output_volume: c_float);
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Find an unused input bus.
+        ///
+        /// This will find and return the first input bus to which no other node is connected.
         #[method(nextAvailableInputBus)]
         pub unsafe fn nextAvailableInputBus(&self) -> AVAudioNodeBus;
     }

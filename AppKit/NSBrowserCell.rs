@@ -72,12 +72,14 @@ extern_methods!(
         #[method(isLeaf)]
         pub unsafe fn isLeaf(&self) -> bool;
 
+        /// Setter for [`isLeaf`][Self::isLeaf].
         #[method(setLeaf:)]
         pub unsafe fn setLeaf(&self, leaf: bool);
 
         #[method(isLoaded)]
         pub unsafe fn isLoaded(&self) -> bool;
 
+        /// Setter for [`isLoaded`][Self::isLoaded].
         #[method(setLoaded:)]
         pub unsafe fn setLoaded(&self, loaded: bool);
 
@@ -92,6 +94,7 @@ extern_methods!(
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
@@ -100,6 +103,7 @@ extern_methods!(
         pub unsafe fn alternateImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`alternateImage`][Self::alternateImage].
         #[method(setAlternateImage:)]
         pub unsafe fn setAlternateImage(&self, alternate_image: Option<&NSImage>);
     }

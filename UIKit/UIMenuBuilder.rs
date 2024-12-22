@@ -8,13 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenubuilder?language=objc)
+    /// Encapsulates access and mutation for a menu hierarchy.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenubuilder?language=objc)
     pub unsafe trait UIMenuBuilder: MainThreadOnly {
         #[cfg(feature = "UIMenuSystem")]
+        /// Which system we are building for.
         #[method_id(@__retain_semantics Other system)]
         unsafe fn system(&self) -> Retained<UIMenuSystem>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
+        /// Fetch the identified menu.
+        ///
+        ///
+        /// Parameter `identifier`: The identifier of the menu to fetch.
+        ///
+        /// Returns: The menu with the given identifier, or `nil` if no such menu.
         #[method_id(@__retain_semantics Other menuForIdentifier:)]
         unsafe fn menuForIdentifier(
             &self,
@@ -22,6 +31,12 @@ extern_protocol!(
         ) -> Option<Retained<UIMenu>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// Fetch the identified action.
+        ///
+        ///
+        /// Parameter `identifier`: The identifier of the action to fetch.
+        ///
+        /// Returns: The action with the given identifier, or `nil` if no such action.
         #[method_id(@__retain_semantics Other actionForIdentifier:)]
         unsafe fn actionForIdentifier(
             &self,
@@ -29,6 +44,14 @@ extern_protocol!(
         ) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
+        /// Fetch the identified command.
+        ///
+        ///
+        /// Parameter `action`: The action of the command to fetch.
+        ///
+        /// Parameter `propertyList`: Property list object to distinguish commands, if needed.
+        ///
+        /// Returns: The command with the given action and property list, or `nil` if no such command.
         #[method_id(@__retain_semantics Other commandForAction:propertyList:)]
         unsafe fn commandForAction_propertyList(
             &self,
@@ -37,6 +60,12 @@ extern_protocol!(
         ) -> Option<Retained<UICommand>>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
+        /// Replace an identified menu with a menu.
+        ///
+        ///
+        /// Parameter `replacedIdentifier`: The identifier of the menu to be replaced.
+        ///
+        /// Parameter `replacementGroup`: The replacement menu.
         #[method(replaceMenuForIdentifier:withMenu:)]
         unsafe fn replaceMenuForIdentifier_withMenu(
             &self,
@@ -45,6 +74,12 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
+        /// Replace the children of an identified parent menu.
+        ///
+        ///
+        /// Parameter `parentIdentifier`: The identifier of the parent menu.
+        ///
+        /// Parameter `childrenBlock`: A block that returns the new children, given the old children.
         #[method(replaceChildrenOfMenuForIdentifier:fromChildrenBlock:)]
         unsafe fn replaceChildrenOfMenuForIdentifier_fromChildrenBlock(
             &self,
@@ -55,6 +90,12 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
+        /// Insert a sibling menu before an identified sibling menu.
+        ///
+        ///
+        /// Parameter `siblingGroup`: The sibling menu to insert.
+        ///
+        /// Parameter `siblingIdentifier`: The identifier of the sibling menu to insert before.
         #[method(insertSiblingMenu:beforeMenuForIdentifier:)]
         unsafe fn insertSiblingMenu_beforeMenuForIdentifier(
             &self,
@@ -63,6 +104,12 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
+        /// Insert a sibling menu after an identified sibling menu.
+        ///
+        ///
+        /// Parameter `siblingGroup`: The sibling menu to insert.
+        ///
+        /// Parameter `siblingIdentifier`: The identifier of the sibling menu to insert after.
         #[method(insertSiblingMenu:afterMenuForIdentifier:)]
         unsafe fn insertSiblingMenu_afterMenuForIdentifier(
             &self,
@@ -71,6 +118,12 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
+        /// Insert a child menu at the start of an identified parent menu.
+        ///
+        ///
+        /// Parameter `childGroup`: The child menu to insert.
+        ///
+        /// Parameter `parentIdentifier`: The identifier of the parent menu to insert at the start of.
         #[method(insertChildMenu:atStartOfMenuForIdentifier:)]
         unsafe fn insertChildMenu_atStartOfMenuForIdentifier(
             &self,
@@ -79,6 +132,12 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
+        /// Insert a child menu at the end of an identified parent menu.
+        ///
+        ///
+        /// Parameter `childGroup`: The child menu to insert.
+        ///
+        /// Parameter `parentIdentifier`: The identifier of the parent menu to insert at the end of.
         #[method(insertChildMenu:atEndOfMenuForIdentifier:)]
         unsafe fn insertChildMenu_atEndOfMenuForIdentifier(
             &self,
@@ -87,6 +146,10 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UIMenu")]
+        /// Remove an identified menu.
+        ///
+        ///
+        /// Parameter `removedIdentifier`: The menu to remove.
         #[method(removeMenuForIdentifier:)]
         unsafe fn removeMenuForIdentifier(&self, removed_identifier: &UIMenuIdentifier);
     }

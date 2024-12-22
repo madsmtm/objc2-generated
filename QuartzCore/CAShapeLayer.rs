@@ -51,6 +51,7 @@ extern_methods!(
         pub unsafe fn path(&self) -> CGPathRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`path`][Self::path].
         #[method(setPath:)]
         pub unsafe fn setPath(&self, path: CGPathRef);
 
@@ -59,12 +60,14 @@ extern_methods!(
         pub unsafe fn fillColor(&self) -> CGColorRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`fillColor`][Self::fillColor].
         #[method(setFillColor:)]
         pub unsafe fn setFillColor(&self, fill_color: CGColorRef);
 
         #[method_id(@__retain_semantics Other fillRule)]
         pub unsafe fn fillRule(&self) -> Retained<CAShapeLayerFillRule>;
 
+        /// Setter for [`fillRule`][Self::fillRule].
         #[method(setFillRule:)]
         pub unsafe fn setFillRule(&self, fill_rule: &CAShapeLayerFillRule);
 
@@ -73,6 +76,7 @@ extern_methods!(
         pub unsafe fn strokeColor(&self) -> CGColorRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`strokeColor`][Self::strokeColor].
         #[method(setStrokeColor:)]
         pub unsafe fn setStrokeColor(&self, stroke_color: CGColorRef);
 
@@ -81,6 +85,7 @@ extern_methods!(
         pub unsafe fn strokeStart(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`strokeStart`][Self::strokeStart].
         #[method(setStrokeStart:)]
         pub unsafe fn setStrokeStart(&self, stroke_start: CGFloat);
 
@@ -89,6 +94,7 @@ extern_methods!(
         pub unsafe fn strokeEnd(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`strokeEnd`][Self::strokeEnd].
         #[method(setStrokeEnd:)]
         pub unsafe fn setStrokeEnd(&self, stroke_end: CGFloat);
 
@@ -97,6 +103,7 @@ extern_methods!(
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`lineWidth`][Self::lineWidth].
         #[method(setLineWidth:)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
@@ -105,18 +112,21 @@ extern_methods!(
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`miterLimit`][Self::miterLimit].
         #[method(setMiterLimit:)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
         #[method_id(@__retain_semantics Other lineCap)]
         pub unsafe fn lineCap(&self) -> Retained<CAShapeLayerLineCap>;
 
+        /// Setter for [`lineCap`][Self::lineCap].
         #[method(setLineCap:)]
         pub unsafe fn setLineCap(&self, line_cap: &CAShapeLayerLineCap);
 
         #[method_id(@__retain_semantics Other lineJoin)]
         pub unsafe fn lineJoin(&self) -> Retained<CAShapeLayerLineJoin>;
 
+        /// Setter for [`lineJoin`][Self::lineJoin].
         #[method(setLineJoin:)]
         pub unsafe fn setLineJoin(&self, line_join: &CAShapeLayerLineJoin);
 
@@ -125,12 +135,14 @@ extern_methods!(
         pub unsafe fn lineDashPhase(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`lineDashPhase`][Self::lineDashPhase].
         #[method(setLineDashPhase:)]
         pub unsafe fn setLineDashPhase(&self, line_dash_phase: CGFloat);
 
         #[method_id(@__retain_semantics Other lineDashPattern)]
         pub unsafe fn lineDashPattern(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// Setter for [`lineDashPattern`][Self::lineDashPattern].
         #[method(setLineDashPattern:)]
         pub unsafe fn setLineDashPattern(&self, line_dash_pattern: Option<&NSArray<NSNumber>>);
     }
@@ -140,6 +152,7 @@ extern_methods!(
     /// Methods declared on superclass `CALayer`
     #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
+        /// Layer creation and initialization. *
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 

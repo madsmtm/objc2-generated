@@ -24,6 +24,7 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIViewController"
         ))]
+        /// The view controller for browsing documents to open.
         #[method_id(@__retain_semantics Other browserViewController)]
         pub unsafe fn browserViewController(&self) -> Retained<UIDocumentBrowserViewController>;
 
@@ -32,63 +33,78 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIViewController"
         ))]
+        /// Setter for [`browserViewController`][Self::browserViewController].
         #[method(setBrowserViewController:)]
         pub unsafe fn setBrowserViewController(
             &self,
             browser_view_controller: &UIDocumentBrowserViewController,
         );
 
+        /// The title of the view. Default is the application's name.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// The primary action.
         #[method_id(@__retain_semantics Other primaryAction)]
         pub unsafe fn primaryAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// Setter for [`primaryAction`][Self::primaryAction].
         #[method(setPrimaryAction:)]
         pub unsafe fn setPrimaryAction(&self, primary_action: Option<&UIAction>);
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// The secondary action.
         #[method_id(@__retain_semantics Other secondaryAction)]
         pub unsafe fn secondaryAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// Setter for [`secondaryAction`][Self::secondaryAction].
         #[method(setSecondaryAction:)]
         pub unsafe fn setSecondaryAction(&self, secondary_action: Option<&UIAction>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// The view which displays an open document. Default is the view controller's view.
         #[method_id(@__retain_semantics Other documentTargetView)]
         pub unsafe fn documentTargetView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Setter for [`documentTargetView`][Self::documentTargetView].
         #[method(setDocumentTargetView:)]
         pub unsafe fn setDocumentTargetView(&self, document_target_view: Option<&UIView>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// The foreground accessory view.
         #[method_id(@__retain_semantics Other foregroundAccessoryView)]
         pub unsafe fn foregroundAccessoryView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Setter for [`foregroundAccessoryView`][Self::foregroundAccessoryView].
         #[method(setForegroundAccessoryView:)]
         pub unsafe fn setForegroundAccessoryView(&self, foreground_accessory_view: Option<&UIView>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// The background accessory view.
         #[method_id(@__retain_semantics Other backgroundAccessoryView)]
         pub unsafe fn backgroundAccessoryView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Setter for [`backgroundAccessoryView`][Self::backgroundAccessoryView].
         #[method(setBackgroundAccessoryView:)]
         pub unsafe fn setBackgroundAccessoryView(&self, background_accessory_view: Option<&UIView>);
 
         #[cfg(feature = "UIBackgroundConfiguration")]
+        /// The background configuration.
         #[method_id(@__retain_semantics Other background)]
         pub unsafe fn background(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
+        /// Setter for [`background`][Self::background].
         #[method(setBackground:)]
         pub unsafe fn setBackground(&self, background: &UIBackgroundConfiguration);
 
@@ -97,6 +113,8 @@ extern_methods!(
             feature = "UIDocument",
             feature = "UIMenuElement"
         ))]
+        /// Returns an action which requests the creation of a new document with the specified intent.
+        /// Can be used for either the primary or secondary action.
         #[method_id(@__retain_semantics Other createDocumentActionWithIntent:)]
         pub unsafe fn createDocumentActionWithIntent(
             intent: &UIDocumentCreationIntent,

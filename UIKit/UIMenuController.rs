@@ -53,6 +53,7 @@ extern_methods!(
         #[method(isMenuVisible)]
         pub unsafe fn isMenuVisible(&self) -> bool;
 
+        /// Setter for [`isMenuVisible`][Self::isMenuVisible].
         #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
         #[method(setMenuVisible:)]
         pub unsafe fn setMenuVisible(&self, menu_visible: bool);
@@ -88,12 +89,14 @@ extern_methods!(
         #[method(arrowDirection)]
         pub unsafe fn arrowDirection(&self) -> UIMenuControllerArrowDirection;
 
+        /// Setter for [`arrowDirection`][Self::arrowDirection].
         #[method(setArrowDirection:)]
         pub unsafe fn setArrowDirection(&self, arrow_direction: UIMenuControllerArrowDirection);
 
         #[method_id(@__retain_semantics Other menuItems)]
         pub unsafe fn menuItems(&self) -> Option<Retained<NSArray<UIMenuItem>>>;
 
+        /// Setter for [`menuItems`][Self::menuItems].
         #[method(setMenuItems:)]
         pub unsafe fn setMenuItems(&self, menu_items: Option<&NSArray<UIMenuItem>>);
 
@@ -169,6 +172,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[deprecated = "UIMenuItem is deprecated. Use UIEditMenuInteraction instead."]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
@@ -177,6 +181,7 @@ extern_methods!(
         #[method(action)]
         pub unsafe fn action(&self) -> Sel;
 
+        /// Setter for [`action`][Self::action].
         #[deprecated = "UIMenuItem is deprecated. Use UIEditMenuInteraction instead."]
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Sel);

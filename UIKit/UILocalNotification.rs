@@ -45,6 +45,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fireDate)]
         pub unsafe fn fireDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Setter for [`fireDate`][Self::fireDate].
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[method(setFireDate:)]
         pub unsafe fn setFireDate(&self, fire_date: Option<&NSDate>);
@@ -53,6 +54,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
+        /// Setter for [`timeZone`][Self::timeZone].
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
@@ -61,6 +63,7 @@ extern_methods!(
         #[method(repeatInterval)]
         pub unsafe fn repeatInterval(&self) -> NSCalendarUnit;
 
+        /// Setter for [`repeatInterval`][Self::repeatInterval].
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[method(setRepeatInterval:)]
         pub unsafe fn setRepeatInterval(&self, repeat_interval: NSCalendarUnit);
@@ -69,6 +72,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other repeatCalendar)]
         pub unsafe fn repeatCalendar(&self) -> Option<Retained<NSCalendar>>;
 
+        /// Setter for [`repeatCalendar`][Self::repeatCalendar].
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[method(setRepeatCalendar:)]
         pub unsafe fn setRepeatCalendar(&self, repeat_calendar: Option<&NSCalendar>);
@@ -78,12 +82,14 @@ extern_methods!(
         pub unsafe fn region(&self) -> Option<Retained<CLRegion>>;
 
         #[cfg(feature = "objc2-core-location")]
+        /// Setter for [`region`][Self::region].
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: Option<&CLRegion>);
 
         #[method(regionTriggersOnce)]
         pub unsafe fn regionTriggersOnce(&self) -> bool;
 
+        /// Setter for [`regionTriggersOnce`][Self::regionTriggersOnce].
         #[method(setRegionTriggersOnce:)]
         pub unsafe fn setRegionTriggersOnce(&self, region_triggers_once: bool);
 
@@ -91,6 +97,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other alertBody)]
         pub unsafe fn alertBody(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`alertBody`][Self::alertBody].
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[method(setAlertBody:)]
         pub unsafe fn setAlertBody(&self, alert_body: Option<&NSString>);
@@ -99,6 +106,7 @@ extern_methods!(
         #[method(hasAction)]
         pub unsafe fn hasAction(&self) -> bool;
 
+        /// Setter for [`hasAction`][Self::hasAction].
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[method(setHasAction:)]
         pub unsafe fn setHasAction(&self, has_action: bool);
@@ -107,6 +115,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other alertAction)]
         pub unsafe fn alertAction(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`alertAction`][Self::alertAction].
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[method(setAlertAction:)]
         pub unsafe fn setAlertAction(&self, alert_action: Option<&NSString>);
@@ -115,6 +124,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other alertLaunchImage)]
         pub unsafe fn alertLaunchImage(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`alertLaunchImage`][Self::alertLaunchImage].
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[method(setAlertLaunchImage:)]
         pub unsafe fn setAlertLaunchImage(&self, alert_launch_image: Option<&NSString>);
@@ -122,6 +132,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other alertTitle)]
         pub unsafe fn alertTitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`alertTitle`][Self::alertTitle].
         #[method(setAlertTitle:)]
         pub unsafe fn setAlertTitle(&self, alert_title: Option<&NSString>);
 
@@ -129,6 +140,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other soundName)]
         pub unsafe fn soundName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`soundName`][Self::soundName].
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[method(setSoundName:)]
         pub unsafe fn setSoundName(&self, sound_name: Option<&NSString>);
@@ -137,6 +149,7 @@ extern_methods!(
         #[method(applicationIconBadgeNumber)]
         pub unsafe fn applicationIconBadgeNumber(&self) -> NSInteger;
 
+        /// Setter for [`applicationIconBadgeNumber`][Self::applicationIconBadgeNumber].
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[method(setApplicationIconBadgeNumber:)]
         pub unsafe fn setApplicationIconBadgeNumber(
@@ -148,6 +161,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
+        /// Setter for [`userInfo`][Self::userInfo].
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
@@ -155,6 +169,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other category)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`category`][Self::category].
         #[method(setCategory:)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
     }

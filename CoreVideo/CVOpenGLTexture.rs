@@ -7,7 +7,9 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltextureref?language=objc)
+/// OpenGL texture based image buffer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltextureref?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVOpenGLTextureRef = CVImageBufferRef;
 
@@ -18,12 +20,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retains a CVOpenGLTexture object
+    ///
+    /// Equivalent to CFRetain, but NULL safe
+    ///
+    /// Parameter `buffer`: A CVOpenGLTexture object that you want to retain.
+    ///
+    /// Returns: A CVOpenGLTexture object that is the same as the passed in buffer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLTextureRetain(texture: CVOpenGLTextureRef) -> CVOpenGLTextureRef;
 }
 
 extern "C-unwind" {
+    /// Returns whether the image is flipped vertically or not.
+    ///
+    /// Parameter `image`: Target CVOpenGLTexture
+    ///
+    /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLTextureIsFlipped(image: CVOpenGLTextureRef) -> Boolean;

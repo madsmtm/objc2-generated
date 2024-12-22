@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlimageconstraint?language=objc)
+    /// MLImageConstraint
+    ///
+    /// Constraint on image properties.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlimageconstraint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLImageConstraint;
@@ -21,16 +25,20 @@ unsafe impl NSSecureCoding for MLImageConstraint {}
 
 extern_methods!(
     unsafe impl MLImageConstraint {
+        /// The required or default height of the image
         #[method(pixelsHigh)]
         pub unsafe fn pixelsHigh(&self) -> NSInteger;
 
+        /// The required or default width of the image
         #[method(pixelsWide)]
         pub unsafe fn pixelsWide(&self) -> NSInteger;
 
+        /// The accepted kCVPixelFormatType for the image.
         #[method(pixelFormatType)]
         pub unsafe fn pixelFormatType(&self) -> OSType;
 
         #[cfg(feature = "MLImageSizeConstraint")]
+        /// Detailed image size constraint
         #[method_id(@__retain_semantics Other sizeConstraint)]
         pub unsafe fn sizeConstraint(&self) -> Retained<MLImageSizeConstraint>;
 

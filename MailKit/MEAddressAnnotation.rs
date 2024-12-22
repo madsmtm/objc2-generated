@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/meaddressannotation?language=objc)
+    /// An instance of this class can be used to change the visual style of recipeint email address token when user in composing a mail message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/meaddressannotation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEAddressAnnotation;
@@ -27,16 +29,25 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// An annotation to denote a recipeint email address has an error when composing a mail message.
+        ///
+        /// Parameter `localizedDescription`: - A localized string with a brief description of the error that may be presented to the user.
         #[method_id(@__retain_semantics Other errorWithLocalizedDescription:)]
         pub unsafe fn errorWithLocalizedDescription(
             localized_description: &NSString,
         ) -> Retained<MEAddressAnnotation>;
 
+        /// An annotation to warn about a recipeint email address when composing a mail message.
+        ///
+        /// Parameter `localizedDescription`: - A localized string with a brief description of the warning may be presented to the user. .
         #[method_id(@__retain_semantics Other warningWithLocalizedDescription:)]
         pub unsafe fn warningWithLocalizedDescription(
             localized_description: &NSString,
         ) -> Retained<MEAddressAnnotation>;
 
+        /// An annotation to  denote a valid recipeint email address when composing a mail message.
+        ///
+        /// Parameter `localizedDescription`: - A localized string with a brief description that may be presented to the user. .
         #[method_id(@__retain_semantics Other successWithLocalizedDescription:)]
         pub unsafe fn successWithLocalizedDescription(
             localized_description: &NSString,

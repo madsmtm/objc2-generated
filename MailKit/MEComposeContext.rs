@@ -6,18 +6,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposeuseraction?language=objc)
+/// An enumeration corresponding to the action user took to start a new mail compose window.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposeuseraction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MEComposeUserAction(pub NSInteger);
 impl MEComposeUserAction {
+    /// Compose a new message.
     #[doc(alias = "MEComposeUserActionNewMessage")]
     pub const NewMessage: Self = Self(1);
+    /// Reply to the sender of an original email.
     #[doc(alias = "MEComposeUserActionReply")]
     pub const Reply: Self = Self(2);
+    /// Reply to the sender and all the recipeients of original email.
     #[doc(alias = "MEComposeUserActionReplyAll")]
     pub const ReplyAll: Self = Self(3);
+    /// Forward an original message.
     #[doc(alias = "MEComposeUserActionForward")]
     pub const Forward: Self = Self(4);
 }
@@ -31,7 +37,9 @@ unsafe impl RefEncode for MEComposeUserAction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposecontext?language=objc)
+    /// An object encapsulating additional information about the message being composed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposecontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEComposeContext;
@@ -41,25 +49,35 @@ unsafe impl NSObjectProtocol for MEComposeContext {}
 
 extern_methods!(
     unsafe impl MEComposeContext {
+        /// A unique identifier for the compose context.
         #[method_id(@__retain_semantics Other contextID)]
         pub unsafe fn contextID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "MEMessage")]
+        /// The original email message on which user performed an action
+        /// It is
+        /// `nil`for
+        /// `MEComposeUserActionNewMessage`actions.
         #[method_id(@__retain_semantics Other originalMessage)]
         pub unsafe fn originalMessage(&self) -> Option<Retained<MEMessage>>;
 
+        /// Indicates the action performed by the user that created this compose context.
         #[method(action)]
         pub unsafe fn action(&self) -> MEComposeUserAction;
 
+        /// Boolean that indicates the message is encrypted by a Message Security extension.
         #[method(isEncrypted)]
         pub unsafe fn isEncrypted(&self) -> bool;
 
+        /// Boolean that indicates if the user wants to encrypt the message.
         #[method(shouldEncrypt)]
         pub unsafe fn shouldEncrypt(&self) -> bool;
 
+        /// Boolean that indicates the message is signed by a Message Security extension.
         #[method(isSigned)]
         pub unsafe fn isSigned(&self) -> bool;
 
+        /// A Boolean that indicates if the user wants to sign the message.
         #[method(shouldSign)]
         pub unsafe fn shouldSign(&self) -> bool;
     }

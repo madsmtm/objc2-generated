@@ -37,6 +37,7 @@ extern_methods!(
         pub unsafe fn centerCoordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "objc2-core-location")]
+        /// Setter for [`centerCoordinate`][Self::centerCoordinate].
         #[method(setCenterCoordinate:)]
         pub unsafe fn setCenterCoordinate(&self, center_coordinate: CLLocationCoordinate2D);
 
@@ -45,6 +46,7 @@ extern_methods!(
         pub unsafe fn centerCoordinateDistance(&self) -> CLLocationDistance;
 
         #[cfg(feature = "objc2-core-location")]
+        /// Setter for [`centerCoordinateDistance`][Self::centerCoordinateDistance].
         #[method(setCenterCoordinateDistance:)]
         pub unsafe fn setCenterCoordinateDistance(
             &self,
@@ -56,6 +58,7 @@ extern_methods!(
         pub unsafe fn heading(&self) -> CLLocationDirection;
 
         #[cfg(feature = "objc2-core-location")]
+        /// Setter for [`heading`][Self::heading].
         #[method(setHeading:)]
         pub unsafe fn setHeading(&self, heading: CLLocationDirection);
 
@@ -64,6 +67,7 @@ extern_methods!(
         pub unsafe fn pitch(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`pitch`][Self::pitch].
         #[method(setPitch:)]
         pub unsafe fn setPitch(&self, pitch: CGFloat);
 
@@ -73,6 +77,7 @@ extern_methods!(
         pub unsafe fn altitude(&self) -> CLLocationDistance;
 
         #[cfg(feature = "objc2-core-location")]
+        /// Setter for [`altitude`][Self::altitude].
         #[deprecated = "Use centerCoordinateDistance"]
         #[method(setAltitude:)]
         pub unsafe fn setAltitude(&self, altitude: CLLocationDistance);

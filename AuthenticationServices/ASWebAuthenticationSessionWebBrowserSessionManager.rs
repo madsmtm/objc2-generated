@@ -27,6 +27,7 @@ extern_methods!(
         ) -> Retained<ProtocolObject<dyn ASWebAuthenticationSessionWebBrowserSessionHandling>>;
 
         #[cfg(feature = "ASWebAuthenticationSessionWebBrowserSessionHandling")]
+        /// Setter for [`sessionHandler`][Self::sessionHandler].
         #[method(setSessionHandler:)]
         pub unsafe fn setSessionHandler(
             &self,

@@ -7,7 +7,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservicestatus?language=objc)
+/// The values returned by SMAppService:status
+///
+///
+/// A service has not been registered with ServiceManagement or that the service was unregistered
+/// after it was already registered.
+///
+///
+/// A service has been successfully registered and is eligible to run
+///
+///
+/// A service has been successfully registered, but the user needs to take action in System Settings
+/// before the service is eligible to run. This status will be returned if the user revokes consent for the service
+/// to run in System Settings
+///
+///
+/// An error occurred and no such service could be found
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservicestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -37,7 +54,28 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice?language=objc)
+    /// An SMAppService is used to control helper executables that live inside of an app's main bundle.
+    ///
+    ///
+    /// For SMAppServices initialized as LoginItems, the register and unregister APIs provide a replacement for
+    /// SMLoginItemSetEnabled.
+    ///
+    /// Apps that use SMAppService APIs must be code signed.
+    ///
+    /// For SMAppServices initialized as LaunchAgents, the register and unregister APIs provide a replacement
+    /// for installing plists in ~/Library/LaunchAgents or /Library/LaunchAgents.
+    ///
+    /// For SMAppServices initialized as LaunchDaemons, the register and unregister APIs provide a replacement
+    /// for installing plists in /Library/LaunchDaemons. Apps that contain LaunchDaemons must be notarized.
+    ///
+    /// Legacy LaunchDaemons installed in /Library/LaunchDaemons will continue to be bootstrapped without
+    /// explicit approval in System Settings since writing to /Library is protected  with filesystem permissions.
+    ///
+    /// If an app updates either the plist or the executable for a LaunchAgent or LaunchDaemon, the SMAppService
+    /// must be re-registered or it may not launch. It is recommended to also call unregister before
+    /// re-registering if the executable has been changed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SMAppService;
@@ -47,37 +85,170 @@ unsafe impl NSObjectProtocol for SMAppService {}
 
 extern_methods!(
     unsafe impl SMAppService {
+        /// Initializes a SMAppService for a LoginItem corresponding to the bundle with the specified identifier.
+        ///
+        ///
+        /// Parameter `identifier`: The bundle identifier of the helper application
+        ///
+        ///
+        /// The identifier must correspond to the bundle identifier for a LoginItem that lives in the calling app's
+        /// Contents/Library/LoginItems directory
         #[method_id(@__retain_semantics Other loginItemServiceWithIdentifier:)]
         pub unsafe fn loginItemServiceWithIdentifier(identifier: &NSString) -> Retained<Self>;
 
+        /// A SMAppService corresponding to the main application as a LoginItem
+        ///
+        /// This SMAppService can be used to configure the main app to be launched at login
         #[method_id(@__retain_semantics Other mainAppService)]
         pub unsafe fn mainAppService() -> Retained<SMAppService>;
 
+        /// Initializes a SMAppService with a LaunchAgent with the specified plist name.
+        ///
+        ///
+        /// Parameter `plistName`: The name of the plist corresponding to the SMAppService.
+        ///
+        ///
+        /// The plistName must correspond to a plist in the calling app's Contents/Library/LaunchAgents directory
+        ///
+        /// In addition to the standard launchd.plist keys, plists registered with SMAppService may use the
+        /// BundleProgram launchd plist key to specify an app bundle relative path for the executable. This key allows
+        /// apps to support a user relocating the app bundle after installation.
         #[method_id(@__retain_semantics Other agentServiceWithPlistName:)]
         pub unsafe fn agentServiceWithPlistName(plist_name: &NSString) -> Retained<Self>;
 
+        /// Initializes a SMAppService with a LaunchDaemon with the specified plist name.
+        ///
+        ///
+        /// Parameter `plistName`: The name of the plist corresponding to the SMAppService.
+        ///
+        ///
+        /// The plistName must correspond to a plist in the calling app's Contents/Library/LaunchDaemons directory
+        ///
+        /// In addition to the standard launchd.plist keys, plists registered with SMAppService may use the
+        /// BundleProgram launchd plist key to specify an app bundle relative path for the executable. This key allows
+        /// apps to support a user relocating the app bundle after installation.
+        ///
+        /// For a LaunchDaemon to be bootstrapped during boot, the containing application must be accessible before
+        /// a user logs in. For applications that intend to register LaunchDaemons, it is recommended that the
+        /// application bundle live in /Applications
         #[method_id(@__retain_semantics Other daemonServiceWithPlistName:)]
         pub unsafe fn daemonServiceWithPlistName(plist_name: &NSString) -> Retained<Self>;
 
+        /// Registers the service such that it may begin launching subject to user consent
+        ///
+        ///
+        /// Parameter `error`: Upon unsuccessful return, a new NSError object describing the error. Upon successful return, this
+        /// argument is set to NULL. This argument may be NULL.
+        ///
+        ///
+        /// Returns: YES if the service was successfully registered, otherwise NO.
+        ///
+        ///
+        /// If the service corresponds to a LoginItem bundle, the helper will be started immediately and on subsequent
+        /// logins. If the helper crashes or exits non-zero it will be relaunched.
+        ///
+        /// If the service corresponds to the main application, the application will be launched on subsequent logins.
+        ///
+        /// If the service corresponds to a LaunchAgent, the LaunchAgent is immediately bootstrapped and may
+        /// begin running. In addition LaunchAgents registered with this API will be bootstrapped on each subsequent
+        /// login.
+        ///
+        /// If an app desires to register a LaunchAgent for multiple users, the API must be called once per user while
+        /// the desired user is running the app. LaunchAgents cannot be registered from outside a user context
+        /// using this API.
+        ///
+        /// If the service corresponds to a LaunchDaemon, the LaunchDaemon will not be bootstrapped until an
+        /// admin approves the LaunchDaemon in System Settings. LaunchDaemons registered with this API
+        /// and approved by an admin will be bootstrapped on each subsequent boot.
+        ///
+        /// If the service is already registered, this API will return error kSMErrorAlreadyRegistered
+        ///
+        /// If the service is not approved by the user, this API will return error kSMErrorLaunchDeniedByUser
+        ///
+        /// If the app bundle is not properly code signed, this API will return error kSMErrorInvalidSignature
+        ///
+        ///
+        /// See: SMAppService:unregisterAndReturnError
         #[method(registerAndReturnError:_)]
         pub unsafe fn registerAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
+        /// Unregisters the service such that it will no longer be launched by the system.
+        ///
+        ///
+        /// Parameter `error`: Upon unsuccessful return, a new NSError object describing the error. Upon successful return, this
+        /// argument is set to NULL. This argument may be NULL.
+        ///
+        ///
+        /// Returns: YES if the service was successfully unregistered, otherwise NO.
+        ///
+        ///
+        /// If the service corresponds to a LoginItem, LaunchAgent, or LaunchDaemon and the service is currently
+        /// running it will be killed. The unregister call will not wait for the service to be reaped.
+        ///
+        /// If the service corresponds to the main application, it will continue running, but will still be unregistered to
+        /// prevent future launches at login.
+        ///
+        /// This is the opposite operation of SMAppService:register
+        ///
+        /// If the service is already unregistered, this API will return error kSMErrorJobNotFound
+        ///
+        ///
+        /// See: SMAppService:registerAndReturnError
         #[method(unregisterAndReturnError:_)]
         pub unsafe fn unregisterAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
+        /// Unregisters the service such that it will no longer be launched by the system.
+        ///
+        ///
+        /// Parameter `handler`: The completion handler block to be invoked with the result of the unregister operation. This handler
+        /// will be invoked on libdispatch's default target queue
+        ///
+        ///
+        /// If the service corresponds to a LoginItem, LaunchAgent, or LaunchDaemon and the service is currently
+        /// running it will be killed. The unregister call will not wait for the service to be killed and will return promptly.
+        /// The completion handler will be invoked after the running process has been killed if successful or will be
+        /// invoked whenever an error occurs. After the completion handler has been invoked it is safe to re-register the
+        /// service.
+        ///
+        /// If the service corresponds to the main application, it will continue running, but will still be unregistered to
+        /// prevent future launches at login.
+        ///
+        /// This is the opposite operation of SMAppService:register
+        ///
+        /// This is the asynchronous variant of SMAppService:unregisterAndReturnError
+        ///
+        /// If the service is already unregistered, this API will return error kSMErrorJobNotFound
+        ///
+        ///
+        /// See: SMAppService:unregisterAndReturnError
         #[method(unregisterWithCompletionHandler:)]
         pub unsafe fn unregisterWithCompletionHandler(
             &self,
             handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
 
+        /// Returns the status for the service
+        ///
+        ///
+        /// The status API can be used to check what selection a user has made regarding allowing the service
+        /// to launch.
+        ///
+        /// If the user has denied execution, the return value will be SMAppServiceRequiresApproval.
+        ///
+        /// If the service has been unregistered, the return value will be SMAppServiceNotRegistered
         #[method(status)]
         pub unsafe fn status(&self) -> SMAppServiceStatus;
 
         #[method(statusForLegacyURL:)]
         pub unsafe fn statusForLegacyURL(url: &NSURL) -> SMAppServiceStatus;
 
+        /// Opens System Settings to the Login Items panel
+        ///
+        ///
+        /// This API is intended for apps to call whenever they present a prompt to the user and the user
+        /// confirms that they want to enable the app's helpers again. The app can call this API to help
+        /// the user navigate to the appropriate panel in System Settings.
         #[method(openSystemSettingsLoginItems)]
         pub unsafe fn openSystemSettingsLoginItems();
     }

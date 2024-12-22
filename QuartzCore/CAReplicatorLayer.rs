@@ -37,12 +37,14 @@ extern_methods!(
         #[method(instanceCount)]
         pub unsafe fn instanceCount(&self) -> NSInteger;
 
+        /// Setter for [`instanceCount`][Self::instanceCount].
         #[method(setInstanceCount:)]
         pub unsafe fn setInstanceCount(&self, instance_count: NSInteger);
 
         #[method(preservesDepth)]
         pub unsafe fn preservesDepth(&self) -> bool;
 
+        /// Setter for [`preservesDepth`][Self::preservesDepth].
         #[method(setPreservesDepth:)]
         pub unsafe fn setPreservesDepth(&self, preserves_depth: bool);
 
@@ -51,6 +53,7 @@ extern_methods!(
         pub unsafe fn instanceDelay(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`instanceDelay`][Self::instanceDelay].
         #[method(setInstanceDelay:)]
         pub unsafe fn setInstanceDelay(&self, instance_delay: CFTimeInterval);
 
@@ -59,6 +62,7 @@ extern_methods!(
         pub unsafe fn instanceTransform(&self) -> CATransform3D;
 
         #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
+        /// Setter for [`instanceTransform`][Self::instanceTransform].
         #[method(setInstanceTransform:)]
         pub unsafe fn setInstanceTransform(&self, instance_transform: CATransform3D);
 
@@ -67,30 +71,35 @@ extern_methods!(
         pub unsafe fn instanceColor(&self) -> CGColorRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`instanceColor`][Self::instanceColor].
         #[method(setInstanceColor:)]
         pub unsafe fn setInstanceColor(&self, instance_color: CGColorRef);
 
         #[method(instanceRedOffset)]
         pub unsafe fn instanceRedOffset(&self) -> c_float;
 
+        /// Setter for [`instanceRedOffset`][Self::instanceRedOffset].
         #[method(setInstanceRedOffset:)]
         pub unsafe fn setInstanceRedOffset(&self, instance_red_offset: c_float);
 
         #[method(instanceGreenOffset)]
         pub unsafe fn instanceGreenOffset(&self) -> c_float;
 
+        /// Setter for [`instanceGreenOffset`][Self::instanceGreenOffset].
         #[method(setInstanceGreenOffset:)]
         pub unsafe fn setInstanceGreenOffset(&self, instance_green_offset: c_float);
 
         #[method(instanceBlueOffset)]
         pub unsafe fn instanceBlueOffset(&self) -> c_float;
 
+        /// Setter for [`instanceBlueOffset`][Self::instanceBlueOffset].
         #[method(setInstanceBlueOffset:)]
         pub unsafe fn setInstanceBlueOffset(&self, instance_blue_offset: c_float);
 
         #[method(instanceAlphaOffset)]
         pub unsafe fn instanceAlphaOffset(&self) -> c_float;
 
+        /// Setter for [`instanceAlphaOffset`][Self::instanceAlphaOffset].
         #[method(setInstanceAlphaOffset:)]
         pub unsafe fn setInstanceAlphaOffset(&self, instance_alpha_offset: c_float);
     }
@@ -100,6 +109,7 @@ extern_methods!(
     /// Methods declared on superclass `CALayer`
     #[cfg(feature = "CALayer")]
     unsafe impl CAReplicatorLayer {
+        /// Layer creation and initialization. *
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 

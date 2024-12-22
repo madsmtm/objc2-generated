@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkqueryanchor?language=objc)
+    /// This object encapsulates the state of an HKAnchoredObjectQuery
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkqueryanchor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKQueryAnchor;
@@ -31,6 +33,8 @@ unsafe impl NSSecureCoding for HKQueryAnchor {}
 
 extern_methods!(
     unsafe impl HKQueryAnchor {
+        /// Creates an HKQueryAnchor with an integer anchor which was previously obtained from an
+        /// HKAnchoredObjectQuery prior to iOS 9.0.
         #[method_id(@__retain_semantics Other anchorFromValue:)]
         pub unsafe fn anchorFromValue(value: NSUInteger) -> Retained<Self>;
 

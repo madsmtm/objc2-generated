@@ -6,7 +6,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprescriptiontype?language=objc)
+/// Represents a vision prescription type
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprescriptiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,7 +29,9 @@ unsafe impl RefEncode for HKVisionPrescriptionType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprescription?language=objc)
+    /// HKSample subclass representing a vision prescription
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprescription?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -60,16 +64,28 @@ unsafe impl NSSecureCoding for HKVisionPrescription {}
 extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKVisionPrescription {
+        /// A vision prescription type (glasses or contacts)
         #[method(prescriptionType)]
         pub unsafe fn prescriptionType(&self) -> HKVisionPrescriptionType;
 
+        /// The date the prescription was issued
         #[method_id(@__retain_semantics Other dateIssued)]
         pub unsafe fn dateIssued(&self) -> Retained<NSDate>;
 
+        /// The date the prescription will expire
         #[method_id(@__retain_semantics Other expirationDate)]
         pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "HKDevice")]
+        /// Parameter `type`: The prescription type
+        ///
+        /// Parameter `dateIssued`: The date the prescription was issued
+        ///
+        /// Parameter `expirationDate`: The date the prescription expires
+        ///
+        /// Parameter `device`: The device that generated the sample
+        ///
+        /// Parameter `metadata`: The metadata for the sample
         #[method_id(@__retain_semantics Other prescriptionWithType:dateIssued:expirationDate:device:metadata:)]
         pub unsafe fn prescriptionWithType_dateIssued_expirationDate_device_metadata(
             r#type: HKVisionPrescriptionType,

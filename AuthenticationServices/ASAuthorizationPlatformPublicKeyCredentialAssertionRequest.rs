@@ -45,12 +45,14 @@ extern_methods!(
     #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
+        /// A list of credentials to allow for this request. If this ilist is nonempty, only credentials matching the provided descriptors can be used to sign in.
         #[method_id(@__retain_semantics Other allowedCredentials)]
         pub unsafe fn allowedCredentials(
             &self,
         ) -> Retained<NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>>;
 
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
+        /// Setter for [`allowedCredentials`][Self::allowedCredentials].
         #[method(setAllowedCredentials:)]
         pub unsafe fn setAllowedCredentials(
             &self,
@@ -64,6 +66,7 @@ extern_methods!(
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput>>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput")]
+        /// Setter for [`largeBlob`][Self::largeBlob].
         #[method(setLargeBlob:)]
         pub unsafe fn setLargeBlob(
             &self,
@@ -77,6 +80,7 @@ extern_methods!(
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFAssertionInput>>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
+        /// Setter for [`prf`][Self::prf].
         #[method(setPrf:)]
         pub unsafe fn setPrf(
             &self,

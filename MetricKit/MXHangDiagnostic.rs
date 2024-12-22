@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxhangdiagnostic?language=objc)
+    /// An MXDiagnostic subclass that encapsulates hang diagnostic reports.
+    ///
+    /// Applications are considered to be "hanging" when they are unable to handle user input responsively.
+    ///
+    /// This generally occurs when your applications main thread is blocked.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxhangdiagnostic?language=objc)
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]
@@ -27,9 +33,13 @@ extern_methods!(
     #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXHangDiagnostic {
         #[cfg(feature = "MXCallStackTree")]
+        /// The application call stack tree associated with the hang.
         #[method_id(@__retain_semantics Other callStackTree)]
         pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
 
+        /// Total hang duration for this diagnostic.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other hangDuration)]
         pub unsafe fn hangDuration(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
     }

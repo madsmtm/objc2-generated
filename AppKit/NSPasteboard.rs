@@ -340,7 +340,9 @@ extern_protocol!(
     unsafe impl ProtocolType for dyn NSPasteboardTypeOwner {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardwritingoptions?language=objc)
+/// * NSPasteboardWriting and NSPasteboardReading Protocols **
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardwritingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -459,6 +461,7 @@ unsafe impl NSPasteboardWriting for NSString {}
 
 extern_methods!(
     /// NSFileContents
+    /// * File Contents **
     unsafe impl NSPasteboard {
         #[method(writeFileContents:)]
         pub unsafe fn writeFileContents(&self, filename: &NSString) -> bool;
@@ -528,7 +531,9 @@ pub unsafe extern "C-unwind" fn NSGetFileTypes(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringpboardtype?language=objc)
+    /// * Deprecated **
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringpboardtype?language=objc)
     pub static NSStringPboardType: &'static NSPasteboardType;
 }
 

@@ -19,6 +19,15 @@ unsafe impl NSObjectProtocol for ASCredentialProviderExtensionContext {}
 extern_methods!(
     unsafe impl ASCredentialProviderExtensionContext {
         #[cfg(all(feature = "ASPasswordCredential", feature = "block2"))]
+        /// Complete the request by providing the user selected credential.
+        ///
+        /// Parameter `credential`: the credential that the user has selected.
+        ///
+        /// Parameter `completionHandler`: optionally contains any work which the extension may need to perform after the request has been completed,
+        /// as a background-priority task. The `expired` parameter will be YES if the system decides to prematurely terminate a previous
+        /// non-expiration invocation of the completionHandler.
+        ///
+        /// Calling this method will eventually dismiss the associated view controller.
         #[method(completeRequestWithSelectedCredential:completionHandler:)]
         pub unsafe fn completeRequestWithSelectedCredential_completionHandler(
             &self,
@@ -27,6 +36,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "ASPasskeyAssertionCredential", feature = "block2"))]
+        /// Complete the assertion request by providing the user selected passkey credential.
+        ///
+        /// Parameter `credential`: the credential that the user has selected. Includes assertion response.
+        ///
+        /// Parameter `completionHandler`: optionally contains any work which the extension may need to perform after the request has been completed,
+        /// as a background-priority task. The `expired` parameter will be YES if the system decides to prematurely terminate a previous
+        /// non-expiration invocation of the completionHandler.
+        ///
+        /// Calling this method will eventually dismiss the associated view controller.
         #[method(completeAssertionRequestWithSelectedPasskeyCredential:completionHandler:)]
         pub unsafe fn completeAssertionRequestWithSelectedPasskeyCredential_completionHandler(
             &self,
@@ -35,6 +53,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "ASPasskeyRegistrationCredential", feature = "block2"))]
+        /// Complete the registration request by providing the newly created passkey credential.
+        ///
+        /// Parameter `credential`: the credential that was created in response to the registration request.
+        ///
+        /// Parameter `completionHandler`: optionally contains any work which the extension may need to perform after the request has been completed,
+        /// as a background-priority task. The `expired` parameter will be YES if the system decides to prematurely terminate a previous
+        /// non-expiration invocation of the completionHandler.
+        ///
+        /// Calling this method will eventually dismiss the associated view controller.
         #[method(completeRegistrationRequestWithSelectedPasskeyCredential:completionHandler:)]
         pub unsafe fn completeRegistrationRequestWithSelectedPasskeyCredential_completionHandler(
             &self,
@@ -43,6 +70,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "ASOneTimeCodeCredential", feature = "block2"))]
+        /// Complete the request by providing the user selected one time code credential.
+        ///
+        /// Parameter `credential`: the credential that the user has selected.
+        ///
+        /// Parameter `completionHandler`: optionally contains any work which the extension may need to perform after the request has been completed,
+        /// as a background-priority task. The `expired` parameter will be YES if the system decides to prematurely terminate a previous
+        /// non-expiration invocation of the completionHandler.
+        ///
+        /// Calling this method will eventually dismiss the associated view controller.
         #[method(completeOneTimeCodeRequestWithSelectedCredential:completionHandler:)]
         pub unsafe fn completeOneTimeCodeRequestWithSelectedCredential_completionHandler(
             &self,
@@ -50,6 +86,9 @@ extern_methods!(
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         );
 
+        /// Complete the request to configure the extension.
+        ///
+        /// Calling this method will eventually dismiss the associated view controller.
         #[method(completeExtensionConfigurationRequest)]
         pub unsafe fn completeExtensionConfigurationRequest(&self);
 
@@ -61,6 +100,11 @@ extern_methods!(
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         );
 
+        /// Cancels the request.
+        ///
+        /// Parameter `error`: error's domain should be ASExtensionErrorDomain and the code should be a value of type ASExtensionErrorCode.
+        ///
+        /// The extension should call this method when the user cancels the action or a failure occurs.
         #[method(cancelRequestWithError:)]
         pub unsafe fn cancelRequestWithError(&self, error: &NSError);
     }

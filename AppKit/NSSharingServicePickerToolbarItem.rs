@@ -37,6 +37,7 @@ extern_methods!(
 
         #[cfg(feature = "NSSharingService")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -50,6 +51,7 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {
         #[cfg(feature = "NSToolbar")]
+        /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
@@ -77,6 +79,10 @@ extern_protocol!(
         NSSharingServicePickerDelegate + MainThreadOnly
     {
         #[cfg(feature = "NSToolbarItem")]
+        /// Return the items that represent the objects to be shared.
+        /// They must conform to the
+        /// <NSPasteboardWriting
+        /// > protocol or be an NSItemProvider. (e.g. NSString, NSImage, NSURL, etc.).
         #[method_id(@__retain_semantics Other itemsForSharingServicePickerToolbarItem:)]
         unsafe fn itemsForSharingServicePickerToolbarItem(
             &self,

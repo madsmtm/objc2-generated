@@ -8,7 +8,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructure?language=objc)
+    /// A class representing the structure of a model.
+    ///
+    /// ```
+    /// // Load the model structure.
+    /// [MLModelStructure loadContentsOfURL:modelURL completionHandler:^(MLModelStructure * _Nullable modelStructure, NSError * _Nullable error) {
+    /// if (!modelStructure) {
+    /// // Handle error.
+    /// return;
+    /// }
+    /// if (modelStructure.neuralNetwork) {
+    /// // Examine Neural network model.
+    /// } else if (modelStructure.program) {
+    /// // Examine ML Program model.
+    /// } else if (modelStructure.pipeline) {
+    /// // Examine Pipeline model.
+    /// } else {
+    /// // The model type is something else.
+    /// }
+    /// }];
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructure?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructure;
@@ -29,6 +50,12 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Construct the model structure asynchronously given the location of its on-disk representation.
+        ///
+        ///
+        /// Parameter `url`: The location of its on-disk representation (.mlmodelc directory).
+        ///
+        /// Parameter `handler`: When the model structure is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLModelStructure instance or NSError object.
         #[method(loadContentsOfURL:completionHandler:)]
         pub unsafe fn loadContentsOfURL_completionHandler(
             url: &NSURL,
@@ -36,6 +63,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MLModelAsset", feature = "block2"))]
+        /// Construct the model structure asynchronously  given the model asset.
+        ///
+        ///
+        /// Parameter `asset`: The model asset.
+        ///
+        /// Parameter `handler`: When the model structure is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLModelStructure instance or NSError object.
         #[method(loadModelAsset:completionHandler:)]
         pub unsafe fn loadModelAsset_completionHandler(
             asset: &MLModelAsset,
@@ -43,14 +76,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "MLModelStructureNeuralNetwork")]
+        /// If the model is of NeuralNetwork type then it is the structure of the NeuralNetwork otherwise `nil`.
         #[method_id(@__retain_semantics Other neuralNetwork)]
         pub unsafe fn neuralNetwork(&self) -> Option<Retained<MLModelStructureNeuralNetwork>>;
 
         #[cfg(feature = "MLModelStructureProgram")]
+        /// If the model is of ML Program type then it is the structure of the ML Program otherwise `nil`.
         #[method_id(@__retain_semantics Other program)]
         pub unsafe fn program(&self) -> Option<Retained<MLModelStructureProgram>>;
 
         #[cfg(feature = "MLModelStructurePipeline")]
+        /// If the model is of Pipeline type then it is the structure of the Pipeline otherwise `nil`.
         #[method_id(@__retain_semantics Other pipeline)]
         pub unsafe fn pipeline(&self) -> Option<Retained<MLModelStructurePipeline>>;
     }

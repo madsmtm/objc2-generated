@@ -8,7 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenedgepangesturerecognizer?language=objc)
+    /// This subclass of UIPanGestureRecognizer only recognizes if the user slides their finger
+    /// in from the bezel on the specified edge.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenedgepangesturerecognizer?language=objc)
     #[unsafe(super(UIPanGestureRecognizer, UIGestureRecognizer, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -27,6 +30,7 @@ extern_methods!(
         pub unsafe fn edges(&self) -> UIRectEdge;
 
         #[cfg(feature = "UIGeometry")]
+        /// Setter for [`edges`][Self::edges].
         #[method(setEdges:)]
         pub unsafe fn setEdges(&self, edges: UIRectEdge);
     }

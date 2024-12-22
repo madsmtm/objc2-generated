@@ -81,6 +81,7 @@ extern_methods!(
         #[method(compact)]
         pub unsafe fn compact(&self) -> bool;
 
+        /// Setter for [`compact`][Self::compact].
         #[deprecated]
         #[method(setCompact:)]
         pub unsafe fn setCompact(&self, compact: bool);

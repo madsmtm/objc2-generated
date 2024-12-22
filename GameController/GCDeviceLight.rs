@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicelight?language=objc)
+    /// A controller light is an abstract representation of the light-emitting capabilities of a GCController instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicelight?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCDeviceLight;
@@ -22,6 +24,7 @@ extern_methods!(
         pub unsafe fn color(&self) -> Retained<GCColor>;
 
         #[cfg(feature = "GCColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &GCColor);
 

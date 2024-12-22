@@ -9,7 +9,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollertextalignment?language=objc)
+/// Text formatting horizontal alignment state.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollertextalignment?language=objc)
 // NS_TYPED_ENUM
 pub type UITextFormattingViewControllerTextAlignment = NSString;
 
@@ -43,7 +45,9 @@ extern "C" {
         &'static UITextFormattingViewControllerTextAlignment;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollertextlist?language=objc)
+/// Text formatting text list state.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollertextlist?language=objc)
 // NS_TYPED_ENUM
 pub type UITextFormattingViewControllerTextList = NSString;
 
@@ -71,7 +75,9 @@ extern "C" {
         &'static UITextFormattingViewControllerTextList;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerhighlight?language=objc)
+/// Text formatting highlight state.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerhighlight?language=objc)
 // NS_TYPED_ENUM
 pub type UITextFormattingViewControllerHighlight = NSString;
 
@@ -112,7 +118,10 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerformattingdescriptor?language=objc)
+    /// Object that represents current text formatting state.
+    /// This can apply to formatting state of some selected range of text or currently applicable input formatting.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerformattingdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerFormattingDescriptor;
@@ -132,9 +141,14 @@ unsafe impl NSSecureCoding for UITextFormattingViewControllerFormattingDescripto
 
 extern_methods!(
     unsafe impl UITextFormattingViewControllerFormattingDescriptor {
+        /// Initializes formatting descriptor with default property values.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initializes formatting descriptor with a string and selected range of string.
+        /// - Parameters:
+        /// - string: Attributed string for which we are creating formatting descriptor.
+        /// - range: Range of string that is being represented by descriptor
         #[method_id(@__retain_semantics Init initWithString:range:)]
         pub unsafe fn initWithString_range(
             this: Allocated<Self>,
@@ -142,6 +156,8 @@ extern_methods!(
             range: NSRange,
         ) -> Retained<Self>;
 
+        /// Initializes formatting descriptor with attribute dictionary.
+        /// - Parameter attributes: Attribute dictionary that is being represented by descriptor.
         #[method_id(@__retain_semantics Init initWithAttributes:)]
         pub unsafe fn initWithAttributes(
             this: Allocated<Self>,
@@ -153,6 +169,7 @@ extern_methods!(
         pub unsafe fn fonts(&self) -> Option<Retained<NSArray<UIFont>>>;
 
         #[cfg(feature = "UIFont")]
+        /// Setter for [`fonts`][Self::fonts].
         #[method(setFonts:)]
         pub unsafe fn setFonts(&self, fonts: Option<&NSArray<UIFont>>);
 
@@ -161,6 +178,7 @@ extern_methods!(
         pub unsafe fn textColors(&self) -> Option<Retained<NSArray<UIColor>>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`textColors`][Self::textColors].
         #[method(setTextColors:)]
         pub unsafe fn setTextColors(&self, text_colors: Option<&NSArray<UIColor>>);
 
@@ -169,18 +187,21 @@ extern_methods!(
         pub unsafe fn lineHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`lineHeight`][Self::lineHeight].
         #[method(setLineHeight:)]
         pub unsafe fn setLineHeight(&self, line_height: CGFloat);
 
         #[method(underlinePresent)]
         pub unsafe fn underlinePresent(&self) -> bool;
 
+        /// Setter for [`underlinePresent`][Self::underlinePresent].
         #[method(setUnderlinePresent:)]
         pub unsafe fn setUnderlinePresent(&self, underline_present: bool);
 
         #[method(strikethroughPresent)]
         pub unsafe fn strikethroughPresent(&self) -> bool;
 
+        /// Setter for [`strikethroughPresent`][Self::strikethroughPresent].
         #[method(setStrikethroughPresent:)]
         pub unsafe fn setStrikethroughPresent(&self, strikethrough_present: bool);
 
@@ -189,6 +210,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSSet<UITextFormattingViewControllerTextAlignment>>;
 
+        /// Setter for [`textAlignments`][Self::textAlignments].
         #[method(setTextAlignments:)]
         pub unsafe fn setTextAlignments(
             &self,
@@ -198,6 +220,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textLists)]
         pub unsafe fn textLists(&self) -> Retained<NSSet<UITextFormattingViewControllerTextList>>;
 
+        /// Setter for [`textLists`][Self::textLists].
         #[method(setTextLists:)]
         pub unsafe fn setTextLists(
             &self,
@@ -208,6 +231,7 @@ extern_methods!(
         pub unsafe fn highlights(&self)
             -> Retained<NSSet<UITextFormattingViewControllerHighlight>>;
 
+        /// Setter for [`highlights`][Self::highlights].
         #[method(setHighlights:)]
         pub unsafe fn setHighlights(
             &self,
@@ -217,6 +241,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other formattingStyleKey)]
         pub unsafe fn formattingStyleKey(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`formattingStyleKey`][Self::formattingStyleKey].
         #[method(setFormattingStyleKey:)]
         pub unsafe fn setFormattingStyleKey(&self, formatting_style_key: Option<&NSString>);
     }

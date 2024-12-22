@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentiondescriptor?language=objc)
+    /// The MLCMultiheadAttentionDescriptor specifies a Multi-Head Attention descriptor
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentiondescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -33,38 +35,65 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// model or embedding dimension
         #[deprecated]
         #[method(modelDimension)]
         pub unsafe fn modelDimension(&self) -> NSUInteger;
 
+        /// total dimension of key space, Default = modelDimension
         #[deprecated]
         #[method(keyDimension)]
         pub unsafe fn keyDimension(&self) -> NSUInteger;
 
+        /// total dimension of value space, Default = modelDimension
         #[deprecated]
         #[method(valueDimension)]
         pub unsafe fn valueDimension(&self) -> NSUInteger;
 
+        /// number of parallel attention heads
         #[deprecated]
         #[method(headCount)]
         pub unsafe fn headCount(&self) -> NSUInteger;
 
+        /// a droupout layer applied to the output projection weights. Default = 0.0
         #[deprecated]
         #[method(dropout)]
         pub unsafe fn dropout(&self) -> c_float;
 
+        /// if true, bias is used for query/key/value/output projections. Default = true
         #[deprecated]
         #[method(hasBiases)]
         pub unsafe fn hasBiases(&self) -> bool;
 
+        /// if true, an array of biases is added to key and value respectively. Default = false
         #[deprecated]
         #[method(hasAttentionBiases)]
         pub unsafe fn hasAttentionBiases(&self) -> bool;
 
+        /// if true, a row of zeroes is added to projected key and value. Default = false
         #[deprecated]
         #[method(addsZeroAttention)]
         pub unsafe fn addsZeroAttention(&self) -> bool;
 
+        /// A multi-head attention layer descriptor
+        ///
+        /// Parameter `modelDimension`: total dimension of model space
+        ///
+        /// Parameter `keyDimension`: total dimension of key space. Default = modelDimension
+        ///
+        /// Parameter `valueDimension`: total dimension of value space. Default = modelDimension
+        ///
+        /// Parameter `headCount`: number of parallel attention heads
+        ///
+        /// Parameter `dropout`: optional, a dropout layer applied to the output projection weights. Default = 0.0f
+        ///
+        /// Parameter `hasBiases`: if true, bias will be added to query/key/value/output projections. Default = YES
+        ///
+        /// Parameter `hasAttentionBiases`: if true, an array of biases is added to key and value respectively. Default = NO
+        ///
+        /// Parameter `addsZeroAttention`: if true, a row of zeroes is added to projected key and value. Default = NO
+        ///
+        /// Returns: A new MultiheadAttention layer descriptor
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithModelDimension:keyDimension:valueDimension:headCount:dropout:hasBiases:hasAttentionBiases:addsZeroAttention:)]
         pub unsafe fn descriptorWithModelDimension_keyDimension_valueDimension_headCount_dropout_hasBiases_hasAttentionBiases_addsZeroAttention(
@@ -78,6 +107,13 @@ extern_methods!(
             adds_zero_attention: bool,
         ) -> Option<Retained<Self>>;
 
+        /// A multi-head attention layer descriptor
+        ///
+        /// Parameter `modelDimension`: total dimension of model space
+        ///
+        /// Parameter `headCount`: number of parallel attention heads
+        ///
+        /// Returns: A valid MultiheadAttention layer descriptor
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithModelDimension:headCount:)]
         pub unsafe fn descriptorWithModelDimension_headCount(

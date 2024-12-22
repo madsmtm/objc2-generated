@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsroundingmode?language=objc)
+/// *************    Type definitions        **********
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsroundingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -50,6 +52,7 @@ unsafe impl RefEncode for NSCalculationError {
 // TODO: pub fn NSDecimalIsNotANumber(dcm: NonNull<NSDecimal>,) -> Bool;
 
 extern "C-unwind" {
+    /// *************    Operations        **********
     pub fn NSDecimalCopy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>);
 }
 

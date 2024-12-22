@@ -25,6 +25,7 @@ extern_methods!(
         pub unsafe fn minimumScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumScaleFactor`][Self::minimumScaleFactor].
         #[method(setMinimumScaleFactor:)]
         pub unsafe fn setMinimumScaleFactor(&self, minimum_scale_factor: CGFloat);
 
@@ -181,6 +182,7 @@ extern_category!(
 
 extern_category!(
     /// Category on [`NSString`].
+    /// ********************** Deprecated ***********************
     pub unsafe trait NSStringDrawingDeprecated {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(drawWithRect:options:attributes:)]

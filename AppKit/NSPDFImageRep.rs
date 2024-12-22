@@ -53,6 +53,7 @@ extern_methods!(
         #[method(currentPage)]
         pub unsafe fn currentPage(&self) -> NSInteger;
 
+        /// Setter for [`currentPage`][Self::currentPage].
         #[method(setCurrentPage:)]
         pub unsafe fn setCurrentPage(&self, current_page: NSInteger);
 

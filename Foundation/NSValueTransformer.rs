@@ -107,7 +107,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssecureunarchivefromdatatransformer?language=objc)
+    /// A value transformer which transforms values to and from
+    /// `NSData`by archiving and unarchiving using secure coding.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nssecureunarchivefromdatatransformer?language=objc)
     #[unsafe(super(NSValueTransformer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSecureUnarchiveFromDataTransformer;
@@ -118,6 +121,14 @@ unsafe impl NSObjectProtocol for NSSecureUnarchiveFromDataTransformer {}
 extern_methods!(
     unsafe impl NSSecureUnarchiveFromDataTransformer {
         #[cfg(feature = "NSArray")]
+        /// The list of allowable classes which the top-level object in the archive must conform to on encoding and decoding.
+        ///
+        /// Returns the result of
+        /// `+transformedValueClass`if not
+        /// `Nil;`otherwise, currently returns
+        /// `NSArray,``NSDictionary,``NSSet,``NSString,``NSNumber,``NSDate,``NSData,``NSURL,``NSUUID,`and
+        /// `NSNull.`
+        /// Can be overridden by subclasses to provide an expanded or different set of allowed transformation classes.
         #[method_id(@__retain_semantics Other allowedTopLevelClasses)]
         pub unsafe fn allowedTopLevelClasses() -> Retained<NSArray<AnyClass>>;
     }

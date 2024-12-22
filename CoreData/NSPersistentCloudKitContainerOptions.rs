@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontaineroptions?language=objc)
+    /// NSPersistentCloudKitContainerOptions provides customization of how NSPersistentCloudKitContainer aligns a given instance of NSPersistentStoreDescription with a CloudKit database.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontaineroptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentCloudKitContainerOptions;
@@ -17,6 +19,7 @@ unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerOptions {}
 
 extern_methods!(
     unsafe impl NSPersistentCloudKitContainerOptions {
+        /// The container identifier of the CKContainer to use with a given instance of NSPersistentStoreDescription
         #[method_id(@__retain_semantics Other containerIdentifier)]
         pub unsafe fn containerIdentifier(&self) -> Retained<NSString>;
 

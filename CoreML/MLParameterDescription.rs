@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlparameterdescription?language=objc)
+    /// Describes a model parameter along with a default value and any applicable constaint on the values.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlparameterdescription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLParameterDescription;

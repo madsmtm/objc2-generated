@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityinformation?language=objc)
+    /// Contains security information about a decoded message
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityinformation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEMessageSecurityInformation;
@@ -22,21 +24,27 @@ unsafe impl NSSecureCoding for MEMessageSecurityInformation {}
 extern_methods!(
     unsafe impl MEMessageSecurityInformation {
         #[cfg(feature = "MEMessageSigner")]
+        /// The signers of the message
         #[method_id(@__retain_semantics Other signers)]
         pub unsafe fn signers(&self) -> Retained<NSArray<MEMessageSigner>>;
 
+        /// Whether or not the message was encrypted.
         #[method(isEncrypted)]
         pub unsafe fn isEncrypted(&self) -> bool;
 
+        /// Any signing error that occured when decoding the message.
         #[method_id(@__retain_semantics Other signingError)]
         pub unsafe fn signingError(&self) -> Option<Retained<NSError>>;
 
+        /// Any encryption error that occured when decoding the message.
         #[method_id(@__retain_semantics Other encryptionError)]
         pub unsafe fn encryptionError(&self) -> Option<Retained<NSError>>;
 
+        /// Whether or not Mail should block loading remote content for the message by default. The user will have the option to load remote content manually.
         #[method(shouldBlockRemoteContent)]
         pub unsafe fn shouldBlockRemoteContent(&self) -> bool;
 
+        /// A localized string containing the reason for blocking remote content.
         #[method_id(@__retain_semantics Other localizedRemoteContentBlockingReason)]
         pub unsafe fn localizedRemoteContentBlockingReason(&self) -> Option<Retained<NSString>>;
 

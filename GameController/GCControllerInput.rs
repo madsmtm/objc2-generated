@@ -52,6 +52,15 @@ unsafe impl NSObjectProtocol for GCControllerLiveInput {}
 
 extern_methods!(
     unsafe impl GCControllerLiveInput {
+        /// Get a view of the controller's input without any system-level control
+        /// remapping applied.
+        ///
+        /// Developers should avoid implementing their own control remapping
+        /// functionality and to instead direct users to the system game controller
+        /// settings to remap controls.  If you choose to implement your own
+        /// control remapping functionality, or if your app streams controller input
+        /// to a remote device that implements control remapping functionality, you
+        /// should access controller physical input through this interface.
         #[method_id(@__retain_semantics Other unmappedInput)]
         pub unsafe fn unmappedInput(&self) -> Option<Retained<GCControllerLiveInput>>;
 

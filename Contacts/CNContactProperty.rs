@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactproperty?language=objc)
+    /// Contains related information for a specific contact property.
+    ///
+    ///
+    /// CNContactProperty is used by the CNContactPicker to return the user's selected property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactproperty?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactProperty;
@@ -31,15 +36,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contact)]
         pub unsafe fn contact(&self) -> Retained<CNContact>;
 
+        /// The key of the contact property, as defined in CNContact.h.
         #[method_id(@__retain_semantics Other key)]
         pub unsafe fn key(&self) -> Retained<NSString>;
 
+        /// The value of the property.
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Option<Retained<AnyObject>>;
 
+        /// The identifier of the labeled value if the property is an array of labeled values, otherwise is nil.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
+        /// The label of the labeled value if the property is an array of labeled values, otherwise is nil.
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
     }

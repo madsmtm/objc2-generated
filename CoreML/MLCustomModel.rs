@@ -26,6 +26,7 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MLFeatureProvider>>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLBatchProvider", feature = "MLPredictionOptions"))]
+        /// Batch prediction with explicit options, if not implemented the single input predictionFromFeatures:options:error will be used
         #[optional]
         #[method_id(@__retain_semantics Other predictionsFromBatch:options:error:_)]
         unsafe fn predictionsFromBatch_options_error(

@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Retained<NSString>;
 
+        /// Setter for [`color`][Self::color].
         #[deprecated]
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other face)]
         pub unsafe fn face(&self) -> Retained<NSString>;
 
+        /// Setter for [`face`][Self::face].
         #[deprecated]
         #[method(setFace:)]
         pub unsafe fn setFace(&self, face: Option<&NSString>);
@@ -97,6 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other size)]
         pub unsafe fn size(&self) -> Retained<NSString>;
 
+        /// Setter for [`size`][Self::size].
         #[deprecated]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: Option<&NSString>);

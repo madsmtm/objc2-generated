@@ -96,6 +96,7 @@ extern_methods!(
         pub unsafe fn frame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: CGRect);
 
@@ -104,6 +105,7 @@ extern_methods!(
         pub unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         pub unsafe fn setCenter(&self, center: CGPoint);
 
@@ -112,6 +114,7 @@ extern_methods!(
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: CGSize);
 
@@ -122,6 +125,7 @@ extern_methods!(
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
+        /// Setter for [`transform3D`][Self::transform3D].
         #[method(setTransform3D:)]
         pub unsafe fn setTransform3D(&self, transform3_d: CATransform3D);
 
@@ -130,6 +134,7 @@ extern_methods!(
         pub unsafe fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`bounds`][Self::bounds].
         #[method(setBounds:)]
         pub unsafe fn setBounds(&self, bounds: CGRect);
 
@@ -138,6 +143,7 @@ extern_methods!(
         pub unsafe fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`transform`][Self::transform].
         #[method(setTransform:)]
         pub unsafe fn setTransform(&self, transform: CGAffineTransform);
 
@@ -146,24 +152,28 @@ extern_methods!(
         pub unsafe fn alpha(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
         #[method(zIndex)]
         pub unsafe fn zIndex(&self) -> NSInteger;
 
+        /// Setter for [`zIndex`][Self::zIndex].
         #[method(setZIndex:)]
         pub unsafe fn setZIndex(&self, z_index: NSInteger);
 
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[method_id(@__retain_semantics Other indexPath)]
         pub unsafe fn indexPath(&self) -> Retained<NSIndexPath>;
 
+        /// Setter for [`indexPath`][Self::indexPath].
         #[method(setIndexPath:)]
         pub unsafe fn setIndexPath(&self, index_path: &NSIndexPath);
 
@@ -259,6 +269,7 @@ extern_methods!(
         pub unsafe fn contentOffsetAdjustment(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentOffsetAdjustment`][Self::contentOffsetAdjustment].
         #[method(setContentOffsetAdjustment:)]
         pub unsafe fn setContentOffsetAdjustment(&self, content_offset_adjustment: CGPoint);
 
@@ -267,6 +278,7 @@ extern_methods!(
         pub unsafe fn contentSizeAdjustment(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentSizeAdjustment`][Self::contentSizeAdjustment].
         #[method(setContentSizeAdjustment:)]
         pub unsafe fn setContentSizeAdjustment(&self, content_size_adjustment: CGSize);
 

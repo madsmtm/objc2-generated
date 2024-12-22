@@ -22,111 +22,224 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCActivationLayer {
         #[cfg(feature = "MLCActivationDescriptor")]
+        /// The activation descriptor
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MLCActivationDescriptor>;
 
         #[cfg(feature = "MLCActivationDescriptor")]
+        /// Create an activation layer
+        ///
+        /// Parameter `descriptor`: The activation descriptor
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDescriptor:)]
         pub unsafe fn layerWithDescriptor(descriptor: &MLCActivationDescriptor) -> Retained<Self>;
 
+        /// Create a ReLU activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other reluLayer)]
         pub unsafe fn reluLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a ReLU6 activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other relu6Layer)]
         pub unsafe fn relu6Layer() -> Retained<MLCActivationLayer>;
 
+        /// Create a leaky ReLU activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other leakyReLULayer)]
         pub unsafe fn leakyReLULayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a leaky ReLU activation layer
+        ///
+        /// Parameter `negativeSlope`: Controls the angle of the negative slope
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other leakyReLULayerWithNegativeSlope:)]
         pub unsafe fn leakyReLULayerWithNegativeSlope(negative_slope: c_float) -> Retained<Self>;
 
+        /// Create a linear activation layer
+        ///
+        /// Parameter `scale`: The scale factor
+        ///
+        /// Parameter `bias`: The bias value
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other linearLayerWithScale:bias:)]
         pub unsafe fn linearLayerWithScale_bias(scale: c_float, bias: c_float) -> Retained<Self>;
 
+        /// Create a sigmoid activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other sigmoidLayer)]
         pub unsafe fn sigmoidLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a hard sigmoid activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other hardSigmoidLayer)]
         pub unsafe fn hardSigmoidLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a tanh activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other tanhLayer)]
         pub unsafe fn tanhLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create an absolute activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other absoluteLayer)]
         pub unsafe fn absoluteLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a soft plus activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other softPlusLayer)]
         pub unsafe fn softPlusLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a soft plus activation layer
+        ///
+        /// Parameter `beta`: The beta value for the softplus formation
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other softPlusLayerWithBeta:)]
         pub unsafe fn softPlusLayerWithBeta(beta: c_float) -> Retained<Self>;
 
+        /// Create a soft sign activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other softSignLayer)]
         pub unsafe fn softSignLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create an ELU activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other eluLayer)]
         pub unsafe fn eluLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create an ELU activation layer
+        ///
+        /// Parameter `a`: The
+        /// `a`value for the ELU formation
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other eluLayerWithA:)]
         pub unsafe fn eluLayerWithA(a: c_float) -> Retained<Self>;
 
+        /// Create a ReLUN activation layer
+        ///
+        /// This can be used to implement layers such as ReLU6 for example.
+        ///
+        /// Parameter `a`: The
+        /// `a`value
+        ///
+        /// Parameter `b`: The
+        /// `b`value
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other relunLayerWithA:b:)]
         pub unsafe fn relunLayerWithA_b(a: c_float, b: c_float) -> Retained<Self>;
 
+        /// Create a log sigmoid activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other logSigmoidLayer)]
         pub unsafe fn logSigmoidLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a SELU activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other seluLayer)]
         pub unsafe fn seluLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a CELU activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other celuLayer)]
         pub unsafe fn celuLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a CELU activation layer
+        ///
+        /// Parameter `a`: The
+        /// `a`value for the CELU formation
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other celuLayerWithA:)]
         pub unsafe fn celuLayerWithA(a: c_float) -> Retained<Self>;
 
+        /// Create a hard shrink activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other hardShrinkLayer)]
         pub unsafe fn hardShrinkLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a hard shrink activation layer
+        ///
+        /// Parameter `a`: The
+        /// `a`value for the hard shrink formation
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other hardShrinkLayerWithA:)]
         pub unsafe fn hardShrinkLayerWithA(a: c_float) -> Retained<Self>;
 
+        /// Create a soft shrink activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other softShrinkLayer)]
         pub unsafe fn softShrinkLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a soft shrink activation layer
+        ///
+        /// Parameter `a`: The
+        /// `a`value for the soft shrink formation
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other softShrinkLayerWithA:)]
         pub unsafe fn softShrinkLayerWithA(a: c_float) -> Retained<Self>;
 
+        /// Create a TanhShrink activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other tanhShrinkLayer)]
         pub unsafe fn tanhShrinkLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a threshold activation layer
+        ///
+        /// Parameter `threshold`: The value to threshold at
+        ///
+        /// Parameter `replacement`: The value to replace with
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other thresholdLayerWithThreshold:replacement:)]
         pub unsafe fn thresholdLayerWithThreshold_replacement(
@@ -134,14 +247,27 @@ extern_methods!(
             replacement: c_float,
         ) -> Retained<Self>;
 
+        /// Create a GELU activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other geluLayer)]
         pub unsafe fn geluLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a hardswish activation layer
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other hardSwishLayer)]
         pub unsafe fn hardSwishLayer() -> Retained<MLCActivationLayer>;
 
+        /// Create a clamp activation layer
+        ///
+        /// Parameter `minValue`: The minimum range used by clamp
+        ///
+        /// Parameter `maxValue`: The maximum range used by clamp
+        ///
+        /// Returns: A new activation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other clampLayerWithMinValue:maxValue:)]
         pub unsafe fn clampLayerWithMinValue_maxValue(

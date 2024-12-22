@@ -32,9 +32,11 @@ unsafe impl NSSecureCoding for HKQueryDescriptor {}
 extern_methods!(
     unsafe impl HKQueryDescriptor {
         #[cfg(feature = "HKObjectType")]
+        /// The type of sample to retrieve in an HKQuery.
         #[method_id(@__retain_semantics Other sampleType)]
         pub unsafe fn sampleType(&self) -> Retained<HKSampleType>;
 
+        /// The predicate which samples should match.
         #[method_id(@__retain_semantics Other predicate)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
@@ -45,6 +47,12 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
+        /// Returns a query descriptor that describes a data type and predicate to be used in an HKQuery.
+        ///
+        ///
+        /// Parameter `sampleType`: The type of sample to retrieve.
+        ///
+        /// Parameter `predicate`: The predicate which samples should match.
         #[method_id(@__retain_semantics Init initWithSampleType:predicate:)]
         pub unsafe fn initWithSampleType_predicate(
             this: Allocated<Self>,

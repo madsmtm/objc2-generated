@@ -17,6 +17,11 @@ extern_protocol!(
             feature = "UITextFormattingViewControllerChangeValue",
             feature = "UIViewController"
         ))]
+        /// Delegate method that will be invoked on any text formatting changes.
+        ///
+        /// - Parameters:
+        /// - viewController: Text formatting controller in which action was performed.
+        /// - changeValue: Object describing the change made via view controller.
         #[method(textFormattingViewController:didChangeValue:)]
         unsafe fn textFormattingViewController_didChangeValue(
             &self,
@@ -29,6 +34,16 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIViewController"
         ))]
+        /// If implemented, text formatting will call this method before presenting font picker controller.
+        /// Use this method to make any presentation modifications or to prevent presentation altogether.
+        ///
+        /// If you decide to prevent presentation of font picker via text formatting controller, you may present provided font picker yourself.
+        /// In this case, you will have to handle any font picker actions independently.
+        ///
+        /// - Parameters:
+        /// - viewController: Text formatting controller that is attempting to present font picker controller
+        /// - fontPicker: Font picker controller that will be presented.
+        /// - Returns: Flag indicating if text formatting controller should present font picker.
         #[optional]
         #[method(textFormattingViewController:shouldPresentFontPicker:)]
         unsafe fn textFormattingViewController_shouldPresentFontPicker(
@@ -42,6 +57,16 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIViewController"
         ))]
+        /// If implemented, text formatting will call this method before presenting color picker controller.
+        /// Use this method to make any presentation modifications or to prevent presentation altogether.
+        ///
+        /// You may decide to prevent presentation of color picker via text formatting controller.
+        /// In that case, you may present provided color picker controller yourself, but you will have to handle any actions in that controller separately.
+        ///
+        /// - Parameters:
+        /// - viewController: Text formatting controller that is attempting to present font picker controller
+        /// - colorPicker: Color picker controller that will be presented.
+        /// - Returns: Flag indicating if text formatting controller should present font picker.
         #[optional]
         #[method(textFormattingViewController:shouldPresentColorPicker:)]
         unsafe fn textFormattingViewController_shouldPresentColorPicker(
@@ -51,6 +76,7 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// Informs the delegate that user has dismissed text formatting view controller.
         #[optional]
         #[method(textFormattingDidFinish:)]
         unsafe fn textFormattingDidFinish(&self, view_controller: &UITextFormattingViewController);
@@ -60,7 +86,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller?language=objc)
+    /// A view controller that manages the interface for common text formatting options.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller?language=objc)
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -105,29 +133,34 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITextFormattingViewController {
         #[cfg(feature = "UITextFormattingViewControllerConfiguration")]
+        /// Current text formatting configuration object.
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self)
             -> Retained<UITextFormattingViewControllerConfiguration>;
 
         #[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+        /// Current formatting descriptor.
         #[method_id(@__retain_semantics Other formattingDescriptor)]
         pub unsafe fn formattingDescriptor(
             &self,
         ) -> Option<Retained<UITextFormattingViewControllerFormattingDescriptor>>;
 
         #[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
+        /// Setter for [`formattingDescriptor`][Self::formattingDescriptor].
         #[method(setFormattingDescriptor:)]
         pub unsafe fn setFormattingDescriptor(
             &self,
             formatting_descriptor: Option<&UITextFormattingViewControllerFormattingDescriptor>,
         );
 
+        /// Text formatting delegate.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITextFormattingViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

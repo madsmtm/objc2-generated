@@ -13,20 +13,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASAuthorizationProviderExtensionKeyType(pub NSInteger);
 impl ASAuthorizationProviderExtensionKeyType {
+    /// The user's device signing key.
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserDeviceSigning")]
     pub const UserDeviceSigning: Self = Self(1);
+    /// The user's device encryption key.
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserDeviceEncryption")]
     pub const UserDeviceEncryption: Self = Self(2);
+    /// The user's Secure Enclave backed key.
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserSecureEnclaveKey")]
     pub const UserSecureEnclaveKey: Self = Self(3);
+    /// The shared device signing key.
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeSharedDeviceSigning")]
     pub const SharedDeviceSigning: Self = Self(4);
+    /// The shared device encryption key.
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeSharedDeviceEncryption")]
     pub const SharedDeviceEncryption: Self = Self(5);
+    /// The currentdevice signing key.
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceSigning")]
     pub const CurrentDeviceSigning: Self = Self(10);
+    /// The current device encryption key.
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceEncryption")]
     pub const CurrentDeviceEncryption: Self = Self(11);
+    /// The current device encryption key.
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserSmartCard")]
     pub const UserSmartCard: Self = Self(20);
 }
@@ -56,58 +64,81 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Returns YES if the current device completed registration.
         #[method(isDeviceRegistered)]
         pub unsafe fn isDeviceRegistered(&self) -> bool;
 
+        /// Returns YES if current user completed registration.
         #[method(isUserRegistered)]
         pub unsafe fn isUserRegistered(&self) -> bool;
 
+        /// Returns the device registration token from the MDM profile.
         #[method_id(@__retain_semantics Other registrationToken)]
         pub unsafe fn registrationToken(&self) -> Option<Retained<NSString>>;
 
+        /// Returns the extension data from the MDM profile.
         #[method_id(@__retain_semantics Other extensionData)]
         pub unsafe fn extensionData(&self) -> Retained<NSDictionary>;
 
+        /// The user name to use when authenticating with the identity provider.
         #[deprecated]
         #[method_id(@__retain_semantics Other loginUserName)]
         pub unsafe fn loginUserName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`loginUserName`][Self::loginUserName].
         #[deprecated]
         #[method(setLoginUserName:)]
         pub unsafe fn setLoginUserName(&self, login_user_name: Option<&NSString>);
 
         #[cfg(feature = "ASAuthorizationProviderExtensionUserLoginConfiguration")]
+        /// Retrieves the current user login configuration for the extension.
         #[method_id(@__retain_semantics Other userLoginConfiguration)]
         pub unsafe fn userLoginConfiguration(
             &self,
         ) -> Option<Retained<ASAuthorizationProviderExtensionUserLoginConfiguration>>;
 
         #[cfg(feature = "ASAuthorizationProviderExtensionUserLoginConfiguration")]
+        /// Saves or replaces the user login configration.
+        ///
+        /// Parameter `userLoginConfiguration`: The user login configration to use.
+        ///
+        /// Parameter `error`: The error when there are validation errors or nil.
         #[method(saveUserLoginConfiguration:error:_)]
         pub unsafe fn saveUserLoginConfiguration_error(
             &self,
             user_login_configuration: &ASAuthorizationProviderExtensionUserLoginConfiguration,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Retrieves or sets the current SSO tokens response for the current user and extension.
         #[method_id(@__retain_semantics Other ssoTokens)]
         pub unsafe fn ssoTokens(&self) -> Option<Retained<NSDictionary>>;
 
+        /// Setter for [`ssoTokens`][Self::ssoTokens].
         #[method(setSsoTokens:)]
         pub unsafe fn setSsoTokens(&self, sso_tokens: Option<&NSDictionary>);
 
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+        /// Retrieves or sets the current login configuration for the extension.
         #[method_id(@__retain_semantics Other loginConfiguration)]
         pub unsafe fn loginConfiguration(
             &self,
         ) -> Option<Retained<ASAuthorizationProviderExtensionLoginConfiguration>>;
 
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+        /// Saves or replaces the login configration.
+        ///
+        /// Parameter `loginConfiguration`: The login configration to use.
+        ///
+        /// Parameter `error`: The error when there are validation errors or nil.
         #[method(saveLoginConfiguration:error:_)]
         pub unsafe fn saveLoginConfiguration_error(
             &self,
             login_configuration: &ASAuthorizationProviderExtensionLoginConfiguration,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Completes rotation for the key to replace the previous key.
+        ///
+        /// Parameter `keyType`: The key type to retrieve.
         #[method(completeKeyRotationForKeyType:)]
         pub unsafe fn completeKeyRotationForKeyType(
             &self,
@@ -115,31 +146,39 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Requests AppSSOAgent reauthenticate the current user for the current extension.  This is used when the tokens are revoked, or expired and need to be requested again.
         #[method(userNeedsReauthenticationWithCompletion:)]
         pub unsafe fn userNeedsReauthenticationWithCompletion(
             &self,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
 
+        /// Requests that the device registration be run again to repair it.
         #[method(deviceRegistrationsNeedsRepair)]
         pub unsafe fn deviceRegistrationsNeedsRepair(&self);
 
+        /// Requests that user registration be run again for the current user to repair it.
         #[method(userRegistrationsNeedsRepair)]
         pub unsafe fn userRegistrationsNeedsRepair(&self);
 
+        /// Requests that the decryption keys are repaired.
         #[method(decryptionKeysNeedRepair)]
         pub unsafe fn decryptionKeysNeedRepair(&self);
 
+        /// Creates new Encryption, Signing, and Secure Enclave keys for the user.  The old keys will be destroyed.
         #[method(resetKeys)]
         pub unsafe fn resetKeys(&self);
 
+        /// Creates new Encryption, and Signing keys for the device or user.  The old keys will be destroyed.
         #[method(resetDeviceKeys)]
         pub unsafe fn resetDeviceKeys(&self);
 
+        /// Creates new Encryption, Signing, and Secure Enclave keys for the user.  The old keys will be destroyed.
         #[method(resetUserSecureEnclaveKey)]
         pub unsafe fn resetUserSecureEnclaveKey(&self);
 
         #[cfg(feature = "block2")]
+        /// Asks authorization service to show extension view controller for registration. If the controller cannot be shown an error is returned.  This is only valid during registration.
         #[method(presentRegistrationViewControllerWithCompletion:)]
         pub unsafe fn presentRegistrationViewControllerWithCompletion(
             &self,

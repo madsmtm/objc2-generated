@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkopenpanelparameters?language=objc)
+    /// WKOpenPanelParameters contains parameters that a file upload control has specified.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkopenpanelparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -17,9 +19,11 @@ unsafe impl NSObjectProtocol for WKOpenPanelParameters {}
 
 extern_methods!(
     unsafe impl WKOpenPanelParameters {
+        /// Whether the file upload control supports multiple files.
         #[method(allowsMultipleSelection)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
+        /// Whether the file upload control supports selecting directories.
         #[method(allowsDirectories)]
         pub unsafe fn allowsDirectories(&self) -> bool;
     }

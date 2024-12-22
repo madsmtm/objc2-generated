@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlccomparisonlayer?language=objc)
+    /// Compare layer.
+    ///
+    /// The layer is used to perform element-wise comparison of two tensor. Returns a
+    /// tensor with the shape equal to the largest shape of operands and filled
+    /// with Boolean values result[i] = op1[i] ? op2[i], where ? corresponds to the
+    /// given
+    /// `MLCComparisonOperation.`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlccomparisonlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -26,6 +34,9 @@ extern_methods!(
         pub unsafe fn operation(&self) -> MLCComparisonOperation;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a comparison layer.
+        ///
+        /// Returns: A new compare layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithOperation:)]
         pub unsafe fn layerWithOperation(operation: MLCComparisonOperation) -> Retained<Self>;

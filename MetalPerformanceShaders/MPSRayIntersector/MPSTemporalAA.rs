@@ -9,7 +9,23 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalaa?language=objc)
+    /// Reduces aliasing in an image by accumulating samples over multiple frames
+    ///
+    ///
+    /// The color for the previous frame will be sampled using the provided motion vector
+    /// texture and blended with the current frame according to the blendFactor property. The colors
+    /// from the previous frame will be clamped to the color-space bounding box formed by the center
+    /// pixel's neighbors to avoid reprojection artifacts, and the motion vector texture will be
+    /// dilated to avoid aliased silhouette edges under motion.
+    ///
+    /// For the best result, the sample positions produced by the renderer should be jittered every
+    /// frame, ideally using a low discrepency sequence. This will ensure that different sample
+    /// positions along edges will be visited over time even if the camera is not moving. This will
+    /// also reduce aliasing due to textures and high-frequency shading.
+    ///
+    /// For reference, see "High-Quality Temporal Supersampling" by Karis.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalaa?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -36,9 +52,14 @@ unsafe impl NSSecureCoding for MPSTemporalAA {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSTemporalAA {
+        /// How much to blend the current frame with the previous frame during temporal antialiasing.
+        /// The final value is given by
+        /// current * blendFactor + previous * (1 - blendFactor). Must be between zero
+        /// and one, inclusive. Defaults to 0.1.
         #[method(blendFactor)]
         pub unsafe fn blendFactor(&self) -> c_float;
 
+        /// Setter for [`blendFactor`][Self::blendFactor].
         #[method(setBlendFactor:)]
         pub unsafe fn setBlendFactor(&self, blend_factor: c_float);
 
@@ -65,6 +86,34 @@ extern_methods!(
         #[method(encodeWithCoder:)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
+        /// Encode temporal antialiasing a command buffer
+        ///
+        ///
+        /// The motion vector texture must be at least a two channel texture representing how
+        /// many texels each texel in the source image(s) have moved since the previous frame. The remaining
+        /// channels will be ignored if present. This texture may be nil, in which case the motion vector is
+        /// assumed to be zero, which is suitable for static images.
+        ///
+        /// The depth texture must contain the depth values for directly visible geometry for the current
+        /// frame for each pixel. The first channel must store the depth value from zero to infinity.
+        /// The depth texture may be nil, but this will prevent motion vectors from being dilated and
+        /// may introduce aliasing along silhouette edges.
+        ///
+        /// The destination texture should be used as the previous texture in the next frame.
+        ///
+        ///
+        /// Parameter `commandBuffer`: Command buffer to encode into
+        ///
+        /// Parameter `sourceTexture`: Current frame to denoise
+        ///
+        /// Parameter `previousTexture`: Previous denoised frame to reproject into current
+        /// frame
+        ///
+        /// Parameter `destinationTexture`: Output blended image
+        ///
+        /// Parameter `motionVectorTexture`: Motion vector texture
+        ///
+        /// Parameter `depthTexture`: The depth values for the current frame
         #[method(encodeToCommandBuffer:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_previousTexture_destinationTexture_motionVectorTexture_depthTexture(
             &self,
@@ -82,6 +131,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSTemporalAA {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

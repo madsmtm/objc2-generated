@@ -9,7 +9,14 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystemzoomslider?language=objc)
+    /// The system's recommended continuous zoom control for `-[AVCaptureDevice videoZoomFactor]`.
+    ///
+    ///
+    /// `AVCaptureSystemZoomSlider` uses the range specified by the `systemRecommendedVideoZoomRange` on the `activeFormat` from the `AVCaptureDevice` specified during initialization. As the device's `activeFormat` changes, the slider updates its range with the new format's `systemRecommendedVideoZoomRange`.
+    ///
+    /// Controls may be added to an `AVCaptureSession` using `-[AVCaptureSession addControl:]`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystemzoomslider?language=objc)
     #[unsafe(super(AVCaptureControl, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureControl")]
@@ -23,6 +30,13 @@ extern_methods!(
     #[cfg(feature = "AVCaptureControl")]
     unsafe impl AVCaptureSystemZoomSlider {
         #[cfg(feature = "AVCaptureDevice")]
+        /// Initializes an `AVCaptureSystemZoomSlider` for controlling `device`.
+        ///
+        ///
+        /// Parameter `device`: The device to control.
+        ///
+        ///
+        /// `AVCaptureSystemZoomSlider` may only be initialized with `AVCaptureDevice` instances that support setting `videoZoomFactor`, otherwise an `NSInvalidArgumentException` is thrown.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -34,6 +48,21 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// Initializes an `AVCaptureSystemZoomSlider` for controlling `device` with a `
+        /// MainThreadOnly` `action` for handling `videoZoomFactor` changes.
+        ///
+        ///
+        /// Parameter `device`: The device to control.
+        ///
+        /// Parameter `action`: An action called on `
+        /// MainThreadOnly` to handle `videoZoomFactor` changes by `AVCaptureSystemZoomSlider`.
+        ///
+        ///
+        /// `action` is **only** called when `videoZoomFactor` is changed by this control. Clients should not change `videoZoomFactor` on the device when `action` is called.
+        ///
+        /// If you need to react to other sources of `videoZoomFactor` changes like `rampToVideoZoomFactor:withRate:` you will still need to use key-value observation.
+        ///
+        /// `AVCaptureSystemZoomSlider` may only be initialized with `AVCaptureDevice` instances that support setting `videoZoomFactor`, otherwise an `NSInvalidArgumentException` is thrown.
         #[method_id(@__retain_semantics Init initWithDevice:action:)]
         pub unsafe fn initWithDevice_action(
             this: Allocated<Self>,

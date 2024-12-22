@@ -8,6 +8,10 @@ use crate::*;
 
 extern_methods!(
     /// Predicates
+    /// The predicates to match groups against.
+    ///
+    ///
+    /// Can only use these predicates with CNContactStore.
     #[cfg(feature = "CNGroup")]
     unsafe impl CNGroup {
         #[method_id(@__retain_semantics Other predicateForGroupsWithIdentifiers:)]

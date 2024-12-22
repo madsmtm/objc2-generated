@@ -27,12 +27,14 @@ extern_protocol!(
         #[method(currentPlaybackTime)]
         unsafe fn currentPlaybackTime(&self) -> NSTimeInterval;
 
+        /// Setter for [`currentPlaybackTime`][Self::currentPlaybackTime].
         #[method(setCurrentPlaybackTime:)]
         unsafe fn setCurrentPlaybackTime(&self, current_playback_time: NSTimeInterval);
 
         #[method(currentPlaybackRate)]
         unsafe fn currentPlaybackRate(&self) -> c_float;
 
+        /// Setter for [`currentPlaybackRate`][Self::currentPlaybackRate].
         #[method(setCurrentPlaybackRate:)]
         unsafe fn setCurrentPlaybackRate(&self, current_playback_rate: c_float);
 

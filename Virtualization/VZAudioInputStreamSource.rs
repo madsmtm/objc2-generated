@@ -6,7 +6,16 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzaudioinputstreamsource?language=objc)
+    /// Base class for an audio input stream source.
+    ///
+    /// An audio input stream source defines how audio input data for a guest is produced on the host system.
+    ///
+    /// VZAudioInputStreamSource should not be instantiated directly. One of its subclasses should be used instead.
+    ///
+    ///
+    /// See: VZHostAudioInputStreamSource
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzaudioinputstreamsource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZAudioInputStreamSource;

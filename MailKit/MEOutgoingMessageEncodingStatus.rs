@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/meoutgoingmessageencodingstatus?language=objc)
+    /// Contains information about any security measures that will be applied to a mail message when it is sent or any errrors that occurred while verifying security status.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/meoutgoingmessageencodingstatus?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEOutgoingMessageEncodingStatus;
@@ -21,16 +23,20 @@ unsafe impl NSSecureCoding for MEOutgoingMessageEncodingStatus {}
 
 extern_methods!(
     unsafe impl MEOutgoingMessageEncodingStatus {
+        /// Whether or not the message can be signed.
         #[method(canSign)]
         pub unsafe fn canSign(&self) -> bool;
 
+        /// Whether or not the message can be encrypted.
         #[method(canEncrypt)]
         pub unsafe fn canEncrypt(&self) -> bool;
 
+        /// Any error that occurred while verifying the security status for the outgoing mail message.
         #[method_id(@__retain_semantics Other securityError)]
         pub unsafe fn securityError(&self) -> Option<Retained<NSError>>;
 
         #[cfg(feature = "MEEmailAddress")]
+        /// A list of any recipients for which the message should be encrypted but an error occurred. This could include missing the public key for the recipient.
         #[method_id(@__retain_semantics Other addressesFailingEncryption)]
         pub unsafe fn addressesFailingEncryption(&self) -> Retained<NSArray<MEEmailAddress>>;
 

@@ -37,6 +37,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
@@ -45,6 +46,7 @@ extern_methods!(
         pub unsafe fn elements(&self) -> Retained<NSArray<NSFetchIndexElementDescription>>;
 
         #[cfg(feature = "NSFetchIndexElementDescription")]
+        /// Setter for [`elements`][Self::elements].
         #[method(setElements:)]
         pub unsafe fn setElements(&self, elements: &NSArray<NSFetchIndexElementDescription>);
 
@@ -55,6 +57,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other partialIndexPredicate)]
         pub unsafe fn partialIndexPredicate(&self) -> Option<Retained<NSPredicate>>;
 
+        /// Setter for [`partialIndexPredicate`][Self::partialIndexPredicate].
         #[method(setPartialIndexPredicate:)]
         pub unsafe fn setPartialIndexPredicate(
             &self,

@@ -17,6 +17,22 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a oneHot operation and returns the result tensor.
+        ///
+        /// Creates a tensor of rank equal to the indicesTensor rank + 1.
+        /// Inserts a new axis at the axis specified, or the minor axis if axis is -1.
+        /// The values at the indices in the indicesTensor will have the onValue,
+        /// and all other values will be set to the offValue.
+        ///
+        /// - Parameters:
+        /// - indicesTensor: Tensor of indices for on values
+        /// - depth: Depth of the oneHot vector along the axis
+        /// - axis: The axis to insert the new oneHot vector at. Defaults to -1, the minor axis
+        /// - dataType: MPSDataType of the result tensor Defaults to MPSDataTypeFloat
+        /// - onValue: The value for indices designated by the indicesTensor. This value must match the specified data type. Defaults to 1.0f
+        /// - offValue: The value for indices not designated by the indicesTensor. This value must match the specified data type. Defaults to 0.0f
+        /// - name: Name for the operation
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other oneHotWithIndicesTensor:depth:axis:dataType:onValue:offValue:name:)]
         pub unsafe fn oneHotWithIndicesTensor_depth_axis_dataType_onValue_offValue_name(
             &self,
@@ -33,6 +49,21 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a oneHot operation and returns the result tensor.
+        ///
+        /// Creates a tensor of rank equal to the rank of `indicesTensor` + 1.
+        /// Inserts a new axis at the minor dimension.
+        /// The values at the indices in the indicesTensor will have the onValue,
+        /// and all other values will be set to the offValue.
+        ///
+        /// - Parameters:
+        /// - indicesTensor: Tensor of indices for on values
+        /// - depth: Depth of the oneHot vector along the axis
+        /// - dataType: MPSDataType of the result tensor.
+        /// - onValue: The value for indices designated by the indicesTensor. This value must match the specified data type.
+        /// - offValue: The value for indices not designated by the indicesTensor. This value must match the specified data type.
+        /// - name: Name for the operation
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other oneHotWithIndicesTensor:depth:dataType:onValue:offValue:name:)]
         pub unsafe fn oneHotWithIndicesTensor_depth_dataType_onValue_offValue_name(
             &self,
@@ -48,6 +79,20 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a oneHot operation and returns the result tensor.
+        ///
+        /// Creates a tensor of rank equal to the rank of `indicesTensor` + 1.
+        /// Inserts a new axis at the axis specified, or the minor axis if `axis` is -1.
+        /// The values at the indices in the indicesTensor will be set to 1,
+        /// and all other values will be set to 0.
+        ///
+        /// - Parameters:
+        /// - indicesTensor: Tensor of indices for on values
+        /// - depth: Depth of the oneHot vector along the axis
+        /// - axis: The axis to insert the new oneHot vector at
+        /// - dataType: MPSDataType of the result tensor.
+        /// - name: Name for the operation
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other oneHotWithIndicesTensor:depth:axis:dataType:name:)]
         pub unsafe fn oneHotWithIndicesTensor_depth_axis_dataType_name(
             &self,
@@ -59,6 +104,19 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a oneHot operation and returns the result tensor.
+        ///
+        /// Creates a tensor of rank equal to the rank of `indicesTensor` + 1, of type MPSDataTypeFloat32.
+        /// Inserts a new axis at the axis specified, or the minor axis if `axis` is -1.
+        /// The values at the indices in the indicesTensor will be set to 1,
+        /// and all other values will be set to 0.
+        ///
+        /// - Parameters:
+        /// - indicesTensor: Tensor of indices for on values
+        /// - depth: Depth of the oneHot vector along the axis
+        /// - axis: The axis to insert the new oneHot vector at
+        /// - name: Name for the operation
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other oneHotWithIndicesTensor:depth:axis:name:)]
         pub unsafe fn oneHotWithIndicesTensor_depth_axis_name(
             &self,
@@ -72,6 +130,19 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a oneHot operation and returns the result tensor.
+        ///
+        /// Creates a tensor of rank equal to the rank of `indicesTensor` + 1.
+        /// Inserts a new axis at the minor dimension.
+        /// The values at the indices in the indicesTensor will be set to 1,
+        /// and all other values will be set to 0.
+        ///
+        /// - Parameters:
+        /// - indicesTensor: Tensor of indices for on values
+        /// - depth: Depth of the oneHot vector along the axis
+        /// - dataType: MPSDataType of the result tensor.
+        /// - name: Name for the operation
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other oneHotWithIndicesTensor:depth:dataType:name:)]
         pub unsafe fn oneHotWithIndicesTensor_depth_dataType_name(
             &self,
@@ -82,6 +153,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a oneHot operation and returns the result tensor.
+        ///
+        /// Creates a tensor of rank equal to the rank of `indicesTensor` + 1, of type MPSDataTypeFloat32.
+        /// Inserts a new axis at the minor dimension.
+        /// The values at the indices in the indicesTensor will be set to 1,
+        /// and all other values will be set to 0.
+        ///
+        /// - Parameters:
+        /// - indicesTensor: Tensor of indices for on values
+        /// - depth: Depth of the oneHot vector along the axis
+        /// - name: Name for the operation
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other oneHotWithIndicesTensor:depth:name:)]
         pub unsafe fn oneHotWithIndicesTensor_depth_name(
             &self,

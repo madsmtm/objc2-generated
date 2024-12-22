@@ -36,12 +36,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(selector)]
         pub unsafe fn selector(&self) -> Sel;
 
+        /// Setter for [`selector`][Self::selector].
         #[method(setSelector:)]
         pub unsafe fn setSelector(&self, selector: Sel);
 

@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerconfiguration?language=objc)
+    /// Text formatting view controller configuration object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerConfiguration;
@@ -29,18 +31,21 @@ unsafe impl NSSecureCoding for UITextFormattingViewControllerConfiguration {}
 extern_methods!(
     unsafe impl UITextFormattingViewControllerConfiguration {
         #[cfg(feature = "UITextFormattingViewControllerComponent")]
+        /// Component groups displayed by text formatting view.
         #[method_id(@__retain_semantics Other groups)]
         pub unsafe fn groups(
             &self,
         ) -> Retained<NSArray<UITextFormattingViewControllerComponentGroup>>;
 
         #[cfg(feature = "UITextFormattingViewControllerFormattingStyle")]
+        /// Configurations of formatting styles available in text formatting view.
         #[method_id(@__retain_semantics Other formattingStyles)]
         pub unsafe fn formattingStyles(
             &self,
         ) -> Option<Retained<NSArray<UITextFormattingViewControllerFormattingStyle>>>;
 
         #[cfg(feature = "UITextFormattingViewControllerFormattingStyle")]
+        /// Setter for [`formattingStyles`][Self::formattingStyles].
         #[method(setFormattingStyles:)]
         pub unsafe fn setFormattingStyles(
             &self,
@@ -48,6 +53,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIFontPickerViewControllerConfiguration")]
+        /// Configuration object that will be used to customize `UIFontPickerViewController` if presented by `UITextFormattingViewController`.
         #[method_id(@__retain_semantics Other fontPickerConfiguration)]
         pub unsafe fn fontPickerConfiguration(
             &self,
@@ -55,16 +61,20 @@ extern_methods!(
         ) -> Option<Retained<UIFontPickerViewControllerConfiguration>>;
 
         #[cfg(feature = "UIFontPickerViewControllerConfiguration")]
+        /// Setter for [`fontPickerConfiguration`][Self::fontPickerConfiguration].
         #[method(setFontPickerConfiguration:)]
         pub unsafe fn setFontPickerConfiguration(
             &self,
             font_picker_configuration: Option<&UIFontPickerViewControllerConfiguration>,
         );
 
+        /// Creates a default configuration with most common text formatting options.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UITextFormattingViewControllerComponent")]
+        /// Creates a configuration object with provided component groups.
+        /// - Parameter groups: Component groups displayed in text formatting view.
         #[method_id(@__retain_semantics Init initWithGroups:)]
         pub unsafe fn initWithGroups(
             this: Allocated<Self>,

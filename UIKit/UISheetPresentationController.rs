@@ -155,6 +155,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UISheetPresentationControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -166,18 +167,21 @@ extern_methods!(
         pub unsafe fn sourceView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Setter for [`sourceView`][Self::sourceView].
         #[method(setSourceView:)]
         pub unsafe fn setSourceView(&self, source_view: Option<&UIView>);
 
         #[method(prefersPageSizing)]
         pub unsafe fn prefersPageSizing(&self) -> bool;
 
+        /// Setter for [`prefersPageSizing`][Self::prefersPageSizing].
         #[method(setPrefersPageSizing:)]
         pub unsafe fn setPrefersPageSizing(&self, prefers_page_sizing: bool);
 
         #[method(prefersEdgeAttachedInCompactHeight)]
         pub unsafe fn prefersEdgeAttachedInCompactHeight(&self) -> bool;
 
+        /// Setter for [`prefersEdgeAttachedInCompactHeight`][Self::prefersEdgeAttachedInCompactHeight].
         #[method(setPrefersEdgeAttachedInCompactHeight:)]
         pub unsafe fn setPrefersEdgeAttachedInCompactHeight(
             &self,
@@ -187,6 +191,7 @@ extern_methods!(
         #[method(widthFollowsPreferredContentSizeWhenEdgeAttached)]
         pub unsafe fn widthFollowsPreferredContentSizeWhenEdgeAttached(&self) -> bool;
 
+        /// Setter for [`widthFollowsPreferredContentSizeWhenEdgeAttached`][Self::widthFollowsPreferredContentSizeWhenEdgeAttached].
         #[method(setWidthFollowsPreferredContentSizeWhenEdgeAttached:)]
         pub unsafe fn setWidthFollowsPreferredContentSizeWhenEdgeAttached(
             &self,
@@ -196,6 +201,7 @@ extern_methods!(
         #[method(prefersGrabberVisible)]
         pub unsafe fn prefersGrabberVisible(&self) -> bool;
 
+        /// Setter for [`prefersGrabberVisible`][Self::prefersGrabberVisible].
         #[method(setPrefersGrabberVisible:)]
         pub unsafe fn setPrefersGrabberVisible(&self, prefers_grabber_visible: bool);
 
@@ -204,12 +210,14 @@ extern_methods!(
         pub unsafe fn preferredCornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredCornerRadius`][Self::preferredCornerRadius].
         #[method(setPreferredCornerRadius:)]
         pub unsafe fn setPreferredCornerRadius(&self, preferred_corner_radius: CGFloat);
 
         #[method_id(@__retain_semantics Other detents)]
         pub unsafe fn detents(&self) -> Retained<NSArray<UISheetPresentationControllerDetent>>;
 
+        /// Setter for [`detents`][Self::detents].
         #[method(setDetents:)]
         pub unsafe fn setDetents(&self, detents: &NSArray<UISheetPresentationControllerDetent>);
 
@@ -221,6 +229,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<UISheetPresentationControllerDetentIdentifier>>;
 
+        /// Setter for [`selectedDetentIdentifier`][Self::selectedDetentIdentifier].
         #[method(setSelectedDetentIdentifier:)]
         pub unsafe fn setSelectedDetentIdentifier(
             &self,
@@ -232,6 +241,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<UISheetPresentationControllerDetentIdentifier>>;
 
+        /// Setter for [`largestUndimmedDetentIdentifier`][Self::largestUndimmedDetentIdentifier].
         #[method(setLargestUndimmedDetentIdentifier:)]
         pub unsafe fn setLargestUndimmedDetentIdentifier(
             &self,
@@ -243,6 +253,7 @@ extern_methods!(
         #[method(prefersScrollingExpandsWhenScrolledToEdge)]
         pub unsafe fn prefersScrollingExpandsWhenScrolledToEdge(&self) -> bool;
 
+        /// Setter for [`prefersScrollingExpandsWhenScrolledToEdge`][Self::prefersScrollingExpandsWhenScrolledToEdge].
         #[method(setPrefersScrollingExpandsWhenScrolledToEdge:)]
         pub unsafe fn setPrefersScrollingExpandsWhenScrolledToEdge(
             &self,

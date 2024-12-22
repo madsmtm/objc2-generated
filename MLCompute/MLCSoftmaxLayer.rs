@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcsoftmaxlayer?language=objc)
+    /// A softmax layer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcsoftmaxlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -21,20 +23,34 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCSoftmaxLayer {
         #[cfg(feature = "MLCTypes")]
+        /// The softmax operation.  Supported values are softmax and log softmax.
         #[deprecated]
         #[method(operation)]
         pub unsafe fn operation(&self) -> MLCSoftmaxOperation;
 
+        /// The  dimension over which softmax operation should be performed
         #[deprecated]
         #[method(dimension)]
         pub unsafe fn dimension(&self) -> NSUInteger;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a softmax layer
+        ///
+        /// Parameter `operation`: The softmax operation
+        ///
+        /// Returns: A new softmax layer
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithOperation:)]
         pub unsafe fn layerWithOperation(operation: MLCSoftmaxOperation) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a softmax layer
+        ///
+        /// Parameter `operation`: The softmax operation
+        ///
+        /// Parameter `dimension`: The  dimension over which softmax operation should be performed
+        ///
+        /// Returns: A new softmax layer
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithOperation:dimension:)]
         pub unsafe fn layerWithOperation_dimension(

@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketconnection?language=objc)
+    /// The VZVirtioSocketConnection object represents a Virtio socket device's connection.
+    ///
+    /// The connection encompasses a source port, destination port, and an associated file descriptor.
+    ///
+    /// See: VZVirtioSocketDevice
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketconnection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioSocketConnection;
@@ -23,15 +29,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The destination port number of the connection.
         #[method(destinationPort)]
         pub unsafe fn destinationPort(&self) -> u32;
 
+        /// The source port number of the connection.
         #[method(sourcePort)]
         pub unsafe fn sourcePort(&self) -> u32;
 
+        /// The file descriptor associated with the socket.
+        ///
+        /// Data is sent by writing to the file descriptor.
+        /// Data is received by reading from the file descriptor.
+        /// A file descriptor of -1 indicates a closed connection.
+        ///
+        /// The file descriptor is owned by the VZVirtioSocketConnection. It is automatically closed when the object is destroyed.
         #[method(fileDescriptor)]
         pub unsafe fn fileDescriptor(&self) -> c_int;
 
+        /// Close the file descriptor that's associated with the socket.
         #[method(close)]
         pub unsafe fn close(&self);
     }

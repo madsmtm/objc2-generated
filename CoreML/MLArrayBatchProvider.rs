@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlarraybatchprovider?language=objc)
+    /// A concrete convenience class conforming to MLBatchProvider.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlarraybatchprovider?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLArrayBatchProvider;
@@ -25,12 +27,16 @@ extern_methods!(
         pub unsafe fn array(&self) -> Retained<NSArray<ProtocolObject<dyn MLFeatureProvider>>>;
 
         #[cfg(feature = "MLFeatureProvider")]
+        /// Initalize with an array of feature providers
         #[method_id(@__retain_semantics Init initWithFeatureProviderArray:)]
         pub unsafe fn initWithFeatureProviderArray(
             this: Allocated<Self>,
             array: &NSArray<ProtocolObject<dyn MLFeatureProvider>>,
         ) -> Retained<Self>;
 
+        /// Initialize with a dictionary which maps feature names to an array of values [String : [Any]]
+        /// Error is returned if all arrays do not have equal length or if array values
+        /// for a specific feature name do not have the same type or not expressible as MLFeatureValue
         #[method_id(@__retain_semantics Init initWithDictionary:error:_)]
         pub unsafe fn initWithDictionary_error(
             this: Allocated<Self>,

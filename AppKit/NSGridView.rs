@@ -204,18 +204,21 @@ extern_methods!(
         #[method(xPlacement)]
         pub unsafe fn xPlacement(&self) -> NSGridCellPlacement;
 
+        /// Setter for [`xPlacement`][Self::xPlacement].
         #[method(setXPlacement:)]
         pub unsafe fn setXPlacement(&self, x_placement: NSGridCellPlacement);
 
         #[method(yPlacement)]
         pub unsafe fn yPlacement(&self) -> NSGridCellPlacement;
 
+        /// Setter for [`yPlacement`][Self::yPlacement].
         #[method(setYPlacement:)]
         pub unsafe fn setYPlacement(&self, y_placement: NSGridCellPlacement);
 
         #[method(rowAlignment)]
         pub unsafe fn rowAlignment(&self) -> NSGridRowAlignment;
 
+        /// Setter for [`rowAlignment`][Self::rowAlignment].
         #[method(setRowAlignment:)]
         pub unsafe fn setRowAlignment(&self, row_alignment: NSGridRowAlignment);
 
@@ -224,6 +227,7 @@ extern_methods!(
         pub unsafe fn rowSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`rowSpacing`][Self::rowSpacing].
         #[method(setRowSpacing:)]
         pub unsafe fn setRowSpacing(&self, row_spacing: CGFloat);
 
@@ -232,6 +236,7 @@ extern_methods!(
         pub unsafe fn columnSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`columnSpacing`][Self::columnSpacing].
         #[method(setColumnSpacing:)]
         pub unsafe fn setColumnSpacing(&self, column_spacing: CGFloat);
 
@@ -289,12 +294,14 @@ extern_methods!(
         #[method(yPlacement)]
         pub unsafe fn yPlacement(&self) -> NSGridCellPlacement;
 
+        /// Setter for [`yPlacement`][Self::yPlacement].
         #[method(setYPlacement:)]
         pub unsafe fn setYPlacement(&self, y_placement: NSGridCellPlacement);
 
         #[method(rowAlignment)]
         pub unsafe fn rowAlignment(&self) -> NSGridRowAlignment;
 
+        /// Setter for [`rowAlignment`][Self::rowAlignment].
         #[method(setRowAlignment:)]
         pub unsafe fn setRowAlignment(&self, row_alignment: NSGridRowAlignment);
 
@@ -303,6 +310,7 @@ extern_methods!(
         pub unsafe fn height(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`height`][Self::height].
         #[method(setHeight:)]
         pub unsafe fn setHeight(&self, height: CGFloat);
 
@@ -311,6 +319,7 @@ extern_methods!(
         pub unsafe fn topPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`topPadding`][Self::topPadding].
         #[method(setTopPadding:)]
         pub unsafe fn setTopPadding(&self, top_padding: CGFloat);
 
@@ -319,12 +328,14 @@ extern_methods!(
         pub unsafe fn bottomPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`bottomPadding`][Self::bottomPadding].
         #[method(setBottomPadding:)]
         pub unsafe fn setBottomPadding(&self, bottom_padding: CGFloat);
 
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
@@ -371,6 +382,7 @@ extern_methods!(
         #[method(xPlacement)]
         pub unsafe fn xPlacement(&self) -> NSGridCellPlacement;
 
+        /// Setter for [`xPlacement`][Self::xPlacement].
         #[method(setXPlacement:)]
         pub unsafe fn setXPlacement(&self, x_placement: NSGridCellPlacement);
 
@@ -379,6 +391,7 @@ extern_methods!(
         pub unsafe fn width(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
@@ -387,6 +400,7 @@ extern_methods!(
         pub unsafe fn leadingPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`leadingPadding`][Self::leadingPadding].
         #[method(setLeadingPadding:)]
         pub unsafe fn setLeadingPadding(&self, leading_padding: CGFloat);
 
@@ -395,12 +409,14 @@ extern_methods!(
         pub unsafe fn trailingPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`trailingPadding`][Self::trailingPadding].
         #[method(setTrailingPadding:)]
         pub unsafe fn setTrailingPadding(&self, trailing_padding: CGFloat);
 
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
@@ -439,6 +455,7 @@ extern_methods!(
         pub unsafe fn contentView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// Setter for [`contentView`][Self::contentView].
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
@@ -455,18 +472,21 @@ extern_methods!(
         #[method(xPlacement)]
         pub unsafe fn xPlacement(&self) -> NSGridCellPlacement;
 
+        /// Setter for [`xPlacement`][Self::xPlacement].
         #[method(setXPlacement:)]
         pub unsafe fn setXPlacement(&self, x_placement: NSGridCellPlacement);
 
         #[method(yPlacement)]
         pub unsafe fn yPlacement(&self) -> NSGridCellPlacement;
 
+        /// Setter for [`yPlacement`][Self::yPlacement].
         #[method(setYPlacement:)]
         pub unsafe fn setYPlacement(&self, y_placement: NSGridCellPlacement);
 
         #[method(rowAlignment)]
         pub unsafe fn rowAlignment(&self) -> NSGridRowAlignment;
 
+        /// Setter for [`rowAlignment`][Self::rowAlignment].
         #[method(setRowAlignment:)]
         pub unsafe fn setRowAlignment(&self, row_alignment: NSGridRowAlignment);
 
@@ -475,6 +495,7 @@ extern_methods!(
         pub unsafe fn customPlacementConstraints(&self) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[cfg(feature = "NSLayoutConstraint")]
+        /// Setter for [`customPlacementConstraints`][Self::customPlacementConstraints].
         #[method(setCustomPlacementConstraints:)]
         pub unsafe fn setCustomPlacementConstraints(
             &self,

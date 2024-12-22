@@ -33,7 +33,22 @@ unsafe impl RefEncode for MPSMatrixDecompositionStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositionlu?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// A kernel for computing the LU factorization of a matrix using
+    /// partial pivoting with row interchanges.
+    ///
+    ///
+    /// A MPSMatrixDecompositionLU object computes an LU factorization:
+    ///
+    /// P * A = L * U
+    ///
+    /// A is a matrix for which the LU factorization is to be computed.
+    /// L is a unit lower triangular matrix and U is an upper triangular
+    /// matrix.  P is a permutation matrix.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositionlu?language=objc)
     #[unsafe(super(MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -60,6 +75,19 @@ unsafe impl NSSecureCoding for MPSMatrixDecompositionLU {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixDecompositionLU {
+        /// Initialize an MPSMatrixDecompositionLU object on a device
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        ///
+        /// Parameter `rows`: The number of rows in the source matrix.
+        ///
+        ///
+        /// Parameter `columns`: The number of columns in the source matrix.
+        ///
+        ///
+        /// Returns: A valid MPSMatrixDecompositionLU object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:rows:columns:)]
         pub unsafe fn initWithDevice_rows_columns(
             this: Allocated<Self>,
@@ -69,6 +97,50 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a MPSMatrixDecompositionLU kernel into a command Buffer.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        ///
+        /// Parameter `sourceMatrix`: A valid MPSMatrix containing the source data.  Must have
+        /// enough space to hold a rows x columns matrix.
+        ///
+        ///
+        /// Parameter `resultMatrix`: A valid MPSMatrix to contain the result.  Must have enough
+        /// space to hold a rows x columns matrix.
+        ///
+        ///
+        /// Parameter `pivotIndices`: A valid MPSMatrix to contain the pivot indices. Must have enough space
+        /// to hold an array of size 1xmin(rows, columns) values.
+        /// Element type must be MPSDataTypeUInt32.
+        ///
+        ///
+        /// Parameter `status`: A MTLBuffer which indicates the resulting MPSMatrixDecompositionStatus
+        /// value.
+        ///
+        ///
+        /// This function encodes the MPSMatrixDecompositionLU object to a valid
+        /// command buffer.
+        ///
+        /// Upon completion the array pivotIndices contains, for each index i,
+        /// the row interchanged with row i.
+        ///
+        /// If during the computation U[k, k], for some k, is determined to be
+        /// exactly zero MPSMatrixDecompositionStatusSingular will be returned in the
+        /// provided status buffer.  The data referenced by the MTLBuffer is not valid
+        /// until the command buffer has completed execution.  If the matrix
+        /// return status is not desired NULL may be provided.
+        ///
+        /// Upon successful factorization, resultMatrix contains the resulting
+        /// lower triangular factor (without the unit diagonal elements) in its
+        /// strictly lower triangular region and the upper triangular factor in
+        /// its upper triangular region.
+        ///
+        /// This kernel functions either in-place, if the result matrix
+        /// completely aliases the source matrix, or out-of-place.  If there
+        /// is any partial overlap between input and output data the results
+        /// are undefined.
         #[method(encodeToCommandBuffer:sourceMatrix:resultMatrix:pivotIndices:status:)]
         pub unsafe fn encodeToCommandBuffer_sourceMatrix_resultMatrix_pivotIndices_status(
             &self,
@@ -85,18 +157,46 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixDecompositionLU {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: a pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -119,7 +219,23 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositioncholesky?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// A kernel for computing the Cholesky factorization of a matrix.
+    ///
+    ///
+    /// A MPSMatrixDecompositionLU object computes one of the following
+    /// factorizations of a matrix A:
+    ///
+    /// A = L * L**T
+    /// A = U**T * U
+    ///
+    /// A is a symmetric positive-definite matrix for which the
+    /// factorization is to be computed. L and U are lower and upper
+    /// triangular matrices respectively.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositioncholesky?language=objc)
     #[unsafe(super(MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -146,6 +262,25 @@ unsafe impl NSSecureCoding for MPSMatrixDecompositionCholesky {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixDecompositionCholesky {
+        /// Initialize an MPSMatrixDecompositionCholesky object on a device
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        ///
+        /// Parameter `lower`: A boolean value indicating if the lower triangular
+        /// part of the source matrix is stored.  If lower = YES
+        /// the lower triangular part will be used and the factor
+        /// will be written to the lower triangular part of the
+        /// result, otherwise the upper triangular part will be used
+        /// and the factor will be written to the upper triangular
+        /// part.
+        ///
+        ///
+        /// Parameter `order`: The number of rows and columns in the source matrix.
+        ///
+        ///
+        /// Returns: A valid MPSMatrixDecompositionCholesky object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:lower:order:)]
         pub unsafe fn initWithDevice_lower_order(
             this: Allocated<Self>,
@@ -155,6 +290,42 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a MPSMatrixDecompositionCholesky kernel into a command Buffer.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        ///
+        /// Parameter `sourceMatrix`: A valid MPSMatrix containing the source data.  Must have
+        /// enough space to hold a order x order matrix.
+        ///
+        ///
+        /// Parameter `resultMatrix`: A valid MPSMatrix to contain the result.  Must have enough
+        /// space to hold a order x order matrix.
+        ///
+        ///
+        /// Parameter `status`: A MTLBuffer which indicates the resulting MPSMatrixDecompositionStatus
+        /// value.
+        ///
+        ///
+        /// This function encodes the MPSMatrixDecompositionCholesky object to a valid
+        /// command buffer.
+        ///
+        /// If during the factorization a leading minor of the matrix is found to be
+        /// not positive definite, MPSMatrixDecompositionNonPositiveDefinite will be returned
+        /// in the provided status buffer.  Previously computed pivots and the non positive
+        /// pivot are written to the result, but the factorization does not complete.
+        /// The data referenced by the MTLBuffer is not valid until the command buffer has completed
+        /// execution.  If the matrix return status is not desired NULL may be provided.
+        ///
+        /// If the return status is MPSMatrixDecompositionStatusSuccess, resultMatrix
+        /// contains the resulting factors in its lower or upper triangular regions
+        /// respectively.
+        ///
+        /// This kernel functions either in-place, if the result matrix
+        /// completely aliases the source matrix, or out-of-place.  If there
+        /// is any partial overlap between input and output data the results
+        /// are undefined.
         #[method(encodeToCommandBuffer:sourceMatrix:resultMatrix:status:)]
         pub unsafe fn encodeToCommandBuffer_sourceMatrix_resultMatrix_status(
             &self,
@@ -170,18 +341,46 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixDecompositionCholesky {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: a pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,

@@ -7,7 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledeviceconfiguration?language=objc)
+    /// Virtio Console Device
+    ///
+    /// This console device enables communication between the host and the guest using console ports through the Virtio interface.
+    ///
+    /// The device sets up one or more ports via VZVirtioConsolePortConfiguration on the Virtio console device.
+    ///
+    /// See: VZVirtioConsolePortConfiguration
+    ///
+    /// See: VZVirtualMachineConfiguration.consoleDevices
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledeviceconfiguration?language=objc)
     #[unsafe(super(VZConsoleDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZConsoleDeviceConfiguration")]
@@ -32,6 +42,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtioConsolePortConfigurationArray")]
+        /// The console ports to be configured for this console device.
         #[method_id(@__retain_semantics Other ports)]
         pub unsafe fn ports(&self) -> Retained<VZVirtioConsolePortConfigurationArray>;
     }

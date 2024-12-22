@@ -29,7 +29,11 @@ unsafe impl RefEncode for MPSNDArrayQuantizationScheme {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayquantizationdescriptor?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Common methods for quantization descriptors
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayquantizationdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNDArrayQuantizationDescriptor;
@@ -46,9 +50,11 @@ unsafe impl NSObjectProtocol for MPSNDArrayQuantizationDescriptor {}
 extern_methods!(
     unsafe impl MPSNDArrayQuantizationDescriptor {
         #[cfg(feature = "MPSCoreTypes")]
+        /// The datatype to use with quantization - the default is MPSDataTypeUint8
         #[method(quantizationDataType)]
         pub unsafe fn quantizationDataType(&self) -> MPSDataType;
 
+        /// The quantization scheme for this descriptor. The default is MPSNDArrayQuantizationTypeNone.
         #[method(quantizationScheme)]
         pub unsafe fn quantizationScheme(&self) -> MPSNDArrayQuantizationScheme;
     }
@@ -66,7 +72,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayaffinequantizationdescriptor?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Describes an affine quantization scheme
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayaffinequantizationdescriptor?language=objc)
     #[unsafe(super(MPSNDArrayQuantizationDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNDArrayAffineQuantizationDescriptor;
@@ -82,21 +92,32 @@ unsafe impl NSObjectProtocol for MPSNDArrayAffineQuantizationDescriptor {}
 
 extern_methods!(
     unsafe impl MPSNDArrayAffineQuantizationDescriptor {
+        /// If yes then asymmetric quantization is used. See MPSNDArrayQuantizationScheme.
         #[method(hasZeroPoint)]
         pub unsafe fn hasZeroPoint(&self) -> bool;
 
+        /// Setter for [`hasZeroPoint`][Self::hasZeroPoint].
         #[method(setHasZeroPoint:)]
         pub unsafe fn setHasZeroPoint(&self, has_zero_point: bool);
 
+        /// If yes then offset is used. See MPSNDArrayQuantizationScheme.
         #[method(hasMinValue)]
         pub unsafe fn hasMinValue(&self) -> bool;
 
+        /// Setter for [`hasMinValue`][Self::hasMinValue].
         #[method(setHasMinValue:)]
         pub unsafe fn setHasMinValue(&self, has_min_value: bool);
 
+        /// If true and quantized values are signed, these are assumed to be stored with an
+        /// implicit offset or zero-point of 2^(quantizationBitWidth-1) added to bring signed values into unsigned range.
+        /// e.g. Int4 values are in range [-8,7]. If we add 8 to it values are in range
+        /// [0,15] and can be encoded/stored as UInt4.
+        /// Default is false. Its only currently applicable to Int4.
+        /// Implementation will generate error for any other data type;
         #[method(implicitZeroPoint)]
         pub unsafe fn implicitZeroPoint(&self) -> bool;
 
+        /// Setter for [`implicitZeroPoint`][Self::implicitZeroPoint].
         #[method(setImplicitZeroPoint:)]
         pub unsafe fn setImplicitZeroPoint(&self, implicit_zero_point: bool);
 
@@ -104,6 +125,15 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Initializes an affine quantization descriptor.
+        ///
+        /// Parameter `quantizationDataType`: Which quantized datatype is used.
+        ///
+        /// Parameter `hasZeroPoint`: A flag indicating that a zero-point input is expected.
+        ///
+        /// Parameter `hasMinValue`: A flag indicating that a minimum value input is expected.
+        ///
+        /// Returns: A new quantization descriptor.
         #[method_id(@__retain_semantics Init initWithDataType:hasZeroPoint:hasMinValue:)]
         pub unsafe fn initWithDataType_hasZeroPoint_hasMinValue(
             this: Allocated<Self>,
@@ -123,7 +153,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraylutquantizationdescriptor?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Describes a lookup-table based quantization scheme
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraylutquantizationdescriptor?language=objc)
     #[unsafe(super(MPSNDArrayQuantizationDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNDArrayLUTQuantizationDescriptor;
@@ -140,6 +174,11 @@ unsafe impl NSObjectProtocol for MPSNDArrayLUTQuantizationDescriptor {}
 extern_methods!(
     unsafe impl MPSNDArrayLUTQuantizationDescriptor {
         #[cfg(feature = "MPSCoreTypes")]
+        /// Initializes a scalar lookup-table quantization descriptor.
+        ///
+        /// Parameter `quantizationDataType`: Which quantized datatype is used.
+        ///
+        /// Returns: A new quantization descriptor.
         #[method_id(@__retain_semantics Init initWithDataType:)]
         pub unsafe fn initWithDataType(
             this: Allocated<Self>,
@@ -147,6 +186,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Initializes a vector lookup-table quantization descriptor.
+        ///
+        /// Parameter `quantizationDataType`: Which quantized datatype is used.
+        ///
+        /// Parameter `vectorAxis`: The quantization vector axis - this axis will receive the vector component in the destination.
+        ///
+        /// Returns: A new quantization descriptor.
         #[method_id(@__retain_semantics Init initWithDataType:vectorAxis:)]
         pub unsafe fn initWithDataType_vectorAxis(
             this: Allocated<Self>,

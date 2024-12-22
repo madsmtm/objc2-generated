@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsfontattributename?language=objc)
+    /// ********************** Attributes ***********************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nsfontattributename?language=objc)
     pub static NSFontAttributeName: &'static NSAttributedStringKey;
 }
 
@@ -122,7 +124,9 @@ extern "C" {
     pub static NSWritingToolsExclusionAttributeName: &'static NSAttributedStringKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle?language=objc)
+/// ********************** Attribute values ***********************
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -232,6 +236,7 @@ extern "C" {
 
 extern_category!(
     /// Category on [`NSMutableAttributedString`].
+    /// ********************** Attribute fixing ***********************
     pub unsafe trait NSAttributedStringAttributeFixing {
         #[method(fixAttributesInRange:)]
         unsafe fn fixAttributesInRange(&self, range: NSRange);
@@ -240,7 +245,9 @@ extern_category!(
     unsafe impl NSAttributedStringAttributeFixing for NSMutableAttributedString {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsattributedstringdocumenttype?language=objc)
+/// ********************** Document formats ***********************
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nsattributedstringdocumenttype?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSAttributedStringDocumentType = NSString;
 
@@ -503,6 +510,7 @@ extern_category!(
 
 extern_category!(
     /// Category on [`NSAttributedString`].
+    /// ********************** Misc methods ***********************
     pub unsafe trait NSAttributedStringKitAdditions {
         #[method(containsAttachmentsInRange:)]
         unsafe fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
@@ -520,7 +528,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsobliquenessattributename?language=objc)
+    /// ********************** Deprecated ***********************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nsobliquenessattributename?language=objc)
     pub static NSObliquenessAttributeName: &'static NSAttributedStringKey;
 }
 

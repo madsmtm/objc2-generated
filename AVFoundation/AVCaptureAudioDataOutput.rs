@@ -10,7 +10,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput?language=objc)
+    /// AVCaptureAudioDataOutput is a concrete subclass of AVCaptureOutput that can be used to process uncompressed or compressed samples from the audio being captured.
+    ///
+    ///
+    /// Instances of AVCaptureAudioDataOutput produce audio sample buffers suitable for processing using other media APIs. Applications can access the sample buffers with the captureOutput:didOutputSampleBuffer:fromConnection: delegate method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput?language=objc)
     #[unsafe(super(AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]
@@ -29,14 +34,23 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// The receiver's delegate.
+        ///
+        ///
+        /// The value of this property is an object conforming to the AVCaptureAudioDataOutputSampleBufferDelegate protocol that will receive sample buffers after they are captured. The delegate is set using the setSampleBufferDelegate:queue: method.
         #[method_id(@__retain_semantics Other sampleBufferDelegate)]
         pub unsafe fn sampleBufferDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureAudioDataOutputSampleBufferDelegate>>>;
 
+        /// Specifies the settings used to decode or re-encode audio before it is output by the receiver.
+        ///
+        ///
+        /// The value of this property is an NSDictionary containing values for audio settings keys defined in AVAudioSettings.h. When audioSettings is set to nil, the AVCaptureAudioDataOutput vends samples in their device native format.
         #[method_id(@__retain_semantics Other audioSettings)]
         pub unsafe fn audioSettings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
+        /// Setter for [`audioSettings`][Self::audioSettings].
         #[method(setAudioSettings:)]
         pub unsafe fn setAudioSettings(
             &self,
@@ -44,6 +58,21 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVMediaFormat")]
+        /// Specifies the recommended settings for use with an AVAssetWriterInput.
+        ///
+        ///
+        /// Parameter `outputFileType`: Specifies the UTI of the file type to be written (see AVMediaFormat.h for a list of file format UTIs).
+        ///
+        /// Returns: A fully populated dictionary of keys and values that are compatible with AVAssetWriter.
+        ///
+        ///
+        /// The value of this property is an NSDictionary containing values for compression settings keys defined in AVAudioSettings.h. This dictionary is suitable for use as the "outputSettings" parameter when creating an AVAssetWriterInput, such as,
+        ///
+        /// [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:outputSettings sourceFormatHint:hint];
+        ///
+        /// The dictionary returned contains all necessary keys and values needed by AVAssetWriter (see AVAssetWriterInput.h, -initWithMediaType:outputSettings: for a more in depth discussion). For QuickTime movie and ISO files, the recommended audio settings will always produce output comparable to that of AVCaptureMovieFileOutput.
+        ///
+        /// Note that the dictionary of settings is dependent on the current configuration of the receiver's AVCaptureSession and its inputs. The settings dictionary may change if the session's configuration changes. As such, you should configure your session first, then query the recommended audio settings.
         #[method_id(@__retain_semantics Other recommendedAudioSettingsForAssetWriterWithOutputFileType:)]
         pub unsafe fn recommendedAudioSettingsForAssetWriterWithOutputFileType(
             &self,
@@ -53,13 +82,28 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutputsamplebufferdelegate?language=objc)
+    /// Defines an interface for delegates of AVCaptureAudioDataOutput to receive captured audio sample buffers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutputsamplebufferdelegate?language=objc)
     pub unsafe trait AVCaptureAudioDataOutputSampleBufferDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AVCaptureOutputBase",
             feature = "AVCaptureSession",
             feature = "objc2-core-media"
         ))]
+        /// Called whenever an AVCaptureAudioDataOutput instance outputs a new audio sample buffer.
+        ///
+        ///
+        /// Parameter `output`: The AVCaptureAudioDataOutput instance that output the samples.
+        ///
+        /// Parameter `sampleBuffer`: A CMSampleBuffer object containing the audio samples and additional information about them, such as their format and presentation time.
+        ///
+        /// Parameter `connection`: The AVCaptureConnection from which the audio was received.
+        ///
+        ///
+        /// Delegates receive this message whenever the output captures and outputs new audio samples, decoding or re-encoding as specified by the audioSettings property. Delegates can use the provided sample buffer in conjunction with other APIs for further processing. This method will be called on the dispatch queue specified by the output's sampleBufferCallbackQueue property. This method is called periodically, so it must be efficient to prevent capture performance problems, including dropped audio samples.
+        ///
+        /// Clients that need to reference the CMSampleBuffer object outside of the scope of this method must CFRetain it and then CFRelease it when they are finished with it.
         #[optional]
         #[method(captureOutput:didOutputSampleBuffer:fromConnection:)]
         unsafe fn captureOutput_didOutputSampleBuffer_fromConnection(

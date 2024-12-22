@@ -60,31 +60,43 @@ extern_methods!(
     #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationOpenIDRequest {
         #[cfg(feature = "ASAuthorization")]
+        /// The contact information to be requested from the user.  Only scopes for which this app was authorized for will be returned.
         #[method_id(@__retain_semantics Other requestedScopes)]
         pub unsafe fn requestedScopes(&self) -> Option<Retained<NSArray<ASAuthorizationScope>>>;
 
         #[cfg(feature = "ASAuthorization")]
+        /// Setter for [`requestedScopes`][Self::requestedScopes].
         #[method(setRequestedScopes:)]
         pub unsafe fn setRequestedScopes(
             &self,
             requested_scopes: Option<&NSArray<ASAuthorizationScope>>,
         );
 
+        /// State to be passed to the identity provider.  This value will be returned as a part of successful ASAuthorization response.
+        ///
+        /// Note: The state size may depend on the actual technology used and an error might be returned by the request execution.
         #[method_id(@__retain_semantics Other state)]
         pub unsafe fn state(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`state`][Self::state].
         #[method(setState:)]
         pub unsafe fn setState(&self, state: Option<&NSString>);
 
+        /// Nonce to be passed to the identity provider.  This value can be verified with the identity token provided as a part of successful ASAuthorization response.
+        ///
+        /// Note: The nonce size may depend on the actual technology used and an error might be returned by the request execution.
         #[method_id(@__retain_semantics Other nonce)]
         pub unsafe fn nonce(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`nonce`][Self::nonce].
         #[method(setNonce:)]
         pub unsafe fn setNonce(&self, nonce: Option<&NSString>);
 
+        /// Operation to be executed by the request. The ASAuthorizationOperationImplicit operation interpretation depends on the credential provider implementation.
         #[method_id(@__retain_semantics Other requestedOperation)]
         pub unsafe fn requestedOperation(&self) -> Retained<ASAuthorizationOpenIDOperation>;
 
+        /// Setter for [`requestedOperation`][Self::requestedOperation].
         #[method(setRequestedOperation:)]
         pub unsafe fn setRequestedOperation(
             &self,

@@ -6,97 +6,130 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttp?language=objc)
+    /// The protocol for HTTP
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttp?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTP: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttps?language=objc)
+    /// The protocol for HTTPS
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttps?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTPS: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspaceftp?language=objc)
+    /// The protocol for FTP
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspaceftp?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceFTP: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttpproxy?language=objc)
+    /// The proxy type for http proxies
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttpproxy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTPProxy: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttpsproxy?language=objc)
+    /// The proxy type for https proxies
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttpsproxy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTPSProxy: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspaceftpproxy?language=objc)
+    /// The proxy type for ftp proxies
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspaceftpproxy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceFTPProxy: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacesocksproxy?language=objc)
+    /// The proxy type for SOCKS proxies
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacesocksproxy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceSOCKSProxy: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethoddefault?language=objc)
+    /// The default authentication method for a protocol
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethoddefault?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodDefault: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodhttpbasic?language=objc)
+    /// HTTP basic authentication. Equivalent to
+    /// NSURLAuthenticationMethodDefault for http.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodhttpbasic?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodHTTPBasic: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodhttpdigest?language=objc)
+    /// HTTP digest authentication.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodhttpdigest?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodHTTPDigest: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodhtmlform?language=objc)
+    /// HTML form authentication. Applies to any protocol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodhtmlform?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodHTMLForm: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodntlm?language=objc)
+    /// NTLM authentication.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodntlm?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodNTLM: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodnegotiate?language=objc)
+    /// Negotiate authentication.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodnegotiate?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodNegotiate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodclientcertificate?language=objc)
+    /// SSL Client certificate.  Applies to any protocol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodclientcertificate?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodClientCertificate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodservertrust?language=objc)
+    /// SecTrustRef validation required.  Applies to any protocol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodservertrust?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodServerTrust: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspace?language=objc)
+    /// This class represents a protection space requiring authentication.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspace?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLProtectionSpace;
@@ -125,6 +158,25 @@ unsafe impl NSSecureCoding for NSURLProtectionSpace {}
 extern_methods!(
     unsafe impl NSURLProtectionSpace {
         #[cfg(feature = "NSString")]
+        /// Initialize a protection space representing an origin server, or a realm on one
+        ///
+        /// Parameter `host`: The hostname of the server
+        ///
+        /// Parameter `port`: The port for the server
+        ///
+        /// Parameter `protocol`: The protocol for this server - e.g. "http", "ftp", "https"
+        ///
+        /// Parameter `realm`: A string indicating a protocol-specific subdivision
+        /// of a single host. For http and https, this maps to the realm
+        /// string in http authentication challenges. For many other protocols
+        /// it is unused.
+        ///
+        /// Parameter `authenticationMethod`: The authentication method to use to access this protection space -
+        /// valid values include nil (default method),
+        /// "
+        /// digest" and @"form".
+        ///
+        /// Returns: The initialized object.
         #[method_id(@__retain_semantics Init initWithHost:port:protocol:realm:authenticationMethod:)]
         pub unsafe fn initWithHost_port_protocol_realm_authenticationMethod(
             this: Allocated<Self>,
@@ -136,6 +188,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Initialize a protection space representing a proxy server, or a realm on one
+        ///
+        /// Parameter `host`: The hostname of the proxy server
+        ///
+        /// Parameter `port`: The port for the proxy server
+        ///
+        /// Parameter `type`: The type of proxy - e.g. "http", "ftp", "SOCKS"
+        ///
+        /// Parameter `realm`: A string indicating a protocol-specific subdivision
+        /// of a single host. For http and https, this maps to the realm
+        /// string in http authentication challenges. For many other protocols
+        /// it is unused.
+        ///
+        /// Parameter `authenticationMethod`: The authentication method to use to access this protection space -
+        /// valid values include nil (default method) and
+        /// "
+        /// digest"
+        ///
+        /// Returns: The initialized object.
         #[method_id(@__retain_semantics Init initWithProxyHost:port:type:realm:authenticationMethod:)]
         pub unsafe fn initWithProxyHost_port_type_realm_authenticationMethod(
             this: Allocated<Self>,
@@ -147,31 +218,59 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Get the authentication realm for which the protection space that
+        /// needs authentication
+        ///
+        /// This is generally only available for http
+        /// authentication, and may be nil otherwise.
+        ///
+        /// Returns: The realm string
         #[method_id(@__retain_semantics Other realm)]
         pub unsafe fn realm(&self) -> Option<Retained<NSString>>;
 
+        /// Determine if the password for this protection space can be sent securely
+        ///
+        /// Returns: YES if a secure authentication method or protocol will be used, NO otherwise
         #[method(receivesCredentialSecurely)]
         pub unsafe fn receivesCredentialSecurely(&self) -> bool;
 
+        /// Determine if this authenticating protection space is a proxy server
+        ///
+        /// Returns: YES if a proxy, NO otherwise
         #[method(isProxy)]
         pub unsafe fn isProxy(&self) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Get the proxy host if this is a proxy authentication, or the host from the URL.
+        ///
+        /// Returns: The host for this protection space.
         #[method_id(@__retain_semantics Other host)]
         pub unsafe fn host(&self) -> Retained<NSString>;
 
+        /// Get the proxy port if this is a proxy authentication, or the port from the URL.
+        ///
+        /// Returns: The port for this protection space, or 0 if not set.
         #[method(port)]
         pub unsafe fn port(&self) -> NSInteger;
 
         #[cfg(feature = "NSString")]
+        /// Get the type of this protection space, if a proxy
+        ///
+        /// Returns: The type string, or nil if not a proxy.
         #[method_id(@__retain_semantics Other proxyType)]
         pub unsafe fn proxyType(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Get the protocol of this protection space, if not a proxy
+        ///
+        /// Returns: The type string, or nil if a proxy.
         #[method_id(@__retain_semantics Other protocol)]
         pub unsafe fn protocol(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Get the authentication method to be used for this protection space
+        ///
+        /// Returns: The authentication method
         #[method_id(@__retain_semantics Other authenticationMethod)]
         pub unsafe fn authenticationMethod(&self) -> Retained<NSString>;
     }
@@ -190,8 +289,12 @@ extern_methods!(
 
 extern_methods!(
     /// NSClientCertificateSpace
+    /// This category supplies additional information for use when a client certificate is required by the server in order to complete authentication.
     unsafe impl NSURLProtectionSpace {
         #[cfg(all(feature = "NSArray", feature = "NSData"))]
+        /// Returns an array of acceptable certificate issuing authorities for client certification authentication. Issuers are identified by their distinguished name and returned as a DER encoded data.
+        ///
+        /// Returns: An array of NSData objects.  (Nil if the authenticationMethod is not NSURLAuthenticationMethodClientCertificate)
         #[method_id(@__retain_semantics Other distinguishedNames)]
         pub unsafe fn distinguishedNames(&self) -> Option<Retained<NSArray<NSData>>>;
     }
@@ -199,5 +302,6 @@ extern_methods!(
 
 extern_methods!(
     /// NSServerTrustValidationSpace
+    /// This category supplies additional information for use by the client to evaluate whether to trust a given server during a security handshake.
     unsafe impl NSURLProtectionSpace {}
 );

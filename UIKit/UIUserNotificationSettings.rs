@@ -249,6 +249,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`identifier`][Self::identifier].
         #[deprecated = "Use UserNotifications Framework's UNNotificationCategory"]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
@@ -387,6 +388,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`identifier`][Self::identifier].
         #[deprecated = "Use UserNotifications Framework's UNNotificationAction"]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
@@ -395,6 +397,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`title`][Self::title].
         #[deprecated = "Use UserNotifications Framework's UNNotificationAction"]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -402,12 +405,14 @@ extern_methods!(
         #[method(behavior)]
         pub unsafe fn behavior(&self) -> UIUserNotificationActionBehavior;
 
+        /// Setter for [`behavior`][Self::behavior].
         #[method(setBehavior:)]
         pub unsafe fn setBehavior(&self, behavior: UIUserNotificationActionBehavior);
 
         #[method_id(@__retain_semantics Other parameters)]
         pub unsafe fn parameters(&self) -> Retained<NSDictionary>;
 
+        /// Setter for [`parameters`][Self::parameters].
         #[method(setParameters:)]
         pub unsafe fn setParameters(&self, parameters: &NSDictionary);
 
@@ -415,6 +420,7 @@ extern_methods!(
         #[method(activationMode)]
         pub unsafe fn activationMode(&self) -> UIUserNotificationActivationMode;
 
+        /// Setter for [`activationMode`][Self::activationMode].
         #[deprecated = "Use UserNotifications Framework's UNNotificationAction"]
         #[method(setActivationMode:)]
         pub unsafe fn setActivationMode(&self, activation_mode: UIUserNotificationActivationMode);
@@ -423,6 +429,7 @@ extern_methods!(
         #[method(isAuthenticationRequired)]
         pub unsafe fn isAuthenticationRequired(&self) -> bool;
 
+        /// Setter for [`isAuthenticationRequired`][Self::isAuthenticationRequired].
         #[deprecated = "Use UserNotifications Framework's UNNotificationAction"]
         #[method(setAuthenticationRequired:)]
         pub unsafe fn setAuthenticationRequired(&self, authentication_required: bool);
@@ -431,6 +438,7 @@ extern_methods!(
         #[method(isDestructive)]
         pub unsafe fn isDestructive(&self) -> bool;
 
+        /// Setter for [`isDestructive`][Self::isDestructive].
         #[deprecated = "Use UserNotifications Framework's UNNotificationAction"]
         #[method(setDestructive:)]
         pub unsafe fn setDestructive(&self, destructive: bool);

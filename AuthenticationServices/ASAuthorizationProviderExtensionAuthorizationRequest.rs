@@ -12,13 +12,17 @@ use crate::*;
 pub type ASAuthorizationProviderAuthorizationOperation = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperationconfigurationremoved?language=objc)
+    /// Operation which is invoked when the extension configuration is removed from the system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperationconfigurationremoved?language=objc)
     pub static ASAuthorizationProviderAuthorizationOperationConfigurationRemoved:
         &'static ASAuthorizationProviderAuthorizationOperation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperationdirectrequest?language=objc)
+    /// Operation which is invoked when a request is sent direct to the extension instead of loaded in an ASWebAuthenticationSession.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperationdirectrequest?language=objc)
     pub static ASAuthorizationProviderAuthorizationOperationDirectRequest:
         &'static ASAuthorizationProviderAuthorizationOperation;
 }
@@ -28,12 +32,14 @@ extern_protocol!(
     pub unsafe trait ASAuthorizationProviderExtensionAuthorizationRequestHandler:
         NSObjectProtocol + MainThreadOnly
     {
+        /// Called to begin the authorization. It’s called on the main thread.
         #[method(beginAuthorizationWithRequest:)]
         unsafe fn beginAuthorizationWithRequest(
             &self,
             request: &ASAuthorizationProviderExtensionAuthorizationRequest,
         );
 
+        /// Called when the authorization was canceled by authorization service. It’s called on the main thread.
         #[optional]
         #[method(cancelAuthorizationWithRequest:)]
         unsafe fn cancelAuthorizationWithRequest(
@@ -56,21 +62,26 @@ unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionAuthorizationRe
 
 extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionAuthorizationRequest {
+        /// Call when authorization was not handled.
         #[method(doNotHandle)]
         pub unsafe fn doNotHandle(&self);
 
+        /// Call when authorization needs to be canceled from some reason (for example user pressed Cancel button).
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 
+        /// Call when authorization succeeded without any output.
         #[method(complete)]
         pub unsafe fn complete(&self);
 
+        /// Call when authorization succeeded with an authorization tokens stored in HTTP headers.
         #[method(completeWithHTTPAuthorizationHeaders:)]
         pub unsafe fn completeWithHTTPAuthorizationHeaders(
             &self,
             http_authorization_headers: &NSDictionary<NSString, NSString>,
         );
 
+        /// Call when authorization succeeded with a HTTP response.
         #[method(completeWithHTTPResponse:httpBody:)]
         pub unsafe fn completeWithHTTPResponse_httpBody(
             &self,
@@ -79,64 +90,89 @@ extern_methods!(
         );
 
         #[cfg(feature = "ASAuthorizationProviderExtensionAuthorizationResult")]
+        /// Call when authorization succeeded with
+        ///
+        /// See: ASAuthorizationProviderExtensionAuthorizationResult.
         #[method(completeWithAuthorizationResult:)]
         pub unsafe fn completeWithAuthorizationResult(
             &self,
             authorization_result: &ASAuthorizationProviderExtensionAuthorizationResult,
         );
 
+        /// Call when authorization failed with an error.
         #[method(completeWithError:)]
         pub unsafe fn completeWithError(&self, error: &NSError);
 
         #[cfg(feature = "block2")]
+        /// Asks authorization service to show extension view controller. If the controller cannot be shown an error is returned.
         #[method(presentAuthorizationViewControllerWithCompletion:)]
         pub unsafe fn presentAuthorizationViewControllerWithCompletion(
             &self,
             completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
 
+        /// Request URL with all components.
         #[method_id(@__retain_semantics Other url)]
         pub unsafe fn url(&self) -> Retained<NSURL>;
 
+        /// Operation to be executed by the extension.
         #[method_id(@__retain_semantics Other requestedOperation)]
         pub unsafe fn requestedOperation(
             &self,
         ) -> Retained<ASAuthorizationProviderAuthorizationOperation>;
 
+        /// Request HTTP headers.
         #[method_id(@__retain_semantics Other httpHeaders)]
         pub unsafe fn httpHeaders(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
+        /// Request body.
         #[method_id(@__retain_semantics Other httpBody)]
         pub unsafe fn httpBody(&self) -> Retained<NSData>;
 
+        /// Realm.
         #[method_id(@__retain_semantics Other realm)]
         pub unsafe fn realm(&self) -> Retained<NSString>;
 
+        /// Extension data from extension configuration provided by MDM stored as a property-list.
         #[method_id(@__retain_semantics Other extensionData)]
         pub unsafe fn extensionData(&self) -> Retained<NSDictionary>;
 
+        /// Identification of the calling application.
         #[method_id(@__retain_semantics Other callerBundleIdentifier)]
         pub unsafe fn callerBundleIdentifier(&self) -> Retained<NSString>;
 
+        /// Authorization options.
         #[method_id(@__retain_semantics Other authorizationOptions)]
         pub unsafe fn authorizationOptions(&self) -> Retained<NSDictionary>;
 
+        /// Indicates whether the calling application is managed.
         #[method(isCallerManaged)]
         pub unsafe fn isCallerManaged(&self) -> bool;
 
+        /// Team identifier of the calling application.
         #[method_id(@__retain_semantics Other callerTeamIdentifier)]
         pub unsafe fn callerTeamIdentifier(&self) -> Retained<NSString>;
 
+        /// Localized display name of the calling application.
         #[method_id(@__retain_semantics Other localizedCallerDisplayName)]
         pub unsafe fn localizedCallerDisplayName(&self) -> Retained<NSString>;
 
+        /// Audit token of the calling application.
         #[method_id(@__retain_semantics Other callerAuditToken)]
         pub unsafe fn callerAuditToken(&self) -> Retained<NSData>;
 
+        /// Indicates whether the authorization user interface is enabled.
+        ///
+        /// If user interface is not enabled, then the authorization will fail with
+        ///
+        /// See: ASAuthorizationErrorNotInteractive if it attempts to display the authorization user interface via
+        ///
+        /// See: presentAuthorizationViewControllerWithCompletion.
         #[method(isUserInterfaceEnabled)]
         pub unsafe fn isUserInterfaceEnabled(&self) -> bool;
 
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginManager")]
+        /// The login manager to interface with the Platform SSO configuration.
         #[method_id(@__retain_semantics Other loginManager)]
         pub unsafe fn loginManager(
             &self,

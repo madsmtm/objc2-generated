@@ -37,6 +37,16 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-location"
         ))]
+        /// Returns a query that will retrieve CLLocation objects for the specified workoutRoute.
+        ///
+        ///
+        /// Parameter `workoutRoute`: The HKWorkoutRoute for which the location data will be returned.
+        ///
+        /// Parameter `dataHandler`: The block to invoke with results from the query. It is called repeatedly with an array of
+        /// CLLocation objects until all data is returned and the done parameter is YES or if HKHealthStore
+        /// stopQuery: is called. The stopQuery call can be made within the dataHandler block. The number of
+        /// objects returned in routeData per dataHandler call is unspecified. Once done is YES, or
+        /// stopQuery called, the query is complete and no more calls to the handler will be made.
         #[method_id(@__retain_semantics Init initWithRoute:dataHandler:)]
         pub unsafe fn initWithRoute_dataHandler(
             this: Allocated<Self>,
@@ -54,6 +64,21 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-location"
         ))]
+        /// Returns a query that will retrieve CLLocation objects for the specified workoutRoute and dateInterval.
+        ///
+        ///
+        /// Parameter `workoutRoute`: The HKWorkoutRoute for which the location data will be returned.
+        ///
+        /// Parameter `dateInterval`: The date interval for which the location data will be returned. If the requested interval does
+        /// not overlap with the specified workout route sample, an empty array of results is returned. If
+        /// the requested interval partially overlaps with the specified workout route sample, only location
+        /// data from within that overlapping time period is returned.
+        ///
+        /// Parameter `dataHandler`: The block to invoke with results from the query. It is called repeatedly with an array of
+        /// CLLocation objects until all data is returned and the done parameter is YES or if HKHealthStore
+        /// stopQuery: is called. The stopQuery call can be made within the dataHandler block. The number of
+        /// objects returned in routeData per dataHandler call is unspecified. Once done is YES, or
+        /// stopQuery called, the query is complete and no more calls to the handler will be made.
         #[method_id(@__retain_semantics Init initWithRoute:dateInterval:dataHandler:)]
         pub unsafe fn initWithRoute_dateInterval_dataHandler(
             this: Allocated<Self>,

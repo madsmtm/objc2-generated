@@ -11,6 +11,14 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Sorts the elements of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axis: The tensor dimension over which you sort the tensor
+        /// - descending: If true, reverse the sort direction
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other sortWithTensor:axis:descending:name:)]
         pub unsafe fn sortWithTensor_axis_descending_name(
             &self,
@@ -21,6 +29,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Sorts the elements of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axisTensor: The tensor dimension over which you sort the tensor
+        /// - descending: If true, reverse the sort direction
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other sortWithTensor:axisTensor:descending:name:)]
         pub unsafe fn sortWithTensor_axisTensor_descending_name(
             &self,
@@ -31,6 +47,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Sorts the elements of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axis: The tensor dimension over which you sort the tensor
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other sortWithTensor:axis:name:)]
         pub unsafe fn sortWithTensor_axis_name(
             &self,
@@ -40,6 +63,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Sorts the elements of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axisTensor: The tensor dimension over which you sort the tensor
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other sortWithTensor:axisTensor:name:)]
         pub unsafe fn sortWithTensor_axisTensor_name(
             &self,
@@ -49,6 +79,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the indices that sort the elements of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axis: The tensor dimension over which you sort the tensor
+        /// - descending: If true, reverse the sort direction
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object with 32-bit integer data type
         #[method_id(@__retain_semantics Other argSortWithTensor:axis:descending:name:)]
         pub unsafe fn argSortWithTensor_axis_descending_name(
             &self,
@@ -59,6 +97,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the indices that sort the elements of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axisTensor: The tensor dimension over which you sort the tensor
+        /// - descending: If true, reverse the sort direction
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object with 32-bit integer data type
         #[method_id(@__retain_semantics Other argSortWithTensor:axisTensor:descending:name:)]
         pub unsafe fn argSortWithTensor_axisTensor_descending_name(
             &self,
@@ -69,6 +115,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the indices that sort the elements of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axis: The tensor dimension over which you sort the tensor
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object with 32-bit integer data type
         #[method_id(@__retain_semantics Other argSortWithTensor:axis:name:)]
         pub unsafe fn argSortWithTensor_axis_name(
             &self,
@@ -78,6 +131,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the indices that sort the elements of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axisTensor: The tensor dimension over which you sort the tensor
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object with 32-bit integer data type
         #[method_id(@__retain_semantics Other argSortWithTensor:axisTensor:name:)]
         pub unsafe fn argSortWithTensor_axisTensor_name(
             &self,

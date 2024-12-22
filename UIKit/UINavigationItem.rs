@@ -13,12 +13,18 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UINavigationItemLargeTitleDisplayMode(pub NSInteger);
 impl UINavigationItemLargeTitleDisplayMode {
+    /// Automatically use the large out-of-line title based on the state of the previous item in the navigation bar. An item with largeTitleDisplayMode=Automatic will show or hide the large title based on the request of the previous navigation item. If the first item pushed is set to Automatic, then it will show the large title if the navigation bar has prefersLargeTitles=YES.
     #[doc(alias = "UINavigationItemLargeTitleDisplayModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Always use a larger title when this item is topmost.
     #[doc(alias = "UINavigationItemLargeTitleDisplayModeAlways")]
     pub const Always: Self = Self(1);
+    /// Never use a larger title when this item is topmost.
     #[doc(alias = "UINavigationItemLargeTitleDisplayModeNever")]
     pub const Never: Self = Self(2);
+    /// Always use a large title when this item is topmost. If there is a back button present, this will revert to `Always`. Leading
+    /// &
+    /// center items will move to the overflow menu if present.
     #[doc(alias = "UINavigationItemLargeTitleDisplayModeInline")]
     pub const Inline: Self = Self(3);
 }
@@ -37,10 +43,13 @@ unsafe impl RefEncode for UINavigationItemLargeTitleDisplayMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UINavigationItemBackButtonDisplayMode(pub NSInteger);
 impl UINavigationItemBackButtonDisplayMode {
+    /// Default mode, uses an appropriate title, followed by a generic title (typically 'Back'), then no title.
     #[doc(alias = "UINavigationItemBackButtonDisplayModeDefault")]
     pub const Default: Self = Self(0);
+    /// Generic titles only. Ignores .title and .backButtonTitle (but *not* .backBarButtonItem.title).
     #[doc(alias = "UINavigationItemBackButtonDisplayModeGeneric")]
     pub const Generic: Self = Self(1);
+    /// Don't use a title, just the back button indicator image.
     #[doc(alias = "UINavigationItemBackButtonDisplayModeMinimal")]
     pub const Minimal: Self = Self(2);
 }
@@ -59,10 +68,13 @@ unsafe impl RefEncode for UINavigationItemBackButtonDisplayMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UINavigationItemSearchBarPlacement(pub NSInteger);
 impl UINavigationItemSearchBarPlacement {
+    /// The navigation bar will choose a placement for the search bar that is appropriate for the current layout
     #[doc(alias = "UINavigationItemSearchBarPlacementAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// The navigation bar will place the search bar inline with other content, on the trailing edge.
     #[doc(alias = "UINavigationItemSearchBarPlacementInline")]
     pub const Inline: Self = Self(1);
+    /// The navigation bar will place the search bar vertically stacked with other content.
     #[doc(alias = "UINavigationItemSearchBarPlacementStacked")]
     pub const Stacked: Self = Self(2);
 }
@@ -81,10 +93,13 @@ unsafe impl RefEncode for UINavigationItemSearchBarPlacement {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UINavigationItemStyle(pub NSInteger);
 impl UINavigationItemStyle {
+    /// Traditional navigation bar behavior. Center items are placed in the overflow menu.
     #[doc(alias = "UINavigationItemStyleNavigator")]
     pub const Navigator: Self = Self(0);
+    /// A style designed for use as a browser. Title is leading aligned, center items are displayed. Typically used with history-based navigation.
     #[doc(alias = "UINavigationItemStyleBrowser")]
     pub const Browser: Self = Self(1);
+    /// A style designed for use as an editor. The back button will always present as chevron-only, title is leading aligned, center items are displayed. Typically used without navigation.
     #[doc(alias = "UINavigationItemStyleEditor")]
     pub const Editor: Self = Self(2);
 }
@@ -102,6 +117,8 @@ extern_protocol!(
     pub unsafe trait UINavigationItemRenameDelegate:
         NSObjectProtocol + MainThreadOnly
     {
+        /// This method is called when renaming has ended. The title on the navigation item has already been changed when this method is called but
+        /// clients can make further adjustments to it when necessary.
         #[method(navigationItem:didEndRenamingWithTitle:)]
         unsafe fn navigationItem_didEndRenamingWithTitle(
             &self,
@@ -109,6 +126,8 @@ extern_protocol!(
             title: &NSString,
         );
 
+        /// Controls whether the rename action is supported for the given navigation item. For example this method is called when the navigation bar's
+        /// document menu is shown to validate if the rename action should be part of that menu.
         #[optional]
         #[method(navigationItemShouldBeginRenaming:)]
         unsafe fn navigationItemShouldBeginRenaming(
@@ -116,6 +135,8 @@ extern_protocol!(
             navigation_item: &UINavigationItem,
         ) -> bool;
 
+        /// Called when we begin renaming. Implementing this method allows for customizing the initial text that will show up in the text field as well as the
+        /// selected range of that text.
         #[optional]
         #[method_id(@__retain_semantics Other navigationItem:willBeginRenamingWithSuggestedTitle:selectedRange:)]
         unsafe fn navigationItem_willBeginRenamingWithSuggestedTitle_selectedRange(
@@ -125,6 +146,9 @@ extern_protocol!(
             selected_range: NonNull<NSRange>,
         ) -> Retained<NSString>;
 
+        /// This method can be used to prevent renaming from happening. However there are cases (e.g. when a new navigation item is pushed on the navigation
+        /// bar) where this method will not be called and instead navigationItem:didEndRenamingWithTitle: is called right away. Clients are therefore expected to
+        /// handle titles in navigationItem:didEndRenamingWithTitle: for which they would return NO from navigationItem:shouldEndRenamingWithTitle:.
         #[optional]
         #[method(navigationItem:shouldEndRenamingWithTitle:)]
         unsafe fn navigationItem_shouldEndRenamingWithTitle(
@@ -160,52 +184,66 @@ extern_methods!(
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// Title when topmost on the stack. default is nil
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Custom view to use in lieu of a title. May be sized horizontally. Only used when item is topmost on the stack.
         #[method_id(@__retain_semantics Other titleView)]
         pub unsafe fn titleView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Setter for [`titleView`][Self::titleView].
         #[method(setTitleView:)]
         pub unsafe fn setTitleView(&self, title_view: Option<&UIView>);
 
+        /// Explanatory text to display above the navigation bar buttons.
         #[method_id(@__retain_semantics Other prompt)]
         pub unsafe fn prompt(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`prompt`][Self::prompt].
         #[method(setPrompt:)]
         pub unsafe fn setPrompt(&self, prompt: Option<&NSString>);
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        /// Bar button item to use for the back button when this item is the navigation bar's backItem.
         #[method_id(@__retain_semantics Other backBarButtonItem)]
         pub unsafe fn backBarButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        /// Setter for [`backBarButtonItem`][Self::backBarButtonItem].
         #[method(setBackBarButtonItem:)]
         pub unsafe fn setBackBarButtonItem(&self, back_bar_button_item: Option<&UIBarButtonItem>);
 
+        /// Title to use when this item is the navigation bar's backItem. Default is nil. backBarButtonItem takes precedence if both are specified.
         #[method_id(@__retain_semantics Other backButtonTitle)]
         pub unsafe fn backButtonTitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`backButtonTitle`][Self::backButtonTitle].
         #[method(setBackButtonTitle:)]
         pub unsafe fn setBackButtonTitle(&self, back_button_title: Option<&NSString>);
 
+        /// If YES, this navigation item will hide the back button when it's on top of the stack.
         #[method(hidesBackButton)]
         pub unsafe fn hidesBackButton(&self) -> bool;
 
+        /// Setter for [`hidesBackButton`][Self::hidesBackButton].
         #[method(setHidesBackButton:)]
         pub unsafe fn setHidesBackButton(&self, hides_back_button: bool);
 
         #[method(setHidesBackButton:animated:)]
         pub unsafe fn setHidesBackButton_animated(&self, hides_back_button: bool, animated: bool);
 
+        /// Controls how the back button sources its title.
         #[method(backButtonDisplayMode)]
         pub unsafe fn backButtonDisplayMode(&self) -> UINavigationItemBackButtonDisplayMode;
 
+        /// Setter for [`backButtonDisplayMode`][Self::backButtonDisplayMode].
         #[method(setBackButtonDisplayMode:)]
         pub unsafe fn setBackButtonDisplayMode(
             &self,
@@ -213,20 +251,24 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// Replaces the back action for the navigation bar. if a back button is naturally present, this replaces only its action, otherwise a back button will be synthesized with the image or title from the action.
         #[method_id(@__retain_semantics Other backAction)]
         pub unsafe fn backAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// Setter for [`backAction`][Self::backAction].
         #[method(setBackAction:)]
         pub unsafe fn setBackAction(&self, back_action: Option<&UIAction>);
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
+        /// When non-nil, UIKit will generate suggestedActions and call this block to generate a menu that is displayed from the title.
         #[method(titleMenuProvider)]
         pub unsafe fn titleMenuProvider(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
+        /// Setter for [`titleMenuProvider`][Self::titleMenuProvider].
         #[method(setTitleMenuProvider:)]
         pub unsafe fn setTitleMenuProvider(
             &self,
@@ -235,12 +277,15 @@ extern_methods!(
             >,
         );
 
+        /// When non-nil, enables the UINavigationBar to respond to the rename: action by providing an inline UI.
+        /// Setting this property to nil while a rename operation is in progress will cancel the operation immediately.
         #[method_id(@__retain_semantics Other renameDelegate)]
         pub unsafe fn renameDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UINavigationItemRenameDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`renameDelegate`][Self::renameDelegate].
         #[method(setRenameDelegate:)]
         pub unsafe fn setRenameDelegate(
             &self,
@@ -248,10 +293,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIDocumentProperties")]
+        /// When non-nil, UIKit will use the metadata provided to generate additional controls displayed from the title.
         #[method_id(@__retain_semantics Other documentProperties)]
         pub unsafe fn documentProperties(&self) -> Option<Retained<UIDocumentProperties>>;
 
         #[cfg(feature = "UIDocumentProperties")]
+        /// Setter for [`documentProperties`][Self::documentProperties].
         #[method(setDocumentProperties:)]
         pub unsafe fn setDocumentProperties(
             &self,
@@ -263,6 +310,7 @@ extern_methods!(
         pub unsafe fn leftBarButtonItems(&self) -> Option<Retained<NSArray<UIBarButtonItem>>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        /// Setter for [`leftBarButtonItems`][Self::leftBarButtonItems].
         #[method(setLeftBarButtonItems:)]
         pub unsafe fn setLeftBarButtonItems(
             &self,
@@ -274,6 +322,7 @@ extern_methods!(
         pub unsafe fn rightBarButtonItems(&self) -> Option<Retained<NSArray<UIBarButtonItem>>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        /// Setter for [`rightBarButtonItems`][Self::rightBarButtonItems].
         #[method(setRightBarButtonItems:)]
         pub unsafe fn setRightBarButtonItems(
             &self,
@@ -299,6 +348,7 @@ extern_methods!(
         #[method(leftItemsSupplementBackButton)]
         pub unsafe fn leftItemsSupplementBackButton(&self) -> bool;
 
+        /// Setter for [`leftItemsSupplementBackButton`][Self::leftItemsSupplementBackButton].
         #[method(setLeftItemsSupplementBackButton:)]
         pub unsafe fn setLeftItemsSupplementBackButton(
             &self,
@@ -306,10 +356,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        /// Some navigation items want to display a custom left or right item when they're on top of the stack. A custom left item replaces the regular back button unless you set leftItemsSupplementBackButton to YES
         #[method_id(@__retain_semantics Other leftBarButtonItem)]
         pub unsafe fn leftBarButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        /// Setter for [`leftBarButtonItem`][Self::leftBarButtonItem].
         #[method(setLeftBarButtonItem:)]
         pub unsafe fn setLeftBarButtonItem(&self, left_bar_button_item: Option<&UIBarButtonItem>);
 
@@ -318,6 +370,7 @@ extern_methods!(
         pub unsafe fn rightBarButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        /// Setter for [`rightBarButtonItem`][Self::rightBarButtonItem].
         #[method(setRightBarButtonItem:)]
         pub unsafe fn setRightBarButtonItem(&self, right_bar_button_item: Option<&UIBarButtonItem>);
 
@@ -337,9 +390,13 @@ extern_methods!(
             animated: bool,
         );
 
+        /// Setting a non-nil customizationIdentifier enables customization and UIKit will automatically save
+        /// &
+        /// restore customizations based on this identifier. The identifier must be unique within the scope of the application.
         #[method_id(@__retain_semantics Other customizationIdentifier)]
         pub unsafe fn customizationIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`customizationIdentifier`][Self::customizationIdentifier].
         #[method(setCustomizationIdentifier:)]
         pub unsafe fn setCustomizationIdentifier(
             &self,
@@ -347,10 +404,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIBarButtonItemGroup")]
+        /// UIBarButtonItemGroups to be displayed in the leading section of the navigation bar. Items set via this method will replace items set via .leftBarButtonItem or .leftBarButtonItems.
         #[method_id(@__retain_semantics Other leadingItemGroups)]
         pub unsafe fn leadingItemGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
+        /// Setter for [`leadingItemGroups`][Self::leadingItemGroups].
         #[method(setLeadingItemGroups:)]
         pub unsafe fn setLeadingItemGroups(
             &self,
@@ -358,10 +417,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIBarButtonItemGroup")]
+        /// Customizable UIBarButtonItemGroups that will be placed in the center region when the navigation bar is the browser or editor modes. In navigation mode, these items will be placed in the overflow.
         #[method_id(@__retain_semantics Other centerItemGroups)]
         pub unsafe fn centerItemGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
+        /// Setter for [`centerItemGroups`][Self::centerItemGroups].
         #[method(setCenterItemGroups:)]
         pub unsafe fn setCenterItemGroups(
             &self,
@@ -369,10 +430,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIBarButtonItemGroup")]
+        /// UIBarButtonItemGroups to be displayed in the trailing section of the navigation bar. Items set via this method will replace items set via .rightBarButtonItem or .rightBarButtonItems.
         #[method_id(@__retain_semantics Other trailingItemGroups)]
         pub unsafe fn trailingItemGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
+        /// Setter for [`trailingItemGroups`][Self::trailingItemGroups].
         #[method(setTrailingItemGroups:)]
         pub unsafe fn setTrailingItemGroups(
             &self,
@@ -380,10 +443,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIBarButtonItemGroup")]
+        /// Set a group of items to be placed on the trailing edge of the bar, past the overflow
+        /// &
+        /// search items (if present). If you wish to have more than 1 item, it is HIGHLY recommended to assign a representative item to the group to avoid overflowing the bar as this group cannot move to the overflow.
         #[method_id(@__retain_semantics Other pinnedTrailingGroup)]
         pub unsafe fn pinnedTrailingGroup(&self) -> Option<Retained<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
+        /// Setter for [`pinnedTrailingGroup`][Self::pinnedTrailingGroup].
         #[method(setPinnedTrailingGroup:)]
         pub unsafe fn setPinnedTrailingGroup(
             &self,
@@ -391,10 +458,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIDeferredMenuElement", feature = "UIMenuElement"))]
+        /// Additional items to add to the overflow menu. Setting this property to a non-nil value will force the overflow button to appear, regardless of if you provide any content in the element's callback. Items returned are displayed directly in the presented menu.
         #[method_id(@__retain_semantics Other additionalOverflowItems)]
         pub unsafe fn additionalOverflowItems(&self) -> Option<Retained<UIDeferredMenuElement>>;
 
         #[cfg(all(feature = "UIDeferredMenuElement", feature = "UIMenuElement"))]
+        /// Setter for [`additionalOverflowItems`][Self::additionalOverflowItems].
         #[method(setAdditionalOverflowItems:)]
         pub unsafe fn setAdditionalOverflowItems(
             &self,
@@ -402,23 +471,28 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIPopoverPresentationControllerSourceItem")]
+        /// If the overflow button for this item is currently present, then this will return a non-nil item that can be used as a presentation source (e.g. for popovers). Otherwise it will return nil.
         #[method_id(@__retain_semantics Other overflowPresentationSource)]
         pub unsafe fn overflowPresentationSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPopoverPresentationControllerSourceItem>>>;
 
+        /// When UINavigationBar.prefersLargeTitles=YES, this property controls when the larger out-of-line title is displayed. If prefersLargeTitles=NO, this property has no effect. The default value is Automatic.
         #[method(largeTitleDisplayMode)]
         pub unsafe fn largeTitleDisplayMode(&self) -> UINavigationItemLargeTitleDisplayMode;
 
+        /// Setter for [`largeTitleDisplayMode`][Self::largeTitleDisplayMode].
         #[method(setLargeTitleDisplayMode:)]
         pub unsafe fn setLargeTitleDisplayMode(
             &self,
             large_title_display_mode: UINavigationItemLargeTitleDisplayMode,
         );
 
+        /// Controls how content defined by this item is laid out in the navigation bar.
         #[method(style)]
         pub unsafe fn style(&self) -> UINavigationItemStyle;
 
+        /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: UINavigationItemStyle);
 
@@ -427,6 +501,7 @@ extern_methods!(
             feature = "UISearchController",
             feature = "UIViewController"
         ))]
+        /// A view controller that will be shown inside of a navigation controller can assign a UISearchController to this property to display the search controller’s search bar in its containing navigation controller’s navigation bar.
         #[method_id(@__retain_semantics Other searchController)]
         pub unsafe fn searchController(&self) -> Option<Retained<UISearchController>>;
 
@@ -435,32 +510,41 @@ extern_methods!(
             feature = "UISearchController",
             feature = "UIViewController"
         ))]
+        /// Setter for [`searchController`][Self::searchController].
         #[method(setSearchController:)]
         pub unsafe fn setSearchController(&self, search_controller: Option<&UISearchController>);
 
+        /// If this property is true (the default), the searchController’s search bar will hide as the user scrolls in the top view controller’s scroll view. If false, the search bar will remain visible and pinned underneath the navigation bar.
+        /// Not appicable and ignored for UINavigationItemSearchBarPlacementInline
         #[method(hidesSearchBarWhenScrolling)]
         pub unsafe fn hidesSearchBarWhenScrolling(&self) -> bool;
 
+        /// Setter for [`hidesSearchBarWhenScrolling`][Self::hidesSearchBarWhenScrolling].
         #[method(setHidesSearchBarWhenScrolling:)]
         pub unsafe fn setHidesSearchBarWhenScrolling(&self, hides_search_bar_when_scrolling: bool);
 
+        /// The preferred search bar placement, when a search controller is assigned to this item.
         #[method(preferredSearchBarPlacement)]
         pub unsafe fn preferredSearchBarPlacement(&self) -> UINavigationItemSearchBarPlacement;
 
+        /// Setter for [`preferredSearchBarPlacement`][Self::preferredSearchBarPlacement].
         #[method(setPreferredSearchBarPlacement:)]
         pub unsafe fn setPreferredSearchBarPlacement(
             &self,
             preferred_search_bar_placement: UINavigationItemSearchBarPlacement,
         );
 
+        /// The realized placement. Only valid if a search controller has been assigned to this item.
         #[method(searchBarPlacement)]
         pub unsafe fn searchBarPlacement(&self) -> UINavigationItemSearchBarPlacement;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// When set and this item is topmost, overrides the hosting navigation bar's standardAppearance. See UINavigationBar.standardAppearance for further details.
         #[method_id(@__retain_semantics Other standardAppearance)]
         pub unsafe fn standardAppearance(&self) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// Setter for [`standardAppearance`][Self::standardAppearance].
         #[method(setStandardAppearance:)]
         pub unsafe fn setStandardAppearance(
             &self,
@@ -468,10 +552,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// When set and this item is topmost, overrides the hosting navigation bar's compactAppearance. See UINavigationBar.compactAppearance for further details.
         #[method_id(@__retain_semantics Other compactAppearance)]
         pub unsafe fn compactAppearance(&self) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// Setter for [`compactAppearance`][Self::compactAppearance].
         #[method(setCompactAppearance:)]
         pub unsafe fn setCompactAppearance(
             &self,
@@ -479,10 +565,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// When set and this item is topmost, overrides the hosting navigation bar's scrollEdgeAppearance. See UINavigationBar.scrollEdgeAppearance for further details.
         #[method_id(@__retain_semantics Other scrollEdgeAppearance)]
         pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// Setter for [`scrollEdgeAppearance`][Self::scrollEdgeAppearance].
         #[method(setScrollEdgeAppearance:)]
         pub unsafe fn setScrollEdgeAppearance(
             &self,
@@ -490,12 +578,14 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// When set and this item is topmost, overrides the hosting navigation bar's compactScrollEdgeAppearance. See UINavigationBar.h for further details.
         #[method_id(@__retain_semantics Other compactScrollEdgeAppearance)]
         pub unsafe fn compactScrollEdgeAppearance(
             &self,
         ) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
+        /// Setter for [`compactScrollEdgeAppearance`][Self::compactScrollEdgeAppearance].
         #[method(setCompactScrollEdgeAppearance:)]
         pub unsafe fn setCompactScrollEdgeAppearance(
             &self,

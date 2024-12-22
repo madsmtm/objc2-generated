@@ -45,12 +45,14 @@ extern_methods!(
     #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialParameters")]
+        /// A list of parameters for the new credential which are supported by the Relying Party. The authenticator should choose from these parameters when creating the credential.
         #[method_id(@__retain_semantics Other credentialParameters)]
         pub unsafe fn credentialParameters(
             &self,
         ) -> Retained<NSArray<ASAuthorizationPublicKeyCredentialParameters>>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialParameters")]
+        /// Setter for [`credentialParameters`][Self::credentialParameters].
         #[method(setCredentialParameters:)]
         pub unsafe fn setCredentialParameters(
             &self,
@@ -58,12 +60,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+        /// A list of descriptors indicating credentials which must not already exist on the authenticator. If a credential already exists on the authenticator which matches one or more of these descriptors, a new credential will not be created and authentication will fail.
         #[method_id(@__retain_semantics Other excludedCredentials)]
         pub unsafe fn excludedCredentials(
             &self,
         ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>>;
 
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+        /// Setter for [`excludedCredentials`][Self::excludedCredentials].
         #[method(setExcludedCredentials:)]
         pub unsafe fn setExcludedCredentials(
             &self,
@@ -71,12 +75,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
+        /// A preference whether the authenticator should store the private key of the newly created credential.
         #[method_id(@__retain_semantics Other residentKeyPreference)]
         pub unsafe fn residentKeyPreference(
             &self,
         ) -> Retained<ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
+        /// Setter for [`residentKeyPreference`][Self::residentKeyPreference].
         #[method(setResidentKeyPreference:)]
         pub unsafe fn setResidentKeyPreference(
             &self,

@@ -45,18 +45,21 @@ extern_methods!(
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
+        /// Setter for [`action`][Self::action].
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;
 
+        /// Setter for [`tag`][Self::tag].
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: NSInteger);
     }

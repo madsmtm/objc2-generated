@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaudiopreviewoutput?language=objc)
+    /// AVCaptureAudioPreviewOutput is a concrete subclass of AVCaptureOutput that can be used to preview the audio being captured.
+    ///
+    ///
+    /// Instances of AVCaptureAudioPreviewOutput have an associated Core Audio output device that can be used to play audio being captured by the capture session. The unique ID of a Core Audio device can be obtained from its kAudioDevicePropertyDeviceUID property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaudiopreviewoutput?language=objc)
     #[unsafe(super(AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]
@@ -27,15 +32,25 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Specifies the unique ID of the Core Audio output device being used to play preview audio.
+        ///
+        ///
+        /// The value of this property is an NSString containing the unique ID of the Core Audio device to be used for output, or nil if the default system output should be used.
         #[method_id(@__retain_semantics Other outputDeviceUniqueID)]
         pub unsafe fn outputDeviceUniqueID(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`outputDeviceUniqueID`][Self::outputDeviceUniqueID].
         #[method(setOutputDeviceUniqueID:)]
         pub unsafe fn setOutputDeviceUniqueID(&self, output_device_unique_id: Option<&NSString>);
 
+        /// Specifies the preview volume of the output.
+        ///
+        ///
+        /// The value of this property is the preview volume of the receiver, where 1.0 is the maximum volume and 0.0 is muted.
         #[method(volume)]
         pub unsafe fn volume(&self) -> c_float;
 
+        /// Setter for [`volume`][Self::volume].
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
     }

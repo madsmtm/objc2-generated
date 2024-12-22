@@ -83,6 +83,7 @@ extern_methods!(
         pub unsafe fn caption(&self) -> Option<Retained<DOMHTMLTableCaptionElement>>;
 
         #[cfg(feature = "DOMHTMLTableCaptionElement")]
+        /// Setter for [`caption`][Self::caption].
         #[deprecated]
         #[method(setCaption:)]
         pub unsafe fn setCaption(&self, caption: Option<&DOMHTMLTableCaptionElement>);
@@ -93,6 +94,7 @@ extern_methods!(
         pub unsafe fn tHead(&self) -> Option<Retained<DOMHTMLTableSectionElement>>;
 
         #[cfg(feature = "DOMHTMLTableSectionElement")]
+        /// Setter for [`tHead`][Self::tHead].
         #[deprecated]
         #[method(setTHead:)]
         pub unsafe fn setTHead(&self, t_head: Option<&DOMHTMLTableSectionElement>);
@@ -103,6 +105,7 @@ extern_methods!(
         pub unsafe fn tFoot(&self) -> Option<Retained<DOMHTMLTableSectionElement>>;
 
         #[cfg(feature = "DOMHTMLTableSectionElement")]
+        /// Setter for [`tFoot`][Self::tFoot].
         #[deprecated]
         #[method(setTFoot:)]
         pub unsafe fn setTFoot(&self, t_foot: Option<&DOMHTMLTableSectionElement>);
@@ -121,6 +124,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other align)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
+        /// Setter for [`align`][Self::align].
         #[deprecated]
         #[method(setAlign:)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
@@ -129,6 +133,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bgColor)]
         pub unsafe fn bgColor(&self) -> Retained<NSString>;
 
+        /// Setter for [`bgColor`][Self::bgColor].
         #[deprecated]
         #[method(setBgColor:)]
         pub unsafe fn setBgColor(&self, bg_color: Option<&NSString>);
@@ -137,6 +142,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other border)]
         pub unsafe fn border(&self) -> Retained<NSString>;
 
+        /// Setter for [`border`][Self::border].
         #[deprecated]
         #[method(setBorder:)]
         pub unsafe fn setBorder(&self, border: Option<&NSString>);
@@ -145,6 +151,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cellPadding)]
         pub unsafe fn cellPadding(&self) -> Retained<NSString>;
 
+        /// Setter for [`cellPadding`][Self::cellPadding].
         #[deprecated]
         #[method(setCellPadding:)]
         pub unsafe fn setCellPadding(&self, cell_padding: Option<&NSString>);
@@ -153,6 +160,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cellSpacing)]
         pub unsafe fn cellSpacing(&self) -> Retained<NSString>;
 
+        /// Setter for [`cellSpacing`][Self::cellSpacing].
         #[deprecated]
         #[method(setCellSpacing:)]
         pub unsafe fn setCellSpacing(&self, cell_spacing: Option<&NSString>);
@@ -161,6 +169,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other frameBorders)]
         pub unsafe fn frameBorders(&self) -> Retained<NSString>;
 
+        /// Setter for [`frameBorders`][Self::frameBorders].
         #[deprecated]
         #[method(setFrameBorders:)]
         pub unsafe fn setFrameBorders(&self, frame_borders: Option<&NSString>);
@@ -169,6 +178,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rules)]
         pub unsafe fn rules(&self) -> Retained<NSString>;
 
+        /// Setter for [`rules`][Self::rules].
         #[deprecated]
         #[method(setRules:)]
         pub unsafe fn setRules(&self, rules: Option<&NSString>);
@@ -177,6 +187,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other summary)]
         pub unsafe fn summary(&self) -> Retained<NSString>;
 
+        /// Setter for [`summary`][Self::summary].
         #[deprecated]
         #[method(setSummary:)]
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);
@@ -185,6 +196,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other width)]
         pub unsafe fn width(&self) -> Retained<NSString>;
 
+        /// Setter for [`width`][Self::width].
         #[deprecated]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: Option<&NSString>);

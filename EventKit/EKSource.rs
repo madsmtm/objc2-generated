@@ -31,16 +31,20 @@ extern_methods!(
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[cfg(feature = "EKCalendar")]
+        /// This is now deprecated in favor of -[EKSource calendarsForEntityType:]
         #[method_id(@__retain_semantics Other calendars)]
         pub unsafe fn calendars(&self) -> Retained<NSSet<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKTypes"))]
+        /// Returns the calendars that belong to this source that
+        /// support a given entity type (reminders, events)
         #[method_id(@__retain_semantics Other calendarsForEntityType:)]
         pub unsafe fn calendarsForEntityType(
             &self,
             entity_type: EKEntityType,
         ) -> Retained<NSSet<EKCalendar>>;
 
+        /// Returns YES if this EKSource represents an account delegated by another user.
         #[method(isDelegate)]
         pub unsafe fn isDelegate(&self) -> bool;
     }

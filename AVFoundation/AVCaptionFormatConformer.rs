@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionformatconformer?language=objc)
+    /// Performs a conversion of canonical caption to conform to a specific format.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionformatconformer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionFormatConformer;
@@ -25,25 +27,52 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVCaptionSettings")]
+        /// Returns an instance of AVCaptionFormatConformer that can convert a canonical caption to conform to a specific format.
+        ///
+        /// Parameter `conversionSettings`: Describes the conversion operation for which the caption is to be conformed.
+        ///
+        /// Returns: A new instance of AVCaptionFormatConformer configured to perform the specified conversion.
         #[method_id(@__retain_semantics Other captionFormatConformerWithConversionSettings:)]
         pub unsafe fn captionFormatConformerWithConversionSettings(
             conversion_settings: &NSDictionary<AVCaptionSettingsKey, AnyObject>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVCaptionSettings")]
+        /// Returns an instance of AVCaptionFormatConformer that can convert a canonical caption to conform to a specific format.
+        ///
+        /// Parameter `conversionSettings`: Describes the conversion operation for which the caption is to be conformed.
+        ///
+        /// Returns: A new instance of AVCaptionFormatConformer configured to perform the specified conversion.
+        ///
+        /// This method throws an exception if the conversion setting's AVCaptionMediaTypeKey is not equal to AVMediaTypeClosedCaption, or if its AVCaptionMediaSubTypeKey is not equal to kCMClosedCaptionFormatType_CEA608.
         #[method_id(@__retain_semantics Init initWithConversionSettings:)]
         pub unsafe fn initWithConversionSettings(
             this: Allocated<Self>,
             conversion_settings: &NSDictionary<AVCaptionSettingsKey, AnyObject>,
         ) -> Retained<Self>;
 
+        /// Specifies whether to conform the time range of a given canonical caption as well.
+        ///
+        /// When set to YES, conforms time range.
+        /// When set to NO, the time range of the conformed caption will be same as a given canonical caption.
+        /// In the case of conforming to CAE608 format, AVCaption is encoded so that each CAE608 control code (2 bytes) fits into 1 frame duration (1001/30000).
+        /// When set to YES and if all the encoded data can not fit inside the canonical caption time range, the caption time range will be extended to fit all the data and will be returned in the conformed AVCaption.
+        /// The default value is NO.
         #[method(conformsCaptionsToTimeRange)]
         pub unsafe fn conformsCaptionsToTimeRange(&self) -> bool;
 
+        /// Setter for [`conformsCaptionsToTimeRange`][Self::conformsCaptionsToTimeRange].
         #[method(setConformsCaptionsToTimeRange:)]
         pub unsafe fn setConformsCaptionsToTimeRange(&self, conforms_captions_to_time_range: bool);
 
         #[cfg(feature = "AVCaption")]
+        /// Creates a format-compliant caption that conforms to a specific format by converting a given canonical caption.
+        ///
+        /// Parameter `caption`: Specifies a canonical caption to be converted.
+        ///
+        /// Parameter `outError`: A pointer where a NSError object may be returned.
+        ///
+        /// Returns: A format-compliant caption that conforms to a specific format.
         #[method_id(@__retain_semantics Other conformedCaptionForCaption:error:_)]
         pub unsafe fn conformedCaptionForCaption_error(
             &self,

@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskrequest?language=objc)
+    /// An abstract class for representing task requests.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGTaskRequest;
@@ -24,12 +26,21 @@ unsafe impl NSObjectProtocol for BGTaskRequest {}
 
 extern_methods!(
     unsafe impl BGTaskRequest {
+        /// The identifier of the task associated with the request.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
+        /// The earliest date and time at which to run the task.
+        ///
+        /// Specify `nil` for no start delay.
+        ///
+        /// Setting the property indicates that the background task shouldn’t start any
+        /// earlier than this date. However, the system doesn’t guarantee launching the
+        /// task at the specified date, but only that it won’t begin sooner.
         #[method_id(@__retain_semantics Other earliestBeginDate)]
         pub unsafe fn earliestBeginDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Setter for [`earliestBeginDate`][Self::earliestBeginDate].
         #[method(setEarliestBeginDate:)]
         pub unsafe fn setEarliestBeginDate(&self, earliest_begin_date: Option<&NSDate>);
 
@@ -42,7 +53,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgapprefreshtaskrequest?language=objc)
+    /// A request to launch your app in the background to execute a short refresh task.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgapprefreshtaskrequest?language=objc)
     #[unsafe(super(BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGAppRefreshTaskRequest;
@@ -58,6 +71,10 @@ unsafe impl NSObjectProtocol for BGAppRefreshTaskRequest {}
 
 extern_methods!(
     unsafe impl BGAppRefreshTaskRequest {
+        /// Return a new refresh task request for the specified identifier.
+        ///
+        /// - Parameters:
+        /// - identifier: The string identifier of the refresh task associated with the request.
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
@@ -78,7 +95,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgprocessingtaskrequest?language=objc)
+    /// A request to launch your app in the background to execute a processing task
+    /// that can take minutes to complete.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgprocessingtaskrequest?language=objc)
     #[unsafe(super(BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGProcessingTaskRequest;
@@ -94,21 +114,29 @@ unsafe impl NSObjectProtocol for BGProcessingTaskRequest {}
 
 extern_methods!(
     unsafe impl BGProcessingTaskRequest {
+        /// Return a new processing task request for the specified identifier.
+        ///
+        /// - Parameters:
+        /// - identifier: The string identifier of the processing task associated with the request.
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSString,
         ) -> Retained<Self>;
 
+        /// A Boolean specifying if the processing task requires network connectivity.
         #[method(requiresNetworkConnectivity)]
         pub unsafe fn requiresNetworkConnectivity(&self) -> bool;
 
+        /// Setter for [`requiresNetworkConnectivity`][Self::requiresNetworkConnectivity].
         #[method(setRequiresNetworkConnectivity:)]
         pub unsafe fn setRequiresNetworkConnectivity(&self, requires_network_connectivity: bool);
 
+        /// A Boolean specifying if the processing task requires a device connected to power.
         #[method(requiresExternalPower)]
         pub unsafe fn requiresExternalPower(&self) -> bool;
 
+        /// Setter for [`requiresExternalPower`][Self::requiresExternalPower].
         #[method(setRequiresExternalPower:)]
         pub unsafe fn setRequiresExternalPower(&self, requires_external_power: bool);
     }
@@ -126,7 +154,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bghealthresearchtaskrequest?language=objc)
+    /// A request to launch your app in the background to execute a health research task for studies a user has opted into and
+    /// that can take minutes to complete.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bghealthresearchtaskrequest?language=objc)
     #[unsafe(super(BGProcessingTaskRequest, BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGHealthResearchTaskRequest;
@@ -142,9 +173,11 @@ unsafe impl NSObjectProtocol for BGHealthResearchTaskRequest {}
 
 extern_methods!(
     unsafe impl BGHealthResearchTaskRequest {
+        /// A String indicating file protection availability required for processing.
         #[method_id(@__retain_semantics Other protectionTypeOfRequiredData)]
         pub unsafe fn protectionTypeOfRequiredData(&self) -> Retained<NSFileProtectionType>;
 
+        /// Setter for [`protectionTypeOfRequiredData`][Self::protectionTypeOfRequiredData].
         #[method(setProtectionTypeOfRequiredData:)]
         pub unsafe fn setProtectionTypeOfRequiredData(
             &self,
@@ -156,6 +189,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `BGProcessingTaskRequest`
     unsafe impl BGHealthResearchTaskRequest {
+        /// Return a new processing task request for the specified identifier.
+        ///
+        /// - Parameters:
+        /// - identifier: The string identifier of the processing task associated with the request.
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,

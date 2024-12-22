@@ -162,12 +162,14 @@ extern_methods!(
         #[method(allowsNonContiguousRanges)]
         pub unsafe fn allowsNonContiguousRanges(&self) -> bool;
 
+        /// Setter for [`allowsNonContiguousRanges`][Self::allowsNonContiguousRanges].
         #[method(setAllowsNonContiguousRanges:)]
         pub unsafe fn setAllowsNonContiguousRanges(&self, allows_non_contiguous_ranges: bool);
 
         #[method(rotatesCoordinateSystemForLayoutOrientation)]
         pub unsafe fn rotatesCoordinateSystemForLayoutOrientation(&self) -> bool;
 
+        /// Setter for [`rotatesCoordinateSystemForLayoutOrientation`][Self::rotatesCoordinateSystemForLayoutOrientation].
         #[method(setRotatesCoordinateSystemForLayoutOrientation:)]
         pub unsafe fn setRotatesCoordinateSystemForLayoutOrientation(
             &self,

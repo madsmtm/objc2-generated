@@ -28,6 +28,13 @@ extern_protocol!(
         ) -> Option<Retained<UIViewController>>;
 
         #[cfg(feature = "UIPrinter")]
+        /// Use to filter out specific printers from the printer picker.
+        /// Evaluate the UIPrinter object and returns YES if the printer should
+        /// be shown, NO otherwise.
+        /// This delegate can assume that all UIPrinter properties are available
+        /// (the contactPrinter: method need not be called).
+        /// This method may be called from threads other than the main thread,
+        /// and may be called simultaneously from several different threads.
         #[optional]
         #[method(printerPickerController:shouldShowPrinter:)]
         unsafe fn printerPickerController_shouldShowPrinter(
@@ -88,6 +95,10 @@ unsafe impl NSObjectProtocol for UIPrinterPickerController {}
 extern_methods!(
     unsafe impl UIPrinterPickerController {
         #[cfg(feature = "UIPrinter")]
+        /// This method returns a printer picker controller object for showing the
+        /// UI that allows the user to select a printer. This is only used with the
+        /// UIPrintInteractionController's printWithoutUIToPrinter: method.
+        /// If no printer should be preselected, use a value of nil for the parameter.
         #[method_id(@__retain_semantics Other printerPickerControllerWithInitiallySelectedPrinter:)]
         pub unsafe fn printerPickerControllerWithInitiallySelectedPrinter(
             printer: Option<&UIPrinter>,
@@ -95,6 +106,8 @@ extern_methods!(
         ) -> Retained<UIPrinterPickerController>;
 
         #[cfg(feature = "UIPrinter")]
+        /// The selected printer. Set this before presenting the UI to show the currently
+        /// selected printer. Use this to determine which printer the user selected.
         #[method_id(@__retain_semantics Other selectedPrinter)]
         pub unsafe fn selectedPrinter(&self) -> Option<Retained<UIPrinter>>;
 
@@ -104,6 +117,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIPrinterPickerControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

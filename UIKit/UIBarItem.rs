@@ -38,12 +38,14 @@ extern_methods!(
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
@@ -52,6 +54,7 @@ extern_methods!(
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
@@ -60,6 +63,7 @@ extern_methods!(
         pub unsafe fn landscapeImagePhone(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`landscapeImagePhone`][Self::landscapeImagePhone].
         #[method(setLandscapeImagePhone:)]
         pub unsafe fn setLandscapeImagePhone(&self, landscape_image_phone: Option<&UIImage>);
 
@@ -68,6 +72,7 @@ extern_methods!(
         pub unsafe fn largeContentSizeImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`largeContentSizeImage`][Self::largeContentSizeImage].
         #[method(setLargeContentSizeImage:)]
         pub unsafe fn setLargeContentSizeImage(&self, large_content_size_image: Option<&UIImage>);
 
@@ -76,6 +81,7 @@ extern_methods!(
         pub unsafe fn imageInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`imageInsets`][Self::imageInsets].
         #[method(setImageInsets:)]
         pub unsafe fn setImageInsets(&self, image_insets: UIEdgeInsets);
 
@@ -84,6 +90,7 @@ extern_methods!(
         pub unsafe fn landscapeImagePhoneInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`landscapeImagePhoneInsets`][Self::landscapeImagePhoneInsets].
         #[method(setLandscapeImagePhoneInsets:)]
         pub unsafe fn setLandscapeImagePhoneInsets(
             &self,
@@ -95,6 +102,7 @@ extern_methods!(
         pub unsafe fn largeContentSizeImageInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`largeContentSizeImageInsets`][Self::largeContentSizeImageInsets].
         #[method(setLargeContentSizeImageInsets:)]
         pub unsafe fn setLargeContentSizeImageInsets(
             &self,
@@ -104,6 +112,7 @@ extern_methods!(
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;
 
+        /// Setter for [`tag`][Self::tag].
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: NSInteger);
 

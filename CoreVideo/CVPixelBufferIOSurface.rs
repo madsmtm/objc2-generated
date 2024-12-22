@@ -40,6 +40,9 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// Returns the IOSurface backing the pixel buffer, or NULL if it is not backed by an IOSurface.
+    ///
+    /// Parameter `pixelBuffer`: Target PixelBuffer.
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",
@@ -51,6 +54,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Call to create a single CVPixelBuffer for a passed-in IOSurface.
+    ///
+    /// The CVPixelBuffer will retain the IOSurface.
+    /// IMPORTANT NOTE: If you are using IOSurface to share CVPixelBuffers between processes
+    /// and those CVPixelBuffers are allocated via a CVPixelBufferPool, it is important
+    /// that the CVPixelBufferPool does not reuse CVPixelBuffers whose IOSurfaces are still
+    /// in use in other processes.
+    /// CoreVideo and IOSurface will take care of this for if you use IOSurfaceCreateMachPort
+    /// and IOSurfaceLookupFromMachPort, but NOT if you pass IOSurfaceIDs.
+    ///
+    /// Parameter `surface`: The IOSurface to wrap.
+    ///
+    /// Parameter `pixelBufferAttributes`: A dictionary with additional attributes for a a pixel buffer. This parameter is optional. See PixelBufferAttributes for more details.
+    ///
+    /// Parameter `pixelBufferOut`: The new pixel buffer will be returned here
+    ///
+    /// Returns: returns kCVReturnSuccess on success.
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",

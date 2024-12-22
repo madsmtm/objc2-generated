@@ -9,7 +9,46 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagearithmetic?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// This filter takes two source images, a primary source image and a secondary source image,
+    /// and outputs a single destination image. It applies an element-wise arithmetic operator to
+    /// each pixel in a primary source image and a corresponding pixel in a secondary source image
+    /// over a specified region.
+    ///
+    /// The supported arithmetic operators are the following:
+    /// - Addition
+    /// - Subtraction
+    /// - Multiplication
+    /// - Division
+    ///
+    /// This filter takes additional parameters: primaryScale, secondaryScale, and bias. The default
+    /// value for primaryScale and secondaryScale is 1.0f. The default value for bias is 0.0f. This
+    /// filter applies primaryScale, secondaryScale, and bias to the primary source pixel (x) and
+    /// secondary source pixel (y) in the following way:
+    /// - Addition:         result = ((primaryScale * x) + (secondaryScale * y)) + bias
+    /// - Subtraction:      result = ((primaryScale * x) - (secondaryScale * y)) + bias
+    /// - Multiplicaton:    result = ((primaryScale * x) * (secondaryScale * y)) + bias
+    /// - Division:         result = ((primaryScale * x) / (secondaryScale * y)) + bias
+    ///
+    /// To clamp the result of an arithmetic operation, where
+    /// result = clamp(result, minimumValue, maximumValue),
+    /// set the minimumValue and maximumValue appropriately. The default value of minimumValue
+    /// is -FLT_MAX. The default value of maximumValue is FLT_MAX.
+    ///
+    /// This filter also takes the following additional parameters:
+    /// - primaryStrideInPixels
+    /// - secondaryStrideInPixels
+    /// These parameters can be used to control broadcasting for the data stored in the primary and
+    /// secondary source images. For example, setting all strides for the primary source image to 0
+    /// will result in the primarySource image being treated as a scalar value. The only supported
+    /// values are 0 or 1. The default value of these parameters is 1.
+    ///
+    /// This filter accepts uint and int data in addition to unorm and floating-point data.
+    ///
+    /// You must use one of the sub-classes of MPSImageArithmetic.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagearithmetic?language=objc)
     #[unsafe(super(MPSBinaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -39,42 +78,59 @@ extern_methods!(
         #[method(primaryScale)]
         pub unsafe fn primaryScale(&self) -> c_float;
 
+        /// Setter for [`primaryScale`][Self::primaryScale].
         #[method(setPrimaryScale:)]
         pub unsafe fn setPrimaryScale(&self, primary_scale: c_float);
 
         #[method(secondaryScale)]
         pub unsafe fn secondaryScale(&self) -> c_float;
 
+        /// Setter for [`secondaryScale`][Self::secondaryScale].
         #[method(setSecondaryScale:)]
         pub unsafe fn setSecondaryScale(&self, secondary_scale: c_float);
 
         #[method(bias)]
         pub unsafe fn bias(&self) -> c_float;
 
+        /// Setter for [`bias`][Self::bias].
         #[method(setBias:)]
         pub unsafe fn setBias(&self, bias: c_float);
 
+        /// The secondarySource stride in the x, y, and z dimensions. The only supported values are 0 or 1.
+        /// The default value for each dimension is 1.
         #[method(primaryStrideInPixels)]
         pub unsafe fn primaryStrideInPixels(&self) -> MTLSize;
 
+        /// Setter for [`primaryStrideInPixels`][Self::primaryStrideInPixels].
         #[method(setPrimaryStrideInPixels:)]
         pub unsafe fn setPrimaryStrideInPixels(&self, primary_stride_in_pixels: MTLSize);
 
+        /// The secondarySource stride in the x, y, and z dimensions. The only supported values are 0 or 1.
+        /// The default value for each dimension is 1.
         #[method(secondaryStrideInPixels)]
         pub unsafe fn secondaryStrideInPixels(&self) -> MTLSize;
 
+        /// Setter for [`secondaryStrideInPixels`][Self::secondaryStrideInPixels].
         #[method(setSecondaryStrideInPixels:)]
         pub unsafe fn setSecondaryStrideInPixels(&self, secondary_stride_in_pixels: MTLSize);
 
+        /// minimumValue is to clamp the result of an arithmetic operation:
+        /// result = clamp(result, minimumValue, maximumValue).
+        /// The default value of minimumValue is -FLT_MAX.
         #[method(minimumValue)]
         pub unsafe fn minimumValue(&self) -> c_float;
 
+        /// Setter for [`minimumValue`][Self::minimumValue].
         #[method(setMinimumValue:)]
         pub unsafe fn setMinimumValue(&self, minimum_value: c_float);
 
+        /// maximumValue is used to clamp the result of an arithmetic operation:
+        /// result = clamp(result, minimumValue, maximumValue).
+        /// The default value of maximumValue is FLT_MAX.
         #[method(maximumValue)]
         pub unsafe fn maximumValue(&self) -> c_float;
 
+        /// Setter for [`maximumValue`][Self::maximumValue].
         #[method(setMaximumValue:)]
         pub unsafe fn setMaximumValue(&self, maximum_value: c_float);
 
@@ -90,6 +146,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSBinaryImageKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageArithmetic {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -103,6 +172,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageArithmetic {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -124,7 +201,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageadd?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the addition operator.
+    /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
+    /// it applies the following function: result = ((primaryScale * x) + (secondaryScale * y)) + bias.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageadd?language=objc)
     #[unsafe(super(MPSImageArithmetic, MPSBinaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -151,6 +234,11 @@ unsafe impl NSSecureCoding for MPSImageAdd {}
 extern_methods!(
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAdd {
+        /// Initialize the addition operator
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Returns: A valid MPSImageAdd object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -163,6 +251,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSBinaryImageKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAdd {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -176,6 +277,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAdd {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -197,7 +306,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagesubtract?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the subtraction operator.
+    /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
+    /// it applies the following function: result = ((primaryScale * x) - (secondaryScale * y)) + bias.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagesubtract?language=objc)
     #[unsafe(super(MPSImageArithmetic, MPSBinaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -224,6 +339,11 @@ unsafe impl NSSecureCoding for MPSImageSubtract {}
 extern_methods!(
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageSubtract {
+        /// Initialize the subtraction operator
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Returns: A valid MPSImageSubtract object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -236,6 +356,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSBinaryImageKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageSubtract {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -249,6 +382,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageSubtract {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -270,7 +411,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagemultiply?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the multiplication operator.
+    /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
+    /// it applies the following function: result = ((primaryScale * x) * (secondaryScale * y)) + bias.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagemultiply?language=objc)
     #[unsafe(super(MPSImageArithmetic, MPSBinaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -297,6 +444,11 @@ unsafe impl NSSecureCoding for MPSImageMultiply {}
 extern_methods!(
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageMultiply {
+        /// Initialize the multiplication operator
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Returns: A valid MPSImageMultiply object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -309,6 +461,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSBinaryImageKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageMultiply {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -322,6 +487,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageMultiply {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -343,7 +516,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedivide?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the division operator.
+    /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
+    /// it applies the following function: result = ((primaryScale * x) / (secondaryScale * y)) + bias.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedivide?language=objc)
     #[unsafe(super(MPSImageArithmetic, MPSBinaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -370,6 +549,11 @@ unsafe impl NSSecureCoding for MPSImageDivide {}
 extern_methods!(
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageDivide {
+        /// Initialize the division operator
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Returns: A valid MPSImageDivide object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -382,6 +566,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSBinaryImageKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageDivide {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -395,6 +592,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageDivide {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

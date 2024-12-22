@@ -64,6 +64,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other directParameter)]
         pub unsafe fn directParameter(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`directParameter`][Self::directParameter].
         #[method(setDirectParameter:)]
         pub unsafe fn setDirectParameter(&self, direct_parameter: Option<&AnyObject>);
 
@@ -72,6 +73,7 @@ extern_methods!(
         pub unsafe fn receiversSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
+        /// Setter for [`receiversSpecifier`][Self::receiversSpecifier].
         #[method(setReceiversSpecifier:)]
         pub unsafe fn setReceiversSpecifier(
             &self,
@@ -86,6 +88,7 @@ extern_methods!(
         pub unsafe fn arguments(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Setter for [`arguments`][Self::arguments].
         #[method(setArguments:)]
         pub unsafe fn setArguments(&self, arguments: Option<&NSDictionary<NSString, AnyObject>>);
 
@@ -107,6 +110,7 @@ extern_methods!(
         #[method(scriptErrorNumber)]
         pub unsafe fn scriptErrorNumber(&self) -> NSInteger;
 
+        /// Setter for [`scriptErrorNumber`][Self::scriptErrorNumber].
         #[method(setScriptErrorNumber:)]
         pub unsafe fn setScriptErrorNumber(&self, script_error_number: NSInteger);
 
@@ -117,6 +121,7 @@ extern_methods!(
         ) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
+        /// Setter for [`scriptErrorOffendingObjectDescriptor`][Self::scriptErrorOffendingObjectDescriptor].
         #[method(setScriptErrorOffendingObjectDescriptor:)]
         pub unsafe fn setScriptErrorOffendingObjectDescriptor(
             &self,
@@ -130,6 +135,7 @@ extern_methods!(
         ) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
+        /// Setter for [`scriptErrorExpectedTypeDescriptor`][Self::scriptErrorExpectedTypeDescriptor].
         #[method(setScriptErrorExpectedTypeDescriptor:)]
         pub unsafe fn setScriptErrorExpectedTypeDescriptor(
             &self,
@@ -141,6 +147,7 @@ extern_methods!(
         pub unsafe fn scriptErrorString(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`scriptErrorString`][Self::scriptErrorString].
         #[method(setScriptErrorString:)]
         pub unsafe fn setScriptErrorString(&self, script_error_string: Option<&NSString>);
 

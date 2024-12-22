@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureslider?language=objc)
+    /// An `AVCaptureControl` for selecting a value from a bounded range of values.
+    ///
+    ///
+    /// `AVCaptureSlider` is ideal when your control only needs a single float value. Controls may be added to an `AVCaptureSession` using `-[AVCaptureSession addControl:]`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureslider?language=objc)
     #[unsafe(super(AVCaptureControl, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureControl")]
@@ -21,6 +26,21 @@ unsafe impl NSObjectProtocol for AVCaptureSlider {}
 extern_methods!(
     #[cfg(feature = "AVCaptureControl")]
     unsafe impl AVCaptureSlider {
+        /// Initializes an `AVCaptureSlider` as a continuous slider between `minValue` and `maxValue`.
+        ///
+        ///
+        /// Parameter `localizedTitle`: A localized string that describes the slider's `action`.
+        ///
+        /// Parameter `symbolName`: The name of a symbol to represent the slider.
+        ///
+        /// Parameter `minValue`: The minimum value the slider can have. `minValue` must be less than `maxValue`, otherwise an `NSInvalidArgumentException` is thrown.
+        ///
+        /// Parameter `maxValue`: The maximum value the slider can have. `maxValue` must be greater than `minValue`, otherwise an `NSInvalidArgumentException` is thrown.
+        ///
+        /// Returns: An `AVCaptureSlider` instance as a continuous slider between `minValue` and `maxValue`.
+        ///
+        ///
+        /// Continuous sliders are used when any value in the range `minValue...maxValue` is supported.
         #[method_id(@__retain_semantics Init initWithLocalizedTitle:symbolName:minValue:maxValue:)]
         pub unsafe fn initWithLocalizedTitle_symbolName_minValue_maxValue(
             this: Allocated<Self>,
@@ -30,6 +50,23 @@ extern_methods!(
             max_value: c_float,
         ) -> Retained<Self>;
 
+        /// Initializes an `AVCaptureSlider` as a discrete slider where the valid values are between `minValue` and `maxValue` with `step` distance between each value.
+        ///
+        ///
+        /// Parameter `localizedTitle`: A localized string that describes the slider's `action`.
+        ///
+        /// Parameter `symbolName`: The name of a symbol to represent the slider.
+        ///
+        /// Parameter `minValue`: The minimum value the slider can have. `minValue` must be less than `maxValue`, otherwise an `NSInvalidArgumentException` is thrown.
+        ///
+        /// Parameter `maxValue`: The maximum value the slider can have. `maxValue` must be greater than `minValue`, otherwise an `NSInvalidArgumentException` is thrown.
+        ///
+        /// Parameter `step`: The distance between each valid value. `step` must be greater than 0, otherwise an `NSInvalidArgumentException` is thrown.
+        ///
+        /// Returns: An `AVCaptureSlider` instance as a discrete slider where the valid values are between `minValue` and `maxValue` with `step` distance between each value.
+        ///
+        ///
+        /// Discrete sliders are used when only specific values are valid.
         #[method_id(@__retain_semantics Init initWithLocalizedTitle:symbolName:minValue:maxValue:step:)]
         pub unsafe fn initWithLocalizedTitle_symbolName_minValue_maxValue_step(
             this: Allocated<Self>,
@@ -40,6 +77,19 @@ extern_methods!(
             step: c_float,
         ) -> Retained<Self>;
 
+        /// Initializes an `AVCaptureSlider` as a discrete slider where `values` contains the valid values.
+        ///
+        ///
+        /// Parameter `localizedTitle`: A localized string that describes the slider's `action`.
+        ///
+        /// Parameter `symbolName`: The name of a symbol to represent the slider.
+        ///
+        /// Parameter `values`: The only values the slider can have.
+        ///
+        /// Returns: An `AVCaptureSlider` instance as a discrete slider where `values` contains the valid values.
+        ///
+        ///
+        /// Discrete sliders are used when only specific values are valid.
         #[method_id(@__retain_semantics Init initWithLocalizedTitle:symbolName:values:)]
         pub unsafe fn initWithLocalizedTitle_symbolName_values(
             this: Allocated<Self>,
@@ -48,33 +98,65 @@ extern_methods!(
             values: &NSArray<NSNumber>,
         ) -> Retained<Self>;
 
+        /// The current value of the slider.
+        ///
+        ///
+        /// Because the camera system may be independent from the main thread or `
+        /// MainThreadOnly`, `value` must be changed on `actionQueue` – the queue provided to `setActionQueue:action:`. The default value is the slider's minimum value. A value may only be set if it is within the slider's minimum and maximum values, otherwise an `NSInvalidArgumentException` is thrown.
         #[method(value)]
         pub unsafe fn value(&self) -> c_float;
 
+        /// Setter for [`value`][Self::value].
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: c_float);
 
+        /// A localized string defining the presentation of the slider's value.
+        ///
+        ///
+        /// To modify the presentation of the slider's value, set `localizedValueFormat` to a format string to display the slider's value with any annotation.
+        ///
+        /// The format string may only contain `%
+        /// @
+        /// ` and no other placeholders like `%d`, `%s`, etc. Invalid format strings will result in the value's default presentation.
+        ///
+        /// Examples of valid format strings are:
+        /// - `%
+        /// %
+        /// %` for "40%"
+        /// - `%
+        /// @
+        /// fps` for "60 fps"
+        /// - `+ %
+        /// @
+        /// ` for "+ 20"
         #[method_id(@__retain_semantics Other localizedValueFormat)]
         pub unsafe fn localizedValueFormat(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`localizedValueFormat`][Self::localizedValueFormat].
         #[method(setLocalizedValueFormat:)]
         pub unsafe fn setLocalizedValueFormat(&self, localized_value_format: Option<&NSString>);
 
+        /// Values in this array may receive unique visual representations or behaviors.
         #[method_id(@__retain_semantics Other prominentValues)]
         pub unsafe fn prominentValues(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`prominentValues`][Self::prominentValues].
         #[method(setProminentValues:)]
         pub unsafe fn setProminentValues(&self, prominent_values: &NSArray<NSNumber>);
 
+        /// A localized string that describes the slider's `action`.
         #[method_id(@__retain_semantics Other localizedTitle)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
+        /// The name of a symbol to represent the slider.
         #[method_id(@__retain_semantics Other symbolName)]
         pub unsafe fn symbolName(&self) -> Retained<NSString>;
 
+        /// A string that identifies the slider.
         #[method_id(@__retain_semantics Other accessibilityIdentifier)]
         pub unsafe fn accessibilityIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`accessibilityIdentifier`][Self::accessibilityIdentifier].
         #[method(setAccessibilityIdentifier:)]
         pub unsafe fn setAccessibilityIdentifier(
             &self,

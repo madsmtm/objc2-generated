@@ -72,6 +72,7 @@ extern_methods!(
         pub unsafe fn standardInput(&self) -> Option<Retained<NSFileHandle>>;
 
         #[cfg(feature = "NSFileHandle")]
+        /// Setter for [`standardInput`][Self::standardInput].
         #[method(setStandardInput:)]
         pub unsafe fn setStandardInput(&self, standard_input: Option<&NSFileHandle>);
 
@@ -80,6 +81,7 @@ extern_methods!(
         pub unsafe fn standardOutput(&self) -> Option<Retained<NSFileHandle>>;
 
         #[cfg(feature = "NSFileHandle")]
+        /// Setter for [`standardOutput`][Self::standardOutput].
         #[method(setStandardOutput:)]
         pub unsafe fn setStandardOutput(&self, standard_output: Option<&NSFileHandle>);
 
@@ -88,6 +90,7 @@ extern_methods!(
         pub unsafe fn standardError(&self) -> Option<Retained<NSFileHandle>>;
 
         #[cfg(feature = "NSFileHandle")]
+        /// Setter for [`standardError`][Self::standardError].
         #[method(setStandardError:)]
         pub unsafe fn setStandardError(&self, standard_error: Option<&NSFileHandle>);
 
@@ -207,6 +210,7 @@ extern_methods!(
         pub unsafe fn variables(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Setter for [`variables`][Self::variables].
         #[method(setVariables:)]
         pub unsafe fn setVariables(&self, variables: Option<&NSDictionary<NSString, AnyObject>>);
 

@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSComboButtonStyle(pub NSInteger);
 impl NSComboButtonStyle {
+    /// The button will be split across 2 segments. The leading segment shows `title`, `image`, or both. If `action` is set, it will be performed when the leading segment is clicked. If `action` is `nil`, the leading segment will be disabled. The trailing segment shows a menu indicator. If `menu` is set, clicking the trailing segment will show it. If `menu` is empty, the trailing segment will be disabled.
     #[doc(alias = "NSComboButtonStyleSplit")]
     pub const Split: Self = Self(0);
+    /// The button will be unified in a single segment. If `action` is set, `menu` will appear on click and hold. If `action` is `nil`, then `menu` will appear on click.
     #[doc(alias = "NSComboButtonStyleUnified")]
     pub const Unified: Self = Self(1);
 }
@@ -95,6 +97,15 @@ extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSComboButton {
         #[cfg(feature = "NSMenu")]
+        /// Creates a standard combo button with a title, menu, and primary action.
+        ///
+        /// Parameter `title`: The localized title string that is displayed on the button.
+        ///
+        /// Parameter `menu`: The additional menu to display on the button.
+        ///
+        /// Parameter `target`: The target object that receives primary action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the primary action portion of the control.
         #[method_id(@__retain_semantics Other comboButtonWithTitle:menu:target:action:)]
         pub unsafe fn comboButtonWithTitle_menu_target_action(
             title: &NSString,
@@ -105,6 +116,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSImage", feature = "NSMenu"))]
+        /// Creates a standard combo button with a image, menu, and primary action.
+        ///
+        /// Parameter `image`: The image to display in the body of the button.
+        ///
+        /// Parameter `menu`: The additional menu to display on the button.
+        ///
+        /// Parameter `target`: The target object that receives primary action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the primary action portion of the control.
         #[method_id(@__retain_semantics Other comboButtonWithImage:menu:target:action:)]
         pub unsafe fn comboButtonWithImage_menu_target_action(
             image: &NSImage,
@@ -115,6 +135,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSImage", feature = "NSMenu"))]
+        /// Creates a standard combo button with a title, image, menu, and primary action.
+        ///
+        /// Parameter `title`: The localized title string that is displayed on the button.
+        ///
+        /// Parameter `image`: The image to display in the body of the button.
+        ///
+        /// Parameter `menu`: The additional menu to display on the button.
+        ///
+        /// Parameter `target`: The target object that receives primary action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the primary action portion of the control.
         #[method_id(@__retain_semantics Other comboButtonWithTitle:image:menu:target:action:)]
         pub unsafe fn comboButtonWithTitle_image_menu_target_action(
             title: &NSString,
@@ -125,39 +156,49 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// The title displayed on the control. The default value is an empty string.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "NSImage")]
+        /// The image displayed on the control. The default value is `nil`.
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         #[cfg(feature = "NSCell")]
+        /// The scaling mode applied to fit the button's image within the content area. The default value is `NSImageScaleProportionallyDown`.
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`imageScaling`][Self::imageScaling].
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
         #[cfg(feature = "NSMenu")]
+        /// Overrides behavior of NSResponder menu. This menu is shown when interacting with the button (see NSComboButtonStyle). NSComboButton does not have a context menu. Items in this menu specify their own target and action independent of the primary action that is configured on the control.
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Retained<NSMenu>;
 
         #[cfg(feature = "NSMenu")]
+        /// Setter for [`menu`][Self::menu].
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: &NSMenu);
 
+        /// Specifies the visual presentation and behavior for NSComboButton's primary action and its menu. The default value is `NSComboButtonStyleSplit`.
         #[method(style)]
         pub unsafe fn style(&self) -> NSComboButtonStyle;
 
+        /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: NSComboButtonStyle);
     }

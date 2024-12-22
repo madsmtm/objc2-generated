@@ -109,6 +109,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn EKCalendarChooserDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -118,12 +119,14 @@ extern_methods!(
         #[method(showsDoneButton)]
         pub unsafe fn showsDoneButton(&self) -> bool;
 
+        /// Setter for [`showsDoneButton`][Self::showsDoneButton].
         #[method(setShowsDoneButton:)]
         pub unsafe fn setShowsDoneButton(&self, shows_done_button: bool);
 
         #[method(showsCancelButton)]
         pub unsafe fn showsCancelButton(&self) -> bool;
 
+        /// Setter for [`showsCancelButton`][Self::showsCancelButton].
         #[method(setShowsCancelButton:)]
         pub unsafe fn setShowsCancelButton(&self, shows_cancel_button: bool);
 
@@ -132,6 +135,7 @@ extern_methods!(
         pub unsafe fn selectedCalendars(&self) -> Retained<NSSet<EKCalendar>>;
 
         #[cfg(feature = "objc2-event-kit")]
+        /// Setter for [`selectedCalendars`][Self::selectedCalendars].
         #[method(setSelectedCalendars:)]
         pub unsafe fn setSelectedCalendars(&self, selected_calendars: &NSSet<EKCalendar>);
     }

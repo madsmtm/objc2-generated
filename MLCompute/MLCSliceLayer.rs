@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcslicelayer?language=objc)
+    /// Slice layer is used to slice a given source.
+    ///
+    /// Slicing should not decrease the tensor dimension.
+    /// The start, end and stride vectors must have the same number of dimension as the source tensor.
+    /// Only positive stride is supported.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcslicelayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -21,18 +27,26 @@ unsafe impl NSObjectProtocol for MLCSliceLayer {}
 extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCSliceLayer {
+        /// A vector of length equal to that of source. The element at index i specifies the beginning of slice in dimension i.
         #[deprecated]
         #[method_id(@__retain_semantics Other start)]
         pub unsafe fn start(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// A vector of length equal to that of source. The element at index i specifies the end of slice in dimension i.
         #[deprecated]
         #[method_id(@__retain_semantics Other end)]
         pub unsafe fn end(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// A vector of length equal to that of source. The element at index i specifies the stride of slice in dimension i.
         #[deprecated]
         #[method_id(@__retain_semantics Other stride)]
         pub unsafe fn stride(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// Create a slice layer
+        ///
+        /// Parameter `stride`: If set to nil, it will be set to 1.
+        ///
+        /// Returns: A new layer for slicing tensors.
         #[deprecated]
         #[method_id(@__retain_semantics Other sliceLayerWithStart:end:stride:)]
         pub unsafe fn sliceLayerWithStart_end_stride(

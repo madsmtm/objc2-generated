@@ -173,6 +173,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other recentSearches)]
         pub unsafe fn recentSearches(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`recentSearches`][Self::recentSearches].
         #[method(setRecentSearches:)]
         pub unsafe fn setRecentSearches(&self, recent_searches: &NSArray<NSString>);
 
@@ -181,6 +182,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSSearchFieldRecentsAutosaveName>>;
 
+        /// Setter for [`recentsAutosaveName`][Self::recentsAutosaveName].
         #[method(setRecentsAutosaveName:)]
         pub unsafe fn setRecentsAutosaveName(
             &self,
@@ -192,24 +194,28 @@ extern_methods!(
         pub unsafe fn searchMenuTemplate(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
+        /// Setter for [`searchMenuTemplate`][Self::searchMenuTemplate].
         #[method(setSearchMenuTemplate:)]
         pub unsafe fn setSearchMenuTemplate(&self, search_menu_template: Option<&NSMenu>);
 
         #[method(sendsWholeSearchString)]
         pub unsafe fn sendsWholeSearchString(&self) -> bool;
 
+        /// Setter for [`sendsWholeSearchString`][Self::sendsWholeSearchString].
         #[method(setSendsWholeSearchString:)]
         pub unsafe fn setSendsWholeSearchString(&self, sends_whole_search_string: bool);
 
         #[method(maximumRecents)]
         pub unsafe fn maximumRecents(&self) -> NSInteger;
 
+        /// Setter for [`maximumRecents`][Self::maximumRecents].
         #[method(setMaximumRecents:)]
         pub unsafe fn setMaximumRecents(&self, maximum_recents: NSInteger);
 
         #[method(sendsSearchStringImmediately)]
         pub unsafe fn sendsSearchStringImmediately(&self) -> bool;
 
+        /// Setter for [`sendsSearchStringImmediately`][Self::sendsSearchStringImmediately].
         #[method(setSendsSearchStringImmediately:)]
         pub unsafe fn setSendsSearchStringImmediately(&self, sends_search_string_immediately: bool);
 
@@ -219,6 +225,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSSearchFieldDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -304,6 +311,7 @@ extern_methods!(
         #[method(centersPlaceholder)]
         pub unsafe fn centersPlaceholder(&self) -> bool;
 
+        /// Setter for [`centersPlaceholder`][Self::centersPlaceholder].
         #[deprecated = "The placeholder centering UI design is no longer available. Setting this property is no-op."]
         #[method(setCentersPlaceholder:)]
         pub unsafe fn setCentersPlaceholder(&self, centers_placeholder: bool);

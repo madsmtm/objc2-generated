@@ -11,35 +11,95 @@ use crate::*;
 pub type CTTypesetterRef = *const c_void;
 
 extern "C-unwind" {
+    /// Returns the CFType of the typesetter object
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterGetTypeID() -> CFTypeID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptionallowunboundedlayout?language=objc)
+    /// Allows layout requiring a potentially unbounded amount of work.
+    ///
+    /// Value must be a CFBooleanRef. Default is false for clients linked on or after macOS 10.14 or iOS 12.
+    /// Proper Unicode layout of some text requires unreasonable effort;
+    /// unless this option is set to kCFBooleanTrue such inputs will
+    /// result in CTTypesetterCreateWithAttributedStringAndOptions
+    /// returning NULL.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptionallowunboundedlayout?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTTypesetterOptionAllowUnboundedLayout: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptiondisablebidiprocessing?language=objc)
+    /// Disables bidi processing.
+    ///
+    /// Value must be a CFBooleanRef. Default is false.
+    /// Normally, typesetting applies the Unicode Bidirectional
+    /// Algorithm as described in UAX #9. If a typesetter is created
+    /// with this option set to true, no directional reordering is
+    /// performed and any directional control characters are ignored.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptiondisablebidiprocessing?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTTypesetterOptionDisableBidiProcessing: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptionforcedembeddinglevel?language=objc)
+    /// Specifies the embedding level.
+    ///
+    /// Value must be a CFNumberRef. Default is unset. Normally,
+    /// typesetting applies the Unicode Bidirectional Algorithm as
+    /// described in UAX #9. If present, this specifies the embedding
+    /// level and any directional control characters are ignored.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptionforcedembeddinglevel?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTTypesetterOptionForcedEmbeddingLevel: CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Creates an immutable typesetter object using an attributed
+    /// string.
+    ///
+    ///
+    /// The resultant typesetter can be used to create lines, perform
+    /// line breaking, and do other contextual analysis based on the
+    /// characters in the string.
+    ///
+    ///
+    /// Parameter `string`: The CFAttributedStringRef that you want to typeset. This
+    /// parameter must be filled in with a valid CFAttributedString.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTTypesetter.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterCreateWithAttributedString(string: CFAttributedStringRef)
         -> CTTypesetterRef;
 }
 
 extern "C-unwind" {
+    /// Creates an immutable typesetter object using an attributed
+    /// string and a dictionary of options.
+    ///
+    ///
+    /// The resultant typesetter can be used to create lines, perform
+    /// line breaking, and do other contextual analysis based on the
+    /// characters in the string.
+    ///
+    ///
+    /// Parameter `string`: The CFAttributedStringRef that you want to typeset. This
+    /// parameter must be filled in with a valid CFAttributedString.
+    ///
+    ///
+    /// Parameter `options`: A CFDictionary of typesetter options, or NULL if there are none.
+    ///
+    ///
+    /// Returns: This function will return either a reference to a CTTypesetter
+    /// or NULL if layout cannot be performed due to an attributed
+    /// string that would require unreasonable effort.
+    ///
+    ///
+    /// See also: kCTTypesetterOptionAllowUnboundedLayout
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterCreateWithAttributedStringAndOptions(
         string: CFAttributedStringRef,
@@ -48,6 +108,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an immutable line from the typesetter.
+    ///
+    ///
+    /// The resultant line will consist of glyphs in the correct visual
+    /// order, ready to draw.
+    ///
+    ///
+    /// Parameter `typesetter`: The typesetter which the line will come from.
+    ///
+    ///
+    /// Parameter `stringRange`: The string range which the line will be based on. If the length
+    /// portion of range is set to 0, then the typesetter will continue
+    /// to add glyphs to the line until it runs out of characters in the
+    /// string. The location and length of the range must be within the
+    /// bounds of the string, otherwise the call will fail.
+    ///
+    ///
+    /// Parameter `offset`: The line position offset.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTLine.
     #[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
     pub fn CTTypesetterCreateLineWithOffset(
         typesetter: CTTypesetterRef,
@@ -57,11 +138,36 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Equivalent to CTTypesetterCreateLineWithOffset with offset = 0.0.
     #[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
     pub fn CTTypesetterCreateLine(typesetter: CTTypesetterRef, string_range: CFRange) -> CTLineRef;
 }
 
 extern "C-unwind" {
+    /// Suggests a contextual line break point based on the width
+    /// provided.
+    ///
+    ///
+    /// The line break can be triggered either by a hard break character
+    /// in the stream or by filling the specified width with characters.
+    ///
+    ///
+    /// Parameter `typesetter`: The typesetter which the line will come from.
+    ///
+    ///
+    /// Parameter `startIndex`: The starting point for the line break calculations. The break
+    /// calculations will include the character starting at startIndex.
+    ///
+    ///
+    /// Parameter `width`: The requested line break width.
+    ///
+    ///
+    /// Parameter `offset`: The line position offset.
+    ///
+    ///
+    /// Returns: The value returned is a count of the characters from startIndex
+    /// that would cause the line break. This value returned can be used
+    /// to construct a character range for CTTypesetterCreateLine.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterSuggestLineBreakWithOffset(
         typesetter: CTTypesetterRef,
@@ -72,6 +178,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Equivalent to CTTypesetterSuggestLineBreakWithOffset with offset = 0.0.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterSuggestLineBreak(
         typesetter: CTTypesetterRef,
@@ -81,6 +188,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Suggests a cluster line break point based on the width provided.
+    ///
+    ///
+    /// Suggests a typographic cluster line break point based on the width
+    /// provided. This cluster break is similar to a character break,
+    /// except that it will not break apart linguistic clusters. No other
+    /// contextual analysis will be done. This can be used by the caller
+    /// to implement a different line breaking scheme, such as
+    /// hyphenation. Note that a typographic cluster break can also be
+    /// triggered by a hard break character in the stream.
+    ///
+    ///
+    /// Parameter `typesetter`: The typesetter which the line will come from.
+    ///
+    ///
+    /// Parameter `startIndex`: The starting point for the typographic cluster break
+    /// calculations. The break calculations will include the character
+    /// starting at startIndex.
+    ///
+    ///
+    /// Parameter `width`: The requested typographic cluster break width.
+    ///
+    ///
+    /// Parameter `offset`: The line position offset.
+    ///
+    ///
+    /// Returns: The value returned is a count of the characters from startIndex
+    /// that would cause the cluster break. This value returned can be
+    /// used to construct a character range for CTTypesetterCreateLine.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterSuggestClusterBreakWithOffset(
         typesetter: CTTypesetterRef,
@@ -91,6 +227,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Equivalent to CTTypesetterSuggestClusterBreakWithOffset with offset = 0.0.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterSuggestClusterBreak(
         typesetter: CTTypesetterRef,

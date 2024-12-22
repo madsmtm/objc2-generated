@@ -94,6 +94,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSTextLayoutManagerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -103,12 +104,14 @@ extern_methods!(
         #[method(usesFontLeading)]
         pub unsafe fn usesFontLeading(&self) -> bool;
 
+        /// Setter for [`usesFontLeading`][Self::usesFontLeading].
         #[method(setUsesFontLeading:)]
         pub unsafe fn setUsesFontLeading(&self, uses_font_leading: bool);
 
         #[method(limitsLayoutForSuspiciousContents)]
         pub unsafe fn limitsLayoutForSuspiciousContents(&self) -> bool;
 
+        /// Setter for [`limitsLayoutForSuspiciousContents`][Self::limitsLayoutForSuspiciousContents].
         #[method(setLimitsLayoutForSuspiciousContents:)]
         pub unsafe fn setLimitsLayoutForSuspiciousContents(
             &self,
@@ -118,6 +121,7 @@ extern_methods!(
         #[method(usesHyphenation)]
         pub unsafe fn usesHyphenation(&self) -> bool;
 
+        /// Setter for [`usesHyphenation`][Self::usesHyphenation].
         #[method(setUsesHyphenation:)]
         pub unsafe fn setUsesHyphenation(&self, uses_hyphenation: bool);
 
@@ -134,6 +138,7 @@ extern_methods!(
         pub unsafe fn textContainer(&self) -> Option<Retained<NSTextContainer>>;
 
         #[cfg(feature = "NSTextContainer")]
+        /// Setter for [`textContainer`][Self::textContainer].
         #[method(setTextContainer:)]
         pub unsafe fn setTextContainer(&self, text_container: Option<&NSTextContainer>);
 
@@ -150,6 +155,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other layoutQueue)]
         pub unsafe fn layoutQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
+        /// Setter for [`layoutQueue`][Self::layoutQueue].
         #[method(setLayoutQueue:)]
         pub unsafe fn setLayoutQueue(&self, layout_queue: Option<&NSOperationQueue>);
 
@@ -197,6 +203,7 @@ extern_methods!(
         pub unsafe fn textSelections(&self) -> Retained<NSArray<NSTextSelection>>;
 
         #[cfg(feature = "NSTextSelection")]
+        /// Setter for [`textSelections`][Self::textSelections].
         #[method(setTextSelections:)]
         pub unsafe fn setTextSelections(&self, text_selections: &NSArray<NSTextSelection>);
 
@@ -205,6 +212,7 @@ extern_methods!(
         pub unsafe fn textSelectionNavigation(&self) -> Retained<NSTextSelectionNavigation>;
 
         #[cfg(feature = "NSTextSelectionNavigation")]
+        /// Setter for [`textSelectionNavigation`][Self::textSelectionNavigation].
         #[method(setTextSelectionNavigation:)]
         pub unsafe fn setTextSelectionNavigation(
             &self,
@@ -263,6 +271,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<NSTextLayoutManager>, NonNull<NSTextLayoutFragment>)>;
 
         #[cfg(all(feature = "NSTextLayoutFragment", feature = "block2"))]
+        /// Setter for [`renderingAttributesValidator`][Self::renderingAttributesValidator].
         #[method(setRenderingAttributesValidator:)]
         pub unsafe fn setRenderingAttributesValidator(
             &self,

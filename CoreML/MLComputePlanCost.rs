@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeplancost?language=objc)
+    /// A class representing the estimated cost of executing a layer/operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeplancost?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLComputePlanCost;
@@ -27,6 +29,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// The estimated workload of executing the operation over the total model execution. The value is between [0.0, 1.0].
         #[method(weight)]
         pub unsafe fn weight(&self) -> c_double;
     }

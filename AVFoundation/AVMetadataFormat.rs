@@ -370,7 +370,11 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataisouserdatakeydate?language=objc)
+    /// ISO User data key for the content creation date/time.
+    ///
+    /// The value is date and time, formatted according to ISO 8601, when the content was created. For clips captured by recording devices, this is typically the date and time when the clip’s recording started. When stored in AV(Mutable)MetadataItem, the value type must be either NSDate or NSString. When NSString is used, the value uses one of ISO 8601 formats such as "2016-01-11T17:31:10Z".
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataisouserdatakeydate?language=objc)
     pub static AVMetadataISOUserDataKeyDate: Option<&'static AVMetadataKey>;
 }
 
@@ -681,7 +685,11 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataquicktimemetadatakeyfullframerateplaybackintent?language=objc)
+    /// A value of type kCMMetadataBaseDataType_UInt8 indicating whether this movie is intended to be played back at the full frame rate (1), or at a slow motion rate (0).
+    ///
+    /// Historically, some apps have played movies recorded at frame rates of 120fps or higher in slow motion by default. With the introduction of this metadata, apps that record high-frame-rate movies may add this movie-level metadata to indicate whether the movie is intended to be played at the full frame rate (1) or at a slow motion rate (0). Apps that play movies may use this metadata, when present, to guide their behavior.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataquicktimemetadatakeyfullframerateplaybackintent?language=objc)
     pub static AVMetadataQuickTimeMetadataKeyFullFrameRatePlaybackIntent:
         Option<&'static AVMetadataKey>;
 }
@@ -1453,16 +1461,29 @@ extern "C" {
 pub type AVMetadataExtraAttributeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataextraattributevalueurikey?language=objc)
+    /// When present in an item's extraAttributes dictionary, identifies the resource to be used as the item's value. Values for this key are of type NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataextraattributevalueurikey?language=objc)
     pub static AVMetadataExtraAttributeValueURIKey: Option<&'static AVMetadataExtraAttributeKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataextraattributebaseurikey?language=objc)
+    /// When present in an item's extraAttributes dictionary, identifies the base URI against which other URIs related to the item are to be resolved, e.g. AVMetadataExtraAttributeValueURIKey. Values for this key are of type NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataextraattributebaseurikey?language=objc)
     pub static AVMetadataExtraAttributeBaseURIKey: Option<&'static AVMetadataExtraAttributeKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataextraattributeinfokey?language=objc)
+    /// More information about the item; specific to the
+    /// item keySpace
+    /// &
+    /// key.
+    ///
+    /// For example, this key is used with the following ID3 tags:
+    /// TXXX, WXXX, APIC, GEOB: carries the Description
+    /// PRIV: carries the Owner Identifier
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataextraattributeinfokey?language=objc)
     pub static AVMetadataExtraAttributeInfoKey: Option<&'static AVMetadataExtraAttributeKey>;
 }

@@ -25,6 +25,7 @@ unsafe impl NSSecureCoding for HKObject {}
 
 extern_methods!(
     unsafe impl HKObject {
+        /// A unique identifier of the receiver in the HealthKit database.
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
@@ -34,13 +35,19 @@ extern_methods!(
         pub unsafe fn source(&self) -> Retained<HKSource>;
 
         #[cfg(feature = "HKSourceRevision")]
+        /// Represents the revision of the source responsible for saving the receiver.
         #[method_id(@__retain_semantics Other sourceRevision)]
         pub unsafe fn sourceRevision(&self) -> Retained<HKSourceRevision>;
 
         #[cfg(feature = "HKDevice")]
+        /// Represents the device that generated the data of the receiver.
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Option<Retained<HKDevice>>;
 
+        /// Extra information describing properties of the receiver.
+        ///
+        /// Keys must be NSString and values must be either NSString, NSNumber, NSDate, or
+        /// HKQuantity. See HKMetadata.h for potential metadata keys and values.
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 

@@ -14,7 +14,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle?language=objc)
+/// No controls pane is associated with the view.
+///
+/// The inline controls pane is associated with the view.
+///
+/// The floating controls pane is associated with the view.
+///
+/// The minimal controls pane is associated with the view.
+///
+/// The default controls pane is associated with the view.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -41,7 +51,9 @@ unsafe impl RefEncode for AVPlayerViewControlsStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerview?language=objc)
+    /// AVPlayerView is a subclass of NSView that can be used to display the visual content of an AVPlayer object and the standard playback controls.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -86,48 +98,65 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
         #[cfg(feature = "objc2-av-foundation")]
+        /// The player from which to source the media content for the view.
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self) -> Option<Retained<AVPlayer>>;
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// Setter for [`player`][Self::player].
         #[method(setPlayer:)]
         pub unsafe fn setPlayer(&self, player: Option<&AVPlayer>);
 
+        /// The style of the playback controls pane currently associated with the view.
+        ///
+        /// After macOS 11, the floating style controls will always be used when presenting in fullscreen and AVPlayerViewControlsStyleNone is not specified.
         #[method(controlsStyle)]
         pub unsafe fn controlsStyle(&self) -> AVPlayerViewControlsStyle;
 
+        /// Setter for [`controlsStyle`][Self::controlsStyle].
         #[method(setControlsStyle:)]
         pub unsafe fn setControlsStyle(&self, controls_style: AVPlayerViewControlsStyle);
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// A string defining how the video is displayed within an AVPlayerLayer bounds rect.
+        ///
+        /// Options are AVLayerVideoGravityResizeAspect, AVLayerVideoGravityResizeAspectFill and AVLayerVideoGravityResize. AVLayerVideoGravityResizeAspect is default.
         #[method_id(@__retain_semantics Other videoGravity)]
         pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// Setter for [`videoGravity`][Self::videoGravity].
         #[method(setVideoGravity:)]
         pub unsafe fn setVideoGravity(&self, video_gravity: &AVLayerVideoGravity);
 
+        /// Boolean indicating that the first video frame has been made ready for display for the current item of the associated AVPlayer.
         #[method(isReadyForDisplay)]
         pub unsafe fn isReadyForDisplay(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The current size and position of the video image as displayed within the receiver's view's bounds.
         #[method(videoBounds)]
         pub unsafe fn videoBounds(&self) -> NSRect;
 
+        /// Use the content overlay view to add additional custom views between the video content and the controls.
         #[method_id(@__retain_semantics Other contentOverlayView)]
         pub unsafe fn contentOverlayView(&self) -> Option<Retained<NSView>>;
 
+        /// Whether or not the now playing info center should be updated. Default is YES.
         #[method(updatesNowPlayingInfoCenter)]
         pub unsafe fn updatesNowPlayingInfoCenter(&self) -> bool;
 
+        /// Setter for [`updatesNowPlayingInfoCenter`][Self::updatesNowPlayingInfoCenter].
         #[method(setUpdatesNowPlayingInfoCenter:)]
         pub unsafe fn setUpdatesNowPlayingInfoCenter(&self, updates_now_playing_info_center: bool);
 
+        /// The receiver's delegate.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn AVPlayerViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -135,53 +164,86 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVPlaybackSpeed")]
+        /// A list of user selectable playback speeds to be shown in the playback speed control.
+        ///
+        /// By default this property will be set to the systemDefaultSpeeds class property. Setting this property to nil will hide the playback speed selection UI.
+        ///
+        /// To set the currently selected playback speed programmatically, either set the defaultRate on the AVPlayer associated with this view controller or use the selectSpeed method on AVPlayerView.
         #[method_id(@__retain_semantics Other speeds)]
         pub unsafe fn speeds(&self) -> Retained<NSArray<AVPlaybackSpeed>>;
 
         #[cfg(feature = "AVPlaybackSpeed")]
+        /// Setter for [`speeds`][Self::speeds].
         #[method(setSpeeds:)]
         pub unsafe fn setSpeeds(&self, speeds: &NSArray<AVPlaybackSpeed>);
 
         #[cfg(feature = "AVPlaybackSpeed")]
+        /// The currently selected playback speed.
+        ///
+        /// Changes to the associated AVPlayer's defaultRate will be reflected in this property and vice versa. If the associated AVPlayer's defaultRate is set to a value that does not match a speed in the speeds list property, the selected speed will be nil.
         #[method_id(@__retain_semantics Other selectedSpeed)]
         pub unsafe fn selectedSpeed(&self) -> Option<Retained<AVPlaybackSpeed>>;
 
         #[cfg(feature = "AVPlaybackSpeed")]
+        /// Parameter `speed`: The playback speed to select.
+        ///
+        /// Sets the input AVPlaybackSpeed as the selected speed.
+        ///
+        /// Calls to selectSpeed with AVPlaybackSpeeds not contained within the speeds property array will be ignored.
         #[method(selectSpeed:)]
         pub unsafe fn selectSpeed(&self, speed: &AVPlaybackSpeed);
 
+        /// When set to YES, the AVPlayerView will try to find objects, text and people while the media is paused. When an object is found, the user will be able to interact with it selecting and right clicking to present a context menu. Default is YES.
         #[method(allowsVideoFrameAnalysis)]
         pub unsafe fn allowsVideoFrameAnalysis(&self) -> bool;
 
+        /// Setter for [`allowsVideoFrameAnalysis`][Self::allowsVideoFrameAnalysis].
         #[method(setAllowsVideoFrameAnalysis:)]
         pub unsafe fn setAllowsVideoFrameAnalysis(&self, allows_video_frame_analysis: bool);
 
         #[cfg(feature = "AVKitTypes")]
+        /// The types of items AVPlayerView looks for in a paused video frame.
         #[method(videoFrameAnalysisTypes)]
         pub unsafe fn videoFrameAnalysisTypes(&self) -> AVVideoFrameAnalysisType;
 
         #[cfg(feature = "AVKitTypes")]
+        /// Setter for [`videoFrameAnalysisTypes`][Self::videoFrameAnalysisTypes].
         #[method(setVideoFrameAnalysisTypes:)]
         pub unsafe fn setVideoFrameAnalysisTypes(
             &self,
             video_frame_analysis_types: AVVideoFrameAnalysisType,
         );
 
+        /// Whether the magnify gesture will change the video's view magnification.
+        ///
+        /// The default value is NO. This property only effects whether the magnify gesture triggers magnification. A client can still programmatically change magnification even when the value of this is NO. This behavior matches the behavior of NSScrollView.
         #[method(allowsMagnification)]
         pub unsafe fn allowsMagnification(&self) -> bool;
 
+        /// Setter for [`allowsMagnification`][Self::allowsMagnification].
         #[method(setAllowsMagnification:)]
         pub unsafe fn setAllowsMagnification(&self, allows_magnification: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The factor by which the video's view is currently scaled.
+        ///
+        /// The default value is 1.0. The value cannot be smaller than 1.0 or larger 64.0. Nearest neighbor interpolation will be used once the content has been zoomed past a certain factor.
         #[method(magnification)]
         pub unsafe fn magnification(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`magnification`][Self::magnification].
         #[method(setMagnification:)]
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Scales the video's view by a specified factor and centers the result on a specified point.
+        ///
+        /// Parameter `magnification`: The factor by which to scale the video's view.
+        ///
+        /// Parameter `point`: The point (in view space) on which to center magnification.
+        ///
+        /// The magnification cannot be smaller than 1.0 or larger 64.0. Nearest neighbor interpolation will be used once the content has been zoomed past a certain factor.
         #[method(setMagnification:centeredAtPoint:)]
         pub unsafe fn setMagnification_centeredAtPoint(
             &self,
@@ -233,39 +295,53 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
+        /// Replace scanning controls in the playback UI with frame stepping buttons. Default is NO.
         #[method(showsFrameSteppingButtons)]
         pub unsafe fn showsFrameSteppingButtons(&self) -> bool;
 
+        /// Setter for [`showsFrameSteppingButtons`][Self::showsFrameSteppingButtons].
         #[method(setShowsFrameSteppingButtons:)]
         pub unsafe fn setShowsFrameSteppingButtons(&self, shows_frame_stepping_buttons: bool);
 
+        /// Whether or not the controls pane will show a sharing service button when the current player item can be shared. Default is NO.
         #[method(showsSharingServiceButton)]
         pub unsafe fn showsSharingServiceButton(&self) -> bool;
 
+        /// Setter for [`showsSharingServiceButton`][Self::showsSharingServiceButton].
         #[method(setShowsSharingServiceButton:)]
         pub unsafe fn setShowsSharingServiceButton(&self, shows_sharing_service_button: bool);
 
+        /// Clients can set this property in order to show an action pop up button. Default is nil.
         #[method_id(@__retain_semantics Other actionPopUpButtonMenu)]
         pub unsafe fn actionPopUpButtonMenu(&self) -> Option<Retained<NSMenu>>;
 
+        /// Setter for [`actionPopUpButtonMenu`][Self::actionPopUpButtonMenu].
         #[method(setActionPopUpButtonMenu:)]
         pub unsafe fn setActionPopUpButtonMenu(&self, action_pop_up_button_menu: Option<&NSMenu>);
 
+        /// Whether or not the controls pane will show a full screen toggle button. Default is NO.
         #[method(showsFullScreenToggleButton)]
         pub unsafe fn showsFullScreenToggleButton(&self) -> bool;
 
+        /// Setter for [`showsFullScreenToggleButton`][Self::showsFullScreenToggleButton].
         #[method(setShowsFullScreenToggleButton:)]
         pub unsafe fn setShowsFullScreenToggleButton(&self, shows_full_screen_toggle_button: bool);
 
+        /// If timecodes are available, allow the AVPlayerView controls to enter timecode mode. Default is NO.
         #[method(showsTimecodes)]
         pub unsafe fn showsTimecodes(&self) -> bool;
 
+        /// Setter for [`showsTimecodes`][Self::showsTimecodes].
         #[method(setShowsTimecodes:)]
         pub unsafe fn setShowsTimecodes(&self, shows_timecodes: bool);
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewtrimresult?language=objc)
+/// The user selected the Trim button.
+///
+/// The user selected the Cancel button.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewtrimresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -288,10 +364,14 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
+        /// Whether or not the current media can be trimmed.
         #[method(canBeginTrimming)]
         pub unsafe fn canBeginTrimming(&self) -> bool;
 
         #[cfg(feature = "block2")]
+        /// Parameter `handler`: A completion handler that is executed when the user selects either the Trim or Cancel button in the trimming UI.
+        ///
+        /// Sets the controls panel into trimming mode and blocks until the user selects either the Trim or the Cancel button.
         #[method(beginTrimmingWithCompletionHandler:)]
         pub unsafe fn beginTrimmingWithCompletionHandler(
             &self,
@@ -305,6 +385,11 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
+        /// Parameter `chapterNumber`: The chapter number (required).
+        ///
+        /// Parameter `chapterTitle`: The chapter title (optional).
+        ///
+        /// Display the provided chapter number and title momentarily.
         #[method(flashChapterNumber:chapterTitle:)]
         pub unsafe fn flashChapterNumber_chapterTitle(
             &self,
@@ -319,21 +404,25 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
+        /// Whether or not the receiver allows Picture in Picture playback. Default is NO.
         #[method(allowsPictureInPicturePlayback)]
         pub unsafe fn allowsPictureInPicturePlayback(&self) -> bool;
 
+        /// Setter for [`allowsPictureInPicturePlayback`][Self::allowsPictureInPicturePlayback].
         #[method(setAllowsPictureInPicturePlayback:)]
         pub unsafe fn setAllowsPictureInPicturePlayback(
             &self,
             allows_picture_in_picture_playback: bool,
         );
 
+        /// A delegate for customizing Picture in Picture playback experience.
         #[method_id(@__retain_semantics Other pictureInPictureDelegate)]
         pub unsafe fn pictureInPictureDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerViewPictureInPictureDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`pictureInPictureDelegate`][Self::pictureInPictureDelegate].
         #[method(setPictureInPictureDelegate:)]
         pub unsafe fn setPictureInPictureDelegate(
             &self,
@@ -345,34 +434,53 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewdelegate?language=objc)
+    /// A protocol for delegates of AVPlayerView.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewdelegate?language=objc)
     pub unsafe trait AVPlayerViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Parameter `playerView`: The player view.
+        ///
+        /// The delegate can implement this method to be notified when the AVPlayerView will enter full screen.
         #[optional]
         #[method(playerViewWillEnterFullScreen:)]
         unsafe fn playerViewWillEnterFullScreen(&self, player_view: &AVPlayerView);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Parameter `playerView`: The player view.
+        ///
+        /// The delegate can implement this method to be notified when the AVPlayerView did enter full screen.
         #[optional]
         #[method(playerViewDidEnterFullScreen:)]
         unsafe fn playerViewDidEnterFullScreen(&self, player_view: &AVPlayerView);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Parameter `playerView`: The player view.
+        ///
+        /// The delegate can implement this method to be notified when the AVPlayerView will exit full screen.
         #[optional]
         #[method(playerViewWillExitFullScreen:)]
         unsafe fn playerViewWillExitFullScreen(&self, player_view: &AVPlayerView);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Parameter `playerView`: The player view.
+        ///
+        /// The delegate can implement this method to be notified when the AVPlayerView did exit full screen.
         #[optional]
         #[method(playerViewDidExitFullScreen:)]
         unsafe fn playerViewDidExitFullScreen(&self, player_view: &AVPlayerView);
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Parameter `playerView`: The player view.
+        ///
+        /// Parameter `completionHandler`: The completion handler the delegate must call after restoring the interface for an exit full screen transition.
+        ///
+        /// The delegate can implement this method to restore the user interface before exiting fullscreen.
         #[optional]
         #[method(playerView:restoreUserInterfaceForFullScreenExitWithCompletionHandler:)]
         unsafe fn playerView_restoreUserInterfaceForFullScreenExitWithCompletionHandler(
@@ -390,18 +498,29 @@ extern_protocol!(
     pub unsafe trait AVPlayerViewPictureInPictureDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Parameter `playerView`: The player view.
+        ///
+        /// Delegate can implement this method to be notified when Picture in Picture will start.
         #[optional]
         #[method(playerViewWillStartPictureInPicture:)]
         unsafe fn playerViewWillStartPictureInPicture(&self, player_view: &AVPlayerView);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Parameter `playerView`: The player view.
+        ///
+        /// Delegate can implement this method to be notified when Picture in Picture did start.
         #[optional]
         #[method(playerViewDidStartPictureInPicture:)]
         unsafe fn playerViewDidStartPictureInPicture(&self, player_view: &AVPlayerView);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Parameter `playerView`: The player view.
+        ///
+        /// Parameter `error`: An error describing why it failed.
+        ///
+        /// Delegate can implement this method to be notified when Picture in Picture failed to start.
         #[optional]
         #[method(playerView:failedToStartPictureInPictureWithError:)]
         unsafe fn playerView_failedToStartPictureInPictureWithError(
@@ -412,18 +531,29 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Parameter `playerView`: The player view.
+        ///
+        /// Delegate can implement this method to be notified when Picture in Picture will stop.
         #[optional]
         #[method(playerViewWillStopPictureInPicture:)]
         unsafe fn playerViewWillStopPictureInPicture(&self, player_view: &AVPlayerView);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Parameter `playerView`: The player view.
+        ///
+        /// Delegate can implement this method to be notified when Picture in Picture did stop.
         #[optional]
         #[method(playerViewDidStopPictureInPicture:)]
         unsafe fn playerViewDidStopPictureInPicture(&self, player_view: &AVPlayerView);
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Parameter `playerView`: The player view.
+        ///
+        /// Parameter `completionHandler`: The completion handler the delegate needs to call after restore.
+        ///
+        /// Delegate can implement this method to restore the user interface before Picture in Picture stops.
         #[optional]
         #[method(playerView:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:)]
         unsafe fn playerView_restoreUserInterfaceForPictureInPictureStopWithCompletionHandler(
@@ -434,6 +564,9 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Parameter `playerView`: The player view.
+        ///
+        /// Delegate can implement this method and return NO to prevent player view from automatically being miniaturized or losing focus when Picture in Picture starts.
         #[optional]
         #[method(playerViewShouldAutomaticallyDismissAtPictureInPictureStart:)]
         unsafe fn playerViewShouldAutomaticallyDismissAtPictureInPictureStart(

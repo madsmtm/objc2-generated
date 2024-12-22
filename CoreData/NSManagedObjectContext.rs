@@ -156,6 +156,7 @@ extern_methods!(
         ) -> Option<Retained<NSPersistentStoreCoordinator>>;
 
         #[cfg(feature = "NSPersistentStoreCoordinator")]
+        /// Setter for [`persistentStoreCoordinator`][Self::persistentStoreCoordinator].
         #[method(setPersistentStoreCoordinator:)]
         pub unsafe fn setPersistentStoreCoordinator(
             &self,
@@ -165,18 +166,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other parentContext)]
         pub unsafe fn parentContext(&self) -> Option<Retained<NSManagedObjectContext>>;
 
+        /// Setter for [`parentContext`][Self::parentContext].
         #[method(setParentContext:)]
         pub unsafe fn setParentContext(&self, parent_context: Option<&NSManagedObjectContext>);
 
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other undoManager)]
         pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
+        /// Setter for [`undoManager`][Self::undoManager].
         #[method(setUndoManager:)]
         pub unsafe fn setUndoManager(&self, undo_manager: Option<&NSUndoManager>);
 
@@ -312,6 +316,7 @@ extern_methods!(
         #[method(propagatesDeletesAtEndOfEvent)]
         pub unsafe fn propagatesDeletesAtEndOfEvent(&self) -> bool;
 
+        /// Setter for [`propagatesDeletesAtEndOfEvent`][Self::propagatesDeletesAtEndOfEvent].
         #[method(setPropagatesDeletesAtEndOfEvent:)]
         pub unsafe fn setPropagatesDeletesAtEndOfEvent(
             &self,
@@ -321,12 +326,14 @@ extern_methods!(
         #[method(retainsRegisteredObjects)]
         pub unsafe fn retainsRegisteredObjects(&self) -> bool;
 
+        /// Setter for [`retainsRegisteredObjects`][Self::retainsRegisteredObjects].
         #[method(setRetainsRegisteredObjects:)]
         pub unsafe fn setRetainsRegisteredObjects(&self, retains_registered_objects: bool);
 
         #[method(shouldDeleteInaccessibleFaults)]
         pub unsafe fn shouldDeleteInaccessibleFaults(&self) -> bool;
 
+        /// Setter for [`shouldDeleteInaccessibleFaults`][Self::shouldDeleteInaccessibleFaults].
         #[method(setShouldDeleteInaccessibleFaults:)]
         pub unsafe fn setShouldDeleteInaccessibleFaults(
             &self,
@@ -349,12 +356,14 @@ extern_methods!(
         #[method(stalenessInterval)]
         pub unsafe fn stalenessInterval(&self) -> NSTimeInterval;
 
+        /// Setter for [`stalenessInterval`][Self::stalenessInterval].
         #[method(setStalenessInterval:)]
         pub unsafe fn setStalenessInterval(&self, staleness_interval: NSTimeInterval);
 
         #[method_id(@__retain_semantics Other mergePolicy)]
         pub unsafe fn mergePolicy(&self) -> Retained<AnyObject>;
 
+        /// Setter for [`mergePolicy`][Self::mergePolicy].
         #[method(setMergePolicy:)]
         pub unsafe fn setMergePolicy(&self, merge_policy: &AnyObject);
 
@@ -391,6 +400,7 @@ extern_methods!(
         #[method(automaticallyMergesChangesFromParent)]
         pub unsafe fn automaticallyMergesChangesFromParent(&self) -> bool;
 
+        /// Setter for [`automaticallyMergesChangesFromParent`][Self::automaticallyMergesChangesFromParent].
         #[method(setAutomaticallyMergesChangesFromParent:)]
         pub unsafe fn setAutomaticallyMergesChangesFromParent(
             &self,
@@ -400,6 +410,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other transactionAuthor)]
         pub unsafe fn transactionAuthor(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`transactionAuthor`][Self::transactionAuthor].
         #[method(setTransactionAuthor:)]
         pub unsafe fn setTransactionAuthor(&self, transaction_author: Option<&NSString>);
     }

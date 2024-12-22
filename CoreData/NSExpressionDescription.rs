@@ -35,6 +35,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other expression)]
         pub unsafe fn expression(&self) -> Option<Retained<NSExpression>>;
 
+        /// Setter for [`expression`][Self::expression].
         #[method(setExpression:)]
         pub unsafe fn setExpression(&self, expression: Option<&NSExpression>);
 
@@ -43,6 +44,7 @@ extern_methods!(
         pub unsafe fn expressionResultType(&self) -> NSAttributeType;
 
         #[cfg(feature = "NSAttributeDescription")]
+        /// Setter for [`expressionResultType`][Self::expressionResultType].
         #[method(setExpressionResultType:)]
         pub unsafe fn setExpressionResultType(&self, expression_result_type: NSAttributeType);
     }

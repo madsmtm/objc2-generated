@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcreductionlayer?language=objc)
+    /// Reduce tensor values across a given dimension to a scalar value.
+    ///
+    /// The layer is used to perform reductionType operation on a given dimension.
+    /// Result of this layer is a tensor of the same shape as source tensor,
+    /// except for the given dimension which is set to 1.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcreductionlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -22,18 +28,28 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCReductionLayer {
         #[cfg(feature = "MLCTypes")]
+        /// The reduction type
         #[deprecated]
         #[method(reductionType)]
         pub unsafe fn reductionType(&self) -> MLCReductionType;
 
+        /// The dimension over which to perform the reduction operation
         #[deprecated]
         #[method(dimension)]
         pub unsafe fn dimension(&self) -> NSUInteger;
 
+        /// The dimensions over which to perform the reduction operation
         #[method_id(@__retain_semantics Other dimensions)]
         pub unsafe fn dimensions(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a reduction layer.
+        ///
+        /// Parameter `reductionType`: The reduction type.
+        ///
+        /// Parameter `dimension`: The reduction dimension.
+        ///
+        /// Returns: A new reduction layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithReductionType:dimension:)]
         pub unsafe fn layerWithReductionType_dimension(
@@ -42,6 +58,13 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a reduction layer.
+        ///
+        /// Parameter `reductionType`: The reduction type.
+        ///
+        /// Parameter `dimensions`: The list of dimensions to reduce over
+        ///
+        /// Returns: A new reduction layer.
         #[method_id(@__retain_semantics Other layerWithReductionType:dimensions:)]
         pub unsafe fn layerWithReductionType_dimensions(
             reduction_type: MLCReductionType,

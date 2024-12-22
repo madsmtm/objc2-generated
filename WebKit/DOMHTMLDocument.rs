@@ -85,12 +85,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dir)]
         pub unsafe fn dir(&self) -> Retained<NSString>;
 
+        /// Setter for [`dir`][Self::dir].
         #[method(setDir:)]
         pub unsafe fn setDir(&self, dir: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other designMode)]
         pub unsafe fn designMode(&self) -> Retained<NSString>;
 
+        /// Setter for [`designMode`][Self::designMode].
         #[method(setDesignMode:)]
         pub unsafe fn setDesignMode(&self, design_mode: Option<&NSString>);
 
@@ -100,30 +102,35 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bgColor)]
         pub unsafe fn bgColor(&self) -> Retained<NSString>;
 
+        /// Setter for [`bgColor`][Self::bgColor].
         #[method(setBgColor:)]
         pub unsafe fn setBgColor(&self, bg_color: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other fgColor)]
         pub unsafe fn fgColor(&self) -> Retained<NSString>;
 
+        /// Setter for [`fgColor`][Self::fgColor].
         #[method(setFgColor:)]
         pub unsafe fn setFgColor(&self, fg_color: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other alinkColor)]
         pub unsafe fn alinkColor(&self) -> Retained<NSString>;
 
+        /// Setter for [`alinkColor`][Self::alinkColor].
         #[method(setAlinkColor:)]
         pub unsafe fn setAlinkColor(&self, alink_color: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other linkColor)]
         pub unsafe fn linkColor(&self) -> Retained<NSString>;
 
+        /// Setter for [`linkColor`][Self::linkColor].
         #[method(setLinkColor:)]
         pub unsafe fn setLinkColor(&self, link_color: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other vlinkColor)]
         pub unsafe fn vlinkColor(&self) -> Retained<NSString>;
 
+        /// Setter for [`vlinkColor`][Self::vlinkColor].
         #[method(setVlinkColor:)]
         pub unsafe fn setVlinkColor(&self, vlink_color: Option<&NSString>);
 

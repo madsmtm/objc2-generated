@@ -52,11 +52,15 @@ unsafe impl RefEncode for _MTLPackedFloat4x3 {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpackedfloat4x3?language=objc)
 pub type MTLPackedFloat4x3 = _MTLPackedFloat4x3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/_mtlaxisalignedboundingbox?language=objc)
+/// An axis aligned bounding box with a min and max point
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/_mtlaxisalignedboundingbox?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _MTLAxisAlignedBoundingBox {
+    /// Minimum point
     pub min: MTLPackedFloat3,
+    /// Maximum point
     pub max: MTLPackedFloat3,
 }
 
@@ -71,17 +75,31 @@ unsafe impl RefEncode for _MTLAxisAlignedBoundingBox {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaxisalignedboundingbox?language=objc)
+/// An axis aligned bounding box with a min and max point
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaxisalignedboundingbox?language=objc)
 pub type MTLAxisAlignedBoundingBox = _MTLAxisAlignedBoundingBox;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomponenttransform?language=objc)
+/// A transformation represented by individual components such as translation and
+/// rotation. The rotation is represented by a quaternion, allowing for correct motion
+/// interpolation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomponenttransform?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLComponentTransform {
+    /// The scale of the instance applied before rotation alongside shear and pivot
     pub scale: MTLPackedFloat3,
+    /// The shear of the instance applied before rotation alongside scale and pivot
     pub shear: MTLPackedFloat3,
+    /// Translation applied before rotation alongside scale and shear. Allows
+    /// rotation to pivot around a point.
     pub pivot: MTLPackedFloat3,
+    /// The rotation of the instance as a normalized quaternion. Applied after scale,
+    /// shear, and pivot and before translation
     pub rotation: MTLPackedFloatQuaternion,
+    /// The translation of the instance. Applied after rotation. Typically contains
+    /// the composition of object translation and the inverse of the pivot translation.
     pub translation: MTLPackedFloat3,
 }
 

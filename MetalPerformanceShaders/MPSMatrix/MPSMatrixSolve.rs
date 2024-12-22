@@ -9,7 +9,24 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsolvetriangular?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// A kernel for computing the solution of a linear system of
+    /// equations using a triangular coefficient matrix.
+    ///
+    ///
+    /// A MPSMatrixSolveTriangular finds the solution matrix to the
+    /// triangular system:
+    ///
+    /// op(A) * X = alpha * B    or    X * op(A) = alpha * B
+    ///
+    /// Where A is either upper or lower triangular and op(A) is A**T
+    /// or A.  B is the array of right hand sides for which the
+    /// equations are to be solved.  X is the resulting matrix of
+    /// solutions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsolvetriangular?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -36,6 +53,54 @@ unsafe impl NSSecureCoding for MPSMatrixSolveTriangular {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveTriangular {
+        /// Initialize an MPSMatrixSolveTriangular object on a device
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        ///
+        /// Parameter `right`: A boolean value which indicates if the
+        /// coefficient matrix is multiplied on the left
+        /// or right side of the solution.  NO indicates
+        /// the multiplication is on the left.
+        ///
+        ///
+        /// Parameter `upper`: A boolean value which indicates if the source
+        /// is lower or upper triangular.  NO indicates
+        /// that the coefficient matrix is lower triangular.
+        ///
+        ///
+        /// Parameter `transpose`: A boolean value which indicates if the source
+        /// matrix should be used in transposed form.  NO
+        /// indicates that the coefficient matrix is to be
+        /// used normally.
+        ///
+        ///
+        /// Parameter `unit`: A boolean value which indicates if the source
+        /// matrix is unit triangular.
+        ///
+        ///
+        /// Parameter `order`: The order of the source matrix and, if
+        /// right == NO, the number of rows in the solution
+        /// and right hand side matrices.  If right == YES
+        /// the number of columns in the solution and right
+        /// hand side matrices.
+        ///
+        ///
+        /// Parameter `numberOfRightHandSides`: If right == NO, the number of columns in the
+        /// solution and right hand side matrices.  The
+        /// number of rows otherwise.
+        ///
+        ///
+        /// Parameter `alpha`: A double precision value used to scale the right
+        /// hand sides.
+        ///
+        ///
+        /// This function initializes a MPSMatrixSolveTriangular object.  It
+        /// may allocate device side memory.
+        ///
+        ///
+        /// Returns: A valid MPSMatrixSolveTriangular object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:right:upper:transpose:unit:order:numberOfRightHandSides:alpha:)]
         pub unsafe fn initWithDevice_right_upper_transpose_unit_order_numberOfRightHandSides_alpha(
             this: Allocated<Self>,
@@ -50,6 +115,33 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a MPSMatrixSolveTriangular kernel into a command Buffer.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the
+        /// encoded filter
+        ///
+        ///
+        /// Parameter `sourceMatrix`: A valid MPSMatrix containing the source
+        /// matrix.
+        ///
+        ///
+        /// Parameter `rightHandSideMatrix`: A valid MPSMatrix containing the right hand
+        /// side values.
+        ///
+        ///
+        /// Parameter `solutionMatrix`: A valid MPSMatrix to contain the result.
+        ///
+        ///
+        /// This function encodes the MPSMatrixSolveTriangular object to a
+        /// valid command buffer.
+        ///
+        /// rightHandSideMatrix and solutionMatrix must be large enough to
+        /// hold at least order * numberOfRightHandSides values starting at
+        /// secondarySourceMatrixOrigin and resultMatrixOrigin respectively.
+        ///
+        /// sourceMatrix must be at least size order x order starting at
+        /// primarySourceMatrixOrigin.
         #[method(encodeToCommandBuffer:sourceMatrix:rightHandSideMatrix:solutionMatrix:)]
         pub unsafe fn encodeToCommandBuffer_sourceMatrix_rightHandSideMatrix_solutionMatrix(
             &self,
@@ -65,18 +157,46 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveTriangular {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: a pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -99,7 +219,22 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsolvelu?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// A kernel for computing the solution of a linear system of equations
+    /// using the LU factorization resulting from a MPSMatrixDecompositionLU
+    /// kernel.
+    ///
+    ///
+    /// A MPSMatrixSolveLU finds the solution matrix to the system:
+    ///
+    /// op(A) * X = B
+    ///
+    /// Where op(A) is A**T or A.  B is the array of right hand sides for which
+    /// the equations are to be solved.  X is the resulting matrix of solutions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsolvelu?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -126,6 +261,25 @@ unsafe impl NSSecureCoding for MPSMatrixSolveLU {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveLU {
+        /// Initialize an MPSMatrixSolveLU object on a device
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        ///
+        /// Parameter `transpose`: A boolean value which indicates if the source
+        /// matrix should be used in transposed form.
+        ///
+        ///
+        /// Parameter `order`: The order of the source matrix and the number of
+        /// rows in the solution and right hand side matrices.
+        ///
+        ///
+        /// Parameter `numberOfRightHandSides`: The number of columns in the solution and right hand side
+        /// matrices.
+        ///
+        ///
+        /// Returns: A valid MPSMatrixSolveLU object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:transpose:order:numberOfRightHandSides:)]
         pub unsafe fn initWithDevice_transpose_order_numberOfRightHandSides(
             this: Allocated<Self>,
@@ -136,6 +290,40 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a MPSMatrixSolveLU kernel into a command Buffer.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        ///
+        /// Parameter `sourceMatrix`: A valid MPSMatrix containing the source matrix in factored
+        /// form as returned by a previous successful execution of a
+        /// MPSMatrixDecompositionLU kernel.
+        ///
+        ///
+        /// Parameter `rightHandSideMatrix`: A valid MPSMatrix containing the right hand side values.
+        ///
+        ///
+        /// Parameter `pivotIndices`: A valid MPSMatrix which contains the pivot indices as returned by
+        /// a previous successful execution of a MPSMatrixDecompositionLU
+        /// kernel.
+        ///
+        ///
+        /// Parameter `solutionMatrix`: A valid MPSMatrix to contain the result.
+        ///
+        ///
+        /// This function encodes the MPSMatrixSolveLU object to a valid command buffer.
+        /// sourceMatrix should contain the lower and upper triangular factors of A as
+        /// results from a previous execution of MPSMatrixDecompositionLU.
+        ///
+        /// pivotIndices is an array of pivots resulting from a previous execution of
+        /// MPSMatrixDecompositionLU.
+        ///
+        /// rightHandSideMatrix and solutionMatrix must be large enough to hold a matrix
+        /// of size order x numberOfRightHandSides starting at secondarySourceMatrixOrigin and
+        /// resultMatrixOrigin respectively.
+        ///
+        /// sourceMatrix must be at least size order x order starting at primarySourceMatrixOrigin.
         #[method(encodeToCommandBuffer:sourceMatrix:rightHandSideMatrix:pivotIndices:solutionMatrix:)]
         pub unsafe fn encodeToCommandBuffer_sourceMatrix_rightHandSideMatrix_pivotIndices_solutionMatrix(
             &self,
@@ -152,18 +340,46 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveLU {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: a pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -186,7 +402,23 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsolvecholesky?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// A kernel for computing the solution of a linear system of equations
+    /// using the Cholesky factorization resulting from a
+    /// MPSMatrixDecompositionCholesky kernel.
+    ///
+    ///
+    /// A MPSMatrixSolveCholesky finds the solution matrix to the system:
+    ///
+    /// A * X = B
+    ///
+    /// Where A is symmetric positive definite.  B is the array of
+    /// right hand sides for which the equations are to be solved.
+    /// X is the resulting matrix of solutions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsolvecholesky?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -213,6 +445,26 @@ unsafe impl NSSecureCoding for MPSMatrixSolveCholesky {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveCholesky {
+        /// Initialize an MPSMatrixSolveCholesky object on a device
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        ///
+        /// Parameter `upper`: A boolean value which indicates if the source
+        /// matrix stores the lower or upper triangular
+        /// factors.
+        ///
+        ///
+        /// Parameter `order`: The order of the source matrix and the number of
+        /// rows in the solution and right hand side matrices.
+        ///
+        ///
+        /// Parameter `numberOfRightHandSides`: The number of columns in the solution and right hand side
+        /// matrices.
+        ///
+        ///
+        /// Returns: A valid MPSMatrixSolveCholesky object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:upper:order:numberOfRightHandSides:)]
         pub unsafe fn initWithDevice_upper_order_numberOfRightHandSides(
             this: Allocated<Self>,
@@ -223,6 +475,33 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a MPSMatrixSolveCholesky kernel into a command Buffer.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        ///
+        /// Parameter `sourceMatrix`: A valid MPSMatrix containing the source matrix in factored
+        /// form as returned by a previous successful execution of a
+        /// MPSMatrixDecompositionCholesky kernel.
+        ///
+        ///
+        /// Parameter `rightHandSideMatrix`: A valid MPSMatrix containing the right hand side values.
+        ///
+        ///
+        /// Parameter `solutionMatrix`: A valid MPSMatrix to contain the result.
+        ///
+        ///
+        /// This function encodes the MPSMatrixSolveCholesky object to a valid
+        /// command buffer. sourceMatrix should contain either the lower or upper triangular
+        /// factors corresponding to the factorization returned by a previous execution
+        /// of MPSMatrixDecompositionCholesky.
+        ///
+        /// rightHandSideMatrix and solutionMatrix must be large enough to hold a matrix
+        /// of size order x numberOfRightHandSides starting at secondarySourceMatrixOrigin and
+        /// resultMatrixOrigin respectively.
+        ///
+        /// sourceMatrix must be at least size order x order starting at primarySourceMatrixOrigin.
         #[method(encodeToCommandBuffer:sourceMatrix:rightHandSideMatrix:solutionMatrix:)]
         pub unsafe fn encodeToCommandBuffer_sourceMatrix_rightHandSideMatrix_solutionMatrix(
             &self,
@@ -238,18 +517,46 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveCholesky {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: a pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxanimationmetric?language=objc)
+    /// An MXMetric subclass that encapsulates app animation metrics.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxanimationmetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
@@ -26,6 +28,13 @@ unsafe impl NSSecureCoding for MXAnimationMetric {}
 extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAnimationMetric {
+        /// Ratio of time the application spent hitching while scrolling.
+        ///
+        /// Scroll hitches are user perceptible animation issues that occur during scrolling.
+        ///
+        /// This metric only applies to UIScrollViews.
+        ///
+        /// Dimensionless.
         #[method_id(@__retain_semantics Other scrollHitchTimeRatio)]
         pub unsafe fn scrollHitchTimeRatio(&self) -> Retained<NSMeasurement<NSUnit>>;
     }

@@ -23,18 +23,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other topLevelObject)]
         pub unsafe fn topLevelObject(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`topLevelObject`][Self::topLevelObject].
         #[method(setTopLevelObject:)]
         pub unsafe fn setTopLevelObject(&self, top_level_object: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other objectBeingTested)]
         pub unsafe fn objectBeingTested(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`objectBeingTested`][Self::objectBeingTested].
         #[method(setObjectBeingTested:)]
         pub unsafe fn setObjectBeingTested(&self, object_being_tested: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other rangeContainerObject)]
         pub unsafe fn rangeContainerObject(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`rangeContainerObject`][Self::rangeContainerObject].
         #[method(setRangeContainerObject:)]
         pub unsafe fn setRangeContainerObject(&self, range_container_object: Option<&AnyObject>);
     }

@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmemoryballoondeviceconfiguration?language=objc)
+    /// Base class for a memory balloon device configuration.
+    ///
+    /// VZMemoryBalloonDeviceConfiguration should not be instantiated directly.
+    /// One of its subclasses like VZVirtioTraditionalMemoryBalloonDeviceConfiguration should be used instead.
+    ///
+    ///
+    /// See: VZVirtioTraditionalMemoryBalloonDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmemoryballoondeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMemoryBalloonDeviceConfiguration;

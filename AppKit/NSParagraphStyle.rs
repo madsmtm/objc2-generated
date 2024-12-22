@@ -259,6 +259,7 @@ extern_methods!(
         pub unsafe fn lineSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`lineSpacing`][Self::lineSpacing].
         #[method(setLineSpacing:)]
         pub unsafe fn setLineSpacing(&self, line_spacing: CGFloat);
 
@@ -267,6 +268,7 @@ extern_methods!(
         pub unsafe fn paragraphSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`paragraphSpacing`][Self::paragraphSpacing].
         #[method(setParagraphSpacing:)]
         pub unsafe fn setParagraphSpacing(&self, paragraph_spacing: CGFloat);
 
@@ -275,6 +277,7 @@ extern_methods!(
         pub unsafe fn firstLineHeadIndent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`firstLineHeadIndent`][Self::firstLineHeadIndent].
         #[method(setFirstLineHeadIndent:)]
         pub unsafe fn setFirstLineHeadIndent(&self, first_line_head_indent: CGFloat);
 
@@ -283,6 +286,7 @@ extern_methods!(
         pub unsafe fn headIndent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`headIndent`][Self::headIndent].
         #[method(setHeadIndent:)]
         pub unsafe fn setHeadIndent(&self, head_indent: CGFloat);
 
@@ -291,12 +295,14 @@ extern_methods!(
         pub unsafe fn tailIndent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`tailIndent`][Self::tailIndent].
         #[method(setTailIndent:)]
         pub unsafe fn setTailIndent(&self, tail_indent: CGFloat);
 
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
+        /// Setter for [`lineBreakMode`][Self::lineBreakMode].
         #[method(setLineBreakMode:)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
@@ -305,6 +311,7 @@ extern_methods!(
         pub unsafe fn minimumLineHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumLineHeight`][Self::minimumLineHeight].
         #[method(setMinimumLineHeight:)]
         pub unsafe fn setMinimumLineHeight(&self, minimum_line_height: CGFloat);
 
@@ -313,6 +320,7 @@ extern_methods!(
         pub unsafe fn maximumLineHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumLineHeight`][Self::maximumLineHeight].
         #[method(setMaximumLineHeight:)]
         pub unsafe fn setMaximumLineHeight(&self, maximum_line_height: CGFloat);
 
@@ -321,6 +329,7 @@ extern_methods!(
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
         #[cfg(feature = "NSText")]
+        /// Setter for [`baseWritingDirection`][Self::baseWritingDirection].
         #[method(setBaseWritingDirection:)]
         pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
@@ -329,6 +338,7 @@ extern_methods!(
         pub unsafe fn lineHeightMultiple(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`lineHeightMultiple`][Self::lineHeightMultiple].
         #[method(setLineHeightMultiple:)]
         pub unsafe fn setLineHeightMultiple(&self, line_height_multiple: CGFloat);
 
@@ -337,24 +347,28 @@ extern_methods!(
         pub unsafe fn paragraphSpacingBefore(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`paragraphSpacingBefore`][Self::paragraphSpacingBefore].
         #[method(setParagraphSpacingBefore:)]
         pub unsafe fn setParagraphSpacingBefore(&self, paragraph_spacing_before: CGFloat);
 
         #[method(hyphenationFactor)]
         pub unsafe fn hyphenationFactor(&self) -> c_float;
 
+        /// Setter for [`hyphenationFactor`][Self::hyphenationFactor].
         #[method(setHyphenationFactor:)]
         pub unsafe fn setHyphenationFactor(&self, hyphenation_factor: c_float);
 
         #[method(usesDefaultHyphenation)]
         pub unsafe fn usesDefaultHyphenation(&self) -> bool;
 
+        /// Setter for [`usesDefaultHyphenation`][Self::usesDefaultHyphenation].
         #[method(setUsesDefaultHyphenation:)]
         pub unsafe fn setUsesDefaultHyphenation(&self, uses_default_hyphenation: bool);
 
         #[method_id(@__retain_semantics Other tabStops)]
         pub unsafe fn tabStops(&self) -> Retained<NSArray<NSTextTab>>;
 
+        /// Setter for [`tabStops`][Self::tabStops].
         #[method(setTabStops:)]
         pub unsafe fn setTabStops(&self, tab_stops: Option<&NSArray<NSTextTab>>);
 
@@ -363,12 +377,14 @@ extern_methods!(
         pub unsafe fn defaultTabInterval(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`defaultTabInterval`][Self::defaultTabInterval].
         #[method(setDefaultTabInterval:)]
         pub unsafe fn setDefaultTabInterval(&self, default_tab_interval: CGFloat);
 
         #[method(allowsDefaultTighteningForTruncation)]
         pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
 
+        /// Setter for [`allowsDefaultTighteningForTruncation`][Self::allowsDefaultTighteningForTruncation].
         #[method(setAllowsDefaultTighteningForTruncation:)]
         pub unsafe fn setAllowsDefaultTighteningForTruncation(
             &self,
@@ -378,6 +394,7 @@ extern_methods!(
         #[method(lineBreakStrategy)]
         pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
 
+        /// Setter for [`lineBreakStrategy`][Self::lineBreakStrategy].
         #[method(setLineBreakStrategy:)]
         pub unsafe fn setLineBreakStrategy(&self, line_break_strategy: NSLineBreakStrategy);
 
@@ -386,6 +403,7 @@ extern_methods!(
         pub unsafe fn textLists(&self) -> Retained<NSArray<NSTextList>>;
 
         #[cfg(feature = "NSTextList")]
+        /// Setter for [`textLists`][Self::textLists].
         #[method(setTextLists:)]
         pub unsafe fn setTextLists(&self, text_lists: &NSArray<NSTextList>);
 
@@ -453,12 +471,14 @@ extern_methods!(
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
         #[cfg(feature = "NSText")]
+        /// Setter for [`alignment`][Self::alignment].
         #[method(setAlignment:)]
         pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
 
         #[method(tighteningFactorForTruncation)]
         pub unsafe fn tighteningFactorForTruncation(&self) -> c_float;
 
+        /// Setter for [`tighteningFactorForTruncation`][Self::tighteningFactorForTruncation].
         #[method(setTighteningFactorForTruncation:)]
         pub unsafe fn setTighteningFactorForTruncation(
             &self,
@@ -470,18 +490,22 @@ extern_methods!(
         pub unsafe fn textBlocks(&self) -> Retained<NSArray<NSTextBlock>>;
 
         #[cfg(feature = "NSTextTable")]
+        /// Setter for [`textBlocks`][Self::textBlocks].
         #[method(setTextBlocks:)]
         pub unsafe fn setTextBlocks(&self, text_blocks: &NSArray<NSTextBlock>);
 
         #[method(headerLevel)]
         pub unsafe fn headerLevel(&self) -> NSInteger;
 
+        /// Setter for [`headerLevel`][Self::headerLevel].
         #[method(setHeaderLevel:)]
         pub unsafe fn setHeaderLevel(&self, header_level: NSInteger);
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttabtype?language=objc)
+/// ********************** Deprecated ***********************
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttabtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

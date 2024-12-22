@@ -11,7 +11,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitmidiinstrument?language=objc)
+    /// Base class for sample synthesizers.
+    ///
+    /// This base class represents audio units of type kAudioUnitType_MusicDevice or kAudioUnitType_RemoteInstrument. This can be used in a chain
+    /// that processes realtime input (live) and has general concept of music events i.e. notes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitmidiinstrument?language=objc)
     #[unsafe(super(AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
@@ -47,18 +52,49 @@ extern_methods!(
     unsafe impl AVAudioUnitMIDIInstrument {
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// initialize the node with the component description
+        ///
+        /// Parameter `description`: audio component description structure that describes the audio component of type kAudioUnitType_MusicDevice
+        /// or kAudioUnitType_RemoteInstrument.
         #[method_id(@__retain_semantics Init initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
             description: AudioComponentDescription,
         ) -> Retained<Self>;
 
+        /// sends a MIDI Note On event to the instrument
+        ///
+        /// Parameter `note`: the note number (key) to play.
+        /// Range: 0 -> 127
+        ///
+        /// Parameter `velocity`: specifies the volume with which the note is played.
+        /// Range: 0 -> 127
+        ///
+        /// Parameter `channel`: the channel number to which the event is sent
+        /// Range: 0 -> 15
         #[method(startNote:withVelocity:onChannel:)]
         pub unsafe fn startNote_withVelocity_onChannel(&self, note: u8, velocity: u8, channel: u8);
 
+        /// sends a MIDI Note Off event to the instrument
+        ///
+        /// Parameter `note`: the note number (key) to stop
+        /// Range: 0 -> 127
+        ///
+        /// Parameter `channel`: the channel number to which the event is sent.
+        /// Range: 0 -> 15
         #[method(stopNote:onChannel:)]
         pub unsafe fn stopNote_onChannel(&self, note: u8, channel: u8);
 
+        /// send a MIDI controller event to the instrument.
+        ///
+        /// Parameter `controller`: a standard MIDI controller number.
+        /// Range: 0 -> 127
+        ///
+        /// Parameter `value`: value for the controller.
+        /// Range: 0 -> 127
+        ///
+        /// Parameter `channel`: the channel number to which the event is sent.
+        /// Range: 0 -> 15
         #[method(sendController:withValue:onChannel:)]
         pub unsafe fn sendController_withValue_onChannel(
             &self,
@@ -67,12 +103,36 @@ extern_methods!(
             channel: u8,
         );
 
+        /// sends MIDI Pitch Bend event to the instrument.
+        ///
+        /// Parameter `pitchbend`: value of the pitchbend
+        /// Range: 0 -> 16383
+        ///
+        /// Parameter `channel`: the channel number to which the event is sent.
+        /// Range: 0 -> 15
         #[method(sendPitchBend:onChannel:)]
         pub unsafe fn sendPitchBend_onChannel(&self, pitchbend: u16, channel: u8);
 
+        /// sends MIDI channel pressure event to the instrument.
+        ///
+        /// Parameter `pressure`: value of the pressure.
+        /// Range: 0 -> 127
+        ///
+        /// Parameter `channel`: the channel number to which the event is sent.
+        /// Range: 0 -> 15
         #[method(sendPressure:onChannel:)]
         pub unsafe fn sendPressure_onChannel(&self, pressure: u8, channel: u8);
 
+        /// sends MIDI Polyphonic key pressure event to the instrument
+        ///
+        /// Parameter `key`: the key (note) number to which the pressure event applies
+        /// Range: 0 -> 127
+        ///
+        /// Parameter `value`: value of the pressure
+        /// Range: 0 -> 127
+        ///
+        /// Parameter `channel`: the channel number to which the event is sent.
+        /// Range: 0 -> 15
         #[method(sendPressureForKey:withValue:onChannel:)]
         pub unsafe fn sendPressureForKey_withValue_onChannel(
             &self,
@@ -81,9 +141,32 @@ extern_methods!(
             channel: u8,
         );
 
+        /// sends MIDI Program Change event to the instrument
+        ///
+        /// Parameter `program`: the program number.
+        /// Range: 0 -> 127
+        ///
+        /// Parameter `channel`: the channel number to which the event is sent.
+        /// Range: 0 -> 15
+        ///
+        /// the instrument will be loaded from the bank that has been previous set by MIDI Bank Select
+        /// controller messages (0 and 31). If none has been set, bank 0 will be used.
         #[method(sendProgramChange:onChannel:)]
         pub unsafe fn sendProgramChange_onChannel(&self, program: u8, channel: u8);
 
+        /// sends a MIDI Program Change and Bank Select events to the instrument
+        ///
+        /// Parameter `program`: specifies the program (preset) number within the bank to load.
+        /// Range: 0 -> 127
+        ///
+        /// Parameter `bankMSB`: specifies the most significant byte value for the bank to select.
+        /// Range: 0 -> 127
+        ///
+        /// Parameter `bankLSB`: specifies the least significant byte value for the bank to select.
+        /// Range: 0 -> 127
+        ///
+        /// Parameter `channel`: the channel number to which the event is sent.
+        /// Range: 0 -> 15
         #[method(sendProgramChange:bankMSB:bankLSB:onChannel:)]
         pub unsafe fn sendProgramChange_bankMSB_bankLSB_onChannel(
             &self,
@@ -93,12 +176,27 @@ extern_methods!(
             channel: u8,
         );
 
+        /// sends a MIDI event which contains two data bytes to the instrument.
+        ///
+        /// Parameter `midiStatus`: the STATUS value of the MIDI event
+        ///
+        /// Parameter `data1`: the first data byte of the MIDI event
+        ///
+        /// Parameter `data2`: the second data byte of the MIDI event.
         #[method(sendMIDIEvent:data1:data2:)]
         pub unsafe fn sendMIDIEvent_data1_data2(&self, midi_status: u8, data1: u8, data2: u8);
 
+        /// sends a MIDI event which contains one data byte to the instrument.
+        ///
+        /// Parameter `midiStatus`: the STATUS value of the MIDI event
+        ///
+        /// Parameter `data1`: the first data byte of the MIDI event
         #[method(sendMIDIEvent:data1:)]
         pub unsafe fn sendMIDIEvent_data1(&self, midi_status: u8, data1: u8);
 
+        /// sends a MIDI System Exclusive event to the instrument.
+        ///
+        /// Parameter `midiData`: a NSData object containing the complete SysEx data including start(F0) and termination(F7) bytes.
         #[method(sendMIDISysExEvent:)]
         pub unsafe fn sendMIDISysExEvent(&self, midi_data: &NSData);
     }

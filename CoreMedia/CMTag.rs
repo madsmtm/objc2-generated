@@ -9,7 +9,9 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagerror?language=objc)
+/// The OSStatus errors returned from the CMTag routines.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,7 +31,11 @@ unsafe impl RefEncode for CMTagError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory?language=objc)
+/// An enum indicating the available CMTagCategory identifiers that can be used to distinguish the tag from other kinds.
+///
+/// Different kinds of CMTags may be defined or registered. Each will be associated with a category. CMTags with the same CMTagCategory will have the same kinds of values. The category serves as a namespace.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -58,7 +64,9 @@ unsafe impl RefEncode for CMTagCategory {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagdatatype?language=objc)
+/// The data type for the value of the CMTag.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagdatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -81,10 +89,21 @@ unsafe impl RefEncode for CMTagDataType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagvalue?language=objc)
+/// 64-bit value interpreted within the context of the CMTagCategory.
+///
+/// The 64-bit value can be one of several data types fitting within that range and holding a category-specific value. Data types include numeric and non-numeric types. Examples of numeric include a signed 64-bit integer and a 64-bit floating point value. Non-numeric types include a single OSType and an OSType pair. The value may hold values including discrete values, bit flags, enums representable as a signed 64-bit integer or float and values encoding any of these.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagvalue?language=objc)
 pub type CMTagValue = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtag?language=objc)
+/// An efficient structure used to label something about a resource or other media construct.
+///
+/// A structure holding a CMTagCategory, CMTagDataType, and a CMTagValue serving to represent a particular tag that might be assigned to or associated with another resource. There is only one of each of the category, the dataType and the value so any notion of "has" is about the respective singular element.  CMTags are a value type. No lifetime management such as allocation or retain and release semantics are needed. CMTags can be passed by value, returned by value and stored in other structures or arrays or on the stack.  CMTags carry a single value that can be carried in 64 bits. This can include data types such as signed 64-bit integers, floating point values fitting in 64 bits, up to 64 bit of flags, and other data types fitting within 64 bits. Signaling of the data type is carried in the CMTagDataType. The data types can be extended through registration with the CoreMedia team.  A CMTag value should not be used to carry pointers. If such a reference is needed, it is okay to carry an index into an out-of-band data structure that itself has a memory reference or an object reference.
+/// Field: category CMTagCategory for the tag.
+/// Field: dataType CMTagDataType for the tag indicating the data type of the value.
+/// Field: value CMTagValue for the value of the CMTag (e.g., a signed 64-bit integer.)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtag?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMTag {
@@ -113,35 +132,59 @@ unsafe impl RefEncode for CMTag {
 // TODO: pub fn CMTagIsValid(tag: CMTag,) -> Boolean;
 
 extern "C-unwind" {
+    /// Returns the dataType field of the CMTag.
+    ///
+    /// Parameter `tag`: CMTag from which to extract the data type.
+    ///
+    /// Returns: kCMTagDataType_* value.
     pub fn CMTagGetValueDataType(tag: CMTag) -> CMTagDataType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtaginvalid?language=objc)
+    /// CMTag with an unspecified or "null" value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtaginvalid?language=objc)
     pub static kCMTagInvalid: CMTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagmediatypevideo?language=objc)
+    /// A CMTag of category kCMTagCategory_MediaType and the value kCMMediaType_Video (OSType).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagmediatypevideo?language=objc)
     pub static kCMTagMediaTypeVideo: CMTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagmediasubtypemebx?language=objc)
+    /// A CMTag of category kCMTagCategory_MediaType and the value kCMMetadataFormatType_Boxed (OSType).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagmediasubtypemebx?language=objc)
     pub static kCMTagMediaSubTypeMebx: CMTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagmediatypeaudio?language=objc)
+    /// A CMTag of category kCMTagCategory_MediaType and the value kCMMediaType_Audio (OSType).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagmediatypeaudio?language=objc)
     pub static kCMTagMediaTypeAudio: CMTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagmediatypemetadata?language=objc)
+    /// A CMTag of category kCMTagCategory_MediaType and the value kCMMediaType_Metadata (OSType).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagmediatypemetadata?language=objc)
     pub static kCMTagMediaTypeMetadata: CMTag;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstereoviewcomponents?language=objc)
+/// Flags used with kCMTagCategory_StereoView tags to signal the nature of the stereo views carried in a buffer or channel.
+///
+/// A "stereo eye" is either for the left eye or for the right eye. A CMTag signaling of stereo views can indicate the presence of one "stereo eye", both stereo eyes or no stereo eyes. A CMTag having a CMTagCategory of kCMTagCategory_StereoView has a value that is a set of kCMTagStereoViewComponent_* flags (see CMTagMakeWithFlagsValue()) that can be set to indicate the stereo eyes carried.  If neither the left nor the right stereo eye is signaled, this can be interpreted to mean that this is not stereo view related and is instead monoscopic video. If it is not stereo related, a kCMTagCategory_StereoView CMTag need not be associated with the buffer or channel.  kCMTagCategory_StereoView does not prescribe how the stereo views are carried. It might be contained in some kind of multiview carriage or might be frame packed in some way. The kCMTagCategory_PackingType will typically be available if frame packing of stereo views is used. The presence of a CMTag with kCMTagCategory_StereoView alone is insufficient to imply if there is some kind of packing or other mechanism required. Additional CMTags with other CMTagCategories may be necessary.  One or more kCMTagCategory_StereoView tags may be present in a collection. When considering which stereo eyes are represented by the collection, the same semantic can be expressed in more than one way in the collection. Specifying the same CMTag more than once has no meaning as the first occurrence indicates the stereo eye or stereo eyes are present.
+/// Here are compatible semantics expressed by one or more CMTags:
+/// - a single CMTag with kCMTagStereoViewsOption_LeftEye bitwise ORed with kCMTagStereoViewsOption_RightEye.
+/// - two kCMTagCategory_StereoView CMTags with one CMTag having the value kCMTagStereoViewsOption_LeftEye and the other CMTag having the value kCMTagStereoViewsOption_RightEye.
+/// - three or more CMTags made up of a CMTag with kCMTagStereoViewsOption_LeftEye bitwise ORed with kCMTagStereoViewsOption_RightEye and both a CMTag with only kCMTagStereoViewsOption_LeftEye and a CMTag with kCMTagStereoViewsOption_RightEye.
+/// Likewise, if a collection contains only one or more CMTags with one stereo eye (e.g., kCMTagStereoViewsOption_LeftEye), only that stereo eye should be considered present.  The absence of a kCMTagCategory_StereoView CMTag is meant to indicate there is no stereo view present. If this signaling of no stereo eyes is associated with a buffer or channel that carries stereo eye views, the buffer or channel should be configured to present only a monoscopic view. This might be in the form of some fallback to a default view corresponding to a stereo eye or even to some other view it includes or can synthesize.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstereoviewcomponents?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -165,26 +208,38 @@ unsafe impl RefEncode for CMStereoViewComponents {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagstereolefteye?language=objc)
+    /// A CMTag of category kCMTagCategory_StereoView and the value kCMTagStereoViewComponent_LeftEye (Flags).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagstereolefteye?language=objc)
     pub static kCMTagStereoLeftEye: CMTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagstereorighteye?language=objc)
+    /// A CMTag of category kCMTagCategory_StereoView and the value kCMTagStereoViewComponent_RightEye (Flags).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagstereorighteye?language=objc)
     pub static kCMTagStereoRightEye: CMTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagstereoleftandrighteye?language=objc)
+    /// A CMTag of category kCMTagCategory_StereoView and the value of the bitwise OR of kCMTagStereoViewComponent_LeftEye and kCMTagStereoViewComponent_RightEye (Flags).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagstereoleftandrighteye?language=objc)
     pub static kCMTagStereoLeftAndRightEye: CMTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagstereonone?language=objc)
+    /// A CMTag of category kCMTagCategory_StereoView and the value of kCMTagStereoViewComponent_None. (Flags)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagstereonone?language=objc)
     pub static kCMTagStereoNone: CMTag;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstereoviewinterpretationoptions?language=objc)
+/// Flags used with kCMTagCategory_StereoViewInterpretation tags to signal additional information that may be important to the interpretation of stereo views carried in a buffer or channel.
+///
+/// A buffer or channel may carry one or more stereo eye views. The signaling of the presence of individual stereo eye views can be done using CMTags with a kCMTagCategory_StereoView category and correspondng kCMTagStereoViewComponent_* constants. There may however be additional signaling that is valuable beyond the presence of a stereo eye. The kCMTagCategory_StereoViewInterpretation category allows additional signaling that may be relevant for interpretation of storage, ordering or other details regarding the stereo views.  A CMTag having a CMTagCategory of kCMTagCategory_StereoViewInterpretation has a value that is a set of kCMStereoViewInterpretation_* flags (see CMTagMakeWithFlagsValue()) that can be set to indicate additional aspects of the stereo view or stereo views. The absence of a flag indicates the default interpretation of that feature or aspect should occur. If a flag is set, the semantic of that feature and only that feature should be inferred.  Two stereo view interpretations are currently defined.  One is that the order of stereo views is the reverse of the default of left then right. Here, order can be the geometric order such as in frame packed video or in something such as storage order.  The second is that buffers or channels contain views other than the left stereo eye view and the right stereo eye view. Such a view might be used as an alternative when perhaps monoscopic view is to be used instead of selecting the left or right stereo view or synthesizing something based upon the left and right stereo eye views.  The absence of a kCMTagCategory_StereoViewInterpretation CMTag is meant to indicate defaults are used.  Specifying kCMStereoViewInterpretation_Default is equivalent to the absence of a CMTag with category kCMTagCategory_StereoViewInterpretation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstereoviewinterpretationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -208,11 +263,17 @@ unsafe impl RefEncode for CMStereoViewInterpretationOptions {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagstereointerpretationorderreversed?language=objc)
+    /// A CMTag of category kCMTagCategory_StereoViewInterpretation and the value of kCMStereoViewInterpretation_StereoOrderReversed (Flags).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagstereointerpretationorderreversed?language=objc)
     pub static kCMTagStereoInterpretationOrderReversed: CMTag;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmprojectiontype?language=objc)
+/// Constants used with kCMTagCategory_ProjectionType to signal the nature of a video projection carried in a buffer or channel.
+///
+/// A video projection can be one of several types. Examples include 360 degree equirectangular, 180 degree half equirectangular, or a fisheye.  A CMTag having a CMTagCategory of kCMTagCategory_ProjectionType has a value that is an OSType indicating the kind of projection using a kCMProjectionType_* constant.  The kCMProjectionType_Rectangular projection type can signal that there is no projection other than the default 2D view. This is provided so it is possible to still signal a kCMTagCategory_ProjectionType CMTag but indicates it has no effect. If a kCMTagCategory_ProjectionType CMTag is not signaled, a rectangular projection is implied.  The kCMTagCategory_ProjectionType tag may be associated with other tags if projection related parameters are also signaled. What is carried will be defined for the specific type of projection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmprojectiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -235,26 +296,38 @@ unsafe impl RefEncode for CMProjectionType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagprojectiontyperectangular?language=objc)
+    /// A CMTag of category kCMTagCategory_ProjectionType and the value kCMTagProjectionType_Rectangular (OSType).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagprojectiontyperectangular?language=objc)
     pub static kCMTagProjectionTypeRectangular: CMTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagprojectiontypeequirectangular?language=objc)
+    /// A CMTag of category kCMTagCategory_ProjectionType and the value kCMTagProjectionType_Equirectangular (OSType).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagprojectiontypeequirectangular?language=objc)
     pub static kCMTagProjectionTypeEquirectangular: CMTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagprojectiontypehalfequirectangular?language=objc)
+    /// A CMTag of category kCMTagCategory_ProjectionType and the value kCMProjectionType_HalfEquirectangular (OSType).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagprojectiontypehalfequirectangular?language=objc)
     pub static kCMTagProjectionTypeHalfEquirectangular: CMTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagprojectiontypefisheye?language=objc)
+    /// A CMTag of category kCMTagCategory_ProjectionType and the value kCMTagProjectionType_Fisheye (OSType).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagprojectiontypefisheye?language=objc)
     pub static kCMTagProjectionTypeFisheye: CMTag;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmpackingtype?language=objc)
+/// Constants used with kCMTagCategory_PackingType to signal the nature of any packing applied in a buffer or channel.
+///
+/// A video packing can be one of several types including frame-packing for stereo views or texture atlasing. A CMTag having a CMTagCategory of kCMTagCategory_ProjectionType has a value that is an OSType indicating the kind of packing using a kCMPackingType_* constant.  Examples of frame-packing include side-by-side and over-under packing, There may be related CMTags if a kind of packing requires additional parameters. The requirements will be documented with the specific kind of packing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmpackingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -276,17 +349,23 @@ unsafe impl RefEncode for CMPackingType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagpackingtypenone?language=objc)
+    /// A CMTag of category kCMTagCategory_PackingType and the value kCMTagPackingType_None (OStype).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagpackingtypenone?language=objc)
     pub static kCMTagPackingTypeNone: CMTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagpackingtypesidebyside?language=objc)
+    /// A CMTag of category kCMTagCategory_PackingType and the value kCMTagPackingType_SideBySide (OStype).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagpackingtypesidebyside?language=objc)
     pub static kCMTagPackingTypeSideBySide: CMTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagpackingtypeoverunder?language=objc)
+    /// A CMTag of category kCMTagCategory_PackingType and the value kCMTagPackingType_OverUnder (OStype).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagpackingtypeoverunder?language=objc)
     pub static kCMTagPackingTypeOverUnder: CMTag;
 }
 
@@ -299,58 +378,160 @@ extern "C" {
 // TODO: pub fn CMTagHasCategory(tag: CMTag,category: CMTagCategory,) -> Boolean;
 
 extern "C-unwind" {
+    /// Checks if the tag represents a signed 64-bit value.
+    ///
+    /// Parameter `tag`: CMTag to evaluate.
+    ///
+    /// Returns: Returns true if the CMTag carries a signed 64-bit value indicated by a data type of kCMTagDataType_SInt64, false otherwise.
     pub fn CMTagHasSInt64Value(tag: CMTag) -> Boolean;
 }
 
 extern "C-unwind" {
+    /// Returns the signed 64-bit value carried by the CMTag.
+    ///
+    /// This should only be called on a CMTag with a data type of kCMTagDataType_SInt64. Calling it with a CMTag having another data type is undefined.
+    ///
+    /// Parameter `tag`: CMTag to evaluate.
+    ///
+    /// Returns: Signed 64-bit integer.
     pub fn CMTagGetSInt64Value(tag: CMTag) -> i64;
 }
 
 extern "C-unwind" {
+    /// Checks if the tag represents a 64-bit float value.
+    ///
+    /// Parameter `tag`: CMTag to evaluate.
+    ///
+    /// Returns: Returns true if the CMTag carries a 64-bit float indicated by a data type of kCMTagDataType_Float64, false otherwise.
     pub fn CMTagHasFloat64Value(tag: CMTag) -> Boolean;
 }
 
 extern "C-unwind" {
+    /// Returns the 64-bit floating point value carried by the CMTag.
+    ///
+    /// This should only be called on a CMTag with a data type of kCMTagDataType_Float64. Calling it with a CMTag having another data type is undefined.
+    ///
+    /// Parameter `tag`: CMTag to evaluate.
+    ///
+    /// Returns: 64-bit float.
     pub fn CMTagGetFloat64Value(tag: CMTag) -> f64;
 }
 
 extern "C-unwind" {
+    /// Checks if the tag represents an OSType value.
+    ///
+    /// Parameter `tag`: CMTag to evaluate.
+    ///
+    /// Returns: Returns true if the CMTag carries an OSType indicated by a data type of kCMTagDataType_OSType, false otherwise.
     pub fn CMTagHasOSTypeValue(tag: CMTag) -> Boolean;
 }
 
 extern "C-unwind" {
+    /// Returns the single OSType value carried by the CMTag.
+    ///
+    /// This should only be called on a CMTag with a data type of kCMTagDataType_OSType. Calling it with a CMTag having another data type is undefined.
+    ///
+    /// Parameter `tag`: CMTag to evaluate.
+    ///
+    /// Returns: OSType.
     pub fn CMTagGetOSTypeValue(tag: CMTag) -> OSType;
 }
 
 extern "C-unwind" {
+    /// Checks if the tag represents an flags value.
+    ///
+    /// Parameter `tag`: CMTag to evaluate.
+    ///
+    /// Returns: Returns true if the CMTag carries 64 bits of flags indicated by a data type of kCMTagDataType_Flags, false otherwise.
     pub fn CMTagHasFlagsValue(tag: CMTag) -> Boolean;
 }
 
 extern "C-unwind" {
+    /// Returns the 64 bits of flags as an unsigned 64-bit integer carried by the CMTag.
+    ///
+    /// This should only be called on a CMTag with a data type of kCMTagDataType_Flags. Calling it with a CMTag having another data type is undefined.
+    ///
+    /// Parameter `tag`: CMTag to evaluate.
+    ///
+    /// Returns: Unsigned 64-bit integer holding the flags value.
     pub fn CMTagGetFlagsValue(tag: CMTag) -> u64;
 }
 
 extern "C-unwind" {
+    /// Create a CMTag holding a signed 64-bit integer.
+    ///
+    /// This function creates a valid CMTag with the data type kCMTagDataType_SInt64 and have a signed 64-bit integer value.
+    ///
+    /// Parameter `category`: CMTagCategory for the created CMTag.
+    ///
+    /// Parameter `value`: A signed 64-bit integer to encode in the returned CMTag.
+    ///
+    /// Returns: A CMTag.
     pub fn CMTagMakeWithSInt64Value(category: CMTagCategory, value: i64) -> CMTag;
 }
 
 extern "C-unwind" {
+    /// Create a CMTag holding a 64-bit float.
+    ///
+    /// This function creates a valid CMTag with the data type kCMTagDataType_Float64 and have a 64-bit floating point value.
+    ///
+    /// Parameter `category`: CMTagCategory for the created CMTag.
+    ///
+    /// Parameter `value`: A 64-bit float to encode in the returned CMTag.
+    ///
+    /// Returns: A CMTag.
     pub fn CMTagMakeWithFloat64Value(category: CMTagCategory, value: f64) -> CMTag;
 }
 
 extern "C-unwind" {
+    /// Create a CMTag holding an OSType.
+    ///
+    /// This function creates a valid CMTag with the data type kCMTagDataType_OSType and have an OSType value.
+    ///
+    /// Parameter `category`: CMTagCategory for the created CMTag.
+    ///
+    /// Parameter `value`: An OSType to encode in the returned CMTag.
+    ///
+    /// Returns: A CMTag.
     pub fn CMTagMakeWithOSTypeValue(category: CMTagCategory, value: OSType) -> CMTag;
 }
 
 extern "C-unwind" {
+    /// Create a CMTag holding a 64 bits of flags.
+    ///
+    /// This function creates a valid CMTag with the data type kCMTagDataType_Flags and has an unsigned 64-bit integer value holding the flags.
+    ///
+    /// Parameter `category`: CMTagCategory for the created CMTag.
+    ///
+    /// Parameter `flagsForTag`: An unsigned 64-bit integer to encode in the returned CMTag.
+    ///
+    /// Returns: A CMTag.
     pub fn CMTagMakeWithFlagsValue(category: CMTagCategory, flags_for_tag: u64) -> CMTag;
 }
 
 extern "C-unwind" {
+    /// Tests if two CMTags are equal.
+    ///
+    /// Function evaluates if two tags are structurally equivalent. It performs a field by field comparison.
+    ///
+    /// Parameter `tag1`: First CMTag to test for equality.
+    ///
+    /// Parameter `tag2`: Second CMTag to test for equality.
+    ///
+    /// Returns: Returns true if the two tags are equal, false otherwise.
     pub fn CMTagEqualToTag(tag1: CMTag, tag2: CMTag) -> Boolean;
 }
 
 extern "C-unwind" {
+    /// Compares two CMTags in an ordered fashion returning a CFComparisonResult based upon the ordering of the tags.
+    ///
+    /// The entirety of a CMTag can be compared against a second CMTag in an ordered way.  The details of how the comparison is performed is an internal implementation detail. The comparison is performed as tag1 COMPARISON tag2 where COMPARISON is the ordering operation.  The ordering will be stable under a release of the framework but may change in the future. Therefore, an ordered CMTag array serialized in one version of the framework should not be assumed to be ordered the same in another version of the framework. This is best handled by retrieving the original array of CMTags and then reinserting with the new order.
+    ///
+    /// Parameter `tag1`: First CMTag to compare in ordered fashion.
+    ///
+    /// Parameter `tag2`: Second CMTag to compare in ordered fashion.
+    ///
+    /// Returns: The CFComparisonResult indicating the order of tag1 compared to tag2.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCompare(tag1: CMTag, tag2: CMTag) -> CFComparisonResult;
 }
@@ -358,39 +539,75 @@ extern "C-unwind" {
 // TODO: pub fn CMTagCategoryValueEqualToValue(tag1: CMTag,tag2: CMTag,) -> Boolean;
 
 extern "C-unwind" {
+    /// Calculates a hash code for the CMTag.
+    ///
+    /// Parameter `tag`: CMTag to hash.
+    ///
+    /// Returns: The created CFHashCode.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagHash(tag: CMTag) -> CFHashCode;
 }
 
 extern "C-unwind" {
+    /// Creates a CFString with a description of a CMTag (just like CFCopyDescription).
+    ///
+    /// This can be used from within CFShow on an object that contains CMTag fields. It is also useful from other client debugging code.  The caller owns the returned CFString, and is responsible for releasing it.  Descriptions are not localized so are likely suitable only for debugging.
+    ///
+    /// Parameter `allocator`: CFAllocator to use in creating the description string.  Pass kCFAllocatorDefault to use the default allocator.
+    ///
+    /// Parameter `tag`: CMTag to describe.
+    ///
+    /// Returns: The created CFString description.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCopyDescription(allocator: CFAllocatorRef, tag: CMTag) -> CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Returns a CFDictionary version of a CMTag.
+    ///
+    /// This is useful when putting CMTag in CF container types.  The caller owns the returned CFDictionary, and is responsible for releasing it.
+    ///
+    /// Parameter `tag`: The CMTag from which to create the dictionary.
+    ///
+    /// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
+    ///
+    /// Returns: A CFDictionary version of the CMTag.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCopyAsDictionary(tag: CMTag, allocator: CFAllocatorRef) -> CFDictionaryRef;
 }
 
 extern "C-unwind" {
+    /// Reconstitutes a CMTag struct from a CFDictionary previously created by CMTagCopyAsDictionary.
+    ///
+    /// This is useful when getting CMTag from CF container types.  If the CFDictionary does not have the requisite keyed values, kCMTagInvalid is returned.
+    ///
+    /// Parameter `dict`: A CFDictionary from which to create a CMTag.
+    ///
+    /// Returns: The created CMTag.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagMakeFromDictionary(dict: CFDictionaryRef) -> CMTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagvaluekey?language=objc)
+    /// CFDictionary key for value field of a CMTag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagvaluekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTagValueKey: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagcategorykey?language=objc)
+    /// CFDictionary key for category field of a CMTag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagcategorykey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTagCategoryKey: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagdatatypekey?language=objc)
+    /// CFDictionary key for dataType field of a CMTag.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagdatatypekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTagDataTypeKey: CFStringRef;
 }

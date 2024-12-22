@@ -162,6 +162,7 @@ extern_methods!(
 
         #[cfg(feature = "CLLocationManagerDelegate")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -176,6 +177,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other purpose)]
         pub unsafe fn purpose(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`purpose`][Self::purpose].
         #[deprecated = "Set the purpose string in Info.plist using key NSLocationUsageDescription"]
         #[method(setPurpose:)]
         pub unsafe fn setPurpose(&self, purpose: Option<&NSString>);
@@ -183,6 +185,7 @@ extern_methods!(
         #[method(activityType)]
         pub unsafe fn activityType(&self) -> CLActivityType;
 
+        /// Setter for [`activityType`][Self::activityType].
         #[method(setActivityType:)]
         pub unsafe fn setActivityType(&self, activity_type: CLActivityType);
 
@@ -191,6 +194,7 @@ extern_methods!(
         pub unsafe fn distanceFilter(&self) -> CLLocationDistance;
 
         #[cfg(feature = "CLLocation")]
+        /// Setter for [`distanceFilter`][Self::distanceFilter].
         #[method(setDistanceFilter:)]
         pub unsafe fn setDistanceFilter(&self, distance_filter: CLLocationDistance);
 
@@ -199,12 +203,14 @@ extern_methods!(
         pub unsafe fn desiredAccuracy(&self) -> CLLocationAccuracy;
 
         #[cfg(feature = "CLLocation")]
+        /// Setter for [`desiredAccuracy`][Self::desiredAccuracy].
         #[method(setDesiredAccuracy:)]
         pub unsafe fn setDesiredAccuracy(&self, desired_accuracy: CLLocationAccuracy);
 
         #[method(pausesLocationUpdatesAutomatically)]
         pub unsafe fn pausesLocationUpdatesAutomatically(&self) -> bool;
 
+        /// Setter for [`pausesLocationUpdatesAutomatically`][Self::pausesLocationUpdatesAutomatically].
         #[method(setPausesLocationUpdatesAutomatically:)]
         pub unsafe fn setPausesLocationUpdatesAutomatically(
             &self,
@@ -214,6 +220,7 @@ extern_methods!(
         #[method(allowsBackgroundLocationUpdates)]
         pub unsafe fn allowsBackgroundLocationUpdates(&self) -> bool;
 
+        /// Setter for [`allowsBackgroundLocationUpdates`][Self::allowsBackgroundLocationUpdates].
         #[method(setAllowsBackgroundLocationUpdates:)]
         pub unsafe fn setAllowsBackgroundLocationUpdates(
             &self,
@@ -223,6 +230,7 @@ extern_methods!(
         #[method(showsBackgroundLocationIndicator)]
         pub unsafe fn showsBackgroundLocationIndicator(&self) -> bool;
 
+        /// Setter for [`showsBackgroundLocationIndicator`][Self::showsBackgroundLocationIndicator].
         #[method(setShowsBackgroundLocationIndicator:)]
         pub unsafe fn setShowsBackgroundLocationIndicator(
             &self,
@@ -242,12 +250,14 @@ extern_methods!(
         pub unsafe fn headingFilter(&self) -> CLLocationDegrees;
 
         #[cfg(feature = "CLLocation")]
+        /// Setter for [`headingFilter`][Self::headingFilter].
         #[method(setHeadingFilter:)]
         pub unsafe fn setHeadingFilter(&self, heading_filter: CLLocationDegrees);
 
         #[method(headingOrientation)]
         pub unsafe fn headingOrientation(&self) -> CLDeviceOrientation;
 
+        /// Setter for [`headingOrientation`][Self::headingOrientation].
         #[method(setHeadingOrientation:)]
         pub unsafe fn setHeadingOrientation(&self, heading_orientation: CLDeviceOrientation);
 

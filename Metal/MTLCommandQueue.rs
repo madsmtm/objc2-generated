@@ -8,23 +8,33 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandqueue?language=objc)
+    /// A serial queue of command buffers to be executed by the device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandqueue?language=objc)
     pub unsafe trait MTLCommandQueue: NSObjectProtocol {
+        /// A string to help identify this object
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
+        /// The device this queue will submit to
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLCommandBuffer")]
+        /// Returns a new autoreleased command buffer used to encode work into this queue that
+        /// maintains strong references to resources used within the command buffer.
         #[method_id(@__retain_semantics Other commandBuffer)]
         fn commandBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandBuffer>>>;
 
         #[cfg(feature = "MTLCommandBuffer")]
+        /// Parameter `descriptor`: The requested properties of the command buffer.
+        ///
+        /// Returns a new autoreleased command buffer used to encode work into this queue.
         #[method_id(@__retain_semantics Other commandBufferWithDescriptor:)]
         unsafe fn commandBufferWithDescriptor(
             &self,
@@ -32,20 +42,25 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLCommandBuffer>>>;
 
         #[cfg(feature = "MTLCommandBuffer")]
+        /// Returns a new autoreleased command buffer used to encode work into this queue that
+        /// does not maintain strong references to resources used within the command buffer.
         #[method_id(@__retain_semantics Other commandBufferWithUnretainedReferences)]
         unsafe fn commandBufferWithUnretainedReferences(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLCommandBuffer>>>;
 
+        /// Inform Xcode about when debug capture should start and stop.
         #[deprecated = "Use MTLCaptureScope instead"]
         #[method(insertDebugCaptureBoundary)]
         unsafe fn insertDebugCaptureBoundary(&self);
 
         #[cfg(feature = "MTLResidencySet")]
+        /// Marks the residency set as part of the command queue execution. This ensures that the residency set is resident during execution of all the command buffers within the queue.
         #[method(addResidencySet:)]
         unsafe fn addResidencySet(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
 
         #[cfg(feature = "MTLResidencySet")]
+        /// Marks the residency sets as part of the command queue execution. This ensures that the residency sets are resident during execution of all the command buffers within the queue.
         #[method(addResidencySets:count:)]
         unsafe fn addResidencySets_count(
             &self,
@@ -54,10 +69,12 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLResidencySet")]
+        /// Removes the residency set from the command queue execution. This ensures that only the remaining residency sets are resident during execution of all the command buffers within the queue.
         #[method(removeResidencySet:)]
         unsafe fn removeResidencySet(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
 
         #[cfg(feature = "MTLResidencySet")]
+        /// Removes the residency sets from the command queue execution. This ensures that only the remaining residency sets are resident during execution of all the command buffers within the queue.
         #[method(removeResidencySets:count:)]
         unsafe fn removeResidencySets_count(
             &self,
@@ -86,17 +103,23 @@ unsafe impl NSObjectProtocol for MTLCommandQueueDescriptor {}
 
 extern_methods!(
     unsafe impl MTLCommandQueueDescriptor {
+        /// @
+        /// Specify upper bound on uncompleted command buffers that may be enqueued on this queue
         #[method(maxCommandBufferCount)]
         pub unsafe fn maxCommandBufferCount(&self) -> NSUInteger;
 
+        /// Setter for [`maxCommandBufferCount`][Self::maxCommandBufferCount].
         #[method(setMaxCommandBufferCount:)]
         pub unsafe fn setMaxCommandBufferCount(&self, max_command_buffer_count: NSUInteger);
 
         #[cfg(feature = "MTLLogState")]
+        /// @
+        /// Specify the MTLLogState to enable shader logging
         #[method_id(@__retain_semantics Other logState)]
         pub unsafe fn logState(&self) -> Option<Retained<ProtocolObject<dyn MTLLogState>>>;
 
         #[cfg(feature = "MTLLogState")]
+        /// Setter for [`logState`][Self::logState].
         #[method(setLogState:)]
         pub unsafe fn setLogState(&self, log_state: Option<&ProtocolObject<dyn MTLLogState>>);
     }

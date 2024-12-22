@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutbuilder?language=objc)
+    /// An HKWorkoutBuilder is used to incrementally create new workouts in the HealthKit database. Samples,
+    /// events, and metadata may be added to a builder either during a live workout session or to create a
+    /// workout that occurred in the past. Calling finishWorkoutWithCompletion: will create a new workout
+    /// with samples, events, and metadata that have been provided.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutbuilder?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutBuilder;
@@ -26,31 +31,48 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKDevice")]
+        /// The HKDevice to be associated with the workout.
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Option<Retained<HKDevice>>;
 
+        /// The start date for the workout, as provided by beginCollectionWithStartDate:completion:
         #[method_id(@__retain_semantics Other startDate)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
+        /// The end date for the workout, as provided by endCollectionWithEndDate:completion:
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
+        /// The configuration for the workout being built.
         #[method_id(@__retain_semantics Other workoutConfiguration)]
         pub unsafe fn workoutConfiguration(&self) -> Retained<HKWorkoutConfiguration>;
 
+        /// The metadata that will be used when the workout is finished.
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "HKWorkout")]
+        /// Workout events that have been added to the builder.
+        ///
+        /// New events that are added using addWorkoutEvents:completion: will be appended to this array once the
+        /// completion is called.
         #[method_id(@__retain_semantics Other workoutEvents)]
         pub unsafe fn workoutEvents(&self) -> Retained<NSArray<HKWorkoutEvent>>;
 
         #[cfg(feature = "HKWorkoutActivity")]
+        /// Workout activities that have been added to the builder.
+        ///
+        /// New activities that are added using addWorkoutActivity:completion: will be appended to this array once the
+        /// completion is called.
         #[method_id(@__retain_semantics Other workoutActivities)]
         pub unsafe fn workoutActivities(&self) -> Retained<NSArray<HKWorkoutActivity>>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
+        /// A dictionary of statistics per quantity type added to the builder
+        ///
+        /// This dictionary will contain HKStatistics objects containing the statistics by quantity
+        /// sample type for all of the samples that have been added to the builder.
         #[method_id(@__retain_semantics Other allStatistics)]
         pub unsafe fn allStatistics(&self) -> Retained<NSDictionary<HKQuantityType, HKStatistics>>;
 
@@ -59,6 +81,17 @@ extern_methods!(
             feature = "HKHealthStore",
             feature = "HKWorkoutConfiguration"
         ))]
+        /// The designated initializer to create an HKWorkoutBuilder.
+        ///
+        /// Creates a new HKWorkoutBuilder unconnected to any HKWorkoutSession or any sources of data.
+        ///
+        ///
+        /// Parameter `healthStore`: Specifies the HKHealthStore object to use for building the workout. The store is retained
+        /// until the builder is finished and a workout has been saved or discarded.
+        ///
+        /// Parameter `configuration`: The workout configuration to be used.
+        ///
+        /// Parameter `device`: The HKDevice to attach to the resulting HKWorkout.
         #[method_id(@__retain_semantics Init initWithHealthStore:configuration:device:)]
         pub unsafe fn initWithHealthStore_configuration_device(
             this: Allocated<Self>,
@@ -68,6 +101,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Sets the workout start date and activates the workout builder.
+        ///
+        /// Calling this method is required before any samples, events or metadata can be added to the builder.
+        ///
+        ///
+        /// Parameter `startDate`: The start date of the workout.
+        ///
+        /// Parameter `completion`: Called once data collection has started or has failed to start.
         #[method(beginCollectionWithStartDate:completion:)]
         pub unsafe fn beginCollectionWithStartDate_completion(
             &self,
@@ -76,6 +117,19 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "block2"))]
+        /// Adds new samples to the builder instance. This method can be called multiple times to add samples
+        /// incrementally to the builder. The samples will be saved to the database if they have not already been
+        /// saved. The constraints of -[HKHealthStore saveObject:withCompletion:] apply to this method as well.
+        /// The start date of the samples must be later than the start date of the receiver. It is an error to call
+        /// this method after finishWorkoutWithCompletion: has been called. This operation is performed
+        /// asynchronously and the completion will be executed on an arbitrary background queue.
+        ///
+        ///
+        /// Parameter `samples`: The samples to add to the workout.
+        ///
+        /// Parameter `completion`: Block to be called when the insertion is complete. If success is YES, the samples were added
+        /// to the builder successfully. If success is NO, error will be non-nil and contain the error
+        /// encountered while adding the new samples.
         #[method(addSamples:completion:)]
         pub unsafe fn addSamples_completion(
             &self,
@@ -84,6 +138,17 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKWorkout", feature = "block2"))]
+        /// Adds new workout events to the builder instance. This method can be called many times to add workout
+        /// events incrementally to the builder. It is an error to call this method after
+        /// finishWorkoutWithCompletion: has been called. This operation is performed asynchronously and the
+        /// completion will be executed on an arbitrary background queue.
+        ///
+        ///
+        /// Parameter `workoutEvents`: The events to add to the builder.
+        ///
+        /// Parameter `completion`: Block to be called when the addition of events to the builder is complete. If success is
+        /// YES, the events were added to the builder successfully. If success is NO, error will be
+        /// non-null and will contain the error encountered during the insertion operation.
         #[method(addWorkoutEvents:completion:)]
         pub unsafe fn addWorkoutEvents_completion(
             &self,
@@ -92,6 +157,18 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Adds new metadata to the builder instance. This method can be called more than once; each time the newly
+        /// provided metadata will be merged with previously added metadata in the same manner as
+        /// -[NSMutableDictionary addEntriesFromDictionary:]. This operation is performed asynchronously and the
+        /// completion will be executed on an arbitrary background queue.
+        ///
+        ///
+        /// Parameter `metadata`: The metadata to add to the workout.
+        ///
+        /// Parameter `completion`: Block to be called when the addition of metadata to the builder is complete. If success is
+        /// YES, the metadata has been added to the builder successfully. If success is NO, error will
+        /// be non-null and will contain the error encountered during the insertion operation. When an
+        /// error occurs, the builder's metadata property will remain unchanged.
         #[method(addMetadata:completion:)]
         pub unsafe fn addMetadata_completion(
             &self,
@@ -100,6 +177,17 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKWorkoutActivity", feature = "block2"))]
+        /// Adds a new workout activity to the builder instance. This method can be called many times to add workout
+        /// activities incrementally to the builder. It is an error to call this method after
+        /// finishWorkoutWithCompletion: has been called. This operation is performed asynchronously and the
+        /// completion will be executed on an arbitrary background queue.
+        ///
+        ///
+        /// Parameter `workoutActivity`: The activity to add to the builder.
+        ///
+        /// Parameter `completion`: Block to be called when the addition of the activity to the builder is complete. If success is
+        /// YES, the activity was added to the builder successfully. If success is NO, error will be
+        /// non-null and will contain the error encountered during the insertion operation.
         #[method(addWorkoutActivity:completion:)]
         pub unsafe fn addWorkoutActivity_completion(
             &self,
@@ -108,6 +196,18 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Sets the end date on an already added activity. It is an error to call this method after
+        /// finishWorkoutWithCompletion: has been called. This operation is performed asynchronously and the
+        /// completion will be executed on an arbitrary background queue.
+        ///
+        ///
+        /// Parameter `UUID`: The UUID of the workout activity to update.
+        ///
+        /// Parameter `endDate`: The end date to set on the activity
+        ///
+        /// Parameter `completion`: Block to be called when the update of the end date on the activity is complete. If success is
+        /// YES, the end date was set to the actvity successfully. If success is NO, error will be
+        /// non-null and will contain the error encountered during the update operation.
         #[method(updateActivityWithUUID:endDate:completion:)]
         pub unsafe fn updateActivityWithUUID_endDate_completion(
             &self,
@@ -117,6 +217,21 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Adds new metadata to an already added activity. This method can be called more than once; each time
+        /// the newly provided metadata will be merged with previously added metadata in the same manner as
+        /// -[NSMutableDictionary addEntriesFromDictionary:]. It is an error to call this method after
+        /// finishWorkoutWithCompletion: has been called. This operation is performed asynchronously and the
+        /// completion will be executed on an arbitrary background queue.
+        ///
+        ///
+        /// Parameter `UUID`: The UUID of the workout activity to update.
+        ///
+        /// Parameter `metadata`: The metadata to add to the workout activity.
+        ///
+        /// Parameter `completion`: Block to be called when the addition of metadata to the activity is complete. If success is
+        /// YES, the metadata has been added to the activity successfully. If success is NO, error will
+        /// be non-null and will contain the error encountered during the insertion operation. When an
+        /// error occurs, the activity's metadata property will remain unchanged.
         #[method(updateActivityWithUUID:addMedatata:completion:)]
         pub unsafe fn updateActivityWithUUID_addMedatata_completion(
             &self,
@@ -126,6 +241,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Sets the workout end date and deactivates the workout builer.
+        ///
+        /// Calling this method is required before you finish a workout builder.
+        ///
+        ///
+        /// Parameter `endDate`: The end date of the workout.
+        ///
+        /// Parameter `completion`: Called once data collection has stopped or has failed to stop.
         #[method(endCollectionWithEndDate:completion:)]
         pub unsafe fn endCollectionWithEndDate_completion(
             &self,
@@ -139,19 +262,36 @@ extern_methods!(
             feature = "HKWorkout",
             feature = "block2"
         ))]
+        /// Creates and saves an HKWorkout using samples and events that have been added to workout previously.
+        ///
+        ///
+        /// Parameter `completion`: Block to be called after the HKWorkout object has been created and saved. If the returned
+        /// workout is nil, an error may have occurred in which case error will be non-nil. If both
+        /// workout and error are nil then finishing the workout succeeded but the workout sample
+        /// is not available because the device is locked.
         #[method(finishWorkoutWithCompletion:)]
         pub unsafe fn finishWorkoutWithCompletion(
             &self,
             completion: &block2::Block<dyn Fn(*mut HKWorkout, *mut NSError)>,
         );
 
+        /// Finishes building the workout and discards the result instead of saving it. Samples that were added to
+        /// the workout will not be deleted. Adding samples, events, and metadata to the receiver after
+        /// discardWorkout has been called is an error.
         #[method(discardWorkout)]
         pub unsafe fn discardWorkout(&self);
 
+        /// The elapsed duration of the workout evaluated at the specified date. The duration does not include
+        /// periods when the workout was paused, which are the intervals between pause and resume events.
         #[method(elapsedTimeAtDate:)]
         pub unsafe fn elapsedTimeAtDate(&self, date: &NSDate) -> NSTimeInterval;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
+        /// Returns an HKStatistics object containing the statistics for all the samples of the given type that
+        /// have been added to the receiver. If there are no samples of the given type then nil is returned.
+        ///
+        ///
+        /// Parameter `quantityType`: The quantity type to gather statistics about.
         #[method_id(@__retain_semantics Other statisticsForType:)]
         pub unsafe fn statisticsForType(
             &self,
@@ -159,6 +299,13 @@ extern_methods!(
         ) -> Option<Retained<HKStatistics>>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKSeriesBuilder"))]
+        /// Retrieves the associated series builder for the specified type.
+        ///
+        /// Retrieves, and creates if it does not already exist, the series builder for the specified type. The
+        /// series constructed with the returned builder will be associated with the workout when it is finished.
+        ///
+        ///
+        /// Parameter `seriesType`: The series type for which the builder should be retrieved.
         #[method_id(@__retain_semantics Other seriesBuilderForType:)]
         pub unsafe fn seriesBuilderForType(
             &self,

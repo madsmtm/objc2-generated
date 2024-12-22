@@ -75,6 +75,7 @@ extern_methods!(
         pub unsafe fn selectionHighlightStyle(&self) -> NSTableViewSelectionHighlightStyle;
 
         #[cfg(feature = "NSTableView")]
+        /// Setter for [`selectionHighlightStyle`][Self::selectionHighlightStyle].
         #[method(setSelectionHighlightStyle:)]
         pub unsafe fn setSelectionHighlightStyle(
             &self,
@@ -84,42 +85,49 @@ extern_methods!(
         #[method(isEmphasized)]
         pub unsafe fn isEmphasized(&self) -> bool;
 
+        /// Setter for [`isEmphasized`][Self::isEmphasized].
         #[method(setEmphasized:)]
         pub unsafe fn setEmphasized(&self, emphasized: bool);
 
         #[method(isGroupRowStyle)]
         pub unsafe fn isGroupRowStyle(&self) -> bool;
 
+        /// Setter for [`isGroupRowStyle`][Self::isGroupRowStyle].
         #[method(setGroupRowStyle:)]
         pub unsafe fn setGroupRowStyle(&self, group_row_style: bool);
 
         #[method(isSelected)]
         pub unsafe fn isSelected(&self) -> bool;
 
+        /// Setter for [`isSelected`][Self::isSelected].
         #[method(setSelected:)]
         pub unsafe fn setSelected(&self, selected: bool);
 
         #[method(isPreviousRowSelected)]
         pub unsafe fn isPreviousRowSelected(&self) -> bool;
 
+        /// Setter for [`isPreviousRowSelected`][Self::isPreviousRowSelected].
         #[method(setPreviousRowSelected:)]
         pub unsafe fn setPreviousRowSelected(&self, previous_row_selected: bool);
 
         #[method(isNextRowSelected)]
         pub unsafe fn isNextRowSelected(&self) -> bool;
 
+        /// Setter for [`isNextRowSelected`][Self::isNextRowSelected].
         #[method(setNextRowSelected:)]
         pub unsafe fn setNextRowSelected(&self, next_row_selected: bool);
 
         #[method(isFloating)]
         pub unsafe fn isFloating(&self) -> bool;
 
+        /// Setter for [`isFloating`][Self::isFloating].
         #[method(setFloating:)]
         pub unsafe fn setFloating(&self, floating: bool);
 
         #[method(isTargetForDropOperation)]
         pub unsafe fn isTargetForDropOperation(&self) -> bool;
 
+        /// Setter for [`isTargetForDropOperation`][Self::isTargetForDropOperation].
         #[method(setTargetForDropOperation:)]
         pub unsafe fn setTargetForDropOperation(&self, target_for_drop_operation: bool);
 
@@ -130,6 +138,7 @@ extern_methods!(
         ) -> NSTableViewDraggingDestinationFeedbackStyle;
 
         #[cfg(feature = "NSTableView")]
+        /// Setter for [`draggingDestinationFeedbackStyle`][Self::draggingDestinationFeedbackStyle].
         #[method(setDraggingDestinationFeedbackStyle:)]
         pub unsafe fn setDraggingDestinationFeedbackStyle(
             &self,
@@ -141,6 +150,7 @@ extern_methods!(
         pub unsafe fn indentationForDropOperation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`indentationForDropOperation`][Self::indentationForDropOperation].
         #[method(setIndentationForDropOperation:)]
         pub unsafe fn setIndentationForDropOperation(
             &self,
@@ -156,6 +166,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 

@@ -9,12 +9,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerange?language=objc)
+/// A time range represented as two CMTime structures.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerange?language=objc)
 #[cfg(feature = "CMTime")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMTimeRange {
+    /// The start time of the time range.
     pub start: CMTime,
+    /// The duration of the time range.
     pub duration: CMTime,
 }
 
@@ -41,41 +45,136 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// Make a valid CMTimeRange with start and duration.
+    ///
+    /// Returns: The resulting CMTimeRange.
+    ///
+    /// The duration parameter must have an epoch of 0; otherwise an invalid time range will be returned.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeRangeMake(start: CMTime, duration: CMTime) -> CMTimeRange;
 }
 
 extern "C-unwind" {
+    /// Returns the union of two CMTimeRanges.
+    ///
+    /// This function returns a CMTimeRange structure that represents the union of the time ranges specified by the
+    /// <i>
+    /// range
+    /// </i>
+    /// and
+    /// <i>
+    /// otherRange
+    /// </i>
+    /// parameters.
+    /// This is the smallest range that includes all times that are in either range.
+    ///
+    /// Returns: The union of the two CMTimeRanges.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeRangeGetUnion(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange;
 }
 
 extern "C-unwind" {
+    /// Returns the intersection of two CMTimeRanges.
+    ///
+    /// This function returns a CMTimeRange structure that represents the intersection of the time ranges specified by the
+    /// <i>
+    /// range
+    /// </i>
+    /// and
+    /// <i>
+    /// otherRange
+    /// </i>
+    /// parameters.
+    /// This is the largest range that both ranges include.
+    ///
+    /// Returns: The intersection of the two CMTimeRanges.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeRangeGetIntersection(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange;
 }
 
 extern "C-unwind" {
+    /// Returns a Boolean value that indicates whether two CMTimeRanges are identical.
+    ///
+    /// This function returns a Boolean value that indicates whether the time ranges specified by the
+    /// <i>
+    /// range1
+    /// </i>
+    /// and
+    /// <i>
+    /// range2
+    /// </i>
+    /// parameters are identical.
+    ///
+    /// Returns: Returns true if the two time ranges are identical, false if they differ.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeRangeEqual(range1: CMTimeRange, range2: CMTimeRange) -> Boolean;
 }
 
 extern "C-unwind" {
+    /// Indicates whether a time is contained within a time range.
+    ///
+    /// This function returns a Boolean value that indicates whether the time specified by the
+    /// <i>
+    /// time
+    /// </i>
+    /// parameter
+    /// is contained within the range specified by the
+    /// <i>
+    /// range
+    /// </i>
+    /// parameter.
+    ///
+    /// Returns: Returns true if the specified time is contained within the specified time range, false if it is not.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeRangeContainsTime(range: CMTimeRange, time: CMTime) -> Boolean;
 }
 
 extern "C-unwind" {
+    /// Indicates whether a time range is contained within a time range.
+    ///
+    /// This function returns a Boolean value that indicates whether the time range specified by the
+    /// <i>
+    /// range
+    /// </i>
+    /// parameter
+    /// contains the range specified by the
+    /// <i>
+    /// otherRange
+    /// </i>
+    /// parameter.
+    ///
+    /// Returns: Returns true if the second time range is contained within the first time range, false if it is not.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeRangeContainsTimeRange(range: CMTimeRange, other_range: CMTimeRange) -> Boolean;
 }
 
 extern "C-unwind" {
+    /// Returns a CMTime structure representing the end of a time range.
+    ///
+    /// Returns: A CMTime structure representing the end of the specified time range.
+    ///
+    /// This function returns a CMTime structure that indicates the end of the time range specified by the
+    /// <i>
+    /// range
+    /// </i>
+    /// parameter.
+    /// CMTimeRangeContainsTime(range, CMTimeRangeGetEnd(range)) is always false.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeRangeGetEnd(range: CMTimeRange) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Translates a time through a mapping from CMTimeRange to CMTimeRange.
+    ///
+    /// Returns: A CMTime structure representing the translated time.
+    ///
+    /// The start and end time of fromRange will be mapped to the start and end time of toRange respectively.
+    /// Other times will be mapped linearly, using the formula:
+    /// result = (t-fromRange.start)*(toRange.duration/fromRange.duration)+toRange.start
+    /// If either CMTimeRange argument is empty, an invalid CMTime will be returned.
+    /// If t does not have the same epoch as fromRange.start, an invalid CMTime will be returned.
+    /// If both fromRange and toRange have duration kCMTimePositiveInfinity,
+    /// t will be offset relative to the differences between their starts, but not scaled.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeMapTimeFromRangeToRange(
         t: CMTime,
@@ -85,11 +184,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// For a given CMTime and CMTimeRange, returns the nearest CMTime inside that time range.
+    ///
+    /// Returns: A CMTime structure inside the given time range.
+    ///
+    /// Times inside the given time range will be returned unmodified.
+    /// Times before the start and after the end time of the time range will return the start and end time of
+    /// the range respectively.
+    /// If the CMTimeRange argument is empty, an invalid CMTime will be returned.
+    /// If the given CMTime is invalid, the returned CMTime will be invalid,
     #[cfg(feature = "CMTime")]
     pub fn CMTimeClampToRange(time: CMTime, range: CMTimeRange) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Translates a duration through a mapping from CMTimeRange to CMTimeRange.
+    ///
+    /// Returns: A CMTime structure representing the translated duration.
+    ///
+    /// The duration will be scaled in proportion to the ratio between the ranges' durations:
+    /// result = dur*(toRange.duration/fromRange.duration)
+    /// If dur does not have the epoch zero, an invalid CMTime will be returned.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeMapDurationFromRangeToRange(
         dur: CMTime,
@@ -99,16 +214,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Folds a time into the given range.  This can be used in looping time calculations.
+    ///
+    /// Returns: A CMTime structure representing the translated duration.
+    ///
+    /// Note that for certain types of looping, you may want to NOT fold times that are prior
+    /// to the loop range.  That's up to the client.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeFoldIntoRange(time: CMTime, fold_range: CMTimeRange) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Make a valid CMTimeRange with the given starting and ending times.
+    ///
+    /// Returns: The resulting CMTimeRange.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeRangeFromTimeToTime(start: CMTime, end: CMTime) -> CMTimeRange;
 }
 
 extern "C-unwind" {
+    /// Returns a CFDictionary version of a CMTimeRange.
+    ///
+    /// This is useful when putting CMTimeRanges in CF container types.
+    ///
+    /// Returns: A CFDictionary version of the CMTimeRange.
     #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
     pub fn CMTimeRangeCopyAsDictionary(
         range: CMTimeRange,
@@ -117,35 +246,67 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Reconstitutes a CMTimeRange struct from a CFDictionary previously created by CMTimeRangeCopyAsDictionary.
+    ///
+    /// This is useful when getting CMTimeRanges from CF container types.  If the CFDictionary does not
+    /// have the requisite keyed values, an invalid time range is returned.
+    ///
+    /// Returns: The created CMTimeRange.
     #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
     pub fn CMTimeRangeMakeFromDictionary(dictionary_representation: CFDictionaryRef)
         -> CMTimeRange;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimerangestartkey?language=objc)
+    /// CFDictionary key for start field of a CMTimeRange (CMTime)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimerangestartkey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeRangeStartKey: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimerangedurationkey?language=objc)
+    /// CFDictionary key for timescale field of a CMTimeRange (CMTime)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimerangedurationkey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeRangeDurationKey: CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Creates a CFString with a description of a CMTimeRange (just like CFCopyDescription).
+    ///
+    /// This is used from within CFShow on an object that contains CMTimeRange fields. It is
+    /// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
+    ///
+    /// Returns: The created CFString description.
     #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
     pub fn CMTimeRangeCopyDescription(allocator: CFAllocatorRef, range: CMTimeRange)
         -> CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Prints a description of the CMTimeRange (just like CFShow).
+    ///
+    /// This is most useful from within gdb.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeRangeShow(range: CMTimeRange);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemapping?language=objc)
+/// A CMTimeMapping specifies the mapping of a segment of one time line (called "source") into another time line (called "target").
+///
+/// When used for movie edit lists, the source time line is the media and the target time line is the track/movie.
+/// Field: source
+/// The time range on the source time line.
+/// For an empty edit, source.start is an invalid CMTime, in which case source.duration shall be ignored.
+/// Otherwise, source.start is the starting time within the source, and source.duration is the duration
+/// of the source timeline to be mapped to the target time range.
+/// Field: target
+/// The time range on the target time line.
+/// If target.duration and source.duration are different, then the source segment should
+/// be played at rate source.duration/target.duration to fit.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemapping?language=objc)
 #[cfg(feature = "CMTime")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -172,16 +333,31 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// Make a valid CMTimeMapping with source and target.
+    ///
+    /// Returns: The resulting CMTimeMapping.
+    ///
+    /// The source and target parameters must have durations whose epoch is 0; otherwise an invalid time mapping will be returned.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeMappingMake(source: CMTimeRange, target: CMTimeRange) -> CMTimeMapping;
 }
 
 extern "C-unwind" {
+    /// Make a valid CMTimeMapping with an empty source.
+    ///
+    /// Returns: The resulting CMTimeMapping.
+    ///
+    /// The target parameter must have a duration whose epoch is 0; otherwise an invalid time mapping will be returned.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeMappingMakeEmpty(target: CMTimeRange) -> CMTimeMapping;
 }
 
 extern "C-unwind" {
+    /// Returns a CFDictionary version of a CMTimeMapping.
+    ///
+    /// This is useful when putting CMTimeMappings in CF container types.
+    ///
+    /// Returns: A CFDictionary version of the CMTimeMapping.
     #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
     pub fn CMTimeMappingCopyAsDictionary(
         mapping: CMTimeMapping,
@@ -190,6 +366,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Reconstitutes a CMTimeMapping struct from a CFDictionary previously created by CMTimeMappingCopyAsDictionary.
+    ///
+    /// This is useful when getting CMTimeMappings from CF container types.  If the CFDictionary does not
+    /// have the requisite keyed values, an invalid time mapping is returned.
+    ///
+    /// Returns: The created CMTimeMapping.
     #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
     pub fn CMTimeMappingMakeFromDictionary(
         dictionary_representation: CFDictionaryRef,
@@ -197,18 +379,28 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemappingsourcekey?language=objc)
+    /// CFDictionary key for source field of a CMTimeMapping (CMTimeRange)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemappingsourcekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeMappingSourceKey: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemappingtargetkey?language=objc)
+    /// CFDictionary key for target field of a CMTimeMapping (CMTimeRange)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemappingtargetkey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeMappingTargetKey: CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Creates a CFString with a description of a CMTimeMapping (just like CFCopyDescription).
+    ///
+    /// This is used from within CFShow on an object that contains CMTimeMapping fields. It is
+    /// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
+    ///
+    /// Returns: The created CFString description.
     #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
     pub fn CMTimeMappingCopyDescription(
         allocator: CFAllocatorRef,
@@ -217,6 +409,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Prints a description of a CMTimeMapping (just like CFShow).
+    ///
+    /// This is most useful from within gdb.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeMappingShow(mapping: CMTimeMapping);
 }

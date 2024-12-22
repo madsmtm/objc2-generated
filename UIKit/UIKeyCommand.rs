@@ -52,26 +52,33 @@ extern_methods!(
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// Short display title.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "UIImage")]
+        /// Image that can appear next to this command.
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
+        /// Elaborated title, if any.
         #[method_id(@__retain_semantics Other discoverabilityTitle)]
         pub unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`discoverabilityTitle`][Self::discoverabilityTitle].
         #[method(setDiscoverabilityTitle:)]
         pub unsafe fn setDiscoverabilityTitle(&self, discoverability_title: Option<&NSString>);
 
+        /// Action to take on choosing this command.
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
@@ -81,46 +88,77 @@ extern_methods!(
         #[method(modifierFlags)]
         pub unsafe fn modifierFlags(&self) -> UIKeyModifierFlags;
 
+        /// Property list object to distinguish commands, if needed.
         #[method_id(@__retain_semantics Other propertyList)]
         pub unsafe fn propertyList(&self) -> Option<Retained<AnyObject>>;
 
+        /// Command attributes.
         #[method(attributes)]
         pub unsafe fn attributes(&self) -> UIMenuElementAttributes;
 
+        /// Setter for [`attributes`][Self::attributes].
         #[method(setAttributes:)]
         pub unsafe fn setAttributes(&self, attributes: UIMenuElementAttributes);
 
+        /// State that can appear next to this command.
         #[method(state)]
         pub unsafe fn state(&self) -> UIMenuElementState;
 
+        /// Setter for [`state`][Self::state].
         #[method(setState:)]
         pub unsafe fn setState(&self, state: UIMenuElementState);
 
+        /// Alternates that differ in modifier flags, if any.
         #[method_id(@__retain_semantics Other alternates)]
         pub unsafe fn alternates(&self) -> Retained<NSArray<UICommandAlternate>>;
 
+        /// Indicates whether the key command should execute if it conflicts with focus or text-editing system commands, defaults to
+        /// `NO`
         #[method(wantsPriorityOverSystemBehavior)]
         pub unsafe fn wantsPriorityOverSystemBehavior(&self) -> bool;
 
+        /// Setter for [`wantsPriorityOverSystemBehavior`][Self::wantsPriorityOverSystemBehavior].
         #[method(setWantsPriorityOverSystemBehavior:)]
         pub unsafe fn setWantsPriorityOverSystemBehavior(
             &self,
             wants_priority_over_system_behavior: bool,
         );
 
+        /// Suppose the system detects a given key command that is not reachable in the current keyboard layout; it will localize the key command to something reachable. By setting this property to NO, you will opt-out this menu item from the system-provided localization. YES by default for apps linked against 15.0 and later SDK.
         #[method(allowsAutomaticLocalization)]
         pub unsafe fn allowsAutomaticLocalization(&self) -> bool;
 
+        /// Setter for [`allowsAutomaticLocalization`][Self::allowsAutomaticLocalization].
         #[method(setAllowsAutomaticLocalization:)]
         pub unsafe fn setAllowsAutomaticLocalization(&self, allows_automatic_localization: bool);
 
+        /// Suppose the system detects a given key command with the following input string [ ] { } ( )
+        /// <
+        /// > ← → in a right-to-left user interface environment (UIUserInterfaceLayoutDirectionRightToLeft); in that case, the system will automatically mirror the key command. For example, a pair of key commands with input { and } will be localized to } and { in a right-to-left user interface. By setting this property to NO, you will opt-out this key command of automatically mirroring in RTL. It would be best only to do this if your action will result in some sort of directional change in the UI, e.g. a segmented control for text alignment or a D-pad in a game. YES by default for apps linked against 15.0 and later SDK.
         #[method(allowsAutomaticMirroring)]
         pub unsafe fn allowsAutomaticMirroring(&self) -> bool;
 
+        /// Setter for [`allowsAutomaticMirroring`][Self::allowsAutomaticMirroring].
         #[method(setAllowsAutomaticMirroring:)]
         pub unsafe fn setAllowsAutomaticMirroring(&self, allows_automatic_mirroring: bool);
 
         #[cfg(feature = "UIImage")]
+        /// Initializes a key command.
+        ///
+        ///
+        /// Parameter `title`: Short display title. This should be localized.
+        ///
+        /// Parameter `image`: Image that can appear next to this command, if needed.
+        ///
+        /// Parameter `action`: Action to take on choosing this command.
+        ///
+        /// Parameter `input`: Keys that must be pressed to choose this command.
+        ///
+        /// Parameter `modifierFlags`: Bit mask of key modifier flags to choose this command.
+        ///
+        /// Parameter `propertyList`: Property list object to distinguish commands, if needed.
+        ///
+        /// Returns: A new key command.
         #[method_id(@__retain_semantics Other commandWithTitle:image:action:input:modifierFlags:propertyList:)]
         pub unsafe fn commandWithTitle_image_action_input_modifierFlags_propertyList(
             title: &NSString,
@@ -133,6 +171,24 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
+        /// Initializes a key command with alternates.
+        ///
+        ///
+        /// Parameter `title`: Short display title. This should be localized.
+        ///
+        /// Parameter `image`: Image that can appear next to this command, if needed.
+        ///
+        /// Parameter `action`: Action to take on choosing this command.
+        ///
+        /// Parameter `input`: Keys that must be pressed to choose this command.
+        ///
+        /// Parameter `modifierFlags`: Bit mask of key modifier flags to choose this command.
+        ///
+        /// Parameter `propertyList`: Property list object to distinguish commands, if needed.
+        ///
+        /// Parameter `alternates`: Alternates that differ in modifier flags.
+        ///
+        /// Returns: A new key command.
         #[method_id(@__retain_semantics Other commandWithTitle:image:action:input:modifierFlags:propertyList:alternates:)]
         pub unsafe fn commandWithTitle_image_action_input_modifierFlags_propertyList_alternates(
             title: &NSString,

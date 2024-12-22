@@ -120,6 +120,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fileModificationDate)]
         pub unsafe fn fileModificationDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Setter for [`fileModificationDate`][Self::fileModificationDate].
         #[method(setFileModificationDate:)]
         pub unsafe fn setFileModificationDate(&self, file_modification_date: Option<&NSDate>);
 
@@ -165,6 +166,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other undoManager)]
         pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
+        /// Setter for [`undoManager`][Self::undoManager].
         #[method(setUndoManager:)]
         pub unsafe fn setUndoManager(&self, undo_manager: Option<&NSUndoManager>);
 
@@ -300,6 +302,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userActivity)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
+        /// Setter for [`userActivity`][Self::userActivity].
         #[method(setUserActivity:)]
         pub unsafe fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);
 

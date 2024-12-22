@@ -59,8 +59,13 @@ impl UIPressType {
     pub const PageUp: Self = Self(30);
     #[doc(alias = "UIPressTypePageDown")]
     pub const PageDown: Self = Self(31);
+    /// Represents a button on a TV remote labeled with 123. When this button is pressed, an app should provide UI to enter a specific channel number if channel
+    /// numbers are available. If no channel numbers exist the app should provide UI to toggle channel category filters, search for channels by name or search for
+    /// currently airing shows.
     #[doc(alias = "UIPressTypeTVRemoteOneTwoThree")]
     pub const TVRemoteOneTwoThree: Self = Self(32);
+    /// Represents a button on a TV remote labeled with four colors, analogous to the four separate color buttons found on some TV remotes. When this button is
+    /// pressed, an app should perform the appropriate color action or if there are multiple color actions available provide UI to choose the specific color.
     #[doc(alias = "UIPressTypeTVRemoteFourColors")]
     pub const TVRemoteFourColors: Self = Self(33);
 }
@@ -113,6 +118,8 @@ extern_methods!(
         pub unsafe fn force(&self) -> CGFloat;
 
         #[cfg(feature = "UIKey")]
+        /// For presses that originate from a hardware keyboard, contains a UIKey object describing the key being acted upon.
+        /// This property is nil if the press did not originate from a hardware keyboard.
         #[method_id(@__retain_semantics Other key)]
         pub unsafe fn key(&self, mtm: MainThreadMarker) -> Option<Retained<UIKey>>;
     }

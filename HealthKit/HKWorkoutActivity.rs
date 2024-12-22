@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivity?language=objc)
+    /// An HKWorkoutActivity is an object describing the properties of an activity within an HKWorkout.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutActivity;
@@ -32,34 +34,66 @@ unsafe impl NSSecureCoding for HKWorkoutActivity {}
 
 extern_methods!(
     unsafe impl HKWorkoutActivity {
+        /// A unique identifier of the activity in the HealthKit database.
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
+        /// The configuration object describing the workout activity.
         #[method_id(@__retain_semantics Other workoutConfiguration)]
         pub unsafe fn workoutConfiguration(&self) -> Retained<HKWorkoutConfiguration>;
 
+        /// The point in time when the workout activity was started.
         #[method_id(@__retain_semantics Other startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
+        /// The point in time when the workout activity was ended.
+        ///
+        /// This value is nil when a workout activity is in progress.
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Extra information describing properties of the workout activity.
+        ///
+        /// Keys must be NSString and values must be either NSString, NSNumber, NSDate, or
+        /// HKQuantity. See HKMetadata.h for potential metadata keys and values.
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// The length of time that the workout activity was recording
+        ///
+        /// The duration is derived from the start and end dates of the activity and takes
+        /// into account periods that the activity was paused. Periods that the activity was
+        /// paused are based off of the workoutEvents property of the parent workout object.
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "HKWorkout")]
+        /// An array of HKWorkoutEvents that occurred during the workout activity.
+        ///
+        /// These events will be ordered by date in ascending order. These events are a subset
+        /// of the workout events that take place between the start date and end date of the
+        /// activity. This includes any event that overlaps the activity, even partially.
+        /// Consequently, some events may be included in more than one activity.
         #[method_id(@__retain_semantics Other workoutEvents)]
         pub unsafe fn workoutEvents(&self) -> Retained<NSArray<HKWorkoutEvent>>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
+        /// A dictionary of statistics per quantity type during the activity
+        ///
+        /// This dictionary will contain HKStatistics objects containing the statistics by quantity
+        /// sample type for all of the samples that have been added to the workout within the date
+        /// interval of this activity.
         #[method_id(@__retain_semantics Other allStatistics)]
         pub unsafe fn allStatistics(&self) -> Retained<NSDictionary<HKQuantityType, HKStatistics>>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
+        /// Returns an HKStatistics object containing the statistics for all the samples of the given type that
+        /// have been added to the workout within the date interval of this activity. If there are no samples of
+        /// the given type then nil is returned.
+        ///
+        ///
+        /// Parameter `quantityType`: The quantity type to gather statistics about.
         #[method_id(@__retain_semantics Other statisticsForType:)]
         pub unsafe fn statisticsForType(
             &self,
@@ -73,6 +107,16 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
+        /// Initialize a new HKWorkoutActivity with the specified values.
+        ///
+        ///
+        /// Parameter `workoutConfiguration`: The configuration object describing the workout activity.
+        ///
+        /// Parameter `startDate`: The point in time when the workout activity was started.
+        ///
+        /// Parameter `endDate`: The point in time when the workout activity was ended.
+        ///
+        /// Parameter `metadata`: Metadata for the workout activity. (Optional)
         #[method_id(@__retain_semantics Init initWithWorkoutConfiguration:startDate:endDate:metadata:)]
         pub unsafe fn initWithWorkoutConfiguration_startDate_endDate_metadata(
             this: Allocated<Self>,

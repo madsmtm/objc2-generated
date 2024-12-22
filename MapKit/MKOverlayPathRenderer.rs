@@ -35,6 +35,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Setter for [`fillColor`][Self::fillColor].
         #[method(setFillColor:)]
         pub unsafe fn setFillColor(&self, fill_color: Option<&NSColor>);
 
@@ -45,6 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Setter for [`strokeColor`][Self::strokeColor].
         #[method(setStrokeColor:)]
         pub unsafe fn setStrokeColor(&self, stroke_color: Option<&NSColor>);
 
@@ -53,6 +55,7 @@ extern_methods!(
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`lineWidth`][Self::lineWidth].
         #[method(setLineWidth:)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
@@ -61,6 +64,7 @@ extern_methods!(
         pub unsafe fn lineJoin(&self) -> CGLineJoin;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`lineJoin`][Self::lineJoin].
         #[method(setLineJoin:)]
         pub unsafe fn setLineJoin(&self, line_join: CGLineJoin);
 
@@ -69,6 +73,7 @@ extern_methods!(
         pub unsafe fn lineCap(&self) -> CGLineCap;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`lineCap`][Self::lineCap].
         #[method(setLineCap:)]
         pub unsafe fn setLineCap(&self, line_cap: CGLineCap);
 
@@ -77,6 +82,7 @@ extern_methods!(
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`miterLimit`][Self::miterLimit].
         #[method(setMiterLimit:)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
@@ -85,18 +91,21 @@ extern_methods!(
         pub unsafe fn lineDashPhase(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`lineDashPhase`][Self::lineDashPhase].
         #[method(setLineDashPhase:)]
         pub unsafe fn setLineDashPhase(&self, line_dash_phase: CGFloat);
 
         #[method_id(@__retain_semantics Other lineDashPattern)]
         pub unsafe fn lineDashPattern(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// Setter for [`lineDashPattern`][Self::lineDashPattern].
         #[method(setLineDashPattern:)]
         pub unsafe fn setLineDashPattern(&self, line_dash_pattern: Option<&NSArray<NSNumber>>);
 
         #[method(shouldRasterize)]
         pub unsafe fn shouldRasterize(&self) -> bool;
 
+        /// Setter for [`shouldRasterize`][Self::shouldRasterize].
         #[method(setShouldRasterize:)]
         pub unsafe fn setShouldRasterize(&self, should_rasterize: bool);
 
@@ -108,6 +117,7 @@ extern_methods!(
         pub unsafe fn path(&self) -> CGPathRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`path`][Self::path].
         #[method(setPath:)]
         pub unsafe fn setPath(&self, path: CGPathRef);
 

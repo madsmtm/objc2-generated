@@ -70,12 +70,14 @@ extern_methods!(
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
+        /// Setter for [`action`][Self::action].
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
@@ -85,6 +87,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSGestureRecognizerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -94,6 +97,7 @@ extern_methods!(
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
@@ -106,6 +110,7 @@ extern_methods!(
         pub unsafe fn pressureConfiguration(&self) -> Retained<NSPressureConfiguration>;
 
         #[cfg(feature = "NSPressureConfiguration")]
+        /// Setter for [`pressureConfiguration`][Self::pressureConfiguration].
         #[method(setPressureConfiguration:)]
         pub unsafe fn setPressureConfiguration(
             &self,
@@ -115,6 +120,7 @@ extern_methods!(
         #[method(delaysPrimaryMouseButtonEvents)]
         pub unsafe fn delaysPrimaryMouseButtonEvents(&self) -> bool;
 
+        /// Setter for [`delaysPrimaryMouseButtonEvents`][Self::delaysPrimaryMouseButtonEvents].
         #[method(setDelaysPrimaryMouseButtonEvents:)]
         pub unsafe fn setDelaysPrimaryMouseButtonEvents(
             &self,
@@ -124,6 +130,7 @@ extern_methods!(
         #[method(delaysSecondaryMouseButtonEvents)]
         pub unsafe fn delaysSecondaryMouseButtonEvents(&self) -> bool;
 
+        /// Setter for [`delaysSecondaryMouseButtonEvents`][Self::delaysSecondaryMouseButtonEvents].
         #[method(setDelaysSecondaryMouseButtonEvents:)]
         pub unsafe fn setDelaysSecondaryMouseButtonEvents(
             &self,
@@ -133,6 +140,7 @@ extern_methods!(
         #[method(delaysOtherMouseButtonEvents)]
         pub unsafe fn delaysOtherMouseButtonEvents(&self) -> bool;
 
+        /// Setter for [`delaysOtherMouseButtonEvents`][Self::delaysOtherMouseButtonEvents].
         #[method(setDelaysOtherMouseButtonEvents:)]
         pub unsafe fn setDelaysOtherMouseButtonEvents(
             &self,
@@ -142,18 +150,21 @@ extern_methods!(
         #[method(delaysKeyEvents)]
         pub unsafe fn delaysKeyEvents(&self) -> bool;
 
+        /// Setter for [`delaysKeyEvents`][Self::delaysKeyEvents].
         #[method(setDelaysKeyEvents:)]
         pub unsafe fn setDelaysKeyEvents(&self, delays_key_events: bool);
 
         #[method(delaysMagnificationEvents)]
         pub unsafe fn delaysMagnificationEvents(&self) -> bool;
 
+        /// Setter for [`delaysMagnificationEvents`][Self::delaysMagnificationEvents].
         #[method(setDelaysMagnificationEvents:)]
         pub unsafe fn setDelaysMagnificationEvents(&self, delays_magnification_events: bool);
 
         #[method(delaysRotationEvents)]
         pub unsafe fn delaysRotationEvents(&self) -> bool;
 
+        /// Setter for [`delaysRotationEvents`][Self::delaysRotationEvents].
         #[method(setDelaysRotationEvents:)]
         pub unsafe fn setDelaysRotationEvents(&self, delays_rotation_events: bool);
 
@@ -186,6 +197,7 @@ extern_methods!(
         pub unsafe fn allowedTouchTypes(&self) -> NSTouchTypeMask;
 
         #[cfg(feature = "NSTouch")]
+        /// Setter for [`allowedTouchTypes`][Self::allowedTouchTypes].
         #[method(setAllowedTouchTypes:)]
         pub unsafe fn setAllowedTouchTypes(&self, allowed_touch_types: NSTouchTypeMask);
     }
@@ -250,6 +262,7 @@ extern_protocol!(
 extern_methods!(
     /// NSSubclassUse
     unsafe impl NSGestureRecognizer {
+        /// Setter for [`state`][Self::state].
         #[method(setState:)]
         pub unsafe fn setState(&self, state: NSGestureRecognizerState);
 

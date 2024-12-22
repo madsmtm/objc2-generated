@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatareadingoptions?language=objc)
+/// **************    Read/Write Options    ***************
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatareadingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -61,7 +63,9 @@ unsafe impl RefEncode for NSDataWritingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatasearchoptions?language=objc)
+/// **************    Data Search Options    ***************
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatasearchoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -81,7 +85,9 @@ unsafe impl RefEncode for NSDataSearchOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatabase64encodingoptions?language=objc)
+/// **************        Base 64 Options    ***************
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatabase64encodingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -123,7 +129,9 @@ unsafe impl RefEncode for NSDataBase64DecodingOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata?language=objc)
+    /// **************    Immutable Data        ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSData;
@@ -636,7 +644,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutabledata?language=objc)
+    /// **************    Mutable Data        ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutabledata?language=objc)
     #[unsafe(super(NSData, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableData;
@@ -668,6 +678,7 @@ unsafe impl NSSecureCoding for NSMutableData {}
 
 extern_methods!(
     unsafe impl NSMutableData {
+        /// Setter for [`length`][Self::length].
         #[method(setLength:)]
         pub fn setLength(&self, length: NSUInteger);
     }
@@ -768,7 +779,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspurgeabledata?language=objc)
+    /// **************        Purgeable Data    ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspurgeabledata?language=objc)
     #[unsafe(super(NSMutableData, NSData, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPurgeableData;

@@ -9,7 +9,9 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer?language=objc)
+    /// A vertex buffer and optional index and mask buffer for a set of polygons
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -30,10 +32,14 @@ unsafe impl NSSecureCoding for MPSPolygonBuffer {}
 
 extern_methods!(
     unsafe impl MPSPolygonBuffer {
+        /// Initialize the polygon buffer
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initialize the polygon buffer with an NSCoder. Buffer properties such as the vertex
+        /// buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with the
+        /// polygon buffer instead.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
@@ -45,62 +51,104 @@ extern_methods!(
         #[method_id(@__retain_semantics Other polygonBuffer)]
         pub unsafe fn polygonBuffer() -> Retained<Self>;
 
+        /// Create a a copy of this polygon buffer
+        ///
+        ///
+        /// Buffer properties of the polygon buffer such as the vertex buffer, instance, buffer,
+        /// etc. are set to nil. Copy these buffers and assign them to the new polygon buffer or reassign
+        /// the existing buffers to the new polygon buffer.
+        ///
+        ///
+        /// Parameter `zone`: This parameter is ignored. Memory zones are no longer used by Objective-C.
         #[deprecated]
         #[method_id(@__retain_semantics Copy copyWithZone:)]
         pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Retained<Self>;
 
+        /// Vertex buffer containing vertex data encoded as three 32 bit floats per vertex. Note
+        /// that by default each vertex is aligned to the alignment of the vector_float3 type: 16 bytes.
+        /// This can be changed using the vertexStride property. A vertex buffer must be provided before
+        /// the acceleration structure is built.
+        ///
+        /// When using triangle polygons, degenerate (zero or negative area) triangles are ignored
+        /// during acceleration structure construction. This can be used to pad triangle indices if needed.
+        ///
+        /// Quadrilateral polygons are internally treated as two triangles. If the quadrilateral has
+        /// vertices v0, v1, v2, and v3, the two triangles will have vertices v0, v1, v2 and v0, v2, v3.
+        /// A quadrilateral may be used to represent a triangle by repeating the last vertex. If the first
+        /// triangle is degenerate (zero or negative area), the entire quadrilateral will be ignored. This
+        /// can be used to pad quadrilateral indices if needed. All four vertices of a quadrilateral must
+        /// be coplanar and the quadrilateral must be convex.
         #[deprecated]
         #[method_id(@__retain_semantics Other vertexBuffer)]
         pub unsafe fn vertexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
+        /// Setter for [`vertexBuffer`][Self::vertexBuffer].
         #[deprecated]
         #[method(setVertexBuffer:)]
         pub unsafe fn setVertexBuffer(&self, vertex_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
+        /// Offset, in bytes, into the vertex buffer. Defaults to 0 bytes. Must be aligned to 4
+        /// bytes.
         #[deprecated]
         #[method(vertexBufferOffset)]
         pub unsafe fn vertexBufferOffset(&self) -> NSUInteger;
 
+        /// Setter for [`vertexBufferOffset`][Self::vertexBufferOffset].
         #[deprecated]
         #[method(setVertexBufferOffset:)]
         pub unsafe fn setVertexBufferOffset(&self, vertex_buffer_offset: NSUInteger);
 
+        /// Index buffer containing index data. Each index references a vertex in the vertex buffer.
+        /// May be nil.
         #[deprecated]
         #[method_id(@__retain_semantics Other indexBuffer)]
         pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
+        /// Setter for [`indexBuffer`][Self::indexBuffer].
         #[deprecated]
         #[method(setIndexBuffer:)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
+        /// Offset, in bytes, into the index buffer. Defaults to 0 bytes. Must be aligned to a
+        /// multiple of the index type. Changes to this property require rebuilding the acceleration
+        /// structure.
         #[deprecated]
         #[method(indexBufferOffset)]
         pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
 
+        /// Setter for [`indexBufferOffset`][Self::indexBufferOffset].
         #[deprecated]
         #[method(setIndexBufferOffset:)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
+        /// Mask buffer containing one uint32_t mask per polygon. May be nil. Otherwise, the mask
+        /// type must be specified on the MPSRayIntersector with which it is used.
         #[deprecated]
         #[method_id(@__retain_semantics Other maskBuffer)]
         pub unsafe fn maskBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
+        /// Setter for [`maskBuffer`][Self::maskBuffer].
         #[deprecated]
         #[method(setMaskBuffer:)]
         pub unsafe fn setMaskBuffer(&self, mask_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
+        /// Offset, in bytes, into the mask buffer. Defaults to 0 bytes. Must be aligned to 4 bytes.
         #[deprecated]
         #[method(maskBufferOffset)]
         pub unsafe fn maskBufferOffset(&self) -> NSUInteger;
 
+        /// Setter for [`maskBufferOffset`][Self::maskBufferOffset].
         #[deprecated]
         #[method(setMaskBufferOffset:)]
         pub unsafe fn setMaskBufferOffset(&self, mask_buffer_offset: NSUInteger);
 
+        /// Number of polygons. Changes to this property require rebuilding the acceleration
+        /// structure.
         #[deprecated]
         #[method(polygonCount)]
         pub unsafe fn polygonCount(&self) -> NSUInteger;
 
+        /// Setter for [`polygonCount`][Self::polygonCount].
         #[deprecated]
         #[method(setPolygonCount:)]
         pub unsafe fn setPolygonCount(&self, polygon_count: NSUInteger);

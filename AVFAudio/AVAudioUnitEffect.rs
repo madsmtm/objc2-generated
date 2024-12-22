@@ -10,7 +10,17 @@ use objc2_audio_toolbox::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteffect?language=objc)
+    /// an AVAudioUnit that processes audio in real-time
+    ///
+    /// An AVAudioUnitEffect represents an audio unit of type kAudioUnitType_Effect,
+    /// kAudioUnitType_MusicEffect, kAudioUnitType_Panner, kAudioUnitType_RemoteEffect or
+    /// kAudioUnitType_RemoteMusicEffect.
+    ///
+    /// These effects run in real-time and process some x number of audio input
+    /// samples to produce x number of audio output samples. A delay unit is an
+    /// example of an effect unit.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteffect?language=objc)
     #[unsafe(super(AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
@@ -25,15 +35,28 @@ extern_methods!(
     unsafe impl AVAudioUnitEffect {
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// Create an AVAudioUnitEffect object.
+        ///
+        ///
+        /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be instantiated.
+        ///
+        /// The componentType must be one of these types
+        /// kAudioUnitType_Effect
+        /// kAudioUnitType_MusicEffect
+        /// kAudioUnitType_Panner
+        /// kAudioUnitType_RemoteEffect
+        /// kAudioUnitType_RemoteMusicEffect
         #[method_id(@__retain_semantics Init initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
             audio_component_description: AudioComponentDescription,
         ) -> Retained<Self>;
 
+        /// Bypass state of the audio unit.
         #[method(bypass)]
         pub unsafe fn bypass(&self) -> bool;
 
+        /// Setter for [`bypass`][Self::bypass].
         #[method(setBypass:)]
         pub unsafe fn setBypass(&self, bypass: bool);
     }

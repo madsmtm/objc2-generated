@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeletedobject?language=objc)
+    /// A class representing an HKObject that was deleted from the HealtKit database.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeletedobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKDeletedObject;
@@ -25,9 +27,14 @@ unsafe impl NSSecureCoding for HKDeletedObject {}
 
 extern_methods!(
     unsafe impl HKDeletedObject {
+        /// The unique identifier of the HKObject that was deleted from the HealthKit database.
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
+        /// Extra information describing properties of the receiver.
+        ///
+        /// Metadata retained from the deleted HKObject.
+        /// Available keys: HKMetadataKeySyncIdentifier, HKMetadataKeySyncVersion
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 

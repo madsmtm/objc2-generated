@@ -17,16 +17,37 @@ unsafe impl NSObjectProtocol for NSFileProviderRequest {}
 
 extern_methods!(
     unsafe impl NSFileProviderRequest {
+        /// The request was made by the sync system, e.g. to update a file to its latest version after a remote update was pushed.
+        ///
+        /// This is only valid for NSFileProviderRequest objects passed to these methods:
+        /// - [NSFileProviderEnumerating enumeratorForContainerItemIdentifier:]
+        /// - [NSFileProviderReplicatedExtension fetchContentsForItemWithIdentifier:]
+        ///
+        /// For sync up methods (createItem/modifyItem/deleteItem), the system does not know which actor made the
+        /// modifications to the file, so it cannot supply this information.
         #[method(isSystemRequest)]
         pub unsafe fn isSystemRequest(&self) -> bool;
 
+        /// The request was made by Finder or one of its helpers.
+        ///
+        /// This is only valid for NSFileProviderRequest objects passed to these methods:
+        /// - [NSFileProviderEnumerating enumeratorForContainerItemIdentifier:]
+        /// - [NSFileProviderReplicatedExtension fetchContentsForItemWithIdentifier:]
+        ///
+        /// For sync up methods (createItem/modifyItem/deleteItem), the system does not know which actor made the
+        /// modifications to the file, so it cannot supply this information.
         #[method(isFileViewerRequest)]
         pub unsafe fn isFileViewerRequest(&self) -> bool;
 
+        /// The URL of the requesting executable. This will always be nil unless both an MDM profile key is set, and the
+        /// provider's application is installed by an MDM profile.
         #[method_id(@__retain_semantics Other requestingExecutable)]
         pub unsafe fn requestingExecutable(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSFileProviderDomain")]
+        /// The version of the domain when the event that triggered the request was observed.
+        ///
+        /// If the extension doesn't implement the NSFileProviderDomainState protocol, this will be nil.
         #[method_id(@__retain_semantics Other domainVersion)]
         pub unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
     }

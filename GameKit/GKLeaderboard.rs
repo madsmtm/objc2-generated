@@ -73,7 +73,12 @@ unsafe impl RefEncode for GKLeaderboardType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard?language=objc)
+    /// GKLeaderboard represents a single instance of a leaderboard for the current game.
+    /// Leaderboards can be of the following types:
+    /// 1. Classic - Traditional, non-expiring leaderboards
+    /// 2. Recurring - Periodic timed leaderboards that follow a recurrence rule defined in App Store Connect.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKLeaderboard;
@@ -83,28 +88,37 @@ unsafe impl NSObjectProtocol for GKLeaderboard {}
 
 extern_methods!(
     unsafe impl GKLeaderboard {
+        /// Localized title
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// set when leaderboards have been designated a game group; set when loadLeaderboardsWithCompletionHandler has been called for leaderboards that support game groups
         #[method_id(@__retain_semantics Other groupIdentifier)]
         pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Leaderboard ID defined in App Store Connect that this instance is associated with
         #[method_id(@__retain_semantics Other baseLeaderboardID)]
         pub unsafe fn baseLeaderboardID(&self) -> Retained<NSString>;
 
+        /// Type of leaderboard
         #[method(type)]
         pub unsafe fn r#type(&self) -> GKLeaderboardType;
 
+        /// Date and time this instance started accepting score submissions (only applicable to recurring leaderboards)
         #[method_id(@__retain_semantics Other startDate)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Date and time the next instance will start accepting score submissions (only applicable to recurring leaderboards)
         #[method_id(@__retain_semantics Other nextStartDate)]
         pub unsafe fn nextStartDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Duration from startDate during which this leaderboard instance accepts score submissions (only applicable to recurring leaderboards)
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "block2")]
+        /// Loads classic and recurring leaderboards associated with the supplied App Store Connect leaderboard IDs.
+        /// If leaderboardIDs is nil, this loads all classic and recurring leaderboards for this game.
         #[method(loadLeaderboardsWithIDs:completionHandler:)]
         pub unsafe fn loadLeaderboardsWithIDs_completionHandler(
             leaderboard_i_ds: Option<&NSArray<NSString>>,
@@ -112,6 +126,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Loads the occurrence preceding this occurrence for a recurring leaderboard in which the local player submitted a score. If no previous occurrence is found that the player submitted a score to, then the most recent previous occurrence is returned.
         #[method(loadPreviousOccurrenceWithCompletionHandler:)]
         pub unsafe fn loadPreviousOccurrenceWithCompletionHandler(
             &self,
@@ -119,6 +134,11 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
+        /// Class method to submit a single score to multiple leaderboards
+        /// score - earned by the player
+        /// context - developer supplied metadata associated with the player's score
+        /// player - the player for whom this score is being submitted
+        /// leaderboardIDs - one or more leaderboard IDs defined in App Store Connect
         #[method(submitScore:context:player:leaderboardIDs:completionHandler:)]
         pub unsafe fn submitScore_context_player_leaderboardIDs_completionHandler(
             score: NSInteger,
@@ -129,6 +149,10 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
+        /// Instance method to submit a single score to the leaderboard associated with this instance
+        /// score - earned by the player
+        /// context - developer supplied metadata associated with the player's score
+        /// player - the player for whom this score is being submitted
         #[method(submitScore:context:player:completionHandler:)]
         pub unsafe fn submitScore_context_player_completionHandler(
             &self,
@@ -139,6 +163,14 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "GKLeaderboardEntry", feature = "block2"))]
+        /// Loads leaderboard entries based on the supplied parameters.
+        /// playerScope - Friends or Global
+        /// timeScope - Today, Week, All Time (Only applicable to classic leaderboards)
+        /// range - Range of ranked entries to return (minimum start index 1, maximum length 100)
+        /// Upon completion, will return:
+        /// localPlayerEntry - entry for the local player
+        /// entries - requested entries matching supplied parameters
+        /// totalPlayerCount - total player count matching specified scope
         #[method(loadEntriesForPlayerScope:timeScope:range:completionHandler:)]
         pub unsafe fn loadEntriesForPlayerScope_timeScope_range_completionHandler(
             &self,
@@ -161,6 +193,12 @@ extern_methods!(
             feature = "GKPlayer",
             feature = "block2"
         ))]
+        /// Loads leaderboard entries for specific players based on the supplied parameters.
+        /// players - Array of players to load entries for
+        /// timeScope - Today, Week, All Time (Only applicable to classic leaderboards)
+        /// Upon completion, will return:
+        /// localPlayerEntry - entry for the local player
+        /// entries - requested entries matching supplied parameters
         #[method(loadEntriesForPlayers:timeScope:completionHandler:)]
         pub unsafe fn loadEntriesForPlayers_timeScope_completionHandler(
             &self,
@@ -180,6 +218,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other category)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`category`][Self::category].
         #[deprecated]
         #[method(setCategory:)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
@@ -214,53 +253,66 @@ extern_methods!(
         #[method(timeScope)]
         pub unsafe fn timeScope(&self) -> GKLeaderboardTimeScope;
 
+        /// Setter for [`timeScope`][Self::timeScope].
         #[deprecated]
         #[method(setTimeScope:)]
         pub unsafe fn setTimeScope(&self, time_scope: GKLeaderboardTimeScope);
 
+        /// Filter on friends. Does not apply to leaderboard initialized with players.
         #[deprecated]
         #[method(playerScope)]
         pub unsafe fn playerScope(&self) -> GKLeaderboardPlayerScope;
 
+        /// Setter for [`playerScope`][Self::playerScope].
         #[deprecated]
         #[method(setPlayerScope:)]
         pub unsafe fn setPlayerScope(&self, player_scope: GKLeaderboardPlayerScope);
 
+        /// leaderboardID. If nil, fetch the aggregate leaderboard.
         #[deprecated]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`identifier`][Self::identifier].
         #[deprecated]
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
+        /// Leaderboards start at index 1 and the length should be less than 100. Does not apply to leaderboards initialized with players.  Exception will be thrown if developer tries to set an invalid range.
         #[deprecated]
         #[method(range)]
         pub unsafe fn range(&self) -> NSRange;
 
+        /// Setter for [`range`][Self::range].
         #[deprecated]
         #[method(setRange:)]
         pub unsafe fn setRange(&self, range: NSRange);
 
         #[cfg(feature = "GKScore")]
+        /// Scores are not valid until loadScores: has completed.
         #[deprecated]
         #[method_id(@__retain_semantics Other scores)]
         pub unsafe fn scores(&self) -> Option<Retained<NSArray<GKScore>>>;
 
+        /// The maxRange which represents the size of the leaderboard is not valid until loadScores: has completed.
         #[deprecated]
         #[method(maxRange)]
         pub unsafe fn maxRange(&self) -> NSUInteger;
 
         #[cfg(feature = "GKScore")]
+        /// The local player's score
         #[deprecated]
         #[method_id(@__retain_semantics Other localPlayerScore)]
         pub unsafe fn localPlayerScore(&self) -> Option<Retained<GKScore>>;
 
+        /// This property is true if the leaderboard is currently loading
         #[deprecated]
         #[method(isLoading)]
         pub unsafe fn isLoading(&self) -> bool;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// Specify an array of GKPlayers. For example, the players who are in a match together
+        /// Defaults to AllTime score, if you want to change the timeScope, set the property before loading the scores. Range and playerScope are not applicable. players may not be nil.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithPlayers:)]
         pub unsafe fn initWithPlayers(
@@ -269,6 +321,10 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "GKScore", feature = "block2"))]
+        /// Load the scores for this leader board asynchronously. Error will be nil on success.
+        /// Possible reasons for error:
+        /// 1. Communications problem
+        /// 2. Unauthenticated player
         #[deprecated]
         #[method(loadScoresWithCompletionHandler:)]
         pub unsafe fn loadScoresWithCompletionHandler(
@@ -277,6 +333,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Loads the array of GKLeaderboard for your app
+        /// Possible reasons for error:
+        /// 1. Communications problem
+        /// 2. Unauthenticated player
+        /// 3. Leaderboard not present
         #[deprecated]
         #[method(loadLeaderboardsWithCompletionHandler:)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(

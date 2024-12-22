@@ -39,6 +39,7 @@ extern_methods!(
         pub unsafe fn visiblePath(&self) -> Option<Retained<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]
+        /// Setter for [`visiblePath`][Self::visiblePath].
         #[method(setVisiblePath:)]
         pub unsafe fn setVisiblePath(&self, visible_path: Option<&UIBezierPath>);
 
@@ -47,6 +48,7 @@ extern_methods!(
         pub unsafe fn shadowPath(&self) -> Option<Retained<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]
+        /// Setter for [`shadowPath`][Self::shadowPath].
         #[method(setShadowPath:)]
         pub unsafe fn setShadowPath(&self, shadow_path: Option<&UIBezierPath>);
 
@@ -55,6 +57,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
     }

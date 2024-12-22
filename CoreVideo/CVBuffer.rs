@@ -59,14 +59,35 @@ unsafe impl RefEncode for CVAttachmentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbufferref?language=objc)
+/// Base type for all CoreVideo buffers
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbufferref?language=objc)
 pub type CVBufferRef = *mut c_void;
 
 extern "C-unwind" {
+    /// Retains a CVBuffer object
+    ///
+    /// Like CFRetain CVBufferRetain increments the retain count of a CVBuffer object. In contrast to the CF call it is NULL safe.
+    ///
+    /// Parameter `buffer`: A CVBuffer object that you want to retain.
+    ///
+    /// Returns: A CVBuffer object that is the same as the passed in buffer.
     pub fn CVBufferRetain(buffer: CVBufferRef) -> CVBufferRef;
 }
 
 extern "C-unwind" {
+    /// Sets or adds a attachment of a CVBuffer object
+    ///
+    /// You can attach any CF object to a CVBuffer object to store additional information. CVBufferGetAttachment stores an attachement identified by a key. If the key doesn't exist, the attachment will be added. If the key does exist, the existing attachment will be replaced. In bouth cases the retain count of the attachment will be incremented. The value can be any CFType but nil has no defined behavior.
+    ///
+    /// Parameter `buffer`: Target CVBuffer object.
+    ///
+    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+    ///
+    /// Parameter `value`: Attachment in form af a CF object.
+    ///
+    /// Parameter `attachmentMode`: Specifies which attachment mode is desired for this attachment.   A particular attachment key may only exist in
+    /// a single mode at a time.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CVBufferSetAttachment(
         buffer: CVBufferRef,
@@ -77,6 +98,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a specific attachment of a CVBuffer object
+    ///
+    /// You can attach any CF object to a CVBuffer object to store additional information. CVBufferGetAttachment retrieves an attachement identified by a key.
+    ///
+    /// Parameter `buffer`: Target CVBuffer object.
+    ///
+    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+    ///
+    /// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
+    ///
+    /// Returns: If found the attachment object
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn CVBufferGetAttachment(
@@ -87,15 +119,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes a specific attachment of a CVBuffer object
+    ///
+    /// CVBufferRemoveAttachment removes an attachement identified by a key. If found the attachement is removed and the retain count decremented.
+    ///
+    /// Parameter `buffer`: Target CVBuffer object.
+    ///
+    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CVBufferRemoveAttachment(buffer: CVBufferRef, key: CFStringRef);
 }
 
 extern "C-unwind" {
+    /// Removes all attachments of a CVBuffer object
+    ///
+    /// While CVBufferRemoveAttachment removes a specific attachement identified by a key CVBufferRemoveAllAttachments removes all attachments of a buffer and decrements their retain counts.
+    ///
+    /// Parameter `buffer`: Target CVBuffer object.
     pub fn CVBufferRemoveAllAttachments(buffer: CVBufferRef);
 }
 
 extern "C-unwind" {
+    /// Returns all attachments of a CVBuffer object
+    ///
+    /// CVBufferGetAttachments is a convenience call that returns all attachments with their corresponding keys in a CFDictionary.
+    ///
+    /// Parameter `buffer`: Target CVBuffer object.
+    ///
+    /// Returns: A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, the dictionary is empty.  Returns NULL
+    /// for invalid attachment mode.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn CVBufferGetAttachments(
@@ -105,6 +157,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets a set of attachments for a CVBuffer
+    ///
+    /// CVBufferSetAttachments is a convenience call that in turn calls CVBufferSetAttachment for each key and value in the given dictionary. All key value pairs must be in the root level of the dictionary.
+    ///
+    /// Parameter `buffer`: Target CVBuffer object.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CVBufferSetAttachments(
         buffer: CVBufferRef,
@@ -114,6 +171,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copy all propagatable attachments from one buffer to another.
+    ///
+    /// CVBufferPropagateAttachments is a convenience call that copies all attachments with a mode of kCVAttachmentMode_ShouldPropagate from one
+    /// buffer to another.
+    ///
+    /// Parameter `sourceBuffer`: CVBuffer to copy attachments from.
+    ///
+    /// Parameter `destinationBuffer`: CVBuffer to copy attachments to.
     pub fn CVBufferPropagateAttachments(
         source_buffer: CVBufferRef,
         destination_buffer: CVBufferRef,
@@ -121,6 +186,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a copy of all attachments of a CVBuffer object. It is the caller’s responsibility to release the returned dictionary.
+    ///
+    /// CVBufferCopyAttachments is a convenience call that returns a copy of all attachments with their corresponding keys in a CFDictionary.
+    ///
+    /// Parameter `buffer`: Target CVBuffer object.
+    ///
+    /// Returns: A CFDictionary with all buffer attachments identified by their keys. If no attachment is present or invalid attachment mode,   returns NULL
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CVBufferCopyAttachments(
         buffer: CVBufferRef,
@@ -129,6 +201,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a retained specific attachment of a CVBuffer object. It is the caller’s responsibility to release the returned value.
+    ///
+    /// You can attach any CF object to a CVBuffer object to store additional information. CVBufferCopyAttachment retrieves a retained attachment identified by a key.
+    ///
+    /// Parameter `buffer`: Target CVBuffer object.
+    ///
+    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+    ///
+    /// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
+    ///
+    /// Returns: If found the attachment object, return the value; otherwize, return NULL.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CVBufferCopyAttachment(
         buffer: CVBufferRef,
@@ -138,6 +221,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns true if an attachment with the passed key is present on a CVBuffer object.
+    ///
+    /// Parameter `buffer`: Target CVBuffer object.
+    ///
+    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+    ///
+    /// Returns: True if an attachment with this key is present, otherwise false.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CVBufferHasAttachment(buffer: CVBufferRef, key: CFStringRef) -> Boolean;
 }

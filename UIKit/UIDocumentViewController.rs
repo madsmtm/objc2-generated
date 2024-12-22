@@ -63,34 +63,44 @@ extern_methods!(
         pub unsafe fn document(&self) -> Option<Retained<UIDocument>>;
 
         #[cfg(feature = "UIDocument")]
+        /// Setter for [`document`][Self::document].
         #[method(setDocument:)]
         pub unsafe fn setDocument(&self, document: Option<&UIDocument>);
 
         #[cfg(feature = "UIDocumentViewControllerLaunchOptions")]
+        /// Properties to configure the view controller when no document is open.
         #[method_id(@__retain_semantics Other launchOptions)]
         pub unsafe fn launchOptions(&self) -> Retained<UIDocumentViewControllerLaunchOptions>;
 
         #[cfg(feature = "UIDocumentViewControllerLaunchOptions")]
+        /// Setter for [`launchOptions`][Self::launchOptions].
         #[method(setLaunchOptions:)]
         pub unsafe fn setLaunchOptions(
             &self,
             launch_options: &UIDocumentViewControllerLaunchOptions,
         );
 
+        /// When this view controller updates its navigation item, this method will be called, allowing subclasses to apply any kind of customization you might want.
         #[method(navigationItemDidUpdate)]
         pub unsafe fn navigationItemDidUpdate(&self);
 
         #[cfg(feature = "block2")]
+        /// Opens the current document.
+        /// This method is optional. If the document is not opened by the time the view controller becomes visible, the view controller will take care of opening the document.
+        /// If the document is already opened, the completion handler will be called as if opening the document succeeded.
         #[method(openDocumentWithCompletionHandler:)]
         pub unsafe fn openDocumentWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(Bool)>,
         );
 
+        /// Notifies subclasses that the specified document was opened. This method will be called by the system after
+        /// opening the document initially or after the presented document was changed.
         #[method(documentDidOpen)]
         pub unsafe fn documentDidOpen(&self);
 
         #[cfg(feature = "UIBarButtonItemGroup")]
+        /// MARK: Custom Navigation Items
         #[method_id(@__retain_semantics Other undoRedoItemGroup)]
         pub unsafe fn undoRedoItemGroup(&self) -> Retained<UIBarButtonItemGroup>;
     }

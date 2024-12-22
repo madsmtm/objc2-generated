@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other align)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
+        /// Setter for [`align`][Self::align].
         #[deprecated]
         #[method(setAlign:)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method(noShade)]
         pub unsafe fn noShade(&self) -> bool;
 
+        /// Setter for [`noShade`][Self::noShade].
         #[deprecated]
         #[method(setNoShade:)]
         pub unsafe fn setNoShade(&self, no_shade: bool);
@@ -97,6 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other size)]
         pub unsafe fn size(&self) -> Retained<NSString>;
 
+        /// Setter for [`size`][Self::size].
         #[deprecated]
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: Option<&NSString>);
@@ -105,6 +108,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other width)]
         pub unsafe fn width(&self) -> Retained<NSString>;
 
+        /// Setter for [`width`][Self::width].
         #[deprecated]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: Option<&NSString>);

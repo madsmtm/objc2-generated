@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialstorage?language=objc)
+    /// NSURLCredentialStorage implements a singleton object (shared instance) which manages the shared credentials cache. Note: Whereas in Mac OS X any application can access any credential with a persistence of NSURLCredentialPersistencePermanent provided the user gives permission, in iPhone OS an application can access only its own credentials.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialstorage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLCredentialStorage;
@@ -21,6 +23,9 @@ unsafe impl NSObjectProtocol for NSURLCredentialStorage {}
 
 extern_methods!(
     unsafe impl NSURLCredentialStorage {
+        /// Get the shared singleton authentication storage
+        ///
+        /// Returns: the shared authentication storage
         #[method_id(@__retain_semantics Other sharedCredentialStorage)]
         pub unsafe fn sharedCredentialStorage() -> Retained<NSURLCredentialStorage>;
 
@@ -30,6 +35,11 @@ extern_methods!(
             feature = "NSURLCredential",
             feature = "NSURLProtectionSpace"
         ))]
+        /// Get a dictionary mapping usernames to credentials for the specified protection space.
+        ///
+        /// Parameter `space`: An NSURLProtectionSpace indicating the protection space for which to get credentials
+        ///
+        /// Returns: A dictionary where the keys are usernames and the values are the corresponding NSURLCredentials.
         #[method_id(@__retain_semantics Other credentialsForProtectionSpace:)]
         pub unsafe fn credentialsForProtectionSpace(
             &self,
@@ -42,12 +52,26 @@ extern_methods!(
             feature = "NSURLCredential",
             feature = "NSURLProtectionSpace"
         ))]
+        /// Get a dictionary mapping NSURLProtectionSpaces to dictionaries which map usernames to NSURLCredentials
+        ///
+        /// Returns: an NSDictionary where the keys are NSURLProtectionSpaces
+        /// and the values are dictionaries, in which the keys are usernames
+        /// and the values are NSURLCredentials
         #[method_id(@__retain_semantics Other allCredentials)]
         pub unsafe fn allCredentials(
             &self,
         ) -> Retained<NSDictionary<NSURLProtectionSpace, NSDictionary<NSString, NSURLCredential>>>;
 
         #[cfg(all(feature = "NSURLCredential", feature = "NSURLProtectionSpace"))]
+        /// Add a new credential to the set for the specified protection space or replace an existing one.
+        ///
+        /// Parameter `credential`: The credential to set.
+        ///
+        /// Parameter `space`: The protection space for which to add it.
+        ///
+        /// Multiple credentials may be set for a given protection space, but each must have
+        /// a distinct user. If a credential with the same user is already set for the protection space,
+        /// the new one will replace it.
         #[method(setCredential:forProtectionSpace:)]
         pub unsafe fn setCredential_forProtectionSpace(
             &self,
@@ -56,6 +80,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSURLCredential", feature = "NSURLProtectionSpace"))]
+        /// Remove the credential from the set for the specified protection space.
+        ///
+        /// Parameter `credential`: The credential to remove.
+        ///
+        /// Parameter `space`: The protection space for which a credential should be removed
+        ///
+        /// The credential is removed from both persistent and temporary storage. A credential that
+        /// has a persistence policy of NSURLCredentialPersistenceSynchronizable will fail.
+        /// See removeCredential:forProtectionSpace:options.
         #[method(removeCredential:forProtectionSpace:)]
         pub unsafe fn removeCredential_forProtectionSpace(
             &self,
@@ -69,6 +102,18 @@ extern_methods!(
             feature = "NSURLCredential",
             feature = "NSURLProtectionSpace"
         ))]
+        /// Remove the credential from the set for the specified protection space based on options.
+        ///
+        /// Parameter `credential`: The credential to remove.
+        ///
+        /// Parameter `space`: The protection space for which a credential should be removed
+        ///
+        /// Parameter `options`: A dictionary containing options to consider when removing the credential.  This should
+        /// be used when trying to delete a credential that has the NSURLCredentialPersistenceSynchronizable policy.
+        /// Please note that when NSURLCredential objects that have a NSURLCredentialPersistenceSynchronizable policy
+        /// are removed, the credential will be removed on all devices that contain this credential.
+        ///
+        /// The credential is removed from both persistent and temporary storage.
         #[method(removeCredential:forProtectionSpace:options:)]
         pub unsafe fn removeCredential_forProtectionSpace_options(
             &self,
@@ -78,6 +123,9 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSURLCredential", feature = "NSURLProtectionSpace"))]
+        /// Get the default credential for the specified protection space.
+        ///
+        /// Parameter `space`: The protection space for which to get the default credential.
         #[method_id(@__retain_semantics Other defaultCredentialForProtectionSpace:)]
         pub unsafe fn defaultCredentialForProtectionSpace(
             &self,
@@ -85,6 +133,13 @@ extern_methods!(
         ) -> Option<Retained<NSURLCredential>>;
 
         #[cfg(all(feature = "NSURLCredential", feature = "NSURLProtectionSpace"))]
+        /// Set the default credential for the specified protection space.
+        ///
+        /// Parameter `credential`: The credential to set as default.
+        ///
+        /// Parameter `space`: The protection space for which the credential should be set as default.
+        ///
+        /// If the credential is not yet in the set for the protection space, it will be added to it.
         #[method(setDefaultCredential:forProtectionSpace:)]
         pub unsafe fn setDefaultCredential_forProtectionSpace(
             &self,
@@ -185,7 +240,10 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialstoragechangednotification?language=objc)
+    /// This notification is sent on the main thread whenever
+    /// the set of stored credentials changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialstoragechangednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSURLCredentialStorageChangedNotification: &'static NSNotificationName;
 }

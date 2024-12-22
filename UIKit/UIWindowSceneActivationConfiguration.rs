@@ -18,6 +18,7 @@ unsafe impl NSObjectProtocol for UIWindowSceneActivationConfiguration {}
 
 extern_methods!(
     unsafe impl UIWindowSceneActivationConfiguration {
+        /// The user activity that will be used to request a scene
         #[method_id(@__retain_semantics Other userActivity)]
         pub unsafe fn userActivity(&self) -> Retained<NSUserActivity>;
 
@@ -25,6 +26,7 @@ extern_methods!(
             feature = "UISceneOptions",
             feature = "UIWindowSceneActivationRequestOptions"
         ))]
+        /// Options for customizing the scene request. If omitted default options are used.
         #[method_id(@__retain_semantics Other options)]
         pub unsafe fn options(
             &self,
@@ -35,14 +37,17 @@ extern_methods!(
             feature = "UISceneOptions",
             feature = "UIWindowSceneActivationRequestOptions"
         ))]
+        /// Setter for [`options`][Self::options].
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: Option<&UIWindowSceneActivationRequestOptions>);
 
         #[cfg(feature = "UITargetedPreview")]
+        /// An optional preview used to define the visual "source" of the newly activated scene for use in system animations.
         #[method_id(@__retain_semantics Other preview)]
         pub unsafe fn preview(&self, mtm: MainThreadMarker) -> Option<Retained<UITargetedPreview>>;
 
         #[cfg(feature = "UITargetedPreview")]
+        /// Setter for [`preview`][Self::preview].
         #[method(setPreview:)]
         pub unsafe fn setPreview(&self, preview: Option<&UITargetedPreview>);
 

@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other align)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
+        /// Setter for [`align`][Self::align].
         #[deprecated]
         #[method(setAlign:)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
@@ -97,6 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other alt)]
         pub unsafe fn alt(&self) -> Retained<NSString>;
 
+        /// Setter for [`alt`][Self::alt].
         #[deprecated]
         #[method(setAlt:)]
         pub unsafe fn setAlt(&self, alt: Option<&NSString>);
@@ -105,6 +108,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other border)]
         pub unsafe fn border(&self) -> Retained<NSString>;
 
+        /// Setter for [`border`][Self::border].
         #[deprecated]
         #[method(setBorder:)]
         pub unsafe fn setBorder(&self, border: Option<&NSString>);
@@ -113,6 +117,7 @@ extern_methods!(
         #[method(height)]
         pub unsafe fn height(&self) -> c_int;
 
+        /// Setter for [`height`][Self::height].
         #[deprecated]
         #[method(setHeight:)]
         pub unsafe fn setHeight(&self, height: c_int);
@@ -121,6 +126,7 @@ extern_methods!(
         #[method(hspace)]
         pub unsafe fn hspace(&self) -> c_int;
 
+        /// Setter for [`hspace`][Self::hspace].
         #[deprecated]
         #[method(setHspace:)]
         pub unsafe fn setHspace(&self, hspace: c_int);
@@ -129,6 +135,7 @@ extern_methods!(
         #[method(isMap)]
         pub unsafe fn isMap(&self) -> bool;
 
+        /// Setter for [`isMap`][Self::isMap].
         #[deprecated]
         #[method(setIsMap:)]
         pub unsafe fn setIsMap(&self, is_map: bool);
@@ -137,6 +144,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other longDesc)]
         pub unsafe fn longDesc(&self) -> Retained<NSString>;
 
+        /// Setter for [`longDesc`][Self::longDesc].
         #[deprecated]
         #[method(setLongDesc:)]
         pub unsafe fn setLongDesc(&self, long_desc: Option<&NSString>);
@@ -145,6 +153,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other src)]
         pub unsafe fn src(&self) -> Retained<NSString>;
 
+        /// Setter for [`src`][Self::src].
         #[deprecated]
         #[method(setSrc:)]
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
@@ -153,6 +162,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other useMap)]
         pub unsafe fn useMap(&self) -> Retained<NSString>;
 
+        /// Setter for [`useMap`][Self::useMap].
         #[deprecated]
         #[method(setUseMap:)]
         pub unsafe fn setUseMap(&self, use_map: Option<&NSString>);
@@ -161,6 +171,7 @@ extern_methods!(
         #[method(vspace)]
         pub unsafe fn vspace(&self) -> c_int;
 
+        /// Setter for [`vspace`][Self::vspace].
         #[deprecated]
         #[method(setVspace:)]
         pub unsafe fn setVspace(&self, vspace: c_int);
@@ -169,6 +180,7 @@ extern_methods!(
         #[method(width)]
         pub unsafe fn width(&self) -> c_int;
 
+        /// Setter for [`width`][Self::width].
         #[deprecated]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: c_int);
@@ -179,6 +191,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other lowsrc)]
         pub unsafe fn lowsrc(&self) -> Retained<NSString>;
 
+        /// Setter for [`lowsrc`][Self::lowsrc].
         #[method(setLowsrc:)]
         pub unsafe fn setLowsrc(&self, lowsrc: Option<&NSString>);
 

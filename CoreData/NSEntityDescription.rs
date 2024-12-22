@@ -49,6 +49,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other managedObjectClassName)]
         pub unsafe fn managedObjectClassName(&self) -> Retained<NSString>;
 
+        /// Setter for [`managedObjectClassName`][Self::managedObjectClassName].
         #[method(setManagedObjectClassName:)]
         pub unsafe fn setManagedObjectClassName(
             &self,
@@ -58,12 +59,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method(isAbstract)]
         pub unsafe fn isAbstract(&self) -> bool;
 
+        /// Setter for [`isAbstract`][Self::isAbstract].
         #[method(setAbstract:)]
         pub unsafe fn setAbstract(&self, r#abstract: bool);
 
@@ -75,6 +78,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other subentities)]
         pub unsafe fn subentities(&self) -> Retained<NSArray<NSEntityDescription>>;
 
+        /// Setter for [`subentities`][Self::subentities].
         #[method(setSubentities:)]
         pub unsafe fn setSubentities(&self, subentities: &NSArray<NSEntityDescription>);
 
@@ -92,12 +96,14 @@ extern_methods!(
         pub unsafe fn properties(&self) -> Retained<NSArray<NSPropertyDescription>>;
 
         #[cfg(feature = "NSPropertyDescription")]
+        /// Setter for [`properties`][Self::properties].
         #[method(setProperties:)]
         pub unsafe fn setProperties(&self, properties: &NSArray<NSPropertyDescription>);
 
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
+        /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
@@ -135,12 +141,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other versionHashModifier)]
         pub unsafe fn versionHashModifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`versionHashModifier`][Self::versionHashModifier].
         #[method(setVersionHashModifier:)]
         pub unsafe fn setVersionHashModifier(&self, version_hash_modifier: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other renamingIdentifier)]
         pub unsafe fn renamingIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`renamingIdentifier`][Self::renamingIdentifier].
         #[method(setRenamingIdentifier:)]
         pub unsafe fn setRenamingIdentifier(&self, renaming_identifier: Option<&NSString>);
 
@@ -149,12 +157,14 @@ extern_methods!(
         pub unsafe fn indexes(&self) -> Retained<NSArray<NSFetchIndexDescription>>;
 
         #[cfg(feature = "NSFetchIndexDescription")]
+        /// Setter for [`indexes`][Self::indexes].
         #[method(setIndexes:)]
         pub unsafe fn setIndexes(&self, indexes: &NSArray<NSFetchIndexDescription>);
 
         #[method_id(@__retain_semantics Other uniquenessConstraints)]
         pub unsafe fn uniquenessConstraints(&self) -> Retained<NSArray<NSArray<AnyObject>>>;
 
+        /// Setter for [`uniquenessConstraints`][Self::uniquenessConstraints].
         #[method(setUniquenessConstraints:)]
         pub unsafe fn setUniquenessConstraints(
             &self,
@@ -165,6 +175,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other compoundIndexes)]
         pub unsafe fn compoundIndexes(&self) -> Retained<NSArray<NSArray<AnyObject>>>;
 
+        /// Setter for [`compoundIndexes`][Self::compoundIndexes].
         #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[method(setCompoundIndexes:)]
         pub unsafe fn setCompoundIndexes(&self, compound_indexes: &NSArray<NSArray<AnyObject>>);
@@ -172,6 +183,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other coreSpotlightDisplayNameExpression)]
         pub unsafe fn coreSpotlightDisplayNameExpression(&self) -> Retained<NSExpression>;
 
+        /// Setter for [`coreSpotlightDisplayNameExpression`][Self::coreSpotlightDisplayNameExpression].
         #[method(setCoreSpotlightDisplayNameExpression:)]
         pub unsafe fn setCoreSpotlightDisplayNameExpression(
             &self,

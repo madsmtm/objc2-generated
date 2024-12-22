@@ -80,6 +80,7 @@ extern_methods!(
         #[method(autofocus)]
         pub unsafe fn autofocus(&self) -> bool;
 
+        /// Setter for [`autofocus`][Self::autofocus].
         #[method(setAutofocus:)]
         pub unsafe fn setAutofocus(&self, autofocus: bool);
 
@@ -87,6 +88,7 @@ extern_methods!(
         #[method(disabled)]
         pub unsafe fn disabled(&self) -> bool;
 
+        /// Setter for [`disabled`][Self::disabled].
         #[deprecated]
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
@@ -100,6 +102,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
+        /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
@@ -108,6 +111,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -116,6 +120,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
+        /// Setter for [`value`][Self::value].
         #[deprecated]
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
@@ -127,6 +132,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other accessKey)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
+        /// Setter for [`accessKey`][Self::accessKey].
         #[deprecated]
         #[method(setAccessKey:)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);

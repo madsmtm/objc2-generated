@@ -4,7 +4,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturetype?language=objc)
+/// Supported data type enumeration
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -12,20 +14,28 @@ pub struct MLFeatureType(pub NSInteger);
 impl MLFeatureType {
     #[doc(alias = "MLFeatureTypeInvalid")]
     pub const Invalid: Self = Self(0);
+    /// Discrete values, sometimes used to hold numeric encoding of a categorical value
     #[doc(alias = "MLFeatureTypeInt64")]
     pub const Int64: Self = Self(1);
+    /// Continuous values
     #[doc(alias = "MLFeatureTypeDouble")]
     pub const Double: Self = Self(2);
+    /// Continuous values
     #[doc(alias = "MLFeatureTypeString")]
     pub const String: Self = Self(3);
+    /// CVPixelBufferRef
     #[doc(alias = "MLFeatureTypeImage")]
     pub const Image: Self = Self(4);
+    /// MLMultiArray
     #[doc(alias = "MLFeatureTypeMultiArray")]
     pub const MultiArray: Self = Self(5);
+    /// Numerically weighted hashable objects (e.g. word counts)
     #[doc(alias = "MLFeatureTypeDictionary")]
     pub const Dictionary: Self = Self(6);
+    /// MLSequence. Ordered collection of feature values with the same type
     #[doc(alias = "MLFeatureTypeSequence")]
     pub const Sequence: Self = Self(7);
+    /// MLState. Represents a model state that may be updated in each inference.
     #[doc(alias = "MLFeatureTypeState")]
     pub const State: Self = Self(8);
 }

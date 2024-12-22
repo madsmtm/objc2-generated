@@ -33,6 +33,7 @@ extern_methods!(
         #[method(selectedIndex)]
         pub unsafe fn selectedIndex(&self) -> c_int;
 
+        /// Setter for [`selectedIndex`][Self::selectedIndex].
         #[method(setSelectedIndex:)]
         pub unsafe fn setSelectedIndex(&self, selected_index: c_int);
 
@@ -40,6 +41,7 @@ extern_methods!(
         #[method(length)]
         pub unsafe fn length(&self) -> c_uint;
 
+        /// Setter for [`length`][Self::length].
         #[deprecated]
         #[method(setLength:)]
         pub unsafe fn setLength(&self, length: c_uint);

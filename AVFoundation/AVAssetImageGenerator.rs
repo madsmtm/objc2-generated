@@ -13,29 +13,50 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratoraperturemode?language=objc)
+/// The type of an aperture mode.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratoraperturemode?language=objc)
 // NS_TYPED_ENUM
 pub type AVAssetImageGeneratorApertureMode = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratoraperturemodecleanaperture?language=objc)
+    /// Both pixel aspect ratio and clean aperture will be applied.
+    ///
+    /// An image's clean aperture is a region of video free from transition artifacts caused by the encoding of the signal.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratoraperturemodecleanaperture?language=objc)
     pub static AVAssetImageGeneratorApertureModeCleanAperture:
         &'static AVAssetImageGeneratorApertureMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratoraperturemodeproductionaperture?language=objc)
+    /// Only pixel aspect ratio will be applied.
+    ///
+    /// The image is not cropped to the clean aperture region, but it is scaled according to the pixel aspect ratio. Use this option when you want to see all the pixels in your video, including the edges.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratoraperturemodeproductionaperture?language=objc)
     pub static AVAssetImageGeneratorApertureModeProductionAperture:
         &'static AVAssetImageGeneratorApertureMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratoraperturemodeencodedpixels?language=objc)
+    /// Neither pixel aspect ratio nor clean aperture will be applied.
+    ///
+    /// The image is not cropped to the clean aperture region and is not scaled according to the pixel aspect ratio. The encoded dimensions of the image description are displayed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratoraperturemodeencodedpixels?language=objc)
     pub static AVAssetImageGeneratorApertureModeEncodedPixels:
         &'static AVAssetImageGeneratorApertureMode;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratordynamicrangepolicy?language=objc)
+/// Configures the video dynamic range for the output CGImage
+///
+/// Default.  Force standard dynamic range by converting PQ or HLG transfer functions to 709, while maintaining color primaries and matrix.
+///
+/// SDR movies will vend SDR CGImages matching the source color parameters.  HDR movies will vend HDR CGImages matching the source color parameters.
+/// HTTP Live Streaming assets will currently vend only SDR CGImages.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratordynamicrangepolicy?language=objc)
 // NS_TYPED_ENUM
 pub type AVAssetImageGeneratorDynamicRangePolicy = NSString;
 
@@ -104,6 +125,7 @@ extern_methods!(
         #[method(appliesPreferredTrackTransform)]
         pub unsafe fn appliesPreferredTrackTransform(&self) -> bool;
 
+        /// Setter for [`appliesPreferredTrackTransform`][Self::appliesPreferredTrackTransform].
         #[method(setAppliesPreferredTrackTransform:)]
         pub unsafe fn setAppliesPreferredTrackTransform(
             &self,
@@ -115,23 +137,29 @@ extern_methods!(
         pub unsafe fn maximumSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumSize`][Self::maximumSize].
         #[method(setMaximumSize:)]
         pub unsafe fn setMaximumSize(&self, maximum_size: CGSize);
 
         #[method_id(@__retain_semantics Other apertureMode)]
         pub unsafe fn apertureMode(&self) -> Option<Retained<AVAssetImageGeneratorApertureMode>>;
 
+        /// Setter for [`apertureMode`][Self::apertureMode].
         #[method(setApertureMode:)]
         pub unsafe fn setApertureMode(
             &self,
             aperture_mode: Option<&AVAssetImageGeneratorApertureMode>,
         );
 
+        /// Configures the video dynamic range for the output CGImage
+        ///
+        /// Default is AVAssetImageGeneratorDynamicRangePolicyForceSDR
         #[method_id(@__retain_semantics Other dynamicRangePolicy)]
         pub unsafe fn dynamicRangePolicy(
             &self,
         ) -> Retained<AVAssetImageGeneratorDynamicRangePolicy>;
 
+        /// Setter for [`dynamicRangePolicy`][Self::dynamicRangePolicy].
         #[method(setDynamicRangePolicy:)]
         pub unsafe fn setDynamicRangePolicy(
             &self,
@@ -139,10 +167,20 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVVideoComposition")]
+        /// Specifies the video composition to use when extracting images from assets with multiple video tracks.
+        ///
+        /// If no videoComposition is specified, only the first enabled video track will be used.
+        /// If a videoComposition is specified, the value of appliesPreferredTrackTransform is ignored.
+        /// This property throws an exception if a video composition is set with any of the following property values:
+        /// - "renderScale" is not equal to one
+        /// - "renderSize" width or height is less than zero
+        /// - "frameDuration" is invalid or less than or equal to zero
+        /// - "sourceTrackIDForFrameTiming" is less than zero
         #[method_id(@__retain_semantics Other videoComposition)]
         pub unsafe fn videoComposition(&self) -> Option<Retained<AVVideoComposition>>;
 
         #[cfg(feature = "AVVideoComposition")]
+        /// Setter for [`videoComposition`][Self::videoComposition].
         #[method(setVideoComposition:)]
         pub unsafe fn setVideoComposition(&self, video_composition: Option<&AVVideoComposition>);
 
@@ -157,6 +195,7 @@ extern_methods!(
         pub unsafe fn requestedTimeToleranceBefore(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`requestedTimeToleranceBefore`][Self::requestedTimeToleranceBefore].
         #[method(setRequestedTimeToleranceBefore:)]
         pub unsafe fn setRequestedTimeToleranceBefore(
             &self,
@@ -168,14 +207,49 @@ extern_methods!(
         pub unsafe fn requestedTimeToleranceAfter(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`requestedTimeToleranceAfter`][Self::requestedTimeToleranceAfter].
         #[method(setRequestedTimeToleranceAfter:)]
         pub unsafe fn setRequestedTimeToleranceAfter(&self, requested_time_tolerance_after: CMTime);
 
         #[cfg(feature = "AVAsset")]
+        /// Returns an instance of AVAssetImageGenerator for use with the specified asset.
+        ///
+        /// Parameter `asset`: The asset from which images will be extracted.
+        ///
+        /// Returns: An instance of AVAssetImageGenerator
+        ///
+        /// This method may succeed even if the asset possesses no visual tracks at the time of initialization.
+        /// Clients may wish to test whether an asset has any tracks with the visual characteristic via
+        /// -[AVAsset tracksWithMediaCharacteristic:].
+        ///
+        /// Note also that assets that belong to a mutable subclass of AVAsset, AVMutableComposition or AVMutableMovie,
+        /// may gain visual tracks after initialization of an associated AVAssetImageGenerator.
+        ///
+        /// However, the results of image generation are undefined if mutations of the asset occur while images
+        /// are being generated.
+        ///
+        /// AVAssetImageGenerator will use the default enabled video track(s) to generate images.
         #[method_id(@__retain_semantics Other assetImageGeneratorWithAsset:)]
         pub unsafe fn assetImageGeneratorWithAsset(asset: &AVAsset) -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
+        /// Initializes an instance of AVAssetImageGenerator for use with the specified asset.
+        ///
+        /// Parameter `asset`: The asset from which images will be extracted.
+        ///
+        /// Returns: An instance of AVAssetImageGenerator
+        ///
+        /// This method may succeed even if the asset possesses no visual tracks at the time of initialization.
+        /// Clients may wish to test whether an asset has any tracks with the visual characteristic via
+        /// -[AVAsset tracksWithMediaCharacteristic:].
+        ///
+        /// Note also that assets that belong to a mutable subclass of AVAsset, AVMutableComposition or AVMutableMovie,
+        /// may gain visual tracks after initialization of an associated AVAssetImageGenerator.
+        ///
+        /// However, the results of image generation are undefined if mutations of the asset occur while images
+        /// are being generated.
+        ///
+        /// AVAssetImageGenerator will use the default enabled video track(s) to generate images.
         #[method_id(@__retain_semantics Init initWithAsset:)]
         pub unsafe fn initWithAsset(this: Allocated<Self>, asset: &AVAsset) -> Retained<Self>;
 
@@ -184,6 +258,16 @@ extern_methods!(
             feature = "objc2-core-graphics",
             feature = "objc2-core-media"
         ))]
+        /// Returns a series of CGImageRefs for an asset at or near the specified times.
+        ///
+        /// Parameter `requestedTimes`: An NSArray of NSValues, each containing a CMTime, specifying the asset times at which an image is requested.
+        ///
+        /// Parameter `handler`: A block that will be called when an image request is complete.
+        ///
+        /// Employs an efficient "batch mode" for getting images in time order.
+        /// The client will receive exactly one handler callback for each requested time in requestedTimes.
+        /// Changes to generator properties (snap behavior, maximum size, etc...) will not affect outstanding asynchronous image generation requests.
+        /// The generated image is not retained.  Clients should retain the image if they wish it to persist after the completion handler returns.
         #[method(generateCGImagesAsynchronouslyForTimes:completionHandler:)]
         pub unsafe fn generateCGImagesAsynchronouslyForTimes_completionHandler(
             &self,
@@ -196,6 +280,16 @@ extern_methods!(
             feature = "objc2-core-graphics",
             feature = "objc2-core-media"
         ))]
+        /// Returns a CGImageRef for an asset at or near the specified time.
+        ///
+        /// Parameter `requestedTime`: A CMTime, specifying the asset time at which an image is requested.
+        ///
+        /// Parameter `handler`: A block that will be called when the image request is complete.
+        ///
+        /// The client will receive exactly one handler callback for requestedTime.
+        /// Changes to generator properties (snap behavior, maximum size, etc...) will not affect outstanding asynchronous image generation requests.
+        /// The generated image is not retained.  Clients should retain the image if they wish it to persist after the completion handler returns.
+        /// If image generation succeeds, the `image` parameter to the completion handler will be non-NULL and the `error` parameter will be nil.  If image generation fails or was cancelled, the `image` parameter will be NULL and the `error` parameter will describe what went wrong.  For cancelled images, the returned error will be AVErrorOperationCancelled.
         #[method(generateCGImageAsynchronouslyForTime:completionHandler:)]
         pub unsafe fn generateCGImageAsynchronouslyForTime_completionHandler(
             &self,
@@ -203,6 +297,10 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(CGImageRef, CMTime, *mut NSError)>,
         );
 
+        /// Cancels all outstanding image generation requests.
+        ///
+        /// Calls the handler block with AVAssetImageGeneratorCancelled for each image time in every previous invocation of -generateCGImagesAsynchronouslyForTimes:completionHandler:
+        /// for which images have not yet been supplied.
         #[method(cancelAllCGImageGeneration)]
         pub unsafe fn cancelAllCGImageGeneration(&self);
     }

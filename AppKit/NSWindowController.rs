@@ -77,6 +77,7 @@ extern_methods!(
         pub unsafe fn windowFrameAutosaveName(&self) -> Retained<NSWindowFrameAutosaveName>;
 
         #[cfg(feature = "NSWindow")]
+        /// Setter for [`windowFrameAutosaveName`][Self::windowFrameAutosaveName].
         #[method(setWindowFrameAutosaveName:)]
         pub unsafe fn setWindowFrameAutosaveName(
             &self,
@@ -86,6 +87,7 @@ extern_methods!(
         #[method(shouldCascadeWindows)]
         pub unsafe fn shouldCascadeWindows(&self) -> bool;
 
+        /// Setter for [`shouldCascadeWindows`][Self::shouldCascadeWindows].
         #[method(setShouldCascadeWindows:)]
         pub unsafe fn setShouldCascadeWindows(&self, should_cascade_windows: bool);
 
@@ -96,6 +98,7 @@ extern_methods!(
         ) -> Option<Retained<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
 
         #[cfg(feature = "NSPreviewRepresentingActivityItem")]
+        /// Setter for [`previewRepresentableActivityItems`][Self::previewRepresentableActivityItems].
         #[method(setPreviewRepresentableActivityItems:)]
         pub unsafe fn setPreviewRepresentableActivityItems(
             &self,
@@ -107,6 +110,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other document)]
         pub unsafe fn document(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`document`][Self::document].
         #[method(setDocument:)]
         pub unsafe fn setDocument(&self, document: Option<&AnyObject>);
 
@@ -116,6 +120,7 @@ extern_methods!(
         #[method(shouldCloseDocument)]
         pub unsafe fn shouldCloseDocument(&self) -> bool;
 
+        /// Setter for [`shouldCloseDocument`][Self::shouldCloseDocument].
         #[method(setShouldCloseDocument:)]
         pub unsafe fn setShouldCloseDocument(&self, should_close_document: bool);
 
@@ -133,6 +138,7 @@ extern_methods!(
         pub unsafe fn contentViewController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(feature = "NSViewController")]
+        /// Setter for [`contentViewController`][Self::contentViewController].
         #[method(setContentViewController:)]
         pub unsafe fn setContentViewController(
             &self,
@@ -144,6 +150,7 @@ extern_methods!(
         pub unsafe fn window(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
+        /// Setter for [`window`][Self::window].
         #[method(setWindow:)]
         pub unsafe fn setWindow(&self, window: Option<&NSWindow>);
 
@@ -187,6 +194,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSWindowControllerStoryboardingMethods
+    /// These methods are used to support using Storyboards with your app.
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindowController {
         #[cfg(feature = "NSStoryboard")]

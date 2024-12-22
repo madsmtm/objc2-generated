@@ -86,6 +86,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other align)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
+        /// Setter for [`align`][Self::align].
         #[deprecated]
         #[method(setAlign:)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
@@ -94,6 +95,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other accessKey)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
+        /// Setter for [`accessKey`][Self::accessKey].
         #[deprecated]
         #[method(setAccessKey:)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);

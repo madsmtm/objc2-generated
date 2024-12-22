@@ -8,7 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation?language=objc)
+    /// This operation will fetch records changes across the given record zones
+    ///
+    ///
+    /// For each
+    /// `previousServerChangeToken`passed in with a
+    /// `CKFetchRecordZoneChangesConfiguration,`only records that have changed since that anchor will be fetched.
+    /// If this is your first fetch of a zone or if you wish to re-fetch all records within a zone, do not include a
+    /// `previousServerChangeToken.`Change tokens are opaque tokens and clients should not infer any behavior based on their content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation?language=objc)
     #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
@@ -39,6 +48,7 @@ extern_methods!(
         pub unsafe fn recordZoneIDs(&self) -> Option<Retained<NSArray<CKRecordZoneID>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// Setter for [`recordZoneIDs`][Self::recordZoneIDs].
         #[method(setRecordZoneIDs:)]
         pub unsafe fn setRecordZoneIDs(&self, record_zone_i_ds: Option<&NSArray<CKRecordZoneID>>);
 
@@ -49,6 +59,7 @@ extern_methods!(
         ) -> Option<Retained<NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// Setter for [`configurationsByRecordZoneID`][Self::configurationsByRecordZoneID].
         #[method(setConfigurationsByRecordZoneID:)]
         pub unsafe fn setConfigurationsByRecordZoneID(
             &self,
@@ -57,18 +68,39 @@ extern_methods!(
             >,
         );
 
+        /// Determines if the operation should fetch all changes from the server before completing.
+        ///
+        ///
+        /// When set to YES, this operation will send repeated requests to the server until all record changes have been fetched.
+        /// `recordZoneChangeTokensUpdatedBlock`will be invoked periodically, to give clients an updated change token so that already-fetched record changes don't need to be re-fetched on a subsequent operation.
+        /// `recordZoneFetchCompletionBlock`will only be called once and
+        /// `moreComing`will always be NO.
+        ///
+        /// When set to NO, it is the responsibility of the caller to issue subsequent fetch-changes operations when
+        /// `moreComing`is YES in a
+        /// `recordZoneFetchCompletionBlock`invocation.
+        ///
+        /// `fetchAllChanges`is YES by default
         #[method(fetchAllChanges)]
         pub unsafe fn fetchAllChanges(&self) -> bool;
 
+        /// Setter for [`fetchAllChanges`][Self::fetchAllChanges].
         #[method(setFetchAllChanges:)]
         pub unsafe fn setFetchAllChanges(&self, fetch_all_changes: bool);
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
+        /// If the replacement callback
+        /// `recordWasChangedBlock`is set, this callback block is ignored.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated = "Use recordWasChangedBlock instead, which surfaces per-record errors"]
         #[method(recordChangedBlock)]
         pub unsafe fn recordChangedBlock(&self) -> *mut block2::Block<dyn Fn(NonNull<CKRecord>)>;
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
+        /// Setter for [`recordChangedBlock`][Self::recordChangedBlock].
         #[deprecated = "Use recordWasChangedBlock instead, which surfaces per-record errors"]
         #[method(setRecordChangedBlock:)]
         pub unsafe fn setRecordChangedBlock(
@@ -77,12 +109,19 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
+        /// If a record fails in post-processing (say, a network failure materializing a
+        /// `CKAsset`record field), the per-record error will be passed here.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordWasChangedBlock)]
         pub unsafe fn recordWasChangedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
+        /// Setter for [`recordWasChangedBlock`][Self::recordWasChangedBlock].
         #[method(setRecordWasChangedBlock:)]
         pub unsafe fn setRecordWasChangedBlock(
             &self,
@@ -92,12 +131,17 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordWithIDWasDeletedBlock)]
         pub unsafe fn recordWithIDWasDeletedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>, NonNull<CKRecordType>)>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
+        /// Setter for [`recordWithIDWasDeletedBlock`][Self::recordWithIDWasDeletedBlock].
         #[method(setRecordWithIDWasDeletedBlock:)]
         pub unsafe fn setRecordWithIDWasDeletedBlock(
             &self,
@@ -111,6 +155,23 @@ extern_methods!(
             feature = "CKServerChangeToken",
             feature = "block2"
         ))]
+        /// Clients are responsible for saving this per-recordZone
+        /// `serverChangeToken`and passing it in to the next call to
+        /// `CKFetchRecordZoneChangesOperation.`Note that a fetch can fail partway. If that happens, an updated change token may be returned in this block so that already fetched records don't need to be re-downloaded on a subsequent operation.
+        /// `recordZoneChangeTokensUpdatedBlock`will not be called after the last batch of changes in a zone; the
+        /// `recordZoneFetchCompletionBlock`block will be called instead.
+        /// The
+        /// `clientChangeTokenData`from the most recent
+        /// `CKModifyRecordsOperation`issued on this zone is also returned, or nil if none was provided.
+        /// If the server returns a
+        /// `CKErrorChangeTokenExpired`error, the
+        /// `serverChangeToken`used for this record zone when initting this operation was too old and the client should toss its local cache and re-fetch the changes in this record zone starting with a nil
+        /// `serverChangeToken.``recordZoneChangeTokensUpdatedBlock`will not be called if
+        /// `fetchAllChanges`is NO.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordZoneChangeTokensUpdatedBlock)]
         pub unsafe fn recordZoneChangeTokensUpdatedBlock(
             &self,
@@ -123,6 +184,7 @@ extern_methods!(
             feature = "CKServerChangeToken",
             feature = "block2"
         ))]
+        /// Setter for [`recordZoneChangeTokensUpdatedBlock`][Self::recordZoneChangeTokensUpdatedBlock].
         #[method(setRecordZoneChangeTokensUpdatedBlock:)]
         pub unsafe fn setRecordZoneChangeTokensUpdatedBlock(
             &self,
@@ -156,6 +218,7 @@ extern_methods!(
             feature = "CKServerChangeToken",
             feature = "block2"
         ))]
+        /// Setter for [`recordZoneFetchCompletionBlock`][Self::recordZoneFetchCompletionBlock].
         #[method(setRecordZoneFetchCompletionBlock:)]
         pub unsafe fn setRecordZoneFetchCompletionBlock(
             &self,
@@ -173,12 +236,25 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// This block is called when the operation completes.
+        ///
+        ///
+        /// `serverChangeToken-s`previously returned via a
+        /// `recordZoneChangeTokensUpdatedBlock`or
+        /// `recordZoneFetchCompletionBlock`invocation, along with the record changes that preceded it, are valid even if there is a subsequent
+        /// `operationError`If the error is
+        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of recordIDs and zoneIDs to errors keyed off of
+        /// `CKPartialErrorsByItemIDKey.`Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(fetchRecordZoneChangesCompletionBlock)]
         pub unsafe fn fetchRecordZoneChangesCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`fetchRecordZoneChangesCompletionBlock`][Self::fetchRecordZoneChangesCompletionBlock].
         #[method(setFetchRecordZoneChangesCompletionBlock:)]
         pub unsafe fn setFetchRecordZoneChangesCompletionBlock(
             &self,
@@ -221,6 +297,7 @@ extern_methods!(
         ) -> Option<Retained<NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesOptions>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// Setter for [`optionsByRecordZoneID`][Self::optionsByRecordZoneID].
         #[deprecated]
         #[method(setOptionsByRecordZoneID:)]
         pub unsafe fn setOptionsByRecordZoneID(
@@ -258,6 +335,7 @@ extern_methods!(
         pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
 
         #[cfg(feature = "CKServerChangeToken")]
+        /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
         #[method(setPreviousServerChangeToken:)]
         pub unsafe fn setPreviousServerChangeToken(
             &self,
@@ -267,14 +345,22 @@ extern_methods!(
         #[method(resultsLimit)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
+        /// Setter for [`resultsLimit`][Self::resultsLimit].
         #[method(setResultsLimit:)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
         #[cfg(feature = "CKRecord")]
+        /// Declares which user-defined keys should be fetched and added to the resulting CKRecords.
+        ///
+        ///
+        /// If nil, declares the entire record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
+        /// Defaults to
+        /// `nil.`
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
+        /// Setter for [`desiredKeys`][Self::desiredKeys].
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
     }
@@ -319,6 +405,7 @@ extern_methods!(
         pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
 
         #[cfg(feature = "CKServerChangeToken")]
+        /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
         #[deprecated]
         #[method(setPreviousServerChangeToken:)]
         pub unsafe fn setPreviousServerChangeToken(
@@ -330,6 +417,7 @@ extern_methods!(
         #[method(resultsLimit)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
+        /// Setter for [`resultsLimit`][Self::resultsLimit].
         #[deprecated]
         #[method(setResultsLimit:)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
@@ -340,6 +428,7 @@ extern_methods!(
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
+        /// Setter for [`desiredKeys`][Self::desiredKeys].
         #[deprecated]
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);

@@ -34,12 +34,14 @@ extern_methods!(
         pub unsafe fn menu(&self) -> Retained<NSMenu>;
 
         #[cfg(feature = "NSMenu")]
+        /// Setter for [`menu`][Self::menu].
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: &NSMenu);
 
         #[method(showsIndicator)]
         pub unsafe fn showsIndicator(&self) -> bool;
 
+        /// Setter for [`showsIndicator`][Self::showsIndicator].
         #[method(setShowsIndicator:)]
         pub unsafe fn setShowsIndicator(&self, shows_indicator: bool);
     }
@@ -50,6 +52,7 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSMenuToolbarItem {
         #[cfg(feature = "NSToolbar")]
+        /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,

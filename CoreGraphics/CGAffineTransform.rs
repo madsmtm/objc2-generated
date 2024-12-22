@@ -101,11 +101,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Decompose a CGAffineTransform into a scale * shear * rotation * translation
+    ///
+    /// This decomposition method may be used to provide insight into what a
+    /// arbitrary CGAffineTransform does. This may be necessary, for example, because
+    /// an algorithm would like to know what the scaling portion of a transform is before rotation,
+    /// or perhaps because some part of a transform is undesired and your application would like
+    /// to replace a portion of it with a different transformation.
+    ///
+    /// Since there are many ways to make a affine transform out of other affine transforms
+    /// this method can not tell us the ordering of geometric steps used to create the original
+    /// CGAffineTransform. It tells us what the transform does, not how it was made.
+    ///
+    ///
+    /// Parameter `transform`: The CGAffineTransform to decompose
+    ///
+    /// Returns: A decomposed set of geometric operations, the product of which is the CGAffineTransform.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGAffineTransformDecompose(transform: CGAffineTransform) -> CGAffineTransformComponents;
 }
 
 extern "C-unwind" {
+    /// Create CGAffineTransform from scale * shear * rotation * translation CGAffineTransformComponents
+    ///
+    /// Parameter `components`: The set of CGAffineTransformComponents to use to create a new CGAffineTransform
+    ///
+    /// Returns: A new CGAffineTransform built from the provided components
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGAffineTransformMakeWithComponents(
         components: CGAffineTransformComponents,

@@ -32,16 +32,24 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
+        /// The projectExtensionData property is intended for storage of compressed, project specific data
+        /// only. Do not include things like rasterized images that can be locally cached in this data. The
+        /// total size of stored data is limited to 5 MB. Attempting to store more data than allowed will result
+        /// in an error.
         #[method_id(@__retain_semantics Other projectExtensionData)]
         pub unsafe fn projectExtensionData(&self) -> Retained<NSData>;
 
+        /// Setter for [`projectExtensionData`][Self::projectExtensionData].
         #[method(setProjectExtensionData:)]
         pub unsafe fn setProjectExtensionData(&self, project_extension_data: &NSData);
 
         #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
+        /// Sets the key asset representing the project.
+        /// Deprecated in macOS 10.14, please use -[PHProjectChangeRequest setProjectPreviewImage:] to provide a rendered preview instead.
         #[deprecated]
         #[method(setKeyAsset:)]
         pub unsafe fn setKeyAsset(&self, key_asset: Option<&PHAsset>);
@@ -51,6 +59,9 @@ extern_methods!(
         #[method(setProjectPreviewImage:)]
         pub unsafe fn setProjectPreviewImage(&self, preview_image: &NSImage);
 
+        /// Removes the specified assets from the project.
+        ///
+        /// Parameter `assets`: A collection of PHAsset objects to be removed from the project.
         #[method(removeAssets:)]
         pub unsafe fn removeAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
     }

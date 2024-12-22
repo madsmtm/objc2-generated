@@ -11,7 +11,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardviewcontroller?language=objc)
+    /// View controller that provides the standard user interface for leaderboards.  Present modally from the top view controller.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardviewcontroller?language=objc)
     #[unsafe(super(GKGameCenterViewController, NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
@@ -104,6 +106,7 @@ extern_methods!(
         pub unsafe fn timeScope(&self) -> GKLeaderboardTimeScope;
 
         #[cfg(feature = "GKLeaderboard")]
+        /// Setter for [`timeScope`][Self::timeScope].
         #[deprecated]
         #[method(setTimeScope:)]
         pub unsafe fn setTimeScope(&self, time_scope: GKLeaderboardTimeScope);
@@ -112,6 +115,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other category)]
         pub unsafe fn category(&self) -> Retained<NSString>;
 
+        /// Setter for [`category`][Self::category].
         #[deprecated]
         #[method(setCategory:)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
@@ -123,6 +127,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn GKLeaderboardViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`leaderboardDelegate`][Self::leaderboardDelegate].
         #[deprecated]
         #[method(setLeaderboardDelegate:)]
         pub unsafe fn setLeaderboardDelegate(
@@ -138,6 +143,7 @@ extern_protocol!(
     pub unsafe trait GKLeaderboardViewControllerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// The leaderboard view has finished
         #[deprecated]
         #[method(leaderboardViewControllerDidFinish:)]
         unsafe fn leaderboardViewControllerDidFinish(

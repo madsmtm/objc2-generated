@@ -35,14 +35,23 @@ extern_methods!(
         pub unsafe fn identifier(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
         #[cfg(feature = "UIGeometry")]
+        /// Axes along which this region latches when the primary mouse button is pressed.
+        /// When set, the UIPointerStyle associated with this region will "lock in" and allow free-form movement along the specified axes.
         #[method(latchingAxes)]
         pub unsafe fn latchingAxes(&self) -> UIAxis;
 
         #[cfg(feature = "UIGeometry")]
+        /// Setter for [`latchingAxes`][Self::latchingAxes].
         #[method(setLatchingAxes:)]
         pub unsafe fn setLatchingAxes(&self, latching_axes: UIAxis);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Creates a UIPointerRegion with the supplied rect and optional identifier.
+        ///
+        ///
+        /// Parameter `rect`: This region's rect. Must be in the pointer interaction's view's coordinate space.
+        ///
+        /// Parameter `identifier`: Optional identifier that may be used to identify this region in subsequent pointer interaction delegate calls.
         #[method_id(@__retain_semantics Other regionWithRect:identifier:)]
         pub unsafe fn regionWithRect_identifier(
             rect: CGRect,

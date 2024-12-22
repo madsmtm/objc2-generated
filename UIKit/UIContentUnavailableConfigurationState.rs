@@ -52,16 +52,20 @@ extern_methods!(
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
+        /// The trait collection.
         #[method_id(@__retain_semantics Other traitCollection)]
         pub unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITraitCollection")]
+        /// Setter for [`traitCollection`][Self::traitCollection].
         #[method(setTraitCollection:)]
         pub unsafe fn setTraitCollection(&self, trait_collection: &UITraitCollection);
 
+        /// The search text. Default is the search bar text of the view controller's search controller.
         #[method_id(@__retain_semantics Other searchText)]
         pub unsafe fn searchText(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`searchText`][Self::searchText].
         #[method(setSearchText:)]
         pub unsafe fn setSearchText(&self, search_text: Option<&NSString>);
     }

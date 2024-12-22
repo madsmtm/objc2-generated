@@ -14,7 +14,9 @@ pub const kAudioUnitCarbonViewEvent_MouseDownInControl: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewevent_mouseupincontrol?language=objc)
 pub const kAudioUnitCarbonViewEvent_MouseUpInControl: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitcarbonvieweventid?language=objc)
+/// Specifies an event passed to an AudioUnitCarbonViewEventListener callback.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitcarbonvieweventid?language=objc)
 pub type AudioUnitCarbonViewEventID = i32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitcarbonviewrange?language=objc)

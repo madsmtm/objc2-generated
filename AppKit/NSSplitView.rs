@@ -84,18 +84,21 @@ extern_methods!(
         #[method(isVertical)]
         pub unsafe fn isVertical(&self) -> bool;
 
+        /// Setter for [`isVertical`][Self::isVertical].
         #[method(setVertical:)]
         pub unsafe fn setVertical(&self, vertical: bool);
 
         #[method(dividerStyle)]
         pub unsafe fn dividerStyle(&self) -> NSSplitViewDividerStyle;
 
+        /// Setter for [`dividerStyle`][Self::dividerStyle].
         #[method(setDividerStyle:)]
         pub unsafe fn setDividerStyle(&self, divider_style: NSSplitViewDividerStyle);
 
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Option<Retained<NSSplitViewAutosaveName>>;
 
+        /// Setter for [`autosaveName`][Self::autosaveName].
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSSplitViewAutosaveName>);
 
@@ -103,6 +106,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSSplitViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -204,21 +208,42 @@ extern_methods!(
     /// NSSplitViewArrangedSubviews
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSplitView {
+        /// Whether or not all subviews will be added as arranged views. When NO, a subview must be explicitly added as an arrangedSubview if the view should be arranged as a split pane. When YES,
+        /// `-arrangedSubviews`always be identical to
+        /// `-subviews.`Defaults to YES.
+        /// Setting this from YES to NO will leave all existing subviews as
+        /// `-arrangedSubviews.`Setting this from NO to YES will cause
+        /// `-arrangedSubviews`to become the value of
+        /// `-subviews.`
         #[method(arrangesAllSubviews)]
         pub unsafe fn arrangesAllSubviews(&self) -> bool;
 
+        /// Setter for [`arrangesAllSubviews`][Self::arrangesAllSubviews].
         #[method(setArrangesAllSubviews:)]
         pub unsafe fn setArrangesAllSubviews(&self, arranges_all_subviews: bool);
 
+        /// The list of views that are arranged as split panes in the receiver.
+        /// They are a subset of
+        /// `-subviews,`with potential difference in ordering. If
+        /// `-arrangesAllSubviews`is YES, then
+        /// `-arrangedSubviews`is identical to
+        /// `-subviews.`
         #[method_id(@__retain_semantics Other arrangedSubviews)]
         pub unsafe fn arrangedSubviews(&self) -> Retained<NSArray<NSView>>;
 
+        /// Adds a view as arranged split pane. If the view is not a subview of the receiver, it will be added as one.
         #[method(addArrangedSubview:)]
         pub unsafe fn addArrangedSubview(&self, view: &NSView);
 
+        /// Adds a view as an arranged split pane list at the specific index.
+        /// If the view is already an arranged split view, it will move the view the specified index (but not move the subview index).
+        /// If the view is not a subview of the receiver, it will be added as one (not necessarily at the same index).
         #[method(insertArrangedSubview:atIndex:)]
         pub unsafe fn insertArrangedSubview_atIndex(&self, view: &NSView, index: NSInteger);
 
+        /// Removes a view as arranged split pane. If
+        /// `-arrangesAllSubviews`is set to NO, this does not remove the view as a subview.
+        /// Removing the view as a subview (either by -[view removeFromSuperview] or setting the receiver's subviews) will automatically remove it as an arranged subview.
         #[method(removeArrangedSubview:)]
         pub unsafe fn removeArrangedSubview(&self, view: &NSView);
     }

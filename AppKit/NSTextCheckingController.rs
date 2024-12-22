@@ -96,6 +96,7 @@ extern_methods!(
         #[method(spellCheckerDocumentTag)]
         pub unsafe fn spellCheckerDocumentTag(&self) -> NSInteger;
 
+        /// Setter for [`spellCheckerDocumentTag`][Self::spellCheckerDocumentTag].
         #[method(setSpellCheckerDocumentTag:)]
         pub unsafe fn setSpellCheckerDocumentTag(&self, spell_checker_document_tag: NSInteger);
     }

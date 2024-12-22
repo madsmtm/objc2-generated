@@ -19,7 +19,11 @@ use objc2_photos::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcreationsource?language=objc)
+/// PHProjectCreationSource is provided as a hint to project extensions of the user context at the time of project creation.
+/// For example, if a user is viewing a Memory in the Photos app and from that chooses the 'Create Project' option, the
+/// creationSource provided in PHProjectInfo will be PHProjectCreationSourceMemory.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcreationsource?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -60,7 +64,12 @@ unsafe impl RefEncode for PHProjectCreationSource {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo?language=objc)
+    /// A PHProjectInfo object is created by Photos and passed along with a PHProjectExtensionContext any time Photos
+    /// creates a new project. It comprises the complete content description which a Photos Project Extension can
+    /// leverage to influence things like project layout, auto-flow, or theme selection. The properties in this class
+    /// are inmutable and the class cannot be instatiated by an extension directly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectInfo;
@@ -78,25 +87,35 @@ unsafe impl NSSecureCoding for PHProjectInfo {}
 
 extern_methods!(
     unsafe impl PHProjectInfo {
+        /// Source from which the project was created.
         #[method(creationSource)]
         pub unsafe fn creationSource(&self) -> PHProjectCreationSource;
 
         #[cfg(feature = "PhotosUITypes")]
+        /// Selected projectType value from the extensions options as defined in -[PHProjectExtensionController supportedProjectTypes].
+        /// See PHProjectExtensionController.h for more information on configuring the options.
         #[method_id(@__retain_semantics Other projectType)]
         pub unsafe fn projectType(&self) -> Retained<PHProjectType>;
 
+        /// Array of project sections each containing one or more PHProjectSectionContent objects.
         #[method_id(@__retain_semantics Other sections)]
         pub unsafe fn sections(&self) -> Retained<NSArray<PHProjectSection>>;
 
+        /// The following properties are only used when the user creates a new project from an existing Apple Print Product.
+        ///
+        /// YES if the source project had branding enabled.
         #[method(brandingEnabled)]
         pub unsafe fn brandingEnabled(&self) -> bool;
 
+        /// YES if the source project had page numbers enabled.
         #[method(pageNumbersEnabled)]
         pub unsafe fn pageNumbersEnabled(&self) -> bool;
 
+        /// The product identifier of the originating Apple Print Product.
         #[method_id(@__retain_semantics Other productIdentifier)]
         pub unsafe fn productIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// The product theme identifier of the originating Apple Print Product.
         #[method_id(@__retain_semantics Other themeIdentifier)]
         pub unsafe fn themeIdentifier(&self) -> Option<Retained<NSString>>;
 
@@ -108,7 +127,14 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsectiontype?language=objc)
+/// Options for the sectionType property in PHProjectSection which provides a hint to a section's intended usage.
+///
+/// - PHProjectSectionTypeUndefined: used when there is only one section and no suggested pagination or project construction
+/// - PHProjectSectionTypeCover: represents the cover or title section of a project
+/// - PHProjectSectionTypeContent: any section representing general content in a project
+/// - PHProjectSectionTypeAuxiliary: auxiliary content (for example, cover flap in a book)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsectiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -137,7 +163,15 @@ unsafe impl Send for PHProjectSectionType {}
 unsafe impl Sync for PHProjectSectionType {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection?language=objc)
+    /// A PHProjectSection object represents a collection of content for the project including asset elements and text elements.
+    /// Each section contains one or more PHProjectSectionContent objects which provide suggested levels of "curation" for the
+    /// content contained in the section. The number of sections included in PHProjectInfo will vary depending on the
+    /// creation source at the time of the project initiation. For example:
+    /// - if user creates a project from a Memory, there will be one cover section with a key asset element and titling, plus one section containing multiple levels of curation that mirror the "Show Summary" and "Show More" options of the Memory
+    /// - if user creates a project from a single Album, the project info may only contain one section unless the album contains a large quantity of photos in which case, Photos may suggest section breaks based on Moments in the user's library
+    /// - if user creates a project from an existing Apple Book, Card, or Calendar, the sections provided in the project info will exactly match the pagination in that project (e.g., one section per page in a book).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectSection;
@@ -155,12 +189,17 @@ unsafe impl NSSecureCoding for PHProjectSection {}
 
 extern_methods!(
     unsafe impl PHProjectSection {
+        /// Array containing one or more PHProjectSectionContent objects. Ordered by number of elements from least to most.
+        /// Projects should only present one level of content to the user at a time as assets will be reused within
+        /// individual content objects.
         #[method_id(@__retain_semantics Other sectionContents)]
         pub unsafe fn sectionContents(&self) -> Retained<NSArray<PHProjectSectionContent>>;
 
+        /// The intended usage of the section (e.g., cover, content, auxiliary)
         #[method(sectionType)]
         pub unsafe fn sectionType(&self) -> PHProjectSectionType;
 
+        /// Title for the section (e.g., a Moment name or a general geographical location), might be an empty string.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
@@ -173,7 +212,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsectioncontent?language=objc)
+    /// A PHProjectSectionContent object contains all the elements and suggested layout information for a specific
+    /// level of curation within a PHProjectSection. A section can provide multiple content objects, but
+    /// only one is intended to be used in a project based on the amount of content detail desired.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsectioncontent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectSectionContent;
@@ -191,22 +234,31 @@ unsafe impl NSSecureCoding for PHProjectSectionContent {}
 
 extern_methods!(
     unsafe impl PHProjectSectionContent {
+        /// Array of asset, text, or journal entry elements contained in the content.
         #[method_id(@__retain_semantics Other elements)]
         pub unsafe fn elements(&self) -> Retained<NSArray<PHProjectElement>>;
 
+        /// The suggested layout of the content is provided in resolution-independent "grid space" units
+        /// where one grid space is the width of the defined project canvas divided by numberOfColumns.
+        /// If a project represents a "fixed layout" (e.g., it was created from an existing Apple Book, Card, or Calendar)
+        /// the specified numberOfColumns will always be 1.
         #[method(numberOfColumns)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
 
+        /// Overall aspect ratio of the full content layout (width/height) to enable faithful replication in the project's layout.
         #[method(aspectRatio)]
         pub unsafe fn aspectRatio(&self) -> c_double;
 
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
+        /// Convenience for getting a single array of all cloud asset identifiers referenced in the content without needing to enumerate elements.
         #[method_id(@__retain_semantics Other cloudAssetIdentifiers)]
         pub unsafe fn cloudAssetIdentifiers(&self) -> Retained<NSArray<PHCloudIdentifier>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Background color of the section content.
+        /// This property is only used when the user creates a new project from an existing Apple Print Product
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
@@ -219,7 +271,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectelement?language=objc)
+    /// PHProjectElement is the superclass for all element objects. It is never directly used, but defines the shared
+    /// properties of any element in an instance of PHProjectSectionContent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectelement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectElement;
@@ -237,10 +292,20 @@ unsafe impl NSSecureCoding for PHProjectElement {}
 
 extern_methods!(
     unsafe impl PHProjectElement {
+        /// Relative significance of any element in the section content is defined by it's weight.
+        /// Values range from 0.0 to 1.0 where the higher numbers represent higher overall significance.
+        /// Projects that allow a user to reduce the number of elements in any section content can use
+        /// this hint to determine which elements are most important to keep in order to preserve context.
+        /// Default is 0.5.
         #[method(weight)]
         pub unsafe fn weight(&self) -> c_double;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Placement of elements in the suggested layout is provided in grid space coordinates. For example, a rect of (0,0,3,4)
+        /// represents a placement in the upper-left of the layout grid that is 3 grid units wide by 4 grid units high.
+        /// For layout grids with more than one column, the values in the rect will always be integral. For fixed layouts,
+        /// rect values will be in fractional unit values. If suggested placement could not be determined at time of project
+        /// creation, placement will contain CGRectNull.
         #[method(placement)]
         pub unsafe fn placement(&self) -> CGRect;
 
@@ -257,7 +322,14 @@ extern_methods!(
 pub type PHProjectRegionOfInterestIdentifier = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectregionofinterest?language=objc)
+    /// In PHProjectAssetElement objects, an array of PHProjectRegionOfInterest objects may be provided.
+    /// These regions represent specific areas in an asset that have signficant meaning. For example, faces
+    /// that are relevant to the user (as opposed to faces in a crowd) will be highlighted in the asset
+    /// to help with things like auto-pan, auto-zoom, or focusing on specific areas in the asset during animations or
+    /// transitions. Regions representing the same person or object across multiple assets are cross-referenced through
+    /// the use of the identifier.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectregionofinterest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectRegionOfInterest;
@@ -275,12 +347,25 @@ extern_methods!(
         #[method(rect)]
         pub unsafe fn rect(&self) -> CGRect;
 
+        /// Significance of the regionOfInterest in the overall project context is provided as a weight score.
+        /// All regions of interest with the same identifier in the project have the same weight.
+        /// For projects doing things like animation or transition between assets, focusing on the highest weighted
+        /// regions of interest will ensure that the presentation represents something that is most meaningful to the user.
+        /// Value range is a double between 0.0 and 1.0.
+        /// Default is 0.5.
         #[method(weight)]
         pub unsafe fn weight(&self) -> c_double;
 
+        /// Quality of the represented region of interest in the asset.
+        /// Different regions of interest with the same identifier may have different quality values.
+        /// If the project wants to decide between multiple assets containing the same region of interest,
+        /// the quality score can be used to pick the best representation of the region of interest.
+        /// Value range is a double between 0.0 and 1.0.
         #[method(quality)]
         pub unsafe fn quality(&self) -> c_double;
 
+        /// Identifier of the region of interest. Regions representing the same person or object will have
+        /// the same identifier across multiple assets.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<PHProjectRegionOfInterestIdentifier>;
 
@@ -293,7 +378,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectassetelement?language=objc)
+    /// A PHProjectAssetElement object represents a media asset within a PHProjectSectionContent.
+    /// The underlying PHAsset can be accessed by converting the provided cloudAssetIdentifier to a localIdentifier,
+    /// then using the fetchAssetsWithLocalIdentifiers:options: class method defined in PHAsset.h.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectassetelement?language=objc)
     #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectAssetElement;
@@ -313,22 +402,39 @@ extern_methods!(
     unsafe impl PHProjectAssetElement {
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
+        /// Cloud identifier for the underlying PHAsset. This identifier must be converted to a localIdentifier
+        /// before fetching, but if archiving the identifier in project data the provided PHCloudIdentifier should always be used.
         #[method_id(@__retain_semantics Other cloudAssetIdentifier)]
         pub unsafe fn cloudAssetIdentifier(&self) -> Retained<PHCloudIdentifier>;
 
+        /// If a user has explicitly annotated an asset (e.g., caption) that value will be provided in this property.
         #[method_id(@__retain_semantics Other annotation)]
         pub unsafe fn annotation(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// If the asset was presented to the user in a cropped manner in Photos either automatically or
+        /// through user manipulation (pan
+        /// &
+        /// zoom) before the creation of the project, the visible image
+        /// area shown to the user will be provided as a crop rect. As a fallback, Photos may suggest a general
+        /// "safe crop" based on image content through this property. The rect is in unit coordinates with an upper left origin.
+        /// Default value: {(0.0, 0.0), (1.0,1.0)}
         #[method(cropRect)]
         pub unsafe fn cropRect(&self) -> CGRect;
 
+        /// Array of regions of interest (faces, objects, etc.) in the assets.
+        /// Note: Photos will filter out features of an asset that it doesn't believe to be meaningful in the context
+        /// of the user's full library. For example, random faces in a crowd.
         #[method_id(@__retain_semantics Other regionsOfInterest)]
         pub unsafe fn regionsOfInterest(&self) -> Retained<NSArray<PHProjectRegionOfInterest>>;
 
+        /// The following properties are only used when the user creates a new project from an existing Apple Print Product.
+        ///
+        /// YES if the asset was presented horizontally flipped in the originating project.
         #[method(horizontallyFlipped)]
         pub unsafe fn horizontallyFlipped(&self) -> bool;
 
+        /// YES if the asset was presented vertically flipped in the originating project.
         #[method(verticallyFlipped)]
         pub unsafe fn verticallyFlipped(&self) -> bool;
     }
@@ -345,7 +451,9 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelementtype?language=objc)
+/// Options for PHProjectTextElementType
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelementtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -372,7 +480,11 @@ unsafe impl Send for PHProjectTextElementType {}
 unsafe impl Sync for PHProjectTextElementType {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelement?language=objc)
+    /// A PHProjectTextElement object represents formatted, positioned text that should be considered
+    /// for inclusion in a project. In this case of a Memory, this will always be the Title and Subtitle show in the
+    /// Memory header view. For projects created from Apple Book, Card, and Calendar projects, text appearing on any page.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelement?language=objc)
     #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectTextElement;
@@ -390,9 +502,12 @@ unsafe impl NSSecureCoding for PHProjectTextElement {}
 
 extern_methods!(
     unsafe impl PHProjectTextElement {
+        /// Unformatted, raw string for the text element
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
+        /// If the text was presented to the user in a stylized manner in Photos,
+        /// attributedText will provide access to those same attributes.
         #[method_id(@__retain_semantics Other attributedText)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
@@ -413,7 +528,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectjournalentryelement?language=objc)
+    /// A PHProjectJournalEntryElement object represents auxilary, date specific information that may be interesting
+    /// to include in a project. For example, callouts for specific birthdays or holidays. In general, these will only
+    /// be included for projects created from existing Apple Calendar projects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectjournalentryelement?language=objc)
     #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectJournalEntryElement;
@@ -431,12 +550,15 @@ unsafe impl NSSecureCoding for PHProjectJournalEntryElement {}
 
 extern_methods!(
     unsafe impl PHProjectJournalEntryElement {
+        /// Date to which the provided asset and/or text pertain
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
+        /// Representative asset, if any, for that date.
         #[method_id(@__retain_semantics Other assetElement)]
         pub unsafe fn assetElement(&self) -> Option<Retained<PHProjectAssetElement>>;
 
+        /// Descriptive text (e.g., "Mom's Birthday") for that date.
         #[method_id(@__retain_semantics Other textElement)]
         pub unsafe fn textElement(&self) -> Option<Retained<PHProjectTextElement>>;
     }
@@ -454,7 +576,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectmapelement?language=objc)
+    /// A PHProjectMapElement object representing a map with annotations.
+    /// In general, these will only be included for projects created from existing Apple Print Product projects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectmapelement?language=objc)
     #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectMapElement;
@@ -473,6 +598,7 @@ unsafe impl NSSecureCoding for PHProjectMapElement {}
 extern_methods!(
     unsafe impl PHProjectMapElement {
         #[cfg(feature = "objc2-map-kit")]
+        /// The type of the map in the project.
         #[method(mapType)]
         pub unsafe fn mapType(&self) -> MKMapType;
 

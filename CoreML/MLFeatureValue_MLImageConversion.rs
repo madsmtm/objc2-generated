@@ -8,17 +8,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalueimageoption?language=objc)
+/// Options keys passed into the MLFeatureValue construction for image types
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalueimageoption?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type MLFeatureValueImageOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalueimageoptioncroprect?language=objc)
+    /// Key for CGRect describing a crop region of interest of image source in normalized coordinates
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalueimageoptioncroprect?language=objc)
     pub static MLFeatureValueImageOptionCropRect: &'static MLFeatureValueImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalueimageoptioncropandscale?language=objc)
+    /// Key for VNImageCropAndScaleOption describing how to crop and scale the image (or region of interest) to the desired size
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalueimageoptioncropandscale?language=objc)
     pub static MLFeatureValueImageOptionCropAndScale: &'static MLFeatureValueImageOption;
 }
 
@@ -26,6 +32,7 @@ extern_methods!(
     /// MLImageConversion
     #[cfg(feature = "MLFeatureValue")]
     unsafe impl MLFeatureValue {
+        /// Construct image feature value from an image on disk. Orientation is read from Exif if avaiable
         #[method_id(@__retain_semantics Other featureValueWithImageAtURL:pixelsWide:pixelsHigh:pixelFormatType:options:error:_)]
         pub unsafe fn featureValueWithImageAtURL_pixelsWide_pixelsHigh_pixelFormatType_options_error(
             url: &NSURL,
@@ -36,6 +43,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "MLImageConstraint")]
+        /// Construct image feature value from an image on disk, using a model specified image constraint. Orientation is read from Exif if avaiable
         #[method_id(@__retain_semantics Other featureValueWithImageAtURL:constraint:options:error:_)]
         pub unsafe fn featureValueWithImageAtURL_constraint_options_error(
             url: &NSURL,
@@ -44,6 +52,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Construct image feature value from CGImage (orientation is assumed to be kCGImagePropertyOrientationUp)
         #[method_id(@__retain_semantics Other featureValueWithCGImage:pixelsWide:pixelsHigh:pixelFormatType:options:error:_)]
         pub unsafe fn featureValueWithCGImage_pixelsWide_pixelsHigh_pixelFormatType_options_error(
             cg_image: CGImageRef,
@@ -54,6 +63,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLImageConstraint", feature = "objc2-core-graphics"))]
+        /// Construct image feature value from CGImage, using the size and type information required by feature description (orientation is assumed to be kCGImagePropertyOrientationUp)
         #[method_id(@__retain_semantics Other featureValueWithCGImage:constraint:options:error:_)]
         pub unsafe fn featureValueWithCGImage_constraint_options_error(
             cg_image: CGImageRef,

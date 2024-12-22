@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other content)]
         pub unsafe fn content(&self) -> Retained<NSString>;
 
+        /// Setter for [`content`][Self::content].
         #[deprecated]
         #[method(setContent:)]
         pub unsafe fn setContent(&self, content: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other httpEquiv)]
         pub unsafe fn httpEquiv(&self) -> Retained<NSString>;
 
+        /// Setter for [`httpEquiv`][Self::httpEquiv].
         #[deprecated]
         #[method(setHttpEquiv:)]
         pub unsafe fn setHttpEquiv(&self, http_equiv: Option<&NSString>);
@@ -97,6 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -105,6 +108,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other scheme)]
         pub unsafe fn scheme(&self) -> Retained<NSString>;
 
+        /// Setter for [`scheme`][Self::scheme].
         #[deprecated]
         #[method(setScheme:)]
         pub unsafe fn setScheme(&self, scheme: Option<&NSString>);

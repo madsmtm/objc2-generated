@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecord?language=objc)
+    /// This class is used to read, update and modify records within the directory
+    ///
+    /// This class is used to read, update and modify records within the directory.  outError is optional parameter,
+    /// nil can be passed if error details are not needed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecord?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ODRecord;
@@ -17,6 +22,16 @@ unsafe impl NSObjectProtocol for ODRecord {}
 
 extern_methods!(
     unsafe impl ODRecord {
+        /// Similar to calling -[ODNode setCredentials:] except credentials are only set for this particular
+        /// record's node
+        ///
+        /// Sets the credentials if necessary on the ODNode referenced by this ODRecord.  Very similar to
+        /// calling -[ODNode setCredentials:] except other records referencing the underlying node will not get
+        /// authenticated, therefore inadvertant changes cannot occur.  If all records referencing a particular
+        /// node need to be updated, then use -[ODNode setCredentials:] on the original node instead.  If the
+        /// node is already authenticated with the same name and password, it will be a NOOP call.  The original
+        /// ODNode held by an ODRecord will be released when the credentials are changed for the connection
+        /// associated with the record.  outError is optional parameter, nil can be passed if error details are not needed.
         #[method(setNodeCredentials:password:error:)]
         pub unsafe fn setNodeCredentials_password_error(
             &self,
@@ -26,6 +41,13 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// Similar to calling -[ODNode setCredentialsWithRecordType:] except credentials are only set for this particular record's
+        /// node
+        ///
+        /// Allows the caller to use other types of authentications that are available in OpenDirectory, that may
+        /// require response-request loops, etc.  Not all OD plugins will support this call, look for
+        /// kODErrorCredentialsMethodNotSupported in outError.  Same behavior as ODRecordSetNodeCredentials.  outError
+        /// is optional parameter, nil can be passed if error details are not needed.
         #[method(setNodeCredentialsWithRecordType:authenticationType:authenticationItems:continueItems:context:error:)]
         pub unsafe fn setNodeCredentialsWithRecordType_authenticationType_authenticationItems_continueItems_context_error(
             &self,
@@ -37,6 +59,9 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Unsupported method.
+        ///
+        /// Unsupported method.
         #[deprecated]
         #[method(setNodeCredentialsUsingKerberosCache:error:)]
         pub unsafe fn setNodeCredentialsUsingKerberosCache_error(
@@ -45,6 +70,10 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Returns a dictionary containing the password policy for the record if available.
+        ///
+        /// Returns a dictionary containing the password policy for the record if available.  If no policy for record
+        /// nil will be returned.  outError is optional parameter, nil can be passed if error details are not needed.
         #[deprecated = "use effectivePoliciesAndReturnError"]
         #[method_id(@__retain_semantics Other passwordPolicyAndReturnError:)]
         pub unsafe fn passwordPolicyAndReturnError(
@@ -52,6 +81,10 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSDictionary>>;
 
+        /// Verifies the password provided is valid for the record
+        ///
+        /// Verifies the password provided is valid for the record.  outError is optional parameter, nil can be passed if
+        /// error details are not needed.
         #[method(verifyPassword:error:)]
         pub unsafe fn verifyPassword_error(
             &self,
@@ -60,6 +93,13 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// Allows use of other OpenDirectory types of authentications
+        ///
+        /// Allows the caller to use other types of authentications that are available in OpenDirectory, that may
+        /// require response-request loops, etc.  A bool with the result of the operation.
+        /// If it fails, outError can be checked for more specific error.  Some ODNodes may not support the call
+        /// so an error code of kODErrorCredentialsMethodNotSupported may be returned.  outError is optional
+        /// parameter, nil can be passed if error details are not needed.
         #[method(verifyExtendedWithAuthenticationType:authenticationItems:continueItems:context:error:)]
         pub unsafe fn verifyExtendedWithAuthenticationType_authenticationItems_continueItems_context_error(
             &self,
@@ -70,6 +110,10 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Changes the password for a record
+        ///
+        /// Changes the password for a record.  The oldPassword can be nil if password is being set assuming the appropriate
+        /// privileges are in place.  outError is optional parameter, nil can be passed if error details are not needed.
         #[method(changePassword:toPassword:error:)]
         pub unsafe fn changePassword_toPassword_error(
             &self,
@@ -78,18 +122,38 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Synchronizes the record from the Directory in order to get current data and/or commit pending changes
+        ///
+        /// Synchronizes the record from the Directory in order to get current data.  Any previously fetched attributes
+        /// will be re-fetch from the Directory.  This will not re-fetch the entire record, unless the entire record
+        /// has been accessed.  Additionally, any changes made to the record will be committed to the directory,
+        /// if the node does not do immediate commits.  outError is optional parameter, nil can be passed if error details
+        /// are not needed.
         #[method(synchronizeAndReturnError:)]
         pub unsafe fn synchronizeAndReturnError(
             &self,
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Type of the record.
+        ///
+        /// The record type.
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Retained<NSString>;
 
+        /// Name of the record.
+        ///
+        /// This is the official record name.
         #[method_id(@__retain_semantics Other recordName)]
         pub unsafe fn recordName(&self) -> Retained<NSString>;
 
+        /// Returns the attributes and values in the form of a key-value pair set.
+        ///
+        /// Returns the attributes and values in the form of a key-value pair set for this record.  The key is a
+        /// NSString of the attribute name (e.g., kODAttributeTypeRecordName, etc.) and the value is an NSArray
+        /// of either NSData or NSString depending on the type of data.  Binary data will be returned as NSData.
+        /// If nil is passed, then all currently retrieved attributes will be returned.  outError is optional parameter,
+        /// nil can be passed if error details are not needed.
         #[method_id(@__retain_semantics Other recordDetailsForAttributes:error:)]
         pub unsafe fn recordDetailsForAttributes_error(
             &self,
@@ -98,6 +162,10 @@ extern_methods!(
         ) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// Returns an NSArray of NSString or NSData values of the attribute
+        ///
+        /// Returns an NSArray of NSString or NSData depending on the type of data.  Binary data will be
+        /// returned as NSData.  outError is optional parameter, nil can be passed if error details are not needed.
         #[method_id(@__retain_semantics Other valuesForAttribute:error:)]
         pub unsafe fn valuesForAttribute_error(
             &self,
@@ -106,6 +174,10 @@ extern_methods!(
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// Will take a mixture of NSData or NSString or an NSArray of either type when setting the values of an attribute
+        ///
+        /// Will take a mixture of NSData or NSString or an NSArray of either type when setting the values of an attribute.
+        /// outError is optional parameter, nil can be passed if error details are not needed.
         #[method(setValue:forAttribute:error:)]
         pub unsafe fn setValue_forAttribute_error(
             &self,
@@ -115,6 +187,10 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// Removes all the values for an attribute.
+        ///
+        /// Removes all the values for an attribute.  outError is optional parameter, nil can be passed if
+        /// error details are not needed.
         #[method(removeValuesForAttribute:error:)]
         pub unsafe fn removeValuesForAttribute_error(
             &self,
@@ -123,6 +199,10 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// Will add a value to an attribute
+        ///
+        /// Will add a value to an attribute.  Should be either NSData or NSString type.  outError is optional
+        /// parameter, nil can be passed if error details are not needed.
         #[method(addValue:toAttribute:error:)]
         pub unsafe fn addValue_toAttribute_error(
             &self,
@@ -132,6 +212,10 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// Will remove a value from an attribute
+        ///
+        /// Will remove a value from an attribute.  Should be either NSData or NSString type.  outError is optional
+        /// parameter, nil can be passed if error details are not needed.
         #[method(removeValue:fromAttribute:error:)]
         pub unsafe fn removeValue_fromAttribute_error(
             &self,
@@ -140,12 +224,19 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Deletes the record from the node and invalidates the record.
+        ///
+        /// Deletes the record from the node and invalidates the record.  The ODRecord should be
+        /// released after deletion.  outError is optional parameter, nil can be passed if error details are not needed.
         #[method(deleteRecordAndReturnError:)]
         pub unsafe fn deleteRecordAndReturnError(
             &self,
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// This will copy any policies configured for the record.
+        ///
+        /// This will copy any policies configured for the record.
         #[deprecated = "use accountPoliciesAndReturnError:"]
         #[method_id(@__retain_semantics Other policiesAndReturnError:)]
         pub unsafe fn policiesAndReturnError(
@@ -153,6 +244,9 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSDictionary>>;
 
+        /// This will copy any policies configured for the record.
+        ///
+        /// This will copy any policies configured for the record.
         #[deprecated = "use authenticationAllowedAndReturnError: and similar methods"]
         #[method_id(@__retain_semantics Other effectivePoliciesAndReturnError:)]
         pub unsafe fn effectivePoliciesAndReturnError(
@@ -160,6 +254,11 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSDictionary>>;
 
+        /// This will return a dictionary of supported policies.
+        ///
+        /// This will return a dictionary of supported policies, if appropriate, the value will be the maximum value allowed
+        /// for the policy in question.  For example, if password history is available, it will state how much history is
+        /// supported.
         #[deprecated]
         #[method_id(@__retain_semantics Other supportedPoliciesAndReturnError:)]
         pub unsafe fn supportedPoliciesAndReturnError(
@@ -167,6 +266,9 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSDictionary>>;
 
+        /// This will set the policy for the record.
+        ///
+        /// This will set the policy for the record.  Policies are evaluated in combination with node-level policies.
         #[deprecated = "use setAccountPolicies:error:"]
         #[method(setPolicies:error:)]
         pub unsafe fn setPolicies_error(
@@ -176,6 +278,9 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// This will set a specific policy setting for the record.
+        ///
+        /// This will set a specific policy setting for the record.
         #[deprecated = "use addAccountPolicy:toCategory:error:"]
         #[method(setPolicy:value:error:)]
         pub unsafe fn setPolicy_value_error(
@@ -186,6 +291,9 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// This will remove a specific policy setting from the record.
+        ///
+        /// This will remove a specific policy setting from the record.
         #[deprecated = "use removeAccountPolicy:fromCategory:error:"]
         #[method(removePolicy:error:)]
         pub unsafe fn removePolicy_error(
@@ -195,6 +303,27 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// This will add a specific policy to the specific category for the record.
+        ///
+        /// This will add a specific policy to the specific category for the record.
+        /// The specified policy will be applied, in combination with any
+        /// node policies, to the specified record when policies are evaluated.
+        ///
+        /// Parameter `policy`: a dictionary containing the specific policy to be added.
+        /// The dictionary may contain the following keys:
+        /// kODPolicyKeyIdentifier a required key identifying the policy.
+        /// kODPolicyKeyParameters an optional key containing a dictionary of
+        /// parameters that can be used for informational purposes or in
+        /// the policy format string.
+        /// kODPolicyKeyContent a required key specifying the policy,
+        /// from which a predicate will be created for evaluating
+        /// the policy.
+        ///
+        /// Parameter `category`: a valid ODPolicyCategoryType to which the policy will be added.
+        ///
+        /// Parameter `error`: an optional NSError reference for error details.
+        ///
+        /// Returns: a BOOL which signifies if the policy addition succeeded, otherwise error is set.
         #[method(addAccountPolicy:toCategory:error:)]
         pub unsafe fn addAccountPolicy_toCategory_error(
             &self,
@@ -204,6 +333,18 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CFOpenDirectoryConstants")]
+        /// This will remove a specific policy from the specific category for the record.
+        ///
+        /// This will remove a specific policy from the specific category for the record.
+        ///
+        /// Parameter `policy`: a dictionary containing the specific policy to be
+        /// removed, with the same format as described in addAccountPolicy.
+        ///
+        /// Parameter `category`: a valid ODPolicyCategoryType from which the policy will be removed.
+        ///
+        /// Parameter `error`: an optional NSError reference for error details.
+        ///
+        /// Returns: a BOOL which signifies if the policy removal succeeded, otherwise error is set.
         #[method(removeAccountPolicy:fromCategory:error:)]
         pub unsafe fn removeAccountPolicy_fromCategory_error(
             &self,
@@ -212,6 +353,27 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// This will set the policies for the record.
+        ///
+        /// This will set the policies for the record, replacing any
+        /// existing policies.  All of the policies in the set will be
+        /// applied to the record when policies are evaluated.
+        ///
+        /// Parameter `policies`: a dictionary containing all of the policies to be set
+        /// for the node.  The dictionary may contain the following keys:
+        /// kODPolicyCategoryAuthentication an optional key with a value
+        /// of an array of policy dictionaries that specify when
+        /// authentications should be allowed.
+        /// kODPolicyCategoryPasswordContent an optional key with a
+        /// value of an array of policy dictionaries the specify the
+        /// required content of passwords.
+        /// kODPolicyCategoryPasswordChange an optional key with a value
+        /// of an array of policy dictionaries that specify when
+        /// passwords are required to be changed.
+        ///
+        /// Parameter `error`: an optional NSError reference for error details.
+        ///
+        /// Returns: a BOOL which signifies if the policy set succeeded, otherwise error is set.
         #[method(setAccountPolicies:error:)]
         pub unsafe fn setAccountPolicies_error(
             &self,
@@ -219,18 +381,71 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Returns a dictionary containing any policies configured for the record.
+        ///
+        /// Returns a dictionary containing any policies configured for the record.
+        /// Does not include any policies set for the node.
+        ///
+        /// Returns a dictionary containing any policies configured for the record.
+        ///
+        /// Parameter `error`: an optional NSError reference for error details.
+        ///
+        /// Returns: a NSDictionary containing all currently set policies.  The
+        /// format of the dictionary is the same as described in
+        /// setAccountPolicies.
         #[method_id(@__retain_semantics Other accountPoliciesAndReturnError:)]
         pub unsafe fn accountPoliciesAndReturnError(
             &self,
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSDictionary>>;
 
+        /// Determines if policies allow the account to authenticate.
+        ///
+        /// Determines if policies allow the account to authenticate.
+        /// Authentication and password change policies are evaluated.
+        /// Record-level and node-level policies are evaluated in
+        /// combination, with record-level taking precedence over node-level
+        /// policies.  The failure of any single policy will deny the
+        /// authentication.
+        ///
+        /// This check is only definitive at the time it was requested. The
+        /// policy or the environment could change before the authentication
+        /// is actually requested.  Errors from the authentication request
+        /// should be consulted.
+        ///
+        /// It is not necessary to call this function when calling
+        /// verifyPassword or verifyPasswordExtended since those methods
+        /// perform the same policy evaluation.
+        ///
+        ///
+        /// Parameter `error`: an optional NSError reference for error details.
+        ///
+        /// Returns: a bool which signifies if the authentication is allowed, otherwise error is set.
         #[method(authenticationAllowedAndReturnError:)]
         pub unsafe fn authenticationAllowedAndReturnError(
             &self,
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Determines if policies allow the password change.
+        ///
+        /// Determines if policies allow the password change.  Password
+        /// content policies are evaluated. Record-level and node-level
+        /// policies are evaluated in combination, with record-level taking
+        /// precedence over node-level policies.  The failure of any single
+        /// policy will deny the password change.
+        ///
+        /// This check is only definitive at the time it was requested. The
+        /// policy or the environment could change before the password change
+        /// is actually requested.  Errors from the password change request
+        /// should be consulted.
+        ///
+        ///
+        /// Parameter `newPassword`: contains the password to be evaluated.
+        ///
+        /// Parameter `error`: an optional NSError reference for error details.
+        ///
+        /// Returns: a BOOL which signifies if the password change is allowed, otherwise error is set.
         #[method(passwordChangeAllowed:error:)]
         pub unsafe fn passwordChangeAllowed_error(
             &self,
@@ -238,15 +453,69 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Determines if the password will expire within the specified time.
+        ///
+        /// Determines if the password will expire (i.e. need to be changed)
+        /// between now and the specified number of seconds in the future.
+        /// Password change policies are evaluated.  Record-level and
+        /// node-level policies are evaluated in combination, with
+        /// record-level taking precedence over node-level policies.
+        ///
+        /// Parameter `willExpireIn`: the number of seconds from the current time to be
+        /// used as the upper-bound for the password expiration period.
+        ///
+        /// Returns: a BOOL which signifies if the password will expire within the
+        /// specified time.
         #[method(willPasswordExpire:)]
         pub unsafe fn willPasswordExpire(&self, will_expire_in: u64) -> bool;
 
+        /// Determines if authentications will expire within the specified time.
+        ///
+        /// Determines if authentications will expire (i.e. session and/or
+        /// account expires) between now and the specified number of seconds
+        /// in the future.  Authentication policies are evaluated.
+        /// Record-level and node-level policies are evaluated in
+        /// combination, with record-level taking precedence over node-level
+        /// policies.
+        ///
+        /// Parameter `willExpireIn`: the number of seconds from the current time to be
+        /// used as the upper-bound for the authentication expiration period.
+        ///
+        /// Returns: a BOOL which signifies if authentications will expire within the
+        /// specified time.
         #[method(willAuthenticationsExpire:)]
         pub unsafe fn willAuthenticationsExpire(&self, will_expire_in: u64) -> bool;
 
+        /// Determines how many seconds until the password expires.
+        ///
+        /// Determines how many seconds until the password expires (i.e.
+        /// needs changing).  Password change policies are evaluated.
+        /// Record-level and node-level policies are evaluated in
+        /// combination, with record-level taking precedence over node-level
+        /// policies.
+        ///
+        /// Returns: the number of seconds until the password expires.  If multiple
+        /// policies will cause the password to expire, the soonest
+        /// expiration time is returned.  If already expired,
+        /// kODExpirationTimeExpired is returned.  If there are no password
+        /// change policies, kODExpirationTimeNeverExpires is returned.
         #[method(secondsUntilPasswordExpires)]
         pub unsafe fn secondsUntilPasswordExpires(&self) -> i64;
 
+        /// Determines how many seconds until authentications expire.
+        ///
+        /// Determines how many seconds until authentications expire (i.e.
+        /// session and/or account expires). Authentication policies are
+        /// evaluated.   Record-level and node-level policies are evaluated
+        /// in combination, with record-level taking precedence over
+        /// node-level policies.
+        ///
+        /// Returns: the number of seconds until authentications expire.  If multiple
+        /// policies will cause authentications to expire, the soonest
+        /// expiration time is returned. If already expired,
+        /// kODExpirationTimeExpired is returned.  If there are no
+        /// authentication policies controlling expiration,
+        /// kODExpirationTimeNeverExpires is returned.
         #[method(secondsUntilAuthenticationsExpire)]
         pub unsafe fn secondsUntilAuthenticationsExpire(&self) -> i64;
     }
@@ -265,7 +534,13 @@ extern_methods!(
 
 extern_methods!(
     /// ODRecordGroupExtensions
+    /// Record extensions for checking and modifying group membership.
     unsafe impl ODRecord {
+        /// Will add the record as a member of the group record
+        ///
+        /// Will add the record as a member of the group record.  An error will be returned if the record is not
+        /// a group record.  Additionally, if the member record is not an appropriate type allowed as part of a group
+        /// an error will be returned.  outError is optional parameter, nil can be passed if error details are not needed.
         #[method(addMemberRecord:error:)]
         pub unsafe fn addMemberRecord_error(
             &self,
@@ -273,6 +548,11 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Will remove the record as a member from the group record
+        ///
+        /// Will remove the record as a member from the group record. An error will be returned if the record is not
+        /// a group record.  Additionally, if the member record is not an appropriate type allowed as part of a group
+        /// an error will be returned.  outError is optional parameter, nil can be passed if error details are not needed.
         #[method(removeMemberRecord:error:)]
         pub unsafe fn removeMemberRecord_error(
             &self,
@@ -280,6 +560,11 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
+        /// Will use membership APIs to determine if inRecord is a member of the group
+        ///
+        /// Will use membership APIs to determine if inRecord is a member of the group.  If the receiving
+        /// object is not a group then NO will still be returned.  outError is optional parameter, nil can be passed if
+        /// error details are not needed.
         #[method(isMemberRecord:error:)]
         pub unsafe fn isMemberRecord_error(
             &self,

@@ -7,12 +7,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnentitytype?language=objc)
+/// The entities the user can grant access to.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnentitytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CNEntityType(pub NSInteger);
 impl CNEntityType {
+    /// The user's contacts.
     #[doc(alias = "CNEntityTypeContacts")]
     pub const Contacts: Self = Self(0);
 }
@@ -25,20 +28,28 @@ unsafe impl RefEncode for CNEntityType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus?language=objc)
+/// The authorization the user has given the application to access an entity type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CNAuthorizationStatus(pub NSInteger);
 impl CNAuthorizationStatus {
+    /// The user has not yet made a choice regarding whether the application may access contact data.
     #[doc(alias = "CNAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// The application is not authorized to access contact data.
+    /// The user cannot change this application’s status, possibly due to active restrictions such as parental controls being in place.
     #[doc(alias = "CNAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// The user explicitly denied access to contact data for the application.
     #[doc(alias = "CNAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
+    /// The application is authorized to access contact data.
     #[doc(alias = "CNAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
+    /// This application is authorized to access some contact data.
     #[doc(alias = "CNAuthorizationStatusLimited")]
     pub const Limited: Self = Self(4);
 }
@@ -52,7 +63,19 @@ unsafe impl RefEncode for CNAuthorizationStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactstore?language=objc)
+    /// Provides methods to fetch and save contacts.
+    ///
+    ///
+    /// The CNContactStore is a thread safe class that can fetch and save contacts, fetch and save groups, and fetch containers.
+    ///
+    ///
+    /// Note: Some good practices are:
+    /// 1) Only fetch contact properties that will be used.
+    /// 2) When fetching all contacts and caching the results, first fetch all contact identifiers only. Then fetch batches of detailed contacts by identifiers as you need them.
+    /// 3) To aggregate several contact fetches collect a set of unique contact identifiers from the fetches. Then fetch batches of detailed contacts by identifiers.
+    /// 4) When CNContactStoreDidChangeNotification is posted, if you cache any fetched contacts/groups/containers then they must be refetched and the old cached objects released.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactstore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactStore;
@@ -62,12 +85,31 @@ unsafe impl NSObjectProtocol for CNContactStore {}
 
 extern_methods!(
     unsafe impl CNContactStore {
+        /// Indicates the current authorization status to access contact data.
+        ///
+        ///
+        /// Based upon the access, the application could display or hide its UI elements that would access any Contacts API. This method is thread safe.
+        ///
+        ///
+        /// Returns: Returns the authorization status for the given entityType.
         #[method(authorizationStatusForEntityType:)]
         pub unsafe fn authorizationStatusForEntityType(
             entity_type: CNEntityType,
         ) -> CNAuthorizationStatus;
 
         #[cfg(feature = "block2")]
+        /// Request access to the user's contacts.
+        ///
+        ///
+        /// Users are able to grant or deny access to contact data on a per-application basis. To request access to contact data, call requestAccessForEntityType:completionHandler:. This will not block the application while the user is being asked to grant or deny access. The user will only be prompted the first time access is requested; any subsequent CNContactStore calls will use the existing permissions. The completion handler is called on an arbitrary queue.
+        ///
+        ///
+        /// Note: Recommended to use CNContactStore instance methods in this completion handler instead of the UI main thread. This method is optional when CNContactStore is used on a background thread. If it is not used in that case, CNContactStore will block if the user is asked to grant or deny access.
+        ///
+        ///
+        /// Parameter `entityType`: Set to CNEntityTypeContacts.
+        ///
+        /// Parameter `completionHandler`: This block is called upon completion. If the user grants access then granted is YES and error is nil. Otherwise granted is NO with an error.
         #[method(requestAccessForEntityType:completionHandler:)]
         pub unsafe fn requestAccessForEntityType_completionHandler(
             &self,
@@ -76,6 +118,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "CNContact")]
+        /// Fetch all unified contacts matching a given predicate.
+        ///
+        ///
+        /// Use only predicates from CNContact+Predicates.h. Compound predicates are not supported. Due to unification the returned contacts may have a different identifier.
+        ///
+        ///
+        /// Note: To fetch all contacts use enumerateContactsWithFetchRequest:error:usingBlock:.
+        ///
+        ///
+        /// Parameter `predicate`: The predicate to match against.
+        ///
+        /// Parameter `keys`: The properties to fetch into the returned CNContact objects. Should only fetch the properties that will be used. Can combine contact keys and contact key descriptors.
+        ///
+        /// Parameter `error`: If an error occurs, contains error information.
+        ///
+        /// Returns: An array of CNContact objects matching the predicate. If no matches are found, an empty array is returned. If an error occurs, nil is returned.
         #[method_id(@__retain_semantics Other unifiedContactsMatchingPredicate:keysToFetch:error:_)]
         pub unsafe fn unifiedContactsMatchingPredicate_keysToFetch_error(
             &self,
@@ -84,6 +142,19 @@ extern_methods!(
         ) -> Result<Retained<NSArray<CNContact>>, Retained<NSError>>;
 
         #[cfg(feature = "CNContact")]
+        /// Fetch a unified contact with a given identifier.
+        ///
+        ///
+        /// Due to unification the returned contact may have a different identifier. To fetch a batch of contacts by identifiers use [CNContact predicateForContactsWithIdentifiers:].
+        ///
+        ///
+        /// Parameter `identifier`: The identifier of the contact to fetch.
+        ///
+        /// Parameter `keys`: The properties to fetch into the returned CNContact object. Should only fetch the properties that will be used. Can combine contact keys and contact key descriptors.
+        ///
+        /// Parameter `error`: If an error occurs, contains error information.
+        ///
+        /// Returns: The unified contact matching or linked to the identifier. If no contact with the given identifier is found, nil is returned and error is set to CNErrorCodeRecordDoesNotExist.
         #[method_id(@__retain_semantics Other unifiedContactWithIdentifier:keysToFetch:error:_)]
         pub unsafe fn unifiedContactWithIdentifier_keysToFetch_error(
             &self,
@@ -92,6 +163,17 @@ extern_methods!(
         ) -> Result<Retained<CNContact>, Retained<NSError>>;
 
         #[cfg(feature = "CNContact")]
+        /// Fetch the unified contact that is the "me" card.
+        ///
+        ///
+        /// Fetches the contact that is represented in the user interface as "My Card".
+        ///
+        ///
+        /// Parameter `keys`: The properties to fetch into the returned CNContact object. Should only fetch the properties that will be used. Can combine contact keys and contact key descriptors.
+        ///
+        /// Parameter `error`: If an error occurs, contains error information.
+        ///
+        /// Returns: The unified contact that is the "me" card. If no "me" card is set, nil is returned.
         #[method_id(@__retain_semantics Other unifiedMeContactWithKeysToFetch:error:_)]
         pub unsafe fn unifiedMeContactWithKeysToFetch_error(
             &self,
@@ -104,6 +186,24 @@ extern_methods!(
             feature = "CNFetchRequest",
             feature = "CNFetchResult"
         ))]
+        /// Enumerate a contact fetch request.
+        ///
+        ///
+        /// Executes the given fetch request and returns an enumerator for the results.
+        /// This may prevent all records from being loaded into memory at once.
+        ///
+        /// An exception may be thrown if an error occurs during enumeration.
+        ///
+        ///
+        /// Parameter `request`: A description of the records to fetch.
+        ///
+        ///
+        /// Parameter `error`: If the fetch fails, contains an
+        /// `NSError`object with more information.
+        ///
+        ///
+        /// Returns: An enumerator of the records matching the result, or
+        /// `nil`if there was an error.
         #[method_id(@__retain_semantics Other enumeratorForContactFetchRequest:error:_)]
         pub unsafe fn enumeratorForContactFetchRequest_error(
             &self,
@@ -116,6 +216,24 @@ extern_methods!(
             feature = "CNFetchRequest",
             feature = "CNFetchResult"
         ))]
+        /// Enumerate a change history fetch request.
+        ///
+        ///
+        /// Executes the given fetch request and returns an enumerator for the results.
+        /// This may prevent all events from being loaded into memory at once.
+        ///
+        /// An exception may be thrown if an error occurs during enumeration.
+        ///
+        ///
+        /// Parameter `request`: A description of the events to fetch.
+        ///
+        ///
+        /// Parameter `error`: If the fetch fails, contains an
+        /// `NSError`object with more information.
+        ///
+        ///
+        /// Returns: An enumerator of the events matching the result, or
+        /// `nil`if there was an error.
         #[method_id(@__retain_semantics Other enumeratorForChangeHistoryFetchRequest:error:_)]
         pub unsafe fn enumeratorForChangeHistoryFetchRequest_error(
             &self,
@@ -128,6 +246,19 @@ extern_methods!(
             feature = "CNFetchRequest",
             feature = "block2"
         ))]
+        /// Enumerates all contacts matching a contact fetch request.
+        ///
+        ///
+        /// This method will wait until the enumeration is finished. If there are no results, the block is not called and YES is returned.
+        ///
+        ///
+        /// Parameter `fetchRequest`: The contact fetch request that specifies the search criteria.
+        ///
+        /// Parameter `error`: If an error occurs, contains error information.
+        ///
+        /// Parameter `block`: Called for each matching contact. Set *stop to YES to stop the enumeration.
+        ///
+        /// Returns: YES if successful, otherwise NO.
         #[method(enumerateContactsWithFetchRequest:error:usingBlock:)]
         pub unsafe fn enumerateContactsWithFetchRequest_error_usingBlock(
             &self,
@@ -137,6 +268,17 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "CNGroup")]
+        /// Fetch all groups matching a given predicate.
+        ///
+        ///
+        /// Use only predicates from CNGroup+Predicates.h. Compound predicates are not supported.
+        ///
+        ///
+        /// Parameter `predicate`: The predicate to match against. Set to nil to match all groups.
+        ///
+        /// Parameter `error`: If an error occurs, contains error information.
+        ///
+        /// Returns: An array of CNGroup objects matching the predicate. If no matches are found, an empty array is returned. If an error occurs, nil is returned.
         #[method_id(@__retain_semantics Other groupsMatchingPredicate:error:_)]
         pub unsafe fn groupsMatchingPredicate_error(
             &self,
@@ -144,6 +286,17 @@ extern_methods!(
         ) -> Result<Retained<NSArray<CNGroup>>, Retained<NSError>>;
 
         #[cfg(feature = "CNContainer")]
+        /// Fetch all containers matching a given predicate.
+        ///
+        ///
+        /// Use only predicates from CNContainer+Predicates.h. Compound predicates are not supported.
+        ///
+        ///
+        /// Parameter `predicate`: The predicate to match against. Set to nil to match all containers.
+        ///
+        /// Parameter `error`: If an error occurs, contains error information.
+        ///
+        /// Returns: An array of CNContainer objects matching the predicate. If no matches are found, an empty array is returned. If an error occurs, nil is returned.
         #[method_id(@__retain_semantics Other containersMatchingPredicate:error:_)]
         pub unsafe fn containersMatchingPredicate_error(
             &self,
@@ -151,15 +304,38 @@ extern_methods!(
         ) -> Result<Retained<NSArray<CNContainer>>, Retained<NSError>>;
 
         #[cfg(feature = "CNSaveRequest")]
+        /// Executes a save request.
+        ///
+        ///
+        /// Do not access objects when save request is executing. A save request with contacts may modify the contacts while executing. A save request only applies the changes to the objects. If there are overlapping changes with multiple, concurrent CNSaveRequests then the last saved change wins.
+        ///
+        ///
+        /// Parameter `saveRequest`: Save request to execute.
+        ///
+        /// Parameter `error`: If an error occurs, contains error information.
+        ///
+        /// Returns: YES if successful, otherwise NO.
         #[method(executeSaveRequest:error:_)]
         pub unsafe fn executeSaveRequest_error(
             &self,
             save_request: &CNSaveRequest,
         ) -> Result<(), Retained<NSError>>;
 
+        /// The current history token.
+        ///
+        ///
+        /// Retrieve the current history token. If you are fetching contacts or change history events, you should use the token on the
+        /// `CNFetchResult`instead.
         #[method_id(@__retain_semantics Other currentHistoryToken)]
         pub unsafe fn currentHistoryToken(&self) -> Option<Retained<NSData>>;
 
+        /// The identifier of the default container.
+        ///
+        ///
+        /// This identifier can be used to fetch the default container.
+        ///
+        ///
+        /// Returns: The identifier of the default container. If the caller lacks Contacts authorization or an error occurs, nil is returned.
         #[method_id(@__retain_semantics Other defaultContainerIdentifier)]
         pub unsafe fn defaultContainerIdentifier(&self) -> Retained<NSString>;
     }
@@ -177,6 +353,8 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactstoredidchangenotification?language=objc)
+    /// Notification posted when changes occur in another CNContactStore.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactstoredidchangenotification?language=objc)
     pub static CNContactStoreDidChangeNotification: &'static NSString;
 }

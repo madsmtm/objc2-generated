@@ -267,6 +267,7 @@ extern_methods!(
         pub unsafe fn accessoryView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// Setter for [`accessoryView`][Self::accessoryView].
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
@@ -282,6 +283,7 @@ extern_methods!(
         ) -> Option<Retained<NSViewController>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+        /// Setter for [`substitutionsPanelAccessoryViewController`][Self::substitutionsPanelAccessoryViewController].
         #[method(setSubstitutionsPanelAccessoryViewController:)]
         pub unsafe fn setSubstitutionsPanelAccessoryViewController(
             &self,
@@ -412,6 +414,7 @@ extern_methods!(
         #[method(automaticallyIdentifiesLanguages)]
         pub unsafe fn automaticallyIdentifiesLanguages(&self) -> bool;
 
+        /// Setter for [`automaticallyIdentifiesLanguages`][Self::automaticallyIdentifiesLanguages].
         #[method(setAutomaticallyIdentifiesLanguages:)]
         pub unsafe fn setAutomaticallyIdentifiesLanguages(
             &self,

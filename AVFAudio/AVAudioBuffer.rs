@@ -10,7 +10,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiobuffer?language=objc)
+    /// A buffer of audio data, with a format.
+    ///
+    /// AVAudioBuffer represents a buffer of audio data and its format.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiobuffer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioBuffer;
@@ -27,14 +31,29 @@ unsafe impl NSObjectProtocol for AVAudioBuffer {}
 extern_methods!(
     unsafe impl AVAudioBuffer {
         #[cfg(feature = "AVAudioFormat")]
+        /// The format of the audio in the buffer.
         #[method_id(@__retain_semantics Other format)]
         pub unsafe fn format(&self) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "objc2-core-audio-types")]
+        /// The buffer's underlying AudioBufferList.
+        ///
+        /// For compatibility with lower-level CoreAudio and AudioToolbox API's, this method accesses
+        /// the buffer implementation's internal AudioBufferList. The buffer list structure must
+        /// not be modified, though you may modify buffer contents.
+        ///
+        /// The mDataByteSize fields of this AudioBufferList express the buffer's current frameLength.
         #[method(audioBufferList)]
         pub unsafe fn audioBufferList(&self) -> NonNull<AudioBufferList>;
 
         #[cfg(feature = "objc2-core-audio-types")]
+        /// A mutable version of the buffer's underlying AudioBufferList.
+        ///
+        /// Some lower-level CoreAudio and AudioToolbox API's require a mutable AudioBufferList,
+        /// for example, AudioConverterConvertComplexBuffer.
+        ///
+        /// The mDataByteSize fields of this AudioBufferList express the buffer's current frameCapacity.
+        /// If they are altered, you should modify the buffer's frameLength to match.
         #[method(mutableAudioBufferList)]
         pub unsafe fn mutableAudioBufferList(&self) -> NonNull<AudioBufferList>;
     }
@@ -52,7 +71,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiopcmbuffer?language=objc)
+    /// A subclass of AVAudioBuffer for use with PCM audio formats.
+    ///
+    /// AVAudioPCMBuffer provides a number of methods useful for manipulating buffers of
+    /// audio in PCM format.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiopcmbuffer?language=objc)
     #[unsafe(super(AVAudioBuffer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioPCMBuffer;
@@ -69,6 +93,18 @@ unsafe impl NSObjectProtocol for AVAudioPCMBuffer {}
 extern_methods!(
     unsafe impl AVAudioPCMBuffer {
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
+        /// Initialize a buffer that is to contain PCM audio samples.
+        ///
+        /// Parameter `format`: The format of the PCM audio to be contained in the buffer.
+        ///
+        /// Parameter `frameCapacity`: The capacity of the buffer in PCM sample frames.
+        ///
+        /// An exception is raised if the format is not PCM.
+        ///
+        /// Returns nil in the following cases:
+        /// - if the format has zero bytes per frame (format.streamDescription->mBytesPerFrame == 0)
+        /// - if the buffer byte capacity (frameCapacity * format.streamDescription->mBytesPerFrame)
+        /// cannot be represented by an uint32_t
         #[method_id(@__retain_semantics Init initWithPCMFormat:frameCapacity:)]
         pub unsafe fn initWithPCMFormat_frameCapacity(
             this: Allocated<Self>,
@@ -81,6 +117,30 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-audio-types"
         ))]
+        /// Initialize a buffer that is to contain PCM audio samples with a given AudioBufferList
+        /// without copying samples and a custom deallocator block.
+        ///
+        /// Parameter `format`: The format of the PCM audio to be contained in the buffer.
+        ///
+        /// Parameter `bufferList`: The buffer list with allocated memory to contain the PCM audio data.
+        ///
+        /// Parameter `deallocator`: A block to invoke when the resulting AVAudioPCMBuffer object is deallocated.
+        ///
+        /// An exception is raised if the format is not PCM.
+        ///
+        /// Returns nil in the following cases:
+        /// - if the format has zero bytes per frame (format.streamDescription->mBytesPerFrame == 0)
+        /// - if supplied buffer has zero number of buffers
+        /// - if each buffer's data byte size are not equal or if any of the buffers' data byte size is zero
+        /// - if there is a mismatch between the format's number of buffers and the AudioBufferList's size
+        /// (1 if interleaved, mChannelsPerFrame if deinterleaved)
+        /// - if the AudioBufferList's pointer to the buffer of audio data is null.
+        ///
+        /// Use the deallocator block to define your own deallocation behavior for the provided AudioBufferList's
+        /// underlying memory.
+        ///
+        /// The AudioBufferList passed to the deallocator is identical to the one which was passed to the initializer,
+        /// in terms of the buffer count, and each buffer's mData and mDataByteSize members.
         #[method_id(@__retain_semantics Init initWithPCMFormat:bufferListNoCopy:deallocator:)]
         pub unsafe fn initWithPCMFormat_bufferListNoCopy_deallocator(
             this: Allocated<Self>,
@@ -90,26 +150,63 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// The buffer's capacity, in audio sample frames.
         #[method(frameCapacity)]
         pub unsafe fn frameCapacity(&self) -> AVAudioFrameCount;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// The current number of valid sample frames in the buffer.
+        ///
+        /// You may modify the length of the buffer as part of an operation that modifies its contents.
+        /// The length must be less than or equal to the frameCapacity. Modifying frameLength will update
+        /// the mDataByteSize in each of the underlying AudioBufferList's AudioBuffer's correspondingly,
+        /// and vice versa. Note that in the case of deinterleaved formats, mDataByteSize will refers
+        /// the size of one channel's worth of audio samples.
         #[method(frameLength)]
         pub unsafe fn frameLength(&self) -> AVAudioFrameCount;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Setter for [`frameLength`][Self::frameLength].
         #[method(setFrameLength:)]
         pub unsafe fn setFrameLength(&self, frame_length: AVAudioFrameCount);
 
+        /// The buffer's number of interleaved channels.
+        ///
+        /// Useful in conjunction with floatChannelData etc.
         #[method(stride)]
         pub unsafe fn stride(&self) -> NSUInteger;
 
+        /// Access the buffer's float audio samples.
+        ///
+        /// floatChannelData returns pointers to the buffer's audio samples if the buffer's format is
+        /// 32-bit float, or nil if it is another format.
+        ///
+        /// The returned pointer is to format.channelCount pointers to float. Each of these pointers
+        /// is to "frameLength" valid samples, which are spaced by "stride" samples.
+        ///
+        /// If format.interleaved is false (as with the standard deinterleaved float format), then
+        /// the pointers will be to separate chunks of memory. "stride" is 1.
+        ///
+        /// If format.interleaved is true, then the pointers will refer into the same chunk of interleaved
+        /// samples, each offset by 1 frame. "stride" is the number of interleaved channels.
         #[method(floatChannelData)]
         pub unsafe fn floatChannelData(&self) -> *mut NonNull<c_float>;
 
+        /// Access the buffer's int16_t audio samples.
+        ///
+        /// int16ChannelData returns the buffer's audio samples if the buffer's format has 2-byte
+        /// integer samples, or nil if it is another format.
+        ///
+        /// See the discussion of floatChannelData.
         #[method(int16ChannelData)]
         pub unsafe fn int16ChannelData(&self) -> *mut NonNull<i16>;
 
+        /// Access the buffer's int32_t audio samples.
+        ///
+        /// int32ChannelData returns the buffer's audio samples if the buffer's format has 4-byte
+        /// integer samples, or nil if it is another format.
+        ///
+        /// See the discussion of floatChannelData.
         #[method(int32ChannelData)]
         pub unsafe fn int32ChannelData(&self) -> *mut NonNull<i32>;
     }
@@ -127,7 +224,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocompressedbuffer?language=objc)
+    /// A subclass of AVAudioBuffer for use with compressed audio formats.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocompressedbuffer?language=objc)
     #[unsafe(super(AVAudioBuffer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioCompressedBuffer;
@@ -144,6 +243,16 @@ unsafe impl NSObjectProtocol for AVAudioCompressedBuffer {}
 extern_methods!(
     unsafe impl AVAudioCompressedBuffer {
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
+        /// Initialize a buffer that is to contain compressed audio data.
+        ///
+        /// Parameter `format`: The format of the audio to be contained in the buffer.
+        ///
+        /// Parameter `packetCapacity`: The capacity of the buffer in packets.
+        ///
+        /// Parameter `maximumPacketSize`: The maximum size in bytes of a compressed packet.
+        /// The maximum packet size can be obtained from the maximumOutputPacketSize property of an AVAudioConverter configured for encoding this format.
+        ///
+        /// An exception is raised if the format is PCM.
         #[method_id(@__retain_semantics Init initWithFormat:packetCapacity:maximumPacketSize:)]
         pub unsafe fn initWithFormat_packetCapacity_maximumPacketSize(
             this: Allocated<Self>,
@@ -153,6 +262,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
+        /// Initialize a buffer that is to contain constant bytes per packet compressed audio data.
+        ///
+        /// Parameter `format`: The format of the audio to be contained in the buffer.
+        ///
+        /// Parameter `packetCapacity`: The capacity of the buffer in packets.
+        ///
+        /// This fails if the format is PCM or if the format has variable bytes per packet (format.streamDescription->mBytesPerPacket == 0).
         #[method_id(@__retain_semantics Init initWithFormat:packetCapacity:)]
         pub unsafe fn initWithFormat_packetCapacity(
             this: Allocated<Self>,
@@ -161,33 +277,49 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// The number of compressed packets the buffer can contain.
         #[method(packetCapacity)]
         pub unsafe fn packetCapacity(&self) -> AVAudioPacketCount;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// The current number of compressed packets in the buffer.
+        ///
+        /// You may modify the packetCount as part of an operation that modifies its contents.
+        /// The packetCount must be less than or equal to the packetCapacity.
         #[method(packetCount)]
         pub unsafe fn packetCount(&self) -> AVAudioPacketCount;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Setter for [`packetCount`][Self::packetCount].
         #[method(setPacketCount:)]
         pub unsafe fn setPacketCount(&self, packet_count: AVAudioPacketCount);
 
+        /// The maximum size of a compressed packet in bytes.
         #[method(maximumPacketSize)]
         pub unsafe fn maximumPacketSize(&self) -> NSInteger;
 
+        /// Access the buffer's data bytes.
         #[method(data)]
         pub unsafe fn data(&self) -> NonNull<c_void>;
 
+        /// The buffer's capacity in bytes
         #[method(byteCapacity)]
         pub unsafe fn byteCapacity(&self) -> u32;
 
+        /// The current number of valid bytes in the buffer.
+        ///
+        /// Can be changed as part of an operation that modifies the contents.
         #[method(byteLength)]
         pub unsafe fn byteLength(&self) -> u32;
 
+        /// Setter for [`byteLength`][Self::byteLength].
         #[method(setByteLength:)]
         pub unsafe fn setByteLength(&self, byte_length: u32);
 
         #[cfg(feature = "objc2-core-audio-types")]
+        /// Access the buffer's array of packet descriptions, if any.
+        ///
+        /// If the format has constant bytes per packet (format.streamDescription->mBytesPerPacket != 0), then this will return nil.
         #[method(packetDescriptions)]
         pub unsafe fn packetDescriptions(&self) -> *mut AudioStreamPacketDescription;
     }

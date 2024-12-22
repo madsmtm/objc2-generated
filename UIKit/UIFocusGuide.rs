@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusguide?language=objc)
+    /// UIFocusGuides are UILayoutGuide subclasses that participate in the focus system from within their owning view. A UIFocusGuide may be used to expose non-view areas as focusable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusguide?language=objc)
     #[unsafe(super(UILayoutGuide, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -25,19 +27,24 @@ unsafe impl NSObjectProtocol for UIFocusGuide {}
 extern_methods!(
     #[cfg(feature = "UILayoutGuide")]
     unsafe impl UIFocusGuide {
+        /// If disabled, UIFocusGuides are ignored by the focus engine, but still participate in layout. Modifying this flag allows you to conditionally enable or disable certain focus behaviors. YES by default.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(feature = "UIFocus")]
+        /// Setting preferredFocusEnvironments to a non-empty array marks this guide's layoutFrame as focusable. If empty, this guide is effectively disabled.
+        /// If focused, the guide attempts to redirect focus to each environment in the array, in order, stopping when a focusable item in an environment has been found.
         #[method_id(@__retain_semantics Other preferredFocusEnvironments)]
         pub unsafe fn preferredFocusEnvironments(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn UIFocusEnvironment>>>;
 
         #[cfg(feature = "UIFocus")]
+        /// Setter for [`preferredFocusEnvironments`][Self::preferredFocusEnvironments].
         #[method(setPreferredFocusEnvironments:)]
         pub unsafe fn setPreferredFocusEnvironments(
             &self,
@@ -45,12 +52,14 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Setting a preferred focused view marks this guide's layoutFrame as focusable, and if focused, redirects focus to its preferred focused view. If nil, this guide is effectively disabled.
         #[deprecated]
         #[method_id(@__retain_semantics Other preferredFocusedView)]
         pub unsafe fn preferredFocusedView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`preferredFocusedView`][Self::preferredFocusedView].
         #[deprecated]
         #[method(setPreferredFocusedView:)]
         pub unsafe fn setPreferredFocusedView(&self, preferred_focused_view: Option<&UIView>);

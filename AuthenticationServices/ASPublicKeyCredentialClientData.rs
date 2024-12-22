@@ -30,7 +30,9 @@ unsafe impl RefEncode for ASPublicKeyCredentialClientDataCrossOriginValue {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspublickeycredentialclientdata?language=objc)
+    /// This object represents the client data for a public key credential request, as defined in the WebAuthentication standard.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspublickeycredentialclientdata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPublicKeyCredentialClientData;
@@ -53,27 +55,35 @@ extern_methods!(
             origin: &NSString,
         ) -> Retained<Self>;
 
+        /// The challenge to be signed during the operation.
         #[method_id(@__retain_semantics Other challenge)]
         pub unsafe fn challenge(&self) -> Retained<NSData>;
 
+        /// Setter for [`challenge`][Self::challenge].
         #[method(setChallenge:)]
         pub unsafe fn setChallenge(&self, challenge: &NSData);
 
+        /// The origin for where the request was performed.
         #[method_id(@__retain_semantics Other origin)]
         pub unsafe fn origin(&self) -> Retained<NSString>;
 
+        /// Setter for [`origin`][Self::origin].
         #[method(setOrigin:)]
         pub unsafe fn setOrigin(&self, origin: &NSString);
 
+        /// The top-level origin, if applicable.
         #[method_id(@__retain_semantics Other topOrigin)]
         pub unsafe fn topOrigin(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`topOrigin`][Self::topOrigin].
         #[method(setTopOrigin:)]
         pub unsafe fn setTopOrigin(&self, top_origin: Option<&NSString>);
 
+        /// Indicates whether this is a cross-origin request, if applicable.
         #[method(crossOrigin)]
         pub unsafe fn crossOrigin(&self) -> ASPublicKeyCredentialClientDataCrossOriginValue;
 
+        /// Setter for [`crossOrigin`][Self::crossOrigin].
         #[method(setCrossOrigin:)]
         pub unsafe fn setCrossOrigin(
             &self,

@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltercapabilitiesqueryhandling?language=objc)
+    /// Functionality related to MessageFilter extension capabilities query requests.
+    ///
+    /// Subclasses of ILMessageFilterExtension which support querying must conform to this protocol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltercapabilitiesqueryhandling?language=objc)
     pub unsafe trait ILMessageFilterCapabilitiesQueryHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "ILMessageFilterCapabilitiesQueryRequest",
@@ -16,6 +20,19 @@ extern_protocol!(
             feature = "ILMessageFilterExtensionContext",
             feature = "block2"
         ))]
+        /// Evaluate a query request and provide a response describing how the system should handle the message it represents.
+        ///
+        /// - Using offline/stored information to form a response about the message described by the query request.
+        ///
+        /// Block specified in `completion` parameter must be invoked with a response describing how to handle the message, and may be
+        /// invoked asynchronously.
+        ///
+        ///
+        /// Parameter `capabilitiesQueryRequest`: A capabilities query request to be handled
+        ///
+        /// Parameter `context`: Extension context.
+        ///
+        /// Parameter `completion`: Completion block for returning a response.
         #[method(handleCapabilitiesQueryRequest:context:completion:)]
         unsafe fn handleCapabilitiesQueryRequest_context_completion(
             &self,

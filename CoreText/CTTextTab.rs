@@ -11,17 +11,45 @@ use crate::*;
 pub type CTTextTabRef = *const c_void;
 
 extern "C-unwind" {
+    /// Returns the CFType of the text tab object
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTextTabGetTypeID() -> CFTypeID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttabcolumnterminatorsattributename?language=objc)
+    /// Used to specify the terminating character for a tab column
+    ///
+    ///
+    /// The value associated with this attribute is a CFCharacterSet. The
+    /// character set is used to determine the terminating character for
+    /// a tab column. The tab and newline characters are implied even if
+    /// they don't exist in the character set. This attribute can be used
+    /// to implement decimal tabs, for instance. This attribute is
+    /// optional.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttabcolumnterminatorsattributename?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTTabColumnTerminatorsAttributeName: CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Creates and initializes a new text tab.
+    ///
+    ///
+    /// Parameter `alignment`: The tab's alignment. This is used to determine the position of
+    /// text inside the tab column. This parameter must be set to a valid
+    /// CTTextAlignment value or this function will return NULL.
+    ///
+    ///
+    /// Parameter `location`: The tab's ruler location, relative to the back margin.
+    ///
+    ///
+    /// Parameter `options`: Options to pass in when the tab is created. Currently, the only
+    /// option available is kCTTabColumnTerminatorsAttributeName. This
+    /// parameter is optional and can be set to NULL if not needed.
+    ///
+    ///
+    /// Returns: The new CTTextTab.
     #[cfg(all(feature = "CTParagraphStyle", feature = "objc2-core-foundation"))]
     pub fn CTTextTabCreate(
         alignment: CTTextAlignment,
@@ -31,15 +59,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the text alignment of the tab.
+    ///
+    ///
+    /// Parameter `tab`: The tab whose text alignment you wish to access.
+    ///
+    ///
+    /// Returns: The tab's text alignment value.
     #[cfg(feature = "CTParagraphStyle")]
     pub fn CTTextTabGetAlignment(tab: CTTextTabRef) -> CTTextAlignment;
 }
 
 extern "C-unwind" {
+    /// Returns the tab's ruler location.
+    ///
+    ///
+    /// Parameter `tab`: The tab whose location you wish to access.
+    ///
+    ///
+    /// Returns: The tab's ruler location relative to the back margin.
     pub fn CTTextTabGetLocation(tab: CTTextTabRef) -> c_double;
 }
 
 extern "C-unwind" {
+    /// Returns the dictionary of attributes associated with the tab.
+    ///
+    ///
+    /// Parameter `tab`: The tab whose attributes you wish to access.
+    ///
+    ///
+    /// Returns: The dictionary of attributes associated with the tab or NULL if
+    /// no dictionary is present.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTextTabGetOptions(tab: CTTextTabRef) -> CFDictionaryRef;
 }

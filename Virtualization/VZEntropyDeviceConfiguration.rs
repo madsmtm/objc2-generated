@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzentropydeviceconfiguration?language=objc)
+    /// Base class for an entropy device configuration.
+    ///
+    /// VZEntropyDeviceConfiguration should not be instantiated directly.
+    /// The subclass VZVirtioEntropyDeviceConfiguration should be used instead.
+    ///
+    ///
+    /// See: VZVirtioEntropyDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzentropydeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZEntropyDeviceConfiguration;

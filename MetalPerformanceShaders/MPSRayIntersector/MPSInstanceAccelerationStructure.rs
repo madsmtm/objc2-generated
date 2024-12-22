@@ -8,14 +8,23 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstransformtype?language=objc)
+/// Instance transformation type options
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstransformtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSTransformType(pub NSUInteger);
 impl MPSTransformType {
+    /// Instance transformations are represented by a 4x4 column major matrix of 32 bit
+    /// floats
     #[doc(alias = "MPSTransformTypeFloat4x4")]
     pub const Float4x4: Self = Self(0);
+    /// All instances have the identity transformation (no transformation). This can be used
+    /// to compose multiple polygon acceleration structures in an instance acceleration structure
+    /// without the cost of transforming instances. For example, geometry can be divided into
+    /// static and dynamic polygon acceleration structures which can be rebuilt and refit
+    /// independently.
     #[doc(alias = "MPSTransformTypeIdentity")]
     pub const Identity: Self = Self(1);
 }
@@ -29,7 +38,117 @@ unsafe impl RefEncode for MPSTransformType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure?language=objc)
+    /// An acceleration structure built over instances of other acceleration structures
+    ///
+    ///
+    /// Instancing can be used to reduce memory usage in scenes that contain many copies
+    /// of the same object(s) or to combine multiple acceleration structures such as a static and
+    /// dynamic acceleration structure into a two-level instance hierarchy.
+    ///
+    /// The typical pattern for creating an instance acceleration structure is as follows. First,
+    /// create individual bottom-level acceleration structures. Then assign these acceleration
+    /// structures to the accelerationStructures property of an instance acceleration structure.
+    ///
+    /// All of the acceleration structures in the instance hierarchy must share the same
+    /// MPSAccelerationStructureGroup. Furthermore, all of the bottom-level acceleration structures
+    /// must share the same vertex buffer, index buffer, etc. although they may have different offsets
+    /// within those buffers.
+    ///
+    ///
+    /// ```text
+    ///      MPSAccelerationStructureGroup *group = nil;
+    ///      group = [[MPSAccelerationStructureGroup alloc] initWithDevice:device];
+    ///
+    ///      MPSInstanceAccelerationStructure *instanceAccel = nil;
+    ///      instanceAccel = [[MPSInstanceAccelerationStructure alloc] initWithGroup:group];
+    ///
+    ///      NSMutableArray *accelerationStructures = [NSMutableArray array];
+    ///      instanceAccel.accelerationStructures = accelerationStructures;
+    ///
+    ///      instanceAccel.instanceCount = instanceCount;
+    ///
+    ///      for (ObjectType *objectType in objectTypes) {
+    ///          MPSTriangleAccelerationStructure *triAccel = nil;
+    ///          triAccel = [[MPSTriangleAccelerationStructure alloc] initWithGroup:group];
+    ///
+    ///          triAccel.vertexBuffer = objectType.vertexBuffer;
+    ///          triAccel.vertexBufferOffset = objectType.vertexBufferOffset;
+    ///          triAccel.triangleCount = objectType.triangleCount;
+    ///
+    ///          [triAccel rebuild];
+    ///
+    ///          [accelerationStructures addObject:triAccel];
+    ///      }
+    /// ```
+    ///
+    /// Next, create a buffer containing the acceleration structure index for each instance, and
+    /// another acceleration structure containing the transformation matrix for each instance:
+    ///
+    ///
+    /// ```text
+    ///      NSUInteger instanceBufferLength = sizeof(uint32_t) * instanceCount;
+    ///     
+    ///      id <MTLBuffer> instanceBuffer =
+    ///          [device newBufferWithLength:instanceBufferLength
+    ///                              options:MTLResourceStorageModeManaged];
+    ///     
+    ///      memcpy(instanceBuffer.contents, instances,
+    ///          instanceBufferLength);
+    ///      [instanceBuffer
+    ///          didModifyRange:NSMakeRange(0, instanceBufferLength)];
+    ///     
+    ///      instanceAccel.instanceBuffer = instanceBuffer;
+    ///
+    ///      // Similar for transformation matrix buffer
+    /// ```
+    ///
+    /// Finally, rebuild the instance acceleration structure:
+    ///
+    ///
+    /// ```text
+    ///      [instanceAccel rebuild];
+    /// ```
+    ///
+    /// Refitting and Rebuilding Bottom-Level Acceleration Structures: when a bottom level acceleration
+    /// structure is rebuild or refit, its' bounding box may change. Therefore, the instance
+    /// acceleration structure also needs to be rebuilt or refit.
+    ///
+    /// Copying and Serializing Instance Acceleration Structures: When an instance acceleration
+    /// structure is copied or serialized, the bottom level acceleration structures are not copied or
+    /// serialized. These must be copied or serialized along with the instance acceleration structure
+    /// and assigned to the new instance acceleration structure. This also applies to buffer properties
+    /// such as the instance buffer, transformation buffer, etc.
+    ///
+    /// Performance Guidelines:
+    ///
+    /// - Use instancing to reduce memory usage: if there are many copies of the same object(s) in
+    /// a scene, using instances of the same object can reduce memory usage and acceleration
+    /// structure build time. Rebuilding or refitting the top level acceleration structure can
+    /// also be much faster than rebuilding a large single level acceleration structure.
+    ///
+    /// - Consider flattening your instance hierarchy into a single acceleration structure if the
+    /// increased memory usage and acceleration structure build time are not a concern.
+    /// Intersecting a two level acceleration structure can have a significant performance cost so
+    /// only use it when necessary. Which technique to use depends on the scene and use case. For
+    /// example, in a rendering application, it may be best to use an instance hierarchy for
+    /// interactive scene editing and preview and flattening the instance hierarchy for the final
+    /// render. For smaller scenes, it may also be sufficient to refit a flattened acceleration
+    /// structure rather than rebuilding an instance hierarchy.
+    ///
+    /// - If there is only a single object in the scene, intersect its acceleration structure
+    /// directly instead of using an instance hierarchy.
+    ///
+    /// - Consider dividing objects into static and dynamic acceleration structures. If dynamic
+    /// objects require the acceleration structure to be rebuilt frequently, create a high quality
+    /// static acceleration structure and a lower quality but faster to build dynamic acceleration
+    /// structure. These two acceleration structures can then be combined with a two level
+    /// acceleration structure. Use MPSTransformTypeIdentity to reduce the overhead of this
+    /// technique. Whether this technique is more efficient than rebuilding the entire
+    /// acceleration structure depends on the scene.
+    ///
+    /// See MPSAccelerationStructure for more information
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure?language=objc)
     #[unsafe(super(MPSAccelerationStructure, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
@@ -58,6 +177,13 @@ extern_methods!(
     #[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
     unsafe impl MPSInstanceAccelerationStructure {
         #[cfg(feature = "MPSPolygonAccelerationStructure")]
+        /// Acceleration structures available for use in this instance acceleration structure. Each
+        /// instance must provide an index into this array in the instance buffer as well as a
+        /// transformation matrix in the transform buffer. All acceleration structures must share a single
+        /// vertex buffer, optional index buffer, and optional mask buffer, though they may have different
+        /// offsets within each buffer, and all acceleration structures must share the same acceleration
+        /// structure group. If a polygon acceleration structure is rebuilt or refit, the instance
+        /// acceleration structure must subsequently be rebuilt or refit.
         #[deprecated]
         #[method_id(@__retain_semantics Other accelerationStructures)]
         pub unsafe fn accelerationStructures(
@@ -65,6 +191,7 @@ extern_methods!(
         ) -> Option<Retained<NSArray<MPSPolygonAccelerationStructure>>>;
 
         #[cfg(feature = "MPSPolygonAccelerationStructure")]
+        /// Setter for [`accelerationStructures`][Self::accelerationStructures].
         #[deprecated]
         #[method(setAccelerationStructures:)]
         pub unsafe fn setAccelerationStructures(
@@ -72,10 +199,13 @@ extern_methods!(
             acceleration_structures: Option<&NSArray<MPSPolygonAccelerationStructure>>,
         );
 
+        /// Buffer containing the 32 bit unsigned integer index into the acceleration structure array
+        /// for each instance
         #[deprecated]
         #[method_id(@__retain_semantics Other instanceBuffer)]
         pub unsafe fn instanceBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
+        /// Setter for [`instanceBuffer`][Self::instanceBuffer].
         #[deprecated]
         #[method(setInstanceBuffer:)]
         pub unsafe fn setInstanceBuffer(
@@ -83,18 +213,23 @@ extern_methods!(
             instance_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
 
+        /// Offset, in bytes, into the instance buffer. Defaults to 0 bytes. Must be aligned to 4
+        /// bytes.
         #[deprecated]
         #[method(instanceBufferOffset)]
         pub unsafe fn instanceBufferOffset(&self) -> NSUInteger;
 
+        /// Setter for [`instanceBufferOffset`][Self::instanceBufferOffset].
         #[deprecated]
         #[method(setInstanceBufferOffset:)]
         pub unsafe fn setInstanceBufferOffset(&self, instance_buffer_offset: NSUInteger);
 
+        /// Buffer containing one column major matrix_float4x4 transformation matrix per instance
         #[deprecated]
         #[method_id(@__retain_semantics Other transformBuffer)]
         pub unsafe fn transformBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
+        /// Setter for [`transformBuffer`][Self::transformBuffer].
         #[deprecated]
         #[method(setTransformBuffer:)]
         pub unsafe fn setTransformBuffer(
@@ -102,42 +237,55 @@ extern_methods!(
             transform_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
 
+        /// Offset, in bytes, into the transform buffer. Defaults to 0 bytes. Must be aligned to the
+        /// stride of the transform type.
         #[deprecated]
         #[method(transformBufferOffset)]
         pub unsafe fn transformBufferOffset(&self) -> NSUInteger;
 
+        /// Setter for [`transformBufferOffset`][Self::transformBufferOffset].
         #[deprecated]
         #[method(setTransformBufferOffset:)]
         pub unsafe fn setTransformBufferOffset(&self, transform_buffer_offset: NSUInteger);
 
+        /// Instance transform type. Defaults to MPSTransformTypeFloat4x4. Changes to this property
+        /// require rebuilding the acceleration structure.
         #[deprecated]
         #[method(transformType)]
         pub unsafe fn transformType(&self) -> MPSTransformType;
 
+        /// Setter for [`transformType`][Self::transformType].
         #[deprecated]
         #[method(setTransformType:)]
         pub unsafe fn setTransformType(&self, transform_type: MPSTransformType);
 
+        /// Mask buffer containing one uint32_t mask per instance. May be nil.
         #[deprecated]
         #[method_id(@__retain_semantics Other maskBuffer)]
         pub unsafe fn maskBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
+        /// Setter for [`maskBuffer`][Self::maskBuffer].
         #[deprecated]
         #[method(setMaskBuffer:)]
         pub unsafe fn setMaskBuffer(&self, mask_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
+        /// Offset, in bytes, into the mask buffer. Defaults to 0 bytes. Must be aligned to 4 bytes.
         #[deprecated]
         #[method(maskBufferOffset)]
         pub unsafe fn maskBufferOffset(&self) -> NSUInteger;
 
+        /// Setter for [`maskBufferOffset`][Self::maskBufferOffset].
         #[deprecated]
         #[method(setMaskBufferOffset:)]
         pub unsafe fn setMaskBufferOffset(&self, mask_buffer_offset: NSUInteger);
 
+        /// Number of instances. Changes to this property require rebuilding the acceleration
+        /// structure.
         #[deprecated]
         #[method(instanceCount)]
         pub unsafe fn instanceCount(&self) -> NSUInteger;
 
+        /// Setter for [`instanceCount`][Self::instanceCount].
         #[deprecated]
         #[method(setInstanceCount:)]
         pub unsafe fn setInstanceCount(&self, instance_count: NSUInteger);
@@ -152,6 +300,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initialize the acceleration structure with a Metal device
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -159,6 +308,9 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Initialize the acceleration structure with an NSCoder and a Metal device. Buffer
+        /// properties such as the vertex buffer, instance buffer, etc. are set to nil. Encode and decode
+        /// these buffers along with the acceleration structure instead.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
@@ -168,6 +320,12 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MPSAccelerationStructureGroup")]
+        /// Initialize the acceleration structure with an acceleration structure group, if the
+        /// acceleration structure will be used in an instance hierarchy.
+        ///
+        ///
+        /// The Metal device is determined from the acceleration structure group. All
+        /// acceleration structures in the instance hierarchy must share the same group.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithGroup:)]
         pub unsafe fn initWithGroup(
@@ -176,6 +334,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSAccelerationStructureGroup")]
+        /// Initialize the acceleration structure with an NSCoder and an acceleration structure
+        /// group, if the acceleration structure will be used in an instance hierarchy. All acceleration
+        /// structures in the instance hierarchy must share the same group. Buffer properties such as the
+        /// vertex buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with
+        /// the acceleration structure instead.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithCoder:group:)]
         pub unsafe fn initWithCoder_group(
@@ -190,6 +353,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
     unsafe impl MPSInstanceAccelerationStructure {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

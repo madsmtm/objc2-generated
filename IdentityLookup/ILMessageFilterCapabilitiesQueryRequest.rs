@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltercapabilitiesqueryrequest?language=objc)
+    /// A request to query a MessageFilter extension about how to interpret a received message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltercapabilitiesqueryrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILMessageFilterCapabilitiesQueryRequest;

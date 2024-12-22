@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclossdescriptor?language=objc)
+    /// The MLCLossDescriptor specifies a loss filter descriptor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclossdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -26,31 +28,47 @@ unsafe impl NSObjectProtocol for MLCLossDescriptor {}
 extern_methods!(
     unsafe impl MLCLossDescriptor {
         #[cfg(feature = "MLCTypes")]
+        /// Specifies the loss function.
         #[deprecated]
         #[method(lossType)]
         pub unsafe fn lossType(&self) -> MLCLossType;
 
         #[cfg(feature = "MLCTypes")]
+        /// The reduction operation performed by the loss function.
         #[deprecated]
         #[method(reductionType)]
         pub unsafe fn reductionType(&self) -> MLCReductionType;
 
+        /// The scale factor to apply to each element of a result.  The default value is 1.0.
         #[deprecated]
         #[method(weight)]
         pub unsafe fn weight(&self) -> c_float;
 
+        /// The label smoothing parameter. The default value is 0.0.
+        ///
+        /// This parameter is valid only for the loss functions of the following type(s):
+        /// MLCLossTypeSoftmaxCrossEntropy and MLCLossTypeSigmoidCrossEntropy.
         #[deprecated]
         #[method(labelSmoothing)]
         pub unsafe fn labelSmoothing(&self) -> c_float;
 
+        /// The number of classes parameter. The default value is 1.
+        ///
+        /// This parameter is valid only for the loss function MLCLossTypeSoftmaxCrossEntropy.
         #[deprecated]
         #[method(classCount)]
         pub unsafe fn classCount(&self) -> NSUInteger;
 
+        /// The epsilon parameter. The default value is 1e-7.
+        ///
+        /// This parameter is valid only for the loss function MLCLossTypeLog.
         #[deprecated]
         #[method(epsilon)]
         pub unsafe fn epsilon(&self) -> c_float;
 
+        /// The delta parameter. The default value is 1.0f.
+        ///
+        /// This parameter is valid only for the loss function MLCLossTypeHuber.
         #[deprecated]
         #[method(delta)]
         pub unsafe fn delta(&self) -> c_float;
@@ -64,6 +82,13 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a loss descriptor object
+        ///
+        /// Parameter `lossType`: The loss function.
+        ///
+        /// Parameter `reductionType`: The reduction operation
+        ///
+        /// Returns: A new MLCLossDescriptor object
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithType:reductionType:)]
         pub unsafe fn descriptorWithType_reductionType(
@@ -72,6 +97,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a loss descriptor object
+        ///
+        /// Parameter `lossType`: The loss function.
+        ///
+        /// Parameter `reductionType`: The reduction operation
+        ///
+        /// Parameter `weight`: The scale factor to apply to each element of a result.
+        ///
+        /// Returns: A new MLCLossDescriptor object
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithType:reductionType:weight:)]
         pub unsafe fn descriptorWithType_reductionType_weight(
@@ -81,6 +115,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a loss descriptor object
+        ///
+        /// Parameter `lossType`: The loss function.
+        ///
+        /// Parameter `reductionType`: The reduction operation
+        ///
+        /// Parameter `weight`: The scale factor to apply to each element of a result.
+        ///
+        /// Parameter `labelSmoothing`: The label smoothing parameter.
+        ///
+        /// Parameter `classCount`: The number of classes parameter.
+        ///
+        /// Returns: A new MLCLossDescriptor object
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithType:reductionType:weight:labelSmoothing:classCount:)]
         pub unsafe fn descriptorWithType_reductionType_weight_labelSmoothing_classCount(
@@ -92,6 +139,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a loss descriptor object
+        ///
+        /// Parameter `lossType`: The loss function.
+        ///
+        /// Parameter `reductionType`: The reduction operation
+        ///
+        /// Parameter `weight`: The scale factor to apply to each element of a result.
+        ///
+        /// Parameter `labelSmoothing`: The label smoothing parameter.
+        ///
+        /// Parameter `classCount`: The number of classes parameter.
+        ///
+        /// Parameter `epsilon`: The epsilon used by LogLoss
+        ///
+        /// Parameter `delta`: The delta parameter used by Huber loss
+        ///
+        /// Returns: A new MLCLossDescriptor object
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithType:reductionType:weight:labelSmoothing:classCount:epsilon:delta:)]
         pub unsafe fn descriptorWithType_reductionType_weight_labelSmoothing_classCount_epsilon_delta(

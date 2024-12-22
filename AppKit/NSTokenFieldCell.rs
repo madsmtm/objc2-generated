@@ -109,12 +109,14 @@ extern_methods!(
         #[method(tokenStyle)]
         pub unsafe fn tokenStyle(&self) -> NSTokenStyle;
 
+        /// Setter for [`tokenStyle`][Self::tokenStyle].
         #[method(setTokenStyle:)]
         pub unsafe fn setTokenStyle(&self, token_style: NSTokenStyle);
 
         #[method(completionDelay)]
         pub unsafe fn completionDelay(&self) -> NSTimeInterval;
 
+        /// Setter for [`completionDelay`][Self::completionDelay].
         #[method(setCompletionDelay:)]
         pub unsafe fn setCompletionDelay(&self, completion_delay: NSTimeInterval);
 
@@ -124,6 +126,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
         pub unsafe fn tokenizingCharacterSet(&self) -> Retained<NSCharacterSet>;
 
+        /// Setter for [`tokenizingCharacterSet`][Self::tokenizingCharacterSet].
         #[method(setTokenizingCharacterSet:)]
         pub unsafe fn setTokenizingCharacterSet(
             &self,
@@ -141,6 +144,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSTokenFieldCellDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -206,6 +210,19 @@ extern_protocol!(
             feature = "NSCell",
             feature = "NSTextFieldCell"
         ))]
+        /// Allows the delegate to provide an array of appropriate completions for the contents of the receiver
+        ///
+        /// Parameter `tokenFieldCell`: The token field cell where editing is occurring
+        ///
+        /// Parameter `substring`: The partial string that is being completed
+        ///
+        /// Parameter `tokenIndex`: The index of the token being completed
+        ///
+        /// Parameter `selectedIndex`: Optionally, you can return by reference an index into the returned array that specifies which of the completions should be initially selected. If none are to be selected, return by reference `-1`.
+        ///
+        /// Returns: An array of strings (`NSString`) that are possible completions
+        ///
+        /// If the delegate does not implement this method, no completions are provided
         #[optional]
         #[method_id(@__retain_semantics Other tokenFieldCell:completionsForSubstring:indexOfToken:indexOfSelectedItem:)]
         unsafe fn tokenFieldCell_completionsForSubstring_indexOfToken_indexOfSelectedItem(

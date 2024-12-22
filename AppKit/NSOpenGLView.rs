@@ -13,6 +13,7 @@ extern_methods!(
         #[method(wantsBestResolutionOpenGLSurface)]
         pub unsafe fn wantsBestResolutionOpenGLSurface(&self) -> bool;
 
+        /// Setter for [`wantsBestResolutionOpenGLSurface`][Self::wantsBestResolutionOpenGLSurface].
         #[deprecated = "Use NSOpenGLView instead."]
         #[method(setWantsBestResolutionOpenGLSurface:)]
         pub fn setWantsBestResolutionOpenGLSurface(
@@ -30,6 +31,7 @@ extern_methods!(
         #[method(wantsExtendedDynamicRangeOpenGLSurface)]
         pub unsafe fn wantsExtendedDynamicRangeOpenGLSurface(&self) -> bool;
 
+        /// Setter for [`wantsExtendedDynamicRangeOpenGLSurface`][Self::wantsExtendedDynamicRangeOpenGLSurface].
         #[deprecated = "Use NSOpenGLView instead."]
         #[method(setWantsExtendedDynamicRangeOpenGLSurface:)]
         pub unsafe fn setWantsExtendedDynamicRangeOpenGLSurface(

@@ -20,6 +20,7 @@ unsafe impl NSObjectProtocol for GCRacingWheelInputState {}
 extern_methods!(
     unsafe impl GCRacingWheelInputState {
         #[cfg(feature = "GCSteeringWheelElement")]
+        /// The steering wheel element.
         #[method_id(@__retain_semantics Other wheel)]
         pub unsafe fn wheel(&self) -> Retained<GCSteeringWheelElement>;
 
@@ -38,6 +39,13 @@ extern_methods!(
         pub unsafe fn clutchPedal(&self) -> Option<Retained<ProtocolObject<dyn GCButtonElement>>>;
 
         #[cfg(feature = "GCGearShifterElement")]
+        /// The element representing an attached gear shifter accessory.
+        ///
+        /// Note that this element only represents an external gear shifter accessory.
+        /// Many racing wheels have a pair of built in paddle buttons that can be used for
+        /// sequential gear shifting.  Those buttons are can be looked up with the
+        /// `GCInputLeftPaddle`and
+        /// `GCInputRightPaddle`input names.
         #[method_id(@__retain_semantics Other shifter)]
         pub unsafe fn shifter(&self) -> Option<Retained<GCGearShifterElement>>;
     }
@@ -74,6 +82,8 @@ unsafe impl NSObjectProtocol for GCRacingWheelInput {}
 
 extern_methods!(
     unsafe impl GCRacingWheelInput {
+        /// Polls the current state vector of the racing wheel input and saves it to a new
+        /// instance.
         #[method_id(@__retain_semantics Other capture)]
         pub unsafe fn capture(&self) -> Retained<GCRacingWheelInputState>;
 

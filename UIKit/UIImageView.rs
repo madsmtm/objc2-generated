@@ -95,6 +95,7 @@ extern_methods!(
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
@@ -103,6 +104,7 @@ extern_methods!(
         pub unsafe fn highlightedImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`highlightedImage`][Self::highlightedImage].
         #[method(setHighlightedImage:)]
         pub unsafe fn setHighlightedImage(&self, highlighted_image: Option<&UIImage>);
 
@@ -119,6 +121,7 @@ extern_methods!(
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
         ))]
+        /// Setter for [`preferredSymbolConfiguration`][Self::preferredSymbolConfiguration].
         #[method(setPreferredSymbolConfiguration:)]
         pub unsafe fn setPreferredSymbolConfiguration(
             &self,
@@ -128,12 +131,14 @@ extern_methods!(
         #[method(isUserInteractionEnabled)]
         pub unsafe fn isUserInteractionEnabled(&self) -> bool;
 
+        /// Setter for [`isUserInteractionEnabled`][Self::isUserInteractionEnabled].
         #[method(setUserInteractionEnabled:)]
         pub unsafe fn setUserInteractionEnabled(&self, user_interaction_enabled: bool);
 
         #[method(isHighlighted)]
         pub unsafe fn isHighlighted(&self) -> bool;
 
+        /// Setter for [`isHighlighted`][Self::isHighlighted].
         #[method(setHighlighted:)]
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
@@ -142,6 +147,7 @@ extern_methods!(
         pub unsafe fn animationImages(&self) -> Option<Retained<NSArray<UIImage>>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`animationImages`][Self::animationImages].
         #[method(setAnimationImages:)]
         pub unsafe fn setAnimationImages(&self, animation_images: Option<&NSArray<UIImage>>);
 
@@ -150,6 +156,7 @@ extern_methods!(
         pub unsafe fn highlightedAnimationImages(&self) -> Option<Retained<NSArray<UIImage>>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`highlightedAnimationImages`][Self::highlightedAnimationImages].
         #[method(setHighlightedAnimationImages:)]
         pub unsafe fn setHighlightedAnimationImages(
             &self,
@@ -159,12 +166,14 @@ extern_methods!(
         #[method(animationDuration)]
         pub unsafe fn animationDuration(&self) -> NSTimeInterval;
 
+        /// Setter for [`animationDuration`][Self::animationDuration].
         #[method(setAnimationDuration:)]
         pub unsafe fn setAnimationDuration(&self, animation_duration: NSTimeInterval);
 
         #[method(animationRepeatCount)]
         pub unsafe fn animationRepeatCount(&self) -> NSInteger;
 
+        /// Setter for [`animationRepeatCount`][Self::animationRepeatCount].
         #[method(setAnimationRepeatCount:)]
         pub unsafe fn setAnimationRepeatCount(&self, animation_repeat_count: NSInteger);
 
@@ -173,6 +182,7 @@ extern_methods!(
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`tintColor`][Self::tintColor].
         #[method(setTintColor:)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
@@ -186,10 +196,12 @@ extern_methods!(
         pub unsafe fn isAnimating(&self) -> bool;
 
         #[cfg(feature = "UIInterface")]
+        /// The preferred treatment to use for HDR images. By default the image view will defer to the value from its traitCollection.
         #[method(preferredImageDynamicRange)]
         pub unsafe fn preferredImageDynamicRange(&self) -> UIImageDynamicRange;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`preferredImageDynamicRange`][Self::preferredImageDynamicRange].
         #[method(setPreferredImageDynamicRange:)]
         pub unsafe fn setPreferredImageDynamicRange(
             &self,
@@ -197,12 +209,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIInterface")]
+        /// The resolved treatment to use for HDR images.
         #[method(imageDynamicRange)]
         pub unsafe fn imageDynamicRange(&self) -> UIImageDynamicRange;
 
         #[method(adjustsImageWhenAncestorFocused)]
         pub unsafe fn adjustsImageWhenAncestorFocused(&self) -> bool;
 
+        /// Setter for [`adjustsImageWhenAncestorFocused`][Self::adjustsImageWhenAncestorFocused].
         #[method(setAdjustsImageWhenAncestorFocused:)]
         pub unsafe fn setAdjustsImageWhenAncestorFocused(
             &self,
@@ -219,6 +233,7 @@ extern_methods!(
         #[method(masksFocusEffectToContents)]
         pub unsafe fn masksFocusEffectToContents(&self) -> bool;
 
+        /// Setter for [`masksFocusEffectToContents`][Self::masksFocusEffectToContents].
         #[method(setMasksFocusEffectToContents:)]
         pub unsafe fn setMasksFocusEffectToContents(&self, masks_focus_effect_to_contents: bool);
     }
@@ -256,10 +271,12 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIImageView {
         #[cfg(feature = "objc2-symbols")]
+        /// Adds a symbol effect to the image view with default options and animation.
         #[method(addSymbolEffect:)]
         pub unsafe fn addSymbolEffect(&self, symbol_effect: &NSSymbolEffect);
 
         #[cfg(feature = "objc2-symbols")]
+        /// Adds a symbol effect to the image view with specified options and default animation.
         #[method(addSymbolEffect:options:)]
         pub unsafe fn addSymbolEffect_options(
             &self,
@@ -268,6 +285,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-symbols")]
+        /// Adds a symbol effect to the image view with specified options and animation.
         #[method(addSymbolEffect:options:animated:)]
         pub unsafe fn addSymbolEffect_options_animated(
             &self,
@@ -281,6 +299,7 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-symbols"
         ))]
+        /// Adds a symbol effect to the image view with specified options, animation, and completion handler.
         #[method(addSymbolEffect:options:animated:completion:)]
         pub unsafe fn addSymbolEffect_options_animated_completion(
             &self,
@@ -291,10 +310,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-symbols")]
+        /// Removes from the image view the symbol effect matching the type of effect passed in, with default options and animation.
         #[method(removeSymbolEffectOfType:)]
         pub unsafe fn removeSymbolEffectOfType(&self, symbol_effect: &NSSymbolEffect);
 
         #[cfg(feature = "objc2-symbols")]
+        /// Removes from the image view the symbol effect matching the type of effect passed in, with specified options and default animation.
         #[method(removeSymbolEffectOfType:options:)]
         pub unsafe fn removeSymbolEffectOfType_options(
             &self,
@@ -303,6 +324,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-symbols")]
+        /// Removes from the image view the symbol effect matching the type of effect passed in, with specified options and animation.
         #[method(removeSymbolEffectOfType:options:animated:)]
         pub unsafe fn removeSymbolEffectOfType_options_animated(
             &self,
@@ -316,6 +338,7 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-symbols"
         ))]
+        /// Removes from the image view the symbol effect matching the type of effect passed in, with specified options, animation, and completion handler.
         #[method(removeSymbolEffectOfType:options:animated:completion:)]
         pub unsafe fn removeSymbolEffectOfType_options_animated_completion(
             &self,
@@ -325,14 +348,17 @@ extern_methods!(
             completion_handler: UISymbolEffectCompletion,
         );
 
+        /// Removes all symbol effects from the image view with default options and animation.
         #[method(removeAllSymbolEffects)]
         pub unsafe fn removeAllSymbolEffects(&self);
 
         #[cfg(feature = "objc2-symbols")]
+        /// Removes all symbol effects from the image view with specified options and default animation.
         #[method(removeAllSymbolEffectsWithOptions:)]
         pub unsafe fn removeAllSymbolEffectsWithOptions(&self, options: &NSSymbolEffectOptions);
 
         #[cfg(feature = "objc2-symbols")]
+        /// Removes all symbol effects from the image view with specified options and animation.
         #[method(removeAllSymbolEffectsWithOptions:animated:)]
         pub unsafe fn removeAllSymbolEffectsWithOptions_animated(
             &self,
@@ -341,6 +367,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIImage", feature = "objc2-symbols"))]
+        /// Sets the symbol image on the image view with a symbol content transition and default options.
+        /// Passing in a non-symbol image will result in undefined behavior.
         #[method(setSymbolImage:withContentTransition:)]
         pub unsafe fn setSymbolImage_withContentTransition(
             &self,
@@ -349,6 +377,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIImage", feature = "objc2-symbols"))]
+        /// Sets the symbol image on the image view with a symbol content transition and specified options.
+        /// Passing in a non-symbol image will result in undefined behavior.
         #[method(setSymbolImage:withContentTransition:options:)]
         pub unsafe fn setSymbolImage_withContentTransition_options(
             &self,
@@ -363,6 +393,8 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-symbols"
         ))]
+        /// Sets the symbol image on the image view with a symbol content transition, options, and completion handler.
+        /// Passing in a non-symbol image will result in undefined behavior.
         #[method(setSymbolImage:withContentTransition:options:completion:)]
         pub unsafe fn setSymbolImage_withContentTransition_options_completion(
             &self,

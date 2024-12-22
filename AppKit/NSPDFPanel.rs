@@ -48,6 +48,7 @@ extern_methods!(
         pub unsafe fn accessoryController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
+        /// Setter for [`accessoryController`][Self::accessoryController].
         #[method(setAccessoryController:)]
         pub unsafe fn setAccessoryController(
             &self,
@@ -57,12 +58,14 @@ extern_methods!(
         #[method(options)]
         pub unsafe fn options(&self) -> NSPDFPanelOptions;
 
+        /// Setter for [`options`][Self::options].
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: NSPDFPanelOptions);
 
         #[method_id(@__retain_semantics Other defaultFileName)]
         pub unsafe fn defaultFileName(&self) -> Retained<NSString>;
 
+        /// Setter for [`defaultFileName`][Self::defaultFileName].
         #[method(setDefaultFileName:)]
         pub unsafe fn setDefaultFileName(&self, default_file_name: &NSString);
 

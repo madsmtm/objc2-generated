@@ -34,6 +34,9 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "ASPasswordCredentialIdentity")]
+        /// Initializes an instance of ASPasswordCredentialRequest.
+        ///
+        /// Parameter `credentialIdentity`: the credential identity to use for this request.
         #[method_id(@__retain_semantics Init initWithCredentialIdentity:)]
         pub unsafe fn initWithCredentialIdentity(
             this: Allocated<Self>,
@@ -41,6 +44,9 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "ASPasswordCredentialIdentity")]
+        /// Creates and initializes an instance of ASPasswordCredentialRequest.
+        ///
+        /// Parameter `credentialIdentity`: the credential identity to use for this request.
         #[method_id(@__retain_semantics Other requestWithCredentialIdentity:)]
         pub unsafe fn requestWithCredentialIdentity(
             credential_identity: &ASPasswordCredentialIdentity,

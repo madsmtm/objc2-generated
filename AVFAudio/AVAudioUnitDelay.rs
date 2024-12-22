@@ -11,7 +11,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdelay?language=objc)
+    /// an AVAudioUnitEffect that implements a delay effect
+    ///
+    /// A delay unit delays the input signal by the specified time interval
+    /// and then blends it with the input signal. The amount of high frequency
+    /// roll-off can also be controlled in order to simulate the effect of
+    /// a tape delay.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdelay?language=objc)
     #[unsafe(super(AVAudioUnitEffect, AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -36,27 +43,48 @@ extern_methods!(
         feature = "AVAudioUnitEffect"
     ))]
     unsafe impl AVAudioUnitDelay {
+        /// Time taken by the delayed input signal to reach the output
+        ///
+        /// Range:      0 -> 2
+        /// Default:    1
+        /// Unit:       Seconds
         #[method(delayTime)]
         pub unsafe fn delayTime(&self) -> NSTimeInterval;
 
+        /// Setter for [`delayTime`][Self::delayTime].
         #[method(setDelayTime:)]
         pub unsafe fn setDelayTime(&self, delay_time: NSTimeInterval);
 
+        /// Amount of the output signal fed back into the delay line
+        /// Range:      -100 -> 100
+        /// Default:    50
+        /// Unit:       Percent
         #[method(feedback)]
         pub unsafe fn feedback(&self) -> c_float;
 
+        /// Setter for [`feedback`][Self::feedback].
         #[method(setFeedback:)]
         pub unsafe fn setFeedback(&self, feedback: c_float);
 
+        /// Cutoff frequency above which high frequency content is rolled off
+        /// Range:      10 -> (samplerate/2)
+        /// Default:    15000
+        /// Unit:       Hertz
         #[method(lowPassCutoff)]
         pub unsafe fn lowPassCutoff(&self) -> c_float;
 
+        /// Setter for [`lowPassCutoff`][Self::lowPassCutoff].
         #[method(setLowPassCutoff:)]
         pub unsafe fn setLowPassCutoff(&self, low_pass_cutoff: c_float);
 
+        /// Blend of the wet and dry signals
+        /// Range:      0 (all dry) -> 100 (all wet)
+        /// Default:    100
+        /// Unit:       Percent
         #[method(wetDryMix)]
         pub unsafe fn wetDryMix(&self) -> c_float;
 
+        /// Setter for [`wetDryMix`][Self::wetDryMix].
         #[method(setWetDryMix:)]
         pub unsafe fn setWetDryMix(&self, wet_dry_mix: c_float);
     }
@@ -72,6 +100,17 @@ extern_methods!(
     unsafe impl AVAudioUnitDelay {
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// Create an AVAudioUnitEffect object.
+        ///
+        ///
+        /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be instantiated.
+        ///
+        /// The componentType must be one of these types
+        /// kAudioUnitType_Effect
+        /// kAudioUnitType_MusicEffect
+        /// kAudioUnitType_Panner
+        /// kAudioUnitType_RemoteEffect
+        /// kAudioUnitType_RemoteMusicEffect
         #[method_id(@__retain_semantics Init initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,

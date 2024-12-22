@@ -7,7 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosounddevicestreamconfiguration?language=objc)
+    /// Virtio Sound Device Stream Configuration.
+    ///
+    /// A PCM stream of audio data.
+    /// VZVirtioSoundDeviceStreamConfiguration should not be instantiated directly.
+    /// One of its subclasses like VZVirtioSoundDeviceInputStreamConfiguration or VZVirtioSoundDeviceOutputStreamConfiguration should be used instead.
+    ///
+    ///
+    /// See: VZVirtioSoundDeviceInputStreamConfiguration
+    ///
+    /// See: VZVirtioSoundDeviceOutputStreamConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosounddevicestreamconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioSoundDeviceStreamConfiguration;

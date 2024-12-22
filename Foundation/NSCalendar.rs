@@ -273,6 +273,7 @@ extern_methods!(
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
 
         #[cfg(feature = "NSLocale")]
+        /// Setter for [`locale`][Self::locale].
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
@@ -281,18 +282,21 @@ extern_methods!(
         pub unsafe fn timeZone(&self) -> Retained<NSTimeZone>;
 
         #[cfg(feature = "NSTimeZone")]
+        /// Setter for [`timeZone`][Self::timeZone].
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: &NSTimeZone);
 
         #[method(firstWeekday)]
         pub unsafe fn firstWeekday(&self) -> NSUInteger;
 
+        /// Setter for [`firstWeekday`][Self::firstWeekday].
         #[method(setFirstWeekday:)]
         pub unsafe fn setFirstWeekday(&self, first_weekday: NSUInteger);
 
         #[method(minimumDaysInFirstWeek)]
         pub unsafe fn minimumDaysInFirstWeek(&self) -> NSUInteger;
 
+        /// Setter for [`minimumDaysInFirstWeek`][Self::minimumDaysInFirstWeek].
         #[method(setMinimumDaysInFirstWeek:)]
         pub unsafe fn setMinimumDaysInFirstWeek(&self, minimum_days_in_first_week: NSUInteger);
 
@@ -718,6 +722,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other calendar)]
         pub unsafe fn calendar(&self) -> Option<Retained<NSCalendar>>;
 
+        /// Setter for [`calendar`][Self::calendar].
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
@@ -726,102 +731,119 @@ extern_methods!(
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         #[cfg(feature = "NSTimeZone")]
+        /// Setter for [`timeZone`][Self::timeZone].
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[method(era)]
         pub unsafe fn era(&self) -> NSInteger;
 
+        /// Setter for [`era`][Self::era].
         #[method(setEra:)]
         pub unsafe fn setEra(&self, era: NSInteger);
 
         #[method(year)]
         pub unsafe fn year(&self) -> NSInteger;
 
+        /// Setter for [`year`][Self::year].
         #[method(setYear:)]
         pub unsafe fn setYear(&self, year: NSInteger);
 
         #[method(month)]
         pub unsafe fn month(&self) -> NSInteger;
 
+        /// Setter for [`month`][Self::month].
         #[method(setMonth:)]
         pub unsafe fn setMonth(&self, month: NSInteger);
 
         #[method(day)]
         pub unsafe fn day(&self) -> NSInteger;
 
+        /// Setter for [`day`][Self::day].
         #[method(setDay:)]
         pub unsafe fn setDay(&self, day: NSInteger);
 
         #[method(hour)]
         pub unsafe fn hour(&self) -> NSInteger;
 
+        /// Setter for [`hour`][Self::hour].
         #[method(setHour:)]
         pub unsafe fn setHour(&self, hour: NSInteger);
 
         #[method(minute)]
         pub unsafe fn minute(&self) -> NSInteger;
 
+        /// Setter for [`minute`][Self::minute].
         #[method(setMinute:)]
         pub unsafe fn setMinute(&self, minute: NSInteger);
 
         #[method(second)]
         pub unsafe fn second(&self) -> NSInteger;
 
+        /// Setter for [`second`][Self::second].
         #[method(setSecond:)]
         pub unsafe fn setSecond(&self, second: NSInteger);
 
         #[method(nanosecond)]
         pub unsafe fn nanosecond(&self) -> NSInteger;
 
+        /// Setter for [`nanosecond`][Self::nanosecond].
         #[method(setNanosecond:)]
         pub unsafe fn setNanosecond(&self, nanosecond: NSInteger);
 
         #[method(weekday)]
         pub unsafe fn weekday(&self) -> NSInteger;
 
+        /// Setter for [`weekday`][Self::weekday].
         #[method(setWeekday:)]
         pub unsafe fn setWeekday(&self, weekday: NSInteger);
 
         #[method(weekdayOrdinal)]
         pub unsafe fn weekdayOrdinal(&self) -> NSInteger;
 
+        /// Setter for [`weekdayOrdinal`][Self::weekdayOrdinal].
         #[method(setWeekdayOrdinal:)]
         pub unsafe fn setWeekdayOrdinal(&self, weekday_ordinal: NSInteger);
 
         #[method(quarter)]
         pub unsafe fn quarter(&self) -> NSInteger;
 
+        /// Setter for [`quarter`][Self::quarter].
         #[method(setQuarter:)]
         pub unsafe fn setQuarter(&self, quarter: NSInteger);
 
         #[method(weekOfMonth)]
         pub unsafe fn weekOfMonth(&self) -> NSInteger;
 
+        /// Setter for [`weekOfMonth`][Self::weekOfMonth].
         #[method(setWeekOfMonth:)]
         pub unsafe fn setWeekOfMonth(&self, week_of_month: NSInteger);
 
         #[method(weekOfYear)]
         pub unsafe fn weekOfYear(&self) -> NSInteger;
 
+        /// Setter for [`weekOfYear`][Self::weekOfYear].
         #[method(setWeekOfYear:)]
         pub unsafe fn setWeekOfYear(&self, week_of_year: NSInteger);
 
         #[method(yearForWeekOfYear)]
         pub unsafe fn yearForWeekOfYear(&self) -> NSInteger;
 
+        /// Setter for [`yearForWeekOfYear`][Self::yearForWeekOfYear].
         #[method(setYearForWeekOfYear:)]
         pub unsafe fn setYearForWeekOfYear(&self, year_for_week_of_year: NSInteger);
 
         #[method(dayOfYear)]
         pub unsafe fn dayOfYear(&self) -> NSInteger;
 
+        /// Setter for [`dayOfYear`][Self::dayOfYear].
         #[method(setDayOfYear:)]
         pub unsafe fn setDayOfYear(&self, day_of_year: NSInteger);
 
         #[method(isLeapMonth)]
         pub unsafe fn isLeapMonth(&self) -> bool;
 
+        /// Setter for [`isLeapMonth`][Self::isLeapMonth].
         #[method(setLeapMonth:)]
         pub unsafe fn setLeapMonth(&self, leap_month: bool);
 

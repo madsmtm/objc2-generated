@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationresponse?language=objc)
+    /// A response to an ILClassificationRequest.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILClassificationResponse;
@@ -29,12 +31,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userString)]
         pub unsafe fn userString(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`userString`][Self::userString].
         #[method(setUserString:)]
         pub unsafe fn setUserString(&self, user_string: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary<NSString, AnyObject>>);
 

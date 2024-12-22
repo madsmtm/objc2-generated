@@ -47,6 +47,7 @@ unsafe impl NSObjectProtocol for NSToolbarItem {}
 extern_methods!(
     unsafe impl NSToolbarItem {
         #[cfg(feature = "NSToolbar")]
+        /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
@@ -58,66 +59,98 @@ extern_methods!(
         pub unsafe fn itemIdentifier(&self) -> Retained<NSToolbarItemIdentifier>;
 
         #[cfg(feature = "NSToolbar")]
+        /// Use this to determine the toolbar in which an item is currently displayed.
         #[method_id(@__retain_semantics Other toolbar)]
         pub unsafe fn toolbar(&self) -> Option<Retained<NSToolbar>>;
 
+        /// Use this to set the item's label that appears in the toolbar.
+        /// The label may also be used for the default `menuFormRepresentation` of the item.
+        /// Also, developers should make sure the length of the label is appropriate and not too long.
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
+        /// Use this to set the item's label that appears when the item is in the customization palette.
+        /// All Items must have a palette label, and for most things it is reasonable to set them to the same string as the label used in the toolbar.
         #[method_id(@__retain_semantics Other paletteLabel)]
         pub unsafe fn paletteLabel(&self) -> Retained<NSString>;
 
+        /// Setter for [`paletteLabel`][Self::paletteLabel].
         #[method(setPaletteLabel:)]
         pub unsafe fn setPaletteLabel(&self, palette_label: &NSString);
 
+        /// An array of all alternate labels this item may display.
+        /// The item will use the size of the longest label to prevent resizing when the label is changed.
         #[method_id(@__retain_semantics Other possibleLabels)]
         pub unsafe fn possibleLabels(&self) -> Retained<NSSet<NSString>>;
 
+        /// Setter for [`possibleLabels`][Self::possibleLabels].
         #[method(setPossibleLabels:)]
         pub unsafe fn setPossibleLabels(&self, possible_labels: &NSSet<NSString>);
 
+        /// Use this to set a tooltip to be used when the item is displayed in the toolbar. (forwards to `-view` if it responds)
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`toolTip`][Self::toolTip].
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
         #[cfg(feature = "NSMenuItem")]
+        /// The menu form of a toolbar item's purpose is twofold.
+        /// First, when the window is too small to display an item, it will be clipped but remain accessible from a "clipped items" menu containing the menu item returned here.
+        /// Second, in text only mode, the menu returned will be used to create the displayed items.
+        /// Singleton menu items will be clickable, while submenu items will be represented as a pull down.
+        /// For instance, say you want a button that allows you to switch between modes A, B, and C.
+        /// You could represent this as a menu by: a menu item "mode" with three submenu items "A", "B", and "C".
+        /// By default, this method returns a singleton menu item with item label as the title.
+        /// For standard items, the target, action is set.
         #[method_id(@__retain_semantics Other menuFormRepresentation)]
         pub unsafe fn menuFormRepresentation(&self) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
+        /// Setter for [`menuFormRepresentation`][Self::menuFormRepresentation].
         #[method(setMenuFormRepresentation:)]
         pub unsafe fn setMenuFormRepresentation(
             &self,
             menu_form_representation: Option<&NSMenuItem>,
         );
 
+        /// Tag for your own custom purpose. (forwards to `-view` if it responds)
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;
 
+        /// Setter for [`tag`][Self::tag].
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: NSInteger);
 
+        /// Set and get the action of an item. (forwards to `-view` if it responds)
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
+        /// Set and get the action of an item.
+        /// For custom views, this method will call `-setAction:` on the view if it responds. (forwards to `-view` if it responds)
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
+        /// Setter for [`action`][Self::action].
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
+        /// Set and get the enabled flag of an item.
+        /// For custom views, this method will call `-setEnabled:` on the view if it responds. (forwards to `-view` if it responds)
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
@@ -126,50 +159,74 @@ extern_methods!(
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        /// Set and get the title of an item.
+        /// For custom views, this method will call `-setTitle:` on the view if it responds. (forwards to `-view` if it responds)
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
+        /// When set on an item without a custom view, the button produced will have a bordered style.
+        /// Defaults to NO.
         #[method(isBordered)]
         pub unsafe fn isBordered(&self) -> bool;
 
+        /// Setter for [`isBordered`][Self::isBordered].
         #[method(setBordered:)]
         pub unsafe fn setBordered(&self, bordered: bool);
 
+        /// Whether or not the item behaves as a navigation item (i.e. back/forward) in the toolbar.
+        /// Navigation items may be specially positioned by the system outside the normal list of items of the toolbar in the order specified by `-toolbarDefaultItemIdentifiers:`.
+        /// Defaults to NO.
         #[method(isNavigational)]
         pub unsafe fn isNavigational(&self) -> bool;
 
+        /// Setter for [`isNavigational`][Self::isNavigational].
         #[method(setNavigational:)]
         pub unsafe fn setNavigational(&self, navigational: bool);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// Items with automatically generated views will return nil from this getter.
+        /// Custom views may be provided but not all `NSToolbarItem` subclasses support custom views.
+        /// Note that, by default, many of the set/get methods will be implemented by calls forwarded to the view you set, if it responds to it.
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// Setter for [`view`][Self::view].
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
+        /// An item is visible if it is present in the NSToolbar and not in the overflow menu.
+        /// This property is key value observable.
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;
 
+        /// When an item is hidden it will not be visible in the toolbar. The item will still be visible in the customization panel. Because hidden items may be visible during user customization, use the `visible` property to determine if an item is currently displayed. Note that even hidden toolbar items are sync'd to other toolbars with a shared identifier, but its `hidden` state can be unique to each instance. Use this property to show a toolbar item in one toolbar instance but not another.
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Unless you have already set your own custom view, you should not call these methods.
+        /// The min size should be small enough to look nice in all display modes.
+        /// If you do not set a min/max size, the view's size properties will be calculated using constraints. Apps linked before 10.14 will use the view's current size.
+        /// In general, apps should rely on the automatic measurements and constraints to define min/max sizes rather than setting these properties since this will account for localizations.
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minSize`][Self::minSize].
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(setMinSize:)]
         pub unsafe fn setMinSize(&self, min_size: NSSize);
@@ -180,28 +237,45 @@ extern_methods!(
         pub unsafe fn maxSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maxSize`][Self::maxSize].
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(setMaxSize:)]
         pub unsafe fn setMaxSize(&self, max_size: NSSize);
 
+        /// When a toolbar does not have enough space to fit all its items, it must push some into the overflow menu.
+        /// Items with the highest `visibilityPriority` level are chosen last for the overflow menu.
+        /// The default `visibilityPriority` value is `NSToolbarItemVisibilityPriorityStandard`.
+        /// To suggest that an item always remain visible, give it a value greater than `NSToolbarItemVisibilityPriorityStandard`, but less than `NSToolbarItemVisibilityPriorityUser`.
+        /// In 10.7, users can no longer modify the toolbar item visibility priority.
         #[method(visibilityPriority)]
         pub unsafe fn visibilityPriority(&self) -> NSToolbarItemVisibilityPriority;
 
+        /// Setter for [`visibilityPriority`][Self::visibilityPriority].
         #[method(setVisibilityPriority:)]
         pub unsafe fn setVisibilityPriority(
             &self,
             visibility_priority: NSToolbarItemVisibilityPriority,
         );
 
+        /// Typically you should not invoke this method.
+        /// This method is called by its toolbar during validation.
+        /// Standard items validate themselves by sending the `-validateToolbarItem:` validate message to the current validator.
+        /// Since items with custom views don't always have meaningful target/actions, they do nothing.
+        /// So for your custom items it may be useful to override this method and invent your own validation.
         #[method(validate)]
         pub unsafe fn validate(&self);
 
+        /// This property only affects automatic validation performed by NSToolbar.
+        /// Explicit validation requests, such as the `-[NSToolbar validateVisibleItems]` method, will invoke the `-validate` method even if `autovalidates` is `NO`.
+        /// Defaults to YES.
         #[method(autovalidates)]
         pub unsafe fn autovalidates(&self) -> bool;
 
+        /// Setter for [`autovalidates`][Self::autovalidates].
         #[method(setAutovalidates:)]
         pub unsafe fn setAutovalidates(&self, autovalidates: bool);
 
+        /// Duplicate items outside of spaces are not allowed.
         #[deprecated = "Duplicates are no longer supported."]
         #[method(allowsDuplicatesInToolbar)]
         pub unsafe fn allowsDuplicatesInToolbar(&self) -> bool;
@@ -232,6 +306,8 @@ unsafe impl NSValidatedUserInterfaceItem for NSToolbarItem {}
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvalidation?language=objc)
     pub unsafe trait NSToolbarItemValidation: NSObjectProtocol + MainThreadOnly {
+        /// `NSToolbarItemValidation` extends the standard validation idea by introducing this new method which is sent to validators for each visible standard `NSToolbarItem` with a valid target/action pair.
+        /// Note: This message is sent from NSToolbarItem's validate method, however validate will not send this message for items that have custom views.
         #[method(validateToolbarItem:)]
         unsafe fn validateToolbarItem(&self, item: &NSToolbarItem) -> bool;
     }
@@ -244,6 +320,9 @@ extern_protocol!(
     pub unsafe trait NSCloudSharingValidation: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSUserInterfaceValidation", feature = "objc2-cloud-kit"))]
         #[cfg(target_vendor = "apple")]
+        /// `NSToolbarItems` created with `NSToolbarCloudSharingItemIdentifier` use this method for further validation after sending `-validateToolbarItem:` or `-validateUserInterfaceItem:`.
+        /// The validator for the item's action should return the current CKShare corresponding to the selected item, if any.
+        /// The state of the item will be changed reflect the state of the CKShare.
         #[method_id(@__retain_semantics Other cloudShareForUserInterfaceItem:)]
         unsafe fn cloudShareForUserInterfaceItem(
             &self,
@@ -255,73 +334,99 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarspaceitemidentifier?language=objc)
+    /// A space item of a standard fixed size.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarspaceitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarSpaceItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarflexiblespaceitemidentifier?language=objc)
+    /// A space item of flexible width.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarflexiblespaceitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarFlexibleSpaceItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarshowcolorsitemidentifier?language=objc)
+    /// A standard item that is configured to show the color panel when invoked.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarshowcolorsitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarShowColorsItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarshowfontsitemidentifier?language=objc)
+    /// A standard item that is configured to show the font panel when invoked.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarshowfontsitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarShowFontsItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarprintitemidentifier?language=objc)
+    /// A standard item that is configured to send -printDocument: to the firstResponder when invoked
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarprintitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarPrintItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbartogglesidebaritemidentifier?language=objc)
+    /// A standard item that is configured to send -toggleSidebar: to the firstResponder when invoked.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbartogglesidebaritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarToggleSidebarItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbartoggleinspectoritemidentifier?language=objc)
+    /// A standard item that is configured to send -toggleInspector: to the firstResponder when invoked.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbartoggleinspectoritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarToggleInspectorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarcloudsharingitemidentifier?language=objc)
+    /// A standard item for cloud sharing via NSSharingServiceNameCloudSharing. It validates itself and modifies its appearance by using the NSCloudSharingValidation protocol. It sends -performCloudSharing: to the firstResponder.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarcloudsharingitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarCloudSharingItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarwritingtoolsitemidentifier?language=objc)
+    /// A standard item that is configured to send -showWritingTools: to the firstResponder when invoked.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarwritingtoolsitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarWritingToolsItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarsidebartrackingseparatoritemidentifier?language=objc)
+    /// Creates a new NSTrackingSeparatorToolbarItem and automatically configures it to track the divider of the sidebar if one is discovered.
+    /// Only applies to windows with `NSWindowStyleMaskFullSizeContentView` applied.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarsidebartrackingseparatoritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarSidebarTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarinspectortrackingseparatoritemidentifier?language=objc)
+    /// Creates a new NSTrackingSeparatorToolbarItem and automatically configures it to track the divider of the inspector if one is discovered.
+    /// Only applies to windows with `NSWindowStyleMaskFullSizeContentView` applied.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarinspectortrackingseparatoritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarInspectorTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarseparatoritemidentifier?language=objc)
+    /// Deprecated Item Identifiers
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarseparatoritemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;
 }

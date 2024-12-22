@@ -178,12 +178,14 @@ extern_methods!(
         #[method(scrollerStyle)]
         pub unsafe fn scrollerStyle(&self) -> NSScrollerStyle;
 
+        /// Setter for [`scrollerStyle`][Self::scrollerStyle].
         #[method(setScrollerStyle:)]
         pub unsafe fn setScrollerStyle(&self, scroller_style: NSScrollerStyle);
 
         #[method(knobStyle)]
         pub unsafe fn knobStyle(&self) -> NSScrollerKnobStyle;
 
+        /// Setter for [`knobStyle`][Self::knobStyle].
         #[method(setKnobStyle:)]
         pub unsafe fn setKnobStyle(&self, knob_style: NSScrollerKnobStyle);
 
@@ -202,6 +204,7 @@ extern_methods!(
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`controlSize`][Self::controlSize].
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
@@ -228,6 +231,7 @@ extern_methods!(
         pub unsafe fn knobProportion(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`knobProportion`][Self::knobProportion].
         #[method(setKnobProportion:)]
         pub unsafe fn setKnobProportion(&self, knob_proportion: CGFloat);
     }
@@ -338,6 +342,7 @@ extern_methods!(
         #[method(arrowsPosition)]
         pub unsafe fn arrowsPosition(&self) -> NSScrollArrowPosition;
 
+        /// Setter for [`arrowsPosition`][Self::arrowsPosition].
         #[deprecated = "Has had no effect since 10.7"]
         #[method(setArrowsPosition:)]
         pub unsafe fn setArrowsPosition(&self, arrows_position: NSScrollArrowPosition);
@@ -348,6 +353,7 @@ extern_methods!(
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`controlTint`][Self::controlTint].
         #[deprecated = "Has had no effect since 10.7"]
         #[method(setControlTint:)]
         pub unsafe fn setControlTint(&self, control_tint: NSControlTint);

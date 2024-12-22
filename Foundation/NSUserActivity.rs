@@ -41,6 +41,7 @@ extern_methods!(
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
@@ -49,6 +50,7 @@ extern_methods!(
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
+        /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
@@ -61,6 +63,7 @@ extern_methods!(
         pub unsafe fn requiredUserInfoKeys(&self) -> Option<Retained<NSSet<NSString>>>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
+        /// Setter for [`requiredUserInfoKeys`][Self::requiredUserInfoKeys].
         #[method(setRequiredUserInfoKeys:)]
         pub unsafe fn setRequiredUserInfoKeys(
             &self,
@@ -70,6 +73,7 @@ extern_methods!(
         #[method(needsSave)]
         pub unsafe fn needsSave(&self) -> bool;
 
+        /// Setter for [`needsSave`][Self::needsSave].
         #[method(setNeedsSave:)]
         pub unsafe fn setNeedsSave(&self, needs_save: bool);
 
@@ -78,6 +82,7 @@ extern_methods!(
         pub unsafe fn webpageURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
+        /// Setter for [`webpageURL`][Self::webpageURL].
         #[method(setWebpageURL:)]
         pub unsafe fn setWebpageURL(&self, webpage_url: Option<&NSURL>);
 
@@ -86,6 +91,7 @@ extern_methods!(
         pub unsafe fn referrerURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
+        /// Setter for [`referrerURL`][Self::referrerURL].
         #[method(setReferrerURL:)]
         pub unsafe fn setReferrerURL(&self, referrer_url: Option<&NSURL>);
 
@@ -94,6 +100,7 @@ extern_methods!(
         pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
+        /// Setter for [`expirationDate`][Self::expirationDate].
         #[method(setExpirationDate:)]
         pub unsafe fn setExpirationDate(&self, expiration_date: Option<&NSDate>);
 
@@ -102,12 +109,14 @@ extern_methods!(
         pub unsafe fn keywords(&self) -> Retained<NSSet<NSString>>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
+        /// Setter for [`keywords`][Self::keywords].
         #[method(setKeywords:)]
         pub unsafe fn setKeywords(&self, keywords: &NSSet<NSString>);
 
         #[method(supportsContinuationStreams)]
         pub unsafe fn supportsContinuationStreams(&self) -> bool;
 
+        /// Setter for [`supportsContinuationStreams`][Self::supportsContinuationStreams].
         #[method(setSupportsContinuationStreams:)]
         pub unsafe fn setSupportsContinuationStreams(&self, supports_continuation_streams: bool);
 
@@ -117,6 +126,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSUserActivityDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -128,6 +138,7 @@ extern_methods!(
         pub unsafe fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].
         #[method(setTargetContentIdentifier:)]
         pub unsafe fn setTargetContentIdentifier(
             &self,
@@ -155,24 +166,28 @@ extern_methods!(
         #[method(isEligibleForHandoff)]
         pub unsafe fn isEligibleForHandoff(&self) -> bool;
 
+        /// Setter for [`isEligibleForHandoff`][Self::isEligibleForHandoff].
         #[method(setEligibleForHandoff:)]
         pub unsafe fn setEligibleForHandoff(&self, eligible_for_handoff: bool);
 
         #[method(isEligibleForSearch)]
         pub unsafe fn isEligibleForSearch(&self) -> bool;
 
+        /// Setter for [`isEligibleForSearch`][Self::isEligibleForSearch].
         #[method(setEligibleForSearch:)]
         pub unsafe fn setEligibleForSearch(&self, eligible_for_search: bool);
 
         #[method(isEligibleForPublicIndexing)]
         pub unsafe fn isEligibleForPublicIndexing(&self) -> bool;
 
+        /// Setter for [`isEligibleForPublicIndexing`][Self::isEligibleForPublicIndexing].
         #[method(setEligibleForPublicIndexing:)]
         pub unsafe fn setEligibleForPublicIndexing(&self, eligible_for_public_indexing: bool);
 
         #[method(isEligibleForPrediction)]
         pub unsafe fn isEligibleForPrediction(&self) -> bool;
 
+        /// Setter for [`isEligibleForPrediction`][Self::isEligibleForPrediction].
         #[method(setEligibleForPrediction:)]
         pub unsafe fn setEligibleForPrediction(&self, eligible_for_prediction: bool);
 
@@ -183,6 +198,7 @@ extern_methods!(
         ) -> Option<Retained<NSUserActivityPersistentIdentifier>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`persistentIdentifier`][Self::persistentIdentifier].
         #[method(setPersistentIdentifier:)]
         pub unsafe fn setPersistentIdentifier(
             &self,

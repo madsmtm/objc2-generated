@@ -15,8 +15,10 @@ pub struct UIContextMenuConfigurationElementOrder(pub NSInteger);
 impl UIContextMenuConfigurationElementOrder {
     #[doc(alias = "UIContextMenuConfigurationElementOrderAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Allows the system to choose the appropriate ordering strategy for the current context.
     #[doc(alias = "UIContextMenuConfigurationElementOrderPriority")]
     pub const Priority: Self = Self(1);
+    /// Order menu elements according to priority. Keeping the first element in the UIMenu closest to user's interaction point.
     #[doc(alias = "UIContextMenuConfigurationElementOrderFixed")]
     pub const Fixed: Self = Self(2);
 }
@@ -29,12 +31,20 @@ unsafe impl RefEncode for UIContextMenuConfigurationElementOrder {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuactionprovider?language=objc)
+/// Return a UIAction-based UIMenu describing the desired action hierarchy.
+///
+///
+/// Parameter `suggestedActions`: An array of suggested actions gathered from the UIResponder chain. You may choose to include
+/// some of these actions in the hierarchy returned from this block to display them in the resulting menu.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuactionprovider?language=objc)
 #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
 pub type UIContextMenuActionProvider =
     *mut block2::Block<dyn Fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenucontentpreviewprovider?language=objc)
+/// Return a UIViewController to be displayed as this menu's preview component.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenucontentpreviewprovider?language=objc)
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIViewController",
@@ -55,29 +65,38 @@ unsafe impl NSObjectProtocol for UIContextMenuConfiguration {}
 
 extern_methods!(
     unsafe impl UIContextMenuConfiguration {
+        /// This configuration's identifier. When representing multiple items in your app, this identifier
+        /// corresponds to the primary item (i.e. the one with which the user interacted when invoking the menu).
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<ProtocolObject<dyn NSCopying>>;
 
+        /// When this menu acts on multiple items, you may include the identifiers of secondary items to display a multi-item menu.
         #[method_id(@__retain_semantics Other secondaryItemIdentifiers)]
         pub unsafe fn secondaryItemIdentifiers(
             &self,
         ) -> Retained<NSSet<ProtocolObject<dyn NSCopying>>>;
 
+        /// Setter for [`secondaryItemIdentifiers`][Self::secondaryItemIdentifiers].
         #[method(setSecondaryItemIdentifiers:)]
         pub unsafe fn setSecondaryItemIdentifiers(
             &self,
             secondary_item_identifiers: &NSSet<ProtocolObject<dyn NSCopying>>,
         );
 
+        /// Number of items on which this menu acts. Used to badge a multi-item menu's preview stack.
+        /// When unset, this value is determined automatically by the system. Values lower than 2 hide the badge.
         #[method(badgeCount)]
         pub unsafe fn badgeCount(&self) -> NSInteger;
 
+        /// Setter for [`badgeCount`][Self::badgeCount].
         #[method(setBadgeCount:)]
         pub unsafe fn setBadgeCount(&self, badge_count: NSInteger);
 
+        /// Preferred menu element ordering strategy for this menu.
         #[method(preferredMenuElementOrder)]
         pub unsafe fn preferredMenuElementOrder(&self) -> UIContextMenuConfigurationElementOrder;
 
+        /// Setter for [`preferredMenuElementOrder`][Self::preferredMenuElementOrder].
         #[method(setPreferredMenuElementOrder:)]
         pub unsafe fn setPreferredMenuElementOrder(
             &self,
@@ -91,6 +110,15 @@ extern_methods!(
             feature = "UIViewController",
             feature = "block2"
         ))]
+        /// Returns a UIContextMenuConfiguration.
+        ///
+        ///
+        /// Parameter `identifier`: Optional unique identifier. If omitted, an NSUUID will be generated. May be used to
+        /// identify this configuration throughout the interaction's lifecycle.
+        ///
+        /// Parameter `previewProvider`: Optional preview view controller provider block, called when the menu is about to be presented.
+        ///
+        /// Parameter `actionProvider`: Optional action provider block, called when the menu is about to be presented.
         #[method_id(@__retain_semantics Other configurationWithIdentifier:previewProvider:actionProvider:)]
         pub unsafe fn configurationWithIdentifier_previewProvider_actionProvider(
             identifier: Option<&ProtocolObject<dyn NSCopying>>,

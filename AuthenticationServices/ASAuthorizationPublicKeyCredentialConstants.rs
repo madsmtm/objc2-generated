@@ -5,74 +5,100 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialuserverificationpreference?language=objc)
+/// A string indicating a preference for whether the authenticator should attempt to verify the user, such as through a PIN or biometrics.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialuserverificationpreference?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationPublicKeyCredentialUserVerificationPreference = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialuserverificationpreferencepreferred?language=objc)
+    /// Indicates that the authenticator should try to verify the user if possible, but authentication should proceed even if user verification is not currently available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialuserverificationpreferencepreferred?language=objc)
     pub static ASAuthorizationPublicKeyCredentialUserVerificationPreferencePreferred:
         Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialuserverificationpreferencerequired?language=objc)
+    /// Indicates that the authenticator must attempt to verify the user. If the authenticator is not currently capable of verifying the user, authentication will fail.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialuserverificationpreferencerequired?language=objc)
     pub static ASAuthorizationPublicKeyCredentialUserVerificationPreferenceRequired:
         Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialuserverificationpreferencediscouraged?language=objc)
+    /// Indicates that the authenticator should prefer _not_ verifying the user, if possible. This may be used to streamline an authentication process where the user has already been verified.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialuserverificationpreferencediscouraged?language=objc)
     pub static ASAuthorizationPublicKeyCredentialUserVerificationPreferenceDiscouraged:
         Option<&'static ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkind?language=objc)
+/// A string indicating the type of attestation the authenticator should attempt to perform.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkind?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationPublicKeyCredentialAttestationKind = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkindnone?language=objc)
+    /// Indicates that the authenticator should not perform attestation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkindnone?language=objc)
     pub static ASAuthorizationPublicKeyCredentialAttestationKindNone:
         Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkinddirect?language=objc)
+    /// Indicates that the authenticator should perform attestation itself.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkinddirect?language=objc)
     pub static ASAuthorizationPublicKeyCredentialAttestationKindDirect:
         Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkindindirect?language=objc)
+    /// Indicates that the authenticator may use an external service to perform attestation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkindindirect?language=objc)
     pub static ASAuthorizationPublicKeyCredentialAttestationKindIndirect:
         Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkindenterprise?language=objc)
+    /// Indicates that the authenticator should perform an attestation which may include information that uniquely identifies that authenticator. Authenticators should only allow enterprise attestation if they have been previously enrolled in enterprise management, and should restrict it to managed Relying Parties.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialattestationkindenterprise?language=objc)
     pub static ASAuthorizationPublicKeyCredentialAttestationKindEnterprise:
         Option<&'static ASAuthorizationPublicKeyCredentialAttestationKind>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialresidentkeypreference?language=objc)
+/// A string used to indicate a preference for whether the authenticator should itself store the private key for a credential.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialresidentkeypreference?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationPublicKeyCredentialResidentKeyPreference = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialresidentkeypreferencediscouraged?language=objc)
+    /// Indicates that the authenticator should not store the private key, if possible.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialresidentkeypreferencediscouraged?language=objc)
     pub static ASAuthorizationPublicKeyCredentialResidentKeyPreferenceDiscouraged:
         Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialresidentkeypreferencepreferred?language=objc)
+    /// Indicates that the authenticator should store the private key, if possible.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialresidentkeypreferencepreferred?language=objc)
     pub static ASAuthorizationPublicKeyCredentialResidentKeyPreferencePreferred:
         Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialresidentkeypreferencerequired?language=objc)
+    /// Indicates that the authenticator must store the private key, and that key creation should fail if the authenticator is not currently capable of storing the key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialresidentkeypreferencerequired?language=objc)
     pub static ASAuthorizationPublicKeyCredentialResidentKeyPreferenceRequired:
         Option<&'static ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
 }

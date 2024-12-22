@@ -8,13 +8,19 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopyoffsets?language=objc)
+/// A description of each copy operation
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopyoffsets?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSMatrixCopyOffsets {
+    /// offset to start of source region to read in rows
     pub sourceRowOffset: u32,
+    /// offset to start of source region to read in columns
     pub sourceColumnOffset: u32,
+    /// offset to start of destination region to read in rows
     pub destinationRowOffset: u32,
+    /// offset to start of destination region to read in columns
     pub destinationColumnOffset: u32,
 }
 
@@ -35,7 +41,14 @@ unsafe impl RefEncode for MPSMatrixCopyOffsets {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopydescriptor?language=objc)
+    /// A list of copy operations
+    ///
+    /// The MPSMatrixCopy filter can do multiple copy operations.  For RNN filters, these
+    /// copies are often small, and are more efficient when grouped together.
+    /// The MPSMatriceCopyDescriptor provides a container to list the operations.
+    /// The operations occur in any order, and may not alias.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopydescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSMatrixCopyDescriptor;
@@ -46,6 +59,7 @@ unsafe impl NSObjectProtocol for MPSMatrixCopyDescriptor {}
 extern_methods!(
     unsafe impl MPSMatrixCopyDescriptor {
         #[cfg(feature = "MPSMatrix")]
+        /// convenience allocator for single copies
         #[method_id(@__retain_semantics Other descriptorWithSourceMatrix:destinationMatrix:offsets:)]
         pub unsafe fn descriptorWithSourceMatrix_destinationMatrix_offsets(
             source_matrix: &MPSMatrix,
@@ -53,6 +67,17 @@ extern_methods!(
             offsets: MPSMatrixCopyOffsets,
         ) -> Retained<Self>;
 
+        /// initialize a MPSMatrixCopyDescriptor with default values.
+        ///
+        /// Use -setCopyOperationAtIndex:sourceMatrix:destinationMatrix:copyOffsets
+        /// to initialize. All indices must be initialized before use.
+        ///
+        /// Parameter `device`: The device on which the copy will be performed
+        ///
+        /// Parameter `count`: The number of copy operations the object will encode
+        ///
+        /// Returns: A MPSMatrixCopyDescriptor. It still needs to be initialized with
+        /// -setCopyOperationAtIndex:sourceMatrix:destinationMatrix:copyOffsets
         #[method_id(@__retain_semantics Init initWithDevice:count:)]
         pub unsafe fn initWithDevice_count(
             this: Allocated<Self>,
@@ -61,6 +86,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Initialize a MPSMatrixCopyDescriptor using offsets generated on the CPU
+        ///
+        /// This is for one at a time intialization of the copy operations
+        ///
+        /// Parameter `index`: The index of the copy operation
+        ///
+        /// Parameter `sourceMatrix`: The source matrix for this copy operation
+        ///
+        /// Parameter `destinationMatrix`: The destination matrix for this copy operation
+        ///
+        /// Parameter `offsets`: The offsets to use for the copy operation
         #[method(setCopyOperationAtIndex:sourceMatrix:destinationMatrix:offsets:)]
         pub unsafe fn setCopyOperationAtIndex_sourceMatrix_destinationMatrix_offsets(
             &self,
@@ -71,6 +107,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSMatrix")]
+        /// Initialize a MPSMatrixCopyDescriptor using offsets generated on the GPU
+        ///
+        /// Use this method when the offsets needed are coming from GPU based computation.
+        ///
+        /// Parameter `sourceMatrices`: A list of matrices from which the matrix data is read
+        ///
+        /// Parameter `destinationMatrices`: A list of matrices to which to write the data. The count
+        /// must match the number of source matrices.
+        ///
+        /// Parameter `offsets`: A MPSVector of type MPSDataTypeUInt32 containing the list of
+        /// offsets, stored as a packed array of MPSMatrixCopyOffsets.
+        ///
+        /// Parameter `byteOffset`: A byte offset into the offsets vector where the data starts in 'offsets'.
+        /// This value must be a multiple of 16.
+        ///
+        /// Returns: A valid MPSMatrixCopyDescriptor to represent the list of copy operations
         #[method_id(@__retain_semantics Init initWithSourceMatrices:destinationMatrices:offsetVector:offset:)]
         pub unsafe fn initWithSourceMatrices_destinationMatrices_offsetVector_offset(
             this: Allocated<Self>,
@@ -127,6 +179,15 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Initialize a copy operator
+        ///
+        /// Parameter `copyRows`: The number of rows to copy for each copy operation
+        ///
+        /// Parameter `copyColumns`: The number of matrix columns to copy in each copy operation
+        ///
+        /// Parameter `sourcesAreTransposed`: If YES, the sources are in column major storage order
+        ///
+        /// Parameter `destinationsAreTransposed`: If YES, the destinations are in column major storage order
         #[method_id(@__retain_semantics Init initWithDevice:copyRows:copyColumns:sourcesAreTransposed:destinationsAreTransposed:)]
         pub unsafe fn initWithDevice_copyRows_copyColumns_sourcesAreTransposed_destinationsAreTransposed(
             this: Allocated<Self>,
@@ -137,18 +198,29 @@ extern_methods!(
             destinations_are_transposed: bool,
         ) -> Retained<Self>;
 
+        /// The number of rows to copy for each copy operation
         #[method(copyRows)]
         pub unsafe fn copyRows(&self) -> NSUInteger;
 
+        /// The number of columns to copy for each copy operation
         #[method(copyColumns)]
         pub unsafe fn copyColumns(&self) -> NSUInteger;
 
+        /// If YES, the sources are in row major storage order
         #[method(sourcesAreTransposed)]
         pub unsafe fn sourcesAreTransposed(&self) -> bool;
 
+        /// If YES, the destinations are in row major storage order
         #[method(destinationsAreTransposed)]
         pub unsafe fn destinationsAreTransposed(&self) -> bool;
 
+        /// Encode the copy operations to the command buffer
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        ///
+        /// Parameter `copyDescriptor`: The descriptor that defines the copy operator
         #[method(encodeToCommandBuffer:copyDescriptor:)]
         pub unsafe fn encodeToCommandBuffer_copyDescriptor(
             &self,
@@ -157,6 +229,36 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode the copy operations to the command buffer.
+        /// This of the encode version support permuting the outputs with custom vectors of indices.
+        /// The permutations are defined on the destination indices and are the same for each copy
+        /// operation.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        ///
+        /// Parameter `copyDescriptor`: The descriptor that defines the copy operator
+        ///
+        ///
+        /// Parameter `rowPermuteIndices`: If not nil then the output row index is
+        /// 'rowPermuteIndices[i] + rowOffset' instead of 'i + rowOffset',
+        /// where 'i' is the local row index of the copy operation.
+        /// Note: if destinationsAreTransposed is set to YES then the destination
+        /// transpose is performed before permutations.
+        ///
+        ///
+        /// Parameter `rowPermuteOffset`: Offset in numbers to apply to the 'rowPermuteIndices' vector.
+        ///
+        ///
+        /// Parameter `columnPermuteIndices`: If not nil then the output column index is
+        /// 'columnPermuteIndices[i] + columnOffset' instead of 'i + columnOffset',
+        /// where 'i' is the local column index of the copy operation.
+        /// Note: if destinationsAreTransposed is set to YES then the destination
+        /// transpose is performed before permutations.
+        ///
+        ///
+        /// Parameter `columnPermuteOffset`: Offset in numbers to apply to the 'columnPermuteIndices' vector.
         #[method(encodeToCommandBuffer:copyDescriptor:rowPermuteIndices:rowPermuteOffset:columnPermuteIndices:columnPermuteOffset:)]
         pub unsafe fn encodeToCommandBuffer_copyDescriptor_rowPermuteIndices_rowPermuteOffset_columnPermuteIndices_columnPermuteOffset(
             &self,
@@ -168,6 +270,15 @@ extern_methods!(
             column_permute_offset: NSUInteger,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSMatrixLookUpAndCopy
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSMatrixLookUpAndCopy
+        ///
+        /// Returns: A new MPSMatrixLookUpAndCopy object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -181,6 +292,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSMatrixCopy {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

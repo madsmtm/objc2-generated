@@ -27,18 +27,21 @@ extern_methods!(
         pub unsafe fn taskHint(&self) -> SFSpeechRecognitionTaskHint;
 
         #[cfg(feature = "SFSpeechRecognitionTaskHint")]
+        /// Setter for [`taskHint`][Self::taskHint].
         #[method(setTaskHint:)]
         pub unsafe fn setTaskHint(&self, task_hint: SFSpeechRecognitionTaskHint);
 
         #[method(shouldReportPartialResults)]
         pub unsafe fn shouldReportPartialResults(&self) -> bool;
 
+        /// Setter for [`shouldReportPartialResults`][Self::shouldReportPartialResults].
         #[method(setShouldReportPartialResults:)]
         pub unsafe fn setShouldReportPartialResults(&self, should_report_partial_results: bool);
 
         #[method_id(@__retain_semantics Other contextualStrings)]
         pub unsafe fn contextualStrings(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`contextualStrings`][Self::contextualStrings].
         #[method(setContextualStrings:)]
         pub unsafe fn setContextualStrings(&self, contextual_strings: &NSArray<NSString>);
 
@@ -46,6 +49,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other interactionIdentifier)]
         pub unsafe fn interactionIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`interactionIdentifier`][Self::interactionIdentifier].
         #[deprecated = "Not used anymore"]
         #[method(setInteractionIdentifier:)]
         pub unsafe fn setInteractionIdentifier(&self, interaction_identifier: Option<&NSString>);
@@ -53,12 +57,14 @@ extern_methods!(
         #[method(requiresOnDeviceRecognition)]
         pub unsafe fn requiresOnDeviceRecognition(&self) -> bool;
 
+        /// Setter for [`requiresOnDeviceRecognition`][Self::requiresOnDeviceRecognition].
         #[method(setRequiresOnDeviceRecognition:)]
         pub unsafe fn setRequiresOnDeviceRecognition(&self, requires_on_device_recognition: bool);
 
         #[method(addsPunctuation)]
         pub unsafe fn addsPunctuation(&self) -> bool;
 
+        /// Setter for [`addsPunctuation`][Self::addsPunctuation].
         #[method(setAddsPunctuation:)]
         pub unsafe fn setAddsPunctuation(&self, adds_punctuation: bool);
 
@@ -69,6 +75,7 @@ extern_methods!(
         ) -> Option<Retained<SFSpeechLanguageModelConfiguration>>;
 
         #[cfg(feature = "SFSpeechLanguageModel")]
+        /// Setter for [`customizedLanguageModel`][Self::customizedLanguageModel].
         #[method(setCustomizedLanguageModel:)]
         pub unsafe fn setCustomizedLanguageModel(
             &self,

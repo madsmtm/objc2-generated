@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdiagnostic?language=objc)
+    /// An abstract class that describes a diagnostic report vended by MetricKit.
+    ///
+    /// All supported diagnostics are subclasses of MXDiagnostic.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdiagnostic?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXDiagnostic;
@@ -25,16 +29,24 @@ extern_methods!(
         #[method_id(@__retain_semantics Other metaData)]
         pub unsafe fn metaData(&self) -> Retained<MXMetaData>;
 
+        /// An NSString representation of the application version from which this diagnostic was generated.
         #[method_id(@__retain_semantics Other applicationVersion)]
         pub unsafe fn applicationVersion(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MXSignpostRecord")]
+        /// An NSArray representing the list of signpost records.
         #[method_id(@__retain_semantics Other signpostData)]
         pub unsafe fn signpostData(&self) -> Option<Retained<NSArray<MXSignpostRecord>>>;
 
+        /// Convenience method to return a JSON representation of this diagnostic.
+        ///
+        /// Returns: An NSData object containing the JSON representation
         #[method_id(@__retain_semantics Other JSONRepresentation)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
+        /// Convenience method to return a NSDictionary representation of this diagnostic.
+        ///
+        /// Returns: An NSDictionary object containing the dictionary representation
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }

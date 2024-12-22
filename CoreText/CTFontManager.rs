@@ -12,21 +12,44 @@ use objc2_core_graphics::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// Returns an array of unique PostScript font names.
+    ///
+    ///
+    /// Returns: An array of CFStrings.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerCopyAvailablePostScriptNames() -> CFArrayRef;
 }
 
 extern "C-unwind" {
+    /// Returns an array of visible font family names sorted for UI display.
+    ///
+    ///
+    /// Returns: An array of CFStrings.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerCopyAvailableFontFamilyNames() -> CFArrayRef;
 }
 
 extern "C-unwind" {
+    /// Returns an array of font URLs.
+    ///
+    ///
+    /// Returns: An array of CFURLs.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerCopyAvailableFontURLs() -> CFArrayRef;
 }
 
 extern "C-unwind" {
+    /// A CFComparatorFunction to compare font family names and sort them according to Apple guidelines.
+    ///
+    /// This function compares font family names and sorts them in the preferred order for display in user interfaces.
+    ///
+    /// Parameter `family1`: The first localized font family name, as CFStringRef.
+    ///
+    /// Parameter `family2`: The second localized font family name, as CFStringRef.
+    ///
+    /// Parameter `context`: Unused. Can be NULL.
+    ///
+    /// Returns: A CFComparisonResult value indicating the sort order for the two family names. kCFComparisonResultGreaterThan if family1 is greater than family2, kCFComparisonResultLessThan if family1 is less than family2, and kCFComparisonResultEqualTo if they are equal.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerCompareFontFamilyNames(
         family1: NonNull<c_void>,
@@ -36,21 +59,59 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns an array of font descriptors representing each of the fonts in the specified URL.
+    /// Note: these font descriptors are not available through font descriptor matching.
+    ///
+    ///
+    /// Parameter `fileURL`: A file system URL referencing a valid font file.
+    ///
+    ///
+    /// Returns: An array of CTFontDescriptors or NULL if there are no valid fonts.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerCreateFontDescriptorsFromURL(file_url: CFURLRef) -> CFArrayRef;
 }
 
 extern "C-unwind" {
+    /// Returns a font descriptor representing the font in the supplied data.
+    /// Note: the font descriptor is not available through font descriptor matching.
+    ///
+    ///
+    /// If the data contains a font collection (TTC or OTC), only the first font in the collection will be returned.
+    ///
+    ///
+    /// Parameter `data`: A CFData containing font data.
+    ///
+    ///
+    /// Returns: A font descriptor created from the data or NULL if it is not a valid font.
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
     pub fn CTFontManagerCreateFontDescriptorFromData(data: CFDataRef) -> CTFontDescriptorRef;
 }
 
 extern "C-unwind" {
+    /// Returns an array of font descriptors for the fonts in the supplied data.
+    /// Note: the font descriptors are not available through font descriptor matching.
+    ///
+    ///
+    /// Parameter `data`: A CFData containing font data.
+    ///
+    ///
+    /// Returns: An array of font descriptors. This can be an empty array in the event of invalid or unsupported font data.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerCreateFontDescriptorsFromData(data: CFDataRef) -> CFArrayRef;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerscope?language=objc)
+/// Scope for font registration. A uses session refers to a login session in macOS, and the current booted session in iOS.
+///
+/// The font is not registered and does not participate in font descriptor matching. This isn't a valid scope to specify while registering fonts.
+///
+/// The font is available to the current process for the duration of the process unless directly unregistered.
+///
+/// The font is available to all processes for the current user session and will be available in subsequent sessions unless unregistered.
+///
+/// The font is available to the current user session, and will not be available in subsequent sessions.
+/// Session scope is only available in macOS.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerscope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -74,12 +135,31 @@ unsafe impl RefEncode for CTFontManagerScope {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontregistrationuserinfoattribute?language=objc)
+    /// kCTFontRegistrationUserInfoAttribute
+    ///
+    /// Optional user defined information that can be attached to an entry in the Font Manager registration catalog.
+    ///
+    /// This is the key for accessing font registration user information for the font descriptor. This information can be used in descriptor matching to disambiguate between two fonts with equivalent Postscript names. The value associated with this key is a CFStringRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontregistrationuserinfoattribute?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontRegistrationUserInfoAttribute: CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Registers fonts from the specified font URL with the font manager. Registered fonts participate in font descriptor matching.
+    ///
+    ///
+    /// Parameter `fontURL`: A file URL for the font or collection (TTC or OTC) to be registered. Once fonts have been registered from a file, it shouldn't be moved or renamed.
+    ///
+    ///
+    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
+    ///
+    ///
+    /// Parameter `error`: Pointer to receive CFError in the case of failed registration.
+    ///
+    ///
+    /// Returns: Returns true if registration of the fonts was successful.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerRegisterFontsForURL(
         font_url: CFURLRef,
@@ -89,6 +169,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Unregisters fonts from the specified font URL with the font manager. Unregistered fonts do not participate in font descriptor matching.
+    /// iOS note: only fonts registered with CTFontManagerRegisterFontsForURL or CTFontManagerRegisterFontsForURLs can be unregistered with this API.
+    ///
+    ///
+    /// Parameter `fontURL`: Font URL.
+    ///
+    ///
+    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. Should match the scope the fonts are registered in. See scope constants for more details.
+    ///
+    ///
+    /// Parameter `error`: Pointer to receive CFError in the case of failed unregistration.
+    ///
+    ///
+    /// Returns: Returns true if unregistration of the fonts was successful.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerUnregisterFontsForURL(
         font_url: CFURLRef,
@@ -98,18 +192,56 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Registers the specified graphics font with the font manager. Registered fonts participate in font descriptor matching.
+    ///
+    ///
+    /// Attempts to register a font that is either already registered or contains the same PostScript name of an already registered font will fail.
+    /// This functionality is intended for fonts that may be embedded in documents or present/constructed in memory. A graphics font is obtained
+    /// by calling CGFontCreateWithDataProvider. Fonts that are backed by files should be registered using CTFontManagerRegisterFontsForURL.
+    ///
+    ///
+    /// Parameter `font`: Graphics font to be registered.
+    ///
+    ///
+    /// Parameter `error`: Pointer to receive CFError in the case of failed registration.
+    ///
+    ///
+    /// Returns: Returns true if registration of the fonts was successful.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
     #[deprecated = "Use CTFontManagerCreateFontDescriptorsFromData or CTFontManagerRegisterFontsForURL"]
     pub fn CTFontManagerRegisterGraphicsFont(font: CGFontRef, error: *mut CFErrorRef) -> bool;
 }
 
 extern "C-unwind" {
+    /// Unregisters the specified graphics font with the font manager. Unregistered fonts do not participate in font descriptor matching.
+    ///
+    ///
+    /// Parameter `font`: Graphics font to be unregistered.
+    ///
+    ///
+    /// Parameter `error`: Pointer to receive CFError in the case of failed unregistration.
+    ///
+    ///
+    /// Returns: Returns true if unregistration of the font was successful.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
     #[deprecated = "Use the API corresponding to the one used to register the font"]
     pub fn CTFontManagerUnregisterGraphicsFont(font: CGFontRef, error: *mut CFErrorRef) -> bool;
 }
 
 extern "C-unwind" {
+    /// Registers fonts from the specified font URLs with the font manager. Registered fonts are discoverable through font descriptor matching.
+    ///
+    ///
+    /// Parameter `fontURLs`: An array of file URLs for the fonts or collections (TTC or OTC) to be registered. Once fonts have been registered from a file, it shouldn't be moved or renamed.
+    ///
+    ///
+    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
+    ///
+    ///
+    /// Parameter `errors`: Pointer to CFArrayRef to receive array of CFError references. Each error will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully registered. Must be released by caller. Can be NULL.
+    ///
+    ///
+    /// Returns: Returns true if registration of all font URLs was successful. Otherwise false.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn CTFontManagerRegisterFontsForURLs(
@@ -120,6 +252,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Unregisters fonts from the specified font URLs with the font manager. Unregistered fonts do not participate in font descriptor matching.
+    /// iOS note: only fonts registered with CTFontManagerRegisterFontsForURL or CTFontManagerRegisterFontsForURLs can be unregistered with this API.
+    ///
+    ///
+    /// Parameter `fontURLs`: Array of font URLs.
+    ///
+    ///
+    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. Should match the scope the fonts are registered in. See scope constants for more details.
+    ///
+    ///
+    /// Parameter `errors`: Pointer to CFArrayRef to receive array of CFError references. Each error will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully unregistered. Must be released by caller. Can be NULL.
+    ///
+    ///
+    /// Returns: Returns true if unregistration of all font URLs was successful. Otherwise false.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn CTFontManagerUnregisterFontsForURLs(
@@ -130,6 +276,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Registers fonts from the specified font URLs with the font manager. Registered fonts are discoverable through font descriptor matching in the calling process
+    ///
+    ///
+    /// In iOS, fonts registered with the persistent scope are not automatically available to other processes. Other process may call CTFontManagerRequestFonts to get access to these fonts.
+    ///
+    ///
+    /// Parameter `fontURLs`: A file URL for the fonts or collections (TTC or OTC) to be registered. Once fonts have been registered from a file, it shouldn't be moved or renamed.
+    ///
+    ///
+    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
+    ///
+    ///
+    /// Parameter `enabled`: Boolean value indicating whether the font derived from the URL should be enabled for font descriptor matching and/or discoverable via CTFontManagerRequestFonts.
+    ///
+    ///
+    /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn CTFontManagerRegisterFontURLs(
         font_ur_ls: CFArrayRef,
@@ -140,6 +302,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Unregisters fonts from the specified font URLs with the font manager. Unregistered fonts do not participate in font descriptor matching.
+    /// iOS note: only fonts registered with CTFontManagerRegisterFontsForURL or CTFontManagerRegisterFontsForURLs can be unregistered with this API.
+    ///
+    ///
+    /// Parameter `fontURLs`: Array of font URLs.
+    ///
+    ///
+    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. Should match the scope the fonts are registered in. See scope constants for more details.
+    ///
+    ///
+    /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter will be an empty array if all files are unregistered. Otherwise, it will contain an array of CFError references. Each error reference will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully unregistered. Note, the handler may be called multiple times during the unregistration process. The done parameter will be set to true when the unregistration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn CTFontManagerUnregisterFontURLs(
         font_ur_ls: CFArrayRef,
@@ -149,6 +322,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Registers font descriptors with the font manager. Registered fonts are discoverable through font descriptor matching in the calling process.
+    ///
+    ///
+    /// Fonts descriptors registered in disabled state are not immediately available for descriptor matching but the font manager will know the descriptors could be made available if necessary. These decriptors can be enabled by making this called again with the enabled parameter set to true. This operation may fail if there is another font registered and enabled with the same Postscript name. In iOS, fonts registered with the persistent scope are not automatically available to other processes. Other process may call CTFontManagerRequestFonts to get access to these fonts.
+    ///
+    ///
+    /// Parameter `fontDescriptors`: Array of font descriptors to register. Font descriptor keys used for registration are: kCTFontURLAttribute, kCTFontNameAttribute, kCTFontFamilyNameAttribute, or kCTFontRegistrationUserInfoAttribute.
+    ///
+    ///
+    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
+    ///
+    ///
+    /// Parameter `enabled`: Boolean value indicating whether the font descriptors should be enabled for font descriptor matching and/or discoverable via CTFontManagerRequestFonts.
+    ///
+    ///
+    /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font descriptors corresponding to kCTFontManagerErrorFontDescriptorsKey. These represent the font descriptors that caused the error, and were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn CTFontManagerRegisterFontDescriptors(
         font_descriptors: CFArrayRef,
@@ -159,6 +348,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Unregisters font descriptors with the font manager. Unregistered fonts do not participate in font descriptor matching.
+    ///
+    ///
+    /// Parameter `fontDescriptors`: Array of font descriptors to unregister.
+    ///
+    ///
+    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
+    ///
+    ///
+    /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter will be an empty array if all font descriptors are unregistered. Otherwise, it will contain an array of CFError references. Each error reference will contain a CFArray of font descriptors corresponding to kCTFontManagerErrorFontDescriptorsKey. These represent the font descriptors that caused the error, and were not successfully unregistered. Note, the handler may be called multiple times during the unregistration process. The done parameter will be set to true when the unregistration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn CTFontManagerUnregisterFontDescriptors(
         font_descriptors: CFArrayRef,
@@ -168,6 +367,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Registers named font assets in the specified bundle with the font manager. Registered fonts are discoverable through font descriptor matching in the calling process.
+    ///
+    ///
+    /// Font assets are extracted from the asset catalog and registered. This call must be made after the completion handler of either NSBundleResourceRequest beginAccessingResourcesWithCompletionHandler: or conditionallyBeginAccessingResourcesWithCompletionHandler: is called successfully.
+    /// Name the assets using Postscript names for individual faces, or family names for variable/collection fonts. The same names can be used to unregister the fonts with CTFontManagerUnregisterFontDescriptors. In iOS, fonts registered with the persistent scope are not automatically available to other processes. Other process may call CTFontManagerRequestFonts to get access to these fonts.
+    ///
+    ///
+    /// Parameter `fontAssetNames`: Array of font name assets in asset catalog.
+    ///
+    ///
+    /// Parameter `bundle`: Bundle containing asset catalog. A null value resolves to the main bundle.
+    ///
+    ///
+    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. kCTFontManagerScopePersistent is the only supported scope for iOS.
+    ///
+    ///
+    /// Parameter `enabled`: Boolean value indicating whether the font assets should be enabled for font descriptor matching and/or discoverable via CTFontManagerRequestFonts.
+    ///
+    ///
+    /// Parameter `registrationHandler`: Block called as errors are discovered, or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font asset names corresponding to kCTFontManagerErrorFontAssetNameKey. These represent the font asset names that were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn CTFontManagerRegisterFontsWithAssetNames(
         font_asset_names: CFArrayRef,
@@ -179,16 +398,43 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Enables or disables the matching font descriptors for font descriptor matching.
+    ///
+    ///
+    /// Parameter `descriptors`: Array of font descriptors.
+    ///
+    ///
+    /// Parameter `enable`: Boolean value indicating whether the fonts matching descriptors should be enabled for font descriptor matching.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerEnableFontDescriptors(descriptors: CFArrayRef, enable: bool);
 }
 
 extern "C-unwind" {
+    /// Returns the registration scope of the specified URL.
+    ///
+    ///
+    /// Parameter `fontURL`: Font URL.
+    ///
+    ///
+    /// Returns: Returns the registration scope of the specified URL, will return kCTFontManagerScopeNone if not currently registered.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerGetScopeForURL(font_url: CFURLRef) -> CTFontManagerScope;
 }
 
 extern "C-unwind" {
+    /// Returns the font descriptors that were registered with the font manager.
+    ///
+    ///
+    /// In the case the persistent scope is specified, only macOS can return fonts registered by any process. Other platforms can only return font descriptors registered by the application's process.
+    ///
+    ///
+    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
+    ///
+    ///
+    /// Parameter `enabled`: Boolean value indicating if the caller is interested in registered font descriptors that are enabled or disabled.
+    ///
+    ///
+    /// Returns: Array of of font descriptors registered by the application. Array may be empty if nothing is registered.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerCopyRegisteredFontDescriptors(
         scope: CTFontManagerScope,
@@ -197,6 +443,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Resolves font descriptors specified on input. On iOS only, if the font descriptors cannot be found, the user is presented with a dialog indicating fonts that could not be resolved. The user may optionally be provided with a way to resolve the missing fonts if the font manager has a way to enable them.
+    ///
+    ///
+    /// On iOS, fonts registered by font provider applications in the persistent scope are not automatically available to other applications. Client applications must call this function to make the requested fonts available for font descriptor matching.
+    ///
+    ///
+    /// Parameter `fontDescriptors`: Array of font descriptors to make available to the process.  Keys used to describe the fonts may be a combination of: kCTFontNameAttribute, kCTFontFamilyNameAttribute, or kCTFontRegistrationUserInfoAttribute.
+    ///
+    ///
+    /// Parameter `completionHandler`: Block called after request operation completes. Block takes a single parameter containing an array of those descriptors that could not be resolved/found. The array can be empty if all descriptors were resolved.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn CTFontManagerRequestFonts(
         font_descriptors: CFArrayRef,
@@ -205,11 +461,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Determines whether a file is in a supported font format.
+    ///
+    ///
+    /// This function does not validate any font data, so clients using it must still be prepared to handle failed registration or font descriptor creation.
+    ///
+    ///
+    /// Parameter `fontURL`: A file URL.
+    ///
+    ///
+    /// Returns: This function returns true if the file is in a supported font format.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerIsSupportedFont(font_url: CFURLRef) -> bool;
 }
 
 extern "C-unwind" {
+    /// Creates a CFRunLoopSourceRef that will be used to convey font requests from CTFontManager.
+    ///
+    /// Parameter `sourceOrder`: The order of the created run loop source.
+    ///
+    /// Parameter `createMatchesCallback`: A block to handle the font request.
+    ///
+    /// Returns: A CFRunLoopSourceRef that should be added to the run loop. To stop receiving requests, invalidate this run loop source. Will return NULL on error, in the case of a duplicate requestPortName or invalid context structure.
     #[cfg(all(
         feature = "block2",
         feature = "libc",
@@ -223,12 +496,27 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagerbundleidentifier?language=objc)
+    /// CTFontManage bundle identifier
+    ///
+    /// The CTFontManager bundle identifier to be used with get or set global auto-activation settings.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagerbundleidentifier?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontManagerBundleIdentifier: CFStringRef;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerautoactivationsetting?language=objc)
+/// Auto-activation settings.
+///
+/// Default auto-activation setting. When specified, the application will use the global setting.
+///
+/// Disables auto-activation.
+///
+/// Enables auto-activation.
+///
+/// Requires user input for auto-activation. A dialog will be presented to the user to confirm auto
+/// activation of the font.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerautoactivationsetting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -252,6 +540,15 @@ unsafe impl RefEncode for CTFontManagerAutoActivationSetting {
 }
 
 extern "C-unwind" {
+    /// Sets the auto-activation for the specified bundle identifier.
+    ///
+    /// Parameter `bundleIdentifier`: The bundle identifier. Used to specify a particular application bundle. If NULL,
+    /// the current application bundle will be used. If kCTFontManagerBundleIdentifier is specified,
+    /// will set the global auto-activation settings.
+    ///
+    /// Parameter `setting`: The new setting.
+    ///
+    /// Function will apply the setting to the appropriate preferences location.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerSetAutoActivationSetting(
         bundle_identifier: CFStringRef,
@@ -260,6 +557,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Accessor for the auto-activation setting.
+    ///
+    /// Parameter `bundleIdentifier`: The bundle identifier. Used to specify a particular application bundle. If NULL,
+    /// the current application bundle will be used. If kCTFontManagerBundleIdentifier is specified,
+    /// will set the global auto-activation settings.
+    ///
+    /// Returns: Will return the auto-activation setting for specified bundle identifier.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontManagerGetAutoActivationSetting(
         bundle_identifier: CFStringRef,
@@ -267,7 +571,15 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagerregisteredfontschangednotification?language=objc)
+    /// Notification name for font registry changes.
+    ///
+    /// This is the string to use as the notification name when subscribing
+    /// to CTFontManager notifications.  This notification will be posted when fonts are added or removed.
+    /// OS X clients should register as an observer of the notification with the distributed notification center
+    /// for changes in session or persistent scopes and with the local notification center for changes in process scope.
+    /// iOS clients should register as an observer of the notification with the local notification center for all changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagerregisteredfontschangednotification?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontManagerRegisteredFontsChangedNotification: CFStringRef;
 }

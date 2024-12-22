@@ -30,6 +30,7 @@ extern_methods!(
         #[method(isOverviewVisible)]
         pub unsafe fn isOverviewVisible(&self) -> bool;
 
+        /// Setter for [`isOverviewVisible`][Self::isOverviewVisible].
         #[method(setOverviewVisible:)]
         pub unsafe fn setOverviewVisible(&self, overview_visible: bool);
 
@@ -42,6 +43,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`selectedWindow`][Self::selectedWindow].
         #[method(setSelectedWindow:)]
         pub fn setSelectedWindow(&self, selected_window: Option<&NSWindow>);
 

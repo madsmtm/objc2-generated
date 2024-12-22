@@ -23,10 +23,13 @@ unsafe impl NSObjectProtocol for UISelectionFeedbackGenerator {}
 extern_methods!(
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UISelectionFeedbackGenerator {
+        /// call when the selection changes (not on initial selection)
         #[method(selectionChanged)]
         pub unsafe fn selectionChanged(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// call when the selection changes (not on initial selection)
+        /// provide the location in the `view` the change occured at
         #[method(selectionChangedAtLocation:)]
         pub unsafe fn selectionChangedAtLocation(&self, location: CGPoint);
     }
@@ -37,6 +40,7 @@ extern_methods!(
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UISelectionFeedbackGenerator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// initalize the generator with a view to attach it to the provided view as an interaction.
         #[method_id(@__retain_semantics Other feedbackGeneratorForView:)]
         pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 

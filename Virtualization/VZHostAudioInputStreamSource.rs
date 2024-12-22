@@ -6,7 +6,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzhostaudioinputstreamsource?language=objc)
+    /// Host audio input stream source provides audio from the host system's default input device.
+    ///
+    /// Host input data comes from the same device that AudioQueueNewInput uses.
+    ///
+    ///
+    /// See: VZVirtioSoundDeviceInputStreamConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzhostaudioinputstreamsource?language=objc)
     #[unsafe(super(VZAudioInputStreamSource, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZAudioInputStreamSource")]

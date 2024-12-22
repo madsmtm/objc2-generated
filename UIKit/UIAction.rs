@@ -12,7 +12,9 @@ use crate::*;
 pub type UIActionIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionpaste?language=objc)
+    /// Default action identifiers for paste variants
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionpaste?language=objc)
     pub static UIActionPaste: &'static UIActionIdentifier;
 }
 
@@ -67,45 +69,64 @@ unsafe impl UIMenuLeaf for UIAction {}
 extern_methods!(
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UIAction {
+        /// Short display title.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "UIImage")]
+        /// Image that can appear next to this action.
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
+        /// Elaborated title used in keyboard shortcut overlay.
         #[method_id(@__retain_semantics Other discoverabilityTitle)]
         pub unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`discoverabilityTitle`][Self::discoverabilityTitle].
         #[method(setDiscoverabilityTitle:)]
         pub unsafe fn setDiscoverabilityTitle(&self, discoverability_title: Option<&NSString>);
 
+        /// This action's identifier.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<UIActionIdentifier>;
 
+        /// This action's style.
         #[method(attributes)]
         pub unsafe fn attributes(&self) -> UIMenuElementAttributes;
 
+        /// Setter for [`attributes`][Self::attributes].
         #[method(setAttributes:)]
         pub unsafe fn setAttributes(&self, attributes: UIMenuElementAttributes);
 
+        /// State that can appear next to this action.
         #[method(state)]
         pub unsafe fn state(&self) -> UIMenuElementState;
 
+        /// Setter for [`state`][Self::state].
         #[method(setState:)]
         pub unsafe fn setState(&self, state: UIMenuElementState);
 
+        /// If available, the object on behalf of which the actionHandler is called.
         #[method_id(@__retain_semantics Other sender)]
         pub unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
+        /// Creates a UIAction with an empty title, nil image, and automatically generated identifier
+        ///
+        ///
+        /// Parameter `handler`: Handler block. Called when the user selects the action.
+        ///
+        ///
+        /// Returns: A new UIAction.
         #[method_id(@__retain_semantics Other actionWithHandler:)]
         pub unsafe fn actionWithHandler(
             handler: UIActionHandler,
@@ -113,6 +134,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
+        /// Creates a UIAction with the given arguments.
+        ///
+        ///
+        /// Parameter `title`: The action's title.
+        ///
+        /// Parameter `image`: Image that can appear next to this action, if needed.
+        ///
+        /// Parameter `identifier`: The action's identifier. Pass nil to use an auto-generated identifier.
+        ///
+        /// Parameter `handler`: Handler block. Called when the user selects the action.
+        ///
+        ///
+        /// Returns: A new UIAction.
         #[method_id(@__retain_semantics Other actionWithTitle:image:identifier:handler:)]
         pub unsafe fn actionWithTitle_image_identifier_handler(
             title: &NSString,
@@ -151,6 +185,15 @@ extern_methods!(
             feature = "UITextInput",
             feature = "UITextInputTraits"
         ))]
+        /// Creates a new UIAction for the captureTextFromCamera: standard edit action.
+        ///
+        ///
+        /// Parameter `responder`: The UIKeyInput responder to send captureTextFromCamera: to.
+        ///
+        /// Parameter `identifier`: The action's identifier. Pass nil to use an auto-generated identifier.
+        ///
+        ///
+        /// Returns: A new UIAction.
         #[method_id(@__retain_semantics Other captureTextFromCameraActionForResponder:identifier:)]
         pub unsafe fn captureTextFromCameraActionForResponder_identifier(
             responder: &UIResponder,

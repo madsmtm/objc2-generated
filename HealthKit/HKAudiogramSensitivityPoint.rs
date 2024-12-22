@@ -26,24 +26,41 @@ unsafe impl NSSecureCoding for HKAudiogramSensitivityPoint {}
 extern_methods!(
     unsafe impl HKAudiogramSensitivityPoint {
         #[cfg(feature = "HKQuantity")]
+        /// is [HKUnit hertzUnit] or "Hz".
         #[method_id(@__retain_semantics Other frequency)]
         pub unsafe fn frequency(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The unit of measurement is `HKUnit.decibelHearingLevelUnit` or "dBHL".
         #[deprecated = "Use tests object which will contain a value for left ear"]
         #[method_id(@__retain_semantics Other leftEarSensitivity)]
         pub unsafe fn leftEarSensitivity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The unit of measurement is `HKUnit.decibelHearingLevelUnit` or "dBHL".
         #[deprecated = "Use tests object which will contain a value for right ear"]
         #[method_id(@__retain_semantics Other rightEarSensitivity)]
         pub unsafe fn rightEarSensitivity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKAudiogramSensitivityTest")]
+        /// The tests conducted at this frequency
         #[method_id(@__retain_semantics Other tests)]
         pub unsafe fn tests(&self) -> Retained<NSArray<HKAudiogramSensitivityTest>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Creates a point that can be included in a audiogram.
+        ///
+        /// Parameter `frequency`: Frequency where sensitivity was measured.
+        ///
+        /// Parameter `leftEarSensitivity`: Left ear sensitivity measured in dB from a baseline of 0 dB. Reduced hearing sensitivity corresponds to an increase from 0 dB.
+        ///
+        /// Parameter `rightEarSensitivity`: Right ear sensitivity measured in dB from a baseline of 0 dB. Reduced hearing sensitivity corresponds to an increase from 0 dB.
+        ///
+        /// Parameter `error`: If there was a problem creating this instance this will contain the error.
+        ///
+        /// Returns: New instance of a sensitivity point or nil if there were problems
+        /// creating the instance.  Errors may include incorrect quantity units
+        /// or data that is out of an expected range.
         #[deprecated = "Use +[HKAudiogramSensitivityPoint sensitivityPointWithFrequency:tests:error:]"]
         #[method_id(@__retain_semantics Other sensitivityPointWithFrequency:leftEarSensitivity:rightEarSensitivity:error:_)]
         pub unsafe fn sensitivityPointWithFrequency_leftEarSensitivity_rightEarSensitivity_error(
@@ -53,6 +70,17 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "HKAudiogramSensitivityTest", feature = "HKQuantity"))]
+        /// Creates a point that can be included in a audiogram.
+        ///
+        /// Parameter `frequency`: Frequency at which sensitivity was measured.
+        ///
+        /// Parameter `tests`: The tests conducted at the frequency
+        ///
+        /// Parameter `errorOut`: If there was a problem creating this instance this will contain the error.
+        ///
+        /// Returns: New instance of a sensitivity point or nil if there were problems
+        /// creating the instance.  Errors may include incorrect quantity units
+        /// or data that is out of an expected range.
         #[method_id(@__retain_semantics Other sensitivityPointWithFrequency:tests:error:_)]
         pub unsafe fn sensitivityPointWithFrequency_tests_error(
             frequency: &HKQuantity,

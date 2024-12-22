@@ -103,6 +103,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentContext)]
         pub unsafe fn currentContext() -> Option<Retained<NSGraphicsContext>>;
 
+        /// Setter for [`currentContext`][Self::currentContext].
         #[method(setCurrentContext:)]
         pub unsafe fn setCurrentContext(current_context: Option<&NSGraphicsContext>);
 
@@ -159,12 +160,14 @@ extern_methods!(
         #[method(shouldAntialias)]
         pub unsafe fn shouldAntialias(&self) -> bool;
 
+        /// Setter for [`shouldAntialias`][Self::shouldAntialias].
         #[method(setShouldAntialias:)]
         pub unsafe fn setShouldAntialias(&self, should_antialias: bool);
 
         #[method(imageInterpolation)]
         pub unsafe fn imageInterpolation(&self) -> NSImageInterpolation;
 
+        /// Setter for [`imageInterpolation`][Self::imageInterpolation].
         #[method(setImageInterpolation:)]
         pub unsafe fn setImageInterpolation(&self, image_interpolation: NSImageInterpolation);
 
@@ -173,6 +176,7 @@ extern_methods!(
         pub unsafe fn patternPhase(&self) -> NSPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`patternPhase`][Self::patternPhase].
         #[method(setPatternPhase:)]
         pub unsafe fn setPatternPhase(&self, pattern_phase: NSPoint);
 
@@ -181,6 +185,7 @@ extern_methods!(
         pub unsafe fn compositingOperation(&self) -> NSCompositingOperation;
 
         #[cfg(feature = "NSGraphics")]
+        /// Setter for [`compositingOperation`][Self::compositingOperation].
         #[method(setCompositingOperation:)]
         pub unsafe fn setCompositingOperation(&self, compositing_operation: NSCompositingOperation);
 
@@ -189,6 +194,7 @@ extern_methods!(
         pub unsafe fn colorRenderingIntent(&self) -> NSColorRenderingIntent;
 
         #[cfg(feature = "NSGraphics")]
+        /// Setter for [`colorRenderingIntent`][Self::colorRenderingIntent].
         #[method(setColorRenderingIntent:)]
         pub unsafe fn setColorRenderingIntent(
             &self,

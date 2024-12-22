@@ -30,18 +30,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
+        /// Setter for [`type`][Self::type].
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: &NSString);
 
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`configuration`][Self::configuration].
         #[method(setConfiguration:)]
         pub unsafe fn setConfiguration(&self, configuration: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
@@ -54,12 +57,14 @@ extern_methods!(
         #[method(isReadOnly)]
         pub unsafe fn isReadOnly(&self) -> bool;
 
+        /// Setter for [`isReadOnly`][Self::isReadOnly].
         #[method(setReadOnly:)]
         pub unsafe fn setReadOnly(&self, read_only: bool);
 
         #[method(timeout)]
         pub unsafe fn timeout(&self) -> NSTimeInterval;
 
+        /// Setter for [`timeout`][Self::timeout].
         #[method(setTimeout:)]
         pub unsafe fn setTimeout(&self, timeout: NSTimeInterval);
 
@@ -72,12 +77,14 @@ extern_methods!(
         #[method(shouldAddStoreAsynchronously)]
         pub unsafe fn shouldAddStoreAsynchronously(&self) -> bool;
 
+        /// Setter for [`shouldAddStoreAsynchronously`][Self::shouldAddStoreAsynchronously].
         #[method(setShouldAddStoreAsynchronously:)]
         pub unsafe fn setShouldAddStoreAsynchronously(&self, should_add_store_asynchronously: bool);
 
         #[method(shouldMigrateStoreAutomatically)]
         pub unsafe fn shouldMigrateStoreAutomatically(&self) -> bool;
 
+        /// Setter for [`shouldMigrateStoreAutomatically`][Self::shouldMigrateStoreAutomatically].
         #[method(setShouldMigrateStoreAutomatically:)]
         pub unsafe fn setShouldMigrateStoreAutomatically(
             &self,
@@ -87,6 +94,7 @@ extern_methods!(
         #[method(shouldInferMappingModelAutomatically)]
         pub unsafe fn shouldInferMappingModelAutomatically(&self) -> bool;
 
+        /// Setter for [`shouldInferMappingModelAutomatically`][Self::shouldInferMappingModelAutomatically].
         #[method(setShouldInferMappingModelAutomatically:)]
         pub unsafe fn setShouldInferMappingModelAutomatically(
             &self,
@@ -113,12 +121,15 @@ extern_methods!(
     /// NSPersistentCloudKitContainerAdditions
     unsafe impl NSPersistentStoreDescription {
         #[cfg(feature = "NSPersistentCloudKitContainerOptions")]
+        /// Use this property to apply customized instances of NSPersistentCloudKitContainerOptions to
+        /// a store description you wish to use with CloudKit.
         #[method_id(@__retain_semantics Other cloudKitContainerOptions)]
         pub unsafe fn cloudKitContainerOptions(
             &self,
         ) -> Option<Retained<NSPersistentCloudKitContainerOptions>>;
 
         #[cfg(feature = "NSPersistentCloudKitContainerOptions")]
+        /// Setter for [`cloudKitContainerOptions`][Self::cloudKitContainerOptions].
         #[method(setCloudKitContainerOptions:)]
         pub unsafe fn setCloudKitContainerOptions(
             &self,

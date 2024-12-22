@@ -15,7 +15,9 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloadererror?language=objc)
+/// MTKTextureLoaderErrors
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloadererror?language=objc)
 // NS_TYPED_ENUM
 pub type MTKTextureLoaderError = NSString;
 
@@ -29,37 +31,65 @@ extern "C" {
     pub static MTKTextureLoaderErrorKey: &'static MTKTextureLoaderError;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoption?language=objc)
+/// MTKTextureLoaderOptions
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoption?language=objc)
 // NS_TYPED_ENUM
 pub type MTKTextureLoaderOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptionallocatemipmaps?language=objc)
+    /// Identifier to be used in an options NSDictionary with a boolean NSNumber specifying whether to allocate memory for mipmaps when creating the texture
+    ///
+    /// If the boolean value specified with this string is true, the resulting Metal texture will have been created with mipmaps whose contents are undefined. It is the responsibility of the caller to fill out the contents of the mipmap data unless MTLTextureLoaderOptionGenerateMipmaps is specified. If the file being loaded contains data for mipmaps (such as in a PVR or KTX file) this option does not need to be specified. In those cases the mipmap memory will be allocated and the image data loaded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptionallocatemipmaps?language=objc)
     pub static MTKTextureLoaderOptionAllocateMipmaps: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptiongeneratemipmaps?language=objc)
+    /// Identifier to be used in an options NSDictionary with a boolean NSNumber specifying whether to generate mipmaps when creating the texture
+    ///
+    /// If the boolean value specified with this string is true, the resulting Metal texture will be created with mipmaps. If the file being loaded contains data for mipmaps (such as in a PVR or KTX file), specifying this option will overwrite the existing mipmap data in the loaded texture. This option can only be used if the pixel format of the texture is color filterable and color renderable. This option implies MTKTextureLoaderOptionAllocateMipmaps. Specifying this option will cause the MTKTextureLoader to submit work to the GPU on behalf of the caller.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptiongeneratemipmaps?language=objc)
     pub static MTKTextureLoaderOptionGenerateMipmaps: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptionsrgb?language=objc)
+    /// Identifier to be used in an options NSDictionary with a boolean NSNumber specifying whether to create the texture with an sRGB (gamma corrected) pixel format
+    ///
+    /// If the boolean value specified with this string is true, the texture will be created with an sRGB pixel format regardless of whether the image file specifies that the data has already been gamma corrected. Likewise, if false, the texture will be created with a non-sRGB pixel format regardless of whether the image file specifies that the data has been gamma corrected. To use the sRGB information specified in the file, do not specify this in the options dictionary.
+    ///
+    /// Warning: When deploying to OS's prior to macOS 10.15 / iOS 13.0, this option is ignored for loading KTX textures.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptionsrgb?language=objc)
     pub static MTKTextureLoaderOptionSRGB: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptiontextureusage?language=objc)
+    /// Identifier to be used with an NSNumber specifying the MTLTextureUsage flags
+    ///
+    /// The resulting Metal texture will be created with the MTLTextureUsage flags indicated by the NSNumber associated with this string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptiontextureusage?language=objc)
     pub static MTKTextureLoaderOptionTextureUsage: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptiontexturecpucachemode?language=objc)
+    /// Identifier to be used with an NSNumber specifying the MTLCPUCacheMode
+    ///
+    /// The resulting Metal texture will be created with the MTLCPUCacheMode indicated by the NSNumber associated with this string.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptiontexturecpucachemode?language=objc)
     pub static MTKTextureLoaderOptionTextureCPUCacheMode: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptiontexturestoragemode?language=objc)
+    /// Identifier to be used with an NSNumber specifying the MTLStorageMode
+    ///
+    /// The resulting Metal texture will be created with the MTLStorageMode indicated by the NSNumber associated with this string. If this option is omitted, the texture will be created with the default storage mode for Metal textures: MTLStorageModeShared on iOS, and MTLStorageModeManaged on OS X. Specifying this option with MTLTextureStorageModePrivate cause the MTKTextureLoader to submit work to the GPU on behalf of the caller.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptiontexturestoragemode?language=objc)
     pub static MTKTextureLoaderOptionTextureStorageMode: &'static MTKTextureLoaderOption;
 }
 
@@ -68,12 +98,20 @@ extern "C" {
 pub type MTKTextureLoaderCubeLayout = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptioncubelayout?language=objc)
+    /// Identifier to be used in an options NSDictionary with an MTKTextureLoaderCubeLayout NSString specifying whether to create a cubemap from a 2D image
+    ///
+    /// The NSString value specified with this string must be one option of MTKTextureLoaderCubeLayout. If this option is omitted, the texture loader will not create cubemaps from 2D textures. This option cannot be used with PVR files, KTX files, or MDLTextures, which support cube textures directly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptioncubelayout?language=objc)
     pub static MTKTextureLoaderOptionCubeLayout: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloadercubelayoutvertical?language=objc)
+    /// Identifier specifying that the texture loader will create a cube texture from six faces arranged vertically within a single 2D image
+    ///
+    /// A texture cube will be created from six faces arranged vertically within a single 2D image. The image height must be six times the image width, with faces arranged in the following order from top to bottom: +X, -X, +Y, -Y, +Z, -Z.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloadercubelayoutvertical?language=objc)
     pub static MTKTextureLoaderCubeLayoutVertical: &'static MTKTextureLoaderCubeLayout;
 }
 
@@ -82,27 +120,47 @@ extern "C" {
 pub type MTKTextureLoaderOrigin = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptionorigin?language=objc)
+    /// Identifier to be used in an options NSDictionary with an MTKTextureLoaderOrigin NSString specifying whether to flip textures vertically
+    ///
+    /// The NSString value specified with this string must be one option of MTKTextureLoaderOrigin. If this option is omitted, the texture loader will not flip loaded textures. This option cannot be used with block-compressed texture formats, and can only be used with 2D, 2D array, and cube map textures. Each mipmap level and slice of a texture will be flipped.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptionorigin?language=objc)
     pub static MTKTextureLoaderOptionOrigin: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderorigintopleft?language=objc)
+    /// Identifier specifying that the texture loader should flip textures whose origin is in the bottom-left corner
+    ///
+    /// The texture will be flipped vertically if metadata in the file being loaded indicates that the source data starts with the bottom-left corner of the texture.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderorigintopleft?language=objc)
     pub static MTKTextureLoaderOriginTopLeft: &'static MTKTextureLoaderOrigin;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoriginbottomleft?language=objc)
+    /// Identifier specifying that the texture loader should flip textures whose origin is in the top-left corner
+    ///
+    /// The texture will be flipped vertically if metadata in the file being loaded indicates that the source data starts with the top-left corner of the texture.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoriginbottomleft?language=objc)
     pub static MTKTextureLoaderOriginBottomLeft: &'static MTKTextureLoaderOrigin;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoriginflippedvertically?language=objc)
+    /// Identifier specifying that the texture loader should always flip textures
+    ///
+    /// The texture will be flipped vertically regardless of any metadata in the file indicating the placement of the origin in the source data
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoriginflippedvertically?language=objc)
     pub static MTKTextureLoaderOriginFlippedVertically: &'static MTKTextureLoaderOrigin;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptionloadasarray?language=objc)
+    /// Identifier specifying that the texture should be loaded as an array texture when possible.
+    ///
+    /// Type is an NSNumber with a boolean value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderoptionloadasarray?language=objc)
     pub static MTKTextureLoaderOptionLoadAsArray: &'static MTKTextureLoaderOption;
 }
 
@@ -117,7 +175,9 @@ pub type MTKTextureLoaderArrayCallback =
     *mut block2::Block<dyn Fn(NonNull<NSArray<ProtocolObject<dyn MTLTexture>>>, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader?language=objc)
+    /// Load Metal textures from files with the device specified at initialization
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKTextureLoader;
@@ -127,12 +187,16 @@ unsafe impl NSObjectProtocol for MTKTextureLoader {}
 
 extern_methods!(
     unsafe impl MTKTextureLoader {
+        /// Metal device with which to create Metal textures
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initialize the loader
+        ///
+        /// Parameter `device`: Metal device with which to create Metal textures
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -140,6 +204,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Asynchronously create a Metal texture and load image data from the file at URL
+        ///
+        /// Parameter `URL`: Location of image file from which to create the texture
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
+        ///
+        /// Parameter `completionHandler`: Block called when the texture has been loaded and fully initialized
         #[method(newTextureWithContentsOfURL:options:completionHandler:)]
         pub unsafe fn newTextureWithContentsOfURL_options_completionHandler(
             &self,
@@ -149,6 +220,30 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// Asynchronously create a Metal texture and load image data from a given texture or image
+        /// asset name
+        ///
+        /// Parameter `name`: A texture or image asset name
+        ///
+        /// Parameter `scaleFactor`: scale factor of the texture to retrieve from the asset catalog.  Typically the
+        /// value retrieved from -[UIView contentScale] or -[NSWindow backingScaleFactor].
+        ///
+        /// Parameter `bundle`: Resource bundle in which the asset is located.  Main bundle used if nil.
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions. The following options are ignormed when used
+        /// to load a texture asset but can be used when creating a texture from an image asset:
+        /// MTKTextureLoaderOptionGenerateMipmaps
+        /// MTKTextureLoaderOptionSRGB
+        /// MTKTextureLoaderOptionCubeFromVerticalTexture
+        /// MTKTextureLoaderOptionOrigin
+        ///
+        /// Parameter `completionHandler`: Block called when texture has been loaded and fully initialized
+        ///
+        /// Uses texture data from version of the texture from the texture set in the asset catalog
+        /// which mathces the device's traits.
+        /// This method attempts to load a texture asset with thw name iven.  If a texture asset
+        /// with the name given does not exist, it will attempt to create a texture from an
+        /// image asset with the given name
         #[method(newTextureWithName:scaleFactor:bundle:options:completionHandler:)]
         pub unsafe fn newTextureWithName_scaleFactor_bundle_options_completionHandler(
             &self,
@@ -165,6 +260,36 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
+        /// Asynchronously create a Metal texture and load image data from a given texture or image
+        /// asset name
+        ///
+        /// Parameter `name`: A texture or image asset name
+        ///
+        /// Parameter `scaleFactor`: Scale factor of the texture to retrieve from the asset catalog.  Typically the
+        /// value retrieved from -[NSWindow backingScaleFactor].
+        ///
+        /// Parameter `displayGamut`: Version of the texture based upon the "Gamut" trait in Xcode.  You'd typically
+        /// check -[NSWindow canRepresentDisplayGamut:] with the widest NSDisplayGamut value
+        /// and pass that value here if it returns YES.
+        ///
+        /// Parameter `bundle`: Resource bundle in which the asset is located.  Main bundle used if nil.
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions. The following options are ignormed when used
+        /// to load a texture asset but can be used when creating a texture from an image asset:
+        /// MTKTextureLoaderOptionGenerateMipmaps
+        /// MTKTextureLoaderOptionSRGB
+        /// MTKTextureLoaderOptionCubeFromVerticalTexture
+        /// MTKTextureLoaderOptionOrigin
+        ///
+        /// Parameter `completionHandler`: Block called when texture has been loaded and fully initialized
+        ///
+        /// Uses texture data from version of the texture from the texture set in the asset catalog
+        /// which mathces the device's traits.
+        /// This method attempts to load a texture asset with the name given.  If a texture asset
+        /// with the name given does not exist, it will attempt to create a texture from an
+        /// image asset with the given name.
+        /// This method can be used on macOS to choose between sRGB and P3 versions of a texture
+        /// asset depending on the gamut of the display rendered to.
         #[method(newTextureWithName:scaleFactor:displayGamut:bundle:options:completionHandler:)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler(
             &self,
@@ -177,6 +302,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Asynchronously create an array of Metal textures and load image data from the files at URLs
+        ///
+        /// Parameter `URLs`: Locations of image files from which to create the textures
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions, which will be used for every texture loaded
+        ///
+        /// Parameter `completionHandler`: Block called when all of the textures have been loaded and fully initialized. The array of MTLTextures will be the same length and in the same order as the requested array of paths. If an error occurs while loading a texture, the corresponding array index will contain NSNull. The NSError will be null if all of the textures are loaded successfully, or will correspond to one of the textures which failed to load.
         #[method(newTexturesWithContentsOfURLs:options:completionHandler:)]
         pub unsafe fn newTexturesWithContentsOfURLs_options_completionHandler(
             &self,
@@ -186,6 +318,34 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// Asynchronously create Metal textures and load image data from a given texture or image
+        /// asset names
+        ///
+        /// Parameter `names`: An array texture or image asset names.  If an error occurs while loading a texture,
+        /// the corresponding index in the returned array contain [NSNull null]
+        ///
+        /// Parameter `scaleFactor`: scale factor of the texture to retrieve from the asset catalog.  Typically the
+        /// value retrieved from -[UIView contentScale] or -[NSWindow backingScaleFactor].
+        ///
+        /// Parameter `bundle`: Resource bundle in which the assets are located.  Main bundle used if nil.
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions. The following options are ignormed when used
+        /// to load a texture asset but can be used when creating a texture from an image asset
+        /// MTKTextureLoaderOptionGenerateMipmaps
+        /// MTKTextureLoaderOptionSRGB
+        /// MTKTextureLoaderOptionCubeFromVerticalTexture
+        /// MTKTextureLoaderOptionOrigin
+        ///
+        /// Parameter `completionHandler`: Block called when all of the textures have been loaded and fully
+        /// initialized. The NSError will be null if all of the textures are loaded
+        /// successfully, or will correspond to one of the textures which failed to
+        /// load.
+        ///
+        /// Uses texture data from version of the texture from the texture set in the asset catalog
+        /// which mathces the device's traits.
+        /// This method attempts to load a texture asset with each name iven.  If a texture asset
+        /// with the name given does not exist, it will attempt to create a texture from an
+        /// image asset with the given name.
         #[method(newTexturesWithNames:scaleFactor:bundle:options:completionHandler:)]
         pub unsafe fn newTexturesWithNames_scaleFactor_bundle_options_completionHandler(
             &self,
@@ -202,6 +362,44 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
+        /// Asynchronously create Metal textures and load image data from given texture or image
+        /// asset names
+        ///
+        /// Parameter `names`: An array texture or image asset names.  If an error occurs while loading a texture,
+        /// the corresponding index in the returned array contain [NSNull null]
+        ///
+        /// Parameter `scaleFactor`: Scale factor of the texture to retrieve from the asset catalog.  Typically the
+        /// value retrieved from -[UIView contentScale] or -[NSWindow backingScaleFactor]
+        ///
+        /// Parameter `displayGamut`: Version of the texture based upon the "Gamut" trait in Xcode.  You'd typically
+        /// check -[NSWindow canRepresentDisplayGamut:] with the widest NSDisplayGamut value
+        /// and pass that value here if it returns YES.
+        ///
+        /// Parameter `bundle`: Resource bundle in which the assets are located
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions. The following options are ignormed when used
+        /// to load a texture asset but can be used when creating a texture from an image asset
+        /// MTKTextureLoaderOptionGenerateMipmaps
+        /// MTKTextureLoaderOptionSRGB
+        /// MTKTextureLoaderOptionCubeFromVerticalTexture
+        /// MTKTextureLoaderOptionOrigin
+        ///
+        /// Parameter `completionHandler`: Block called when all of the textures have been loaded and fully
+        /// initialized. The NSError will be nif if all of the textures are loaded
+        /// successfully, or will correspond to one of the textures which failed to
+        /// load.
+        ///
+        /// Uses texture data from version of the texture from the texture sets in the asset catalog
+        /// which mathces the device's traits.
+        /// This method attempts to load a texture asset with each name given.  If a texture asset
+        /// with the name given does not exist, it will attempt to create a texture from an
+        /// image asset with the given name.
+        /// This method can be used on macOS to choose between sRGB and P3 versions of a texture
+        /// asset depending on the gamut of the display rendered to,
+        /// If a texture with a name fails to load, the correposding index in the returned array
+        /// will be set to [NSNull null].  An error will also be set.  Thus, if there is a failure
+        /// to load a texture with a name, other names may succesfully be loaded.  Also, a set
+        /// error does not necessarily mean all textures in the names array have failed to load.
         #[method(newTexturesWithNames:scaleFactor:displayGamut:bundle:options:completionHandler:)]
         pub unsafe fn newTexturesWithNames_scaleFactor_displayGamut_bundle_options_completionHandler(
             &self,
@@ -214,6 +412,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Asynchronously create a Metal texture and load image data from the NSData object provided
+        ///
+        /// Parameter `data`: NSData object containing image file data from which to create the texture
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
+        ///
+        /// Parameter `completionHandler`: Block called when texture has been loaded and fully initialized
         #[method(newTextureWithData:options:completionHandler:)]
         pub unsafe fn newTextureWithData_options_completionHandler(
             &self,
@@ -223,6 +428,13 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
+        /// Asynchronously create a Metal texture and load image data from the given CGImageRef
+        ///
+        /// Parameter `cgImage`: CGImageRef containing image data from which to create the texture
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
+        ///
+        /// Parameter `completionHandler`: Block called when texture has been loaded and fully initialized
         #[method(newTextureWithCGImage:options:completionHandler:)]
         pub unsafe fn newTextureWithCGImage_options_completionHandler(
             &self,
@@ -231,6 +443,15 @@ extern_methods!(
             completion_handler: MTKTextureLoaderCallback,
         );
 
+        /// Synchronously create a Metal texture and load image data from the file at URL
+        ///
+        /// Returns: The Metal texture. nil if an error occured
+        ///
+        /// Parameter `URL`: Location of image file from which to create the texture
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
+        ///
+        /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred
         #[method_id(@__retain_semantics New newTextureWithContentsOfURL:options:error:_)]
         pub unsafe fn newTextureWithContentsOfURL_options_error(
             &self,
@@ -238,6 +459,15 @@ extern_methods!(
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
 
+        /// Synchronously create a Metal texture and load image data from the NSData object provided
+        ///
+        /// Returns: The Metal texture. nil if an error occured
+        ///
+        /// Parameter `data`: NSData object containing image file data from which to create the texture
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
+        ///
+        /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred
         #[method_id(@__retain_semantics New newTextureWithData:options:error:_)]
         pub unsafe fn newTextureWithData_options_error(
             &self,
@@ -246,6 +476,15 @@ extern_methods!(
         ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Synchronously create a Metal texture and load image data from the given CGImageRef
+        ///
+        /// Returns: The Metal texture. nil if an error occured
+        ///
+        /// Parameter `cgImage`: CGImageRef containing image data from which to create the texture
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
+        ///
+        /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred
         #[method_id(@__retain_semantics New newTextureWithCGImage:options:error:_)]
         pub unsafe fn newTextureWithCGImage_options_error(
             &self,
@@ -254,6 +493,30 @@ extern_methods!(
         ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Synchronously create a Metal texture with texture data from a given texture or image
+        /// asset name
+        ///
+        /// Returns: The Metal texture. nil if an error occured
+        ///
+        /// Parameter `names`: An array of texture asset names
+        ///
+        /// Parameter `scaleFactor`: scale factor of the texture to retrieve from the asset catalog.  Typically the
+        /// value retrieved from -[UIView contentScale] or -[NSWindow backingScaleFactor].
+        ///
+        /// Parameter `bundle`: Resource bundle in which the asset is located.  Main bundle used if nil.
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions. The following options are ignormed when used
+        /// to load a texture asset but can be used when creating a texture from an image asset
+        /// MTKTextureLoaderOptionGenerateMipmaps
+        /// MTKTextureLoaderOptionSRGB
+        /// MTKTextureLoaderOptionCubeFromVerticalTexture
+        /// MTKTextureLoaderOptionOrigins
+        ///
+        /// Uses texture data from version of the texture from the texture set in the asset catalog
+        /// which mathces the device's traits.
+        /// This method attempts to load a texture asset with the name given.  If a texture asset
+        /// with the name given does not exist, it will attempt to create a texture from an
+        /// image asset with the given name.
         #[method_id(@__retain_semantics New newTextureWithName:scaleFactor:bundle:options:error:_)]
         pub unsafe fn newTextureWithName_scaleFactor_bundle_options_error(
             &self,
@@ -265,6 +528,38 @@ extern_methods!(
 
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
         #[cfg(target_os = "macos")]
+        /// Synchronously create a Metal texture with texture data from a given texture or image
+        /// asset name
+        ///
+        /// Returns: The Metal texture. nil if an error occured
+        ///
+        /// Parameter `names`: An array of texture asset names
+        ///
+        /// Parameter `scaleFactor`: Scale factor of the texture to retrieve from the asset catalog.  Typically the
+        /// value retrieved from -[UIView contentScale] or -[NSWindow backingScaleFactor].
+        ///
+        /// Parameter `displayGamut`: Version of the texture based upon the "Gamut" trait in Xcode.  You'd typically
+        /// check -[NSWindow canRepresentDisplayGamut:] with the widest NSDisplayGamut value
+        /// and pass that value here if it returns YES.
+        ///
+        /// Parameter `bundle`: Resource bundle in which the assets are located
+        ///
+        /// Parameter `bundle`: Resource bundle in which the asset is located.  Main bundle used if nil.
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions. The following options are ignormed when used
+        /// to load a texture asset but can be used when creating a texture from an image asset
+        /// MTKTextureLoaderOptionGenerateMipmaps
+        /// MTKTextureLoaderOptionSRGB
+        /// MTKTextureLoaderOptionCubeFromVerticalTexture
+        /// MTKTextureLoaderOptionOrigin
+        ///
+        /// Uses texture data from version of the texture from the texture set in the asset catalog
+        /// which mathces the device's traits.
+        /// This method attempts to load a texture asset with the name given.  If a texture asset
+        /// with the name given does not exist, it will attempt to create a texture from an
+        /// image asset with the given name.
+        /// This method can be used on macOS to choose between sRGB and P3 versions of a texture
+        /// asset depending on the gamut of the display rendered to.
         #[method_id(@__retain_semantics New newTextureWithName:scaleFactor:displayGamut:bundle:options:error:_)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_error(
             &self,

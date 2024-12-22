@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginerecordzonechangebatch?language=objc)
+    /// A batch of record zone changes that `CKSyncEngine` will send to the server in a single request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginerecordzonechangebatch?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineRecordZoneChangeBatch;
@@ -28,6 +30,14 @@ extern_methods!(
             feature = "CKSyncEngineState",
             feature = "block2"
         ))]
+        /// Creates a batch of record zone changes according to a list of pending changes.
+        ///
+        /// This will iterate over the pending changes in order and add them to the batch until it reaches the max batch size.
+        ///
+        /// When it sees a pending save, it will ask the record provider for the actual `CKRecord` to send to the server.
+        /// If you return `nil` from the record provider, this will skip to the next pending change.
+        ///
+        /// This will return `nil` if there are no pending changes to send.
         #[method_id(@__retain_semantics Init initWithPendingChanges:recordProvider:)]
         pub unsafe fn initWithPendingChanges_recordProvider(
             this: Allocated<Self>,
@@ -36,6 +46,17 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID"))]
+        /// Creates a batch of record zone changes to send to the server with a specific set of changes.
+        ///
+        /// If you'd like to construct your own custom batches of changes to send to the server, you can do so with this initializer.
+        ///
+        /// ## Batch size limitations
+        ///
+        /// When creating your own batches, you need to consider batch size limitations.
+        /// There is a maximum count and size of records that can be sent to the server in a single batch.
+        /// If you supply too many changes, or if the total size of the records is too large, then you might get a ``CKErrorLimitExceeded``.
+        ///
+        /// > Tip: These batch size limitations are handled automatically by the ``initWithPendingChanges:recordProvider:`` initializer.
         #[method_id(@__retain_semantics Init initWithRecordsToSave:recordIDsToDelete:atomicByZone:)]
         pub unsafe fn initWithRecordsToSave_recordIDsToDelete_atomicByZone(
             this: Allocated<Self>,
@@ -51,16 +72,24 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
+        /// The records to save to the server.
         #[method_id(@__retain_semantics Other recordsToSave)]
         pub unsafe fn recordsToSave(&self) -> Retained<NSArray<CKRecord>>;
 
         #[cfg(feature = "CKRecordID")]
+        /// The IDs of the records to delete from the server.
         #[method_id(@__retain_semantics Other recordIDsToDelete)]
         pub unsafe fn recordIDsToDelete(&self) -> Retained<NSArray<CKRecordID>>;
 
+        /// If set to true, the sync engine will modify these records atomically by zone.
+        ///
+        /// If this is true, and if any record change fails, then any other changes from that zone in this batch will also fail with ``CKErrorBatchRequestFailed``.
+        ///
+        /// Records that exist in different zones will not be modified together atomically.
         #[method(atomicByZone)]
         pub unsafe fn atomicByZone(&self) -> bool;
 
+        /// Setter for [`atomicByZone`][Self::atomicByZone].
         #[method(setAtomicByZone:)]
         pub unsafe fn setAtomicByZone(&self, atomic_by_zone: bool);
     }

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksource?language=objc)
+    /// Represents the entity that created an object stored by HealthKit.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSource;
@@ -31,12 +33,16 @@ unsafe impl NSSecureCoding for HKSource {}
 
 extern_methods!(
     unsafe impl HKSource {
+        /// The name of the source represented by the receiver.  If the source is an app, then the name is the
+        /// localized name of the app.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// The bundle identifier of the source represented by the receiver.
         #[method_id(@__retain_semantics Other bundleIdentifier)]
         pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
+        /// Returns the source representing the calling application.
         #[method_id(@__retain_semantics Other defaultSource)]
         pub unsafe fn defaultSource() -> Retained<HKSource>;
 

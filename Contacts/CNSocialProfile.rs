@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofile?language=objc)
+    /// An immutable value object representing a social profile.
+    ///
+    ///
+    /// CNSocialProfile is thread safe.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofile?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNSocialProfile;
@@ -48,9 +53,11 @@ extern_methods!(
             service: Option<&NSString>,
         ) -> Retained<Self>;
 
+        /// Returns a user displayable property name.
         #[method_id(@__retain_semantics Other localizedStringForKey:)]
         pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
 
+        /// Returns a user displayable service name.
         #[method_id(@__retain_semantics Other localizedStringForService:)]
         pub unsafe fn localizedStringForService(service: &NSString) -> Retained<NSString>;
     }

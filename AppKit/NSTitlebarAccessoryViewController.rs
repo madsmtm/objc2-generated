@@ -66,6 +66,7 @@ extern_methods!(
         pub unsafe fn layoutAttribute(&self) -> NSLayoutAttribute;
 
         #[cfg(feature = "NSLayoutConstraint")]
+        /// Setter for [`layoutAttribute`][Self::layoutAttribute].
         #[method(setLayoutAttribute:)]
         pub unsafe fn setLayoutAttribute(&self, layout_attribute: NSLayoutAttribute);
 
@@ -74,18 +75,21 @@ extern_methods!(
         pub unsafe fn fullScreenMinHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`fullScreenMinHeight`][Self::fullScreenMinHeight].
         #[method(setFullScreenMinHeight:)]
         pub unsafe fn setFullScreenMinHeight(&self, full_screen_min_height: CGFloat);
 
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[method(automaticallyAdjustsSize)]
         pub unsafe fn automaticallyAdjustsSize(&self) -> bool;
 
+        /// Setter for [`automaticallyAdjustsSize`][Self::automaticallyAdjustsSize].
         #[method(setAutomaticallyAdjustsSize:)]
         pub unsafe fn setAutomaticallyAdjustsSize(&self, automatically_adjusts_size: bool);
 

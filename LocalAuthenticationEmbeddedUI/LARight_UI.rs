@@ -14,6 +14,7 @@ use crate::*;
 extern_category!(
     /// Category "UI" on [`LARight`].
     #[doc(alias = "UI")]
+    /// Groups methods that control aspects of the UI used for authorizing a right
     pub unsafe trait LARightUI {
         #[cfg(all(
             feature = "LAPresentationContext",
@@ -21,6 +22,13 @@ extern_category!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Tries to authorize the right.
+        ///
+        /// Parameter `localizedReason`: Localized explanation for the authorization. Appears in the UI presented to the user.
+        ///
+        /// Parameter `presentationContext`: Container where the authorization UI will be presented.
+        ///
+        /// Parameter `handler`: Completion handler called after the authorization finishses. Returns an error when the authorization fails.
         #[method(authorizeWithLocalizedReason:inPresentationContext:completion:)]
         unsafe fn authorizeWithLocalizedReason_inPresentationContext_completion(
             &self,

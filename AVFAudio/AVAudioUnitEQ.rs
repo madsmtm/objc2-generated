@@ -10,7 +10,56 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype?language=objc)
+/// Filter types available to use with AVAudioUnitEQ.
+///
+/// Depending on the filter type, a combination of one or all of the filter parameters defined
+/// in AVAudioUnitEQFilterParameters are used to set the filter.
+///
+/// AVAudioUnitEQFilterTypeParametric
+/// Parametric filter based on Butterworth analog prototype.
+/// Required parameters: frequency (center), bandwidth, gain
+///
+/// AVAudioUnitEQFilterTypeLowPass
+/// Simple Butterworth 2nd order low pass filter
+/// Required parameters: frequency (-3 dB cutoff at specified frequency)
+///
+/// AVAudioUnitEQFilterTypeHighPass
+/// Simple Butterworth 2nd order high pass filter
+/// Required parameters: frequency (-3 dB cutoff at specified frequency)
+///
+/// AVAudioUnitEQFilterTypeResonantLowPass
+/// Low pass filter with resonance support (via bandwidth parameter)
+/// Required parameters: frequency (-3 dB cutoff at specified frequency), bandwidth
+///
+/// AVAudioUnitEQFilterTypeResonantHighPass
+/// High pass filter with resonance support (via bandwidth parameter)
+/// Required parameters: frequency (-3 dB cutoff at specified frequency), bandwidth
+///
+/// AVAudioUnitEQFilterTypeBandPass
+/// Band pass filter
+/// Required parameters: frequency (center), bandwidth
+///
+/// AVAudioUnitEQFilterTypeBandStop
+/// Band stop filter (aka "notch filter")
+/// Required parameters: frequency (center), bandwidth
+///
+/// AVAudioUnitEQFilterTypeLowShelf
+/// Low shelf filter
+/// Required parameters: frequency (center), gain
+///
+/// AVAudioUnitEQFilterTypeHighShelf
+/// High shelf filter
+/// Required parameters: frequency (center), gain
+///
+/// AVAudioUnitEQFilterTypeResonantLowShelf
+/// Low shelf filter with resonance support (via bandwidth parameter)
+/// Required parameters: frequency (center), bandwidth, gain
+///
+/// AVAudioUnitEQFilterTypeResonantHighShelf
+/// High shelf filter with resonance support (via bandwidth parameter)
+/// Required parameters: frequency (center), bandwidth, gain
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -49,7 +98,12 @@ unsafe impl RefEncode for AVAudioUnitEQFilterType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters?language=objc)
+    /// Filter parameters used by AVAudioUnitEQ.
+    ///
+    /// A standalone instance of AVAudioUnitEQFilterParameters cannot be created. Only an instance
+    /// vended out by a source object (e.g. AVAudioUnitEQ) can be used.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioUnitEQFilterParameters;
@@ -62,33 +116,57 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// AVAudioUnitEQFilterType
+        ///
+        /// Default:    AVAudioUnitEQFilterTypeParametric
         #[method(filterType)]
         pub unsafe fn filterType(&self) -> AVAudioUnitEQFilterType;
 
+        /// Setter for [`filterType`][Self::filterType].
         #[method(setFilterType:)]
         pub unsafe fn setFilterType(&self, filter_type: AVAudioUnitEQFilterType);
 
+        /// Frequency in Hertz.
+        ///
+        /// Range:      20 -> (SampleRate/2)
+        /// Unit:       Hertz
         #[method(frequency)]
         pub unsafe fn frequency(&self) -> c_float;
 
+        /// Setter for [`frequency`][Self::frequency].
         #[method(setFrequency:)]
         pub unsafe fn setFrequency(&self, frequency: c_float);
 
+        /// Bandwidth in octaves.
+        ///
+        /// Range:      0.05 -> 5.0
+        /// Unit:       Octaves
         #[method(bandwidth)]
         pub unsafe fn bandwidth(&self) -> c_float;
 
+        /// Setter for [`bandwidth`][Self::bandwidth].
         #[method(setBandwidth:)]
         pub unsafe fn setBandwidth(&self, bandwidth: c_float);
 
+        /// Gain in dB.
+        ///
+        /// Range:      -96 -> 24
+        /// Default:    0
+        /// Unit:       dB
         #[method(gain)]
         pub unsafe fn gain(&self) -> c_float;
 
+        /// Setter for [`gain`][Self::gain].
         #[method(setGain:)]
         pub unsafe fn setGain(&self, gain: c_float);
 
+        /// bypass state of band.
+        ///
+        /// Default:    YES
         #[method(bypass)]
         pub unsafe fn bypass(&self) -> bool;
 
+        /// Setter for [`bypass`][Self::bypass].
         #[method(setBypass:)]
         pub unsafe fn setBypass(&self, bypass: bool);
     }
@@ -103,7 +181,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteq?language=objc)
+    /// An AVAudioUnitEffect that implements a Multi-Band Equalizer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteq?language=objc)
     #[unsafe(super(AVAudioUnitEffect, AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -128,18 +208,30 @@ extern_methods!(
         feature = "AVAudioUnitEffect"
     ))]
     unsafe impl AVAudioUnitEQ {
+        /// Initialize the EQ with number of bands.
+        ///
+        /// Parameter `numberOfBands`: The number of bands created by the EQ.
         #[method_id(@__retain_semantics Init initWithNumberOfBands:)]
         pub unsafe fn initWithNumberOfBands(
             this: Allocated<Self>,
             number_of_bands: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Array of AVAudioUnitEQFilterParameters objects.
+        ///
+        /// The number of elements in the array is equal to the number of bands.
         #[method_id(@__retain_semantics Other bands)]
         pub unsafe fn bands(&self) -> Retained<NSArray<AVAudioUnitEQFilterParameters>>;
 
+        /// Overall gain adjustment applied to the signal.
+        ///
+        /// Range:     -96 -> 24
+        /// Default:   0
+        /// Unit:      dB
         #[method(globalGain)]
         pub unsafe fn globalGain(&self) -> c_float;
 
+        /// Setter for [`globalGain`][Self::globalGain].
         #[method(setGlobalGain:)]
         pub unsafe fn setGlobalGain(&self, global_gain: c_float);
     }
@@ -155,6 +247,17 @@ extern_methods!(
     unsafe impl AVAudioUnitEQ {
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// Create an AVAudioUnitEffect object.
+        ///
+        ///
+        /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be instantiated.
+        ///
+        /// The componentType must be one of these types
+        /// kAudioUnitType_Effect
+        /// kAudioUnitType_MusicEffect
+        /// kAudioUnitType_Panner
+        /// kAudioUnitType_RemoteEffect
+        /// kAudioUnitType_RemoteMusicEffect
         #[method_id(@__retain_semantics Init initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,

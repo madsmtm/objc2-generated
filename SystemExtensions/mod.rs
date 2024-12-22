@@ -12,6 +12,11 @@
 #![allow(clippy::upper_case_acronyms)]
 #![allow(clippy::identity_op)]
 #![allow(clippy::missing_safety_doc)]
+#![allow(clippy::doc_lazy_continuation)]
+#![allow(rustdoc::broken_intra_doc_links)]
+#![allow(rustdoc::bare_urls)]
+#![allow(rustdoc::unportable_markdown)]
+#![allow(rustdoc::invalid_html_tags)]
 
 #[link(name = "SystemExtensions", kind = "framework")]
 extern "C" {}
@@ -29,17 +34,39 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/osbundleusagedescriptionkey?language=objc)
+    /// A property of a Driver Extension bundle containing a message that tells
+    /// the user why the app is requesting to install it.
+    ///
+    ///
+    /// The 'OSBundleUsageDescription' key is required in your Driver
+    /// Extension if your app uses APIs that install them.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/osbundleusagedescriptionkey?language=objc)
     pub static OSBundleUsageDescriptionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/nssystemextensionusagedescriptionkey?language=objc)
+    /// A property of a System Extension bundle containing a message that tells
+    /// the user why the app is requesting to install it.
+    ///
+    ///
+    /// The 'NSSystemExtensionUsageDescription' key is required in your
+    /// System Extension if your app uses APIs that install them.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/nssystemextensionusagedescriptionkey?language=objc)
     pub static NSSystemExtensionUsageDescriptionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/osrelatedkernelextensionkey?language=objc)
+    /// An optional property of a System Extension bundle naming the bundle
+    /// identifier of a kernel extension (kext) with similar purpose and capabilities.
+    ///
+    ///
+    /// The 'OSRelatedKernelExtension' key is optional. If one is present
+    /// and the related kernel extension has the same Team ID and is approved by the
+    /// system policy, this System Extension is also approved.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/osrelatedkernelextensionkey?language=objc)
     pub static OSRelatedKernelExtensionKey: &'static NSString;
 }
 
@@ -79,8 +106,12 @@ unsafe impl RefEncode for OSSystemExtensionErrorCode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OSSystemExtensionReplacementAction(pub NSInteger);
 impl OSSystemExtensionReplacementAction {
+    /// Returned by the delegate when it determines that replacing an existing
+    /// System Extension should not proceed.
     #[doc(alias = "OSSystemExtensionReplacementActionCancel")]
     pub const Cancel: Self = Self(0);
+    /// Returned by the delegate when it determines that replacing an existing
+    /// System Extension is desired.
     #[doc(alias = "OSSystemExtensionReplacementActionReplace")]
     pub const Replace: Self = Self(1);
 }
@@ -93,13 +124,17 @@ unsafe impl RefEncode for OSSystemExtensionReplacementAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequestresult?language=objc)
+/// Describes additional result feedback after completion of a system extension request
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequestresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OSSystemExtensionRequestResult(pub NSInteger);
 impl OSSystemExtensionRequestResult {
+    /// The request was successfully completed.
     pub const OSSystemExtensionRequestCompleted: Self = Self(0);
+    /// The request will be successfully completed after a reboot.
     pub const OSSystemExtensionRequestWillCompleteAfterReboot: Self = Self(1);
 }
 
@@ -122,18 +157,21 @@ unsafe impl NSObjectProtocol for OSSystemExtensionRequest {}
 
 extern_methods!(
     unsafe impl OSSystemExtensionRequest {
+        /// A delegate to receive updates about the progress of a request
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn OSSystemExtensionRequestDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn OSSystemExtensionRequestDelegate>>,
         );
 
+        /// The bundle identifier of the target extension
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
     }
@@ -161,24 +199,32 @@ unsafe impl NSObjectProtocol for OSSystemExtensionProperties {}
 
 extern_methods!(
     unsafe impl OSSystemExtensionProperties {
+        /// The file URL locating an indicating the extension bundle these properties
+        /// were retreived from.
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
+        /// The bundle identifier of the extension (CFBundleIdentifier)
         #[method_id(@__retain_semantics Other bundleIdentifier)]
         pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
+        /// The bundle version of the extension (CFBundleVersion)
         #[method_id(@__retain_semantics Other bundleVersion)]
         pub unsafe fn bundleVersion(&self) -> Retained<NSString>;
 
+        /// The bundle short version string of the extension (CFBundleShortVersionString)
         #[method_id(@__retain_semantics Other bundleShortVersion)]
         pub unsafe fn bundleShortVersion(&self) -> Retained<NSString>;
 
+        /// Returns the enabled state of the extension
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Returns whether an extension is waiting for user approval
         #[method(isAwaitingUserApproval)]
         pub unsafe fn isAwaitingUserApproval(&self) -> bool;
 
+        /// Returns if an extension is being uninstalled
         #[method(isUninstalling)]
         pub unsafe fn isUninstalling(&self) -> bool;
     }
@@ -198,6 +244,37 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequestdelegate?language=objc)
     pub unsafe trait OSSystemExtensionRequestDelegate: NSObjectProtocol {
+        /// Called when the target extension bundle identifier is already activated.
+        ///
+        ///
+        /// The delegate will receive this callback when an activation request
+        /// encounters an existing extension with the same team and bundle identifiers but
+        /// with different version identifiers. The delegate must make a decision on
+        /// whether or not to replace the existing extension.
+        ///
+        ///
+        /// Parameter `request`: The request that encountered the conflict
+        ///
+        ///
+        /// Parameter `existing`: The NSBundle of the existing extension
+        ///
+        ///
+        /// Parameter `ext`: The NSBundle of the extension matching the bundle identifier of the request
+        ///
+        ///
+        /// Returns: A replacement action indicating the desired outcome of the conflict
+        ///
+        ///
+        /// Note: This method is invoked if the `CFBundleVersion` or `CFBundleShortVersionString`
+        /// identifiers of the target and existing extension differ.
+        ///
+        /// If the local system has System Extension developer mode enabled, this callback
+        /// will always fire when an existing extension is found, regardless of version
+        /// identifiers.
+        ///
+        /// Returning OSSystemExtensionReplacementActionAbortRequest will trigger a callback
+        /// to `request:didFailWithError:` with the OSSystemExtensionErrorRequestCanceled
+        /// error code.
         #[method(request:actionForReplacingExtension:withExtension:)]
         unsafe fn request_actionForReplacingExtension_withExtension(
             &self,
@@ -206,9 +283,32 @@ extern_protocol!(
             ext: &OSSystemExtensionProperties,
         ) -> OSSystemExtensionReplacementAction;
 
+        /// Called when the target extension requires user approval to be activated.
+        ///
+        ///
+        /// Activating an extension may require explicit user approval in order
+        /// to proceed. For example, this can occur when the user has never previously
+        /// approved this extension. If approval is necessary, this callback will be
+        /// triggered and the activation request will remain pending until user approves,
+        /// or until the application exits.
         #[method(requestNeedsUserApproval:)]
         unsafe fn requestNeedsUserApproval(&self, request: &OSSystemExtensionRequest);
 
+        /// Called when the target extension request has completed.
+        ///
+        ///
+        /// Successful results can come with additional information regarding
+        /// the manner in which they were completed. See the OSSystemExtensionRequestResult
+        /// documentation for more information.
+        ///
+        ///
+        /// Parameter `result`: Additional result information from the completed request.
+        ///
+        ///
+        /// Note: If the request completes with the `OSSystemExtensionRequestWillCompleteAfterReboot`
+        /// result, then the extension will not be active until after the next reboot. Upon
+        /// reboot, a given extension will be in the state dictated by the most recently
+        /// processed request.
         #[method(request:didFinishWithResult:)]
         unsafe fn request_didFinishWithResult(
             &self,
@@ -216,6 +316,7 @@ extern_protocol!(
             result: OSSystemExtensionRequestResult,
         );
 
+        /// Called when the target extension request failed.
         #[method(request:didFailWithError:)]
         unsafe fn request_didFailWithError(
             &self,
@@ -223,6 +324,11 @@ extern_protocol!(
             error: &NSError,
         );
 
+        /// Called request for properties has completed.
+        ///
+        ///
+        /// Parameter `properties`: Returns an array of OSSystemExtensionProperties matching the
+        /// requested bundle identifier.
         #[optional]
         #[method(request:foundProperties:)]
         unsafe fn request_foundProperties(
@@ -255,6 +361,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedManager)]
         pub unsafe fn sharedManager() -> Retained<OSSystemExtensionManager>;
 
+        /// Submits a System Extension request to the manager.
+        ///
+        ///
+        /// Parameter `request`: The request to process.
         #[method(submitRequest:)]
         pub unsafe fn submitRequest(&self, request: &OSSystemExtensionRequest);
     }
@@ -283,12 +393,15 @@ unsafe impl NSObjectProtocol for OSSystemExtensionInfo {}
 
 extern_methods!(
     unsafe impl OSSystemExtensionInfo {
+        /// The bundle identifier of the extension (CFBundleIdentifier)
         #[method_id(@__retain_semantics Other bundleIdentifier)]
         pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
+        /// The bundle version of the extension (CFBundleVersion)
         #[method_id(@__retain_semantics Other bundleVersion)]
         pub unsafe fn bundleVersion(&self) -> Retained<NSString>;
 
+        /// The bundle short version string of the extension (CFBundleShortVersionString)
         #[method_id(@__retain_semantics Other bundleShortVersion)]
         pub unsafe fn bundleShortVersion(&self) -> Retained<NSString>;
     }
@@ -308,6 +421,7 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionsworkspaceobserver?language=objc)
     pub unsafe trait OSSystemExtensionsWorkspaceObserver: NSObjectProtocol {
+        /// This delegate method will be called when a system extension has been validated and allowed by the user to run.
         #[optional]
         #[method(systemExtensionWillBecomeEnabled:)]
         unsafe fn systemExtensionWillBecomeEnabled(
@@ -315,6 +429,7 @@ extern_protocol!(
             system_extension_info: &OSSystemExtensionInfo,
         );
 
+        /// This delegate method will be called when the user disables an already enabled system extension, or when the system extension is first installed and is in the disabled state.
         #[optional]
         #[method(systemExtensionWillBecomeDisabled:)]
         unsafe fn systemExtensionWillBecomeDisabled(
@@ -322,6 +437,7 @@ extern_protocol!(
             system_extension_info: &OSSystemExtensionInfo,
         );
 
+        /// This delegate method will be called when a system extension is deactivated and is about to get uninstalled. The extension may still be running until the system is rebooted.
         #[optional]
         #[method(systemExtensionWillBecomeInactive:)]
         unsafe fn systemExtensionWillBecomeInactive(
@@ -334,7 +450,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionsworkspace?language=objc)
+    /// Note: Using the workspace API requires the system extension entitlement
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionsworkspace?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionsWorkspace;
@@ -351,12 +469,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedWorkspace)]
         pub unsafe fn sharedWorkspace() -> Retained<OSSystemExtensionsWorkspace>;
 
+        /// Start observing changes to System Extension(s) which are enabled or ready to be enabled.
         #[method(addObserver:error:_)]
         pub unsafe fn addObserver_error(
             &self,
             observer: &ProtocolObject<dyn OSSystemExtensionsWorkspaceObserver>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Stop observing changes to System Extension(s).
         #[method(removeObserver:)]
         pub unsafe fn removeObserver(
             &self,

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrordomain?language=objc)
+    /// The error domain used for Background Assets errors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baerrordomain?language=objc)
     pub static BAErrorDomain: &'static NSString;
 }
 

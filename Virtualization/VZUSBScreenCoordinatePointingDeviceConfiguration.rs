@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbscreencoordinatepointingdeviceconfiguration?language=objc)
+    /// Configuration for a USB pointing device that reports absolute coordinates.
+    ///
+    /// This device can be used by VZVirtualMachineView to send pointer events to the virtual machine.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbscreencoordinatepointingdeviceconfiguration?language=objc)
     #[unsafe(super(VZPointingDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZPointingDeviceConfiguration")]

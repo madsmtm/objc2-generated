@@ -9,7 +9,9 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenegeometrypreferencesmac?language=objc)
+    /// Use this class to express macOS-specific geometry preferences when calling `-[UIWindowScene requestGeometryUpdateWithPreferences:errorHandler:]`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenegeometrypreferencesmac?language=objc)
     #[unsafe(super(UIWindowSceneGeometryPreferences, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
@@ -33,10 +35,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The preferred system frame in the system scale where an origin of (0, 0) corresponds to the top-left
+        /// corner of the main display. Defaults to CGRectNull to indicate no preference.
         #[method(systemFrame)]
         pub unsafe fn systemFrame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`systemFrame`][Self::systemFrame].
         #[method(setSystemFrame:)]
         pub unsafe fn setSystemFrame(&self, system_frame: CGRect);
     }

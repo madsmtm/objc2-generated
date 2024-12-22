@@ -9,7 +9,14 @@ use objc2_core_media::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput?language=objc)
+    /// AVCaptureDepthDataOutput is a concrete subclass of AVCaptureOutput that can be used to process depth data in a streaming fashion.
+    ///
+    ///
+    /// Instances of AVCaptureDepthDataOutput capture AVDepthData objects expressing disparity/depth. Applications can access the frames with the depthDataOutput:didOutputDepthData:fromConnection: delegate method.
+    ///
+    /// AVCaptureDepthDataOutput always provides depth data in the format expressed by its source's -[AVCaptureDevice activeDepthDataFormat] property. If you wish to receive depth data in another format, you may choose from the -[AVCaptureDevice activeFormat]'s -[AVCaptureDeviceFormat supportedDepthDataFormats], and set it using -[AVCaptureDevice setActiveDepthDataFormat:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput?language=objc)
     #[unsafe(super(AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]
@@ -28,27 +35,43 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// The receiver's delegate.
+        ///
+        ///
+        /// The value of this property is an object conforming to the AVCaptureDepthDataOutputDelegate protocol that receives depth data as it is captured. The delegate is set using the setDelegate:callbackQueue: method.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureDepthDataOutputDelegate>>>;
 
+        /// Specifies whether the receiver should always discard any depth data that is not processed before the next depth data is captured.
+        ///
+        ///
+        /// When the value of this property is YES, the receiver will immediately discard depth data that are captured while the delegateCallbackQueue is blocked. When the value of this property is NO, delegates will be allowed more time to process old depth data before new depth data are discarded, but application memory usage may increase as a result. The default value is YES.
         #[method(alwaysDiscardsLateDepthData)]
         pub unsafe fn alwaysDiscardsLateDepthData(&self) -> bool;
 
+        /// Setter for [`alwaysDiscardsLateDepthData`][Self::alwaysDiscardsLateDepthData].
         #[method(setAlwaysDiscardsLateDepthData:)]
         pub unsafe fn setAlwaysDiscardsLateDepthData(&self, always_discards_late_depth_data: bool);
 
+        /// Specifies whether the depth data output should filter depth data to smooth out noise and fill invalid values.
+        ///
+        ///
+        /// When the value of this property is YES, the receiver temporally filters the stream of AVDepthData objects to reduce noise, as well as fill invalid values. Invalid values (NaN) may be present in AVDepthData pixel buffer maps due to factors such as low light or lens occlusion. When filtering is enabled, the depth data output interpolates missing depth data values. Filtering should be disabled if you desire the raw depth data values. The default value is YES.
         #[method(isFilteringEnabled)]
         pub unsafe fn isFilteringEnabled(&self) -> bool;
 
+        /// Setter for [`isFilteringEnabled`][Self::isFilteringEnabled].
         #[method(setFilteringEnabled:)]
         pub unsafe fn setFilteringEnabled(&self, filtering_enabled: bool);
     }
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutputdelegate?language=objc)
+    /// Defines an interface for delegates of AVCaptureDepthDataOutput to receive captured depth data and be notified of late depth data that were dropped.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutputdelegate?language=objc)
     pub unsafe trait AVCaptureDepthDataOutputDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AVCaptureOutputBase",
@@ -56,6 +79,23 @@ extern_protocol!(
             feature = "AVDepthData",
             feature = "objc2-core-media"
         ))]
+        /// Called whenever an AVCaptureDepthDataOutput instance outputs a new depth data object.
+        ///
+        ///
+        /// Parameter `output`: The AVCaptureDepthDataOutput instance vending the depth data.
+        ///
+        /// Parameter `depthData`: An AVDepthData object containing the depth/disparity data.
+        ///
+        /// Parameter `timestamp`: A CMTime indicating when the depth data was captured.
+        ///
+        /// Parameter `connection`: The AVCaptureConnection through which the depth data is received.
+        ///
+        ///
+        /// The delegate receives this message whenever the depth data output captures and outputs a new depth data object. This method is called on the dispatch queue specified by the output's delegateCallbackQueue property. This method is called frequently. Care must be taken to process the depth data quickly in order to prevent dropped depth data.
+        ///
+        /// Clients that need to reference the AVDepthData object outside of the scope of this method must retain it and then release it when they are finished with it (in a MRR app).
+        ///
+        /// Note that to maintain optimal performance, AVDepthData pixel buffer maps may be backed by a finite memory pool. If AVDepthData objects are held onto for too long, capture inputs will no longer be able to copy new depth data into memory, resulting in droppage. If your application is causing depth data drops by holding on to provided depth data objects for too long, consider copying the pixel buffer map data into a new pixel buffer so that the AVDepthData backing memory can be reused more quickly.
         #[optional]
         #[method(depthDataOutput:didOutputDepthData:timestamp:connection:)]
         unsafe fn depthDataOutput_didOutputDepthData_timestamp_connection(
@@ -72,6 +112,21 @@ extern_protocol!(
             feature = "AVDepthData",
             feature = "objc2-core-media"
         ))]
+        /// Called once for each depth data that is discarded.
+        ///
+        ///
+        /// Parameter `output`: The AVCaptureDepthDataOutput instance that dropped the depth data.
+        ///
+        /// Parameter `depthData`: A depth data object containing information about the dropped depth, such as its native depth type. This depth data object produces nil CVPixelBuffers for depth / disparity as it has no backing depth map.
+        ///
+        /// Parameter `timestamp`: A CMTime indicating when the depth data was captured.
+        ///
+        /// Parameter `connection`: The AVCaptureConnection from which the dropped depth data object was received.
+        ///
+        /// Parameter `reason`: The reason the depth data object was dropped.
+        ///
+        ///
+        /// Delegates receive this message whenever a depth data object is dropped. This method is called once for each dropped depth data. The object passed to this delegate method will contain a shell of an AVDepthData that contains no actual depth data backing pixel buffer, as well as a presentation time stamp and a reason for the drop. This method will be called on the dispatch queue specified by the output's delegateCallbackQueue property. Because this method is called on the same dispatch queue that outputs depth data, it must be efficient to prevent further capture performance problems, such as additional drops.
         #[optional]
         #[method(depthDataOutput:didDropDepthData:timestamp:connection:reason:)]
         unsafe fn depthDataOutput_didDropDepthData_timestamp_connection_reason(

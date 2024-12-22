@@ -29,9 +29,11 @@ unsafe impl NSSecureCoding for UIMenuDisplayPreferences {}
 
 extern_methods!(
     unsafe impl UIMenuDisplayPreferences {
+        /// Maximum number of title and subtitle lines displayed for this menu's elements. Defaults to NSNotFound, indicating no preference.
         #[method(maximumNumberOfTitleLines)]
         pub unsafe fn maximumNumberOfTitleLines(&self) -> NSInteger;
 
+        /// Setter for [`maximumNumberOfTitleLines`][Self::maximumNumberOfTitleLines].
         #[method(setMaximumNumberOfTitleLines:)]
         pub unsafe fn setMaximumNumberOfTitleLines(&self, maximum_number_of_title_lines: NSInteger);
     }

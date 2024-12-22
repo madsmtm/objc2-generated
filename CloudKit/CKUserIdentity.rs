@@ -27,6 +27,10 @@ unsafe impl NSSecureCoding for CKUserIdentity {}
 
 extern_methods!(
     unsafe impl CKUserIdentity {
+        /// Use
+        /// `CKDiscoverUserIdentitiesOperation`or
+        /// `CKFetchShareParticipantsOperation`to create a
+        /// `CKUserIdentity`
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -38,6 +42,10 @@ extern_methods!(
         pub unsafe fn userRecordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
+        /// This is the
+        /// `lookupInfo`you passed in to
+        /// `CKDiscoverUserIdentitiesOperation`or
+        /// `CKFetchShareParticipantsOperation`
         #[method_id(@__retain_semantics Other lookupInfo)]
         pub unsafe fn lookupInfo(&self) -> Option<Retained<CKUserIdentityLookupInfo>>;
 

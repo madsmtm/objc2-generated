@@ -13,7 +13,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contactsui/cncontactviewcontroller?language=objc)
+    /// A view controller to display and edit a
+    /// `CNContact.`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contactsui/cncontactviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -46,16 +49,27 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl CNContactViewController {
         #[cfg(feature = "objc2-contacts")]
+        /// Descriptor for all keys that must be fetched on a contact before setting it on the view controller.
+        ///
+        /// Pass this descriptor to the keysToFetch of the
+        /// `CNContactFetchRequest`if you want to display the contact in a
+        /// `CNContactViewController.`
         #[method_id(@__retain_semantics Other descriptorForRequiredKeys)]
         pub unsafe fn descriptorForRequiredKeys(
             mtm: MainThreadMarker,
         ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[cfg(feature = "objc2-contacts")]
+        /// A
+        /// `contact`to display.
+        ///
+        /// When
+        /// `contact`is nil, displays an empty selection state.
         #[method_id(@__retain_semantics Other contact)]
         pub unsafe fn contact(&self) -> Option<Retained<CNContact>>;
 
         #[cfg(feature = "objc2-contacts")]
+        /// Setter for [`contact`][Self::contact].
         #[method(setContact:)]
         pub unsafe fn setContact(&self, contact: Option<&CNContact>);
     }

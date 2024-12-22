@@ -7,7 +7,19 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage?language=objc)
+/// This file defines a table of standardized key codes, called "HID usages" used by USB keyboards to identify individual keys.
+///
+/// A general note on Usages and languages: Due to the variation of keyboards from language to language, it is not feasible
+/// to specify exact key mappings for every language. Where this list is not specific for a key function in a language, the
+/// closest equivalent key position should be used, so that a keyboard may be modified for a different language by simply printing
+/// different keycaps. One example is the Y key on a North American keyboard. In Germany this is typically Z. Rather than changing
+/// the keyboard firmware to put the Z Usage into that place in the descriptor list, the vendor uses the Y Usage on both the North
+/// American and German keyboards. This continues to be the existing practice in the industry, in order to minimize the number of
+/// changes to the electronics to accommodate other languages.
+///
+/// The following constants are from the USB 'HID Usage Tables' specification, revision 1.1rc3.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(transparent)]

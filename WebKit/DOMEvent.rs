@@ -80,12 +80,14 @@ extern_methods!(
         #[method(returnValue)]
         pub unsafe fn returnValue(&self) -> bool;
 
+        /// Setter for [`returnValue`][Self::returnValue].
         #[method(setReturnValue:)]
         pub unsafe fn setReturnValue(&self, return_value: bool);
 
         #[method(cancelBubble)]
         pub unsafe fn cancelBubble(&self) -> bool;
 
+        /// Setter for [`cancelBubble`][Self::cancelBubble].
         #[method(setCancelBubble:)]
         pub unsafe fn setCancelBubble(&self, cancel_bubble: bool);
 

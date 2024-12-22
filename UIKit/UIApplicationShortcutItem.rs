@@ -219,24 +219,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
+        /// Setter for [`type`][Self::type].
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: &NSString);
 
         #[method_id(@__retain_semantics Other localizedTitle)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
+        /// Setter for [`localizedTitle`][Self::localizedTitle].
         #[method(setLocalizedTitle:)]
         pub unsafe fn setLocalizedTitle(&self, localized_title: &NSString);
 
         #[method_id(@__retain_semantics Other localizedSubtitle)]
         pub unsafe fn localizedSubtitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`localizedSubtitle`][Self::localizedSubtitle].
         #[method(setLocalizedSubtitle:)]
         pub unsafe fn setLocalizedSubtitle(&self, localized_subtitle: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other icon)]
         pub unsafe fn icon(&self) -> Option<Retained<UIApplicationShortcutIcon>>;
 
+        /// Setter for [`icon`][Self::icon].
         #[method(setIcon:)]
         pub unsafe fn setIcon(&self, icon: Option<&UIApplicationShortcutIcon>);
 
@@ -245,6 +249,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, ProtocolObject<dyn NSSecureCoding>>>>;
 
+        /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(
             &self,
@@ -254,6 +259,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other targetContentIdentifier)]
         pub unsafe fn targetContentIdentifier(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].
         #[method(setTargetContentIdentifier:)]
         pub unsafe fn setTargetContentIdentifier(
             &self,

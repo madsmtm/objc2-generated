@@ -7,6 +7,12 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// Creates a clock that tracks playback through a particular CoreAudio device.
+    ///
+    /// When the device is stopped, the clock continues to tick, tracking HostTime until
+    /// the device starts up again.
+    /// Pass NULL for deviceUID to create a clock that tracks the default device.
+    /// deviceUID must be NULL on iOS.
     #[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
     pub fn CMAudioDeviceClockCreate(
         allocator: CFAllocatorRef,
@@ -16,6 +22,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Changes the CoreAudio device the clock is tracking.
+    ///
+    /// Pass NULL for deviceUID to make the clock track the default device.
     #[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
     pub fn CMAudioDeviceClockSetAudioDeviceUID(
         clock: CMClockRef,

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcembeddingdescriptor?language=objc)
+    /// The MLCEmbeddingDescriptor specifies an embedding layer descriptor
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcembeddingdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -32,26 +34,32 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The size of the dictionary
         #[deprecated]
         #[method_id(@__retain_semantics Other embeddingCount)]
         pub unsafe fn embeddingCount(&self) -> Retained<NSNumber>;
 
+        /// The dimension of embedding vectors
         #[deprecated]
         #[method_id(@__retain_semantics Other embeddingDimension)]
         pub unsafe fn embeddingDimension(&self) -> Retained<NSNumber>;
 
+        /// If set, the embedding vector at paddingIndex is initialized with zero and will not be updated in gradient pass, Default=nil
         #[deprecated]
         #[method_id(@__retain_semantics Other paddingIndex)]
         pub unsafe fn paddingIndex(&self) -> Option<Retained<NSNumber>>;
 
+        /// A float, if set, in the forward pass only, the selected embedding vectors will be re-normalized to have an Lp norm of less than maximumNorm in the dictionary, Default=nil
         #[deprecated]
         #[method_id(@__retain_semantics Other maximumNorm)]
         pub unsafe fn maximumNorm(&self) -> Option<Retained<NSNumber>>;
 
+        /// A float, the p of the Lp norm, can be set to infinity norm by [NSNumber numberWithFloat:INFINITY]. Default=2.0
         #[deprecated]
         #[method_id(@__retain_semantics Other pNorm)]
         pub unsafe fn pNorm(&self) -> Option<Retained<NSNumber>>;
 
+        /// If set, the gradients are scaled by the inverse of the frequency of the words in batch before the weight update. Default=NO
         #[deprecated]
         #[method(scalesGradientByFrequency)]
         pub unsafe fn scalesGradientByFrequency(&self) -> bool;

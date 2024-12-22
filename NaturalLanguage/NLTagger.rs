@@ -78,6 +78,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`string`][Self::string].
         #[method(setString:)]
         pub unsafe fn setString(&self, string: Option<&NSString>);
 

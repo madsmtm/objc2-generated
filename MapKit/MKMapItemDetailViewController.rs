@@ -65,6 +65,7 @@ extern_methods!(
         pub unsafe fn mapItem(&self) -> Option<Retained<MKMapItem>>;
 
         #[cfg(feature = "MKMapItem")]
+        /// Setter for [`mapItem`][Self::mapItem].
         #[method(setMapItem:)]
         pub unsafe fn setMapItem(&self, map_item: Option<&MKMapItem>);
 
@@ -74,6 +75,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn MKMapItemDetailViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

@@ -218,6 +218,7 @@ extern_methods!(
         #[method(defaultNameServerPortNumber)]
         pub unsafe fn defaultNameServerPortNumber(&self) -> u16;
 
+        /// Setter for [`defaultNameServerPortNumber`][Self::defaultNameServerPortNumber].
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(setDefaultNameServerPortNumber:)]
         pub unsafe fn setDefaultNameServerPortNumber(&self, default_name_server_port_number: u16);

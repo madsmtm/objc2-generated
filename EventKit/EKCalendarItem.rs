@@ -21,44 +21,85 @@ unsafe impl NSObjectProtocol for EKCalendarItem {}
 extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKCalendarItem {
+        /// This is now deprecated; use calendarItemIdentifier instead.
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "EKCalendar")]
+        /// The calendar that this calendar item belongs to.
+        ///
+        /// This will be nil for new calendar items until you set it.
         #[method_id(@__retain_semantics Other calendar)]
         pub unsafe fn calendar(&self) -> Option<Retained<EKCalendar>>;
 
         #[cfg(feature = "EKCalendar")]
+        /// Setter for [`calendar`][Self::calendar].
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&EKCalendar>);
 
+        /// A unique identifier for a calendar item.
+        ///
+        /// Item identifiers are not sync-proof in that a full sync will lose
+        /// this identifier, so you should always have a back up plan for dealing
+        /// with a reminder that is no longer fetchable by this property, e.g. by title, etc.
+        /// Use [EKEventStore calendarItemWithIdentifier:] to look up the item by this value.
         #[method_id(@__retain_semantics Other calendarItemIdentifier)]
         pub unsafe fn calendarItemIdentifier(&self) -> Retained<NSString>;
 
+        /// A server-provided identifier for this calendar item
+        ///
+        /// This identifier, provided by the server, allows you to reference the same event or reminder across
+        /// multiple devices. For calendars stored locally on the device, including the birthday calendar,
+        /// it simply passes through to calendarItemIdentifier.
+        ///
+        /// This identifier is unique as of creation for every calendar item.  However, there are some
+        /// cases where duplicate copies of a calendar item can exist in the same database, including:
+        /// - A calendar item was imported from an ICS file into multiple calendars
+        /// - An event was created in a calendar shared with the user and the user was also invited to the event
+        /// - The user is a delegate of a calendar that also has this event
+        /// - A subscribed calendar was added to multiple accounts
+        /// In such cases, you should choose between calendar items based on other factors, such as
+        /// the calendar or source.
+        ///
+        /// This identifier is the same for all occurrences of a recurring event. If you wish to differentiate
+        /// between occurrences, you may want to use the start date.
+        ///
+        /// This may be nil for new calendar items that do not yet belong to a calendar.
+        ///
+        /// In addition, there are two caveats for Exchange-based calendars:
+        /// - This identifier will be different between EventKit on iOS versus OS X
+        /// - This identifier will be different between devices for EKReminders
         #[method_id(@__retain_semantics Other calendarItemExternalIdentifier)]
         pub unsafe fn calendarItemExternalIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// The title of this calendar item.
+        ///
+        /// This will be an empty string for new calendar items until you set it.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other location)]
         pub unsafe fn location(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`location`][Self::location].
         #[method(setLocation:)]
         pub unsafe fn setLocation(&self, location: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other notes)]
         pub unsafe fn notes(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`notes`][Self::notes].
         #[method(setNotes:)]
         pub unsafe fn setNotes(&self, notes: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
@@ -71,6 +112,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
+        /// Setter for [`timeZone`][Self::timeZone].
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
@@ -95,22 +137,31 @@ extern_methods!(
         pub unsafe fn alarms(&self) -> Option<Retained<NSArray<EKAlarm>>>;
 
         #[cfg(feature = "EKAlarm")]
+        /// Setter for [`alarms`][Self::alarms].
         #[method(setAlarms:)]
         pub unsafe fn setAlarms(&self, alarms: Option<&NSArray<EKAlarm>>);
 
         #[cfg(feature = "EKAlarm")]
+        /// Adds an alarm to this item.
+        ///
+        /// This method add an alarm to an item. Be warned that some calendars can only
+        /// allow a certain maximum number of alarms. When this item is saved, it will
+        /// truncate any extra alarms from the array.
         #[method(addAlarm:)]
         pub unsafe fn addAlarm(&self, alarm: &EKAlarm);
 
         #[cfg(feature = "EKAlarm")]
+        /// Removes an alarm from this item.
         #[method(removeAlarm:)]
         pub unsafe fn removeAlarm(&self, alarm: &EKAlarm);
 
         #[cfg(feature = "EKRecurrenceRule")]
+        /// An array of EKRecurrenceRules, or nil if none.
         #[method_id(@__retain_semantics Other recurrenceRules)]
         pub unsafe fn recurrenceRules(&self) -> Option<Retained<NSArray<EKRecurrenceRule>>>;
 
         #[cfg(feature = "EKRecurrenceRule")]
+        /// Setter for [`recurrenceRules`][Self::recurrenceRules].
         #[method(setRecurrenceRules:)]
         pub unsafe fn setRecurrenceRules(
             &self,

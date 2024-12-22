@@ -9,7 +9,15 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnresizebilinear?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSNNResizeBilinear filter resizes the source image  using bilinear interpolation to
+    /// a destination whose dimensions are given by resizeWidth and resizeHeight
+    ///
+    /// The number of output feature channels remains the same as the number of input feature
+    /// channels.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnresizebilinear?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -36,12 +44,17 @@ unsafe impl NSSecureCoding for MPSNNResizeBilinear {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNResizeBilinear {
+        /// The resize width.
         #[method(resizeWidth)]
         pub unsafe fn resizeWidth(&self) -> NSUInteger;
 
+        /// The resize height.
         #[method(resizeHeight)]
         pub unsafe fn resizeHeight(&self) -> NSUInteger;
 
+        /// If YES, the centers of the 4 corner pixels of the input and output regions are aligned,
+        /// preserving the values at the corner pixels.
+        /// The default is NO.
         #[method(alignCorners)]
         pub unsafe fn alignCorners(&self) -> bool;
 
@@ -51,6 +64,18 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Initialize the resize bilinear filter.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `resizeWidth`: The destination resize width in pixels
+        ///
+        /// Parameter `resizeHeight`: The destination resize height in pixels
+        ///
+        /// Parameter `alignCorners`: Specifier whether the centers of the 4 corner pixels of the input and output regions are aligned,
+        /// preserving the values at the corner pixels.
+        ///
+        /// Returns: A valid MPSNNResizeBilinear object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:resizeWidth:resizeHeight:alignCorners:)]
         pub unsafe fn initWithDevice_resizeWidth_resizeHeight_alignCorners(
             this: Allocated<Self>,
@@ -60,6 +85,15 @@ extern_methods!(
             align_corners: bool,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSNNResizeBilinear
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSNNResizeBilinear
+        ///
+        /// Returns: A new MPSNNResizeBilinear object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -73,6 +107,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNResizeBilinear {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -94,7 +136,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSNNCropAndResizeBilinear filter resizes the source image  using bilinear interpolation to
+    /// a destination whose dimensions are given by resizeWidth and resizeHeight
+    ///
+    /// The number of output feature channels remains the same as the number of input feature
+    /// channels.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -121,16 +171,24 @@ unsafe impl NSSecureCoding for MPSNNCropAndResizeBilinear {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNCropAndResizeBilinear {
+        /// The resize width.
         #[method(resizeWidth)]
         pub unsafe fn resizeWidth(&self) -> NSUInteger;
 
+        /// The resize height.
         #[method(resizeHeight)]
         pub unsafe fn resizeHeight(&self) -> NSUInteger;
 
+        /// the number of bounding box i.e. regions to resize.
         #[method(numberOfRegions)]
         pub unsafe fn numberOfRegions(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// This is a pointer to "numberOfRegions" boxes which specify the locations in the
+        /// source image to use for each box/region to perform the resize operation.
+        /// The coordinates specified are normalized values.  A normalized region outside the
+        /// [0, 1] range is allowed, in which case we use extrapolation_value to extrapolate
+        /// the input image values.
         #[method(regions)]
         pub unsafe fn regions(&self) -> NonNull<MPSRegion>;
 
@@ -141,6 +199,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Initialize the crop and resize bilinear filter.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `resizeWidth`: The destination resize width in pixels
+        ///
+        /// Parameter `resizeHeight`: The destination resize height in pixels
+        ///
+        /// Parameter `numberOfRegions`: Specifies the number of bounding box i.e. regions to resize
+        ///
+        /// Parameter `regions`: This is a pointer to "numberOfRegions" boxes which specify the locations in the
+        /// source image to use for each box/region to perform the resize operation.
+        ///
+        /// Returns: A valid MPSNNCropAndResizeBilinear object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:resizeWidth:resizeHeight:numberOfRegions:regions:)]
         pub unsafe fn initWithDevice_resizeWidth_resizeHeight_numberOfRegions_regions(
             this: Allocated<Self>,
@@ -151,6 +223,15 @@ extern_methods!(
             regions: NonNull<MPSRegion>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSNNCropAndResizeBilinear
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSNNCropAndResizeBilinear
+        ///
+        /// Returns: A new MPSNNResizeBilinear object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -164,6 +245,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNCropAndResizeBilinear {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

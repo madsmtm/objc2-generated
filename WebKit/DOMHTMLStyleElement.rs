@@ -81,6 +81,7 @@ extern_methods!(
         #[method(disabled)]
         pub unsafe fn disabled(&self) -> bool;
 
+        /// Setter for [`disabled`][Self::disabled].
         #[deprecated]
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other media)]
         pub unsafe fn media(&self) -> Retained<NSString>;
 
+        /// Setter for [`media`][Self::media].
         #[deprecated]
         #[method(setMedia:)]
         pub unsafe fn setMedia(&self, media: Option<&NSString>);
@@ -97,6 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
+        /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);

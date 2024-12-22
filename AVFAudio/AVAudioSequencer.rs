@@ -7,7 +7,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusicsequenceloadoptions?language=objc)
+/// Determines whether data on different MIDI channels is mapped to multiple tracks, or
+/// if the tracks are preserved as-is.
+///
+/// If AVMusicSequenceLoadSMF_ChannelsToTracks is set, the loaded MIDI Sequence will contain a
+/// tempo track, one track for each MIDI channel that is found in the SMF, and one track for
+/// SysEx and/or MetaEvents (this will be the last track in the sequence).
+///
+/// If AVMusicSequenceLoadSMF_ChannelsToTracks is not set, the loadad MIDI Sequence will
+/// contain one track for each track that is found in the SMF, plus a tempo track (if not found
+/// in the SMF).
+///
+/// API_AVAILABLE(macos(10.11), ios(9.0), watchos(2.0), tvos(9.0))
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusicsequenceloadoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,7 +40,9 @@ unsafe impl RefEncode for AVMusicSequenceLoadOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/_avbeatrange?language=objc)
+/// Used to describe a specific time range within an AVMusicTrack.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/_avbeatrange?language=objc)
 #[cfg(feature = "AVAudioTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -49,7 +64,9 @@ unsafe impl RefEncode for _AVBeatRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avbeatrange?language=objc)
+/// Used to describe a specific time range within an AVMusicTrack.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avbeatrange?language=objc)
 #[cfg(feature = "AVAudioTypes")]
 pub type AVBeatRange = _AVBeatRange;
 
@@ -190,7 +207,9 @@ pub type AVAudioSequencerUserCallback =
     *mut block2::Block<dyn Fn(NonNull<AVMusicTrack>, NonNull<NSData>, AVMusicTimeStamp)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer?language=objc)
+    /// A collection of MIDI events organized into AVMusicTracks, plus a player to play back the events.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioSequencer;
@@ -200,16 +219,27 @@ unsafe impl NSObjectProtocol for AVAudioSequencer {}
 
 extern_methods!(
     unsafe impl AVAudioSequencer {
+        /// Initialize a new sequencer, which will not be connected to an audio engine.
+        ///
+        /// This is used to create a sequencer whose tracks will only send events to external MIDI endpoints.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioEngine")]
+        /// Initialize a new sequencer, handing it the audio engine.
         #[method_id(@__retain_semantics Init initWithAudioEngine:)]
         pub unsafe fn initWithAudioEngine(
             this: Allocated<Self>,
             engine: &AVAudioEngine,
         ) -> Retained<Self>;
 
+        /// Load the file referenced by the URL and add the events to the sequence
+        ///
+        /// Parameter `fileURL`: the URL to the file
+        ///
+        /// Parameter `options`: determines how the file's contents are mapped to tracks inside the sequence
+        ///
+        /// Parameter `outError`: on exit, if an error occurs, a description of the error
         #[method(loadFromURL:options:error:_)]
         pub unsafe fn loadFromURL_options_error(
             &self,
@@ -217,6 +247,13 @@ extern_methods!(
             options: AVMusicSequenceLoadOptions,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Parse the data and add the its events to the sequence
+        ///
+        /// Parameter `data`: the data to load from
+        ///
+        /// Parameter `options`: determines how the contents are mapped to tracks inside the sequence
+        ///
+        /// Parameter `outError`: on exit, if an error occurs, a description of the error
         #[method(loadFromData:options:error:_)]
         pub unsafe fn loadFromData_options_error(
             &self,
@@ -224,6 +261,25 @@ extern_methods!(
             options: AVMusicSequenceLoadOptions,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Create and write a MIDI file containing the events and complete state of the sequence
+        ///
+        /// Parameter `fileURL`: the path for the file to be created
+        ///
+        /// Parameter `resolution`: the relationship between "tick" and quarter note for saving to a Standard MIDI File - pass in
+        /// zero to use default - this will be the value that is currently set on the tempo track
+        ///
+        /// Parameter `replace`: if the file already exists, YES will cause it to be overwritten with the new data.
+        /// Otherwise the call will fail with a permission error.
+        ///
+        /// Parameter `outError`: on exit, if an error occurs, a description of the error
+        ///
+        /// A MIDI file saved via this method will contain not only the complete MIDI content of the sequence,
+        /// but also the state of all tracks, including muting, loop points and enablement, etc.  It will also
+        /// contain all non-MIDI AVMusicEvent types which had been added to the sequence's track.
+        ///
+        /// MIDI files are normally beat based, but can also have a SMPTE (or real-time rather than beat time) representation.
+        /// The relationship between "tick" and quarter note for saving to Standard MIDI File
+        /// - pass in zero to use default - this will be the value that is currently set on the tempo track
         #[method(writeToURL:SMPTEResolution:replaceExisting:error:_)]
         pub unsafe fn writeToURL_SMPTEResolution_replaceExisting_error(
             &self,
@@ -233,32 +289,60 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Get the time in seconds for the given beat position (timestamp) in the AVMusicTrack
         #[method(secondsForBeats:)]
         pub unsafe fn secondsForBeats(&self, beats: AVMusicTimeStamp) -> NSTimeInterval;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Get the beat position (timestamp) for the given time in the AVMusicTrack
         #[method(beatsForSeconds:)]
         pub unsafe fn beatsForSeconds(&self, seconds: NSTimeInterval) -> AVMusicTimeStamp;
 
+        /// Reverse the order of all events in all AVMusicTracks, including the tempo track
         #[method(reverseEvents)]
         pub unsafe fn reverseEvents(&self);
 
+        /// Create a new AVMusicTrack and append it to the AVMusicSequencer's list
         #[method_id(@__retain_semantics Other createAndAppendTrack)]
         pub unsafe fn createAndAppendTrack(&self) -> Retained<AVMusicTrack>;
 
+        /// Remove the given AVMusicTrack from the AVMusicSequencer.
+        ///
+        /// This does not destroy the AVMusicTrack because it may be re-used.
         #[method(removeTrack:)]
         pub unsafe fn removeTrack(&self, track: &AVMusicTrack) -> bool;
 
         #[cfg(all(feature = "AVAudioTypes", feature = "block2"))]
+        /// Add a block which will be called each time the AVAudioSequencer encounters an AVMusicUserEvent during playback.
+        ///
+        /// The same callback is called for events which occur on any track in the sequencer.
+        ///
+        /// Set the block to nil to disable it.
         #[method(setUserCallback:)]
         pub unsafe fn setUserCallback(&self, user_callback: AVAudioSequencerUserCallback);
 
+        /// An NSArray containing all the AVMusicTracks in the sequence
+        ///
+        /// This list will not include the tempo track.
         #[method_id(@__retain_semantics Other tracks)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVMusicTrack>>;
 
+        /// The tempo track
+        ///
+        /// Each AVMusicSequence has a single tempo track.
+        ///
+        /// All tempo events read from external MIDI files are placed into this track (as well as other
+        /// appropriate events (e.g., the time signature meta event from the file).
+        ///
+        /// The tempo track can be edited and iterated upon as any other track.
+        ///
+        /// Non-tempo-related events will generate exceptions if added.
         #[method_id(@__retain_semantics Other tempoTrack)]
         pub unsafe fn tempoTrack(&self) -> Retained<AVMusicTrack>;
 
+        /// A dictionary containing meta-data derived from a sequence
+        ///
+        /// The dictionary can contain one or more of the values accessible via the AVAudioSequencerInfoDictionaryKeys.
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
     }
@@ -275,36 +359,69 @@ extern_methods!(
 extern_methods!(
     /// AVAudioSequencer_Player
     unsafe impl AVAudioSequencer {
+        /// The current playback position in seconds
+        ///
+        /// Setting this positions the sequencer's player to the specified time.  This can be set while
+        /// the player is playing, in which case playback will resume at the new position.
         #[method(currentPositionInSeconds)]
         pub unsafe fn currentPositionInSeconds(&self) -> NSTimeInterval;
 
+        /// Setter for [`currentPositionInSeconds`][Self::currentPositionInSeconds].
         #[method(setCurrentPositionInSeconds:)]
         pub unsafe fn setCurrentPositionInSeconds(
             &self,
             current_position_in_seconds: NSTimeInterval,
         );
 
+        /// The current playback position in beats
+        ///
+        /// Setting this positions the sequencer's player to the specified beat.  This can be set while
+        /// the player is playing, in which case playback will resume at the new position.
         #[method(currentPositionInBeats)]
         pub unsafe fn currentPositionInBeats(&self) -> NSTimeInterval;
 
+        /// Setter for [`currentPositionInBeats`][Self::currentPositionInBeats].
         #[method(setCurrentPositionInBeats:)]
         pub unsafe fn setCurrentPositionInBeats(&self, current_position_in_beats: NSTimeInterval);
 
+        /// Indicates whether or not the sequencer's player is playing
+        ///
+        /// Returns TRUE if the sequencer's player has been started and not stopped. It may have
+        /// "played" past the end of the events in the sequence, but it is still considered to be
+        /// playing (and its time value increasing) until it is explicitly stopped.
         #[method(isPlaying)]
         pub unsafe fn isPlaying(&self) -> bool;
 
+        /// The playback rate of the sequencer's player
+        ///
+        /// 1.0 is normal playback rate.  Rate must be > 0.0.
         #[method(rate)]
         pub unsafe fn rate(&self) -> c_float;
 
+        /// Setter for [`rate`][Self::rate].
         #[method(setRate:)]
         pub unsafe fn setRate(&self, rate: c_float);
 
+        /// Get ready to play the sequence by prerolling all events
+        ///
+        /// Happens automatically on play if it has not already been called, but may produce a delay in
+        /// startup.
         #[method(prepareToPlay)]
         pub unsafe fn prepareToPlay(&self);
 
+        /// Start the sequencer's player
+        ///
+        /// If the AVAudioSequencer has not been prerolled, it will pre-roll itself and then start.
+        /// When the sequencer is associated with an audio engine, the sequencer's player will only
+        /// play if the audio engine is running.
         #[method(startAndReturnError:_)]
         pub unsafe fn startAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
+        /// Stop the sequencer's player
+        ///
+        /// Stopping the player leaves it in an un-prerolled state, but stores the playback position so
+        /// that a subsequent call to startAndReturnError will resume where it left off. This action
+        /// will not stop an associated audio engine.
         #[method(stop)]
         pub unsafe fn stop(&self);
     }
@@ -329,7 +446,14 @@ unsafe impl RefEncode for AVMusicTrackLoopCount {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusictrack?language=objc)
+    /// A collection of music events which will be sent to a given destination, and which can be
+    /// offset, muted, etc. independently of events in other tracks.
+    ///
+    /// AVMusicTrack is not a container of AVMusicEvents - it will not hold references to
+    /// AVMusicEvents that are added, so an application should maintain its own if it is
+    /// desired.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusictrack?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMusicTrack;
@@ -340,67 +464,124 @@ unsafe impl NSObjectProtocol for AVMusicTrack {}
 extern_methods!(
     unsafe impl AVMusicTrack {
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
+        /// The AVAudioUnit which will receive the track's events
+        ///
+        /// This is mutually exclusive with setting a destination MIDIEndpoint.  The AU must already be
+        /// attached to an audio engine, and the track must be part of the AVAudioSequencer associated
+        /// with that engine. When playing, the track will send its events to that AVAudioUnit. The
+        /// destination AU cannot be changed while the track's sequence is playing.
         #[method_id(@__retain_semantics Other destinationAudioUnit)]
         pub unsafe fn destinationAudioUnit(&self) -> Option<Retained<AVAudioUnit>>;
 
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
+        /// Setter for [`destinationAudioUnit`][Self::destinationAudioUnit].
         #[method(setDestinationAudioUnit:)]
         pub unsafe fn setDestinationAudioUnit(&self, destination_audio_unit: Option<&AVAudioUnit>);
 
         #[cfg(feature = "AVAudioTypes")]
+        /// The timestamp range in beats for the loop
+        ///
+        /// The loop is set by specifying its beat range.
         #[method(loopRange)]
         pub unsafe fn loopRange(&self) -> AVBeatRange;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Setter for [`loopRange`][Self::loopRange].
         #[method(setLoopRange:)]
         pub unsafe fn setLoopRange(&self, loop_range: AVBeatRange);
 
+        /// Determines whether or not the track is looped.
+        ///
+        /// If loopRange has not been set, the full track will be looped.
         #[method(isLoopingEnabled)]
         pub unsafe fn isLoopingEnabled(&self) -> bool;
 
+        /// Setter for [`isLoopingEnabled`][Self::isLoopingEnabled].
         #[method(setLoopingEnabled:)]
         pub unsafe fn setLoopingEnabled(&self, looping_enabled: bool);
 
+        /// The number of times that the track's loop will repeat
+        ///
+        /// If set to AVMusicTrackLoopCountForever, the track will loop forever.
+        /// Otherwise, legal values start with 1.
         #[method(numberOfLoops)]
         pub unsafe fn numberOfLoops(&self) -> NSInteger;
 
+        /// Setter for [`numberOfLoops`][Self::numberOfLoops].
         #[method(setNumberOfLoops:)]
         pub unsafe fn setNumberOfLoops(&self, number_of_loops: NSInteger);
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Offset the track's start time to the specified time in beats
+        ///
+        /// By default this value is zero.
         #[method(offsetTime)]
         pub unsafe fn offsetTime(&self) -> AVMusicTimeStamp;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Setter for [`offsetTime`][Self::offsetTime].
         #[method(setOffsetTime:)]
         pub unsafe fn setOffsetTime(&self, offset_time: AVMusicTimeStamp);
 
+        /// Whether the track is muted
         #[method(isMuted)]
         pub unsafe fn isMuted(&self) -> bool;
 
+        /// Setter for [`isMuted`][Self::isMuted].
         #[method(setMuted:)]
         pub unsafe fn setMuted(&self, muted: bool);
 
+        /// Whether the track is soloed
         #[method(isSoloed)]
         pub unsafe fn isSoloed(&self) -> bool;
 
+        /// Setter for [`isSoloed`][Self::isSoloed].
         #[method(setSoloed:)]
         pub unsafe fn setSoloed(&self, soloed: bool);
 
         #[cfg(feature = "AVAudioTypes")]
+        /// The total duration of the track in beats
+        ///
+        /// This will return the beat of the last event in the track plus any additional time that may
+        /// be needed for fading out of ending notes or round a loop point to musical bar, etc.  If this
+        /// has not been set by the user, the track length will always be adjusted to the end of the
+        /// last active event in a track and is adjusted dynamically as events are added or removed.
+        ///
+        /// The property will return the maximum of the user-set track length, or the calculated length.
         #[method(lengthInBeats)]
         pub unsafe fn lengthInBeats(&self) -> AVMusicTimeStamp;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Setter for [`lengthInBeats`][Self::lengthInBeats].
         #[method(setLengthInBeats:)]
         pub unsafe fn setLengthInBeats(&self, length_in_beats: AVMusicTimeStamp);
 
+        /// The total duration of the track in seconds
+        ///
+        /// This will return time of the last event in the track plus any additional time that may be
+        /// needed for fading out of ending notes or round a loop point to musical bar, etc.  If this
+        /// has not been set by the user, the track length will always be adjusted to the end of the
+        /// last active event in a track and is adjusted dynamically as events are added or removed.
+        ///
+        /// The property will return the maximum of the user-set track length, or the calculated length.
         #[method(lengthInSeconds)]
         pub unsafe fn lengthInSeconds(&self) -> NSTimeInterval;
 
+        /// Setter for [`lengthInSeconds`][Self::lengthInSeconds].
         #[method(setLengthInSeconds:)]
         pub unsafe fn setLengthInSeconds(&self, length_in_seconds: NSTimeInterval);
 
+        /// The time resolution value for the sequence, in ticks (pulses) per quarter note (PPQN)
+        ///
+        /// If a MIDI file was used to construct the containing sequence, the resolution will be what
+        /// was in the file. If you want to keep a time resolution when writing a new file, you can
+        /// retrieve this value and then specify it when calling -[AVAudioSequencer
+        /// writeToFile:flags:withResolution]. It has no direct bearing on the rendering or notion of
+        /// time of the sequence itself, just its representation in MIDI files. By default this is set
+        /// to either 480 if the sequence was created manually, or a value based on what was in a MIDI
+        /// file if the sequence was created from a MIDI file.
+        ///
+        /// This can only be retrieved from the tempo track.
         #[method(timeResolution)]
         pub unsafe fn timeResolution(&self) -> NSUInteger;
     }
@@ -417,7 +598,20 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusiceventenumerationblock?language=objc)
+/// The block type used to enumerate and optionally remove AVMusicEvents when using
+/// `AVMusicTrack(enumerateEventsInRange:usingBlock:)`
+///
+/// Parameter `event`: the AVMusicEvent returned by this enumeration block call.  If this
+/// event is modified by the block, the corresponding track event will be changed.
+///
+/// Parameter `timeStamp`: the beat position of this event in the AVMusicTrack.  If the block
+/// sets *timeStamp to a new value, the corresponding event's beat position
+/// in the track will be updated.
+///
+/// Parameter `removeEvent`: If the block sets *removeEvent to YES, the current event will be
+/// removed from the track.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusiceventenumerationblock?language=objc)
 #[cfg(all(
     feature = "AVAudioTypes",
     feature = "AVMusicEvents",
@@ -429,17 +623,47 @@ pub type AVMusicEventEnumerationBlock =
 extern_methods!(
     /// AVMusicTrackEditor
     unsafe impl AVMusicTrack {
+        /// Indicates whether the track is an automation track.
+        ///
+        /// If set to YES, this can be used to contain, parameter automation events, exclusively.
+        /// Adding any other event types will generate exceptions.
+        ///
+        /// If a track already contains non-parameter events, setting this to YES will
+        /// generate an exception.
         #[method(usesAutomatedParameters)]
         pub unsafe fn usesAutomatedParameters(&self) -> bool;
 
+        /// Setter for [`usesAutomatedParameters`][Self::usesAutomatedParameters].
         #[method(setUsesAutomatedParameters:)]
         pub unsafe fn setUsesAutomatedParameters(&self, uses_automated_parameters: bool);
 
         #[cfg(all(feature = "AVAudioTypes", feature = "AVMusicEvents"))]
+        /// Adds an AVMusicEvent's contents to a track at the specified AVMusicTimeStamp.
+        ///
+        /// Parameter `event`: the event to be added
+        ///
+        /// Parameter `beat`: the AVMusicTimeStamp
+        ///
+        /// Because event contents are copied into the track, the same event may be added multiple
+        /// times at different timestamps.
+        ///
+        /// There are restrictions on which AVMusicEvent subclasses may be added to different tracks:
+        ///
+        /// - Only AVExtendedTempoEvents and AVMIDIMetaEvents with certain AVMIDIMetaEventTypes
+        /// can be added to an AVMusicSequence's tempo track (see AVMIDIMetaEvent).
+        ///
+        /// - AVParameterEvents can only be added to automation tracks (see AVParameterEvent).
+        ///
+        /// - All other event subclasses cannot be added to tempo or automation tracks.
         #[method(addEvent:atBeat:)]
         pub unsafe fn addEvent_atBeat(&self, event: &AVMusicEvent, beat: AVMusicTimeStamp);
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Shift the beat location of all events in the given beat range by the amount specified.
+        ///
+        /// Parameter `range`: the range of beats.  Must be a valid AVBeatRange.
+        ///
+        /// Parameter `beatAmount`: the amount in beats to shift each event.  The amount may be positive or negative.
         #[method(moveEventsInRange:byAmount:)]
         pub unsafe fn moveEventsInRange_byAmount(
             &self,
@@ -448,14 +672,35 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Removes all events in the given beat range, erasing that portion of the AVMusicTrack.
+        ///
+        /// Parameter `range`: the range of beats.  Must be a valid AVBeatRange.
+        ///
+        /// All events outside of the specified range left unmodified.
         #[method(clearEventsInRange:)]
         pub unsafe fn clearEventsInRange(&self, range: AVBeatRange);
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Removes all events in the given beat range, splicing out that portion of the AVMusicTrack.
+        ///
+        /// Parameter `range`: the range of beats.  Must be a valid AVBeatRange.
+        ///
+        /// All events past the end of the specified range will be shifted backward by the duration of the range.
         #[method(cutEventsInRange:)]
         pub unsafe fn cutEventsInRange(&self, range: AVBeatRange);
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Copies all events in the given beat range from the specified AVMusicTrack,
+        /// splicing them into the current AVMusicTrack.
+        ///
+        /// Parameter `range`: the range of beats.  Must be a valid AVBeatRange.
+        ///
+        /// Parameter `sourceTrack`: the AVMusicTrack to copy the events from.
+        ///
+        /// Parameter `insertStartBeat`: the start beat at which the copied events should be spliced in.
+        ///
+        /// All events originally at or past insertStartBeat will be shifted forward by the duration
+        /// of the copied-in range.
         #[method(copyEventsInRange:fromTrack:insertAtBeat:)]
         pub unsafe fn copyEventsInRange_fromTrack_insertAtBeat(
             &self,
@@ -465,6 +710,19 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Copies all events in the given beat range from the specified AVMusicTrack,
+        /// merging them into the current AVMusicTrack.
+        ///
+        /// Parameter `range`: the range of beats.  Must be a valid AVBeatRange.
+        ///
+        /// Parameter `sourceTrack`: the AVMusicTrack to copy the events from.
+        ///
+        /// Parameter `insertStartBeat`: the start beat at which the copied events should be merged.
+        ///
+        /// All events originally at or past mergeStartBeat will be left unmodified.
+        ///
+        /// Copying events from track to track follows the same type-exclusion rules as adding
+        /// events:  The operation will generate an exception.
         #[method(copyAndMergeEventsInRange:fromTrack:mergeAtBeat:)]
         pub unsafe fn copyAndMergeEventsInRange_fromTrack_mergeAtBeat(
             &self,
@@ -478,6 +736,18 @@ extern_methods!(
             feature = "AVMusicEvents",
             feature = "block2"
         ))]
+        /// Iterates through the AVMusicEvents within the AVMusicTrack whose timestamps fit within the range,
+        /// calling the block for each.
+        ///
+        /// Parameter `block`: the AVMusicEventEnumerationBlock to call for each event.
+        ///
+        /// Each event returned via the block should be examined using `NSObject(isKindOfClass:)`
+        /// to determine its subclass and then cast and accessed/edited accordingly.
+        ///
+        /// The iteration may continue after removing an event.
+        ///
+        /// The event objects returned via the block will not be the same instances
+        /// which were added to the AVMusicTrack, though their contents will be identical.
         #[method(enumerateEventsInRange:usingBlock:)]
         pub unsafe fn enumerateEventsInRange_usingBlock(
             &self,

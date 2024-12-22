@@ -197,6 +197,7 @@ extern_methods!(
         #[method(verticalAlignment)]
         pub unsafe fn verticalAlignment(&self) -> NSTextBlockVerticalAlignment;
 
+        /// Setter for [`verticalAlignment`][Self::verticalAlignment].
         #[method(setVerticalAlignment:)]
         pub unsafe fn setVerticalAlignment(&self, vertical_alignment: NSTextBlockVerticalAlignment);
 
@@ -205,6 +206,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
@@ -353,24 +355,28 @@ extern_methods!(
         #[method(numberOfColumns)]
         pub unsafe fn numberOfColumns(&self) -> NSUInteger;
 
+        /// Setter for [`numberOfColumns`][Self::numberOfColumns].
         #[method(setNumberOfColumns:)]
         pub unsafe fn setNumberOfColumns(&self, number_of_columns: NSUInteger);
 
         #[method(layoutAlgorithm)]
         pub unsafe fn layoutAlgorithm(&self) -> NSTextTableLayoutAlgorithm;
 
+        /// Setter for [`layoutAlgorithm`][Self::layoutAlgorithm].
         #[method(setLayoutAlgorithm:)]
         pub unsafe fn setLayoutAlgorithm(&self, layout_algorithm: NSTextTableLayoutAlgorithm);
 
         #[method(collapsesBorders)]
         pub unsafe fn collapsesBorders(&self) -> bool;
 
+        /// Setter for [`collapsesBorders`][Self::collapsesBorders].
         #[method(setCollapsesBorders:)]
         pub unsafe fn setCollapsesBorders(&self, collapses_borders: bool);
 
         #[method(hidesEmptyCells)]
         pub unsafe fn hidesEmptyCells(&self) -> bool;
 
+        /// Setter for [`hidesEmptyCells`][Self::hidesEmptyCells].
         #[method(setHidesEmptyCells:)]
         pub unsafe fn setHidesEmptyCells(&self, hides_empty_cells: bool);
 

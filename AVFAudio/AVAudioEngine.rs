@@ -12,7 +12,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingerror?language=objc)
+/// Error codes that could be returned from AVAudioEngine manual rendering mode methods,
+/// e.g. `enableManualRenderingMode:format:maximumFrameCount:error:` and
+/// `renderOffline:toBuffer:error:`.
+/// Note that this is not a comprehensive list, and the underlying audio units could
+/// return other error codes (e.g. see kAudioUnitErr_* in AudioToolbox/AUComponent.h) from these
+/// methods as applicable.
+///
+/// AVAudioEngineManualRenderingErrorInvalidMode
+/// The operation cannot be performed because the engine is either not in manual
+/// rendering mode or the right variant of it.
+///
+/// AVAudioEngineManualRenderingErrorInitialized
+/// The operation cannot be performed because the engine is initialized (i.e. not stopped).
+///
+/// AVAudioEngineManualRenderingErrorNotRunning
+/// The operation cannot be performed because the engine is not running (i.e. not started).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -34,7 +51,29 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingstatus?language=objc)
+/// Status codes returned from the render call to the engine operating in manual rendering mode.
+///
+/// AVAudioEngineManualRenderingStatusError
+/// An error occurred when rendering and no data was returned. See the returned error code
+/// for the description of the error.
+///
+/// AVAudioEngineManualRenderingStatusSuccess
+/// All of the requested data was returned successfully.
+///
+/// AVAudioEngineManualRenderingStatusInsufficientDataFromInputNode
+/// Applicable only to the input node, when it provides input data for rendering
+/// (see `AVAudioInputNode(setManualRenderingInputPCMFormat:inputBlock:)`).
+/// Indicates that not enough input data was returned by the input node to satisfy the
+/// render request at the current time. The output buffer may contain data rendered by other
+/// active sources in the engine's processing graph.
+///
+/// AVAudioEngineManualRenderingStatusCannotDoInCurrentContext
+/// The operation could not be performed now, but the client could retry later if needed.
+/// This is usually to guard a realtime render operation (e.g. rendering through
+/// `manualRenderingBlock`) when a reconfiguration of the engine's internal state
+/// is in progress.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -58,7 +97,20 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingmode?language=objc)
+/// By default, the engine is connected to an audio device and automatically renders in realtime.
+/// It can also be configured to operate in manual rendering mode, i.e. not connected to an
+/// audio device and rendering in response to requests from the client.
+///
+/// AVAudioEngineManualRenderingModeOffline
+/// The engine operates in an offline mode without any realtime constraints.
+///
+/// AVAudioEngineManualRenderingModeRealtime
+/// The engine operates under realtime constraints, i.e. it will not make any blocking call
+/// (e.g. calling libdispatch, blocking on a mutex, allocating memory etc.) while rendering.
+/// Note that only the block based render mechanism can be used in this mode
+/// (see `AVAudioEngine(manualRenderingBlock)`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -78,7 +130,40 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingblock?language=objc)
+/// Block to render the engine when operating in manual rendering mode
+///
+/// Parameter `numberOfFrames`: The number of PCM sample frames to be rendered
+///
+/// Parameter `outBuffer`: The PCM buffer to which the engine must render the audio.
+/// The buffer pointers (outBuffer->mBuffers[x].mData) may be null on entry, in which case
+/// the block will render into a memory it owns and modify the mData pointers to point to that
+/// memory. The block is responsible for preserving the validity of that memory until it is next
+/// called to render, or `AVAudioEngine(stop)` is called.
+///
+/// Parameter `outError`: On exit, if an error occurs during rendering, a description of the error (see
+/// `AVAudioEngineManualRenderingError` for the possible errors)
+///
+/// Returns: One of the status codes from `AVAudioEngineManualRenderingStatus`. Irrespective of the
+/// returned status code, on exit, the output buffer's mDataByteSize
+/// (outBuffer->mBuffers[x].mDataByteSize) will indicate the number of PCM data bytes rendered by
+/// the engine.
+///
+/// Use this if you want to render the engine from a realtime context when it is operating in
+/// the manual rendering mode. See `AVAudioEngine(manualRenderingBlock)` for details.
+///
+/// Note that when using AVAudioEngine manual rendering with
+/// `AVAudioEngineManualRenderingModeRealtime`, calling into the engine or related classes
+/// from a non-realtime thread (e.g. for setting or getting node properties), can cause
+/// `AVAudioEngineManualRenderingBlock` on the IO thread to return
+/// `AVAudioEngineManualRenderingStatusCannotDoInCurrentContext`.
+///
+/// This is because interacting with some of these properties requires synchronization between
+/// the realtime and calling threads.
+///
+/// In such a case, the client could implement their own synchronization between their realtime
+/// and non-realtime threads and retry calling `AVAudioEngineManualRenderingBlock`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingblock?language=objc)
 #[cfg(all(
     feature = "AVAudioTypes",
     feature = "block2",
@@ -93,7 +178,24 @@ pub type AVAudioEngineManualRenderingBlock = *mut block2::Block<
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioengine?language=objc)
+    /// An AVAudioEngine contains a group of connected AVAudioNodes ("nodes"), each of which performs
+    /// an audio signal generation, processing, or input/output task.
+    ///
+    /// Nodes are created separately and attached to the engine.
+    ///
+    /// The engine supports dynamic connection, disconnection and removal of nodes while running,
+    /// with only minor limitations:
+    /// - all dynamic reconnections must occur upstream of a mixer
+    /// - while removals of effects will normally result in the automatic connection of the adjacent
+    /// nodes, removal of a node which has differing input vs. output channel counts, or which
+    /// is a mixer, is likely to result in a broken graph.
+    ///
+    /// By default, the engine is connected to an audio device and automatically renders in realtime.
+    /// It can also be configured to operate in manual rendering mode, i.e. not connected to an
+    /// audio device and rendering in response to requests from the client, normally at or
+    /// faster than realtime rate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioengine?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioEngine;
@@ -103,14 +205,40 @@ unsafe impl NSObjectProtocol for AVAudioEngine {}
 
 extern_methods!(
     unsafe impl AVAudioEngine {
+        /// Initialize a new engine.
+        ///
+        /// On creation, the engine is by default connected to an audio device and automatically renders
+        /// in realtime. It can be configured to operate in manual rendering mode through
+        /// `enableManualRenderingMode:format:maximumFrameCount:error:`.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioNode")]
+        /// Take ownership of a new node.
+        ///
+        /// Parameter `node`: The node to be attached to the engine.
+        ///
+        /// To support the instantiation of arbitrary AVAudioNode subclasses, instances are created
+        /// externally to the engine, but are not usable until they are attached to the engine via
+        /// this method. Thus the idiom, without ARC, is:
+        ///
+        /// ```
+        /// // when building engine:
+        /// AVAudioNode *_player;    // member of controller class (for example)
+        /// ...
+        /// _player = [[AVAudioPlayerNode alloc] init];
+        /// [engine attachNode: _player];
+        /// ...
+        /// // when destroying engine (without ARC)
+        /// [_player release];
+        /// ```
         #[method(attachNode:)]
         pub unsafe fn attachNode(&self, node: &AVAudioNode);
 
         #[cfg(feature = "AVAudioNode")]
+        /// Detach a node previously attached to the engine.
+        ///
+        /// If necessary, the engine will safely disconnect the node before detaching it.
         #[method(detachNode:)]
         pub unsafe fn detachNode(&self, node: &AVAudioNode);
 
@@ -119,6 +247,26 @@ extern_methods!(
             feature = "AVAudioNode",
             feature = "AVAudioTypes"
         ))]
+        /// Establish a connection between two nodes.
+        ///
+        /// Parameter `node1`: The source node
+        ///
+        /// Parameter `node2`: The destination node
+        ///
+        /// Parameter `bus1`: The output bus on the source node
+        ///
+        /// Parameter `bus2`: The input bus on the destination node
+        ///
+        /// Parameter `format`: If non-nil, the format of the source node's output bus is set to this
+        /// format. In all cases, the format of the destination node's input bus is set to
+        /// match that of the source node's output bus.
+        ///
+        /// Nodes have input and output buses (AVAudioNodeBus). Use this method to establish
+        /// one-to-one connections betweeen nodes. Connections made using this method are always
+        /// one-to-one, never one-to-many or many-to-one.
+        ///
+        /// Note that any pre-existing connection(s) involving the source's output bus or the
+        /// destination's input bus will be broken.
         #[method(connect:to:fromBus:toBus:format:)]
         pub unsafe fn connect_to_fromBus_toBus_format(
             &self,
@@ -130,6 +278,11 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioNode"))]
+        /// Establish a connection between two nodes
+        ///
+        /// This calls connect:to:fromBus:toBus:format: using bus 0 on the source node,
+        /// and bus 0 on the destination node, except in the case of a destination which is a mixer,
+        /// in which case the destination is the mixer's nextAvailableInputBus.
         #[method(connect:to:format:)]
         pub unsafe fn connect_to_format(
             &self,
@@ -144,6 +297,38 @@ extern_methods!(
             feature = "AVAudioNode",
             feature = "AVAudioTypes"
         ))]
+        /// Establish connections between a source node and multiple destination nodes.
+        ///
+        /// Parameter `sourceNode`: The source node
+        ///
+        /// Parameter `destNodes`: An array of AVAudioConnectionPoint objects specifying destination
+        /// nodes and busses
+        ///
+        /// Parameter `sourceBus`: The output bus on source node
+        ///
+        /// Parameter `format`: If non-nil, the format of the source node's output bus is set to this
+        /// format. In all cases, the format of the destination nodes' input bus is set to
+        /// match that of the source node's output bus
+        ///
+        /// Use this method to establish connections from a source node to multiple destination nodes.
+        /// Connections made using this method are either one-to-one (when a single destination
+        /// connection is specified) or one-to-many (when multiple connections are specified), but
+        /// never many-to-one.
+        ///
+        /// To incrementally add a new connection to a source node, use this method with an array
+        /// of AVAudioConnectionPoint objects comprising of pre-existing connections (obtained from
+        /// `outputConnectionPointsForNode:outputBus:`) and the new connection.
+        ///
+        /// Note that any pre-existing connection involving the destination's input bus will be
+        /// broken. And, any pre-existing connection on source node which is not a part of the
+        /// specified destination connection array will also be broken.
+        ///
+        /// Also note that when the output of a node is split into multiple paths, all the paths
+        /// must render at the same rate until they reach a common mixer.
+        /// In other words, starting from the split node until the common mixer node where all split
+        /// paths terminate, you cannot have:
+        /// - any AVAudioUnitTimeEffect
+        /// - any sample rate conversion
         #[method(connect:toConnectionPoints:fromBus:format:)]
         pub unsafe fn connect_toConnectionPoints_fromBus_format(
             &self,
@@ -154,33 +339,98 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioTypes"))]
+        /// Remove a connection between two nodes.
+        ///
+        /// Parameter `node`: The node whose input is to be disconnected
+        ///
+        /// Parameter `bus`: The destination's input bus to disconnect
         #[method(disconnectNodeInput:bus:)]
         pub unsafe fn disconnectNodeInput_bus(&self, node: &AVAudioNode, bus: AVAudioNodeBus);
 
         #[cfg(feature = "AVAudioNode")]
+        /// Remove a connection between two nodes.
+        ///
+        /// Parameter `node`: The node whose inputs are to be disconnected
+        ///
+        /// Connections are broken on each of the node's input busses.
         #[method(disconnectNodeInput:)]
         pub unsafe fn disconnectNodeInput(&self, node: &AVAudioNode);
 
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioTypes"))]
+        /// Remove a connection between two nodes.
+        ///
+        /// Parameter `node`: The node whose output is to be disconnected
+        ///
+        /// Parameter `bus`: The source's output bus to disconnect
         #[method(disconnectNodeOutput:bus:)]
         pub unsafe fn disconnectNodeOutput_bus(&self, node: &AVAudioNode, bus: AVAudioNodeBus);
 
         #[cfg(feature = "AVAudioNode")]
+        /// Remove a connection between two nodes.
+        ///
+        /// Parameter `node`: The node whose outputs are to be disconnected
+        ///
+        /// Connections are broken on each of the node's output busses.
         #[method(disconnectNodeOutput:)]
         pub unsafe fn disconnectNodeOutput(&self, node: &AVAudioNode);
 
+        /// Prepare the engine for starting.
+        ///
+        /// This method preallocates many of the resources the engine requires in order to start.
+        /// Use it to responsively start audio input or output.
+        ///
+        /// On AVAudioSession supported platforms, this method may cause the audio session to be implicitly activated. Activating the audio session (implicitly or explicitly) may cause other audio sessions to be interrupted or ducked depending on the session's configuration. It is recommended to configure and activate the app's audio session before preparing the engine.
+        /// See https://developer.apple.com/library/archive/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Introduction/Introduction.html for details.
         #[method(prepare)]
         pub unsafe fn prepare(&self);
 
+        /// Start the engine.
+        ///
+        /// Returns: YES for success
+        ///
+        /// Calls prepare if it has not already been called since stop.
+        ///
+        /// When the engine is rendering to/from an audio device, starts the audio hardware via the
+        /// AVAudioInputNode and/or AVAudioOutputNode instances in the engine. Audio begins to flow
+        /// through the engine.
+        /// Reasons for potential failure to start in this mode include:
+        /// 1. There is problem in the structure of the graph. Input can't be routed to output or to a
+        /// recording tap through converter type nodes.
+        /// 2. An AVAudioSession error.
+        /// 3. The driver failed to start the hardware.
+        ///
+        /// In manual rendering mode, prepares the engine to render when requested by the client.
+        ///
+        /// On AVAudioSession supported platforms, this method may cause the audio session to be implicitly activated. It is recommended to configure and activate the app's audio session before starting the engine. For more information, see the `prepare` method above.
         #[method(startAndReturnError:_)]
         pub unsafe fn startAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
+        /// Pause the engine.
+        ///
+        /// When the engine is rendering to/from an audio device, stops the audio hardware and the flow
+        /// of audio through the engine. When operating in this mode, it is recommended that the engine
+        /// be paused or stopped (as applicable) when not in use, to minimize power consumption.
+        ///
+        /// Pausing the engine does not deallocate the resources allocated by prepare. Resume the
+        /// engine by invoking start again.
         #[method(pause)]
         pub unsafe fn pause(&self);
 
+        /// reset
+        /// Reset all of the nodes in the engine.
+        ///
+        /// This will reset all of the nodes in the engine. This is useful, for example, for silencing
+        /// reverb and delay tails.
+        ///
+        /// In manual rendering mode, the render timeline is reset to a sample time of zero.
         #[method(reset)]
         pub unsafe fn reset(&self);
 
+        /// When the engine is rendering to/from an audio device, stops the audio hardware and the
+        /// engine. When operating in this mode, it is recommended that the engine be paused or stopped
+        /// (as applicable) when not in use, to minimize power consumption.
+        ///
+        /// Stopping the engine releases the resources allocated by prepare.
         #[method(stop)]
         pub unsafe fn stop(&self);
 
@@ -189,6 +439,18 @@ extern_methods!(
             feature = "AVAudioNode",
             feature = "AVAudioTypes"
         ))]
+        /// Get connection information on a node's input bus.
+        ///
+        /// Parameter `node`: The node whose input connection is being queried.
+        ///
+        /// Parameter `bus`: The node's input bus on which the connection is being queried.
+        ///
+        /// Returns: An AVAudioConnectionPoint object with connection information on the node's
+        /// specified input bus.
+        ///
+        /// Connections are always one-to-one or one-to-many, never many-to-one.
+        ///
+        /// Returns nil if there is no connection on the node's specified input bus.
         #[method_id(@__retain_semantics Other inputConnectionPointForNode:inputBus:)]
         pub unsafe fn inputConnectionPointForNode_inputBus(
             &self,
@@ -201,6 +463,18 @@ extern_methods!(
             feature = "AVAudioNode",
             feature = "AVAudioTypes"
         ))]
+        /// Get connection information on a node's output bus.
+        ///
+        /// Parameter `node`: The node whose output connections are being queried.
+        ///
+        /// Parameter `bus`: The node's output bus on which connections are being queried.
+        ///
+        /// Returns: An array of AVAudioConnectionPoint objects with connection information on the node's
+        /// specified output bus.
+        ///
+        /// Connections are always one-to-one or one-to-many, never many-to-one.
+        ///
+        /// Returns an empty array if there are no connections on the node's specified output bus.
         #[method_id(@__retain_semantics Other outputConnectionPointsForNode:outputBus:)]
         pub unsafe fn outputConnectionPointsForNode_outputBus(
             &self,
@@ -210,40 +484,149 @@ extern_methods!(
 
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// The MusicSequence previously attached to the engine (if any).
         #[method(musicSequence)]
         pub unsafe fn musicSequence(&self) -> MusicSequence;
 
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// Setter for [`musicSequence`][Self::musicSequence].
         #[method(setMusicSequence:)]
         pub unsafe fn setMusicSequence(&self, music_sequence: MusicSequence);
 
         #[cfg(all(feature = "AVAudioIONode", feature = "AVAudioNode"))]
+        /// The engine's singleton output node.
+        ///
+        /// Audio output is performed via an output node. The engine creates a singleton on demand when
+        /// this property is first accessed. Connect another node to the input of the output node, or
+        /// obtain a mixer that is connected there by default, using the "mainMixerNode" property.
+        ///
+        /// When the engine is rendering to/from an audio device, the AVAudioSesssion category and/or
+        /// availability of hardware determine whether an app can perform output. Check the output
+        /// format of output node (i.e. hardware format) for non-zero sample rate and channel count to
+        /// see if output is enabled.
+        /// Trying to perform output through the output node when it is not enabled or available will
+        /// cause the engine to throw an error (when possible) or an exception.
+        ///
+        /// In manual rendering mode, the output format of the output node will determine the
+        /// render format of the engine. It can be changed through
+        /// `enableManualRenderingMode:format:maximumFrameCount:error:`.
         #[method_id(@__retain_semantics Other outputNode)]
         pub unsafe fn outputNode(&self) -> Retained<AVAudioOutputNode>;
 
         #[cfg(all(feature = "AVAudioIONode", feature = "AVAudioNode"))]
+        /// The engine's singleton input node.
+        ///
+        /// Audio input is performed via an input node. The engine creates a singleton on demand when
+        /// this property is first accessed. To receive input, connect another node from the output of
+        /// the input node, or create a recording tap on it.
+        ///
+        /// When the engine is rendering to/from an audio device, the AVAudioSesssion category and/or
+        /// availability of hardware determine whether an app can perform input. Check for the input node's
+        /// input format (i.e. hardware format) for non-zero sample rate and channel count to see if input is enabled.
+        /// Trying to perform input through the input node when it is not enabled or available will
+        /// cause the engine to throw an error (when possible) or an exception.
+        ///
+        /// Note that if the engine has at any point previously had its inputNode enabled and permission to
+        /// record was granted, then any time the engine is running, the mic-in-use indicator will appear.
+        ///
+        /// For applications which may need to dynamically switch between output-only and input-output
+        /// modes, it may be advantageous to use two engine instances.
+        ///
+        /// In manual rendering mode, the input node can be used to synchronously supply data to
+        /// the engine while it is rendering (see
+        /// `AVAudioInputNode(setManualRenderingInputPCMFormat:inputBlock:)`.
         #[method_id(@__retain_semantics Other inputNode)]
         pub unsafe fn inputNode(&self) -> Retained<AVAudioInputNode>;
 
         #[cfg(all(feature = "AVAudioMixerNode", feature = "AVAudioNode"))]
+        /// The engine's optional singleton main mixer node.
+        ///
+        /// The engine will construct a singleton main mixer and connect it to the outputNode on demand,
+        /// when this property is first accessed. You can then connect additional nodes to the mixer.
+        ///
+        /// If the client has never explicitly set the connection format between the mainMixerNode and
+        /// the outputNode, the engine will always set/update the format to track the format of the outputNode
+        /// on (re)start, even after an AVAudioEngineConfigurationChangeNotification.
+        /// Otherwise, it's the client's responsibility to set/update this connection format after an
+        /// AVAudioEngineConfigurationChangeNotification.
+        ///
+        /// By default, the mixer's output format (sample rate and channel count) will track the format
+        /// of the output node. You may however make the connection explicitly with a different format.
         #[method_id(@__retain_semantics Other mainMixerNode)]
         pub unsafe fn mainMixerNode(&self) -> Retained<AVAudioMixerNode>;
 
+        /// The engine's running state.
         #[method(isRunning)]
         pub unsafe fn isRunning(&self) -> bool;
 
+        /// When auto shutdown is enabled, the engine can start and stop the audio hardware dynamically,
+        /// to conserve power. This is the enforced behavior on watchOS and can be optionally enabled on
+        /// other platforms.
+        ///
+        /// To conserve power, it is advised that the client pause/stop the engine when not in use.
+        /// But when auto shutdown is enabled, the engine will stop the audio hardware if it was running
+        /// idle for a certain duration, and restart it later when required.
+        /// Note that, because this operation is dynamic, it may affect the start times of the source
+        /// nodes (e.g. `AVAudioPlayerNode`), if the engine has to resume from its shutdown state.
+        ///
+        /// On watchOS, auto shutdown is always enabled. On other platforms, it is disabled by
+        /// default, but the client can enable it if needed.
+        ///
+        /// This property is applicable only when the engine is rendering to/from an audio device. If
+        /// the value is changed when the engine is in manual rendering mode, it will take effect
+        /// whenever the engine is switched to render to/from the audio device.
         #[method(isAutoShutdownEnabled)]
         pub unsafe fn isAutoShutdownEnabled(&self) -> bool;
 
+        /// Setter for [`isAutoShutdownEnabled`][Self::isAutoShutdownEnabled].
         #[method(setAutoShutdownEnabled:)]
         pub unsafe fn setAutoShutdownEnabled(&self, auto_shutdown_enabled: bool);
 
         #[cfg(feature = "AVAudioNode")]
+        /// Set of all nodes attached to the engine.
         #[method_id(@__retain_semantics Other attachedNodes)]
         pub unsafe fn attachedNodes(&self) -> Retained<NSSet<AVAudioNode>>;
 
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
+        /// Set the engine to operate in a manual rendering mode with the specified render format and
+        /// maximum frame count.
+        ///
+        /// Parameter `mode`: The manual rendering mode to use.
+        ///
+        /// Parameter `pcmFormat`: The format of the output PCM audio data from the engine.
+        ///
+        /// Parameter `maximumFrameCount`: The maximum number of PCM sample frames the engine will be asked to produce in any single
+        /// render call.
+        ///
+        /// Parameter `outError`: On exit, if the engine cannot switch to the manual rendering mode, a description of the
+        /// error (see `AVAudioEngineManualRenderingError` for the possible errors).
+        ///
+        /// Returns: YES for success.
+        ///
+        /// Use this method to configure the engine to render in response to requests from the client.
+        ///
+        /// The engine must be in a stopped state before calling this method.
+        /// The render format must be a PCM format and match the format of the buffer to which
+        /// the engine is asked to render (see `renderOffline:toBuffer:error:`).
+        ///
+        /// It is advised to enable manual rendering mode soon after the engine is created, and
+        /// before accessing any of mainMixerNode, inputNode or outputNode of the engine.
+        /// Otherwise, accessing or interacting with the engine before enabling manual rendering
+        /// mode could have the unintended side-effect of configuring the hardware for device-rendering
+        /// mode.
+        ///
+        /// The input data in manual rendering mode can be supplied through the source nodes, e.g.
+        /// `AVAudioPlayerNode`, `AVAudioInputNode` etc.
+        ///
+        /// When switching to manual rendering mode, the engine:
+        /// 1. Switches the input and output nodes to manual rendering mode. Their input and output
+        /// formats may change.
+        /// 2. Removes any taps previously installed on the input and output nodes.
+        /// 3. Maintains all the engine connections as is.
+        ///
+        /// Reasons for potential failure when switching to manual rendering mode include:
+        /// - Engine is not in a stopped state.
         #[method(enableManualRenderingMode:format:maximumFrameCount:error:_)]
         pub unsafe fn enableManualRenderingMode_format_maximumFrameCount_error(
             &self,
@@ -252,6 +635,17 @@ extern_methods!(
             maximum_frame_count: AVAudioFrameCount,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Set the engine to render to/from an audio device.
+        ///
+        /// When disabling the manual rendering mode, the engine:
+        /// 1. Stops and resets itself (see `stop` and `reset`).
+        /// 2. Switches the output/input nodes to render to/from an audio device. Their input and
+        /// output formats may change.
+        /// 3. Removes any taps previously installed on the input and output nodes.
+        /// 4. Maintains all the engine connections as is.
+        ///
+        /// Calling this method when the engine is already rendering to/from an audio device has no
+        /// effect.
         #[method(disableManualRenderingMode)]
         pub unsafe fn disableManualRenderingMode(&self);
 
@@ -260,24 +654,57 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-audio-types"
         ))]
+        /// Block to render the engine operating in manual rendering mode
+        ///
+        /// This block based render call must be used to render the engine when operating in
+        /// `AVAudioEngineManualRenderingModeRealtime`. In this mode, the engine operates under
+        /// realtime constraints and will not make any blocking call (e.g. calling libdispatch, blocking
+        /// on a mutex, allocating memory etc.) while rendering.
+        ///
+        /// Before invoking the rendering functionality, client must fetch this block and cache the
+        /// result. The block can then be called from a realtime context, without any possibility of
+        /// blocking.
+        ///
+        /// When rendering in `AVAudioEngineManualRenderingModeOffline`, either this block based render
+        /// call or    `renderOffline:toBuffer:error:` ObjC method can be used.
+        /// All the rules outlined in `renderOffline:toBuffer:error:` are applicable here as well.
         #[method(manualRenderingBlock)]
         pub unsafe fn manualRenderingBlock(&self) -> AVAudioEngineManualRenderingBlock;
 
+        /// Whether or not the engine is operating in manual rendering mode, i.e. not connected
+        /// to an audio device and rendering in response to the requests from the client
         #[method(isInManualRenderingMode)]
         pub unsafe fn isInManualRenderingMode(&self) -> bool;
 
+        /// The manual rendering mode configured on the engine
+        ///
+        /// This property is meaningful only when the engine is operating in manual rendering mode,
+        /// i.e. when `isInManualRenderingMode` returns true.
         #[method(manualRenderingMode)]
         pub unsafe fn manualRenderingMode(&self) -> AVAudioEngineManualRenderingMode;
 
         #[cfg(feature = "AVAudioFormat")]
+        /// The render format of the engine in manual rendering mode.
+        ///
+        /// Querying this property when the engine is not in manual rendering mode will return an
+        /// invalid format, with zero sample rate and channel count.
         #[method_id(@__retain_semantics Other manualRenderingFormat)]
         pub unsafe fn manualRenderingFormat(&self) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// The maximum number of PCM sample frames the engine can produce in any single render call in
+        /// the manual rendering mode.
+        ///
+        /// Querying this property when the engine is not in manual rendering mode will return zero.
         #[method(manualRenderingMaximumFrameCount)]
         pub unsafe fn manualRenderingMaximumFrameCount(&self) -> AVAudioFrameCount;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Indicates where the engine is on its render timeline in manual rendering mode.
+        ///
+        /// The timeline in manual rendering mode starts at a sample time of zero, and is in terms
+        /// of the render format's sample rate. Resetting the engine (see `reset`) will reset the
+        /// timeline back to zero.
         #[method(manualRenderingSampleTime)]
         pub unsafe fn manualRenderingSampleTime(&self) -> AVAudioFramePosition;
 
@@ -288,6 +715,33 @@ extern_methods!(
             feature = "objc2-audio-toolbox"
         ))]
         #[cfg(not(target_os = "watchos"))]
+        /// Establish a MIDI only connection between two nodes.
+        ///
+        /// Parameter `sourceNode`: The source node.
+        ///
+        /// Parameter `destinationNode`: The destination node.
+        ///
+        /// Parameter `format`: If non-nil, the format of the source node's output bus is set to this format.
+        /// In all cases, the format of the source nodes' output bus has to match with the
+        /// destination nodes' output bus format.
+        /// Although the output bus of the source is not in use, the format needs to be set
+        /// in order to be able to use the sample rate for MIDI event timing calculations.
+        ///
+        /// Parameter `tapBlock`: If non-nil, this block is called from the source node's `AUMIDIOutputEventBlock`
+        /// on the realtime thread. The host can tap the MIDI data of the source node through
+        /// this block. May be nil.
+        ///
+        /// Use this method to establish a MIDI only connection between a source node and a
+        /// destination node that has MIDI input capability.
+        ///
+        /// The source node can only be a AVAudioUnit node of type `kAudioUnitType_MIDIProcessor`.
+        /// The destination node types can be `kAudioUnitType_MusicDevice`,
+        /// `kAudioUnitType_MusicEffect` or `kAudioUnitType_MIDIProcessor`.
+        ///
+        /// Note that any pre-existing MIDI connection involving the destination will be broken.
+        ///
+        /// Any client installed block on the source node's audio unit `AUMIDIOutputEventBlock`
+        /// will be overwritten when making the MIDI connection.
         #[deprecated]
         #[method(connectMIDI:to:format:block:)]
         pub unsafe fn connectMIDI_to_format_block(
@@ -305,6 +759,37 @@ extern_methods!(
             feature = "objc2-audio-toolbox"
         ))]
         #[cfg(not(target_os = "watchos"))]
+        /// Establish a MIDI only connection between a source node and multiple destination nodes.
+        ///
+        /// Parameter `sourceNode`: The source node.
+        ///
+        /// Parameter `destinationNodes`: An array of AVAudioNodes specifying destination nodes.
+        ///
+        /// Parameter `format`: If non-nil, the format of the source node's output bus is set to this format.
+        /// In all cases, the format of the source nodes' output bus has to match with the
+        /// destination nodes' output bus format.
+        /// Although the output bus of the source is not in use, the format needs to be set
+        /// in order to be able to use the sample rate for MIDI event timing calculations.
+        ///
+        /// Parameter `tapBlock`: If non-nil, this block is called from the source node's `AUMIDIOutputEventBlock`
+        /// on the realtime thread. The host can tap the MIDI data of the source node through
+        /// this block. May be nil.
+        ///
+        /// Use this method to establish a MIDI only connection between a source node and
+        /// multiple destination nodes.
+        ///
+        /// The source node can only be a AVAudioUnit node of type `kAudioUnitType_MIDIProcessor`.
+        /// The destination node types can be `kAudioUnitType_MusicDevice`,
+        /// `kAudioUnitType_MusicEffect` or `kAudioUnitType_MIDIProcessor`.
+        ///
+        /// MIDI connections made using this method are either one-to-one (when a single
+        /// destination connection is specified) or one-to-many (when multiple connections are
+        /// specified), but never many-to-one.
+        ///
+        /// Note that any pre-existing connection involving the destination will be broken.
+        ///
+        /// Any client installed block on the source node's audio unit `AUMIDIOutputEventBlock`
+        /// will be overwritten when making the MIDI connection.
         #[deprecated]
         #[method(connectMIDI:toNodes:format:block:)]
         pub unsafe fn connectMIDI_toNodes_format_block(
@@ -316,6 +801,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVAudioNode")]
+        /// Remove a MIDI connection between two nodes.
+        ///
+        /// Parameter `sourceNode`: The node whose MIDI output is to be disconnected.
+        ///
+        /// Parameter `destinationNode`: The node whose MIDI input is to be disconnected.
+        ///
+        /// If a tap block is installed on the source node, it will be removed when the last
+        /// connection from the source node is removed.
         #[method(disconnectMIDI:from:)]
         pub unsafe fn disconnectMIDI_from(
             &self,
@@ -324,6 +817,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVAudioNode")]
+        /// Remove a MIDI connection between one source node and multiple destination nodes.
+        ///
+        /// Parameter `sourceNode`: The node whose MIDI output is to be disconnected.
+        ///
+        /// Parameter `destinationNodes`: An array of AVAudioNodes specifying nodes whose MIDI input is to be disconnected.
+        ///
+        /// If a tap block is installed on the source node, it will be removed when the last
+        /// connection from the source node is removed.
         #[method(disconnectMIDI:fromNodes:)]
         pub unsafe fn disconnectMIDI_fromNodes(
             &self,
@@ -332,10 +833,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVAudioNode")]
+        /// Disconnects all input MIDI connections of this node.
+        ///
+        /// Parameter `node`: The node whose MIDI input is to be disconnected.
         #[method(disconnectMIDIInput:)]
         pub unsafe fn disconnectMIDIInput(&self, node: &AVAudioNode);
 
         #[cfg(feature = "AVAudioNode")]
+        /// Disconnects all output MIDI connections of this node.
+        ///
+        /// Parameter `node`: The node whose MIDI outputs are to be disconnected.
         #[method(disconnectMIDIOutput:)]
         pub unsafe fn disconnectMIDIOutput(&self, node: &AVAudioNode);
     }
@@ -350,6 +857,31 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioengineconfigurationchangenotification?language=objc)
+    /// A notification generated on engine configuration changes when rendering to/from an audio
+    /// device.
+    ///
+    /// Register for this notification on your engine instances, as follows:
+    ///
+    /// ```
+    /// [[NSNotificationCenter defaultCenter] addObserver: myObject
+    /// selector:
+    /// sel!(handleInterruption:)
+    /// name:        AVAudioEngineConfigurationChangeNotification
+    /// object:      engine];
+    /// ```
+    ///
+    /// When the engine's I/O unit observes a change to the audio input or output hardware's
+    /// channel count or sample rate, the engine stops itself (see `AVAudioEngine(stop)`), and
+    /// issues this notification.
+    /// The nodes remain attached and connected with previously set formats. However, the app
+    /// must reestablish connections if the connection formats need to change (e.g. in an
+    /// input node chain, connections must follow the hardware sample rate, while in an output only
+    /// chain, the output node supports rate conversion).
+    ///
+    /// Note that the engine must not be deallocated from within the client's notification handler
+    /// because the callback happens on an internal dispatch queue and can deadlock while trying to
+    /// synchronously teardown the engine.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioengineconfigurationchangenotification?language=objc)
     pub static AVAudioEngineConfigurationChangeNotification: &'static NSString;
 }

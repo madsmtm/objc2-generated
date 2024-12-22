@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllinkedfunctions?language=objc)
+    /// A class to set functions to be linked.
+    ///
+    /// All functions set on this object must have unique names.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtllinkedfunctions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLLinkedFunctions;
@@ -24,23 +28,28 @@ unsafe impl NSObjectProtocol for MTLLinkedFunctions {}
 
 extern_methods!(
     unsafe impl MTLLinkedFunctions {
+        /// Create an autoreleased MTLLinkedFunctions object.
         #[method_id(@__retain_semantics Other linkedFunctions)]
         pub fn linkedFunctions() -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLibrary")]
+        /// The array of functions to be AIR linked.
         #[method_id(@__retain_semantics Other functions)]
         pub fn functions(&self) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
+        /// Setter for [`functions`][Self::functions].
         #[method(setFunctions:)]
         pub fn setFunctions(&self, functions: Option<&NSArray<ProtocolObject<dyn MTLFunction>>>);
 
         #[cfg(feature = "MTLLibrary")]
+        /// The array of functions compiled to binary to be linked.
         #[method_id(@__retain_semantics Other binaryFunctions)]
         pub fn binaryFunctions(&self)
             -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
+        /// Setter for [`binaryFunctions`][Self::binaryFunctions].
         #[method(setBinaryFunctions:)]
         pub fn setBinaryFunctions(
             &self,
@@ -48,12 +57,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "MTLLibrary")]
+        /// Groups of functions, grouped to match callsites in the shader code.
         #[method_id(@__retain_semantics Other groups)]
         pub fn groups(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSArray<ProtocolObject<dyn MTLFunction>>>>>;
 
         #[cfg(feature = "MTLLibrary")]
+        /// Setter for [`groups`][Self::groups].
         #[method(setGroups:)]
         pub fn setGroups(
             &self,
@@ -61,12 +72,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "MTLLibrary")]
+        /// The array of functions to be AIR linked.
+        ///
+        /// These functions are not exported by the pipeline state as MTLFunctionHandle objects.
+        /// Function pointer support is not required to link private functions.
         #[method_id(@__retain_semantics Other privateFunctions)]
         pub fn privateFunctions(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
+        /// Setter for [`privateFunctions`][Self::privateFunctions].
         #[method(setPrivateFunctions:)]
         pub fn setPrivateFunctions(
             &self,

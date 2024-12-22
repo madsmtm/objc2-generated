@@ -36,6 +36,11 @@ unsafe impl NSSecureCoding for MPSNNReshape {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReshape {
+        /// Initialize a MPSNNReshape kernel
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNReshape object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -50,6 +55,17 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MPSImage")]
+        /// Encode a reshape to a command buffer for a given shape.
+        ///
+        /// Parameter `commandBuffer`: The command buffer on which to encode the reshape operation.
+        ///
+        /// Parameter `sourceImage`: The input image to be reshaped.
+        ///
+        /// Parameter `reshapedWidth`: The width of the resulting reshaped image.
+        ///
+        /// Parameter `reshapedHeight`: The height of the resulting reshaped image.
+        ///
+        /// Parameter `reshapedFeatureChannels`: The number of feature channels in the resulting reshaped image.
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceImage:reshapedWidth:reshapedHeight:reshapedFeatureChannels:)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_reshapedWidth_reshapedHeight_reshapedFeatureChannels(
             &self,
@@ -61,6 +77,22 @@ extern_methods!(
         ) -> Retained<MPSImage>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Encode a reshape to a command buffer for a given shape.
+        ///
+        /// Parameter `commandBuffer`: The command buffer on which to encode the reshape operation.
+        ///
+        /// Parameter `outState`: A state to be created and autoreleased which will hold information about this execution
+        /// to be provided to a subsequent gradient pass.
+        ///
+        /// Parameter `isTemporary`: YES if the state is to be created as a temporary state, NO otherwise.
+        ///
+        /// Parameter `sourceImage`: The input image to be reshaped.
+        ///
+        /// Parameter `reshapedWidth`: The width of the resulting reshaped image.
+        ///
+        /// Parameter `reshapedHeight`: The height of the resulting reshaped image.
+        ///
+        /// Parameter `reshapedFeatureChannels`: The number of feature channels in the resulting reshaped image.
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:reshapedWidth:reshapedHeight:reshapedFeatureChannels:)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_destinationState_destinationStateIsTemporary_reshapedWidth_reshapedHeight_reshapedFeatureChannels(
             &self,
@@ -74,6 +106,17 @@ extern_methods!(
         ) -> Retained<MPSImage>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray"))]
+        /// Encode a reshape to a command buffer for a given shape.
+        ///
+        /// Parameter `commandBuffer`: The command buffer on which to encode the reshape operation.
+        ///
+        /// Parameter `sourceImages`: The image batch containing images to be reshaped.
+        ///
+        /// Parameter `reshapedWidth`: The width of the resulting reshaped images.
+        ///
+        /// Parameter `reshapedHeight`: The height of the resulting reshaped images.
+        ///
+        /// Parameter `reshapedFeatureChannels`: The number of feature channels in each of the resulting reshaped images.
         #[method_id(@__retain_semantics Other encodeBatchToCommandBuffer:sourceImages:reshapedWidth:reshapedHeight:reshapedFeatureChannels:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_reshapedWidth_reshapedHeight_reshapedFeatureChannels(
             &self,
@@ -85,6 +128,22 @@ extern_methods!(
         ) -> Retained<MPSImageBatch>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
+        /// Encode a reshape to a command buffer for a given shape.
+        ///
+        /// Parameter `commandBuffer`: The command buffer on which to encode the reshape operation.
+        ///
+        /// Parameter `outStates`: A batch of states to be created and autoreleased which will hold information about this execution
+        /// to be provided to a subsequent gradient pass.
+        ///
+        /// Parameter `isTemporary`: YES if the states are to be created as temporary states, NO otherwise.
+        ///
+        /// Parameter `sourceImages`: The batch of input images to be reshaped.
+        ///
+        /// Parameter `reshapedWidth`: The width of the resulting reshaped images.
+        ///
+        /// Parameter `reshapedHeight`: The height of the resulting reshaped images.
+        ///
+        /// Parameter `reshapedFeatureChannels`: The number of feature channels in each of the resulting reshaped images.
         #[method_id(@__retain_semantics Other encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:reshapedWidth:reshapedHeight:reshapedFeatureChannels:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationStates_destinationStateIsTemporary_reshapedWidth_reshapedHeight_reshapedFeatureChannels(
             &self,
@@ -103,6 +162,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReshape {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -124,7 +191,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreshapegradient?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The reshape gradient filter reshapes the incoming gradient into the dimensions
+    /// of the forward reshape kernel's source image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreshapegradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -151,12 +223,31 @@ unsafe impl NSSecureCoding for MPSNNReshapeGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReshapeGradient {
+        /// Initializes a MPSNNReshapeGradient function
+        ///
+        /// Parameter `device`: The MTLDevice on which this filter will be used
+        ///
+        ///
+        /// Returns: A valid MPSNNReshapeGradient object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -170,6 +261,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNReshapeGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -219,27 +318,66 @@ extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNPad {
         #[cfg(feature = "MPSCoreTypes")]
+        /// This property is used for automatically sizing the destination image
+        /// for the function
+        /// destinationImageDescriptorForSourceImages:sourceStates:.Defines
+        /// how much padding to assign on the left, top and smaller feature channel indices
+        /// of the image. NOTE: the x and y coordinates of this property are only
+        /// used through
+        /// destinationImageDescriptorForSourceImages:sourceStates:,since
+        /// the clipRect and offset together define the padding sizes in those directions, but
+        /// the 'channel' size defines the amount of padding to be applied in the feature
+        /// channel dimension, before the feature channels starting from feature channel
+        /// index
+        /// sourceFeatureChannelOffset.Default: { 0, 0, 0 }
         #[method(paddingSizeBefore)]
         pub unsafe fn paddingSizeBefore(&self) -> MPSImageCoordinate;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`paddingSizeBefore`][Self::paddingSizeBefore].
         #[method(setPaddingSizeBefore:)]
         pub unsafe fn setPaddingSizeBefore(&self, padding_size_before: MPSImageCoordinate);
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// This property is used for automatically sizing the destination image
+        /// for the function
+        /// destinationImageDescriptorForSourceImages:sourceStates:.Defines
+        /// how much padding to assign on the right, bottom and higher feature channel indices
+        /// of the image. NOTE: the x and y coordinates of this property are only
+        /// used through
+        /// destinationImageDescriptorForSourceImages:sourceStates:,since
+        /// the clipRect and offset together define the padding sizes in those directions, but
+        /// the 'channel' size defines the amount of padding to be applied in the feature
+        /// channel dimension after source feature channel index determined by the sum of
+        /// sourceFeatureChannelOffsetand
+        /// sourceFeatureChannelMaxCount,naturally
+        /// clipped to fit the feature channels in the provided source image.
+        /// Default: { 0, 0, 0 }
         #[method(paddingSizeAfter)]
         pub unsafe fn paddingSizeAfter(&self) -> MPSImageCoordinate;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`paddingSizeAfter`][Self::paddingSizeAfter].
         #[method(setPaddingSizeAfter:)]
         pub unsafe fn setPaddingSizeAfter(&self, padding_size_after: MPSImageCoordinate);
 
+        /// Determines the constant value to apply when using
+        /// MPSImageEdgeModeConstant.Default: 0.0f.
+        /// NOTE: this value is ignored if the filter is initialized with a per-channel fill value
+        /// using
+        /// initWithDevice:paddingSizeBefore:paddingSizeAfter:fillValueArray:.
         #[method(fillValue)]
         pub unsafe fn fillValue(&self) -> c_float;
 
+        /// Setter for [`fillValue`][Self::fillValue].
         #[method(setFillValue:)]
         pub unsafe fn setFillValue(&self, fill_value: c_float);
 
+        /// Initialize a MPSNNPad kernel
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Returns: A valid MPSNNPad object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -247,6 +385,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Initialize a MPSNNPad kernel
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `paddingSizeBefore`: The amount of padding to add before the source image - see details above.
+        ///
+        /// Parameter `paddingSizeAfter`: The amount of padding to add after the source image - see details above.
+        ///
+        /// Returns: A valid MPSNNPad object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:paddingSizeBefore:paddingSizeAfter:)]
         pub unsafe fn initWithDevice_paddingSizeBefore_paddingSizeAfter(
             this: Allocated<Self>,
@@ -256,6 +403,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Initialize a MPSNNPad kernel
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `paddingSizeBefore`: The amount of padding to add before the source image - see details above.
+        ///
+        /// Parameter `paddingSizeAfter`: The amount of padding to add after the source image - see details above.
+        ///
+        /// Parameter `fillValueArray`: A NSData containing a float array to use with
+        /// MPSImageEdgeModeConstant.The first value of the array will correspond to the first feature channel
+        /// written out to the destination image and the number of float values in the
+        /// data must be at least as large as the number of feature channels written onto
+        /// the destination by the filter. Failing to pass a large enough array will
+        /// result in undefined behavior. Passing in nil is fine.
+        ///
+        /// Returns: A valid MPSNNPad object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:paddingSizeBefore:paddingSizeAfter:fillValueArray:)]
         pub unsafe fn initWithDevice_paddingSizeBefore_paddingSizeAfter_fillValueArray(
             this: Allocated<Self>,
@@ -265,6 +428,15 @@ extern_methods!(
             fill_value_array: Option<&NSData>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSNNPad
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSNNPad
+        ///
+        /// Returns: A new MPSNNPad object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -278,6 +450,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNPad {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -299,7 +479,80 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadgradient?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Computes the gradient for the
+    /// MPSNNPadlayer.
+    /// Since the padding forward operation typically increases the size of the image, the gradient operation
+    /// decreases it. In case of zero or constant padding forward operation the gradient operation slices the
+    /// input gradient and in other edge modes the padded values copied in the forward operation are
+    /// summed together in the gradient operation.
+    /// For Example for the
+    /// MPSImageEdgeModeClampthe forward operation with offset = -2, destSize = 8
+    /// or
+    /// paddingSizeBefore= 2,
+    /// paddingSizeAfter= 3, sourceSize = 3:
+    ///
+    /// ```text
+    ///               Source Image:
+    ///                 |--------------|
+    ///                 | x0 | x1 | x2 |
+    ///                 |--------------|
+    ///               Destination Image:
+    ///                 |---------------------------------------|
+    ///                 | x0 | x0 | x0 | x1 | x2 | x2 | x2 | x2 |
+    ///                 |---------------------------------------|
+    /// ```
+    ///
+    /// Then the gradient operation becomes:
+    ///
+    /// ```text
+    ///               Source Gradient Image:
+    ///                 |---------------------------------------|
+    ///                 | d0 | d1 | d2 | d3 | d4 | d5 | d6 | d7 |
+    ///                 |---------------------------------------|
+    ///               Destination Gradient Image:
+    ///                 |-----------------------------|
+    ///                 | d0+d1+d2 | d3 | d4+d5+d6+d7 |
+    ///                 |-----------------------------|
+    /// ```
+    ///
+    /// Another example with
+    /// MPSImageEdgeModeMirror,the forward operation with offset = -4, destSize = 8
+    /// or
+    /// paddingSizeBefore= 4,
+    /// paddingSizeAfter= 1, sourceSize = 3:
+    ///
+    /// ```text
+    ///               Source Image:
+    ///                 |--------------|
+    ///                 | x0 | x1 | x2 |
+    ///                 |--------------|
+    ///               Destination Image:
+    ///                 |---------------------------------------|
+    ///                 | x0 | x1 | x2 | x1 | x0 | x1 | x2 | x1 |
+    ///                 |---------------------------------------|
+    /// ```
+    ///
+    /// Then the gradient operation becomes:
+    ///
+    /// ```text
+    ///               Source Gradient Image:
+    ///                 |---------------------------------------|
+    ///                 | d0 | d1 | d2 | d3 | d4 | d5 | d6 | d7 |
+    ///                 |---------------------------------------|
+    ///               Destination Gradient Image:
+    ///                 |-----------------------------|
+    ///                 | d0+d4 | d1+d3+d5+d7 | d2+d6 |
+    ///                 |-----------------------------|
+    /// ```
+    ///
+    /// NOTE: There are no channel fill-values to use with
+    /// MPSImageEdgeModeConstantsince the gradient values are independent of the constant of the forward pass.
+    /// NOTE: In case the forward pass defined a slice operation in feature channels then
+    /// the channels not read in the forward pass will be filled with zeros in the gradient pass.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -326,12 +579,27 @@ unsafe impl NSSecureCoding for MPSNNPadGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNPadGradient {
+        /// Initializes a MPSNNPadGradient filter
+        ///
+        /// Parameter `device`: The MTLDevice on which this filter will be used
+        ///
+        ///
+        /// Returns: A valid MPSNNPadGradient object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSNNPadGradient.
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSNNPadGradient.
+        ///
+        /// Returns: A new MPSNNPadGradient object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -345,6 +613,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNPadGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

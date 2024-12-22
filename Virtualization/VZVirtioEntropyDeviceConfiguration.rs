@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioentropydeviceconfiguration?language=objc)
+    /// Virtio Entropy Device
+    ///
+    /// The device exposes a source of entropy for the guest's random number generator.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioentropydeviceconfiguration?language=objc)
     #[unsafe(super(VZEntropyDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZEntropyDeviceConfiguration")]

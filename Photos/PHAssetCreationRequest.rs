@@ -30,18 +30,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other originalFilename)]
         pub unsafe fn originalFilename(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`originalFilename`][Self::originalFilename].
         #[method(setOriginalFilename:)]
         pub unsafe fn setOriginalFilename(&self, original_filename: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other uniformTypeIdentifier)]
         pub unsafe fn uniformTypeIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`uniformTypeIdentifier`][Self::uniformTypeIdentifier].
         #[method(setUniformTypeIdentifier:)]
         pub unsafe fn setUniformTypeIdentifier(&self, uniform_type_identifier: Option<&NSString>);
 
         #[method(shouldMoveFile)]
         pub unsafe fn shouldMoveFile(&self) -> bool;
 
+        /// Setter for [`shouldMoveFile`][Self::shouldMoveFile].
         #[method(setShouldMoveFile:)]
         pub unsafe fn setShouldMoveFile(&self, should_move_file: bool);
     }

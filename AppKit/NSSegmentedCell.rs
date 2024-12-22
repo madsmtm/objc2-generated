@@ -58,12 +58,14 @@ extern_methods!(
         #[method(segmentCount)]
         pub unsafe fn segmentCount(&self) -> NSInteger;
 
+        /// Setter for [`segmentCount`][Self::segmentCount].
         #[method(setSegmentCount:)]
         pub unsafe fn setSegmentCount(&self, segment_count: NSInteger);
 
         #[method(selectedSegment)]
         pub unsafe fn selectedSegment(&self) -> NSInteger;
 
+        /// Setter for [`selectedSegment`][Self::selectedSegment].
         #[method(setSelectedSegment:)]
         pub unsafe fn setSelectedSegment(&self, selected_segment: NSInteger);
 
@@ -81,6 +83,7 @@ extern_methods!(
         pub unsafe fn trackingMode(&self) -> NSSegmentSwitchTracking;
 
         #[cfg(feature = "NSSegmentedControl")]
+        /// Setter for [`trackingMode`][Self::trackingMode].
         #[method(setTrackingMode:)]
         pub unsafe fn setTrackingMode(&self, tracking_mode: NSSegmentSwitchTracking);
 
@@ -153,6 +156,7 @@ extern_methods!(
         pub unsafe fn segmentStyle(&self) -> NSSegmentStyle;
 
         #[cfg(feature = "NSSegmentedControl")]
+        /// Setter for [`segmentStyle`][Self::segmentStyle].
         #[method(setSegmentStyle:)]
         pub unsafe fn setSegmentStyle(&self, segment_style: NSSegmentStyle);
 

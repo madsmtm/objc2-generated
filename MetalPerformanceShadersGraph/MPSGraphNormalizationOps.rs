@@ -12,6 +12,12 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the mean of the first input along the specified axes.
+        ///
+        /// - Parameters:
+        /// - axes: A list of axes over which to perform the reduction. The order of dimensions goes from the slowest moving at axis=0 to the fastest moving dimension.
+        /// - name: An optional name for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object.
         #[method_id(@__retain_semantics Other meanOfTensor:axes:name:)]
         pub unsafe fn meanOfTensor_axes_name(
             &self,
@@ -21,6 +27,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the variance of the first input along the specified axes when the mean has been precomputed.
+        ///
+        /// - Parameters:
+        /// - axes: A list of axes over which to perform the reduction such that the order of dimensions goes from the slowest moving at axis=0 to the fastest moving dimension.
+        /// - name: An optional name for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object.
         #[method_id(@__retain_semantics Other varianceOfTensor:meanTensor:axes:name:)]
         pub unsafe fn varianceOfTensor_meanTensor_axes_name(
             &self,
@@ -31,6 +43,12 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Returns the variance of the first input along the specified axes.
+        ///
+        /// - Parameters:
+        /// - axes: A list of axes over which to perform the reduction. Tthe order of dimensions goes from the slowest moving at axis=0 to the fastest moving dimension.
+        /// - name: An optional name for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object.
         #[method_id(@__retain_semantics Other varianceOfTensor:axes:name:)]
         pub unsafe fn varianceOfTensor_axes_name(
             &self,
@@ -40,6 +58,25 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a batch normalization operation and returns the result tensor.
+        ///
+        /// The mean and variance tensors should be outputs of `meanWithTensor:axes:name` and `varianceWithTensor:meanTensor:axes:name`.
+        /// Use the axes parameter to achieve different types of normalizations.
+        /// For example (assuming your data is in NxHxWxC format)
+        /// Batch normalization: axes = [0, 1, 2]
+        /// Instance normalization: axes = [1, 2]
+        /// Shapes for gamma and beta must match the input data along at least one dimension and will be broadcast along the rest.
+        /// For batch normalization, gamma and beta would typically be 1x1x1xC i.e. one value per channel.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor.
+        /// - mean: The mean tensor.
+        /// - variance: The variance tensor.
+        /// - gamma: The tensor used to scale the normalized result.
+        /// - beta: The tensor used to bias the normalized result.
+        /// - epsilon: A small value to add to the variance when normalizing the inputs.
+        /// - name: An optional name for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object.
         #[method_id(@__retain_semantics Other normalizationWithTensor:meanTensor:varianceTensor:gammaTensor:betaTensor:epsilon:name:)]
         pub unsafe fn normalizationWithTensor_meanTensor_varianceTensor_gammaTensor_betaTensor_epsilon_name(
             &self,
@@ -53,6 +90,23 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a normalization gamma-gradient operation and returns the result tensor.
+        ///
+        /// The mean and variance tensors should be outputs of ``meanWithTensor:axes:name`` and ``varianceWithTensor:meanTensor:axes:name``.
+        /// Use the axes parameter to achieve different types of normalizations.
+        /// For example (assuming your data is in `NxHxWxC` format)
+        /// Batch normalization: axes = [0, 1, 2]
+        /// Instance normalization: axes = [1, 2]
+        ///
+        /// - Parameters:
+        /// - incomingGradientTensor: The incoming original `resultTensor` gradient.
+        /// - sourceTensor: The original input source in forward direction.
+        /// - meanTensor: The mean tensor.
+        /// - varianceTensor: The variance tensor.
+        /// - axes: The axes of normalization.
+        /// - epsilon: A small value to add to the variance when normalizing the inputs.
+        /// - name: An optional name for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object.
         #[method_id(@__retain_semantics Other normalizationGammaGradientWithIncomingGradientTensor:sourceTensor:meanTensor:varianceTensor:reductionAxes:epsilon:name:)]
         pub unsafe fn normalizationGammaGradientWithIncomingGradientTensor_sourceTensor_meanTensor_varianceTensor_reductionAxes_epsilon_name(
             &self,
@@ -66,6 +120,20 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a normalization beta-gradient operation and returns the result tensor.
+        ///
+        /// The mean and variance tensors should be outputs of ``meanWithTensor:axes:name`` and ``varianceWithTensor:meanTensor:axes:name``.
+        /// Use the axes parameter to achieve different types of normalizations.
+        /// For example (assuming your data is in `NxHxWxC` format)
+        /// Batch normalization: axes = [0, 1, 2]
+        /// Instance normalization: axes = [1, 2]
+        ///
+        /// - Parameters:
+        /// - incomingGradientTensor: The incoming original `resultTensor` gradient.
+        /// - sourceTensor: The original input source in forward direction.
+        /// - axes: The axes of normalization.
+        /// - name: An optional name for the operation.
+        /// - Returns: A valid `MPSGraphTensor` object.
         #[method_id(@__retain_semantics Other normalizationBetaGradientWithIncomingGradientTensor:sourceTensor:reductionAxes:name:)]
         pub unsafe fn normalizationBetaGradientWithIncomingGradientTensor_sourceTensor_reductionAxes_name(
             &self,
@@ -76,6 +144,25 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a normalization input gradient operation and returns the result tensor.
+        ///
+        /// The mean and variance tensors should be outputs of ``meanWithTensor:axes:name`` and ``varianceWithTensor:meanTensor:axes:name``.
+        /// Use the axes parameter to achieve different types of normalizations.
+        /// For example (assuming your data is in `NxHxWxC` format)
+        /// Batch normalization: axes = [0, 1, 2]
+        /// Instance normalization: axes = [1, 2]
+        ///
+        /// - Parameters:
+        /// - incomingGradientTensor: The incoming original `resultTensor` gradient.
+        /// - sourceTensor: The original input source in forward direction.
+        /// - meanTensor: The mean tensor.
+        /// - varianceTensor: The variance tensor.
+        /// - gamma: The gamma tensor.
+        /// - gammaGradient: The `gammaGradient` tensor.
+        /// - betaGradient: The `betaGradient` tensor
+        /// - axes: The axes of normalization.
+        /// - epsilon: A small value to add to the variance when normalizing the inputs.
+        /// - name: An optional name for the operation.
         #[method_id(@__retain_semantics Other normalizationGradientWithIncomingGradientTensor:sourceTensor:meanTensor:varianceTensor:gammaTensor:gammaGradientTensor:betaGradientTensor:reductionAxes:epsilon:name:)]
         pub unsafe fn normalizationGradientWithIncomingGradientTensor_sourceTensor_meanTensor_varianceTensor_gammaTensor_gammaGradientTensor_betaGradientTensor_reductionAxes_epsilon_name(
             &self,

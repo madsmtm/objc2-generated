@@ -18,12 +18,14 @@ unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionAuthorizationRe
 
 extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionAuthorizationResult {
+        /// Authorization succeeded with an authorization tokens stored in HTTP headers.
         #[method_id(@__retain_semantics Init initWithHTTPAuthorizationHeaders:)]
         pub unsafe fn initWithHTTPAuthorizationHeaders(
             this: Allocated<Self>,
             http_authorization_headers: &NSDictionary<NSString, NSString>,
         ) -> Retained<Self>;
 
+        /// Authorization succeeded with a HTTP response.
         #[method_id(@__retain_semantics Init initWithHTTPResponse:httpBody:)]
         pub unsafe fn initWithHTTPResponse_httpBody(
             this: Allocated<Self>,
@@ -31,32 +33,40 @@ extern_methods!(
             http_body: Option<&NSData>,
         ) -> Retained<Self>;
 
+        /// HTTP extra headers for addition with credentials.
         #[method_id(@__retain_semantics Other httpAuthorizationHeaders)]
         pub unsafe fn httpAuthorizationHeaders(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
+        /// Setter for [`httpAuthorizationHeaders`][Self::httpAuthorizationHeaders].
         #[method(setHttpAuthorizationHeaders:)]
         pub unsafe fn setHttpAuthorizationHeaders(
             &self,
             http_authorization_headers: Option<&NSDictionary<NSString, NSString>>,
         );
 
+        /// HTTP response for OAUth and SAML based authentications.
         #[method_id(@__retain_semantics Other httpResponse)]
         pub unsafe fn httpResponse(&self) -> Option<Retained<NSHTTPURLResponse>>;
 
+        /// Setter for [`httpResponse`][Self::httpResponse].
         #[method(setHttpResponse:)]
         pub unsafe fn setHttpResponse(&self, http_response: Option<&NSHTTPURLResponse>);
 
+        /// HTTP response body for OAUth and SAML based authentications.
         #[method_id(@__retain_semantics Other httpBody)]
         pub unsafe fn httpBody(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`httpBody`][Self::httpBody].
         #[method(setHttpBody:)]
         pub unsafe fn setHttpBody(&self, http_body: Option<&NSData>);
 
+        /// Private SecKeys.
         #[method_id(@__retain_semantics Other privateKeys)]
         pub unsafe fn privateKeys(&self) -> Retained<NSArray>;
 
+        /// Setter for [`privateKeys`][Self::privateKeys].
         #[method(setPrivateKeys:)]
         pub unsafe fn setPrivateKeys(&self, private_keys: &NSArray);
     }

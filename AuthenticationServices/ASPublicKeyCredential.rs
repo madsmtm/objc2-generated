@@ -7,12 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspublickeycredential?language=objc)
+    /// The base protocol for all PublicKeyCredential credential types.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspublickeycredential?language=objc)
     #[cfg(feature = "ASAuthorizationCredential")]
     pub unsafe trait ASPublicKeyCredential: ASAuthorizationCredential {
+        /// A byte sequence containing the serialized clientDataJSON blob returned by the authenticator.
         #[method_id(@__retain_semantics Other rawClientDataJSON)]
         unsafe fn rawClientDataJSON(&self) -> Retained<NSData>;
 
+        /// An identifier that uniquely identifies this credential.
         #[method_id(@__retain_semantics Other credentialID)]
         unsafe fn credentialID(&self) -> Retained<NSData>;
     }

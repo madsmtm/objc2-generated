@@ -9,16 +9,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornercurve?language=objc)
+/// The corner curve to apply to a view.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornercurve?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UICornerCurve(pub NSInteger);
 impl UICornerCurve {
+    /// Select the corner style automatically.
     #[doc(alias = "UICornerCurveAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Always use a circular corner style.
     #[doc(alias = "UICornerCurveCircular")]
     pub const Circular: Self = Self(1);
+    /// Always use a continuous corner style.
     #[doc(alias = "UICornerCurveContinuous")]
     pub const Continuous: Self = Self(2);
 }
@@ -32,8 +37,12 @@ unsafe impl RefEncode for UICornerCurve {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uishapeprovider?language=objc)
+    /// A type that can provide a custom `UIShape`, resolved dynamically based on
+    /// context.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uishapeprovider?language=objc)
     pub unsafe trait UIShapeProvider: NSObjectProtocol {
+        /// Resolves this shape in the provided `context`.
         #[method_id(@__retain_semantics Other resolvedShapeInContext:)]
         unsafe fn resolvedShapeInContext(
             &self,
@@ -45,7 +54,18 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uishape?language=objc)
+    /// An abstract representation of a shape.
+    ///
+    /// A `UIShape` can represent a simple shape such as a rectangle or circle that
+    /// are later "resolved" into a concrete shape based on context like a size and
+    /// position for the shape. A `UIShape` can also represent more complex shapes
+    /// like paths and even "dynamic" shapes that are resolved using a custom
+    /// closure.
+    ///
+    /// You typically use a `UIShape` with APIs like `UIHoverStyle` to represent the
+    /// shape of an effect.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uishape?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIShape;
@@ -63,20 +83,29 @@ unsafe impl UIShapeProvider for UIShape {}
 
 extern_methods!(
     unsafe impl UIShape {
+        /// A rectangular shape.
         #[method_id(@__retain_semantics Other rectShape)]
         pub unsafe fn rectShape() -> Retained<UIShape>;
 
+        /// A capsule shape, equivalent to a rounded rectangle where the corner
+        /// radius is chosen as half the length of the rectangle’s smallest edge.
         #[method_id(@__retain_semantics Other capsuleShape)]
         pub unsafe fn capsuleShape() -> Retained<UIShape>;
 
+        /// A circular shape, with a radius equals half the length of the frame
+        /// rectangle’s smallest edge.
         #[method_id(@__retain_semantics Other circleShape)]
         pub unsafe fn circleShape() -> Retained<UIShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A rectangular shape with rounded corners, aligned inside the frame of
+        /// in which it is contained.
         #[method_id(@__retain_semantics Other rectShapeWithCornerRadius:)]
         pub unsafe fn rectShapeWithCornerRadius(corner_radius: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A rectangular shape with rounded corners, aligned inside the frame of
+        /// in which it is contained.
         #[method_id(@__retain_semantics Other rectShapeWithCornerRadius:cornerCurve:)]
         pub unsafe fn rectShapeWithCornerRadius_cornerCurve(
             corner_radius: CGFloat,
@@ -84,6 +113,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// A rectangular shape with rounded corners, aligned inside the frame of
+        /// in which it is contained.
         #[method_id(@__retain_semantics Other rectShapeWithCornerRadius:cornerCurve:maskedCorners:)]
         pub unsafe fn rectShapeWithCornerRadius_cornerCurve_maskedCorners(
             corner_radius: CGFloat,
@@ -92,10 +123,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A fixed rectangle shape using `rect` as its shape, regardless of the
+        /// frame in which it is contained.
         #[method_id(@__retain_semantics Other fixedRectShapeWithRect:)]
         pub unsafe fn fixedRectShapeWithRect(rect: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A fixed rectangle shape using `rect` as its shape, regardless of the
+        /// frame in which it is contained, with rounded corners using `cornerRadius`.
         #[method_id(@__retain_semantics Other fixedRectShapeWithRect:cornerRadius:)]
         pub unsafe fn fixedRectShapeWithRect_cornerRadius(
             rect: CGRect,
@@ -103,6 +138,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// A fixed rectangle shape using `rect` as its shape, regardless of the
+        /// frame in which it is contained, with rounded corners using `cornerRadius`.
         #[method_id(@__retain_semantics Other fixedRectShapeWithRect:cornerRadius:cornerCurve:maskedCorners:)]
         pub unsafe fn fixedRectShapeWithRect_cornerRadius_cornerCurve_maskedCorners(
             rect: CGRect,
@@ -112,22 +149,42 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIBezierPath")]
+        /// A shape with a custom bezier path.
         #[method_id(@__retain_semantics Other shapeWithBezierPath:)]
         pub unsafe fn shapeWithBezierPath(path: &UIBezierPath) -> Retained<Self>;
 
+        /// Creates a dynamic shape that can be resolved using the provided
+        /// `UIShapeProvider` based on context like its containing rect.
         #[method_id(@__retain_semantics Other shapeWithProvider:)]
         pub unsafe fn shapeWithProvider(
             provider: &ProtocolObject<dyn UIShapeProvider>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Insets this shape by the provided `insets`, returning a new modified
+        /// shape.
+        ///
+        /// Negative values can be used to add inner padding to a shape. If this
+        /// shape is not insettable (e.g., if it is a custom path), this has no
+        /// effect. For some shapes like rounded rectangles, this can also modify
+        /// the corner radii of the shape to ensure the resulting corners are
+        /// concentric.
         #[method_id(@__retain_semantics Other shapeByApplyingInsets:)]
         pub unsafe fn shapeByApplyingInsets(&self, insets: UIEdgeInsets) -> Retained<UIShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Insets this shape by the provided `inset`, returning a new modified
+        /// shape.
+        ///
+        /// Negative values can be used to add inner padding to a shape. If this
+        /// shape is not insettable (e.g., if it is a custom path), this has no
+        /// effect. For some shapes like rounded rectangles, this can also modify
+        /// the corner radii of the shape to ensure the resulting corners are
+        /// concentric.
         #[method_id(@__retain_semantics Other shapeByApplyingInset:)]
         pub unsafe fn shapeByApplyingInset(&self, inset: CGFloat) -> Retained<UIShape>;
 
+        /// Resolves this shape in the provided `context`.
         #[method_id(@__retain_semantics Other resolvedShapeInContext:)]
         pub unsafe fn resolvedShapeInContext(
             &self,
@@ -143,7 +200,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresolvedshape?language=objc)
+    /// A shape that has been resolved based on a `ResolutionContext`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresolvedshape?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIResolvedShape;
@@ -159,18 +218,29 @@ unsafe impl NSObjectProtocol for UIResolvedShape {}
 
 extern_methods!(
     unsafe impl UIResolvedShape {
+        /// The abstract shape that produced this resolved shape.
         #[method_id(@__retain_semantics Other shape)]
         pub unsafe fn shape(&self) -> Retained<UIShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The bounding rect in which the shape is framed.
         #[method(boundingRect)]
         pub unsafe fn boundingRect(&self) -> CGRect;
 
         #[cfg(feature = "UIBezierPath")]
+        /// The bezier path representing this shape.
         #[method_id(@__retain_semantics Other path)]
         pub unsafe fn path(&self) -> Retained<UIBezierPath>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Insets this shape by the provided `insets`, returning a new modified
+        /// shape.
+        ///
+        /// Negative values can be used to add inner padding to a shape. If this
+        /// shape is not insettable (e.g., if it is a custom path), this has no
+        /// effect. For some shapes like rounded rectangles, this can also modify
+        /// the corner radii of the shape to ensure the resulting corners are
+        /// concentric.
         #[method_id(@__retain_semantics Other shapeByApplyingInsets:)]
         pub unsafe fn shapeByApplyingInsets(
             &self,
@@ -178,6 +248,14 @@ extern_methods!(
         ) -> Retained<UIResolvedShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Insets this shape by the provided `inset`, returning a new modified
+        /// shape.
+        ///
+        /// Negative values can be used to add inner padding to a shape. If this
+        /// shape is not insettable (e.g., if it is a custom path), this has no
+        /// effect. For some shapes like rounded rectangles, this can also modify
+        /// the corner radii of the shape to ensure the resulting corners are
+        /// concentric.
         #[method_id(@__retain_semantics Other shapeByApplyingInset:)]
         pub unsafe fn shapeByApplyingInset(&self, inset: CGFloat) -> Retained<UIResolvedShape>;
 
@@ -190,7 +268,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uishaperesolutioncontext?language=objc)
+    /// The context used for resolving a `dynamic` `UIShape`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uishaperesolutioncontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIShapeResolutionContext;
@@ -200,6 +280,11 @@ unsafe impl NSObjectProtocol for UIShapeResolutionContext {}
 
 extern_methods!(
     unsafe impl UIShapeResolutionContext {
+        /// The resolved shape of the content to which this shape may be
+        /// applied. For example, if this shape will be used to apply an effect
+        /// to a button, the `contentShape` could represent the bounding shape
+        /// of that button's background. You should typically size a dynamic
+        /// shape relative to the bounding `rect` of the `contentShape`.
         #[method_id(@__retain_semantics Other contentShape)]
         pub unsafe fn contentShape(&self) -> Retained<UIResolvedShape>;
 

@@ -128,6 +128,7 @@ extern_methods!(
         pub unsafe fn onTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`onTintColor`][Self::onTintColor].
         #[method(setOnTintColor:)]
         pub unsafe fn setOnTintColor(&self, on_tint_color: Option<&UIColor>);
 
@@ -136,6 +137,7 @@ extern_methods!(
         pub unsafe fn thumbTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`thumbTintColor`][Self::thumbTintColor].
         #[method(setThumbTintColor:)]
         pub unsafe fn setThumbTintColor(&self, thumb_tint_color: Option<&UIColor>);
 
@@ -144,6 +146,7 @@ extern_methods!(
         pub unsafe fn onImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`onImage`][Self::onImage].
         #[method(setOnImage:)]
         pub unsafe fn setOnImage(&self, on_image: Option<&UIImage>);
 
@@ -152,27 +155,36 @@ extern_methods!(
         pub unsafe fn offImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`offImage`][Self::offImage].
         #[method(setOffImage:)]
         pub unsafe fn setOffImage(&self, off_image: Option<&UIImage>);
 
+        /// The title displayed alongside the switch, positioned appropriately for the
+        /// `UIUserInterfaceIdiom.`
+        /// Note: This property is only supported for Catalyst in the Mac idiom.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
+        /// The switch's display style. This property always returns a concrete, resolved style (never UISwitchStyleAutomatic).
         #[method(style)]
         pub unsafe fn style(&self) -> UISwitchStyle;
 
+        /// Request a style for the switch. If the style changed, then the switch may resize.
         #[method(preferredStyle)]
         pub unsafe fn preferredStyle(&self) -> UISwitchStyle;
 
+        /// Setter for [`preferredStyle`][Self::preferredStyle].
         #[method(setPreferredStyle:)]
         pub unsafe fn setPreferredStyle(&self, preferred_style: UISwitchStyle);
 
         #[method(isOn)]
         pub unsafe fn isOn(&self) -> bool;
 
+        /// Setter for [`isOn`][Self::isOn].
         #[method(setOn:)]
         pub unsafe fn setOn(&self, on: bool);
 
@@ -200,6 +212,7 @@ extern_methods!(
             feature = "UIMenuElement",
             feature = "objc2-core-foundation"
         ))]
+        /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
         #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,

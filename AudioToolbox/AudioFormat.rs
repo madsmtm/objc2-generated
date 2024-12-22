@@ -8,10 +8,18 @@ use objc2_core_audio_types::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioformatpropertyid?language=objc)
+/// A type for four char codes for property IDs
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioformatpropertyid?language=objc)
 pub type AudioFormatPropertyID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopanningmode?language=objc)
+/// Different panning algorithms.
+///
+/// Sound field panning algorithm
+///
+/// Vector based panning algorithm
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopanningmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,7 +37,20 @@ unsafe impl RefEncode for AudioPanningMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopanninginfo?language=objc)
+/// This struct is for use with kAudioFormatProperty_PanningMatrix.
+///
+///
+///
+///
+/// mGainScale is used to multiply the panning values.
+/// In typical usage you are applying an existing volume.
+/// value in 0 -> 1 (where 1 is unity gain) to the panned values.
+/// 1 would give you panning at unity.
+/// 0 would give you back a matrix of zeroes.
+///
+/// This is the channel map that is going to be used to determine channel volumes for this pan.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopanninginfo?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -60,7 +81,16 @@ unsafe impl RefEncode for AudioPanningInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobalancefadetype?language=objc)
+/// used for mType field of AudioBalanceFade struct
+///
+/// the gain value never exceeds 1.0, the opposite channel fades out.
+/// This can reduce overall loudness when the balance or fade is not in the center.
+///
+/// The overall loudness remains constant, but gain can exceed 1.0.
+/// the gain value is 1.0 when the balance and fade are in the center.
+/// From there they can increase to +3dB (1.414) and decrease to -inf dB (0.0).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobalancefadetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -78,7 +108,17 @@ unsafe impl RefEncode for AudioBalanceFadeType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobalancefade?language=objc)
+/// this struct is used with kAudioFormatProperty_BalanceFade
+///
+/// -1 is full left, 0 is center, +1 is full right
+///
+/// -1 is full rear, 0 is center, +1 is full front
+///
+/// an AudioBalanceFadeType constant
+///
+/// a pointer to an AudioChannelLayout
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobalancefade?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -107,7 +147,15 @@ unsafe impl RefEncode for AudioBalanceFade {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioformatinfo?language=objc)
+/// this struct is used as a specifier for the kAudioFormatProperty_FormatList property
+///
+/// an AudioStreamBasicDescription
+///
+/// a pointer to the decompression info for the data described in mASBD
+///
+/// the size in bytes of mMagicCookie
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioformatinfo?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -134,7 +182,17 @@ unsafe impl RefEncode for AudioFormatInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extendedaudioformatinfo?language=objc)
+/// this struct is used as a specifier for the kAudioFormatProperty_FormatList property
+///
+/// an AudioStreamBasicDescription
+///
+/// a pointer to the decompression info for the data described in mASBD
+///
+/// the size in bytes of mMagicCookie
+///
+/// an AudioClassDescription specifying the codec to be used in answering the question.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extendedaudioformatinfo?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -245,6 +303,18 @@ pub const kAudioFormatProperty_ID3TagSize: AudioFormatPropertyID = 0x69643373;
 pub const kAudioFormatProperty_ID3TagToDictionary: AudioFormatPropertyID = 0x69643364;
 
 extern "C-unwind" {
+    /// Retrieve information about the given property
+    ///
+    /// Parameter `inPropertyID`: an AudioFormatPropertyID constant.
+    ///
+    /// Parameter `inSpecifierSize`: The size of the specifier data.
+    ///
+    /// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the properties.
+    ///
+    /// Parameter `outPropertyDataSize`: The size in bytes of the current value of the property. In order to get the property value,
+    /// you will need a buffer of this size.
+    ///
+    /// Returns: returns noErr if successful.
     pub fn AudioFormatGetPropertyInfo(
         in_property_id: AudioFormatPropertyID,
         in_specifier_size: u32,
@@ -254,6 +324,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retrieve the indicated property data
+    ///
+    /// Parameter `inPropertyID`: an AudioFormatPropertyID constant.
+    ///
+    /// Parameter `inSpecifierSize`: The size of the specifier data.
+    ///
+    /// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the properties.
+    ///
+    /// Parameter `ioPropertyDataSize`: on input the size of the outPropertyData buffer. On output the number of bytes written to the buffer.
+    ///
+    /// Parameter `outPropertyData`: the buffer in which to write the property data. If outPropertyData is NULL and ioPropertyDataSize is
+    /// not, the amount that would have been written will be reported.
+    ///
+    /// Returns: returns noErr if successful.
     pub fn AudioFormatGetProperty(
         in_property_id: AudioFormatPropertyID,
         in_specifier_size: u32,

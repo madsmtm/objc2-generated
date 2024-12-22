@@ -135,12 +135,14 @@ extern_methods!(
         pub fn currentMode(&self) -> Option<Retained<UIScreenMode>>;
 
         #[cfg(feature = "UIScreenMode")]
+        /// Setter for [`currentMode`][Self::currentMode].
         #[method(setCurrentMode:)]
         pub fn setCurrentMode(&self, current_mode: Option<&UIScreenMode>);
 
         #[method(overscanCompensation)]
         pub fn overscanCompensation(&self) -> UIScreenOverscanCompensation;
 
+        /// Setter for [`overscanCompensation`][Self::overscanCompensation].
         #[method(setOverscanCompensation:)]
         pub fn setOverscanCompensation(&self, overscan_compensation: UIScreenOverscanCompensation);
 
@@ -160,12 +162,14 @@ extern_methods!(
         pub unsafe fn brightness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`brightness`][Self::brightness].
         #[method(setBrightness:)]
         pub unsafe fn setBrightness(&self, brightness: CGFloat);
 
         #[method(wantsSoftwareDimming)]
         pub unsafe fn wantsSoftwareDimming(&self) -> bool;
 
+        /// Setter for [`wantsSoftwareDimming`][Self::wantsSoftwareDimming].
         #[method(setWantsSoftwareDimming:)]
         pub unsafe fn setWantsSoftwareDimming(&self, wants_software_dimming: bool);
 

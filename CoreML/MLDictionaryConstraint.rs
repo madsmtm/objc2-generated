@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mldictionaryconstraint?language=objc)
+    /// MLDictionaryConstraint
+    ///
+    /// Constraint describing expected NSDictionary properties
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mldictionaryconstraint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLDictionaryConstraint;
@@ -22,6 +26,7 @@ unsafe impl NSSecureCoding for MLDictionaryConstraint {}
 extern_methods!(
     unsafe impl MLDictionaryConstraint {
         #[cfg(feature = "MLFeatureType")]
+        /// Required key type, described as MLFeatureType
         #[method(keyType)]
         pub unsafe fn keyType(&self) -> MLFeatureType;
     }

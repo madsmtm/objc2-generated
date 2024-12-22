@@ -52,7 +52,13 @@ unsafe impl RefEncode for AVAudioUnitReverbPreset {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverb?language=objc)
+    /// an AVAudioUnitEffect that implements a reverb
+    ///
+    /// A reverb simulates the acoustic characteristics of a particular environment.
+    /// Use the different presets to simulate a particular space and blend it in with
+    /// the original signal using the wetDryMix parameter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverb?language=objc)
     #[unsafe(super(AVAudioUnitEffect, AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -77,12 +83,18 @@ extern_methods!(
         feature = "AVAudioUnitEffect"
     ))]
     unsafe impl AVAudioUnitReverb {
+        /// load a reverb preset
+        /// Default:    AVAudioUnitReverbPresetMediumHall
         #[method(loadFactoryPreset:)]
         pub unsafe fn loadFactoryPreset(&self, preset: AVAudioUnitReverbPreset);
 
+        /// Blend of the wet and dry signals
+        /// Range:      0 (all dry) -> 100 (all wet)
+        /// Unit:       Percent
         #[method(wetDryMix)]
         pub unsafe fn wetDryMix(&self) -> c_float;
 
+        /// Setter for [`wetDryMix`][Self::wetDryMix].
         #[method(setWetDryMix:)]
         pub unsafe fn setWetDryMix(&self, wet_dry_mix: c_float);
     }
@@ -98,6 +110,17 @@ extern_methods!(
     unsafe impl AVAudioUnitReverb {
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// Create an AVAudioUnitEffect object.
+        ///
+        ///
+        /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be instantiated.
+        ///
+        /// The componentType must be one of these types
+        /// kAudioUnitType_Effect
+        /// kAudioUnitType_MusicEffect
+        /// kAudioUnitType_Panner
+        /// kAudioUnitType_RemoteEffect
+        /// kAudioUnitType_RemoteMusicEffect
         #[method_id(@__retain_semantics Init initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,

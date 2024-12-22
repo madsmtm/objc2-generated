@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantity?language=objc)
+    /// The HKQuantity class provides an encapsulation of a quantity value and the unit of measurement.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKQuantity;
@@ -36,6 +38,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKUnit")]
+        /// Returns a new object representing a quantity measurement with the given unit.
         #[method_id(@__retain_semantics Other quantityWithUnit:doubleValue:)]
         pub unsafe fn quantityWithUnit_doubleValue(
             unit: &HKUnit,
@@ -43,13 +46,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "HKUnit")]
+        /// Returns yes if the receiver's value can be converted to a value of the given unit.
         #[method(isCompatibleWithUnit:)]
         pub unsafe fn isCompatibleWithUnit(&self, unit: &HKUnit) -> bool;
 
         #[cfg(feature = "HKUnit")]
+        /// Returns the quantity value converted to the given unit.
+        ///
+        /// Throws an exception if the receiver's value cannot be converted to one of the requested unit.
         #[method(doubleValueForUnit:)]
         pub unsafe fn doubleValueForUnit(&self, unit: &HKUnit) -> c_double;
 
+        /// Returns an NSComparisonResult value that indicates whether the receiver is greater than, equal to, or
+        /// less than a given quantity.
+        ///
+        /// Throws an exception if the unit of the given quantity is not compatible with the receiver's unit.
         #[method(compare:)]
         pub unsafe fn compare(&self, quantity: &HKQuantity) -> NSComparisonResult;
     }

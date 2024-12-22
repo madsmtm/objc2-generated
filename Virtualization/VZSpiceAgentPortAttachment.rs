@@ -24,12 +24,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Enable the Spice agent clipboard sharing capability.
+        ///
+        /// If enabled, the clipboard capability will be advertised to the Spice guest agent. Copy and paste events
+        /// will be shared between the host and the virtual machine.
+        ///
+        /// This property is enabled by default.
         #[method(sharesClipboard)]
         pub unsafe fn sharesClipboard(&self) -> bool;
 
+        /// Setter for [`sharesClipboard`][Self::sharesClipboard].
         #[method(setSharesClipboard:)]
         pub unsafe fn setSharesClipboard(&self, shares_clipboard: bool);
 
+        /// The Spice agent port name.
+        ///
+        /// A console port configured with this name will spawn a Spice guest agent if supported by the guest.
+        ///
+        /// VZConsolePortConfiguration.attachment must be set to VZSpiceAgentPortAttachment.
+        /// VZVirtioConsolePortConfiguration.isConsole must remain false on a Spice agent port.
         #[method_id(@__retain_semantics Other spiceAgentPortName)]
         pub unsafe fn spiceAgentPortName() -> Retained<NSString>;
     }

@@ -58,6 +58,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataToWrite)]
         pub unsafe fn dataToWrite(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`dataToWrite`][Self::dataToWrite].
         #[method(setDataToWrite:)]
         pub unsafe fn setDataToWrite(&self, data_to_write: Option<&NSData>);
     }

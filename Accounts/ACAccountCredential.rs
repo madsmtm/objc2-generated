@@ -40,6 +40,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other oauthToken)]
         pub unsafe fn oauthToken(&self) -> Retained<NSString>;
 
+        /// Setter for [`oauthToken`][Self::oauthToken].
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(setOauthToken:)]
         pub unsafe fn setOauthToken(&self, oauth_token: Option<&NSString>);

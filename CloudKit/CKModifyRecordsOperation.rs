@@ -7,7 +7,42 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordsavepolicy?language=objc)
+/// Locally edited keys are sent to the server, updating the record if the server record has not been modified. This is the default and recommended save policy for regular use.
+/// This policy compares the record change tag with the server record, and may return
+/// `CKErrorServerRecordChanged`if the server record has been modified, for example by another device.
+/// Note: A
+/// `CKShare`record is always treated as
+/// `CKRecordSaveIfServerRecordUnchanged,`regardless of the
+/// `savePolicy`of the operation that modifies the share.
+///
+///
+///
+/// Locally edited keys are written to the server, updating the record even if the server record has been modified.
+/// Note: This policy should be used with care, as it can overwrite changes made by other devices.
+/// Any previously committed change to the server, for example by other devices, will always be overwritten by the locally changed value.
+/// Note: A
+/// `CKShare`record is always treated as
+/// `CKRecordSaveIfServerRecordUnchanged,`regardless of the
+/// `savePolicy`of the operation that modifies the share.
+/// For non-CKShare records, this policy does not compare the record change tag and therefore will not return
+/// `CKErrorServerRecordChanged`
+///
+///
+/// All local keys are written to the server, updating the record even if the server record has been modified.
+/// Note: This policy should be used with care. Any previously committed change to the server, for example by other devices, will be overwritten by the local value.
+/// Keys present only on the server remain unchanged.
+/// There are two common ways in which a server record will contain keys not present locally:
+/// 1 - Another client may have added a new key to the record since it was fetched.
+/// 2 - If
+/// `desiredKeys`was used with the fetch / query that returned this record, only a portion of the record's keys may have been downloaded.
+/// Note: A
+/// `CKShare`record is always treated as
+/// `CKRecordSaveIfServerRecordUnchanged,`regardless of the
+/// `savePolicy`of the operation that modifies the share.
+/// For non-CKShare records, this policy does not compare the record change tag and therefore will not return
+/// `CKErrorServerRecordChanged`
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordsavepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -15,6 +50,7 @@ pub struct CKRecordSavePolicy(pub NSInteger);
 impl CKRecordSavePolicy {
     pub const CKRecordSaveIfServerRecordUnchanged: Self = Self(0);
     pub const CKRecordSaveChangedKeys: Self = Self(1);
+    /// Does not compare record change tags
     pub const CKRecordSaveAllKeys: Self = Self(2);
 }
 
@@ -56,6 +92,7 @@ extern_methods!(
         pub unsafe fn recordsToSave(&self) -> Option<Retained<NSArray<CKRecord>>>;
 
         #[cfg(feature = "CKRecord")]
+        /// Setter for [`recordsToSave`][Self::recordsToSave].
         #[method(setRecordsToSave:)]
         pub unsafe fn setRecordsToSave(&self, records_to_save: Option<&NSArray<CKRecord>>);
 
@@ -64,37 +101,69 @@ extern_methods!(
         pub unsafe fn recordIDsToDelete(&self) -> Option<Retained<NSArray<CKRecordID>>>;
 
         #[cfg(feature = "CKRecordID")]
+        /// Setter for [`recordIDsToDelete`][Self::recordIDsToDelete].
         #[method(setRecordIDsToDelete:)]
         pub unsafe fn setRecordIDsToDelete(
             &self,
             record_i_ds_to_delete: Option<&NSArray<CKRecordID>>,
         );
 
+        /// Determines what data is sent to the server and whether the save should succeed even if the record on the server has changed.
+        ///
+        ///
+        /// :  The default value is
+        /// `CKRecordSaveIfServerRecordUnchanged,`which is the recommended value for regular use.
+        /// A
+        /// `CKShare`record is always treated as
+        /// `CKRecordSaveIfServerRecordUnchanged,`regardless of the
+        /// `savePolicy`specified.
         #[method(savePolicy)]
         pub unsafe fn savePolicy(&self) -> CKRecordSavePolicy;
 
+        /// Setter for [`savePolicy`][Self::savePolicy].
         #[method(setSavePolicy:)]
         pub unsafe fn setSavePolicy(&self, save_policy: CKRecordSavePolicy);
 
+        /// This property is kept by the server to identify the last known request from this client.
+        /// Multiple requests from the client with the same change token will be ignored by the server.
         #[method_id(@__retain_semantics Other clientChangeTokenData)]
         pub unsafe fn clientChangeTokenData(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`clientChangeTokenData`][Self::clientChangeTokenData].
         #[method(setClientChangeTokenData:)]
         pub unsafe fn setClientChangeTokenData(&self, client_change_token_data: Option<&NSData>);
 
+        /// Determines whether the batch should fail atomically or not.
+        ///
+        ///
+        /// YES by default.
+        /// Server-side write atomicity is only enforced on zones that have
+        /// `CKRecordZoneCapabilityAtomic.`If
+        /// `isAtomic`is YES, client-side checks are enforced regardless of the zone's capabilities.  (For example, if a record is malformed, and cannot be sent to the server, the client will forcibly fail all other records-to-be-modified in that zone)
         #[method(atomic)]
         pub unsafe fn atomic(&self) -> bool;
 
+        /// Setter for [`atomic`][Self::atomic].
         #[method(setAtomic:)]
         pub unsafe fn setAtomic(&self, atomic: bool);
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
+        /// Indicates the progress for each record.
+        ///
+        ///
+        /// This method is called at least once with a progress of 1.0 for every record. Intermediate progress is only reported for records that contain assets.
+        /// It is possible for progress to regress when a retry is automatically triggered.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perRecordProgressBlock)]
         pub unsafe fn perRecordProgressBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecord>, c_double)>;
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
+        /// Setter for [`perRecordProgressBlock`][Self::perRecordProgressBlock].
         #[method(setPerRecordProgressBlock:)]
         pub unsafe fn setPerRecordProgressBlock(
             &self,
@@ -102,6 +171,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
+        /// Called on success or failure for each record.
+        ///
+        ///
+        /// Will not be invoked if
+        /// `perRecordSaveBlock`is set.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated]
         #[method(perRecordCompletionBlock)]
         pub unsafe fn perRecordCompletionBlock(
@@ -109,6 +187,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecord>, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
+        /// Setter for [`perRecordCompletionBlock`][Self::perRecordCompletionBlock].
         #[deprecated]
         #[method(setPerRecordCompletionBlock:)]
         pub unsafe fn setPerRecordCompletionBlock(
@@ -119,12 +198,25 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
+        /// Called on success or failure of a record save
+        ///
+        ///
+        /// Following a successful record save, this callback will be invoked with a nonnull
+        /// `record,`and a nil
+        /// `error.`Following a save failure due to a per-item error (
+        /// `CKErrorServerRecordChanged,`for example), this callback will be invoked with a nil
+        /// `record,`and a nonnull
+        /// `error`Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perRecordSaveBlock)]
         pub unsafe fn perRecordSaveBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
+        /// Setter for [`perRecordSaveBlock`][Self::perRecordSaveBlock].
         #[method(setPerRecordSaveBlock:)]
         pub unsafe fn setPerRecordSaveBlock(
             &self,
@@ -134,12 +226,19 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
+        /// Called on success or failure of a record deletion
+        ///
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perRecordDeleteBlock)]
         pub unsafe fn perRecordDeleteBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
+        /// Setter for [`perRecordDeleteBlock`][Self::perRecordDeleteBlock].
         #[method(setPerRecordDeleteBlock:)]
         pub unsafe fn setPerRecordDeleteBlock(
             &self,
@@ -149,6 +248,27 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
+        /// This block is called when the operation completes.
+        ///
+        ///
+        /// The
+        ///
+        /// ```text
+        ///  -[NSOperation completionBlock]
+        /// ```
+        ///
+        /// will also be called if both are set.
+        /// If the error is
+        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of recordIDs to errors keyed off of
+        /// `CKPartialErrorsByItemIDKey.``savedRecords,``deletedRecordIDs`and any
+        /// `CKPartialErrorsByItemIDKey`errors are repeats of the data sent back in previous
+        /// `perRecordSaveBlock`and
+        /// `perRecordDeleteBlock`invocations
+        /// This call happens as soon as the server has seen all record changes, and may be invoked while the server is processing the side effects of those changes.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(modifyRecordsCompletionBlock)]
         pub unsafe fn modifyRecordsCompletionBlock(
             &self,
@@ -157,6 +277,7 @@ extern_methods!(
         >;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
+        /// Setter for [`modifyRecordsCompletionBlock`][Self::modifyRecordsCompletionBlock].
         #[method(setModifyRecordsCompletionBlock:)]
         pub unsafe fn setModifyRecordsCompletionBlock(
             &self,

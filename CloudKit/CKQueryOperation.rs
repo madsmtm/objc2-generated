@@ -37,7 +37,10 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckqueryoperationmaximumresults?language=objc)
+    /// Query operations have a dynamically defined maximum number of results.  If the results of a query exceed this max, your completion block will invoked with a cursor.
+    /// Issue a new query with that cursor to fetch the next batch of results.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckqueryoperationmaximumresults?language=objc)
     pub static CKQueryOperationMaximumResults: NSUInteger;
 }
 
@@ -55,6 +58,7 @@ unsafe impl NSObjectProtocol for CKQueryOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKQueryOperation {
+        /// Queries invoked within a sharedCloudDatabase must specify a zoneID.  Cross-zone queries are not supported in a sharedCloudDatabase
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -73,43 +77,79 @@ extern_methods!(
         pub unsafe fn query(&self) -> Option<Retained<CKQuery>>;
 
         #[cfg(feature = "CKQuery")]
+        /// Setter for [`query`][Self::query].
         #[method(setQuery:)]
         pub unsafe fn setQuery(&self, query: Option<&CKQuery>);
 
         #[method_id(@__retain_semantics Other cursor)]
         pub unsafe fn cursor(&self) -> Option<Retained<CKQueryCursor>>;
 
+        /// Setter for [`cursor`][Self::cursor].
         #[method(setCursor:)]
         pub unsafe fn setCursor(&self, cursor: Option<&CKQueryCursor>);
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// Indicates which record zone to query.
+        ///
+        ///
+        /// For query operations constructed using a cursor, this property is ignored and instead will be evaluated in the record zone in which the cursor was originally created.
+        /// Queries that do not specify a
+        /// `zoneID`will perform a query across all zones in the database.
         #[method_id(@__retain_semantics Other zoneID)]
         pub unsafe fn zoneID(&self) -> Option<Retained<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// Setter for [`zoneID`][Self::zoneID].
         #[method(setZoneID:)]
         pub unsafe fn setZoneID(&self, zone_id: Option<&CKRecordZoneID>);
 
+        /// Defaults to
+        /// `CKQueryOperationMaximumResults.`Queries may return fewer than
+        /// `resultsLimit`in some scenarios:
+        /// - There are legitimately fewer than
+        /// `resultsLimit`number of records matching the query (and visible to the current user).
+        /// - During the process of querying and fetching the results, some records were deleted, or became un-readable by the current user.
+        /// When determining if there are more records to fetch, always check for the presence of a cursor in
+        /// `queryCompletionBlock.`
         #[method(resultsLimit)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
+        /// Setter for [`resultsLimit`][Self::resultsLimit].
         #[method(setResultsLimit:)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
         #[cfg(feature = "CKRecord")]
+        /// Declares which user-defined keys should be fetched and added to the resulting CKRecords.
+        ///
+        ///
+        /// If nil, declares the entire record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
+        /// Defaults to
+        /// `nil.`
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
+        /// Setter for [`desiredKeys`][Self::desiredKeys].
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
+        /// This block will be called once for every record that is returned as a result of the query.
+        ///
+        ///
+        /// The callbacks will happen in the order that the results were sorted in.
+        /// If the replacement callback
+        /// `recordMatchedBlock`is set, this callback block is ignored.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated = "Use recordMatchedBlock instead, which surfaces per-record errors"]
         #[method(recordFetchedBlock)]
         pub unsafe fn recordFetchedBlock(&self) -> *mut block2::Block<dyn Fn(NonNull<CKRecord>)>;
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
+        /// Setter for [`recordFetchedBlock`][Self::recordFetchedBlock].
         #[deprecated = "Use recordMatchedBlock instead, which surfaces per-record errors"]
         #[method(setRecordFetchedBlock:)]
         pub unsafe fn setRecordFetchedBlock(
@@ -118,12 +158,22 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
+        /// This block will be called once for every record that is returned as a result of the query.
+        ///
+        ///
+        /// The callbacks will happen in the order that the results were sorted in.  If a record fails in post-processing (say, a network failure materializing a
+        /// `CKAsset`record field), the per-record error will be passed here.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordMatchedBlock)]
         pub unsafe fn recordMatchedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
+        /// Setter for [`recordMatchedBlock`][Self::recordMatchedBlock].
         #[method(setRecordMatchedBlock:)]
         pub unsafe fn setRecordMatchedBlock(
             &self,
@@ -133,12 +183,31 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// This block is called when the operation completes.
+        ///
+        ///
+        /// The
+        ///
+        /// ```text
+        ///  -[NSOperation completionBlock]
+        /// ```
+        ///
+        /// will also be called if both are set.
+        /// If the error is
+        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of recordIDs to errors keyed off of
+        /// `CKPartialErrorsByItemIDKey.`These errors are repeats of those sent back in previous
+        /// `recordMatchedBlock`invocations
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(queryCompletionBlock)]
         pub unsafe fn queryCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut CKQueryCursor, *mut NSError)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`queryCompletionBlock`][Self::queryCompletionBlock].
         #[method(setQueryCompletionBlock:)]
         pub unsafe fn setQueryCompletionBlock(
             &self,

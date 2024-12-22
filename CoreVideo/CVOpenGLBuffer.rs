@@ -48,12 +48,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retains a CVOpenGLBuffer object
+    ///
+    /// Equivalent to CFRetain, but NULL safe
+    ///
+    /// Parameter `buffer`: A CVOpenGLBuffer object that you want to retain.
+    ///
+    /// Returns: A CVOpenGLBuffer object that is the same as the passed in buffer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferRetain(buffer: CVOpenGLBufferRef) -> CVOpenGLBufferRef;
 }
 
 extern "C-unwind" {
+    /// Create a new CVOpenGLBuffer that may be used for OpenGL rendering purposes
+    ///
+    /// Parameter `width`: The width of the buffer in pixels
+    ///
+    /// Parameter `height`: The height of the buffer in pixels
+    ///
+    /// Parameter `attributes`: A CFDictionaryRef containing other desired attributes of the buffer (texture target, internal format, max mipmap level, etc.).
+    /// May be NULL.  Defaults are GL_TEXTURE_RECTANGLE_EXT, GL_RGBA, and 0 for kCVOpenGLBufferTarget, kCVOpenGLBufferInternalFormat and kCVOpenGLBufferMaximumMipmapLevel,
+    /// respectively.
+    ///
+    /// Parameter `bufferOut`: The newly created buffer will be placed here.
+    ///
+    /// Returns: kCVReturnSuccess if the attachment succeeded
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",
@@ -71,6 +91,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Parameter `openGLBuffer`: Target OpenGL Buffer.
+    ///
+    /// Returns: CVOpenGLBuffer attributes dictionary, NULL if not set.
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",

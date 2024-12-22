@@ -116,7 +116,9 @@ unsafe impl RefEncode for CACornerMask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayer?language=objc)
+    /// The base layer class. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CALayer;
@@ -133,6 +135,7 @@ unsafe impl NSSecureCoding for CALayer {}
 
 extern_methods!(
     unsafe impl CALayer {
+        /// Layer creation and initialization. *
         #[method_id(@__retain_semantics Other layer)]
         pub fn layer() -> Retained<Self>;
 
@@ -148,6 +151,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other modelLayer)]
         pub unsafe fn modelLayer(&self) -> Retained<Self>;
 
+        /// Property methods. *
         #[method_id(@__retain_semantics Other defaultValueForKey:)]
         pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
@@ -158,10 +162,12 @@ extern_methods!(
         pub unsafe fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Geometry and layer hierarchy properties. *
         #[method(bounds)]
         pub fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`bounds`][Self::bounds].
         #[method(setBounds:)]
         pub fn setBounds(&self, bounds: CGRect);
 
@@ -170,6 +176,7 @@ extern_methods!(
         pub fn position(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`position`][Self::position].
         #[method(setPosition:)]
         pub fn setPosition(&self, position: CGPoint);
 
@@ -178,6 +185,7 @@ extern_methods!(
         pub fn zPosition(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`zPosition`][Self::zPosition].
         #[method(setZPosition:)]
         pub fn setZPosition(&self, z_position: CGFloat);
 
@@ -186,6 +194,7 @@ extern_methods!(
         pub fn anchorPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`anchorPoint`][Self::anchorPoint].
         #[method(setAnchorPoint:)]
         pub fn setAnchorPoint(&self, anchor_point: CGPoint);
 
@@ -194,6 +203,7 @@ extern_methods!(
         pub fn anchorPointZ(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`anchorPointZ`][Self::anchorPointZ].
         #[method(setAnchorPointZ:)]
         pub fn setAnchorPointZ(&self, anchor_point_z: CGFloat);
 
@@ -202,6 +212,7 @@ extern_methods!(
         pub fn transform(&self) -> CATransform3D;
 
         #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
+        /// Setter for [`transform`][Self::transform].
         #[method(setTransform:)]
         pub fn setTransform(&self, transform: CATransform3D);
 
@@ -218,24 +229,28 @@ extern_methods!(
         pub fn frame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
         pub fn setFrame(&self, frame: CGRect);
 
         #[method(isHidden)]
         pub fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         pub fn setHidden(&self, hidden: bool);
 
         #[method(isDoubleSided)]
         pub fn isDoubleSided(&self) -> bool;
 
+        /// Setter for [`isDoubleSided`][Self::isDoubleSided].
         #[method(setDoubleSided:)]
         pub fn setDoubleSided(&self, double_sided: bool);
 
         #[method(isGeometryFlipped)]
         pub fn isGeometryFlipped(&self) -> bool;
 
+        /// Setter for [`isGeometryFlipped`][Self::isGeometryFlipped].
         #[method(setGeometryFlipped:)]
         pub fn setGeometryFlipped(&self, geometry_flipped: bool);
 
@@ -251,6 +266,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sublayers)]
         pub unsafe fn sublayers(&self) -> Option<Retained<NSArray<CALayer>>>;
 
+        /// Setter for [`sublayers`][Self::sublayers].
         #[method(setSublayers:)]
         pub unsafe fn setSublayers(&self, sublayers: Option<&NSArray<CALayer>>);
 
@@ -274,22 +290,26 @@ extern_methods!(
         pub fn sublayerTransform(&self) -> CATransform3D;
 
         #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
+        /// Setter for [`sublayerTransform`][Self::sublayerTransform].
         #[method(setSublayerTransform:)]
         pub fn setSublayerTransform(&self, sublayer_transform: CATransform3D);
 
         #[method_id(@__retain_semantics Other mask)]
         pub fn mask(&self) -> Option<Retained<CALayer>>;
 
+        /// Setter for [`mask`][Self::mask].
         #[method(setMask:)]
         pub unsafe fn setMask(&self, mask: Option<&CALayer>);
 
         #[method(masksToBounds)]
         pub fn masksToBounds(&self) -> bool;
 
+        /// Setter for [`masksToBounds`][Self::masksToBounds].
         #[method(setMasksToBounds:)]
         pub fn setMasksToBounds(&self, masks_to_bounds: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Mapping between layer coordinate and time spaces. *
         #[method(convertPoint:fromLayer:)]
         pub fn convertPoint_fromLayer(&self, p: CGPoint, l: Option<&CALayer>) -> CGPoint;
 
@@ -319,6 +339,7 @@ extern_methods!(
             -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Hit testing methods. *
         #[method_id(@__retain_semantics Other hitTest:)]
         pub fn hitTest(&self, p: CGPoint) -> Option<Retained<CALayer>>;
 
@@ -326,9 +347,11 @@ extern_methods!(
         #[method(containsPoint:)]
         pub fn containsPoint(&self, p: CGPoint) -> bool;
 
+        /// Layer content properties and methods. *
         #[method_id(@__retain_semantics Other contents)]
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`contents`][Self::contents].
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
 
@@ -337,12 +360,14 @@ extern_methods!(
         pub fn contentsRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentsRect`][Self::contentsRect].
         #[method(setContentsRect:)]
         pub fn setContentsRect(&self, contents_rect: CGRect);
 
         #[method_id(@__retain_semantics Other contentsGravity)]
         pub fn contentsGravity(&self) -> Retained<CALayerContentsGravity>;
 
+        /// Setter for [`contentsGravity`][Self::contentsGravity].
         #[method(setContentsGravity:)]
         pub fn setContentsGravity(&self, contents_gravity: &CALayerContentsGravity);
 
@@ -351,6 +376,7 @@ extern_methods!(
         pub fn contentsScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentsScale`][Self::contentsScale].
         #[method(setContentsScale:)]
         pub fn setContentsScale(&self, contents_scale: CGFloat);
 
@@ -359,18 +385,21 @@ extern_methods!(
         pub fn contentsCenter(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentsCenter`][Self::contentsCenter].
         #[method(setContentsCenter:)]
         pub fn setContentsCenter(&self, contents_center: CGRect);
 
         #[method_id(@__retain_semantics Other contentsFormat)]
         pub fn contentsFormat(&self) -> Retained<CALayerContentsFormat>;
 
+        /// Setter for [`contentsFormat`][Self::contentsFormat].
         #[method(setContentsFormat:)]
         pub fn setContentsFormat(&self, contents_format: &CALayerContentsFormat);
 
         #[method(wantsExtendedDynamicRangeContent)]
         pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;
 
+        /// Setter for [`wantsExtendedDynamicRangeContent`][Self::wantsExtendedDynamicRangeContent].
         #[method(setWantsExtendedDynamicRangeContent:)]
         pub unsafe fn setWantsExtendedDynamicRangeContent(
             &self,
@@ -380,36 +409,42 @@ extern_methods!(
         #[method_id(@__retain_semantics Other toneMapMode)]
         pub unsafe fn toneMapMode(&self) -> Retained<CAToneMapMode>;
 
+        /// Setter for [`toneMapMode`][Self::toneMapMode].
         #[method(setToneMapMode:)]
         pub unsafe fn setToneMapMode(&self, tone_map_mode: &CAToneMapMode);
 
         #[method(wantsDynamicContentScaling)]
         pub unsafe fn wantsDynamicContentScaling(&self) -> bool;
 
+        /// Setter for [`wantsDynamicContentScaling`][Self::wantsDynamicContentScaling].
         #[method(setWantsDynamicContentScaling:)]
         pub unsafe fn setWantsDynamicContentScaling(&self, wants_dynamic_content_scaling: bool);
 
         #[method_id(@__retain_semantics Other minificationFilter)]
         pub fn minificationFilter(&self) -> Retained<CALayerContentsFilter>;
 
+        /// Setter for [`minificationFilter`][Self::minificationFilter].
         #[method(setMinificationFilter:)]
         pub fn setMinificationFilter(&self, minification_filter: &CALayerContentsFilter);
 
         #[method_id(@__retain_semantics Other magnificationFilter)]
         pub fn magnificationFilter(&self) -> Retained<CALayerContentsFilter>;
 
+        /// Setter for [`magnificationFilter`][Self::magnificationFilter].
         #[method(setMagnificationFilter:)]
         pub fn setMagnificationFilter(&self, magnification_filter: &CALayerContentsFilter);
 
         #[method(minificationFilterBias)]
         pub fn minificationFilterBias(&self) -> c_float;
 
+        /// Setter for [`minificationFilterBias`][Self::minificationFilterBias].
         #[method(setMinificationFilterBias:)]
         pub fn setMinificationFilterBias(&self, minification_filter_bias: c_float);
 
         #[method(isOpaque)]
         pub fn isOpaque(&self) -> bool;
 
+        /// Setter for [`isOpaque`][Self::isOpaque].
         #[method(setOpaque:)]
         pub fn setOpaque(&self, opaque: bool);
 
@@ -432,12 +467,14 @@ extern_methods!(
         #[method(needsDisplayOnBoundsChange)]
         pub fn needsDisplayOnBoundsChange(&self) -> bool;
 
+        /// Setter for [`needsDisplayOnBoundsChange`][Self::needsDisplayOnBoundsChange].
         #[method(setNeedsDisplayOnBoundsChange:)]
         pub fn setNeedsDisplayOnBoundsChange(&self, needs_display_on_bounds_change: bool);
 
         #[method(drawsAsynchronously)]
         pub fn drawsAsynchronously(&self) -> bool;
 
+        /// Setter for [`drawsAsynchronously`][Self::drawsAsynchronously].
         #[method(setDrawsAsynchronously:)]
         pub fn setDrawsAsynchronously(&self, draws_asynchronously: bool);
 
@@ -446,18 +483,21 @@ extern_methods!(
         pub unsafe fn drawInContext(&self, ctx: CGContextRef);
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Rendering properties and methods. *
         #[method(renderInContext:)]
         pub unsafe fn renderInContext(&self, ctx: CGContextRef);
 
         #[method(edgeAntialiasingMask)]
         pub fn edgeAntialiasingMask(&self) -> CAEdgeAntialiasingMask;
 
+        /// Setter for [`edgeAntialiasingMask`][Self::edgeAntialiasingMask].
         #[method(setEdgeAntialiasingMask:)]
         pub fn setEdgeAntialiasingMask(&self, edge_antialiasing_mask: CAEdgeAntialiasingMask);
 
         #[method(allowsEdgeAntialiasing)]
         pub fn allowsEdgeAntialiasing(&self) -> bool;
 
+        /// Setter for [`allowsEdgeAntialiasing`][Self::allowsEdgeAntialiasing].
         #[method(setAllowsEdgeAntialiasing:)]
         pub fn setAllowsEdgeAntialiasing(&self, allows_edge_antialiasing: bool);
 
@@ -466,6 +506,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> CGColorRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: CGColorRef);
 
@@ -474,18 +515,21 @@ extern_methods!(
         pub fn cornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`cornerRadius`][Self::cornerRadius].
         #[method(setCornerRadius:)]
         pub fn setCornerRadius(&self, corner_radius: CGFloat);
 
         #[method(maskedCorners)]
         pub fn maskedCorners(&self) -> CACornerMask;
 
+        /// Setter for [`maskedCorners`][Self::maskedCorners].
         #[method(setMaskedCorners:)]
         pub fn setMaskedCorners(&self, masked_corners: CACornerMask);
 
         #[method_id(@__retain_semantics Other cornerCurve)]
         pub fn cornerCurve(&self) -> Retained<CALayerCornerCurve>;
 
+        /// Setter for [`cornerCurve`][Self::cornerCurve].
         #[method(setCornerCurve:)]
         pub fn setCornerCurve(&self, corner_curve: &CALayerCornerCurve);
 
@@ -498,6 +542,7 @@ extern_methods!(
         pub fn borderWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`borderWidth`][Self::borderWidth].
         #[method(setBorderWidth:)]
         pub fn setBorderWidth(&self, border_width: CGFloat);
 
@@ -506,42 +551,49 @@ extern_methods!(
         pub unsafe fn borderColor(&self) -> CGColorRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`borderColor`][Self::borderColor].
         #[method(setBorderColor:)]
         pub unsafe fn setBorderColor(&self, border_color: CGColorRef);
 
         #[method(opacity)]
         pub fn opacity(&self) -> c_float;
 
+        /// Setter for [`opacity`][Self::opacity].
         #[method(setOpacity:)]
         pub fn setOpacity(&self, opacity: c_float);
 
         #[method(allowsGroupOpacity)]
         pub fn allowsGroupOpacity(&self) -> bool;
 
+        /// Setter for [`allowsGroupOpacity`][Self::allowsGroupOpacity].
         #[method(setAllowsGroupOpacity:)]
         pub fn setAllowsGroupOpacity(&self, allows_group_opacity: bool);
 
         #[method_id(@__retain_semantics Other compositingFilter)]
         pub unsafe fn compositingFilter(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`compositingFilter`][Self::compositingFilter].
         #[method(setCompositingFilter:)]
         pub unsafe fn setCompositingFilter(&self, compositing_filter: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other filters)]
         pub unsafe fn filters(&self) -> Option<Retained<NSArray>>;
 
+        /// Setter for [`filters`][Self::filters].
         #[method(setFilters:)]
         pub unsafe fn setFilters(&self, filters: Option<&NSArray>);
 
         #[method_id(@__retain_semantics Other backgroundFilters)]
         pub unsafe fn backgroundFilters(&self) -> Option<Retained<NSArray>>;
 
+        /// Setter for [`backgroundFilters`][Self::backgroundFilters].
         #[method(setBackgroundFilters:)]
         pub unsafe fn setBackgroundFilters(&self, background_filters: Option<&NSArray>);
 
         #[method(shouldRasterize)]
         pub fn shouldRasterize(&self) -> bool;
 
+        /// Setter for [`shouldRasterize`][Self::shouldRasterize].
         #[method(setShouldRasterize:)]
         pub fn setShouldRasterize(&self, should_rasterize: bool);
 
@@ -550,20 +602,24 @@ extern_methods!(
         pub fn rasterizationScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`rasterizationScale`][Self::rasterizationScale].
         #[method(setRasterizationScale:)]
         pub fn setRasterizationScale(&self, rasterization_scale: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Shadow properties. *
         #[method(shadowColor)]
         pub unsafe fn shadowColor(&self) -> CGColorRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`shadowColor`][Self::shadowColor].
         #[method(setShadowColor:)]
         pub unsafe fn setShadowColor(&self, shadow_color: CGColorRef);
 
         #[method(shadowOpacity)]
         pub fn shadowOpacity(&self) -> c_float;
 
+        /// Setter for [`shadowOpacity`][Self::shadowOpacity].
         #[method(setShadowOpacity:)]
         pub fn setShadowOpacity(&self, shadow_opacity: c_float);
 
@@ -572,6 +628,7 @@ extern_methods!(
         pub fn shadowOffset(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`shadowOffset`][Self::shadowOffset].
         #[method(setShadowOffset:)]
         pub fn setShadowOffset(&self, shadow_offset: CGSize);
 
@@ -580,6 +637,7 @@ extern_methods!(
         pub fn shadowRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`shadowRadius`][Self::shadowRadius].
         #[method(setShadowRadius:)]
         pub fn setShadowRadius(&self, shadow_radius: CGFloat);
 
@@ -588,18 +646,22 @@ extern_methods!(
         pub unsafe fn shadowPath(&self) -> CGPathRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`shadowPath`][Self::shadowPath].
         #[method(setShadowPath:)]
         pub unsafe fn setShadowPath(&self, shadow_path: CGPathRef);
 
+        /// Layout methods. *
         #[method(autoresizingMask)]
         pub fn autoresizingMask(&self) -> CAAutoresizingMask;
 
+        /// Setter for [`autoresizingMask`][Self::autoresizingMask].
         #[method(setAutoresizingMask:)]
         pub fn setAutoresizingMask(&self, autoresizing_mask: CAAutoresizingMask);
 
         #[method_id(@__retain_semantics Other layoutManager)]
         pub fn layoutManager(&self) -> Option<Retained<ProtocolObject<dyn CALayoutManager>>>;
 
+        /// Setter for [`layoutManager`][Self::layoutManager].
         #[method(setLayoutManager:)]
         pub fn setLayoutManager(
             &self,
@@ -630,6 +692,7 @@ extern_methods!(
         #[method(resizeWithOldSuperlayerSize:)]
         pub fn resizeWithOldSuperlayerSize(&self, size: CGSize);
 
+        /// Action methods. *
         #[method_id(@__retain_semantics Other defaultActionForKey:)]
         pub fn defaultActionForKey(
             event: &NSString,
@@ -646,6 +709,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, ProtocolObject<dyn CAAction>>>>;
 
+        /// Setter for [`actions`][Self::actions].
         #[method(setActions:)]
         pub fn setActions(
             &self,
@@ -653,6 +717,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "CAAnimation")]
+        /// Animation methods. *
         #[method(addAnimation:forKey:)]
         pub fn addAnimation_forKey(&self, anim: &CAAnimation, key: Option<&NSString>);
 
@@ -669,9 +734,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other animationForKey:)]
         pub unsafe fn animationForKey(&self, key: &NSString) -> Option<Retained<CAAnimation>>;
 
+        /// Miscellaneous properties. *
         #[method_id(@__retain_semantics Other name)]
         pub fn name(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub fn setName(&self, name: Option<&NSString>);
 
@@ -679,12 +746,14 @@ extern_methods!(
         pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn CALayerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn CALayerDelegate>>);
 
         #[method_id(@__retain_semantics Other style)]
         pub unsafe fn style(&self) -> Option<Retained<NSDictionary>>;
 
+        /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);
     }
@@ -706,7 +775,9 @@ impl DefaultRetained for CALayer {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayoutmanager?language=objc)
+    /// Layout manager protocol. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayoutmanager?language=objc)
     pub unsafe trait CALayoutManager: NSObjectProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
@@ -726,7 +797,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caaction?language=objc)
+    /// Action (event handler) protocol. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caaction?language=objc)
     pub unsafe trait CAAction {
         #[method(runActionForKey:object:arguments:)]
         unsafe fn runActionForKey_object_arguments(
@@ -743,7 +816,9 @@ extern_protocol!(
 unsafe impl CAAction for NSNull {}
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayerdelegate?language=objc)
+    /// Delegate methods. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayerdelegate?language=objc)
     pub unsafe trait CALayerDelegate: NSObjectProtocol {
         #[optional]
         #[method(displayLayer:)]
@@ -775,7 +850,9 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravitycenter?language=objc)
+    /// Layer `contentsGravity' values. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagravitycenter?language=objc)
     pub static kCAGravityCenter: &'static CALayerContentsGravity;
 }
 
@@ -835,7 +912,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcacontentsformatrgba8uint?language=objc)
+    /// Layer `contentsFormat` values. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcacontentsformatrgba8uint?language=objc)
     pub static kCAContentsFormatRGBA8Uint: &'static CALayerContentsFormat;
 }
 
@@ -850,7 +929,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafilternearest?language=objc)
+    /// Contents filter names. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafilternearest?language=objc)
     pub static kCAFilterNearest: &'static CALayerContentsFilter;
 }
 
@@ -865,7 +946,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcacornercurvecircular?language=objc)
+    /// Corner curve names. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcacornercurvecircular?language=objc)
     pub static kCACornerCurveCircular: &'static CALayerCornerCurve;
 }
 
@@ -875,7 +958,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaonorderin?language=objc)
+    /// Layer event names. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaonorderin?language=objc)
     pub static kCAOnOrderIn: &'static NSString;
 }
 
@@ -885,6 +970,8 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransition?language=objc)
+    /// The animation key used for transitions. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransition?language=objc)
     pub static kCATransition: &'static NSString;
 }

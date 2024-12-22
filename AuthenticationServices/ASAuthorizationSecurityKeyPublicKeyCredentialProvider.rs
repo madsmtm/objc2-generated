@@ -30,6 +30,15 @@ extern_methods!(
             feature = "ASAuthorizationRequest",
             feature = "ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest"
         ))]
+        /// Create a request to register a new security key credential.
+        ///
+        /// Parameter `challenge`: The challenge to sign.
+        ///
+        /// Parameter `displayName`: The display name for the new credential.
+        ///
+        /// Parameter `name`: The name for the new credential.
+        ///
+        /// Parameter `userID`: An identifier to be stored alongside the credential, which will be returned with the credential when it is used to authenticate.
         #[method_id(@__retain_semantics Other createCredentialRegistrationRequestWithChallenge:displayName:name:userID:)]
         pub unsafe fn createCredentialRegistrationRequestWithChallenge_displayName_name_userID(
             &self,
@@ -43,12 +52,16 @@ extern_methods!(
             feature = "ASAuthorizationRequest",
             feature = "ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest"
         ))]
+        /// Create a request to authenticate using an existing credential.
+        ///
+        /// Parameter `challenge`: The challenge to sign.
         #[method_id(@__retain_semantics Other createCredentialAssertionRequestWithChallenge:)]
         pub unsafe fn createCredentialAssertionRequestWithChallenge(
             &self,
             challenge: &NSData,
         ) -> Retained<ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest>;
 
+        /// The Relying Party identifier used for all requests created by this object.
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 

@@ -11,6 +11,13 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Calculates a partial derivative of primaryTensor with respect to the tensors.
+        ///
+        /// - Parameters:
+        /// - primaryTensor: Tensor to be differentiated (numerator).
+        /// - tensors: Tensors to do the differentiation with (denominator).
+        /// - name: Name for the gradient operation.
+        /// - Returns: A valid MPSGraphTensor dictionary object containing partial derivative d(primaryTensor)/d(secondaryTensor) for each tensor as key.
         #[method_id(@__retain_semantics Other gradientForPrimaryTensor:withTensors:name:)]
         pub unsafe fn gradientForPrimaryTensor_withTensors_name(
             &self,

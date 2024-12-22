@@ -117,7 +117,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationproviding?language=objc)
+    /// Protocol adopted by classes that can provide activity items configurations
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationproviding?language=objc)
     pub unsafe trait UIActivityItemsConfigurationProviding: NSObjectProtocol {
         #[method_id(@__retain_semantics Other activityItemsConfiguration)]
         unsafe fn activityItemsConfiguration(

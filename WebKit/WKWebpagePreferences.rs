@@ -6,7 +6,17 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkcontentmode?language=objc)
+/// A content mode represents the type of content to load, as well as
+/// additional layout and rendering adaptations that are applied as a result of
+/// loading the content
+///
+///
+///
+///
+/// WKContentModeRecommended behaves like WKContentModeMobile on iPhone and iPad mini
+/// and WKContentModeDesktop on other iPad models as well as Mac.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkcontentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,7 +38,11 @@ unsafe impl RefEncode for WKContentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferencesupgradetohttpspolicy?language=objc)
+/// A secure navigation policy represents whether or not there is a
+/// preference for loading a webpage with https, and how failures should be
+/// handled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferencesupgradetohttpspolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -53,7 +67,12 @@ unsafe impl RefEncode for WKWebpagePreferencesUpgradeToHTTPSPolicy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences?language=objc)
+    /// A WKWebpagePreferences object is a collection of properties that
+    /// determine the preferences to use when loading and rendering a page.
+    ///
+    /// Contains properties used to determine webpage preferences.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -64,29 +83,49 @@ unsafe impl NSObjectProtocol for WKWebpagePreferences {}
 
 extern_methods!(
     unsafe impl WKWebpagePreferences {
+        /// A WKContentMode indicating the content mode to prefer
+        /// when loading and rendering a webpage.
+        ///
+        /// The default value is WKContentModeRecommended. The stated
+        /// preference is ignored on subframe navigation
         #[method(preferredContentMode)]
         pub unsafe fn preferredContentMode(&self) -> WKContentMode;
 
+        /// Setter for [`preferredContentMode`][Self::preferredContentMode].
         #[method(setPreferredContentMode:)]
         pub unsafe fn setPreferredContentMode(&self, preferred_content_mode: WKContentMode);
 
         #[method(allowsContentJavaScript)]
         pub unsafe fn allowsContentJavaScript(&self) -> bool;
 
+        /// Setter for [`allowsContentJavaScript`][Self::allowsContentJavaScript].
         #[method(setAllowsContentJavaScript:)]
         pub unsafe fn setAllowsContentJavaScript(&self, allows_content_java_script: bool);
 
+        /// A boolean indicating whether lockdown mode is enabled.
+        ///
+        /// This mode trades off performance and compatibility in favor of security.
+        /// The default value depends on the system setting.
         #[method(isLockdownModeEnabled)]
         pub unsafe fn isLockdownModeEnabled(&self) -> bool;
 
+        /// Setter for [`isLockdownModeEnabled`][Self::isLockdownModeEnabled].
         #[method(setLockdownModeEnabled:)]
         pub unsafe fn setLockdownModeEnabled(&self, lockdown_mode_enabled: bool);
 
+        /// A WKWebpagePreferencesUpgradeToHTTPSPolicy indicating the desired mode
+        /// used when performing a top-level navigation to a webpage.
+        ///
+        /// The default value is WKWebpagePreferencesUpgradeToHTTPSPolicyKeepAsRequested.
+        /// The stated preference is ignored on subframe navigation, and it may be ignored based on
+        /// system configuration. The upgradeKnownHostsToHTTPS property on WKWebViewConfiguration
+        /// supercedes this policy for known hosts.
         #[method(preferredHTTPSNavigationPolicy)]
         pub unsafe fn preferredHTTPSNavigationPolicy(
             &self,
         ) -> WKWebpagePreferencesUpgradeToHTTPSPolicy;
 
+        /// Setter for [`preferredHTTPSNavigationPolicy`][Self::preferredHTTPSNavigationPolicy].
         #[method(setPreferredHTTPSNavigationPolicy:)]
         pub unsafe fn setPreferredHTTPSNavigationPolicy(
             &self,

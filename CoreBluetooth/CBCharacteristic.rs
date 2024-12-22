@@ -7,7 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties?language=objc)
+/// Characteristic properties determine how the characteristic value can be    used, or how the descriptor(s) can be accessed. Can be combined. Unless
+/// otherwise specified, properties are valid for local characteristics published via
+///
+/// ```text
+///  CBPeripheralManager
+/// ```
+///
+/// .
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -36,7 +45,9 @@ unsafe impl RefEncode for CBCharacteristicProperties {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristic?language=objc)
+    /// Represents a service's characteristic.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristic?language=objc)
     #[unsafe(super(CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
@@ -50,23 +61,29 @@ extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBCharacteristic {
         #[cfg(feature = "CBService")]
+        /// A back-pointer to the service this characteristic belongs to.
         #[method_id(@__retain_semantics Other service)]
         pub unsafe fn service(&self) -> Option<Retained<CBService>>;
 
+        /// The properties of the characteristic.
         #[method(properties)]
         pub unsafe fn properties(&self) -> CBCharacteristicProperties;
 
+        /// The value of the characteristic.
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "CBDescriptor")]
+        /// A list of the CBDescriptors that have so far been discovered in this characteristic.
         #[method_id(@__retain_semantics Other descriptors)]
         pub unsafe fn descriptors(&self) -> Option<Retained<NSArray<CBDescriptor>>>;
 
+        /// Whether the characteristic is currently broadcasted or not.
         #[deprecated]
         #[method(isBroadcasted)]
         pub unsafe fn isBroadcasted(&self) -> bool;
 
+        /// Whether the characteristic is currently notifying or not.
         #[method(isNotifying)]
         pub unsafe fn isNotifying(&self) -> bool;
     }
@@ -90,7 +107,9 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions?language=objc)
+/// Read, write, and encryption permissions for an ATT attribute. Can be combined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -117,7 +136,36 @@ unsafe impl RefEncode for CBAttributePermissions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmutablecharacteristic?language=objc)
+    /// Used to create a local characteristic, which can be added to the local database via
+    /// <code>
+    /// CBPeripheralManager
+    /// </code>
+    /// . Once a characteristic
+    /// is published, it is cached and can no longer be changed.
+    /// If a characteristic value is specified, it will be cached and marked
+    /// <code>
+    /// CBCharacteristicPropertyRead
+    /// </code>
+    /// and
+    /// <code>
+    /// CBAttributePermissionsReadable
+    /// </code>
+    /// . If a characteristic value needs to be writeable, or may change during the lifetime of the
+    /// published
+    /// <code>
+    /// CBService
+    /// </code>
+    /// , it is considered a dynamic value and will be requested on-demand. Dynamic values are identified by a
+    /// <i>
+    /// value
+    /// </i>
+    /// of
+    /// <i>
+    /// nil
+    /// </i>
+    /// .
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmutablecharacteristic?language=objc)
     #[unsafe(super(CBCharacteristic, CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
@@ -130,25 +178,33 @@ unsafe impl NSObjectProtocol for CBMutableCharacteristic {}
 extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableCharacteristic {
+        /// The permissions of the characteristic value.
+        ///
+        ///
+        /// See: CBAttributePermissions
         #[method(permissions)]
         pub unsafe fn permissions(&self) -> CBAttributePermissions;
 
+        /// Setter for [`permissions`][Self::permissions].
         #[method(setPermissions:)]
         pub unsafe fn setPermissions(&self, permissions: CBAttributePermissions);
 
         #[cfg(all(feature = "CBCentral", feature = "CBPeer"))]
+        /// For notifying characteristics, the set of currently subscribed centrals.
         #[method_id(@__retain_semantics Other subscribedCentrals)]
         pub unsafe fn subscribedCentrals(&self) -> Option<Retained<NSArray<CBCentral>>>;
 
         #[method(properties)]
         pub unsafe fn properties(&self) -> CBCharacteristicProperties;
 
+        /// Setter for [`properties`][Self::properties].
         #[method(setProperties:)]
         pub unsafe fn setProperties(&self, properties: CBCharacteristicProperties);
 
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`value`][Self::value].
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSData>);
 
@@ -157,10 +213,25 @@ extern_methods!(
         pub unsafe fn descriptors(&self) -> Option<Retained<NSArray<CBDescriptor>>>;
 
         #[cfg(feature = "CBDescriptor")]
+        /// Setter for [`descriptors`][Self::descriptors].
         #[method(setDescriptors:)]
         pub unsafe fn setDescriptors(&self, descriptors: Option<&NSArray<CBDescriptor>>);
 
         #[cfg(feature = "CBUUID")]
+        /// Parameter `UUID`: The Bluetooth UUID of the characteristic.
+        ///
+        /// Parameter `properties`: The properties of the characteristic.
+        ///
+        /// Parameter `value`: The characteristic value to be cached. If
+        /// <i>
+        /// nil
+        /// </i>
+        /// , the value will be dynamic and requested on-demand.
+        ///
+        /// Parameter `permissions`: The permissions of the characteristic value.
+        ///
+        ///
+        /// Returns an initialized characteristic.
         #[method_id(@__retain_semantics Init initWithType:properties:value:permissions:)]
         pub unsafe fn initWithType_properties_value_permissions(
             this: Allocated<Self>,

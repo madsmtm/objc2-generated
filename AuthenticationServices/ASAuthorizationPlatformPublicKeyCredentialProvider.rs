@@ -30,6 +30,13 @@ extern_methods!(
             feature = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
             feature = "ASAuthorizationRequest"
         ))]
+        /// Create a request to register a new platform credential.
+        ///
+        /// Parameter `challenge`: The challenge to sign.
+        ///
+        /// Parameter `name`: The user name for the new credential.
+        ///
+        /// Parameter `userID`: An identifier to be stored alongside the credential, which will be returned with the credential when it is used to authenticate.
         #[method_id(@__retain_semantics Other createCredentialRegistrationRequestWithChallenge:name:userID:)]
         pub unsafe fn createCredentialRegistrationRequestWithChallenge_name_userID(
             &self,
@@ -42,6 +49,15 @@ extern_methods!(
             feature = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest",
             feature = "ASAuthorizationRequest"
         ))]
+        /// Create a request to register a new platform credential.
+        ///
+        /// Parameter `challenge`: The challenge to sign.
+        ///
+        /// Parameter `name`: The user name for the new credential.
+        ///
+        /// Parameter `userID`: An identifier to be stored alongside the credential, which will be returned with the credential when it is used to authenticate.
+        ///
+        /// Parameter `requestStyle`: The style for this request.
         #[method_id(@__retain_semantics Other createCredentialRegistrationRequestWithChallenge:name:userID:requestStyle:)]
         pub unsafe fn createCredentialRegistrationRequestWithChallenge_name_userID_requestStyle(
             &self,
@@ -55,12 +71,16 @@ extern_methods!(
             feature = "ASAuthorizationPlatformPublicKeyCredentialAssertionRequest",
             feature = "ASAuthorizationRequest"
         ))]
+        /// Create a request to authenticate using an existing credential.
+        ///
+        /// Parameter `challenge`: The challenge to sign.
         #[method_id(@__retain_semantics Other createCredentialAssertionRequestWithChallenge:)]
         pub unsafe fn createCredentialAssertionRequestWithChallenge(
             &self,
             challenge: &NSData,
         ) -> Retained<ASAuthorizationPlatformPublicKeyCredentialAssertionRequest>;
 
+        /// The Relying Party identifier used for all requests created by this object.
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 

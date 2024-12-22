@@ -7,9 +7,24 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevicedelegate?language=objc)
+    /// Delegate object for VZVirtioConsoleDevice.
+    ///
+    /// A class conforming to the VZVirtioConsoleDeviceDelegate protocol can provide methods that notify when a console port is opened or closed in the virtual machine.
+    ///
+    /// See: VZVirtioConsoleDevice
+    ///
+    /// See: VZVirtioConsolePort
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevicedelegate?language=objc)
     pub unsafe trait VZVirtioConsoleDeviceDelegate: NSObjectProtocol {
         #[cfg(all(feature = "VZConsoleDevice", feature = "VZVirtioConsolePort"))]
+        /// Invoked when a guest process has opened a Virtio console port.
+        ///
+        /// Parameter `consoleDevice`: The console port's console device.
+        ///
+        /// Parameter `consolePort`: The console port that has been opened.
+        ///
+        /// Extra care should be taken to ensure that any pending data from the VZVirtioConsolePort attachment has been processed or flushed before communicating with a new virtual machine process.
         #[optional]
         #[method(consoleDevice:didOpenPort:)]
         unsafe fn consoleDevice_didOpenPort(
@@ -19,6 +34,13 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "VZConsoleDevice", feature = "VZVirtioConsolePort"))]
+        /// Invoked when a guest process has closed a Virtio console port.
+        ///
+        /// Parameter `consoleDevice`: The console port's console device.
+        ///
+        /// Parameter `consolePort`: The console port that has been closed.
+        ///
+        /// It is recommended to finish processing or flushing any remaining data from the VZVirtioConsolePort attachment after a port has been closed.
         #[optional]
         #[method(consoleDevice:didClosePort:)]
         unsafe fn consoleDevice_didClosePort(
@@ -32,7 +54,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevice?language=objc)
+    /// Class representing a Virtio console device in a virtual machine.
+    ///
+    /// VZVirtioConsoleDevice should not be instantiated directly.
+    ///
+    /// See: VZConsoleDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevice?language=objc)
     #[unsafe(super(VZConsoleDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZConsoleDevice")]
@@ -51,12 +79,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Pointer to a delegate object for the console device.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn VZVirtioConsoleDeviceDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -64,6 +94,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "VZVirtioConsolePortArray")]
+        /// The console ports currently being used by this console device.
         #[method_id(@__retain_semantics Other ports)]
         pub unsafe fn ports(&self) -> Retained<VZVirtioConsolePortArray>;
     }

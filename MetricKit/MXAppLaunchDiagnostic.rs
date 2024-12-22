@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxapplaunchdiagnostic?language=objc)
+    /// An MXDiagnostic subclass that encapsulates app launch diagnostic reports.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxapplaunchdiagnostic?language=objc)
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]
@@ -27,9 +29,13 @@ extern_methods!(
     #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXAppLaunchDiagnostic {
         #[cfg(feature = "MXCallStackTree")]
+        /// The application call stack tree associated with the app launch.
         #[method_id(@__retain_semantics Other callStackTree)]
         pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
 
+        /// Total app launch duration.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other launchDuration)]
         pub unsafe fn launchDuration(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
     }

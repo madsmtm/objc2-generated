@@ -162,6 +162,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`sectionCollapseButton`][Self::sectionCollapseButton].
         #[optional]
         #[method(setSectionCollapseButton:)]
         unsafe fn setSectionCollapseButton(&self, section_collapse_button: Option<&NSButton>);
@@ -231,12 +232,14 @@ extern_methods!(
         #[method(isSelected)]
         pub unsafe fn isSelected(&self) -> bool;
 
+        /// Setter for [`isSelected`][Self::isSelected].
         #[method(setSelected:)]
         pub unsafe fn setSelected(&self, selected: bool);
 
         #[method(highlightState)]
         pub unsafe fn highlightState(&self) -> NSCollectionViewItemHighlightState;
 
+        /// Setter for [`highlightState`][Self::highlightState].
         #[method(setHighlightState:)]
         pub unsafe fn setHighlightState(&self, highlight_state: NSCollectionViewItemHighlightState);
 
@@ -246,6 +249,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSControl", feature = "NSImageView", feature = "NSView"))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`imageView`][Self::imageView].
         #[method(setImageView:)]
         pub unsafe fn setImageView(&self, image_view: Option<&NSImageView>);
 
@@ -255,6 +259,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSControl", feature = "NSTextField", feature = "NSView"))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`textField`][Self::textField].
         #[method(setTextField:)]
         pub unsafe fn setTextField(&self, text_field: Option<&NSTextField>);
 
@@ -359,6 +364,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSCollectionViewDataSource>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`dataSource`][Self::dataSource].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
@@ -371,6 +377,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSCollectionViewPrefetching>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`prefetchDataSource`][Self::prefetchDataSource].
         #[method(setPrefetchDataSource:)]
         pub unsafe fn setPrefetchDataSource(
             &self,
@@ -380,6 +387,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other content)]
         pub unsafe fn content(&self) -> Retained<NSArray<AnyObject>>;
 
+        /// Setter for [`content`][Self::content].
         #[method(setContent:)]
         pub unsafe fn setContent(&self, content: &NSArray<AnyObject>);
 
@@ -392,6 +400,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSCollectionViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -401,12 +410,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other backgroundView)]
         pub unsafe fn backgroundView(&self) -> Option<Retained<NSView>>;
 
+        /// Setter for [`backgroundView`][Self::backgroundView].
         #[method(setBackgroundView:)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&NSView>);
 
         #[method(backgroundViewScrollsWithContent)]
         pub unsafe fn backgroundViewScrollsWithContent(&self) -> bool;
 
+        /// Setter for [`backgroundViewScrollsWithContent`][Self::backgroundViewScrollsWithContent].
         #[method(setBackgroundViewScrollsWithContent:)]
         pub unsafe fn setBackgroundViewScrollsWithContent(
             &self,
@@ -418,6 +429,7 @@ extern_methods!(
         pub unsafe fn collectionViewLayout(&self) -> Option<Retained<NSCollectionViewLayout>>;
 
         #[cfg(feature = "NSCollectionViewLayout")]
+        /// Setter for [`collectionViewLayout`][Self::collectionViewLayout].
         #[method(setCollectionViewLayout:)]
         pub unsafe fn setCollectionViewLayout(
             &self,
@@ -456,6 +468,7 @@ extern_methods!(
         pub unsafe fn backgroundColors(&self) -> Retained<NSArray<NSColor>>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColors`][Self::backgroundColors].
         #[method(setBackgroundColors:)]
         pub unsafe fn setBackgroundColors(&self, background_colors: Option<&NSArray<NSColor>>);
 
@@ -471,30 +484,35 @@ extern_methods!(
         #[method(isSelectable)]
         pub unsafe fn isSelectable(&self) -> bool;
 
+        /// Setter for [`isSelectable`][Self::isSelectable].
         #[method(setSelectable:)]
         pub unsafe fn setSelectable(&self, selectable: bool);
 
         #[method(allowsEmptySelection)]
         pub unsafe fn allowsEmptySelection(&self) -> bool;
 
+        /// Setter for [`allowsEmptySelection`][Self::allowsEmptySelection].
         #[method(setAllowsEmptySelection:)]
         pub unsafe fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
 
         #[method(allowsMultipleSelection)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
+        /// Setter for [`allowsMultipleSelection`][Self::allowsMultipleSelection].
         #[method(setAllowsMultipleSelection:)]
         pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
         #[method_id(@__retain_semantics Other selectionIndexes)]
         pub unsafe fn selectionIndexes(&self) -> Retained<NSIndexSet>;
 
+        /// Setter for [`selectionIndexes`][Self::selectionIndexes].
         #[method(setSelectionIndexes:)]
         pub unsafe fn setSelectionIndexes(&self, selection_indexes: &NSIndexSet);
 
         #[method_id(@__retain_semantics Other selectionIndexPaths)]
         pub unsafe fn selectionIndexPaths(&self) -> Retained<NSSet<NSIndexPath>>;
 
+        /// Setter for [`selectionIndexPaths`][Self::selectionIndexPaths].
         #[method(setSelectionIndexPaths:)]
         pub unsafe fn setSelectionIndexPaths(&self, selection_index_paths: &NSSet<NSIndexPath>);
 
@@ -1217,6 +1235,7 @@ extern_methods!(
         pub unsafe fn itemPrototype(&self) -> Option<Retained<NSCollectionViewItem>>;
 
         #[cfg(feature = "NSViewController")]
+        /// Setter for [`itemPrototype`][Self::itemPrototype].
         #[deprecated = "Use -registerNib:forItemWithIdentifier: or -registerClass:forItemWithIdentifier: instead."]
         #[method(setItemPrototype:)]
         pub unsafe fn setItemPrototype(&self, item_prototype: Option<&NSCollectionViewItem>);
@@ -1225,6 +1244,7 @@ extern_methods!(
         #[method(maxNumberOfRows)]
         pub unsafe fn maxNumberOfRows(&self) -> NSUInteger;
 
+        /// Setter for [`maxNumberOfRows`][Self::maxNumberOfRows].
         #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumNumberOfRows instead"]
         #[method(setMaxNumberOfRows:)]
         pub unsafe fn setMaxNumberOfRows(&self, max_number_of_rows: NSUInteger);
@@ -1233,6 +1253,7 @@ extern_methods!(
         #[method(maxNumberOfColumns)]
         pub unsafe fn maxNumberOfColumns(&self) -> NSUInteger;
 
+        /// Setter for [`maxNumberOfColumns`][Self::maxNumberOfColumns].
         #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumNumberOfColumns instead"]
         #[method(setMaxNumberOfColumns:)]
         pub unsafe fn setMaxNumberOfColumns(&self, max_number_of_columns: NSUInteger);
@@ -1243,6 +1264,7 @@ extern_methods!(
         pub unsafe fn minItemSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minItemSize`][Self::minItemSize].
         #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its minimumItemSize instead"]
         #[method(setMinItemSize:)]
         pub unsafe fn setMinItemSize(&self, min_item_size: NSSize);
@@ -1253,6 +1275,7 @@ extern_methods!(
         pub unsafe fn maxItemSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maxItemSize`][Self::maxItemSize].
         #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumItemSize instead"]
         #[method(setMaxItemSize:)]
         pub unsafe fn setMaxItemSize(&self, max_item_size: NSSize);

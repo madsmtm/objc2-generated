@@ -133,6 +133,7 @@ extern_methods!(
         #[method(options)]
         pub unsafe fn options(&self) -> NSPrintPanelOptions;
 
+        /// Setter for [`options`][Self::options].
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: NSPrintPanelOptions);
 
@@ -147,12 +148,14 @@ extern_methods!(
         pub unsafe fn helpAnchor(&self) -> Option<Retained<NSHelpAnchorName>>;
 
         #[cfg(feature = "NSHelpManager")]
+        /// Setter for [`helpAnchor`][Self::helpAnchor].
         #[method(setHelpAnchor:)]
         pub unsafe fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
 
         #[method_id(@__retain_semantics Other jobStyleHint)]
         pub unsafe fn jobStyleHint(&self) -> Option<Retained<NSPrintPanelJobStyleHint>>;
 
+        /// Setter for [`jobStyleHint`][Self::jobStyleHint].
         #[method(setJobStyleHint:)]
         pub unsafe fn setJobStyleHint(&self, job_style_hint: Option<&NSPrintPanelJobStyleHint>);
 

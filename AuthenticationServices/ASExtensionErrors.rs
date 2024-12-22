@@ -24,6 +24,8 @@ impl ASExtensionErrorCode {
     pub const UserInteractionRequired: Self = Self(100);
     #[doc(alias = "ASExtensionErrorCodeCredentialIdentityNotFound")]
     pub const CredentialIdentityNotFound: Self = Self(101);
+    /// This error should only be used for a passkey registration request, if the
+    /// `excludedCredentials`property matches a known passkey.
     #[doc(alias = "ASExtensionErrorCodeMatchedExcludedCredential")]
     pub const MatchedExcludedCredential: Self = Self(102);
 }
@@ -37,6 +39,8 @@ unsafe impl RefEncode for ASExtensionErrorCode {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionlocalizedfailurereasonerrorkey?language=objc)
+    /// A key that specifies an error string to be shown to the user when an extension request fails.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionlocalizedfailurereasonerrorkey?language=objc)
     pub static ASExtensionLocalizedFailureReasonErrorKey: Option<&'static NSErrorUserInfoKey>;
 }

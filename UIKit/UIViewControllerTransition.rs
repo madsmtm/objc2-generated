@@ -22,6 +22,24 @@ extern_methods!(
             feature = "UIZoomTransitionOptions",
             feature = "block2"
         ))]
+        /// Zoom from the view provided by the `sourceViewProvider` to the presented or pushed view controller's view.
+        /// The transition's `sourceViewProvider` is called whenever the transition needs to request a source view.
+        /// Note that it may be called multiple times during the transition's lifecycle in order
+        /// to ensure that the transition incorporates the most up-to-date visuals.
+        ///
+        /// **Example**
+        ///
+        /// Consider an interface where a user may tap a cell representing a city to present a detail view.
+        /// In the detail view, they may swipe left or right to go to the next city in the list. When the detail view
+        /// is dismissed, it should un-zoom to the currently selected city rather than the one that was first selected.
+        /// ```
+        /// cityViewController.preferredTransition = .zoom { context in
+        /// let displayed = context.displayedViewController as! CityViewController
+        /// let source = context.sourceViewController as! CityListViewController
+        /// return source.cell(for: displayed.cityId)
+        /// }
+        /// present(cityViewController, animated: true)
+        /// ```
         #[method_id(@__retain_semantics Other zoomWithOptions:sourceViewProvider:)]
         pub unsafe fn zoomWithOptions_sourceViewProvider(
             options: Option<&UIZoomTransitionOptions>,
@@ -30,15 +48,19 @@ extern_methods!(
             >,
         ) -> Retained<Self>;
 
+        /// View slides up from the bottom of the screen. Same as `UIModalTransitionStyle.coverVertical`.
         #[method_id(@__retain_semantics Other coverVerticalTransition)]
         pub unsafe fn coverVerticalTransition() -> Retained<Self>;
 
+        /// View flips horizontally in 3D. Same as `UIModalTransitionStyle.flipHorizontal`.
         #[method_id(@__retain_semantics Other flipHorizontalTransition)]
         pub unsafe fn flipHorizontalTransition() -> Retained<Self>;
 
+        /// Fades out the current view while fading in the new view. Same as `UIModalTransitionStyle.crossDissolve`.
         #[method_id(@__retain_semantics Other crossDissolveTransition)]
         pub unsafe fn crossDissolveTransition() -> Retained<Self>;
 
+        /// One corner of the current view curls up to reveal the presented view underneath. Same as `UIModalTransitionStyle.partialCurl`.
         #[method_id(@__retain_semantics Other partialCurlTransition)]
         pub unsafe fn partialCurlTransition() -> Retained<Self>;
 
@@ -62,6 +84,7 @@ unsafe impl NSObjectProtocol for UIZoomTransitionSourceViewProviderContext {}
 extern_methods!(
     unsafe impl UIZoomTransitionSourceViewProviderContext {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// View controller that is the source of the zoom transition.
         #[method_id(@__retain_semantics Other sourceViewController)]
         pub unsafe fn sourceViewController(
             &self,
@@ -69,6 +92,7 @@ extern_methods!(
         ) -> Retained<UIViewController>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// The view controller being zoomed into by the transition.
         #[method_id(@__retain_semantics Other zoomedViewController)]
         pub unsafe fn zoomedViewController(
             &self,

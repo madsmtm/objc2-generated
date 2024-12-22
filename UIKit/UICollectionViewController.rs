@@ -107,12 +107,14 @@ extern_methods!(
             feature = "UIScrollView",
             feature = "UIView"
         ))]
+        /// Setter for [`collectionView`][Self::collectionView].
         #[method(setCollectionView:)]
         pub unsafe fn setCollectionView(&self, collection_view: Option<&UICollectionView>);
 
         #[method(clearsSelectionOnViewWillAppear)]
         pub unsafe fn clearsSelectionOnViewWillAppear(&self) -> bool;
 
+        /// Setter for [`clearsSelectionOnViewWillAppear`][Self::clearsSelectionOnViewWillAppear].
         #[method(setClearsSelectionOnViewWillAppear:)]
         pub unsafe fn setClearsSelectionOnViewWillAppear(
             &self,
@@ -122,6 +124,7 @@ extern_methods!(
         #[method(useLayoutToLayoutNavigationTransitions)]
         pub unsafe fn useLayoutToLayoutNavigationTransitions(&self) -> bool;
 
+        /// Setter for [`useLayoutToLayoutNavigationTransitions`][Self::useLayoutToLayoutNavigationTransitions].
         #[method(setUseLayoutToLayoutNavigationTransitions:)]
         pub unsafe fn setUseLayoutToLayoutNavigationTransitions(
             &self,
@@ -135,6 +138,7 @@ extern_methods!(
         #[method(installsStandardGestureForInteractiveMovement)]
         pub unsafe fn installsStandardGestureForInteractiveMovement(&self) -> bool;
 
+        /// Setter for [`installsStandardGestureForInteractiveMovement`][Self::installsStandardGestureForInteractiveMovement].
         #[method(setInstallsStandardGestureForInteractiveMovement:)]
         pub unsafe fn setInstallsStandardGestureForInteractiveMovement(
             &self,

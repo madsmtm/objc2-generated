@@ -45,6 +45,7 @@ extern_methods!(
         #[method(automaticallyRearrangesObjects)]
         pub unsafe fn automaticallyRearrangesObjects(&self) -> bool;
 
+        /// Setter for [`automaticallyRearrangesObjects`][Self::automaticallyRearrangesObjects].
         #[method(setAutomaticallyRearrangesObjects:)]
         pub unsafe fn setAutomaticallyRearrangesObjects(
             &self,
@@ -60,18 +61,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Retained<NSArray<NSSortDescriptor>>;
 
+        /// Setter for [`sortDescriptors`][Self::sortDescriptors].
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
         #[method_id(@__retain_semantics Other filterPredicate)]
         pub unsafe fn filterPredicate(&self) -> Option<Retained<NSPredicate>>;
 
+        /// Setter for [`filterPredicate`][Self::filterPredicate].
         #[method(setFilterPredicate:)]
         pub unsafe fn setFilterPredicate(&self, filter_predicate: Option<&NSPredicate>);
 
         #[method(clearsFilterPredicateOnInsertion)]
         pub unsafe fn clearsFilterPredicateOnInsertion(&self) -> bool;
 
+        /// Setter for [`clearsFilterPredicateOnInsertion`][Self::clearsFilterPredicateOnInsertion].
         #[method(setClearsFilterPredicateOnInsertion:)]
         pub unsafe fn setClearsFilterPredicateOnInsertion(
             &self,
@@ -87,24 +91,28 @@ extern_methods!(
         #[method(avoidsEmptySelection)]
         pub unsafe fn avoidsEmptySelection(&self) -> bool;
 
+        /// Setter for [`avoidsEmptySelection`][Self::avoidsEmptySelection].
         #[method(setAvoidsEmptySelection:)]
         pub unsafe fn setAvoidsEmptySelection(&self, avoids_empty_selection: bool);
 
         #[method(preservesSelection)]
         pub unsafe fn preservesSelection(&self) -> bool;
 
+        /// Setter for [`preservesSelection`][Self::preservesSelection].
         #[method(setPreservesSelection:)]
         pub unsafe fn setPreservesSelection(&self, preserves_selection: bool);
 
         #[method(selectsInsertedObjects)]
         pub unsafe fn selectsInsertedObjects(&self) -> bool;
 
+        /// Setter for [`selectsInsertedObjects`][Self::selectsInsertedObjects].
         #[method(setSelectsInsertedObjects:)]
         pub unsafe fn setSelectsInsertedObjects(&self, selects_inserted_objects: bool);
 
         #[method(alwaysUsesMultipleValuesMarker)]
         pub unsafe fn alwaysUsesMultipleValuesMarker(&self) -> bool;
 
+        /// Setter for [`alwaysUsesMultipleValuesMarker`][Self::alwaysUsesMultipleValuesMarker].
         #[method(setAlwaysUsesMultipleValuesMarker:)]
         pub unsafe fn setAlwaysUsesMultipleValuesMarker(
             &self,

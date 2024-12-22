@@ -8,13 +8,19 @@ use objc2_symbols::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisymboleffectcompletion?language=objc)
+/// Completion handler for adding and removing symbol effects/content transitions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisymboleffectcompletion?language=objc)
 #[cfg(feature = "block2")]
 pub type UISymbolEffectCompletion =
     *mut block2::Block<dyn Fn(NonNull<UISymbolEffectCompletionContext>)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisymboleffectcompletioncontext?language=objc)
+    /// Represents information about a symbol effect's completion.
+    /// You don't create one of these. Instead, UIKit creates one and passes it into the completion handler
+    /// of a symbol effect or symbol content transition.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisymboleffectcompletioncontext?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -25,17 +31,26 @@ unsafe impl NSObjectProtocol for UISymbolEffectCompletionContext {}
 
 extern_methods!(
     unsafe impl UISymbolEffectCompletionContext {
+        /// Whether or not the symbol effect was completely finished.
+        /// This will be YES for effects that have successfully run to completion.
         #[method(isFinished)]
         pub unsafe fn isFinished(&self) -> bool;
 
+        /// The object (such as an image view) that the symbol effect was added to.
         #[method_id(@__retain_semantics Other sender)]
         pub unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "objc2-symbols")]
+        /// The symbol effect that has completed.
+        /// There is no guarantee that this effect will be the same instance as the effect originally added.
+        /// This will be `nil` if a symbol content transition was added instead.
         #[method_id(@__retain_semantics Other effect)]
         pub unsafe fn effect(&self) -> Option<Retained<NSSymbolEffect>>;
 
         #[cfg(feature = "objc2-symbols")]
+        /// The symbol content transition that has completed.
+        /// There is no guarantee that this content transition will be the same instance as the content transition originally added.
+        /// This will be `nil` if a symbol effect was added instead.
         #[method_id(@__retain_semantics Other contentTransition)]
         pub unsafe fn contentTransition(&self) -> Option<Retained<NSSymbolContentTransition>>;
 

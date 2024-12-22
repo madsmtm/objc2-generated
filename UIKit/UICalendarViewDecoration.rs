@@ -39,10 +39,21 @@ unsafe impl NSObjectProtocol for UICalendarViewDecoration {}
 
 extern_methods!(
     unsafe impl UICalendarViewDecoration {
+        /// Creates a default decoration with a circle image.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UIColor", feature = "UIImage"))]
+        /// Creates a new image-based decoration with the specified image, color, and size.
+        ///
+        ///
+        /// Parameter `image`: The image of the decoration, defaults to
+        /// `circ`lebadge.fill if nil.
+        ///
+        /// Parameter `color`: The color of the the decoration. defaults to
+        /// `UIColor.systemFillColor`if nil.
+        ///
+        /// Parameter `size`: The preferred size of the decoration. The default is UICalendarViewDecorationSizeMedium
         #[method_id(@__retain_semantics Init initWithImage:color:size:)]
         pub unsafe fn initWithImage_color_size(
             this: Allocated<Self>,
@@ -52,6 +63,9 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
+        /// Creates a new custom view decoration using the provided view provider. The provider will
+        /// be called once when the decoration view is first loaded. The decoration will be clipped to
+        /// its parent's bounds, and cannot have interaction.
         #[method_id(@__retain_semantics Init initWithCustomViewProvider:)]
         pub unsafe fn initWithCustomViewProvider(
             this: Allocated<Self>,
@@ -59,6 +73,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIColor")]
+        /// Creates a default image accessory with a circle image, and the specified color and size.
         #[method_id(@__retain_semantics Other decorationWithColor:size:)]
         pub unsafe fn decorationWithColor_size(
             color: Option<&UIColor>,
@@ -67,6 +82,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
+        /// Creates an accessory with the specified image, and default color, and size.
         #[method_id(@__retain_semantics Other decorationWithImage:)]
         pub unsafe fn decorationWithImage(
             image: Option<&UIImage>,
@@ -74,6 +90,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIColor", feature = "UIImage"))]
+        /// Creates an accessory with the specified image, color, and size.
         #[method_id(@__retain_semantics Other decorationWithImage:color:size:)]
         pub unsafe fn decorationWithImage_color_size(
             image: Option<&UIImage>,
@@ -83,6 +100,9 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
+        /// Creates a new custom view decoration using the specified custom view provider. The provider will be called once
+        /// when the decoration view is first loaded. The decoration will be clipped to its parent's bounds, and cannot have
+        /// user interaction.
         #[method_id(@__retain_semantics Other decorationWithCustomViewProvider:)]
         pub unsafe fn decorationWithCustomViewProvider(
             custom_view_provider: &block2::Block<dyn Fn() -> NonNull<UIView>>,

@@ -11,6 +11,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindinteractiondelegate?language=objc)
     pub unsafe trait UIFindInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIFindSession", feature = "UIResponder", feature = "UIView"))]
+        /// Called when a find session is requested to begin by the user. Return an instance of a UIFindSession implementation to allow the
+        /// find session to begin, otherwise return nil to prevent the system find panel from appearing.
         #[method_id(@__retain_semantics Other findInteraction:sessionForView:)]
         unsafe fn findInteraction_sessionForView(
             &self,
@@ -19,6 +21,9 @@ extern_protocol!(
         ) -> Option<Retained<UIFindSession>>;
 
         #[cfg(feature = "UIFindSession")]
+        /// Called when the search operation begins (and the system search UI appears).
+        /// This would be a good time to decorate your view to indicate that a search operation is about to occur.
+        /// System text elements will apply a dimming view around all non-highlighted search results, for instance.
         #[optional]
         #[method(findInteraction:didBeginFindSession:)]
         unsafe fn findInteraction_didBeginFindSession(
@@ -28,6 +33,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UIFindSession")]
+        /// Called when the current search session has changed or ended. This would be a good time to remove all
+        /// decorations applied to found search results, and any decorations added when the search operation began
+        /// (such as a dimming view).
         #[optional]
         #[method(findInteraction:didEndFindSession:)]
         unsafe fn findInteraction_didEndFindSession(
@@ -55,32 +63,42 @@ unsafe impl UIInteraction for UIFindInteraction {}
 
 extern_methods!(
     unsafe impl UIFindInteraction {
+        /// Returns YES if the find navigator panel is currently visible.
         #[method(isFindNavigatorVisible)]
         pub unsafe fn isFindNavigatorVisible(&self) -> bool;
 
         #[cfg(feature = "UIFindSession")]
+        /// If there's a currently active find session (implying isFindNavigatorVisible is true), returns the active find session.
         #[method_id(@__retain_semantics Other activeFindSession)]
         pub unsafe fn activeFindSession(&self) -> Option<Retained<UIFindSession>>;
 
+        /// Assign this property to pre-populate the system find panel's search text field with a search query.
         #[method_id(@__retain_semantics Other searchText)]
         pub unsafe fn searchText(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`searchText`][Self::searchText].
         #[method(setSearchText:)]
         pub unsafe fn setSearchText(&self, search_text: Option<&NSString>);
 
+        /// If replacement is supported, assign this property to pre-populate the system find panel's replace text field with a replacement string.
         #[method_id(@__retain_semantics Other replacementText)]
         pub unsafe fn replacementText(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`replacementText`][Self::replacementText].
         #[method(setReplacementText:)]
         pub unsafe fn setReplacementText(&self, replacement_text: Option<&NSString>);
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
+        /// This provider is consulted when the search options menu is being populated. A default set of search options is provided, representing the options
+        /// available in
+        /// `UITextSearchOptions,`which can be either modified, augmented, or omitted.
         #[method(optionsMenuProvider)]
         pub unsafe fn optionsMenuProvider(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
+        /// Setter for [`optionsMenuProvider`][Self::optionsMenuProvider].
         #[method(setOptionsMenuProvider:)]
         pub unsafe fn setOptionsMenuProvider(
             &self,
@@ -89,29 +107,40 @@ extern_methods!(
             >,
         );
 
+        /// See UIFindInteractionDelegate above.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIFindInteractionDelegate>>>;
 
+        /// Creates a find interaction object with the specified delegate.
         #[method_id(@__retain_semantics Init initWithSessionDelegate:)]
         pub unsafe fn initWithSessionDelegate(
             this: Allocated<Self>,
             session_delegate: &ProtocolObject<dyn UIFindInteractionDelegate>,
         ) -> Retained<Self>;
 
+        /// Shows the find navigator panel, if not already visible.
+        ///
+        ///
+        /// Parameter `replaceVisible`: If the delegate supports text replacement, will make the replace text field
+        /// visible on first appearance.
         #[method(presentFindNavigatorShowingReplace:)]
         pub unsafe fn presentFindNavigatorShowingReplace(&self, showing_replace: bool);
 
+        /// Dismisses the find navigator panel.
         #[method(dismissFindNavigator)]
         pub unsafe fn dismissFindNavigator(&self);
 
+        /// Jump to the next found result in the document, relative to the currently highlighted result.
         #[method(findNext)]
         pub unsafe fn findNext(&self);
 
+        /// Jump to the previous found result in the document, relative to the currently highlighted result.
         #[method(findPrevious)]
         pub unsafe fn findPrevious(&self);
 
+        /// Calling this triggers an update of the UI to reflect changes to the currently shown result count or result index, as defined by UIFindSession.
         #[method(updateResultCount)]
         pub unsafe fn updateResultCount(&self);
 

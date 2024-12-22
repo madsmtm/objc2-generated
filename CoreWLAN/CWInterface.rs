@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwinterface?language=objc)
+    /// Control and query a Wi-Fi interface on OS X.
+    ///
+    ///
+    /// All actions performed by a CWInterface object are executed on the Wi-Fi device with the corresponding interface name.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwinterface?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWInterface;
@@ -18,82 +23,220 @@ unsafe impl NSObjectProtocol for CWInterface {}
 
 extern_methods!(
     unsafe impl CWInterface {
+        /// Returns the BSD name of the Wi-Fi interface (e.g. "en0").
         #[method_id(@__retain_semantics Other interfaceName)]
         pub unsafe fn interfaceName(&self) -> Option<Retained<NSString>>;
 
+        /// Returns: YES if the Wi-Fi interface is on, NO otherwise.
+        ///
+        ///
+        /// Indicates the Wi-Fi interface power state.
+        ///
+        ///
+        /// Returns NO if an error occurs.
         #[method(powerOn)]
         pub unsafe fn powerOn(&self) -> bool;
 
         #[cfg(feature = "CWChannel")]
+        /// Returns: An NSSet of CWChannel objects.
+        ///
+        ///
+        /// Returns the set of channels supported by the Wi-Fi interface for the currently adopted country code.
+        ///
+        ///
+        /// Returns nil if an error occurs.
         #[method_id(@__retain_semantics Other supportedWLANChannels)]
         pub unsafe fn supportedWLANChannels(&self) -> Option<Retained<NSSet<CWChannel>>>;
 
         #[cfg(feature = "CWChannel")]
+        /// Returns the current channel of the Wi-Fi interface.
+        ///
+        ///
+        /// Returns nil if an error occurs.
         #[method_id(@__retain_semantics Other wlanChannel)]
         pub unsafe fn wlanChannel(&self) -> Option<Retained<CWChannel>>;
 
         #[cfg(feature = "CoreWLANTypes")]
+        /// Returns the currently active physical layer (PHY) mode of the Wi-Fi interface.
+        ///
+        ///
+        /// Returns kCWPHYModeNone if an error occurs.
         #[method(activePHYMode)]
         pub unsafe fn activePHYMode(&self) -> CWPHYMode;
 
+        /// Returns the current service set identifier (SSID) of the Wi-Fi interface, encoded as a string.
+        ///
+        ///
+        /// Returns nil if an error occurs, or if the interface is not participating in a Wi-Fi network,
+        /// or if the SSID can not be encoded as a valid UTF-8 or WinLatin1 string.
+        ///
+        ///
+        /// Note: SSID information is not available unless Location Services is enabled and the user has authorized the calling app to use location services.
+        ///
+        ///
+        /// See also: CLLocationManager
         #[method_id(@__retain_semantics Other ssid)]
         pub unsafe fn ssid(&self) -> Option<Retained<NSString>>;
 
+        /// Returns the current service set identifier (SSID) for the interface, encapsulated in an NSData object.
+        ///
+        ///
+        /// Returns nil if an error occurs, or if the interface is not participating in a Wi-Fi network.
+        ///
+        ///
+        /// Note: SSID information is not available unless Location Services is enabled and the user has authorized the calling app to use location services.
+        ///
+        ///
+        /// See also: CLLocationManager
         #[method_id(@__retain_semantics Other ssidData)]
         pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
+        /// Returns the current basic service set identifier (BSSID) of the Wi-Fi interface, returned as an UTF-8 string.
+        ///
+        ///
+        /// Returns a UTF-8 string using hexadecimal characters formatted as XX:XX:XX:XX:XX:XX.
+        /// Returns nil if an error occurred, or if the interface is not participating in a Wi-Fi network.
+        ///
+        ///
+        /// Note: BSSID information is not available unless Location Services is enabled and the user has authorized the calling app to use location services.
+        ///
+        ///
+        /// See also: CLLocationManager
         #[method_id(@__retain_semantics Other bssid)]
         pub unsafe fn bssid(&self) -> Option<Retained<NSString>>;
 
+        /// Returns the current received signal strength indication (RSSI) measurement (dBm) for the Wi-Fi interface.
+        ///
+        ///
+        /// Returns 0 if an error occurs, or if the interface is not participating in a Wi-Fi network.
         #[method(rssiValue)]
         pub unsafe fn rssiValue(&self) -> NSInteger;
 
+        /// Returns the current noise measurement (dBm) for the Wi-Fi interface.
+        ///
+        ///
+        /// Returns 0 if an error occurs, or if the interface is not participating in a Wi-Fi network.
         #[method(noiseMeasurement)]
         pub unsafe fn noiseMeasurement(&self) -> NSInteger;
 
         #[cfg(feature = "CoreWLANTypes")]
+        /// Returns the current security type of the Wi-Fi interface.
+        ///
+        ///
+        /// Returns kCWSecurityUnknown if an error occurs, or if the interface is not participating in a Wi-Fi network.
         #[method(security)]
         pub unsafe fn security(&self) -> CWSecurity;
 
+        /// Returns the current transmit rate (Mbps) for the Wi-Fi interface.
+        ///
+        ///
+        /// Returns 0 if an error occurs, or if the interface is not participating in a Wi-Fi network.
         #[method(transmitRate)]
         pub unsafe fn transmitRate(&self) -> c_double;
 
+        /// Returns the currently adopted country code (ISO/IEC 3166-1:1997) for the Wi-Fi interface.
+        ///
+        ///
+        /// Returns nil if an error occurs, or if the Wi-Fi interface is off.
+        ///
+        ///
+        /// Note: Country code information is not available unless Location Services is enabled and the user has authorized the calling app to use location services.
+        ///
+        ///
+        /// See also: CLLocationManager
         #[method_id(@__retain_semantics Other countryCode)]
         pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CoreWLANTypes")]
+        /// Returns the current operating mode for the Wi-Fi interface.
+        ///
+        ///
+        /// Returns kCWInterfaceModeNone if an error occurs, or if the interface is not participating in a Wi-Fi network.
         #[method(interfaceMode)]
         pub unsafe fn interfaceMode(&self) -> CWInterfaceMode;
 
+        /// Returns the current transmit power (mW) for the Wi-Fi interface.
+        ///
+        ///
+        /// Returns 0 if an error occurs.
         #[method(transmitPower)]
         pub unsafe fn transmitPower(&self) -> NSInteger;
 
+        /// Returns the hardware media access control (MAC) address for the Wi-Fi interface, returned as an UTF-8 string.
+        ///
+        ///
+        /// The standard format for printing a MAC-48 address XX:XX:XX:XX:XX:XX is used to represent
+        /// the MAC address as a string.
+        /// Returns nil if an error occurs.
         #[method_id(@__retain_semantics Other hardwareAddress)]
         pub unsafe fn hardwareAddress(&self) -> Option<Retained<NSString>>;
 
+        /// Returns: YES if the corresponding network service is active, NO otherwise.
+        ///
+        ///
+        /// Indicates the network service state of the Wi-Fi interface.
+        ///
+        ///
+        /// Returns NO if an error occurs.
         #[method(serviceActive)]
         pub unsafe fn serviceActive(&self) -> bool;
 
         #[cfg(feature = "CWNetwork")]
+        /// Returns: An NSSet of CWNetwork objects.
+        ///
+        ///
+        /// Returns the scan results currently in the scan cache for the Wi-Fi interface.
+        ///
+        ///
+        /// Returns nil if an error occurs.
         #[method_id(@__retain_semantics Other cachedScanResults)]
         pub unsafe fn cachedScanResults(&self) -> Option<Retained<NSSet<CWNetwork>>>;
 
         #[cfg(feature = "CWConfiguration")]
+        /// Returns the current configuration for the Wi-Fi interface.
+        ///
+        ///
+        /// Returns nil if an error occurs.
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Option<Retained<CWConfiguration>>;
 
+        /// Returns: An NSSet of NSString objects.
+        ///
+        ///
+        /// Returns the list of available Wi-Fi interface names (e.g. "en0").
+        ///
+        ///
+        /// Returns an empty NSArray object if no Wi-Fi interfaces exist.
+        /// Returns nil if an error occurs.
         #[deprecated = "Use -[CWWiFiClient interfaceNames] instead"]
         #[method_id(@__retain_semantics Other interfaceNames)]
         pub unsafe fn interfaceNames() -> Option<Retained<NSSet<NSString>>>;
 
+        /// Convenience method for getting a CWInterface object for the default Wi-Fi interface.
         #[deprecated = "Use -[CWWiFiClient interface] instead"]
         #[method_id(@__retain_semantics Other interface)]
         pub unsafe fn interface() -> Retained<Self>;
 
+        /// Parameter `name`: The name of an available Wi-Fi interface.
+        ///
+        ///
+        /// Convenience method for getting a CWInterface object bound to the Wi-Fi interface with a specific interface name.
+        ///
+        ///
+        /// Use +[CWInterface interfaceNames] to get a list of available Wi-Fi interface names.
+        /// Returns a CWInterface object for the default Wi-Fi interface if no interface name is specified.
         #[deprecated = "Use -[CWWiFiClient interfaceWithName:] instead"]
         #[method_id(@__retain_semantics Other interfaceWithName:)]
         pub unsafe fn interfaceWithName(name: Option<&NSString>) -> Retained<Self>;
 
+        /// Parameter `name`: The name of an available Wi-Fi interface.
+        ///
+        ///
+        /// Initializes a CWInterface object, binding to the Wi-Fi interface with a specific interface name.
+        ///
+        ///
+        /// Use +[CWInterface interfaceNames] to get a list of available Wi-Fi interface names.
+        /// Returns a CWInterface object for the default Wi-Fi interface if no interface name is specified.
         #[deprecated = "Use -[CWWiFiClient interfaceWithName:] instead"]
         #[method_id(@__retain_semantics Init initWithInterfaceName:)]
         pub unsafe fn initWithInterfaceName(
@@ -101,16 +244,56 @@ extern_methods!(
             name: Option<&NSString>,
         ) -> Retained<Self>;
 
+        /// Parameter `power`: A BOOL value indicating Wi-Fi power state. Specify YES to turn on the Wi-Fi interface.
+        ///
+        ///
+        /// Parameter `error`: An NSError object passed by reference, which upon return will contain the error if an error occurs.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Returns: Returns YES upon success, or NO if an error occurred.
+        ///
+        ///
+        /// Sets the Wi-Fi interface power state.
         #[method(setPower:error:_)]
         pub unsafe fn setPower_error(&self, power: bool) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "CWChannel")]
+        /// Parameter `channel`: A CWChannel object.
+        ///
+        ///
+        /// Parameter `error`: An NSError object passed by reference, which upon return will contain the error if an error occurs.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Returns: Returns YES upon success, or NO if an error occurred.
+        ///
+        ///
+        /// Sets the Wi-Fi interface channel.
+        ///
+        ///
+        /// Setting the channel while the interface is associated to a Wi-Fi network is not permitted.
         #[method(setWLANChannel:error:_)]
         pub unsafe fn setWLANChannel_error(
             &self,
             channel: &CWChannel,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Parameter `key`: An NSData object containing the pairwise master key (PMK).
+        /// Passing nil clear the PMK for the Wi-Fi interface.
+        ///
+        ///
+        /// Parameter `error`: An NSError object passed by reference, which upon return will contain the error if an error occurs.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Returns: Returns YES upon success, or NO if an error occurred.
+        ///
+        ///
+        /// Sets the Wi-Fi interface pairwise master key (PMK).
+        ///
+        ///
+        /// The specified key must be exactly 32 octets.
         #[method(setPairwiseMasterKey:error:_)]
         pub unsafe fn setPairwiseMasterKey_error(
             &self,
@@ -118,6 +301,24 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "CoreWLANTypes")]
+        /// Parameter `key`: An NSData object containing the WEP key.
+        /// Passing nil clears the WEP key for the Wi-Fi interface.
+        ///
+        ///
+        /// Parameter `flags`: A bitmask indicating which CWCipherKeyFlags to use for the specified WEP key.
+        ///
+        ///
+        /// Parameter `index`: An NSInteger indicating which default key index (1-4) to use for the specified key.
+        ///
+        ///
+        /// Parameter `error`: An NSError object passed by reference, which upon return will contain the error if an error occurs.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Returns: Returns YES upon success, or NO if an error occurred.
+        ///
+        ///
+        /// Sets the Wi-Fi interface WEP key.
         #[method(setWEPKey:flags:index:error:_)]
         pub unsafe fn setWEPKey_flags_index_error(
             &self,
@@ -127,6 +328,28 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "CWNetwork")]
+        /// Parameter `ssid`: Probe request SSID.
+        /// Pass an SSID to perform a directed scan for hidden Wi-Fi networks.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Parameter `error`: An NSError object passed by reference, which upon return will contain the error if an error occurs.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Returns: An NSSet of CWNetwork objects, or nil if an error occurs.
+        ///
+        ///
+        /// Performs a scan for Wi-Fi networks and returns scan results to the caller.
+        ///
+        ///
+        /// This method will block for the duration of the scan.
+        ///
+        ///
+        /// Note: Returned networks will not contain BSSID information unless Location Services is enabled and the user has authorized the calling app to use location services.
+        ///
+        ///
+        /// See also: CLLocationManager
         #[method_id(@__retain_semantics Other scanForNetworksWithSSID:error:_)]
         pub unsafe fn scanForNetworksWithSSID_error(
             &self,
@@ -134,6 +357,31 @@ extern_methods!(
         ) -> Result<Retained<NSSet<CWNetwork>>, Retained<NSError>>;
 
         #[cfg(feature = "CWNetwork")]
+        /// Parameter `ssid`: Probe request SSID.
+        /// Pass an SSID to perform a directed scan for hidden Wi-Fi networks.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Parameter `includeHidden`: Indicate whether or not hidden networks should not be filtered from the returned scan results.
+        ///
+        ///
+        /// Parameter `error`: An NSError object passed by reference, which upon return will contain the error if an error occurs.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Returns: An NSSet of CWNetwork objects, or nil if an error occurs.
+        ///
+        ///
+        /// Performs a scan for Wi-Fi networks and returns scan results to the caller.
+        ///
+        ///
+        /// This method will block for the duration of the scan.
+        ///
+        ///
+        /// Note: Returned networks will not contain BSSID information unless Location Services is enabled and the user has authorized the calling app to use location services.
+        ///
+        ///
+        /// See also: CLLocationManager
         #[method_id(@__retain_semantics Other scanForNetworksWithSSID:includeHidden:error:_)]
         pub unsafe fn scanForNetworksWithSSID_includeHidden_error(
             &self,
@@ -142,6 +390,28 @@ extern_methods!(
         ) -> Result<Retained<NSSet<CWNetwork>>, Retained<NSError>>;
 
         #[cfg(feature = "CWNetwork")]
+        /// Parameter `networkName`: Probe request SSID, encoded as an UTF-8 string.
+        /// Pass a networkName to perform a directed scan for hidden Wi-Fi networks.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Parameter `error`: An NSError object passed by reference, which upon return will contain the error if an error occurs.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Returns: An NSSet of CWNetwork objects, or nil if an error occurs.
+        ///
+        ///
+        /// Performs a scan for Wi-Fi networks and returns scan results to the caller.
+        ///
+        ///
+        /// This method will block for the duration of the scan.
+        ///
+        ///
+        /// Note: Returned networks will not contain BSSID information unless Location Services is enabled and the user has authorized the calling app to use location services.
+        ///
+        ///
+        /// See also: CLLocationManager
         #[method_id(@__retain_semantics Other scanForNetworksWithName:error:_)]
         pub unsafe fn scanForNetworksWithName_error(
             &self,
@@ -149,6 +419,31 @@ extern_methods!(
         ) -> Result<Retained<NSSet<CWNetwork>>, Retained<NSError>>;
 
         #[cfg(feature = "CWNetwork")]
+        /// Parameter `networkName`: Probe request SSID, encoded as an UTF-8 string.
+        /// Pass a networkName to perform a directed scan for hidden Wi-Fi networks.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Parameter `includeHidden`: Indicate whether or not hidden networks should not be filtered from the returned scan results.
+        ///
+        ///
+        /// Parameter `error`: An NSError object passed by reference, which upon return will contain the error if an error occurs.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Returns: An NSSet of CWNetwork objects, or nil if an error occurs.
+        ///
+        ///
+        /// Performs a scan for Wi-Fi networks and returns scan results to the caller.
+        ///
+        ///
+        /// This method will block for the duration of the scan.
+        ///
+        ///
+        /// Note: Returned networks will not contain BSSID information unless Location Services is enabled and the user has authorized the calling app to use location services.
+        ///
+        ///
+        /// See also: CLLocationManager
         #[method_id(@__retain_semantics Other scanForNetworksWithName:includeHidden:error:_)]
         pub unsafe fn scanForNetworksWithName_includeHidden_error(
             &self,
@@ -157,6 +452,23 @@ extern_methods!(
         ) -> Result<Retained<NSSet<CWNetwork>>, Retained<NSError>>;
 
         #[cfg(feature = "CWNetwork")]
+        /// Parameter `network`: The network to which the Wi-Fi interface will associate.
+        ///
+        ///
+        /// Parameter `password`: The network passphrase or key. Required for association to WEP, WPA Personal, and WPA2 Personal networks.
+        ///
+        ///
+        /// Parameter `error`: An NSError object passed by reference, which upon return will contain the error if an error occurs.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Returns: Returns YES upon success, or NO if an error occurred.
+        ///
+        ///
+        /// Associates to a W-Fi network using the specified passphrase.
+        ///
+        ///
+        /// This method will block for the duration of the association.
         #[method(associateToNetwork:password:error:_)]
         pub unsafe fn associateToNetwork_password_error(
             &self,
@@ -164,10 +476,32 @@ extern_methods!(
             password: Option<&NSString>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Disassociates from the current Wi-Fi network.
         #[method(disassociate)]
         pub unsafe fn disassociate(&self);
 
         #[cfg(feature = "CoreWLANTypes")]
+        /// Parameter `ssidData`: The SSID to use for the IBSS network.
+        /// Pass nil to use the machine name as the IBSS network name.
+        ///
+        ///
+        /// Parameter `security`: The CWIBSSModeSecurity type.
+        ///
+        ///
+        /// Parameter `channel`: The channel on which the IBSS network will be created.
+        ///
+        ///
+        /// Parameter `password`: The password to be used. This paramter is required for kCWIBSSModeSecurityWEP40 or kCWIBSSModeSecurityWEP104 security types.
+        ///
+        ///
+        /// Parameter `error`: An NSError object passed by reference, which upon return will contain the error if an error occurs.
+        /// This parameter is optional.
+        ///
+        ///
+        /// Returns: Returns YES upon success, or NO if an error occurred.
+        ///
+        ///
+        /// Creates a computer-to-computer (IBSS) network.
         #[deprecated]
         #[method(startIBSSModeWithSSID:security:channel:password:error:_)]
         pub unsafe fn startIBSSModeWithSSID_security_channel_password_error(

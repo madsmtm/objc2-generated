@@ -35,6 +35,7 @@ extern_methods!(
         #[method(orderedIndex)]
         pub unsafe fn orderedIndex(&self) -> NSInteger;
 
+        /// Setter for [`orderedIndex`][Self::orderedIndex].
         #[method(setOrderedIndex:)]
         pub unsafe fn setOrderedIndex(&self, ordered_index: NSInteger);
 

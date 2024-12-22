@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdress?language=objc)
+    /// An immutable value object representing a postal address.
+    ///
+    ///
+    /// CNPostalAddress is thread safe.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdress?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNPostalAddress;
@@ -34,6 +39,8 @@ unsafe impl NSSecureCoding for CNPostalAddress {}
 
 extern_methods!(
     unsafe impl CNPostalAddress {
+        /// multi-street address is delimited with carriage returns “
+        /// \n”
         #[method_id(@__retain_semantics Other street)]
         pub unsafe fn street(&self) -> Retained<NSString>;
 
@@ -58,6 +65,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other ISOCountryCode)]
         pub unsafe fn ISOCountryCode(&self) -> Retained<NSString>;
 
+        /// Returns a user displayable property name.
         #[method_id(@__retain_semantics Other localizedStringForKey:)]
         pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
     }

@@ -7,7 +7,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmachardwaremodel?language=objc)
+    /// Describes a specific virtual Mac hardware model.
+    ///
+    /// The Mac hardware model abstracts a set of virtualized hardware elements and configurations.
+    /// A version of macOS may only run on certain hardware models. The host may also only provide certain hardware models
+    /// based on the version of macOS and the underlying hardware.
+    /// Use VZMacHardwareModel.supported to know if a hardware model is supported on the current host.
+    ///
+    /// Choosing the hardware model starts from a restore image with VZMacOSRestoreImage.
+    /// A restore image describes its supported configuration requirements through VZMacOSRestoreImage.mostFeaturefulSupportedConfiguration.
+    /// A configuration requirements object has a corresponding hardware model that can be used to configure a virtual machine
+    /// that meets the requirements.
+    ///
+    /// Once the hardware model is obtained, use VZMacPlatformConfiguration.hardwareModel to configure the Mac platform,
+    /// and -[VZMacAuxiliaryStorage initCreatingStorageAtURL:hardwareModel:options:error:] to create its auxiliary storage.
+    /// Once the virtual machine is created, use VZMacOSInstaller to install macOS on it.
+    ///
+    /// If the virtual machine is preserved on disk, the hardware model used for installation should be preserved for subsequent boots.
+    /// The VZMacHardwareModel.dataRepresentation property provides a unique binary representation that can be serialized.
+    /// The hardware model then can be recreated from the binary representation with -[VZMacHardwareModel initWithDataRepresentation:].
+    ///
+    /// See also: VZMacOSInstaller
+    ///
+    /// See also: VZMacOSRestoreImage
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmachardwaremodel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMacHardwareModel;
@@ -29,15 +53,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Get the hardware model described by the specified data representation.
+        ///
+        /// Parameter `dataRepresentation`: The opaque data representation of the hardware model to be obtained.
         #[method_id(@__retain_semantics Init initWithDataRepresentation:)]
         pub unsafe fn initWithDataRepresentation(
             this: Allocated<Self>,
             data_representation: &NSData,
         ) -> Option<Retained<Self>>;
 
+        /// Opaque data representation of the hardware model.
+        ///
+        /// This can be used to recreate the same hardware model with -[VZMacHardwareModel initWithDataRepresentation:].
         #[method_id(@__retain_semantics Other dataRepresentation)]
         pub unsafe fn dataRepresentation(&self) -> Retained<NSData>;
 
+        /// Indicate whether this hardware model is supported by the host.
+        ///
+        /// If this hardware model is not supported by the host, no VZVirtualMachineConfiguration using it will validate.
+        /// The validation error of the VZVirtualMachineConfiguration provides more information about why the hardware model is unsupported.
         #[method(isSupported)]
         pub unsafe fn isSupported(&self) -> bool;
     }

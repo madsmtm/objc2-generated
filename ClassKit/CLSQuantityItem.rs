@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsquantityitem?language=objc)
+    /// CLSQuantityItem represents user generated quantity information.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clsquantityitem?language=objc)
     #[unsafe(super(CLSActivityItem, CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
@@ -27,12 +29,20 @@ unsafe impl NSSecureCoding for CLSQuantityItem {}
 extern_methods!(
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     unsafe impl CLSQuantityItem {
+        /// Quantity awarded.
         #[method(quantity)]
         pub unsafe fn quantity(&self) -> c_double;
 
+        /// Setter for [`quantity`][Self::quantity].
         #[method(setQuantity:)]
         pub unsafe fn setQuantity(&self, quantity: c_double);
 
+        /// Create a quantity item with an identifier and title.
+        ///
+        /// Parameter `identifier`: An identifier that is unique within activity.
+        ///
+        /// Parameter `title`: Title of the quantity. Ex
+        /// _Hints_
         #[method_id(@__retain_semantics Init initWithIdentifier:title:)]
         pub unsafe fn initWithIdentifier_title(
             this: Allocated<Self>,

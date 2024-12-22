@@ -8,7 +8,80 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosinstaller?language=objc)
+    /// VZMacOSInstaller is used to install macOS on the specified virtual machine.
+    ///
+    /// A VZMacOSInstaller object must be initialized with a VZVirtualMachine and a file URL referring to a macOS restore image.
+    /// The following code example shows how VZMacOSInstaller is used.
+    ///
+    /// <pre>
+    ///
+    /// ```text
+    ///
+    ///     // VZMacOSInstaller must be called with a URL corresponding to a local file. We need a place to store the restore image we download.
+    ///     NSURL *localRestoreImageURL = ...;
+    ///
+    ///     // Load the latest restore image.
+    ///     [VZMacOSRestoreImage fetchLatestSupportedWithCompletionHandler:^(VZMacOSRestoreImage *restoreImage, NSError *error) {
+    ///         if (error) {
+    ///             // Handle the error.
+    ///             abort();
+    ///         }
+    ///
+    ///         // VZMacOSInstaller must be called with a URL corresponding to a local file. Since restoreImage came from
+    ///         // fetchLatestSupportedWithCompletionHandler, its URL property refers to a restore image on the network.
+    ///         // Download the restore image to the local filesystem.
+    ///         [[NSURLSession sharedSession] downloadTaskWithURL:restoreImage.URL completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+    ///             if (error) {
+    ///                 // Handle the error.
+    ///                 abort();
+    ///             }
+    ///             if (![[NSFileManager defaultManager] moveItemAtURL:location toURL:localRestoreImageURL error:&error]) {
+    ///                 // Handle the error.
+    ///                 abort();
+    ///             }
+    ///             dispatch_async(dispatch_get_main_queue(), ^{
+    ///                 // Since this restore image came from -[VZMacOSRestoreImage fetchLatestSupportedWithCompletionHandler:], mostFeaturefulSupportedConfiguration should not be nil.
+    ///                 VZMacOSConfigurationRequirements *configurationRequirements = restoreImage.mostFeaturefulSupportedConfiguration;
+    ///
+    ///                 // Construct a VZVirtualMachineConfiguration that satisfies the configuration requirements.
+    ///                 VZVirtualMachineConfiguration *configuration = [[VZVirtualMachineConfiguration alloc] init];
+    ///                 configuration.bootLoader = [[VZMacOSBootLoader alloc] init];
+    ///                 configuration.platform = [[VZMacPlatformConfiguration alloc] init];
+    ///
+    ///                 // The following are minimum values; you can use larger values if desired.
+    ///                 configuration.CPUCount = configurationRequirements.minimumSupportedCPUCount;
+    ///                 configuration.memorySize = configurationRequirements.minimumSupportedMemorySize;
+    ///
+    ///                 // Set other configuration properties as necessary.
+    ///                 // ...
+    ///
+    ///                 assert([configuration validateWithError:nil]);
+    ///
+    ///                 VZVirtualMachine *virtualMachine = [[VZVirtualMachine alloc] initWithConfiguration:configuration];
+    ///                 VZMacOSInstaller *installer = [[VZMacOSInstaller alloc] initWithVirtualMachine:virtualMachine restoreImageURL:localRestoreImageURL];
+    ///                 [installer installWithCompletionHandler:^(NSError *error) {
+    ///                     if (error) {
+    ///                         // Handle the error.
+    ///                         abort();
+    ///                     } else {
+    ///                         // Installation was successful.
+    ///                     }
+    ///                 }];
+    ///
+    ///                 // Observe progress using installer.progress object.
+    ///             });
+    ///         }];
+    ///     }];
+    ///
+    /// ```
+    ///
+    /// </pre>
+    ///
+    /// See also: VZVirtualMachine
+    ///
+    /// See also: VZMacOSRestoreImage
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosinstaller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMacOSInstaller;
@@ -25,6 +98,14 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtualMachine")]
+        /// Initialize a VZMacOSInstaller object.
+        ///
+        /// Parameter `virtualMachine`: The virtual machine that the operating system will be installed onto.
+        ///
+        /// Parameter `restoreImageFileURL`: A file URL indicating the macOS restore image to install.
+        ///
+        /// The virtual machine platform must be macOS and the restore image URL must be a file URL referring to a file on disk or an exception will be raised.
+        /// This method must be called on the virtual machine's queue.
         #[method_id(@__retain_semantics Init initWithVirtualMachine:restoreImageURL:)]
         pub unsafe fn initWithVirtualMachine_restoreImageURL(
             this: Allocated<Self>,
@@ -33,19 +114,33 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Start installing macOS.
+        ///
+        /// Parameter `completionHandler`: Block called after installation has successfully completed or has failed.
+        /// The error parameter passed to the block is nil if installation was successful. The block will be invoked on the virtual machine's queue.
+        ///
+        /// This method starts the installation process. The virtual machine must be in a stopped state. During the installation operation, pausing or stopping
+        /// the virtual machine will result in undefined behavior.
+        /// If installation is started on the same VZMacOSInstaller object more than once, an exception will be raised.
+        /// This method must be called on the virtual machine's queue.
         #[method(installWithCompletionHandler:)]
         pub unsafe fn installWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
 
+        /// An NSProgress object that can be used to observe or cancel installation.
+        ///
+        /// If the progress object is cancelled before installation is started, an exception will be raised.
         #[method_id(@__retain_semantics Other progress)]
         pub unsafe fn progress(&self) -> Retained<NSProgress>;
 
         #[cfg(feature = "VZVirtualMachine")]
+        /// The virtual machine that this installer was initialized with.
         #[method_id(@__retain_semantics Other virtualMachine)]
         pub unsafe fn virtualMachine(&self) -> Retained<VZVirtualMachine>;
 
+        /// The restore image URL that this installer was initialized with.
         #[method_id(@__retain_semantics Other restoreImageURL)]
         pub unsafe fn restoreImageURL(&self) -> Retained<NSURL>;
     }

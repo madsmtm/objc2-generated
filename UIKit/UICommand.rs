@@ -32,7 +32,11 @@ unsafe impl RefEncode for UIKeyModifierFlags {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicommandalternate?language=objc)
+    /// Represents an alternate action to take for a command.
+    ///
+    /// Two alternates are equal iff their modifierFlags are equal.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicommandalternate?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -53,15 +57,28 @@ unsafe impl NSSecureCoding for UICommandAlternate {}
 
 extern_methods!(
     unsafe impl UICommandAlternate {
+        /// Short display title.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Action to take on choosing this command alternate.
         #[method(action)]
         pub unsafe fn action(&self) -> Sel;
 
+        /// Bitmask of modifier flags to choose this command alternate.
         #[method(modifierFlags)]
         pub unsafe fn modifierFlags(&self) -> UIKeyModifierFlags;
 
+        /// Initialize an alternate action to take for a command.
+        ///
+        ///
+        /// Parameter `title`: Short display title. This should be localized.
+        ///
+        /// Parameter `action`: Action to take on choosing this command alternate.
+        ///
+        /// Parameter `modifierFlags`: Bitmask of modifier flags to choose this command alternate.
+        ///
+        /// Returns: A new command alternate.
         #[method_id(@__retain_semantics Other alternateWithTitle:action:modifierFlags:)]
         pub unsafe fn alternateWithTitle_action_modifierFlags(
             title: &NSString,
@@ -85,7 +102,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicommand?language=objc)
+    /// Represents an action to take.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicommand?language=objc)
     #[unsafe(super(UIMenuElement, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -116,48 +135,73 @@ unsafe impl UIMenuLeaf for UICommand {}
 extern_methods!(
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UICommand {
+        /// Short display title.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "UIImage")]
+        /// Image that can appear next to this command
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
+        /// Elaborated title used in keyboard shortcut overlay.
         #[method_id(@__retain_semantics Other discoverabilityTitle)]
         pub unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`discoverabilityTitle`][Self::discoverabilityTitle].
         #[method(setDiscoverabilityTitle:)]
         pub unsafe fn setDiscoverabilityTitle(&self, discoverability_title: Option<&NSString>);
 
+        /// Action to take on choosing this command.
         #[method(action)]
         pub unsafe fn action(&self) -> Sel;
 
+        /// Property list object to distinguish commands, if needed.
         #[method_id(@__retain_semantics Other propertyList)]
         pub unsafe fn propertyList(&self) -> Option<Retained<AnyObject>>;
 
+        /// Command attributes.
         #[method(attributes)]
         pub unsafe fn attributes(&self) -> UIMenuElementAttributes;
 
+        /// Setter for [`attributes`][Self::attributes].
         #[method(setAttributes:)]
         pub unsafe fn setAttributes(&self, attributes: UIMenuElementAttributes);
 
+        /// State that can appear next to the command.
         #[method(state)]
         pub unsafe fn state(&self) -> UIMenuElementState;
 
+        /// Setter for [`state`][Self::state].
         #[method(setState:)]
         pub unsafe fn setState(&self, state: UIMenuElementState);
 
+        /// Alternates that differ in modifier flags, if any.
         #[method_id(@__retain_semantics Other alternates)]
         pub unsafe fn alternates(&self) -> Retained<NSArray<UICommandAlternate>>;
 
         #[cfg(feature = "UIImage")]
+        /// Initializes a keyless command.
+        ///
+        ///
+        /// Parameter `title`: Short display title. This should be localized.
+        ///
+        /// Parameter `image`: Image that can appear next to this command, if needed.
+        ///
+        /// Parameter `action`: Action to take on choosing this command.
+        ///
+        /// Parameter `propertyList`: Property list object to distinguish commands, if needed.
+        ///
+        /// Returns: A new keyless command.
         #[method_id(@__retain_semantics Other commandWithTitle:image:action:propertyList:)]
         pub unsafe fn commandWithTitle_image_action_propertyList(
             title: &NSString,
@@ -168,6 +212,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
+        /// Initializes a keyless command with alternates.
+        ///
+        ///
+        /// Parameter `title`: Short display title. This should be localized.
+        ///
+        /// Parameter `image`: Image that can appear next to this command, if needed.
+        ///
+        /// Parameter `action`: Action to take on choosing this command.
+        ///
+        /// Parameter `propertyList`: Property list object to distinguish commands, if needed.
+        ///
+        /// Parameter `alternates`: Alternates that differ in modifier flags.
+        ///
+        /// Returns: A new keyless command with alternates.
         #[method_id(@__retain_semantics Other commandWithTitle:image:action:propertyList:alternates:)]
         pub unsafe fn commandWithTitle_image_action_propertyList_alternates(
             title: &NSString,

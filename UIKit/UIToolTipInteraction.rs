@@ -24,30 +24,37 @@ unsafe impl UIInteraction for UIToolTipInteraction {}
 
 extern_methods!(
     unsafe impl UIToolTipInteraction {
+        /// The interaction's delegate.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIToolTipInteractionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIToolTipInteractionDelegate>>,
         );
 
+        /// Indicates whether the interaction is enabled. Defaults to YES.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        /// The interaction's default tool tip string.
         #[method_id(@__retain_semantics Other defaultToolTip)]
         pub unsafe fn defaultToolTip(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`defaultToolTip`][Self::defaultToolTip].
         #[method(setDefaultToolTip:)]
         pub unsafe fn setDefaultToolTip(&self, default_tool_tip: Option<&NSString>);
 
+        /// Creates a UIToolTipInteraction.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -79,13 +86,16 @@ unsafe impl NSObjectProtocol for UIToolTipConfiguration {}
 
 extern_methods!(
     unsafe impl UIToolTipConfiguration {
+        /// The string to annotate the contents at a given point.
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The rectangle containing the contents being annotated by the tool tip. Value is CGRectNull if the tool tip applies to the entire view.
         #[method(sourceRect)]
         pub unsafe fn sourceRect(&self) -> CGRect;
 
+        /// Creates a UIToolTipConfiguration with the provided string, applied to the entire view.
         #[method_id(@__retain_semantics Other configurationWithToolTip:)]
         pub unsafe fn configurationWithToolTip(
             tool_tip: &NSString,
@@ -93,6 +103,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Creates a UIToolTipConfiguration with the provided string, applied to the specified region.
         #[method_id(@__retain_semantics Other configurationWithToolTip:inRect:)]
         pub unsafe fn configurationWithToolTip_inRect(
             tool_tip: &NSString,
@@ -114,6 +125,13 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Called when the interaction is about to begin.
+        ///
+        ///
+        /// Parameter `interaction`: This UIToolTipInteraction.
+        ///
+        ///
+        /// Returns: The tool tip configuration containing the string and rectangle for this interaction. Return nil if the interaction is inactive or the hit test fails.
         #[optional]
         #[method_id(@__retain_semantics Other toolTipInteraction:configurationAtPoint:)]
         unsafe fn toolTipInteraction_configurationAtPoint(

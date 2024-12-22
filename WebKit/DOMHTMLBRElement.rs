@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clear)]
         pub unsafe fn clear(&self) -> Retained<NSString>;
 
+        /// Setter for [`clear`][Self::clear].
         #[deprecated]
         #[method(setClear:)]
         pub unsafe fn setClear(&self, clear: Option<&NSString>);

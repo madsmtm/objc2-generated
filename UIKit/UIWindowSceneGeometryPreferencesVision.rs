@@ -9,7 +9,9 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiproposedscenesizenopreference?language=objc)
+    /// Used as the value for a dimension of a size related preference when wanting to leave it unchanged.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiproposedscenesizenopreference?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIProposedSceneSizeNoPreference: CGFloat;
 }
@@ -28,42 +30,55 @@ unsafe impl NSObjectProtocol for UIWindowSceneGeometryPreferencesVision {}
 extern_methods!(
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     unsafe impl UIWindowSceneGeometryPreferencesVision {
+        /// Creates a geometry preference with no changes. Update the properties who's preference should change
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Creates a geometry preference with a specific size (specifying UIProposedSceneSizeNoPreference for any dimension of size, will specify no preference, keeping that dimension the same if possible)
         #[method_id(@__retain_semantics Init initWithSize:)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The preferred system size. Use UIProposedSceneSizeNoPreference to use existing value
         #[method(size)]
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The preferred minimum size of the scene. Use `UIProposedSceneSizeNoPreference` on a dimension of the size to indicate that axis should be returned to the system default.
+        /// By default, the value is left unchanged
         #[method(minimumSize)]
         pub unsafe fn minimumSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumSize`][Self::minimumSize].
         #[method(setMinimumSize:)]
         pub unsafe fn setMinimumSize(&self, minimum_size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The preferred maximum size of the scene. Use `UIProposedSceneSizeNoPreference` on a dimension of the size to indicate that axis should be returned to the system default.
+        /// By default, the value is left unchanged
         #[method(maximumSize)]
         pub unsafe fn maximumSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumSize`][Self::maximumSize].
         #[method(setMaximumSize:)]
         pub unsafe fn setMaximumSize(&self, maximum_size: CGSize);
 
         #[cfg(feature = "UIWindowSceneGeometry")]
+        /// The user resizable restrictions on the window scene
+        /// By default, the value is left unchanged
         #[method(resizingRestrictions)]
         pub unsafe fn resizingRestrictions(&self) -> UIWindowSceneResizingRestrictions;
 
         #[cfg(feature = "UIWindowSceneGeometry")]
+        /// Setter for [`resizingRestrictions`][Self::resizingRestrictions].
         #[method(setResizingRestrictions:)]
         pub unsafe fn setResizingRestrictions(
             &self,

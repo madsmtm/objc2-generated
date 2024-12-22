@@ -38,14 +38,22 @@ unsafe impl RefEncode for CXCallEndedReason {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxproviderdelegate?language=objc)
     pub unsafe trait CXProviderDelegate: NSObjectProtocol {
+        /// Called when the provider has been reset. Delegates must respond to this callback by cleaning up all internal call state (disconnecting communication channels, releasing network resources, etc.). This callback can be treated as a request to end all calls without the need to respond to any actions
         #[method(providerDidReset:)]
         unsafe fn providerDidReset(&self, provider: &CXProvider);
 
+        /// Called when the provider has been fully created and is ready to send actions and receive updates
         #[optional]
         #[method(providerDidBegin:)]
         unsafe fn providerDidBegin(&self, provider: &CXProvider);
 
         #[cfg(feature = "CXTransaction")]
+        /// Called whenever a new transaction should be executed. Return whether or not the transaction was handled:
+        ///
+        /// - NO: the transaction was not handled indicating that the perform*CallAction methods should be called sequentially for each action in the transaction
+        /// - YES: the transaction was handled and the perform*CallAction methods should not be called sequentially
+        ///
+        /// If the method is not implemented, NO is assumed.
         #[optional]
         #[method(provider:executeTransaction:)]
         unsafe fn provider_executeTransaction(
@@ -146,6 +154,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "CXAction")]
+        /// Called when an action was not performed in time and has been inherently failed. Depending on the action, this timeout may also force the call to end. An action that has already timed out should not be fulfilled or failed by the provider delegate
         #[optional]
         #[method(provider:timedOutPerformingAction:)]
         unsafe fn provider_timedOutPerformingAction(
@@ -155,6 +164,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "objc2-avf-audio")]
+        /// Called when the provider's audio session activation state changes.
         #[optional]
         #[method(provider:didActivateAudioSession:)]
         unsafe fn provider_didActivateAudioSession(
@@ -188,6 +198,7 @@ unsafe impl NSObjectProtocol for CXProvider {}
 extern_methods!(
     unsafe impl CXProvider {
         #[cfg(feature = "CXProviderConfiguration")]
+        /// Initialize a new provider instance with the supplied configuration
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
@@ -201,6 +212,11 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CXCallUpdate", feature = "block2"))]
+        /// Report a new incoming call to the system.
+        ///
+        /// If completion is invoked with a non-nil `error`, the incoming call has been disallowed by the system and will not be displayed, so the provider should not proceed with the call.
+        ///
+        /// Completion block will be called on delegate queue, if specified, otherwise on a private serial queue.
         #[method(reportNewIncomingCallWithUUID:update:completion:)]
         pub unsafe fn reportNewIncomingCallWithUUID_update_completion(
             &self,
@@ -210,9 +226,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "CXCallUpdate")]
+        /// Report an update to call information.
         #[method(reportCallWithUUID:updated:)]
         pub unsafe fn reportCallWithUUID_updated(&self, uuid: &NSUUID, update: &CXCallUpdate);
 
+        /// Report that a call ended. A nil value for `dateEnded` results in the ended date being set to now.
         #[method(reportCallWithUUID:endedAtDate:reason:)]
         pub unsafe fn reportCallWithUUID_endedAtDate_reason(
             &self,
@@ -221,6 +239,7 @@ extern_methods!(
             ended_reason: CXCallEndedReason,
         );
 
+        /// Report that an outgoing call started connecting. A nil value for `dateStartedConnecting` results in the started connecting date being set to now.
         #[method(reportOutgoingCallWithUUID:startedConnectingAtDate:)]
         pub unsafe fn reportOutgoingCallWithUUID_startedConnectingAtDate(
             &self,
@@ -228,6 +247,7 @@ extern_methods!(
             date_started_connecting: Option<&NSDate>,
         );
 
+        /// Report that an outgoing call connected. A nil value for `dateConnected` results in the connected date being set to now.
         #[method(reportOutgoingCallWithUUID:connectedAtDate:)]
         pub unsafe fn reportOutgoingCallWithUUID_connectedAtDate(
             &self,
@@ -236,6 +256,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// From within a Notification Service Extension, request the containing application be launched to handle an incoming VoIP call. The application's PKPushRegistryDelegate must handle the push upon launch.
         #[method(reportNewIncomingVoIPPushPayload:completion:)]
         pub unsafe fn reportNewIncomingVoIPPushPayload_completion(
             dictionary_payload: &NSDictionary,
@@ -243,21 +264,26 @@ extern_methods!(
         );
 
         #[cfg(feature = "CXProviderConfiguration")]
+        /// The receiver's current configuration.
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Retained<CXProviderConfiguration>;
 
         #[cfg(feature = "CXProviderConfiguration")]
+        /// Setter for [`configuration`][Self::configuration].
         #[method(setConfiguration:)]
         pub unsafe fn setConfiguration(&self, configuration: &CXProviderConfiguration);
 
+        /// Invalidate the receiver. All existing calls will be marked as ended in failure. The provider must be invalidated before it is deallocated.
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
 
         #[cfg(feature = "CXTransaction")]
+        /// List of all transactions that are incomplete.
         #[method_id(@__retain_semantics Other pendingTransactions)]
         pub unsafe fn pendingTransactions(&self) -> Retained<NSArray<CXTransaction>>;
 
         #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
+        /// Returns subset of call actions contained in any transaction in -pendingTransactions of the specified class and with the specified call UUID.
         #[method_id(@__retain_semantics Other pendingCallActionsOfClass:withCallUUID:)]
         pub unsafe fn pendingCallActionsOfClass_withCallUUID(
             &self,

@@ -28,60 +28,70 @@ extern_methods!(
         #[method(colorTextureFormat)]
         pub unsafe fn colorTextureFormat(&self) -> MTLPixelFormat;
 
+        /// Setter for [`colorTextureFormat`][Self::colorTextureFormat].
         #[method(setColorTextureFormat:)]
         pub unsafe fn setColorTextureFormat(&self, color_texture_format: MTLPixelFormat);
 
         #[method(depthTextureFormat)]
         pub unsafe fn depthTextureFormat(&self) -> MTLPixelFormat;
 
+        /// Setter for [`depthTextureFormat`][Self::depthTextureFormat].
         #[method(setDepthTextureFormat:)]
         pub unsafe fn setDepthTextureFormat(&self, depth_texture_format: MTLPixelFormat);
 
         #[method(motionTextureFormat)]
         pub unsafe fn motionTextureFormat(&self) -> MTLPixelFormat;
 
+        /// Setter for [`motionTextureFormat`][Self::motionTextureFormat].
         #[method(setMotionTextureFormat:)]
         pub unsafe fn setMotionTextureFormat(&self, motion_texture_format: MTLPixelFormat);
 
         #[method(outputTextureFormat)]
         pub unsafe fn outputTextureFormat(&self) -> MTLPixelFormat;
 
+        /// Setter for [`outputTextureFormat`][Self::outputTextureFormat].
         #[method(setOutputTextureFormat:)]
         pub unsafe fn setOutputTextureFormat(&self, output_texture_format: MTLPixelFormat);
 
         #[method(inputWidth)]
         pub unsafe fn inputWidth(&self) -> NSUInteger;
 
+        /// Setter for [`inputWidth`][Self::inputWidth].
         #[method(setInputWidth:)]
         pub unsafe fn setInputWidth(&self, input_width: NSUInteger);
 
         #[method(inputHeight)]
         pub unsafe fn inputHeight(&self) -> NSUInteger;
 
+        /// Setter for [`inputHeight`][Self::inputHeight].
         #[method(setInputHeight:)]
         pub unsafe fn setInputHeight(&self, input_height: NSUInteger);
 
         #[method(outputWidth)]
         pub unsafe fn outputWidth(&self) -> NSUInteger;
 
+        /// Setter for [`outputWidth`][Self::outputWidth].
         #[method(setOutputWidth:)]
         pub unsafe fn setOutputWidth(&self, output_width: NSUInteger);
 
         #[method(outputHeight)]
         pub unsafe fn outputHeight(&self) -> NSUInteger;
 
+        /// Setter for [`outputHeight`][Self::outputHeight].
         #[method(setOutputHeight:)]
         pub unsafe fn setOutputHeight(&self, output_height: NSUInteger);
 
         #[method(isAutoExposureEnabled)]
         pub unsafe fn isAutoExposureEnabled(&self) -> bool;
 
+        /// Setter for [`isAutoExposureEnabled`][Self::isAutoExposureEnabled].
         #[method(setAutoExposureEnabled:)]
         pub unsafe fn setAutoExposureEnabled(&self, auto_exposure_enabled: bool);
 
         #[method(requiresSynchronousInitialization)]
         pub unsafe fn requiresSynchronousInitialization(&self) -> bool;
 
+        /// Setter for [`requiresSynchronousInitialization`][Self::requiresSynchronousInitialization].
         #[method(setRequiresSynchronousInitialization:)]
         pub unsafe fn setRequiresSynchronousInitialization(
             &self,
@@ -91,6 +101,7 @@ extern_methods!(
         #[method(isInputContentPropertiesEnabled)]
         pub unsafe fn isInputContentPropertiesEnabled(&self) -> bool;
 
+        /// Setter for [`isInputContentPropertiesEnabled`][Self::isInputContentPropertiesEnabled].
         #[method(setInputContentPropertiesEnabled:)]
         pub unsafe fn setInputContentPropertiesEnabled(
             &self,
@@ -100,24 +111,28 @@ extern_methods!(
         #[method(inputContentMinScale)]
         pub unsafe fn inputContentMinScale(&self) -> c_float;
 
+        /// Setter for [`inputContentMinScale`][Self::inputContentMinScale].
         #[method(setInputContentMinScale:)]
         pub unsafe fn setInputContentMinScale(&self, input_content_min_scale: c_float);
 
         #[method(inputContentMaxScale)]
         pub unsafe fn inputContentMaxScale(&self) -> c_float;
 
+        /// Setter for [`inputContentMaxScale`][Self::inputContentMaxScale].
         #[method(setInputContentMaxScale:)]
         pub unsafe fn setInputContentMaxScale(&self, input_content_max_scale: c_float);
 
         #[method(isReactiveMaskTextureEnabled)]
         pub unsafe fn isReactiveMaskTextureEnabled(&self) -> bool;
 
+        /// Setter for [`isReactiveMaskTextureEnabled`][Self::isReactiveMaskTextureEnabled].
         #[method(setReactiveMaskTextureEnabled:)]
         pub unsafe fn setReactiveMaskTextureEnabled(&self, reactive_mask_texture_enabled: bool);
 
         #[method(reactiveMaskTextureFormat)]
         pub unsafe fn reactiveMaskTextureFormat(&self) -> MTLPixelFormat;
 
+        /// Setter for [`reactiveMaskTextureFormat`][Self::reactiveMaskTextureFormat].
         #[method(setReactiveMaskTextureFormat:)]
         pub unsafe fn setReactiveMaskTextureFormat(
             &self,
@@ -177,42 +192,49 @@ extern_protocol!(
         #[method(inputContentWidth)]
         unsafe fn inputContentWidth(&self) -> NSUInteger;
 
+        /// Setter for [`inputContentWidth`][Self::inputContentWidth].
         #[method(setInputContentWidth:)]
         unsafe fn setInputContentWidth(&self, input_content_width: NSUInteger);
 
         #[method(inputContentHeight)]
         unsafe fn inputContentHeight(&self) -> NSUInteger;
 
+        /// Setter for [`inputContentHeight`][Self::inputContentHeight].
         #[method(setInputContentHeight:)]
         unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
 
         #[method_id(@__retain_semantics Other colorTexture)]
         unsafe fn colorTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
+        /// Setter for [`colorTexture`][Self::colorTexture].
         #[method(setColorTexture:)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method_id(@__retain_semantics Other depthTexture)]
         unsafe fn depthTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
+        /// Setter for [`depthTexture`][Self::depthTexture].
         #[method(setDepthTexture:)]
         unsafe fn setDepthTexture(&self, depth_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method_id(@__retain_semantics Other motionTexture)]
         unsafe fn motionTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
+        /// Setter for [`motionTexture`][Self::motionTexture].
         #[method(setMotionTexture:)]
         unsafe fn setMotionTexture(&self, motion_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method_id(@__retain_semantics Other outputTexture)]
         unsafe fn outputTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
+        /// Setter for [`outputTexture`][Self::outputTexture].
         #[method(setOutputTexture:)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
         #[method_id(@__retain_semantics Other exposureTexture)]
         unsafe fn exposureTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
+        /// Setter for [`exposureTexture`][Self::exposureTexture].
         #[method(setExposureTexture:)]
         unsafe fn setExposureTexture(
             &self,
@@ -222,6 +244,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other reactiveMaskTexture)]
         unsafe fn reactiveMaskTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
+        /// Setter for [`reactiveMaskTexture`][Self::reactiveMaskTexture].
         #[method(setReactiveMaskTexture:)]
         unsafe fn setReactiveMaskTexture(
             &self,
@@ -231,42 +254,49 @@ extern_protocol!(
         #[method(preExposure)]
         unsafe fn preExposure(&self) -> c_float;
 
+        /// Setter for [`preExposure`][Self::preExposure].
         #[method(setPreExposure:)]
         unsafe fn setPreExposure(&self, pre_exposure: c_float);
 
         #[method(jitterOffsetX)]
         unsafe fn jitterOffsetX(&self) -> c_float;
 
+        /// Setter for [`jitterOffsetX`][Self::jitterOffsetX].
         #[method(setJitterOffsetX:)]
         unsafe fn setJitterOffsetX(&self, jitter_offset_x: c_float);
 
         #[method(jitterOffsetY)]
         unsafe fn jitterOffsetY(&self) -> c_float;
 
+        /// Setter for [`jitterOffsetY`][Self::jitterOffsetY].
         #[method(setJitterOffsetY:)]
         unsafe fn setJitterOffsetY(&self, jitter_offset_y: c_float);
 
         #[method(motionVectorScaleX)]
         unsafe fn motionVectorScaleX(&self) -> c_float;
 
+        /// Setter for [`motionVectorScaleX`][Self::motionVectorScaleX].
         #[method(setMotionVectorScaleX:)]
         unsafe fn setMotionVectorScaleX(&self, motion_vector_scale_x: c_float);
 
         #[method(motionVectorScaleY)]
         unsafe fn motionVectorScaleY(&self) -> c_float;
 
+        /// Setter for [`motionVectorScaleY`][Self::motionVectorScaleY].
         #[method(setMotionVectorScaleY:)]
         unsafe fn setMotionVectorScaleY(&self, motion_vector_scale_y: c_float);
 
         #[method(reset)]
         unsafe fn reset(&self) -> bool;
 
+        /// Setter for [`reset`][Self::reset].
         #[method(setReset:)]
         unsafe fn setReset(&self, reset: bool);
 
         #[method(isDepthReversed)]
         unsafe fn isDepthReversed(&self) -> bool;
 
+        /// Setter for [`isDepthReversed`][Self::isDepthReversed].
         #[method(setDepthReversed:)]
         unsafe fn setDepthReversed(&self, depth_reversed: bool);
 
@@ -303,6 +333,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other fence)]
         unsafe fn fence(&self) -> Option<Retained<ProtocolObject<dyn MTLFence>>>;
 
+        /// Setter for [`fence`][Self::fence].
         #[method(setFence:)]
         unsafe fn setFence(&self, fence: Option<&ProtocolObject<dyn MTLFence>>);
 

@@ -27,23 +27,33 @@ unsafe impl NSObjectProtocol for UIKeyboardLayoutGuide {}
 extern_methods!(
     #[cfg(all(feature = "UILayoutGuide", feature = "UITrackingLayoutGuide"))]
     unsafe impl UIKeyboardLayoutGuide {
+        /// Defaults to
+        /// `NO.`
         #[method(followsUndockedKeyboard)]
         pub unsafe fn followsUndockedKeyboard(&self) -> bool;
 
+        /// Setter for [`followsUndockedKeyboard`][Self::followsUndockedKeyboard].
         #[method(setFollowsUndockedKeyboard:)]
         pub unsafe fn setFollowsUndockedKeyboard(&self, follows_undocked_keyboard: bool);
 
+        /// Defaults to
+        /// `YES.`When the keyboard is offscreen, the layout guide is tied to the bottomAnchor of the view's safeAreaLayoutGuide. Set this to
+        /// `NO`to instead have the guide use the bottomAnchor of the view.
         #[method(usesBottomSafeArea)]
         pub unsafe fn usesBottomSafeArea(&self) -> bool;
 
+        /// Setter for [`usesBottomSafeArea`][Self::usesBottomSafeArea].
         #[method(setUsesBottomSafeArea:)]
         pub unsafe fn setUsesBottomSafeArea(&self, uses_bottom_safe_area: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Defaults to 0.0. When a user scrolls to dismiss the keyboard (see
+        /// `UIScrollViewKeyboardDismissMode),`the gesture waits to start the dismiss until it intersects with the keyboard. This adds padding above the keyboard to start the dismiss earlier. Negative values will be treated as 0.
         #[method(keyboardDismissPadding)]
         pub unsafe fn keyboardDismissPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`keyboardDismissPadding`][Self::keyboardDismissPadding].
         #[method(setKeyboardDismissPadding:)]
         pub unsafe fn setKeyboardDismissPadding(&self, keyboard_dismiss_padding: CGFloat);
     }

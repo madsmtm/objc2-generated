@@ -22,10 +22,22 @@ extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKDatabaseOperation {
         #[cfg(feature = "CKDatabase")]
+        /// The database on which to perform the operation.
+        ///
+        ///
+        /// If no database is set,
+        ///
+        /// ```text
+        ///  [self.container privateCloudDatabase]
+        /// ```
+        ///
+        /// is used.
+        /// This will also set the container property of the operation's configuration to match the container of the passed-in database.
         #[method_id(@__retain_semantics Other database)]
         pub unsafe fn database(&self) -> Option<Retained<CKDatabase>>;
 
         #[cfg(feature = "CKDatabase")]
+        /// Setter for [`database`][Self::database].
         #[method(setDatabase:)]
         pub unsafe fn setDatabase(&self, database: Option<&CKDatabase>);
     }

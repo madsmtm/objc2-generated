@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemtagattributename?language=objc)
+    /// The attribute name for adding a text item with a specified custom tag. The value of the attribute must be an `NSString`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemtagattributename?language=objc)
     pub static UITextItemTagAttributeName: &'static NSAttributedStringKey;
 }
 
@@ -17,10 +19,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITextItemContentType(pub NSInteger);
 impl UITextItemContentType {
+    /// The text item represents a link.
     #[doc(alias = "UITextItemContentTypeLink")]
     pub const Link: Self = Self(0);
+    /// The text item represents a text attachment.
     #[doc(alias = "UITextItemContentTypeTextAttachment")]
     pub const TextAttachment: Self = Self(1);
+    /// The text item represents a custom tag.
     #[doc(alias = "UITextItemContentTypeTag")]
     pub const Tag: Self = Self(2);
 }
@@ -45,19 +50,24 @@ unsafe impl NSObjectProtocol for UITextItem {}
 
 extern_methods!(
     unsafe impl UITextItem {
+        /// The content type of the text item.
         #[method(contentType)]
         pub unsafe fn contentType(&self) -> UITextItemContentType;
 
+        /// The range of the text item.
         #[method(range)]
         pub unsafe fn range(&self) -> NSRange;
 
+        /// The link represented by the text item. This value is `nil` if the `contentType != UITextItemContentTypeLink`
         #[method_id(@__retain_semantics Other link)]
         pub unsafe fn link(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSTextAttachment")]
+        /// The text attachment represented by the text item. This value is `nil` if the `contentType != UITextItemContentTypeTextAttachment`
         #[method_id(@__retain_semantics Other textAttachment)]
         pub unsafe fn textAttachment(&self) -> Option<Retained<NSTextAttachment>>;
 
+        /// The custom tag identifier represented by the text item. This value is `nil` if the `contentType != UITextItemContentTypeTag`
         #[method_id(@__retain_semantics Other tagIdentifier)]
         pub unsafe fn tagIdentifier(&self) -> Option<Retained<NSString>>;
 
@@ -70,7 +80,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemmenupreview?language=objc)
+    /// An object representing the preview for a text item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemmenupreview?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -81,10 +93,12 @@ unsafe impl NSObjectProtocol for UITextItemMenuPreview {}
 
 extern_methods!(
     unsafe impl UITextItemMenuPreview {
+        /// Show the default system preview for the given text item.
         #[method_id(@__retain_semantics Other defaultPreview)]
         pub unsafe fn defaultPreview(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Show the specified preview view for the given text item.
         #[method_id(@__retain_semantics Init initWithView:)]
         pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
@@ -109,10 +123,21 @@ unsafe impl NSObjectProtocol for UITextItemMenuConfiguration {}
 extern_methods!(
     unsafe impl UITextItemMenuConfiguration {
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
+        /// Creates a menu configuration with the specified menu and a default preview.
+        ///
+        ///
+        /// Parameter `menu`: The menu to be presented.
         #[method_id(@__retain_semantics Other configurationWithMenu:)]
         pub unsafe fn configurationWithMenu(menu: &UIMenu) -> Retained<Self>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
+        /// Creates a menu configuration with the specified menu and custom preview.
+        ///
+        ///
+        /// Parameter `menu`: The menu to be presented.
+        ///
+        /// Parameter `preview`: The preview associated with the menu. Specify
+        /// `nil`for no preview.
         #[method_id(@__retain_semantics Other configurationWithPreview:menu:)]
         pub unsafe fn configurationWithPreview_menu(
             preview: Option<&UITextItemMenuPreview>,

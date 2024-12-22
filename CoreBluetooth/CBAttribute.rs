@@ -20,6 +20,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CBUUID")]
+        /// The Bluetooth UUID of the attribute.
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Retained<CBUUID>;
     }

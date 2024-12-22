@@ -75,6 +75,7 @@ extern_methods!(
         #[method(importance)]
         pub unsafe fn importance(&self) -> AXCustomContentImportance;
 
+        /// Setter for [`importance`][Self::importance].
         #[method(setImportance:)]
         pub unsafe fn setImportance(&self, importance: AXCustomContentImportance);
 
@@ -96,6 +97,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityCustomContent)]
         unsafe fn accessibilityCustomContent(&self) -> Retained<NSArray<AXCustomContent>>;
 
+        /// Setter for [`accessibilityCustomContent`][Self::accessibilityCustomContent].
         #[method(setAccessibilityCustomContent:)]
         unsafe fn setAccessibilityCustomContent(
             &self,
@@ -108,6 +110,7 @@ extern_protocol!(
         unsafe fn accessibilityCustomContentBlock(&self) -> AXCustomContentReturnBlock;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`accessibilityCustomContentBlock`][Self::accessibilityCustomContentBlock].
         #[optional]
         #[method(setAccessibilityCustomContentBlock:)]
         unsafe fn setAccessibilityCustomContentBlock(

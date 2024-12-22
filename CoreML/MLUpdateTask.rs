@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlupdatetask?language=objc)
+    /// Main class for setting up and controlling a model update. It provides some utility class methods for performing an update synchronously as well as class constructors for configuring an update and give developers control for the execution of that update.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlupdatetask?language=objc)
     #[unsafe(super(MLTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLTask")]

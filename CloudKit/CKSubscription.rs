@@ -65,9 +65,15 @@ extern_methods!(
         #[method(subscriptionType)]
         pub unsafe fn subscriptionType(&self) -> CKSubscriptionType;
 
+        /// Describes the notification that will be sent when the subscription fires.
+        ///
+        ///
+        /// This property must be set to a non-nil value before saving the
+        /// `CKSubscription.`
         #[method_id(@__retain_semantics Other notificationInfo)]
         pub unsafe fn notificationInfo(&self) -> Option<Retained<CKNotificationInfo>>;
 
+        /// Setter for [`notificationInfo`][Self::notificationInfo].
         #[method(setNotificationInfo:)]
         pub unsafe fn setNotificationInfo(&self, notification_info: Option<&CKNotificationInfo>);
     }
@@ -100,7 +106,13 @@ unsafe impl RefEncode for CKQuerySubscriptionOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription?language=objc)
+    /// A subscription that fires whenever a change matching the predicate occurs.
+    ///
+    ///
+    /// `CKQuerySubscriptions`are not supported in a
+    /// `sharedCloudDatabase`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription?language=objc)
     #[unsafe(super(CKSubscription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKQuerySubscription;
@@ -144,20 +156,33 @@ extern_methods!(
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
+        /// The record type that this subscription watches
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Retained<CKRecordType>;
 
+        /// A predicate that determines when the subscription fires.
         #[method_id(@__retain_semantics Other predicate)]
         pub unsafe fn predicate(&self) -> Retained<NSPredicate>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// Optional property.  If set, a query subscription is scoped to only record changes in the indicated zone.
+        /// Query Subscriptions that do not specify a
+        /// `zoneID`are scoped to record changes across all zones in the database.
         #[method_id(@__retain_semantics Other zoneID)]
         pub unsafe fn zoneID(&self) -> Option<Retained<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// Setter for [`zoneID`][Self::zoneID].
         #[method(setZoneID:)]
         pub unsafe fn setZoneID(&self, zone_id: Option<&CKRecordZoneID>);
 
+        /// Options flags describing the firing behavior subscription.
+        ///
+        ///
+        /// One of
+        /// `CKQuerySubscriptionOptionsFiresOnRecordCreation,``CKQuerySubscriptionOptionsFiresOnRecordUpdate,`or
+        /// `CKQuerySubscriptionOptionsFiresOnRecordDeletion`must be specified or an
+        /// `NSInvalidArgumentException`will be thrown.
         #[method(querySubscriptionOptions)]
         pub unsafe fn querySubscriptionOptions(&self) -> CKQuerySubscriptionOptions;
     }
@@ -175,7 +200,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonesubscription?language=objc)
+    /// A subscription that fires whenever any change happens in the indicated Record Zone.
+    ///
+    ///
+    /// The RecordZone must have the capability
+    /// `CKRecordZoneCapabilityFetchChanges``CKRecordZoneSubscriptions`are not supported in a
+    /// `sharedCloudDatabase`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonesubscription?language=objc)
     #[unsafe(super(CKSubscription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKRecordZoneSubscription;
@@ -219,10 +251,12 @@ extern_methods!(
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
         #[cfg(feature = "CKRecord")]
+        /// Optional property. If set, a zone subscription is scoped to record changes for this record type
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Option<Retained<CKRecordType>>;
 
         #[cfg(feature = "CKRecord")]
+        /// Setter for [`recordType`][Self::recordType].
         #[method(setRecordType:)]
         pub unsafe fn setRecordType(&self, record_type: Option<&CKRecordType>);
     }
@@ -240,7 +274,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabasesubscription?language=objc)
+    /// A subscription fires whenever any change happens in the database that this subscription was saved in.
+    ///
+    ///
+    /// `CKDatabaseSubscription`is only supported in the Private and Shared databases.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabasesubscription?language=objc)
     #[unsafe(super(CKSubscription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKDatabaseSubscription;
@@ -277,17 +316,31 @@ extern_methods!(
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
+        /// Optional property. If set, a database subscription is scoped to record changes for this record type
         #[method_id(@__retain_semantics Other recordType)]
         pub unsafe fn recordType(&self) -> Option<Retained<CKRecordType>>;
 
         #[cfg(feature = "CKRecord")]
+        /// Setter for [`recordType`][Self::recordType].
         #[method(setRecordType:)]
         pub unsafe fn setRecordType(&self, record_type: Option<&CKRecordType>);
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cknotificationinfo?language=objc)
+    /// The payload of a push notification delivered in the UIApplication
+    /// `application:didReceiveRemoteNotification:`delegate method contains information about the firing subscription.
+    ///
+    /// Use
+    ///
+    /// ```text
+    ///  +[CKNotification notificationFromRemoteNotificationDictionary:]
+    /// ```
+    ///
+    /// to parse that payload.
+    /// On tvOS, alerts, badges, sounds, and categories are not handled in push notifications. However, CKSubscriptions remain available to help you avoid polling the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cknotificationinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKNotificationInfo;
@@ -307,61 +360,77 @@ unsafe impl NSSecureCoding for CKNotificationInfo {}
 
 extern_methods!(
     unsafe impl CKNotificationInfo {
+        /// Optional alert string to display in a push notification.
         #[method_id(@__retain_semantics Other alertBody)]
         pub unsafe fn alertBody(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`alertBody`][Self::alertBody].
         #[method(setAlertBody:)]
         pub unsafe fn setAlertBody(&self, alert_body: Option<&NSString>);
 
+        /// Instead of a raw alert string, you may optionally specify a key for a localized string in your app's Localizable.strings file.
         #[method_id(@__retain_semantics Other alertLocalizationKey)]
         pub unsafe fn alertLocalizationKey(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`alertLocalizationKey`][Self::alertLocalizationKey].
         #[method(setAlertLocalizationKey:)]
         pub unsafe fn setAlertLocalizationKey(&self, alert_localization_key: Option<&NSString>);
 
         #[cfg(feature = "CKRecord")]
+        /// A list of field names to take from the matching record that is used as substitution variables in a formatted alert string.
         #[method_id(@__retain_semantics Other alertLocalizationArgs)]
         pub unsafe fn alertLocalizationArgs(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
+        /// Setter for [`alertLocalizationArgs`][Self::alertLocalizationArgs].
         #[method(setAlertLocalizationArgs:)]
         pub unsafe fn setAlertLocalizationArgs(
             &self,
             alert_localization_args: Option<&NSArray<CKRecordFieldKey>>,
         );
 
+        /// Optional title of the alert to display in a push notification.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
+        /// Instead of a raw title string, you may optionally specify a key for a localized string in your app's Localizable.strings file.
         #[method_id(@__retain_semantics Other titleLocalizationKey)]
         pub unsafe fn titleLocalizationKey(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`titleLocalizationKey`][Self::titleLocalizationKey].
         #[method(setTitleLocalizationKey:)]
         pub unsafe fn setTitleLocalizationKey(&self, title_localization_key: Option<&NSString>);
 
         #[cfg(feature = "CKRecord")]
+        /// A list of field names to take from the matching record that is used as substitution variables in a formatted title string.
         #[method_id(@__retain_semantics Other titleLocalizationArgs)]
         pub unsafe fn titleLocalizationArgs(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
+        /// Setter for [`titleLocalizationArgs`][Self::titleLocalizationArgs].
         #[method(setTitleLocalizationArgs:)]
         pub unsafe fn setTitleLocalizationArgs(
             &self,
             title_localization_args: Option<&NSArray<CKRecordFieldKey>>,
         );
 
+        /// Optional subtitle of the alert to display in a push notification.
         #[method_id(@__retain_semantics Other subtitle)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`subtitle`][Self::subtitle].
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
+        /// Instead of a raw subtitle string, you may optionally specify a key for a localized string in your app's Localizable.strings file.
         #[method_id(@__retain_semantics Other subtitleLocalizationKey)]
         pub unsafe fn subtitleLocalizationKey(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`subtitleLocalizationKey`][Self::subtitleLocalizationKey].
         #[method(setSubtitleLocalizationKey:)]
         pub unsafe fn setSubtitleLocalizationKey(
             &self,
@@ -369,74 +438,120 @@ extern_methods!(
         );
 
         #[cfg(feature = "CKRecord")]
+        /// A list of field names to take from the matching record that is used as substitution variables in a formatted subtitle string.
         #[method_id(@__retain_semantics Other subtitleLocalizationArgs)]
         pub unsafe fn subtitleLocalizationArgs(
             &self,
         ) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
+        /// Setter for [`subtitleLocalizationArgs`][Self::subtitleLocalizationArgs].
         #[method(setSubtitleLocalizationArgs:)]
         pub unsafe fn setSubtitleLocalizationArgs(
             &self,
             subtitle_localization_args: Option<&NSArray<CKRecordFieldKey>>,
         );
 
+        /// A key for a localized string to be used as the alert action in a modal style notification.
         #[method_id(@__retain_semantics Other alertActionLocalizationKey)]
         pub unsafe fn alertActionLocalizationKey(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`alertActionLocalizationKey`][Self::alertActionLocalizationKey].
         #[method(setAlertActionLocalizationKey:)]
         pub unsafe fn setAlertActionLocalizationKey(
             &self,
             alert_action_localization_key: Option<&NSString>,
         );
 
+        /// The name of an image in your app bundle to be used as the launch image when launching in response to the notification.
         #[method_id(@__retain_semantics Other alertLaunchImage)]
         pub unsafe fn alertLaunchImage(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`alertLaunchImage`][Self::alertLaunchImage].
         #[method(setAlertLaunchImage:)]
         pub unsafe fn setAlertLaunchImage(&self, alert_launch_image: Option<&NSString>);
 
+        /// The name of a sound file in your app bundle to play upon receiving the notification.
         #[method_id(@__retain_semantics Other soundName)]
         pub unsafe fn soundName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`soundName`][Self::soundName].
         #[method(setSoundName:)]
         pub unsafe fn setSoundName(&self, sound_name: Option<&NSString>);
 
         #[cfg(feature = "CKRecord")]
+        /// A list of keys from the matching record to include in the notification payload.
+        ///
+        ///
+        /// Only some keys are allowed.  The value types associated with those keys on the server must be one of these classes:
+        /// - CKReference
+        /// - CLLocation
+        /// - NSDate
+        /// - NSNumber
+        /// - NSString
         #[method_id(@__retain_semantics Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
+        /// Setter for [`desiredKeys`][Self::desiredKeys].
         #[method(setDesiredKeys:)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 
+        /// Indicates that the notification should increment the app's badge count. Default value is
+        /// `NO.`
         #[method(shouldBadge)]
         pub unsafe fn shouldBadge(&self) -> bool;
 
+        /// Setter for [`shouldBadge`][Self::shouldBadge].
         #[method(setShouldBadge:)]
         pub unsafe fn setShouldBadge(&self, should_badge: bool);
 
+        /// Indicates that the notification should be sent with the "content-available" flag to allow for background downloads in the application.
+        ///
+        ///
+        /// Default value is
+        /// `NO.`
         #[method(shouldSendContentAvailable)]
         pub unsafe fn shouldSendContentAvailable(&self) -> bool;
 
+        /// Setter for [`shouldSendContentAvailable`][Self::shouldSendContentAvailable].
         #[method(setShouldSendContentAvailable:)]
         pub unsafe fn setShouldSendContentAvailable(&self, should_send_content_available: bool);
 
+        /// Indicates that the notification should be sent with the "mutable-content" flag to allow a Notification Service app extension to modify or replace the push payload.
+        ///
+        ///
+        /// Default value is
+        /// `NO.`
         #[method(shouldSendMutableContent)]
         pub unsafe fn shouldSendMutableContent(&self) -> bool;
 
+        /// Setter for [`shouldSendMutableContent`][Self::shouldSendMutableContent].
         #[method(setShouldSendMutableContent:)]
         pub unsafe fn setShouldSendMutableContent(&self, should_send_mutable_content: bool);
 
+        /// Optional property for the category to be sent with the push when this subscription fires.
+        ///
+        ///
+        /// Categories allow you to present custom actions to the user on your push notifications.
+        ///
+        ///
+        /// See: UIMutableUserNotificationCategory
         #[method_id(@__retain_semantics Other category)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`category`][Self::category].
         #[method(setCategory:)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
 
+        /// Optional property specifying a field name to take from the matching record whose value is used as the apns-collapse-id header.
+        ///
+        ///
+        /// See: APNs Notification API documentation
         #[method_id(@__retain_semantics Other collapseIDKey)]
         pub unsafe fn collapseIDKey(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`collapseIDKey`][Self::collapseIDKey].
         #[method(setCollapseIDKey:)]
         pub unsafe fn setCollapseIDKey(&self, collapse_id_key: Option<&NSString>);
     }

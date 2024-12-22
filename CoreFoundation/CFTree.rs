@@ -6,18 +6,55 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeretaincallback?language=objc)
+/// Type of the callback function used to add a retain to the user-specified
+/// info parameter.  This callback may returns the value to use whenever the
+/// info parameter is retained, which is usually the value parameter passed
+/// to this callback, but may be a different value if a different value
+/// should be used.
+///
+/// Parameter `info`: A user-supplied info parameter provided in a CFTreeContext.
+///
+/// Returns: The retained info parameter.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeretaincallback?language=objc)
 pub type CFTreeRetainCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreereleasecallback?language=objc)
+/// Type of the callback function used to remove a retain previously
+/// added to the user-specified info parameter.
+///
+/// Parameter `info`: A user-supplied info parameter provided in a CFTreeContext.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreereleasecallback?language=objc)
 pub type CFTreeReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecopydescriptioncallback?language=objc)
+/// Type of the callback function used to provide a description of the
+/// user-specified info parameter.
+///
+/// Parameter `info`: A user-supplied info parameter provided in a CFTreeContext.
+///
+/// Returns: A description of the info parameter.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFTreeCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecontext?language=objc)
+/// Structure containing user-specified data and callbacks for a CFTree.
+/// Field: version The version number of the structure type being passed
+/// in as a parameter to the CFTree creation function.
+/// This structure is version 0.
+/// Field: info A C pointer to a user-specified block of data.
+/// Field: retain The callback used to add a retain for the info field.
+/// If this parameter is not a pointer to a function of the correct
+/// prototype, the behavior is undefined.  The value may be NULL.
+/// Field: release The calllback used to remove a retain previously added
+/// for the info field.  If this parameter is not a pointer to a
+/// function of the correct prototype, the behavior is undefined.
+/// The value may be NULL.
+/// Field: copyDescription The callback used to provide a description of
+/// the info field.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecontext?language=objc)
 #[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -48,54 +85,152 @@ unsafe impl RefEncode for CFTreeContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeapplierfunction?language=objc)
+/// Type of the callback function used by the apply functions of
+/// CFTree.
+///
+/// Parameter `value`: The current value from the CFTree
+///
+/// Parameter `context`: The user-defined context parameter give to the apply
+/// function.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeapplierfunction?language=objc)
 pub type CFTreeApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeref?language=objc)
+/// This is the type of a reference to CFTrees.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeref?language=objc)
 pub type CFTreeRef = *mut c_void;
 
 extern "C-unwind" {
+    /// Returns the type identifier of all CFTree instances.
     #[cfg(feature = "CFBase")]
     pub fn CFTreeGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
+    /// Creates a new mutable tree.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate
+    /// memory for the tree and storage for its children.  This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used.  If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `context`: A C pointer to a CFTreeContext structure to be copied
+    /// and used as the context of the new tree.  The info parameter
+    /// will be retained by the tree if a retain function is provided.
+    /// If this value is not a valid C pointer to a CFTreeContext
+    /// structure-sized block of storage, the result is undefined.
+    /// If the version number of the storage is not a valid CFTreeContext
+    /// version number, the result is undefined.
+    ///
+    /// Returns: A reference to the new CFTree.
     #[cfg(feature = "CFBase")]
     pub fn CFTreeCreate(allocator: CFAllocatorRef, context: *const CFTreeContext) -> CFTreeRef;
 }
 
 extern "C-unwind" {
+    /// Returns the parent of the specified tree.
+    ///
+    /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
+    ///
+    /// Returns: The parent of the tree.
     pub fn CFTreeGetParent(tree: CFTreeRef) -> CFTreeRef;
 }
 
 extern "C-unwind" {
+    /// Returns the sibling after the specified tree in the parent tree's list.
+    ///
+    /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
+    ///
+    /// Returns: The next sibling of the tree.
     pub fn CFTreeGetNextSibling(tree: CFTreeRef) -> CFTreeRef;
 }
 
 extern "C-unwind" {
+    /// Returns the first child of the tree.
+    ///
+    /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
+    ///
+    /// Returns: The first child of the tree.
     pub fn CFTreeGetFirstChild(tree: CFTreeRef) -> CFTreeRef;
 }
 
 extern "C-unwind" {
+    /// Returns the context of the specified tree.
+    ///
+    /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
+    ///
+    /// Parameter `context`: A C pointer to a CFTreeContext structure to be filled in with
+    /// the context of the specified tree.  If this value is not a valid C
+    /// pointer to a CFTreeContext structure-sized block of storage, the
+    /// result is undefined.  If the version number of the storage is not
+    /// a valid CFTreeContext version number, the result is undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFTreeGetContext(tree: CFTreeRef, context: *mut CFTreeContext);
 }
 
 extern "C-unwind" {
+    /// Returns the number of children of the specified tree.
+    ///
+    /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
+    ///
+    /// Returns: The number of children.
     #[cfg(feature = "CFBase")]
     pub fn CFTreeGetChildCount(tree: CFTreeRef) -> CFIndex;
 }
 
 extern "C-unwind" {
+    /// Returns the nth child of the specified tree.
+    ///
+    /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
+    ///
+    /// Parameter `idx`: The index of the child tree to be returned.  If this parameter
+    /// is less than zero or greater than the number of children of the
+    /// tree, the result is undefined.
+    ///
+    /// Returns: A reference to the specified child tree.
     #[cfg(feature = "CFBase")]
     pub fn CFTreeGetChildAtIndex(tree: CFTreeRef, idx: CFIndex) -> CFTreeRef;
 }
 
 extern "C-unwind" {
+    /// Fills the buffer with children from the tree.
+    ///
+    /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
+    ///
+    /// Parameter `children`: A C array of pointer-sized values to be filled with
+    /// children from the tree.  If this parameter is not a valid pointer to a
+    /// C array of at least CFTreeGetChildCount() pointers, the behavior is undefined.
     pub fn CFTreeGetChildren(tree: CFTreeRef, children: *mut CFTreeRef);
 }
 
 extern "C-unwind" {
+    /// Calls a function once for each child of the tree.  Note that the applier
+    /// only operates one level deep, and does not operate on descendents further
+    /// removed than the immediate children of the tree.
+    ///
+    /// Parameter `tree`: The tree to be operated upon.  If this parameter is not a
+    /// valid CFTree, the behavior is undefined.
+    ///
+    /// Parameter `applier`: The callback function to call once for each child of
+    /// the given tree.  If this parameter is not a pointer to a
+    /// function of the correct prototype, the behavior is undefined.
+    /// If there are values in the tree which the applier function does
+    /// not expect or cannot properly apply to, the behavior is undefined.
+    ///
+    /// Parameter `context`: A pointer-sized user-defined value, which is passed
+    /// as the second parameter to the applier function, but is
+    /// otherwise unused by this function.  If the context is not
+    /// what is expected by the applier function, the behavior is
+    /// undefined.
     pub fn CFTreeApplyFunctionToChildren(
         tree: CFTreeRef,
         applier: CFTreeApplierFunction,
@@ -104,35 +239,108 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the root tree of which the specified tree is a descendent.
+    ///
+    /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
+    ///
+    /// Returns: A reference to the root of the tree.
     pub fn CFTreeFindRoot(tree: CFTreeRef) -> CFTreeRef;
 }
 
 extern "C-unwind" {
+    /// Replaces the context of a tree.  The tree releases its retain on the
+    /// info of the previous context, and retains the info of the new context.
+    ///
+    /// Parameter `tree`: The tree to be operated on.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
+    ///
+    /// Parameter `context`: A C pointer to a CFTreeContext structure to be copied
+    /// and used as the context of the new tree.  The info parameter
+    /// will be retained by the tree if a retain function is provided.
+    /// If this value is not a valid C pointer to a CFTreeContext
+    /// structure-sized block of storage, the result is undefined.
+    /// If the version number of the storage is not a valid CFTreeContext
+    /// version number, the result is undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFTreeSetContext(tree: CFTreeRef, context: *const CFTreeContext);
 }
 
 extern "C-unwind" {
+    /// Adds the newChild to the specified tree as the first in its list of children.
+    ///
+    /// Parameter `tree`: The tree to be operated on.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
+    ///
+    /// Parameter `newChild`: The child to be added.
+    /// If this parameter is not a valid CFTree, the behavior is undefined.
+    /// If this parameter is a tree which is already a child of any tree,
+    /// the behavior is undefined.
     pub fn CFTreePrependChild(tree: CFTreeRef, new_child: CFTreeRef);
 }
 
 extern "C-unwind" {
+    /// Adds the newChild to the specified tree as the last in its list of children.
+    ///
+    /// Parameter `tree`: The tree to be operated on.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
+    ///
+    /// Parameter `newChild`: The child to be added.
+    /// If this parameter is not a valid CFTree, the behavior is undefined.
+    /// If this parameter is a tree which is already a child of any tree,
+    /// the behavior is undefined.
     pub fn CFTreeAppendChild(tree: CFTreeRef, new_child: CFTreeRef);
 }
 
 extern "C-unwind" {
+    /// Inserts newSibling into the the parent tree's linked list of children after
+    /// tree.  The newSibling will have the same parent as tree.
+    ///
+    /// Parameter `tree`: The tree to insert newSibling after.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.  If the tree does not have a
+    /// parent, the behavior is undefined.
+    ///
+    /// Parameter `newSibling`: The sibling to be added.
+    /// If this parameter is not a valid CFTree, the behavior is undefined.
+    /// If this parameter is a tree which is already a child of any tree,
+    /// the behavior is undefined.
     pub fn CFTreeInsertSibling(tree: CFTreeRef, new_sibling: CFTreeRef);
 }
 
 extern "C-unwind" {
+    /// Removes the tree from its parent.
+    ///
+    /// Parameter `tree`: The tree to be removed.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
     pub fn CFTreeRemove(tree: CFTreeRef);
 }
 
 extern "C-unwind" {
+    /// Removes all the children of the tree.
+    ///
+    /// Parameter `tree`: The tree to remove all children from.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
     pub fn CFTreeRemoveAllChildren(tree: CFTreeRef);
 }
 
 extern "C-unwind" {
+    /// Sorts the children of the specified tree using the specified comparator function.
+    ///
+    /// Parameter `tree`: The tree to be operated on.  If this parameter is not a valid
+    /// CFTree, the behavior is undefined.
+    ///
+    /// Parameter `comparator`: The function with the comparator function type
+    /// signature which is used in the sort operation to compare
+    /// children of the tree with the given value. If this parameter
+    /// is not a pointer to a function of the correct prototype, the
+    /// the behavior is undefined. The children of the tree are sorted
+    /// from least to greatest according to this function.
+    ///
+    /// Parameter `context`: A pointer-sized user-defined value, which is passed
+    /// as the third parameter to the comparator function, but is
+    /// otherwise unused by this function. If the context is not
+    /// what is expected by the comparator function, the behavior is
+    /// undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFTreeSortChildren(
         tree: CFTreeRef,

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencodingresult?language=objc)
+    /// Contains information about an outging mail message after any security measures have been applied.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencodingresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEMessageEncodingResult;
@@ -22,12 +24,15 @@ unsafe impl NSSecureCoding for MEMessageEncodingResult {}
 extern_methods!(
     unsafe impl MEMessageEncodingResult {
         #[cfg(feature = "MEEncodedOutgoingMessage")]
+        /// The encoded message. Nil if no need to encode or an error occured while encoding
         #[method_id(@__retain_semantics Other encodedMessage)]
         pub unsafe fn encodedMessage(&self) -> Option<Retained<MEEncodedOutgoingMessage>>;
 
+        /// Any error that occured while attempting to sign the outgoing message.
         #[method_id(@__retain_semantics Other signingError)]
         pub unsafe fn signingError(&self) -> Option<Retained<NSError>>;
 
+        /// Any error that occured while attempting to encrypt the outgoing message.
         #[method_id(@__retain_semantics Other encryptionError)]
         pub unsafe fn encryptionError(&self) -> Option<Retained<NSError>>;
 

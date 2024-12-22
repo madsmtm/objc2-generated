@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapublickey?language=objc)
+    /// The public part of an asymmetric key pair
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapublickey?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LAPublicKey;
@@ -19,15 +21,24 @@ unsafe impl NSObjectProtocol for LAPublicKey {}
 extern_methods!(
     unsafe impl LAPublicKey {
         #[cfg(feature = "block2")]
+        /// Exports public key bytes.
+        ///
+        /// Parameter `handler`: Completion handler with the raw bytes of the public key or an error on failure
         #[method(exportBytesWithCompletion:)]
         pub unsafe fn exportBytesWithCompletion(
             &self,
             handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
+        /// Clients cannot create
+        /// `LAPublicKey`instances directly. They can only obtain them from a related
+        /// `LAPrivateKey`instance
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Clients cannot create
+        /// `LAPublicKey`instances directly. They can only obtain them from a related
+        /// `LAPrivateKey`instance
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

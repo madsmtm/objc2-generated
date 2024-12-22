@@ -115,7 +115,20 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype?language=objc)
+/// An identifier for a top-level Metal function.
+///
+/// Each location in the API where a program is used requires a function written for that specific usage.
+///
+///
+/// A vertex shader, usable for a MTLRenderPipelineState.
+///
+///
+/// A fragment shader, usable for a MTLRenderPipelineState.
+///
+///
+/// A compute kernel, usable to create a MTLComputePipelineState.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -146,7 +159,9 @@ unsafe impl RefEncode for MTLFunctionType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionconstant?language=objc)
+    /// describe an uberShader constant used by the function
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionconstant?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionConstant;
@@ -183,42 +198,57 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunction?language=objc)
+    /// A handle to intermediate code used as inputs for either a MTLComputePipelineState or a MTLRenderPipelineState.
+    ///
+    /// MTLFunction is a single vertex shader, fragment shader, or compute function.  A Function can only be used with the device that it was created against.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunction?language=objc)
     pub unsafe trait MTLFunction: NSObjectProtocol {
+        /// A string to help identify this object.
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
+        /// The device this resource was created against.  This resource can only be used with this device.
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
+        /// The overall kind of entry point: compute, vertex, or fragment.
         #[method(functionType)]
         fn functionType(&self) -> MTLFunctionType;
 
+        /// Returns the patch type. MTLPatchTypeNone if it is not a post tessellation vertex shader.
         #[method(patchType)]
         fn patchType(&self) -> MTLPatchType;
 
+        /// Returns the number of patch control points if it was specified in the shader. Returns -1 if it
+        /// was not specified.
         #[method(patchControlPointCount)]
         fn patchControlPointCount(&self) -> NSInteger;
 
         #[method_id(@__retain_semantics Other vertexAttributes)]
         fn vertexAttributes(&self) -> Option<Retained<NSArray<MTLVertexAttribute>>>;
 
+        /// Returns an array describing the attributes
         #[method_id(@__retain_semantics Other stageInputAttributes)]
         fn stageInputAttributes(&self) -> Option<Retained<NSArray<MTLAttribute>>>;
 
+        /// The name of the function in the shading language.
         #[method_id(@__retain_semantics Other name)]
         fn name(&self) -> Retained<NSString>;
 
+        /// A dictionary containing information about all function contents, keyed by the constant names.
         #[method_id(@__retain_semantics Other functionConstantsDictionary)]
         fn functionConstantsDictionary(
             &self,
         ) -> Retained<NSDictionary<NSString, MTLFunctionConstant>>;
 
         #[cfg(feature = "MTLArgumentEncoder")]
+        /// Creates an argument encoder which will encode arguments matching the layout of the argument buffer at the given bind point index.
         #[method_id(@__retain_semantics New newArgumentEncoderWithBufferIndex:)]
         unsafe fn newArgumentEncoderWithBufferIndex(
             &self,
@@ -226,6 +256,7 @@ extern_protocol!(
         ) -> Retained<ProtocolObject<dyn MTLArgumentEncoder>>;
 
         #[cfg(feature = "MTLFunctionDescriptor")]
+        /// The options this function was created with.
         #[method(options)]
         fn options(&self) -> MTLFunctionOptions;
     }
@@ -281,7 +312,15 @@ unsafe impl RefEncode for MTLLibraryType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryoptimizationlevel?language=objc)
+/// Optimization level for the Metal compiler.
+///
+///
+/// Optimize for program performance.
+///
+///
+/// Like default, with extra optimizations to reduce code size.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryoptimizationlevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -321,7 +360,18 @@ unsafe impl RefEncode for MTLCompileSymbolVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathmode?language=objc)
+/// An enum to indicate if the compiler can perform optimizations for floating-point arithmetic that may violate the IEEE 754 standard
+///
+///
+/// Disables unsafe floating-point optimizations
+///
+///
+/// Allows aggressive, unsafe floating-point optimizations but preserves infs and nans
+///
+///
+/// Allows aggressive, unsafe floating-point optimizations
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -343,7 +393,15 @@ unsafe impl RefEncode for MTLMathMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathfloatingpointfunctions?language=objc)
+/// An enum to indicate the default math functions for single precision floating-point
+///
+///
+/// Sets the default math functions for single precision floating-point to the corresponding functions in `metal::fast` namespace
+///
+///
+/// Sets the default math functions for single precision floating-point to the corresponding functions in 'metal::precise' namespace
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathfloatingpointfunctions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -380,110 +438,167 @@ unsafe impl NSObjectProtocol for MTLCompileOptions {}
 
 extern_methods!(
     unsafe impl MTLCompileOptions {
+        /// List of preprocessor macros to consider to when compiling this program. Specified as key value pairs, using a NSDictionary. The keys must be NSString objects and values can be either NSString or NSNumber objects.
+        ///
+        /// The default value is nil.
         #[method_id(@__retain_semantics Other preprocessorMacros)]
         pub fn preprocessorMacros(&self) -> Option<Retained<NSDictionary<NSString, NSObject>>>;
 
+        /// Setter for [`preprocessorMacros`][Self::preprocessorMacros].
         #[method(setPreprocessorMacros:)]
         pub unsafe fn setPreprocessorMacros(
             &self,
             preprocessor_macros: Option<&NSDictionary<NSString, NSObject>>,
         );
 
+        /// If YES, enables the compiler to perform optimizations for floating-point arithmetic that may violate the IEEE 754 standard. It also enables the high precision variant of math functions for single precision floating-point scalar and vector types. fastMathEnabled defaults to YES.
         #[deprecated = "Use mathMode instead"]
         #[method(fastMathEnabled)]
         pub fn fastMathEnabled(&self) -> bool;
 
+        /// Setter for [`fastMathEnabled`][Self::fastMathEnabled].
         #[deprecated = "Use mathMode instead"]
         #[method(setFastMathEnabled:)]
         pub fn setFastMathEnabled(&self, fast_math_enabled: bool);
 
+        /// Sets the floating-point arithmetic optimizations. Default depends on the language standard version.
         #[method(mathMode)]
         pub unsafe fn mathMode(&self) -> MTLMathMode;
 
+        /// Setter for [`mathMode`][Self::mathMode].
         #[method(setMathMode:)]
         pub unsafe fn setMathMode(&self, math_mode: MTLMathMode);
 
+        /// Sets the default math functions for single precision floating-point. Default is `MTLMathFloatingPointFunctionsFast`.
         #[method(mathFloatingPointFunctions)]
         pub unsafe fn mathFloatingPointFunctions(&self) -> MTLMathFloatingPointFunctions;
 
+        /// Setter for [`mathFloatingPointFunctions`][Self::mathFloatingPointFunctions].
         #[method(setMathFloatingPointFunctions:)]
         pub unsafe fn setMathFloatingPointFunctions(
             &self,
             math_floating_point_functions: MTLMathFloatingPointFunctions,
         );
 
+        /// set the metal language version used to interpret the source.
         #[method(languageVersion)]
         pub fn languageVersion(&self) -> MTLLanguageVersion;
 
+        /// Setter for [`languageVersion`][Self::languageVersion].
         #[method(setLanguageVersion:)]
         pub fn setLanguageVersion(&self, language_version: MTLLanguageVersion);
 
+        /// Which type the library should be compiled as. The default value is MTLLibraryTypeExecutable.
+        ///
+        /// MTLLibraryTypeExecutable is suitable to build a library of "kernel", "vertex" and "fragment" qualified functions.
+        /// MTLLibraryType is suitable when the compilation result will instead be used to instantiate a MTLDynamicLibrary.
+        /// MTLDynamicLibrary contains no qualified functions, but it's unqualified functions and variables can be used as an external dependency for compiling other libraries.
         #[method(libraryType)]
         pub fn libraryType(&self) -> MTLLibraryType;
 
+        /// Setter for [`libraryType`][Self::libraryType].
         #[method(setLibraryType:)]
         pub fn setLibraryType(&self, library_type: MTLLibraryType);
 
+        /// The install name of this dynamic library.
+        ///
+        /// The install name is used when a pipeline state is created that depends, directly or indirectly, on a dynamic library.
+        /// The installName is embedded into any other MTLLibrary that links against the compilation result.
+        /// This property should be set such that the dynamic library can be found in the file system at the time a pipeline state is created.
+        /// Specify one of:
+        /// - an absolute path to a file from which the dynamic library can be loaded, or
+        /// - a path relative to
+        /// @
+        /// executable_path, where
+        /// @
+        /// executable_path is substituted with the directory name from which the MTLLibrary containing the MTLFunction entrypoint used to create the pipeline state is loaded, or
+        /// - a path relative to
+        /// @
+        /// loader_path, where
+        /// @
+        /// loader_path is substituted with the directory name from which the MTLLibrary with the reference to this installName embedded is loaded.
+        /// The first is appropriate for MTLDynamicLibrary written to the file-system using its serializeToURL:error: method on the current device.
+        /// The others are appropriate when the MTLDynamicLibrary is installed as part of a bundle or app, where the absolute path is not known.
+        /// This property is ignored when the type property is not set to MTLLibraryTypeDynamic.
+        /// This propery should not be null if the property type is set to MTLLibraryTypeDynamic: the compilation will fail in that scenario.
         #[method_id(@__retain_semantics Other installName)]
         pub fn installName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`installName`][Self::installName].
         #[method(setInstallName:)]
         pub unsafe fn setInstallName(&self, install_name: Option<&NSString>);
 
         #[cfg(feature = "MTLDynamicLibrary")]
+        /// A set of MTLDynamicLibrary instances to link against.
+        /// The installName of the provided MTLDynamicLibrary is embedded into the compilation result.
+        /// When a function from the resulting MTLLibrary is used (either as an MTLFunction, or as an to create a pipeline state, the embedded install names are used to automatically load the MTLDynamicLibrary instances.
+        /// This property can be null if no libraries should be automatically loaded, either because the MTLLibrary has no external dependencies, or because you will use preloadedLibraries to specify the libraries to use at pipeline creation time.
         #[method_id(@__retain_semantics Other libraries)]
         pub fn libraries(&self)
             -> Option<Retained<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>>;
 
         #[cfg(feature = "MTLDynamicLibrary")]
+        /// Setter for [`libraries`][Self::libraries].
         #[method(setLibraries:)]
         pub fn setLibraries(
             &self,
             libraries: Option<&NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>,
         );
 
+        /// If YES,  set the compiler to compile shaders to preserve invariance.  The default is false.
         #[method(preserveInvariance)]
         pub fn preserveInvariance(&self) -> bool;
 
+        /// Setter for [`preserveInvariance`][Self::preserveInvariance].
         #[method(setPreserveInvariance:)]
         pub fn setPreserveInvariance(&self, preserve_invariance: bool);
 
+        /// Sets the compiler optimization level.
         #[method(optimizationLevel)]
         pub unsafe fn optimizationLevel(&self) -> MTLLibraryOptimizationLevel;
 
+        /// Setter for [`optimizationLevel`][Self::optimizationLevel].
         #[method(setOptimizationLevel:)]
         pub unsafe fn setOptimizationLevel(&self, optimization_level: MTLLibraryOptimizationLevel);
 
+        /// Adds a compiler command to force the default visibility of symbols to be hidden
         #[method(compileSymbolVisibility)]
         pub unsafe fn compileSymbolVisibility(&self) -> MTLCompileSymbolVisibility;
 
+        /// Setter for [`compileSymbolVisibility`][Self::compileSymbolVisibility].
         #[method(setCompileSymbolVisibility:)]
         pub unsafe fn setCompileSymbolVisibility(
             &self,
             compile_symbol_visibility: MTLCompileSymbolVisibility,
         );
 
+        /// Adds a compiler command to allow the reference of undefined symbols
         #[method(allowReferencingUndefinedSymbols)]
         pub unsafe fn allowReferencingUndefinedSymbols(&self) -> bool;
 
+        /// Setter for [`allowReferencingUndefinedSymbols`][Self::allowReferencingUndefinedSymbols].
         #[method(setAllowReferencingUndefinedSymbols:)]
         pub unsafe fn setAllowReferencingUndefinedSymbols(
             &self,
             allow_referencing_undefined_symbols: bool,
         );
 
+        /// Adds a compiler command to specify the total threads per threadgroup
         #[method(maxTotalThreadsPerThreadgroup)]
         pub unsafe fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
 
+        /// Setter for [`maxTotalThreadsPerThreadgroup`][Self::maxTotalThreadsPerThreadgroup].
         #[method(setMaxTotalThreadsPerThreadgroup:)]
         pub unsafe fn setMaxTotalThreadsPerThreadgroup(
             &self,
             max_total_threads_per_threadgroup: NSUInteger,
         );
 
+        /// If YES,  set the compiler to enable any logging in the shader. The default is false.
         #[method(enableLogging)]
         pub unsafe fn enableLogging(&self) -> bool;
 
+        /// Setter for [`enableLogging`][Self::enableLogging].
         #[method(setEnableLogging:)]
         pub unsafe fn setEnableLogging(&self, enable_logging: bool);
     }
@@ -508,11 +623,15 @@ impl DefaultRetained for MTLCompileOptions {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerrordomain?language=objc)
+    /// NSErrors raised when creating a library.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerrordomain?language=objc)
     pub static MTLLibraryErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror?language=objc)
+/// NSErrors raised when creating a library.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -543,16 +662,20 @@ unsafe impl RefEncode for MTLLibraryError {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibrary?language=objc)
     pub unsafe trait MTLLibrary: NSObjectProtocol {
+        /// A string to help identify this object.
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
+        /// The device this resource was created against.  This resource can only be used with this device.
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
+        /// Returns a pointer to a function object, return nil if the function is not found in the library.
         #[method_id(@__retain_semantics New newFunctionWithName:)]
         fn newFunctionWithName(
             &self,
@@ -560,6 +683,10 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
 
         #[cfg(feature = "MTLFunctionConstantValues")]
+        /// Returns a pointer to a function object obtained by applying the constant values to the named function.
+        ///
+        /// This method will call the compiler. Use newFunctionWithName:constantValues:completionHandler: to
+        /// avoid waiting on the compiler.
         #[method_id(@__retain_semantics New newFunctionWithName:constantValues:error:_)]
         fn newFunctionWithName_constantValues_error(
             &self,
@@ -568,6 +695,9 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLFunction>>, Retained<NSError>>;
 
         #[cfg(all(feature = "MTLFunctionConstantValues", feature = "block2"))]
+        /// Returns a pointer to a function object obtained by applying the constant values to the named function.
+        ///
+        /// This method is asynchronous since it is will call the compiler.
         #[method(newFunctionWithName:constantValues:completionHandler:)]
         unsafe fn newFunctionWithName_constantValues_completionHandler(
             &self,
@@ -579,6 +709,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MTLFunctionDescriptor", feature = "block2"))]
+        /// Create a new MTLFunction object asynchronously.
         #[method(newFunctionWithDescriptor:completionHandler:)]
         unsafe fn newFunctionWithDescriptor_completionHandler(
             &self,
@@ -589,6 +720,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLFunctionDescriptor")]
+        /// Create  a new MTLFunction object synchronously.
         #[method_id(@__retain_semantics New newFunctionWithDescriptor:error:_)]
         fn newFunctionWithDescriptor_error(
             &self,
@@ -596,6 +728,7 @@ extern_protocol!(
         ) -> Result<Retained<ProtocolObject<dyn MTLFunction>>, Retained<NSError>>;
 
         #[cfg(all(feature = "MTLFunctionDescriptor", feature = "block2"))]
+        /// Create a new MTLFunction object asynchronously.
         #[method(newIntersectionFunctionWithDescriptor:completionHandler:)]
         unsafe fn newIntersectionFunctionWithDescriptor_completionHandler(
             &self,
@@ -606,18 +739,30 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLFunctionDescriptor")]
+        /// Create  a new MTLFunction object synchronously.
         #[method_id(@__retain_semantics New newIntersectionFunctionWithDescriptor:error:_)]
         fn newIntersectionFunctionWithDescriptor_error(
             &self,
             descriptor: &MTLIntersectionFunctionDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLFunction>>, Retained<NSError>>;
 
+        /// The array contains NSString objects, with the name of each function in library.
         #[method_id(@__retain_semantics Other functionNames)]
         fn functionNames(&self) -> Retained<NSArray<NSString>>;
 
+        /// The library type provided when this MTLLibrary was created.
+        /// Libraries with MTLLibraryTypeExecutable can be used to obtain MTLFunction from.
+        /// Libraries with MTLLibraryTypeDynamic can be used to resolve external references in other MTLLibrary from.
+        ///
+        /// See: MTLCompileOptions
         #[method(type)]
         unsafe fn r#type(&self) -> MTLLibraryType;
 
+        /// The installName provided when this MTLLibrary was created.
+        ///
+        /// Always nil if the type of the library is not MTLLibraryTypeDynamic.
+        ///
+        /// See: MTLCompileOptions
         #[method_id(@__retain_semantics Other installName)]
         fn installName(&self) -> Option<Retained<NSString>>;
     }

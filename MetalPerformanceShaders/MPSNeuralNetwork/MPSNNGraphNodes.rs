@@ -9,8 +9,89 @@ use objc2_metal::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpshandle?language=objc)
+    /// MPS resource identification
+    ///
+    /// Most of the time, there is only one image and one or fewer states needed as
+    /// input to a graph, so the order of the images and states passed to
+    /// [MPSNNGraph encodeToCommandBuffer:sourceImages:] or
+    /// [MPSNNGraph encodeToCommandBuffer:sourceImages:sourceStates:intermediateImages:destinationStates:]
+    /// is clear. There is only one order. However, sometimes graphs have more than one
+    /// input image or state. What order should they appear in the NSArray passed to
+    /// these methods?
+    ///
+    /// Each MPSNNImageNode or MPSNNStateNode can be tagged with a MPSHandle. MPSNNGraph
+    /// keeps track of these. You can request that the MPSNNGraph return them to you in
+    /// an array in the same order as needed to encode the MPSNNGraph, using
+    /// MPSNNGraph.sourceImageHandles and MPSNNGraph.sourceStateHandles.
+    ///
+    /// Example:
+    ///
+    /// ```text
+    ///               @interface MyHandle : NSObject <MPSHandle>
+    ///                   // Add a method for my use to get the image needed based on the handle to it.
+    ///                   // This isn't part of the MPSHandle protocol, but we need it for MyEncodeGraph
+    ///                   // below. Since it is my code calling my object, we can add whatever we want like this.
+    ///                   -(MPSImage*__nonnull) image;    // return the MPSImage corresponding to the handle
+    ///
+    ///                   // required by MPSHandle protocol
+    ///                   -(NSString * __nullable) label;
+    ///
+    ///                   // MPSHandle implies NSSecureCoding too
+    ///                   +(BOOL) supportsSecureCoding;
+    ///                   - (void)encodeWithCoder:(NSCoder * __nonnull )aCoder;
+    ///                   - (nullable instancetype)initWithCoder:(NSCoder * __nonnull )aDecoder; // NS_DESIGNATED_INITIALIZER
+    ///               @end
+    ///
+    ///               // Encode a graph to cmdBuf using handles for images
+    ///               // Here we assume that the MPSNNImageNodes that are graph inputs (not produced
+    ///               // by the graph) are tagged with a unique instance of MyHandle that can be used
+    ///               // to get the appropriate image for that node.
+    ///               static void MyEncodeGraph( MPSNNGraph * graph, id <MTLCommandBuffer> cmdBuf )
+    ///               {
+    ///                   @autoreleasepool{
+    ///                       // prepare an array of source images, using the handles
+    ///                       NSArray<MyHandle*> * handles = graph.sourceImageHandles;
+    ///                       unsigned long count = handles.count;
+    ///                       NSMutableArray<MPSImage*> * __nonnull images = [NSMutableArray arrayWithCapacity: count];
+    ///                       for( unsigned long i = 0; i < count; i++ )
+    ///                           images[i] = handles[i].image;
+    ///
+    ///                       // encode the graph using the array
+    ///                       [ graph encodeToCommandBuffer: cmdBuf
+    ///                                        sourceImages: images ];
+    ///                   }
+    ///               }
+    /// ```
+    ///
+    /// But what is a handle?  Here MPS is giving you enough rope with which to hang
+    /// yourself. Don't panic! As long as your response is not to start tying nooses,
+    /// you should be fine. It is just rope. More precisely, it is just a pointer to a
+    /// NSObject. MPS doesn't know or care what it is or does, so long as it conforms
+    /// to the MPSHandle protocol. What it does is entirely up to you. We imagine it
+    /// will be an object that describes the data that you intend to pass later to the graph.
+    /// It could be a file reference, or an input to your own software component that wraps
+    /// the graph or even the MPSImage / MPSState that you plan to use.
+    ///
+    /// Do take note of the NSSecureCoding requirement in the MPSHandle protocol, however.
+    /// This is needed if you attempt to use NSSecureCoding to serialize the MPSNNGraph.
+    /// Normal MPSImages and MPSStates don't do that part.
+    ///
+    /// Your application should be able to use the handle to locate / create the correct
+    /// image / state or batch thereof to pass as input to the graph.  Handles are also
+    /// used to disambiguate graph intermediate images and state outputs. They aren't used
+    /// to disambiguate image results (see -[MPSNNGraph initWithDevice:resultImages:resultsAreNeeded:]
+    /// as you should already know the ordering of outputs there. It is the same as what
+    /// you asked for.
+    ///
+    /// Do take note of the NSSecureCoding requirement in the MPSHandle protocol, however.
+    /// This is needed if you attempt to use NSSecureCoding to serialize the MPSNNGraph.
+    /// Normal MPSImages and MPSStates don't do that part.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpshandle?language=objc)
     pub unsafe trait MPSHandle: NSObjectProtocol + NSSecureCoding {
+        /// A label to be attached to associated MTLResources for this node
+        ///
+        /// Returns: A human readable string for debugging purposes
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
     }
@@ -22,10 +103,14 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainablenode?language=objc)
     pub unsafe trait MPSNNTrainableNode: NSObjectProtocol {
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Configure whether and when neural network training parameters are updated
+        ///
+        /// Default: MPSNNTrainingStyleUpdateDeviceGPU
         #[method(trainingStyle)]
         unsafe fn trainingStyle(&self) -> MPSNNTrainingStyle;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Setter for [`trainingStyle`][Self::trainingStyle].
         #[method(setTrainingStyle:)]
         unsafe fn setTrainingStyle(&self, training_style: MPSNNTrainingStyle);
     }
@@ -34,7 +119,17 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode?language=objc)
+    /// A placeholder node denoting the position of a MPSImage in a graph
+    ///
+    /// MPS neural network graphs are made up of filter nodes connected by
+    /// image (or state) nodes. An image node is produced by one filter but
+    /// may be consumed by more than one filter.
+    ///
+    /// Most image nodes will be created by MPS and made available through
+    /// MPSNNFilterNode.resultImage. Image nodes that are not created by MPS
+    /// (i.e. "the graph inputs") must be created by you.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNImageNode;
@@ -53,52 +148,102 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nodeWithHandle:)]
         pub unsafe fn nodeWithHandle(handle: Option<&NSObject>) -> Retained<Self>;
 
+        /// Create a autoreleased MPSNNImageNode with exportFromGraph = YES.
+        ///
+        /// Note: image is still temporary. See MPSNNImageNode.imageAllocator parameter.
         #[method_id(@__retain_semantics Other exportedNodeWithHandle:)]
         pub unsafe fn exportedNodeWithHandle(handle: Option<&NSObject>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// MPS resource identifier
+        ///
+        /// See MPSHandle protocol description.  Default: nil
         #[method_id(@__retain_semantics Other handle)]
         pub unsafe fn handle(&self) -> Option<Retained<ProtocolObject<dyn MPSHandle>>>;
 
+        /// Setter for [`handle`][Self::handle].
         #[method(setHandle:)]
         pub unsafe fn setHandle(&self, handle: Option<&ProtocolObject<dyn MPSHandle>>);
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The preferred precision for the image
+        ///
+        /// Default: MPSImageFeatureChannelFormatNone, meaning MPS should pick a format
+        /// Typically, this is 16-bit floating-point.
         #[method(format)]
         pub unsafe fn format(&self) -> MPSImageFeatureChannelFormat;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`format`][Self::format].
         #[method(setFormat:)]
         pub unsafe fn setFormat(&self, format: MPSImageFeatureChannelFormat);
 
         #[cfg(feature = "MPSImage")]
+        /// Configurability for image allocation
+        ///
+        /// Allows you to influence how the image is allocated
+        /// Default: MPSTemporaryImage.defaultAllocator
         #[method_id(@__retain_semantics Other imageAllocator)]
         pub unsafe fn imageAllocator(&self) -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
 
         #[cfg(feature = "MPSImage")]
+        /// Setter for [`imageAllocator`][Self::imageAllocator].
         #[method(setImageAllocator:)]
         pub unsafe fn setImageAllocator(
             &self,
             image_allocator: &ProtocolObject<dyn MPSImageAllocator>,
         );
 
+        /// Tag a image node for view later
+        ///
+        /// Most image nodes are private to the graph. These alias memory heavily and
+        /// consequently generally have invalid state when the graph exits.  When
+        /// exportFromGraph = YES, the image is preserved and made available through
+        /// the [MPSNNGraph encode... intermediateImages:... list.
+        ///
+        /// CAUTION: exporting an image from a graph prevents MPS from
+        /// recycling memory. It will nearly always cause the
+        /// amount of memory used by the graph to increase by the size
+        /// of the image. There will probably be a performance
+        /// regression accordingly.  This feature should generally
+        /// be used only when the node is needed as an input for
+        /// further work and recomputing it is prohibitively costly.
+        ///
+        /// Default: NO
         #[method(exportFromGraph)]
         pub unsafe fn exportFromGraph(&self) -> bool;
 
+        /// Setter for [`exportFromGraph`][Self::exportFromGraph].
         #[method(setExportFromGraph:)]
         pub unsafe fn setExportFromGraph(&self, export_from_graph: bool);
 
+        /// Set to true to cause the resource to be synchronized with the CPU
+        ///
+        /// It is not needed on iOS/tvOS devices, where it does nothing.
         #[method(synchronizeResource)]
         pub unsafe fn synchronizeResource(&self) -> bool;
 
+        /// Setter for [`synchronizeResource`][Self::synchronizeResource].
         #[method(setSynchronizeResource:)]
         pub unsafe fn setSynchronizeResource(&self, synchronize_resource: bool);
 
+        /// Stop training graph automatic creation at this node.
+        ///
+        /// An inference graph of MPSNNFilterNodes, MPSNNStateNodes and MPSNNImageNodes can be automatically
+        /// converted to a training graph using -[MPSNNFilterNode trainingGraphWithSourceGradient:nodeHandler:].
+        /// Sometimes, an inference graph may contain extra nodes at start to do operations like resampling or range
+        /// adjustment that should not be part of the training graph. To prevent gradient operations for these extra
+        /// nodes from being included in the training graph, set
+        /// <undesired
+        /// node>.resultImage.stopGradient = YES.
+        /// This will prevent gradient propagation beyond this MPSNNImageNode.
+        /// Default: NO
         #[method(stopGradient)]
         pub unsafe fn stopGradient(&self) -> bool;
 
+        /// Setter for [`stopGradient`][Self::stopGradient].
         #[method(setStopGradient:)]
         pub unsafe fn setStopGradient(&self, stop_gradient: bool);
     }
@@ -113,7 +258,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnstatenode?language=objc)
+    /// A placeholder node denoting the position in the graph of a MPSState object
+    ///
+    /// Some filters need additional information about an image in order to function. For example
+    /// a max-pooling gradient filter needs to know which position the max result came from in the
+    /// original pooling filter in order to select the right data for gradient computation.  In other cases,
+    /// state may be moved into a MPSState object in order to keep the filter itself immutable.
+    /// The MPSState object typically encapsulates one or more MTLResource objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnstatenode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNStateNode;
@@ -126,21 +279,46 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// MPS resource identification
+        ///
+        /// See MPSHandle protocol reference.  Default: nil
         #[method_id(@__retain_semantics Other handle)]
         pub unsafe fn handle(&self) -> Option<Retained<ProtocolObject<dyn MPSHandle>>>;
 
+        /// Setter for [`handle`][Self::handle].
         #[method(setHandle:)]
         pub unsafe fn setHandle(&self, handle: Option<&ProtocolObject<dyn MPSHandle>>);
 
+        /// Tag a state node for view later
+        ///
+        /// Most state nodes are private to the graph. These alias memory heavily and
+        /// consequently generally have invalid state when the graph exits.  When
+        /// exportFromGraph = YES, the image is preserved and made available through
+        /// the [MPSNNGraph encode... resultStates:... list.
+        ///
+        /// CAUTION: exporting an state from a graph prevents MPS from
+        /// recycling memory. It will nearly always cause the
+        /// amount of memory used by the graph to increase by the size
+        /// of the state. There will probably be a performance
+        /// regression accordingly.  This feature should generally
+        /// be used only when the node is needed as an input for
+        /// further work and recomputing it is prohibitively costly.
+        ///
+        /// Default: NO
         #[method(exportFromGraph)]
         pub unsafe fn exportFromGraph(&self) -> bool;
 
+        /// Setter for [`exportFromGraph`][Self::exportFromGraph].
         #[method(setExportFromGraph:)]
         pub unsafe fn setExportFromGraph(&self, export_from_graph: bool);
 
+        /// Set to true to cause the resource to be synchronized with the CPU
+        ///
+        /// Ignored on non-MacOS.
         #[method(synchronizeResource)]
         pub unsafe fn synchronizeResource(&self) -> bool;
 
+        /// Setter for [`synchronizeResource`][Self::synchronizeResource].
         #[method(setSynchronizeResource:)]
         pub unsafe fn setSynchronizeResource(&self, synchronize_resource: bool);
     }
@@ -155,7 +333,19 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngradientstatenode?language=objc)
+    /// During training, each MPSNNFilterNode has a corresponding
+    /// MPSNNGradientFilterNode for the gradient computation for
+    /// trainable parameter update. The two communicate through a
+    /// MPSNNGradientStateNode or subclass which carries information
+    /// about the inference pass settings to the gradient pass.
+    /// You can avoid managing these -- there will be many! -- by
+    /// using -[MPSNNFilterNode gradientFilterWithSources:] to make
+    /// the MPSNNGradientFilterNodes. That method will append
+    /// the necessary extra information like MPSNNGradientState
+    /// nodes and inference filter source image nodes to the object as
+    /// needed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngradientstatenode?language=objc)
     #[unsafe(super(MPSNNStateNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNGradientStateNode;
@@ -333,7 +523,33 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsgradientnodeblock?language=objc)
+/// Block callback for customizing gradient nodes as they are constructed
+///
+/// Example code for copying handles from inference image nodes to corresponding gradient nodes:
+///
+/// ```text
+///               MPSNodeCustomizationBlock myCopyHandleBlock = ^( MPSNNFilterNode * __nonnull gradientNode,
+///                                                                MPSNNFilterNode * __nonnull inferenceNode,
+///                                                                MPSNNImageNode * __nonnull inferenceSource )
+///               {
+///                   gradientNode.resultImage.handle = inferenceSource.handle;
+///               }
+/// ```
+///
+///
+/// Parameter `gradientNode`: The new gradient node created to mirror inferenceNode
+///
+/// Parameter `inferenceNode`: The preexisting inference node mirrored by gradient node.
+/// If nil, an extra node was automatically inserted into the graph.
+/// An MPSNNAdditionNode may be inserted at junctions
+/// where multiple inference MPSNNFilterNodes read from the
+/// same MPSNNImageNode.
+///
+/// Parameter `inferenceSource`: The  source image argument to the inference node to which the gradient result corresponds
+///
+/// Parameter `gradientSource`: The source gradient argument to the new gradient node.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsgradientnodeblock?language=objc)
 #[cfg(feature = "block2")]
 pub type MPSGradientNodeBlock = *mut block2::Block<
     dyn Fn(
@@ -345,7 +561,13 @@ pub type MPSGradientNodeBlock = *mut block2::Block<
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode?language=objc)
+    /// A placeholder node denoting a neural network filter stage
+    ///
+    /// There are as many MPSNNFilterNode subclasses as there are
+    /// MPS neural network filter objects. Make one of those.
+    /// This class defines an polymorphic interface for them.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNFilterNode;
@@ -358,47 +580,122 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Get the node representing the image result of the filter
+        ///
+        /// Except where otherwise noted, the precision used for the
+        /// result image (see format property) is copied from the precision
+        /// from the first input image node.
         #[method_id(@__retain_semantics Other resultImage)]
         pub unsafe fn resultImage(&self) -> Retained<MPSNNImageNode>;
 
+        /// convenience method for resultStates[0]
+        ///
+        /// If resultStates is nil, returns nil
         #[method_id(@__retain_semantics Other resultState)]
         pub unsafe fn resultState(&self) -> Option<Retained<MPSNNStateNode>>;
 
+        /// Get the node representing the state result of the filter
+        ///
+        /// If more than one, see description of subclass for ordering.
         #[method_id(@__retain_semantics Other resultStates)]
         pub unsafe fn resultStates(&self) -> Option<Retained<NSArray<MPSNNStateNode>>>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// The padding method used for the filter node
+        ///
+        /// The padding policy configures how the filter centers
+        /// the region of interest in the source image. It principally
+        /// is responsible for setting the MPSCNNKernel.offset and
+        /// the size of the image produced, and sometimes will also
+        /// configure .sourceFeatureChannelOffset, .sourceFeatureChannelMaxCount,
+        /// and .edgeMode.  It is permitted to set any other filter properties
+        /// as needed using a custom padding policy. The default padding
+        /// policy varies per filter to conform to consensus expectation for
+        /// the behavior of that filter.  In some cases, pre-made padding
+        /// policies are provided to match the behavior of common neural
+        /// networking frameworks with particularly complex or unexpected
+        /// behavior for specific nodes. See MPSNNDefaultPadding class methods
+        /// in MPSNeuralNetworkTypes.h for more.
+        ///
+        /// BUG: MPS doesn't provide a good way to reset the MPSKernel properties
+        /// in the context of a MPSNNGraph after the kernel is finished encoding.
+        /// These values carry on to the next time the graph is used. Consequently,
+        /// if your custom padding policy modifies the property as a function of the
+        /// previous value, e.g.:
+        ///
+        /// kernel.someProperty += 2;
+        ///
+        /// then the second time the graph runs, the property may have an inconsistent
+        /// value, leading to unexpected behavior. The default padding computation
+        /// runs before the custom padding method to provide it with a sense of
+        /// what is expected for the default configuration and will reinitialize the value
+        /// in the case of the .offset. However, that computation usually doesn't reset
+        /// other properties. In such cases, the custom padding policy may need to keep
+        /// a record of the original value to enable consistent behavior.
         #[method_id(@__retain_semantics Other paddingPolicy)]
         pub unsafe fn paddingPolicy(&self) -> Retained<ProtocolObject<dyn MPSNNPadding>>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Setter for [`paddingPolicy`][Self::paddingPolicy].
         #[method(setPaddingPolicy:)]
         pub unsafe fn setPaddingPolicy(&self, padding_policy: &ProtocolObject<dyn MPSNNPadding>);
 
+        /// A string to help identify this object.
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
+        /// Return the gradient (backwards) version of this filter.
+        ///
+        /// The backwards training version of the filter will be returned.
+        /// The non-gradient image and state arguments for the filter are automatically
+        /// obtained from the target.
+        ///
+        /// Parameter `gradientImage`: The gradient images corresponding with the resultImage
+        /// of the target
         #[method_id(@__retain_semantics Other gradientFilterWithSource:)]
         pub unsafe fn gradientFilterWithSource(
             &self,
             gradient_image: &MPSNNImageNode,
         ) -> Retained<MPSNNGradientFilterNode>;
 
+        /// Return the gradient (backwards) version of this filter.
+        ///
+        /// The backwards training version of the filter will be returned.
+        /// The non-gradient image and state arguments for the filter are automatically
+        /// obtained from the target.
+        ///
+        /// Parameter `gradientImages`: The gradient images corresponding with the resultImage
+        /// of the target
         #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
             gradient_images: &NSArray<MPSNNImageNode>,
         ) -> Retained<MPSNNGradientFilterNode>;
 
+        /// Return multiple gradient versions of the filter
+        ///
+        /// MPSNNFilters that consume multiple inputs generally result in
+        /// multiple conjugate filters for the gradient computation at
+        /// the end of training. For example, a single concatenation operation
+        /// that concatenates multple images will result in an array of slice
+        /// operators that carve out subsections of the input gradient image.
         #[method_id(@__retain_semantics Other gradientFiltersWithSources:)]
         pub unsafe fn gradientFiltersWithSources(
             &self,
             gradient_images: &NSArray<MPSNNImageNode>,
         ) -> Retained<NSArray<MPSNNGradientFilterNode>>;
 
+        /// Return multiple gradient versions of the filter
+        ///
+        /// MPSNNFilters that consume multiple inputs generally result in
+        /// multiple conjugate filters for the gradient computation at
+        /// the end of training. For example, a single concatenation operation
+        /// that concatenates multple images will result in an array of slice
+        /// operators that carve out subsections of the input gradient image.
         #[method_id(@__retain_semantics Other gradientFiltersWithSource:)]
         pub unsafe fn gradientFiltersWithSource(
             &self,
@@ -406,6 +703,44 @@ extern_methods!(
         ) -> Retained<NSArray<MPSNNGradientFilterNode>>;
 
         #[cfg(feature = "block2")]
+        /// Build training graph from inference graph
+        ///
+        /// This method will iteratively build the training portion of a graph based
+        /// on an inference graph. Self should be the last node in the
+        /// inference graph. It is typically a loss layer, but can be anything.
+        /// Typically, the "inference graph" used here is the desired inference
+        /// graph with a dropout node and a loss layer node appended.
+        ///
+        /// The nodes that are created will have default properties. In certain cases,
+        /// these may not be appropriate (e.g. if you want to do CPU based updates
+        /// of convolution weights instead of default GPU updates.) In such cases, your
+        /// application should use the nodeHandler to configure the new nodes as they are
+        /// created.
+        ///
+        /// BUG: This method can not follow links to regions of the graph that are
+        /// connected to the rest of the graph solely via MPSNNStateNodes. A gradient
+        /// image input is required to construct a MPSNNGradientFilterNode from a
+        /// inference filter node.
+        ///
+        ///
+        /// Parameter `gradientImage`: The input gradient image for the first gradient
+        /// node in the training section of the graph. If nil,
+        /// self.resultImage is used. This results in a standard monolithic
+        /// training graph. If the graph is instead divided into multiple
+        /// subgraphs (potentially to allow for your custom code to appear
+        /// inbetween MPSNNGraph segments) a new MPSImageNode*
+        /// may be substituted.
+        ///
+        /// Parameter `nodeHandler`: An optional block to allow for customization of gradient
+        /// nodes and intermediate images as the graph is constructed.
+        /// It may also be used to prune braches of the developing
+        /// training graph. If nil, the default handler is used. It builds
+        /// the full graph, and assigns any inferenceNodeSources[i].handle
+        /// to their gradient counterparts.
+        ///
+        /// Returns: The list of new MPSNNFilterNode training graph termini. These MPSNNFilterNodes
+        /// are not necessarily all MPSNNGradientFilterNodes. To build a full list of nodes
+        /// created, use a custom nodeHandler. If no nodes are created nil is returned.
         #[method_id(@__retain_semantics Other trainingGraphWithSourceGradient:nodeHandler:)]
         pub unsafe fn trainingGraphWithSourceGradient_nodeHandler(
             &self,
@@ -424,7 +759,20 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngradientfilternode?language=objc)
+    /// For each MPSNNFilterNode, there is a corresponding MPSNNGradientFilterNode
+    /// used for training that back propagates image gradients to refine the
+    /// various parameters in each node. Generally, it takes as input a gradient
+    /// corresponding to the result image from the MPSNNFilterNode and returns
+    /// a gradient image corresponding to the source image of the MPSNNFilterNode.
+    /// In addition, there is generally a MPSNNState produced by the MPSNNFilterNode
+    /// that is consumed by the MPSNNGradientNode and the MPSNNGradientNode generally
+    /// needs to look at the MPSNNFilterNode source image.
+    ///
+    /// If you have a simple method to traverse your inference graph backwards, then
+    /// -[MPSNNFilterNode gradientFilterWithSource:] is a simple way to construct
+    /// these.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngradientfilternode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNGradientFilterNode;
@@ -477,7 +825,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutionnode?language=objc)
+    /// A MPSNNFilterNode representing a MPSCNNConvolution kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutionnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNConvolutionNode;
@@ -490,18 +840,24 @@ unsafe impl NSObjectProtocol for MPSCNNConvolutionNode {}
 extern_methods!(
     unsafe impl MPSCNNConvolutionNode {
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// The training style of the forward node will be propagated to gradient nodes made from it
         #[method(trainingStyle)]
         pub unsafe fn trainingStyle(&self) -> MPSNNTrainingStyle;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Setter for [`trainingStyle`][Self::trainingStyle].
         #[method(setTrainingStyle:)]
         pub unsafe fn setTrainingStyle(&self, training_style: MPSNNTrainingStyle);
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Set the floating-point precision used by the convolution accumulator
+        ///
+        /// Default:  MPSNNConvolutionAccumulatorPrecisionOptionFloat
         #[method(accumulatorPrecision)]
         pub unsafe fn accumulatorPrecision(&self) -> MPSNNConvolutionAccumulatorPrecisionOption;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Setter for [`accumulatorPrecision`][Self::accumulatorPrecision].
         #[method(setAccumulatorPrecision:)]
         pub unsafe fn setAccumulatorPrecision(
             &self,
@@ -509,6 +865,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Init an autoreleased not representing a MPSCNNConvolution kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases. If it is used for training, it may not
+        /// have a neuron embedded in the convolution descriptor.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:weights:)]
         pub unsafe fn nodeWithSource_weights(
             source_node: &MPSNNImageNode,
@@ -516,6 +882,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Init a node representing a MPSCNNConvolution kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases. If it is used for training, it may not
+        /// have a neuron embedded in the convolution descriptor.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
         #[method_id(@__retain_semantics Init initWithSource:weights:)]
         pub unsafe fn initWithSource_weights(
             this: Allocated<Self>,
@@ -523,6 +899,12 @@ extern_methods!(
             weights: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
         ) -> Retained<Self>;
 
+        /// A node to represent a MPSCNNConvolutionGradientState object
+        ///
+        /// Use this if the convolution is mirrored by a convolution transpose node
+        /// later on in the graph to make sure that the size of the image returned
+        /// from the convolution transpose matches the size of the image passed in
+        /// to this node.
         #[method_id(@__retain_semantics Other convolutionGradientState)]
         pub unsafe fn convolutionGradientState(
             &self,
@@ -547,7 +929,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnfullyconnectednode?language=objc)
+    /// A MPSNNFilterNode representing a MPSCNNFullyConnected kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnfullyconnectednode?language=objc)
     #[unsafe(super(MPSCNNConvolutionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNFullyConnectedNode;
@@ -560,6 +944,15 @@ unsafe impl NSObjectProtocol for MPSCNNFullyConnectedNode {}
 extern_methods!(
     unsafe impl MPSCNNFullyConnectedNode {
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Init an autoreleased not representing a MPSCNNFullyConnected kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:weights:)]
         pub unsafe fn nodeWithSource_weights(
             source_node: &MPSNNImageNode,
@@ -567,6 +960,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Init a node representing a MPSCNNFullyConnected kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNFullyConnected kernel.
         #[method_id(@__retain_semantics Init initWithSource:weights:)]
         pub unsafe fn initWithSource_weights(
             this: Allocated<Self>,
@@ -593,7 +995,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutionnode?language=objc)
+    /// A MPSNNFilterNode representing a MPSCNNBinaryConvolution kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutionnode?language=objc)
     #[unsafe(super(MPSCNNConvolutionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNBinaryConvolutionNode;
@@ -606,6 +1010,21 @@ unsafe impl NSObjectProtocol for MPSCNNBinaryConvolutionNode {}
 extern_methods!(
     unsafe impl MPSCNNBinaryConvolutionNode {
         #[cfg(all(feature = "MPSCNNConvolution", feature = "MPSNeuralNetworkTypes"))]
+        /// Init an autoreleased node representing a MPSCNNBinaryConvolution kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases.
+        ///
+        /// Parameter `scaleValue`: A floating point value used to scale the entire convolution.
+        ///
+        /// Parameter `type`: What kind of binarization strategy is to be used.
+        ///
+        /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNBinaryConvolution kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:weights:scaleValue:type:flags:)]
         pub unsafe fn nodeWithSource_weights_scaleValue_type_flags(
             source_node: &MPSNNImageNode,
@@ -616,6 +1035,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MPSCNNConvolution", feature = "MPSNeuralNetworkTypes"))]
+        /// Init a node representing a MPSCNNBinaryConvolution kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases.
+        ///
+        /// Parameter `scaleValue`: A floating point value used to scale the entire convolution.
+        ///
+        /// Parameter `type`: What kind of binarization strategy is to be used.
+        ///
+        /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNBinaryConvolution kernel.
         #[method_id(@__retain_semantics Init initWithSource:weights:scaleValue:type:flags:)]
         pub unsafe fn initWithSource_weights_scaleValue_type_flags(
             this: Allocated<Self>,
@@ -627,6 +1061,31 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MPSCNNConvolution", feature = "MPSNeuralNetworkTypes"))]
+        /// Init an autoreleased node representing a MPSCNNBinaryConvolution kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases.
+        ///
+        /// Parameter `outputBiasTerms`: A pointer to bias terms to be applied to the convolution output.
+        /// See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `outputScaleTerms`: A pointer to scale terms to be applied to binary convolution
+        /// results per output feature channel. See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `inputBiasTerms`: A pointer to offset terms to be applied to the input before convolution and
+        /// before input scaling. See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `inputScaleTerms`: A pointer to scale terms to be applied to the input before convolution,
+        /// but after input biasing. See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `type`: What kind of binarization strategy is to be used.
+        ///
+        /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNBinaryConvolution kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:)]
         pub unsafe fn nodeWithSource_weights_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(
             source_node: &MPSNNImageNode,
@@ -640,6 +1099,31 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MPSCNNConvolution", feature = "MPSNeuralNetworkTypes"))]
+        /// Init a node representing a MPSCNNBinaryConvolution kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases.
+        ///
+        /// Parameter `outputBiasTerms`: A pointer to bias terms to be applied to the convolution output.
+        /// See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `outputScaleTerms`: A pointer to scale terms to be applied to binary convolution
+        /// results per output feature channel. See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `inputBiasTerms`: A pointer to offset terms to be applied to the input before convolution and
+        /// before input scaling. See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `inputScaleTerms`: A pointer to scale terms to be applied to the input before convolution,
+        /// but after input biasing. See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `type`: What kind of binarization strategy is to be used.
+        ///
+        /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNBinaryConvolution kernel.
         #[method_id(@__retain_semantics Init initWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:)]
         pub unsafe fn initWithSource_weights_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(
             this: Allocated<Self>,
@@ -653,6 +1137,7 @@ extern_methods!(
             flags: MPSCNNBinaryConvolutionFlags,
         ) -> Retained<Self>;
 
+        /// unavailable
         #[method_id(@__retain_semantics Other convolutionGradientState)]
         pub unsafe fn convolutionGradientState(
             &self,
@@ -664,6 +1149,16 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNConvolutionNode`
     unsafe impl MPSCNNBinaryConvolutionNode {
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Init an autoreleased not representing a MPSCNNConvolution kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases. If it is used for training, it may not
+        /// have a neuron embedded in the convolution descriptor.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:weights:)]
         pub unsafe fn nodeWithSource_weights(
             source_node: &MPSNNImageNode,
@@ -671,6 +1166,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Init a node representing a MPSCNNConvolution kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases. If it is used for training, it may not
+        /// have a neuron embedded in the convolution descriptor.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
         #[method_id(@__retain_semantics Init initWithSource:weights:)]
         pub unsafe fn initWithSource_weights(
             this: Allocated<Self>,
@@ -697,7 +1202,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryfullyconnectednode?language=objc)
+    /// A MPSNNFilterNode representing a MPSCNNBinaryFullyConnected kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryfullyconnectednode?language=objc)
     #[unsafe(super(
         MPSCNNBinaryConvolutionNode,
         MPSCNNConvolutionNode,
@@ -715,6 +1222,21 @@ unsafe impl NSObjectProtocol for MPSCNNBinaryFullyConnectedNode {}
 extern_methods!(
     unsafe impl MPSCNNBinaryFullyConnectedNode {
         #[cfg(all(feature = "MPSCNNConvolution", feature = "MPSNeuralNetworkTypes"))]
+        /// Init an autoreleased node representing a MPSCNNBinaryFullyConnected kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases.
+        ///
+        /// Parameter `scaleValue`: A floating point value used to scale the entire convolution.
+        ///
+        /// Parameter `type`: What kind of binarization strategy is to be used.
+        ///
+        /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNBinaryFullyConnected kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:weights:scaleValue:type:flags:)]
         pub unsafe fn nodeWithSource_weights_scaleValue_type_flags(
             source_node: &MPSNNImageNode,
@@ -725,6 +1247,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MPSCNNConvolution", feature = "MPSNeuralNetworkTypes"))]
+        /// Init a node representing a MPSCNNBinaryFullyConnected kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases.
+        ///
+        /// Parameter `scaleValue`: A floating point value used to scale the entire convolution.
+        ///
+        /// Parameter `type`: What kind of binarization strategy is to be used.
+        ///
+        /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNBinaryFullyConnected kernel.
         #[method_id(@__retain_semantics Init initWithSource:weights:scaleValue:type:flags:)]
         pub unsafe fn initWithSource_weights_scaleValue_type_flags(
             this: Allocated<Self>,
@@ -736,6 +1273,31 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MPSCNNConvolution", feature = "MPSNeuralNetworkTypes"))]
+        /// Init an autoreleased node representing a MPSCNNBinaryFullyConnected kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases.
+        ///
+        /// Parameter `outputBiasTerms`: A pointer to bias terms to be applied to the convolution output.
+        /// See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `outputScaleTerms`: A pointer to scale terms to be applied to binary convolution
+        /// results per output feature channel. See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `inputBiasTerms`: A pointer to offset terms to be applied to the input before convolution and
+        /// before input scaling. See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `inputScaleTerms`: A pointer to scale terms to be applied to the input before convolution,
+        /// but after input biasing. See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `type`: What kind of binarization strategy is to be used.
+        ///
+        /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNBinaryFullyConnected kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:)]
         pub unsafe fn nodeWithSource_weights_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(
             source_node: &MPSNNImageNode,
@@ -749,6 +1311,31 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MPSCNNConvolution", feature = "MPSNeuralNetworkTypes"))]
+        /// Init a node representing a MPSCNNBinaryFullyConnected kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases.
+        ///
+        /// Parameter `outputBiasTerms`: A pointer to bias terms to be applied to the convolution output.
+        /// See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `outputScaleTerms`: A pointer to scale terms to be applied to binary convolution
+        /// results per output feature channel. See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `inputBiasTerms`: A pointer to offset terms to be applied to the input before convolution and
+        /// before input scaling. See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `inputScaleTerms`: A pointer to scale terms to be applied to the input before convolution,
+        /// but after input biasing. See MPSCNNBinaryConvolution for more details.
+        ///
+        /// Parameter `type`: What kind of binarization strategy is to be used.
+        ///
+        /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNBinaryFullyConnected kernel.
         #[method_id(@__retain_semantics Init initWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:)]
         pub unsafe fn initWithSource_weights_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(
             this: Allocated<Self>,
@@ -768,6 +1355,16 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNConvolutionNode`
     unsafe impl MPSCNNBinaryFullyConnectedNode {
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Init an autoreleased not representing a MPSCNNConvolution kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases. If it is used for training, it may not
+        /// have a neuron embedded in the convolution descriptor.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:weights:)]
         pub unsafe fn nodeWithSource_weights(
             source_node: &MPSNNImageNode,
@@ -775,6 +1372,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Init a node representing a MPSCNNConvolution kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases. If it is used for training, it may not
+        /// have a neuron embedded in the convolution descriptor.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
         #[method_id(@__retain_semantics Init initWithSource:weights:)]
         pub unsafe fn initWithSource_weights(
             this: Allocated<Self>,
@@ -801,7 +1408,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposenode?language=objc)
+    /// A MPSNNFilterNode representing a MPSCNNConvolutionTranspose kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposenode?language=objc)
     #[unsafe(super(MPSCNNConvolutionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNConvolutionTransposeNode;
@@ -814,6 +1423,21 @@ unsafe impl NSObjectProtocol for MPSCNNConvolutionTransposeNode {}
 extern_methods!(
     unsafe impl MPSCNNConvolutionTransposeNode {
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Init an autoreleased not representing a MPSCNNConvolutionTransposeNode kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `convolutionGradientState`: When the convolution transpose is used to 'undo' an earlier convolution
+        /// in the graph, it is generally desired that the output image be the same
+        /// size as the input image to the earlier convolution. You may optionally
+        /// specify this size identity by passing in the MPSNNConvolutionGradientStateNode
+        /// created by the convolution node here.
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNConvolutionTransposeNode kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:convolutionGradientState:weights:)]
         pub unsafe fn nodeWithSource_convolutionGradientState_weights(
             source_node: &MPSNNImageNode,
@@ -822,6 +1446,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Init a node representing a MPSCNNConvolutionTransposeNode kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `convolutionGradientState`: When the convolution transpose is used to 'undo' an earlier convolution
+        /// in the graph, it is generally desired that the output image be the same
+        /// size as the input image to the earlier convolution. You may optionally
+        /// specify this size identity by passing in the MPSCNNConvolutionGradientState node
+        /// here.
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNConvolutionTransposeNode kernel.
         #[method_id(@__retain_semantics Init initWithSource:convolutionGradientState:weights:)]
         pub unsafe fn initWithSource_convolutionGradientState_weights(
             this: Allocated<Self>,
@@ -830,6 +1469,7 @@ extern_methods!(
             weights: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
         ) -> Retained<Self>;
 
+        /// unavailable
         #[method_id(@__retain_semantics Other convolutionGradientState)]
         pub unsafe fn convolutionGradientState(
             &self,
@@ -841,6 +1481,16 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNConvolutionNode`
     unsafe impl MPSCNNConvolutionTransposeNode {
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Init an autoreleased not representing a MPSCNNConvolution kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases. If it is used for training, it may not
+        /// have a neuron embedded in the convolution descriptor.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:weights:)]
         pub unsafe fn nodeWithSource_weights(
             source_node: &MPSNNImageNode,
@@ -848,6 +1498,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Init a node representing a MPSCNNConvolution kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `weights`: A pointer to a valid object conforming to the MPSCNNConvolutionDataSource
+        /// protocol. This object is provided by you to encapsulate storage for
+        /// convolution weights and biases. If it is used for training, it may not
+        /// have a neuron embedded in the convolution descriptor.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
         #[method_id(@__retain_semantics Init initWithSource:weights:)]
         pub unsafe fn initWithSource_weights(
             this: Allocated<Self>,
@@ -887,6 +1547,21 @@ unsafe impl NSObjectProtocol for MPSCNNConvolutionGradientNode {}
 extern_methods!(
     unsafe impl MPSCNNConvolutionGradientNode {
         #[cfg(feature = "MPSCNNConvolution")]
+        /// A node to represent the gradient calculation for convolution training.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter. Often
+        /// that is a neuron gradient filter node.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward convolution node
+        ///
+        /// Parameter `gradientState`: The gradient state from the forward convolution
+        ///
+        /// Parameter `weights`: The data source from the forward convolution. It may not contain
+        /// an integrated neuron. Similary, any normalization should be
+        /// broken out into a separate node. Pass nil to use the weights
+        /// from the forward convolution pass.
+        ///
+        /// Returns: A MPSCNNConvolutionGradientNode
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_convolutionGradientState_weights(
             source_gradient: &MPSNNImageNode,
@@ -896,6 +1571,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// A node to represent the gradient calculation for convolution training.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter. Often
+        /// that is a neuron gradient filter node.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward convolution node
+        ///
+        /// Parameter `gradientState`: The gradient state from the forward convolution
+        ///
+        /// Parameter `weights`: The data source from the forward convolution. It may not contain
+        /// an integrated neuron. Similary, any normalization should be
+        /// broken out into a separate node. Pass nil to use the weights
+        /// from the forward convolution pass.
+        ///
+        /// Returns: A MPSCNNConvolutionGradientNode
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
         pub unsafe fn initWithSourceGradient_sourceImage_convolutionGradientState_weights(
             this: Allocated<Self>,
@@ -942,6 +1632,21 @@ unsafe impl NSObjectProtocol for MPSCNNFullyConnectedGradientNode {}
 extern_methods!(
     unsafe impl MPSCNNFullyConnectedGradientNode {
         #[cfg(feature = "MPSCNNConvolution")]
+        /// A node to represent the gradient calculation for fully connected training.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter. Often
+        /// that is a neuron gradient filter node.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward fully connected node
+        ///
+        /// Parameter `gradientState`: The gradient state from the forward fully connected
+        ///
+        /// Parameter `weights`: The data source from the forward fully connected. It may not contain
+        /// an integrated neuron. Similary, any normalization should be
+        /// broken out into a separate node. Pass nil to use the weights
+        /// from the forward fully connected pass.
+        ///
+        /// Returns: A MPSCNNFullyConnectedGradientNode
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_convolutionGradientState_weights(
             source_gradient: &MPSNNImageNode,
@@ -951,6 +1656,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// A node to represent the gradient calculation for fully connectd training.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter. Often
+        /// that is a neuron gradient filter node.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward fully connected node
+        ///
+        /// Parameter `gradientState`: The gradient state from the forward fully connected
+        ///
+        /// Parameter `weights`: The data source from the forward fully connected. It may not contain
+        /// an integrated neuron. Similary, any normalization should be
+        /// broken out into a separate node. Pass nil to use the weights
+        /// from the forward convolution pass.
+        ///
+        /// Returns: A MPSCNNFullyConnectedGradientNode
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
         pub unsafe fn initWithSourceGradient_sourceImage_convolutionGradientState_weights(
             this: Allocated<Self>,
@@ -997,6 +1717,21 @@ unsafe impl NSObjectProtocol for MPSCNNConvolutionTransposeGradientNode {}
 extern_methods!(
     unsafe impl MPSCNNConvolutionTransposeGradientNode {
         #[cfg(feature = "MPSCNNConvolution")]
+        /// A node to represent the gradient calculation for convolution transpose training.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter. Often
+        /// that is a neuron gradient filter node.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward convolution transpose node
+        ///
+        /// Parameter `gradientState`: The gradient state from the forward convolution transpose
+        ///
+        /// Parameter `weights`: The data source from the forward convolution transpose. It may not contain
+        /// an integrated neuron. Similary, any normalization should be
+        /// broken out into a separate node. Pass nil to use the weights
+        /// from the forward convolution transpose pass.
+        ///
+        /// Returns: A MPSCNNConvolutionTransposeGradientNode
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:convolutionTransposeGradientState:weights:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_convolutionTransposeGradientState_weights(
             source_gradient: &MPSNNImageNode,
@@ -1006,6 +1741,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// A node to represent the gradient calculation for convolution transpose training.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter. Often
+        /// that is a neuron gradient filter node.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward convolution transpose node
+        ///
+        /// Parameter `gradientState`: The gradient state from the forward convolution transpose
+        ///
+        /// Parameter `weights`: The data source from the forward convolution transpose. It may not contain
+        /// an integrated neuron. Similary, any normalization should be
+        /// broken out into a separate node. Pass nil to use the weights
+        /// from the forward convolution transpose pass.
+        ///
+        /// Returns: A MPSCNNConvolutionTransposeGradientNode
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:convolutionTransposeGradientState:weights:)]
         pub unsafe fn initWithSourceGradient_sourceImage_convolutionTransposeGradientState_weights(
             this: Allocated<Self>,
@@ -1021,6 +1771,21 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNConvolutionGradientNode`
     unsafe impl MPSCNNConvolutionTransposeGradientNode {
         #[cfg(feature = "MPSCNNConvolution")]
+        /// A node to represent the gradient calculation for convolution training.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter. Often
+        /// that is a neuron gradient filter node.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward convolution node
+        ///
+        /// Parameter `gradientState`: The gradient state from the forward convolution
+        ///
+        /// Parameter `weights`: The data source from the forward convolution. It may not contain
+        /// an integrated neuron. Similary, any normalization should be
+        /// broken out into a separate node. Pass nil to use the weights
+        /// from the forward convolution pass.
+        ///
+        /// Returns: A MPSCNNConvolutionGradientNode
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_convolutionGradientState_weights(
             source_gradient: &MPSNNImageNode,
@@ -1030,6 +1795,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// A node to represent the gradient calculation for convolution training.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter. Often
+        /// that is a neuron gradient filter node.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward convolution node
+        ///
+        /// Parameter `gradientState`: The gradient state from the forward convolution
+        ///
+        /// Parameter `weights`: The data source from the forward convolution. It may not contain
+        /// an integrated neuron. Similary, any normalization should be
+        /// broken out into a separate node. Pass nil to use the weights
+        /// from the forward convolution pass.
+        ///
+        /// Returns: A MPSCNNConvolutionGradientNode
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
         pub unsafe fn initWithSourceGradient_sourceImage_convolutionGradientState_weights(
             this: Allocated<Self>,
@@ -1058,7 +1838,24 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode?language=objc)
+    /// virtual base class for MPSCNNNeuron nodes
+    ///
+    /// This is a virtual base class only. Please create a
+    /// subclass using +newNeuronNodeWithSouce:descriptor or
+    /// by making one of the subclasses directly. Better yet, skip
+    /// the node entirely and specify the neuron function directly in
+    /// your MPSCNNConvolutionDataSource.descriptor.neuronDescriptor.
+    ///
+    /// MPSCNNNeuronNodes are provided as a representational convenience.
+    /// However, you are usually better off incorporating your neuron
+    /// into the MPSCNNConvolutionDataSource when possible. The MPSNNGraph
+    /// will attempt to optimize away the neuron pass by fusing it with a
+    /// preceeding convolution, but it might be prevented from doing so
+    /// if the neuron pass has a custom padding method or more than one
+    /// node reads from the convolution result. The graph -debugDescription
+    /// should reveal what happened.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronNode;
@@ -1069,18 +1866,22 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronNode {}
 extern_methods!(
     unsafe impl MPSCNNNeuronNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// filter parameter a
         #[method(a)]
         pub unsafe fn a(&self) -> c_float;
 
+        /// filter parameter b
         #[method(b)]
         pub unsafe fn b(&self) -> c_float;
 
+        /// filter parameter c
         #[method(c)]
         pub unsafe fn c(&self) -> c_float;
 
@@ -1098,7 +1899,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronabsolutenode?language=objc)
+    /// A node representing a MPSCNNNeuronAbsolute kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = fabs(x)
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronabsolutenode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronAbsoluteNode;
@@ -1108,9 +1917,15 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronAbsoluteNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronAbsoluteNode {
+        /// Create an autoreleased node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -1123,6 +1938,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronAbsoluteNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1143,7 +1959,16 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronelunode?language=objc)
+    /// A node representing a MPSCNNNeuronELU kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = a * exp(x) - 1, x <  0
+    ///              x             , x >= 0
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronelunode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronELUNode;
@@ -1156,9 +1981,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nodeWithSource:a:)]
         pub unsafe fn nodeWithSource_a(source_node: &MPSNNImageNode, a: c_float) -> Retained<Self>;
 
+        /// Create an autoreleased node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -1178,6 +2009,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronELUNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1198,7 +2030,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelunnode?language=objc)
+    /// A node representing a MPSCNNNeuronReLUN kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = min((x >= 0 ? x : a * x), b)
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelunnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronReLUNNode;
@@ -1223,9 +2063,15 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
+        /// Create an autoreleased node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Create an autoreleased node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -1238,6 +2084,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronReLUNNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1258,7 +2105,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronlinearnode?language=objc)
+    /// A node representing a MPSCNNNeuronLinear kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = a * x + b
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronlinearnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronLinearNode;
@@ -1275,6 +2130,15 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNNeuronLinear kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `a`: See discussion above.
+        ///
+        /// Parameter `b`: See discussion above.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNNeuronLinear kernel.
         #[method_id(@__retain_semantics Init initWithSource:a:b:)]
         pub unsafe fn initWithSource_a_b(
             this: Allocated<Self>,
@@ -1283,9 +2147,15 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
+        /// Create an autoreleased node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -1298,6 +2168,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronLinearNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1318,7 +2189,16 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelunode?language=objc)
+    /// A node representing a MPSCNNNeuronReLU kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = x            if x >= 0
+    ///            = a * x        if x < 0
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelunode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronReLUNode;
@@ -1331,15 +2211,24 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nodeWithSource:a:)]
         pub unsafe fn nodeWithSource_a(source_node: &MPSNNImageNode, a: c_float) -> Retained<Self>;
 
+        /// Create an autoreleased node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
         ) -> Retained<Self>;
 
+        /// Init a node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Init initWithSource:a:)]
         pub unsafe fn initWithSource_a(
             this: Allocated<Self>,
@@ -1353,6 +2242,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronReLUNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1373,7 +2263,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsigmoidnode?language=objc)
+    /// A node representing a MPSCNNNeuronSigmoid kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = 1 / (1 + e^-x)
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsigmoidnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronSigmoidNode;
@@ -1383,9 +2281,15 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronSigmoidNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronSigmoidNode {
+        /// Create an autoreleased node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -1398,6 +2302,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronSigmoidNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1418,7 +2323,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronhardsigmoidnode?language=objc)
+    /// A node representing a MPSCNNNeuronHardSigmoid kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = clamp((a * x) + b, 0, 1)
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronhardsigmoidnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronHardSigmoidNode;
@@ -1435,6 +2348,15 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNNeuronHardSigmoid kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `a`: See discussion above.
+        ///
+        /// Parameter `b`: See discussion above.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNNeuronHardSigmoid kernel.
         #[method_id(@__retain_semantics Init initWithSource:a:b:)]
         pub unsafe fn initWithSource_a_b(
             this: Allocated<Self>,
@@ -1443,9 +2365,15 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
+        /// Create an autoreleased node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -1458,6 +2386,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronHardSigmoidNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1478,7 +2407,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsoftplusnode?language=objc)
+    /// A node representing a MPSCNNNeuronSoftPlus kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = a * log(1 + e^(b * x))
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsoftplusnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronSoftPlusNode;
@@ -1495,6 +2432,15 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNNeuronSoftPlus kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `a`: See discussion above.
+        ///
+        /// Parameter `b`: See discussion above.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNNeuronSoftPlus kernel.
         #[method_id(@__retain_semantics Init initWithSource:a:b:)]
         pub unsafe fn initWithSource_a_b(
             this: Allocated<Self>,
@@ -1503,9 +2449,15 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
+        /// Create an autoreleased node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -1518,6 +2470,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronSoftPlusNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1538,7 +2491,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsoftsignnode?language=objc)
+    /// A node representing a MPSCNNNeuronSoftSign kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = x / (1 + abs(x))
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsoftsignnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronSoftSignNode;
@@ -1548,9 +2509,15 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronSoftSignNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronSoftSignNode {
+        /// Create an autoreleased node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -1563,6 +2530,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronSoftSignNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1583,7 +2551,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontanhnode?language=objc)
+    /// A node representing a MPSCNNNeuronTanH kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = a * tanh(b * x)
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontanhnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronTanHNode;
@@ -1600,6 +2576,22 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNNeuronTanH kernel
+        ///
+        /// For each pixel, applies the following function:
+        ///
+        /// ```text
+        ///       f(x) = a * tanh(b * x)
+        /// ```
+        ///
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `a`: See discussion above.
+        ///
+        /// Parameter `b`: See discussion above.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNNeuronTanH kernel.
         #[method_id(@__retain_semantics Init initWithSource:a:b:)]
         pub unsafe fn initWithSource_a_b(
             this: Allocated<Self>,
@@ -1608,9 +2600,15 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
+        /// Create an autoreleased node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node with default values for parameters a
+        /// &
+        /// b
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -1623,6 +2621,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronTanHNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1643,7 +2642,18 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronprelunode?language=objc)
+    /// A ReLU node with parameter a provided independently for each feature channel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = x                if x >= 0
+    ///            = aData[i] * x     if x < 0,  i is the index of the feature channel
+    ///   @param      sourceNode              The MPSNNImageNode representing the source MPSImage for the filter
+    ///   @param      aData                   An array of single precision floating-point alpha values to use
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronprelunode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronPReLUNode;
@@ -1659,6 +2669,21 @@ extern_methods!(
             a_data: &NSData,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNNeuronTanH kernel
+        ///
+        /// For each pixel, applies the following function:
+        ///
+        /// ```text
+        ///       f(x) = x                if x >= 0
+        ///            = aData[i] * x     if x < 0,  i is the index of the feature channel
+        /// ```
+        ///
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `aData`: An array of single precision floating-point alpha values to use
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNNeuronTanH kernel.
         #[method_id(@__retain_semantics Init initWithSource:aData:)]
         pub unsafe fn initWithSource_aData(
             this: Allocated<Self>,
@@ -1681,6 +2706,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronPReLUNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1701,7 +2727,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronpowernode?language=objc)
+    /// A node representing a MPSCNNNeuronPower kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = (a * x + b) ^ c
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronpowernode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronPowerNode;
@@ -1719,6 +2753,24 @@ extern_methods!(
             c: c_float,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNNeuronPower kernel
+        ///
+        /// For each pixel, applies the following function:
+        ///
+        /// ```text
+        ///       f(x) = (a * x + b) ^ c
+        /// ```
+        ///
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `a`: See discussion above.
+        ///
+        /// Parameter `b`: See discussion above.
+        ///
+        /// Parameter `c`: See discussion above.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNNeuronPower kernel.
         #[method_id(@__retain_semantics Init initWithSource:a:b:c:)]
         pub unsafe fn initWithSource_a_b_c(
             this: Allocated<Self>,
@@ -1728,9 +2780,11 @@ extern_methods!(
             c: c_float,
         ) -> Retained<Self>;
 
+        /// Create an autoreleased node with default values for parameters a, b, and c
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node with default values for parameters a, b, and c
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -1743,6 +2797,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronPowerNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1763,7 +2818,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronexponentialnode?language=objc)
+    /// A node representing a MPSCNNNeuronExponential kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = c ^ (a * x + b)
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronexponentialnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronExponentialNode;
@@ -1781,6 +2844,24 @@ extern_methods!(
             c: c_float,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNNeuronExponential kernel
+        ///
+        /// For each pixel, applies the following function:
+        ///
+        /// ```text
+        ///       f(x) = c ^ (a * x + b)
+        /// ```
+        ///
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `a`: See discussion above.
+        ///
+        /// Parameter `b`: See discussion above.
+        ///
+        /// Parameter `c`: See discussion above.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNNeuronExponential kernel.
         #[method_id(@__retain_semantics Init initWithSource:a:b:c:)]
         pub unsafe fn initWithSource_a_b_c(
             this: Allocated<Self>,
@@ -1790,9 +2871,11 @@ extern_methods!(
             c: c_float,
         ) -> Retained<Self>;
 
+        /// Create an autoreleased node with default values for parameters a, b, and c
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node with default values for parameters a, b, and c
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -1805,6 +2888,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronExponentialNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1825,7 +2909,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronlogarithmnode?language=objc)
+    /// A node representing a MPSCNNNeuronLogarithm kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// ```text
+    ///       f(x) = log_c(a * x + b)
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronlogarithmnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronLogarithmNode;
@@ -1843,6 +2935,24 @@ extern_methods!(
             c: c_float,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNNeuronLogarithm kernel
+        ///
+        /// For each pixel, applies the following function:
+        ///
+        /// ```text
+        ///       f(x) = log_c(a * x + b)
+        /// ```
+        ///
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `a`: See discussion above.
+        ///
+        /// Parameter `b`: See discussion above.
+        ///
+        /// Parameter `c`: See discussion above.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNNeuronLogarithm kernel.
         #[method_id(@__retain_semantics Init initWithSource:a:b:c:)]
         pub unsafe fn initWithSource_a_b_c(
             this: Allocated<Self>,
@@ -1852,9 +2962,11 @@ extern_methods!(
             c: c_float,
         ) -> Retained<Self>;
 
+        /// Create an autoreleased node with default values for parameters a, b, and c
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node with default values for parameters a, b, and c
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -1867,6 +2979,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronLogarithmNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1887,7 +3000,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurongelunode?language=objc)
+    /// A node representing a MPSCNNNeuronGeLU kernel
+    ///
+    /// For each pixel, applies the following function:
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurongelunode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronGeLUNode;
@@ -1897,12 +3014,20 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronGeLUNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronGeLUNode {
+        /// Init a node representing a MPSCNNNeuronGeLU kernel
+        ///
+        /// For each pixel, applies the following function:
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNNeuronLogarithm kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
         ) -> Retained<Self>;
 
+        /// Create an autoreleased node
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
     }
@@ -1912,6 +3037,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuronNode`
     unsafe impl MPSCNNNeuronGeLUNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
         #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
@@ -1932,7 +3058,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurongradientnode?language=objc)
+    /// A node representing a MPSCNNNeuronGradient
+    ///
+    /// We use one generic neuron gradient node
+    /// instead of having dozens of subclasses.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurongradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronGradientNode;
@@ -1943,6 +3074,10 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronGradientNode {}
 extern_methods!(
     unsafe impl MPSCNNNeuronGradientNode {
         #[cfg(feature = "MPSCNNNeuron")]
+        /// create a new neuron gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodeWithSources:]
+        /// for an easier way to do this
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:descriptor:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_descriptor(
             source_gradient: &MPSNNImageNode,
@@ -1952,6 +3087,10 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNNeuron")]
+        /// create a new neuron gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodeWithSources:]
+        /// for an easier way to do this
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:descriptor:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_descriptor(
             this: Allocated<Self>,
@@ -1962,6 +3101,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNNeuron")]
+        /// The neuron descriptor
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MPSNNNeuronDescriptor>;
 
@@ -1979,7 +3119,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnunaryreductionnode?language=objc)
+    /// A node for a unary MPSNNReduce node.
+    ///
+    /// This is an abstract base class that does not correspond with any
+    /// particular MPSCNNKernel. Please make one of the MPSNNReduction
+    /// subclasses instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnunaryreductionnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNUnaryReductionNode;
@@ -1989,15 +3135,27 @@ unsafe impl NSObjectProtocol for MPSNNUnaryReductionNode {}
 
 extern_methods!(
     unsafe impl MPSNNUnaryReductionNode {
+        /// The clip rectangle to apply to the source image.
         #[method(clipRectSource)]
         pub unsafe fn clipRectSource(&self) -> MTLRegion;
 
+        /// Setter for [`clipRectSource`][Self::clipRectSource].
         #[method(setClipRectSource:)]
         pub unsafe fn setClipRectSource(&self, clip_rect_source: MTLRegion);
 
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2038,9 +3196,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionRowMinNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2081,9 +3249,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionColumnMinNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2124,9 +3302,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionFeatureChannelsMinNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2167,9 +3355,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionFeatureChannelsArgumentMinNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2210,9 +3408,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionRowMaxNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2253,9 +3461,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionColumnMaxNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2296,9 +3514,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionFeatureChannelsMaxNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2339,9 +3567,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionFeatureChannelsArgumentMaxNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2382,9 +3620,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionRowMeanNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2425,9 +3673,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionColumnMeanNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2468,9 +3726,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionFeatureChannelsMeanNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2511,9 +3779,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionSpatialMeanNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2554,9 +3832,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionRowSumNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2597,9 +3885,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionColumnSumNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2635,9 +3933,11 @@ unsafe impl NSObjectProtocol for MPSNNReductionFeatureChannelsSumNode {}
 
 extern_methods!(
     unsafe impl MPSNNReductionFeatureChannelsSumNode {
+        /// A scale factor to apply to each feature channel sum.
         #[method(weight)]
         pub unsafe fn weight(&self) -> c_float;
 
+        /// Setter for [`weight`][Self::weight].
         #[method(setWeight:)]
         pub unsafe fn setWeight(&self, weight: c_float);
     }
@@ -2646,9 +3946,19 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNUnaryReductionNode`
     unsafe impl MPSNNReductionFeatureChannelsSumNode {
+        /// Create an autoreleased node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing an MPS reduction kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -2674,7 +3984,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingnode?language=objc)
+    /// A node for a MPSCNNPooling kernel
+    ///
+    /// This is an abstract base class that does not correspond with any
+    /// particular MPSCNNKernel. Please make one of the MPSCNNPooling
+    /// subclasses instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNPoolingNode;
@@ -2696,12 +4012,28 @@ extern_methods!(
         #[method(strideInPixelsY)]
         pub unsafe fn strideInPixelsY(&self) -> NSUInteger;
 
+        /// Convenience initializer for MPSCNNPooling nodes with square non-overlapping kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:filterSize:)]
         pub unsafe fn nodeWithSource_filterSize(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNPooling nodes with square non-overlapping kernels and a different stride
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = size
+        ///
+        /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:filterSize:stride:)]
         pub unsafe fn nodeWithSource_filterSize_stride(
             source_node: &MPSNNImageNode,
@@ -2709,6 +4041,19 @@ extern_methods!(
             stride: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNPooling kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `kernelWidth`: The width of the max filter window
+        ///
+        /// Parameter `kernelHeight`: The height of the max filter window
+        ///
+        /// Parameter `strideInPixelsX`: The output stride (downsampling factor) in the x dimension.
+        ///
+        /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
         pub unsafe fn initWithSource_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -2719,6 +4064,15 @@ extern_methods!(
             stride_in_pixels_y: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNPooling nodes with square kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = size
+        ///
+        /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:filterSize:stride:)]
         pub unsafe fn initWithSource_filterSize_stride(
             this: Allocated<Self>,
@@ -2727,6 +4081,13 @@ extern_methods!(
             stride: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNPooling nodes with square non-overlapping kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:filterSize:)]
         pub unsafe fn initWithSource_filterSize(
             this: Allocated<Self>,
@@ -2753,7 +4114,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingaveragenode?language=objc)
+    /// A node representing a MPSCNNPoolingAverage kernel
+    ///
+    /// The default edge mode is MPSImageEdgeModeClamp
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingaveragenode?language=objc)
     #[unsafe(super(MPSCNNPoolingNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNPoolingAverageNode;
@@ -2768,12 +4133,28 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSCNNPoolingNode`
     unsafe impl MPSCNNPoolingAverageNode {
+        /// Convenience initializer for MPSCNNPooling nodes with square non-overlapping kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:filterSize:)]
         pub unsafe fn nodeWithSource_filterSize(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNPooling nodes with square non-overlapping kernels and a different stride
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = size
+        ///
+        /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:filterSize:stride:)]
         pub unsafe fn nodeWithSource_filterSize_stride(
             source_node: &MPSNNImageNode,
@@ -2781,6 +4162,19 @@ extern_methods!(
             stride: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNPooling kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `kernelWidth`: The width of the max filter window
+        ///
+        /// Parameter `kernelHeight`: The height of the max filter window
+        ///
+        /// Parameter `strideInPixelsX`: The output stride (downsampling factor) in the x dimension.
+        ///
+        /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
         pub unsafe fn initWithSource_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -2791,6 +4185,15 @@ extern_methods!(
             stride_in_pixels_y: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNPooling nodes with square kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = size
+        ///
+        /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:filterSize:stride:)]
         pub unsafe fn initWithSource_filterSize_stride(
             this: Allocated<Self>,
@@ -2799,6 +4202,13 @@ extern_methods!(
             stride: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNPooling nodes with square non-overlapping kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:filterSize:)]
         pub unsafe fn initWithSource_filterSize(
             this: Allocated<Self>,
@@ -2825,7 +4235,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingl2normnode?language=objc)
+    /// A node representing a MPSCNNPoolingL2Norm kernel
+    ///
+    /// The default edge mode is MPSImageEdgeModeClamp
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingl2normnode?language=objc)
     #[unsafe(super(MPSCNNPoolingNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNPoolingL2NormNode;
@@ -2840,12 +4254,28 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSCNNPoolingNode`
     unsafe impl MPSCNNPoolingL2NormNode {
+        /// Convenience initializer for MPSCNNPooling nodes with square non-overlapping kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:filterSize:)]
         pub unsafe fn nodeWithSource_filterSize(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNPooling nodes with square non-overlapping kernels and a different stride
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = size
+        ///
+        /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:filterSize:stride:)]
         pub unsafe fn nodeWithSource_filterSize_stride(
             source_node: &MPSNNImageNode,
@@ -2853,6 +4283,19 @@ extern_methods!(
             stride: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNPooling kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `kernelWidth`: The width of the max filter window
+        ///
+        /// Parameter `kernelHeight`: The height of the max filter window
+        ///
+        /// Parameter `strideInPixelsX`: The output stride (downsampling factor) in the x dimension.
+        ///
+        /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
         pub unsafe fn initWithSource_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -2863,6 +4306,15 @@ extern_methods!(
             stride_in_pixels_y: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNPooling nodes with square kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = size
+        ///
+        /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:filterSize:stride:)]
         pub unsafe fn initWithSource_filterSize_stride(
             this: Allocated<Self>,
@@ -2871,6 +4323,13 @@ extern_methods!(
             stride: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNPooling nodes with square non-overlapping kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:filterSize:)]
         pub unsafe fn initWithSource_filterSize(
             this: Allocated<Self>,
@@ -2897,7 +4356,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingmaxnode?language=objc)
+    /// A node representing a MPSCNNPoolingMax kernel
+    ///
+    /// The default edge mode is MPSImageEdgeModeClamp
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingmaxnode?language=objc)
     #[unsafe(super(MPSCNNPoolingNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNPoolingMaxNode;
@@ -2912,12 +4375,28 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSCNNPoolingNode`
     unsafe impl MPSCNNPoolingMaxNode {
+        /// Convenience initializer for MPSCNNPooling nodes with square non-overlapping kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:filterSize:)]
         pub unsafe fn nodeWithSource_filterSize(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNPooling nodes with square non-overlapping kernels and a different stride
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = size
+        ///
+        /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:filterSize:stride:)]
         pub unsafe fn nodeWithSource_filterSize_stride(
             source_node: &MPSNNImageNode,
@@ -2925,6 +4404,19 @@ extern_methods!(
             stride: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNPooling kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `kernelWidth`: The width of the max filter window
+        ///
+        /// Parameter `kernelHeight`: The height of the max filter window
+        ///
+        /// Parameter `strideInPixelsX`: The output stride (downsampling factor) in the x dimension.
+        ///
+        /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
         pub unsafe fn initWithSource_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
@@ -2935,6 +4427,15 @@ extern_methods!(
             stride_in_pixels_y: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNPooling nodes with square kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = size
+        ///
+        /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:filterSize:stride:)]
         pub unsafe fn initWithSource_filterSize_stride(
             this: Allocated<Self>,
@@ -2943,6 +4444,13 @@ extern_methods!(
             stride: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNPooling nodes with square non-overlapping kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:filterSize:)]
         pub unsafe fn initWithSource_filterSize(
             this: Allocated<Self>,
@@ -2969,7 +4477,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndilatedpoolingmaxnode?language=objc)
+    /// A node for a MPSCNNDilatedPooling kernel
+    ///
+    /// This class corresponds to the MPSCNNDilatedPooling class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndilatedpoolingmaxnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNDilatedPoolingMaxNode;
@@ -2985,12 +4497,30 @@ extern_methods!(
         #[method(dilationRateY)]
         pub unsafe fn dilationRateY(&self) -> NSUInteger;
 
+        /// Convenience initializer for MPSCNNDilatedPooling nodes with square non-overlapping kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = dilationRateX = dilationRateY = size
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNDilatedPooling kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:filterSize:)]
         pub unsafe fn nodeWithSource_filterSize(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNDilatedPooling nodes with square kernels and equal dilation factors
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = size
+        ///
+        /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
+        ///
+        /// Parameter `dilationRate`: dilationRateX = dilationRateY = stride
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNDilatedPooling kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:filterSize:stride:dilationRate:)]
         pub unsafe fn nodeWithSource_filterSize_stride_dilationRate(
             source_node: &MPSNNImageNode,
@@ -2999,6 +4529,23 @@ extern_methods!(
             dilation_rate: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNPooling kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `kernelWidth`: The width of the max filter window
+        ///
+        /// Parameter `kernelHeight`: The height of the max filter window
+        ///
+        /// Parameter `strideInPixelsX`: The output stride (downsampling factor) in the x dimension.
+        ///
+        /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
+        ///
+        /// Parameter `dilationRateX`: The dilation factor in the x dimension.
+        ///
+        /// Parameter `dilationRateY`: The dilation factor in the y dimension.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:)]
         pub unsafe fn initWithSource_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_dilationRateX_dilationRateY(
             this: Allocated<Self>,
@@ -3011,6 +4558,17 @@ extern_methods!(
             dilation_rate_y: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNDilatedPooling nodes with square kernels and equal dilation factors
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = size
+        ///
+        /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
+        ///
+        /// Parameter `dilationRate`: dilationRateX = dilationRateY = stride
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNDilatedPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:filterSize:stride:dilationRate:)]
         pub unsafe fn initWithSource_filterSize_stride_dilationRate(
             this: Allocated<Self>,
@@ -3020,6 +4578,13 @@ extern_methods!(
             dilation_rate: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for MPSCNNDilatedPooling nodes with square non-overlapping kernels
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = dilationRateX = dilationRateY = size
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNDilatedPooling kernel.
         #[method_id(@__retain_semantics Init initWithSource:filterSize:)]
         pub unsafe fn initWithSource_filterSize(
             this: Allocated<Self>,
@@ -3057,6 +4622,23 @@ unsafe impl NSObjectProtocol for MPSCNNPoolingGradientNode {}
 extern_methods!(
     unsafe impl MPSCNNPoolingGradientNode {
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// make a pooling gradient node
+        ///
+        /// It would be much easier to use [inferencePoolingNode gradientNodeForSourceGradient:] instead.
+        ///
+        /// Parameter `sourceGradient`: The gradient from the downstream gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image to the inference pooling filter
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the inference poolin filter
+        ///
+        /// Parameter `kernelWidth`: The kernel width of the inference filter
+        ///
+        /// Parameter `kernelHeight`: The kernel height of the inference filter
+        ///
+        /// Parameter `strideInPixelsX`: The X stride from the inference filter
+        ///
+        /// Parameter `strideInPixelsY`: The Y stride from the inference filter
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             source_gradient: &MPSNNImageNode,
@@ -3070,6 +4652,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// make a pooling gradient node
+        ///
+        /// It would be much easier to use [inferencePoolingNode gradientNodeForSourceGradient:] instead.
+        ///
+        /// Parameter `sourceGradient`: The gradient from the downstream gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image to the inference pooling filter
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the inference poolin filter
+        ///
+        /// Parameter `kernelWidth`: The kernel width of the inference filter
+        ///
+        /// Parameter `kernelHeight`: The kernel height of the inference filter
+        ///
+        /// Parameter `strideInPixelsX`: The X stride from the inference filter
+        ///
+        /// Parameter `strideInPixelsY`: The Y stride from the inference filter
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             this: Allocated<Self>,
@@ -3135,6 +4734,23 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNPoolingGradientNode`
     unsafe impl MPSCNNPoolingMaxGradientNode {
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// make a pooling gradient node
+        ///
+        /// It would be much easier to use [inferencePoolingNode gradientNodeForSourceGradient:] instead.
+        ///
+        /// Parameter `sourceGradient`: The gradient from the downstream gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image to the inference pooling filter
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the inference poolin filter
+        ///
+        /// Parameter `kernelWidth`: The kernel width of the inference filter
+        ///
+        /// Parameter `kernelHeight`: The kernel height of the inference filter
+        ///
+        /// Parameter `strideInPixelsX`: The X stride from the inference filter
+        ///
+        /// Parameter `strideInPixelsY`: The Y stride from the inference filter
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             source_gradient: &MPSNNImageNode,
@@ -3148,6 +4764,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// make a pooling gradient node
+        ///
+        /// It would be much easier to use [inferencePoolingNode gradientNodeForSourceGradient:] instead.
+        ///
+        /// Parameter `sourceGradient`: The gradient from the downstream gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image to the inference pooling filter
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the inference poolin filter
+        ///
+        /// Parameter `kernelWidth`: The kernel width of the inference filter
+        ///
+        /// Parameter `kernelHeight`: The kernel height of the inference filter
+        ///
+        /// Parameter `strideInPixelsX`: The X stride from the inference filter
+        ///
+        /// Parameter `strideInPixelsY`: The Y stride from the inference filter
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             this: Allocated<Self>,
@@ -3201,6 +4834,23 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNPoolingGradientNode`
     unsafe impl MPSCNNPoolingAverageGradientNode {
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// make a pooling gradient node
+        ///
+        /// It would be much easier to use [inferencePoolingNode gradientNodeForSourceGradient:] instead.
+        ///
+        /// Parameter `sourceGradient`: The gradient from the downstream gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image to the inference pooling filter
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the inference poolin filter
+        ///
+        /// Parameter `kernelWidth`: The kernel width of the inference filter
+        ///
+        /// Parameter `kernelHeight`: The kernel height of the inference filter
+        ///
+        /// Parameter `strideInPixelsX`: The X stride from the inference filter
+        ///
+        /// Parameter `strideInPixelsY`: The Y stride from the inference filter
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             source_gradient: &MPSNNImageNode,
@@ -3214,6 +4864,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// make a pooling gradient node
+        ///
+        /// It would be much easier to use [inferencePoolingNode gradientNodeForSourceGradient:] instead.
+        ///
+        /// Parameter `sourceGradient`: The gradient from the downstream gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image to the inference pooling filter
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the inference poolin filter
+        ///
+        /// Parameter `kernelWidth`: The kernel width of the inference filter
+        ///
+        /// Parameter `kernelHeight`: The kernel height of the inference filter
+        ///
+        /// Parameter `strideInPixelsX`: The X stride from the inference filter
+        ///
+        /// Parameter `strideInPixelsY`: The Y stride from the inference filter
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             this: Allocated<Self>,
@@ -3267,6 +4934,23 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNPoolingGradientNode`
     unsafe impl MPSCNNPoolingL2NormGradientNode {
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// make a pooling gradient node
+        ///
+        /// It would be much easier to use [inferencePoolingNode gradientNodeForSourceGradient:] instead.
+        ///
+        /// Parameter `sourceGradient`: The gradient from the downstream gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image to the inference pooling filter
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the inference poolin filter
+        ///
+        /// Parameter `kernelWidth`: The kernel width of the inference filter
+        ///
+        /// Parameter `kernelHeight`: The kernel height of the inference filter
+        ///
+        /// Parameter `strideInPixelsX`: The X stride from the inference filter
+        ///
+        /// Parameter `strideInPixelsY`: The Y stride from the inference filter
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             source_gradient: &MPSNNImageNode,
@@ -3280,6 +4964,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// make a pooling gradient node
+        ///
+        /// It would be much easier to use [inferencePoolingNode gradientNodeForSourceGradient:] instead.
+        ///
+        /// Parameter `sourceGradient`: The gradient from the downstream gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image to the inference pooling filter
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the inference poolin filter
+        ///
+        /// Parameter `kernelWidth`: The kernel width of the inference filter
+        ///
+        /// Parameter `kernelHeight`: The kernel height of the inference filter
+        ///
+        /// Parameter `strideInPixelsX`: The X stride from the inference filter
+        ///
+        /// Parameter `strideInPixelsY`: The Y stride from the inference filter
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             this: Allocated<Self>,
@@ -3327,6 +5028,23 @@ unsafe impl NSObjectProtocol for MPSCNNDilatedPoolingMaxGradientNode {}
 
 extern_methods!(
     unsafe impl MPSCNNDilatedPoolingMaxGradientNode {
+        /// make a pooling gradient node
+        ///
+        /// It would be much easier to use [inferencePoolingNode gradientNodeForSourceGradient:] instead.
+        ///
+        /// Parameter `sourceGradient`: The gradient from the downstream gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image to the inference pooling filter
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the inference poolin filter
+        ///
+        /// Parameter `kernelWidth`: The kernel width of the inference filter
+        ///
+        /// Parameter `kernelHeight`: The kernel height of the inference filter
+        ///
+        /// Parameter `strideInPixelsX`: The X stride from the inference filter
+        ///
+        /// Parameter `strideInPixelsY`: The Y stride from the inference filter
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_dilationRateX_dilationRateY(
             source_gradient: &MPSNNImageNode,
@@ -3340,6 +5058,23 @@ extern_methods!(
             dilation_rate_y: NSUInteger,
         ) -> Retained<Self>;
 
+        /// make a pooling gradient node
+        ///
+        /// It would be much easier to use [inferencePoolingNode gradientNodeForSourceGradient:] instead.
+        ///
+        /// Parameter `sourceGradient`: The gradient from the downstream gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image to the inference pooling filter
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the inference poolin filter
+        ///
+        /// Parameter `kernelWidth`: The kernel width of the inference filter
+        ///
+        /// Parameter `kernelHeight`: The kernel height of the inference filter
+        ///
+        /// Parameter `strideInPixelsX`: The X stride from the inference filter
+        ///
+        /// Parameter `strideInPixelsY`: The Y stride from the inference filter
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_dilationRateX_dilationRateY(
             this: Allocated<Self>,
@@ -3366,6 +5101,23 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNPoolingGradientNode`
     unsafe impl MPSCNNDilatedPoolingMaxGradientNode {
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// make a pooling gradient node
+        ///
+        /// It would be much easier to use [inferencePoolingNode gradientNodeForSourceGradient:] instead.
+        ///
+        /// Parameter `sourceGradient`: The gradient from the downstream gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image to the inference pooling filter
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the inference poolin filter
+        ///
+        /// Parameter `kernelWidth`: The kernel width of the inference filter
+        ///
+        /// Parameter `kernelHeight`: The kernel height of the inference filter
+        ///
+        /// Parameter `strideInPixelsX`: The X stride from the inference filter
+        ///
+        /// Parameter `strideInPixelsY`: The Y stride from the inference filter
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             source_gradient: &MPSNNImageNode,
@@ -3379,6 +5131,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// make a pooling gradient node
+        ///
+        /// It would be much easier to use [inferencePoolingNode gradientNodeForSourceGradient:] instead.
+        ///
+        /// Parameter `sourceGradient`: The gradient from the downstream gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image to the inference pooling filter
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the inference poolin filter
+        ///
+        /// Parameter `kernelWidth`: The kernel width of the inference filter
+        ///
+        /// Parameter `kernelHeight`: The kernel height of the inference filter
+        ///
+        /// Parameter `strideInPixelsX`: The X stride from the inference filter
+        ///
+        /// Parameter `strideInPixelsY`: The Y stride from the inference filter
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             this: Allocated<Self>,
@@ -3411,7 +5180,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnnormalizationnode?language=objc)
+    /// virtual base class for CNN normalization nodes
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnnormalizationnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNormalizationNode;
@@ -3421,21 +5192,27 @@ unsafe impl NSObjectProtocol for MPSCNNNormalizationNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNormalizationNode {
+        /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
+        /// The value of beta.  Default is 5.0
         #[method(beta)]
         pub unsafe fn beta(&self) -> c_float;
 
+        /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
+        /// The value of delta.  Default is 1.0
         #[method(delta)]
         pub unsafe fn delta(&self) -> c_float;
 
+        /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
@@ -3467,7 +5244,23 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalizationnode?language=objc)
+    /// Node representing MPSCNNSpatialNormalization
+    ///
+    /// For each feature channel, the function computes the sum of squares of X inside each rectangle, N2(i,j).
+    /// It then divides each element of X as follows:
+    /// Y(i,j) = X(i,j) / (delta + alpha/(kw*kh) * N2(i,j))^beta,
+    /// where kw and kh are the kernelWidth and the kernelHeight.
+    ///
+    ///
+    /// ```text
+    ///         Defaults:
+    ///              alpha = 1.0f
+    ///              beta  = 5.0f
+    ///              delta = 1.0f
+    ///              kernelHeight = kernelWidth = kernelSize
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalizationnode?language=objc)
     #[unsafe(super(MPSCNNNormalizationNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNSpatialNormalizationNode;
@@ -3480,12 +5273,14 @@ extern_methods!(
         #[method(kernelWidth)]
         pub unsafe fn kernelWidth(&self) -> NSUInteger;
 
+        /// Setter for [`kernelWidth`][Self::kernelWidth].
         #[method(setKernelWidth:)]
         pub unsafe fn setKernelWidth(&self, kernel_width: NSUInteger);
 
         #[method(kernelHeight)]
         pub unsafe fn kernelHeight(&self) -> NSUInteger;
 
+        /// Setter for [`kernelHeight`][Self::kernelHeight].
         #[method(setKernelHeight:)]
         pub unsafe fn setKernelHeight(&self, kernel_height: NSUInteger);
 
@@ -3548,12 +5343,14 @@ extern_methods!(
         #[method(kernelWidth)]
         pub unsafe fn kernelWidth(&self) -> NSUInteger;
 
+        /// Setter for [`kernelWidth`][Self::kernelWidth].
         #[method(setKernelWidth:)]
         pub unsafe fn setKernelWidth(&self, kernel_width: NSUInteger);
 
         #[method(kernelHeight)]
         pub unsafe fn kernelHeight(&self) -> NSUInteger;
 
+        /// Setter for [`kernelHeight`][Self::kernelHeight].
         #[method(setKernelHeight:)]
         pub unsafe fn setKernelHeight(&self, kernel_height: NSUInteger);
 
@@ -3574,21 +5371,27 @@ extern_methods!(
             kernel_size: NSUInteger,
         ) -> Retained<Self>;
 
+        /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
+        /// The value of beta.  Default is 5.0
         #[method(beta)]
         pub unsafe fn beta(&self) -> c_float;
 
+        /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
+        /// The value of delta.  Default is 1.0
         #[method(delta)]
         pub unsafe fn delta(&self) -> c_float;
 
+        /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
         pub unsafe fn setDelta(&self, delta: c_float);
     }
@@ -3611,7 +5414,27 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalizationnode?language=objc)
+    /// Node representing MPSCNNLocalContrastNormalization
+    ///
+    /// The result is computed for each element of X as follows:
+    ///
+    /// Y(i,j) = pm + ps * ( X(i,j) - p0 * M(i,j)) / pow((delta + alpha * variance(i,j)), beta),
+    ///
+    /// where kw and kh are the kernelWidth and the kernelHeight and pm, ps and p0 are parameters that
+    /// can be used to offset and scale the result in various ways. *
+    ///
+    /// ```text
+    ///         Defaults:
+    ///              alpha = 1.0f
+    ///              beta  = 0.5f
+    ///              delta = 2^-10
+    ///              pm = 0
+    ///              ps = 1
+    ///              p0 = 1
+    ///              kernelHeight = kernelWidth = kernelSize
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalizationnode?language=objc)
     #[unsafe(super(MPSCNNNormalizationNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNLocalContrastNormalizationNode;
@@ -3624,30 +5447,35 @@ extern_methods!(
         #[method(pm)]
         pub unsafe fn pm(&self) -> c_float;
 
+        /// Setter for [`pm`][Self::pm].
         #[method(setPm:)]
         pub unsafe fn setPm(&self, pm: c_float);
 
         #[method(ps)]
         pub unsafe fn ps(&self) -> c_float;
 
+        /// Setter for [`ps`][Self::ps].
         #[method(setPs:)]
         pub unsafe fn setPs(&self, ps: c_float);
 
         #[method(p0)]
         pub unsafe fn p0(&self) -> c_float;
 
+        /// Setter for [`p0`][Self::p0].
         #[method(setP0:)]
         pub unsafe fn setP0(&self, p0: c_float);
 
         #[method(kernelWidth)]
         pub unsafe fn kernelWidth(&self) -> NSUInteger;
 
+        /// Setter for [`kernelWidth`][Self::kernelWidth].
         #[method(setKernelWidth:)]
         pub unsafe fn setKernelWidth(&self, kernel_width: NSUInteger);
 
         #[method(kernelHeight)]
         pub unsafe fn kernelHeight(&self) -> NSUInteger;
 
+        /// Setter for [`kernelHeight`][Self::kernelHeight].
         #[method(setKernelHeight:)]
         pub unsafe fn setKernelHeight(&self, kernel_height: NSUInteger);
 
@@ -3726,39 +5554,57 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
+        /// The value of alpha.  Default is 0.0
+        ///
+        /// The default value 0.0 is not recommended and is
+        /// preserved for backwards compatibility. With alpha 0,
+        /// it performs a local mean subtraction. The
+        /// MPSCNNLocalContrastNormalizationNode used with
+        /// the MPSNNGraph uses 1.0 as a default.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
+        /// The value of beta.  Default is 0.5
         #[method(beta)]
         pub unsafe fn beta(&self) -> c_float;
 
+        /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
+        /// The value of delta.  Default is 1/1024
         #[method(delta)]
         pub unsafe fn delta(&self) -> c_float;
 
+        /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
+        /// The value of p0.  Default is 1.0
         #[method(p0)]
         pub unsafe fn p0(&self) -> c_float;
 
+        /// Setter for [`p0`][Self::p0].
         #[method(setP0:)]
         pub unsafe fn setP0(&self, p0: c_float);
 
+        /// The value of pm.  Default is 0.0
         #[method(pm)]
         pub unsafe fn pm(&self) -> c_float;
 
+        /// Setter for [`pm`][Self::pm].
         #[method(setPm:)]
         pub unsafe fn setPm(&self, pm: c_float);
 
+        /// The value of ps.  Default is 1.0
         #[method(ps)]
         pub unsafe fn ps(&self) -> c_float;
 
+        /// Setter for [`ps`][Self::ps].
         #[method(setPs:)]
         pub unsafe fn setPs(&self, ps: c_float);
 
@@ -3787,7 +5633,27 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationnode?language=objc)
+    /// Node representing MPSCNNCrossChannelNormalization
+    ///
+    /// The normalized output is given by:
+    /// Y(i,j,k) = X(i,j,k) / L(i,j,k)^beta,
+    /// where the normalizing factor is:
+    /// L(i,j,k) = delta + alpha/N * (sum_{q in Q(k)} X(i,j,q)^2, where
+    /// N is the kernel size. The window Q(k) itself is defined as:
+    /// Q(k) = [max(0, k-floor(N/2)), min(D-1, k+floor((N-1)/2)], where
+    ///
+    /// k is the feature channel index (running from 0 to D-1) and
+    /// D is the number of feature channels, and alpha, beta and delta are paremeters.
+    ///
+    /// ```text
+    ///         Defaults:
+    ///              alpha = 1.0f
+    ///              beta  = 5.0f
+    ///              delta = 1.0f
+    ///              kernelHeight = kernelWidth = kernelSize
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationnode?language=objc)
     #[unsafe(super(MPSCNNNormalizationNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNCrossChannelNormalizationNode;
@@ -3800,6 +5666,7 @@ extern_methods!(
         #[method(kernelSizeInFeatureChannels)]
         pub unsafe fn kernelSizeInFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`kernelSizeInFeatureChannels`][Self::kernelSizeInFeatureChannels].
         #[method(setKernelSizeInFeatureChannels:)]
         pub unsafe fn setKernelSizeInFeatureChannels(
             &self,
@@ -3914,10 +5781,12 @@ unsafe impl NSObjectProtocol for MPSCNNInstanceNormalizationNode {}
 extern_methods!(
     unsafe impl MPSCNNInstanceNormalizationNode {
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// The training style of the forward node will be propagated to gradient nodes made from it
         #[method(trainingStyle)]
         pub unsafe fn trainingStyle(&self) -> MPSNNTrainingStyle;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Setter for [`trainingStyle`][Self::trainingStyle].
         #[method(setTrainingStyle:)]
         pub unsafe fn setTrainingStyle(&self, training_style: MPSNNTrainingStyle);
 
@@ -4014,10 +5883,12 @@ unsafe impl NSObjectProtocol for MPSCNNGroupNormalizationNode {}
 extern_methods!(
     unsafe impl MPSCNNGroupNormalizationNode {
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// The training style of the forward node will be propagated to gradient nodes made from it
         #[method(trainingStyle)]
         pub unsafe fn trainingStyle(&self) -> MPSNNTrainingStyle;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Setter for [`trainingStyle`][Self::trainingStyle].
         #[method(setTrainingStyle:)]
         pub unsafe fn setTrainingStyle(&self, training_style: MPSNNTrainingStyle);
 
@@ -4101,7 +5972,30 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationnode?language=objc)
+    /// A node representing batch normalization for inference or training
+    ///
+    /// Batch normalization operates differently for inference and training.
+    /// For inference, the normalization is done according to a static statistical
+    /// representation of data saved during training. For training, this representation
+    /// is ever evolving.  In the low level MPS batch normalization interface,
+    /// during training, the batch normalization is broken up into two steps:
+    /// calculation of the statistical representation of input data, followed
+    /// by normalization once the statistics are known for the entire batch.
+    /// These are MPSCNNBatchNormalizationStatistics and MPSCNNBatchNormalization,
+    /// respectively.
+    ///
+    /// When this node appears in a graph and is not required to produce a
+    /// MPSCNNBatchNormalizationState -- that is, MPSCNNBatchNormalizationNode.resultState
+    /// is not used within the graph -- then it operates in inference mode
+    /// and new batch-only statistics are not calculated. When this state node
+    /// is consumed, then the node is assumed to be in training mode and
+    /// new statistics will be calculated and written to the MPSCNNBatchNormalizationState
+    /// and passed along to the MPSCNNBatchNormalizationGradient and
+    /// MPSCNNBatchNormalizationStatisticsGradient as necessary. This should
+    /// allow you to construct an identical sequence of nodes for inference
+    /// and training and expect the right thing to happen.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNBatchNormalizationNode;
@@ -4114,18 +6008,24 @@ unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationNode {}
 extern_methods!(
     unsafe impl MPSCNNBatchNormalizationNode {
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Options controlling how batch normalization is calculated
+        ///
+        /// Default: MPSCNNBatchNormalizationFlagsDefault
         #[method(flags)]
         pub unsafe fn flags(&self) -> MPSCNNBatchNormalizationFlags;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Setter for [`flags`][Self::flags].
         #[method(setFlags:)]
         pub unsafe fn setFlags(&self, flags: MPSCNNBatchNormalizationFlags);
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// The training style of the forward node will be propagated to gradient nodes made from it
         #[method(trainingStyle)]
         pub unsafe fn trainingStyle(&self) -> MPSNNTrainingStyle;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
+        /// Setter for [`trainingStyle`][Self::trainingStyle].
         #[method(setTrainingStyle:)]
         pub unsafe fn setTrainingStyle(&self, training_style: MPSNNTrainingStyle);
 
@@ -4163,7 +6063,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationgradientnode?language=objc)
+    /// A node representing batch normalization gradient for training
+    ///
+    /// This filter encapsulates the MPSCNNBatchNormalizationStatisticsGradient
+    /// and MPSCNNBatchNormalizationGradient low level filters as a single
+    /// node. They will be called in sequence: statistics gradient until the
+    /// batch is complete, then batch normalization gradient on the result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNBatchNormalizationGradientNode;
@@ -4224,7 +6131,11 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnscalenode?language=objc)
+    /// Abstract Node representing a image resampling operation
+    ///
+    /// Please make a MPSNNBilinearScale or MPSNNLanczosScale object instead
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnscalenode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNScaleNode;
@@ -4234,12 +6145,24 @@ unsafe impl NSObjectProtocol for MPSNNScaleNode {}
 
 extern_methods!(
     unsafe impl MPSNNScaleNode {
+        /// create an autoreleased node to convert a MPSImage to the desired size
+        ///
+        /// Parameter `sourceNode`: A valid MPSNNImageNode
+        ///
+        /// Parameter `size`: The size of the output image {width, height, depth}
         #[method_id(@__retain_semantics Other nodeWithSource:outputSize:)]
         pub unsafe fn nodeWithSource_outputSize(
             source_node: &MPSNNImageNode,
             size: MTLSize,
         ) -> Retained<Self>;
 
+        /// create an autoreleased node to convert a MPSImage to the desired size for a region of interest
+        ///
+        /// Parameter `sourceNode`: A valid MPSNNImageNode
+        ///
+        /// Parameter `transformProvider`: If non-nil, a valid MPSImageTransformProvider that provides the region of interest
+        ///
+        /// Parameter `size`: The size of the output image {width, height, depth}
         #[method_id(@__retain_semantics Other nodeWithSource:transformProvider:outputSize:)]
         pub unsafe fn nodeWithSource_transformProvider_outputSize(
             source_node: &MPSNNImageNode,
@@ -4247,6 +6170,11 @@ extern_methods!(
             size: MTLSize,
         ) -> Retained<Self>;
 
+        /// init a node to convert a MPSImage to the desired size
+        ///
+        /// Parameter `sourceNode`: A valid MPSNNImageNode
+        ///
+        /// Parameter `size`: The size of the output image {width, height, depth}
         #[method_id(@__retain_semantics Init initWithSource:outputSize:)]
         pub unsafe fn initWithSource_outputSize(
             this: Allocated<Self>,
@@ -4254,6 +6182,13 @@ extern_methods!(
             size: MTLSize,
         ) -> Retained<Self>;
 
+        /// init a node to convert a MPSImage to the desired size for a region of interest
+        ///
+        /// Parameter `sourceNode`: A valid MPSNNImageNode
+        ///
+        /// Parameter `transformProvider`: If non-nil, a valid MPSImageTransformProvider that provides the region of interest
+        ///
+        /// Parameter `size`: The size of the output image {width, height, depth}
         #[method_id(@__retain_semantics Init initWithSource:transformProvider:outputSize:)]
         pub unsafe fn initWithSource_transformProvider_outputSize(
             this: Allocated<Self>,
@@ -4281,7 +6216,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbilinearscalenode?language=objc)
+    /// A MPSNNScale object that uses bilinear interpolation for resampling
+    ///
+    /// Caution: bilinear downscaling by more than a factor of
+    /// two in any dimension causes loss of information if a
+    /// low pass filter is not run over the image first. Details
+    /// may be omitted.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbilinearscalenode?language=objc)
     #[unsafe(super(MPSNNScaleNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNBilinearScaleNode;
@@ -4296,12 +6238,24 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNScaleNode`
     unsafe impl MPSNNBilinearScaleNode {
+        /// create an autoreleased node to convert a MPSImage to the desired size
+        ///
+        /// Parameter `sourceNode`: A valid MPSNNImageNode
+        ///
+        /// Parameter `size`: The size of the output image {width, height, depth}
         #[method_id(@__retain_semantics Other nodeWithSource:outputSize:)]
         pub unsafe fn nodeWithSource_outputSize(
             source_node: &MPSNNImageNode,
             size: MTLSize,
         ) -> Retained<Self>;
 
+        /// create an autoreleased node to convert a MPSImage to the desired size for a region of interest
+        ///
+        /// Parameter `sourceNode`: A valid MPSNNImageNode
+        ///
+        /// Parameter `transformProvider`: If non-nil, a valid MPSImageTransformProvider that provides the region of interest
+        ///
+        /// Parameter `size`: The size of the output image {width, height, depth}
         #[method_id(@__retain_semantics Other nodeWithSource:transformProvider:outputSize:)]
         pub unsafe fn nodeWithSource_transformProvider_outputSize(
             source_node: &MPSNNImageNode,
@@ -4309,6 +6263,11 @@ extern_methods!(
             size: MTLSize,
         ) -> Retained<Self>;
 
+        /// init a node to convert a MPSImage to the desired size
+        ///
+        /// Parameter `sourceNode`: A valid MPSNNImageNode
+        ///
+        /// Parameter `size`: The size of the output image {width, height, depth}
         #[method_id(@__retain_semantics Init initWithSource:outputSize:)]
         pub unsafe fn initWithSource_outputSize(
             this: Allocated<Self>,
@@ -4316,6 +6275,13 @@ extern_methods!(
             size: MTLSize,
         ) -> Retained<Self>;
 
+        /// init a node to convert a MPSImage to the desired size for a region of interest
+        ///
+        /// Parameter `sourceNode`: A valid MPSNNImageNode
+        ///
+        /// Parameter `transformProvider`: If non-nil, a valid MPSImageTransformProvider that provides the region of interest
+        ///
+        /// Parameter `size`: The size of the output image {width, height, depth}
         #[method_id(@__retain_semantics Init initWithSource:transformProvider:outputSize:)]
         pub unsafe fn initWithSource_transformProvider_outputSize(
             this: Allocated<Self>,
@@ -4343,7 +6309,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlanczosscalenode?language=objc)
+    /// A MPSNNScale object that uses the Lanczos resampling filter
+    ///
+    /// This method does not require a low pass filter for downsampling
+    /// by more than a factor of two. Caution: may cause ringing, which
+    /// could prove distracting to a neural network unused to seeing it.
+    /// You should use the resampling method that was used to train the
+    /// network.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlanczosscalenode?language=objc)
     #[unsafe(super(MPSNNScaleNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNLanczosScaleNode;
@@ -4358,12 +6332,24 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNScaleNode`
     unsafe impl MPSNNLanczosScaleNode {
+        /// create an autoreleased node to convert a MPSImage to the desired size
+        ///
+        /// Parameter `sourceNode`: A valid MPSNNImageNode
+        ///
+        /// Parameter `size`: The size of the output image {width, height, depth}
         #[method_id(@__retain_semantics Other nodeWithSource:outputSize:)]
         pub unsafe fn nodeWithSource_outputSize(
             source_node: &MPSNNImageNode,
             size: MTLSize,
         ) -> Retained<Self>;
 
+        /// create an autoreleased node to convert a MPSImage to the desired size for a region of interest
+        ///
+        /// Parameter `sourceNode`: A valid MPSNNImageNode
+        ///
+        /// Parameter `transformProvider`: If non-nil, a valid MPSImageTransformProvider that provides the region of interest
+        ///
+        /// Parameter `size`: The size of the output image {width, height, depth}
         #[method_id(@__retain_semantics Other nodeWithSource:transformProvider:outputSize:)]
         pub unsafe fn nodeWithSource_transformProvider_outputSize(
             source_node: &MPSNNImageNode,
@@ -4371,6 +6357,11 @@ extern_methods!(
             size: MTLSize,
         ) -> Retained<Self>;
 
+        /// init a node to convert a MPSImage to the desired size
+        ///
+        /// Parameter `sourceNode`: A valid MPSNNImageNode
+        ///
+        /// Parameter `size`: The size of the output image {width, height, depth}
         #[method_id(@__retain_semantics Init initWithSource:outputSize:)]
         pub unsafe fn initWithSource_outputSize(
             this: Allocated<Self>,
@@ -4378,6 +6369,13 @@ extern_methods!(
             size: MTLSize,
         ) -> Retained<Self>;
 
+        /// init a node to convert a MPSImage to the desired size for a region of interest
+        ///
+        /// Parameter `sourceNode`: A valid MPSNNImageNode
+        ///
+        /// Parameter `transformProvider`: If non-nil, a valid MPSImageTransformProvider that provides the region of interest
+        ///
+        /// Parameter `size`: The size of the output image {width, height, depth}
         #[method_id(@__retain_semantics Init initWithSource:transformProvider:outputSize:)]
         pub unsafe fn initWithSource_transformProvider_outputSize(
             this: Allocated<Self>,
@@ -4405,7 +6403,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode?language=objc)
+    /// virtual base class for basic arithmetic nodes
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNBinaryArithmeticNode;
@@ -4415,21 +6415,37 @@ unsafe impl NSObjectProtocol for MPSNNBinaryArithmeticNode {}
 
 extern_methods!(
     unsafe impl MPSNNBinaryArithmeticNode {
+        /// create an autoreleased arithemtic node with an array of sources
+        ///
+        /// Parameter `sourceNodes`: A valid NSArray containing two sources
         #[method_id(@__retain_semantics Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
+        /// create an autoreleased arithemtic node with two sources
+        ///
+        /// Parameter `left`: the left operand
+        ///
+        /// Parameter `right`: the right operand
         #[method_id(@__retain_semantics Other nodeWithLeftSource:rightSource:)]
         pub unsafe fn nodeWithLeftSource_rightSource(
             left: &MPSNNImageNode,
             right: &MPSNNImageNode,
         ) -> Retained<Self>;
 
+        /// init an arithemtic node with an array of sources
+        ///
+        /// Parameter `sourceNodes`: A valid NSArray containing two sources
         #[method_id(@__retain_semantics Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
         ) -> Retained<Self>;
 
+        /// init an arithemtic node with two sources
+        ///
+        /// Parameter `left`: the left operand
+        ///
+        /// Parameter `right`: the right operand
         #[method_id(@__retain_semantics Init initWithLeftSource:rightSource:)]
         pub unsafe fn initWithLeftSource_rightSource(
             this: Allocated<Self>,
@@ -4446,6 +6462,10 @@ extern_methods!(
             gradient_images: &NSArray<MPSNNImageNode>,
         ) -> Retained<MPSNNGradientFilterNode>;
 
+        /// create new arithmetic gradient nodes
+        ///
+        /// Create two new arithmetic gradient nodes - one that computes the gradient for the primary
+        /// source image and one that computes the gradient for the secondary sourcefrom the inference pass.
         #[method_id(@__retain_semantics Other gradientFiltersWithSources:)]
         pub unsafe fn gradientFiltersWithSources(
             &self,
@@ -4455,36 +6475,42 @@ extern_methods!(
         #[method(primaryScale)]
         pub unsafe fn primaryScale(&self) -> c_float;
 
+        /// Setter for [`primaryScale`][Self::primaryScale].
         #[method(setPrimaryScale:)]
         pub unsafe fn setPrimaryScale(&self, primary_scale: c_float);
 
         #[method(secondaryScale)]
         pub unsafe fn secondaryScale(&self) -> c_float;
 
+        /// Setter for [`secondaryScale`][Self::secondaryScale].
         #[method(setSecondaryScale:)]
         pub unsafe fn setSecondaryScale(&self, secondary_scale: c_float);
 
         #[method(bias)]
         pub unsafe fn bias(&self) -> c_float;
 
+        /// Setter for [`bias`][Self::bias].
         #[method(setBias:)]
         pub unsafe fn setBias(&self, bias: c_float);
 
         #[method(primaryStrideInPixelsX)]
         pub unsafe fn primaryStrideInPixelsX(&self) -> NSUInteger;
 
+        /// Setter for [`primaryStrideInPixelsX`][Self::primaryStrideInPixelsX].
         #[method(setPrimaryStrideInPixelsX:)]
         pub unsafe fn setPrimaryStrideInPixelsX(&self, primary_stride_in_pixels_x: NSUInteger);
 
         #[method(primaryStrideInPixelsY)]
         pub unsafe fn primaryStrideInPixelsY(&self) -> NSUInteger;
 
+        /// Setter for [`primaryStrideInPixelsY`][Self::primaryStrideInPixelsY].
         #[method(setPrimaryStrideInPixelsY:)]
         pub unsafe fn setPrimaryStrideInPixelsY(&self, primary_stride_in_pixels_y: NSUInteger);
 
         #[method(primaryStrideInFeatureChannels)]
         pub unsafe fn primaryStrideInFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`primaryStrideInFeatureChannels`][Self::primaryStrideInFeatureChannels].
         #[method(setPrimaryStrideInFeatureChannels:)]
         pub unsafe fn setPrimaryStrideInFeatureChannels(
             &self,
@@ -4494,18 +6520,21 @@ extern_methods!(
         #[method(secondaryStrideInPixelsX)]
         pub unsafe fn secondaryStrideInPixelsX(&self) -> NSUInteger;
 
+        /// Setter for [`secondaryStrideInPixelsX`][Self::secondaryStrideInPixelsX].
         #[method(setSecondaryStrideInPixelsX:)]
         pub unsafe fn setSecondaryStrideInPixelsX(&self, secondary_stride_in_pixels_x: NSUInteger);
 
         #[method(secondaryStrideInPixelsY)]
         pub unsafe fn secondaryStrideInPixelsY(&self) -> NSUInteger;
 
+        /// Setter for [`secondaryStrideInPixelsY`][Self::secondaryStrideInPixelsY].
         #[method(setSecondaryStrideInPixelsY:)]
         pub unsafe fn setSecondaryStrideInPixelsY(&self, secondary_stride_in_pixels_y: NSUInteger);
 
         #[method(secondaryStrideInFeatureChannels)]
         pub unsafe fn secondaryStrideInFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`secondaryStrideInFeatureChannels`][Self::secondaryStrideInFeatureChannels].
         #[method(setSecondaryStrideInFeatureChannels:)]
         pub unsafe fn setSecondaryStrideInFeatureChannels(
             &self,
@@ -4515,12 +6544,14 @@ extern_methods!(
         #[method(minimumValue)]
         pub unsafe fn minimumValue(&self) -> c_float;
 
+        /// Setter for [`minimumValue`][Self::minimumValue].
         #[method(setMinimumValue:)]
         pub unsafe fn setMinimumValue(&self, minimum_value: c_float);
 
         #[method(maximumValue)]
         pub unsafe fn maximumValue(&self) -> c_float;
 
+        /// Setter for [`maximumValue`][Self::maximumValue].
         #[method(setMaximumValue:)]
         pub unsafe fn setMaximumValue(&self, maximum_value: c_float);
     }
@@ -4543,7 +6574,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnadditionnode?language=objc)
+    /// returns elementwise sum of left + right
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnadditionnode?language=objc)
     #[unsafe(super(MPSNNBinaryArithmeticNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNAdditionNode;
@@ -4558,21 +6591,37 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNBinaryArithmeticNode`
     unsafe impl MPSNNAdditionNode {
+        /// create an autoreleased arithemtic node with an array of sources
+        ///
+        /// Parameter `sourceNodes`: A valid NSArray containing two sources
         #[method_id(@__retain_semantics Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
+        /// create an autoreleased arithemtic node with two sources
+        ///
+        /// Parameter `left`: the left operand
+        ///
+        /// Parameter `right`: the right operand
         #[method_id(@__retain_semantics Other nodeWithLeftSource:rightSource:)]
         pub unsafe fn nodeWithLeftSource_rightSource(
             left: &MPSNNImageNode,
             right: &MPSNNImageNode,
         ) -> Retained<Self>;
 
+        /// init an arithemtic node with an array of sources
+        ///
+        /// Parameter `sourceNodes`: A valid NSArray containing two sources
         #[method_id(@__retain_semantics Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
         ) -> Retained<Self>;
 
+        /// init an arithemtic node with two sources
+        ///
+        /// Parameter `left`: the left operand
+        ///
+        /// Parameter `right`: the right operand
         #[method_id(@__retain_semantics Init initWithLeftSource:rightSource:)]
         pub unsafe fn initWithLeftSource_rightSource(
             this: Allocated<Self>,
@@ -4599,7 +6648,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnsubtractionnode?language=objc)
+    /// returns elementwise difference of left - right
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnsubtractionnode?language=objc)
     #[unsafe(super(MPSNNBinaryArithmeticNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNSubtractionNode;
@@ -4614,21 +6665,37 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNBinaryArithmeticNode`
     unsafe impl MPSNNSubtractionNode {
+        /// create an autoreleased arithemtic node with an array of sources
+        ///
+        /// Parameter `sourceNodes`: A valid NSArray containing two sources
         #[method_id(@__retain_semantics Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
+        /// create an autoreleased arithemtic node with two sources
+        ///
+        /// Parameter `left`: the left operand
+        ///
+        /// Parameter `right`: the right operand
         #[method_id(@__retain_semantics Other nodeWithLeftSource:rightSource:)]
         pub unsafe fn nodeWithLeftSource_rightSource(
             left: &MPSNNImageNode,
             right: &MPSNNImageNode,
         ) -> Retained<Self>;
 
+        /// init an arithemtic node with an array of sources
+        ///
+        /// Parameter `sourceNodes`: A valid NSArray containing two sources
         #[method_id(@__retain_semantics Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
         ) -> Retained<Self>;
 
+        /// init an arithemtic node with two sources
+        ///
+        /// Parameter `left`: the left operand
+        ///
+        /// Parameter `right`: the right operand
         #[method_id(@__retain_semantics Init initWithLeftSource:rightSource:)]
         pub unsafe fn initWithLeftSource_rightSource(
             this: Allocated<Self>,
@@ -4655,7 +6722,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnmultiplicationnode?language=objc)
+    /// returns elementwise product of left * right
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnmultiplicationnode?language=objc)
     #[unsafe(super(MPSNNBinaryArithmeticNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNMultiplicationNode;
@@ -4670,21 +6739,37 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNBinaryArithmeticNode`
     unsafe impl MPSNNMultiplicationNode {
+        /// create an autoreleased arithemtic node with an array of sources
+        ///
+        /// Parameter `sourceNodes`: A valid NSArray containing two sources
         #[method_id(@__retain_semantics Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
+        /// create an autoreleased arithemtic node with two sources
+        ///
+        /// Parameter `left`: the left operand
+        ///
+        /// Parameter `right`: the right operand
         #[method_id(@__retain_semantics Other nodeWithLeftSource:rightSource:)]
         pub unsafe fn nodeWithLeftSource_rightSource(
             left: &MPSNNImageNode,
             right: &MPSNNImageNode,
         ) -> Retained<Self>;
 
+        /// init an arithemtic node with an array of sources
+        ///
+        /// Parameter `sourceNodes`: A valid NSArray containing two sources
         #[method_id(@__retain_semantics Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
         ) -> Retained<Self>;
 
+        /// init an arithemtic node with two sources
+        ///
+        /// Parameter `left`: the left operand
+        ///
+        /// Parameter `right`: the right operand
         #[method_id(@__retain_semantics Init initWithLeftSource:rightSource:)]
         pub unsafe fn initWithLeftSource_rightSource(
             this: Allocated<Self>,
@@ -4711,7 +6796,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnndivisionnode?language=objc)
+    /// returns elementwise quotient of left / right
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnndivisionnode?language=objc)
     #[unsafe(super(MPSNNBinaryArithmeticNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNDivisionNode;
@@ -4726,21 +6813,37 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNBinaryArithmeticNode`
     unsafe impl MPSNNDivisionNode {
+        /// create an autoreleased arithemtic node with an array of sources
+        ///
+        /// Parameter `sourceNodes`: A valid NSArray containing two sources
         #[method_id(@__retain_semantics Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
+        /// create an autoreleased arithemtic node with two sources
+        ///
+        /// Parameter `left`: the left operand
+        ///
+        /// Parameter `right`: the right operand
         #[method_id(@__retain_semantics Other nodeWithLeftSource:rightSource:)]
         pub unsafe fn nodeWithLeftSource_rightSource(
             left: &MPSNNImageNode,
             right: &MPSNNImageNode,
         ) -> Retained<Self>;
 
+        /// init an arithemtic node with an array of sources
+        ///
+        /// Parameter `sourceNodes`: A valid NSArray containing two sources
         #[method_id(@__retain_semantics Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
         ) -> Retained<Self>;
 
+        /// init an arithemtic node with two sources
+        ///
+        /// Parameter `left`: the left operand
+        ///
+        /// Parameter `right`: the right operand
         #[method_id(@__retain_semantics Init initWithLeftSource:rightSource:)]
         pub unsafe fn initWithLeftSource_rightSource(
             this: Allocated<Self>,
@@ -4767,7 +6870,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisonnode?language=objc)
+    /// returns elementwise comparison of left and right
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisonnode?language=objc)
     #[unsafe(super(MPSNNBinaryArithmeticNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNComparisonNode;
@@ -4778,10 +6883,13 @@ unsafe impl NSObjectProtocol for MPSNNComparisonNode {}
 extern_methods!(
     unsafe impl MPSNNComparisonNode {
         #[cfg(feature = "MPSCNNMath")]
+        /// The comparison type to set on the underlying kernel.  Defaults
+        /// to MPSNNComparisonTypeEqual.
         #[method(comparisonType)]
         pub unsafe fn comparisonType(&self) -> MPSNNComparisonType;
 
         #[cfg(feature = "MPSCNNMath")]
+        /// Setter for [`comparisonType`][Self::comparisonType].
         #[method(setComparisonType:)]
         pub unsafe fn setComparisonType(&self, comparison_type: MPSNNComparisonType);
     }
@@ -4790,21 +6898,37 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNBinaryArithmeticNode`
     unsafe impl MPSNNComparisonNode {
+        /// create an autoreleased arithemtic node with an array of sources
+        ///
+        /// Parameter `sourceNodes`: A valid NSArray containing two sources
         #[method_id(@__retain_semantics Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
+        /// create an autoreleased arithemtic node with two sources
+        ///
+        /// Parameter `left`: the left operand
+        ///
+        /// Parameter `right`: the right operand
         #[method_id(@__retain_semantics Other nodeWithLeftSource:rightSource:)]
         pub unsafe fn nodeWithLeftSource_rightSource(
             left: &MPSNNImageNode,
             right: &MPSNNImageNode,
         ) -> Retained<Self>;
 
+        /// init an arithemtic node with an array of sources
+        ///
+        /// Parameter `sourceNodes`: A valid NSArray containing two sources
         #[method_id(@__retain_semantics Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
         ) -> Retained<Self>;
 
+        /// init an arithemtic node with two sources
+        ///
+        /// Parameter `left`: the left operand
+        ///
+        /// Parameter `right`: the right operand
         #[method_id(@__retain_semantics Init initWithLeftSource:rightSource:)]
         pub unsafe fn initWithLeftSource_rightSource(
             this: Allocated<Self>,
@@ -4841,6 +6965,16 @@ unsafe impl NSObjectProtocol for MPSNNArithmeticGradientNode {}
 
 extern_methods!(
     unsafe impl MPSNNArithmeticGradientNode {
+        /// create a new arithmetic gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodesWithSources:]
+        /// for an easier way to do this.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             source_gradient: &MPSNNImageNode,
@@ -4849,6 +6983,16 @@ extern_methods!(
             is_secondary_source_filter: bool,
         ) -> Retained<Self>;
 
+        /// create a new arithmetic gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodesWithSources:]
+        /// for an easier way to do this.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -4858,6 +7002,19 @@ extern_methods!(
             is_secondary_source_filter: bool,
         ) -> Retained<Self>;
 
+        /// create a new arithmetic gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodesWithSources:]
+        /// for an easier way to do this.
+        ///
+        /// Parameter `gradientImages`: The input gradient from the 'downstream' gradient filter and the source input image
+        /// from the forward pass (primary or secondary).
+        ///
+        /// Parameter `filter`: The matching filter node from the forward pass.
+        ///
+        /// Parameter `isSecondarySourceFilter`: The isSecondarySourceFilter property is used to indicate whether the arithmetic
+        /// gradient filter is operating on the primary or secondary source image from the
+        /// forward pass.
         #[method_id(@__retain_semantics Init initWithGradientImages:forwardFilter:isSecondarySourceFilter:)]
         pub unsafe fn initWithGradientImages_forwardFilter_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -4869,36 +7026,42 @@ extern_methods!(
         #[method(primaryScale)]
         pub unsafe fn primaryScale(&self) -> c_float;
 
+        /// Setter for [`primaryScale`][Self::primaryScale].
         #[method(setPrimaryScale:)]
         pub unsafe fn setPrimaryScale(&self, primary_scale: c_float);
 
         #[method(secondaryScale)]
         pub unsafe fn secondaryScale(&self) -> c_float;
 
+        /// Setter for [`secondaryScale`][Self::secondaryScale].
         #[method(setSecondaryScale:)]
         pub unsafe fn setSecondaryScale(&self, secondary_scale: c_float);
 
         #[method(bias)]
         pub unsafe fn bias(&self) -> c_float;
 
+        /// Setter for [`bias`][Self::bias].
         #[method(setBias:)]
         pub unsafe fn setBias(&self, bias: c_float);
 
         #[method(secondaryStrideInPixelsX)]
         pub unsafe fn secondaryStrideInPixelsX(&self) -> NSUInteger;
 
+        /// Setter for [`secondaryStrideInPixelsX`][Self::secondaryStrideInPixelsX].
         #[method(setSecondaryStrideInPixelsX:)]
         pub unsafe fn setSecondaryStrideInPixelsX(&self, secondary_stride_in_pixels_x: NSUInteger);
 
         #[method(secondaryStrideInPixelsY)]
         pub unsafe fn secondaryStrideInPixelsY(&self) -> NSUInteger;
 
+        /// Setter for [`secondaryStrideInPixelsY`][Self::secondaryStrideInPixelsY].
         #[method(setSecondaryStrideInPixelsY:)]
         pub unsafe fn setSecondaryStrideInPixelsY(&self, secondary_stride_in_pixels_y: NSUInteger);
 
         #[method(secondaryStrideInFeatureChannels)]
         pub unsafe fn secondaryStrideInFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`secondaryStrideInFeatureChannels`][Self::secondaryStrideInFeatureChannels].
         #[method(setSecondaryStrideInFeatureChannels:)]
         pub unsafe fn setSecondaryStrideInFeatureChannels(
             &self,
@@ -4908,12 +7071,14 @@ extern_methods!(
         #[method(minimumValue)]
         pub unsafe fn minimumValue(&self) -> c_float;
 
+        /// Setter for [`minimumValue`][Self::minimumValue].
         #[method(setMinimumValue:)]
         pub unsafe fn setMinimumValue(&self, minimum_value: c_float);
 
         #[method(maximumValue)]
         pub unsafe fn maximumValue(&self) -> c_float;
 
+        /// Setter for [`maximumValue`][Self::maximumValue].
         #[method(setMaximumValue:)]
         pub unsafe fn setMaximumValue(&self, maximum_value: c_float);
 
@@ -4939,7 +7104,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnadditiongradientnode?language=objc)
+    /// returns gradient for either primary or secondary source image from the inference pass.
+    /// Use the isSecondarySourceFilter property to indicate whether this filter is computing the gradient
+    /// for the primary or secondary source image from the inference pass.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnadditiongradientnode?language=objc)
     #[unsafe(super(
         MPSNNArithmeticGradientNode,
         MPSNNGradientFilterNode,
@@ -4959,6 +7128,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNArithmeticGradientNode`
     unsafe impl MPSNNAdditionGradientNode {
+        /// create a new arithmetic gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodesWithSources:]
+        /// for an easier way to do this.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             source_gradient: &MPSNNImageNode,
@@ -4967,6 +7146,16 @@ extern_methods!(
             is_secondary_source_filter: bool,
         ) -> Retained<Self>;
 
+        /// create a new arithmetic gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodesWithSources:]
+        /// for an easier way to do this.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -4976,6 +7165,19 @@ extern_methods!(
             is_secondary_source_filter: bool,
         ) -> Retained<Self>;
 
+        /// create a new arithmetic gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodesWithSources:]
+        /// for an easier way to do this.
+        ///
+        /// Parameter `gradientImages`: The input gradient from the 'downstream' gradient filter and the source input image
+        /// from the forward pass (primary or secondary).
+        ///
+        /// Parameter `filter`: The matching filter node from the forward pass.
+        ///
+        /// Parameter `isSecondarySourceFilter`: The isSecondarySourceFilter property is used to indicate whether the arithmetic
+        /// gradient filter is operating on the primary or secondary source image from the
+        /// forward pass.
         #[method_id(@__retain_semantics Init initWithGradientImages:forwardFilter:isSecondarySourceFilter:)]
         pub unsafe fn initWithGradientImages_forwardFilter_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -5003,7 +7205,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnsubtractiongradientnode?language=objc)
+    /// returns gradient for either primary or secondary source image from the inference pass.
+    /// Use the isSecondarySourceFilter property to indicate whether this filter is computing the gradient
+    /// for the primary or secondary source image from the inference pass.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnsubtractiongradientnode?language=objc)
     #[unsafe(super(
         MPSNNArithmeticGradientNode,
         MPSNNGradientFilterNode,
@@ -5023,6 +7229,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNArithmeticGradientNode`
     unsafe impl MPSNNSubtractionGradientNode {
+        /// create a new arithmetic gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodesWithSources:]
+        /// for an easier way to do this.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             source_gradient: &MPSNNImageNode,
@@ -5031,6 +7247,16 @@ extern_methods!(
             is_secondary_source_filter: bool,
         ) -> Retained<Self>;
 
+        /// create a new arithmetic gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodesWithSources:]
+        /// for an easier way to do this.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -5040,6 +7266,19 @@ extern_methods!(
             is_secondary_source_filter: bool,
         ) -> Retained<Self>;
 
+        /// create a new arithmetic gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodesWithSources:]
+        /// for an easier way to do this.
+        ///
+        /// Parameter `gradientImages`: The input gradient from the 'downstream' gradient filter and the source input image
+        /// from the forward pass (primary or secondary).
+        ///
+        /// Parameter `filter`: The matching filter node from the forward pass.
+        ///
+        /// Parameter `isSecondarySourceFilter`: The isSecondarySourceFilter property is used to indicate whether the arithmetic
+        /// gradient filter is operating on the primary or secondary source image from the
+        /// forward pass.
         #[method_id(@__retain_semantics Init initWithGradientImages:forwardFilter:isSecondarySourceFilter:)]
         pub unsafe fn initWithGradientImages_forwardFilter_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -5067,7 +7306,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnmultiplicationgradientnode?language=objc)
+    /// returns gradient for either primary or secondary source image from the inference pass.
+    /// Use the isSecondarySourceFilter property to indicate whether this filter is computing the gradient
+    /// for the primary or secondary source image from the inference pass.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnmultiplicationgradientnode?language=objc)
     #[unsafe(super(
         MPSNNArithmeticGradientNode,
         MPSNNGradientFilterNode,
@@ -5087,6 +7330,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNArithmeticGradientNode`
     unsafe impl MPSNNMultiplicationGradientNode {
+        /// create a new arithmetic gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodesWithSources:]
+        /// for an easier way to do this.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             source_gradient: &MPSNNImageNode,
@@ -5095,6 +7348,16 @@ extern_methods!(
             is_secondary_source_filter: bool,
         ) -> Retained<Self>;
 
+        /// create a new arithmetic gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodesWithSources:]
+        /// for an easier way to do this.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -5104,6 +7367,19 @@ extern_methods!(
             is_secondary_source_filter: bool,
         ) -> Retained<Self>;
 
+        /// create a new arithmetic gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodesWithSources:]
+        /// for an easier way to do this.
+        ///
+        /// Parameter `gradientImages`: The input gradient from the 'downstream' gradient filter and the source input image
+        /// from the forward pass (primary or secondary).
+        ///
+        /// Parameter `filter`: The matching filter node from the forward pass.
+        ///
+        /// Parameter `isSecondarySourceFilter`: The isSecondarySourceFilter property is used to indicate whether the arithmetic
+        /// gradient filter is operating on the primary or secondary source image from the
+        /// forward pass.
         #[method_id(@__retain_semantics Init initWithGradientImages:forwardFilter:isSecondarySourceFilter:)]
         pub unsafe fn initWithGradientImages_forwardFilter_isSecondarySourceFilter(
             this: Allocated<Self>,
@@ -5218,6 +7494,10 @@ unsafe impl NSObjectProtocol for MPSCNNDropoutGradientNode {}
 
 extern_methods!(
     unsafe impl MPSCNNDropoutGradientNode {
+        /// create a new dropout gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodeWithSources:]
+        /// for an easier way to do this
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:keepProbability:seed:maskStrideInPixels:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_keepProbability_seed_maskStrideInPixels(
             source_gradient: &MPSNNImageNode,
@@ -5228,6 +7508,10 @@ extern_methods!(
             mask_stride_in_pixels: MTLSize,
         ) -> Retained<Self>;
 
+        /// create a new dropout gradient node
+        ///
+        /// See also -[MPSCNNNeuronNode gradientFilterNodeWithSources:]
+        /// for an easier way to do this
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:keepProbability:seed:maskStrideInPixels:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_keepProbability_seed_maskStrideInPixels(
             this: Allocated<Self>,
@@ -5267,7 +7551,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlabelsnode?language=objc)
+    /// The labels and weights for each MPSImage are passed in
+    /// separately to the graph in a MPSNNLabels object. If
+    /// the batch interface is used then there will be a
+    /// MPSStateBatch of these of the same size as the MPSImageBatch
+    /// that holds the images.  The MPSNNLabelsNode is a place
+    /// holder in the graph for these nodes. The MPSNNLabels node
+    /// is taken as an input to the Loss node
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlabelsnode?language=objc)
     #[unsafe(super(MPSNNStateNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNLabelsNode;
@@ -5296,7 +7588,16 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlossnode?language=objc)
+    /// This node calculates loss information during training
+    /// typically immediately after the inference portion
+    /// of network evaluation is performed. The result image
+    /// of the loss operations is typically the first gradient
+    /// image to be comsumed by the gradient passes that work
+    /// their way back up the graph. In addition, the node will
+    /// update the loss image in the MPSNNLabels with the
+    /// desired estimate of correctness.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlossnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNLossNode;
@@ -5321,9 +7622,14 @@ extern_methods!(
             descriptor: &MPSCNNLossDescriptor,
         ) -> Retained<Self>;
 
+        /// Get the input node for labes and weights, for example to set the handle
         #[method_id(@__retain_semantics Other inputLabels)]
         pub unsafe fn inputLabels(&self) -> Retained<MPSNNLabelsNode>;
 
+        /// The loss filter is its own gradient filter and doesn't provide a corresponding gradient node.
+        ///
+        /// The image returned by the loss filter is the gradient image to be consumed by
+        /// the gradient filters corresponding to preceeding inference nodes.
         #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
@@ -5349,7 +7655,16 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossnode?language=objc)
+    /// This node calculates loss information during training
+    /// typically immediately after the inference portion
+    /// of network evaluation is performed. The result image
+    /// of the loss operations is typically the first gradient
+    /// image to be comsumed by the gradient passes that work
+    /// their way back up the graph. In addition, the node will
+    /// update the loss image in the MPSNNLabels with the
+    /// desired estimate of correctness.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNYOLOLossNode;
@@ -5374,9 +7689,14 @@ extern_methods!(
             descriptor: &MPSCNNYOLOLossDescriptor,
         ) -> Retained<Self>;
 
+        /// Get the input node for labes and weights, for example to set the handle
         #[method_id(@__retain_semantics Other inputLabels)]
         pub unsafe fn inputLabels(&self) -> Retained<MPSNNLabelsNode>;
 
+        /// The loss filter is its own gradient filter and doesn't provide a corresponding gradient node.
+        ///
+        /// The image returned by the loss filter is the gradient image to be consumed by
+        /// the gradient filters corresponding to preceeding inference nodes.
         #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
@@ -5402,7 +7722,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconcatenationnode?language=objc)
+    /// Node representing a the concatenation (in the feature channel dimension) of the results from one or more kernels
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconcatenationnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNConcatenationNode;
@@ -5412,15 +7734,82 @@ unsafe impl NSObjectProtocol for MPSNNConcatenationNode {}
 
 extern_methods!(
     unsafe impl MPSNNConcatenationNode {
+        /// Init a autoreleased node that concatenates feature channels from multiple images
+        ///
+        /// In some neural network designs, it is necessary to append feature channels
+        /// from one neural network filter to the results of another. If we have three
+        /// image nodes with M, N and O feature channels in them, passed to -initWithSources:
+        /// as
+        /// @
+        /// [imageM, imageN, imageO], then feature channels [0,M-1] will be drawn from
+        /// image M,  feature channels [M, M+N-1] will be drawn from image N and feature channels
+        /// [M+N, M+N+O-1] will be drawn from image O.
+        ///
+        /// As all images are padded out to a multiple of four feature channels,
+        /// M, N and O here are also multiples of four, even when the MPSImages
+        /// are not. That is, if the image is 23 feature channels and one channel
+        /// of padding, it takes up 24 feature channels worth of space in the
+        /// concatenated result.
+        ///
+        /// Performance Note:  Generally, concatenation is free as long as all
+        /// of the sourceNodes are produced by filters in the same MPSNNGraph.
+        /// Most MPSCNNKernels have the ability to write their results  at a
+        /// feature channel offset within a target MPSImage. However, if the
+        /// MPSNNImageNode source nodes come from images external to the MPSNNGraph,
+        /// then we have to do a copy operation to assemble the concatenated node.
+        /// As a result, when deciding where to break a large logical graph into
+        /// multiple smaller MPSNNGraphs, it is better for concatenations to
+        /// appear at the ends of subgraphs when possible rather than at the start,
+        /// to the extent that all the images used in the concatenation are
+        /// produced by that subgraph.
+        ///
+        ///
+        /// Parameter `sourceNodes`: The MPSNNImageNode representing the source MPSImages for the filter
+        ///
+        /// Returns: A new MPSNNFilter node that concatenates its inputs.
         #[method_id(@__retain_semantics Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
+        /// Init a node that concatenates feature channels from multiple images
+        ///
+        /// In some neural network designs, it is necessary to append feature channels
+        /// from one neural network filter to the results of another. If we have three
+        /// image nodes with M, N and O feature channels in them, passed to -initWithSources:
+        /// as
+        /// @
+        /// [imageM, imageN, imageO], then feature channels [0,M-1] will be drawn from
+        /// image M,  feature channels [M, M+N-1] will be drawn from image N and feature channels
+        /// [M+N, M+N+O-1] will be drawn from image O.
+        ///
+        /// As all images are padded out to a multiple of four feature channels,
+        /// M, N and O here are also multiples of four, even when the MPSImages
+        /// are not. That is, if the image is 23 feature channels and one channel
+        /// of padding, it takes up 24 feature channels worth of space in the
+        /// concatenated result.
+        ///
+        /// Performance Note:  Generally, concatenation is free as long as all
+        /// of the sourceNodes are produced by filters in the same MPSNNGraph.
+        /// Most MPSCNNKernels have the ability to write their results  at a
+        /// feature channel offset within a target MPSImage. However, if the
+        /// MPSNNImageNode source nodes come from images external to the MPSNNGraph,
+        /// then we have to do a copy operation to assemble the concatenated node.
+        /// As a result, when deciding where to break a large logical graph into
+        /// multiple smaller MPSNNGraphs, it is better for concatenations to
+        /// appear at the ends of subgraphs when possible rather than at the start,
+        /// to the extent that all the images used in the concatenation are
+        /// produced by that subgraph.
+        ///
+        ///
+        /// Parameter `sourceNodes`: The MPSNNImageNode representing the source MPSImages for the filter
+        ///
+        /// Returns: A new MPSNNFilter node that concatenates its inputs.
         #[method_id(@__retain_semantics Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
         ) -> Retained<Self>;
 
+        /// Concatenation returns multiple gradient filters. Use -gradientFiltersWithSources: instead.
         #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
@@ -5446,7 +7835,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconcatenationgradientnode?language=objc)
+    /// A MPSNNSlice filter that operates as the conjugate computation for concatentation operators during training
+    ///
+    /// As concatenation is formally just a copy and not a computation, there isn't a lot of arithmetic for
+    /// the slice operator to do, but we still need to extract out the relevant portion
+    /// of the gradient of the input signal that went into the corresponding concatenation
+    /// destination image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconcatenationgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNConcatenationGradientNode;
@@ -5456,6 +7852,15 @@ unsafe impl NSObjectProtocol for MPSNNConcatenationGradientNode {}
 
 extern_methods!(
     unsafe impl MPSNNConcatenationGradientNode {
+        /// create a MPSNNConcatenationGradientNode
+        ///
+        /// Generally you should use [MPSNNConcatenationNode gradientFiltersWithSources:] instead.
+        ///
+        /// Parameter `gradientSourceNode`: The gradient image functioning as input for the operator
+        ///
+        /// Parameter `sourceImage`: The particular input image to the concatentation, if any, that the slice corresponds with
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             gradient_source_node: &MPSNNImageNode,
@@ -5463,6 +7868,15 @@ extern_methods!(
             gradient_state: &MPSNNGradientStateNode,
         ) -> Retained<Self>;
 
+        /// Init a MPSNNConcatenationGradientNode
+        ///
+        /// Generally you should use [MPSNNConcatenationNode gradientFiltersWithSources:] instead.
+        ///
+        /// Parameter `gradientSourceNode`: The gradient image functioning as input for the operator
+        ///
+        /// Parameter `sourceImage`: The particular input image to the concatentation, if any, that the slice corresponds with
+        ///
+        /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
@@ -5490,7 +7904,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreshapenode?language=objc)
+    /// A node for a MPSNNReshape kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreshapenode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReshapeNode;
@@ -5500,6 +7916,17 @@ unsafe impl NSObjectProtocol for MPSNNReshapeNode {}
 
 extern_methods!(
     unsafe impl MPSNNReshapeNode {
+        /// Init a node representing a autoreleased MPSNNReshape kernel
+        ///
+        /// Parameter `source`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `resultWidth`: The width of the reshaped image.
+        ///
+        /// Parameter `resultHeight`: The height of the reshaped image.
+        ///
+        /// Parameter `resultFeatureChannels`: The number of feature channels in the reshaped image.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSNNReshape kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:resultWidth:resultHeight:resultFeatureChannels:)]
         pub unsafe fn nodeWithSource_resultWidth_resultHeight_resultFeatureChannels(
             source: &MPSNNImageNode,
@@ -5508,6 +7935,17 @@ extern_methods!(
             result_feature_channels: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSNNReshape kernel
+        ///
+        /// Parameter `source`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `resultWidth`: The width of the reshaped image.
+        ///
+        /// Parameter `resultHeight`: The height of the reshaped image.
+        ///
+        /// Parameter `resultFeatureChannels`: The number of feature channels in the reshaped image.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSNNReshape kernel.
         #[method_id(@__retain_semantics Init initWithSource:resultWidth:resultHeight:resultFeatureChannels:)]
         pub unsafe fn initWithSource_resultWidth_resultHeight_resultFeatureChannels(
             this: Allocated<Self>,
@@ -5546,6 +7984,13 @@ unsafe impl NSObjectProtocol for MPSNNReshapeGradientNode {}
 
 extern_methods!(
     unsafe impl MPSNNReshapeGradientNode {
+        /// A node to represent the gradient of a reshape node.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward reshape node.
+        ///
+        /// Returns: A MPSNNReshapeGradientNode
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             source_gradient: &MPSNNImageNode,
@@ -5553,6 +7998,13 @@ extern_methods!(
             gradient_state: &MPSNNGradientStateNode,
         ) -> Retained<Self>;
 
+        /// A node to represent the gradient of a reshape node.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward reshape node.
+        ///
+        /// Returns: A MPSCNNConvolutionGradientNode
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
@@ -5590,6 +8042,13 @@ unsafe impl NSObjectProtocol for MPSNNReductionSpatialMeanGradientNode {}
 
 extern_methods!(
     unsafe impl MPSNNReductionSpatialMeanGradientNode {
+        /// A node to represent the gradient of a spatial mean reduction node.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward spatial mean reduction node.
+        ///
+        /// Returns: A MPSNNReductionSpatialMeanGradientNode
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             source_gradient: &MPSNNImageNode,
@@ -5597,6 +8056,13 @@ extern_methods!(
             gradient_state: &MPSNNGradientStateNode,
         ) -> Retained<Self>;
 
+        /// A node to represent the gradient of a spatial mean reduction node.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward spatial mean reduction node.
+        ///
+        /// Returns: A MPSNNReductionSpatialMeanGradientNode
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
@@ -5624,7 +8090,20 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadnode?language=objc)
+    /// A node for a MPSNNPad kernel
+    ///
+    /// You should not use this node to zero pad your data in the XY-plane.
+    /// This node copies the input image and therefore should only be used in
+    /// special circumstances where the normal padding operation, defined for most
+    /// filters and nodes through
+    /// MPSNNPadding,cannot achieve the necessary padding.
+    /// Therefore use this node only when you need one of the special edge modes:
+    /// MPSImageEdgeModeConstant,MPSImageEdgeModeMirror,MPSImageEdgeModeMirrorWithEdgeor, if you need padding in the
+    /// feature-channel dimesion.
+    /// In other cases use to
+    /// MPSNNPaddingto get best performance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNPadNode;
@@ -5634,13 +8113,30 @@ unsafe impl NSObjectProtocol for MPSNNPadNode {}
 
 extern_methods!(
     unsafe impl MPSNNPadNode {
+        /// Determines the constant value to apply when using
+        /// MPSImageEdgeModeConstant.Default: 0.0f.
         #[method(fillValue)]
         pub unsafe fn fillValue(&self) -> c_float;
 
+        /// Setter for [`fillValue`][Self::fillValue].
         #[method(setFillValue:)]
         pub unsafe fn setFillValue(&self, fill_value: c_float);
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Init a node representing a autoreleased MPSNNPad kernel
+        ///
+        /// Parameter `source`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `paddingSizeBefore`: The amount of padding to apply before the image in each dimension.
+        ///
+        /// Parameter `paddingSizeAfter`: The amount of padding to apply after the image in each dimension.
+        ///
+        /// Parameter `edgeMode`: The
+        /// MPSImageEdgeModefor the padding node - Note that for now
+        /// the pad-node and its gradient are the only nodes that support
+        /// the extended edge-modes, ie. the ones beyond MPSImageEdgeModeClamp.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSNNPad kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:)]
         pub unsafe fn nodeWithSource_paddingSizeBefore_paddingSizeAfter_edgeMode(
             source: &MPSNNImageNode,
@@ -5650,6 +8146,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Init a node representing a MPSNNPad kernel
+        ///
+        /// Parameter `source`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `paddingSizeBefore`: The amount of padding to apply before the image in each dimension.
+        ///
+        /// Parameter `paddingSizeAfter`: The amount of padding to apply after the image in each dimension.
+        ///
+        /// Parameter `edgeMode`: The
+        /// MPSImageEdgeModefor the padding node - Note that for now
+        /// the pad-node and its gradient are the only nodes that support
+        /// the extended edge-modes, ie. the ones beyond MPSImageEdgeModeClamp.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSNNPad kernel.
         #[method_id(@__retain_semantics Init initWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:)]
         pub unsafe fn initWithSource_paddingSizeBefore_paddingSizeAfter_edgeMode(
             this: Allocated<Self>,
@@ -5688,6 +8198,13 @@ unsafe impl NSObjectProtocol for MPSNNPadGradientNode {}
 
 extern_methods!(
     unsafe impl MPSNNPadGradientNode {
+        /// A node to represent the gradient of a padding node.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward padding node.
+        ///
+        /// Returns: A MPSNNPadGradientNode
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             source_gradient: &MPSNNImageNode,
@@ -5695,6 +8212,13 @@ extern_methods!(
             gradient_state: &MPSNNGradientStateNode,
         ) -> Retained<Self>;
 
+        /// A node to represent the gradient of a padding node.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward reshape node.
+        ///
+        /// Returns: A MPSNNPadGradientNode
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
@@ -5722,7 +8246,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsoftmaxnode?language=objc)
+    /// Node representing a MPSCNNSoftMax kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsoftmaxnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNSoftMaxNode;
@@ -5732,9 +8258,19 @@ unsafe impl NSObjectProtocol for MPSCNNSoftMaxNode {}
 
 extern_methods!(
     unsafe impl MPSCNNSoftMaxNode {
+        /// Init a node representing a autoreleased MPSCNNSoftMax kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNSoftMax kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNSoftMax kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNSoftMax kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -5760,7 +8296,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsoftmaxgradientnode?language=objc)
+    /// Node representing a MPSCNNSoftMaxGradient kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsoftmaxgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNSoftMaxGradientNode;
@@ -5804,7 +8342,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlogsoftmaxnode?language=objc)
+    /// Node representing a MPSCNNLogSoftMax kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlogsoftmaxnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNLogSoftMaxNode;
@@ -5814,9 +8354,19 @@ unsafe impl NSObjectProtocol for MPSCNNLogSoftMaxNode {}
 
 extern_methods!(
     unsafe impl MPSCNNLogSoftMaxNode {
+        /// Init a node representing a autoreleased MPSCNNLogSoftMax kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNLogSoftMax kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNLogSoftMax kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNLogSoftMax kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -5842,7 +8392,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlogsoftmaxgradientnode?language=objc)
+    /// Node representing a MPSCNNLogSoftMaxGradient kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlogsoftmaxgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNLogSoftMaxGradientNode;
@@ -5886,7 +8438,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingnearestnode?language=objc)
+    /// Node representing a MPSCNNUpsamplingNearest kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingnearestnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNUpsamplingNearestNode;
@@ -5896,6 +8450,15 @@ unsafe impl NSObjectProtocol for MPSCNNUpsamplingNearestNode {}
 
 extern_methods!(
     unsafe impl MPSCNNUpsamplingNearestNode {
+        /// Convenience initializer for an autoreleased MPSCNNUpsamplingNearest nodes
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `integerScaleFactorX`: The upsampling factor for the x dimension.
+        ///
+        /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNUpsamplingNearest kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:integerScaleFactorX:integerScaleFactorY:)]
         pub unsafe fn nodeWithSource_integerScaleFactorX_integerScaleFactorY(
             source_node: &MPSNNImageNode,
@@ -5903,6 +8466,15 @@ extern_methods!(
             integer_scale_factor_y: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNUpsamplingNearest kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `integerScaleFactorX`: The upsampling factor for the x dimension.
+        ///
+        /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNUpsamplingNearest kernel.
         #[method_id(@__retain_semantics Init initWithSource:integerScaleFactorX:integerScaleFactorY:)]
         pub unsafe fn initWithSource_integerScaleFactorX_integerScaleFactorY(
             this: Allocated<Self>,
@@ -5936,7 +8508,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilinearnode?language=objc)
+    /// Node representing a MPSCNNUpsamplingBilinear kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilinearnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNUpsamplingBilinearNode;
@@ -5946,6 +8520,15 @@ unsafe impl NSObjectProtocol for MPSCNNUpsamplingBilinearNode {}
 
 extern_methods!(
     unsafe impl MPSCNNUpsamplingBilinearNode {
+        /// Init a autoreleased node representing a MPSCNNUpsamplingBilinear kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `integerScaleFactorX`: The upsampling factor for the x dimension.
+        ///
+        /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNUpsamplingBilinear kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:integerScaleFactorX:integerScaleFactorY:)]
         pub unsafe fn nodeWithSource_integerScaleFactorX_integerScaleFactorY(
             source_node: &MPSNNImageNode,
@@ -5953,6 +8536,17 @@ extern_methods!(
             integer_scale_factor_y: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Init a autoreleased node representing a MPSCNNUpsamplingBilinear kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `integerScaleFactorX`: The upsampling factor for the x dimension.
+        ///
+        /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
+        ///
+        /// Parameter `alignCorners`: Specifier whether the centers of the 4 corner pixels of the input and output regions are aligned,
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNUpsamplingBilinear kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:integerScaleFactorX:integerScaleFactorY:alignCorners:)]
         pub unsafe fn nodeWithSource_integerScaleFactorX_integerScaleFactorY_alignCorners(
             source_node: &MPSNNImageNode,
@@ -5961,6 +8555,15 @@ extern_methods!(
             align_corners: bool,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNUpsamplingBilinear kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `integerScaleFactorX`: The upsampling factor for the x dimension.
+        ///
+        /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNUpsamplingBilinear kernel.
         #[method_id(@__retain_semantics Init initWithSource:integerScaleFactorX:integerScaleFactorY:)]
         pub unsafe fn initWithSource_integerScaleFactorX_integerScaleFactorY(
             this: Allocated<Self>,
@@ -5969,6 +8572,17 @@ extern_methods!(
             integer_scale_factor_y: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSCNNUpsamplingBilinear kernel
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Parameter `integerScaleFactorX`: The upsampling factor for the x dimension.
+        ///
+        /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
+        ///
+        /// Parameter `alignCorners`: Specifier whether the centers of the 4 corner pixels of the input and output regions are aligned,
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSCNNUpsamplingBilinear kernel.
         #[method_id(@__retain_semantics Init initWithSource:integerScaleFactorX:integerScaleFactorY:alignCorners:)]
         pub unsafe fn initWithSource_integerScaleFactorX_integerScaleFactorY_alignCorners(
             this: Allocated<Self>,
@@ -6006,7 +8620,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingnearestgradientnode?language=objc)
+    /// Node representing a MPSCNNUpsamplingNearest kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingnearestgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNUpsamplingNearestGradientNode;
@@ -6016,6 +8632,21 @@ unsafe impl NSObjectProtocol for MPSCNNUpsamplingNearestGradientNode {}
 
 extern_methods!(
     unsafe impl MPSCNNUpsamplingNearestGradientNode {
+        /// A node to represent the gradient calculation for nearest upsampling training.
+        ///
+        /// [forwardFilter gradientFilterWithSources:] is a more convient way to do this.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward filter node
+        ///
+        /// Parameter `gradientState`: The gradient state from the forward filter
+        ///
+        /// Parameter `scaleFactorX`: The X scale factor from the forward pass
+        ///
+        /// Parameter `scaleFactorY`: The Y scale factor from the forward pass
+        ///
+        /// Returns: A MPSCNNUpsamplingNearestGradientNode
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_scaleFactorX_scaleFactorY(
             source_gradient: &MPSNNImageNode,
@@ -6025,6 +8656,21 @@ extern_methods!(
             scale_factor_y: c_double,
         ) -> Retained<Self>;
 
+        /// A node to represent the gradient calculation for nearest upsampling training.
+        ///
+        /// [forwardFilter gradientFilterWithSources:] is a more convient way to do this.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward filter node
+        ///
+        /// Parameter `gradientState`: The gradient state from the forward filter
+        ///
+        /// Parameter `scaleFactorX`: The X scale factor from the forward pass
+        ///
+        /// Parameter `scaleFactorY`: The Y scale factor from the forward pass
+        ///
+        /// Returns: A MPSCNNUpsamplingNearestGradientNode
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_scaleFactorX_scaleFactorY(
             this: Allocated<Self>,
@@ -6060,7 +8706,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradientnode?language=objc)
+    /// Node representing a MPSCNNUpsamplingBilinear kernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNUpsamplingBilinearGradientNode;
@@ -6070,6 +8718,21 @@ unsafe impl NSObjectProtocol for MPSCNNUpsamplingBilinearGradientNode {}
 
 extern_methods!(
     unsafe impl MPSCNNUpsamplingBilinearGradientNode {
+        /// A node to represent the gradient calculation for nearest upsampling training.
+        ///
+        /// [forwardFilter gradientFilterWithSources:] is a more convient way to do this.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward filter node
+        ///
+        /// Parameter `gradientState`: The gradient state from the forward filter
+        ///
+        /// Parameter `scaleFactorX`: The X scale factor from the forward pass
+        ///
+        /// Parameter `scaleFactorY`: The Y scale factor from the forward pass
+        ///
+        /// Returns: A MPSCNNUpsamplingBilinearGradientNode
         #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_scaleFactorX_scaleFactorY(
             source_gradient: &MPSNNImageNode,
@@ -6079,6 +8742,21 @@ extern_methods!(
             scale_factor_y: c_double,
         ) -> Retained<Self>;
 
+        /// A node to represent the gradient calculation for nearest upsampling training.
+        ///
+        /// [forwardFilter gradientFilterWithSources:] is a more convient way to do this.
+        ///
+        /// Parameter `sourceGradient`: The input gradient from the 'downstream' gradient filter.
+        ///
+        /// Parameter `sourceImage`: The input image from the forward filter node
+        ///
+        /// Parameter `gradientState`: The gradient state from the forward filter
+        ///
+        /// Parameter `scaleFactorX`: The X scale factor from the forward pass
+        ///
+        /// Parameter `scaleFactorY`: The Y scale factor from the forward pass
+        ///
+        /// Returns: A MPSCNNUpsamplingBilinearGradientNode
         #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_scaleFactorX_scaleFactorY(
             this: Allocated<Self>,
@@ -6114,11 +8792,22 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcallback?language=objc)
+    /// MPSNNGramMatrixCallback Defines a callback protocol for
+    /// MPSNNGramMatrixCalculationNodeto set the 'alpha'
+    /// scaling value dynamically just before encoding the underlying MPSNNGramMatrixCalculation kernel.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcallback?language=objc)
     pub unsafe trait MPSNNGramMatrixCallback:
         NSCopying + NSObjectProtocol + NSSecureCoding
     {
         #[cfg(feature = "MPSImage")]
+        /// Returns the desired alpha scaling value.
+        ///
+        /// Parameter `sourceImage`: One of the source images in the batch given as a reference for the alpha computation.
+        ///
+        /// Parameter `destinationImage`: One of the destination images in the batch given as a reference for the alpha computation.
+        ///
+        /// Returns: The desired alpha value.
         #[method(alphaForSourceImage:destinationImage:)]
         unsafe fn alphaForSourceImage_destinationImage(
             &self,
@@ -6131,7 +8820,10 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode?language=objc)
+    /// Node representing a
+    /// MPSNNGramMatrixCalculationkernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNGramMatrixCalculationNode;
@@ -6141,35 +8833,63 @@ unsafe impl NSObjectProtocol for MPSNNGramMatrixCalculationNode {}
 
 extern_methods!(
     unsafe impl MPSNNGramMatrixCalculationNode {
+        /// Scaling factor for the output. Default: 1.0f.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
+        /// Optional callback option - setting this allows the alpha value to be changed dynamically at encode time.
+        /// Default value: nil.
         #[method_id(@__retain_semantics Other propertyCallBack)]
         pub unsafe fn propertyCallBack(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSNNGramMatrixCallback>>>;
 
+        /// Setter for [`propertyCallBack`][Self::propertyCallBack].
         #[method(setPropertyCallBack:)]
         pub unsafe fn setPropertyCallBack(
             &self,
             property_call_back: Option<&ProtocolObject<dyn MPSNNGramMatrixCallback>>,
         );
 
+        /// Init a node representing a autoreleased MPSNNGramMatrixCalculationNode kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSNNGramMatrixCalculationNode kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing a MPSNNGramMatrixCalculationNode kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSNNGramMatrixCalculationNode kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
         ) -> Retained<Self>;
 
+        /// Init a node representing a autoreleased MPSNNGramMatrixCalculationNode kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter.
+        ///
+        /// Parameter `alpha`: Scaling factor for the output.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSNNGramMatrixCalculationNode kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:alpha:)]
         pub unsafe fn nodeWithSource_alpha(
             source_node: &MPSNNImageNode,
             alpha: c_float,
         ) -> Retained<Self>;
 
+        /// Init a node representing a MPSNNGramMatrixCalculationNode kernel.
+        ///
+        /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter.
+        ///
+        /// Parameter `alpha`: Scaling factor for the output.
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSNNGramMatrixCalculationNode kernel.
         #[method_id(@__retain_semantics Init initWithSource:alpha:)]
         pub unsafe fn initWithSource_alpha(
             this: Allocated<Self>,
@@ -6196,7 +8916,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationgradientnode?language=objc)
+    /// Node representing a
+    /// MPSNNGramMatrixCalculationGradientkernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNGramMatrixCalculationGradientNode;
@@ -6206,6 +8929,7 @@ unsafe impl NSObjectProtocol for MPSNNGramMatrixCalculationGradientNode {}
 
 extern_methods!(
     unsafe impl MPSNNGramMatrixCalculationGradientNode {
+        /// Scaling factor for the output. Default: 1.0f.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
@@ -6260,11 +8984,22 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlosscallback?language=objc)
+    /// MPSNNLossCallback Defines a callback protocol for
+    /// MPSNNForwardLossNodeand
+    /// MPSNNLossGradientNodeto set the scalar weight value just before encoding the underlying kernels.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlosscallback?language=objc)
     pub unsafe trait MPSNNLossCallback:
         NSCopying + NSObjectProtocol + NSSecureCoding
     {
         #[cfg(feature = "MPSImage")]
+        /// Returns the desired loss scaling weight value.
+        ///
+        /// Parameter `sourceImage`: One of the source images in the batch given as a reference.
+        ///
+        /// Parameter `destinationImage`: One of the destination images in the batch given as a reference.
+        ///
+        /// Returns: The desired scalar weight value.
         #[method(scalarWeightForSourceImage:destinationImage:)]
         unsafe fn scalarWeightForSourceImage_destinationImage(
             &self,
@@ -6277,7 +9012,10 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode?language=objc)
+    /// Node representing a
+    /// MPSNNForwardLosskernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNForwardLossNode;
@@ -6313,11 +9051,14 @@ extern_methods!(
         #[method(delta)]
         pub unsafe fn delta(&self) -> c_float;
 
+        /// Optional callback option - setting this allows the scalar weight value to be changed dynamically at encode time.
+        /// Default value: nil.
         #[method_id(@__retain_semantics Other propertyCallBack)]
         pub unsafe fn propertyCallBack(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSNNLossCallback>>>;
 
+        /// Setter for [`propertyCallBack`][Self::propertyCallBack].
         #[method(setPropertyCallBack:)]
         pub unsafe fn setPropertyCallBack(
             &self,
@@ -6342,6 +9083,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNLoss")]
+        /// Init a forward loss node from multiple images
+        ///
+        /// Parameter `sourceNodes`: The MPSNNImageNode representing the source MPSImages for the filter
+        /// Node0: logits, Node1: labels, Node2: weights
+        ///
+        /// Returns: A new MPSNNFilter node.
         #[method_id(@__retain_semantics Other nodeWithSources:lossDescriptor:)]
         pub unsafe fn nodeWithSources_lossDescriptor(
             source_nodes: &NSArray<MPSNNImageNode>,
@@ -6368,6 +9115,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNLoss")]
+        /// Init a forward loss node from multiple images
+        ///
+        /// Parameter `sourceNodes`: The MPSNNImageNode representing the source MPSImages for the filter
+        /// Node0: logits, Node1: labels, Node2: weights
+        ///
+        /// Returns: A new MPSNNFilter node.
         #[method_id(@__retain_semantics Init initWithSources:lossDescriptor:)]
         pub unsafe fn initWithSources_lossDescriptor(
             this: Allocated<Self>,
@@ -6375,6 +9128,7 @@ extern_methods!(
             descriptor: &MPSCNNLossDescriptor,
         ) -> Retained<Self>;
 
+        /// Returns the gradient filter for predictions, if you want also gradients for labels then use -gradientFiltersWithSource(s):
         #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
@@ -6418,7 +9172,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode?language=objc)
+    /// Node representing a
+    /// MPSNNLossGradientkernel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNLossGradientNode;
@@ -6457,11 +9214,14 @@ extern_methods!(
         #[method(isLabelsGradientFilter)]
         pub unsafe fn isLabelsGradientFilter(&self) -> bool;
 
+        /// Optional callback option - setting this allows the scalar weight value to be changed dynamically at encode time.
+        /// Default value: nil.
         #[method_id(@__retain_semantics Other propertyCallBack)]
         pub unsafe fn propertyCallBack(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSNNLossCallback>>>;
 
+        /// Setter for [`propertyCallBack`][Self::propertyCallBack].
         #[method(setPropertyCallBack:)]
         pub unsafe fn setPropertyCallBack(
             &self,
@@ -6492,6 +9252,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNLoss")]
+        /// Init a gradient loss node from multiple images
+        ///
+        /// Parameter `sourceNodes`: The MPSNNImageNode representing the source MPSImages for the filter
+        /// Node0: logits, Node1: labels, Node2: weights
+        ///
+        /// Returns: A new MPSNNFilter node.
         #[method_id(@__retain_semantics Other nodeWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:)]
         pub unsafe fn nodeWithSources_gradientState_lossDescriptor_isLabelsGradientFilter(
             source_nodes: &NSArray<MPSNNImageNode>,
@@ -6526,6 +9292,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNLoss")]
+        /// Init a gradient loss node from multiple images
+        ///
+        /// Parameter `sourceNodes`: The MPSNNImageNode representing the source MPSImages for the filter
+        /// Node0: input gradients, Node1: logits, Node2: labels, Node3: weights
+        ///
+        /// Returns: A new MPSNNFilter node.
         #[method_id(@__retain_semantics Init initWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:)]
         pub unsafe fn initWithSources_gradientState_lossDescriptor_isLabelsGradientFilter(
             this: Allocated<Self>,
@@ -6535,6 +9307,7 @@ extern_methods!(
             is_labels_gradient_filter: bool,
         ) -> Retained<Self>;
 
+        /// This is a gradient filter - there is no support gradients of gradients currently.
         #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
@@ -6560,7 +9333,16 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnninitialgradientnode?language=objc)
+    /// A node for a MPSNNInitialGradient kernel
+    ///
+    /// This node can be used to generate a starting point for an arbitrary gradient computation.
+    /// Simply add this node after the node for which you want to compute gradients and then
+    /// call the function
+    /// trainingGraphWithSourceGradient:of this node to automatically
+    /// generate the nodes needed for gradient computations or add the desired nodes manually.
+    /// This is generally used with MPSNNLossGradientNode and MPSNNForwardLossNode
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnninitialgradientnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNInitialGradientNode;
@@ -6570,15 +9352,26 @@ unsafe impl NSObjectProtocol for MPSNNInitialGradientNode {}
 
 extern_methods!(
     unsafe impl MPSNNInitialGradientNode {
+        /// Init a node representing a MPSNNInitialGradient MPSNNPad kernel
+        ///
+        /// Parameter `source`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSNNInitialGradient kernel.
         #[method_id(@__retain_semantics Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source: &MPSNNImageNode) -> Retained<Self>;
 
+        /// Init a node representing a MPSNNInitialGradient MPSNNPad kernel
+        ///
+        /// Parameter `source`: The MPSNNImageNode representing the source MPSImage for the filter
+        ///
+        /// Returns: A new MPSNNFilter node for a MPSNNInitialGradient kernel.
         #[method_id(@__retain_semantics Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
         ) -> Retained<Self>;
 
+        /// The initial gradient filter is a gradient filter and we don't provide support for gradients of gradients currently.
         #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,

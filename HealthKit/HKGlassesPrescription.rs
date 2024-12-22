@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkglassesprescription?language=objc)
+    /// An object subclass representing a glasses prescription
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkglassesprescription?language=objc)
     #[unsafe(super(HKVisionPrescription, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -80,6 +82,7 @@ extern_methods!(
             feature = "HKGlassesLensSpecification",
             feature = "HKLensSpecification"
         ))]
+        /// The right eye lens specification
         #[method_id(@__retain_semantics Other rightEye)]
         pub unsafe fn rightEye(&self) -> Option<Retained<HKGlassesLensSpecification>>;
 
@@ -87,6 +90,7 @@ extern_methods!(
             feature = "HKGlassesLensSpecification",
             feature = "HKLensSpecification"
         ))]
+        /// The left eye lens specification
         #[method_id(@__retain_semantics Other leftEye)]
         pub unsafe fn leftEye(&self) -> Option<Retained<HKGlassesLensSpecification>>;
 
@@ -95,6 +99,17 @@ extern_methods!(
             feature = "HKGlassesLensSpecification",
             feature = "HKLensSpecification"
         ))]
+        /// Parameter `rightEyeSpecification`: The right eye specification
+        ///
+        /// Parameter `leftEyeSpecification`: The left eye specification
+        ///
+        /// Parameter `dateIssued`: The date the prescription was issued
+        ///
+        /// Parameter `expirationDate`: The date the prescription expires
+        ///
+        /// Parameter `device`: The device that generated the sample
+        ///
+        /// Parameter `metadata`: The metadata for the sample
         #[method_id(@__retain_semantics Other prescriptionWithRightEyeSpecification:leftEyeSpecification:dateIssued:expirationDate:device:metadata:)]
         pub unsafe fn prescriptionWithRightEyeSpecification_leftEyeSpecification_dateIssued_expirationDate_device_metadata(
             right_eye_specification: Option<&HKGlassesLensSpecification>,

@@ -57,6 +57,7 @@ extern_methods!(
         ) -> Retained<NSArray<NSPersistentStoreDescription>>;
 
         #[cfg(feature = "NSPersistentStoreDescription")]
+        /// Setter for [`persistentStoreDescriptions`][Self::persistentStoreDescriptions].
         #[method(setPersistentStoreDescriptions:)]
         pub unsafe fn setPersistentStoreDescriptions(
             &self,

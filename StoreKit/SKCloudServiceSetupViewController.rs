@@ -56,6 +56,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKCloudServiceSetupViewController {
+        /// Optional delegate.
         #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
@@ -63,6 +64,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn SKCloudServiceSetupViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -71,6 +73,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Load cloud service setup view with the given options.
+        /// Block is invoked on the main thread when the load finishes.
         #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
         #[method(loadWithOptions:completionHandler:)]
         pub unsafe fn loadWithOptions_completionHandler(
@@ -127,6 +131,7 @@ extern_protocol!(
     pub unsafe trait SKCloudServiceSetupViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Sent when the view controller was dismissed.
         #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
         #[optional]
         #[method(cloudServiceSetupViewControllerDidDismiss:)]
@@ -140,28 +145,39 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsactionkey?language=objc)
+    /// Action for setup entry point (of type SKCloudServiceSetupAction).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsactionkey?language=objc)
     pub static SKCloudServiceSetupOptionsActionKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsitunesitemidentifierkey?language=objc)
+    /// Identifier of the iTunes Store item the user is trying to access which requires cloud service setup (NSNumber).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsitunesitemidentifierkey?language=objc)
     pub static SKCloudServiceSetupOptionsITunesItemIdentifierKey:
         &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsaffiliatetokenkey?language=objc)
+    /// iTunes Store affiliate token (NSString).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsaffiliatetokenkey?language=objc)
     pub static SKCloudServiceSetupOptionsAffiliateTokenKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionscampaigntokenkey?language=objc)
+    /// iTunes Store affiliate campaign token (NSString).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionscampaigntokenkey?language=objc)
     pub static SKCloudServiceSetupOptionsCampaignTokenKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsmessageidentifierkey?language=objc)
+    /// Identifier used to select the main message presented to the user for this setup view (SKCloudServiceSetupMessageIdentifier).
+    /// When missing, the setup view will be configured in a way that is equivalent to using SKCloudServiceSetupMessageIdentifierJoin.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsmessageidentifierkey?language=objc)
     pub static SKCloudServiceSetupOptionsMessageIdentifierKey:
         &'static SKCloudServiceSetupOptionsKey;
 }

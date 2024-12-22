@@ -4,14 +4,18 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlspecializationstrategy?language=objc)
+/// The optimization strategy for the model specialization.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlspecializationstrategy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLSpecializationStrategy(pub NSInteger);
 impl MLSpecializationStrategy {
+    /// The strategy that works well for most applications.
     #[doc(alias = "MLSpecializationStrategyDefault")]
     pub const Default: Self = Self(0);
+    /// Prefer the prediction latency at the potential cost of specialization time, memory footprint, and the disk space usage of specialized artifacts.
     #[doc(alias = "MLSpecializationStrategyFastPrediction")]
     pub const FastPrediction: Self = Self(1);
 }

@@ -70,7 +70,9 @@ unsafe impl RefEncode for AVAudioUnitDistortionPreset {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortion?language=objc)
+    /// An AVAudioUnitEffect that implements a multi-stage distortion effect.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortion?language=objc)
     #[unsafe(super(AVAudioUnitEffect, AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -95,18 +97,30 @@ extern_methods!(
         feature = "AVAudioUnitEffect"
     ))]
     unsafe impl AVAudioUnitDistortion {
+        /// Load a distortion preset.
+        /// Default:    AVAudioUnitDistortionPresetDrumsBitBrush
         #[method(loadFactoryPreset:)]
         pub unsafe fn loadFactoryPreset(&self, preset: AVAudioUnitDistortionPreset);
 
+        /// Gain applied to the signal before being distorted
+        /// Range:      -80 -> 20
+        /// Default:    -6
+        /// Unit:       dB
         #[method(preGain)]
         pub unsafe fn preGain(&self) -> c_float;
 
+        /// Setter for [`preGain`][Self::preGain].
         #[method(setPreGain:)]
         pub unsafe fn setPreGain(&self, pre_gain: c_float);
 
+        /// Blend of the distorted and dry signals
+        /// Range:      0 (all dry) -> 100 (all distorted)
+        /// Default:    50
+        /// Unit:       Percent
         #[method(wetDryMix)]
         pub unsafe fn wetDryMix(&self) -> c_float;
 
+        /// Setter for [`wetDryMix`][Self::wetDryMix].
         #[method(setWetDryMix:)]
         pub unsafe fn setWetDryMix(&self, wet_dry_mix: c_float);
     }
@@ -122,6 +136,17 @@ extern_methods!(
     unsafe impl AVAudioUnitDistortion {
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// Create an AVAudioUnitEffect object.
+        ///
+        ///
+        /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be instantiated.
+        ///
+        /// The componentType must be one of these types
+        /// kAudioUnitType_Effect
+        /// kAudioUnitType_MusicEffect
+        /// kAudioUnitType_Panner
+        /// kAudioUnitType_RemoteEffect
+        /// kAudioUnitType_RemoteMusicEffect
         #[method_id(@__retain_semantics Init initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,

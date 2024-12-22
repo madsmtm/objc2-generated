@@ -173,18 +173,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithName:)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
+        /// The display name of the playlist.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Defaults to the requesting app's display name.
         #[method_id(@__retain_semantics Other authorDisplayName)]
         pub unsafe fn authorDisplayName(&self) -> Retained<NSString>;
 
+        /// Setter for [`authorDisplayName`][Self::authorDisplayName].
         #[method(setAuthorDisplayName:)]
         pub unsafe fn setAuthorDisplayName(&self, author_display_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other descriptionText)]
         pub unsafe fn descriptionText(&self) -> Retained<NSString>;
 
+        /// Setter for [`descriptionText`][Self::descriptionText].
         #[method(setDescriptionText:)]
         pub unsafe fn setDescriptionText(&self, description_text: &NSString);
     }

@@ -46,6 +46,7 @@ extern_methods!(
         pub unsafe fn headerHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`headerHeight`][Self::headerHeight].
         #[method(setHeaderHeight:)]
         pub unsafe fn setHeaderHeight(&self, header_height: CGFloat);
 
@@ -54,6 +55,7 @@ extern_methods!(
         pub unsafe fn footerHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`footerHeight`][Self::footerHeight].
         #[method(setFooterHeight:)]
         pub unsafe fn setFooterHeight(&self, footer_height: CGFloat);
 
@@ -73,6 +75,7 @@ extern_methods!(
         pub unsafe fn printFormatters(&self) -> Option<Retained<NSArray<UIPrintFormatter>>>;
 
         #[cfg(feature = "UIPrintFormatter")]
+        /// Setter for [`printFormatters`][Self::printFormatters].
         #[method(setPrintFormatters:)]
         pub unsafe fn setPrintFormatters(
             &self,

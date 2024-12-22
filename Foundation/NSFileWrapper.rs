@@ -120,6 +120,7 @@ extern_methods!(
         pub unsafe fn preferredFilename(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`preferredFilename`][Self::preferredFilename].
         #[method(setPreferredFilename:)]
         pub unsafe fn setPreferredFilename(&self, preferred_filename: Option<&NSString>);
 
@@ -128,6 +129,7 @@ extern_methods!(
         pub unsafe fn filename(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`filename`][Self::filename].
         #[method(setFilename:)]
         pub unsafe fn setFilename(&self, filename: Option<&NSString>);
 
@@ -136,6 +138,7 @@ extern_methods!(
         pub unsafe fn fileAttributes(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Setter for [`fileAttributes`][Self::fileAttributes].
         #[method(setFileAttributes:)]
         pub unsafe fn setFileAttributes(&self, file_attributes: &NSDictionary<NSString, AnyObject>);
 

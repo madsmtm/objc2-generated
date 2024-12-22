@@ -387,6 +387,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<ItemType>) -> Bool>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`canReorderItemHandler`][Self::canReorderItemHandler].
         #[method(setCanReorderItemHandler:)]
         pub unsafe fn setCanReorderItemHandler(
             &self,
@@ -402,6 +403,7 @@ extern_methods!(
         >;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`willReorderHandler`][Self::willReorderHandler].
         #[method(setWillReorderHandler:)]
         pub unsafe fn setWillReorderHandler(
             &self,
@@ -421,6 +423,7 @@ extern_methods!(
         >;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`didReorderHandler`][Self::didReorderHandler].
         #[method(setDidReorderHandler:)]
         pub unsafe fn setDidReorderHandler(
             &self,
@@ -481,6 +484,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<ItemType>) -> Bool>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`shouldExpandItemHandler`][Self::shouldExpandItemHandler].
         #[method(setShouldExpandItemHandler:)]
         pub unsafe fn setShouldExpandItemHandler(
             &self,
@@ -493,6 +497,7 @@ extern_methods!(
             -> *mut block2::Block<dyn Fn(NonNull<ItemType>)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`willExpandItemHandler`][Self::willExpandItemHandler].
         #[method(setWillExpandItemHandler:)]
         pub unsafe fn setWillExpandItemHandler(
             &self,
@@ -506,6 +511,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<ItemType>) -> Bool>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`shouldCollapseItemHandler`][Self::shouldCollapseItemHandler].
         #[method(setShouldCollapseItemHandler:)]
         pub unsafe fn setShouldCollapseItemHandler(
             &self,
@@ -519,6 +525,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<ItemType>)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`willCollapseItemHandler`][Self::willCollapseItemHandler].
         #[method(setWillCollapseItemHandler:)]
         pub unsafe fn setWillCollapseItemHandler(
             &self,
@@ -537,6 +544,7 @@ extern_methods!(
         >;
 
         #[cfg(all(feature = "NSDiffableDataSourceSectionSnapshot", feature = "block2"))]
+        /// Setter for [`snapshotForExpandingParentItemHandler`][Self::snapshotForExpandingParentItemHandler].
         #[method(setSnapshotForExpandingParentItemHandler:)]
         pub unsafe fn setSnapshotForExpandingParentItemHandler(
             &self,
@@ -633,6 +641,7 @@ extern_methods!(
             feature = "UIView",
             feature = "block2"
         ))]
+        /// Setter for [`supplementaryViewProvider`][Self::supplementaryViewProvider].
         #[method(setSupplementaryViewProvider:)]
         pub unsafe fn setSupplementaryViewProvider(
             &self,
@@ -708,6 +717,7 @@ extern_methods!(
             >,
         >;
 
+        /// Setter for [`reorderingHandlers`][Self::reorderingHandlers].
         #[method(setReorderingHandlers:)]
         pub unsafe fn setReorderingHandlers(
             &self,
@@ -748,6 +758,7 @@ extern_methods!(
             &self,
         ) -> Retained<UICollectionViewDiffableDataSourceSectionSnapshotHandlers<ItemIdentifierType>>;
 
+        /// Setter for [`sectionSnapshotHandlers`][Self::sectionSnapshotHandlers].
         #[method(setSectionSnapshotHandlers:)]
         pub unsafe fn setSectionSnapshotHandlers(
             &self,
@@ -883,6 +894,7 @@ extern_methods!(
         pub unsafe fn defaultRowAnimation(&self) -> UITableViewRowAnimation;
 
         #[cfg(feature = "UITableView")]
+        /// Setter for [`defaultRowAnimation`][Self::defaultRowAnimation].
         #[method(setDefaultRowAnimation:)]
         pub unsafe fn setDefaultRowAnimation(&self, default_row_animation: UITableViewRowAnimation);
     }

@@ -7,6 +7,19 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// Creates a clock that advances at the same rate as audio output.
+    ///
+    /// This clock will not drift from audio output, but may drift from CMClockGetHostTimeClock().
+    /// When audio output is completely stopped, the clock continues to advance, tracking CMClockGetHostTimeClock()
+    /// until audio output starts up again.
+    /// This clock is suitable for use as AVPlayer.sourceClock when synchronizing video-only playback
+    /// with audio played through other APIs or objects.
+    ///
+    /// Parameter `allocator`: A CFAllocator to use to allocate the clock.
+    /// Pass kCFAllocatorDefault or NULL to use the default allocator.
+    ///
+    /// Parameter `clockOut`: Points to a CMClockRef to receive the newly created clock.
+    /// The caller is responsible for calling CFRelease to release this clock.
     #[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
     pub fn CMAudioClockCreate(
         allocator: CFAllocatorRef,

@@ -133,12 +133,14 @@ extern_methods!(
         #[method(isResolved)]
         pub unsafe fn isResolved(&self) -> bool;
 
+        /// Setter for [`isResolved`][Self::isResolved].
         #[method(setResolved:)]
         pub unsafe fn setResolved(&self, resolved: bool);
 
         #[method(isDiscardable)]
         pub unsafe fn isDiscardable(&self) -> bool;
 
+        /// Setter for [`isDiscardable`][Self::isDiscardable].
         #[method(setDiscardable:)]
         pub unsafe fn setDiscardable(&self, discardable: bool);
 

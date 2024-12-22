@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxapplaunchmetric?language=objc)
+    /// An MXMetric subclass that encapsulates app launch metrics.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxapplaunchmetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
@@ -27,22 +29,42 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppLaunchMetric {
         #[cfg(feature = "MXHistogram")]
+        /// Histogrammed application time-to-first-draw data.
+        ///
+        /// Dimensioned as NSUnitDuration.
+        ///
+        /// This represents the time when the first CA commit is finished.
         #[method_id(@__retain_semantics Other histogrammedTimeToFirstDraw)]
         pub unsafe fn histogrammedTimeToFirstDraw(&self) -> Retained<MXHistogram<NSUnitDuration>>;
 
         #[cfg(feature = "MXHistogram")]
+        /// Histogrammed application resume time data.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other histogrammedApplicationResumeTime)]
         pub unsafe fn histogrammedApplicationResumeTime(
             &self,
         ) -> Retained<MXHistogram<NSUnitDuration>>;
 
         #[cfg(feature = "MXHistogram")]
+        /// Histogrammed optimized application time-to-first-draw data.
+        ///
+        /// Dimensioned as NSUnitDuration.
+        ///
+        /// This represents the time when the first CA commit is finished where the application launch has been optimized by the system.
+        ///
+        /// In iOS 15, the system will opportunistically start applications that are not running in the background to reduce the amount of time a user may have to wait before an application is usable. These launches can occur after a system reboot and periodically as system conditions allow.
         #[method_id(@__retain_semantics Other histogrammedOptimizedTimeToFirstDraw)]
         pub unsafe fn histogrammedOptimizedTimeToFirstDraw(
             &self,
         ) -> Retained<MXHistogram<NSUnitDuration>>;
 
         #[cfg(feature = "MXHistogram")]
+        /// Histogrammed extended launch data.
+        ///
+        /// Dimensioned as NSUnitDuration.
+        ///
+        /// This represents the time when the app has drawn the first frame and finishes all extended launch tasks that assigned by the developer.
         #[method_id(@__retain_semantics Other histogrammedExtendedLaunch)]
         pub unsafe fn histogrammedExtendedLaunch(&self) -> Retained<MXHistogram<NSUnitDuration>>;
     }

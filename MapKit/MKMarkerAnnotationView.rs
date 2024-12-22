@@ -62,6 +62,7 @@ extern_methods!(
         pub unsafe fn titleVisibility(&self) -> MKFeatureVisibility;
 
         #[cfg(feature = "MKTypes")]
+        /// Setter for [`titleVisibility`][Self::titleVisibility].
         #[method(setTitleVisibility:)]
         pub unsafe fn setTitleVisibility(&self, title_visibility: MKFeatureVisibility);
 
@@ -70,42 +71,49 @@ extern_methods!(
         pub unsafe fn subtitleVisibility(&self) -> MKFeatureVisibility;
 
         #[cfg(feature = "MKTypes")]
+        /// Setter for [`subtitleVisibility`][Self::subtitleVisibility].
         #[method(setSubtitleVisibility:)]
         pub unsafe fn setSubtitleVisibility(&self, subtitle_visibility: MKFeatureVisibility);
 
         #[method_id(@__retain_semantics Other markerTintColor)]
         pub unsafe fn markerTintColor(&self) -> Option<Retained<NSColor>>;
 
+        /// Setter for [`markerTintColor`][Self::markerTintColor].
         #[method(setMarkerTintColor:)]
         pub unsafe fn setMarkerTintColor(&self, marker_tint_color: Option<&NSColor>);
 
         #[method_id(@__retain_semantics Other glyphTintColor)]
         pub unsafe fn glyphTintColor(&self) -> Option<Retained<NSColor>>;
 
+        /// Setter for [`glyphTintColor`][Self::glyphTintColor].
         #[method(setGlyphTintColor:)]
         pub unsafe fn setGlyphTintColor(&self, glyph_tint_color: Option<&NSColor>);
 
         #[method_id(@__retain_semantics Other glyphText)]
         pub unsafe fn glyphText(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`glyphText`][Self::glyphText].
         #[method(setGlyphText:)]
         pub unsafe fn setGlyphText(&self, glyph_text: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other glyphImage)]
         pub unsafe fn glyphImage(&self) -> Option<Retained<NSImage>>;
 
+        /// Setter for [`glyphImage`][Self::glyphImage].
         #[method(setGlyphImage:)]
         pub unsafe fn setGlyphImage(&self, glyph_image: Option<&NSImage>);
 
         #[method_id(@__retain_semantics Other selectedGlyphImage)]
         pub unsafe fn selectedGlyphImage(&self) -> Option<Retained<NSImage>>;
 
+        /// Setter for [`selectedGlyphImage`][Self::selectedGlyphImage].
         #[method(setSelectedGlyphImage:)]
         pub unsafe fn setSelectedGlyphImage(&self, selected_glyph_image: Option<&NSImage>);
 
         #[method(animatesWhenAdded)]
         pub unsafe fn animatesWhenAdded(&self) -> bool;
 
+        /// Setter for [`animatesWhenAdded`][Self::animatesWhenAdded].
         #[method(setAnimatesWhenAdded:)]
         pub unsafe fn setAnimatesWhenAdded(&self, animates_when_added: bool);
     }

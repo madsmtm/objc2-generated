@@ -10,7 +10,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer?language=objc)
+    /// AVCaptureDataOutputSynchronizer synchronizes the delivery of data from multiple capture data outputs (AVCaptureVideoDataOutput, AVCaptureDepthDataOutput, AVCaptureMetadataOutput, AVCaptureAudioDataOutput) to a single delegate callback.
+    ///
+    ///
+    /// AVCaptureDataOutputSynchronizer is initialized with an array of data outputs (AVCaptureVideoDataOutput, AVCaptureDepthDataOutput, AVCaptureMetadataOutput, or AVCaptureAudioDataOutput) from which you'd like to receive a single, synchronized delegate callback. The first output in the array acts as the primary data output and determines when the synchronized callback is delivered. When data is received for the primary data output, it is held until all other data outputs have received data with an equal or later presentation time stamp, or it has been determined that there is no data for a particular output at the primary data output's pts. Once all other outputs are ready, a single delegate callback is sent with all the data aligned with the primary data output's data. Separate delegate callbacks are sent for any other data received with presentation time stamps earlier than the next primary data output time.
+    ///
+    /// For instance, if you specify a video data output as your first (primary) output and a metadata output for detected faces as your second output, your data callback will not be called until there is face data ready for a video frame, or it is assured that there is no face metadata for that particular video frame.
+    ///
+    /// Note that the AVCaptureDataOutputSynchronizer overrides each data output's -setSampleBufferDelegate:queue:, -setDepthDataDelegate:queue:, or -setMetadataObjectsDelegate:queue: method call. -[AVCaptureVideoDataOutput alwaysDiscardsLateVideoFrames] and -[AVCaptureDepthDataOutput alwaysDiscardsLateDepthData] properties are honored.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDataOutputSynchronizer;
@@ -27,6 +36,12 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVCaptureOutputBase")]
+        /// Instantiates an AVCaptureDataOutputSynchronizer from one or more capture data outputs.
+        ///
+        ///
+        /// Parameter `dataOutputs`: An array of capture data outputs where the first is the primary output.
+        ///
+        /// Returns: A newly initialized AVCaptureDataOutputSynchronizer instance.
         #[method_id(@__retain_semantics Init initWithDataOutputs:)]
         pub unsafe fn initWithDataOutputs(
             this: Allocated<Self>,
@@ -34,9 +49,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVCaptureOutputBase")]
+        /// The data outputs provided in the initializer method.
         #[method_id(@__retain_semantics Other dataOutputs)]
         pub unsafe fn dataOutputs(&self) -> Retained<NSArray<AVCaptureOutput>>;
 
+        /// The receiver's delegate.
+        ///
+        ///
+        /// The value of this property is an object conforming to the AVCaptureDataOutputSynchronizerDelegate protocol that will receive synchronized data output. The delegate is set using the -setDelegate:queue: method. This property is key-value observable.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
@@ -47,6 +67,15 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizerdelegate?language=objc)
     pub unsafe trait AVCaptureDataOutputSynchronizerDelegate: NSObjectProtocol {
+        /// Called when an AVCaptureDataOutputSynchronizer instance outputs synchronized data from one or more data outputs.
+        ///
+        ///
+        /// Parameter `synchronizer`: The AVCaptureDataOutputSynchronizer instance delivering synchronized data.
+        ///
+        /// Parameter `synchronizedDataCollection`: A collection of synchronized data objects indexed by data output.
+        ///
+        ///
+        /// The synchronized data collection only contains synchronized data for capture outputs with synchronized data ready.
         #[method(dataOutputSynchronizer:didOutputSynchronizedDataCollection:)]
         unsafe fn dataOutputSynchronizer_didOutputSynchronizedDataCollection(
             &self,
@@ -59,7 +88,12 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizeddatacollection?language=objc)
+    /// A collection of AVCaptureSynchronizedData objects.
+    ///
+    ///
+    /// AVCaptureDataOutputSynchronizer's -dataOutputSynchronizer:didOutputSynchronizedDataCollection: delegate method delivers a collection of AVCaptureSynchronizedData objects which can be iterated by AVCaptureOutput. AVCaptureSynchronizedDataCollection supports object subscripting and fast enumeration of the data outputs as keys.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizeddatacollection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSynchronizedDataCollection;
@@ -78,6 +112,12 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVCaptureOutputBase")]
+        /// Provides the synchronized data object for a given capture output.
+        ///
+        ///
+        /// Parameter `captureOutput`: The data output whose synchronized data you'd like to inspect.
+        ///
+        /// Returns: The synchronized data object associated with the provided output, or nil, if there is none.
         #[method_id(@__retain_semantics Other synchronizedDataForCaptureOutput:)]
         pub unsafe fn synchronizedDataForCaptureOutput(
             &self,
@@ -85,19 +125,38 @@ extern_methods!(
         ) -> Option<Retained<AVCaptureSynchronizedData>>;
 
         #[cfg(feature = "AVCaptureOutputBase")]
+        /// Method that provides support for object subscripting.
+        ///
+        ///
+        /// Parameter `key`: The data output whose synchronized data you'd like to inspect.
+        ///
+        /// Returns: The synchronized data object associated with the provided output, or nil, if there is none.
+        ///
+        ///
+        /// AVCaptureSynchronizedDataCollection supports object subscripting. If you'd like to find the synchronized data for a given data output, simply:
+        /// AVCaptureSynchronizedData *synchronizedData = synchronizedDataCollection[dataOutput];
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &AVCaptureOutput,
         ) -> Option<Retained<AVCaptureSynchronizedData>>;
 
+        /// The number of items in the collection.
+        ///
+        ///
+        /// Returns the number of data output / synchronized data pairs present in the collection.
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizeddata?language=objc)
+    /// An abstract base class representing the data delivered by a data output through the AVCaptureDataOutputSynchronizer interface.
+    ///
+    ///
+    /// AVCaptureDataOutputSynchronizer's -dataOutputSynchronizer:didOutputSynchronizedData: delegate callback delivers a dictionary of key/value pairs, with the keys being the AVCaptureOutput instances returning data, and the values being concrete subclasses of AVCaptureSynchronizedData.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizeddata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSynchronizedData;
@@ -114,13 +173,22 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The time at which this synchronized data was captured.
+        ///
+        ///
+        /// Synchronized data is always clocked to the synchronizationClock of the AVCaptureSession to which the data output is connected.
         #[method(timestamp)]
         pub unsafe fn timestamp(&self) -> CMTime;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata?language=objc)
+    /// An concrete subclass of AVCaptureSynchronizedData representing the data delivered by an AVCaptureVideoDataOutput or AVCaptureAudioDataOutput.
+    ///
+    ///
+    /// Synchronized sample buffer data is valid for the duration of AVCaptureDataOutputSynchronizer's -dataOutputSynchronizer:didOutputSynchronizedData: delegate callback. To extend the sample buffer data beyond the callback, you must CFRetain it, and later call CFRelease when you're done with it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata?language=objc)
     #[unsafe(super(AVCaptureSynchronizedData, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSynchronizedSampleBufferData;
@@ -131,13 +199,25 @@ unsafe impl NSObjectProtocol for AVCaptureSynchronizedSampleBufferData {}
 extern_methods!(
     unsafe impl AVCaptureSynchronizedSampleBufferData {
         #[cfg(feature = "objc2-core-media")]
+        /// A sample buffer containing video or audio data.
+        ///
+        ///
+        /// If sampleBufferWasDropped is YES, the returned sampleBuffer was dropped before it could be delivered to you, and thus this sample buffer is a shell containing metadata and format information, but no actual pixel data. This property is never NULL. If a data output has no data to return, it is simply not present in the dictionary of synchronized data returned by AVCaptureDataOutputSynchronizer's -dataOutputSynchronizer:didOutputSynchronizedData: delegate callback.
         #[method(sampleBuffer)]
         pub unsafe fn sampleBuffer(&self) -> CMSampleBufferRef;
 
+        /// YES if the sample buffer was dropped.
+        ///
+        ///
+        /// AVCaptureVideoDataOutput has a delegate callback for dropped sample buffers. AVCaptureAudioDataOutput does not. Therefore, sampleBufferWasDropped may be YES for video, but never for audio.
         #[method(sampleBufferWasDropped)]
         pub unsafe fn sampleBufferWasDropped(&self) -> bool;
 
         #[cfg(feature = "AVCaptureOutputBase")]
+        /// If sampleBufferWasDropped is YES, the reason for the drop, otherwise AVCaptureOutputDataDroppedReasonNone.
+        ///
+        ///
+        /// AVCaptureOutputDataDroppedReasons are defined in AVCaptureOutputBase.h.
         #[method(droppedReason)]
         pub unsafe fn droppedReason(&self) -> AVCaptureOutputDataDroppedReason;
     }
@@ -155,7 +235,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedmetadataobjectdata?language=objc)
+    /// An concrete subclass of AVCaptureSynchronizedData representing the data delivered by an AVCaptureMetadataOutput.
+    ///
+    ///
+    /// A single AVCaptureMetadataOutput may be configured to deliver multiple kinds of metadata objects (such as QRCodes and detected faces). AVCaptureSynchronizedMetadataObjectData's -metadataObjects array may contain multiple AVMetadataObject subclasses, depending on how the AVCaptureMetadataOutput was configured. All synchronized metadata objects share a common timestamp.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedmetadataobjectdata?language=objc)
     #[unsafe(super(AVCaptureSynchronizedData, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSynchronizedMetadataObjectData;
@@ -166,6 +251,10 @@ unsafe impl NSObjectProtocol for AVCaptureSynchronizedMetadataObjectData {}
 extern_methods!(
     unsafe impl AVCaptureSynchronizedMetadataObjectData {
         #[cfg(feature = "AVMetadataObject")]
+        /// An array of AVMetadataObject subclasses.
+        ///
+        ///
+        /// -metadataObjects is never nil. If no metadata objects are present for a given time, an empty array is returned.
         #[method_id(@__retain_semantics Other metadataObjects)]
         pub unsafe fn metadataObjects(&self) -> Retained<NSArray<AVMetadataObject>>;
     }
@@ -183,7 +272,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizeddepthdata?language=objc)
+    /// An concrete subclass of AVCaptureSynchronizedData representing the data delivered by an AVCaptureDepthDataOutput.
+    ///
+    ///
+    /// Depth data, like video, may be dropped if not serviced in a timely fashion.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizeddepthdata?language=objc)
     #[unsafe(super(AVCaptureSynchronizedData, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSynchronizedDepthData;
@@ -194,13 +288,25 @@ unsafe impl NSObjectProtocol for AVCaptureSynchronizedDepthData {}
 extern_methods!(
     unsafe impl AVCaptureSynchronizedDepthData {
         #[cfg(feature = "AVDepthData")]
+        /// An instance of AVDepthData.
+        ///
+        ///
+        /// If depthDataWasDropped is YES, the returned depthData was dropped before it could be delivered to you, and thus this AVDepthData is a shell containing format information and calibration data, but no actual pixel map data. This property is never nil. If a data output has no data to return, it is simply not present in the dictionary of synchronized data returned by AVCaptureDataOutputSynchronizer's -dataOutputSynchronizer:didOutputSynchronizedData: delegate callback.
         #[method_id(@__retain_semantics Other depthData)]
         pub unsafe fn depthData(&self) -> Retained<AVDepthData>;
 
+        /// YES if the depth data was dropped.
+        ///
+        ///
+        /// If YES, inspect -droppedReason for the reason.
         #[method(depthDataWasDropped)]
         pub unsafe fn depthDataWasDropped(&self) -> bool;
 
         #[cfg(feature = "AVCaptureOutputBase")]
+        /// If depthDataWasDropped is YES, the reason for the drop, otherwise AVCaptureOutputDataDroppedReasonNone.
+        ///
+        ///
+        /// AVCaptureOutputDataDroppedReasons are defined in AVCaptureOutputBase.h.
         #[method(droppedReason)]
         pub unsafe fn droppedReason(&self) -> AVCaptureOutputDataDroppedReason;
     }

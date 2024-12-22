@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder?language=objc)
+    /// An HKQuantitySeriesSampleBuilder is used to generate HKQuantitySample(s) with multiple
+    /// quantities.
+    ///
+    /// An HKQuantitySeriesSampleBuilder is used to incrementally create a new quantity series
+    /// sample in the HealthKit database. This class may be used to create long-running quantity
+    /// series samples that are associated with an activity like a workout. After inserting each
+    /// of the quantities that make up the series, the series may be finalized by calling
+    /// -finishSeriesWithMetadata:completion:. Calling -discard invalidates the series and
+    /// discards any data that was previously associated with it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKQuantitySeriesSampleBuilder;
@@ -27,6 +37,20 @@ extern_methods!(
             feature = "HKHealthStore",
             feature = "HKObjectType"
         ))]
+        /// The designated initializer to create an HKQuantitySeriesSampleBuilder.
+        ///
+        /// The HKHealthStore is retained during the life of the object for the saving of the
+        /// series data and final return of the series sample.
+        ///
+        ///
+        /// Parameter `healthStore`: Specifies the HKHealthStore object to use for building the series.
+        ///
+        /// Parameter `quantityType`: Specifies the quantity type for which to build the series.
+        ///
+        /// Parameter `startDate`: The date from which the produced sample(s) start.
+        ///
+        /// Parameter `device`: The optional device represents the HKDevice from which the data is
+        /// provided.
         #[method_id(@__retain_semantics Init initWithHealthStore:quantityType:startDate:device:)]
         pub unsafe fn initWithHealthStore_quantityType_startDate_device(
             this: Allocated<Self>,
@@ -51,6 +75,22 @@ extern_methods!(
         pub unsafe fn device(&self) -> Option<Retained<HKDevice>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Associate a new quantity with the receiver with a specific date interval.
+        ///
+        /// Use this method to add a quantity to the series. The quantity must have a unit
+        /// that is compatible with the receiver's quantity type.
+        /// See -[HKQuantityType isCompatibleWithUnit:].
+        /// Note that quantities may be inserted in any order,
+        /// but will be sorted by dateInterval.startDate when the series is finished.
+        ///
+        ///
+        /// Parameter `quantity`: The quantity to insert.
+        ///
+        /// Parameter `dateInterval`: The dateInterval associated with the quantity.
+        /// If dateInterval.startDate is the same as a previously-provided
+        /// quantity, the new value will replace the old value.
+        /// An HKErrorInvalidArgument will be returned if
+        /// dateInterval.startDate is earlier than the receiver's startDate.
         #[method(insertQuantity:dateInterval:error:_)]
         pub unsafe fn insertQuantity_dateInterval_error(
             &self,
@@ -59,6 +99,19 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Associate a new quantity with the receiver at a specific instantaneous
+        /// date interval.
+        ///
+        /// This method acts as a convenience for insertQuantity:dateInterval:completion:
+        /// where dateInterval has a duration of 0.
+        ///
+        ///
+        /// Parameter `quantity`: The quantity to insert.
+        ///
+        /// Parameter `date`: The start date associated with the quantity. If this is the same
+        /// start date as a previously-provided quantity, the new value will
+        /// replace the old value. An HKErrorInvalidArgument will be returned
+        /// if date is earlier than the receiver's startDate.
         #[method(insertQuantity:date:error:_)]
         pub unsafe fn insertQuantity_date_error(
             &self,
@@ -72,6 +125,38 @@ extern_methods!(
             feature = "HKSample",
             feature = "block2"
         ))]
+        /// Finalizes the series and returns the resulting HKQuantitySample(s).
+        ///
+        /// Call this method when all quantities for the series have been inserted.
+        /// The completion handler will return the resulting HKQuantitySample(s)
+        /// Note that it is possible for a single HKQuantitySeriesSampleBuilder to produce
+        /// multiple samples. If no quantity data was added, then samples will be nil and
+        /// an error will be returned. After calling this method, the receiver will be
+        /// considered invalid and calling any other method will result in an error.
+        ///
+        ///
+        /// Parameter `metadata`: Optional metadata may be added to associate with the series.
+        /// Predefined keys are found in HKMetadata.h, or custom NSString
+        /// keys used by the client are allowed. Acceptable metadata value types
+        /// are NSString, NSDate, NSNumber and HKQuantity.
+        ///
+        /// Parameter `endDate`: Optional date at which the produced sample(s) end.
+        /// An HKErrorInvalidArgument will be returned if endDate
+        /// is earlier than the receiver's startDate,
+        /// or is earlier than the dateInterval.endDate of any inserted quantity.
+        ///
+        /// Parameter `completion`: The completion handler will return the resulting HKQuantitySample(s)
+        /// for the series. Note that it is possible for a single
+        /// HKQuantitySeriesSampleBuilder to produce multiple samples.
+        /// If data could not be inserted because of an authorization failure,
+        /// samples will be nil and and an error with code
+        /// HKErrorAuthorizationDenied or HKErrorAuthorizationNotDetermined
+        /// will be returned. If the resulting sample(s) could not be accessed
+        /// after they have been created, then samples will be nil and an error
+        /// with code HKErrorDatabaseInaccessible will be returned. Any other
+        /// error indicates the resulting samples could not be returned.
+        /// After calling this method, the receiver will be considered invalid
+        /// and calling any other method will result in an error.
         #[method(finishSeriesWithMetadata:endDate:completion:)]
         pub unsafe fn finishSeriesWithMetadata_endDate_completion(
             &self,
@@ -86,6 +171,35 @@ extern_methods!(
             feature = "HKSample",
             feature = "block2"
         ))]
+        /// Finalizes the series and returns the resulting HKQuantitySample(s).
+        ///
+        /// Call this method when all quantities for the series have been inserted.
+        /// The completion handler will return the resulting HKQuantitySample(s)
+        /// Note that it is possible for a single HKQuantitySeriesSampleBuilder to produce
+        /// multiple samples. If no quantity data was added, then samples will be nil and
+        /// an error will be returned. This method functions as a convenience for
+        /// finishSeriesWithMetadata:endDate:completion: when endDate is nil.
+        /// After calling this method, the receiver will be considered invalid
+        /// and calling any other method will result in an error.
+        ///
+        ///
+        /// Parameter `metadata`: Optional metadata may be added to associate with the series.
+        /// Predefined keys are found in HKMetadata.h, or custom NSString
+        /// keys used by the client are allowed. Acceptable metadata value types
+        /// are NSString, NSDate, NSNumber and HKQuantity.
+        ///
+        /// Parameter `completion`: The completion handler will return the resulting HKQuantitySample(s)
+        /// for the series. Note that it is possible for a single
+        /// HKQuantitySeriesSampleBuilder to produce multiple samples.
+        /// If data could not be inserted because of an authorization failure,
+        /// samples will be nil and and an error with code
+        /// HKErrorAuthorizationDenied or HKErrorAuthorizationNotDetermined
+        /// will be returned. If the resulting sample(s) could not be accessed
+        /// after they have been created, then samples will be nil and an error
+        /// with code HKErrorDatabaseInaccessible will be returned. Any other
+        /// error indicates the resulting samples could not be returned.
+        /// After calling this method, the receiver will be considered invalid
+        /// and calling any other method will result in an error.
         #[method(finishSeriesWithMetadata:completion:)]
         pub unsafe fn finishSeriesWithMetadata_completion(
             &self,
@@ -93,6 +207,11 @@ extern_methods!(
             completion: &block2::Block<dyn Fn(*mut NSArray<HKQuantitySample>, *mut NSError)>,
         );
 
+        /// Discards all previously inserted data and invalidates the series.
+        ///
+        /// Calling this method will delete all quantities that were previously inserted into
+        /// the series and invalidate the receiver. Calling other methods on the receiver
+        /// after calling -discard will result in an exception.
         #[method(discard)]
         pub unsafe fn discard(&self);
     }

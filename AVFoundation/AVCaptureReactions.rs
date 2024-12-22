@@ -8,50 +8,72 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype?language=objc)
+/// AVCaptureReactionType string constants
+///
+///
+/// Constants indicating the type of reaction that can be performed in an effect.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype?language=objc)
 // NS_TYPED_ENUM
 pub type AVCaptureReactionType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypethumbsup?language=objc)
+    /// Indicates a reaction which features a thumbs-up symbol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypethumbsup?language=objc)
     pub static AVCaptureReactionTypeThumbsUp: &'static AVCaptureReactionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypethumbsdown?language=objc)
+    /// Indicates a reaction which features a thumbs-down symbol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypethumbsdown?language=objc)
     pub static AVCaptureReactionTypeThumbsDown: &'static AVCaptureReactionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypeballoons?language=objc)
+    /// Indicates a reaction which features balloons rising through the scene.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypeballoons?language=objc)
     pub static AVCaptureReactionTypeBalloons: &'static AVCaptureReactionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypeheart?language=objc)
+    /// Indicates a reaction which features one or more heart symbols.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypeheart?language=objc)
     pub static AVCaptureReactionTypeHeart: &'static AVCaptureReactionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypefireworks?language=objc)
+    /// Indicates a reaction which features fireworks bursting in the background.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypefireworks?language=objc)
     pub static AVCaptureReactionTypeFireworks: &'static AVCaptureReactionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontyperain?language=objc)
+    /// Indicates a reaction which features a dark and stormy night.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontyperain?language=objc)
     pub static AVCaptureReactionTypeRain: &'static AVCaptureReactionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypeconfetti?language=objc)
+    /// Indicates a reaction which features festive spots of color falling through the scene.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypeconfetti?language=objc)
     pub static AVCaptureReactionTypeConfetti: &'static AVCaptureReactionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypelasers?language=objc)
+    /// Indicates a reaction which features a bright laser display projecting into the scene.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypelasers?language=objc)
     pub static AVCaptureReactionTypeLasers: &'static AVCaptureReactionType;
 }
 
+/// Returns the name for UIImage or NSImage systemImageNamed: method to obtain the recommended iconography for a specified reaction type.
 #[inline]
 pub unsafe extern "C-unwind" fn AVCaptureReactionSystemImageNameForType(
     reaction_type: &AVCaptureReactionType,
@@ -67,7 +89,12 @@ pub unsafe extern "C-unwind" fn AVCaptureReactionSystemImageNameForType(
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactioneffectstate?language=objc)
+    /// Reports the state of a reaction performed on an AVCaptureDevice.
+    ///
+    ///
+    /// AVCaptureReactionEffectState may be obtained by calling -[AVCaptureDevice reactionEffectsInProgress].  When -[AVCaptureDevice canPerformReactionEffects] returns YES, new entries are added either by calling -[AVCaptureDevice performReactionEffect:], or by gesture detection in the capture stream when AVCaptureDevice.reactionEffectGesturesEnabled.  The effect rendering is done before frames are given to the capture client, and these status objects let you know when these effects are performed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactioneffectstate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureReactionEffectState;
@@ -77,14 +104,23 @@ unsafe impl NSObjectProtocol for AVCaptureReactionEffectState {}
 
 extern_methods!(
     unsafe impl AVCaptureReactionEffectState {
+        /// Indicates the reaction which is running.
+        ///
+        ///
+        /// There may be multiple reactions of the same type at a given time.  Some may come from gesture detection, some may come from calls to -[AVCaptureDevice performReactionEffect:]
         #[method_id(@__retain_semantics Other reactionType)]
         pub unsafe fn reactionType(&self) -> Retained<AVCaptureReactionType>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Provides the presentation time of the first frame where the effect is being rendered.
         #[method(startTime)]
         pub unsafe fn startTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Provides the presentation time of the frame following the last frame where the effect is seen.
+        ///
+        ///
+        /// Will be kCMTimeInvalid while the effect is in progress, but will be updated to a valid time when the reaction effect completes and the AVCaptureReactionEffectState is removed from -[AVCaptureDevice reactionEffectsInProgress]. (If using NSKeyValueObservingOptionOld, you can access completed effects with valid end times via NSKeyValueChangeOldKey.)
         #[method(endTime)]
         pub unsafe fn endTime(&self) -> CMTime;
     }

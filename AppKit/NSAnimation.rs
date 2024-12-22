@@ -103,18 +103,21 @@ extern_methods!(
         #[method(currentProgress)]
         pub unsafe fn currentProgress(&self) -> NSAnimationProgress;
 
+        /// Setter for [`currentProgress`][Self::currentProgress].
         #[method(setCurrentProgress:)]
         pub unsafe fn setCurrentProgress(&self, current_progress: NSAnimationProgress);
 
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
+        /// Setter for [`duration`][Self::duration].
         #[method(setDuration:)]
         pub unsafe fn setDuration(&self, duration: NSTimeInterval);
 
         #[method(animationBlockingMode)]
         pub unsafe fn animationBlockingMode(&self) -> NSAnimationBlockingMode;
 
+        /// Setter for [`animationBlockingMode`][Self::animationBlockingMode].
         #[method(setAnimationBlockingMode:)]
         pub unsafe fn setAnimationBlockingMode(
             &self,
@@ -124,12 +127,14 @@ extern_methods!(
         #[method(frameRate)]
         pub unsafe fn frameRate(&self) -> c_float;
 
+        /// Setter for [`frameRate`][Self::frameRate].
         #[method(setFrameRate:)]
         pub unsafe fn setFrameRate(&self, frame_rate: c_float);
 
         #[method(animationCurve)]
         pub unsafe fn animationCurve(&self) -> NSAnimationCurve;
 
+        /// Setter for [`animationCurve`][Self::animationCurve].
         #[method(setAnimationCurve:)]
         pub unsafe fn setAnimationCurve(&self, animation_curve: NSAnimationCurve);
 
@@ -140,6 +145,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSAnimationDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -149,6 +155,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other progressMarks)]
         pub unsafe fn progressMarks(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`progressMarks`][Self::progressMarks].
         #[method(setProgressMarks:)]
         pub unsafe fn setProgressMarks(&self, progress_marks: &NSArray<NSNumber>);
 
@@ -297,6 +304,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSArray<NSDictionary<NSViewAnimationKey, AnyObject>>>;
 
+        /// Setter for [`viewAnimations`][Self::viewAnimations].
         #[method(setViewAnimations:)]
         pub unsafe fn setViewAnimations(
             &self,
@@ -346,6 +354,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other animations)]
         unsafe fn animations(&self) -> Retained<NSDictionary<NSAnimatablePropertyKey, AnyObject>>;
 
+        /// Setter for [`animations`][Self::animations].
         #[method(setAnimations:)]
         unsafe fn setAnimations(
             &self,

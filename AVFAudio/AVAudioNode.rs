@@ -10,13 +10,36 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudionodetapblock?language=objc)
+/// A block that receives copies of the output of an AVAudioNode.
+///
+/// Parameter `buffer`: a buffer of audio captured from the output of an AVAudioNode
+///
+/// Parameter `when`: the time at which the buffer was captured
+///
+/// CAUTION: This callback may be invoked on a thread other than the main thread.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudionodetapblock?language=objc)
 #[cfg(all(feature = "AVAudioBuffer", feature = "AVAudioTime", feature = "block2"))]
 pub type AVAudioNodeTapBlock =
     *mut block2::Block<dyn Fn(NonNull<AVAudioPCMBuffer>, NonNull<AVAudioTime>)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudionode?language=objc)
+    /// Base class for an audio generation, processing, or I/O block.
+    ///
+    /// `AVAudioEngine` objects contain instances of various AVAudioNode subclasses. This
+    /// base class provides certain common functionality.
+    ///
+    /// Nodes have input and output busses, which can be thought of as connection points.
+    /// For example, an effect typically has one input bus and one output bus. A mixer
+    /// typically has multiple input busses and one output bus.
+    ///
+    /// Busses have formats, expressed in terms of sample rate and channel count. When making
+    /// connections between nodes, often the format must match exactly. There are exceptions
+    /// (e.g. `AVAudioMixerNode` and `AVAudioOutputNode`).
+    ///
+    /// Nodes do not currently provide useful functionality until attached to an engine.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudionode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioNode;
@@ -26,22 +49,27 @@ unsafe impl NSObjectProtocol for AVAudioNode {}
 
 extern_methods!(
     unsafe impl AVAudioNode {
+        /// Clear a unit's previous processing state.
         #[method(reset)]
         pub unsafe fn reset(&self);
 
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
+        /// Obtain an input bus's format.
         #[method_id(@__retain_semantics Other inputFormatForBus:)]
         pub unsafe fn inputFormatForBus(&self, bus: AVAudioNodeBus) -> Retained<AVAudioFormat>;
 
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
+        /// Obtain an output bus's format.
         #[method_id(@__retain_semantics Other outputFormatForBus:)]
         pub unsafe fn outputFormatForBus(&self, bus: AVAudioNodeBus) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Return the name of an input bus.
         #[method_id(@__retain_semantics Other nameForInputBus:)]
         pub unsafe fn nameForInputBus(&self, bus: AVAudioNodeBus) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Return the name of an output bus.
         #[method_id(@__retain_semantics Other nameForOutputBus:)]
         pub unsafe fn nameForOutputBus(&self, bus: AVAudioNodeBus) -> Option<Retained<NSString>>;
 
@@ -52,6 +80,40 @@ extern_methods!(
             feature = "AVAudioTypes",
             feature = "block2"
         ))]
+        /// Create a "tap" to record/monitor/observe the output of the node.
+        ///
+        /// Parameter `bus`: the node output bus to which to attach the tap
+        ///
+        /// Parameter `bufferSize`: the requested size of the incoming buffers in sample frames. Supported range is [100, 400] ms.
+        ///
+        /// Parameter `format`: If non-nil, attempts to apply this as the format of the specified output bus. This should
+        /// only be done when attaching to an output bus which is not connected to another node; an
+        /// error will result otherwise.
+        /// The tap and connection formats (if non-nil) on the specified bus should be identical.
+        /// Otherwise, the latter operation will override any previously set format.
+        ///
+        /// Parameter `tapBlock`: a block to be called with audio buffers
+        ///
+        ///
+        /// Only one tap may be installed on any bus. Taps may be safely installed and removed while
+        /// the engine is running.
+        ///
+        /// Note that if you have a tap installed on AVAudioOutputNode, there could be a mismatch
+        /// between the tap buffer format and AVAudioOutputNode's output format, depending on the
+        /// underlying physical device. Hence, instead of tapping the AVAudioOutputNode, it is
+        /// advised to tap the node connected to it.
+        ///
+        /// E.g. to capture audio from input node:
+        /// <pre>
+        /// AVAudioEngine *engine = [[AVAudioEngine alloc] init];
+        /// AVAudioInputNode *input = [engine inputNode];
+        /// AVAudioFormat *format = [input outputFormatForBus: 0];
+        /// [input installTapOnBus: 0 bufferSize: 8192 format: format block: ^(AVAudioPCMBuffer *buf, AVAudioTime *when) {
+        /// // ‘buf' contains audio captured from input node at time 'when'
+        /// }];
+        /// ....
+        /// // start engine
+        /// </pre>
         #[method(installTapOnBus:bufferSize:format:block:)]
         pub unsafe fn installTapOnBus_bufferSize_format_block(
             &self,
@@ -62,31 +124,76 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Destroy a tap.
+        ///
+        /// Parameter `bus`: the node output bus whose tap is to be destroyed
         #[method(removeTapOnBus:)]
         pub unsafe fn removeTapOnBus(&self, bus: AVAudioNodeBus);
 
         #[cfg(feature = "AVAudioEngine")]
+        /// The engine to which the node is attached (or nil).
         #[method_id(@__retain_semantics Other engine)]
         pub unsafe fn engine(&self) -> Option<Retained<AVAudioEngine>>;
 
+        /// The node's number of input busses.
         #[method(numberOfInputs)]
         pub unsafe fn numberOfInputs(&self) -> NSUInteger;
 
+        /// The node's number of output busses.
         #[method(numberOfOutputs)]
         pub unsafe fn numberOfOutputs(&self) -> NSUInteger;
 
         #[cfg(feature = "AVAudioTime")]
+        /// Obtain the time for which the node most recently rendered.
+        ///
+        /// Will return nil if the engine is not running or if the node is not connected to an input or
+        /// output node.
         #[method_id(@__retain_semantics Other lastRenderTime)]
         pub unsafe fn lastRenderTime(&self) -> Option<Retained<AVAudioTime>>;
 
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// An AUAudioUnit wrapping or underlying the implementation's AudioUnit.
+        ///
+        /// This provides an AUAudioUnit which either wraps or underlies the implementation's
+        /// AudioUnit, depending on how that audio unit is packaged. Applications can interact with this
+        /// AUAudioUnit to control custom properties, select presets, change parameters, etc.
+        ///
+        /// No operations that may conflict with state maintained by the engine should be performed
+        /// directly on the audio unit. These include changing initialization state, stream formats,
+        /// channel layouts or connections to other audio units.
         #[method_id(@__retain_semantics Other AUAudioUnit)]
         pub unsafe fn AUAudioUnit(&self) -> Retained<AUAudioUnit>;
 
+        /// The processing latency of the node, in seconds.
+        ///
+        /// This property reflects the delay between when an impulse in the audio stream arrives at the
+        /// input vs. output of the node. This should reflect the delay due to signal processing
+        /// (e.g. filters, FFT's, etc.), not delay or reverberation which is being applied as an effect.
+        /// A value of zero indicates either no latency or an unknown latency.
         #[method(latency)]
         pub unsafe fn latency(&self) -> NSTimeInterval;
 
+        /// The maximum render pipeline latency downstream of the node, in seconds.
+        ///
+        /// This describes the maximum time it will take for the audio at the output of a node to be
+        /// presented.
+        /// For instance, the output presentation latency of the output node in the engine is:
+        /// - zero in manual rendering mode
+        /// - the presentation latency of the device itself when rendering to an audio device
+        /// (see `AVAudioIONode(presentationLatency)`)
+        /// The output presentation latency of a node connected directly to the output node is the
+        /// output node's presentation latency plus the output node's processing latency (see `latency`).
+        ///
+        /// For a node which is exclusively in the input node chain (i.e. not connected to engine's
+        /// output node), this property reflects the latency for the output of this node to be
+        /// presented at the output of the terminating node in the input chain.
+        ///
+        /// A value of zero indicates either an unknown or no latency.
+        ///
+        /// Note that this latency value can change as the engine is reconfigured (started/stopped,
+        /// connections made/altered downstream of this node etc.). So it is recommended not to cache
+        /// this value and fetch it whenever it's needed.
         #[method(outputPresentationLatency)]
         pub unsafe fn outputPresentationLatency(&self) -> NSTimeInterval;
     }

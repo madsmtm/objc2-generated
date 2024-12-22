@@ -134,6 +134,7 @@ extern_methods!(
         #[method(cellClass)]
         pub unsafe fn cellClass(&self) -> &'static AnyClass;
 
+        /// Setter for [`cellClass`][Self::cellClass].
         #[method(setCellClass:)]
         pub unsafe fn setCellClass(&self, cell_class: &AnyClass);
 
@@ -142,6 +143,7 @@ extern_methods!(
         pub unsafe fn prototype(&self) -> Option<Retained<NSCell>>;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`prototype`][Self::prototype].
         #[method(setPrototype:)]
         pub unsafe fn setPrototype(&self, prototype: Option<&NSCell>);
 
@@ -156,12 +158,14 @@ extern_methods!(
         #[method(mode)]
         pub unsafe fn mode(&self) -> NSMatrixMode;
 
+        /// Setter for [`mode`][Self::mode].
         #[method(setMode:)]
         pub unsafe fn setMode(&self, mode: NSMatrixMode);
 
         #[method(allowsEmptySelection)]
         pub unsafe fn allowsEmptySelection(&self) -> bool;
 
+        /// Setter for [`allowsEmptySelection`][Self::allowsEmptySelection].
         #[method(setAllowsEmptySelection:)]
         pub unsafe fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
 
@@ -208,6 +212,7 @@ extern_methods!(
         #[method(isSelectionByRect)]
         pub unsafe fn isSelectionByRect(&self) -> bool;
 
+        /// Setter for [`isSelectionByRect`][Self::isSelectionByRect].
         #[method(setSelectionByRect:)]
         pub unsafe fn setSelectionByRect(&self, selection_by_rect: bool);
 
@@ -240,6 +245,7 @@ extern_methods!(
         pub unsafe fn cellSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`cellSize`][Self::cellSize].
         #[method(setCellSize:)]
         pub unsafe fn setCellSize(&self, cell_size: NSSize);
 
@@ -248,6 +254,7 @@ extern_methods!(
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`intercellSpacing`][Self::intercellSpacing].
         #[method(setIntercellSpacing:)]
         pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
 
@@ -259,6 +266,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
@@ -267,18 +275,21 @@ extern_methods!(
         pub unsafe fn cellBackgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`cellBackgroundColor`][Self::cellBackgroundColor].
         #[method(setCellBackgroundColor:)]
         pub unsafe fn setCellBackgroundColor(&self, cell_background_color: Option<&NSColor>);
 
         #[method(drawsCellBackground)]
         pub unsafe fn drawsCellBackground(&self) -> bool;
 
+        /// Setter for [`drawsCellBackground`][Self::drawsCellBackground].
         #[method(setDrawsCellBackground:)]
         pub unsafe fn setDrawsCellBackground(&self, draws_cell_background: bool);
 
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
+        /// Setter for [`drawsBackground`][Self::drawsBackground].
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
@@ -394,12 +405,14 @@ extern_methods!(
         #[method(doubleAction)]
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
+        /// Setter for [`doubleAction`][Self::doubleAction].
         #[method(setDoubleAction:)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
         #[method(autosizesCells)]
         pub unsafe fn autosizesCells(&self) -> bool;
 
+        /// Setter for [`autosizesCells`][Self::autosizesCells].
         #[method(setAutosizesCells:)]
         pub unsafe fn setAutosizesCells(&self, autosizes_cells: bool);
 
@@ -418,6 +431,7 @@ extern_methods!(
         #[method(isAutoscroll)]
         pub unsafe fn isAutoscroll(&self) -> bool;
 
+        /// Setter for [`isAutoscroll`][Self::isAutoscroll].
         #[method(setAutoscroll:)]
         pub unsafe fn setAutoscroll(&self, autoscroll: bool);
 
@@ -445,6 +459,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSMatrixDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMatrixDelegate>>);
 
@@ -494,6 +509,7 @@ extern_methods!(
         #[method(autorecalculatesCellSize)]
         pub unsafe fn autorecalculatesCellSize(&self) -> bool;
 
+        /// Setter for [`autorecalculatesCellSize`][Self::autorecalculatesCellSize].
         #[method(setAutorecalculatesCellSize:)]
         pub unsafe fn setAutorecalculatesCellSize(&self, autorecalculates_cell_size: bool);
     }
@@ -536,6 +552,7 @@ extern_methods!(
         #[method(tabKeyTraversesCells)]
         pub unsafe fn tabKeyTraversesCells(&self) -> bool;
 
+        /// Setter for [`tabKeyTraversesCells`][Self::tabKeyTraversesCells].
         #[method(setTabKeyTraversesCells:)]
         pub unsafe fn setTabKeyTraversesCells(&self, tab_key_traverses_cells: bool);
 
@@ -544,6 +561,7 @@ extern_methods!(
         pub unsafe fn keyCell(&self) -> Option<Retained<NSCell>>;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`keyCell`][Self::keyCell].
         #[method(setKeyCell:)]
         pub unsafe fn setKeyCell(&self, key_cell: Option<&NSCell>);
     }

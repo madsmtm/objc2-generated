@@ -12,6 +12,11 @@
 #![allow(clippy::upper_case_acronyms)]
 #![allow(clippy::identity_op)]
 #![allow(clippy::missing_safety_doc)]
+#![allow(clippy::doc_lazy_continuation)]
+#![allow(rustdoc::broken_intra_doc_links)]
+#![allow(rustdoc::bare_urls)]
+#![allow(rustdoc::unportable_markdown)]
+#![allow(rustdoc::invalid_html_tags)]
 
 #[link(name = "AudioToolbox", kind = "framework")]
 extern "C" {}
@@ -4168,14 +4173,34 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponent?language=objc)
+/// represents an instance of an AudioFileComponent.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponent?language=objc)
 #[cfg(feature = "AudioComponent")]
 pub type AudioFileComponent = AudioComponentInstance;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentpropertyid?language=objc)
+/// a four char code for a property ID.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentpropertyid?language=objc)
 pub type AudioFileComponentPropertyID = u32;
 
 extern "C-unwind" {
+    /// creates a new (or initialises an existing) audio file specified by the URL.
+    ///
+    /// creates a new (or initialises an existing) audio file specified by the URL.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inFileRef`: an CFURLRef fully specifying the path of the file to create/initialise
+    ///
+    /// Parameter `inFormat`: an AudioStreamBasicDescription describing the data format that will be
+    /// added to the audio file.
+    ///
+    /// Parameter `inFlags`: relevant flags for creating/opening the file.
+    /// if kAudioFileFlags_EraseFile is set, it will erase an existing file
+    /// if not set, then the Create call will fail if the URL is an existing file
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(all(
         feature = "AudioComponent",
         feature = "objc2-core-audio-types",
@@ -4190,6 +4215,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Open an existing audio file.
+    ///
+    /// Open an existing audio file for reading or reading and writing.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent.
+    ///
+    /// Parameter `inFileRef`: the CFURLRef of an existing audio file.
+    ///
+    /// Parameter `inPermissions`: use the permission constants.
+    ///
+    /// Parameter `inFileDescriptor`: an open file descriptor.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
     pub fn AudioFileComponentOpenURL(
         in_component: AudioFileComponent,
@@ -4200,6 +4238,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileOpenWithCallbacks
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inClientData`: a constant that will be passed to your callbacks.
+    ///
+    /// Parameter `inReadFunc`: a function that will be called when AudioFile needs to read data.
+    ///
+    /// Parameter `inWriteFunc`: a function that will be called when AudioFile needs to write data.
+    ///
+    /// Parameter `inGetSizeFunc`: a function that will be called when AudioFile needs to know the file size.
+    ///
+    /// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(all(feature = "AudioComponent", feature = "AudioFile"))]
     pub fn AudioFileComponentOpenWithCallbacks(
         in_component: AudioFileComponent,
@@ -4212,6 +4265,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileInitializeWithCallbacks
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inClientData`: a constant that will be passed to your callbacks.
+    ///
+    /// Parameter `inReadFunc`: a function that will be called when AudioFile needs to read data.
+    ///
+    /// Parameter `inWriteFunc`: a function that will be called when AudioFile needs to write data.
+    ///
+    /// Parameter `inGetSizeFunc`: a function that will be called when AudioFile needs to know the file size.
+    ///
+    /// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
+    ///
+    /// Parameter `inFileType`: an AudioFileTypeID indicating the type of audio file to which to initialize the file.
+    ///
+    /// Parameter `inFormat`: an AudioStreamBasicDescription describing the data format that will be
+    /// added to the audio file.
+    ///
+    /// Parameter `inFlags`: relevant flags for creating/opening the file. Currently zero.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(all(
         feature = "AudioComponent",
         feature = "AudioFile",
@@ -4231,16 +4306,43 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileClose.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentCloseFile(in_component: AudioFileComponent) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// implements AudioFileOptimize.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentOptimize(in_component: AudioFileComponent) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// implements AudioFileReadBytes.
+    ///
+    ///
+    /// Returns kAudioFileEndOfFileError when read encounters end of file.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inUseCache`: true if it is desired to cache the data upon read, else false
+    ///
+    /// Parameter `inStartingByte`: the byte offset of the audio data desired to be returned
+    ///
+    /// Parameter `ioNumBytes`: on input, the number of bytes to read, on output, the number of
+    /// bytes actually read.
+    ///
+    /// Parameter `outBuffer`: outBuffer should be a void * to user allocated memory large enough for the requested bytes.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentReadBytes(
         in_component: AudioFileComponent,
@@ -4252,6 +4354,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileWriteBytes.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inUseCache`: true if it is desired to cache the data upon write, else false
+    ///
+    /// Parameter `inStartingByte`: the byte offset where the audio data should be written
+    ///
+    /// Parameter `ioNumBytes`: on input, the number of bytes to write, on output, the number of
+    /// bytes actually written.
+    ///
+    /// Parameter `inBuffer`: inBuffer should be a void * containing the bytes to be written
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentWriteBytes(
         in_component: AudioFileComponent,
@@ -4263,6 +4379,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileReadPackets.
+    ///
+    /// For all uncompressed formats, packets == frames.
+    /// ioNumPackets less than requested indicates end of file.
+    ///
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inUseCache`: true if it is desired to cache the data upon read, else false
+    ///
+    /// Parameter `outNumBytes`: on output, the number of bytes actually returned
+    ///
+    /// Parameter `outPacketDescriptions`: on output, an array of packet descriptions describing
+    /// the packets being returned. NULL may be passed for this
+    /// parameter. Nothing will be returned for linear pcm data.
+    ///
+    /// Parameter `inStartingPacket`: the packet index of the first packet desired to be returned
+    ///
+    /// Parameter `ioNumPackets`: on input, the number of packets to read, on output, the number of
+    /// packets actually read.
+    ///
+    /// Parameter `outBuffer`: outBuffer should be a pointer to user allocated memory of size:
+    /// number of packets requested times file's maximum (or upper bound on)
+    /// packet size.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioFileComponentReadPackets(
         in_component: AudioFileComponent,
@@ -4276,6 +4418,36 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileReadPacketData.
+    ///
+    /// For all uncompressed formats, packets == frames.
+    /// If the byte size of the number packets requested is
+    /// less than the buffer size, ioNumBytes will be reduced.
+    /// If the buffer is too small for the number of packets
+    /// requested, ioNumPackets and ioNumBytes will be reduced
+    /// to the number of packets that can be accommodated and their byte size.
+    /// Returns kAudioFileEndOfFileError when read encounters end of file.
+    ///
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inUseCache`: true if it is desired to cache the data upon read, else false
+    ///
+    /// Parameter `ioNumBytes`: on input the size of outBuffer in bytes.
+    /// on output, the number of bytes actually returned.
+    ///
+    /// Parameter `outPacketDescriptions`: on output, an array of packet descriptions describing
+    /// the packets being returned. NULL may be passed for this
+    /// parameter. Nothing will be returned for linear pcm data.
+    ///
+    /// Parameter `inStartingPacket`: the packet index of the first packet desired to be returned
+    ///
+    /// Parameter `ioNumPackets`: on input, the number of packets to read, on output, the number of
+    /// packets actually read.
+    ///
+    /// Parameter `outBuffer`: outBuffer should be a pointer to user allocated memory.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioFileComponentReadPacketData(
         in_component: AudioFileComponent,
@@ -4289,6 +4461,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileWritePackets.
+    ///
+    /// For all uncompressed formats, packets == frames.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inUseCache`: true if it is desired to cache the data upon write, else false
+    ///
+    /// Parameter `inNumBytes`: the number of bytes being provided for write
+    ///
+    /// Parameter `inPacketDescriptions`: an array of packet descriptions describing the packets being
+    /// provided. Not all formats require packet descriptions to be
+    /// provided. NULL may be passed if no descriptions are required.
+    ///
+    /// Parameter `inStartingPacket`: the packet index of where the first packet provided should be placed.
+    ///
+    /// Parameter `ioNumPackets`: on input, the number of packets to write, on output, the number of
+    /// packets actually written.
+    ///
+    /// Parameter `inBuffer`: a void * to user allocated memory containing the packets to write.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioFileComponentWritePackets(
         in_component: AudioFileComponent,
@@ -4302,6 +4496,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileGetPropertyInfo.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inPropertyID`: an AudioFileProperty constant.
+    ///
+    /// Parameter `outPropertySize`: the size in bytes of the current value of the property. In order to get the property value,
+    /// you will need a buffer of this size.
+    ///
+    /// Parameter `outWritable`: will be set to 1 if writable, or 0 if read only.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetPropertyInfo(
         in_component: AudioFileComponent,
@@ -4312,6 +4518,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileGetProperty.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inPropertyID`: an AudioFileProperty constant.
+    ///
+    /// Parameter `ioPropertyDataSize`: on input the size of the outPropertyData buffer. On output the number of bytes written to the buffer.
+    ///
+    /// Parameter `outPropertyData`: the buffer in which to write the property data.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetProperty(
         in_component: AudioFileComponent,
@@ -4322,6 +4539,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileSetProperty.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inPropertyID`: an AudioFileProperty constant.
+    ///
+    /// Parameter `inPropertyDataSize`: the size of the property data.
+    ///
+    /// Parameter `inPropertyData`: the buffer containing the property data.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentSetProperty(
         in_component: AudioFileComponent,
@@ -4332,6 +4560,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileCountUserData
+    ///
+    /// "User Data" refers to chunks in AIFF, CAF and WAVE files, or resources
+    /// in Sound Designer II files, and possibly other things in other files.
+    /// For simplicity, referred to below as "chunks".
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inUserDataID`: the four char code of the chunk.
+    ///
+    /// Parameter `outNumberItems`: on output, if successful, number of chunks of this type in the file.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentCountUserData(
         in_component: AudioFileComponent,
@@ -4341,6 +4582,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileGetUserDataSize
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inUserDataID`: the four char code of the chunk.
+    ///
+    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+    ///
+    /// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetUserDataSize(
         in_component: AudioFileComponent,
@@ -4351,6 +4603,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileGetUserDataSize64
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inUserDataID`: the four char code of the chunk.
+    ///
+    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+    ///
+    /// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetUserDataSize64(
         in_component: AudioFileComponent,
@@ -4361,6 +4624,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileGetUserData.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inUserDataID`: the four char code of the chunk.
+    ///
+    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+    ///
+    /// Parameter `ioUserDataSize`: the size of the buffer on input, size of bytes copied to buffer on output
+    ///
+    /// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetUserData(
         in_component: AudioFileComponent,
@@ -4372,6 +4648,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileGetUserDataAtOffset.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inUserDataID`: the four char code of the chunk.
+    ///
+    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+    ///
+    /// Parameter `inOffset`: offset from the first byte of the chunk to the first byte to get.
+    ///
+    /// Parameter `ioUserDataSize`: the size of the buffer on input, size of bytes copied to buffer on output
+    ///
+    /// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetUserDataAtOffset(
         in_component: AudioFileComponent,
@@ -4384,6 +4675,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileSetUserData.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inUserDataID`: the four char code of the chunk.
+    ///
+    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+    ///
+    /// Parameter `inUserDataSize`: on input the size of the data to copy, on output, size of bytes copied from the buffer
+    ///
+    /// Parameter `inUserData`: a pointer to a buffer from which to copy the chunk data
+    /// (only the contents of the chunk, not including the chunk header).
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentSetUserData(
         in_component: AudioFileComponent,
@@ -4395,6 +4700,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileRemoveUserData.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inUserDataID`: the four char code of the chunk.
+    ///
+    /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentRemoveUserData(
         in_component: AudioFileComponent,
@@ -4404,6 +4718,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// used by the AudioFile API to determine if this component is appropriate for handling a file.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inExtension`: a CFString containing a file name extension.
+    ///
+    /// Parameter `outResult`: on output, is set to 1 if the extension is recognized by this component, 0 if not.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
     pub fn AudioFileComponentExtensionIsThisFormat(
         in_component: AudioFileComponent,
@@ -4413,6 +4736,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// used by the AudioFile API to determine if this component is appropriate for handling a file.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inDataByteSize`: the size of inData in bytes.
+    ///
+    /// Parameter `inData`: a pointer to a buffer of audio file data.
+    ///
+    /// Parameter `outResult`: on output, is set to 1 if the file is recognized by this component, 0 if not.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentFileDataIsThisFormat(
         in_component: AudioFileComponent,
@@ -4423,6 +4757,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// deprecated. use AudioFileComponentFileDataIsThisFormat instead.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inFileRefNum`: a refNum of a file.
+    ///
+    /// Parameter `outResult`: on output, is set to 1 if the file is recognized by this component, 0 if not.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     #[deprecated = "no longer supported"]
     pub fn AudioFileComponentFileIsThisFormat(
@@ -4433,6 +4776,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// deprecated. use AudioFileComponentFileDataIsThisFormat instead.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inClientData`: a constant that will be passed to your callbacks.
+    ///
+    /// Parameter `inReadFunc`: a function that will be called when AudioFile needs to read data.
+    ///
+    /// Parameter `inWriteFunc`: a function that will be called when AudioFile needs to write data.
+    ///
+    /// Parameter `inGetSizeFunc`: a function that will be called when AudioFile needs to know the file size.
+    ///
+    /// Parameter `inSetSizeFunc`: a function that will be called when AudioFile needs to set the file size.
+    ///
+    /// Parameter `outResult`: on output, is set to 1 if the file data is recognized by this component, 0 if not.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(all(feature = "AudioComponent", feature = "AudioFile"))]
     #[deprecated = "no longer supported"]
     pub fn AudioFileComponentDataIsThisFormat(
@@ -4447,6 +4807,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileGetGlobalInfoSize.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inPropertyID`: an AudioFileGlobalInfo property constant.
+    ///
+    /// Parameter `inSpecifierSize`: The size of the specifier data.
+    ///
+    /// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the global info properties.
+    ///
+    /// Parameter `outPropertySize`: the size in bytes of the current value of the property. In order to get the property value,
+    /// you will need a buffer of this size.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetGlobalInfoSize(
         in_component: AudioFileComponent,
@@ -4458,6 +4832,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// implements AudioFileGetGlobalInfo.
+    ///
+    /// Parameter `inComponent`: an AudioFileComponent
+    ///
+    /// Parameter `inPropertyID`: an AudioFileGlobalInfo property constant.
+    ///
+    /// Parameter `inSpecifierSize`: The size of the specifier data.
+    ///
+    /// Parameter `inSpecifier`: A specifier is a buffer of data used as an input argument to some of the global info properties.
+    ///
+    /// Parameter `ioPropertyDataSize`: on input the size of the outPropertyData buffer. On output the number of bytes written to the buffer.
+    ///
+    /// Parameter `outPropertyData`: the buffer in which to write the property data.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetGlobalInfo(
         in_component: AudioFileComponent,
@@ -4999,7 +5388,61 @@ pub type AudioFileComponentGetGlobalInfoProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid?language=objc)
+/// The properties of a CoreAudioClock, accessible via CAClockGetProperty and
+/// CAClockSetProperty.
+///
+///
+/// Type: CAClockTimebase. Selects the internal time reference for the clock
+/// (currently, host time, an audio device, or audio output unit).
+///
+/// Type: according to the internal timebase. If the timebase is
+/// kCAClockTimebase_AudioDevice, the value is an AudioDeviceID. For
+/// kCAClockTimebase_AudioOutputUnit, the value is an AudioUnit.
+///
+/// Type: CAClockSyncMode. Selects between internal synchronization and multiple
+/// external synchronization modes such as MIDI Time Code and MIDI beat clock.
+///
+/// Type: according to the sync mode. For kCAClockSyncMode_MIDIClockTransport or
+/// kCAClockSyncMode_MTCTransport, the value is a MIDIEndpointRef.
+///
+/// Type: CAClockSMPTEFormat. Specifies the SMPTE format (fps, drop or non-drop)
+/// expected for received SMPTE messages, and used for transmitted SMPTE
+/// messages and SMPTE time representations.
+///
+/// Type: CAClockSeconds. The SMPTE time, represented in seconds since
+/// 00:00:00:00, corresponding to a timeline position of 0 seconds.
+///
+/// Type: array of MIDIEndpointRef. When non-empty, the clock will transmit
+/// MIDI beat clock to the MIDI endpoints in this list. (As of macOS 10.6,
+/// the endpoints may be virtual sources. Previously, they had to be destinations.)
+///
+/// Type: array of MIDIEndpointRef. When non-empty, the clock will transmit
+/// MIDI Time Code to the MIDI endpoints in this list. (As of macOS 10.6,
+/// the endpoints may be virtual sources. Previously, they had to be destinations.)
+///
+/// Type: CAClockSeconds. When the sync mode is MIDI Time Code, this controls
+/// how long the reader will keep running after the last MTC message is received
+/// before stopping (default: 1 sec). Should be at least ~4 SMPTE frames in
+/// duration.
+///
+/// Type: array of CATempoMapEntry. Specifies a tempo map for the clock,
+/// defining the relationship between timeline positions in seconds and musical
+/// beats. Defaults to a constant tempo of 120 bpm.
+///
+/// Type: array of CAMeterTrackEntry. Specifies the positions of musical time
+/// signature changes in the timeline. Used only for converting between beats
+/// and CABarBeatTime's (a display representation of a beat time).
+///
+/// Type: CFStringRef. Sets a name for the clock. When a client sets the
+/// property, the clock retains a reference to the string. When a client gets
+/// the property, it receives a borrowed reference (i.e. the client must not
+/// release the string).
+///
+/// Type: UInt32. Specifies whether MIDI Song Position Pointer messages are
+/// sent to the clock's MIDI clock destinations (if any). Available starting
+/// in macOS 10.6.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -5028,7 +5471,27 @@ unsafe impl RefEncode for CAClockPropertyID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimebase?language=objc)
+/// The available internal hardware time references for a clock.
+///
+///
+/// The clock's reference time is host time (as returned
+/// by
+/// <code>
+/// mach_absolute_time()
+/// </code>
+/// or
+/// <code>
+/// HostTime()
+/// </code>
+/// ).
+///
+/// The clock's reference time is derived from an audio
+/// device.
+///
+/// The clock's reference time is derived from the audio
+/// device addressed by an output Audio Unit.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimebase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -5047,7 +5510,18 @@ unsafe impl RefEncode for CAClockTimebase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksyncmode?language=objc)
+/// Specifies internal synchronization, or an external sync source type.
+///
+///
+/// The clock is not driven by an external sync source.
+///
+/// The clock is driven by MIDI beat clock received from a CoreMIDI source
+/// endpoint.
+///
+/// The clock is driven by MIDI Time Code received from a CoreMIDI source
+/// endpoint.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksyncmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -5066,11 +5540,39 @@ unsafe impl RefEncode for CAClockSyncMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksmpteformat?language=objc)
+/// A SMPTE format, specifying the frames per second (fps) and
+/// whether it is drop frame.
+///
+/// The possible values of a CAClockSMPTEFormat are found in
+/// <CoreAudioTypes
+/// /CoreAudioTypes.h>.
+/// Values include kSMPTETimeType30, kSMPTETimeType30Drop, etc. Note that formats with more than 30
+/// fps are not usable with MIDI Time Code.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksmpteformat?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type CAClockSMPTEFormat = SMPTETimeType;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockmessage?language=objc)
+/// The messages sent to a CAClockListenerProc to notify the client of
+/// changes to the clock's state.
+///
+///
+/// A new start time was set or received from an external sync source.
+///
+/// The clock's time has started moving.
+///
+/// The clock's time has stopped moving.
+///
+/// The client has called CAClockArm().
+///
+/// The client has called CAClockDisarm().
+///
+/// A clock property has been changed.
+///
+/// The clock is receiving SMPTE (MTC) messages in a SMPTE format that does not
+/// match the clock's SMPTE format.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockmessage?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -5093,7 +5595,30 @@ unsafe impl RefEncode for CAClockMessage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimeformat?language=objc)
+/// The various units in which a clock can represent and report time.
+///
+///
+/// Absolute host time, as returned by
+/// <code>
+/// mach_absolute_time()
+/// </code>
+/// .
+///
+/// Absolute audio samples, as a Float64. Available when the internal timebase
+/// is an audio device (or audio output unit). The units are in arbitrary sample
+/// numbers, corresponding to the audio device's current time, and at the
+/// device's current sample rate.
+///
+/// Musical beats, as a Float64. This is a position on the clock's timeline.
+///
+/// Seconds, as a Float64. This is a position on the clock's timeline.
+///
+/// Seconds, as a Float64. This is the same as kCAClockTimeFormat_Seconds,
+/// except that the clock's SMPTE offset has been applied.
+///
+/// SMPTETime structure.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimeformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -5141,13 +5666,19 @@ pub const kCAClock_InvalidPlayRateError: OSStatus = -66806;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_cannotsettimeerror?language=objc)
 pub const kCAClock_CannotSetTimeError: OSStatus = -66805;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockref?language=objc)
+/// A reference to a Core Audio Clock object.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockref?language=objc)
 pub type CAClockRef = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockbeats?language=objc)
+/// MIDI quarter notes (see MIDI specs)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockbeats?language=objc)
 pub type CAClockBeats = f64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktempo?language=objc)
+/// A musical tempo in beats per minute.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktempo?language=objc)
 pub type CAClockTempo = f64;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksamples?language=objc)
@@ -5156,11 +5687,31 @@ pub type CAClockSamples = f64;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockseconds?language=objc)
 pub type CAClockSeconds = f64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocklistenerproc?language=objc)
+/// A client-supplied function called when the clock's state changes.
+///
+///
+/// Parameter `userData`: The value passed to CAClockAddListener when the callback function
+/// was installed.
+///
+/// Parameter `message`: Signifies the kind of event which occurred.
+///
+/// Parameter `param`: This value is specific to the message (currently no messages have values).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocklistenerproc?language=objc)
 pub type CAClockListenerProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, CAClockMessage, NonNull<c_void>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/catempomapentry?language=objc)
+/// A tempo change event.
+///
+/// The clock's tempo map defines the correspondence between seconds and musical
+/// beats, and is used in conversions between the two.
+///
+///
+/// The beat time at which the tempo changes.
+///
+/// The new tempo as of that time.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/catempomapentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CATempoMapEntry {
@@ -5179,7 +5730,19 @@ unsafe impl RefEncode for CATempoMapEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cametertrackentry?language=objc)
+/// A time signature change event.
+///
+/// The meter track is used for converting between beats as floating-point
+/// numbers (CAClockBeats) and their display representations (CABarBeatTime).
+///
+///
+/// The beat time at which the time signature (meter) changes.
+///
+/// The numerator of the new time signature.
+///
+/// The denominator of the new time signature (1, 2, 4, 8, etc.).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cametertrackentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CAMeterTrackEntry {
@@ -5200,14 +5763,49 @@ unsafe impl RefEncode for CAMeterTrackEntry {
 }
 
 extern "C-unwind" {
+    /// Create a new clock object.
+    ///
+    ///
+    /// Parameter `inReservedFlags`: Must be 0.
+    ///
+    ///
+    /// Parameter `outCAClock`: Must be non-null. On successful return, the new clock object.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     pub fn CAClockNew(in_reserved_flags: u32, out_ca_clock: NonNull<CAClockRef>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Dispose a clock object.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object to be disposed.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     pub fn CAClockDispose(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Gets information about a clock's property.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inPropertyID`: The property being queried.
+    ///
+    ///
+    /// Parameter `outSize`: If non-null, on exit, this is set to the size of the
+    /// property's value.
+    ///
+    ///
+    /// Parameter `outWritable`: If non-null, on exit, this indicates whether the
+    /// property value is settable.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     pub fn CAClockGetPropertyInfo(
         in_ca_clock: CAClockRef,
         in_property_id: CAClockPropertyID,
@@ -5217,6 +5815,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the current value of a clock's property.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inPropertyID`: The property being fetched.
+    ///
+    ///
+    /// Parameter `ioPropertyDataSize`: On entry, the size (in bytes) of the memory pointed to
+    /// by outPropertyData. On exit, the actual size of the
+    /// property data returned.
+    ///
+    ///
+    /// Parameter `outPropertyData`: The value of the property is copied to the memory
+    /// this points to.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     pub fn CAClockGetProperty(
         in_ca_clock: CAClockRef,
         in_property_id: CAClockPropertyID,
@@ -5226,6 +5843,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Changes the value of a clock's property.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inPropertyID`: The property being set.
+    ///
+    ///
+    /// Parameter `inPropertyDataSize`: The size of the property data, in bytes.
+    ///
+    ///
+    /// Parameter `inPropertyData`: Points to the property's new value.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     pub fn CAClockSetProperty(
         in_ca_clock: CAClockRef,
         in_property_id: CAClockPropertyID,
@@ -5235,6 +5868,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds a callback function to receive notifications of changes to the clock's
+    /// state.
+    ///
+    /// Note: The CAClockListenerProc may be called on a realtime thread internal to
+    /// the clock object.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inListenerProc`: The callback function.
+    ///
+    ///
+    /// Parameter `inUserData`: This value is passed to the callback function, in the userData
+    /// parameter.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     pub fn CAClockAddListener(
         in_ca_clock: CAClockRef,
         in_listener_proc: CAClockListenerProc,
@@ -5243,6 +5894,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes a listener callback function.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inListenerProc`: The callback function.
+    ///
+    ///
+    /// Parameter `inUserData`: The same value as was passed for inUserData when this
+    /// function was registered with CAClockAddListener. (This
+    /// allows a single callback function to be registered more
+    /// than once, with different userData arguments.)
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     pub fn CAClockRemoveListener(
         in_ca_clock: CAClockRef,
         in_listener_proc: CAClockListenerProc,
@@ -5251,30 +5918,113 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Begin advancing the clock on its media timeline.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     pub fn CAClockStart(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Stop advancing the clock on its media timeline.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     pub fn CAClockStop(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Allow received sync messages to start the clock.
+    ///
+    /// If a clock is following and being controlled by an external transport
+    /// (e.g. MIDI Time Code), call this to indicate that the client is ready to
+    /// start its transport in response to the external transport having started.
+    ///
+    /// The external time source will set the clock's start position and start
+    /// the clock.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     pub fn CAClockArm(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Disallow received sync messages from starting the clock.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     pub fn CAClockDisarm(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Alter the clock's playback rate.
+    ///
+    /// Adjusts the ratio between the timebase and media time; e.g. at 0.5, the
+    /// media time will move half as quickly as timebase time.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inPlayRate`: The clock's desired play rate.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     pub fn CAClockSetPlayRate(in_ca_clock: CAClockRef, in_play_rate: f64) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Obtain the clock's playback rate.
+    ///
+    /// Returns the clock's current play rate. If the clock is internally synced,
+    /// this will be the last rate set by CAClockSetPlayRate. If the clock is
+    /// externally synced, it will be the rate of the external sync source, where
+    /// 1.0 means that it is running at exactly the same rate as the clock's
+    /// timebase. (2.0 means twice as fast).
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `outPlayRate`: On exit, the clock's playback rate.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     pub fn CAClockGetPlayRate(in_ca_clock: CAClockRef, out_play_rate: NonNull<f64>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Converts seconds to a SMPTE time representation.
+    ///
+    /// Converts seconds on the media timeline to a SMPTE time. The clock's current
+    /// SMPTE format and offset must be set appropriately.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inSeconds`: The number of seconds to be converted (e.g. 3600 = 1 hour).
+    ///
+    ///
+    /// Parameter `inSubframeDivisor`: The number of subframes per frame desired in outSMPTETime.
+    ///
+    ///
+    /// Parameter `outSMPTETime`: On exit, the SMPTE time corresponding to inSeconds.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CAClockSecondsToSMPTETime(
         in_ca_clock: CAClockRef,
@@ -5285,6 +6035,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a SMPTE time representation to seconds.
+    ///
+    /// Converts SMPTE time to seconds on the media timeline. The clock's current
+    /// SMPTE format and offset must be set appropriately.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inSMPTETime`: The SMPTE time to be converted to seconds.
+    ///
+    ///
+    /// Parameter `outSeconds`: On exit, the number of seconds corresponding to inSMPTETime.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CAClockSMPTETimeToSeconds(
         in_ca_clock: CAClockRef,
@@ -5294,6 +6060,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a number of beats to a CABarBeatTime structure.
+    ///
+    /// Converts a beat position on the media timeline to a CABarBeatTime, using the
+    /// clock's meter track. Examples using 4/4 time and a subbeat divisor of 480:
+    ///
+    /// inBeats | outBarBeatTime: bars . beats . units
+    /// --------|-------------------------------------
+    /// 0        | 1.1.0
+    /// 1        | 1.2.0
+    /// 4        | 2.1.0
+    /// 4.5        | 2.1.240
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inBeats`: The absolute beat count to be converted.
+    ///
+    ///
+    /// Parameter `inSubbeatDivisor`: The number of units per beat.
+    ///
+    ///
+    /// Parameter `outBarBeatTime`: On exit, the bar/beat/subbeat time corresponding to inBeats.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     #[cfg(feature = "MusicPlayer")]
     pub fn CAClockBeatsToBarBeatTime(
         in_ca_clock: CAClockRef,
@@ -5304,6 +6096,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a CABarBeatTime structure to a number of beats.
+    ///
+    /// Converts a CABarBeatTime structure (bars/beats/subbeats) to a beat
+    /// position, using the clock's meter track.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inBarBeatTime`: The bar/beat/subunit time to be converted to beats.
+    ///
+    ///
+    /// Parameter `outBeats`: On exit, the number of absolute beats corresponding to inBarBeatTime.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
     #[cfg(feature = "MusicPlayer")]
     pub fn CAClockBarBeatTimeToBeats(
         in_ca_clock: CAClockRef,
@@ -5313,11 +6121,40 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// This will return the name of a sound bank from a DLS or SF2 bank.
+    /// The name should be released by the caller.
+    ///
+    ///
+    /// Parameter `inURL`: The URL for the sound bank.
+    ///
+    /// Parameter `outName`: A pointer to a CFStringRef to be created and returned by the function.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CopyNameFromSoundBank(in_url: CFURLRef, out_name: NonNull<CFStringRef>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// This will return a CFArray of CFDictionaries, one per instrument found in the DLS or SF2 bank.
+    /// Each dictionary will contain four items accessed via CFStringRef versions of the keys kInstrumentInfoKey_MSB,
+    /// kInstrumentInfoKey_LSB, kInstrumentInfoKey_Program, and kInstrumentInfoKey_Name.
+    /// MSB: An NSNumberRef for the most-significant byte of the bank number.  GM melodic banks will return 120 (0x78).
+    /// GM percussion banks will return 121 (0x79).  Custom banks will return their literal value.
+    /// LSB: An NSNumberRef for the least-significant byte of the bank number.  All GM banks will return
+    /// the bank variation number (0-127).
+    /// Program Number: An NSNumberRef for the program number (0-127) of an instrument within a particular bank.
+    /// Name: A CFStringRef containing the name of the instrument.
+    ///
+    /// Using these MSB, LSB, and Program values will guarantee that the correct instrument is loaded by the DLS synth
+    /// or Sampler Audio Unit.
+    /// The CFArray should be released by the caller.
+    ///
+    ///
+    /// Parameter `inURL`: The URL for the sound bank.
+    ///
+    /// Parameter `outInstrumentInfo`: A pointer to a CFArrayRef to be created and returned by the function.
+    ///
+    /// Returns: returns noErr if successful.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CopyInstrumentInfoFromSoundBank(
         in_url: CFURLRef,

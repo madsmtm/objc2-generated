@@ -6,7 +6,12 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcxboxgamepad?language=objc)
+    /// The GCXboxGamepad profile represents any supported Xbox controller.
+    ///
+    ///
+    /// See: GCExtendedGamepad
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcxboxgamepad?language=objc)
     #[unsafe(super(GCExtendedGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
@@ -20,6 +25,13 @@ extern_methods!(
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCXboxGamepad {
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
+        /// Some Xbox controller variants can support up to four additional buttons.
+        ///
+        ///
+        ///
+        ///
+        /// Note: The four extra digital buttons on the Xbox Elite Wireless Controller are only directly addressable when the controller
+        /// is on its default mapping profile. Otherwise, the paddle buttons are directly bound to other inputs on the controller.
         #[method_id(@__retain_semantics Other paddleButton1)]
         pub unsafe fn paddleButton1(&self) -> Option<Retained<GCControllerButtonInput>>;
 
@@ -36,6 +48,15 @@ extern_methods!(
         pub unsafe fn paddleButton4(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
+        /// Some Xbox controller variants feature a Share button.
+        ///
+        ///
+        /// has a Share button.
+        ///
+        ///
+        /// Note: The Share button is reserved by the system for screenshot and video recording gestures. If you wish to disable these
+        /// gestures in your app and take control of the Share button, set buttonShare.preferredSystemGestureState to
+        /// GCSystemGestureStateDisabled.
         #[method_id(@__retain_semantics Other buttonShare)]
         pub unsafe fn buttonShare(&self) -> Option<Retained<GCControllerButtonInput>>;
     }

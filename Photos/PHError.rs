@@ -11,7 +11,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlocalidentifierserrorkey?language=objc)
+    /// Array of NSString values representing local identifiers related to the specific error
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlocalidentifierserrorkey?language=objc)
     pub static PHLocalIdentifiersErrorKey: Option<&'static NSErrorUserInfoKey>;
 }
 

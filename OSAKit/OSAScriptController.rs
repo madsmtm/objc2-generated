@@ -49,12 +49,14 @@ extern_methods!(
         pub unsafe fn scriptView(&self) -> Option<Retained<OSAScriptView>>;
 
         #[cfg(feature = "OSAScriptView")]
+        /// Setter for [`scriptView`][Self::scriptView].
         #[method(setScriptView:)]
         pub unsafe fn setScriptView(&self, script_view: Option<&OSAScriptView>);
 
         #[method_id(@__retain_semantics Other resultView)]
         pub unsafe fn resultView(&self) -> Option<Retained<NSTextView>>;
 
+        /// Setter for [`resultView`][Self::resultView].
         #[method(setResultView:)]
         pub unsafe fn setResultView(&self, result_view: Option<&NSTextView>);
 
@@ -63,6 +65,7 @@ extern_methods!(
         pub unsafe fn script(&self) -> Option<Retained<OSAScript>>;
 
         #[cfg(feature = "OSAScript")]
+        /// Setter for [`script`][Self::script].
         #[method(setScript:)]
         pub unsafe fn setScript(&self, script: Option<&OSAScript>);
 
@@ -71,6 +74,7 @@ extern_methods!(
         pub unsafe fn language(&self) -> Option<Retained<OSALanguage>>;
 
         #[cfg(feature = "OSALanguage")]
+        /// Setter for [`language`][Self::language].
         #[method(setLanguage:)]
         pub unsafe fn setLanguage(&self, language: Option<&OSALanguage>);
 

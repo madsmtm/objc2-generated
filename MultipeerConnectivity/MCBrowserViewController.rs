@@ -69,6 +69,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn MCBrowserViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -86,12 +87,14 @@ extern_methods!(
         #[method(minimumNumberOfPeers)]
         pub unsafe fn minimumNumberOfPeers(&self) -> NSUInteger;
 
+        /// Setter for [`minimumNumberOfPeers`][Self::minimumNumberOfPeers].
         #[method(setMinimumNumberOfPeers:)]
         pub unsafe fn setMinimumNumberOfPeers(&self, minimum_number_of_peers: NSUInteger);
 
         #[method(maximumNumberOfPeers)]
         pub unsafe fn maximumNumberOfPeers(&self) -> NSUInteger;
 
+        /// Setter for [`maximumNumberOfPeers`][Self::maximumNumberOfPeers].
         #[method(setMaximumNumberOfPeers:)]
         pub unsafe fn setMaximumNumberOfPeers(&self, maximum_number_of_peers: NSUInteger);
     }

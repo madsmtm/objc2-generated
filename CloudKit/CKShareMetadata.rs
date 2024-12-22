@@ -45,6 +45,7 @@ extern_methods!(
         pub unsafe fn hierarchicalRootRecordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[cfg(feature = "CKShareParticipant")]
+        /// These properties reflect the participant properties of the user invoking CKFetchShareMetadataOperation
         #[method(participantRole)]
         pub unsafe fn participantRole(&self) -> CKShareParticipantRole;
 
@@ -61,6 +62,7 @@ extern_methods!(
         pub unsafe fn ownerIdentity(&self) -> Retained<CKUserIdentity>;
 
         #[cfg(feature = "CKRecord")]
+        /// This is only present if the share metadata was returned from a CKFetchShareMetadataOperation with shouldFetchRootRecord set to YES
         #[method_id(@__retain_semantics Other rootRecord)]
         pub unsafe fn rootRecord(&self) -> Option<Retained<CKRecord>>;
 

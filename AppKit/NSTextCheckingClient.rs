@@ -85,6 +85,7 @@ extern_protocol!(
         #[method(autocorrectionType)]
         unsafe fn autocorrectionType(&self) -> NSTextInputTraitType;
 
+        /// Setter for [`autocorrectionType`][Self::autocorrectionType].
         #[optional]
         #[method(setAutocorrectionType:)]
         unsafe fn setAutocorrectionType(&self, autocorrection_type: NSTextInputTraitType);
@@ -93,6 +94,7 @@ extern_protocol!(
         #[method(spellCheckingType)]
         unsafe fn spellCheckingType(&self) -> NSTextInputTraitType;
 
+        /// Setter for [`spellCheckingType`][Self::spellCheckingType].
         #[optional]
         #[method(setSpellCheckingType:)]
         unsafe fn setSpellCheckingType(&self, spell_checking_type: NSTextInputTraitType);
@@ -101,6 +103,7 @@ extern_protocol!(
         #[method(grammarCheckingType)]
         unsafe fn grammarCheckingType(&self) -> NSTextInputTraitType;
 
+        /// Setter for [`grammarCheckingType`][Self::grammarCheckingType].
         #[optional]
         #[method(setGrammarCheckingType:)]
         unsafe fn setGrammarCheckingType(&self, grammar_checking_type: NSTextInputTraitType);
@@ -109,6 +112,7 @@ extern_protocol!(
         #[method(smartQuotesType)]
         unsafe fn smartQuotesType(&self) -> NSTextInputTraitType;
 
+        /// Setter for [`smartQuotesType`][Self::smartQuotesType].
         #[optional]
         #[method(setSmartQuotesType:)]
         unsafe fn setSmartQuotesType(&self, smart_quotes_type: NSTextInputTraitType);
@@ -117,6 +121,7 @@ extern_protocol!(
         #[method(smartDashesType)]
         unsafe fn smartDashesType(&self) -> NSTextInputTraitType;
 
+        /// Setter for [`smartDashesType`][Self::smartDashesType].
         #[optional]
         #[method(setSmartDashesType:)]
         unsafe fn setSmartDashesType(&self, smart_dashes_type: NSTextInputTraitType);
@@ -125,6 +130,7 @@ extern_protocol!(
         #[method(smartInsertDeleteType)]
         unsafe fn smartInsertDeleteType(&self) -> NSTextInputTraitType;
 
+        /// Setter for [`smartInsertDeleteType`][Self::smartInsertDeleteType].
         #[optional]
         #[method(setSmartInsertDeleteType:)]
         unsafe fn setSmartInsertDeleteType(&self, smart_insert_delete_type: NSTextInputTraitType);
@@ -133,6 +139,7 @@ extern_protocol!(
         #[method(textReplacementType)]
         unsafe fn textReplacementType(&self) -> NSTextInputTraitType;
 
+        /// Setter for [`textReplacementType`][Self::textReplacementType].
         #[optional]
         #[method(setTextReplacementType:)]
         unsafe fn setTextReplacementType(&self, text_replacement_type: NSTextInputTraitType);
@@ -141,6 +148,7 @@ extern_protocol!(
         #[method(dataDetectionType)]
         unsafe fn dataDetectionType(&self) -> NSTextInputTraitType;
 
+        /// Setter for [`dataDetectionType`][Self::dataDetectionType].
         #[optional]
         #[method(setDataDetectionType:)]
         unsafe fn setDataDetectionType(&self, data_detection_type: NSTextInputTraitType);
@@ -149,6 +157,7 @@ extern_protocol!(
         #[method(linkDetectionType)]
         unsafe fn linkDetectionType(&self) -> NSTextInputTraitType;
 
+        /// Setter for [`linkDetectionType`][Self::linkDetectionType].
         #[optional]
         #[method(setLinkDetectionType:)]
         unsafe fn setLinkDetectionType(&self, link_detection_type: NSTextInputTraitType);
@@ -157,6 +166,7 @@ extern_protocol!(
         #[method(textCompletionType)]
         unsafe fn textCompletionType(&self) -> NSTextInputTraitType;
 
+        /// Setter for [`textCompletionType`][Self::textCompletionType].
         #[optional]
         #[method(setTextCompletionType:)]
         unsafe fn setTextCompletionType(&self, text_completion_type: NSTextInputTraitType);
@@ -165,6 +175,7 @@ extern_protocol!(
         #[method(inlinePredictionType)]
         unsafe fn inlinePredictionType(&self) -> NSTextInputTraitType;
 
+        /// Setter for [`inlinePredictionType`][Self::inlinePredictionType].
         #[optional]
         #[method(setInlinePredictionType:)]
         unsafe fn setInlinePredictionType(&self, inline_prediction_type: NSTextInputTraitType);
@@ -173,6 +184,7 @@ extern_protocol!(
         #[method(mathExpressionCompletionType)]
         unsafe fn mathExpressionCompletionType(&self) -> NSTextInputTraitType;
 
+        /// Setter for [`mathExpressionCompletionType`][Self::mathExpressionCompletionType].
         #[optional]
         #[method(setMathExpressionCompletionType:)]
         unsafe fn setMathExpressionCompletionType(
@@ -184,6 +196,7 @@ extern_protocol!(
         #[method(writingToolsBehavior)]
         unsafe fn writingToolsBehavior(&self) -> NSWritingToolsBehavior;
 
+        /// Setter for [`writingToolsBehavior`][Self::writingToolsBehavior].
         #[optional]
         #[method(setWritingToolsBehavior:)]
         unsafe fn setWritingToolsBehavior(&self, writing_tools_behavior: NSWritingToolsBehavior);
@@ -192,6 +205,7 @@ extern_protocol!(
         #[method(allowedWritingToolsResultOptions)]
         unsafe fn allowedWritingToolsResultOptions(&self) -> NSWritingToolsResultOptions;
 
+        /// Setter for [`allowedWritingToolsResultOptions`][Self::allowedWritingToolsResultOptions].
         #[optional]
         #[method(setAllowedWritingToolsResultOptions:)]
         unsafe fn setAllowedWritingToolsResultOptions(

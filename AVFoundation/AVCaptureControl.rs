@@ -7,7 +7,16 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecontrol?language=objc)
+    /// AVCaptureControl is an abstract class that defines an interface for a unique type of control which allows deep integration with the camera system through AVCaptureSession.
+    ///
+    ///
+    /// Various concrete subclasses of `AVCaptureControl` are provided by AVFoundation to allow your application to both leverage common system controls and define unique custom controls.
+    ///
+    /// Controls may be added to an `AVCaptureSession` using `-[AVCaptureSession addControl:]`.
+    ///
+    /// For controls that use symbols to represent them, only SF Symbols may be used.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecontrol?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureControl;
@@ -23,9 +32,14 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Indicates whether the control should be enabled for user interaction.
+        ///
+        ///
+        /// The value of this property is a `BOOL` that determines whether the control should be enabled for user interaction. Clients can set this property to keep a control added to an `AVCaptureSession` but prevent it from being interacted with by the user. A control's value may still be changed while it is disabled. The default value is `YES`.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
     }

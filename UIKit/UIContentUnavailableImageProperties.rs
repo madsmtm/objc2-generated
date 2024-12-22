@@ -35,6 +35,7 @@ extern_methods!(
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
         ))]
+        /// The symbol configuration to use.
         #[method_id(@__retain_semantics Other preferredSymbolConfiguration)]
         pub unsafe fn preferredSymbolConfiguration(
             &self,
@@ -44,6 +45,7 @@ extern_methods!(
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
         ))]
+        /// Setter for [`preferredSymbolConfiguration`][Self::preferredSymbolConfiguration].
         #[method(setPreferredSymbolConfiguration:)]
         pub unsafe fn setPreferredSymbolConfiguration(
             &self,
@@ -51,32 +53,44 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIColor")]
+        /// The tint color to apply to the image view. Nil will use the image view's normal inherited tint color.
         #[method_id(@__retain_semantics Other tintColor)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`tintColor`][Self::tintColor].
         #[method(setTintColor:)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The preferred corner radius (using a continuous corner curve) for the image.
+        /// Default is 0. If the image is too small to fit the requested radius, the corner curve
+        /// and radius will be adjusted to fit.
         #[method(cornerRadius)]
         pub unsafe fn cornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`cornerRadius`][Self::cornerRadius].
         #[method(setCornerRadius:)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Enforces a maximum size for the image. The default value is CGSizeZero. A zero width or
+        /// height means the size is unconstrained on that dimension. If the image exceeds this size
+        /// on either dimension, its size will be reduced proportionately (maintaining aspect ratio).
         #[method(maximumSize)]
         pub unsafe fn maximumSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumSize`][Self::maximumSize].
         #[method(setMaximumSize:)]
         pub unsafe fn setMaximumSize(&self, maximum_size: CGSize);
 
+        /// Prevents the image from inverting its colors when the accessibility setting is enabled.
         #[method(accessibilityIgnoresInvertColors)]
         pub unsafe fn accessibilityIgnoresInvertColors(&self) -> bool;
 
+        /// Setter for [`accessibilityIgnoresInvertColors`][Self::accessibilityIgnoresInvertColors].
         #[method(setAccessibilityIgnoresInvertColors:)]
         pub unsafe fn setAccessibilityIgnoresInvertColors(
             &self,

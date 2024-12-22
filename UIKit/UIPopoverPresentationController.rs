@@ -90,6 +90,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIPopoverPresentationControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -101,6 +102,7 @@ extern_methods!(
         pub unsafe fn permittedArrowDirections(&self) -> UIPopoverArrowDirection;
 
         #[cfg(feature = "UIPopoverSupport")]
+        /// Setter for [`permittedArrowDirections`][Self::permittedArrowDirections].
         #[method(setPermittedArrowDirections:)]
         pub unsafe fn setPermittedArrowDirections(
             &self,
@@ -112,6 +114,7 @@ extern_methods!(
         pub unsafe fn sourceView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Setter for [`sourceView`][Self::sourceView].
         #[method(setSourceView:)]
         pub unsafe fn setSourceView(&self, source_view: Option<&UIView>);
 
@@ -120,12 +123,14 @@ extern_methods!(
         pub unsafe fn sourceRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`sourceRect`][Self::sourceRect].
         #[method(setSourceRect:)]
         pub unsafe fn setSourceRect(&self, source_rect: CGRect);
 
         #[method(canOverlapSourceViewRect)]
         pub unsafe fn canOverlapSourceViewRect(&self) -> bool;
 
+        /// Setter for [`canOverlapSourceViewRect`][Self::canOverlapSourceViewRect].
         #[method(setCanOverlapSourceViewRect:)]
         pub unsafe fn setCanOverlapSourceViewRect(&self, can_overlap_source_view_rect: bool);
 
@@ -136,6 +141,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIPopoverPresentationControllerSourceItem>>>;
 
         #[cfg(feature = "UIPopoverPresentationControllerSourceItem")]
+        /// Setter for [`sourceItem`][Self::sourceItem].
         #[method(setSourceItem:)]
         pub unsafe fn setSourceItem(
             &self,
@@ -148,6 +154,7 @@ extern_methods!(
         pub unsafe fn barButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        /// Setter for [`barButtonItem`][Self::barButtonItem].
         #[deprecated]
         #[method(setBarButtonItem:)]
         pub unsafe fn setBarButtonItem(&self, bar_button_item: Option<&UIBarButtonItem>);
@@ -161,6 +168,7 @@ extern_methods!(
         pub unsafe fn passthroughViews(&self) -> Option<Retained<NSArray<UIView>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Setter for [`passthroughViews`][Self::passthroughViews].
         #[method(setPassthroughViews:)]
         pub unsafe fn setPassthroughViews(&self, passthrough_views: Option<&NSArray<UIView>>);
 
@@ -169,6 +177,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
 
@@ -177,6 +186,7 @@ extern_methods!(
         pub unsafe fn popoverLayoutMargins(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`popoverLayoutMargins`][Self::popoverLayoutMargins].
         #[method(setPopoverLayoutMargins:)]
         pub unsafe fn setPopoverLayoutMargins(&self, popover_layout_margins: UIEdgeInsets);
 
@@ -185,6 +195,7 @@ extern_methods!(
         pub unsafe fn popoverBackgroundViewClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "UIPopoverBackgroundView")]
+        /// Setter for [`popoverBackgroundViewClass`][Self::popoverBackgroundViewClass].
         #[method(setPopoverBackgroundViewClass:)]
         pub unsafe fn setPopoverBackgroundViewClass(
             &self,

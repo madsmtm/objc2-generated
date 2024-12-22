@@ -89,12 +89,14 @@ extern_methods!(
         #[method(totalUnitCount)]
         pub unsafe fn totalUnitCount(&self) -> i64;
 
+        /// Setter for [`totalUnitCount`][Self::totalUnitCount].
         #[method(setTotalUnitCount:)]
         pub unsafe fn setTotalUnitCount(&self, total_unit_count: i64);
 
         #[method(completedUnitCount)]
         pub unsafe fn completedUnitCount(&self) -> i64;
 
+        /// Setter for [`completedUnitCount`][Self::completedUnitCount].
         #[method(setCompletedUnitCount:)]
         pub unsafe fn setCompletedUnitCount(&self, completed_unit_count: i64);
 
@@ -103,6 +105,7 @@ extern_methods!(
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`localizedDescription`][Self::localizedDescription].
         #[method(setLocalizedDescription:)]
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
 
@@ -111,6 +114,7 @@ extern_methods!(
         pub unsafe fn localizedAdditionalDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`localizedAdditionalDescription`][Self::localizedAdditionalDescription].
         #[method(setLocalizedAdditionalDescription:)]
         pub unsafe fn setLocalizedAdditionalDescription(
             &self,
@@ -120,12 +124,14 @@ extern_methods!(
         #[method(isCancellable)]
         pub unsafe fn isCancellable(&self) -> bool;
 
+        /// Setter for [`isCancellable`][Self::isCancellable].
         #[method(setCancellable:)]
         pub unsafe fn setCancellable(&self, cancellable: bool);
 
         #[method(isPausable)]
         pub unsafe fn isPausable(&self) -> bool;
 
+        /// Setter for [`isPausable`][Self::isPausable].
         #[method(setPausable:)]
         pub unsafe fn setPausable(&self, pausable: bool);
 
@@ -140,6 +146,7 @@ extern_methods!(
         pub unsafe fn cancellationHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`cancellationHandler`][Self::cancellationHandler].
         #[method(setCancellationHandler:)]
         pub unsafe fn setCancellationHandler(
             &self,
@@ -151,6 +158,7 @@ extern_methods!(
         pub unsafe fn pausingHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`pausingHandler`][Self::pausingHandler].
         #[method(setPausingHandler:)]
         pub unsafe fn setPausingHandler(&self, pausing_handler: Option<&block2::Block<dyn Fn()>>);
 
@@ -159,6 +167,7 @@ extern_methods!(
         pub unsafe fn resumingHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`resumingHandler`][Self::resumingHandler].
         #[method(setResumingHandler:)]
         pub unsafe fn setResumingHandler(&self, resuming_handler: Option<&block2::Block<dyn Fn()>>);
 
@@ -197,6 +206,7 @@ extern_methods!(
         pub unsafe fn kind(&self) -> Option<Retained<NSProgressKind>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`kind`][Self::kind].
         #[method(setKind:)]
         pub unsafe fn setKind(&self, kind: Option<&NSProgressKind>);
 
@@ -205,6 +215,7 @@ extern_methods!(
         pub unsafe fn estimatedTimeRemaining(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
+        /// Setter for [`estimatedTimeRemaining`][Self::estimatedTimeRemaining].
         #[method(setEstimatedTimeRemaining:)]
         pub unsafe fn setEstimatedTimeRemaining(&self, estimated_time_remaining: Option<&NSNumber>);
 
@@ -213,6 +224,7 @@ extern_methods!(
         pub unsafe fn throughput(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
+        /// Setter for [`throughput`][Self::throughput].
         #[method(setThroughput:)]
         pub unsafe fn setThroughput(&self, throughput: Option<&NSNumber>);
 
@@ -221,6 +233,7 @@ extern_methods!(
         pub unsafe fn fileOperationKind(&self) -> Option<Retained<NSProgressFileOperationKind>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`fileOperationKind`][Self::fileOperationKind].
         #[method(setFileOperationKind:)]
         pub unsafe fn setFileOperationKind(
             &self,
@@ -232,6 +245,7 @@ extern_methods!(
         pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
+        /// Setter for [`fileURL`][Self::fileURL].
         #[method(setFileURL:)]
         pub unsafe fn setFileURL(&self, file_url: Option<&NSURL>);
 
@@ -240,6 +254,7 @@ extern_methods!(
         pub unsafe fn fileTotalCount(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
+        /// Setter for [`fileTotalCount`][Self::fileTotalCount].
         #[method(setFileTotalCount:)]
         pub unsafe fn setFileTotalCount(&self, file_total_count: Option<&NSNumber>);
 
@@ -248,6 +263,7 @@ extern_methods!(
         pub unsafe fn fileCompletedCount(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
+        /// Setter for [`fileCompletedCount`][Self::fileCompletedCount].
         #[method(setFileCompletedCount:)]
         pub unsafe fn setFileCompletedCount(&self, file_completed_count: Option<&NSNumber>);
 

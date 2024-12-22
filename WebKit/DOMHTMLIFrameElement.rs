@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other align)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
+        /// Setter for [`align`][Self::align].
         #[deprecated]
         #[method(setAlign:)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other frameBorder)]
         pub unsafe fn frameBorder(&self) -> Retained<NSString>;
 
+        /// Setter for [`frameBorder`][Self::frameBorder].
         #[deprecated]
         #[method(setFrameBorder:)]
         pub unsafe fn setFrameBorder(&self, frame_border: Option<&NSString>);
@@ -97,6 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other height)]
         pub unsafe fn height(&self) -> Retained<NSString>;
 
+        /// Setter for [`height`][Self::height].
         #[deprecated]
         #[method(setHeight:)]
         pub unsafe fn setHeight(&self, height: Option<&NSString>);
@@ -105,6 +108,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other longDesc)]
         pub unsafe fn longDesc(&self) -> Retained<NSString>;
 
+        /// Setter for [`longDesc`][Self::longDesc].
         #[deprecated]
         #[method(setLongDesc:)]
         pub unsafe fn setLongDesc(&self, long_desc: Option<&NSString>);
@@ -113,6 +117,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other marginHeight)]
         pub unsafe fn marginHeight(&self) -> Retained<NSString>;
 
+        /// Setter for [`marginHeight`][Self::marginHeight].
         #[deprecated]
         #[method(setMarginHeight:)]
         pub unsafe fn setMarginHeight(&self, margin_height: Option<&NSString>);
@@ -121,6 +126,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other marginWidth)]
         pub unsafe fn marginWidth(&self) -> Retained<NSString>;
 
+        /// Setter for [`marginWidth`][Self::marginWidth].
         #[deprecated]
         #[method(setMarginWidth:)]
         pub unsafe fn setMarginWidth(&self, margin_width: Option<&NSString>);
@@ -129,6 +135,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[deprecated]
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
@@ -137,6 +144,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other scrolling)]
         pub unsafe fn scrolling(&self) -> Retained<NSString>;
 
+        /// Setter for [`scrolling`][Self::scrolling].
         #[deprecated]
         #[method(setScrolling:)]
         pub unsafe fn setScrolling(&self, scrolling: Option<&NSString>);
@@ -145,6 +153,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other src)]
         pub unsafe fn src(&self) -> Retained<NSString>;
 
+        /// Setter for [`src`][Self::src].
         #[deprecated]
         #[method(setSrc:)]
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
@@ -153,6 +162,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other width)]
         pub unsafe fn width(&self) -> Retained<NSString>;
 
+        /// Setter for [`width`][Self::width].
         #[deprecated]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: Option<&NSString>);

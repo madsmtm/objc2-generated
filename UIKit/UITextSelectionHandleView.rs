@@ -8,29 +8,44 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextselectionhandleview?language=objc)
+    /// A view that represents a selection handle drawn at the edges of contiguous selection ranges.
+    ///
+    /// When a selection is ranged (i.e., length is > 0), and the device supports range adjustment via a gesture,
+    /// selection handles ("lollipops") are displayed at the edges of the contiguous selection (usually a UITextSelectionHighlightView).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextselectionhandleview?language=objc)
     #[cfg(feature = "UIView")]
     pub unsafe trait UITextSelectionHandleView: UICoordinateSpace + MainThreadOnly {
         #[cfg(feature = "UIGeometry")]
+        /// Controls which direction the handle is oriented. For example, NSDirectionalRectEdgeLeading indicates the handle is on the leading
+        /// edge, so the dot will be rendered on top.
         #[method(direction)]
         unsafe fn direction(&self) -> NSDirectionalRectEdge;
 
         #[cfg(feature = "UIGeometry")]
+        /// Setter for [`direction`][Self::direction].
         #[method(setDirection:)]
         unsafe fn setDirection(&self, direction: NSDirectionalRectEdge);
 
+        /// Convenience accessor for
+        /// `direction`calculations.
         #[method(isVertical)]
         unsafe fn isVertical(&self) -> bool;
 
         #[cfg(feature = "UIBezierPath")]
+        /// If applicable, a custom shape for the lollipop stem. Default is
+        /// `nil,`which results in a rounded rect style based on bounds.
         #[method_id(@__retain_semantics Other customShape)]
         unsafe fn customShape(&self) -> Option<Retained<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]
+        /// Setter for [`customShape`][Self::customShape].
         #[method(setCustomShape:)]
         unsafe fn setCustomShape(&self, custom_shape: Option<&UIBezierPath>);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Provides a preferred frame given
+        /// `rect`based on the current appearance configuration.
         #[method(preferredFrameForRect:)]
         unsafe fn preferredFrameForRect(&self, rect: CGRect) -> CGRect;
     }

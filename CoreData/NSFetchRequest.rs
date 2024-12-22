@@ -103,6 +103,7 @@ extern_methods!(
         pub unsafe fn entity(&self) -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
+        /// Setter for [`entity`][Self::entity].
         #[method(setEntity:)]
         pub unsafe fn setEntity(&self, entity: Option<&NSEntityDescription>);
 
@@ -112,12 +113,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicate)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
+        /// Setter for [`predicate`][Self::predicate].
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
         #[method_id(@__retain_semantics Other sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Option<Retained<NSArray<NSSortDescriptor>>>;
 
+        /// Setter for [`sortDescriptors`][Self::sortDescriptors].
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(
             &self,
@@ -127,6 +130,7 @@ extern_methods!(
         #[method(fetchLimit)]
         pub unsafe fn fetchLimit(&self) -> NSUInteger;
 
+        /// Setter for [`fetchLimit`][Self::fetchLimit].
         #[method(setFetchLimit:)]
         pub unsafe fn setFetchLimit(&self, fetch_limit: NSUInteger);
 
@@ -135,6 +139,7 @@ extern_methods!(
         pub unsafe fn affectedStores(&self) -> Option<Retained<NSArray<NSPersistentStore>>>;
 
         #[cfg(feature = "NSPersistentStore")]
+        /// Setter for [`affectedStores`][Self::affectedStores].
         #[method(setAffectedStores:)]
         pub unsafe fn setAffectedStores(
             &self,
@@ -144,24 +149,28 @@ extern_methods!(
         #[method(resultType)]
         pub unsafe fn resultType(&self) -> NSFetchRequestResultType;
 
+        /// Setter for [`resultType`][Self::resultType].
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, result_type: NSFetchRequestResultType);
 
         #[method(includesSubentities)]
         pub unsafe fn includesSubentities(&self) -> bool;
 
+        /// Setter for [`includesSubentities`][Self::includesSubentities].
         #[method(setIncludesSubentities:)]
         pub unsafe fn setIncludesSubentities(&self, includes_subentities: bool);
 
         #[method(includesPropertyValues)]
         pub unsafe fn includesPropertyValues(&self) -> bool;
 
+        /// Setter for [`includesPropertyValues`][Self::includesPropertyValues].
         #[method(setIncludesPropertyValues:)]
         pub unsafe fn setIncludesPropertyValues(&self, includes_property_values: bool);
 
         #[method(returnsObjectsAsFaults)]
         pub unsafe fn returnsObjectsAsFaults(&self) -> bool;
 
+        /// Setter for [`returnsObjectsAsFaults`][Self::returnsObjectsAsFaults].
         #[method(setReturnsObjectsAsFaults:)]
         pub unsafe fn setReturnsObjectsAsFaults(&self, returns_objects_as_faults: bool);
 
@@ -170,6 +179,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSArray<NSString>>>;
 
+        /// Setter for [`relationshipKeyPathsForPrefetching`][Self::relationshipKeyPathsForPrefetching].
         #[method(setRelationshipKeyPathsForPrefetching:)]
         pub unsafe fn setRelationshipKeyPathsForPrefetching(
             &self,
@@ -179,36 +189,42 @@ extern_methods!(
         #[method(includesPendingChanges)]
         pub unsafe fn includesPendingChanges(&self) -> bool;
 
+        /// Setter for [`includesPendingChanges`][Self::includesPendingChanges].
         #[method(setIncludesPendingChanges:)]
         pub unsafe fn setIncludesPendingChanges(&self, includes_pending_changes: bool);
 
         #[method(returnsDistinctResults)]
         pub unsafe fn returnsDistinctResults(&self) -> bool;
 
+        /// Setter for [`returnsDistinctResults`][Self::returnsDistinctResults].
         #[method(setReturnsDistinctResults:)]
         pub unsafe fn setReturnsDistinctResults(&self, returns_distinct_results: bool);
 
         #[method_id(@__retain_semantics Other propertiesToFetch)]
         pub unsafe fn propertiesToFetch(&self) -> Option<Retained<NSArray>>;
 
+        /// Setter for [`propertiesToFetch`][Self::propertiesToFetch].
         #[method(setPropertiesToFetch:)]
         pub unsafe fn setPropertiesToFetch(&self, properties_to_fetch: Option<&NSArray>);
 
         #[method(fetchOffset)]
         pub unsafe fn fetchOffset(&self) -> NSUInteger;
 
+        /// Setter for [`fetchOffset`][Self::fetchOffset].
         #[method(setFetchOffset:)]
         pub unsafe fn setFetchOffset(&self, fetch_offset: NSUInteger);
 
         #[method(fetchBatchSize)]
         pub unsafe fn fetchBatchSize(&self) -> NSUInteger;
 
+        /// Setter for [`fetchBatchSize`][Self::fetchBatchSize].
         #[method(setFetchBatchSize:)]
         pub unsafe fn setFetchBatchSize(&self, fetch_batch_size: NSUInteger);
 
         #[method(shouldRefreshRefetchedObjects)]
         pub unsafe fn shouldRefreshRefetchedObjects(&self) -> bool;
 
+        /// Setter for [`shouldRefreshRefetchedObjects`][Self::shouldRefreshRefetchedObjects].
         #[method(setShouldRefreshRefetchedObjects:)]
         pub unsafe fn setShouldRefreshRefetchedObjects(
             &self,
@@ -218,12 +234,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other propertiesToGroupBy)]
         pub unsafe fn propertiesToGroupBy(&self) -> Option<Retained<NSArray>>;
 
+        /// Setter for [`propertiesToGroupBy`][Self::propertiesToGroupBy].
         #[method(setPropertiesToGroupBy:)]
         pub unsafe fn setPropertiesToGroupBy(&self, properties_to_group_by: Option<&NSArray>);
 
         #[method_id(@__retain_semantics Other havingPredicate)]
         pub unsafe fn havingPredicate(&self) -> Option<Retained<NSPredicate>>;
 
+        /// Setter for [`havingPredicate`][Self::havingPredicate].
         #[method(setHavingPredicate:)]
         pub unsafe fn setHavingPredicate(&self, having_predicate: Option<&NSPredicate>);
     }
@@ -277,6 +295,7 @@ extern_methods!(
         #[method(estimatedResultCount)]
         pub unsafe fn estimatedResultCount(&self) -> NSInteger;
 
+        /// Setter for [`estimatedResultCount`][Self::estimatedResultCount].
         #[method(setEstimatedResultCount:)]
         pub unsafe fn setEstimatedResultCount(&self, estimated_result_count: NSInteger);
 

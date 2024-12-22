@@ -8,22 +8,50 @@ use crate::*;
 
 extern_methods!(
     /// Predicates
+    /// The predicates to match contacts against.
+    ///
+    ///
+    /// Can only use these predicates with CNContactStore and CNContactFetchRequest.
     #[cfg(feature = "CNContact")]
     unsafe impl CNContact {
+        /// To fetch contacts matching a name.
+        ///
+        ///
+        /// The name can contain any number of words.
         #[method_id(@__retain_semantics Other predicateForContactsMatchingName:)]
         pub unsafe fn predicateForContactsMatchingName(name: &NSString) -> Retained<NSPredicate>;
 
+        /// Fetch contacts matching an email address.
+        ///
+        ///
+        /// Use this predicate to find the contact(s) which contain the specified
+        /// email address. The search is not case-sensitive.
+        ///
+        ///
+        /// Parameter `emailAddress`: The email address to search for. Do not include a scheme (e.g., "mailto:").
         #[method_id(@__retain_semantics Other predicateForContactsMatchingEmailAddress:)]
         pub unsafe fn predicateForContactsMatchingEmailAddress(
             email_address: &NSString,
         ) -> Retained<NSPredicate>;
 
         #[cfg(feature = "CNPhoneNumber")]
+        /// Fetch contacts matching a phone number.
+        ///
+        ///
+        /// If the predicate and contact differ in their use or presence of country
+        /// codes, a best effort will be made to match results; however, inexact
+        /// matches are not guaranteed.
+        ///
+        ///
+        /// Parameter `phoneNumber`: A
+        /// `CNPhoneNumber`representing the phone number to search for.
+        /// Do not include a scheme (e.g., "tel:").
         #[method_id(@__retain_semantics Other predicateForContactsMatchingPhoneNumber:)]
         pub unsafe fn predicateForContactsMatchingPhoneNumber(
             phone_number: &CNPhoneNumber,
         ) -> Retained<NSPredicate>;
 
+        /// To fetch contacts matching contact identifiers.
         #[method_id(@__retain_semantics Other predicateForContactsWithIdentifiers:)]
         pub unsafe fn predicateForContactsWithIdentifiers(
             identifiers: &NSArray<NSString>,

@@ -49,6 +49,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other localContext)]
         unsafe fn localContext(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`localContext`][Self::localContext].
         #[method(setLocalContext:)]
         unsafe fn setLocalContext(&self, local_context: Option<&AnyObject>);
     }
@@ -87,6 +88,7 @@ extern_protocol!(
         #[method(progressIndicatorStyle)]
         unsafe fn progressIndicatorStyle(&self) -> UIDropSessionProgressIndicatorStyle;
 
+        /// Setter for [`progressIndicatorStyle`][Self::progressIndicatorStyle].
         #[method(setProgressIndicatorStyle:)]
         unsafe fn setProgressIndicatorStyle(
             &self,

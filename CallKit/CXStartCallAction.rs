@@ -54,25 +54,30 @@ extern_methods!(
             -> Retained<Self>;
 
         #[cfg(feature = "CXHandle")]
+        /// Handle for the party to call
         #[method_id(@__retain_semantics Other handle)]
         pub unsafe fn handle(&self) -> Retained<CXHandle>;
 
         #[cfg(feature = "CXHandle")]
+        /// Setter for [`handle`][Self::handle].
         #[method(setHandle:)]
         pub unsafe fn setHandle(&self, handle: &CXHandle);
 
         #[method_id(@__retain_semantics Other contactIdentifier)]
         pub unsafe fn contactIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`contactIdentifier`][Self::contactIdentifier].
         #[method(setContactIdentifier:)]
         pub unsafe fn setContactIdentifier(&self, contact_identifier: Option<&NSString>);
 
         #[method(isVideo)]
         pub unsafe fn isVideo(&self) -> bool;
 
+        /// Setter for [`isVideo`][Self::isVideo].
         #[method(setVideo:)]
         pub unsafe fn setVideo(&self, video: bool);
 
+        /// Normally, providers can just call -[CXAction fulfill] to indicate action fulfillment. Use this method to note a specific date that the call started if it is different from [NSDate date]. A call is considered started when its invitation has been sent to the remote callee.
         #[method(fulfillWithDateStarted:)]
         pub unsafe fn fulfillWithDateStarted(&self, date_started: &NSDate);
     }

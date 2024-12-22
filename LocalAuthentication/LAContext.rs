@@ -13,20 +13,83 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct LAPolicy(pub NSInteger);
 impl LAPolicy {
+    /// Device owner will be authenticated using a biometric method (Touch ID).
+    ///
+    ///
+    /// Biometric authentication is required. If Touch ID is not available, not enrolled
+    /// or locked out, then the evaluation of this policy will fail with LAErrorBiometryNotAvailable,
+    /// LAErrorBiometryNotEnrolled or LAErrorBiometryLockout.
+    ///
+    /// Touch ID authentication dialog contains a cancel button with default title "Cancel"
+    /// which can be customized using localizedCancelTitle property, and a fallback button with
+    /// default title "Use Password…" which can be customized using localizedFallbackTitle
+    /// property. Clicking either button causes evaluatePolicy call to fail, returning a distinct
+    /// error code: LAErrorUserCancel or LAErrorUserFallback.
+    ///
+    /// Biometric authentication will get locked after 5 unsuccessful attempts. After that,
+    /// users have to unlock it by entering their account password. The password can be entered
+    /// either at login window or in the preference sheets or even in application by the means of
+    /// LAPolicyDeviceOwnerAuthentication. The system unlock is preferred user experience because
+    /// we generaly don't want users to enter their account password at application's request.
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometrics")]
     pub const DeviceOwnerAuthenticationWithBiometrics: Self = Self(1);
+    /// Device owner will be authenticated by biometry or user password.
+    ///
+    ///
+    /// Touch ID or user password authentication is required. If Touch ID is not available,
+    /// not enrolled or locked out, then the user is asked for password right away.
+    ///
+    /// Touch ID authentication dialog behaves similarly as the one used by
+    /// LAPolicyDeviceOwnerAuthenticationWithBiometrics. However, the "Use Password.." button does
+    /// not end the authentication. Instead, it switches the authentication mechanism to user password.
     #[doc(alias = "LAPolicyDeviceOwnerAuthentication")]
     pub const DeviceOwnerAuthentication: Self = Self(2);
+    /// Device owner will be authenticated by Watch.
+    ///
+    ///
+    /// Watch authentication is required. If no nearby paired watch device can be found,
+    /// LAErrorWatchNotAvailable is returned.
+    ///
+    /// Watch authentication dialog looks and behaves similarly to the biometric variant. Users can
+    /// confirm authentication by double-clicking the side button on their watch.
     #[deprecated]
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWatch")]
     pub const DeviceOwnerAuthenticationWithWatch: Self = Self(3);
+    /// Device owner will be authenticated by a companion device e.g. Watch, Mac, etc.
+    ///
+    ///
+    /// Companion authentication is required. If no nearby paired companion device can be found,
+    /// LAErrorCompanionNotAvailable is returned.
+    ///
+    /// Users should follow instructions on the companion device to authenticate.
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithCompanion")]
     pub const DeviceOwnerAuthenticationWithCompanion: Self = Self(3);
+    /// Device owner will be authenticated by biometry or Watch.
+    ///
+    ///
+    /// Watch or biometric authentication is required. If no nearby paired watch device can be found,
+    /// it behaves as LAPolicyDeviceOwnerAuthenticationWithBiometrics. Similarly, if biometry is
+    /// unavailable it behaves as LAPolicyDeviceOwnerAuthenticationWithWatch.
+    ///
+    /// Watch authentication dialog looks and behaves similarly to biometric variant. When both
+    /// mechanisms are available, user is asked to use biometry and watch authentication will run in
+    /// parallel.
     #[deprecated]
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch")]
     pub const DeviceOwnerAuthenticationWithBiometricsOrWatch: Self = Self(4);
+    /// Device owner will be authenticated by biometry or a companion device e.g. Watch, Mac, etc.
+    ///
+    ///
+    /// Companion or biometric authentication is required. If no nearby paired companion device can be found,
+    /// it behaves as LAPolicyDeviceOwnerAuthenticationWithBiometrics. Similarly, if biometry is
+    /// unavailable it behaves as LAPolicyDeviceOwnerAuthenticationWithCompanion.
+    ///
+    /// When both mechanisms are available, user is asked to use biometry and companion authentication
+    /// will run in parallel. Users should follow instructions on the companion device to authenticate.
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion")]
     pub const DeviceOwnerAuthenticationWithBiometricsOrCompanion: Self = Self(4);
+    /// Device owner will be authenticated by device passcode. The authentication will also succeed if the wrist detection is enabled,
+    /// correct passcode was entered in the past and the watch has been on the wrist ever since.
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWristDetection")]
     pub const DeviceOwnerAuthenticationWithWristDetection: Self = Self(5);
 }
@@ -40,7 +103,9 @@ unsafe impl RefEncode for LAPolicy {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/latouchidauthenticationmaximumallowablereuseduration?language=objc)
+    /// The maximum value for LAContext touchIDAuthenticationAllowableReuseDuration property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/latouchidauthenticationmaximumallowablereuseduration?language=objc)
     pub static LATouchIDAuthenticationMaximumAllowableReuseDuration: NSTimeInterval;
 }
 
@@ -50,8 +115,25 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct LACredentialType(pub NSInteger);
 impl LACredentialType {
+    /// Password provided by application
+    ///
+    ///
+    /// If not set, LocalAuthentication will ask for the password when necessary. It will use
+    /// its own user interface depending on the evaluated policy or ACL.
+    /// Applications can provide the password using the setCredential method. In such case,
+    /// LocalAuthentication will not show password entry user interface.
+    /// When entered from the LocalAuthentication user interface, the password is stored as
+    /// UTF-8 encoded string.
     #[doc(alias = "LACredentialTypeApplicationPassword")]
     pub const ApplicationPassword: Self = Self(0);
+    /// Smart card PIN provided by application
+    ///
+    ///
+    /// If not set, LocalAuthentication will ask users for the smart card PIN when necessary.
+    /// Applications can provide the PIN using setCredential method. In such case,
+    /// LocalAuthentication will not show the smart card PIN user interface.
+    /// When entered from the LocalAuthentication user interface, the PIN is stored as
+    /// UTF-8 encoded string.
     #[doc(alias = "LACredentialTypeSmartCardPIN")]
     pub const SmartCardPIN: Self = Self(-3);
 }
@@ -70,16 +152,22 @@ unsafe impl RefEncode for LACredentialType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct LAAccessControlOperation(pub NSInteger);
 impl LAAccessControlOperation {
+    /// Access control will be used for item creation.
     #[doc(alias = "LAAccessControlOperationCreateItem")]
     pub const CreateItem: Self = Self(0);
+    /// Access control will be used for accessing existing item.
     #[doc(alias = "LAAccessControlOperationUseItem")]
     pub const UseItem: Self = Self(1);
+    /// Access control will be used for key creation.
     #[doc(alias = "LAAccessControlOperationCreateKey")]
     pub const CreateKey: Self = Self(2);
+    /// Access control will be used for sign operation with existing key.
     #[doc(alias = "LAAccessControlOperationUseKeySign")]
     pub const UseKeySign: Self = Self(3);
+    /// Access control will be used for data decryption using existing key.
     #[doc(alias = "LAAccessControlOperationUseKeyDecrypt")]
     pub const UseKeyDecrypt: Self = Self(4);
+    /// Access control will be used for key exchange.
     #[doc(alias = "LAAccessControlOperationUseKeyKeyExchange")]
     pub const UseKeyKeyExchange: Self = Self(5);
 }
@@ -93,7 +181,15 @@ unsafe impl RefEncode for LAAccessControlOperation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacontext?language=objc)
+    /// Class that represents an authentication context.
+    ///
+    ///
+    /// This context can be used for evaluating policies.
+    ///
+    ///
+    /// See: LAPolicy
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LAContext;
@@ -103,6 +199,31 @@ unsafe impl NSObjectProtocol for LAContext {}
 
 extern_methods!(
     unsafe impl LAContext {
+        /// Determines if a particular policy can be evaluated.
+        ///
+        ///
+        /// Policies can have certain requirements which, when not satisfied, would always cause
+        /// the policy evaluation to fail - e.g. a passcode set, a fingerprint
+        /// enrolled with Touch ID or a face set up with Face ID. This method allows easy checking
+        /// for such conditions.
+        ///
+        /// Applications should consume the returned value immediately and avoid relying on it
+        /// for an extensive period of time. At least, it is guaranteed to stay valid until the
+        /// application enters background.
+        ///
+        ///
+        /// Warning: Do not call this method in the reply block of evaluatePolicy:reply: because it could
+        /// lead to a deadlock.
+        ///
+        ///
+        /// Parameter `policy`: Policy for which the preflight check should be run.
+        ///
+        ///
+        /// Parameter `error`: Optional output parameter which is set to nil if the policy can be evaluated, or it
+        /// contains error information if policy evaluation is not possible.
+        ///
+        ///
+        /// Returns: YES if the policy can be evaluated, NO otherwise.
         #[method(canEvaluatePolicy:error:_)]
         pub unsafe fn canEvaluatePolicy_error(
             &self,
@@ -110,6 +231,61 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
+        /// Evaluates the specified policy.
+        ///
+        ///
+        /// Policy evaluation may involve prompting user for various kinds of interaction
+        /// or authentication. Actual behavior is dependent on evaluated policy, device type,
+        /// and can be affected by installed configuration profiles.
+        ///
+        /// Be sure to keep a strong reference to the context while the evaluation is in progress.
+        /// Otherwise, an evaluation would be canceled when the context is being deallocated.
+        ///
+        /// The method does not block. Instead, the caller must provide a reply block to be
+        /// called asynchronously when evaluation finishes. The block is executed on a private
+        /// queue internal to the framework in an unspecified threading context. Other than that,
+        /// no guarantee is made about which queue, thread, or run-loop the block is executed on.
+        ///
+        /// Implications of successful policy evaluation are policy specific. In general, this
+        /// operation is not idempotent. Policy evaluation may fail for various reasons, including
+        /// user cancel, system cancel and others, see LAError codes.
+        ///
+        ///
+        /// Parameter `policy`: Policy to be evaluated.
+        ///
+        ///
+        /// Parameter `reply`: Reply block that is executed when policy evaluation finishes.
+        /// success Reply parameter that is YES if the policy has been evaluated successfully or
+        /// NO if the evaluation failed.
+        /// error Reply parameter that is nil if the policy has been evaluated successfully, or it
+        /// contains error information about the evaluation failure.
+        ///
+        ///
+        /// Parameter `localizedReason`: Application reason for authentication. This string must be provided in correct
+        /// localization and should be short and clear. It will be eventually displayed in
+        /// the authentication dialog as a part of the following string:
+        /// "<appname>" is trying to
+        /// <localized
+        /// reason>.
+        ///
+        /// For example, if the app name is "TestApp" and localizedReason is passed "access
+        /// the hidden records", then the authentication prompt will read:
+        /// "TestApp" is trying to access the hidden records.
+        ///
+        ///
+        /// Warning: localizedReason parameter is mandatory and the call will throw NSInvalidArgumentException if
+        /// nil or empty string is specified.
+        ///
+        ///
+        /// See: LAError
+        ///
+        /// Typical error codes returned by this call are:
+        ///
+        /// LAErrorUserFallback if user tapped the fallback button
+        ///
+        /// LAErrorUserCancel if user has tapped the Cancel button
+        ///
+        /// LAErrorSystemCancel if some system event interrupted the evaluation (e.g. Home button pressed).
         #[method(evaluatePolicy:localizedReason:reply:)]
         pub unsafe fn evaluatePolicy_localizedReason_reply(
             &self,
@@ -118,9 +294,35 @@ extern_methods!(
             reply: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
 
+        /// Invalidates the context.
+        ///
+        ///
+        /// The context is invalidated automatically when it is (auto)released. This method
+        /// allows invalidating it manually while it is still in scope.
+        ///
+        /// Invalidation terminates any existing policy evaluation and the respective call will
+        /// fail with LAErrorAppCancel. After the context has been invalidated, it can not be
+        /// used for policy evaluation and an attempt to do so will fail with LAErrorInvalidContext.
+        ///
+        /// Invalidating a context that has been already invalidated has no effect.
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
 
+        /// Sets a credential to this context.
+        ///
+        ///
+        /// Some policies allow to bind application-provided credential with them.
+        /// This method allows credential to be passed to the right context.
+        ///
+        ///
+        /// Parameter `credential`: Credential to be used with subsequent calls. Setting this parameter to nil will remove
+        /// any existing credential of the specified type.
+        ///
+        ///
+        /// Parameter `type`: Type of the provided credential.
+        ///
+        ///
+        /// Returns: YES if the credential was set successfully, NO otherwise.
         #[method(setCredential:type:)]
         pub unsafe fn setCredential_type(
             &self,
@@ -128,59 +330,130 @@ extern_methods!(
             r#type: LACredentialType,
         ) -> bool;
 
+        /// Reveals if credential was set with this context.
+        ///
+        ///
+        /// Parameter `type`: Type of credential we are asking for.
+        ///
+        ///
+        /// Returns: YES on success, NO otherwise.
         #[method(isCredentialSet:)]
         pub unsafe fn isCredentialSet(&self, r#type: LACredentialType) -> bool;
 
+        /// Fallback button title.
+        ///
+        /// Allows fallback button title customization. If set to empty string, the button will be hidden.
+        /// A default title "Use Password…" is used when this property is left nil.
         #[method_id(@__retain_semantics Other localizedFallbackTitle)]
         pub unsafe fn localizedFallbackTitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`localizedFallbackTitle`][Self::localizedFallbackTitle].
         #[method(setLocalizedFallbackTitle:)]
         pub unsafe fn setLocalizedFallbackTitle(&self, localized_fallback_title: Option<&NSString>);
 
+        /// This property is deprecated and setting it has no effect.
         #[deprecated = "No longer supported"]
         #[method_id(@__retain_semantics Other maxBiometryFailures)]
         pub unsafe fn maxBiometryFailures(&self) -> Option<Retained<NSNumber>>;
 
+        /// Setter for [`maxBiometryFailures`][Self::maxBiometryFailures].
         #[deprecated = "No longer supported"]
         #[method(setMaxBiometryFailures:)]
         pub unsafe fn setMaxBiometryFailures(&self, max_biometry_failures: Option<&NSNumber>);
 
+        /// Cancel button title.
+        ///
+        /// Allows cancel button title customization. A default title "Cancel" is used when
+        /// this property is left nil or is set to empty string.
         #[method_id(@__retain_semantics Other localizedCancelTitle)]
         pub unsafe fn localizedCancelTitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`localizedCancelTitle`][Self::localizedCancelTitle].
         #[method(setLocalizedCancelTitle:)]
         pub unsafe fn setLocalizedCancelTitle(&self, localized_cancel_title: Option<&NSString>);
 
+        /// Time interval for accepting a successful Touch ID or Face ID device unlock (on the lock screen) from the past.
+        ///
+        ///
+        /// This property can be set with a time interval in seconds. If the device was successfully unlocked by
+        /// biometry within this time interval, then biometric authentication on this context will succeed
+        /// automatically and the reply block will be called without prompting user for Touch ID or Face ID.
+        ///
+        /// The default value is 0, meaning that no previous biometric unlock can be reused.
+        ///
+        /// This property is meant only for reusing biometric matches from the device lock screen.
+        /// It does not allow reusing previous biometric matches in application or between applications.
+        ///
+        /// The maximum supported interval is 5 minutes and setting the value beyond 5 minutes does not increase
+        /// the accepted interval.
+        ///
+        ///
+        /// See: LATouchIDAuthenticationMaximumAllowableReuseDuration
         #[method(touchIDAuthenticationAllowableReuseDuration)]
         pub unsafe fn touchIDAuthenticationAllowableReuseDuration(&self) -> NSTimeInterval;
 
+        /// Setter for [`touchIDAuthenticationAllowableReuseDuration`][Self::touchIDAuthenticationAllowableReuseDuration].
         #[method(setTouchIDAuthenticationAllowableReuseDuration:)]
         pub unsafe fn setTouchIDAuthenticationAllowableReuseDuration(
             &self,
             touch_id_authentication_allowable_reuse_duration: NSTimeInterval,
         );
 
+        /// Allows setting the default localized authentication reason on context.
+        ///
+        ///
+        /// A localized string from this property is displayed in the authentication UI if the caller didn't specify
+        /// its own authentication reason (e.g. a keychain operation with kSecUseAuthenticationContext). This property
+        /// is ignored if the authentication reason was provided by caller.
         #[method_id(@__retain_semantics Other localizedReason)]
         pub unsafe fn localizedReason(&self) -> Retained<NSString>;
 
+        /// Setter for [`localizedReason`][Self::localizedReason].
         #[method(setLocalizedReason:)]
         pub unsafe fn setLocalizedReason(&self, localized_reason: &NSString);
 
+        /// Allows running authentication in non-interactive mode.
+        ///
+        ///
+        /// If the context is used in a keychain query by the means of kSecUseAuthenticationContext,
+        /// then setting this property to YES has the same effect as passing kSecUseNoAuthenticationUI
+        /// in the query, i.e. the keychain call will eventually fail with errSecInteractionNotAllowed
+        /// instead of displaying the authentication UI.
+        ///
+        /// If this property is used with a LocalAuthentication evaluation, it will eventually fail with
+        /// LAErrorNotInteractive instead of displaying the authentication UI.
         #[method(interactionNotAllowed)]
         pub unsafe fn interactionNotAllowed(&self) -> bool;
 
+        /// Setter for [`interactionNotAllowed`][Self::interactionNotAllowed].
         #[method(setInteractionNotAllowed:)]
         pub unsafe fn setInteractionNotAllowed(&self, interaction_not_allowed: bool);
 
         #[cfg(feature = "LABiometryType")]
+        /// Indicates the type of the biometry supported by the device.
         #[method(biometryType)]
         pub unsafe fn biometryType(&self) -> LABiometryType;
 
+        /// Contains policy domain state.
+        ///
+        ///
+        /// This property is set only when evaluatePolicy is called and succesful Touch ID or Face ID authentication
+        /// was performed, or when canEvaluatePolicy succeeds for a biometric policy.
+        /// It stays nil for all other cases.
+        /// If biometric database was modified (fingers or faces were removed or added), evaluatedPolicyDomainState
+        /// data will change. Nature of such database changes cannot be determined
+        /// but comparing data of evaluatedPolicyDomainState after different evaluatePolicy
+        /// will reveal the fact database was changed between calls.
+        ///
+        ///
+        /// Warning: Please note that the value returned by this property can change exceptionally between major OS versions even if
+        /// the state of biometry has not changed.
         #[deprecated]
         #[method_id(@__retain_semantics Other evaluatedPolicyDomainState)]
         pub unsafe fn evaluatedPolicyDomainState(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "LADomainState")]
+        /// Contains authentication domain state.
         #[method_id(@__retain_semantics Other domainState)]
         pub unsafe fn domainState(&self) -> Retained<LADomainState>;
     }

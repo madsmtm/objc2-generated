@@ -9,7 +9,12 @@ use objc2_metal_performance_shaders::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor?language=objc)
+    /// The symbolic representation of a compute data type.
+    ///
+    /// `NSCopy` will take a refrence, this is so `NSDictionary` can work with the tensor.
+    /// All tensors are created, owned and destroyed by the MPSGraph
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -31,17 +36,24 @@ extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphTensor {
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// The shape of the tensor.
+        ///
+        /// nil shape represents an unranked tensor.
+        /// -1 value for a dimension represents that it will be resolved via shape inference at runtime and it can be anything.
         #[method_id(@__retain_semantics Other shape)]
         pub unsafe fn shape(&self) -> Option<Retained<MPSShape>>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// The data type of the tensor.
         #[method(dataType)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
         #[cfg(feature = "MPSGraphOperation")]
+        /// The operation responsible for creating this tensor.
         #[method_id(@__retain_semantics Other operation)]
         pub unsafe fn operation(&self) -> Retained<MPSGraphOperation>;
 
+        /// Unavailable, please utilize graph methods to create and initialize tensors.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

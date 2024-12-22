@@ -11,7 +11,33 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uihovereffectlayer?language=objc)
+    /// A layer type that can be used to apply a hover effect to its sublayers.
+    ///
+    /// This layer type is useful for adding hover effects to an existing
+    /// ``CALayer`` hierarchy. Where possible, use ``UIView.hoverStyle`` instead.
+    ///
+    /// A ``UIHoverEffectLayer`` is configured with:
+    ///
+    /// 1. A container ``UIView``, which is used to infer some properties of the
+    /// hover effect from its trait collection and to allow some aspects of the
+    /// hover effect to behave correctly. This view's layer should be an ancestor
+    /// layer of the ``UIHoverEffectLayer``.
+    /// 2. A ``UIHoverStyle``, which describes the effect to use and the shape of
+    /// that effect. You then add your content layers that should receive a hover
+    /// effect as sublayers of this layer.
+    ///
+    /// ``UIHoverEffectLayer`` may add its own internal sublayers as background or
+    /// overlay layers relative to your content sublayers. To preserve the correct
+    /// appearance of the effect, these internal sublayers are automatically sorted
+    /// accordingly within the layer's layout pass. As such, do not assume that the
+    /// indices of your content sublayers will remain stable throughout the lifetime
+    /// of the layer.
+    ///
+    /// - Note: Not all ``UIHoverStyle``s may be supported by
+    /// ``UIHoverEffectLayer``. If the provided style is not supported, a fallback
+    /// style will be selected instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihovereffectlayer?language=objc)
     #[unsafe(super(CALayer, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -41,23 +67,45 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl UIHoverEffectLayer {
         #[cfg(feature = "UIHoverStyle")]
+        /// The hover style to apply to the sublayers of this layer when this layer
+        /// is hovered (e.g., when the user looks at this layer). Defaults to the
+        /// automatic style.
+        ///
+        /// - Note: Not all ``UIHoverStyle``s may be supported by
+        /// ``UIHoverEffectLayer``. If the provided style is not supported, a fallback
+        /// style will be selected instead.
         #[method_id(@__retain_semantics Other hoverStyle)]
         pub unsafe fn hoverStyle(&self) -> Retained<UIHoverStyle>;
 
         #[cfg(feature = "UIHoverStyle")]
+        /// Setter for [`hoverStyle`][Self::hoverStyle].
         #[method(setHoverStyle:)]
         pub unsafe fn setHoverStyle(&self, hover_style: &UIHoverStyle);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// The ``UIView`` in which this layer is contained. This view is used to
+        /// derive traits and other properties for applying the correct hover effect
+        /// to the layer. It may also be used to assist with applying some kinds of
+        /// hover effects to the layer.
+        ///
+        /// The ``containerView`` should be an ancestor of this layer (once it has
+        /// been added to a layer hierarchy) to behave correctly, but does not need
+        /// to be the immediate parent of this layer. If the ``containerView`` is
+        /// set to nil or is deallocated, some aspects of this layer's hover effect
+        /// may no longer work correctly.
         #[method_id(@__retain_semantics Other containerView)]
         pub unsafe fn containerView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`containerView`][Self::containerView].
         #[method(setContainerView:)]
         pub unsafe fn setContainerView(&self, container_view: Option<&UIView>);
 
         #[cfg(all(feature = "UIHoverStyle", feature = "UIResponder", feature = "UIView"))]
+        /// Creates a ``UIHoverEffectLayer`` with the provided `containerView`
+        /// and `style`. If a `nil` `style` is provided, the automatic style will
+        /// be used instead.
         #[method_id(@__retain_semantics Init initWithContainerView:style:)]
         pub unsafe fn initWithContainerView_style(
             this: Allocated<Self>,
@@ -72,6 +120,7 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl UIHoverEffectLayer {
+        /// Layer creation and initialization. *
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer(mtm: MainThreadMarker) -> Retained<Self>;
 

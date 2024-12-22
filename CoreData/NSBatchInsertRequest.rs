@@ -41,6 +41,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSArray<NSDictionary<NSString, AnyObject>>>>;
 
+        /// Setter for [`objectsToInsert`][Self::objectsToInsert].
         #[method(setObjectsToInsert:)]
         pub unsafe fn setObjectsToInsert(
             &self,
@@ -54,6 +55,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<NSMutableDictionary<NSString, AnyObject>>) -> Bool>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`dictionaryHandler`][Self::dictionaryHandler].
         #[method(setDictionaryHandler:)]
         pub unsafe fn setDictionaryHandler(
             &self,
@@ -69,6 +71,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<NSManagedObject>) -> Bool>;
 
         #[cfg(all(feature = "NSManagedObject", feature = "block2"))]
+        /// Setter for [`managedObjectHandler`][Self::managedObjectHandler].
         #[method(setManagedObjectHandler:)]
         pub unsafe fn setManagedObjectHandler(
             &self,
@@ -82,6 +85,7 @@ extern_methods!(
         pub unsafe fn resultType(&self) -> NSBatchInsertRequestResultType;
 
         #[cfg(feature = "NSPersistentStoreResult")]
+        /// Setter for [`resultType`][Self::resultType].
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, result_type: NSBatchInsertRequestResultType);
 

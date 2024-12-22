@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdisplaymetric?language=objc)
+    /// An MXMetric subclass that encapsulates display metrics.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdisplaymetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
@@ -27,6 +29,13 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXDisplayMetric {
         #[cfg(all(feature = "MXAverage", feature = "MXUnit"))]
+        /// Average Pixel Luminance for the application.
+        ///
+        /// APL data ranges from 0-100, in increments of 1.
+        ///
+        /// This value is null when the device does not support APL.
+        ///
+        /// Dimensioned as MXUnitAveragePixelLuminance.
         #[method_id(@__retain_semantics Other averagePixelLuminance)]
         pub unsafe fn averagePixelLuminance(
             &self,

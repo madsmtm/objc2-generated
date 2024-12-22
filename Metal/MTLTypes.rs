@@ -5,7 +5,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlorigin?language=objc)
+/// Identify a pixel in an image. MTLOrigin is ususally used as the upper-left corner of a region of a texture.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlorigin?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLOrigin {
@@ -31,7 +33,9 @@ unsafe impl RefEncode for MTLOrigin {
 
 // TODO: pub fn MTLOriginMake(x: NSUInteger,y: NSUInteger,z: NSUInteger,) -> MTLOrigin;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsize?language=objc)
+/// A set of dimensions to declare the size of an object, such as an image, texture, threadgroup, or grid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsize?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLSize {
@@ -57,7 +61,9 @@ unsafe impl RefEncode for MTLSize {
 
 // TODO: pub fn MTLSizeMake(width: NSUInteger,height: NSUInteger,depth: NSUInteger,) -> MTLSize;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlregion?language=objc)
+/// Identify a region in an image or texture.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlregion?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLRegion {
@@ -79,7 +85,9 @@ unsafe impl RefEncode for MTLRegion {
 
 // TODO: pub fn MTLRegionMake3D(x: NSUInteger,y: NSUInteger,z: NSUInteger,width: NSUInteger,height: NSUInteger,depth: NSUInteger,) -> MTLRegion;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleposition?language=objc)
+/// Identify a sample within a pixel. Origin is top-left with a range [0,1) for both x and y.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleposition?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLSamplePosition {
@@ -97,12 +105,19 @@ unsafe impl RefEncode for MTLSamplePosition {
 
 // TODO: pub fn MTLSamplePositionMake(x: c_float,y: c_float,) -> MTLSamplePosition;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcoordinate2d?language=objc)
+/// A floating point coordinate in an abstract 2D space.
+/// Refer to location of use for concrete information on the space in which the coordinate exists.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcoordinate2d?language=objc)
 pub type MTLCoordinate2D = MTLSamplePosition;
 
 // TODO: pub fn MTLCoordinate2DMake(x: c_float,y: c_float,) -> MTLCoordinate2D;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceid?language=objc)
+/// Handle of the GPU resource suitable for storing in an Argument Buffer
+///
+/// A MTLResourceID represents a specific GPU resource, mutating this handle is undefined unless the mutation results in the value equalling an already existing handle of the same resource type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceid?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLResourceID {

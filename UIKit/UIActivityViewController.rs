@@ -113,6 +113,7 @@ extern_methods!(
         pub unsafe fn completionHandler(&self) -> UIActivityViewControllerCompletionHandler;
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
+        /// Setter for [`completionHandler`][Self::completionHandler].
         #[deprecated]
         #[method(setCompletionHandler:)]
         pub unsafe fn setCompletionHandler(
@@ -127,6 +128,7 @@ extern_methods!(
         ) -> UIActivityViewControllerCompletionWithItemsHandler;
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
+        /// Setter for [`completionWithItemsHandler`][Self::completionWithItemsHandler].
         #[method(setCompletionWithItemsHandler:)]
         pub unsafe fn setCompletionWithItemsHandler(
             &self,
@@ -138,24 +140,31 @@ extern_methods!(
         pub unsafe fn excludedActivityTypes(&self) -> Option<Retained<NSArray<UIActivityType>>>;
 
         #[cfg(feature = "UIActivity")]
+        /// Setter for [`excludedActivityTypes`][Self::excludedActivityTypes].
         #[method(setExcludedActivityTypes:)]
         pub unsafe fn setExcludedActivityTypes(
             &self,
             excluded_activity_types: Option<&NSArray<UIActivityType>>,
         );
 
+        /// Hides some sections of the activity view controller. Default is none
         #[method(excludedActivitySectionTypes)]
         pub unsafe fn excludedActivitySectionTypes(&self) -> UIActivitySectionTypes;
 
+        /// Setter for [`excludedActivitySectionTypes`][Self::excludedActivitySectionTypes].
         #[method(setExcludedActivitySectionTypes:)]
         pub unsafe fn setExcludedActivitySectionTypes(
             &self,
             excluded_activity_section_types: UIActivitySectionTypes,
         );
 
+        /// In some contexts, the activity view controller can elevate a specific activity in the header view to enhance it.
+        /// The prominent activity can only be chosen by the system.
+        /// Defaults to YES.
         #[method(allowsProminentActivity)]
         pub unsafe fn allowsProminentActivity(&self) -> bool;
 
+        /// Setter for [`allowsProminentActivity`][Self::allowsProminentActivity].
         #[method(setAllowsProminentActivity:)]
         pub unsafe fn setAllowsProminentActivity(&self, allows_prominent_activity: bool);
     }

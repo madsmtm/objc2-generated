@@ -11,6 +11,16 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the inverse of an input tensor.
+        ///
+        /// The framework computes the inverse of a square matrix by calling LU decomposition and LU solver.
+        /// All dimensions after the first 2 are treated as batch dimensions and the inverse for each batch is computed.
+        /// Results are undefined for ill conditioned matrices.
+        ///
+        /// - Parameters:
+        /// - inputTensor: The input tensor.
+        /// - name: The name for the operation.
+        /// - Returns: A valid ``MPSGraphTensor`` object containing the inverse of the input tensor.
         #[method_id(@__retain_semantics Other inverseOfTensor:name:)]
         pub unsafe fn inverseOfTensor_name(
             &self,

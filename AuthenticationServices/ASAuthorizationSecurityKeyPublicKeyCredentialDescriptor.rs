@@ -7,28 +7,37 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransport?language=objc)
+/// A string indicating a transport for communicating with an authenticator.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransport?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransportusb?language=objc)
+    /// Indicates using USB or Lightning to communicate with an authenticator.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransportusb?language=objc)
     pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportUSB:
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransportnfc?language=objc)
+    /// Indiciates using NFC to communicate with an authenticator.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransportnfc?language=objc)
     pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportNFC:
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransportbluetooth?language=objc)
+    /// Indicates using Bluetooth, including BLE, to communicate with an authenticator.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransportbluetooth?language=objc)
     pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportBluetooth:
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }
 
+/// Returns a list of all transports the device currently supports for communicating with an authenticator.
 #[inline]
 pub unsafe extern "C-unwind" fn ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports(
 ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>> {
@@ -42,7 +51,9 @@ pub unsafe extern "C-unwind" fn ASAuthorizationAllSupportedPublicKeyCredentialDe
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor?language=objc)
+    /// An object to describe a credential on a security key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor;
@@ -77,11 +88,13 @@ extern_methods!(
             >,
         ) -> Retained<Self>;
 
+        /// An array indicating transports for the credential indicated by credentialID.
         #[method_id(@__retain_semantics Other transports)]
         pub unsafe fn transports(
             &self,
         ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
 
+        /// Setter for [`transports`][Self::transports].
         #[method(setTransports:)]
         pub unsafe fn setTransports(
             &self,

@@ -38,6 +38,7 @@ extern_methods!(
         pub unsafe fn workflow(&self) -> Option<Retained<AMWorkflow>>;
 
         #[cfg(feature = "AMWorkflow")]
+        /// Setter for [`workflow`][Self::workflow].
         #[method(setWorkflow:)]
         pub unsafe fn setWorkflow(&self, workflow: Option<&AMWorkflow>);
 
@@ -46,6 +47,7 @@ extern_methods!(
         pub unsafe fn workflowView(&self) -> Option<Retained<AMWorkflowView>>;
 
         #[cfg(feature = "AMWorkflowView")]
+        /// Setter for [`workflowView`][Self::workflowView].
         #[method(setWorkflowView:)]
         pub unsafe fn setWorkflowView(&self, workflow_view: Option<&AMWorkflowView>);
 
@@ -55,6 +57,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn AMWorkflowControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

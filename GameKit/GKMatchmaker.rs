@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse?language=objc)
+/// Possible invitee responses
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -68,7 +70,9 @@ unsafe impl RefEncode for GKMatchType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchrequest?language=objc)
+    /// GKMatchRequest represents the parameters needed to create the match.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKMatchRequest;
@@ -78,65 +82,86 @@ unsafe impl NSObjectProtocol for GKMatchRequest {}
 
 extern_methods!(
     unsafe impl GKMatchRequest {
+        /// Minimum number of players for the match
         #[method(minPlayers)]
         pub unsafe fn minPlayers(&self) -> NSUInteger;
 
+        /// Setter for [`minPlayers`][Self::minPlayers].
         #[method(setMinPlayers:)]
         pub unsafe fn setMinPlayers(&self, min_players: NSUInteger);
 
+        /// Maximum number of players for the match
         #[method(maxPlayers)]
         pub unsafe fn maxPlayers(&self) -> NSUInteger;
 
+        /// Setter for [`maxPlayers`][Self::maxPlayers].
         #[method(setMaxPlayers:)]
         pub unsafe fn setMaxPlayers(&self, max_players: NSUInteger);
 
+        /// The player group identifier. Matchmaking will only take place between players in the same group.
         #[method(playerGroup)]
         pub unsafe fn playerGroup(&self) -> NSUInteger;
 
+        /// Setter for [`playerGroup`][Self::playerGroup].
         #[method(setPlayerGroup:)]
         pub unsafe fn setPlayerGroup(&self, player_group: NSUInteger);
 
+        /// optional mask that specifies the role that the local player would like to play in the game.  If this value is 0, it will be set to 0xFFFFFFFF (the default), and this property will be ignored. If the value is nonzero, then automatching uses the value as a mask that restricts the role the player can play in the group. Automatching with player attributes matches new players into the game so that the bitwise OR of the masks of all the players in the resulting match equals 0xFFFFFFFF.
         #[method(playerAttributes)]
         pub unsafe fn playerAttributes(&self) -> u32;
 
+        /// Setter for [`playerAttributes`][Self::playerAttributes].
         #[method(setPlayerAttributes:)]
         pub unsafe fn setPlayerAttributes(&self, player_attributes: u32);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// Array of GKPlayers to invite, or nil if none. This array can also include local guest players.
         #[method_id(@__retain_semantics Other recipients)]
         pub unsafe fn recipients(&self) -> Option<Retained<NSArray<GKPlayer>>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// Setter for [`recipients`][Self::recipients].
         #[method(setRecipients:)]
         pub unsafe fn setRecipients(&self, recipients: Option<&NSArray<GKPlayer>>);
 
+        /// Message sent to invited players, may be modified if using GKMatchmakerViewController
+        /// Will return nil if the player is underage or restricted.
         #[method_id(@__retain_semantics Other inviteMessage)]
         pub unsafe fn inviteMessage(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`inviteMessage`][Self::inviteMessage].
         #[method(setInviteMessage:)]
         pub unsafe fn setInviteMessage(&self, invite_message: Option<&NSString>);
 
+        /// Default number of players to use during matchmaking. If not set we will default to the number that the player previously set for this game, or maxPlayers.
         #[method(defaultNumberOfPlayers)]
         pub unsafe fn defaultNumberOfPlayers(&self) -> NSUInteger;
 
+        /// Setter for [`defaultNumberOfPlayers`][Self::defaultNumberOfPlayers].
         #[method(setDefaultNumberOfPlayers:)]
         pub unsafe fn setDefaultNumberOfPlayers(&self, default_number_of_players: NSUInteger);
 
+        /// Whether or not a match will be created only using automatch.  If YES, then a player will not be able to
+        /// invite anyone (including contacts, friends, and nearby players) to the match, but rely on automatching to
+        /// find players for the match.  Default is NO.
         #[deprecated]
         #[method(restrictToAutomatch)]
         pub unsafe fn restrictToAutomatch(&self) -> bool;
 
+        /// Setter for [`restrictToAutomatch`][Self::restrictToAutomatch].
         #[deprecated]
         #[method(setRestrictToAutomatch:)]
         pub unsafe fn setRestrictToAutomatch(&self, restrict_to_automatch: bool);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
+        /// An recipientResponseHandler can be set in order to receive responses from programmatically invited players.
         #[method(recipientResponseHandler)]
         pub unsafe fn recipientResponseHandler(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<GKPlayer>, GKInviteRecipientResponse)>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
+        /// Setter for [`recipientResponseHandler`][Self::recipientResponseHandler].
         #[method(setRecipientResponseHandler:)]
         pub unsafe fn setRecipientResponseHandler(
             &self,
@@ -153,6 +178,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<NSString>, GKInviteeResponse)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`inviteeResponseHandler`][Self::inviteeResponseHandler].
         #[deprecated]
         #[method(setInviteeResponseHandler:)]
         pub unsafe fn setInviteeResponseHandler(
@@ -162,6 +188,7 @@ extern_methods!(
             >,
         );
 
+        /// To determine the maximum allowed players for each type of match supported.
         #[method(maxPlayersAllowedForMatchOfType:)]
         pub unsafe fn maxPlayersAllowedForMatchOfType(match_type: GKMatchType) -> NSUInteger;
 
@@ -169,31 +196,38 @@ extern_methods!(
         #[method_id(@__retain_semantics Other playersToInvite)]
         pub unsafe fn playersToInvite(&self) -> Option<Retained<NSArray<NSString>>>;
 
+        /// Setter for [`playersToInvite`][Self::playersToInvite].
         #[deprecated]
         #[method(setPlayersToInvite:)]
         pub unsafe fn setPlayersToInvite(&self, players_to_invite: Option<&NSArray<NSString>>);
 
+        /// The name of the queue, if rule-based matchmaking is used.
         #[method_id(@__retain_semantics Other queueName)]
         pub unsafe fn queueName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`queueName`][Self::queueName].
         #[method(setQueueName:)]
         pub unsafe fn setQueueName(&self, queue_name: Option<&NSString>);
 
         #[cfg(feature = "GKDefines")]
+        /// The match properties, if rule-based matchmaking is used.
         #[method_id(@__retain_semantics Other properties)]
         pub unsafe fn properties(&self) -> Option<Retained<GKMatchProperties>>;
 
         #[cfg(feature = "GKDefines")]
+        /// Setter for [`properties`][Self::properties].
         #[method(setProperties:)]
         pub unsafe fn setProperties(&self, properties: Option<&GKMatchProperties>);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKDefines", feature = "GKPlayer"))]
+        /// The recipient specific match properties, if rule-based matchmaking is used when inviting players.
         #[method_id(@__retain_semantics Other recipientProperties)]
         pub unsafe fn recipientProperties(
             &self,
         ) -> Option<Retained<NSDictionary<GKPlayer, GKMatchProperties>>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKDefines", feature = "GKPlayer"))]
+        /// Setter for [`recipientProperties`][Self::recipientProperties].
         #[method(setRecipientProperties:)]
         pub unsafe fn setRecipientProperties(
             &self,
@@ -214,7 +248,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinvite?language=objc)
+    /// GKInvite represents an accepted game invite, it is used to create a GKMatchmakerViewController
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinvite?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKInvite;
@@ -231,12 +267,15 @@ extern_methods!(
         #[method(isHosted)]
         pub unsafe fn isHosted(&self) -> bool;
 
+        /// player group from inviter's match request
         #[method(playerGroup)]
         pub unsafe fn playerGroup(&self) -> NSUInteger;
 
+        /// player attributes from inviter's match request
         #[method(playerAttributes)]
         pub unsafe fn playerAttributes(&self) -> u32;
 
+        /// * This property is obsolete. **
         #[deprecated]
         #[method_id(@__retain_semantics Other inviter)]
         pub unsafe fn inviter(&self) -> Retained<NSString>;
@@ -255,14 +294,18 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviteeventlistener?language=objc)
+    /// GKInviteEventListener uses the GKLocalPlayerListener mechanism on GKLocalPlayer to listen to the two kinds of invite events that a game must respond to
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviteeventlistener?language=objc)
     pub unsafe trait GKInviteEventListener {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// player:didAcceptInvite: gets called when another player accepts the invite from the local player
         #[optional]
         #[method(player:didAcceptInvite:)]
         unsafe fn player_didAcceptInvite(&self, player: &GKPlayer, invite: &GKInvite);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// didRequestMatchWithRecipients: gets called when the player chooses to play with another player from Game Center and it launches the game to start matchmaking
         #[optional]
         #[method(player:didRequestMatchWithRecipients:)]
         unsafe fn player_didRequestMatchWithRecipients(
@@ -272,6 +315,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[optional]
         #[method(player:didRequestMatchWithPlayers:)]
@@ -324,7 +368,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmaker?language=objc)
+    /// GKMatchmaker is a singleton object to manage match creation from invites and automatching.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmaker?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKMatchmaker;
@@ -334,10 +380,15 @@ unsafe impl NSObjectProtocol for GKMatchmaker {}
 
 extern_methods!(
     unsafe impl GKMatchmaker {
+        /// The shared matchmaker
         #[method_id(@__retain_semantics Other sharedMatchmaker)]
         pub unsafe fn sharedMatchmaker() -> Retained<GKMatchmaker>;
 
         #[cfg(all(feature = "GKMatch", feature = "block2"))]
+        /// Get a match for an accepted invite
+        /// Possible reasons for error:
+        /// 1. Communications failure
+        /// 2. Invite cancelled
         #[method(matchForInvite:completionHandler:)]
         pub unsafe fn matchForInvite_completionHandler(
             &self,
@@ -346,6 +397,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "GKMatch", feature = "block2"))]
+        /// Automatching or invites to find a peer-to-peer match for the specified request. Error will be nil on success:
+        /// Possible reasons for error:
+        /// 1. Communications failure
+        /// 2. Unauthenticated player
+        /// 3. Timeout
+        /// Note that the players property on the returned GKMatch instance will only contain connected players. It will initially be empty as players are connecting. Implement the GKMatchDelegate method match:player:didChangeConnectionState: to listen for updates to the GKMatch instance's players property.
         #[method(findMatchForRequest:withCompletionHandler:)]
         pub unsafe fn findMatchForRequest_withCompletionHandler(
             &self,
@@ -354,6 +411,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
+        /// Automatching or invites for host-client match request. This returns a list of player identifiers to be included in the match. Determination and communication with the host is not part of this API.
+        /// When inviting, no player identifiers will be returned. Player responses will be reported via the inviteeResponseHandler.
+        /// Possible reasons for error:
+        /// 1. Communications failure
+        /// 2. Unauthenticated player
+        /// 3. Timeout
         #[method(findPlayersForHostedRequest:withCompletionHandler:)]
         pub unsafe fn findPlayersForHostedRequest_withCompletionHandler(
             &self,
@@ -364,6 +427,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Automatching or invites for host-client rule-based match request.
         #[method(findMatchedPlayers:withCompletionHandler:)]
         pub unsafe fn findMatchedPlayers_withCompletionHandler(
             &self,
@@ -372,6 +436,10 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "GKMatch", feature = "block2"))]
+        /// Automatching or invites to add additional players to a peer-to-peer match for the specified request. Error will be nil on success:
+        /// Possible reasons for error:
+        /// 1. Communications failure
+        /// 2. Timeout
         #[method(addPlayersToMatch:matchRequest:completionHandler:)]
         pub unsafe fn addPlayersToMatch_matchRequest_completionHandler(
             &self,
@@ -380,18 +448,24 @@ extern_methods!(
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
 
+        /// Cancel matchmaking and any pending invites
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// Cancel a pending invitation to a player
         #[method(cancelPendingInviteToPlayer:)]
         pub unsafe fn cancelPendingInviteToPlayer(&self, player: &GKPlayer);
 
         #[cfg(feature = "GKMatch")]
+        /// Call this when finished with all programmatic P2P invites/matchmaking, for compatability with connected players using GKMatchmakerViewController.
         #[method(finishMatchmakingForMatch:)]
         pub unsafe fn finishMatchmakingForMatch(&self, r#match: &GKMatch);
 
         #[cfg(feature = "block2")]
+        /// Query the server for recent activity in the specified player group. A larger value indicates that a given group has seen more recent activity. Error will be nil on success.
+        /// Possible reasons for error:
+        /// 1. Communications failure
         #[method(queryPlayerGroupActivity:withCompletionHandler:)]
         pub unsafe fn queryPlayerGroupActivity_withCompletionHandler(
             &self,
@@ -400,6 +474,9 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Query the server for recent activity for all the player groups of that game. Error will be nil on success.
+        /// Possible reasons for error:
+        /// 1. Communications failure
         #[method(queryActivityWithCompletionHandler:)]
         pub unsafe fn queryActivityWithCompletionHandler(
             &self,
@@ -407,6 +484,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Query the server for recent activity for the specified queue.
         #[method(queryQueueActivity:withCompletionHandler:)]
         pub unsafe fn queryQueueActivity_withCompletionHandler(
             &self,
@@ -415,22 +493,26 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
+        /// Start browsing for nearby players that can be invited to a match. The reachableHandler will be called for each player found with a compatible game. It may be called more than once for the same player if that player ever becomes unreachable (e.g. moves out of range). You should call stopBrowsingForNearbyPlayers when finished browsing.
         #[method(startBrowsingForNearbyPlayersWithHandler:)]
         pub unsafe fn startBrowsingForNearbyPlayersWithHandler(
             &self,
             reachable_handler: Option<&block2::Block<dyn Fn(NonNull<GKPlayer>, Bool)>>,
         );
 
+        /// Stop browsing for nearby players.
         #[method(stopBrowsingForNearbyPlayers)]
         pub unsafe fn stopBrowsingForNearbyPlayers(&self);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
+        /// Activate  a  group activity by Game Center for your game, which allows people in the FaceTime call to join the local player's game. The handler will be called for each player who joined from the activity.
         #[method(startGroupActivityWithPlayerHandler:)]
         pub unsafe fn startGroupActivityWithPlayerHandler(
             &self,
             handler: &block2::Block<dyn Fn(NonNull<GKPlayer>)>,
         );
 
+        /// End the group activity created by Game Center for your game, which was activated by the local player.
         #[method(stopGroupActivity)]
         pub unsafe fn stopGroupActivity(&self);
     }
@@ -458,6 +540,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<GKInvite>, *mut NSArray)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`inviteHandler`][Self::inviteHandler].
         #[deprecated = "Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListener instead."]
         #[method(setInviteHandler:)]
         pub unsafe fn setInviteHandler(
@@ -471,6 +554,7 @@ extern_methods!(
     /// Obsoleted
     unsafe impl GKMatchmaker {
         #[cfg(feature = "block2")]
+        /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(startBrowsingForNearbyPlayersWithReachableHandler:)]
         pub unsafe fn startBrowsingForNearbyPlayersWithReachableHandler(
@@ -478,11 +562,13 @@ extern_methods!(
             reachable_handler: Option<&block2::Block<dyn Fn(NonNull<NSString>, Bool)>>,
         );
 
+        /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(cancelInviteToPlayer:)]
         pub unsafe fn cancelInviteToPlayer(&self, player_id: &NSString);
 
         #[cfg(feature = "block2")]
+        /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(findPlayersForHostedMatchRequest:withCompletionHandler:)]
         pub unsafe fn findPlayersForHostedMatchRequest_withCompletionHandler(

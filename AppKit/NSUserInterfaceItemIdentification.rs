@@ -16,6 +16,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other identifier)]
         unsafe fn identifier(&self) -> Option<Retained<NSUserInterfaceItemIdentifier>>;
 
+        /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
         unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);
     }

@@ -59,6 +59,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other objectValue)]
         pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`objectValue`][Self::objectValue].
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
@@ -67,6 +68,7 @@ extern_methods!(
         pub unsafe fn textField(&self) -> Option<Retained<NSTextField>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
+        /// Setter for [`textField`][Self::textField].
         #[method(setTextField:)]
         pub unsafe fn setTextField(&self, text_field: Option<&NSTextField>);
 
@@ -75,6 +77,7 @@ extern_methods!(
         pub unsafe fn imageView(&self) -> Option<Retained<NSImageView>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSImageView"))]
+        /// Setter for [`imageView`][Self::imageView].
         #[method(setImageView:)]
         pub unsafe fn setImageView(&self, image_view: Option<&NSImageView>);
 
@@ -83,6 +86,7 @@ extern_methods!(
         pub unsafe fn backgroundStyle(&self) -> NSBackgroundStyle;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`backgroundStyle`][Self::backgroundStyle].
         #[method(setBackgroundStyle:)]
         pub unsafe fn setBackgroundStyle(&self, background_style: NSBackgroundStyle);
 
@@ -91,6 +95,7 @@ extern_methods!(
         pub unsafe fn rowSizeStyle(&self) -> NSTableViewRowSizeStyle;
 
         #[cfg(feature = "NSTableView")]
+        /// Setter for [`rowSizeStyle`][Self::rowSizeStyle].
         #[method(setRowSizeStyle:)]
         pub unsafe fn setRowSizeStyle(&self, row_size_style: NSTableViewRowSizeStyle);
 

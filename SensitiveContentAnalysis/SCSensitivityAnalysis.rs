@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysis?language=objc)
+    /// Sensitive Analysis Results object is returned after sensitivity analysis is performed on media
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysis?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCSensitivityAnalysis;
@@ -20,6 +22,7 @@ unsafe impl NSObjectProtocol for SCSensitivityAnalysis {}
 
 extern_methods!(
     unsafe impl SCSensitivityAnalysis {
+        /// Set to YES if analyzed media contains sensitive content
         #[method(isSensitive)]
         pub unsafe fn isSensitive(&self) -> bool;
     }

@@ -17,8 +17,10 @@ pub struct NSColorWellStyle(pub NSInteger);
 impl NSColorWellStyle {
     #[doc(alias = "NSColorWellStyleDefault")]
     pub const Default: Self = Self(0);
+    /// The default `colorWellStyle`. A well that accepts drag/drop of colors as well as reveals the color panel when clicked.
     #[doc(alias = "NSColorWellStyleMinimal")]
     pub const Minimal: Self = Self(1);
+    /// A minimally adorned well. By default shows a popover color picker when clicked; this interaction behavior can be customized.
     #[doc(alias = "NSColorWellStyleExpanded")]
     pub const Expanded: Self = Self(2);
 }
@@ -102,6 +104,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Instantiates a well in the given style with a default configuration.
         #[method(deactivate)]
         pub unsafe fn deactivate(&self);
 
@@ -119,6 +122,7 @@ extern_methods!(
         #[method(isBordered)]
         pub unsafe fn isBordered(&self) -> bool;
 
+        /// Setter for [`isBordered`][Self::isBordered].
         #[deprecated = "This property will be deprecated in a future release."]
         #[method(setBordered:)]
         pub unsafe fn setBordered(&self, bordered: bool);
@@ -131,12 +135,14 @@ extern_methods!(
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
         #[method(colorWellStyle)]
         pub unsafe fn colorWellStyle(&self) -> NSColorWellStyle;
 
+        /// Setter for [`colorWellStyle`][Self::colorWellStyle].
         #[method(setColorWellStyle:)]
         pub unsafe fn setColorWellStyle(&self, color_well_style: NSColorWellStyle);
 
@@ -145,25 +151,33 @@ extern_methods!(
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
+        /// The image that appears on the button portion of the expanded control. This property only applicable when `colorWellStyle` is `NSColorWellStyleExpanded`.
         #[method_id(@__retain_semantics Other pulldownTarget)]
         pub unsafe fn pulldownTarget(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`pulldownTarget`][Self::pulldownTarget].
         #[method(setPulldownTarget:)]
         pub unsafe fn setPulldownTarget(&self, pulldown_target: Option<&AnyObject>);
 
+        /// The target which `pulldownAction` is sent to. This property only applicable when `colorWellStyle` is `NSColorWellStyleExpanded` or `NSColorWellStyleMinimal`.
         #[method(pulldownAction)]
         pub unsafe fn pulldownAction(&self) -> Option<Sel>;
 
+        /// Setter for [`pulldownAction`][Self::pulldownAction].
         #[method(setPulldownAction:)]
         pub unsafe fn setPulldownAction(&self, pulldown_action: Option<Sel>);
 
+        /// Controls alpha support for the current color well, and the visibility of alpha slider in the color panel.
+        /// When `NSColor.ignoresAlpha` (deprecated) is set to `YES`, this property will always return `NO` and alpha is not supported globally.
         #[method(supportsAlpha)]
         pub unsafe fn supportsAlpha(&self) -> bool;
 
+        /// Setter for [`supportsAlpha`][Self::supportsAlpha].
         #[method(setSupportsAlpha:)]
         pub unsafe fn setSupportsAlpha(&self, supports_alpha: bool);
     }

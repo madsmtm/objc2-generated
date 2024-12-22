@@ -68,18 +68,21 @@ extern_methods!(
         pub unsafe fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
 
         #[cfg(feature = "NSNumberFormatter")]
+        /// Setter for [`numberFormatter`][Self::numberFormatter].
         #[method(setNumberFormatter:)]
         pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
         #[method(unitStyle)]
         pub unsafe fn unitStyle(&self) -> NSFormattingUnitStyle;
 
+        /// Setter for [`unitStyle`][Self::unitStyle].
         #[method(setUnitStyle:)]
         pub unsafe fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
         #[method(isForPersonHeightUse)]
         pub unsafe fn isForPersonHeightUse(&self) -> bool;
 
+        /// Setter for [`isForPersonHeightUse`][Self::isForPersonHeightUse].
         #[method(setForPersonHeightUse:)]
         pub unsafe fn setForPersonHeightUse(&self, for_person_height_use: bool);
 

@@ -59,12 +59,14 @@ extern_methods!(
         #[method(isSelected)]
         pub unsafe fn isSelected(&self) -> bool;
 
+        /// Setter for [`isSelected`][Self::isSelected].
         #[method(setSelected:)]
         pub unsafe fn setSelected(&self, selected: bool);
 
         #[method(isHighlighted)]
         pub unsafe fn isHighlighted(&self) -> bool;
 
+        /// Setter for [`isHighlighted`][Self::isHighlighted].
         #[method(setHighlighted:)]
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
@@ -109,7 +111,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberselectionview?language=objc)
+    /// The base view class for all selection decorations used by the
+    /// `NSScrubber`control.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberselectionview?language=objc)
     #[unsafe(super(NSScrubberArrangedView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -192,7 +197,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberitemview?language=objc)
+    /// The base view class that is arranged by a
+    /// `NSScrubber`control.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberitemview?language=objc)
     #[unsafe(super(NSScrubberArrangedView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -275,7 +283,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubbertextitemview?language=objc)
+    /// A simple
+    /// `NSScrubberItemView`for displaying text. The -fittingSize method can be used to measure the smallest size for the view which fits the title without truncating.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubbertextitemview?language=objc)
     #[unsafe(super(
         NSScrubberItemView,
         NSScrubberArrangedView,
@@ -334,6 +345,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
     }
@@ -374,7 +386,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberimageitemview?language=objc)
+    /// A simple
+    /// `NSScrubberItemView`for displaying an image.
+    ///
+    /// If the provided image is larger than the view's frame, it is scaled proportionally to fill the entire frame. The cropped portion of the image is determined by the
+    /// `imageAlignment`property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberimageitemview?language=objc)
     #[unsafe(super(
         NSScrubberItemView,
         NSScrubberArrangedView,
@@ -435,6 +453,7 @@ extern_methods!(
         pub unsafe fn image(&self) -> Retained<NSImage>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: &NSImage);
 
@@ -443,6 +462,7 @@ extern_methods!(
         pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
 
         #[cfg(feature = "NSImageCell")]
+        /// Setter for [`imageAlignment`][Self::imageAlignment].
         #[method(setImageAlignment:)]
         pub unsafe fn setImageAlignment(&self, image_alignment: NSImageAlignment);
     }

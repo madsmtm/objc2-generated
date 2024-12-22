@@ -7,7 +7,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzbootloader?language=objc)
+    /// Base class of boot loader configuration.
+    ///
+    /// VZVirtualMachineConfiguration requires a boot loader defining how to start the virtual machine.
+    /// VZBootLoader is the abstract base class of boot loader definitions.
+    ///
+    /// Don't instantiate VZBootLoader directly, instead use its subclass VZEFIBootLoader, VZLinuxBootLoader, or VZMacOSBootLoader.
+    ///
+    ///
+    /// See: VZEFIBootLoader
+    ///
+    /// See: VZLinuxBootLoader
+    ///
+    /// See: VZMacOSBootLoader
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzbootloader?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZBootLoader;

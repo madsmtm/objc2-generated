@@ -66,6 +66,8 @@ unsafe impl NSObjectProtocol for MPNowPlayingInfoCenter {}
 
 extern_methods!(
     unsafe impl MPNowPlayingInfoCenter {
+        /// Returns the default now playing info center.
+        /// The default center holds now playing info about the current application.
         #[method_id(@__retain_semantics Other defaultCenter)]
         pub unsafe fn defaultCenter() -> Retained<MPNowPlayingInfoCenter>;
 
@@ -75,18 +77,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The current now playing info for the center.
+        /// Setting the info to nil will clear it.
         #[method_id(@__retain_semantics Other nowPlayingInfo)]
         pub unsafe fn nowPlayingInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// Setter for [`nowPlayingInfo`][Self::nowPlayingInfo].
         #[method(setNowPlayingInfo:)]
         pub unsafe fn setNowPlayingInfo(
             &self,
             now_playing_info: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
+        /// The current playback state of the app.
+        /// This only applies on macOS, where playback state cannot be determined by
+        /// the application's audio session. This property must be set every time
+        /// the app begins or halts playback, otherwise remote control functionality may
+        /// not work as expected.
         #[method(playbackState)]
         pub unsafe fn playbackState(&self) -> MPNowPlayingPlaybackState;
 
+        /// Setter for [`playbackState`][Self::playbackState].
         #[method(setPlaybackState:)]
         pub unsafe fn setPlaybackState(&self, playback_state: MPNowPlayingPlaybackState);
     }

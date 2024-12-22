@@ -41,30 +41,35 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method(birthRate)]
         pub unsafe fn birthRate(&self) -> c_float;
 
+        /// Setter for [`birthRate`][Self::birthRate].
         #[method(setBirthRate:)]
         pub unsafe fn setBirthRate(&self, birth_rate: c_float);
 
         #[method(lifetime)]
         pub unsafe fn lifetime(&self) -> c_float;
 
+        /// Setter for [`lifetime`][Self::lifetime].
         #[method(setLifetime:)]
         pub unsafe fn setLifetime(&self, lifetime: c_float);
 
         #[method(lifetimeRange)]
         pub unsafe fn lifetimeRange(&self) -> c_float;
 
+        /// Setter for [`lifetimeRange`][Self::lifetimeRange].
         #[method(setLifetimeRange:)]
         pub unsafe fn setLifetimeRange(&self, lifetime_range: c_float);
 
@@ -73,6 +78,7 @@ extern_methods!(
         pub unsafe fn emissionLatitude(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`emissionLatitude`][Self::emissionLatitude].
         #[method(setEmissionLatitude:)]
         pub unsafe fn setEmissionLatitude(&self, emission_latitude: CGFloat);
 
@@ -81,6 +87,7 @@ extern_methods!(
         pub unsafe fn emissionLongitude(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`emissionLongitude`][Self::emissionLongitude].
         #[method(setEmissionLongitude:)]
         pub unsafe fn setEmissionLongitude(&self, emission_longitude: CGFloat);
 
@@ -89,6 +96,7 @@ extern_methods!(
         pub unsafe fn emissionRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`emissionRange`][Self::emissionRange].
         #[method(setEmissionRange:)]
         pub unsafe fn setEmissionRange(&self, emission_range: CGFloat);
 
@@ -97,6 +105,7 @@ extern_methods!(
         pub unsafe fn velocity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`velocity`][Self::velocity].
         #[method(setVelocity:)]
         pub unsafe fn setVelocity(&self, velocity: CGFloat);
 
@@ -105,6 +114,7 @@ extern_methods!(
         pub unsafe fn velocityRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`velocityRange`][Self::velocityRange].
         #[method(setVelocityRange:)]
         pub unsafe fn setVelocityRange(&self, velocity_range: CGFloat);
 
@@ -113,6 +123,7 @@ extern_methods!(
         pub unsafe fn xAcceleration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`xAcceleration`][Self::xAcceleration].
         #[method(setXAcceleration:)]
         pub unsafe fn setXAcceleration(&self, x_acceleration: CGFloat);
 
@@ -121,6 +132,7 @@ extern_methods!(
         pub unsafe fn yAcceleration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`yAcceleration`][Self::yAcceleration].
         #[method(setYAcceleration:)]
         pub unsafe fn setYAcceleration(&self, y_acceleration: CGFloat);
 
@@ -129,6 +141,7 @@ extern_methods!(
         pub unsafe fn zAcceleration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`zAcceleration`][Self::zAcceleration].
         #[method(setZAcceleration:)]
         pub unsafe fn setZAcceleration(&self, z_acceleration: CGFloat);
 
@@ -137,6 +150,7 @@ extern_methods!(
         pub unsafe fn scale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
         pub unsafe fn setScale(&self, scale: CGFloat);
 
@@ -145,6 +159,7 @@ extern_methods!(
         pub unsafe fn scaleRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`scaleRange`][Self::scaleRange].
         #[method(setScaleRange:)]
         pub unsafe fn setScaleRange(&self, scale_range: CGFloat);
 
@@ -153,6 +168,7 @@ extern_methods!(
         pub unsafe fn scaleSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`scaleSpeed`][Self::scaleSpeed].
         #[method(setScaleSpeed:)]
         pub unsafe fn setScaleSpeed(&self, scale_speed: CGFloat);
 
@@ -161,6 +177,7 @@ extern_methods!(
         pub unsafe fn spin(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`spin`][Self::spin].
         #[method(setSpin:)]
         pub unsafe fn setSpin(&self, spin: CGFloat);
 
@@ -169,6 +186,7 @@ extern_methods!(
         pub unsafe fn spinRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`spinRange`][Self::spinRange].
         #[method(setSpinRange:)]
         pub unsafe fn setSpinRange(&self, spin_range: CGFloat);
 
@@ -177,60 +195,70 @@ extern_methods!(
         pub unsafe fn color(&self) -> CGColorRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: CGColorRef);
 
         #[method(redRange)]
         pub unsafe fn redRange(&self) -> c_float;
 
+        /// Setter for [`redRange`][Self::redRange].
         #[method(setRedRange:)]
         pub unsafe fn setRedRange(&self, red_range: c_float);
 
         #[method(greenRange)]
         pub unsafe fn greenRange(&self) -> c_float;
 
+        /// Setter for [`greenRange`][Self::greenRange].
         #[method(setGreenRange:)]
         pub unsafe fn setGreenRange(&self, green_range: c_float);
 
         #[method(blueRange)]
         pub unsafe fn blueRange(&self) -> c_float;
 
+        /// Setter for [`blueRange`][Self::blueRange].
         #[method(setBlueRange:)]
         pub unsafe fn setBlueRange(&self, blue_range: c_float);
 
         #[method(alphaRange)]
         pub unsafe fn alphaRange(&self) -> c_float;
 
+        /// Setter for [`alphaRange`][Self::alphaRange].
         #[method(setAlphaRange:)]
         pub unsafe fn setAlphaRange(&self, alpha_range: c_float);
 
         #[method(redSpeed)]
         pub unsafe fn redSpeed(&self) -> c_float;
 
+        /// Setter for [`redSpeed`][Self::redSpeed].
         #[method(setRedSpeed:)]
         pub unsafe fn setRedSpeed(&self, red_speed: c_float);
 
         #[method(greenSpeed)]
         pub unsafe fn greenSpeed(&self) -> c_float;
 
+        /// Setter for [`greenSpeed`][Self::greenSpeed].
         #[method(setGreenSpeed:)]
         pub unsafe fn setGreenSpeed(&self, green_speed: c_float);
 
         #[method(blueSpeed)]
         pub unsafe fn blueSpeed(&self) -> c_float;
 
+        /// Setter for [`blueSpeed`][Self::blueSpeed].
         #[method(setBlueSpeed:)]
         pub unsafe fn setBlueSpeed(&self, blue_speed: c_float);
 
         #[method(alphaSpeed)]
         pub unsafe fn alphaSpeed(&self) -> c_float;
 
+        /// Setter for [`alphaSpeed`][Self::alphaSpeed].
         #[method(setAlphaSpeed:)]
         pub unsafe fn setAlphaSpeed(&self, alpha_speed: c_float);
 
         #[method_id(@__retain_semantics Other contents)]
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`contents`][Self::contents].
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
 
@@ -239,6 +267,7 @@ extern_methods!(
         pub unsafe fn contentsRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentsRect`][Self::contentsRect].
         #[method(setContentsRect:)]
         pub unsafe fn setContentsRect(&self, contents_rect: CGRect);
 
@@ -247,36 +276,42 @@ extern_methods!(
         pub unsafe fn contentsScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentsScale`][Self::contentsScale].
         #[method(setContentsScale:)]
         pub unsafe fn setContentsScale(&self, contents_scale: CGFloat);
 
         #[method_id(@__retain_semantics Other minificationFilter)]
         pub unsafe fn minificationFilter(&self) -> Retained<NSString>;
 
+        /// Setter for [`minificationFilter`][Self::minificationFilter].
         #[method(setMinificationFilter:)]
         pub unsafe fn setMinificationFilter(&self, minification_filter: &NSString);
 
         #[method_id(@__retain_semantics Other magnificationFilter)]
         pub unsafe fn magnificationFilter(&self) -> Retained<NSString>;
 
+        /// Setter for [`magnificationFilter`][Self::magnificationFilter].
         #[method(setMagnificationFilter:)]
         pub unsafe fn setMagnificationFilter(&self, magnification_filter: &NSString);
 
         #[method(minificationFilterBias)]
         pub unsafe fn minificationFilterBias(&self) -> c_float;
 
+        /// Setter for [`minificationFilterBias`][Self::minificationFilterBias].
         #[method(setMinificationFilterBias:)]
         pub unsafe fn setMinificationFilterBias(&self, minification_filter_bias: c_float);
 
         #[method_id(@__retain_semantics Other emitterCells)]
         pub unsafe fn emitterCells(&self) -> Option<Retained<NSArray<CAEmitterCell>>>;
 
+        /// Setter for [`emitterCells`][Self::emitterCells].
         #[method(setEmitterCells:)]
         pub unsafe fn setEmitterCells(&self, emitter_cells: Option<&NSArray<CAEmitterCell>>);
 
         #[method_id(@__retain_semantics Other style)]
         pub unsafe fn style(&self) -> Option<Retained<NSDictionary>>;
 
+        /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: Option<&NSDictionary>);
     }

@@ -61,6 +61,7 @@ extern_methods!(
         pub unsafe fn scrollDirection(&self) -> UICollectionViewScrollDirection;
 
         #[cfg(feature = "UICollectionViewLayout")]
+        /// Setter for [`scrollDirection`][Self::scrollDirection].
         #[method(setScrollDirection:)]
         pub unsafe fn setScrollDirection(&self, scroll_direction: UICollectionViewScrollDirection);
 
@@ -69,6 +70,7 @@ extern_methods!(
         pub unsafe fn interSectionSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`interSectionSpacing`][Self::interSectionSpacing].
         #[method(setInterSectionSpacing:)]
         pub unsafe fn setInterSectionSpacing(&self, inter_section_spacing: CGFloat);
 
@@ -77,6 +79,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSArray<NSCollectionLayoutBoundarySupplementaryItem>>;
 
+        /// Setter for [`boundarySupplementaryItems`][Self::boundarySupplementaryItems].
         #[method(setBoundarySupplementaryItems:)]
         pub unsafe fn setBoundarySupplementaryItems(
             &self,
@@ -86,6 +89,7 @@ extern_methods!(
         #[method(contentInsetsReference)]
         pub unsafe fn contentInsetsReference(&self) -> UIContentInsetsReference;
 
+        /// Setter for [`contentInsetsReference`][Self::contentInsetsReference].
         #[method(setContentInsetsReference:)]
         pub unsafe fn setContentInsetsReference(
             &self,
@@ -171,6 +175,7 @@ extern_methods!(
             &self,
         ) -> Retained<UICollectionViewCompositionalLayoutConfiguration>;
 
+        /// Setter for [`configuration`][Self::configuration].
         #[method(setConfiguration:)]
         pub unsafe fn setConfiguration(
             &self,
@@ -302,21 +307,25 @@ unsafe impl NSObjectProtocol for UICollectionLayoutSectionOrthogonalScrollingPro
 extern_methods!(
     unsafe impl UICollectionLayoutSectionOrthogonalScrollingProperties {
         #[cfg(feature = "objc2-core-foundation")]
+        /// The orthogonal scroll view's rate of deceleration after the user lifts their finger.
         #[method(decelerationRate)]
         pub unsafe fn decelerationRate(
             &self,
         ) -> UICollectionLayoutSectionOrthogonalScrollingDecelerationRate;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`decelerationRate`][Self::decelerationRate].
         #[method(setDecelerationRate:)]
         pub unsafe fn setDecelerationRate(
             &self,
             deceleration_rate: UICollectionLayoutSectionOrthogonalScrollingDecelerationRate,
         );
 
+        /// The orthogonal scroll view's bounce behavior.
         #[method(bounce)]
         pub unsafe fn bounce(&self) -> UICollectionLayoutSectionOrthogonalScrollingBounce;
 
+        /// Setter for [`bounce`][Self::bounce].
         #[method(setBounce:)]
         pub unsafe fn setBounce(&self, bounce: UICollectionLayoutSectionOrthogonalScrollingBounce);
     }
@@ -365,6 +374,7 @@ extern_methods!(
         pub unsafe fn contentInsets(&self) -> NSDirectionalEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`contentInsets`][Self::contentInsets].
         #[method(setContentInsets:)]
         pub unsafe fn setContentInsets(&self, content_insets: NSDirectionalEdgeInsets);
 
@@ -373,21 +383,28 @@ extern_methods!(
         pub unsafe fn interGroupSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`interGroupSpacing`][Self::interGroupSpacing].
         #[method(setInterGroupSpacing:)]
         pub unsafe fn setInterGroupSpacing(&self, inter_group_spacing: CGFloat);
 
         #[method(contentInsetsReference)]
         pub unsafe fn contentInsetsReference(&self) -> UIContentInsetsReference;
 
+        /// Setter for [`contentInsetsReference`][Self::contentInsetsReference].
         #[method(setContentInsetsReference:)]
         pub unsafe fn setContentInsetsReference(
             &self,
             content_insets_reference: UIContentInsetsReference,
         );
 
+        /// Specifies the content insets reference for boundary supplementaries in this section.
+        /// The default value of this property is UIContentInsetsReference.automatic, which means that any insets specified on a
+        /// `NSCollectionLayoutBoundarySupplementaryItem`will follow the layout configuration's
+        /// `contentInsetsReference.`
         #[method(supplementaryContentInsetsReference)]
         pub unsafe fn supplementaryContentInsetsReference(&self) -> UIContentInsetsReference;
 
+        /// Setter for [`supplementaryContentInsetsReference`][Self::supplementaryContentInsetsReference].
         #[method(setSupplementaryContentInsetsReference:)]
         pub unsafe fn setSupplementaryContentInsetsReference(
             &self,
@@ -399,6 +416,7 @@ extern_methods!(
             &self,
         ) -> UICollectionLayoutSectionOrthogonalScrollingBehavior;
 
+        /// Setter for [`orthogonalScrollingBehavior`][Self::orthogonalScrollingBehavior].
         #[method(setOrthogonalScrollingBehavior:)]
         pub unsafe fn setOrthogonalScrollingBehavior(
             &self,
@@ -415,6 +433,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSArray<NSCollectionLayoutBoundarySupplementaryItem>>;
 
+        /// Setter for [`boundarySupplementaryItems`][Self::boundarySupplementaryItems].
         #[method(setBoundarySupplementaryItems:)]
         pub unsafe fn setBoundarySupplementaryItems(
             &self,
@@ -436,6 +455,7 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// Setter for [`visibleItemsInvalidationHandler`][Self::visibleItemsInvalidationHandler].
         #[method(setVisibleItemsInvalidationHandler:)]
         pub unsafe fn setVisibleItemsInvalidationHandler(
             &self,
@@ -446,6 +466,7 @@ extern_methods!(
         pub unsafe fn decorationItems(&self)
             -> Retained<NSArray<NSCollectionLayoutDecorationItem>>;
 
+        /// Setter for [`decorationItems`][Self::decorationItems].
         #[method(setDecorationItems:)]
         pub unsafe fn setDecorationItems(
             &self,
@@ -492,12 +513,14 @@ extern_methods!(
         pub unsafe fn contentInsets(&self) -> NSDirectionalEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`contentInsets`][Self::contentInsets].
         #[method(setContentInsets:)]
         pub unsafe fn setContentInsets(&self, content_insets: NSDirectionalEdgeInsets);
 
         #[method_id(@__retain_semantics Other edgeSpacing)]
         pub unsafe fn edgeSpacing(&self) -> Option<Retained<NSCollectionLayoutEdgeSpacing>>;
 
+        /// Setter for [`edgeSpacing`][Self::edgeSpacing].
         #[method(setEdgeSpacing:)]
         pub unsafe fn setEdgeSpacing(&self, edge_spacing: Option<&NSCollectionLayoutEdgeSpacing>);
 
@@ -582,6 +605,15 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutGroup {}
 
 extern_methods!(
     unsafe impl NSCollectionLayoutGroup {
+        /// Specifies a group that will horizontally repeat its subitem a fixed number of times.
+        ///
+        /// Parameter `layoutSize`: The group's size.
+        ///
+        /// Parameter `subitem`: The subitem to repeat. It is the caller's responsibility to ensure that the group's
+        /// `layoutSize`can fit
+        /// `count`repetitions of this item.
+        ///
+        /// Parameter `count`: The number of times to repeat the passed in subitem.
         #[method_id(@__retain_semantics Other horizontalGroupWithLayoutSize:repeatingSubitem:count:)]
         pub unsafe fn horizontalGroupWithLayoutSize_repeatingSubitem_count(
             layout_size: &NSCollectionLayoutSize,
@@ -595,6 +627,15 @@ extern_methods!(
             subitems: &NSArray<NSCollectionLayoutItem>,
         ) -> Retained<Self>;
 
+        /// Specifies a group that will vertically repeat its subitem a fixed number of times.
+        ///
+        /// Parameter `layoutSize`: The group's size.
+        ///
+        /// Parameter `subitem`: The subitem to repeat. It is the caller's responsibility to ensure that the group's
+        /// `layoutSize`can fit
+        /// `count`repetitions of this item.
+        ///
+        /// Parameter `count`: The number of times to repeat the passed in subitem.
         #[method_id(@__retain_semantics Other verticalGroupWithLayoutSize:repeatingSubitem:count:)]
         pub unsafe fn verticalGroupWithLayoutSize_repeatingSubitem_count(
             layout_size: &NSCollectionLayoutSize,
@@ -626,6 +667,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSArray<NSCollectionLayoutSupplementaryItem>>;
 
+        /// Setter for [`supplementaryItems`][Self::supplementaryItems].
         #[method(setSupplementaryItems:)]
         pub unsafe fn setSupplementaryItems(
             &self,
@@ -635,6 +677,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other interItemSpacing)]
         pub unsafe fn interItemSpacing(&self) -> Option<Retained<NSCollectionLayoutSpacing>>;
 
+        /// Setter for [`interItemSpacing`][Self::interItemSpacing].
         #[method(setInterItemSpacing:)]
         pub unsafe fn setInterItemSpacing(
             &self,
@@ -710,6 +753,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Items with this dimension type will receive at least as much room as the view requires, and will
+        /// grow to match the dimension of the largest estimated sibling in their parent.
+        /// When specified on the outermost group for a section, the largest size will be shared across the entire section.
+        ///
+        /// Eg: All `NSCollectionLayoutItem`s specified with a `uniformAcrossSiblingsWithEstimate:` `heightDimension` in a horizontal `NSCollectionLayoutGroup`
+        /// will have a height equal to the height of the tallest item in that group.
+        ///
+        /// When computing the size for a dimension of this type, the layout will need to retrieve preferred attributes for all siblings
+        /// in its parent, which in `UICollectionView` means creating views for all dependent items. This can be very expensive, so `uniformAcrossSiblingsWithEstimate` should
+        /// only be used in layouts where the number of dependent items is known to be relatively small.
         #[method_id(@__retain_semantics Other uniformAcrossSiblingsWithEstimate:)]
         pub unsafe fn uniformAcrossSiblingsWithEstimate(
             estimated_dimension: CGFloat,
@@ -731,6 +784,7 @@ extern_methods!(
         #[method(isAbsolute)]
         pub unsafe fn isAbsolute(&self) -> bool;
 
+        /// Returns `YES` if the receiver is `estimated` OR `uniformAcrossSiblings`.
         #[method(isEstimated)]
         pub unsafe fn isEstimated(&self) -> bool;
 
@@ -918,6 +972,7 @@ extern_methods!(
         #[method(zIndex)]
         pub unsafe fn zIndex(&self) -> NSInteger;
 
+        /// Setter for [`zIndex`][Self::zIndex].
         #[method(setZIndex:)]
         pub unsafe fn setZIndex(&self, z_index: NSInteger);
 
@@ -990,12 +1045,14 @@ extern_methods!(
         #[method(extendsBoundary)]
         pub unsafe fn extendsBoundary(&self) -> bool;
 
+        /// Setter for [`extendsBoundary`][Self::extendsBoundary].
         #[method(setExtendsBoundary:)]
         pub unsafe fn setExtendsBoundary(&self, extends_boundary: bool);
 
         #[method(pinToVisibleBounds)]
         pub unsafe fn pinToVisibleBounds(&self) -> bool;
 
+        /// Setter for [`pinToVisibleBounds`][Self::pinToVisibleBounds].
         #[method(setPinToVisibleBounds:)]
         pub unsafe fn setPinToVisibleBounds(&self, pin_to_visible_bounds: bool);
 
@@ -1076,6 +1133,7 @@ extern_methods!(
         #[method(zIndex)]
         pub unsafe fn zIndex(&self) -> NSInteger;
 
+        /// Setter for [`zIndex`][Self::zIndex].
         #[method(setZIndex:)]
         pub unsafe fn setZIndex(&self, z_index: NSInteger);
 
@@ -1211,18 +1269,21 @@ extern_protocol!(
         unsafe fn alpha(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         unsafe fn setAlpha(&self, alpha: CGFloat);
 
         #[method(zIndex)]
         unsafe fn zIndex(&self) -> NSInteger;
 
+        /// Setter for [`zIndex`][Self::zIndex].
         #[method(setZIndex:)]
         unsafe fn setZIndex(&self, z_index: NSInteger);
 
         #[method(isHidden)]
         unsafe fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         unsafe fn setHidden(&self, hidden: bool);
 
@@ -1231,6 +1292,7 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
@@ -1239,6 +1301,7 @@ extern_protocol!(
         unsafe fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`transform`][Self::transform].
         #[method(setTransform:)]
         unsafe fn setTransform(&self, transform: CGAffineTransform);
 
@@ -1249,6 +1312,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
+        /// Setter for [`transform3D`][Self::transform3D].
         #[method(setTransform3D:)]
         unsafe fn setTransform3D(&self, transform3_d: CATransform3D);
 
@@ -1285,6 +1349,7 @@ extern_methods!(
         #[method(supplementariesFollowContentInsets)]
         pub unsafe fn supplementariesFollowContentInsets(&self) -> bool;
 
+        /// Setter for [`supplementariesFollowContentInsets`][Self::supplementariesFollowContentInsets].
         #[deprecated]
         #[method(setSupplementariesFollowContentInsets:)]
         pub unsafe fn setSupplementariesFollowContentInsets(

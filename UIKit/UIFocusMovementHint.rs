@@ -13,7 +13,9 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusmovementhint?language=objc)
+    /// Provides information about the current state of hinting for the focused item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusmovementhint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFocusMovementHint;
@@ -30,24 +32,29 @@ unsafe impl NSObjectProtocol for UIFocusMovementHint {}
 extern_methods!(
     unsafe impl UIFocusMovementHint {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Value between {-1.0, -1.0} and {1.0, 1.0} representing how close focus is to moving in a particular direction.
         #[method(movementDirection)]
         pub unsafe fn movementDirection(&self) -> CGVector;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
+        /// A 3D transform representing the perspective matrix that should be applied to match the system interaction hinting. Assumes a 0..1 near/far plane.
         #[method(perspectiveTransform)]
         pub unsafe fn perspectiveTransform(&self) -> CATransform3D;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A vector representing the X and Y axis rotation expressed in radians that should be applied to match the system interaction hinting.
         #[method(rotation)]
         pub unsafe fn rotation(&self) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A vector representing the X and Y axis translation expressed in points that should be applied to match the system interaction hinting.
         #[method(translation)]
         pub unsafe fn translation(&self) -> CGVector;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
+        /// A 3D transform that contains the combined transformations of perspective, rotation and translation.
         #[method(interactionTransform)]
         pub unsafe fn interactionTransform(&self) -> CATransform3D;
 

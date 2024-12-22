@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramvoltagemeasurement?language=objc)
+    /// An HKElectrocardiogramVoltageMeasurement contains voltage quantities for all leads at a single instance of measurement.
+    ///
+    /// Each HKElectrocardiogramVoltageMeasurement object corresponds to the voltage quantities across all leads for a given instance in time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramvoltagemeasurement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKElectrocardiogramVoltageMeasurement;
@@ -28,10 +32,14 @@ unsafe impl NSObjectProtocol for HKElectrocardiogramVoltageMeasurement {}
 
 extern_methods!(
     unsafe impl HKElectrocardiogramVoltageMeasurement {
+        /// The time interval between this voltage measurement and the start of the sample.
         #[method(timeSinceSampleStart)]
         pub unsafe fn timeSinceSampleStart(&self) -> NSTimeInterval;
 
         #[cfg(all(feature = "HKElectrocardiogram", feature = "HKQuantity"))]
+        /// Returns an HKQuantity for the specified lead with a unit compatible with [HKUnit voltUnit].
+        ///
+        /// Parameter `lead`: The HKElectrocardiogramLead for which voltage quantity will be returned.
         #[method_id(@__retain_semantics Other quantityForLead:)]
         pub unsafe fn quantityForLead(
             &self,
@@ -77,6 +85,13 @@ extern_methods!(
             feature = "HKSample",
             feature = "block2"
         ))]
+        /// Returns a query that will enumerate over voltages recorded across leads in
+        /// an electrocardiogram.
+        ///
+        ///
+        /// Parameter `electrocardiogram`: The sample for which the lead data will be returned.
+        ///
+        /// Parameter `dataHandler`: The block to invoke with results from the query. It will be called once for each voltage measurement. Call [query stop] to stop enumeration, if desired.
         #[method_id(@__retain_semantics Init initWithElectrocardiogram:dataHandler:)]
         pub unsafe fn initWithElectrocardiogram_dataHandler(
             this: Allocated<Self>,

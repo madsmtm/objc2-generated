@@ -97,23 +97,34 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIViewConfigurationState")]
+        /// Returns the current configuration state for the header/footer.
+        /// To add your own custom state(s), override the getter and call super to obtain an instance with the
+        /// system properties set, then set your own custom states as desired.
         #[method_id(@__retain_semantics Other configurationState)]
         pub unsafe fn configurationState(&self) -> Retained<UIViewConfigurationState>;
 
+        /// Requests the view update its configuration for its current state. This method is called automatically
+        /// when the view's `configurationState` may have changed, as well as in other circumstances where an
+        /// update may be required. Multiple requests may be coalesced into a single update at the appropriate time.
         #[method(setNeedsUpdateConfiguration)]
         pub unsafe fn setNeedsUpdateConfiguration(&self);
 
         #[cfg(feature = "UIViewConfigurationState")]
+        /// Subclasses should override this method and update the view's configuration using the state provided.
+        /// This method should not be called directly, use `setNeedsUpdateConfiguration` to request an update.
         #[method(updateConfigurationUsingState:)]
         pub unsafe fn updateConfigurationUsingState(&self, state: &UIViewConfigurationState);
 
         #[cfg(all(feature = "UIViewConfigurationState", feature = "block2"))]
+        /// Optional block-based alternative to overriding `-updateConfigurationUsingState:` in a subclass. This handler
+        /// is called after `-updateConfigurationUsingState:`. Setting a new handler triggers `setNeedsUpdateConfiguration`.
         #[method(configurationUpdateHandler)]
         pub unsafe fn configurationUpdateHandler(
             &self,
         ) -> UITableViewHeaderFooterViewConfigurationUpdateHandler;
 
         #[cfg(all(feature = "UIViewConfigurationState", feature = "block2"))]
+        /// Setter for [`configurationUpdateHandler`][Self::configurationUpdateHandler].
         #[method(setConfigurationUpdateHandler:)]
         pub unsafe fn setConfigurationUpdateHandler(
             &self,
@@ -121,25 +132,33 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIListContentConfiguration")]
+        /// Returns a default list content configuration for the header/footer view's style.
         #[method_id(@__retain_semantics Other defaultContentConfiguration)]
         pub unsafe fn defaultContentConfiguration(&self) -> Retained<UIListContentConfiguration>;
 
         #[cfg(feature = "UIContentConfiguration")]
+        /// Setting a content configuration replaces the existing contentView of the header/footer with a new content view instance from the configuration,
+        /// or directly applies the configuration to the existing content view if the configuration is compatible with the existing content view type.
+        /// The default value is nil. After a configuration has been set, setting this property to nil will replace the current content view with a new content view.
         #[method_id(@__retain_semantics Other contentConfiguration)]
         pub unsafe fn contentConfiguration(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIContentConfiguration>>>;
 
         #[cfg(feature = "UIContentConfiguration")]
+        /// Setter for [`contentConfiguration`][Self::contentConfiguration].
         #[method(setContentConfiguration:)]
         pub unsafe fn setContentConfiguration(
             &self,
             content_configuration: Option<&ProtocolObject<dyn UIContentConfiguration>>,
         );
 
+        /// When YES, the header/footer will automatically call -updatedConfigurationForState: on its `contentConfiguration` when the header/footer's
+        /// configuration state changes, and apply the updated configuration back to the header/footer. The default value is YES.
         #[method(automaticallyUpdatesContentConfiguration)]
         pub unsafe fn automaticallyUpdatesContentConfiguration(&self) -> bool;
 
+        /// Setter for [`automaticallyUpdatesContentConfiguration`][Self::automaticallyUpdatesContentConfiguration].
         #[method(setAutomaticallyUpdatesContentConfiguration:)]
         pub unsafe fn setAutomaticallyUpdatesContentConfiguration(
             &self,
@@ -160,24 +179,31 @@ extern_methods!(
         pub unsafe fn detailTextLabel(&self) -> Option<Retained<UILabel>>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
+        /// Returns a default background configuration for the header/footer's style.
+        /// This background configuration represents the default appearance that the header/footer will use.
         #[method_id(@__retain_semantics Other defaultBackgroundConfiguration)]
         pub unsafe fn defaultBackgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
+        /// Setting a background configuration supersedes the header/footer's backgroundView. The default value is nil.
         #[method_id(@__retain_semantics Other backgroundConfiguration)]
         pub unsafe fn backgroundConfiguration(&self)
             -> Option<Retained<UIBackgroundConfiguration>>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
+        /// Setter for [`backgroundConfiguration`][Self::backgroundConfiguration].
         #[method(setBackgroundConfiguration:)]
         pub unsafe fn setBackgroundConfiguration(
             &self,
             background_configuration: Option<&UIBackgroundConfiguration>,
         );
 
+        /// When YES, the header/footer will automatically call -updatedConfigurationForState: on its `backgroundConfiguration` when the header/footer's
+        /// configuration state changes, and apply the updated configuration back to the header/footer. The default value is YES.
         #[method(automaticallyUpdatesBackgroundConfiguration)]
         pub unsafe fn automaticallyUpdatesBackgroundConfiguration(&self) -> bool;
 
+        /// Setter for [`automaticallyUpdatesBackgroundConfiguration`][Self::automaticallyUpdatesBackgroundConfiguration].
         #[method(setAutomaticallyUpdatesBackgroundConfiguration:)]
         pub unsafe fn setAutomaticallyUpdatesBackgroundConfiguration(
             &self,
@@ -187,6 +213,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other backgroundView)]
         pub unsafe fn backgroundView(&self) -> Option<Retained<UIView>>;
 
+        /// Setter for [`backgroundView`][Self::backgroundView].
         #[method(setBackgroundView:)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&UIView>);
 

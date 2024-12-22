@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzfileserialportattachment?language=objc)
+    /// File serial port attachment.
+    ///
+    /// VZFileSerialPortAttachment defines a serial port attachment from a file.
+    /// Any data sent by the guest on the serial interface is written to the file.
+    /// No data is sent to the guest over serial with this attachment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzfileserialportattachment?language=objc)
     #[unsafe(super(VZSerialPortAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZSerialPortAttachment")]
@@ -26,6 +32,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initialize the VZFileSerialPortAttachment from a URL of a file.
+        ///
+        /// Parameter `url`: The URL of the file for the attachment on the local file system.
+        ///
+        /// Parameter `shouldAppend`: True if the file should be opened in append mode, false otherwise.
+        /// When a file is opened in append mode, writing to that file will append to the end of it.
+        ///
+        /// Parameter `error`: If not nil, used to report errors if initialization fails.
+        ///
+        /// Returns: A newly initialized VZFileSerialPortAttachment. If an error was encountered returns
+        /// `nil,`and
+        /// `error`contains the error.
         #[method_id(@__retain_semantics Init initWithURL:append:error:_)]
         pub unsafe fn initWithURL_append_error(
             this: Allocated<Self>,
@@ -33,9 +51,11 @@ extern_methods!(
             should_append: bool,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// The URL of the file for the attachment on the local file system.
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
+        /// True if the file should be opened in append mode, false otherwise.
         #[method(append)]
         pub unsafe fn append(&self) -> bool;
     }

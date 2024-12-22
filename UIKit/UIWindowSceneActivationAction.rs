@@ -7,7 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationactionconfigurationprovider?language=objc)
+/// Return a
+/// `UIWindowSceneActivationConfiguration`
+///
+/// Parameter `action`: The
+/// `UIWindowSceneActivationAction`requesting a configuration.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationactionconfigurationprovider?language=objc)
 #[cfg(all(
     feature = "UIAction",
     feature = "UIMenuElement",
@@ -19,7 +25,10 @@ pub type UIWindowSceneActivationActionConfigurationProvider = *mut block2::Block
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationaction?language=objc)
+    /// An action that facilitates activating a
+    /// `UIWindowScene`when performed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationaction?language=objc)
     #[unsafe(super(UIAction, UIMenuElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
@@ -53,13 +62,24 @@ unsafe impl UIMenuLeaf for UIWindowSceneActivationAction {}
 extern_methods!(
     #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
     unsafe impl UIWindowSceneActivationAction {
+        /// The actions title. Set to nil to use the default title.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(all(feature = "UIWindowSceneActivationConfiguration", feature = "block2"))]
+        /// Returns a new
+        /// `UIWindowSceneActivationAction`
+        ///
+        /// Parameter `identifier`: The action's identifier. Pass nil to use an auto-generated identifier.
+        ///
+        /// Parameter `alternateAction`: If running on a platform that doesn't support multiple windows, the alternate action is used. Otherwise, the alternates handler is called if the scene activation request fails.
+        ///
+        /// Parameter `configurationProvider`: Called when the action has been triggered. It should return a
+        /// `UIWindowSceneActivationConfiguration`whose user activity will be used to request scene activation.
         #[method_id(@__retain_semantics Other actionWithIdentifier:alternateAction:configurationProvider:)]
         pub unsafe fn actionWithIdentifier_alternateAction_configurationProvider(
             identifier: Option<&UIActionIdentifier>,

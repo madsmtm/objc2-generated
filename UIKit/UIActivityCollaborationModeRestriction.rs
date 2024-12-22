@@ -7,13 +7,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakeycollaborationmoderestrictions?language=objc)
+    /// A key for a collaboration mode restriction, used to specify the case where Share Sheet should not support some modes of sharing even if they are supported by the items being shared
+    /// The object returned for this key should be an array of UIActivityCollaborationModeRestriction instances
+    /// For supported behaviour, this array should have a maximum size of one less than the amount of possible Share Sheet modes
+    /// Currently at most one object should be provided
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakeycollaborationmoderestrictions?language=objc)
     #[cfg(feature = "UIActivityItemsConfigurationReading")]
     pub static UIActivityItemsConfigurationMetadataKeyCollaborationModeRestrictions:
         &'static UIActivityItemsConfigurationMetadataKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitycollaborationmode?language=objc)
+/// Represents the types of sharing (collaborating on an item vs. sending a copy of the item)
+/// Share Sheet supports up to two modes, each of which corresponds to one of these types
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitycollaborationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -34,7 +42,12 @@ unsafe impl RefEncode for UIActivityCollaborationMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitycollaborationmoderestriction?language=objc)
+    /// Specifies whether any types of sharing should be disabled in Share Sheet, and if so, whether they should provide a reason when tapped
+    /// If a reason is provided, the corresponding mode will show up as an option, but an alert explaining why it is disabled will show if it is chosen, and the mode will switch back to the supported one
+    /// Optionally, an extra alert button can be provided for a "recovery suggestion". This can give a user a way to fix whatever is causing this type of sharing to be disabled
+    /// If no reason is provided, the corresponding mode will not show up as an option
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitycollaborationmoderestriction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIActivityCollaborationModeRestriction;
@@ -54,30 +67,43 @@ unsafe impl NSSecureCoding for UIActivityCollaborationModeRestriction {}
 
 extern_methods!(
     unsafe impl UIActivityCollaborationModeRestriction {
+        /// The type of sharing which should be disabled
         #[method(disabledMode)]
         pub unsafe fn disabledMode(&self) -> UIActivityCollaborationMode;
 
+        /// The title of the alert if a reason for disabling is provided
         #[method_id(@__retain_semantics Other alertTitle)]
         pub unsafe fn alertTitle(&self) -> Option<Retained<NSString>>;
 
+        /// The message of the alert if a reason for disabling is provided
         #[method_id(@__retain_semantics Other alertMessage)]
         pub unsafe fn alertMessage(&self) -> Option<Retained<NSString>>;
 
+        /// The label on the alert button which will simply confirm that the alert was viewed and dismiss it
+        /// Defaults to "OK"
         #[method_id(@__retain_semantics Other alertDismissButtonTitle)]
         pub unsafe fn alertDismissButtonTitle(&self) -> Option<Retained<NSString>>;
 
+        /// The label on the recovery suggestion button if it is provided
         #[method_id(@__retain_semantics Other alertRecoverySuggestionButtonTitle)]
         pub unsafe fn alertRecoverySuggestionButtonTitle(&self) -> Option<Retained<NSString>>;
 
+        /// On tapping the recovery suggestion button (if it is provided), the user will be launched to this URL
         #[method_id(@__retain_semantics Other alertRecoverySuggestionButtonLaunchURL)]
         pub unsafe fn alertRecoverySuggestionButtonLaunchURL(&self) -> Option<Retained<NSURL>>;
 
+        /// - Parameters:
+        /// - disabledMode: The disabled type of sharing
         #[method_id(@__retain_semantics Init initWithDisabledMode:)]
         pub unsafe fn initWithDisabledMode(
             this: Allocated<Self>,
             disabled_mode: UIActivityCollaborationMode,
         ) -> Retained<Self>;
 
+        /// - Parameters:
+        /// - disabledMode: The disabled type of sharing
+        /// - alertTitle: The alert title
+        /// - alertMessage: The alert message
         #[method_id(@__retain_semantics Init initWithDisabledMode:alertTitle:alertMessage:)]
         pub unsafe fn initWithDisabledMode_alertTitle_alertMessage(
             this: Allocated<Self>,
@@ -86,6 +112,11 @@ extern_methods!(
             alert_message: &NSString,
         ) -> Retained<Self>;
 
+        /// - Parameters:
+        /// - disabledMode: The disabled type of sharing
+        /// - alertTitle: The alert title
+        /// - alertMessage: The alert message
+        /// - alertDismissButtonTitle: The label on the default alert button
         #[method_id(@__retain_semantics Init initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:)]
         pub unsafe fn initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle(
             this: Allocated<Self>,
@@ -95,6 +126,13 @@ extern_methods!(
             alert_dismiss_button_title: &NSString,
         ) -> Retained<Self>;
 
+        /// - Parameters:
+        /// - disabledMode: The disabled type of sharing
+        /// - alertTitle: The alert title
+        /// - alertMessage: The alert message
+        /// - alertDismissButtonTitle: The label on the default alert button
+        /// - alertRecoverySuggestionButtonTitle: The label on the optional recovery suggestion button on the alert
+        /// - alertRecoverySuggestionButtonLaunchURL: The URL which launches when the optional recovery suggestion button is tapped
         #[method_id(@__retain_semantics Init initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:alertRecoverySuggestionButtonTitle:alertRecoverySuggestionButtonLaunchURL:)]
         pub unsafe fn initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL(
             this: Allocated<Self>,

@@ -68,11 +68,15 @@ unsafe impl RefEncode for MPSCustomKernelIndex {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixoffset?language=objc)
+/// Specifies a row and column offset into an MPSMatrix.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixoffset?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSMatrixOffset {
+    /// offset to start of source region to read in rows
     pub rowOffset: u32,
+    /// offset to start of source region to read in columns
     pub columnOffset: u32,
 }
 
@@ -189,8 +193,11 @@ pub static MPSFunctionConstantNone: MPSFunctionConstant = -1;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSCustomKernelArgumentCount {
+    /// must be 1. Can't have 2 or more. If you have 0, this is 1.
     pub destinationTextureCount: c_ulong,
+    /// number of source textures. These textures will be scaled by batchCount.
     pub sourceTextureCount: c_ulong,
+    /// number of source textures shared across all parts of a batch
     pub broadcastTextureCount: c_ulong,
 }
 

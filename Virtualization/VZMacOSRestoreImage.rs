@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage?language=objc)
+    /// VZMacOSRestoreImage describes a version of macOS to be installed to a virtual machine.
+    ///
+    /// A VZMacOSRestoreImage object can be created by loading an installation media file. A VZMacOSInstaller
+    /// object must be initialized with this VZMacOSRestoreImage object in order to install the operating
+    /// system onto a virtual machine.
+    ///
+    /// Loading a restore image requires the app to have the "com.apple.security.virtualization" entitlement.
+    ///
+    /// See also: VZMacHardwareModel
+    ///
+    /// See also: VZMacOSInstaller
+    ///
+    /// See also: VZMacOSConfigurationRequirements
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMacOSRestoreImage;
@@ -25,6 +39,16 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Load a restore image from a file on the local file system.
+        ///
+        /// Parameter `fileURL`: A file URL indicating the macOS restore image to load.
+        ///
+        /// Parameter `completionHandler`: Block called after the restore image has successfully loaded or has failed to load.
+        /// The error parameter passed to the block is nil if the restore image was loaded successfully.
+        /// The completion handler will be invoked on an arbitrary thread.
+        ///
+        /// VZMacOSRestoreImage can load IPSW installation media from a local file. If the fileURL parameter does not refer to
+        /// a local file, an exception will be raised.
         #[method(loadFileURL:completionHandler:)]
         pub unsafe fn loadFileURL_completionHandler(
             file_url: &NSURL,
@@ -32,24 +56,50 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Fetch the latest restore image supported by this host from the network.
+        ///
+        /// Parameter `completionHandler`: Block called after the restore image fetch has succeeded or failed.
+        /// The error parameter passed to the block is nil if the restore image was fetched successfully.
+        /// The completion handler will be invoked on an arbitrary thread.
+        ///
+        /// A VZMacOSInstaller object must be constructed with a VZMacOSRestoreImage loaded from a file on the local
+        /// filesystem. A VZMacOSRestoreImage fetched with the fetchLatestSupportedWithCompletionHandler method
+        /// will have a URL property referring to a restore image on the network. To use such a restore image, the
+        /// file referred to by the URL property should be downloaded locally (using NSURLSession or similar API). After
+        /// the restore image has been downloaded, a VZMacOSInstaller can be initialized using a URL referring to the
+        /// local file.
         #[method(fetchLatestSupportedWithCompletionHandler:)]
         pub unsafe fn fetchLatestSupportedWithCompletionHandler(
             completion_handler: &block2::Block<dyn Fn(*mut VZMacOSRestoreImage, *mut NSError)>,
         );
 
+        /// Whether this restore image is supported on the current host.
         #[method(isSupported)]
         pub unsafe fn isSupported(&self) -> bool;
 
+        /// The URL of this restore image.
+        ///
+        /// If the restore image was loaded using +[VZMacOSRestoreImage loadFileURL:completionHandler:], the value of this property will be a file URL.
+        /// If the restore image was fetched using +[VZMacOSRestoreImage fetchLatestSupportedWithCompletionHandler:],
+        /// the value of this property will be a network URL referring to an installation media file.
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
+        /// The build version this restore image contains.
         #[method_id(@__retain_semantics Other buildVersion)]
         pub unsafe fn buildVersion(&self) -> Retained<NSString>;
 
+        /// The operating system version this restore image contains.
         #[method(operatingSystemVersion)]
         pub unsafe fn operatingSystemVersion(&self) -> NSOperatingSystemVersion;
 
         #[cfg(feature = "VZMacOSConfigurationRequirements")]
+        /// The configuration requirements for the most featureful configuration supported by the current host and by this restore image.
+        ///
+        /// A VZMacOSRestoreImage can contain installation media for multiple Mac hardware models (VZMacHardwareModel). Some of these
+        /// hardware models may not be supported by the current host. The mostFeaturefulSupportedConfiguration property can be used to
+        /// determine the hardware model and configuration requirements that will provide the most complete feature set on the current
+        /// host. If none of the hardware models are supported on the current host, this property is nil.
         #[method_id(@__retain_semantics Other mostFeaturefulSupportedConfiguration)]
         pub unsafe fn mostFeaturefulSupportedConfiguration(
             &self,

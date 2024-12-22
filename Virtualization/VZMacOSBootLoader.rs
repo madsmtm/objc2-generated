@@ -7,7 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosbootloader?language=objc)
+    /// Boot loader configuration for booting macOS on Apple Silicon.
+    ///
+    /// You must use a VZMacPlatformConfiguration in conjunction with the macOS boot loader.
+    /// It is invalid to use it with any other platform configuration.
+    ///
+    /// See: VZMacPlatformConfiguration
+    ///
+    /// See: VZVirtualMachineConfiguration.platform.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosbootloader?language=objc)
     #[unsafe(super(VZBootLoader, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZBootLoader")]
@@ -28,6 +37,7 @@ unsafe impl NSObjectProtocol for VZMacOSBootLoader {}
 extern_methods!(
     #[cfg(feature = "VZBootLoader")]
     unsafe impl VZMacOSBootLoader {
+        /// Create a VZMacOSBootLoader.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

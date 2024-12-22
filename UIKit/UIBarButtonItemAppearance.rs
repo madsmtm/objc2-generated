@@ -27,11 +27,13 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Text attributes to be used for rendering title text. If the font or color are unspecified, appropriate defaults are supplied.
         #[method_id(@__retain_semantics Other titleTextAttributes)]
         pub unsafe fn titleTextAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
+        /// Setter for [`titleTextAttributes`][Self::titleTextAttributes].
         #[method(setTitleTextAttributes:)]
         pub unsafe fn setTitleTextAttributes(
             &self,
@@ -39,26 +41,32 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// An offset to apply to the button's title position
         #[method(titlePositionAdjustment)]
         pub unsafe fn titlePositionAdjustment(&self) -> UIOffset;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`titlePositionAdjustment`][Self::titlePositionAdjustment].
         #[method(setTitlePositionAdjustment:)]
         pub unsafe fn setTitlePositionAdjustment(&self, title_position_adjustment: UIOffset);
 
         #[cfg(feature = "UIImage")]
+        /// A background image to display around the button
         #[method_id(@__retain_semantics Other backgroundImage)]
         pub unsafe fn backgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`backgroundImage`][Self::backgroundImage].
         #[method(setBackgroundImage:)]
         pub unsafe fn setBackgroundImage(&self, background_image: Option<&UIImage>);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// An offset to apply to the backgroundImage.
         #[method(backgroundImagePositionAdjustment)]
         pub unsafe fn backgroundImagePositionAdjustment(&self) -> UIOffset;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`backgroundImagePositionAdjustment`][Self::backgroundImagePositionAdjustment].
         #[method(setBackgroundImagePositionAdjustment:)]
         pub unsafe fn setBackgroundImagePositionAdjustment(
             &self,
@@ -89,10 +97,12 @@ unsafe impl NSSecureCoding for UIBarButtonItemAppearance {}
 
 extern_methods!(
     unsafe impl UIBarButtonItemAppearance {
+        /// Construct an appearance for the UIBarButtonItemStylePlain style.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIBarButtonItem")]
+        /// Construct an appearance with default values for the given style.
         #[method_id(@__retain_semantics Init initWithStyle:)]
         pub unsafe fn initWithStyle(
             this: Allocated<Self>,
@@ -106,18 +116,23 @@ extern_methods!(
         pub unsafe fn copy(&self) -> Retained<Self>;
 
         #[cfg(feature = "UIBarButtonItem")]
+        /// Reset this appearance to that of a given style.
         #[method(configureWithDefaultForStyle:)]
         pub unsafe fn configureWithDefaultForStyle(&self, style: UIBarButtonItemStyle);
 
+        /// The appearance when the bar button item is in the normal control state.
         #[method_id(@__retain_semantics Other normal)]
         pub unsafe fn normal(&self) -> Retained<UIBarButtonItemStateAppearance>;
 
+        /// The appearance when the bar button item is in the highlighted control state. If unspecified, then synthesized from the normal state.
         #[method_id(@__retain_semantics Other highlighted)]
         pub unsafe fn highlighted(&self) -> Retained<UIBarButtonItemStateAppearance>;
 
+        /// The appearance when the bar button item is in the disabled control state. If unspecified, then synthesized from the normal state.
         #[method_id(@__retain_semantics Other disabled)]
         pub unsafe fn disabled(&self) -> Retained<UIBarButtonItemStateAppearance>;
 
+        /// The appearance when the bar button item is in the focused control state. If unspecified, then synthesized from the highlighted state.
         #[method_id(@__retain_semantics Other focused)]
         pub unsafe fn focused(&self) -> Retained<UIBarButtonItemStateAppearance>;
     }

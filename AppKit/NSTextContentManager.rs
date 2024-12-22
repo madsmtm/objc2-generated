@@ -123,6 +123,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSTextContentManagerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -146,6 +147,7 @@ extern_methods!(
         pub unsafe fn primaryTextLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextLayoutManager")]
+        /// Setter for [`primaryTextLayoutManager`][Self::primaryTextLayoutManager].
         #[method(setPrimaryTextLayoutManager:)]
         pub unsafe fn setPrimaryTextLayoutManager(
             &self,
@@ -187,6 +189,7 @@ extern_methods!(
         #[method(automaticallySynchronizesTextLayoutManagers)]
         pub unsafe fn automaticallySynchronizesTextLayoutManagers(&self) -> bool;
 
+        /// Setter for [`automaticallySynchronizesTextLayoutManagers`][Self::automaticallySynchronizesTextLayoutManagers].
         #[method(setAutomaticallySynchronizesTextLayoutManagers:)]
         pub unsafe fn setAutomaticallySynchronizesTextLayoutManagers(
             &self,
@@ -196,6 +199,7 @@ extern_methods!(
         #[method(automaticallySynchronizesToBackingStore)]
         pub unsafe fn automaticallySynchronizesToBackingStore(&self) -> bool;
 
+        /// Setter for [`automaticallySynchronizesToBackingStore`][Self::automaticallySynchronizesToBackingStore].
         #[method(setAutomaticallySynchronizesToBackingStore:)]
         pub unsafe fn setAutomaticallySynchronizesToBackingStore(
             &self,
@@ -280,6 +284,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSTextContentStorageDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -289,6 +294,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other attributedString)]
         pub unsafe fn attributedString(&self) -> Option<Retained<NSAttributedString>>;
 
+        /// Setter for [`attributedString`][Self::attributedString].
         #[method(setAttributedString:)]
         pub unsafe fn setAttributedString(&self, attributed_string: Option<&NSAttributedString>);
 

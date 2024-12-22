@@ -36,21 +36,43 @@ unsafe impl NSSecureCoding for MPSNNGridSample {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNGridSample {
+        /// This determines whether the pixel locations from the grid are used as the input coordinate (if set to YES) or
+        /// is added to the input coordinate (if set to NO).
+        /// The default value is YES.
         #[method(useGridValueAsInputCoordinate)]
         pub unsafe fn useGridValueAsInputCoordinate(&self) -> bool;
 
+        /// Setter for [`useGridValueAsInputCoordinate`][Self::useGridValueAsInputCoordinate].
         #[method(setUseGridValueAsInputCoordinate:)]
         pub unsafe fn setUseGridValueAsInputCoordinate(
             &self,
             use_grid_value_as_input_coordinate: bool,
         );
 
+        /// Create a grid sample kernel.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSNNGridSample object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -64,6 +86,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSNNGridSample {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

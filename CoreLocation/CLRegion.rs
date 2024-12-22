@@ -99,12 +99,14 @@ extern_methods!(
         #[method(notifyOnEntry)]
         pub unsafe fn notifyOnEntry(&self) -> bool;
 
+        /// Setter for [`notifyOnEntry`][Self::notifyOnEntry].
         #[method(setNotifyOnEntry:)]
         pub unsafe fn setNotifyOnEntry(&self, notify_on_entry: bool);
 
         #[method(notifyOnExit)]
         pub unsafe fn notifyOnExit(&self) -> bool;
 
+        /// Setter for [`notifyOnExit`][Self::notifyOnExit].
         #[method(setNotifyOnExit:)]
         pub unsafe fn setNotifyOnExit(&self, notify_on_exit: bool);
 

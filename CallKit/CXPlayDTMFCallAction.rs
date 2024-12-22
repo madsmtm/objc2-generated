@@ -78,12 +78,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other digits)]
         pub unsafe fn digits(&self) -> Retained<NSString>;
 
+        /// Setter for [`digits`][Self::digits].
         #[method(setDigits:)]
         pub unsafe fn setDigits(&self, digits: &NSString);
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> CXPlayDTMFCallActionType;
 
+        /// Setter for [`type`][Self::type].
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: CXPlayDTMFCallActionType);
     }

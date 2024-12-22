@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcadamoptimizer?language=objc)
+    /// The MLCAdamOptimizer specifies the Adam optimizer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcadamoptimizer?language=objc)
     #[unsafe(super(MLCOptimizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCOptimizer")]
@@ -30,27 +32,45 @@ unsafe impl NSObjectProtocol for MLCAdamOptimizer {}
 extern_methods!(
     #[cfg(feature = "MLCOptimizer")]
     unsafe impl MLCAdamOptimizer {
+        /// Coefficent used for computing running averages of gradient.
+        ///
+        /// The default is 0.9.
         #[deprecated]
         #[method(beta1)]
         pub unsafe fn beta1(&self) -> c_float;
 
+        /// Coefficent used for computing running averages of square of gradient.
+        ///
+        /// The default is 0.999.
         #[deprecated]
         #[method(beta2)]
         pub unsafe fn beta2(&self) -> c_float;
 
+        /// A term added to improve numerical stability.
+        ///
+        /// The default is 1e-8.
         #[deprecated]
         #[method(epsilon)]
         pub unsafe fn epsilon(&self) -> c_float;
 
+        /// Whether to use the AMSGrad variant of this algorithm
+        ///
+        /// The default is false
         #[deprecated]
         #[method(usesAMSGrad)]
         pub unsafe fn usesAMSGrad(&self) -> bool;
 
+        /// The current timestep used for the update.
+        ///
+        /// The default is 1.
         #[deprecated]
         #[method(timeStep)]
         pub unsafe fn timeStep(&self) -> NSUInteger;
 
         #[cfg(feature = "MLCOptimizerDescriptor")]
+        /// Create a MLCAdamOptimizer object with defaults
+        ///
+        /// Returns: A new MLCAdamOptimizer object.
         #[deprecated]
         #[method_id(@__retain_semantics Other optimizerWithDescriptor:)]
         pub unsafe fn optimizerWithDescriptor(
@@ -58,6 +78,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCOptimizerDescriptor")]
+        /// Create a MLCAdamOptimizer object
+        ///
+        /// Parameter `optimizerDescriptor`: The optimizer descriptor object
+        ///
+        /// Parameter `beta1`: The beta1 value
+        ///
+        /// Parameter `beta2`: The beta2 value
+        ///
+        /// Parameter `epsilon`: The epsilon value to use to improve numerical stability
+        ///
+        /// Parameter `timeStep`: The initial timestep to use for the update
+        ///
+        /// Returns: A new MLCAdamOptimizer object.
         #[deprecated]
         #[method_id(@__retain_semantics Other optimizerWithDescriptor:beta1:beta2:epsilon:timeStep:)]
         pub unsafe fn optimizerWithDescriptor_beta1_beta2_epsilon_timeStep(
@@ -69,6 +102,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCOptimizerDescriptor")]
+        /// Create a MLCAdamOptimizer object
+        ///
+        /// Parameter `optimizerDescriptor`: The optimizer descriptor object
+        ///
+        /// Parameter `beta1`: The beta1 value
+        ///
+        /// Parameter `beta2`: The beta2 value
+        ///
+        /// Parameter `epsilon`: The epsilon value to use to improve numerical stability
+        ///
+        /// Parameter `usesAMSGrad`: Whether to use the AMSGrad variant of this algorithm from the paper (https://arxiv.org/abs/1904.09237)
+        ///
+        /// Parameter `timeStep`: The initial timestep to use for the update
+        ///
+        /// Returns: A new MLCAdamOptimizer object.
         #[method_id(@__retain_semantics Other optimizerWithDescriptor:beta1:beta2:epsilon:usesAMSGrad:timeStep:)]
         pub unsafe fn optimizerWithDescriptor_beta1_beta2_epsilon_usesAMSGrad_timeStep(
             optimizer_descriptor: &MLCOptimizerDescriptor,

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksourcerevision?language=objc)
+    /// Represents a specific revision of an HKSource.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksourcerevision?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSourceRevision;
@@ -32,19 +34,32 @@ unsafe impl NSSecureCoding for HKSourceRevision {}
 extern_methods!(
     unsafe impl HKSourceRevision {
         #[cfg(feature = "HKSource")]
+        /// The HKSource of the receiver.
         #[method_id(@__retain_semantics Other source)]
         pub unsafe fn source(&self) -> Retained<HKSource>;
 
+        /// The version of the source property.
+        ///
+        /// This value is taken from the CFBundleVersion of the source. May be nil for older data.
         #[method_id(@__retain_semantics Other version)]
         pub unsafe fn version(&self) -> Option<Retained<NSString>>;
 
+        /// Represents the product type of the device running HealthKit when the object was created.
+        ///
+        /// This value may be nil for older data, which indicates an unknown product type.
         #[method_id(@__retain_semantics Other productType)]
         pub unsafe fn productType(&self) -> Option<Retained<NSString>>;
 
+        /// Represents the operating system version of the device running HealthKit when the object was created.
+        ///
+        /// iOS versions after 8.0 but prior to 8.2 are saved as 8.0, and iOS version after 8.2 but prior to 9.0
+        /// are saved as 8.2.
         #[method(operatingSystemVersion)]
         pub unsafe fn operatingSystemVersion(&self) -> NSOperatingSystemVersion;
 
         #[cfg(feature = "HKSource")]
+        /// Initializes a new HKSourceRevision with the given source, version, product type, and operating system
+        /// version.
         #[method_id(@__retain_semantics Init initWithSource:version:productType:operatingSystemVersion:)]
         pub unsafe fn initWithSource_version_productType_operatingSystemVersion(
             this: Allocated<Self>,
@@ -55,6 +70,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "HKSource")]
+        /// Initializes a new HKSourceRevision with the given source and version.
         #[method_id(@__retain_semantics Init initWithSource:version:)]
         pub unsafe fn initWithSource_version(
             this: Allocated<Self>,

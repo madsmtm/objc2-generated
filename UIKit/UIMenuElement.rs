@@ -42,6 +42,9 @@ bitflags::bitflags! {
         const Destructive = 1<<1;
         #[doc(alias = "UIMenuElementAttributesHidden")]
         const Hidden = 1<<2;
+/// Indicates that the menu should remain presented after firing
+/// the element's action rather than dismissing as it normally does.
+/// This attribute has no effect on Mac Catalyst.
         #[doc(alias = "UIMenuElementAttributesKeepsMenuPresented")]
         const KeepsMenuPresented = 1<<3;
     }
@@ -77,16 +80,20 @@ unsafe impl NSSecureCoding for UIMenuElement {}
 
 extern_methods!(
     unsafe impl UIMenuElement {
+        /// The element's title.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// The element's subtitle.
         #[method_id(@__retain_semantics Other subtitle)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`subtitle`][Self::subtitle].
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
+        /// Image to be displayed alongside the element's title.
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 

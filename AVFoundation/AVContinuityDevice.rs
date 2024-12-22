@@ -9,7 +9,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontinuitydevice?language=objc)
+    /// An AVContinuityDevice represents a physical iOS device that provides capture devices and audio session ports.
+    ///
+    ///
+    /// Each instance of AVContinuityDevice corresponds to a continuity device, such as an iPhone or iPad. Instances of AVContinuityDevice cannot be created directly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontinuitydevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVContinuityDevice;
@@ -25,17 +30,27 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// A connection ID of the continuity device.
+        ///
+        ///
+        /// This property can be used to uniquely identify a continuity device. Every available continuity device has a unique ID that regenerates across device connections and disconnections.
         #[method_id(@__retain_semantics Other connectionID)]
         pub unsafe fn connectionID(&self) -> Retained<NSUUID>;
 
+        /// Indicates whether the continuity device is connected and available to the system.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the continuity device represented by the receiver is connected and available for use. Clients can key value observe the value of this property to be notified when a continuity device is no longer available. When the value of this property becomes NO for a given instance, it will not become YES again. If the same physical continuity device again becomes available to the system, it will be represented using a new instance of AVContinuityDevice.
         #[method(isConnected)]
         pub unsafe fn isConnected(&self) -> bool;
 
         #[cfg(feature = "AVCaptureDevice")]
+        /// The video capture devices available from the continuity device.
         #[method_id(@__retain_semantics Other videoDevices)]
         pub unsafe fn videoDevices(&self) -> Retained<NSArray<AVCaptureDevice>>;
 
         #[cfg(feature = "objc2-avf-audio")]
+        /// The audio session inputs available from the continuity device.
         #[method_id(@__retain_semantics Other audioSessionInputs)]
         pub unsafe fn audioSessionInputs(&self)
             -> Retained<NSArray<AVAudioSessionPortDescription>>;

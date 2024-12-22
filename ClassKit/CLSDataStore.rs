@@ -11,6 +11,33 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsdatastoredelegate?language=objc)
     pub unsafe trait CLSDataStoreDelegate: NSObjectProtocol {
         #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
+        /// Implement to return a new context with the supplied identifier as a child of the parent context.
+        ///
+        /// This method is invoked for missing contexts in:
+        ///
+        /// ```text
+        ///  -[CLSDataStore contextsMatchingIdentifierPath:completion:]
+        /// ```
+        ///
+        /// and
+        ///
+        /// ```text
+        ///  -[CLSContext descendantMatchingIdentifierPath:completion:]
+        /// ```
+        ///
+        /// It will be called successively for each identifier in the path that is not found. This helps centralize context creation in one place.
+        ///
+        /// Note: New contexts returned in this method are automatically saved.
+        ///
+        ///
+        /// Parameter `identifier`: Identifier for the new context.
+        ///
+        /// Parameter `parentContext`: Parent of the new context.
+        ///
+        /// Parameter `parentIdentifierPath`: Ordered list of identifiers leading to the parent context.
+        ///
+        ///
+        /// Returns: The new context for the supplied identifier. The new context is automatically saved.
         #[method_id(@__retain_semantics Other createContextForIdentifier:parentContext:parentIdentifierPath:)]
         unsafe fn createContextForIdentifier_parentContext_parentIdentifierPath(
             &self,
@@ -24,7 +51,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsdatastore?language=objc)
+    /// The data store maintains and syncs your app's contexts.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clsdatastore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLSDataStore;
@@ -34,26 +63,36 @@ unsafe impl NSObjectProtocol for CLSDataStore {}
 
 extern_methods!(
     unsafe impl CLSDataStore {
+        /// The data store provides read/write access to your app's ClassKit data.
+        ///
+        /// Data written to the data store is automatically synced via iCloud across the user's devices.
         #[method_id(@__retain_semantics Other shared)]
         pub unsafe fn shared() -> Retained<CLSDataStore>;
 
         #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
+        /// Fetch the top level context for the current app.
+        ///
+        /// The main context is automatically created. Add child contexts to this context to persist them in the data store.
         #[method_id(@__retain_semantics Other mainAppContext)]
         pub unsafe fn mainAppContext(&self) -> Retained<CLSContext>;
 
         #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
+        /// Returns the context that is currently active. If no context is active, this will return nil.
         #[method_id(@__retain_semantics Other activeContext)]
         pub unsafe fn activeContext(&self) -> Option<Retained<CLSContext>>;
 
         #[cfg(all(feature = "CLSActivity", feature = "CLSObject"))]
+        /// Returns the most recently started activity that is running.
         #[method_id(@__retain_semantics Other runningActivity)]
         pub unsafe fn runningActivity(&self) -> Option<Retained<CLSActivity>>;
 
+        /// The data store delegate allows for easy population of the app's context hierarchy.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn CLSDataStoreDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -67,12 +106,18 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Save changes made in the data store.
+        ///
+        /// Save new/modified/removed contexts, activities, etc. to the local store. In case of an error -[NSError userInfo] will contain the object that caused the error under the CLSErrorObjectKey..
         #[method(saveWithCompletion:)]
         pub unsafe fn saveWithCompletion(
             &self,
             completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
 
+        /// Complete all assigned actvities.
+        ///
+        /// Marks all of the currently active assigned activities for this contextPath as complete.
         #[method(completeAllAssignedActivitiesMatching:)]
         pub unsafe fn completeAllAssignedActivitiesMatching(
             &self,
@@ -85,6 +130,11 @@ extern_methods!(
     /// Contexts
     unsafe impl CLSDataStore {
         #[cfg(all(feature = "CLSContext", feature = "CLSObject", feature = "block2"))]
+        /// Fetch contexts matching a predicate.
+        ///
+        /// For example: NSPredicate
+        /// <topic
+        /// == CLSContextTopicMath AND parent == someContext>.  Completion block may be called on a background thread.
         #[method(contextsMatchingPredicate:completion:)]
         pub unsafe fn contextsMatchingPredicate_completion(
             &self,
@@ -93,6 +143,18 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CLSContext", feature = "CLSObject", feature = "block2"))]
+        /// Returns contexts matching a set of identifiers where each identifier is the parent of the following identifier.
+        ///
+        /// For example:
+        /// `@["math-game",``"level1"]`returns two contexts where
+        /// _math-game_is the parent of
+        /// _level1._If there are any missing contexts, they will be filled in by calling the following method on the data store's delegate:
+        ///
+        /// ```text
+        ///  -[CLSDataStoreDelegate createContextForIdentifier:parentContext:parentIdentifierPath:]
+        /// ```
+        ///
+        /// If the dataStore does not have a delegate and there are missing contexts then an incomplete list of contexts will be passed to the completion handler.  Completion block may be called on a background thread.
         #[method(contextsMatchingIdentifierPath:completion:)]
         pub unsafe fn contextsMatchingIdentifierPath_completion(
             &self,
@@ -101,10 +163,18 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
+        /// Mark a context for removal.
+        ///
+        /// Save to commit removal. Removal cascades and deletes all descendants.
         #[method(removeContext:)]
         pub unsafe fn removeContext(&self, context: &CLSContext);
 
         #[cfg(all(feature = "CLSActivity", feature = "CLSObject", feature = "block2"))]
+        /// Implement to fetch the current CLSActivity instance for your document to add progress to.
+        ///
+        /// Gets the currently CLSActivity for the file. If no current activity exists, one will be created for you.
+        ///
+        /// Parameter `url`: File url for the document.
         #[method(fetchActivityForURL:completion:)]
         pub unsafe fn fetchActivityForURL_completion(
             &self,

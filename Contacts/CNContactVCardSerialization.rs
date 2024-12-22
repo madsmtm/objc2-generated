@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactvcardserialization?language=objc)
+    /// Contact vCard support.
+    ///
+    ///
+    /// This converts between a contact and its vCard representation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactvcardserialization?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactVCardSerialization;
@@ -18,16 +23,46 @@ unsafe impl NSObjectProtocol for CNContactVCardSerialization {}
 extern_methods!(
     unsafe impl CNContactVCardSerialization {
         #[cfg(feature = "CNContact")]
+        /// Descriptor for all contact keys required by vCard serialization
+        ///
+        ///
+        /// This descriptor must be passed to the fetch request if the returned
+        /// contacts are to be serialized with dataWithContacts:error:.
         #[method_id(@__retain_semantics Other descriptorForRequiredKeys)]
         pub unsafe fn descriptorForRequiredKeys() -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[cfg(feature = "CNContact")]
+        /// Serialize contacts to data.
+        ///
+        ///
+        /// The contacts to be serialized must have been fetched with
+        /// `+descriptorForRequiredKeys.`
+        ///
+        /// Parameter `contacts`: The contacts to serialize.
+        ///
+        ///
+        /// Parameter `error`: An optional outparameter. If the serialization fails, this will be set.
+        ///
+        ///
+        /// Returns: The encoded data. If the serialization fails, this will be
+        /// `nil.`
         #[method_id(@__retain_semantics Other dataWithContacts:error:_)]
         pub unsafe fn dataWithContacts_error(
             contacts: &NSArray<CNContact>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(feature = "CNContact")]
+        /// Parse data into contacts.
+        ///
+        ///
+        /// Parameter `data`: The data to parse.
+        ///
+        ///
+        /// Parameter `error`: An optional outparameter. If the parsing fails, this will be set.
+        ///
+        ///
+        /// Returns: The parsed contacts. If the parsing fails, this will be
+        /// `nil.`
         #[method_id(@__retain_semantics Other contactsWithData:error:_)]
         pub unsafe fn contactsWithData_error(
             data: &NSData,

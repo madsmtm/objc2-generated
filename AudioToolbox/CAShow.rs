@@ -6,10 +6,12 @@ use core::ptr::NonNull;
 use crate::*;
 
 extern "C-unwind" {
+    /// Print the internal state of an object to os_log.
     pub fn CAShow(in_object: NonNull<c_void>);
 }
 
 extern "C-unwind" {
+    /// Print the internal state of an object to the supplied FILE*.
     #[cfg(feature = "libc")]
     pub fn CAShowFile(in_object: NonNull<c_void>, in_file: NonNull<libc::FILE>);
 }

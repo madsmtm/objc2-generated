@@ -6,7 +6,21 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmemoryballoondevice?language=objc)
+    /// Base class representing a memory balloon device in a virtual machine.
+    ///
+    /// VZMemoryBalloonDevice should not be instantiated directly.
+    ///
+    /// Memory balloon devices are first configured on the VZVirtualMachineConfiguration through a subclass of VZMemoryBalloonDeviceConfiguration.
+    /// When a VZVirtualMachine is created from the configuration, the memory balloon devices are available through the VZVirtualMachine.memoryBalloonDevices property.
+    ///
+    /// The real type of VZMemoryBalloonDevice corresponds to the type used by the configuration.
+    /// For example, a VZVirtioTraditionalMemoryBalloonDeviceConfiguration leads to a device of type VZVirtioTraditionalMemoryBalloonDevice.
+    ///
+    /// See: VZVirtioTraditionalMemoryBalloonDevice
+    ///
+    /// See: VZVirtioTraditionalMemoryBalloonDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmemoryballoondevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMemoryBalloonDevice;

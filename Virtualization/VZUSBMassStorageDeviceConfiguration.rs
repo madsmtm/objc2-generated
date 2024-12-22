@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbmassstoragedeviceconfiguration?language=objc)
+    /// Configuration of a USB Mass Storage storage device.
+    ///
+    /// This device configuration creates a storage device that conforms to the USB Mass Storage specification.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbmassstoragedeviceconfiguration?language=objc)
     #[unsafe(super(VZStorageDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDeviceConfiguration")]
@@ -35,6 +39,11 @@ extern_methods!(
     #[cfg(feature = "VZStorageDeviceConfiguration")]
     unsafe impl VZUSBMassStorageDeviceConfiguration {
         #[cfg(feature = "VZStorageDeviceAttachment")]
+        /// Initialize a VZUSBMassStorageDeviceConfiguration with a device attachment.
+        ///
+        /// Parameter `attachment`: The storage device attachment. This defines how the virtualized device operates on the host side.
+        ///
+        /// See: VZDiskImageStorageDeviceAttachment
         #[method_id(@__retain_semantics Init initWithAttachment:)]
         pub unsafe fn initWithAttachment(
             this: Allocated<Self>,

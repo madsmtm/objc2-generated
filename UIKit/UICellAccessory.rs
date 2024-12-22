@@ -15,8 +15,11 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UICellAccessoryDisplayedState(pub NSInteger);
 impl UICellAccessoryDisplayedState {
+    /// The accessory is always displayed.
     pub const UICellAccessoryDisplayedAlways: Self = Self(0);
+    /// The accessory is displayed only when the cell is editing.
     pub const UICellAccessoryDisplayedWhenEditing: Self = Self(1);
+    /// The accessory is displayed only when the cell is not editing.
     pub const UICellAccessoryDisplayedWhenNotEditing: Self = Self(2);
 }
 
@@ -29,13 +32,18 @@ unsafe impl RefEncode for UICellAccessoryDisplayedState {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorystandarddimension?language=objc)
+    /// A special constant that can be set to the `reservedLayoutWidth` property. This requests the
+    /// system standard layout width.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorystandarddimension?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UICellAccessoryStandardDimension: CGFloat;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessory?language=objc)
+    /// Abstract base class. Do not instantiate directly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessory?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -56,31 +64,43 @@ unsafe impl NSSecureCoding for UICellAccessory {}
 
 extern_methods!(
     unsafe impl UICellAccessory {
+        /// The state(s) for which the accessory should be displayed.
         #[method(displayedState)]
         pub unsafe fn displayedState(&self) -> UICellAccessoryDisplayedState;
 
+        /// Setter for [`displayedState`][Self::displayedState].
         #[method(setDisplayedState:)]
         pub unsafe fn setDisplayedState(&self, displayed_state: UICellAccessoryDisplayedState);
 
+        /// Hidden accessories take up space in the layout, but are not visible and do not provide any behaviors.
+        /// Use this property to achieve a consistent layout across cells when some show the accessory and others do not.
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The layout width that is reserved for the accessory, inside which the accessory will be centered.
+        /// This is used to ensure horizontal alignment of different accessories in adjacent cells, even when
+        /// the actual accessory view width varies slightly. A value of 0 means the actual width of the
+        /// accessory will be used. Use UICellAccessoryStandardDimension to request the standard width.
         #[method(reservedLayoutWidth)]
         pub unsafe fn reservedLayoutWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`reservedLayoutWidth`][Self::reservedLayoutWidth].
         #[method(setReservedLayoutWidth:)]
         pub unsafe fn setReservedLayoutWidth(&self, reserved_layout_width: CGFloat);
 
         #[cfg(feature = "UIColor")]
+        /// The tint color to apply to the accessory. Default value is nil, which uses the system default.
         #[method_id(@__retain_semantics Other tintColor)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`tintColor`][Self::tintColor].
         #[method(setTintColor:)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
@@ -104,7 +124,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydisclosureindicator?language=objc)
+    /// A disclosure chevron that points in the trailing direction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydisclosureindicator?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -150,7 +172,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydetail?language=objc)
+    /// A detail (info) button.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydetail?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -172,10 +196,12 @@ unsafe impl NSSecureCoding for UICellAccessoryDetail {}
 extern_methods!(
     unsafe impl UICellAccessoryDetail {
         #[cfg(feature = "block2")]
+        /// An optional handler to call when the detail accessory is tapped. If nil, taps on the accessory are ignored.
         #[method(actionHandler)]
         pub unsafe fn actionHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`actionHandler`][Self::actionHandler].
         #[method(setActionHandler:)]
         pub unsafe fn setActionHandler(&self, action_handler: Option<&block2::Block<dyn Fn()>>);
     }
@@ -204,7 +230,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorycheckmark?language=objc)
+    /// A checkmark with default green color.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorycheckmark?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -250,7 +278,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydelete?language=objc)
+    /// A delete control (minus sign inside a circle) with default red color.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydelete?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -272,18 +302,22 @@ unsafe impl NSSecureCoding for UICellAccessoryDelete {}
 extern_methods!(
     unsafe impl UICellAccessoryDelete {
         #[cfg(feature = "UIColor")]
+        /// The background color to apply to the accessory. Default value is nil, which uses the system default.
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
 
         #[cfg(feature = "block2")]
+        /// An optional handler to call when the delete accessory is tapped. If nil, a tap will reveal any trailing swipe actions for the cell.
         #[method(actionHandler)]
         pub unsafe fn actionHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`actionHandler`][Self::actionHandler].
         #[method(setActionHandler:)]
         pub unsafe fn setActionHandler(&self, action_handler: Option<&block2::Block<dyn Fn()>>);
     }
@@ -312,7 +346,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryinsert?language=objc)
+    /// An insert control (plus sign inside a circle) with default green color.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryinsert?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -334,18 +370,22 @@ unsafe impl NSSecureCoding for UICellAccessoryInsert {}
 extern_methods!(
     unsafe impl UICellAccessoryInsert {
         #[cfg(feature = "UIColor")]
+        /// The background color to apply to the accessory. Default value is nil, which uses the system default.
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
 
         #[cfg(feature = "block2")]
+        /// An optional handler to call when the insert accessory is tapped. If nil, taps on the accessory are ignored.
         #[method(actionHandler)]
         pub unsafe fn actionHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`actionHandler`][Self::actionHandler].
         #[method(setActionHandler:)]
         pub unsafe fn setActionHandler(&self, action_handler: Option<&block2::Block<dyn Fn()>>);
     }
@@ -374,7 +414,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryreorder?language=objc)
+    /// A reorder control (three horizontal lines) with default gray color that automatically initiates interactive
+    /// reordering on the collection view when dragged (if supported).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryreorder?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -395,9 +438,11 @@ unsafe impl NSSecureCoding for UICellAccessoryReorder {}
 
 extern_methods!(
     unsafe impl UICellAccessoryReorder {
+        /// Whether a vertical separator is displayed before the accessory when it is placed after another accessory. Default is YES.
         #[method(showsVerticalSeparator)]
         pub unsafe fn showsVerticalSeparator(&self) -> bool;
 
+        /// Setter for [`showsVerticalSeparator`][Self::showsVerticalSeparator].
         #[method(setShowsVerticalSeparator:)]
         pub unsafe fn setShowsVerticalSeparator(&self, shows_vertical_separator: bool);
     }
@@ -426,7 +471,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorymultiselect?language=objc)
+    /// A two-state control whose appearance follows the selection state of the cell (empty circle when deselected,
+    /// filled circle with checkmark when selected).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorymultiselect?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -448,10 +496,12 @@ unsafe impl NSSecureCoding for UICellAccessoryMultiselect {}
 extern_methods!(
     unsafe impl UICellAccessoryMultiselect {
         #[cfg(feature = "UIColor")]
+        /// The background color to apply to the accessory. Default value is nil, which uses the system default.
         #[method_id(@__retain_semantics Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
     }
@@ -485,10 +535,15 @@ extern_methods!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UICellAccessoryOutlineDisclosureStyle(pub NSInteger);
 impl UICellAccessoryOutlineDisclosureStyle {
+    /// The style will be automatically determined based on whether the cell is configured to be a section header or not.
     #[doc(alias = "UICellAccessoryOutlineDisclosureStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// A style appropriate for a section header, where a tap anywhere in the header will toggle the expansion state
+    /// of the item (the cell cannot be selected).
     #[doc(alias = "UICellAccessoryOutlineDisclosureStyleHeader")]
     pub const Header: Self = Self(1);
+    /// A style appropriate for a cell which can be selected itself and also has nested children, where only taps on the
+    /// outline disclosure will toggle the expansion state of the item; taps on the cell will select the item as normal.
     #[doc(alias = "UICellAccessoryOutlineDisclosureStyleCell")]
     pub const Cell: Self = Self(2);
 }
@@ -502,7 +557,9 @@ unsafe impl RefEncode for UICellAccessoryOutlineDisclosureStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryoutlinedisclosure?language=objc)
+    /// A rotating disclosure chevron for use with outlines, used to indicate and toggle the expanded/collapsed state of the item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryoutlinedisclosure?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -523,17 +580,22 @@ unsafe impl NSSecureCoding for UICellAccessoryOutlineDisclosure {}
 
 extern_methods!(
     unsafe impl UICellAccessoryOutlineDisclosure {
+        /// The style of the outline disclosure accessory. Default is automatic.
         #[method(style)]
         pub unsafe fn style(&self) -> UICellAccessoryOutlineDisclosureStyle;
 
+        /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: UICellAccessoryOutlineDisclosureStyle);
 
         #[cfg(feature = "block2")]
+        /// An optional handler to call when the outline disclosure accessory is tapped. If nil, the default behavior when using
+        /// a NSDiffableDataSourceSectionSnapshot is to toggle the expand/collapse state of the item in the section snapshot.
         #[method(actionHandler)]
         pub unsafe fn actionHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`actionHandler`][Self::actionHandler].
         #[method(setActionHandler:)]
         pub unsafe fn setActionHandler(&self, action_handler: Option<&block2::Block<dyn Fn()>>);
     }
@@ -562,7 +624,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorypopupmenu?language=objc)
+    /// Up/down chevrons that indicate a tap anywhere in the cell presents a pop-up menu.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorypopupmenu?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -584,6 +648,7 @@ unsafe impl NSSecureCoding for UICellAccessoryPopUpMenu {}
 extern_methods!(
     unsafe impl UICellAccessoryPopUpMenu {
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
+        /// Creates a new pop-up menu accessory using the provided menu.
         #[method_id(@__retain_semantics Init initWithMenu:)]
         pub unsafe fn initWithMenu(this: Allocated<Self>, menu: &UIMenu) -> Retained<Self>;
 
@@ -592,12 +657,14 @@ extern_methods!(
         pub unsafe fn menu(&self) -> Retained<UIMenu>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
+        /// An optional handler to call when the selected element in the menu changes.
         #[method(selectedElementDidChangeHandler)]
         pub unsafe fn selectedElementDidChangeHandler(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<UIMenu>)>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
+        /// Setter for [`selectedElementDidChangeHandler`][Self::selectedElementDidChangeHandler].
         #[method(setSelectedElementDidChangeHandler:)]
         pub unsafe fn setSelectedElementDidChangeHandler(
             &self,
@@ -619,7 +686,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorylabel?language=objc)
+    /// A label displaying a short string of text, typically a small number such as a count for the associated item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorylabel?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -640,6 +709,7 @@ unsafe impl NSSecureCoding for UICellAccessoryLabel {}
 
 extern_methods!(
     unsafe impl UICellAccessoryLabel {
+        /// Creates a new label accessory using the provided text.
         #[method_id(@__retain_semantics Init initWithText:)]
         pub unsafe fn initWithText(this: Allocated<Self>, text: &NSString) -> Retained<Self>;
 
@@ -647,16 +717,20 @@ extern_methods!(
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UIFont")]
+        /// The font used for the label. Default is the preferred font for UIFontTextStyleBody.
         #[method_id(@__retain_semantics Other font)]
         pub unsafe fn font(&self) -> Retained<UIFont>;
 
         #[cfg(feature = "UIFont")]
+        /// Setter for [`font`][Self::font].
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: &UIFont);
 
+        /// Whether the label automatically adjusts its font based on the content size category. Default is YES.
         #[method(adjustsFontForContentSizeCategory)]
         pub unsafe fn adjustsFontForContentSizeCategory(&self) -> bool;
 
+        /// Setter for [`adjustsFontForContentSizeCategory`][Self::adjustsFontForContentSizeCategory].
         #[method(setAdjustsFontForContentSizeCategory:)]
         pub unsafe fn setAdjustsFontForContentSizeCategory(
             &self,
@@ -683,8 +757,10 @@ extern_methods!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UICellAccessoryPlacement(pub NSInteger);
 impl UICellAccessoryPlacement {
+    /// Accessory placed on the leading edge.
     #[doc(alias = "UICellAccessoryPlacementLeading")]
     pub const Leading: Self = Self(0);
+    /// Accessory placed on the trailing edge.
     #[doc(alias = "UICellAccessoryPlacementTrailing")]
     pub const Trailing: Self = Self(1);
 }
@@ -697,12 +773,15 @@ unsafe impl RefEncode for UICellAccessoryPlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryposition?language=objc)
+/// Return an index to insert the accessory at, given an array of the existing accessories on the edge (in leading to trailing order).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryposition?language=objc)
 #[cfg(feature = "block2")]
 pub type UICellAccessoryPosition =
     *mut block2::Block<dyn Fn(NonNull<NSArray<UICellAccessory>>) -> NSUInteger>;
 
 extern "C-unwind" {
+    /// Positions the accessory before the accessory matching the class specified, or at the beginning if not found.
     #[cfg(feature = "block2")]
     pub fn UICellAccessoryPositionBeforeAccessoryOfClass(
         accessory_class: &AnyClass,
@@ -710,6 +789,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Positions the accessory after the accessory matching the class specified, or at the end if not found.
     #[cfg(feature = "block2")]
     pub fn UICellAccessoryPositionAfterAccessoryOfClass(
         accessory_class: &AnyClass,
@@ -717,7 +797,9 @@ extern "C-unwind" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorycustomview?language=objc)
+    /// An accessory using a custom view.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorycustomview?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -739,6 +821,8 @@ unsafe impl NSSecureCoding for UICellAccessoryCustomView {}
 extern_methods!(
     unsafe impl UICellAccessoryCustomView {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Creates a new custom view accessory using the provided view and specified placement. The custom view must have translatesAutoresizingMaskIntoConstraints
+        /// enabled, but may use auto layout constraints internally for layout of subviews and/or to indicate its preferred size.
         #[method_id(@__retain_semantics Init initWithCustomView:placement:)]
         pub unsafe fn initWithCustomView_placement(
             this: Allocated<Self>,
@@ -753,17 +837,22 @@ extern_methods!(
         #[method(placement)]
         pub unsafe fn placement(&self) -> UICellAccessoryPlacement;
 
+        /// Whether the current frame size of the view is preserved (YES), or whether it is sized during layout of accessories (NO). Default is NO.
         #[method(maintainsFixedSize)]
         pub unsafe fn maintainsFixedSize(&self) -> bool;
 
+        /// Setter for [`maintainsFixedSize`][Self::maintainsFixedSize].
         #[method(setMaintainsFixedSize:)]
         pub unsafe fn setMaintainsFixedSize(&self, maintains_fixed_size: bool);
 
         #[cfg(feature = "block2")]
+        /// Allows customizing the relative position of the accessory amongst any other accessories displayed on the same edge.
+        /// The default is to insert the accessory at a position closest to the inside of the cell.
         #[method(position)]
         pub unsafe fn position(&self) -> UICellAccessoryPosition;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`position`][Self::position].
         #[method(setPosition:)]
         pub unsafe fn setPosition(&self, position: UICellAccessoryPosition);
 

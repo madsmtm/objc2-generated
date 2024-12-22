@@ -84,6 +84,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other input)]
         pub unsafe fn input(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`input`][Self::input].
         #[method(setInput:)]
         pub unsafe fn setInput(&self, input: Option<&AnyObject>);
 

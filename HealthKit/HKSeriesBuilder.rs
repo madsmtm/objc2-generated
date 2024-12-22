@@ -7,7 +7,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkseriesbuilder?language=objc)
+    /// An HKSeriesBuilder is an abstract class for generating HKSeriesSample objects.
+    /// Concrete subclasses generate the actual HKSeriesSample objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkseriesbuilder?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSeriesBuilder;
@@ -21,9 +24,15 @@ unsafe impl NSObjectProtocol for HKSeriesBuilder {}
 
 extern_methods!(
     unsafe impl HKSeriesBuilder {
+        /// Stop series generation and discard all collected data.
+        ///
+        /// This method informs the receiver that no more data should be collected and all
+        /// previously collected data should be deleted and the receiver will be considered
+        /// invalid. Any further calls to the receiver will result in an exception.
         #[method(discard)]
         pub unsafe fn discard(&self);
 
+        /// Use only subclass initializer methods.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

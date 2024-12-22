@@ -90,18 +90,21 @@ extern_methods!(
         #[method(imageAlignment)]
         pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
 
+        /// Setter for [`imageAlignment`][Self::imageAlignment].
         #[method(setImageAlignment:)]
         pub unsafe fn setImageAlignment(&self, image_alignment: NSImageAlignment);
 
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
+        /// Setter for [`imageScaling`][Self::imageScaling].
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
         #[method(imageFrameStyle)]
         pub unsafe fn imageFrameStyle(&self) -> NSImageFrameStyle;
 
+        /// Setter for [`imageFrameStyle`][Self::imageFrameStyle].
         #[method(setImageFrameStyle:)]
         pub unsafe fn setImageFrameStyle(&self, image_frame_style: NSImageFrameStyle);
     }

@@ -11,16 +11,19 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloadmanagerdelegate?language=objc)
     pub unsafe trait BADownloadManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "BADownload")]
+        /// A download has started.
         #[optional]
         #[method(downloadDidBegin:)]
         unsafe fn downloadDidBegin(&self, download: &BADownload);
 
         #[cfg(feature = "BADownload")]
+        /// A download has paused.
         #[optional]
         #[method(downloadDidPause:)]
         unsafe fn downloadDidPause(&self, download: &BADownload);
 
         #[cfg(feature = "BADownload")]
+        /// A download has made progress in bytes / total so far / total expected.
         #[optional]
         #[method(download:didWriteBytes:totalBytesWritten:totalBytesExpectedToWrite:)]
         unsafe fn download_didWriteBytes_totalBytesWritten_totalBytesExpectedToWrite(
@@ -32,6 +35,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "BADownload", feature = "block2"))]
+        /// A download has tried to start but gotten a challenge quest.
         #[optional]
         #[method(download:didReceiveChallenge:completionHandler:)]
         unsafe fn download_didReceiveChallenge_completionHandler(
@@ -44,11 +48,21 @@ extern_protocol!(
         );
 
         #[cfg(feature = "BADownload")]
+        /// A download has failed with a specific error.
         #[optional]
         #[method(download:failedWithError:)]
         unsafe fn download_failedWithError(&self, download: &BADownload, error: &NSError);
 
         #[cfg(feature = "BADownload")]
+        /// Download has finished.
+        ///
+        /// Parameter `fileURL`: A location to the file that has been downloaded.
+        ///
+        /// The file located at `fileURL` must be moved before this method exits scope, or it will be deleted.
+        /// It is strongly advised to move the file to its permanent destination rather than copy it.
+        ///
+        /// Warning: The file is marked by the system for deletion when the device becomes low on storage. Avoid copying or modifying
+        /// the file, as this may remove the system's ability to delete the file.
         #[optional]
         #[method(download:finishedWithFileURL:)]
         unsafe fn download_finishedWithFileURL(&self, download: &BADownload, file_url: &NSURL);
@@ -74,15 +88,18 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Gets the singleton downloader object.
         #[method_id(@__retain_semantics Other sharedManager)]
         pub unsafe fn sharedManager() -> Retained<BADownloadManager>;
 
+        /// A object confroming to BADownloadManagerDelegate to get notified when actions occur.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn BADownloadManagerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -90,12 +107,28 @@ extern_methods!(
         );
 
         #[cfg(feature = "BADownload")]
+        /// Fetches current downloads.
+        ///
+        /// Fetches the current list of scheduled or in-flight downloads queued by your application or extension.
+        ///
+        /// Parameter `error`: An error representing why the downloads could not be fetched.
+        ///
+        /// Returns: On success, returns a list of scheduled or in-flight downloads. On failure, returns nil and sets
+        /// `error.`
+        /// Warning: This method can block and should not be called from the main thread.
+        ///
+        /// See also: BADownloadManager:fetchCurrentDownloadsWithCompletionHandler
         #[method_id(@__retain_semantics Other fetchCurrentDownloads:_)]
         pub unsafe fn fetchCurrentDownloads(
             &self,
         ) -> Result<Retained<NSArray<BADownload>>, Retained<NSError>>;
 
         #[cfg(all(feature = "BADownload", feature = "block2"))]
+        /// Fetches current downloads.
+        ///
+        /// Fetches the current list of scheduled or in-flight downloads queued by your application or extension.
+        ///
+        /// Parameter `completionHandler`: A block to recieve the currently scheduled or in-flight downloads. The block is called on the same queue as all the other completion blocks in the class.
         #[method(fetchCurrentDownloadsWithCompletionHandler:)]
         pub unsafe fn fetchCurrentDownloadsWithCompletionHandler(
             &self,
@@ -103,6 +136,18 @@ extern_methods!(
         );
 
         #[cfg(feature = "BADownload")]
+        /// Schedules a background download.
+        ///
+        /// Specifies a download to schedule at a given priority. The download will automatically
+        /// start at the discretion of the system.
+        ///
+        /// Parameter `download`: A BADownload object representing a URL to be downloaded.
+        ///
+        /// Parameter `error`: A NSError representing why the BADownload could not be scheduled.
+        ///
+        /// Returns: YES if
+        /// `download`was scheduled. NO and
+        /// `error`set if the download could not be scheduled.
         #[method(scheduleDownload:error:_)]
         pub unsafe fn scheduleDownload_error(
             &self,
@@ -110,6 +155,13 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
+        /// Acquires exclusive access to the BADownloadManager across the app and application extension.
+        ///
+        /// Acquires exclusive access to the BADownloadManager across the app and application extension. This ensures that your extension and app
+        /// do not perform operations at the same time. Both the extension and app must use this API to ensure exclusive access.
+        ///
+        /// Parameter `performHandler`: A block that will be executed once exclusive control is acquired.
+        /// If an error is non-nil then a problem occurred acquiring exclusive access.
         #[method(performWithExclusiveControl:)]
         pub unsafe fn performWithExclusiveControl(
             &self,
@@ -117,6 +169,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Acquires exclusive access to the BADownloadManager across the app and application extension.
+        ///
+        /// Acquires exclusive access to the BADownloadManager across the app and application extension. This ensures that your extension and app
+        /// do not perform operations at the same time. Both the extension and app must use this API to ensure exclusive access.
+        ///
+        /// Parameter `date`: A date by which you want exclusive control acquired. If you pass +[NSDate date], control will attempt to be acquired and if it can not be, it will fail instantly.
+        ///
+        /// Parameter `performHandler`: A block that will be executed once exclusive control is acquired.
+        /// If an error is non-nil then a problem occurred acquiring exclusive access.
         #[method(performWithExclusiveControlBeforeDate:performHandler:)]
         pub unsafe fn performWithExclusiveControlBeforeDate_performHandler(
             &self,
@@ -125,6 +186,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "BADownload")]
+        /// Attempts to schedule a BADownload in foreground mode.
+        ///
+        /// Attempts to schedule a BADownload in foreground mode. This download will start (if it has not been started) immediately regrardlesss of battery or
+        /// network status. The download will remain in this foreground until the download manager is disconnected. This API only functions if the download manager is created in
+        /// the application and not the download extension. If this API is called from the download extension, NO will be returned along with a NSError with the settings
+        /// BAErrorDomain : BAErrorCodeCallFromExtensionNotAllowed. If this API is called from a app while it is in the background, NO will be returned along with a NSError
+        /// with the settings BAErrorDomain : BAErrorCodeCallFromInactiveProcessNotAllowed.
         #[method(startForegroundDownload:error:_)]
         pub unsafe fn startForegroundDownload_error(
             &self,
@@ -132,6 +200,13 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "BADownload")]
+        /// Cancels a download.
+        ///
+        /// Attempts to cancel a BADownload. If the download has not been schduled or has already completed, NO is returned along with a NSError set
+        /// to BAErrorDomain : BAErrorCodeDownloadNotScheduled.
+        ///
+        /// Returns: YES if the download is canceled. NO if the download could not be canceled,
+        /// `error`will be set with a reason why.
         #[method(cancelDownload:error:_)]
         pub unsafe fn cancelDownload_error(
             &self,

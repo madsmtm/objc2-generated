@@ -24,18 +24,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other key)]
         pub unsafe fn key(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`key`][Self::key].
         #[method(setKey:)]
         pub unsafe fn setKey(&self, key: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`value`][Self::value].
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other localizedKey)]
         pub unsafe fn localizedKey(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`localizedKey`][Self::localizedKey].
         #[method(setLocalizedKey:)]
         pub unsafe fn setLocalizedKey(&self, localized_key: Option<&NSString>);
 
@@ -108,30 +111,35 @@ extern_methods!(
         #[method_id(@__retain_semantics Other initialKey)]
         pub unsafe fn initialKey(&self) -> Retained<NSString>;
 
+        /// Setter for [`initialKey`][Self::initialKey].
         #[method(setInitialKey:)]
         pub unsafe fn setInitialKey(&self, initial_key: &NSString);
 
         #[method_id(@__retain_semantics Other initialValue)]
         pub unsafe fn initialValue(&self) -> Retained<AnyObject>;
 
+        /// Setter for [`initialValue`][Self::initialValue].
         #[method(setInitialValue:)]
         pub unsafe fn setInitialValue(&self, initial_value: &AnyObject);
 
         #[method_id(@__retain_semantics Other includedKeys)]
         pub unsafe fn includedKeys(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`includedKeys`][Self::includedKeys].
         #[method(setIncludedKeys:)]
         pub unsafe fn setIncludedKeys(&self, included_keys: &NSArray<NSString>);
 
         #[method_id(@__retain_semantics Other excludedKeys)]
         pub unsafe fn excludedKeys(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`excludedKeys`][Self::excludedKeys].
         #[method(setExcludedKeys:)]
         pub unsafe fn setExcludedKeys(&self, excluded_keys: &NSArray<NSString>);
 
         #[method_id(@__retain_semantics Other localizedKeyDictionary)]
         pub unsafe fn localizedKeyDictionary(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
+        /// Setter for [`localizedKeyDictionary`][Self::localizedKeyDictionary].
         #[method(setLocalizedKeyDictionary:)]
         pub unsafe fn setLocalizedKeyDictionary(
             &self,
@@ -141,6 +149,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedKeyTable)]
         pub unsafe fn localizedKeyTable(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`localizedKeyTable`][Self::localizedKeyTable].
         #[method(setLocalizedKeyTable:)]
         pub unsafe fn setLocalizedKeyTable(&self, localized_key_table: Option<&NSString>);
     }

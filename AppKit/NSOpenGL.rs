@@ -162,7 +162,11 @@ pub const NSOpenGLProfileVersion3_2Core: c_uint = 0x3200;
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLProfileVersion4_1Core: c_uint = 0x4100;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontextparameter?language=objc)
+/// ***************
+/// * NSOpenGLContext
+/// ***************
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontextparameter?language=objc)
 // NS_ENUM
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 #[repr(transparent)]

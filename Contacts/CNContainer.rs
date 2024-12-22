@@ -31,7 +31,12 @@ unsafe impl RefEncode for CNContainerType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainer?language=objc)
+    /// An immutable value object representing a container.
+    ///
+    ///
+    /// CNContainer is thread safe.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContainer;
@@ -51,6 +56,7 @@ unsafe impl NSSecureCoding for CNContainer {}
 
 extern_methods!(
     unsafe impl CNContainer {
+        /// The identifier is unique among containers on the device. It can be saved and used for fetching containers next application launch.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 

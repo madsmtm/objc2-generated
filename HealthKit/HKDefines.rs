@@ -11,7 +11,17 @@ extern "C" {
     pub static HKErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerrorcode?language=objc)
+/// perform the requested operation.
+///
+///
+///
+///
+///
+/// required data types.
+///
+/// query's result could not be meaningfully computed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -69,7 +79,13 @@ unsafe impl RefEncode for HKUpdateFrequency {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationstatus?language=objc)
+/// This enumerated type is used to indicate the currently granted authorization status for a specific
+/// HKObjectType.
+///
+///
+/// application may save objects of the specified type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -91,7 +107,12 @@ unsafe impl RefEncode for HKAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationrequeststatus?language=objc)
+/// This enumerated type is used to indicate whether it is necessary to request authorization from the user.
+///
+///
+/// an error occurred.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationrequeststatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -113,6 +134,7 @@ unsafe impl RefEncode for HKAuthorizationRequestStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Returns the set of `HKCategoryValueSleepAnalysis` values that are considered to be asleep.
 #[inline]
 pub unsafe extern "C-unwind" fn HKCategoryValueSleepAnalysisAsleepValues(
 ) -> Retained<NSSet<NSNumber>> {

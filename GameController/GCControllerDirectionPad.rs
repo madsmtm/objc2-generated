@@ -6,13 +6,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpadvaluechangedhandler?language=objc)
+/// Set this block if you want to be notified when the value on this axis changes.
+///
+///
+/// Parameter `dpad`: the direction pad collection whose axis have been modified.
+///
+/// Parameter `xValue`: the value the x axis was set to at the time the valueChangedHandler fired.
+///
+/// Parameter `yValue`: the value the y axis was set to at the time the valueChangedHandler fired.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpadvaluechangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerDirectionPadValueChangedHandler =
     *mut block2::Block<dyn Fn(NonNull<GCControllerDirectionPad>, c_float, c_float)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad?language=objc)
+    /// A direction pad is a common grouping of 2 axis inputs where the input can also be interpreted as 2 sets of mutually exclusive button pairs.
+    /// Only one button in each pair, {up, down} and {left, right}, can be pressed at any one time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad?language=objc)
     #[unsafe(super(GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCControllerElement")]
@@ -30,6 +42,7 @@ extern_methods!(
         pub unsafe fn valueChangedHandler(&self) -> GCControllerDirectionPadValueChangedHandler;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         #[method(setValueChangedHandler:)]
         pub unsafe fn setValueChangedHandler(
             &self,
@@ -60,6 +73,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Other right)]
         pub unsafe fn right(&self) -> Retained<GCControllerButtonInput>;
 
+        /// Sets the normalized value for the direction pad's axis inputs. Will update the states of the direction pad's button inputs as well.
+        ///
+        ///
+        /// Parameter `xAxis`: the value to set the xAxis of the touchpad to.
+        ///
+        /// Parameter `yAxis`: the value to set the yAxis of the touchpad to.
+        ///
+        /// Note: If the controller's snapshot flag is set to NO, this method has no effect.
+        ///
+        /// See: value
+        ///
+        /// See: pressed
         #[method(setValueForXAxis:yAxis:)]
         pub unsafe fn setValueForXAxis_yAxis(&self, x_axis: c_float, y_axis: c_float);
     }

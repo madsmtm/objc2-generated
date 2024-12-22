@@ -8,17 +8,39 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnnormalizedidentityrect?language=objc)
+    /// The normalized identity rect of { {0, 0}, {1, 1} }.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnnormalizedidentityrect?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static VNNormalizedIdentityRect: CGRect;
 }
 
 extern "C-unwind" {
+    /// Determines whether or not the normalized rect describes the identity rect of { {0, 0}, {1, 1} }.
+    ///
+    ///
+    /// Parameter `normalizedRect`: The rectangle in the normalized coordinate space of [0..1].
+    ///
+    ///
+    /// Returns: YES if the rect is the identity rect; otherwise, NO.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNNormalizedRectIsIdentityRect(normalized_rect: CGRect) -> bool;
 }
 
 extern "C-unwind" {
+    /// Returns a point in (possibly non-integral) image coordinates that is projected from a point in a normalized coordinate space.
+    ///
+    ///
+    /// Parameter `normalizedPoint`: The point in the normalized coordinate space of [0..1].
+    ///
+    ///
+    /// Parameter `imageWidth`: The pixel width of the image.
+    ///
+    ///
+    /// Parameter `imageHeight`: The pixel height of the image.
+    ///
+    ///
+    /// Returns: the point in image coordinates.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNImagePointForNormalizedPoint(
         normalized_point: CGPoint,
@@ -28,6 +50,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a point in (possibly non-integral) image coordinates that is projected from a point in a normalized coordinate space taking the region of interest (roi) into account.
+    ///
+    ///
+    /// Parameter `normalizedPoint`: The point in the normalized coordinate space of [0..1].
+    ///
+    ///
+    /// Parameter `imageWidth`: The pixel width of the image.
+    ///
+    ///
+    /// Parameter `imageHeight`: The pixel height of the image.
+    ///
+    ///
+    /// Parameter `roi`: The region of interest on which the normalized point was based on.
+    ///
+    ///
+    /// Returns: the point in image coordinates from a normalized point that was reported in relation to a region of interest.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNImagePointForNormalizedPointUsingRegionOfInterest(
         normalized_point: CGPoint,
@@ -38,6 +76,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a point in normalized coordinate space that is projected from a point in a image coordinates
+    ///
+    ///
+    /// Parameter `imagePoint`: The point in image coordinate space.
+    ///
+    ///
+    /// Parameter `imageWidth`: The pixel width of the image.
+    ///
+    ///
+    /// Parameter `imageHeight`: The pixel height of the image.
+    ///
+    ///
+    /// Returns: the point in normalized coordinates.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNNormalizedPointForImagePoint(
         image_point: CGPoint,
@@ -47,6 +98,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a point in normalized coordinate space within a spedified regioin of interest (roi) that is projected from a point in a image coordinates
+    ///
+    ///
+    /// Parameter `imagePoint`: The point in image coordinate space.
+    ///
+    ///
+    /// Parameter `imageWidth`: The pixel width of the image.
+    ///
+    ///
+    /// Parameter `imageHeight`: The pixel height of the image.
+    ///
+    ///
+    /// Parameter `roi`: The region of interest on which the normalized point will based on.
+    ///
+    ///
+    /// Returns: the point in normalized coordinates in relation to the region of interest.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNNormalizedPointForImagePointUsingRegionOfInterest(
         image_point: CGPoint,
@@ -57,6 +124,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a rectangle in (possibly non-integral) image coordinates that is projected from a rectangle in a normalized coordinate space.
+    ///
+    ///
+    /// Parameter `normalizedRect`: The rectangle in the normalized coordinate space of [0..1].
+    ///
+    ///
+    /// Parameter `imageWidth`: The pixel width of the image.
+    ///
+    ///
+    /// Parameter `imageHeight`: The pixel height of the image.
+    ///
+    ///
+    /// Returns: the rectangle in pixel coordinates.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNImageRectForNormalizedRect(
         normalized_rect: CGRect,
@@ -66,6 +146,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a rectangle in (possibly non-integral) image coordinates that is projected from a rectangle in a normalized coordinate space taking the region of interest (roi) into account.
+    ///
+    ///
+    /// Parameter `normalizedRect`: The rectangle in the normalized coordinate space of [0..1].
+    ///
+    ///
+    /// Parameter `imageWidth`: The pixel width of the image.
+    ///
+    ///
+    /// Parameter `imageHeight`: The pixel height of the image.
+    ///
+    ///
+    /// Parameter `roi`: The region of interest on which the normalized point was based on.
+    ///
+    ///
+    /// Returns: the rectangle in pixel coordinates from a normalized rectangle that was reported in relation to a region of interest.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNImageRectForNormalizedRectUsingRegionOfInterest(
         normalized_rect: CGRect,
@@ -76,6 +172,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns an image rectangle in normalized coordinates.
+    ///
+    ///
+    /// Parameter `imageRect`: The rectangle in image coordinate space.
+    ///
+    ///
+    /// Parameter `imageWidth`: The pixel width of the image.
+    ///
+    ///
+    /// Parameter `imageHeight`: The pixel height of the image.
+    ///
+    ///
+    /// Returns: the normalized rectangle.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNNormalizedRectForImageRect(
         image_rect: CGRect,
@@ -85,6 +194,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns an image rectangle in normalized coordinates  in relation to the region of interest.
+    ///
+    ///
+    /// Parameter `imageRect`: The rectangle in image coordinate space.
+    ///
+    ///
+    /// Parameter `imageWidth`: The pixel width of the image.
+    ///
+    ///
+    /// Parameter `imageHeight`: The pixel height of the image.
+    ///
+    ///
+    /// Parameter `roi`: The region of interest on which the normalized rect will be based on.
+    ///
+    ///
+    /// Returns: the normalized rectangle in relation to the region of interest.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn VNNormalizedRectForImageRectUsingRegionOfInterest(
         image_rect: CGRect,
@@ -95,6 +220,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtain the size, in bytes, of a given element type.
+    ///
+    ///
+    /// Parameter `elementType`: The element type.
+    ///
+    ///
+    /// Returns: a byte count, or 0 if the element type is unknown.
     #[cfg(feature = "VNTypes")]
     pub fn VNElementTypeSize(element_type: VNElementType) -> NSUInteger;
 }

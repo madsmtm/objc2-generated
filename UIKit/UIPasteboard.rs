@@ -26,58 +26,80 @@ extern "C" {
 pub type UIPasteboardDetectionPattern = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternprobableweburl?language=objc)
+    /// NSString value, suitable for implementing "Paste and Go"
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternprobableweburl?language=objc)
     pub static UIPasteboardDetectionPatternProbableWebURL: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternprobablewebsearch?language=objc)
+    /// NSString value, suitable for implementing "Paste and Search"
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternprobablewebsearch?language=objc)
     pub static UIPasteboardDetectionPatternProbableWebSearch: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternnumber?language=objc)
+    /// NSNumber value
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternnumber?language=objc)
     pub static UIPasteboardDetectionPatternNumber: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternlink?language=objc)
+    /// Array of DDMatchLink values
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternlink?language=objc)
     pub static UIPasteboardDetectionPatternLink: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternphonenumber?language=objc)
+    /// Array of DDMatchPhoneNumber values
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternphonenumber?language=objc)
     pub static UIPasteboardDetectionPatternPhoneNumber: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternemailaddress?language=objc)
+    /// Array of DDMatchEmailAddress values
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternemailaddress?language=objc)
     pub static UIPasteboardDetectionPatternEmailAddress: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternpostaladdress?language=objc)
+    /// Array of DDMatchAddress values
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternpostaladdress?language=objc)
     pub static UIPasteboardDetectionPatternPostalAddress: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatterncalendarevent?language=objc)
+    /// Array of DDMatchCalendarEvent values
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatterncalendarevent?language=objc)
     pub static UIPasteboardDetectionPatternCalendarEvent: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternshipmenttrackingnumber?language=objc)
+    /// Array of DDMatchShipmentTrackingNumber values
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternshipmenttrackingnumber?language=objc)
     pub static UIPasteboardDetectionPatternShipmentTrackingNumber:
         &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternflightnumber?language=objc)
+    /// Array of DDMatchFlightNumber values
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternflightnumber?language=objc)
     pub static UIPasteboardDetectionPatternFlightNumber: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternmoneyamount?language=objc)
+    /// Array of DDMatchMoneyAmount values
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternmoneyamount?language=objc)
     pub static UIPasteboardDetectionPatternMoneyAmount: &'static UIPasteboardDetectionPattern;
 }
 
@@ -141,6 +163,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other itemProviders)]
         pub unsafe fn itemProviders(&self) -> Retained<NSArray<NSItemProvider>>;
 
+        /// Setter for [`itemProviders`][Self::itemProviders].
         #[method(setItemProviders:)]
         pub unsafe fn setItemProviders(&self, item_providers: &NSArray<NSItemProvider>);
 
@@ -233,6 +256,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other items)]
         pub unsafe fn items(&self) -> Retained<NSArray<NSDictionary<NSString, AnyObject>>>;
 
+        /// Setter for [`items`][Self::items].
         #[method(setItems:)]
         pub unsafe fn setItems(&self, items: &NSArray<NSDictionary<NSString, AnyObject>>);
 
@@ -249,24 +273,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`string`][Self::string].
         #[method(setString:)]
         pub unsafe fn setString(&self, string: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other strings)]
         pub unsafe fn strings(&self) -> Option<Retained<NSArray<NSString>>>;
 
+        /// Setter for [`strings`][Self::strings].
         #[method(setStrings:)]
         pub unsafe fn setStrings(&self, strings: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other URLs)]
         pub unsafe fn URLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
+        /// Setter for [`URLs`][Self::URLs].
         #[method(setURLs:)]
         pub unsafe fn setURLs(&self, ur_ls: Option<&NSArray<NSURL>>);
 
@@ -275,6 +303,7 @@ extern_methods!(
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
@@ -283,6 +312,7 @@ extern_methods!(
         pub unsafe fn images(&self) -> Option<Retained<NSArray<UIImage>>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`images`][Self::images].
         #[method(setImages:)]
         pub unsafe fn setImages(&self, images: Option<&NSArray<UIImage>>);
 
@@ -291,6 +321,7 @@ extern_methods!(
         pub unsafe fn color(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: Option<&UIColor>);
 
@@ -299,6 +330,7 @@ extern_methods!(
         pub unsafe fn colors(&self) -> Option<Retained<NSArray<UIColor>>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`colors`][Self::colors].
         #[method(setColors:)]
         pub unsafe fn setColors(&self, colors: Option<&NSArray<UIColor>>);
 
@@ -315,6 +347,12 @@ extern_methods!(
         pub unsafe fn hasColors(&self) -> bool;
 
         #[cfg(feature = "block2")]
+        /// Detects patterns in the first pasteboard item.
+        ///
+        ///
+        /// Parameter `patterns`: Detect only these patterns.
+        ///
+        /// Parameter `completionHandler`: Receives which patterns were detected, or an error.
         #[method(detectPatternsForPatterns:completionHandler:)]
         pub unsafe fn detectPatternsForPatterns_completionHandler(
             &self,
@@ -325,6 +363,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Detects patterns in the specified pasteboard items.
+        ///
+        ///
+        /// Parameter `patterns`: Detect only these patterns.
+        ///
+        /// Parameter `itemSet`: Specifies which pasteboard items by their position. Nil means all items.
+        ///
+        /// Parameter `completionHandler`: Receives which patterns were detected per item specified,
+        /// or an error.
         #[method(detectPatternsForPatterns:inItemSet:completionHandler:)]
         pub unsafe fn detectPatternsForPatterns_inItemSet_completionHandler(
             &self,
@@ -336,6 +383,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Detects patterns and corresponding values in the first pasteboard item.
+        ///
+        ///
+        /// Parameter `patterns`: Detect only these patterns.
+        ///
+        /// Parameter `completionHandler`: Receives which patterns and values were detected, or an error.
         #[method(detectValuesForPatterns:completionHandler:)]
         pub unsafe fn detectValuesForPatterns_completionHandler(
             &self,
@@ -346,6 +399,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Detects patterns and corresponding values in the specified pasteboard items.
+        ///
+        ///
+        /// Parameter `patterns`: Detect only these patterns.
+        ///
+        /// Parameter `itemSet`: Specifies which pasteboard items by their position. Nil means all items.
+        ///
+        /// Parameter `completionHandler`: Receives which patterns and values were detected per item specified,
+        /// or an error.
         #[method(detectValuesForPatterns:inItemSet:completionHandler:)]
         pub unsafe fn detectValuesForPatterns_inItemSet_completionHandler(
             &self,

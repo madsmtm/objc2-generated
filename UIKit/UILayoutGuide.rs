@@ -33,12 +33,14 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`owningView`][Self::owningView].
         #[method(setOwningView:)]
         pub unsafe fn setOwningView(&self, owning_view: Option<&UIView>);
 
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
+        /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: &NSString);
 

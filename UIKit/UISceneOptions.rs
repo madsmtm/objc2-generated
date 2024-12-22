@@ -104,6 +104,7 @@ extern_methods!(
         #[method(universalLinksOnly)]
         pub unsafe fn universalLinksOnly(&self) -> bool;
 
+        /// Setter for [`universalLinksOnly`][Self::universalLinksOnly].
         #[method(setUniversalLinksOnly:)]
         pub unsafe fn setUniversalLinksOnly(&self, universal_links_only: bool);
 
@@ -112,6 +113,7 @@ extern_methods!(
         pub unsafe fn eventAttribution(&self) -> Option<Retained<UIEventAttribution>>;
 
         #[cfg(feature = "UIEventAttribution")]
+        /// Setter for [`eventAttribution`][Self::eventAttribution].
         #[method(setEventAttribution:)]
         pub unsafe fn setEventAttribution(&self, event_attribution: Option<&UIEventAttribution>);
     }
@@ -169,12 +171,14 @@ extern_methods!(
         pub unsafe fn requestingScene(&self) -> Option<Retained<UIScene>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
+        /// Setter for [`requestingScene`][Self::requestingScene].
         #[method(setRequestingScene:)]
         pub unsafe fn setRequestingScene(&self, requesting_scene: Option<&UIScene>);
 
         #[method(collectionJoinBehavior)]
         pub unsafe fn collectionJoinBehavior(&self) -> UISceneCollectionJoinBehavior;
 
+        /// Setter for [`collectionJoinBehavior`][Self::collectionJoinBehavior].
         #[method(setCollectionJoinBehavior:)]
         pub unsafe fn setCollectionJoinBehavior(
             &self,

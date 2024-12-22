@@ -8,9 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gctouchedstateinput?language=objc)
+    /// An object conforming to
+    /// `GCTouchedStateInput`represents the touched state of
+    /// an element.
+    ///
+    /// Some buttons feature capacitive touch capabilities, where the user can touch
+    /// the button without pressing it.  In such cases, a button can be touched without
+    /// being pressed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gctouchedstateinput?language=objc)
     pub unsafe trait GCTouchedStateInput: NSObjectProtocol {
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
+        /// Set this block if you want to be notified when the touched state changes.
         #[method(touchedDidChangeHandler)]
         unsafe fn touchedDidChangeHandler(
             &self,
@@ -23,6 +32,7 @@ extern_protocol!(
         >;
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
+        /// Setter for [`touchedDidChangeHandler`][Self::touchedDidChangeHandler].
         #[method(setTouchedDidChangeHandler:)]
         unsafe fn setTouchedDidChangeHandler(
             &self,
@@ -37,16 +47,37 @@ extern_protocol!(
             >,
         );
 
+        /// Some buttons feature capacitive touch capabilities, where the user can touch
+        /// the button without pressing it. In such cases, a button will be touched before
+        /// it is pressed.
+        ///
+        ///
+        /// See: touchedDidChangeHandler
+        ///
+        /// See: GCPressedStateInput
         #[method(isTouched)]
         unsafe fn isTouched(&self) -> bool;
 
+        /// The timestamp of the last touched state change.
+        ///
+        /// This time interval is not relative to any specific point in time.  You can
+        /// subtract a previous timestamp from the returned timestamp to determine the time
+        /// (in seconds) between changes to the value.
         #[method(lastTouchedStateTimestamp)]
         unsafe fn lastTouchedStateTimestamp(&self) -> NSTimeInterval;
 
+        /// The interval (in seconds) between the timestamp of the last touched state
+        /// change and the current time.
+        ///
+        /// This should be treated as a lower bound of the event latency.  It may not
+        /// include (wired or wireless) transmission latency, or latency accrued on
+        /// the device before the event was transmitted to the host.
         #[method(lastTouchedStateLatency)]
         unsafe fn lastTouchedStateLatency(&self) -> NSTimeInterval;
 
         #[cfg(feature = "GCPhysicalInputSource")]
+        /// An object describing the physical action(s) the user performs to manipulate
+        /// this input.
         #[method_id(@__retain_semantics Other sources)]
         unsafe fn sources(&self) -> Retained<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

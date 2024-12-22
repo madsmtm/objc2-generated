@@ -78,18 +78,21 @@ extern_methods!(
         #[method(dateTimeStyle)]
         pub unsafe fn dateTimeStyle(&self) -> NSRelativeDateTimeFormatterStyle;
 
+        /// Setter for [`dateTimeStyle`][Self::dateTimeStyle].
         #[method(setDateTimeStyle:)]
         pub unsafe fn setDateTimeStyle(&self, date_time_style: NSRelativeDateTimeFormatterStyle);
 
         #[method(unitsStyle)]
         pub unsafe fn unitsStyle(&self) -> NSRelativeDateTimeFormatterUnitsStyle;
 
+        /// Setter for [`unitsStyle`][Self::unitsStyle].
         #[method(setUnitsStyle:)]
         pub unsafe fn setUnitsStyle(&self, units_style: NSRelativeDateTimeFormatterUnitsStyle);
 
         #[method(formattingContext)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
 
+        /// Setter for [`formattingContext`][Self::formattingContext].
         #[method(setFormattingContext:)]
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
@@ -98,6 +101,7 @@ extern_methods!(
         pub unsafe fn calendar(&self) -> Retained<NSCalendar>;
 
         #[cfg(feature = "NSCalendar")]
+        /// Setter for [`calendar`][Self::calendar].
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
@@ -106,6 +110,7 @@ extern_methods!(
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
+        /// Setter for [`locale`][Self::locale].
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 

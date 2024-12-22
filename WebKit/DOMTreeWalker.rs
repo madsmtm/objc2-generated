@@ -54,6 +54,7 @@ extern_methods!(
         pub unsafe fn currentNode(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
+        /// Setter for [`currentNode`][Self::currentNode].
         #[deprecated]
         #[method(setCurrentNode:)]
         pub unsafe fn setCurrentNode(&self, current_node: Option<&DOMNode>);

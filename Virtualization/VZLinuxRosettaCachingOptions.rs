@@ -6,7 +6,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettacachingoptions?language=objc)
+    /// Base class for a VZLinuxRosettaCachingOptions.
+    ///
+    /// VZLinuxRosettaCachingOptions define the communication mechanism between the Rosetta daemon and the Rosetta runtime.
+    ///
+    /// VZLinuxRosettaCachingOptions should not be instantiated directly.
+    /// One of its subclasses like VZLinuxRosettaUnixSocketCachingOptions or VZLinuxRosettaAbstractCachingOptions should be used instead.
+    ///
+    ///
+    /// See: VZLinuxRosettaUnixSocketCachingOptions
+    ///
+    /// See: VZLinuxRosettaAbstractCachingOptions
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettacachingoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZLinuxRosettaCachingOptions;

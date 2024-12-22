@@ -167,6 +167,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UICloudSharingControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -180,6 +181,7 @@ extern_methods!(
         #[method(availablePermissions)]
         pub unsafe fn availablePermissions(&self) -> UICloudSharingPermissionOptions;
 
+        /// Setter for [`availablePermissions`][Self::availablePermissions].
         #[method(setAvailablePermissions:)]
         pub unsafe fn setAvailablePermissions(
             &self,

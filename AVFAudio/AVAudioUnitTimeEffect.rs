@@ -10,7 +10,13 @@ use objc2_audio_toolbox::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittimeeffect?language=objc)
+    /// an AVAudioUnit that processes audio in non real-time
+    ///
+    /// An AVAudioUnitTimeEffect represents an audio unit of type aufc.
+    /// These effects do not process audio in real-time. The varispeed
+    /// unit is an example of a time effect unit.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittimeeffect?language=objc)
     #[unsafe(super(AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
@@ -25,15 +31,23 @@ extern_methods!(
     unsafe impl AVAudioUnitTimeEffect {
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// create an AVAudioUnitTimeEffect object
+        ///
+        ///
+        /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be initialized
+        ///
+        /// The componentType must be kAudioUnitType_FormatConverter
         #[method_id(@__retain_semantics Init initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
             audio_component_description: AudioComponentDescription,
         ) -> Retained<Self>;
 
+        /// bypass state of the audio unit
         #[method(bypass)]
         pub unsafe fn bypass(&self) -> bool;
 
+        /// Setter for [`bypass`][Self::bypass].
         #[method(setBypass:)]
         pub unsafe fn setBypass(&self, bypass: bool);
     }

@@ -66,11 +66,14 @@ unsafe impl UIInteraction for UIContextMenuInteraction {}
 
 extern_methods!(
     unsafe impl UIContextMenuInteraction {
+        /// The interaction's delegate.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIContextMenuInteractionDelegate>>>;
 
+        /// Appearance of the menu this interaction has presented or is about to present. Since it may be
+        /// dependent on the user's input method, the appearance is only known while the interaction is active.
         #[method(menuAppearance)]
         pub unsafe fn menuAppearance(&self) -> UIContextMenuInteractionAppearance;
 
@@ -91,16 +94,35 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
+        /// Returns the interaction's location within the given view.
+        ///
+        ///
+        /// Parameter `view`: The view in which to locate the interaction.
         #[method(locationInView:)]
         pub unsafe fn locationInView(&self, view: Option<&UIView>) -> CGPoint;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
+        /// Call to update the currently visible menu. This method does nothing if called before a menu is presented.
+        ///
+        ///
+        /// Parameter `block`: Called with a mutable copy of the currently visible menu. Modify and return this menu (or an entirely
+        /// new one) to change the currently visible menu items. Starting in iOS 15, this block is called once for
+        /// every visible submenu. For example, in the following hierarchy:
+        ///
+        /// *- Root Menu
+        /// *- Submenu A
+        /// *- Submenu B
+        /// *- Submenu C
+        ///
+        /// If Submenu A is visible, the block is called twice (once for the Root Menu and once for Submenu A).
+        /// If both A and B are visible, it's called 3 times (for the Root Menu, A, and B).
         #[method(updateVisibleMenuWithBlock:)]
         pub unsafe fn updateVisibleMenuWithBlock(
             &self,
             block: &block2::Block<dyn Fn(NonNull<UIMenu>) -> NonNull<UIMenu> + '_>,
         );
 
+        /// Dismisses the currently presented menu (if there is one).
         #[method(dismissMenu)]
         pub unsafe fn dismissMenu(&self);
     }
@@ -112,6 +134,7 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// Displayed preview view controller.
         #[method_id(@__retain_semantics Other previewViewController)]
         unsafe fn previewViewController(&self) -> Option<Retained<UIViewController>>;
 
@@ -132,9 +155,11 @@ extern_protocol!(
     pub unsafe trait UIContextMenuInteractionCommitAnimating:
         UIContextMenuInteractionAnimating + MainThreadOnly
     {
+        /// Preferred animation style for the menu's commit action. Triggered when the user taps the preview.
         #[method(preferredCommitStyle)]
         unsafe fn preferredCommitStyle(&self) -> UIContextMenuInteractionCommitStyle;
 
+        /// Setter for [`preferredCommitStyle`][Self::preferredCommitStyle].
         #[method(setPreferredCommitStyle:)]
         unsafe fn setPreferredCommitStyle(
             &self,
@@ -154,6 +179,18 @@ extern_protocol!(
             feature = "UIContextMenuConfiguration",
             feature = "objc2-core-foundation"
         ))]
+        /// Called when the interaction begins.
+        ///
+        ///
+        /// Parameter `interaction`: The UIContextMenuInteraction.
+        ///
+        /// Parameter `location`: The location of the interaction in its view.
+        ///
+        ///
+        /// Returns: A UIContextMenuConfiguration describing the menu to be presented. Return nil to prevent the interaction from beginning.
+        /// Returning an empty configuration causes the interaction to begin then fail with a cancellation effect. You might use this
+        /// to indicate to users that it's possible for a menu to be presented from this view, but that there are no actions to
+        /// present at this particular time.
         #[method_id(@__retain_semantics Other contextMenuInteraction:configurationForMenuAtLocation:)]
         unsafe fn contextMenuInteraction_configurationForMenuAtLocation(
             &self,
@@ -162,6 +199,14 @@ extern_protocol!(
         ) -> Option<Retained<UIContextMenuConfiguration>>;
 
         #[cfg(all(feature = "UIContextMenuConfiguration", feature = "UITargetedPreview"))]
+        /// Called when a context menu interaction begins. Return a UITargetedPreview corresponding to the item with the given identifier.
+        ///
+        ///
+        /// Parameter `interaction`: The UIContextMenuInteraction.
+        ///
+        /// Parameter `configuration`: Configuration of the menu that will be presented if the interaction proceeds.
+        ///
+        /// Parameter `identifier`: Identifier for the item whose preview is being requested.
         #[optional]
         #[method_id(@__retain_semantics Other contextMenuInteraction:configuration:highlightPreviewForItemWithIdentifier:)]
         unsafe fn contextMenuInteraction_configuration_highlightPreviewForItemWithIdentifier(
@@ -172,6 +217,14 @@ extern_protocol!(
         ) -> Option<Retained<UITargetedPreview>>;
 
         #[cfg(all(feature = "UIContextMenuConfiguration", feature = "UITargetedPreview"))]
+        /// Called when a context menu is dismissed. Return a UITargetedPreview corresponding to the item with the given identifier.
+        ///
+        ///
+        /// Parameter `interaction`: The UIContextMenuInteraction.
+        ///
+        /// Parameter `configuration`: Configuration of the menu being dismissed.
+        ///
+        /// Parameter `identifier`: Identifier for the item whose preview is being requested.
         #[optional]
         #[method_id(@__retain_semantics Other contextMenuInteraction:configuration:dismissalPreviewForItemWithIdentifier:)]
         unsafe fn contextMenuInteraction_configuration_dismissalPreviewForItemWithIdentifier(
@@ -182,6 +235,14 @@ extern_protocol!(
         ) -> Option<Retained<UITargetedPreview>>;
 
         #[cfg(feature = "UIContextMenuConfiguration")]
+        /// Called when the interaction is about to "commit" in response to the user tapping the preview.
+        ///
+        ///
+        /// Parameter `interaction`: The UIContextMenuInteraction.
+        ///
+        /// Parameter `configuration`: Configuration of the currently displayed menu.
+        ///
+        /// Parameter `animator`: Commit animator. Add animations to this object to run them alongside the commit transition.
         #[optional]
         #[method(contextMenuInteraction:willPerformPreviewActionForMenuWithConfiguration:animator:)]
         unsafe fn contextMenuInteraction_willPerformPreviewActionForMenuWithConfiguration_animator(
@@ -192,6 +253,14 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UIContextMenuConfiguration")]
+        /// Called when the interaction is about to display a menu.
+        ///
+        ///
+        /// Parameter `interaction`: The UIContextMenuInteraction.
+        ///
+        /// Parameter `configuration`: The configuration of the menu about to be displayed by this interaction.
+        ///
+        /// Parameter `animator`: Appearance animator. Add animations to run them alongside the appearance transition.
         #[optional]
         #[method(contextMenuInteraction:willDisplayMenuForConfiguration:animator:)]
         unsafe fn contextMenuInteraction_willDisplayMenuForConfiguration_animator(
@@ -202,6 +271,14 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UIContextMenuConfiguration")]
+        /// Called when the interaction is about to end.
+        ///
+        ///
+        /// Parameter `interaction`: The UIContextMenuInteraction.
+        ///
+        /// Parameter `configuration`: Ending configuration.
+        ///
+        /// Parameter `animator`: Disappearance animator. Add animations to run them alongside the disappearance transition.
         #[optional]
         #[method(contextMenuInteraction:willEndForConfiguration:animator:)]
         unsafe fn contextMenuInteraction_willEndForConfiguration_animator(
@@ -212,6 +289,12 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIContextMenuConfiguration", feature = "UITargetedPreview"))]
+        /// Called when the interaction begins. Return a UITargetedPreview describing the desired highlight preview.
+        ///
+        ///
+        /// Parameter `interaction`: The UIContextMenuInteraction requesting a highlighting preview.
+        ///
+        /// Parameter `configuration`: The configuration of the menu about to be displayed by this interaction.
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other contextMenuInteraction:previewForHighlightingMenuWithConfiguration:)]
@@ -222,6 +305,17 @@ extern_protocol!(
         ) -> Option<Retained<UITargetedPreview>>;
 
         #[cfg(all(feature = "UIContextMenuConfiguration", feature = "UITargetedPreview"))]
+        /// Called when the interaction is about to dismiss. Return a UITargetedPreview describing the desired dismissal target.
+        /// The interaction will animate the presented menu to the target. Use this to customize the dismissal animation.
+        ///
+        ///
+        /// Parameter `interaction`: The UIContextMenuInteraction requesting a dismissal preview.
+        ///
+        /// Parameter `configuration`: The configuration of the menu displayed by this interaction.
+        ///
+        ///
+        /// Returns: Return a UITargetedPreview describing the desired dismissal target. Return nil to cause the menu to
+        /// animate away without morphing into a specific view.
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other contextMenuInteraction:previewForDismissingMenuWithConfiguration:)]

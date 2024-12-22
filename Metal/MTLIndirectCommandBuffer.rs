@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype?language=objc)
+/// A bitfield of commands that may be performed indirectly.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -41,7 +43,9 @@ unsafe impl RefEncode for MTLIndirectCommandType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandbufferexecutionrange?language=objc)
+/// The data layout required for specifying an indirect command buffer execution range.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandbufferexecutionrange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLIndirectCommandBufferExecutionRange {
@@ -60,7 +64,9 @@ unsafe impl RefEncode for MTLIndirectCommandBufferExecutionRange {
 // TODO: pub fn MTLIndirectCommandBufferExecutionRangeMake(location: u32,length: u32,) -> MTLIndirectCommandBufferExecutionRange;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandbufferdescriptor?language=objc)
+    /// Describes the limits and features that can be used in an indirect command
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandbufferdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIndirectCommandBufferDescriptor;
@@ -76,81 +82,113 @@ unsafe impl NSObjectProtocol for MTLIndirectCommandBufferDescriptor {}
 
 extern_methods!(
     unsafe impl MTLIndirectCommandBufferDescriptor {
+        /// A bitfield of the command types that be encoded.
+        ///
+        /// MTLCommandTypeDispatch cannot be mixed with any other command type.
         #[method(commandTypes)]
         pub fn commandTypes(&self) -> MTLIndirectCommandType;
 
+        /// Setter for [`commandTypes`][Self::commandTypes].
         #[method(setCommandTypes:)]
         pub fn setCommandTypes(&self, command_types: MTLIndirectCommandType);
 
+        /// Whether the render or compute pipeline are inherited from the encoder
         #[method(inheritPipelineState)]
         pub fn inheritPipelineState(&self) -> bool;
 
+        /// Setter for [`inheritPipelineState`][Self::inheritPipelineState].
         #[method(setInheritPipelineState:)]
         pub fn setInheritPipelineState(&self, inherit_pipeline_state: bool);
 
+        /// Whether the render or compute pipeline can set arguments.
         #[method(inheritBuffers)]
         pub fn inheritBuffers(&self) -> bool;
 
+        /// Setter for [`inheritBuffers`][Self::inheritBuffers].
         #[method(setInheritBuffers:)]
         pub fn setInheritBuffers(&self, inherit_buffers: bool);
 
+        /// The maximum bind index of vertex argument buffers that can be set per command.
         #[method(maxVertexBufferBindCount)]
         pub fn maxVertexBufferBindCount(&self) -> NSUInteger;
 
+        /// Setter for [`maxVertexBufferBindCount`][Self::maxVertexBufferBindCount].
         #[method(setMaxVertexBufferBindCount:)]
         pub fn setMaxVertexBufferBindCount(&self, max_vertex_buffer_bind_count: NSUInteger);
 
+        /// The maximum bind index of fragment argument buffers that can be set per command.
         #[method(maxFragmentBufferBindCount)]
         pub fn maxFragmentBufferBindCount(&self) -> NSUInteger;
 
+        /// Setter for [`maxFragmentBufferBindCount`][Self::maxFragmentBufferBindCount].
         #[method(setMaxFragmentBufferBindCount:)]
         pub fn setMaxFragmentBufferBindCount(&self, max_fragment_buffer_bind_count: NSUInteger);
 
+        /// The maximum bind index of kernel (or tile) argument buffers that can be set per command.
         #[method(maxKernelBufferBindCount)]
         pub fn maxKernelBufferBindCount(&self) -> NSUInteger;
 
+        /// Setter for [`maxKernelBufferBindCount`][Self::maxKernelBufferBindCount].
         #[method(setMaxKernelBufferBindCount:)]
         pub fn setMaxKernelBufferBindCount(&self, max_kernel_buffer_bind_count: NSUInteger);
 
+        /// The maximum bind index of kernel (or tile) threadgroup memory that can be set per command.
+        /// The default value is 31.
         #[method(maxKernelThreadgroupMemoryBindCount)]
         pub unsafe fn maxKernelThreadgroupMemoryBindCount(&self) -> NSUInteger;
 
+        /// Setter for [`maxKernelThreadgroupMemoryBindCount`][Self::maxKernelThreadgroupMemoryBindCount].
         #[method(setMaxKernelThreadgroupMemoryBindCount:)]
         pub unsafe fn setMaxKernelThreadgroupMemoryBindCount(
             &self,
             max_kernel_threadgroup_memory_bind_count: NSUInteger,
         );
 
+        /// The maximum bind index of object stage buffers that can be set per render command.
         #[method(maxObjectBufferBindCount)]
         pub unsafe fn maxObjectBufferBindCount(&self) -> NSUInteger;
 
+        /// Setter for [`maxObjectBufferBindCount`][Self::maxObjectBufferBindCount].
         #[method(setMaxObjectBufferBindCount:)]
         pub unsafe fn setMaxObjectBufferBindCount(&self, max_object_buffer_bind_count: NSUInteger);
 
+        /// The maximum bind index of mesh stage buffers that can be set per render command.
         #[method(maxMeshBufferBindCount)]
         pub unsafe fn maxMeshBufferBindCount(&self) -> NSUInteger;
 
+        /// Setter for [`maxMeshBufferBindCount`][Self::maxMeshBufferBindCount].
         #[method(setMaxMeshBufferBindCount:)]
         pub unsafe fn setMaxMeshBufferBindCount(&self, max_mesh_buffer_bind_count: NSUInteger);
 
+        /// The maximum bind index of object threadgroup memory that can be set per render command.
+        /// The default value is 0.
         #[method(maxObjectThreadgroupMemoryBindCount)]
         pub unsafe fn maxObjectThreadgroupMemoryBindCount(&self) -> NSUInteger;
 
+        /// Setter for [`maxObjectThreadgroupMemoryBindCount`][Self::maxObjectThreadgroupMemoryBindCount].
         #[method(setMaxObjectThreadgroupMemoryBindCount:)]
         pub unsafe fn setMaxObjectThreadgroupMemoryBindCount(
             &self,
             max_object_threadgroup_memory_bind_count: NSUInteger,
         );
 
+        /// Whether the render or compute commands can use ray tracing. Default value is NO.
         #[method(supportRayTracing)]
         pub unsafe fn supportRayTracing(&self) -> bool;
 
+        /// Setter for [`supportRayTracing`][Self::supportRayTracing].
         #[method(setSupportRayTracing:)]
         pub unsafe fn setSupportRayTracing(&self, support_ray_tracing: bool);
 
+        /// allows binding pipelines that have at least one MTLBufferLayout with a
+        /// stride of `MTLBufferLayoutStrideDynamic`
+        ///
+        /// will allow setting attributeStride in `setVertexBuffer` / `setKernelBuffer`
+        /// calls
         #[method(supportDynamicAttributeStride)]
         pub unsafe fn supportDynamicAttributeStride(&self) -> bool;
 
+        /// Setter for [`supportDynamicAttributeStride`][Self::supportDynamicAttributeStride].
         #[method(setSupportDynamicAttributeStride:)]
         pub unsafe fn setSupportDynamicAttributeStride(
             &self,
@@ -178,6 +216,7 @@ extern_protocol!(
         fn size(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLTypes")]
+        /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 

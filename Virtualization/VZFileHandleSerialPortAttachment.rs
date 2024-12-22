@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzfilehandleserialportattachment?language=objc)
+    /// File handle serial port attachment.
+    ///
+    /// VZFileHandleSerialPortAttachment defines a serial port attachment from a file handle.
+    /// Data written to fileHandleForReading goes to the guest. Data sent from the guest appears on fileHandleForWriting.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzfilehandleserialportattachment?language=objc)
     #[unsafe(super(VZSerialPortAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZSerialPortAttachment")]
@@ -26,6 +31,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initialize the VZFileHandleSerialPortAttachment from file handles.
+        ///
+        /// Parameter `fileHandleForReading`: File handle for reading from the file.
+        ///
+        /// Parameter `fileHandleForWriting`: File handle for writing to the file.
+        ///
+        /// Each file handle must either be nil or have a valid file descriptor.
         #[method_id(@__retain_semantics Init initWithFileHandleForReading:fileHandleForWriting:)]
         pub unsafe fn initWithFileHandleForReading_fileHandleForWriting(
             this: Allocated<Self>,
@@ -33,9 +45,15 @@ extern_methods!(
             file_handle_for_writing: Option<&NSFileHandle>,
         ) -> Retained<Self>;
 
+        /// File handle for reading from the file.
+        ///
+        /// Data written to fileHandleForReading goes to the guest.
         #[method_id(@__retain_semantics Other fileHandleForReading)]
         pub unsafe fn fileHandleForReading(&self) -> Option<Retained<NSFileHandle>>;
 
+        /// File handle for writing to the file.
+        ///
+        /// Data sent from the guest appears on fileHandleForWriting.
         #[method_id(@__retain_semantics Other fileHandleForWriting)]
         pub unsafe fn fileHandleForWriting(&self) -> Option<Retained<NSFileHandle>>;
     }

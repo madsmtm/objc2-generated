@@ -19,6 +19,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a calendar.  The identifiers are the `kCF*Calendar` constants in CFLocale.h.
     #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
     pub fn CFCalendarCreateWithIdentifier(
         allocator: CFAllocatorRef,
@@ -27,6 +28,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the calendar's identifier.
     #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
     pub fn CFCalendarGetIdentifier(calendar: CFCalendarRef) -> CFCalendarIdentifier;
 }

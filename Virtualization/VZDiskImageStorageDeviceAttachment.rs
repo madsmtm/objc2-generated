@@ -6,7 +6,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagecachingmode?language=objc)
+/// Whether the host caches disk image data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagecachingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -34,10 +36,26 @@ unsafe impl RefEncode for VZDiskImageCachingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct VZDiskImageSynchronizationMode(pub NSInteger);
 impl VZDiskImageSynchronizationMode {
+    /// The data is synchronized to the permanent storage holding the disk image.
+    /// No synchronized data is lost on panic or loss of power.
     #[doc(alias = "VZDiskImageSynchronizationModeFull")]
     pub const Full: Self = Self(1);
+    /// Synchronize the data to the drive.
+    ///
+    /// This mode synchronizes the data with the drive, but does not ensure the data is moved from the disk's internal cache
+    /// to permanent storage.
+    ///
+    /// This is a best-effort mode with the same guarantees as the fsync() system call.
     #[doc(alias = "VZDiskImageSynchronizationModeFsync")]
     pub const Fsync: Self = Self(2);
+    /// Do not synchronize the data with the permanent storage.
+    /// This option does not guarantee data integrity if any error condition occurs such as disk full on the host,
+    /// panic, power loss, etc.
+    ///
+    /// This mode is useful when a virtual machine is only run once to perform a task to completion or failure.
+    /// In that case, the disk image cannot safely be reused on failure.
+    ///
+    /// Using this mode may result in improved performance since no synchronization with the underlying storage is necessary.
     #[doc(alias = "VZDiskImageSynchronizationModeNone")]
     pub const None: Self = Self(3);
 }
@@ -51,7 +69,19 @@ unsafe impl RefEncode for VZDiskImageSynchronizationMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment?language=objc)
+    /// Storage device attachment using a disk image to implement the storage.
+    ///
+    /// This storage device attachment uses a disk image on the host file system as the drive of the storage device.
+    ///
+    /// Only raw data disk images are supported.
+    ///
+    /// See: VZNVMExpressControllerDeviceConfiguration
+    ///
+    /// See: VZUSBMassStorageDeviceConfiguration
+    ///
+    /// See: VZVirtioBlockDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment?language=objc)
     #[unsafe(super(VZStorageDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDeviceAttachment")]
@@ -64,6 +94,17 @@ unsafe impl NSObjectProtocol for VZDiskImageStorageDeviceAttachment {}
 extern_methods!(
     #[cfg(feature = "VZStorageDeviceAttachment")]
     unsafe impl VZDiskImageStorageDeviceAttachment {
+        /// Initialize the attachment from a local file url.
+        ///
+        /// Parameter `url`: Local file URL to the disk image in RAW format.
+        ///
+        /// Parameter `readOnly`: If YES, the device attachment is read-only, otherwise the device can write data to the disk image.
+        ///
+        /// Parameter `error`: If not nil, assigned with the error if the initialization failed.
+        ///
+        /// Returns: A newly initialized VZDiskImageStorageDeviceAttachment. If an error was encountered returns
+        /// `nil,`and
+        /// `error`contains the error.
         #[method_id(@__retain_semantics Init initWithURL:readOnly:error:_)]
         pub unsafe fn initWithURL_readOnly_error(
             this: Allocated<Self>,
@@ -71,6 +112,21 @@ extern_methods!(
             read_only: bool,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// Initialize the attachment from a local file url.
+        ///
+        /// Parameter `url`: Local file URL to the disk image in RAW format.
+        ///
+        /// Parameter `readOnly`: If YES, the device attachment is read-only, otherwise the device can write data to the disk image.
+        ///
+        /// Parameter `cachingMode`: Whether host data caching is enabled for the disk image.
+        ///
+        /// Parameter `synchronizationMode`: How the disk image synchronizes with the underlying storage when the guest operating system flushes data.
+        ///
+        /// Parameter `error`: If not nil, assigned with the error if the initialization failed.
+        ///
+        /// Returns: A newly initialized VZDiskImageStorageDeviceAttachment. If an error was encountered returns
+        /// `nil,`and
+        /// `error`contains the error.
         #[method_id(@__retain_semantics Init initWithURL:readOnly:cachingMode:synchronizationMode:error:_)]
         pub unsafe fn initWithURL_readOnly_cachingMode_synchronizationMode_error(
             this: Allocated<Self>,
@@ -80,15 +136,19 @@ extern_methods!(
             synchronization_mode: VZDiskImageSynchronizationMode,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// URL of the underlying disk image.
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
+        /// Whether the underlying disk image is read-only.
         #[method(isReadOnly)]
         pub unsafe fn isReadOnly(&self) -> bool;
 
+        /// How disk image data is cached by the host.
         #[method(cachingMode)]
         pub unsafe fn cachingMode(&self) -> VZDiskImageCachingMode;
 
+        /// The mode in which the disk image synchronizes data with the underlying storage device.
         #[method(synchronizationMode)]
         pub unsafe fn synchronizationMode(&self) -> VZDiskImageSynchronizationMode;
     }

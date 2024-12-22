@@ -11,18 +11,66 @@ extern_category!(
     /// Category "WebScripting" on [`NSObject`].
     #[doc(alias = "WebScripting")]
     pub unsafe trait NSObjectWebScripting {
+        /// Parameter `selector`: The selector that will be exposed to the script environment.
+        ///
+        /// Use the returned string as the exported name for the selector
+        /// in the script environment. It is the responsibility of the class to ensure
+        /// uniqueness of the returned name. If nil is returned or this
+        /// method is not implemented the default name for the selector will
+        /// be used. The default name concatenates the components of the
+        /// Objective-C selector name and replaces ':' with '_'.  '_' characters
+        /// are escaped with an additional '$', i.e. '_' becomes "$_". '$' are
+        /// also escaped, i.e.
+        /// Objective-C name        Default script name
+        /// moveTo::                move__
+        /// moveTo_                 moveTo$_
+        /// moveTo$_                moveTo$$$_
+        ///
+        /// Returns: Returns the name to be used to represent the specified selector in the
+        /// scripting environment.
         #[method_id(@__retain_semantics Other webScriptNameForSelector:)]
         unsafe fn webScriptNameForSelector(selector: Option<Sel>) -> Option<Retained<NSString>>;
 
+        /// Parameter `selector`: The selector the will be exposed to the script environment.
+        ///
+        /// Return NO to export the selector to the script environment.
+        /// Return YES to prevent the selector from being exported to the script environment.
+        /// If this method is not implemented on the class no selectors will be exported.
+        ///
+        /// Returns: Returns YES to hide the selector, NO to export the selector.
         #[method(isSelectorExcludedFromWebScript:)]
         unsafe fn isSelectorExcludedFromWebScript(selector: Option<Sel>) -> bool;
 
+        /// Parameter `name`: The name of the instance variable that will be exposed to the
+        /// script environment. Only instance variables that meet the export criteria will
+        /// be exposed.
+        ///
+        /// Provide an alternate name for a property.
+        ///
+        /// Returns: Returns the name to be used to represent the specified property in the
+        /// scripting environment.
         #[method_id(@__retain_semantics Other webScriptNameForKey:)]
         unsafe fn webScriptNameForKey(name: *const c_char) -> Option<Retained<NSString>>;
 
+        /// Parameter `name`: The name of the instance variable that will be exposed to the
+        /// script environment.
+        ///
+        /// Return NO to export the property to the script environment.
+        /// Return YES to prevent the property from being exported to the script environment.
+        ///
+        /// Returns: Returns YES to hide the property, NO to export the property.
         #[method(isKeyExcludedFromWebScript:)]
         unsafe fn isKeyExcludedFromWebScript(name: *const c_char) -> bool;
 
+        /// Parameter `name`: The name of the method to invoke.
+        ///
+        /// Parameter `arguments`: The arguments to pass the method.
+        ///
+        /// If a script attempts to invoke a method that is not exported,
+        /// invokeUndefinedMethodFromWebScript:withArguments: will be called.
+        ///
+        /// Returns: The return value of the invocation. The value will be converted as appropriate
+        /// for the script environment.
         #[method_id(@__retain_semantics Other invokeUndefinedMethodFromWebScript:withArguments:)]
         unsafe fn invokeUndefinedMethodFromWebScript_withArguments(
             &self,
@@ -30,12 +78,23 @@ extern_category!(
             arguments: Option<&NSArray>,
         ) -> Option<Retained<AnyObject>>;
 
+        /// Parameter `arguments`: The arguments to pass the method.
+        ///
+        /// If a script attempts to call an exposed object as a function,
+        /// this method will be called.
+        ///
+        /// Returns: The return value of the call. The value will be converted as appropriate
+        /// for the script environment.
         #[method_id(@__retain_semantics Other invokeDefaultMethodWithArguments:)]
         unsafe fn invokeDefaultMethodWithArguments(
             &self,
             arguments: Option<&NSArray>,
         ) -> Option<Retained<AnyObject>>;
 
+        /// finalizeForScript is called on objects exposed to the script
+        /// environment just before the script environment garbage collects the object.
+        /// Subsequently, any references to WebScriptObjects made by the exposed object will
+        /// be invalid and have undefined consequences.
         #[method(finalizeForWebScript)]
         unsafe fn finalizeForWebScript(&self);
     }
@@ -44,7 +103,29 @@ extern_category!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webscriptobject?language=objc)
+    /// WebScriptObjects are used to wrap script objects passed from
+    /// script environments to Objective-C. WebScriptObjects cannot be created
+    /// directly. In normal uses of WebKit, you gain access to the script
+    /// environment using the "windowScriptObject" method on WebView.
+    ///
+    /// The following KVC methods are commonly used to access properties of the
+    /// WebScriptObject:
+    ///
+    /// - (void)setValue:(id)value forKey:(NSString *)key
+    /// - (id)valueForKey:(NSString *)key
+    ///
+    /// As it possible to remove attributes from web script objects, the following
+    /// additional method augments the basic KVC methods:
+    ///
+    /// - (void)removeWebScriptKey:(NSString *)name;
+    ///
+    /// Also, since the sparse array access allowed in script objects doesn't map well
+    /// to NSArray, the following methods can be used to access index based properties:
+    ///
+    /// - (id)webScriptValueAtIndex:(unsigned)index;
+    /// - (void)setWebScriptValueAtIndex:(unsigned)index value:(id)value;
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webscriptobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -55,10 +136,22 @@ unsafe impl NSObjectProtocol for WebScriptObject {}
 
 extern_methods!(
     unsafe impl WebScriptObject {
+        /// Throws an exception in the current script execution context.
+        ///
+        /// Returns: Either NO if an exception could not be raised, YES otherwise.
         #[deprecated]
         #[method(throwException:)]
         pub unsafe fn throwException(exception_message: Option<&NSString>) -> bool;
 
+        /// Parameter `name`: The name of the method to call in the script environment.
+        ///
+        /// Parameter `arguments`: The arguments to pass to the script environment.
+        ///
+        /// Calls the specified method in the script environment using the
+        /// specified arguments.
+        ///
+        /// Returns: Returns the result of calling the script method.
+        /// Returns WebUndefined when an exception is thrown in the script environment.
         #[deprecated]
         #[method_id(@__retain_semantics Other callWebScriptMethod:withArguments:)]
         pub unsafe fn callWebScriptMethod_withArguments(
@@ -67,6 +160,13 @@ extern_methods!(
             arguments: Option<&NSArray>,
         ) -> Option<Retained<AnyObject>>;
 
+        /// Parameter `script`: The script to execute in the target script environment.
+        ///
+        /// The script will be executed in the target script environment. The format
+        /// of the script is dependent of the target script environment.
+        ///
+        /// Returns: Returns the result of evaluating the script in the script environment.
+        /// Returns WebUndefined when an exception is thrown in the script environment.
         #[deprecated]
         #[method_id(@__retain_semantics Other evaluateWebScript:)]
         pub unsafe fn evaluateWebScript(
@@ -74,18 +174,36 @@ extern_methods!(
             script: Option<&NSString>,
         ) -> Option<Retained<AnyObject>>;
 
+        /// Parameter `name`: The name of the property to remove.
+        ///
+        /// Removes the property from the object in the script environment.
         #[deprecated]
         #[method(removeWebScriptKey:)]
         pub unsafe fn removeWebScriptKey(&self, name: Option<&NSString>);
 
+        /// Converts the target object to a string representation. The coercion
+        /// of non string objects type is dependent on the script environment.
+        ///
+        /// Returns: Returns the string representation of the object.
         #[deprecated]
         #[method_id(@__retain_semantics Other stringRepresentation)]
         pub unsafe fn stringRepresentation(&self) -> Option<Retained<NSString>>;
 
+        /// Parameter `index`: The index of the property to return.
+        ///
+        /// Gets the value of the property at the specified index.
+        ///
+        /// Returns: The value of the property. Returns WebUndefined when an exception is
+        /// thrown in the script environment.
         #[deprecated]
         #[method_id(@__retain_semantics Other webScriptValueAtIndex:)]
         pub unsafe fn webScriptValueAtIndex(&self, index: c_uint) -> Option<Retained<AnyObject>>;
 
+        /// Parameter `index`: The index of the property to set.
+        ///
+        /// Parameter `value`: The value of the property to set.
+        ///
+        /// Sets the property value at the specified index.
         #[deprecated]
         #[method(setWebScriptValueAtIndex:value:)]
         pub unsafe fn setWebScriptValueAtIndex_value(
@@ -94,6 +212,10 @@ extern_methods!(
             value: Option<&AnyObject>,
         );
 
+        /// Parameter `description`: The description of the exception.
+        ///
+        /// Raises an exception in the script environment in the context of the
+        /// current object.
         #[deprecated]
         #[method(setException:)]
         pub unsafe fn setException(&self, description: Option<&NSString>);
@@ -131,6 +253,7 @@ unsafe impl NSObjectProtocol for WebUndefined {}
 
 extern_methods!(
     unsafe impl WebUndefined {
+        /// Returns: The WebUndefined shared instance.
         #[deprecated]
         #[method_id(@__retain_semantics Other undefined)]
         pub unsafe fn undefined() -> Option<Retained<WebUndefined>>;

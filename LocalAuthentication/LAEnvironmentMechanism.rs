@@ -21,18 +21,29 @@ unsafe impl NSObjectProtocol for LAEnvironmentMechanism {}
 
 extern_methods!(
     unsafe impl LAEnvironmentMechanism {
+        /// Clients should only consume environment mechanisms..
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// The Clients should only consume environment mechanisms..
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Whether the mechanism is available for use, i.e. whether the relevant preflight call of
+        /// `canEvaluatePolicy`would succeed.
+        ///
+        /// Warning: If
+        /// `isUsable`reads
+        /// `NO,`do not assume that it's because of some particular reason. You should check
+        /// properties of the subclass to determine why mechanism can't be used.
         #[method(isUsable)]
         pub unsafe fn isUsable(&self) -> bool;
 
+        /// The localized name of the authentication mechanism, e.g. "Touch ID", "Face ID" etc.
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
+        /// Name of the SF Symbol representing this authentication mechanism.
         #[method_id(@__retain_semantics Other iconSystemName)]
         pub unsafe fn iconSystemName(&self) -> Retained<NSString>;
     }

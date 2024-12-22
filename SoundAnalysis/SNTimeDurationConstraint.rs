@@ -8,14 +8,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstrainttype?language=objc)
+/// Enumerates possible types for `SNTimeDurationConstraint`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstrainttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SNTimeDurationConstraintType(pub NSInteger);
 impl SNTimeDurationConstraintType {
+    /// An 'enumerated' constraint type.
+    ///
+    /// In order for a duration to satisfy a constraint of this type, it must be a member of a particular set of discrete permissible values.
     #[doc(alias = "SNTimeDurationConstraintTypeEnumerated")]
     pub const Enumerated: Self = Self(1);
+    /// A 'range' constraint type.
+    ///
+    /// In order for a duration to satisfy a constraint of this type, it must be a member of a particular continuous range of permissible values.
     #[doc(alias = "SNTimeDurationConstraintTypeRange")]
     pub const Range: Self = Self(2);
 }
@@ -29,7 +37,11 @@ unsafe impl RefEncode for SNTimeDurationConstraintType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstraint?language=objc)
+    /// Constrains CMTime durations to a subset of legal values.
+    ///
+    /// `SNTimeDurationConstraint` is a union type, which, based on the value of its `type` property, may assume one of several forms. Instance properties may be used to extract information from an object, but certain properties are only valid to exercise under certain circumstances. Before accessing a particular property, refer to its documentation to understand what `type` value is required in order for that property to be valid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstraint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNTimeDurationConstraint;
@@ -39,16 +51,34 @@ unsafe impl NSObjectProtocol for SNTimeDurationConstraint {}
 
 extern_methods!(
     unsafe impl SNTimeDurationConstraint {
+        /// The time constraint type.
+        ///
+        /// The value of this property dictates whether or not other properties associated with this class can be validly accessed. Please refer to the documentation of other individual properties to understand their relationship to this one. This property is always valid to access.
         #[method(type)]
         pub unsafe fn r#type(&self) -> SNTimeDurationConstraintType;
 
+        /// If the constraint type is enumerated, then the set of discrete allowable time durations.
+        ///
+        /// - Returns: If the constraint type is enumerated, an array of CMTime structures (boxed in NSValue instances) representing the set of allowable time durations. The durations will always be provided sorted in order of ascending time. If the constraint type is not enumerated, an empty array will be returned.
+        ///
+        /// The `type` property should be queried before this property is accessed. This property will only yield meaningful values if the constraint type is considered to be 'enumerated'. The constraint type is considered to be 'enumerated' if the `type` property is equal to `SNTimeDurationConstraintTypeEnumerated`.
         #[method_id(@__retain_semantics Other enumeratedDurations)]
         pub unsafe fn enumeratedDurations(&self) -> Retained<NSArray<NSValue>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// If the constraint type is range, then the range of allowable window durations.
+        ///
+        /// - Returns: If the constraint type is range, a CMTimeRange representing the range of allowable window durations. If the constraint type is not range, `kCMTimeRangeInvalid`.
+        ///
+        /// The `type` property should be queried before this property is accessed. This property will only yield meaningful values if the constraint type is considered to be 'range'. The constraint type is considered to be 'range' if the `type` property is equal to `SNTimeDurationConstraintTypeRange`.
         #[method(durationRange)]
         pub unsafe fn durationRange(&self) -> CMTimeRange;
 
+        /// Initializes an enumerated-type constraint.
+        ///
+        /// - Parameter enumeratedDurations: A discrete set of duration values (represented as CMTime values boxed in NSValue instances) permitted by this constraint.
+        ///
+        /// - Returns: An instance whose `type` is `SNTimeDurationConstraintTypeEnumerated`, and which constrains duration values to the provided set of discrete values.
         #[method_id(@__retain_semantics Init initWithEnumeratedDurations:)]
         pub unsafe fn initWithEnumeratedDurations(
             this: Allocated<Self>,
@@ -56,6 +86,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Initializes a range-type constraint.
+        ///
+        /// - Parameter durationRange: A continuous range of duration values (represented as CMTime values) permitted by this constraint.
+        ///
+        /// - Returns: An instance whose `type` is `SNTimeDurationConstraintTypeRange`, and which constrains durations values to the provided range.
         #[method_id(@__retain_semantics Init initWithDurationRange:)]
         pub unsafe fn initWithDurationRange(
             this: Allocated<Self>,

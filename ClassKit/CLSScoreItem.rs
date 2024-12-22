@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsscoreitem?language=objc)
+    /// CLSScoreItem represents user generated score information.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clsscoreitem?language=objc)
     #[unsafe(super(CLSActivityItem, CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
@@ -27,18 +29,37 @@ unsafe impl NSSecureCoding for CLSScoreItem {}
 extern_methods!(
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     unsafe impl CLSScoreItem {
+        /// Score out of
+        /// `maxScore.`
+        /// Should be between zero and
+        /// `maxScore`[0.0,maxScore].
         #[method(score)]
         pub unsafe fn score(&self) -> c_double;
 
+        /// Setter for [`score`][Self::score].
         #[method(setScore:)]
         pub unsafe fn setScore(&self, score: c_double);
 
+        /// Total score possible.
+        ///
+        /// Must be greater than zero.
         #[method(maxScore)]
         pub unsafe fn maxScore(&self) -> c_double;
 
+        /// Setter for [`maxScore`][Self::maxScore].
         #[method(setMaxScore:)]
         pub unsafe fn setMaxScore(&self, max_score: c_double);
 
+        /// Create a score item with identifiers, title, score and maximum score.
+        ///
+        /// Parameter `identifier`: An identifier that is unique within activity.
+        ///
+        /// Parameter `title`: Title of score. Ex
+        /// _Biology-_Cellular Division Quiz
+        ///
+        /// Parameter `score`: The score the user received.
+        ///
+        /// Parameter `maxScore`: The maximum score possible.
         #[method_id(@__retain_semantics Init initWithIdentifier:title:score:maxScore:)]
         pub unsafe fn initWithIdentifier_title_score_maxScore(
             this: Allocated<Self>,

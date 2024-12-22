@@ -15,16 +15,30 @@ pub type AUAudioObjectID = u32;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/midichannelnumber?language=objc)
 pub type MIDIChannelNumber = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitstatus?language=objc)
+/// A result code returned from an audio unit's render function.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitstatus?language=objc)
 pub type AUAudioUnitStatus = OSStatus;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudioframecount?language=objc)
+/// A number of audio sample frames.
+///
+/// This is `uint32_t` for impedence-matching with the pervasive use of `UInt32` in AudioToolbox
+/// and C AudioUnit API's, as well as `AVAudioFrameCount`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudioframecount?language=objc)
 pub type AUAudioFrameCount = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiochannelcount?language=objc)
+/// A number of audio channels.
+///
+/// This is `uint32_t` for impedence-matching with the pervasive use of `UInt32` in AudioToolbox
+/// and C AudioUnit API's, as well as `AVAudioChannelCount`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiochannelcount?language=objc)
 pub type AUAudioChannelCount = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbustype?language=objc)
+/// Describes whether a bus array is for input or output.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbustype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -44,7 +58,28 @@ unsafe impl RefEncode for AUAudioUnitBusType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurenderpullinputblock?language=objc)
+/// Block to supply audio input to AURenderBlock.
+///
+/// Parameter `actionFlags`: Pointer to action flags.
+///
+/// Parameter `timestamp`: The HAL time at which the input data will be rendered. If there is a sample rate conversion
+/// or time compression/expansion downstream, the sample time will not be valid.
+///
+/// Parameter `frameCount`: The number of sample frames of input requested.
+///
+/// Parameter `inputBusNumber`: The index of the input bus being pulled.
+///
+/// Parameter `inputData`: The input audio data.
+///
+/// The caller must supply valid buffers in inputData's mBuffers' mData and mDataByteSize.
+/// mDataByteSize must be consistent with frameCount. This block may provide input in those
+/// specified buffers, or it may replace the mData pointers with pointers to memory which it
+/// owns and guarantees will remain valid until the next render cycle.
+///
+/// Returns: An AUAudioUnitStatus result code. If an error is returned, the input data should be assumed
+/// to be invalid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurenderpullinputblock?language=objc)
 #[cfg(all(
     feature = "AUComponent",
     feature = "block2",
@@ -60,7 +95,37 @@ pub type AURenderPullInputBlock = *mut block2::Block<
     ) -> AUAudioUnitStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurenderblock?language=objc)
+/// Block to render the audio unit.
+///
+/// All realtime operations are implemented using blocks to avoid ObjC method dispatching and
+/// the possibility of blocking.
+///
+/// Parameter `actionFlags`: Pointer to action flags.
+///
+/// Parameter `timestamp`: The HAL time at which the output data will be rendered. If there is a sample rate conversion
+/// or time compression/expansion downstream, the sample time will not have a defined
+/// correlation with the AudioDevice sample time.
+///
+/// Parameter `frameCount`: The number of sample frames to render.
+///
+/// Parameter `outputBusNumber`: The index of the output bus to render.
+///
+/// Parameter `outputData`: The output bus's render buffers and flags.
+///
+/// The buffer pointers (outputData->mBuffers[x].mData) may be null on entry, in which case the
+/// block will render into memory it owns and modify the mData pointers to point to that memory.
+/// The block is responsible for preserving the validity of that memory until it is next called
+/// to render, or deallocateRenderResources is called.
+///
+/// If, on entry, the mData pointers are non-null, the block will render into those buffers.
+///
+/// Parameter `pullInputBlock`: A block which the AU will call in order to pull for input data. May be nil for instrument
+/// and generator audio units (which do not have input busses).
+///
+/// Returns: An `AUAudioUnitStatus` result code. If an error is returned, the output data should be assumed
+/// to be invalid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurenderblock?language=objc)
 #[cfg(all(
     feature = "AUComponent",
     feature = "block2",
@@ -77,7 +142,15 @@ pub type AURenderBlock = *mut block2::Block<
     ) -> AUAudioUnitStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurenderobserver?language=objc)
+/// Block called when an audio unit renders.
+///
+/// This block is called by the base class's AURenderBlock before and after each render cycle.
+/// The observer can distinguish between before and after using the PreRender and PostRender
+/// flags.
+///
+/// The parameters are identical to those of AURenderBlock.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurenderobserver?language=objc)
 #[cfg(all(
     feature = "AUComponent",
     feature = "block2",
@@ -87,7 +160,27 @@ pub type AURenderObserver = *mut block2::Block<
     dyn Fn(AudioUnitRenderActionFlags, NonNull<AudioTimeStamp>, AUAudioFrameCount, NSInteger),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduleparameterblock?language=objc)
+/// Block to schedule parameter changes.
+///
+/// Not all parameters are rampable; check the parameter's flags.
+/// Note: If the parameter is not rampable, a rampDuration of zero will result in an immediate change to
+/// the target value, however, if rampDuration is non-zero, the parameter will not change.
+///
+///
+/// Parameter `eventSampleTime`: The sample time (timestamp->mSampleTime) at which the parameter is to begin changing. When
+/// scheduling parameters during the render cycle (e.g. via a render observer) this time can be
+/// AUEventSampleTimeImmediate plus an optional buffer offset, in which case the event is
+/// scheduled at that position in the current render cycle.
+///
+/// Parameter `rampDurationSampleFrames`: The number of sample frames over which the parameter's value is to ramp, or 0 if the
+/// parameter change should take effect immediately.
+///
+/// Parameter `parameterAddress`: The parameter's address.
+///
+/// Parameter `value`: The parameter's new value if the ramp duration is 0; otherwise, the value at the end
+/// of the scheduled ramp.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduleparameterblock?language=objc)
 #[cfg(all(
     feature = "AUParameters",
     feature = "AudioUnitProperties",
@@ -96,17 +189,66 @@ pub type AURenderObserver = *mut block2::Block<
 pub type AUScheduleParameterBlock =
     *mut block2::Block<dyn Fn(AUEventSampleTime, AUAudioFrameCount, AUParameterAddress, AUValue)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auschedulemidieventblock?language=objc)
+/// Block to schedule MIDI events.
+///
+/// Parameter `eventSampleTime`: The sample time (timestamp->mSampleTime) at which the MIDI event is to occur. When
+/// scheduling events during the render cycle (e.g. via a render observer) this time can be
+/// AUEventSampleTimeImmediate plus an optional buffer offset, in which case the event is
+/// scheduled at that position in the current render cycle.
+///
+/// Parameter `cable`: The virtual cable number.
+///
+/// Parameter `length`: The number of bytes of MIDI data in the provided event(s).
+///
+/// Parameter `midiBytes`: One or more valid MIDI 1.0 events, except sysex which must always be sent as the only event
+/// in the chunk. Also, running status is not allowed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auschedulemidieventblock?language=objc)
 #[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
 pub type AUScheduleMIDIEventBlock =
     *mut block2::Block<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidioutputeventblock?language=objc)
+/// Block to provide MIDI output events to the host.
+///
+/// Parameter `eventSampleTime`: The timestamp associated with the MIDI data in this chunk.
+///
+/// Parameter `cable`: The virtual cable number associated with this MIDI data.
+///
+/// Parameter `length`: The number of bytes of MIDI data in the provided event(s).
+///
+/// Parameter `midiBytes`: One or more valid MIDI 1.0 events, except sysex which must always be sent as the only event
+/// in the chunk.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidioutputeventblock?language=objc)
 #[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
 pub type AUMIDIOutputEventBlock =
     *mut block2::Block<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhostmusicalcontextblock?language=objc)
+/// Block by which hosts provide musical tempo, time signature, and beat position.
+///
+/// Parameter `currentTempo`: The current tempo in beats per minute.
+///
+/// Parameter `timeSignatureNumerator`: The numerator of the current time signature.
+///
+/// Parameter `timeSignatureDenominator`: The denominator of the current time signature.
+///
+/// Parameter `currentBeatPosition`: The precise beat position of the beginning of the current buffer being rendered.
+///
+/// Parameter `sampleOffsetToNextBeat`: The number of samples between the beginning of the buffer being rendered and the next beat
+/// (can be 0).
+///
+/// Parameter `currentMeasureDownbeatPosition`: The beat position corresponding to the beginning of the current measure.
+///
+/// Returns: YES for success.
+///
+/// If the host app provides this block to an AUAudioUnit (as its musicalContextBlock), then
+/// the block may be called at the beginning of each render cycle to obtain information about
+/// the current render cycle's musical context.
+///
+/// Any of the provided parameters may be null to indicate that the audio unit is not interested
+/// in that particular piece of information.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhostmusicalcontextblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AUHostMusicalContextBlock = *mut block2::Block<
     dyn Fn(
@@ -119,7 +261,20 @@ pub type AUHostMusicalContextBlock = *mut block2::Block<
     ) -> Bool,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateflags?language=objc)
+/// Flags describing the host's transport state.
+///
+/// True if, since the callback was last called, there was a change to the state of, or
+/// discontinuities in, the host's transport. Can indicate such state changes as
+/// start/stop, or seeking to another position in the timeline.
+///
+/// True if the transport is moving.
+///
+/// True if the host is recording, or prepared to record. Can be true with or without the
+/// transport moving.
+///
+/// True if the host is cycling or looping.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -141,14 +296,63 @@ unsafe impl RefEncode for AUHostTransportStateFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateblock?language=objc)
+/// Block by which hosts provide information about their transport state.
+///
+/// Parameter `transportStateFlags`: The current state of the transport.
+///
+/// Parameter `currentSamplePosition`: The current position in the host's timeline, in samples at the audio unit's output sample
+/// rate.
+///
+/// Parameter `cycleStartBeatPosition`: If cycling, the starting beat position of the cycle.
+///
+/// Parameter `cycleEndBeatPosition`: If cycling, the ending beat position of the cycle.
+///
+/// If the host app provides this block to an AUAudioUnit (as its transportStateBlock), then
+/// the block may be called at the beginning of each render cycle to obtain information about
+/// the current transport state.
+///
+/// Any of the provided parameters may be null to indicate that the audio unit is not interested
+/// in that particular piece of information.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AUHostTransportStateBlock = *mut block2::Block<
     dyn Fn(*mut AUHostTransportStateFlags, *mut c_double, *mut c_double, *mut c_double) -> Bool,
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounit?language=objc)
+    /// An audio unit instance.
+    ///
+    /// AUAudioUnit is a host interface to an audio unit. Hosts can instantiate either version 2 or
+    /// version 3 units with this class, and to some extent control whether an audio unit is
+    /// instantiated in-process or in a separate extension process.
+    ///
+    /// Implementors of version 3 audio units can and should subclass AUAudioUnit. To port an
+    /// existing version 2 audio unit easily, AUAudioUnitV2Bridge can be subclassed.
+    ///
+    /// These are the ways in which audio unit components can be registered:
+    ///
+    /// - (v2) Packaged into a component bundle containing an `AudioComponents` Info.plist entry,
+    /// referring to an `AudioComponentFactoryFunction`. See AudioComponent.h.
+    ///
+    /// - (v2) AudioComponentRegister(). Associates a component description with an
+    /// AudioComponentFactoryFunction. See AudioComponent.h.
+    ///
+    /// - (v3) Packaged into an app extension containing an AudioComponents Info.plist entry.
+    /// The principal class must conform to the AUAudioUnitFactory protocol, which will typically
+    /// instantiate an AUAudioUnit subclass.
+    ///
+    /// - (v3) `+[AUAudioUnit registerSubclass:asComponentDescription:name:version:]`. Associates
+    /// a component description with an AUAudioUnit subclass.
+    ///
+    /// A host need not be aware of the concrete subclass of AUAudioUnit that is being instantiated.
+    /// `initWithComponentDescription:options:error:` ensures that the proper subclass is used.
+    ///
+    /// When using AUAudioUnit with a v2 audio unit, or the C AudioComponent and AudioUnit API's
+    /// with a v3 audio unit, all major pieces of functionality are bridged between the
+    /// two API's. This header describes, for each v3 method or property, the v2 equivalent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounit?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AUAudioUnit;
@@ -162,6 +366,15 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AudioComponent")]
+        /// Designated initializer.
+        ///
+        /// Parameter `componentDescription`: A single AUAudioUnit subclass may implement multiple audio units, for example, an effect
+        /// that can also function as a generator, or a cluster of related effects. The component
+        /// description specifies the component which was instantiated.
+        ///
+        /// Parameter `options`: Options for loading the unit in-process or out-of-process.
+        ///
+        /// Parameter `outError`: Returned in the event of failure.
         #[method_id(@__retain_semantics Init initWithComponentDescription:options:error:_)]
         pub unsafe fn initWithComponentDescription_options_error(
             this: Allocated<Self>,
@@ -170,6 +383,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "AudioComponent")]
+        /// Convenience initializer (omits options).
         #[method_id(@__retain_semantics Init initWithComponentDescription:error:_)]
         pub unsafe fn initWithComponentDescription_error(
             this: Allocated<Self>,
@@ -177,6 +391,21 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "AudioComponent", feature = "block2"))]
+        /// Asynchronously create an AUAudioUnit instance.
+        ///
+        /// Parameter `componentDescription`: The AudioComponentDescription of the audio unit to instantiate.
+        ///
+        /// Parameter `options`: See the discussion of AudioComponentInstantiationOptions in AudioToolbox/AudioComponent.h.
+        ///
+        /// Parameter `completionHandler`: Called in a thread/dispatch queue context internal to the implementation. The client should
+        /// retain the supplied AUAudioUnit.
+        ///
+        /// Certain types of AUAudioUnits must be instantiated asynchronously -- see
+        /// the discussion of kAudioComponentFlag_RequiresAsyncInstantiation in
+        /// AudioToolbox/AudioComponent.h.
+        ///
+        /// Note: Do not block the main thread while waiting for the completion handler to be called;
+        /// this can deadlock.
         #[method(instantiateWithComponentDescription:options:completionHandler:)]
         pub unsafe fn instantiateWithComponentDescription_options_completionHandler(
             component_description: AudioComponentDescription,
@@ -185,44 +414,89 @@ extern_methods!(
         );
 
         #[cfg(feature = "AudioComponent")]
+        /// The AudioComponentDescription with which the audio unit was created.
         #[method(componentDescription)]
         pub unsafe fn componentDescription(&self) -> AudioComponentDescription;
 
         #[cfg(feature = "AudioComponent")]
+        /// The AudioComponent which was found based on componentDescription when the
+        /// audio unit was created.
         #[method(component)]
         pub unsafe fn component(&self) -> AudioComponent;
 
+        /// The unit's component's name.
+        ///
+        /// By convention, an audio unit's component name is its manufacturer's name, plus ": ",
+        /// plus the audio unit's name. The audioUnitName and manufacturerName properties are derived
+        /// from the component name.
         #[method_id(@__retain_semantics Other componentName)]
         pub unsafe fn componentName(&self) -> Option<Retained<NSString>>;
 
+        /// The audio unit's name.
         #[method_id(@__retain_semantics Other audioUnitName)]
         pub unsafe fn audioUnitName(&self) -> Option<Retained<NSString>>;
 
+        /// The manufacturer's name.
         #[method_id(@__retain_semantics Other manufacturerName)]
         pub unsafe fn manufacturerName(&self) -> Option<Retained<NSString>>;
 
+        /// A short name for the audio unit.
+        ///
+        /// Audio unit host applications can display this name in situations where the audioUnitName
+        /// might be too long. The recommended length is up to 16 characters. Host applications may
+        /// truncate it.
         #[method_id(@__retain_semantics Other audioUnitShortName)]
         pub unsafe fn audioUnitShortName(&self) -> Option<Retained<NSString>>;
 
+        /// The unit's component's version.
         #[method(componentVersion)]
         pub unsafe fn componentVersion(&self) -> u32;
 
+        /// Allocate resources required to render.
+        ///
+        /// Hosts must call this before beginning to render. Subclassers should call the superclass
+        /// implementation.
+        ///
+        /// Bridged to the v2 API AudioUnitInitialize().
         #[method(allocateRenderResourcesAndReturnError:_)]
         pub unsafe fn allocateRenderResourcesAndReturnError(&self)
             -> Result<(), Retained<NSError>>;
 
+        /// Deallocate resources allocated by allocateRenderResourcesAndReturnError:
+        ///
+        /// Hosts should call this after finishing rendering. Subclassers should call the superclass
+        /// implementation.
+        ///
+        /// Bridged to the v2 API AudioUnitUninitialize().
         #[method(deallocateRenderResources)]
         pub unsafe fn deallocateRenderResources(&self);
 
+        /// returns YES if the unit has render resources allocated.
         #[method(renderResourcesAllocated)]
         pub unsafe fn renderResourcesAllocated(&self) -> bool;
 
+        /// Reset transitory rendering state to its initial state.
+        ///
+        /// Hosts should call this at the point of a discontinuity in the input stream being provided to
+        /// an audio unit, for example, when seeking forward or backward within a track. In response,
+        /// implementations should clear delay lines, filters, etc. Subclassers should call the
+        /// superclass implementation.
+        ///
+        /// Bridged to the v2 API AudioUnitReset(), in the global scope.
         #[method(reset)]
         pub unsafe fn reset(&self);
 
+        /// An audio unit's audio input connection points.
+        ///
+        /// Subclassers must override this property's getter. The implementation should return the same
+        /// object every time it is asked for it, since clients can install KVO observers on it.
         #[method_id(@__retain_semantics Other inputBusses)]
         pub unsafe fn inputBusses(&self) -> Retained<AUAudioUnitBusArray>;
 
+        /// An audio unit's audio output connection points.
+        ///
+        /// Subclassers must override this property's getter. The implementation should return the same
+        /// object every time it is asked for it, since clients can install KVO observers on it.
         #[method_id(@__retain_semantics Other outputBusses)]
         pub unsafe fn outputBusses(&self) -> Retained<AUAudioUnitBusArray>;
 
@@ -231,6 +505,18 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-audio-types"
         ))]
+        /// Block which hosts use to ask the unit to render.
+        ///
+        /// Before invoking an audio unit's rendering functionality, a host should fetch this block and
+        /// cache the result. The block can then be called from a realtime context without the
+        /// possibility of blocking and causing an overload at the Core Audio HAL level.
+        ///
+        /// This block will call a subclass' internalRenderBlock, providing all realtime events
+        /// scheduled for the current render time interval, bracketed by calls to any render observers.
+        ///
+        /// Subclassers should override internalRenderBlock, not this property.
+        ///
+        /// Bridged to the v2 API AudioUnitRender().
         #[method(renderBlock)]
         pub unsafe fn renderBlock(&self) -> AURenderBlock;
 
@@ -239,6 +525,18 @@ extern_methods!(
             feature = "AudioUnitProperties",
             feature = "block2"
         ))]
+        /// Block which hosts use to schedule parameters.
+        ///
+        /// As with renderBlock, a host should fetch and cache this block before calling
+        /// allocateRenderResources, if it intends to schedule parameters.
+        ///
+        /// The block is safe to call from any thread context, including realtime audio render
+        /// threads.
+        ///
+        /// Subclassers should not override this; it is implemented in the base class and will schedule
+        /// the events to be provided to the internalRenderBlock.
+        ///
+        /// Bridged to the v2 API AudioUnitScheduleParameters().
         #[method(scheduleParameterBlock)]
         pub unsafe fn scheduleParameterBlock(&self) -> AUScheduleParameterBlock;
 
@@ -247,26 +545,85 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-audio-types"
         ))]
+        /// Add a block to be called on each render cycle.
+        ///
+        /// The supplied block is called at the beginning and ending of each render cycle. It should
+        /// not make any blocking calls.
+        ///
+        /// This method is implemented in the base class AUAudioUnit, and should not be overridden.
+        ///
+        /// Bridged to the v2 API AudioUnitAddRenderNotify().
+        ///
+        /// Parameter `observer`: The block to call.
+        ///
+        /// Returns: A token to be used when removing the observer.
         #[method(tokenByAddingRenderObserver:)]
         pub unsafe fn tokenByAddingRenderObserver(&self, observer: AURenderObserver) -> NSInteger;
 
+        /// Remove an observer block added via tokenByAddingRenderObserver:
+        ///
+        /// Parameter `token`: The token previously returned by tokenByAddingRenderObserver:
+        ///
+        /// Bridged to the v2 API AudioUnitRemoveRenderNotify().
         #[method(removeRenderObserver:)]
         pub unsafe fn removeRenderObserver(&self, token: NSInteger);
 
+        /// The maximum number of frames which the audio unit can render at once.
+        ///
+        /// This must be set by the host before render resources are allocated. It cannot be changed
+        /// while render resources are allocated.
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_MaximumFramesPerSlice.
         #[method(maximumFramesToRender)]
         pub unsafe fn maximumFramesToRender(&self) -> AUAudioFrameCount;
 
+        /// Setter for [`maximumFramesToRender`][Self::maximumFramesToRender].
         #[method(setMaximumFramesToRender:)]
         pub unsafe fn setMaximumFramesToRender(&self, maximum_frames_to_render: AUAudioFrameCount);
 
         #[cfg(feature = "AUParameters")]
+        /// An audio unit's parameters, organized in a hierarchy.
+        ///
+        /// Returns: A parameter tree object, or nil if the unit has no parameters.
+        ///
+        /// Audio unit hosts can fetch this property to discover a unit's parameters. KVO notifications
+        /// are issued on this member to notify the host of changes to the set of available parameters.
+        ///
+        /// AUAudioUnit has an additional pseudo-property, "allParameterValues", on which KVO
+        /// notifications are issued in response to certain events where potentially all parameter
+        /// values are invalidated. This includes changes to currentPreset, fullState, and
+        /// fullStateForDocument.
+        ///
+        /// Hosts should not attempt to set this property.
+        ///
+        /// Subclassers should implement the parameterTree getter to expose parameters to hosts. They
+        /// should cache as much as possible and send KVO notifications on "parameterTree" when altering
+        /// the structure of the tree or the static information (ranges, etc) of parameters.
+        ///
+        /// This is similar to the v2 properties kAudioUnitProperty_ParameterList and
+        /// kAudioUnitProperty_ParameterInfo.
+        ///
+        /// Note that it is not safe to modify this property in a real-time context.
         #[method_id(@__retain_semantics Other parameterTree)]
         pub unsafe fn parameterTree(&self) -> Option<Retained<AUParameterTree>>;
 
         #[cfg(feature = "AUParameters")]
+        /// Setter for [`parameterTree`][Self::parameterTree].
         #[method(setParameterTree:)]
         pub unsafe fn setParameterTree(&self, parameter_tree: Option<&AUParameterTree>);
 
+        /// Returns the audio unit's `count` most important parameters.
+        ///
+        /// This property allows a host to query an audio unit for some small number of parameters which
+        /// are its "most important", to be displayed in a compact generic view.
+        ///
+        /// An audio unit subclass should return an array of NSNumbers representing the addresses
+        /// of the `count` most important parameters.
+        ///
+        /// The base class returns an empty array regardless of count.
+        ///
+        /// Partially bridged to kAudioUnitProperty_ParametersForOverview (v2 hosts can use that
+        /// property to access this v3 method of an audio unit).
         #[method_id(@__retain_semantics Other parametersForOverviewWithCount:)]
         pub unsafe fn parametersForOverviewWithCount(
             &self,
@@ -276,121 +633,429 @@ extern_methods!(
         #[method(allParameterValues)]
         pub unsafe fn allParameterValues(&self) -> bool;
 
+        /// Specifies whether an audio unit responds to MIDI events.
+        ///
+        /// This is implemented in the base class and returns YES if the component type is music
+        /// device or music effect.
         #[method(isMusicDeviceOrEffect)]
         pub unsafe fn isMusicDeviceOrEffect(&self) -> bool;
 
+        /// The number of virtual MIDI cables implemented by a music device or effect.
+        ///
+        /// A music device or MIDI effect can support up to 256 virtual MIDI cables of input; this
+        /// property expresses the number of cables supported by the audio unit.
         #[method(virtualMIDICableCount)]
         pub unsafe fn virtualMIDICableCount(&self) -> NSInteger;
 
         #[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
+        /// Block used to schedule MIDI events.
+        ///
+        /// As with renderBlock, a host should fetch and cache this block before calling
+        /// allocateRenderResources if it intends to schedule MIDI events.
+        ///
+        /// This is implemented in the base class. It is nil when musicDeviceOrEffect is NO.
+        ///
+        /// Subclasses should not override. When hosts schedule events via this block, they are
+        /// sent to the Audio Unit via the list of AURenderEvents delivered to
+        /// internalRenderBlock.
+        ///
+        /// All events sent via this block will be delivered to the internalRenderBlock in the MIDI
+        /// protocol returned by the AudioUnitMIDIProtocol property. For example, if AudioUnitMIDIProtocol
+        /// returns kMIDIProtocol_2_0, incoming events will be translated to MIDI 2.0 if necessary.
+        /// If AudioUnitMIDIProtocol is not set, events will be delivered as legacy MIDI.
+        ///
+        /// This bridged to the v2 API MusicDeviceMIDIEvent.
         #[method(scheduleMIDIEventBlock)]
         pub unsafe fn scheduleMIDIEventBlock(&self) -> AUScheduleMIDIEventBlock;
 
+        /// Count, and names of, a plug-in's MIDI outputs.
+        ///
+        /// A plug-in may override this method to inform hosts about its MIDI outputs. The size of the
+        /// array is the number of outputs the Audio Unit supports. Each item in the array is the name
+        /// of the MIDI output at that index.
+        ///
+        /// This is bridged to the v2 API property kAudioUnitProperty_MIDIOutputCallbackInfo.
         #[method_id(@__retain_semantics Other MIDIOutputNames)]
         pub unsafe fn MIDIOutputNames(&self) -> Retained<NSArray<NSString>>;
 
+        /// Specifies whether an audio unit provides UI (normally in the form of a view controller).
+        ///
+        /// Implemented in the framework and should not be overridden by implementators. The
+        /// framework detects whether any subclass has implemented
+        /// `requestViewControllerWithCompletionHandler:` or is implemented by an AU extension whose
+        /// extension point identifier is `com.apple.AudioUnit-UI`. See also
+        /// `requestViewControllerWithCompletionHandler:` in
+        /// <CoreAudioKit
+        /// /AUViewController.h>
         #[method(providesUserInterface)]
         pub unsafe fn providesUserInterface(&self) -> bool;
 
         #[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
+        /// Block used by the host to access the MIDI output generated by an Audio Unit.
+        ///
+        /// The host can set this block and the plug-in can call it in its renderBlock to provide to the
+        /// host the MIDI data associated with the current render cycle.
+        ///
+        /// All events sent via this block will be delivered to the host in the MIDI protocol returned by
+        /// the hostMIDIProtocol property. For example, if hostMIDIProtocol is set to
+        /// kMIDIProtocol_2_0, incoming events will be translated to MIDI 2.0. If hostMIDIProtocol
+        /// is not set, events will be delivered as legacy MIDI.
+        ///
+        /// Note: AUMIDIEventListBlock should be preferred over this block going forward.
+        ///
+        /// This is bridged to the v2 API property kAudioUnitProperty_MIDIOutputCallback.
         #[method(MIDIOutputEventBlock)]
         pub unsafe fn MIDIOutputEventBlock(&self) -> AUMIDIOutputEventBlock;
 
         #[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
+        /// Setter for [`MIDIOutputEventBlock`][Self::MIDIOutputEventBlock].
         #[method(setMIDIOutputEventBlock:)]
         pub unsafe fn setMIDIOutputEventBlock(
             &self,
             midi_output_event_block: AUMIDIOutputEventBlock,
         );
 
+        /// A persistable snapshot of the Audio Unit's properties and parameters, suitable for
+        /// saving as a user preset.
+        ///
+        /// Hosts may use this property to save and restore the state of an Audio Unit being used in a
+        /// user preset or document. The Audio Unit should not persist transitory properties such as
+        /// stream formats, but should save and restore all parameters and custom properties.
+        ///
+        /// The base class implementation of this property saves the values of all parameters
+        /// currently in the parameter tree. A subclass which dynamically produces multiple variants
+        /// of the parameter tree needs to be aware that the serialization method does a depth-first
+        /// preorder traversal of the tree.
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_ClassInfo.
         #[method_id(@__retain_semantics Other fullState)]
         pub unsafe fn fullState(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// Setter for [`fullState`][Self::fullState].
         #[method(setFullState:)]
         pub unsafe fn setFullState(&self, full_state: Option<&NSDictionary<NSString, AnyObject>>);
 
+        /// A persistable snapshot of the audio unit's properties and parameters, suitable for
+        /// saving in a user's document.
+        ///
+        /// This property is distinct from fullState in that some state is suitable for saving in user
+        /// presets, while other state is not. For example, a synthesizer's master tuning setting could
+        /// be considered global state, inappropriate for storing in reusable presets, but desirable
+        /// for storing in a document for a specific live performance.
+        ///
+        /// Hosts saving documents should use this property. If the audio unit does not implement it,
+        /// the base class simply sets/gets fullState.
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_ClassInfoFromDocument.
         #[method_id(@__retain_semantics Other fullStateForDocument)]
         pub unsafe fn fullStateForDocument(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// Setter for [`fullStateForDocument`][Self::fullStateForDocument].
         #[method(setFullStateForDocument:)]
         pub unsafe fn setFullStateForDocument(
             &self,
             full_state_for_document: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
+        /// A collection of presets provided by the audio unit's developer.
+        ///
+        /// A preset provides users of an audio unit with an easily-selectable, fine-tuned set of
+        /// parameters provided by the developer. This property returns all of the available factory presets.
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_FactoryPresets.
         #[method_id(@__retain_semantics Other factoryPresets)]
         pub unsafe fn factoryPresets(&self) -> Option<Retained<NSArray<AUAudioUnitPreset>>>;
 
+        /// A collection of presets saved by the user
+        ///
+        /// In addition to factory presets, provided by the audio unit vendor, users have the ability to
+        /// save the values of the parameters of an audio unit into a user preset. These users presets
+        /// can be accessed using this property.
+        ///
+        /// The default implementation of this method will load the user presets from an internal
+        /// location that might not be directly accessible to the audio unit host application or to the
+        /// audio unit. Instead of accessing this path directly, the audio unit should rely on the
+        /// superclass implementation of this method to retrieve the presets.
+        ///
+        /// Audio Units are free to override this method to load their user presets via different means
+        /// (e.g. from their iCloud container).
         #[method_id(@__retain_semantics Other userPresets)]
         pub unsafe fn userPresets(&self) -> Retained<NSArray<AUAudioUnitPreset>>;
 
+        /// Persistently save the current state of the audio unit into a userPreset
+        ///
+        /// The new preset will be added to userPresets and will become selectable by assigning it
+        /// to the currentPreset property.
+        /// If a preset with the provided name already exists then it will be overwritten.
+        ///
+        /// For user presets, the preset number is required to be negative.
+        /// If a positive number is passed, the sign will be changed to negative.
+        /// If zero is passed, the number will be set to -1.
+        /// These changes will be reflected on the userPreset argument.
+        ///
+        /// The default implementation of this method will save the user preset to an internal
+        /// location.
+        ///
+        /// Audio Units are free to override this method to operate on a different location (e.g. their
+        /// iCloud container).
+        ///
+        /// Parameter `userPreset`: The preset under which the current state will be saved.
+        ///
+        /// Parameter `outError`: In the event of a failure, the method will return NO and outError will be set to an
+        /// NSError, describing the problem.
+        /// Some possible errors:
+        /// - domain: NSOSStatusErrorDomain code: kAudioUnitErr_NoConnection
+        /// - domain: NSOSStatusErrorDomain    code: kAudioUnitErr_InvalidFilePath
+        /// - domain: NSOSStatusErrorDomain    code: kAudioUnitErr_MissingKey
+        ///
+        /// Returns: YES for success. NO in the event of a failure, in which case the error is returned in
+        /// outError.
         #[method(saveUserPreset:error:_)]
         pub unsafe fn saveUserPreset_error(
             &self,
             user_preset: &AUAudioUnitPreset,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Remove a user preset.
+        ///
+        /// The user preset will be removed from userPresets and will be permanently deleted.
+        ///
+        /// The default implementation of this method will delete the user preset from an internal
+        /// location.
+        ///
+        /// Audio Units are free to override this method to operate on a different location (e.g. their
+        /// iCloud container).
+        ///
+        /// Parameter `userPreset`: The preset to be deleted.
+        ///
+        /// Parameter `outError`: In the event of a failure, the method will return NO and outError will be set to an
+        /// NSError, describing the problem.
+        /// Some possible errors:
+        /// - domain: NSOSStatusErrorDomain code: kAudioUnitErr_NoConnection
+        /// - domain: NSPOSIXErrorDomain    code: ENOENT
+        /// - domain: NSOSStatusErrorDomain    code: kAudioUnitErr_InvalidFilePath
+        ///
+        /// Returns: YES for success. NO in the event of a failure, in which case the error is returned in
+        /// outError.
         #[method(deleteUserPreset:error:_)]
         pub unsafe fn deleteUserPreset_error(
             &self,
             user_preset: &AUAudioUnitPreset,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Retrieve the state stored in a user preset
+        ///
+        /// This method allows access to the contents of a preset without having to set that preset as
+        /// current. The returned dictionary is assignable to the audio unit's fullState and/or
+        /// fullStateForDocument properties.
+        ///
+        /// Audio units can override this method in order to vend user presets from a different location
+        /// (e.g. their iCloud container).
+        ///
+        /// In order to restore the state from a user preset, the audio unit should override the setter
+        /// for the currentPreset property and check the preset number to determine the type of preset.
+        /// If the preset number is >= 0 then the preset is a factory preset.
+        /// If the preset number is
+        /// <
+        /// 0 then it is a user preset.
+        ///
+        /// This method can then be called to retrieve the state stored in a user preset and the audio
+        /// unit can assign this to fullState or fullStateForDocument.
+        ///
+        ///
+        /// Parameter `userPreset`: The preset to be selected.
+        ///
+        /// Parameter `outError`: In the event of a failure, the method will return nil and outError will be set to an
+        /// NSError, describing the problem.
+        /// Some possible errors:
+        /// - domain: NSOSStatusErrorDomain code: kAudioUnitErr_NoConnection
+        /// - domain: NSPOSIXErrorDomain    code: ENOENT
+        /// - domain: NSCocoaErrorDomain    code: NSCoderReadCorruptError
+        ///
+        /// Returns: Returns nil if there was an error, otherwise returns a dictionary containing the full state
+        /// of the audio unit saved in the preset.
+        /// For details on the possible keys present in the full state dictionary, please see the
+        /// documentation for kAudioUnitProperty_ClassInfo.
+        /// The minimal set of keys and their type is:
+        /// : NSNumber,
+        /// : NSNumber,
+        /// : NSNumber,
+        /// : NSNumber,
+        /// : NSString,
+        /// : NSNumber,
+        /// : NSData
         #[method_id(@__retain_semantics Other presetStateFor:error:_)]
         pub unsafe fn presetStateFor_error(
             &self,
             user_preset: &AUAudioUnitPreset,
         ) -> Result<Retained<NSDictionary<NSString, AnyObject>>, Retained<NSError>>;
 
+        /// Specifies whether an audio unit supports loading and saving user presets
+        ///
+        /// The audio unit should set this property to YES if a user preset can be assigned to
+        /// currentPreset.
+        ///
+        /// Audio unit host applications should query this property to determine whether the audio unit
+        /// supports user presets.
+        ///
+        /// Assigning a user preset to the currentPreset property of an audio unit that does not support
+        /// restoring state from user presets may result in incorrect behavior.
         #[method(supportsUserPresets)]
         pub unsafe fn supportsUserPresets(&self) -> bool;
 
+        /// Set to YES when an AUAudioUnit is loaded in-process
+        ///
+        /// If the AUAudioUnit is instantiated with kAudioComponentInstantiation_LoadInProcess, but the
+        /// audio unit is not packaged properly to support loading in-process, the system will silently
+        /// fall back to loading the audio unit out-of-process.
+        ///
+        /// This property can be used to determine whether the instantiation succeeded as intended and
+        /// the audio unit is running in-process.
+        ///
+        /// The presence of an extension process is not sufficient indication that the audio unit failed
+        /// to load in-process, since the framework might launch the audio unit extension process to
+        /// fulfill auxiliary functionality. If the audio unit is loaded in-process then rendering is
+        /// done in the host process. Other operations that are not essential to rendering audio, might
+        /// be done in the audio unit's extension process.
         #[method(isLoadedInProcess)]
         pub unsafe fn isLoadedInProcess(&self) -> bool;
 
+        /// The audio unit's last-selected preset.
+        ///
+        /// Hosts can let the user select a preset by setting this property. Note that when getting
+        /// this property, it does not reflect whether parameters may have been modified since the
+        /// preset was selected.
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_PresentPreset.
         #[method_id(@__retain_semantics Other currentPreset)]
         pub unsafe fn currentPreset(&self) -> Option<Retained<AUAudioUnitPreset>>;
 
+        /// Setter for [`currentPreset`][Self::currentPreset].
         #[method(setCurrentPreset:)]
         pub unsafe fn setCurrentPreset(&self, current_preset: Option<&AUAudioUnitPreset>);
 
+        /// The audio unit's processing latency, in seconds.
+        ///
+        /// This property reflects the delay between when an impulse in the unit's audio unit stream
+        /// arrives in the input vs. output streams. This should reflect the delay due
+        /// to signal processing (e.g. filters, FFT's, etc.), not delay or reverberation which is
+        /// being applied as an effect.
+        ///
+        /// Note that a latency that varies with parameter settings, including bypass, is generally not
+        /// useful to hosts. A host is usually only prepared to add delays before starting to render and
+        /// those delays need to be fixed. A variable delay would introduce artifacts even if the host
+        /// could track it. If an algorithm has a variable latency it should be adjusted upwards to some
+        /// fixed latency within the audio unit. If for some reason this is not possible, then latency
+        /// could be regarded as an unavoidable consequence of the algorithm and left unreported (i.e.
+        /// with a value of 0).
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_Latency.
         #[method(latency)]
         pub unsafe fn latency(&self) -> NSTimeInterval;
 
+        /// The audio unit's tail time, in seconds.
+        ///
+        /// This property reflects the time interval between when the input stream ends or otherwise
+        /// transitions to silence, and when the output stream becomes silent. Unlike latency, this
+        /// should reflect the duration of a delay or reverb effect.
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_TailTime.
         #[method(tailTime)]
         pub unsafe fn tailTime(&self) -> NSTimeInterval;
 
+        /// Provides a trade-off between rendering quality and CPU load.
+        ///
+        /// The range of valid values is 0-127.
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_RenderQuality.
         #[method(renderQuality)]
         pub unsafe fn renderQuality(&self) -> NSInteger;
 
+        /// Setter for [`renderQuality`][Self::renderQuality].
         #[method(setRenderQuality:)]
         pub unsafe fn setRenderQuality(&self, render_quality: NSInteger);
 
+        /// Directs an effect to route input directly to output, without any processing.
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_BypassEffect.
         #[method(shouldBypassEffect)]
         pub unsafe fn shouldBypassEffect(&self) -> bool;
 
+        /// Setter for [`shouldBypassEffect`][Self::shouldBypassEffect].
         #[method(setShouldBypassEffect:)]
         pub unsafe fn setShouldBypassEffect(&self, should_bypass_effect: bool);
 
+        /// Expresses whether an audio unit can process in place.
+        ///
+        /// In-place processing is the ability for an audio unit to transform an input signal to an
+        /// output signal in-place in the input buffer, without requiring a separate output buffer.
+        ///
+        /// A host can express its desire to process in place by using null mData pointers in the output
+        /// buffer list. The audio unit may process in-place in the input buffers. See the discussion of
+        /// renderBlock.
+        ///
+        /// Partially bridged to the v2 property kAudioUnitProperty_InPlaceProcessing; in v3 it is not
+        /// settable.
+        ///
+        /// Defaults to NO. Subclassers can override to return YES.
         #[method(canProcessInPlace)]
         pub unsafe fn canProcessInPlace(&self) -> bool;
 
+        /// Communicates to an audio unit that it is rendering offline.
+        ///
+        /// A host should set this property when using an audio unit in a context where there are no
+        /// realtime deadlines, before asking the unit to allocate render resources. An audio unit may
+        /// respond by using a more expensive signal processing algorithm, or allowing itself to block
+        /// at render time if data being generated on secondary work threads is not ready in time.
+        /// (Normally, in a realtime thread, this data would have to be dropped).
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_OfflineRender.
         #[method(isRenderingOffline)]
         pub unsafe fn isRenderingOffline(&self) -> bool;
 
+        /// Setter for [`isRenderingOffline`][Self::isRenderingOffline].
         #[method(setRenderingOffline:)]
         pub unsafe fn setRenderingOffline(&self, rendering_offline: bool);
 
+        /// Expresses valid combinations of input and output channel counts.
+        ///
+        /// Elements are NSNumber containing integers; [0]=input count, [1]=output count, [2]=2nd input
+        /// count, [3]=2nd output count, etc.
+        ///
+        /// An input, output count of (2, 2) signifies that the audio unit can process 2 input channels
+        /// to 2 output channels.
+        ///
+        /// Negative numbers (-1, -2) indicate *any* number of channels. (-1, -1) means any number
+        /// of channels on input and output as long as they are the same. (-1, -2) means any number of
+        /// channels on input or output, without the requirement that the counts are the same.
+        ///
+        /// A negative number less than -2 is used to indicate a total number of channels across every
+        /// bus in that scope, regardless of how many channels are set on any particular bus. For
+        /// example, (-16, 2) indicates that a unit can accept up to 16 channels of input across its
+        /// input busses, but will only produce 2 channels of output.
+        ///
+        /// Zero on either side (though typically input) means "not applicable", because there are no
+        /// elements on that side.
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_SupportedNumChannels.
         #[method_id(@__retain_semantics Other channelCapabilities)]
         pub unsafe fn channelCapabilities(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[cfg(feature = "block2")]
+        /// A callback for the AU to call the host for musical context information.
+        ///
+        /// Note that an audio unit implementation accessing this property should cache it in
+        /// realtime-safe storage before beginning to render.
+        ///
+        /// Bridged to the HostCallback_GetBeatAndTempo and HostCallback_GetMusicalTimeLocation
+        /// callback members in kAudioUnitProperty_HostCallbacks.
         #[method(musicalContextBlock)]
         pub unsafe fn musicalContextBlock(&self) -> AUHostMusicalContextBlock;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`musicalContextBlock`][Self::musicalContextBlock].
         #[method(setMusicalContextBlock:)]
         pub unsafe fn setMusicalContextBlock(
             &self,
@@ -398,34 +1063,85 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// A callback for the AU to call the host for transport state information.
+        ///
+        /// Note that an audio unit implementation accessing this property should cache it in
+        /// realtime-safe storage before beginning to render.
+        ///
+        /// Bridged to the HostCallback_GetTransportState and HostCallback_GetTransportState2
+        /// callback members in kAudioUnitProperty_HostCallbacks.
         #[method(transportStateBlock)]
         pub unsafe fn transportStateBlock(&self) -> AUHostTransportStateBlock;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`transportStateBlock`][Self::transportStateBlock].
         #[method(setTransportStateBlock:)]
         pub unsafe fn setTransportStateBlock(
             &self,
             transport_state_block: AUHostTransportStateBlock,
         );
 
+        /// Information about the host context in which the audio unit is connected, for display
+        /// in the audio unit's view.
+        ///
+        /// For example, a host could set "track 3" as the context, so that the audio unit's view could
+        /// then display to the user "My audio unit on track 3".
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_ContextName.
         #[method_id(@__retain_semantics Other contextName)]
         pub unsafe fn contextName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`contextName`][Self::contextName].
         #[method(setContextName:)]
         pub unsafe fn setContextName(&self, context_name: Option<&NSString>);
 
+        /// Information for migrating data from other audio plug-ins to the v3 Audio Unit architecture.
+        ///
+        /// This can be used to migrate settings from an older Audio Unit; this allows manufacturers
+        /// to deprecate older Audio Units and replace them with new ones. The data for the older Audio Unit is
+        /// an array of NSData representing byte encoded AudioUnitOtherPluginDescs to migrate from.
+        /// Can also be used to migrate from a v2 to a v3 Audio Unit.
+        ///
+        /// Bridged to the v2 property kAudioUnitMigrateProperty_FromPlugin.
         #[method_id(@__retain_semantics Other migrateFromPlugin)]
         pub unsafe fn migrateFromPlugin(&self) -> Retained<NSArray>;
 
+        /// Specifies whether an audio unit supports Multi-dimensional Polyphonic Expression.
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_SupportsMPE.
         #[method(supportsMPE)]
         pub unsafe fn supportsMPE(&self) -> bool;
 
+        /// Specify a mapping of input channels to output channels.
+        ///
+        /// Converter and input/output audio units may support re-ordering or splitting of input
+        /// channels to output channels. The number of channels in the channel map is the number of
+        /// channels of the destination (output format). The channel map entries contain a channel
+        /// number of the source channel that should be mapped to that destination channel. If -1 is
+        /// specified, then that destination channel will not contain any channel from the source (so it
+        /// will be silent).
+        ///
+        /// If the property value is nil, then the audio unit does not support this property.
+        ///
+        /// Bridged to the v2 property kAudioOutputUnitProperty_ChannelMap.
         #[method_id(@__retain_semantics Other channelMap)]
         pub unsafe fn channelMap(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// Setter for [`channelMap`][Self::channelMap].
         #[method(setChannelMap:)]
         pub unsafe fn setChannelMap(&self, channel_map: Option<&NSArray<NSNumber>>);
 
+        /// Returns an object for bidirectional communication between an Audio Unit and its host.
+        ///
+        /// Message channels provide a flexible way for custom data exchange between an Audio Unit and its host.
+        /// An Audio Unit can support multiple message channels which are identified by the `channelName`.
+        /// The message channel object's lifetime is managed by the host. Message channel objects should be designed
+        /// in such a way that they could outlive the AU that vended them.
+        /// For further details see discussion for `AUMessageChannel`.
+        ///
+        /// Parameter `channelName`: The name of the message channel to be returned by the Audio Unit if supported.
+        ///
+        /// Returns: An object that conforms to the `AUMessageChannel` protocol.
         #[method_id(@__retain_semantics Other messageChannelFor:)]
         pub unsafe fn messageChannelFor(
             &self,
@@ -442,7 +1158,22 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auinputhandler?language=objc)
+/// Block to notify the client of an I/O unit that input is available.
+///
+/// Parameter `actionFlags`: Pointer to action flags.
+///
+/// Parameter `timestamp`: The HAL time at which the input data was captured. If there is a sample rate conversion
+/// or time compression/expansion downstream, the sample time will not be valid.
+///
+/// Parameter `frameCount`: The number of sample frames of input available.
+///
+/// Parameter `inputBusNumber`: The index of the input bus from which input is available.
+///
+/// The input data is obtained by calling the render block of the audio unit.
+/// The AUAudioUnit is not provided since it is not safe to message an Objective C
+/// object in a real time context.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auinputhandler?language=objc)
 #[cfg(all(
     feature = "AUComponent",
     feature = "block2",
@@ -459,22 +1190,37 @@ pub type AUInputHandler = *mut block2::Block<
 
 extern_methods!(
     /// AUAudioInputOutputUnit
+    /// Additional methods for audio units which can do input/output.
+    ///
+    /// These methods will fail if the audio unit is not an input/output audio unit.
     unsafe impl AUAudioUnit {
+        /// Whether the I/O device can perform input.
         #[method(canPerformInput)]
         pub unsafe fn canPerformInput(&self) -> bool;
 
+        /// Whether the I/O device can perform output.
         #[method(canPerformOutput)]
         pub unsafe fn canPerformOutput(&self) -> bool;
 
+        /// Flag enabling audio input from the unit.
+        ///
+        /// Input is disabled by default. This must be set to YES if input audio is desired.
+        /// Setting to YES will have no effect if canPerformInput is false.
         #[method(isInputEnabled)]
         pub unsafe fn isInputEnabled(&self) -> bool;
 
+        /// Setter for [`isInputEnabled`][Self::isInputEnabled].
         #[method(setInputEnabled:)]
         pub unsafe fn setInputEnabled(&self, input_enabled: bool);
 
+        /// Flag enabling audio output from the unit.
+        ///
+        /// Output is enabled by default.
+        /// Setting to YES will have no effect if canPerformOutput is false.
         #[method(isOutputEnabled)]
         pub unsafe fn isOutputEnabled(&self) -> bool;
 
+        /// Setter for [`isOutputEnabled`][Self::isOutputEnabled].
         #[method(setOutputEnabled:)]
         pub unsafe fn setOutputEnabled(&self, output_enabled: bool);
 
@@ -483,6 +1229,9 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-audio-types"
         ))]
+        /// The block that the output unit will call to get audio to send to the output.
+        ///
+        /// This block must be set if output is enabled.
         #[method(outputProvider)]
         pub unsafe fn outputProvider(&self) -> AURenderPullInputBlock;
 
@@ -491,6 +1240,7 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-audio-types"
         ))]
+        /// Setter for [`outputProvider`][Self::outputProvider].
         #[method(setOutputProvider:)]
         pub unsafe fn setOutputProvider(&self, output_provider: AURenderPullInputBlock);
 
@@ -499,6 +1249,9 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-audio-types"
         ))]
+        /// The block that the output unit will call to notify when input is available.
+        ///
+        /// See discussion for AUInputHandler.
         #[method(inputHandler)]
         pub unsafe fn inputHandler(&self) -> AUInputHandler;
 
@@ -507,37 +1260,74 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-audio-types"
         ))]
+        /// Setter for [`inputHandler`][Self::inputHandler].
         #[method(setInputHandler:)]
         pub unsafe fn setInputHandler(&self, input_handler: AUInputHandler);
 
+        /// Get the I/O hardware device.
         #[method(deviceID)]
         pub unsafe fn deviceID(&self) -> AUAudioObjectID;
 
+        /// Set the I/O hardware device.
+        ///
+        /// Parameter `deviceID`: The device to select.
+        ///
+        /// Parameter `outError`: Returned in the event of failure.
         #[method(setDeviceID:error:_)]
         pub unsafe fn setDeviceID_error(
             &self,
             device_id: AUAudioObjectID,
         ) -> Result<(), Retained<NSError>>;
 
+        /// The audio device's input latency, in seconds.
+        ///
+        /// Bridged to the HAL property kAudioDevicePropertyLatency, which is implemented
+        /// by v2 input/output units.
         #[method(deviceInputLatency)]
         pub unsafe fn deviceInputLatency(&self) -> NSTimeInterval;
 
+        /// The audio device's output latency, in seconds.
+        ///
+        /// Bridged to the HAL property kAudioDevicePropertyLatency, which is implemented
+        /// by v2 input/output units.
         #[method(deviceOutputLatency)]
         pub unsafe fn deviceOutputLatency(&self) -> NSTimeInterval;
 
+        /// The audio device's running state.
         #[method(isRunning)]
         pub unsafe fn isRunning(&self) -> bool;
 
+        /// Starts the audio hardware.
+        ///
+        /// Parameter `outError`: Returned in the event of failure.
         #[method(startHardwareAndReturnError:_)]
         pub unsafe fn startHardwareAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
+        /// Stops the audio hardware.
         #[method(stopHardware)]
         pub unsafe fn stopHardware(&self);
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbusarray?language=objc)
+    /// Container for an audio unit's input or output busses.
+    ///
+    /// Hosts can observe a bus property across all busses by using KVO on this object, without
+    /// having to observe it on each individual bus. (One could add listeners to individual busses,
+    /// but that means one has to observe bus count changes and add/remove listeners in response.
+    /// Also, NSArray's addObserver:toObjectsAtIndexes:forKeyPath:options:context: is problematic;
+    /// it does not let the individual objects override the observation request, and so a bus which
+    /// is proxying a bus in an extension process does not get the message.)
+    ///
+    /// Some audio units (e.g. mixers) support variable numbers of busses, via subclassing. When the
+    /// bus count changes, a KVO notification is sent on "inputBusses" or "outputBusses," as
+    /// appropriate.
+    ///
+    /// Subclassers should see also the AUAudioUnitBusImplementation category.
+    ///
+    /// The bus array is bridged to the v2 property kAudioUnitProperty_ElementCount.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbusarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AUAudioUnitBusArray;
@@ -552,6 +1342,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initializes by making a copy of the supplied bus array.
         #[method_id(@__retain_semantics Init initWithAudioUnit:busType:busses:)]
         pub unsafe fn initWithAudioUnit_busType_busses(
             this: Allocated<Self>,
@@ -560,6 +1351,7 @@ extern_methods!(
             bus_array: &NSArray<AUAudioUnitBus>,
         ) -> Retained<Self>;
 
+        /// Initializes an empty bus array.
         #[method_id(@__retain_semantics Init initWithAudioUnit:busType:)]
         pub unsafe fn initWithAudioUnit_busType(
             this: Allocated<Self>,
@@ -576,12 +1368,17 @@ extern_methods!(
             index: NSUInteger,
         ) -> Retained<AUAudioUnitBus>;
 
+        /// Whether the array can have a variable number of busses.
+        ///
+        /// The base implementation returns false.
         #[method(isCountChangeable)]
         pub unsafe fn isCountChangeable(&self) -> bool;
 
+        /// Change the number of busses in the array.
         #[method(setBusCount:error:_)]
         pub unsafe fn setBusCount_error(&self, count: NSUInteger) -> Result<(), Retained<NSError>>;
 
+        /// Add a KVO observer for a property on all busses in the array.
         #[method(addObserverToAllBusses:forKeyPath:options:context:)]
         pub unsafe fn addObserverToAllBusses_forKeyPath_options_context(
             &self,
@@ -591,6 +1388,7 @@ extern_methods!(
             context: *mut c_void,
         );
 
+        /// Remove a KVO observer for a property on all busses in the array.
         #[method(removeObserverFromAllBusses:forKeyPath:context:)]
         pub unsafe fn removeObserverFromAllBusses_forKeyPath_context(
             &self,
@@ -599,9 +1397,11 @@ extern_methods!(
             context: *mut c_void,
         );
 
+        /// The audio unit that owns the bus.
         #[method_id(@__retain_semantics Other ownerAudioUnit)]
         pub unsafe fn ownerAudioUnit(&self) -> Retained<AUAudioUnit>;
 
+        /// Which bus array this is (input or output).
         #[method(busType)]
         pub unsafe fn busType(&self) -> AUAudioUnitBusType;
     }
@@ -616,7 +1416,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus?language=objc)
+    /// An input or output connection point on an audio unit.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AUAudioUnitBus;
@@ -626,39 +1428,108 @@ unsafe impl NSObjectProtocol for AUAudioUnitBus {}
 
 extern_methods!(
     unsafe impl AUAudioUnitBus {
+        /// Controls the audio unit's allocation strategy for a bus.
+        ///
+        /// Hosts can set this flag to communicate whether an audio unit should allocate its own buffer.
+        /// By default this flag is set to true.
+        ///
+        /// On the output side, shouldAllocateBuffer=false means the AU can assume that it will be
+        /// called with non-null output buffers. If shouldAllocateBuffer=true (the default), the AU must
+        /// be prepared to be called with null pointers and replace them with pointers to its internally
+        /// allocated buffer.
+        ///
+        /// On the input side, shouldAllocateBuffer=false means the AU can pull for input using a buffer
+        /// list with null buffer pointers, and assume that the pull input block will provide pointers.
+        /// If shouldAllocateBuffer=true (the default), the AU must pull with non-null pointers while
+        /// still being prepared for the source to replace them with pointers of its own.
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_ShouldAllocateBuffer.
         #[method(shouldAllocateBuffer)]
         pub unsafe fn shouldAllocateBuffer(&self) -> bool;
 
+        /// Setter for [`shouldAllocateBuffer`][Self::shouldAllocateBuffer].
         #[method(setShouldAllocateBuffer:)]
         pub unsafe fn setShouldAllocateBuffer(&self, should_allocate_buffer: bool);
 
+        /// Whether the bus is active.
+        ///
+        /// Hosts must enable input busses before using them. The reason for this is to allow a unit
+        /// such as a mixer to be prepared to render a large number of inputs, but avoid the work
+        /// of preparing to pull inputs which are not in use.
+        ///
+        /// Bridged to the v2 properties kAudioUnitProperty_MakeConnection and
+        /// kAudioUnitProperty_SetRenderCallback.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        /// A name for the bus. Can be set by host.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
+        /// The index of this bus in the containing array.
         #[method(index)]
         pub unsafe fn index(&self) -> NSUInteger;
 
+        /// The AUAudioUnitBusType.
         #[method(busType)]
         pub unsafe fn busType(&self) -> AUAudioUnitBusType;
 
+        /// The audio unit that owns the bus.
         #[method_id(@__retain_semantics Other ownerAudioUnit)]
         pub unsafe fn ownerAudioUnit(&self) -> Retained<AUAudioUnit>;
 
+        /// This is an array of NSNumbers representing AudioChannelLayoutTag.
         #[method_id(@__retain_semantics Other supportedChannelLayoutTags)]
         pub unsafe fn supportedChannelLayoutTags(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// Information about latency in the audio unit's processing context.
+        ///
+        /// This should not be confused with the audio unit's latency property, where the audio unit
+        /// describes to the host any processing latency it introduces between its input and its output.
+        ///
+        /// A host may set this property to describe to the audio unit the presentation latency of its
+        /// input and/or output audio data. Latency is described in seconds. A value of zero means
+        /// either no latency or an unknown latency.
+        ///
+        /// A host should set this property on each active bus, since, for example, the audio routing
+        /// path to each of multiple output busses may differ.
+        ///
+        /// For input busses:
+        /// Describes how long ago the audio arriving on this bus was acquired. For instance, when
+        /// reading from a file to the first audio unit in a chain, the input presentation latency
+        /// is zero. For audio input from a device, this initial input latency is the presentation
+        /// latency of the device itself, i.e. the device's safety offset and latency.
+        ///
+        /// A second chained audio unit's input presentation latency will be the input presentation
+        /// latency of the first unit, plus the processing latency of the first unit.
+        ///
+        /// For output busses:
+        /// Describes how long it will be before the output audio of an audio unit is presented. For
+        /// instance, when writing to a file, the output presentation latency of the last audio unit
+        /// in a chain is zero. When the audio from that audio unit is to be played to a device,
+        /// then that initial presentation latency will be the presentation latency of the device
+        /// itself, which is the I/O buffer size, plus the device's safety offset and latency
+        ///
+        /// A previous chained audio unit's output presentation latency is the last unit's
+        /// presentation latency plus its processing latency.
+        ///
+        /// So, for a given audio unit anywhere within a mixing graph, the input and output presentation
+        /// latencies describe to that unit how long from the moment of generation it has taken for its
+        /// input to arrive, and how long it will take for its output to be presented.
+        ///
+        /// Bridged to the v2 property kAudioUnitProperty_PresentationLatency.
         #[method(contextPresentationLatency)]
         pub unsafe fn contextPresentationLatency(&self) -> NSTimeInterval;
 
+        /// Setter for [`contextPresentationLatency`][Self::contextPresentationLatency].
         #[method(setContextPresentationLatency:)]
         pub unsafe fn setContextPresentationLatency(
             &self,
@@ -679,7 +1550,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitpreset?language=objc)
+    /// A collection of parameter settings provided by the audio unit implementor, producing a
+    /// useful sound or starting point.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitpreset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AUAudioUnitPreset;
@@ -693,15 +1567,19 @@ unsafe impl NSSecureCoding for AUAudioUnitPreset {}
 
 extern_methods!(
     unsafe impl AUAudioUnitPreset {
+        /// The preset's unique numeric identifier.
         #[method(number)]
         pub unsafe fn number(&self) -> NSInteger;
 
+        /// Setter for [`number`][Self::number].
         #[method(setNumber:)]
         pub unsafe fn setNumber(&self, number: NSInteger);
 
+        /// The preset's name.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
     }
@@ -718,23 +1596,50 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/callhostblock?language=objc)
+/// Block that hosts provide to AU message channels to be called back by the AU.
+///
+/// Parameter `message`: An NSDictionary with custom data. The allowed classes for key and value types are
+/// NSArray, NSDictionary, NSOrderedSet, NSSet, NSString, NSData, NSNull, NSNumber, NSDate
+///
+/// Returns: An NSDictionary with custom data. The allowed classes for key and value types are
+/// NSArray, NSDictionary, NSOrderedSet, NSSet, NSString, NSData, NSNull, NSNumber, NSDate
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/callhostblock?language=objc)
 #[cfg(feature = "block2")]
 pub type CallHostBlock = *mut block2::Block<dyn Fn(NonNull<NSDictionary>) -> NonNull<NSDictionary>>;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumessagechannel?language=objc)
+    /// The protocol which objects returned from `[AUAudioUnit messageChannelFor:]` have to conform to.
+    ///
+    /// Audio Units and hosts that have special needs of communication, e.g. to exchange musical context required for better audio processing,
+    /// can implement a communication object to exchange messages in form of NSDictionaries. An Audio Unit would need to implement
+    /// a class conforming to the AUMessageChannel protocol and return an instance via `[AUAudioUnit messageChannelFor:]`. A host can query
+    /// the instance via the channel name.
+    /// The protocol offers a method to send messages to the AU and a block to send messages to the host.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumessagechannel?language=objc)
     pub unsafe trait AUMessageChannel {
+        /// Calls the Audio Unit with custom data message.
+        ///
+        /// Parameter `message`: An NSDictionary with custom data. The allowed classes for key and value types are
+        /// NSArray, NSDictionary, NSOrderedSet, NSSet, NSString, NSData, NSNull, NSNumber, NSDate
+        ///
+        /// Returns: An NSDictionary with custom data. The allowed classes for key and value types are
+        /// NSArray, NSDictionary, NSOrderedSet, NSSet, NSString, NSData, NSNull, NSNumber, NSDate
         #[optional]
         #[method_id(@__retain_semantics Other callAudioUnit:)]
         unsafe fn callAudioUnit(&self, message: &NSDictionary) -> Retained<NSDictionary>;
 
         #[cfg(feature = "block2")]
+        /// A callback for the AU to send a message to the host.
+        ///
+        /// The host has to set a block on this property.
         #[optional]
         #[method(callHostBlock)]
         unsafe fn callHostBlock(&self) -> CallHostBlock;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`callHostBlock`][Self::callHostBlock].
         #[optional]
         #[method(setCallHostBlock:)]
         unsafe fn setCallHostBlock(&self, call_host_block: CallHostBlock);

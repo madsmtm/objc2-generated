@@ -14,7 +14,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrenderer?language=objc)
+    /// An instance of AVCaptionRenderer represents a service that can render the captions for a particular time
+    ///
+    /// An instance of AVCaptionRenderer performs drawing of a caption "scene" from a population of captions given a time. If there are no captions or no captions at the specified time, "emptiness" will still be drawn (e.g., flood filling with zero alpha or a color).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrenderer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionRenderer;
@@ -25,22 +29,41 @@ unsafe impl NSObjectProtocol for AVCaptionRenderer {}
 extern_methods!(
     unsafe impl AVCaptionRenderer {
         #[cfg(feature = "AVCaption")]
+        /// A NSArray holding captions to consider for rendering.
+        ///
+        /// This is the array of AVCaptions to consider when drawing. The array can contain no captions.
         #[method_id(@__retain_semantics Other captions)]
         pub unsafe fn captions(&self) -> Retained<NSArray<AVCaption>>;
 
         #[cfg(feature = "AVCaption")]
+        /// Setter for [`captions`][Self::captions].
         #[method(setCaptions:)]
         pub unsafe fn setCaptions(&self, captions: &NSArray<AVCaption>);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A CGRect holding bounds for the drawing of caption scene(s).
+        ///
+        /// This is a CGRect indicating where captions are drawn using renderInContext:atTime: Once established, this CGRect is used in each call to renderInContext:atTime: until it is changed to another value. This should be set up earlier than drawing.
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`bounds`][Self::bounds].
         #[method(setBounds:)]
         pub unsafe fn setBounds(&self, bounds: CGRect);
 
         #[cfg(feature = "objc2-core-media")]
+        /// Determine render time ranges within an enclosing time range to account for visual changes among captions.
+        ///
+        /// Returns: An NSArray of AVCaptionRendererScenes; perhaps empty if there are no captions intersecting with the consideredTimeRange
+        ///
+        /// This is an optional service useful for optimizing drawing. A client can perform drawing without it.
+        ///
+        /// As captions may become active and inactive throughout the timeline, this method will return a NSArray holding scene objects with time ranges on whose edges there's a visual change. The client can use the ranges of time between these edges with -renderInContext:atTime: to ensure all visual changes are rendered. The returned time ranges consider activation/deactivation of captions, temporal overlapping, and intra-caption timing requirements (e.g., character reveal animations). Time ranges may be returned where no captions are active as this is also a change in the caption "scene".
+        ///
+        /// The returned NSArray contains AVCaptionRendererScenes, each holding the CMTimeRange of that scene but potentially other information that may be useful to the client during renderering.
+        ///
+        /// The consideredTimeRange parameter is a CMTimeRange expressing the limits for consideration. The extent of this range does not need to correspond to the timing of captions. It might be the range from 0 to some duration. For efficiency, the range can be limited to a window of time. It is also possible to use the range anchored at a time and extending in the direction of playback.
         #[method_id(@__retain_semantics Other captionSceneChangesInRange:)]
         pub unsafe fn captionSceneChangesInRange(
             &self,
@@ -48,6 +71,9 @@ extern_methods!(
         ) -> Retained<NSArray<AVCaptionRendererScene>>;
 
         #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-core-media"))]
+        /// Draw the captions corresponding to a time established by the AVCaptions to a CGContext.
+        ///
+        /// Captions are drawn into the CGContextRef based upon their activation at the specified time. If there are no captions or no captions at the specified time, "emptiness" will still be drawn (e.g., flood filling with zero alpha or a color).
         #[method(renderInContext:forTime:)]
         pub unsafe fn renderInContext_forTime(&self, ctx: CGContextRef, time: CMTime);
     }
@@ -65,7 +91,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrendererscene?language=objc)
+    /// An instance of AVCaptionRendererScene holds a time range and associated state indicating when the AVCaptionRenderer will draw different output.
+    ///
+    /// In rendering the timeline established by the captions referenced by an AVCaptionRenderer, there are considerations such as temporal overlapping of captions, the existence of captions and other graphical elements like regions, and whether captions may be animated (e.g., scrolling in regions, character reveal in a caption). To communicate to the AVCaptionRenderer client the minimal set of time ranges where there are any visual differences, AVCaptionRendererScenes can be requested from -[AVCaptionRenderer captionSceneChangesInRange:]. A client wanting to optimize drawing performance may use this timing information to draw scenes only once per scene. Alternatively, clients can ignore scenes and repeatedly call renderInContext:atTime: but this may have additional performance impact.
+    ///
+    /// Other information about the rendering of a caption scene can be communicated through the AVCaptionRendererScene. For example, if captions are animated, an AVCaptionRendererScene with the time range and an indication of the animation occurring will be returned. There should be no inference from the number of scenes to the number of captions. Even a single caption with internal animations in part of its duration could result in multiple AVCaptionRendererScenes being produced.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrendererscene?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionRendererScene;
@@ -92,12 +126,19 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The time range during which new captions will not be introduced into or existing captions will be retired from the caption scene
         #[method(timeRange)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
+        /// The scene contains one or more active captions.
+        ///
+        /// Clients should not use this to restrict their drawing and should call renderInContext:atTime: to draw "emptiness". However, this information may be useful for purposes such as scrubbing to times where captions are present, skipping scenes in which no captions are present.
         #[method(hasActiveCaptions)]
         pub unsafe fn hasActiveCaptions(&self) -> bool;
 
+        /// The scene may have embedded animations or other state where periodic redrawing while playing through this scene is needed.
+        ///
+        /// This property indicates if refreshing should occur if the client is progressing through the content. If the client is not progressing (i.e., it is treating playback as though the rate is 0.0), a single render at the current render time suffices. This property does not prescribe a refresh rate. A client is free to choose a refresh rate corresponding to rates of associated video frames or other timing appropriate for the client.
         #[method(needsPeriodicRefresh)]
         pub unsafe fn needsPeriodicRefresh(&self) -> bool;
     }

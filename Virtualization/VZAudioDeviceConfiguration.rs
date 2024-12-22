@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzaudiodeviceconfiguration?language=objc)
+    /// Base class for an audio device configuration.
+    ///
+    /// VZAudioDeviceConfiguration should not be instantiated directly.
+    /// The subclass VZVirtioSoundDeviceConfiguration should be used instead.
+    ///
+    ///
+    /// See: VZVirtioSoundDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzaudiodeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZAudioDeviceConfiguration;

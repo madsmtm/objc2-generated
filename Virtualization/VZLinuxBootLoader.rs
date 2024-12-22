@@ -8,7 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxbootloader?language=objc)
+    /// Boot loader configuration for a Linux kernel.
+    ///
+    /// You must use a VZGenericPlatformConfiguration in conjunction with the Linux boot loader.
+    /// It is invalid to use it with any other platform configuration.
+    ///
+    /// See: VZGenericPlatformConfiguration
+    ///
+    /// See: VZVirtualMachineConfiguration.platform.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxbootloader?language=objc)
     #[unsafe(super(VZBootLoader, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZBootLoader")]
@@ -29,27 +38,41 @@ unsafe impl NSObjectProtocol for VZLinuxBootLoader {}
 extern_methods!(
     #[cfg(feature = "VZBootLoader")]
     unsafe impl VZLinuxBootLoader {
+        /// Create a VZLinuxBootLoader with the Linux kernel passed as URL.
+        ///
+        /// Parameter `kernelURL`: The URL of Linux kernel on the local file system.
         #[method_id(@__retain_semantics Init initWithKernelURL:)]
         pub unsafe fn initWithKernelURL(
             this: Allocated<Self>,
             kernel_url: &NSURL,
         ) -> Retained<Self>;
 
+        /// URL of the Linux kernel.
         #[method_id(@__retain_semantics Other kernelURL)]
         pub unsafe fn kernelURL(&self) -> Retained<NSURL>;
 
+        /// Setter for [`kernelURL`][Self::kernelURL].
         #[method(setKernelURL:)]
         pub unsafe fn setKernelURL(&self, kernel_url: &NSURL);
 
+        /// Define the command-line parameters passed to the kernel on boot.
+        ///
+        /// ```text
+        ///  https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
+        ///
+        /// ```
         #[method_id(@__retain_semantics Other commandLine)]
         pub unsafe fn commandLine(&self) -> Retained<NSString>;
 
+        /// Setter for [`commandLine`][Self::commandLine].
         #[method(setCommandLine:)]
         pub unsafe fn setCommandLine(&self, command_line: &NSString);
 
+        /// Set the optional initial RAM disk. The RAM disk is mapped into memory before booting the kernel.
         #[method_id(@__retain_semantics Other initialRamdiskURL)]
         pub unsafe fn initialRamdiskURL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`initialRamdiskURL`][Self::initialRamdiskURL].
         #[method(setInitialRamdiskURL:)]
         pub unsafe fn setInitialRamdiskURL(&self, initial_ramdisk_url: Option<&NSURL>);
     }

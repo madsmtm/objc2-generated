@@ -12,9 +12,11 @@ extern_protocol!(
     pub unsafe trait ASAuthorizationPublicKeyCredentialDescriptor:
         NSCopying + NSObjectProtocol + NSSecureCoding
     {
+        /// An identifier that uniquely identifies a specific credential.
         #[method_id(@__retain_semantics Other credentialID)]
         unsafe fn credentialID(&self) -> Retained<NSData>;
 
+        /// Setter for [`credentialID`][Self::credentialID].
         #[method(setCredentialID:)]
         unsafe fn setCredentialID(&self, credential_id: &NSData);
     }

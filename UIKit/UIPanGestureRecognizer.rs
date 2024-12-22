@@ -71,12 +71,14 @@ extern_methods!(
         #[method(minimumNumberOfTouches)]
         pub fn minimumNumberOfTouches(&self) -> NSUInteger;
 
+        /// Setter for [`minimumNumberOfTouches`][Self::minimumNumberOfTouches].
         #[method(setMinimumNumberOfTouches:)]
         pub fn setMinimumNumberOfTouches(&self, minimum_number_of_touches: NSUInteger);
 
         #[method(maximumNumberOfTouches)]
         pub fn maximumNumberOfTouches(&self) -> NSUInteger;
 
+        /// Setter for [`maximumNumberOfTouches`][Self::maximumNumberOfTouches].
         #[method(setMaximumNumberOfTouches:)]
         pub fn setMaximumNumberOfTouches(&self, maximum_number_of_touches: NSUInteger);
 
@@ -107,6 +109,7 @@ extern_methods!(
         #[method(allowedScrollTypesMask)]
         pub fn allowedScrollTypesMask(&self) -> UIScrollTypeMask;
 
+        /// Setter for [`allowedScrollTypesMask`][Self::allowedScrollTypesMask].
         #[method(setAllowedScrollTypesMask:)]
         pub unsafe fn setAllowedScrollTypesMask(&self, allowed_scroll_types_mask: UIScrollTypeMask);
     }

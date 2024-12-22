@@ -8,7 +8,16 @@ use objc2_core_audio_types::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreampropertyflags?language=objc)
+/// This flag is set in a call to AudioFileStream_PropertyListenerProc when the value of the property
+/// can be obtained at any later time. If this flag is not set, then you should either get the value of
+/// the property from within this callback or set the flag kAudioFileStreamPropertyFlag_CacheProperty in order to signal
+/// to the parser to begin caching the property data. Otherwise the value may not be available in the future.
+///
+///
+/// This flag can be set by a property listener in order to signal to the parser that the client is
+/// interested in the value of the property and that it should be cached until the full value of the property is available.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreampropertyflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,7 +37,11 @@ unsafe impl RefEncode for AudioFileStreamPropertyFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparseflags?language=objc)
+/// This flag is passed in to AudioFileStreamParseBytes to signal a discontinuity. Any partial packet straddling a buffer
+/// boundary will be discarded. This is necessary to avoid being called with a corrupt packet. After a discontinuity occurs
+/// seeking may be approximate in some data formats.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparseflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -47,7 +60,9 @@ unsafe impl RefEncode for AudioFileStreamParseFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseekflags?language=objc)
+/// This flag may be returned from AudioFileStreamSeek if the byte offset is only an estimate, not exact.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseekflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -170,6 +185,32 @@ pub const kAudioFileStreamProperty_BitRate: AudioFileStreamPropertyID = 0x627261
 pub const kAudioFileStreamProperty_InfoDictionary: AudioFileStreamPropertyID = 0x696e666f;
 
 extern "C-unwind" {
+    /// Create a new audio file stream parser.
+    /// The client provides the parser with data and the parser calls
+    /// callbacks when interesting things are found in the data, such as properties and
+    /// audio packets.
+    ///
+    ///
+    /// Parameter `inClientData`: a constant that will be passed to your callbacks.
+    ///
+    /// Parameter `inPropertyListenerProc`: Whenever the value of a property is parsed in the data, this function will be called.
+    /// You can then get the value of the property from in the callback. In some cases, due to
+    /// boundaries in the input data, the property may return kAudioFileStreamError_DataUnavailable.
+    /// When unavailable data is requested from within the property listener, the parser will begin
+    /// caching the property value and will call the property listener again when the property is
+    /// available. For property values for which kAudioFileStreamPropertyFlag_PropertyIsCached is unset, this
+    /// will be the only opportunity to get the value of the property, since the data will be
+    /// disposed upon return of the property listener callback.
+    ///
+    /// Parameter `inPacketsProc`: Whenever packets are parsed in the data, a pointer to the packets is passed to the client
+    /// using this callback. At times only a single packet may be passed due to boundaries in the
+    /// input data.
+    ///
+    /// Parameter `inFileTypeHint`: For files whose type cannot be easily or uniquely determined from the data (ADTS,AC3),
+    /// this hint can be used to indicate the file type.
+    /// Otherwise if you do not know the file type, you can pass zero.
+    ///
+    /// Parameter `outAudioFileStream`: A new file stream ID for use in other AudioFileStream API calls.
     #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
     pub fn AudioFileStreamOpen(
         in_client_data: *mut c_void,
@@ -181,6 +222,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// This call is the means for streams to supply data to the parser.
+    /// Data is expected to be passed in sequentially from the beginning of the file, without gaps.
+    /// In the course of parsing, the client's property and/or packets callbacks may be called.
+    /// At the end of the stream, this function must be called once with null data pointer and zero
+    /// data byte size to flush any remaining packets out of the parser.
+    ///
+    ///
+    /// Parameter `inAudioFileStream`: The file stream ID
+    ///
+    /// Parameter `inDataByteSize`: The number of bytes passed in for parsing. Must be zero when flushing the parser.
+    ///
+    /// Parameter `inData`: The data passed in to be parsed. Must be null when flushing the parser.
+    ///
+    /// Parameter `inFlags`: If there is a data discontinuity, then kAudioFileStreamParseFlag_Discontinuity should be set true.
     pub fn AudioFileStreamParseBytes(
         in_audio_file_stream: AudioFileStreamID,
         in_data_byte_size: u32,
@@ -190,6 +245,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// This call is used to seek in the data stream. The client passes in a packet
+    /// offset to seek to and the parser passes back a byte offset from which to
+    /// get the data to satisfy that request. The data passed to the next call to
+    /// AudioFileParseBytes will be assumed to be from that byte offset.
+    /// For file formats which do not contain packet tables the byte offset may
+    /// be an estimate. If so, the flag kAudioFileStreamSeekFlag_OffsetIsEstimated will be true.
+    ///
+    ///
+    /// Parameter `inAudioFileStream`: The file stream ID
+    ///
+    /// Parameter `inPacketOffset`: The offset from the beginning of the file of the packet to which to seek.
+    ///
+    /// Parameter `outDataByteOffset`: The byte offset of the data from the file's data offset returned.
+    /// You need to add the value of kAudioFileStreamProperty_DataOffset to get an absolute byte offset in the file.
+    ///
+    /// Parameter `ioFlags`: If outDataByteOffset is an estimate, then kAudioFileStreamSeekFlag_OffsetIsEstimated will be set on output.
+    /// There are currently no flags defined for passing into this call.
     pub fn AudioFileStreamSeek(
         in_audio_file_stream: AudioFileStreamID,
         in_packet_offset: i64,
@@ -199,6 +271,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retrieve the info about the given property. The outSize argument
+    /// will return the size in bytes of the current value of the property.
+    ///
+    ///
+    /// Parameter `inAudioFileStream`: The file stream ID
+    ///
+    /// Parameter `inPropertyID`: Property ID whose value should be read
+    ///
+    /// Parameter `outPropertyDataSize`: Size in bytes of the property
+    ///
+    /// Parameter `outWritable`: whether the property is writable
+    ///
+    ///
+    /// Returns: an OSStatus return code
     pub fn AudioFileStreamGetPropertyInfo(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
@@ -208,6 +294,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retrieve the indicated property data.
+    ///
+    ///
+    /// Parameter `inAudioFileStream`: The file stream ID
+    ///
+    /// Parameter `inPropertyID`: Property ID whose value should be read
+    ///
+    /// Parameter `ioPropertyDataSize`: On input, the size of the buffer pointed to by outPropertyData. On output,
+    /// the number of bytes written.
+    ///
+    /// Parameter `outPropertyData`: Pointer to the property data buffer
+    ///
+    ///
+    /// Returns: an OSStatus return code
     pub fn AudioFileStreamGetProperty(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
@@ -217,6 +317,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Set the value of the property. There are currently no settable properties.
+    ///
+    ///
+    /// Parameter `inAudioFileStream`: The file stream ID
+    ///
+    /// Parameter `inPropertyID`: Property ID whose value should be set
+    ///
+    /// Parameter `inPropertyDataSize`: Size in bytes of the property data
+    ///
+    /// Parameter `inPropertyData`: Pointer to the property data buffer
+    ///
+    ///
+    /// Returns: an OSStatus return code
     pub fn AudioFileStreamSetProperty(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
@@ -226,5 +339,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Close and deallocate the file stream object.
+    ///
+    ///
+    /// Parameter `inAudioFileStream`: The file stream ID
     pub fn AudioFileStreamClose(in_audio_file_stream: AudioFileStreamID) -> OSStatus;
 }

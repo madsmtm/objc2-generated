@@ -21,12 +21,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other customQueryFunction)]
         pub unsafe fn customQueryFunction(&self) -> Retained<NSString>;
 
+        /// Setter for [`customQueryFunction`][Self::customQueryFunction].
         #[method(setCustomQueryFunction:)]
         pub unsafe fn setCustomQueryFunction(&self, custom_query_function: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other customTranslationFunction)]
         pub unsafe fn customTranslationFunction(&self) -> Retained<NSString>;
 
+        /// Setter for [`customTranslationFunction`][Self::customTranslationFunction].
         #[method(setCustomTranslationFunction:)]
         pub unsafe fn setCustomTranslationFunction(
             &self,
@@ -36,26 +38,46 @@ extern_methods!(
         #[method_id(@__retain_semantics Other customAttributes)]
         pub unsafe fn customAttributes(&self) -> Retained<NSArray>;
 
+        /// Setter for [`customAttributes`][Self::customAttributes].
         #[method(setCustomAttributes:)]
         pub unsafe fn setCustomAttributes(&self, custom_attributes: Option<&NSArray>);
 
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
+        /// Setter for [`value`][Self::value].
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
+        /// Returns an initialized and autoreleased ODAttributeMap object with the given value mapped.
+        ///
+        ///
+        /// Returns an initialized and autoreleased ODAttributeMap object with the given value mapped.
         #[method_id(@__retain_semantics Other attributeMapWithValue:)]
         pub unsafe fn attributeMapWithValue(value: Option<&NSString>) -> Option<Retained<Self>>;
 
+        /// Returns an initialized and autoreleased ODAttributeMap object with the given static value.
+        ///
+        ///
+        /// Returns an initialized and autoreleased ODAttributeMap object with the given static value.
         #[method_id(@__retain_semantics Other attributeMapWithStaticValue:)]
         pub unsafe fn attributeMapWithStaticValue(
             static_value: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
+        /// Sets a static value that will always be returned for this mapping.
+        ///
+        ///
+        /// Sets a static value that will always be returned for this mapping, i.e., "20".
         #[method(setStaticValue:)]
         pub unsafe fn setStaticValue(&self, static_value: Option<&NSString>);
 
+        /// Sets a variable substitution-based value.
+        ///
+        ///
+        /// Value should be using the syntax '$native$' for all substited values.  For example,
+        /// to form a home directory using the "cn" of an LDAP record, substitution could be done
+        /// with "/home/$cn$".
         #[method(setVariableSubstitution:)]
         pub unsafe fn setVariableSubstitution(&self, variable_substitution: Option<&NSString>);
     }

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructurepipeline?language=objc)
+    /// A class representing the structure of a Pipeline model.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructurepipeline?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructurePipeline;
@@ -27,10 +29,12 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// The names of the sub models in the pipeline.
         #[method_id(@__retain_semantics Other subModelNames)]
         pub unsafe fn subModelNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "MLModelStructure")]
+        /// The structure of the sub models in the pipeline.
         #[method_id(@__retain_semantics Other subModels)]
         pub unsafe fn subModels(&self) -> Retained<NSArray<MLModelStructure>>;
     }

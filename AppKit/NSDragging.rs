@@ -184,18 +184,21 @@ extern_protocol!(
         #[method(draggingFormation)]
         unsafe fn draggingFormation(&self) -> NSDraggingFormation;
 
+        /// Setter for [`draggingFormation`][Self::draggingFormation].
         #[method(setDraggingFormation:)]
         unsafe fn setDraggingFormation(&self, dragging_formation: NSDraggingFormation);
 
         #[method(animatesToDestination)]
         unsafe fn animatesToDestination(&self) -> bool;
 
+        /// Setter for [`animatesToDestination`][Self::animatesToDestination].
         #[method(setAnimatesToDestination:)]
         unsafe fn setAnimatesToDestination(&self, animates_to_destination: bool);
 
         #[method(numberOfValidItemsForDrop)]
         unsafe fn numberOfValidItemsForDrop(&self) -> NSInteger;
 
+        /// Setter for [`numberOfValidItemsForDrop`][Self::numberOfValidItemsForDrop].
         #[method(setNumberOfValidItemsForDrop:)]
         unsafe fn setNumberOfValidItemsForDrop(&self, number_of_valid_items_for_drop: NSInteger);
 

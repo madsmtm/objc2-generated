@@ -52,6 +52,7 @@ extern_methods!(
         #[method(invalidateFlowLayoutDelegateMetrics)]
         pub unsafe fn invalidateFlowLayoutDelegateMetrics(&self) -> bool;
 
+        /// Setter for [`invalidateFlowLayoutDelegateMetrics`][Self::invalidateFlowLayoutDelegateMetrics].
         #[method(setInvalidateFlowLayoutDelegateMetrics:)]
         pub unsafe fn setInvalidateFlowLayoutDelegateMetrics(
             &self,
@@ -61,6 +62,7 @@ extern_methods!(
         #[method(invalidateFlowLayoutAttributes)]
         pub unsafe fn invalidateFlowLayoutAttributes(&self) -> bool;
 
+        /// Setter for [`invalidateFlowLayoutAttributes`][Self::invalidateFlowLayoutAttributes].
         #[method(setInvalidateFlowLayoutAttributes:)]
         pub unsafe fn setInvalidateFlowLayoutAttributes(
             &self,
@@ -206,6 +208,7 @@ extern_methods!(
         pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumLineSpacing`][Self::minimumLineSpacing].
         #[method(setMinimumLineSpacing:)]
         pub unsafe fn setMinimumLineSpacing(&self, minimum_line_spacing: CGFloat);
 
@@ -214,6 +217,7 @@ extern_methods!(
         pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumInteritemSpacing`][Self::minimumInteritemSpacing].
         #[method(setMinimumInteritemSpacing:)]
         pub unsafe fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
 
@@ -222,6 +226,7 @@ extern_methods!(
         pub unsafe fn itemSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`itemSize`][Self::itemSize].
         #[method(setItemSize:)]
         pub unsafe fn setItemSize(&self, item_size: CGSize);
 
@@ -230,12 +235,14 @@ extern_methods!(
         pub unsafe fn estimatedItemSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`estimatedItemSize`][Self::estimatedItemSize].
         #[method(setEstimatedItemSize:)]
         pub unsafe fn setEstimatedItemSize(&self, estimated_item_size: CGSize);
 
         #[method(scrollDirection)]
         pub unsafe fn scrollDirection(&self) -> UICollectionViewScrollDirection;
 
+        /// Setter for [`scrollDirection`][Self::scrollDirection].
         #[method(setScrollDirection:)]
         pub unsafe fn setScrollDirection(&self, scroll_direction: UICollectionViewScrollDirection);
 
@@ -244,6 +251,7 @@ extern_methods!(
         pub unsafe fn headerReferenceSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`headerReferenceSize`][Self::headerReferenceSize].
         #[method(setHeaderReferenceSize:)]
         pub unsafe fn setHeaderReferenceSize(&self, header_reference_size: CGSize);
 
@@ -252,6 +260,7 @@ extern_methods!(
         pub unsafe fn footerReferenceSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`footerReferenceSize`][Self::footerReferenceSize].
         #[method(setFooterReferenceSize:)]
         pub unsafe fn setFooterReferenceSize(&self, footer_reference_size: CGSize);
 
@@ -260,14 +269,18 @@ extern_methods!(
         pub unsafe fn sectionInset(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`sectionInset`][Self::sectionInset].
         #[method(setSectionInset:)]
         pub unsafe fn setSectionInset(&self, section_inset: UIEdgeInsets);
 
+        /// The reference boundary that the section insets will be defined as relative to. Defaults to `.fromContentInset`.
+        /// NOTE: Content inset will always be respected at a minimum. For example, if the sectionInsetReference equals `.fromSafeArea`, but the adjusted content inset is greater that the combination of the safe area and section insets, then section content will be aligned with the content inset instead.
         #[method(sectionInsetReference)]
         pub unsafe fn sectionInsetReference(
             &self,
         ) -> UICollectionViewFlowLayoutSectionInsetReference;
 
+        /// Setter for [`sectionInsetReference`][Self::sectionInsetReference].
         #[method(setSectionInsetReference:)]
         pub unsafe fn setSectionInsetReference(
             &self,
@@ -277,6 +290,7 @@ extern_methods!(
         #[method(sectionHeadersPinToVisibleBounds)]
         pub unsafe fn sectionHeadersPinToVisibleBounds(&self) -> bool;
 
+        /// Setter for [`sectionHeadersPinToVisibleBounds`][Self::sectionHeadersPinToVisibleBounds].
         #[method(setSectionHeadersPinToVisibleBounds:)]
         pub unsafe fn setSectionHeadersPinToVisibleBounds(
             &self,
@@ -286,6 +300,7 @@ extern_methods!(
         #[method(sectionFootersPinToVisibleBounds)]
         pub unsafe fn sectionFootersPinToVisibleBounds(&self) -> bool;
 
+        /// Setter for [`sectionFootersPinToVisibleBounds`][Self::sectionFootersPinToVisibleBounds].
         #[method(setSectionFootersPinToVisibleBounds:)]
         pub unsafe fn setSectionFootersPinToVisibleBounds(
             &self,

@@ -34,23 +34,41 @@ extern_methods!(
         #[method_id(@__retain_semantics Other itemProvider)]
         pub unsafe fn itemProvider(&self) -> Retained<NSItemProvider>;
 
+        /// Use `localObject` to attach additional information to
+        /// this drag item, visible only inside the app that started the drag.
         #[method_id(@__retain_semantics Other localObject)]
         pub unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`localObject`][Self::localObject].
         #[method(setLocalObject:)]
         pub unsafe fn setLocalObject(&self, local_object: Option<&AnyObject>);
 
         #[cfg(all(feature = "UIDragPreview", feature = "block2"))]
+        /// Use `previewProvider` to change the preview for an item.
+        ///
+        /// Each item is usually given a preview when the drag begins,
+        /// either by the UIDragInteractionDelegate's `-dragInteraction:previewForLiftingItem:session:`
+        /// method, or by creating a preview from the dragging view.
+        ///
+        /// During the drag, applications may attempt to change the item's preview,
+        /// by setting `previewProvider` to a block that returns a preview.
+        /// It will be called when and if the system requests it.
+        ///
+        /// To use the default preview, set `previewProvider` to nil.
+        /// To hide the preview, set `previewProvider` to a block that returns nil.
         #[method(previewProvider)]
         pub unsafe fn previewProvider(&self) -> *mut block2::Block<dyn Fn() -> *mut UIDragPreview>;
 
         #[cfg(all(feature = "UIDragPreview", feature = "block2"))]
+        /// Setter for [`previewProvider`][Self::previewProvider].
         #[method(setPreviewProvider:)]
         pub unsafe fn setPreviewProvider(
             &self,
             preview_provider: Option<&block2::Block<dyn Fn() -> *mut UIDragPreview>>,
         );
 
+        /// Requests for the drop preview to be updated if an active drop animation is in progress, and can handle updates.
+        /// If no active drop animation is in progress for the specified item, then nothing happens.
         #[method(setNeedsDropPreviewUpdate)]
         pub unsafe fn setNeedsDropPreviewUpdate(&self);
     }

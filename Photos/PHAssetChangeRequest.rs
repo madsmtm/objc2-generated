@@ -55,6 +55,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other creationDate)]
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Setter for [`creationDate`][Self::creationDate].
         #[method(setCreationDate:)]
         pub unsafe fn setCreationDate(&self, creation_date: Option<&NSDate>);
 
@@ -63,18 +64,21 @@ extern_methods!(
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
 
         #[cfg(feature = "objc2-core-location")]
+        /// Setter for [`location`][Self::location].
         #[method(setLocation:)]
         pub unsafe fn setLocation(&self, location: Option<&CLLocation>);
 
         #[method(isFavorite)]
         pub unsafe fn isFavorite(&self) -> bool;
 
+        /// Setter for [`isFavorite`][Self::isFavorite].
         #[method(setFavorite:)]
         pub unsafe fn setFavorite(&self, favorite: bool);
 
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
@@ -83,6 +87,7 @@ extern_methods!(
         pub unsafe fn contentEditingOutput(&self) -> Option<Retained<PHContentEditingOutput>>;
 
         #[cfg(feature = "PHContentEditingOutput")]
+        /// Setter for [`contentEditingOutput`][Self::contentEditingOutput].
         #[method(setContentEditingOutput:)]
         pub unsafe fn setContentEditingOutput(
             &self,
@@ -127,6 +132,7 @@ extern_methods!(
         ) -> NonNull<block2::Block<dyn Fn(NonNull<PHAdjustmentData>) -> Bool>>;
 
         #[cfg(all(feature = "PHAdjustmentData", feature = "block2"))]
+        /// Setter for [`canHandleAdjustmentData`][Self::canHandleAdjustmentData].
         #[method(setCanHandleAdjustmentData:)]
         pub unsafe fn setCanHandleAdjustmentData(
             &self,
@@ -136,6 +142,7 @@ extern_methods!(
         #[method(isNetworkAccessAllowed)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
 
+        /// Setter for [`isNetworkAccessAllowed`][Self::isNetworkAccessAllowed].
         #[method(setNetworkAccessAllowed:)]
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
@@ -145,6 +152,7 @@ extern_methods!(
             -> *mut block2::Block<dyn Fn(c_double, NonNull<Bool>)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`progressHandler`][Self::progressHandler].
         #[method(setProgressHandler:)]
         pub unsafe fn setProgressHandler(
             &self,

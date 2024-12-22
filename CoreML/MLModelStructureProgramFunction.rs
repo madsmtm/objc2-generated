@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureprogramfunction?language=objc)
+    /// A class representing a function in the Program.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureprogramfunction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructureProgramFunction;
@@ -28,10 +30,12 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "MLModelStructureProgramNamedValueType")]
+        /// The named inputs to the function.
         #[method_id(@__retain_semantics Other inputs)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<MLModelStructureProgramNamedValueType>>;
 
         #[cfg(feature = "MLModelStructureProgramBlock")]
+        /// The active block in the function.
         #[method_id(@__retain_semantics Other block)]
         pub unsafe fn block(&self) -> Retained<MLModelStructureProgramBlock>;
     }

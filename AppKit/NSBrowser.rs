@@ -134,6 +134,7 @@ extern_methods!(
         #[method(doubleAction)]
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
+        /// Setter for [`doubleAction`][Self::doubleAction].
         #[method(setDoubleAction:)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
@@ -143,6 +144,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cellPrototype)]
         pub unsafe fn cellPrototype(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`cellPrototype`][Self::cellPrototype].
         #[method(setCellPrototype:)]
         pub unsafe fn setCellPrototype(&self, cell_prototype: Option<&AnyObject>);
 
@@ -150,36 +152,42 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSBrowserDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSBrowserDelegate>>);
 
         #[method(reusesColumns)]
         pub unsafe fn reusesColumns(&self) -> bool;
 
+        /// Setter for [`reusesColumns`][Self::reusesColumns].
         #[method(setReusesColumns:)]
         pub unsafe fn setReusesColumns(&self, reuses_columns: bool);
 
         #[method(hasHorizontalScroller)]
         pub unsafe fn hasHorizontalScroller(&self) -> bool;
 
+        /// Setter for [`hasHorizontalScroller`][Self::hasHorizontalScroller].
         #[method(setHasHorizontalScroller:)]
         pub unsafe fn setHasHorizontalScroller(&self, has_horizontal_scroller: bool);
 
         #[method(autohidesScroller)]
         pub unsafe fn autohidesScroller(&self) -> bool;
 
+        /// Setter for [`autohidesScroller`][Self::autohidesScroller].
         #[method(setAutohidesScroller:)]
         pub unsafe fn setAutohidesScroller(&self, autohides_scroller: bool);
 
         #[method(separatesColumns)]
         pub unsafe fn separatesColumns(&self) -> bool;
 
+        /// Setter for [`separatesColumns`][Self::separatesColumns].
         #[method(setSeparatesColumns:)]
         pub unsafe fn setSeparatesColumns(&self, separates_columns: bool);
 
         #[method(isTitled)]
         pub unsafe fn isTitled(&self) -> bool;
 
+        /// Setter for [`isTitled`][Self::isTitled].
         #[method(setTitled:)]
         pub unsafe fn setTitled(&self, titled: bool);
 
@@ -188,36 +196,42 @@ extern_methods!(
         pub unsafe fn minColumnWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minColumnWidth`][Self::minColumnWidth].
         #[method(setMinColumnWidth:)]
         pub unsafe fn setMinColumnWidth(&self, min_column_width: CGFloat);
 
         #[method(maxVisibleColumns)]
         pub unsafe fn maxVisibleColumns(&self) -> NSInteger;
 
+        /// Setter for [`maxVisibleColumns`][Self::maxVisibleColumns].
         #[method(setMaxVisibleColumns:)]
         pub unsafe fn setMaxVisibleColumns(&self, max_visible_columns: NSInteger);
 
         #[method(allowsMultipleSelection)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
+        /// Setter for [`allowsMultipleSelection`][Self::allowsMultipleSelection].
         #[method(setAllowsMultipleSelection:)]
         pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
         #[method(allowsBranchSelection)]
         pub unsafe fn allowsBranchSelection(&self) -> bool;
 
+        /// Setter for [`allowsBranchSelection`][Self::allowsBranchSelection].
         #[method(setAllowsBranchSelection:)]
         pub unsafe fn setAllowsBranchSelection(&self, allows_branch_selection: bool);
 
         #[method(allowsEmptySelection)]
         pub unsafe fn allowsEmptySelection(&self) -> bool;
 
+        /// Setter for [`allowsEmptySelection`][Self::allowsEmptySelection].
         #[method(setAllowsEmptySelection:)]
         pub unsafe fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
 
         #[method(takesTitleFromPreviousColumn)]
         pub unsafe fn takesTitleFromPreviousColumn(&self) -> bool;
 
+        /// Setter for [`takesTitleFromPreviousColumn`][Self::takesTitleFromPreviousColumn].
         #[method(setTakesTitleFromPreviousColumn:)]
         pub unsafe fn setTakesTitleFromPreviousColumn(
             &self,
@@ -227,6 +241,7 @@ extern_methods!(
         #[method(sendsActionOnArrowKeys)]
         pub unsafe fn sendsActionOnArrowKeys(&self) -> bool;
 
+        /// Setter for [`sendsActionOnArrowKeys`][Self::sendsActionOnArrowKeys].
         #[method(setSendsActionOnArrowKeys:)]
         pub unsafe fn setSendsActionOnArrowKeys(&self, sends_action_on_arrow_keys: bool);
 
@@ -274,6 +289,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pathSeparator)]
         pub unsafe fn pathSeparator(&self) -> Retained<NSString>;
 
+        /// Setter for [`pathSeparator`][Self::pathSeparator].
         #[method(setPathSeparator:)]
         pub unsafe fn setPathSeparator(&self, path_separator: &NSString);
 
@@ -315,12 +331,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selectionIndexPath)]
         pub unsafe fn selectionIndexPath(&self) -> Option<Retained<NSIndexPath>>;
 
+        /// Setter for [`selectionIndexPath`][Self::selectionIndexPath].
         #[method(setSelectionIndexPath:)]
         pub unsafe fn setSelectionIndexPath(&self, selection_index_path: Option<&NSIndexPath>);
 
         #[method_id(@__retain_semantics Other selectionIndexPaths)]
         pub unsafe fn selectionIndexPaths(&self) -> Retained<NSArray<NSIndexPath>>;
 
+        /// Setter for [`selectionIndexPaths`][Self::selectionIndexPaths].
         #[method(setSelectionIndexPaths:)]
         pub unsafe fn setSelectionIndexPaths(&self, selection_index_paths: &NSArray<NSIndexPath>);
 
@@ -351,6 +369,7 @@ extern_methods!(
         #[method(lastColumn)]
         pub unsafe fn lastColumn(&self) -> NSInteger;
 
+        /// Setter for [`lastColumn`][Self::lastColumn].
         #[method(setLastColumn:)]
         pub unsafe fn setLastColumn(&self, last_column: NSInteger);
 
@@ -435,6 +454,7 @@ extern_methods!(
         #[method(columnResizingType)]
         pub unsafe fn columnResizingType(&self) -> NSBrowserColumnResizingType;
 
+        /// Setter for [`columnResizingType`][Self::columnResizingType].
         #[method(setColumnResizingType:)]
         pub unsafe fn setColumnResizingType(
             &self,
@@ -444,6 +464,7 @@ extern_methods!(
         #[method(prefersAllColumnUserResizing)]
         pub unsafe fn prefersAllColumnUserResizing(&self) -> bool;
 
+        /// Setter for [`prefersAllColumnUserResizing`][Self::prefersAllColumnUserResizing].
         #[method(setPrefersAllColumnUserResizing:)]
         pub unsafe fn setPrefersAllColumnUserResizing(
             &self,
@@ -463,6 +484,7 @@ extern_methods!(
         pub unsafe fn rowHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`rowHeight`][Self::rowHeight].
         #[method(setRowHeight:)]
         pub unsafe fn setRowHeight(&self, row_height: CGFloat);
 
@@ -484,6 +506,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other columnsAutosaveName)]
         pub unsafe fn columnsAutosaveName(&self) -> Retained<NSBrowserColumnsAutosaveName>;
 
+        /// Setter for [`columnsAutosaveName`][Self::columnsAutosaveName].
         #[method(setColumnsAutosaveName:)]
         pub unsafe fn setColumnsAutosaveName(
             &self,
@@ -530,6 +553,7 @@ extern_methods!(
         #[method(allowsTypeSelect)]
         pub unsafe fn allowsTypeSelect(&self) -> bool;
 
+        /// Setter for [`allowsTypeSelect`][Self::allowsTypeSelect].
         #[method(setAllowsTypeSelect:)]
         pub unsafe fn setAllowsTypeSelect(&self, allows_type_select: bool);
 
@@ -538,6 +562,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 

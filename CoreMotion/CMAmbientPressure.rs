@@ -34,9 +34,15 @@ unsafe impl NSSecureCoding for CMAmbientPressureData {}
 extern_methods!(
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMAmbientPressureData {
+        /// Discussion:
+        /// The pressure as measured by the pressure sensor.
+        /// Pressure is in kPa (kilopascals).
         #[method_id(@__retain_semantics Other pressure)]
         pub unsafe fn pressure(&self) -> Retained<NSMeasurement<NSUnitPressure>>;
 
+        /// Discussion:
+        /// The temperature as measured by the pressure sensor.
+        /// Temperature is in C (degrees centrigrade).
         #[method_id(@__retain_semantics Other temperature)]
         pub unsafe fn temperature(&self) -> Retained<NSMeasurement<NSUnitTemperature>>;
     }

@@ -783,6 +783,7 @@ extern_methods!(
         #[method(isMouseCoalescingEnabled)]
         pub unsafe fn isMouseCoalescingEnabled() -> bool;
 
+        /// Setter for [`isMouseCoalescingEnabled`][Self::isMouseCoalescingEnabled].
         #[method(setMouseCoalescingEnabled:)]
         pub unsafe fn setMouseCoalescingEnabled(mouse_coalescing_enabled: bool);
 

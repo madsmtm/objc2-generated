@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgatherlayer?language=objc)
+    /// A gather layer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgatherlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -20,10 +22,16 @@ unsafe impl NSObjectProtocol for MLCGatherLayer {}
 extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCGatherLayer {
+        /// The dimension along which to index
         #[deprecated]
         #[method(dimension)]
         pub unsafe fn dimension(&self) -> NSUInteger;
 
+        /// Create a gather layer
+        ///
+        /// Parameter `dimension`: The dimension along which to index
+        ///
+        /// Returns: A new gather layer
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDimension:)]
         pub unsafe fn layerWithDimension(dimension: NSUInteger) -> Retained<Self>;

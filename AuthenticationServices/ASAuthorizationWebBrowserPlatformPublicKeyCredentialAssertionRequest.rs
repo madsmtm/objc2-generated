@@ -15,6 +15,7 @@ extern_protocol!(
         #[method(shouldShowHybridTransport)]
         unsafe fn shouldShowHybridTransport(&self) -> bool;
 
+        /// Setter for [`shouldShowHybridTransport`][Self::shouldShowHybridTransport].
         #[method(setShouldShowHybridTransport:)]
         unsafe fn setShouldShowHybridTransport(&self, should_show_hybrid_transport: bool);
     }

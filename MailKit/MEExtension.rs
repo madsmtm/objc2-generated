@@ -6,9 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/meextension?language=objc)
+    /// A protocol which must be adopted by the class set as extension's `NSExtensionPrincipalClass`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/meextension?language=objc)
     pub unsafe trait MEExtension: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "MEComposeSession")]
+        /// A factory method for returning an instance of
+        /// `MEComposeSessionHandler`
+        /// Parameter `session`: An instance of
+        /// `MEComposeSession`that represents a mail compose window.
         #[optional]
         #[method_id(@__retain_semantics Other handlerForComposeSession:)]
         unsafe fn handlerForComposeSession(
@@ -17,6 +23,8 @@ extern_protocol!(
         ) -> Retained<ProtocolObject<dyn MEComposeSessionHandler>>;
 
         #[cfg(feature = "MEMessageActionHandler")]
+        /// A factory method for returning an instance of
+        /// `MEMessageActionHandler`
         #[optional]
         #[method_id(@__retain_semantics Other handlerForMessageActions)]
         unsafe fn handlerForMessageActions(
@@ -24,6 +32,8 @@ extern_protocol!(
         ) -> Retained<ProtocolObject<dyn MEMessageActionHandler>>;
 
         #[cfg(feature = "MEContentBlocker")]
+        /// A factory method for returning an instance of
+        /// `MEContentBlocker`
         #[optional]
         #[method_id(@__retain_semantics Other handlerForContentBlocker)]
         unsafe fn handlerForContentBlocker(&self)
@@ -34,6 +44,8 @@ extern_protocol!(
             feature = "MEMessageEncoder",
             feature = "MEMessageSecurityHandler"
         ))]
+        /// A factory method for returning an instance of
+        /// `MEMessageSecurityHandler`
         #[optional]
         #[method_id(@__retain_semantics Other handlerForMessageSecurity)]
         unsafe fn handlerForMessageSecurity(

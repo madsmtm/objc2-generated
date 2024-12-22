@@ -81,6 +81,7 @@ extern_methods!(
         #[method(disabled)]
         pub unsafe fn disabled(&self) -> bool;
 
+        /// Setter for [`disabled`][Self::disabled].
         #[deprecated]
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
@@ -94,6 +95,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
+        /// Setter for [`label`][Self::label].
         #[deprecated]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
@@ -102,6 +104,7 @@ extern_methods!(
         #[method(defaultSelected)]
         pub unsafe fn defaultSelected(&self) -> bool;
 
+        /// Setter for [`defaultSelected`][Self::defaultSelected].
         #[deprecated]
         #[method(setDefaultSelected:)]
         pub unsafe fn setDefaultSelected(&self, default_selected: bool);
@@ -110,6 +113,7 @@ extern_methods!(
         #[method(selected)]
         pub unsafe fn selected(&self) -> bool;
 
+        /// Setter for [`selected`][Self::selected].
         #[deprecated]
         #[method(setSelected:)]
         pub unsafe fn setSelected(&self, selected: bool);
@@ -118,6 +122,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other value)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
+        /// Setter for [`value`][Self::value].
         #[deprecated]
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);

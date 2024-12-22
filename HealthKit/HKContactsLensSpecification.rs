@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcontactslensspecification?language=objc)
+    /// An object subclass representing lens specification for contacts
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcontactslensspecification?language=objc)
     #[unsafe(super(HKLensSpecification, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKLensSpecification")]
@@ -41,14 +43,27 @@ extern_methods!(
     #[cfg(feature = "HKLensSpecification")]
     unsafe impl HKContactsLensSpecification {
         #[cfg(feature = "HKQuantity")]
+        /// The curvature of the back surface of the lens (measured in mm)
         #[method_id(@__retain_semantics Other baseCurve)]
         pub unsafe fn baseCurve(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The width of the lens from edge to edge (measured in mm)
         #[method_id(@__retain_semantics Other diameter)]
         pub unsafe fn diameter(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Parameter `sphere`: The lens power to correct nearsightedness or farsightedness
+        ///
+        /// Parameter `cylinder`: The lens power required to correct astigmatism
+        ///
+        /// Parameter `axis`: The angle along which cylindrical power should be positioned to correct astigmatism
+        ///
+        /// Parameter `addPower`: The power adjustment applied to a multifocal lens to correct presbyopia
+        ///
+        /// Parameter `baseCurve`: The curvature of the back surface of the lens
+        ///
+        /// Parameter `diameter`: The width of the lens from edge to edge
         #[method_id(@__retain_semantics Init initWithSphere:cylinder:axis:addPower:baseCurve:diameter:)]
         pub unsafe fn initWithSphere_cylinder_axis_addPower_baseCurve_diameter(
             this: Allocated<Self>,

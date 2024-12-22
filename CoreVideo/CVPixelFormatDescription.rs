@@ -284,5 +284,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Checks if a compressed pixel format is supported on the current platform.
+    ///
+    /// Parameter `pixelFormatType`: compressed pixel format.
+    ///
+    /// Returns: True if pixel format is supported on the current platform.
     pub fn CVIsCompressedPixelFormatAvailable(pixel_format_type: OSType) -> Boolean;
 }

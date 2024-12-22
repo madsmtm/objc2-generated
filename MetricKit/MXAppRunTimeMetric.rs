@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxappruntimemetric?language=objc)
+    /// An MXMetric subclass that encapsulates app runtime metrics.
+    ///
+    /// Runtime metrics describe application time spent running in different modes, such as audio, location, etc.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxappruntimemetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
@@ -26,17 +30,33 @@ unsafe impl NSSecureCoding for MXAppRunTimeMetric {}
 extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppRunTimeMetric {
+        /// Cumulative application foreground time.
+        ///
+        /// Time spent on screen and visible to the user.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other cumulativeForegroundTime)]
         pub unsafe fn cumulativeForegroundTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
+        /// Cumulative application background time.
+        ///
+        /// Time spent off screen and in the background, invisible to the user.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other cumulativeBackgroundTime)]
         pub unsafe fn cumulativeBackgroundTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
+        /// Cumulative time the application spent running in the background to play audio
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other cumulativeBackgroundAudioTime)]
         pub unsafe fn cumulativeBackgroundAudioTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
 
+        /// Cumulative time the application spent running in the background to acquire or process location.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other cumulativeBackgroundLocationTime)]
         pub unsafe fn cumulativeBackgroundLocationTime(
             &self,

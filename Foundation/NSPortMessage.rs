@@ -45,6 +45,7 @@ extern_methods!(
         #[method(msgid)]
         pub unsafe fn msgid(&self) -> u32;
 
+        /// Setter for [`msgid`][Self::msgid].
         #[method(setMsgid:)]
         pub unsafe fn setMsgid(&self, msgid: u32);
     }

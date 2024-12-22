@@ -21,6 +21,7 @@ extern_protocol!(
         unsafe fn beginTime(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`beginTime`][Self::beginTime].
         #[method(setBeginTime:)]
         unsafe fn setBeginTime(&self, begin_time: CFTimeInterval);
 
@@ -29,12 +30,14 @@ extern_protocol!(
         unsafe fn duration(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`duration`][Self::duration].
         #[method(setDuration:)]
         unsafe fn setDuration(&self, duration: CFTimeInterval);
 
         #[method(speed)]
         unsafe fn speed(&self) -> c_float;
 
+        /// Setter for [`speed`][Self::speed].
         #[method(setSpeed:)]
         unsafe fn setSpeed(&self, speed: c_float);
 
@@ -43,12 +46,14 @@ extern_protocol!(
         unsafe fn timeOffset(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`timeOffset`][Self::timeOffset].
         #[method(setTimeOffset:)]
         unsafe fn setTimeOffset(&self, time_offset: CFTimeInterval);
 
         #[method(repeatCount)]
         unsafe fn repeatCount(&self) -> c_float;
 
+        /// Setter for [`repeatCount`][Self::repeatCount].
         #[method(setRepeatCount:)]
         unsafe fn setRepeatCount(&self, repeat_count: c_float);
 
@@ -57,18 +62,21 @@ extern_protocol!(
         unsafe fn repeatDuration(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`repeatDuration`][Self::repeatDuration].
         #[method(setRepeatDuration:)]
         unsafe fn setRepeatDuration(&self, repeat_duration: CFTimeInterval);
 
         #[method(autoreverses)]
         unsafe fn autoreverses(&self) -> bool;
 
+        /// Setter for [`autoreverses`][Self::autoreverses].
         #[method(setAutoreverses:)]
         unsafe fn setAutoreverses(&self, autoreverses: bool);
 
         #[method_id(@__retain_semantics Other fillMode)]
         unsafe fn fillMode(&self) -> Retained<CAMediaTimingFillMode>;
 
+        /// Setter for [`fillMode`][Self::fillMode].
         #[method(setFillMode:)]
         unsafe fn setFillMode(&self, fill_mode: &CAMediaTimingFillMode);
     }

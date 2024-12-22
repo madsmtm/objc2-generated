@@ -12,22 +12,61 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckpartialerrorsbyitemidkey?language=objc)
+    /// When a CKErrorPartialFailure happens this key will be set in the error's userInfo dictionary.
+    ///
+    ///
+    /// The value of this key will be a dictionary, and the values will be errors for individual items with the keys being the item IDs that failed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckpartialerrorsbyitemidkey?language=objc)
     pub static CKPartialErrorsByItemIDKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordchangederrorancestorrecordkey?language=objc)
+    /// If the server rejects a record save because it has been modified since the last time it was read,
+    /// a
+    /// `CKErrorServerRecordChanged`will be returned.  The error's
+    /// `userInfo`dictionary will contain
+    /// a
+    /// `CKRecord`keyed by
+    /// `CKRecordChangedErrorAncestorRecordKey.`This is the original
+    /// record used as a basis for making your changes.
+    ///
+    /// Note that if you had attempted to save a new
+    /// `CKRecord`instance, this record may not have any
+    /// key / value pairs set on it, as there was no
+    /// `CKRecord`instance that represents an ancestor point.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordchangederrorancestorrecordkey?language=objc)
     pub static CKRecordChangedErrorAncestorRecordKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordchangederrorserverrecordkey?language=objc)
+    /// If the server rejects a record save because it has been modified since the last time it was read,
+    /// a
+    /// `CKErrorServerRecordChanged`will be returned.  The error's
+    /// `userInfo`dictionary will contain
+    /// a
+    /// `CKRecord`keyed by
+    /// `CKRecordChangedErrorServerRecordKey.`This is the record
+    /// object that was found on the server.
+    ///
+    /// Use this record as the basis for merging your changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordchangederrorserverrecordkey?language=objc)
     pub static CKRecordChangedErrorServerRecordKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordchangederrorclientrecordkey?language=objc)
+    /// If the server rejects a record save because it has been modified since the last time it was read,
+    /// a
+    /// `CKErrorServerRecordChanged`will be returned.  The error's
+    /// `userInfo`dictionary will contain
+    /// a
+    /// `CKRecord`keyed by
+    /// `CKRecordChangedErrorClientRecordKey.`This is the record
+    /// object that you tried to save.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordchangederrorclientrecordkey?language=objc)
     pub static CKRecordChangedErrorClientRecordKey: &'static NSString;
 }
 
@@ -37,7 +76,10 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerrorretryafterkey?language=objc)
+    /// On some errors, the userInfo dictionary may contain a NSNumber instance that specifies the period of time in seconds after which the client may retry the request. For example, this key will be on
+    /// `CKErrorServiceUnavailable,``CKErrorRequestRateLimited,`and other errors for which the recommended resolution is to retry after a delay.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckerrorretryafterkey?language=objc)
     pub static CKErrorRetryAfterKey: &'static NSString;
 }
 
@@ -47,42 +89,80 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKErrorCode(pub NSInteger);
 impl CKErrorCode {
+    /// CloudKit.framework encountered an error.  This is a non-recoverable error.
     pub const CKErrorInternalError: Self = Self(1);
+    /// Some items failed, but the operation succeeded overall. Check CKPartialErrorsByItemIDKey in the userInfo dictionary for more details.
+    /// This error is only returned from CKOperation completion blocks, which are deprecated in swift.
+    /// It will not be returned from (swift-only) CKOperation result blocks, which are their replacements
     pub const CKErrorPartialFailure: Self = Self(2);
+    /// Network not available
     pub const CKErrorNetworkUnavailable: Self = Self(3);
+    /// Network error (available but CFNetwork gave us an error)
     pub const CKErrorNetworkFailure: Self = Self(4);
+    /// Un-provisioned or unauthorized container. Try provisioning the container before retrying the operation.
     pub const CKErrorBadContainer: Self = Self(5);
+    /// Service unavailable
     pub const CKErrorServiceUnavailable: Self = Self(6);
+    /// Client is being rate limited
     pub const CKErrorRequestRateLimited: Self = Self(7);
+    /// Missing entitlement
     pub const CKErrorMissingEntitlement: Self = Self(8);
+    /// Not authenticated (writing without being logged in, no user record)
     pub const CKErrorNotAuthenticated: Self = Self(9);
+    /// Access failure (save, fetch, or shareAccept)
     pub const CKErrorPermissionFailure: Self = Self(10);
+    /// Record does not exist
     pub const CKErrorUnknownItem: Self = Self(11);
+    /// Bad client request (bad record graph, malformed predicate)
     pub const CKErrorInvalidArguments: Self = Self(12);
+    /// Bad client request (bad record graph, malformed predicate)
     #[deprecated = "Will not be returned"]
     pub const CKErrorResultsTruncated: Self = Self(13);
+    /// The record was rejected because the version on the server was different
     pub const CKErrorServerRecordChanged: Self = Self(14);
+    /// The server rejected this request. This is a non-recoverable error
     pub const CKErrorServerRejectedRequest: Self = Self(15);
+    /// Asset file was not found
     pub const CKErrorAssetFileNotFound: Self = Self(16);
+    /// Asset file content was modified while being saved
     pub const CKErrorAssetFileModified: Self = Self(17);
+    /// App version is less than the minimum allowed version
     pub const CKErrorIncompatibleVersion: Self = Self(18);
+    /// The server rejected the request because there was a conflict with a unique field.
     pub const CKErrorConstraintViolation: Self = Self(19);
+    /// A CKOperation was explicitly cancelled
     pub const CKErrorOperationCancelled: Self = Self(20);
+    /// The previousServerChangeToken value is too old and the client must re-sync from scratch
     pub const CKErrorChangeTokenExpired: Self = Self(21);
+    /// One of the items in this batch operation failed in a zone with atomic updates, so the entire batch was rejected.
     pub const CKErrorBatchRequestFailed: Self = Self(22);
+    /// The server is too busy to handle this zone operation. Try the operation again in a few seconds.
     pub const CKErrorZoneBusy: Self = Self(23);
+    /// Operation could not be completed on the given database. Likely caused by attempting to modify zones in the public database.
     pub const CKErrorBadDatabase: Self = Self(24);
+    /// Saving a record would exceed quota
     pub const CKErrorQuotaExceeded: Self = Self(25);
+    /// The specified zone does not exist on the server
     pub const CKErrorZoneNotFound: Self = Self(26);
+    /// The request to the server was too large. Retry this request as a smaller batch.
     pub const CKErrorLimitExceeded: Self = Self(27);
+    /// The user deleted this zone through the settings UI. Your client should either remove its local data or prompt the user before attempting to re-upload any data to this zone.
     pub const CKErrorUserDeletedZone: Self = Self(28);
+    /// A share cannot be saved because there are too many participants attached to the share
     pub const CKErrorTooManyParticipants: Self = Self(29);
+    /// A record/share cannot be saved, doing so would cause a hierarchy of records to exist in multiple shares
     pub const CKErrorAlreadyShared: Self = Self(30);
+    /// The target of a record's parent or share reference was not found
     pub const CKErrorReferenceViolation: Self = Self(31);
+    /// Request was rejected due to a managed account restriction
     pub const CKErrorManagedAccountRestricted: Self = Self(32);
+    /// Share Metadata cannot be determined, because the user is not a member of the share.  There are invited participants on the share with email addresses or phone numbers not associated with any iCloud account. The user may be able to join the share if they can associate one of those email addresses or phone numbers with their iCloud account via the system Share Accept UI. Call UIApplication's openURL on this share URL to have the user attempt to verify their information.
     pub const CKErrorParticipantMayNeedVerification: Self = Self(33);
+    /// The server received and processed this request, but the response was lost due to a network failure.  There is no guarantee that this request succeeded.  Your client should re-issue the request (if it is idempotent), or fetch data from the server to determine if the request succeeded.
     pub const CKErrorServerResponseLost: Self = Self(34);
+    /// The file for this asset could not be accessed. It is likely your application does not have permission to open the file, or the file may be temporarily unavailable due to its data protection class. This operation can be retried after it is able to be opened in your process.
     pub const CKErrorAssetNotAvailable: Self = Self(35);
+    /// The current account is in a state that may need user intervention to recover from. The user should be directed to check the Settings app. Listen for CKAccountChangedNotifications to know when to re-check account status and retry.
     pub const CKErrorAccountTemporarilyUnavailable: Self = Self(36);
 }
 

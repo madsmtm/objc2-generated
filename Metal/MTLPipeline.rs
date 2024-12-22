@@ -7,7 +7,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmutability?language=objc)
+/// Specifies whether a buffer will be modified between the time it is bound and a compute
+/// or render pipeline is executed in a draw or dispatch.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmutability?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -68,9 +71,11 @@ unsafe impl NSObjectProtocol for MTLPipelineBufferDescriptor {}
 
 extern_methods!(
     unsafe impl MTLPipelineBufferDescriptor {
+        /// Buffer mutability. Defaults to MTLMutabilityDefault: mutable for standard buffers, immutable for argument buffers
         #[method(mutability)]
         pub fn mutability(&self) -> MTLMutability;
 
+        /// Setter for [`mutability`][Self::mutability].
         #[method(setMutability:)]
         pub fn setMutability(&self, mutability: MTLMutability);
     }

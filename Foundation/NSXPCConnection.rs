@@ -94,18 +94,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other exportedInterface)]
         pub unsafe fn exportedInterface(&self) -> Option<Retained<NSXPCInterface>>;
 
+        /// Setter for [`exportedInterface`][Self::exportedInterface].
         #[method(setExportedInterface:)]
         pub unsafe fn setExportedInterface(&self, exported_interface: Option<&NSXPCInterface>);
 
         #[method_id(@__retain_semantics Other exportedObject)]
         pub unsafe fn exportedObject(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`exportedObject`][Self::exportedObject].
         #[method(setExportedObject:)]
         pub unsafe fn setExportedObject(&self, exported_object: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other remoteObjectInterface)]
         pub unsafe fn remoteObjectInterface(&self) -> Option<Retained<NSXPCInterface>>;
 
+        /// Setter for [`remoteObjectInterface`][Self::remoteObjectInterface].
         #[method(setRemoteObjectInterface:)]
         pub unsafe fn setRemoteObjectInterface(
             &self,
@@ -134,6 +137,7 @@ extern_methods!(
         pub unsafe fn interruptionHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`interruptionHandler`][Self::interruptionHandler].
         #[method(setInterruptionHandler:)]
         pub unsafe fn setInterruptionHandler(
             &self,
@@ -145,6 +149,7 @@ extern_methods!(
         pub unsafe fn invalidationHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`invalidationHandler`][Self::invalidationHandler].
         #[method(setInvalidationHandler:)]
         pub unsafe fn setInvalidationHandler(
             &self,
@@ -183,6 +188,8 @@ extern_methods!(
         pub unsafe fn scheduleSendBarrierBlock(&self, block: &block2::Block<dyn Fn()>);
 
         #[cfg(feature = "NSString")]
+        /// Sets the code signing requirement for this connection. If the requirement is malformed, an exception is thrown. If new messages do not match the requirement, the connection is invalidated. It is recommended to set this before calling `resume`, as it is an XPC error to call it more than once.
+        /// See https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/RequirementLang/RequirementLang.html for more information on the format.
         #[method(setCodeSigningRequirement:)]
         pub unsafe fn setCodeSigningRequirement(&self, requirement: &NSString);
     }
@@ -229,6 +236,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSXPCListenerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -251,6 +259,9 @@ extern_methods!(
         pub unsafe fn invalidate(&self);
 
         #[cfg(feature = "NSString")]
+        /// Sets the code signing requirement for new connections. If the requirement is malformed, an exception is thrown. If new peer connections do not match the requirement, the incoming connection is automatically rejected before consulting the delegate.
+        /// This method will only work on `anonymousListener` or `initWithMachServiceName` listener instances. Use on other types of listeners will result in an assertion failure.
+        /// See https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/RequirementLang/RequirementLang.html for more information on the format.
         #[method(setConnectionCodeSigningRequirement:)]
         pub unsafe fn setConnectionCodeSigningRequirement(&self, requirement: &NSString);
     }
@@ -299,6 +310,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other protocol)]
         pub unsafe fn protocol(&self) -> Retained<AnyProtocol>;
 
+        /// Setter for [`protocol`][Self::protocol].
         #[method(setProtocol:)]
         pub unsafe fn setProtocol(&self, protocol: &AnyProtocol);
 
@@ -402,6 +414,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
+        /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&ProtocolObject<dyn NSObjectProtocol>>);
 

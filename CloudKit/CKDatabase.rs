@@ -61,8 +61,18 @@ extern_methods!(
 
 extern_methods!(
     /// ConvenienceMethods
+    /// Convenience APIs
+    ///
+    ///
+    /// These calls operate on a single item in the default zone and allow for simple operations.
+    /// If you'd like to batch your requests, add dependencies between requests, set priorities, or schedule operations on your own queue, take a look at the corresponding
+    /// `CKOperation.`This work is treated as having
+    /// `NSQualityOfServiceUserInitiated`quality of service.
     unsafe impl CKDatabase {
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
+        /// `CKFetchRecordsOperation`and
+        /// `CKModifyRecordsOperation`are the more configurable,
+        /// `CKOperation`-based alternatives to these methods
         #[method(fetchRecordWithID:completionHandler:)]
         pub unsafe fn fetchRecordWithID_completionHandler(
             &self,
@@ -92,6 +102,17 @@ extern_methods!(
             feature = "CKRecordZoneID",
             feature = "block2"
         ))]
+        /// `CKQueryOperation`is the more configurable,
+        /// `CKOperation`-based alternative to this method
+        /// Queries can potentially return a large number of records, and the server will return those records in batches. This convenience API will only fetch the first batch of results (equivalent to using
+        /// `CKQueryOperationMaximumResults).`If you would like to fetch all results, use
+        /// `CKQueryOperation`and its
+        /// `CKQueryCursor`instead.
+        /// Queries invoked within a
+        /// `sharedCloudDatabase`must specify a
+        /// `zoneID.`Cross-zone queries are not supported in a
+        /// `sharedCloudDatabase`Queries that do not specify a
+        /// `zoneID`will perform a query across all zones in the database.
         #[method(performQuery:inZoneWithID:completionHandler:)]
         pub unsafe fn performQuery_inZoneWithID_completionHandler(
             &self,
@@ -101,6 +122,9 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecordZone", feature = "block2"))]
+        /// `CKFetchRecordZonesOperation`and
+        /// `CKModifyRecordZonesOperation`are the more configurable,
+        /// `CKOperation`-based alternatives to these methods
         #[method(fetchAllRecordZonesWithCompletionHandler:)]
         pub unsafe fn fetchAllRecordZonesWithCompletionHandler(
             &self,
@@ -136,6 +160,9 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
+        /// `CKFetchSubscriptionsOperation`and
+        /// `CKModifySubscriptionsOperation`are the more configurable,
+        /// `CKOperation`-based alternative to these methods
         #[method(fetchSubscriptionWithID:completionHandler:)]
         pub unsafe fn fetchSubscriptionWithID_completionHandler(
             &self,

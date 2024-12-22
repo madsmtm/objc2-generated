@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayermediaselectioncriteria?language=objc)
+    /// The preferred languages and media characteristics for a player.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayermediaselectioncriteria?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerMediaSelectionCriteria;
@@ -37,6 +41,13 @@ extern_methods!(
         ) -> Option<Retained<NSArray<AVMediaCharacteristic>>>;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// Creates an instance of AVPlayerMediaSelectionCriteria.
+        ///
+        /// Parameter `preferredLanguages`: An NSArray of NSStrings containing language identifiers, in order of desirability, that are preferred for selection. Can be nil.
+        ///
+        /// Parameter `preferredMediaCharacteristics`: An NSArray of AVMediaCharacteristics indicating additional media characteristics, in order of desirability, that are preferred when selecting media with the characteristic for which the receiver is set on the AVPlayer as the selection criteria. Can be nil.
+        ///
+        /// Returns: An instance of AVPlayerMediaSelectionCriteria.
         #[method_id(@__retain_semantics Init initWithPreferredLanguages:preferredMediaCharacteristics:)]
         pub unsafe fn initWithPreferredLanguages_preferredMediaCharacteristics(
             this: Allocated<Self>,
@@ -45,6 +56,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// Creates an instance of AVPlayerMediaSelectionCriteria.
+        ///
+        /// Parameter `principalMediaCharacteristics`: An NSArray of AVMediaCharacteristics indicating media characteristics that are considered essential when selecting media with the characteristic for which the receiver is set on the AVPlayer as the selection criteria. Can be nil.
+        ///
+        /// Parameter `preferredLanguages`: An NSArray of NSStrings containing language identifiers, in order of desirability, that are preferred for selection. Can be nil.
+        ///
+        /// Parameter `preferredMediaCharacteristics`: An NSArray of AVMediaCharacteristics indicating additional media characteristics, in order of desirability, that are preferred when selecting media with the characteristic for which the receiver is set on the AVPlayer as the selection criteria. Can be nil.
+        ///
+        /// Returns: An instance of AVPlayerMediaSelectionCriteria.
+        ///
+        /// Note that even though principal media characteristics, when present, will override language preferences when making a selection within a specific media selection group, language preferences may still pertain to selections in other groups. For example, language preferences for the group that corresponds to the audible characteristic may be considered when choosing whether or not to select non-forced subtitles for translation purposes.
         #[method_id(@__retain_semantics Init initWithPrincipalMediaCharacteristics:preferredLanguages:preferredMediaCharacteristics:)]
         pub unsafe fn initWithPrincipalMediaCharacteristics_preferredLanguages_preferredMediaCharacteristics(
             this: Allocated<Self>,

@@ -119,54 +119,63 @@ extern_methods!(
         #[method(allowedUnits)]
         pub unsafe fn allowedUnits(&self) -> NSByteCountFormatterUnits;
 
+        /// Setter for [`allowedUnits`][Self::allowedUnits].
         #[method(setAllowedUnits:)]
         pub unsafe fn setAllowedUnits(&self, allowed_units: NSByteCountFormatterUnits);
 
         #[method(countStyle)]
         pub unsafe fn countStyle(&self) -> NSByteCountFormatterCountStyle;
 
+        /// Setter for [`countStyle`][Self::countStyle].
         #[method(setCountStyle:)]
         pub unsafe fn setCountStyle(&self, count_style: NSByteCountFormatterCountStyle);
 
         #[method(allowsNonnumericFormatting)]
         pub unsafe fn allowsNonnumericFormatting(&self) -> bool;
 
+        /// Setter for [`allowsNonnumericFormatting`][Self::allowsNonnumericFormatting].
         #[method(setAllowsNonnumericFormatting:)]
         pub unsafe fn setAllowsNonnumericFormatting(&self, allows_nonnumeric_formatting: bool);
 
         #[method(includesUnit)]
         pub unsafe fn includesUnit(&self) -> bool;
 
+        /// Setter for [`includesUnit`][Self::includesUnit].
         #[method(setIncludesUnit:)]
         pub unsafe fn setIncludesUnit(&self, includes_unit: bool);
 
         #[method(includesCount)]
         pub unsafe fn includesCount(&self) -> bool;
 
+        /// Setter for [`includesCount`][Self::includesCount].
         #[method(setIncludesCount:)]
         pub unsafe fn setIncludesCount(&self, includes_count: bool);
 
         #[method(includesActualByteCount)]
         pub unsafe fn includesActualByteCount(&self) -> bool;
 
+        /// Setter for [`includesActualByteCount`][Self::includesActualByteCount].
         #[method(setIncludesActualByteCount:)]
         pub unsafe fn setIncludesActualByteCount(&self, includes_actual_byte_count: bool);
 
         #[method(isAdaptive)]
         pub unsafe fn isAdaptive(&self) -> bool;
 
+        /// Setter for [`isAdaptive`][Self::isAdaptive].
         #[method(setAdaptive:)]
         pub unsafe fn setAdaptive(&self, adaptive: bool);
 
         #[method(zeroPadsFractionDigits)]
         pub unsafe fn zeroPadsFractionDigits(&self) -> bool;
 
+        /// Setter for [`zeroPadsFractionDigits`][Self::zeroPadsFractionDigits].
         #[method(setZeroPadsFractionDigits:)]
         pub unsafe fn setZeroPadsFractionDigits(&self, zero_pads_fraction_digits: bool);
 
         #[method(formattingContext)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
 
+        /// Setter for [`formattingContext`][Self::formattingContext].
         #[method(setFormattingContext:)]
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
     }

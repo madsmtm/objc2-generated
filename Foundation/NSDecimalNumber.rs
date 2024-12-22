@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberexactnessexception?language=objc)
+    /// *************    Exceptions        **********
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberexactnessexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberExactnessException: &'static NSExceptionName;
 }
@@ -55,7 +57,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber?language=objc)
+    /// *************    NSDecimalNumber: the class        **********
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber?language=objc)
     #[unsafe(super(NSNumber, NSValue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSValue")]
@@ -256,6 +260,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultBehavior)]
         pub unsafe fn defaultBehavior() -> Retained<ProtocolObject<dyn NSDecimalNumberBehaviors>>;
 
+        /// Setter for [`defaultBehavior`][Self::defaultBehavior].
         #[method(setDefaultBehavior:)]
         pub unsafe fn setDefaultBehavior(
             default_behavior: &ProtocolObject<dyn NSDecimalNumberBehaviors>,
@@ -308,7 +313,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberhandler?language=objc)
+    /// *********    A class for defining common behaviors        ******
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberhandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDecimalNumberHandler;
@@ -368,6 +375,7 @@ extern_methods!(
 
 extern_methods!(
     /// NSDecimalNumberExtensions
+    /// *********    Extensions to other classes        ******
     #[cfg(feature = "NSValue")]
     unsafe impl NSNumber {
         #[cfg(feature = "NSDecimal")]

@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer?language=objc)
+    /// A dropout layer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcdropoutlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -21,14 +23,23 @@ unsafe impl NSObjectProtocol for MLCDropoutLayer {}
 extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCDropoutLayer {
+        /// The probability that each element is dropped
         #[deprecated]
         #[method(rate)]
         pub unsafe fn rate(&self) -> c_float;
 
+        /// The initial seed used to generate random numbers
         #[deprecated]
         #[method(seed)]
         pub unsafe fn seed(&self) -> NSUInteger;
 
+        /// Create a dropout layer
+        ///
+        /// Parameter `rate`: A scalar float value. The probability that each element is dropped.
+        ///
+        /// Parameter `seed`: The seed used to generate random numbers.
+        ///
+        /// Returns: A new dropout layer
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithRate:seed:)]
         pub unsafe fn layerWithRate_seed(rate: c_float, seed: NSUInteger) -> Retained<Self>;

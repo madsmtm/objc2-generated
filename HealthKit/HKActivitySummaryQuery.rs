@@ -28,6 +28,10 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKActivitySummaryQuery {
         #[cfg(all(feature = "HKActivitySummary", feature = "block2"))]
+        /// An optional handler to be called when activity summaries matching the given predicate are updated.
+        ///
+        /// This property may not be modified once the query has been executed. If this property is nonnull, then
+        /// the query must be manually stopped.
         #[method(updateHandler)]
         pub unsafe fn updateHandler(
             &self,
@@ -36,6 +40,7 @@ extern_methods!(
         >;
 
         #[cfg(all(feature = "HKActivitySummary", feature = "block2"))]
+        /// Setter for [`updateHandler`][Self::updateHandler].
         #[method(setUpdateHandler:)]
         pub unsafe fn setUpdateHandler(
             &self,
@@ -51,6 +56,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKActivitySummary", feature = "block2"))]
+        /// Returns a query that will retrieve HKActivitySummaries matching the given predicate.
+        ///
+        /// If no updateHandler is set on the query, the query will automatically stop after calling resultsHandler.
+        /// Otherwise, the query continues to run and calls the updateHandler as HKActivitySummaries matching the
+        /// predicate are updated.
+        ///
+        /// Parameter `predicate`: The predicate which HKActivitySummaries should match.
+        ///
+        /// Parameter `handler`: The block to invoke with results when the query has finished.
         #[method_id(@__retain_semantics Init initWithPredicate:resultsHandler:)]
         pub unsafe fn initWithPredicate_resultsHandler(
             this: Allocated<Self>,

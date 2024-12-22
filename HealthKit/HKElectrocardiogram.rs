@@ -6,7 +6,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramlead?language=objc)
+/// The medically-defined leads supported by HKElectrocardiogram
+///
+/// the ECG app, enables the generation and analysis of an ECG  similar to a Lead I ECG.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramlead?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -24,7 +28,9 @@ unsafe impl RefEncode for HKElectrocardiogramLead {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramclassification?language=objc)
+/// The possible classifications determined for HKElectrocardiograms
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramclassification?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -56,7 +62,15 @@ unsafe impl RefEncode for HKElectrocardiogramClassification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramsymptomsstatus?language=objc)
+/// An indication of whether the user experienced symptoms when taking an ECG
+///
+/// HKElectrocardiogramSymptomsStatusNone          The user did not experience any symptoms during the duration of the electrocardiogram reading.
+/// HKElectrocardiogramSymptomsStatusPresent       The user indicated that they experienced symptoms during the duration of the electrocardiogram reading.
+///
+/// If an HKElectrocardiogram indicates that there are symptoms present, you must do a separate sample query to
+/// retrieve those symptoms.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramsymptomsstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -79,7 +93,10 @@ unsafe impl RefEncode for HKElectrocardiogramSymptomsStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram?language=objc)
+    /// An HKElectrocardiogram is a collection of voltage values as waveforms
+    /// from one or more leads
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -104,20 +121,25 @@ unsafe impl NSSecureCoding for HKElectrocardiogram {}
 extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKElectrocardiogram {
+        /// The number of voltage measurements in the electrocardiogram.
         #[method(numberOfVoltageMeasurements)]
         pub unsafe fn numberOfVoltageMeasurements(&self) -> NSInteger;
 
         #[cfg(feature = "HKQuantity")]
+        /// The frequency at which the data was sampled. This is reported in [HKUnit hertzUnit].
         #[method_id(@__retain_semantics Other samplingFrequency)]
         pub unsafe fn samplingFrequency(&self) -> Option<Retained<HKQuantity>>;
 
+        /// The classification of this electrocardiogram sample.
         #[method(classification)]
         pub unsafe fn classification(&self) -> HKElectrocardiogramClassification;
 
         #[cfg(feature = "HKQuantity")]
+        /// The average heart rate of the user while the electrocardiogram was recorded.
         #[method_id(@__retain_semantics Other averageHeartRate)]
         pub unsafe fn averageHeartRate(&self) -> Option<Retained<HKQuantity>>;
 
+        /// Whether the user experienced symptoms during this electrocardiogram.
         #[method(symptomsStatus)]
         pub unsafe fn symptomsStatus(&self) -> HKElectrocardiogramSymptomsStatus;
     }

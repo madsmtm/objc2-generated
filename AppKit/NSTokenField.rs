@@ -14,6 +14,19 @@ extern_protocol!(
     #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
     pub unsafe trait NSTokenFieldDelegate: NSTextFieldDelegate + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// Allows the delegate to provide an array of appropriate completions for the contents of the receiver
+        ///
+        /// Parameter `tokenField`: The token field where editing is occurring
+        ///
+        /// Parameter `substring`: The partial string that is being completed
+        ///
+        /// Parameter `tokenIndex`: The index of the token being completed
+        ///
+        /// Parameter `selectedIndex`: Optionally, you can return by reference an index into the returned array that specifies which of the completions should be initially selected. If none are to be selected, return by reference `-1`.
+        ///
+        /// Returns: An array of strings (`NSString`) that are possible completions, or `nil` to provide no completions
+        ///
+        /// If the delegate does not implement this method, no completions are provided
         #[optional]
         #[method_id(@__retain_semantics Other tokenField:completionsForSubstring:indexOfToken:indexOfSelectedItem:)]
         unsafe fn tokenField_completionsForSubstring_indexOfToken_indexOfSelectedItem(
@@ -248,6 +261,7 @@ extern_methods!(
             -> Option<Retained<ProtocolObject<dyn NSTokenFieldDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -259,12 +273,14 @@ extern_methods!(
         pub unsafe fn tokenStyle(&self) -> NSTokenStyle;
 
         #[cfg(feature = "NSTokenFieldCell")]
+        /// Setter for [`tokenStyle`][Self::tokenStyle].
         #[method(setTokenStyle:)]
         pub unsafe fn setTokenStyle(&self, token_style: NSTokenStyle);
 
         #[method(completionDelay)]
         pub unsafe fn completionDelay(&self) -> NSTimeInterval;
 
+        /// Setter for [`completionDelay`][Self::completionDelay].
         #[method(setCompletionDelay:)]
         pub unsafe fn setCompletionDelay(&self, completion_delay: NSTimeInterval);
 
@@ -274,6 +290,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
         pub unsafe fn tokenizingCharacterSet(&self) -> Retained<NSCharacterSet>;
 
+        /// Setter for [`tokenizingCharacterSet`][Self::tokenizingCharacterSet].
         #[method(setTokenizingCharacterSet:)]
         pub unsafe fn setTokenizingCharacterSet(
             &self,

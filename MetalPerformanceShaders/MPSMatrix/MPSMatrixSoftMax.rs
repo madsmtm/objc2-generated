@@ -9,7 +9,22 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsoftmax?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// A softmax kernel that operates on matrices.
+    ///
+    ///
+    /// A MPSMatrixSoftMax object computes:
+    ///
+    /// B_ij = Exp { A_ij } / ( Sum_k Exp { A_ik } )
+    ///
+    /// A and B are matrices which are represented by MPSMatrix
+    /// objects. This filter computes the same result for MPSMatrices as
+    /// MPSCNNSoftMax filter does for MPSImages by interpreting the columns
+    /// of the matrix as feature channels, that is the sum runs over column indices.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsoftmax?language=objc)
     #[unsafe(super(MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -36,18 +51,53 @@ unsafe impl NSSecureCoding for MPSMatrixSoftMax {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSoftMax {
+        /// The number of rows to consider from the source in the operation.
+        /// This property is modifiable and defaults to NSUIntegerMax and the number is
+        /// adjusted dynamically at kernel encode time (see encodeToCommandBuffer) to
+        /// fit into the source matrix available starting from sourceMatrixOrigin.x,
+        /// indicating that by default the whole source matrix is used.
+        /// If a different size is desired then this should be modified prior to
+        /// encoding the kernel. It is the user's responsibility to ensure that the
+        /// resultMatrix parameter in encodeToCommandBuffer is large enough
+        /// to accommodate the results of this operation, otherwise the results of
+        /// the encode call are undefined.
+        /// NOTE: sourceMatrixOrigin and resultMatrixOrigin from MPSMatrixUnaryKernel
+        /// can be used to control the starting points in the source and destination
+        /// at kernel encode time (see encodeToCommandBuffer).
         #[method(sourceRows)]
         pub unsafe fn sourceRows(&self) -> NSUInteger;
 
+        /// Setter for [`sourceRows`][Self::sourceRows].
         #[method(setSourceRows:)]
         pub unsafe fn setSourceRows(&self, source_rows: NSUInteger);
 
+        /// The number of columns to consider from the source in the operation.
+        /// This property is modifiable and defaults to NSUIntegerMax and the number is
+        /// adjusted dynamically at kernel encode time (see encodeToCommandBuffer) to
+        /// fit into the source matrix available starting from sourceMatrixOrigin.y,
+        /// indicating that by default the whole source matrix is used.
+        /// If a different size is desired then this should be modified prior to
+        /// encoding the kernel. It is the user's responsibility to ensure that the
+        /// resultMatrix parameter in encodeToCommandBuffer is large enough
+        /// to accommodate the results of this operation, otherwise the results of
+        /// the encode call are undefined.
+        /// NOTE: sourceMatrixOrigin and resultMatrixOrigin from MPSMatrixUnaryKernel
+        /// can be used to control the starting points in the source and destination
+        /// at kernel encode time (see encodeToCommandBuffer).
         #[method(sourceColumns)]
         pub unsafe fn sourceColumns(&self) -> NSUInteger;
 
+        /// Setter for [`sourceColumns`][Self::sourceColumns].
         #[method(setSourceColumns:)]
         pub unsafe fn setSourceColumns(&self, source_columns: NSUInteger);
 
+        /// Initialize an MPSMatrixSoftMax object on a device for a given size.
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        ///
+        /// Returns: A valid MPSMatrixSoftMax object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -55,6 +105,31 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a MPSMatrixSoftMax object to a command buffer.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        ///
+        /// Parameter `inputMatrix`: A valid MPSMatrix object which specifies the input matrix.
+        ///
+        ///
+        /// Parameter `resultMatrix`: A valid MPSMatrix object which specifies the matrix which will
+        /// be overwritten by the result.
+        ///
+        ///
+        /// Certain constraints apply to the sizes of the matrices depending on the sizes requested at
+        /// initialization time as well as the origins at the time this routine is called:
+        ///
+        /// The result matrix must be large enough to hold a two dimensional array of 'sourceRows' rows and
+        /// 'sourceColumns' columns beginning at resultMatrixOrigin.
+        ///
+        /// Each matrix within the range specified by batchStart and batchSize, which also specifies
+        /// a valid set of matrices within inputMatrix and resultMatrix, will
+        /// be processed.
+        ///
+        /// The datatypes of the matrices inputMatrix and resultMatrix must match and be either
+        /// MPSDataTypeFloat32 or MPSDataTypeFloat16.
         #[method(encodeToCommandBuffer:inputMatrix:resultMatrix:)]
         pub unsafe fn encodeToCommandBuffer_inputMatrix_resultMatrix(
             &self,
@@ -63,6 +138,15 @@ extern_methods!(
             result_matrix: &MPSMatrix,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSMatrixSoftMax
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSoftMax
+        ///
+        /// Returns: A new MPSMatrixSoftMax object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -70,6 +154,18 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Make a copy of this kernel for a new device -
+        ///
+        /// See: MPSKernel
+        ///
+        /// Parameter `zone`: The NSZone in which to allocate the object
+        ///
+        /// Parameter `device`: The device for the new MPSKernel. If nil, then use
+        /// self.device.
+        ///
+        /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -83,6 +179,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSoftMax {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -104,7 +208,22 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixlogsoftmax?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// A logarithmic softmax kernel that operates on matrices.
+    ///
+    ///
+    /// A MPSMatrixLogSoftMax object computes:
+    ///
+    /// B_ij = ln { Exp { A_ij } / ( Sum_k Exp { A_ik } ) } = A_ij - ln { Sum_k Exp { A_ik } }
+    ///
+    /// A and B are matrices which are represented by MPSMatrix
+    /// objects. This filter computes the same result for MPSMatrices as
+    /// MPSCNNLogSoftMax filter does for MPSImages by interpreting the columns
+    /// of the matrix as feature channels, that is the sum runs over column indices.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixlogsoftmax?language=objc)
     #[unsafe(super(MPSMatrixSoftMax, MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -137,12 +256,28 @@ extern_methods!(
     /// Methods declared on superclass `MPSMatrixSoftMax`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixLogSoftMax {
+        /// Initialize an MPSMatrixSoftMax object on a device for a given size.
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        ///
+        /// Returns: A valid MPSMatrixSoftMax object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSMatrixSoftMax
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSoftMax
+        ///
+        /// Returns: A new MPSMatrixSoftMax object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -156,6 +291,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixLogSoftMax {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -177,7 +320,22 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsoftmaxgradient?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// Computes the gradient corresponding to a forward MPSMatrixSoftMax object.
+    ///
+    ///
+    /// A MPSMatrixSoftMaxGradient object computes:
+    ///
+    /// dL_dX_ij = Y_ij * (dL_dY_ij - sum_k(dL_dY_ik * Y_ik)
+    ///
+    /// Where dL_dX is the resulting gradient of the loss function with respect to
+    /// the original input to the forward MPSMatrixSoftMax operation, Y is
+    /// the output of the forward MPSMatrixSoftMax operation, and dL_dY is the
+    /// gradient of the loss function with respect to Y.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsoftmaxgradient?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -204,18 +362,53 @@ unsafe impl NSSecureCoding for MPSMatrixSoftMaxGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSoftMaxGradient {
+        /// The number of rows to consider from the sources in the operation.
+        /// This property is modifiable and defaults to NSUIntegerMax and the number is
+        /// adjusted dynamically at kernel encode time (see encodeToCommandBuffer) to
+        /// fit into the source matrices available starting from
+        /// [primary/secondary]SourceMatrixOrigin.x, indicating that by default the
+        /// whole source matrix is used. If a different size is desired then this should
+        /// be modified prior to encoding the kernel. It is the user's responsibility to
+        /// ensure that the resultMatrix parameter in encodeToCommandBuffer is large enough
+        /// to accommodate the results of this operation, otherwise the results of
+        /// the encode call are undefined.
+        /// NOTE: primarySourceMatrixOrigin, secondarySourceMatrixOrigin and resultMatrixOrigin
+        /// from MPSMatrixBinaryKernel can be used to control the starting points in the primary
+        /// source, secondary source, and result matrices respectively.
         #[method(sourceRows)]
         pub unsafe fn sourceRows(&self) -> NSUInteger;
 
+        /// Setter for [`sourceRows`][Self::sourceRows].
         #[method(setSourceRows:)]
         pub unsafe fn setSourceRows(&self, source_rows: NSUInteger);
 
+        /// The number of columns to consider from the sources in the operation.
+        /// This property is modifiable and defaults to NSUIntegerMax and the number is
+        /// adjusted dynamically at kernel encode time (see encodeToCommandBuffer) to
+        /// fit into the source matrices available starting from [primary/secondary]SourceMatrixOrigin.y,
+        /// indicating that by default the whole source matrix is used.
+        /// If a different size is desired then this should be modified prior to
+        /// encoding the kernel. It is the user's responsibility to ensure that the
+        /// resultMatrix parameter in encodeToCommandBuffer is large enough
+        /// to accommodate the results of this operation, otherwise the results of
+        /// the encode call are undefined.
+        /// NOTE: primarySourceMatrixOrigin, secondarySourceMatrixOrigin and resultMatrixOrigin
+        /// from MPSMatrixBinaryKernel can be used to control the starting points in the primary
+        /// source, secondary source, and result matrices respectively.
         #[method(sourceColumns)]
         pub unsafe fn sourceColumns(&self) -> NSUInteger;
 
+        /// Setter for [`sourceColumns`][Self::sourceColumns].
         #[method(setSourceColumns:)]
         pub unsafe fn setSourceColumns(&self, source_columns: NSUInteger);
 
+        /// Initialize an MPSMatrixSoftMaxGradient object on a device.
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        ///
+        /// Returns: A valid MPSMatrixSoftMaxGradient object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -223,6 +416,24 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a MPSMatrixSoftMaxGradient object to a command buffer.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        ///
+        /// Parameter `gradientMatrix`: A MPSMatrix object containing gradient values with respect
+        /// to the forward operation's output.  dL_dY in the class
+        /// description.
+        ///
+        ///
+        /// Parameter `forwardOutputMatrix`: A MPSMatrix object containing the output values from the
+        /// forward operation.  Y in the class description.
+        ///
+        ///
+        /// Parameter `resultMatrix`: The MPSMatrix object to hold the resulting gradient values
+        /// with respect to the forward operation's input.  dL_dX in the
+        /// class description.
         #[method(encodeToCommandBuffer:gradientMatrix:forwardOutputMatrix:resultMatrix:)]
         pub unsafe fn encodeToCommandBuffer_gradientMatrix_forwardOutputMatrix_resultMatrix(
             &self,
@@ -232,6 +443,15 @@ extern_methods!(
             result_matrix: &MPSMatrix,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSMatrixSoftMaxGradient
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSoftMaxGradient
+        ///
+        /// Returns: A new MPSMatrixSoftMaxGradient object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -239,6 +459,18 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Make a copy of this kernel for a new device -
+        ///
+        /// See: MPSKernel
+        ///
+        /// Parameter `zone`: The NSZone in which to allocate the object
+        ///
+        /// Parameter `device`: The device for the new MPSKernel. If nil, then use
+        /// self.device.
+        ///
+        /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -252,6 +484,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSoftMaxGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -273,7 +513,22 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixlogsoftmaxgradient?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// Computes the gradient corresponding to a forward MPSMatrixLogSoftMax object.
+    ///
+    ///
+    /// A MPSMatrixLogSoftMaxGradient object computes:
+    ///
+    /// dL_dX_ij = dL_dY_ij - exp(Y_ij * sum_k(dL_dY_ik))
+    ///
+    /// Where dL_dX is the resulting gradient of the loss function with respect to
+    /// the original input to the forward MPSMatrixLogSoftMax operation, Y is
+    /// the output of the forward MPSMatrixLogSoftMax operation, and dL_dY is the
+    /// gradient of the loss function with respect to Y.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixlogsoftmaxgradient?language=objc)
     #[unsafe(super(MPSMatrixSoftMaxGradient, MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -306,12 +561,28 @@ extern_methods!(
     /// Methods declared on superclass `MPSMatrixSoftMaxGradient`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixLogSoftMaxGradient {
+        /// Initialize an MPSMatrixSoftMaxGradient object on a device.
+        ///
+        ///
+        /// Parameter `device`: The device on which the kernel will execute.
+        ///
+        ///
+        /// Returns: A valid MPSMatrixSoftMaxGradient object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSMatrixSoftMaxGradient
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSoftMaxGradient
+        ///
+        /// Returns: A new MPSMatrixSoftMaxGradient object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -325,6 +596,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixLogSoftMaxGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

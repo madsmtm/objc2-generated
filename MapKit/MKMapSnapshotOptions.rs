@@ -36,6 +36,7 @@ extern_methods!(
         pub unsafe fn preferredConfiguration(&self) -> Retained<MKMapConfiguration>;
 
         #[cfg(feature = "MKMapConfiguration")]
+        /// Setter for [`preferredConfiguration`][Self::preferredConfiguration].
         #[method(setPreferredConfiguration:)]
         pub unsafe fn setPreferredConfiguration(
             &self,
@@ -47,6 +48,7 @@ extern_methods!(
         pub unsafe fn camera(&self) -> Retained<MKMapCamera>;
 
         #[cfg(feature = "MKMapCamera")]
+        /// Setter for [`camera`][Self::camera].
         #[method(setCamera:)]
         pub unsafe fn setCamera(&self, camera: &MKMapCamera);
 
@@ -55,6 +57,7 @@ extern_methods!(
         pub unsafe fn mapRect(&self) -> MKMapRect;
 
         #[cfg(feature = "MKGeometry")]
+        /// Setter for [`mapRect`][Self::mapRect].
         #[method(setMapRect:)]
         pub unsafe fn setMapRect(&self, map_rect: MKMapRect);
 
@@ -63,6 +66,7 @@ extern_methods!(
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
+        /// Setter for [`region`][Self::region].
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
@@ -72,6 +76,7 @@ extern_methods!(
         pub unsafe fn mapType(&self) -> MKMapType;
 
         #[cfg(feature = "MKTypes")]
+        /// Setter for [`mapType`][Self::mapType].
         #[deprecated = "Use preferredConfiguration"]
         #[method(setMapType:)]
         pub unsafe fn setMapType(&self, map_type: MKMapType);
@@ -82,6 +87,7 @@ extern_methods!(
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
+        /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
         #[deprecated = "Use preferredConfiguration"]
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
@@ -93,6 +99,7 @@ extern_methods!(
         #[method(showsPointsOfInterest)]
         pub unsafe fn showsPointsOfInterest(&self) -> bool;
 
+        /// Setter for [`showsPointsOfInterest`][Self::showsPointsOfInterest].
         #[deprecated = "Use preferredConfiguration"]
         #[method(setShowsPointsOfInterest:)]
         pub unsafe fn setShowsPointsOfInterest(&self, shows_points_of_interest: bool);
@@ -101,6 +108,7 @@ extern_methods!(
         #[method(showsBuildings)]
         pub unsafe fn showsBuildings(&self) -> bool;
 
+        /// Setter for [`showsBuildings`][Self::showsBuildings].
         #[deprecated = "No longer supported."]
         #[method(setShowsBuildings:)]
         pub unsafe fn setShowsBuildings(&self, shows_buildings: bool);
@@ -110,6 +118,7 @@ extern_methods!(
         pub unsafe fn size(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
 
@@ -120,6 +129,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Setter for [`appearance`][Self::appearance].
         #[method(setAppearance:)]
         pub unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
     }

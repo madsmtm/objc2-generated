@@ -26,10 +26,17 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKStatistics")]
+        /// Returns the statistics object that this date is inside of
+        ///
+        /// If there are no samples for the given date, an HKStatistics instance with nil quantities will be returned.
         #[method_id(@__retain_semantics Other statisticsForDate:)]
         pub unsafe fn statisticsForDate(&self, date: &NSDate) -> Option<Retained<HKStatistics>>;
 
         #[cfg(all(feature = "HKStatistics", feature = "block2"))]
+        /// Enumerates all statistics objects from startDate to endDate.
+        ///
+        /// Statistics objects will be enumerated in chronological order. If there are no samples for an interval
+        /// between the start and end date, then the HKStatistics object for that interval will have nil quantities.
         #[method(enumerateStatisticsFromDate:toDate:withBlock:)]
         pub unsafe fn enumerateStatisticsFromDate_toDate_withBlock(
             &self,
@@ -39,10 +46,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "HKStatistics")]
+        /// Returns a copy of the populated statistics objects.
+        ///
+        /// The statistics objects are ordered chronologically.
         #[method_id(@__retain_semantics Other statistics)]
         pub unsafe fn statistics(&self) -> Retained<NSArray<HKStatistics>>;
 
         #[cfg(feature = "HKSource")]
+        /// Returns all HKSources found in the contained HKStatistics objects.
+        ///
+        /// Sources will be empty unless HKStatisticsOptionSeparateBySource is specified in the
+        /// HKStatisticsCollectionQuery options.
         #[method_id(@__retain_semantics Other sources)]
         pub unsafe fn sources(&self) -> Retained<NSSet<HKSource>>;
     }
@@ -95,6 +109,7 @@ extern_methods!(
         >;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`initialResultsHandler`][Self::initialResultsHandler].
         #[method(setInitialResultsHandler:)]
         pub unsafe fn setInitialResultsHandler(
             &self,
@@ -123,6 +138,7 @@ extern_methods!(
         >;
 
         #[cfg(all(feature = "HKStatistics", feature = "block2"))]
+        /// Setter for [`statisticsUpdateHandler`][Self::statisticsUpdateHandler].
         #[method(setStatisticsUpdateHandler:)]
         pub unsafe fn setStatisticsUpdateHandler(
             &self,

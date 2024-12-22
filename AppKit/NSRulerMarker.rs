@@ -35,6 +35,7 @@ extern_methods!(
             feature = "NSView",
             feature = "objc2-core-foundation"
         ))]
+        /// ************************** Initialization ***************************
         #[method_id(@__retain_semantics Init initWithRulerView:markerLocation:image:imageOrigin:)]
         pub unsafe fn initWithRulerView_markerLocation_image_imageOrigin(
             this: Allocated<Self>,
@@ -51,6 +52,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSRulerView", feature = "NSView"))]
+        /// ********************* Query/Set basic attributes **********************
         #[method_id(@__retain_semantics Other ruler)]
         pub unsafe fn ruler(&self, mtm: MainThreadMarker) -> Option<Retained<NSRulerView>>;
 
@@ -59,6 +61,7 @@ extern_methods!(
         pub unsafe fn markerLocation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`markerLocation`][Self::markerLocation].
         #[method(setMarkerLocation:)]
         pub unsafe fn setMarkerLocation(&self, marker_location: CGFloat);
 
@@ -67,6 +70,7 @@ extern_methods!(
         pub unsafe fn image(&self) -> Retained<NSImage>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: &NSImage);
 
@@ -75,18 +79,21 @@ extern_methods!(
         pub unsafe fn imageOrigin(&self) -> NSPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`imageOrigin`][Self::imageOrigin].
         #[method(setImageOrigin:)]
         pub unsafe fn setImageOrigin(&self, image_origin: NSPoint);
 
         #[method(isMovable)]
         pub unsafe fn isMovable(&self) -> bool;
 
+        /// Setter for [`isMovable`][Self::isMovable].
         #[method(setMovable:)]
         pub unsafe fn setMovable(&self, movable: bool);
 
         #[method(isRemovable)]
         pub unsafe fn isRemovable(&self) -> bool;
 
+        /// Setter for [`isRemovable`][Self::isRemovable].
         #[method(setRemovable:)]
         pub unsafe fn setRemovable(&self, removable: bool);
 
@@ -96,6 +103,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other representedObject)]
         pub unsafe fn representedObject(&self) -> Option<Retained<ProtocolObject<dyn NSCopying>>>;
 
+        /// Setter for [`representedObject`][Self::representedObject].
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(
             &self,
@@ -103,6 +111,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// ************************ Ruler facilities *************************
         #[method(imageRectInRuler)]
         pub unsafe fn imageRectInRuler(&self) -> NSRect;
 

@@ -70,6 +70,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other naturalLanguageQuery)]
         pub unsafe fn naturalLanguageQuery(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`naturalLanguageQuery`][Self::naturalLanguageQuery].
         #[method(setNaturalLanguageQuery:)]
         pub unsafe fn setNaturalLanguageQuery(&self, natural_language_query: Option<&NSString>);
 
@@ -78,6 +79,7 @@ extern_methods!(
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
+        /// Setter for [`region`][Self::region].
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
@@ -86,12 +88,14 @@ extern_methods!(
         pub unsafe fn regionPriority(&self) -> MKLocalSearchRegionPriority;
 
         #[cfg(feature = "MKTypes")]
+        /// Setter for [`regionPriority`][Self::regionPriority].
         #[method(setRegionPriority:)]
         pub unsafe fn setRegionPriority(&self, region_priority: MKLocalSearchRegionPriority);
 
         #[method(resultTypes)]
         pub unsafe fn resultTypes(&self) -> MKLocalSearchResultType;
 
+        /// Setter for [`resultTypes`][Self::resultTypes].
         #[method(setResultTypes:)]
         pub unsafe fn setResultTypes(&self, result_types: MKLocalSearchResultType);
 
@@ -100,6 +104,7 @@ extern_methods!(
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
+        /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
@@ -111,6 +116,7 @@ extern_methods!(
         pub unsafe fn addressFilter(&self) -> Option<Retained<MKAddressFilter>>;
 
         #[cfg(feature = "MKAddressFilter")]
+        /// Setter for [`addressFilter`][Self::addressFilter].
         #[method(setAddressFilter:)]
         pub unsafe fn setAddressFilter(&self, address_filter: Option<&MKAddressFilter>);
     }

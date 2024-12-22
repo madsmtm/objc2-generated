@@ -73,6 +73,7 @@ extern_methods!(
         #[method(updateInterval)]
         pub unsafe fn updateInterval(&self) -> NSTimeInterval;
 
+        /// Setter for [`updateInterval`][Self::updateInterval].
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[method(setUpdateInterval:)]
         pub unsafe fn setUpdateInterval(&self, update_interval: NSTimeInterval);
@@ -84,6 +85,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIAccelerometerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

@@ -112,12 +112,14 @@ extern_methods!(
         #[method(progressViewStyle)]
         pub unsafe fn progressViewStyle(&self) -> UIProgressViewStyle;
 
+        /// Setter for [`progressViewStyle`][Self::progressViewStyle].
         #[method(setProgressViewStyle:)]
         pub unsafe fn setProgressViewStyle(&self, progress_view_style: UIProgressViewStyle);
 
         #[method(progress)]
         pub unsafe fn progress(&self) -> c_float;
 
+        /// Setter for [`progress`][Self::progress].
         #[method(setProgress:)]
         pub unsafe fn setProgress(&self, progress: c_float);
 
@@ -126,6 +128,7 @@ extern_methods!(
         pub unsafe fn progressTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`progressTintColor`][Self::progressTintColor].
         #[method(setProgressTintColor:)]
         pub unsafe fn setProgressTintColor(&self, progress_tint_color: Option<&UIColor>);
 
@@ -134,6 +137,7 @@ extern_methods!(
         pub unsafe fn trackTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`trackTintColor`][Self::trackTintColor].
         #[method(setTrackTintColor:)]
         pub unsafe fn setTrackTintColor(&self, track_tint_color: Option<&UIColor>);
 
@@ -142,6 +146,7 @@ extern_methods!(
         pub unsafe fn progressImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`progressImage`][Self::progressImage].
         #[method(setProgressImage:)]
         pub unsafe fn setProgressImage(&self, progress_image: Option<&UIImage>);
 
@@ -150,6 +155,7 @@ extern_methods!(
         pub unsafe fn trackImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`trackImage`][Self::trackImage].
         #[method(setTrackImage:)]
         pub unsafe fn setTrackImage(&self, track_image: Option<&UIImage>);
 
@@ -159,6 +165,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other observedProgress)]
         pub unsafe fn observedProgress(&self) -> Option<Retained<NSProgress>>;
 
+        /// Setter for [`observedProgress`][Self::observedProgress].
         #[method(setObservedProgress:)]
         pub unsafe fn setObservedProgress(&self, observed_progress: Option<&NSProgress>);
     }

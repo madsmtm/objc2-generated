@@ -42,6 +42,7 @@ extern_methods!(
         >;
 
         #[cfg(all(feature = "NSStagedMigrationManager", feature = "block2"))]
+        /// Setter for [`willMigrateHandler`][Self::willMigrateHandler].
         #[method(setWillMigrateHandler:)]
         pub unsafe fn setWillMigrateHandler(
             &self,
@@ -69,6 +70,7 @@ extern_methods!(
         >;
 
         #[cfg(all(feature = "NSStagedMigrationManager", feature = "block2"))]
+        /// Setter for [`didMigrateHandler`][Self::didMigrateHandler].
         #[method(setDidMigrateHandler:)]
         pub unsafe fn setDidMigrateHandler(
             &self,

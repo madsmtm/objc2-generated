@@ -6,7 +6,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryproperties?language=objc)
+/// EAWiFiUnconfiguredAccessoryProperties
+///
+///
+/// Represents the properties of an EAWiFiUnconfiguredAccessory.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryproperties?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,7 +33,13 @@ unsafe impl RefEncode for EAWiFiUnconfiguredAccessoryProperties {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory?language=objc)
+    /// Object representing an unconfigured MFi Wireless Accessory Configuration (WAC) accessory.
+    ///
+    ///
+    /// This class models an unconfigured MFi Wireless Accessory Configuration accessory
+    /// discovered via a EAWiFiUnconfiguredAccessoryBrowser search.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EAWiFiUnconfiguredAccessory;
@@ -38,21 +49,27 @@ unsafe impl NSObjectProtocol for EAWiFiUnconfiguredAccessory {}
 
 extern_methods!(
     unsafe impl EAWiFiUnconfiguredAccessory {
+        /// The name of the accessory.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// The name of the accessory's manufacturer.
         #[method_id(@__retain_semantics Other manufacturer)]
         pub unsafe fn manufacturer(&self) -> Retained<NSString>;
 
+        /// The model name of accessory.
         #[method_id(@__retain_semantics Other model)]
         pub unsafe fn model(&self) -> Retained<NSString>;
 
+        /// The Wi-Fi SSID of the accessory.
         #[method_id(@__retain_semantics Other ssid)]
         pub unsafe fn ssid(&self) -> Retained<NSString>;
 
+        /// The primary MAC address of the accessory.
         #[method_id(@__retain_semantics Other macAddress)]
         pub unsafe fn macAddress(&self) -> Retained<NSString>;
 
+        /// The properties the accessory supports.
         #[method(properties)]
         pub unsafe fn properties(&self) -> EAWiFiUnconfiguredAccessoryProperties;
     }

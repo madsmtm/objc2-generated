@@ -30,32 +30,40 @@ unsafe impl NSSecureCoding for UIContentUnavailableButtonProperties {}
 extern_methods!(
     unsafe impl UIContentUnavailableButtonProperties {
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// The primary action of the button.
         #[method_id(@__retain_semantics Other primaryAction)]
         pub unsafe fn primaryAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// Setter for [`primaryAction`][Self::primaryAction].
         #[method(setPrimaryAction:)]
         pub unsafe fn setPrimaryAction(&self, primary_action: Option<&UIAction>);
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
+        /// An optional menu for the button to display.
         #[method_id(@__retain_semantics Other menu)]
         pub unsafe fn menu(&self) -> Option<Retained<UIMenu>>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
+        /// Setter for [`menu`][Self::menu].
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: Option<&UIMenu>);
 
+        /// Whether the button is enabled. Default is YES.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(feature = "UIButton")]
+        /// The role of the button.
         #[method(role)]
         pub unsafe fn role(&self) -> UIButtonRole;
 
         #[cfg(feature = "UIButton")]
+        /// Setter for [`role`][Self::role].
         #[method(setRole:)]
         pub unsafe fn setRole(&self, role: UIButtonRole);
     }

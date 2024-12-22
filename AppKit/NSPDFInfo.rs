@@ -31,18 +31,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[method(isFileExtensionHidden)]
         pub unsafe fn isFileExtensionHidden(&self) -> bool;
 
+        /// Setter for [`isFileExtensionHidden`][Self::isFileExtensionHidden].
         #[method(setFileExtensionHidden:)]
         pub unsafe fn setFileExtensionHidden(&self, file_extension_hidden: bool);
 
         #[method_id(@__retain_semantics Other tagNames)]
         pub unsafe fn tagNames(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`tagNames`][Self::tagNames].
         #[method(setTagNames:)]
         pub unsafe fn setTagNames(&self, tag_names: &NSArray<NSString>);
 
@@ -51,6 +54,7 @@ extern_methods!(
         pub unsafe fn orientation(&self) -> NSPaperOrientation;
 
         #[cfg(feature = "NSPrintInfo")]
+        /// Setter for [`orientation`][Self::orientation].
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: NSPaperOrientation);
 
@@ -59,6 +63,7 @@ extern_methods!(
         pub unsafe fn paperSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`paperSize`][Self::paperSize].
         #[method(setPaperSize:)]
         pub unsafe fn setPaperSize(&self, paper_size: NSSize);
 

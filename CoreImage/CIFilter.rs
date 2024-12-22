@@ -10,22 +10,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributefiltername?language=objc)
+    /// Name of the filter
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributefiltername?language=objc)
     pub static kCIAttributeFilterName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributefilterdisplayname?language=objc)
+    /// Name of the filter intended for UI display (eg. localized)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributefilterdisplayname?language=objc)
     pub static kCIAttributeFilterDisplayName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributedescription?language=objc)
+    /// Description of the filter intended for UI display (eg. localized)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributedescription?language=objc)
     pub static kCIAttributeDescription: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributefilteravailable_mac?language=objc)
+    /// The version of OS X and iOS a filter was first available in.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributefilteravailable_mac?language=objc)
     pub static kCIAttributeFilterAvailable_Mac: &'static NSString;
 }
 
@@ -35,87 +43,122 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributereferencedocumentation?language=objc)
+    /// URL for the reference documentation of the filter. See localizedReferenceDocumentationForFilterName.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributereferencedocumentation?language=objc)
     pub static kCIAttributeReferenceDocumentation: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributefiltercategories?language=objc)
+    /// Array of filter category names (see below)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributefiltercategories?language=objc)
     pub static kCIAttributeFilterCategories: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributeclass?language=objc)
+    /// Class name of the filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributeclass?language=objc)
     pub static kCIAttributeClass: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetype?language=objc)
+    /// The type of the attribute e.g. scalar, time, distance, etc.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetype?language=objc)
     pub static kCIAttributeType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributemin?language=objc)
+    /// Minimum value for the attribute.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributemin?language=objc)
     pub static kCIAttributeMin: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributemax?language=objc)
+    /// Maximum value for the attribute.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributemax?language=objc)
     pub static kCIAttributeMax: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributeslidermin?language=objc)
+    /// Minimum value for the slider.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributeslidermin?language=objc)
     pub static kCIAttributeSliderMin: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributeslidermax?language=objc)
+    /// Maximum value for the slider.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributeslidermax?language=objc)
     pub static kCIAttributeSliderMax: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributedefault?language=objc)
+    /// Default value for the slider.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributedefault?language=objc)
     pub static kCIAttributeDefault: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributeidentity?language=objc)
+    /// The identity value is the value at which the filter has no effect.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributeidentity?language=objc)
     pub static kCIAttributeIdentity: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributename?language=objc)
+    /// The non-localized name of the attribute.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributename?language=objc)
     pub static kCIAttributeName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributedisplayname?language=objc)
+    /// The localized name of the attribute to be used for display to the user.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributedisplayname?language=objc)
     pub static kCIAttributeDisplayName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuiparameterset?language=objc)
+    /// Key to request the desired set of controls in a filter UIView. The defined values for this key are:
+    /// CIUISetBasic, CIUISetIntermediate, CIUISetAdvanced and CIUISetDevelopment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuiparameterset?language=objc)
     pub static kCIUIParameterSet: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuisetbasic?language=objc)
+    /// Constant for requesting controls that are appropiate in an basic user scenario, meaning the bare minimum of settings to control the filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuisetbasic?language=objc)
     pub static kCIUISetBasic: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuisetintermediate?language=objc)
+    /// Constant for requesting controls that are appropiate in an intermediate user scenario.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuisetintermediate?language=objc)
     pub static kCIUISetIntermediate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuisetadvanced?language=objc)
+    /// Constant for requesting controls that are appropiate in an advanced user scenario.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuisetadvanced?language=objc)
     pub static kCIUISetAdvanced: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuisetdevelopment?language=objc)
+    /// Constant for requesting controls that should only be visible for development purposes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuisetdevelopment?language=objc)
     pub static kCIUISetDevelopment: &'static NSString;
 }
 
@@ -145,12 +188,16 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypeinteger?language=objc)
+    /// Indicates that the key uses integer values.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypeinteger?language=objc)
     pub static kCIAttributeTypeInteger: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypecount?language=objc)
+    /// Indicates that the key uses non negative integer values.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypecount?language=objc)
     pub static kCIAttributeTypeCount: &'static NSString;
 }
 
@@ -480,7 +527,11 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifilter?language=objc)
+    /// CIFilter are filter objects for Core Image that encapsulate the filter with its attributes
+    ///
+    /// The CIFilter class produces a CIImage object as output. Typically, a filter takes one or more images as input. Some filters, however, generate an image based on other types of input parameters. The parameters of a CIFilter object are set and retrieved through the use of key-value pairs. You use the CIFilter object in conjunction with the CIImage, CIContext, CIVector, CIImageAccumulator, and CIColor objects to take advantage of the built-in Core Image filters when processing images. CIFilter objects are also used along with CIKernel, CISampler, and CIFilterShape objects to create custom filters.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifilter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFilter;
@@ -507,28 +558,45 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        /// Returns an array containing the names of all inputs in the filter.
         #[method_id(@__retain_semantics Other inputKeys)]
         pub unsafe fn inputKeys(&self) -> Retained<NSArray<NSString>>;
 
+        /// Returns an array containing the names of all outputs in the filter.
         #[method_id(@__retain_semantics Other outputKeys)]
         pub unsafe fn outputKeys(&self) -> Retained<NSArray<NSString>>;
 
+        /// Sets all inputs to their default values (where default values are defined, other inputs are left as-is).
         #[method(setDefaults)]
         pub unsafe fn setDefaults(&self);
 
+        /// Returns a dictionary containing key/value pairs describing the filter. (see description of keys below)
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "CIImage", feature = "CIKernel"))]
+        /// Used by CIFilter subclasses to apply the array of argument values 'args' to the kernel function 'k'. The supplied arguments must be type-compatible with the function signature of the kernel.
+        ///
+        /// The key-value pairs defined by 'dict' (if non-nil) are used to control exactly how the kernel is evaluated. Valid keys include:
+        /// kCIApplyOptionExtent: the size of the produced image. Value is a four element NSArray [X Y WIDTH HEIGHT].
+        /// kCIApplyOptionDefinition: the Domain of Definition of the produced image. Value is either a CIFilterShape object, or a four element NSArray defining a rectangle.
+        ///
+        /// Parameter `k`: CIKernel of the filter
+        ///
+        /// Parameter `args`: Array of arguments that are applied to the kernel
+        ///
+        /// Parameter `dict`: Array of additional options
         #[method_id(@__retain_semantics Other apply:arguments:options:)]
         pub unsafe fn apply_arguments_options(
             &self,
@@ -569,27 +637,45 @@ extern_protocol!(
 
 extern_methods!(
     /// CIFilterRegistry
+    /// Methods to register a filter and get access to the list of registered filters
+    /// Use these methods to create filters and find filters.
     unsafe impl CIFilter {
+        /// Creates a new filter of type 'name'.
+        /// On OSX, all input values will be undefined.
+        /// On iOS, all input values will be set to default values.
         #[method_id(@__retain_semantics Other filterWithName:)]
         pub unsafe fn filterWithName(name: &NSString) -> Option<Retained<CIFilter>>;
 
+        /// Creates a new filter of type 'name'.
+        /// The filter's input parameters are set from the dictionary of key-value pairs.
+        /// On OSX, any of the filter input parameters not specified in the dictionary will be undefined.
+        /// On iOS, any of the filter input parameters not specified in the dictionary will be set to default values.
         #[method_id(@__retain_semantics Other filterWithName:withInputParameters:)]
         pub unsafe fn filterWithName_withInputParameters(
             name: &NSString,
             params: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Option<Retained<CIFilter>>;
 
+        /// Returns an array containing all published filter names in a category.
         #[method_id(@__retain_semantics Other filterNamesInCategory:)]
         pub unsafe fn filterNamesInCategory(
             category: Option<&NSString>,
         ) -> Retained<NSArray<NSString>>;
 
+        /// Returns an array containing all published filter names that belong to all listed categories.
         #[method_id(@__retain_semantics Other filterNamesInCategories:)]
         pub unsafe fn filterNamesInCategories(
             categories: Option<&NSArray<NSString>>,
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "CIFilterConstructor")]
+        /// Publishes a new filter called 'name'.
+        ///
+        /// The constructor object 'anObject' should implement the filterWithName: method.
+        /// That method will be invoked with the name of the filter to create.
+        /// The class attributes must have a kCIAttributeFilterCategories key associated with a set of categories.
+        ///
+        /// Parameter `attributes`: Dictionary of the registration attributes of the filter. See below for attribute keys.
         #[method(registerFilterName:constructor:classAttributes:)]
         pub unsafe fn registerFilterName_constructor_classAttributes(
             name: &NSString,
@@ -597,19 +683,25 @@ extern_methods!(
             attributes: &NSDictionary<NSString, AnyObject>,
         );
 
+        /// Returns the localized name of a filter for display in the UI.
         #[method_id(@__retain_semantics Other localizedNameForFilterName:)]
         pub unsafe fn localizedNameForFilterName(
             filter_name: &NSString,
         ) -> Option<Retained<NSString>>;
 
+        /// Returns the localized name of a category for display in the UI.
         #[method_id(@__retain_semantics Other localizedNameForCategory:)]
         pub unsafe fn localizedNameForCategory(category: &NSString) -> Retained<NSString>;
 
+        /// Returns the localized description of a filter for display in the UI.
         #[method_id(@__retain_semantics Other localizedDescriptionForFilterName:)]
         pub unsafe fn localizedDescriptionForFilterName(
             filter_name: &NSString,
         ) -> Option<Retained<NSString>>;
 
+        /// Returns the URL to the localized reference documentation describing the filter.
+        ///
+        /// The URL can be a local file or a remote document on a webserver. It is possible, that this method returns nil (like filters that predate this feature). A client of this API has to handle this case gracefully.
         #[method_id(@__retain_semantics Other localizedReferenceDocumentationForFilterName:)]
         pub unsafe fn localizedReferenceDocumentationForFilterName(
             filter_name: &NSString,
@@ -619,6 +711,7 @@ extern_methods!(
 
 extern_methods!(
     /// CIFilterXMPSerialization
+    /// Methods to serialize arrays of filters to xmp.
     unsafe impl CIFilter {
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]

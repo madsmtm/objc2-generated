@@ -31,6 +31,7 @@ extern_methods!(
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
@@ -40,6 +41,7 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn UIPointerInteractionDelegate>>,
         ) -> Retained<Self>;
 
+        /// Call this method to cause the interaction to update the pointer in response to some event.
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
     }
@@ -62,6 +64,17 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "UIPointerRegion")]
+        /// Called as the pointer moves within the interaction's view.
+        ///
+        ///
+        /// Parameter `interaction`: This UIPointerInteraction.
+        ///
+        /// Parameter `request`: Request object describing the pointer's location in the interaction's view.
+        ///
+        /// Parameter `defaultRegion`: Region representing the entire surface of the interaction's view.
+        ///
+        ///
+        /// Returns: A UIPointerRegion in which to apply a pointer style. Return nil to indicate that this interaction should not customize the pointer for the current location.
         #[optional]
         #[method_id(@__retain_semantics Other pointerInteraction:regionForRequest:defaultRegion:)]
         unsafe fn pointerInteraction_regionForRequest_defaultRegion(
@@ -76,6 +89,15 @@ extern_protocol!(
             feature = "UIPointerRegion",
             feature = "UIPointerStyle"
         ))]
+        /// Called after the interaction receives a new UIPointerRegion from pointerInteraction:regionForRequest:defaultRegion:.
+        ///
+        ///
+        /// Parameter `interaction`: This UIPointerInteraction.
+        ///
+        /// Parameter `region`: The UIPointerRegion for which a style is being requested.
+        ///
+        ///
+        /// Returns: A UIPointerStyle describing the desired hover effect or pointer appearance for the given UIPointerRegion.
         #[optional]
         #[method_id(@__retain_semantics Other pointerInteraction:styleForRegion:)]
         unsafe fn pointerInteraction_styleForRegion(
@@ -85,6 +107,14 @@ extern_protocol!(
         ) -> Option<Retained<UIPointerStyle>>;
 
         #[cfg(feature = "UIPointerRegion")]
+        /// Called when the pointer enters a given region.
+        ///
+        ///
+        /// Parameter `interaction`: This UIPointerInteraction.
+        ///
+        /// Parameter `region`: The UIPointerRegion the pointer is about to enter.
+        ///
+        /// Parameter `animator`: Region entrance animator. Add animations to run them alongside the pointer's entrance animation.
         #[optional]
         #[method(pointerInteraction:willEnterRegion:animator:)]
         unsafe fn pointerInteraction_willEnterRegion_animator(
@@ -95,6 +125,14 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UIPointerRegion")]
+        /// Called when the pointer exists a given region.
+        ///
+        ///
+        /// Parameter `interaction`: This UIPointerInteraction.
+        ///
+        /// Parameter `region`: The UIPointerRegion the pointer is about to exit.
+        ///
+        /// Parameter `animator`: Region exit animator. Add animations to run them alongside the pointer's exit animation.
         #[optional]
         #[method(pointerInteraction:willExitRegion:animator:)]
         unsafe fn pointerInteraction_willExitRegion_animator(
@@ -121,10 +159,12 @@ unsafe impl NSObjectProtocol for UIPointerRegionRequest {}
 extern_methods!(
     unsafe impl UIPointerRegionRequest {
         #[cfg(feature = "objc2-core-foundation")]
+        /// The location of the pointer in the interaction's view's coordinate space.
         #[method(location)]
         pub unsafe fn location(&self) -> CGPoint;
 
         #[cfg(feature = "UICommand")]
+        /// Key modifier flags representing keyboard keys pressed by the user at the time of this request.
         #[method(modifiers)]
         pub unsafe fn modifiers(&self) -> UIKeyModifierFlags;
     }

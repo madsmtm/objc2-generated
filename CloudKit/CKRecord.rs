@@ -16,42 +16,58 @@ pub type CKRecordType = NSString;
 pub type CKRecordFieldKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordtypeuserrecord?language=objc)
+    /// Use this constant for the recordType parameter when fetching User Records.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordtypeuserrecord?language=objc)
     pub static CKRecordTypeUserRecord: &'static CKRecordType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordrecordidkey?language=objc)
+    /// For use in queries to match on record properties.  Matches `record.recordID`.  Value is a `CKRecordID`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordrecordidkey?language=objc)
     pub static CKRecordRecordIDKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordcreatoruserrecordidkey?language=objc)
+    /// For use in queries to match on record properties.  Matches `record.creatorUserRecordID`.  Value is a `CKRecordID`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordcreatoruserrecordidkey?language=objc)
     pub static CKRecordCreatorUserRecordIDKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordcreationdatekey?language=objc)
+    /// For use in queries to match on record properties.  Matches `record.creationDate`.  Value is a `NSDate`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordcreationdatekey?language=objc)
     pub static CKRecordCreationDateKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordlastmodifieduserrecordidkey?language=objc)
+    /// For use in queries to match on record properties.  Matches `record.lastModifiedUserRecordID`.  Value is a `CKRecordID`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordlastmodifieduserrecordidkey?language=objc)
     pub static CKRecordLastModifiedUserRecordIDKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordmodificationdatekey?language=objc)
+    /// For use in queries to match on record properties.  Matches `record.modificationDate`.  Value is a `NSDate`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordmodificationdatekey?language=objc)
     pub static CKRecordModificationDateKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordparentkey?language=objc)
+    /// For use in queries to match on record properties.  Matches `record.parent`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordparentkey?language=objc)
     pub static CKRecordParentKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordsharekey?language=objc)
+    /// For use in queries to match on record properties.  Matches `record.share`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordsharekey?language=objc)
     pub static CKRecordShareKey: &'static CKRecordFieldKey;
 }
 
@@ -89,6 +105,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// This creates the record in the default zone.
         #[method_id(@__retain_semantics Init initWithRecordType:)]
         pub unsafe fn initWithRecordType(
             this: Allocated<Self>,
@@ -118,10 +135,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other recordID)]
         pub unsafe fn recordID(&self) -> Retained<CKRecordID>;
 
+        /// Change tags are updated by the server to a unique value every time a record is modified.  A different change tag necessarily means that the contents of the record are different.
         #[method_id(@__retain_semantics Other recordChangeTag)]
         pub unsafe fn recordChangeTag(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CKRecordID")]
+        /// This is a User Record recordID, identifying the user that created this record.
         #[method_id(@__retain_semantics Other creatorUserRecordID)]
         pub unsafe fn creatorUserRecordID(&self) -> Option<Retained<CKRecordID>>;
 
@@ -129,12 +148,41 @@ extern_methods!(
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "CKRecordID")]
+        /// This is a User Record recordID, identifying the user that last modified this record.
         #[method_id(@__retain_semantics Other lastModifiedUserRecordID)]
         pub unsafe fn lastModifiedUserRecordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[method_id(@__retain_semantics Other modificationDate)]
         pub unsafe fn modificationDate(&self) -> Option<Retained<NSDate>>;
 
+        /// In addition to
+        /// `objectForKey:`and
+        /// `setObject:forKey:,`dictionary-style subscripting (
+        /// `record[key]`and
+        ///
+        /// ```text
+        ///  record[key] = value
+        /// ```
+        ///
+        /// ) can be used to get and set values.
+        /// Acceptable value object classes are:
+        /// - CKReference
+        /// - CKAsset
+        /// - CLLocation
+        /// - NSData
+        /// - NSDate
+        /// - NSNumber
+        /// - NSString
+        /// - NSArray containing objects of any of the types above
+        ///
+        /// Any other classes will result in an exception with name
+        /// `NSInvalidArgumentException.`
+        /// Whenever possible, value objects will be copied when set on a record.
+        ///
+        /// Field keys starting with '_' are reserved. Attempting to set a key prefixed with a '_' will result in an error.
+        ///
+        /// Key names roughly match C variable name restrictions. They must begin with an ASCII letter and can contain ASCII letters and numbers and the underscore character.
+        /// The maximum key length is 255 characters.
         #[method_id(@__retain_semantics Other objectForKey:)]
         pub unsafe fn objectForKey(
             &self,
@@ -151,6 +199,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other allKeys)]
         pub unsafe fn allKeys(&self) -> Retained<NSArray<CKRecordFieldKey>>;
 
+        /// A special property that returns an array of token generated from all the string field values in the record.
+        ///
+        ///
+        /// These tokens have been normalized for the current locale, so they are suitable for performing full-text searches.
         #[method_id(@__retain_semantics Other allTokens)]
         pub unsafe fn allTokens(&self) -> Retained<NSArray<NSString>>;
 
@@ -167,24 +219,106 @@ extern_methods!(
             key: &CKRecordFieldKey,
         );
 
+        /// A list of keys that have been modified on the local CKRecord instance
         #[method_id(@__retain_semantics Other changedKeys)]
         pub unsafe fn changedKeys(&self) -> Retained<NSArray<CKRecordFieldKey>>;
 
+        /// `CKRecord`supports
+        /// `NSSecureCoding.`When you invoke
+        /// `encodeWithCoder:`on a
+        /// `CKRecord,`it encodes all its values.  Including the record values you've set.
+        /// If you want to store a
+        /// `CKRecord`instance locally, AND you're already storing the record values locally, that's overkill.  In that case, you can use
+        /// `encodeSystemFieldsWithCoder:.`This will encode all parts of a
+        /// `CKRecord`except the record keys / values you have access to via the
+        /// `changedKeys`and
+        /// `objectForKey:`methods.
+        /// If you use
+        /// `initWithCoder:`to reconstitute a
+        /// `CKRecord`you encoded via
+        /// `encodeSystemFieldsWithCoder:,`then be aware that
+        /// - any record values you had set on the original instance, but had not saved, will be lost
+        /// - the reconstituted CKRecord's
+        /// `changedKeys`will be empty
         #[method(encodeSystemFieldsWithCoder:)]
         pub unsafe fn encodeSystemFieldsWithCoder(&self, coder: &NSCoder);
 
         #[cfg(feature = "CKReference")]
+        /// The share property on a record can be set by creating a share using
+        ///
+        /// ```text
+        ///  -[CKShare initWithRootRecord:]
+        /// ```
+        ///
+        /// .
+        ///
+        /// The share property on a record will be removed when the corresponding CKShare is deleted from the server. Send this record in the same batch as the share delete and this record's share property will be updated.
+        ///
+        /// Sharing is only supported in zones with the
+        /// `CKRecordZoneCapabilitySharing`capability. The default zone does not support sharing.
+        ///
+        /// If any records have a parent reference to this record, they are implicitly shared alongside this record.
+        ///
+        /// Note that records in a parent chain must only exist within one share. If a child record already has a share reference set then you will get a
+        /// `CKErrorAlreadyShared`error if you try to share any of that record's parents.
+        ///
+        /// Child records can be shared independently, even if they have a common parent.  For example:
+        /// Record A has two child records, Record B and Record C.
+        /// A
+        /// /
+        /// \
+        /// B   C
+        ///
+        /// These configurations are supported:
+        /// - Record A part of Share 1, or
+        /// - Record B part of Share 1, or
+        /// - Record C part of Share 1, or
+        /// - Record B part of Share 1, Record C part of Share 2
+        ///
+        /// These configurations are not supported:
+        /// Record A part of Share 1, Record B part of Share 2, or
+        /// -- This is not allowed because Record B would then be in two shares; Share 1 by being Record A's child, and Share 2
+        /// Record A part of Share 1, Record C part of Share 2, or
+        /// -- This is not allowed because Record C would then be in two shares; Share 1 by being Record A's child, and Share 2
+        /// Record A part of Share 1, Record B part of Share 2, Record C part of Share 3
+        /// -- This is not allowed because both Record B and Record C would then each be in two shares.
+        ///
+        /// Whenever possible, it is suggested that you construct your parent hierarchies such that you will only need to share the topmost record of that hierarchy.
         #[method_id(@__retain_semantics Other share)]
         pub unsafe fn share(&self) -> Option<Retained<CKReference>>;
 
         #[cfg(feature = "CKReference")]
+        /// Use a parent reference to teach CloudKit about the hierarchy of your records.
+        ///
+        ///
+        /// When a record is shared, all children of that record are also shared.
+        ///
+        /// A parent record reference must have
+        /// `CKReferenceActionNone`set. You can create a separate reference with
+        /// `CKReferenceActionDeleteSelf`if you would like your hierarchy cleaned up when the parent record is deleted.
+        ///
+        /// The target of a parent reference must exist at save time - either already on the server, or part of the same
+        /// `CKModifyRecordsOperation`batch.
+        ///
+        /// You are encouraged to set up the
+        /// `parent`relationships as part of normal record saves, even if you're not planning on sharing records at this time.
+        /// This allows you to share and unshare a hierarchy of records at a later date by only modifying the "top level" record, setting or clearing its
+        /// `share`reference.
         #[method_id(@__retain_semantics Other parent)]
         pub unsafe fn parent(&self) -> Option<Retained<CKReference>>;
 
         #[cfg(feature = "CKReference")]
+        /// Setter for [`parent`][Self::parent].
         #[method(setParent:)]
         pub unsafe fn setParent(&self, parent: Option<&CKReference>);
 
+        /// Convenience wrappers around creating a
+        /// `CKReference`to a parent record. The resulting
+        /// `CKReference`will have
+        ///
+        /// ```text
+        ///  referenceAction = CKReferenceActionNone
+        /// ```
         #[method(setParentReferenceFromRecord:)]
         pub unsafe fn setParentReferenceFromRecord(&self, parent_record: Option<&CKRecord>);
 
@@ -226,7 +360,9 @@ unsafe impl CKRecordValue for CKAsset {}
 unsafe impl CKRecordValue for CLLocation {}
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordkeyvaluesetting?language=objc)
+    /// Formalizes a protocol for getting and setting keys on a CKRecord.  Not intended to be used directly by client code
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordkeyvaluesetting?language=objc)
     pub unsafe trait CKRecordKeyValueSetting: NSObjectProtocol {
         #[method_id(@__retain_semantics Other objectForKey:)]
         unsafe fn objectForKey(
@@ -267,6 +403,9 @@ extern_protocol!(
 extern_methods!(
     /// CKRecordKeyValueSettingConformance
     unsafe impl CKRecord {
+        /// Any values set here will be locally encrypted before being saved to the server and locally decrypted when fetched from the server. Encryption and decryption is handled by the CloudKit framework.
+        /// Key material necessary for decryption are available to the owner of the record, as well as any users that can access this record via a CKShare.
+        /// All CKRecordValue types can be set here except CKAsset and CKReference.
         #[method_id(@__retain_semantics Other encryptedValues)]
         pub unsafe fn encryptedValues(
             &self,

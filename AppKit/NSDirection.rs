@@ -4,17 +4,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshorizontaldirections?language=objc)
+/// The absolute directions on the horizontal axis.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nshorizontaldirections?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSHorizontalDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl NSHorizontalDirections: NSUInteger {
+/// The left direction.
         #[doc(alias = "NSHorizontalDirectionsLeft")]
         const Left = 1<<0;
+/// The right direction.
         #[doc(alias = "NSHorizontalDirectionsRight")]
         const Right = 1<<1;
+/// All horizontal directions (left and right).
         #[doc(alias = "NSHorizontalDirectionsAll")]
         const All = NSHorizontalDirections::Left.0|NSHorizontalDirections::Right.0;
     }
@@ -28,17 +33,22 @@ unsafe impl RefEncode for NSHorizontalDirections {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticaldirections?language=objc)
+/// The directions on the vertical axis.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticaldirections?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSVerticalDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl NSVerticalDirections: NSUInteger {
+/// The upwards direction.
         #[doc(alias = "NSVerticalDirectionsUp")]
         const Up = 1<<0;
+/// The downward direction.
         #[doc(alias = "NSVerticalDirectionsDown")]
         const Down = 1<<1;
+/// All vertical directions (up and down).
         #[doc(alias = "NSVerticalDirectionsAll")]
         const All = NSVerticalDirections::Up.0|NSVerticalDirections::Down.0;
     }

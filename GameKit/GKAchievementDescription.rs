@@ -11,7 +11,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementdescription?language=objc)
+    /// GKAchievementDescription is a full description of the achievement as defined before app submission in App Store Connect.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementdescription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKAchievementDescription;
@@ -26,6 +28,7 @@ unsafe impl NSSecureCoding for GKAchievementDescription {}
 extern_methods!(
     unsafe impl GKAchievementDescription {
         #[cfg(feature = "block2")]
+        /// Asynchronously load all achievement descriptions
         #[method(loadAchievementDescriptionsWithCompletionHandler:)]
         pub unsafe fn loadAchievementDescriptionsWithCompletionHandler(
             completion_handler: Option<
@@ -36,27 +39,35 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
+        /// The group identifier for the achievement, if one exists.
         #[method_id(@__retain_semantics Other groupIdentifier)]
         pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// The title of the achievement.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// The description for an unachieved achievement.
         #[method_id(@__retain_semantics Other achievedDescription)]
         pub unsafe fn achievedDescription(&self) -> Retained<NSString>;
 
+        /// The description for an achieved achievement.
         #[method_id(@__retain_semantics Other unachievedDescription)]
         pub unsafe fn unachievedDescription(&self) -> Retained<NSString>;
 
+        /// Maximum points available for completing this achievement.
         #[method(maximumPoints)]
         pub unsafe fn maximumPoints(&self) -> NSInteger;
 
+        /// Whether or not the achievement should be listed or displayed if not yet unhidden by the game.
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        /// Whether or not the achievement will be reported by the game when the user earns it again. This allows the achievement to be used for challenges when the recipient has previously earned it.
         #[method(isReplayable)]
         pub unsafe fn isReplayable(&self) -> bool;
 
+        /// If present, the rarity of the achievement expressed as a percentage of players that earned it. Null if not enough data is available to compute it.
         #[method_id(@__retain_semantics Other rarityPercent)]
         pub unsafe fn rarityPercent(&self) -> Option<Retained<NSNumber>>;
     }

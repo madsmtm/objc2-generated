@@ -118,30 +118,35 @@ extern_methods!(
         #[method(resolvesAliases)]
         pub unsafe fn resolvesAliases(&self) -> bool;
 
+        /// Setter for [`resolvesAliases`][Self::resolvesAliases].
         #[method(setResolvesAliases:)]
         pub unsafe fn setResolvesAliases(&self, resolves_aliases: bool);
 
         #[method(canChooseDirectories)]
         pub unsafe fn canChooseDirectories(&self) -> bool;
 
+        /// Setter for [`canChooseDirectories`][Self::canChooseDirectories].
         #[method(setCanChooseDirectories:)]
         pub unsafe fn setCanChooseDirectories(&self, can_choose_directories: bool);
 
         #[method(allowsMultipleSelection)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
+        /// Setter for [`allowsMultipleSelection`][Self::allowsMultipleSelection].
         #[method(setAllowsMultipleSelection:)]
         pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
         #[method(canChooseFiles)]
         pub unsafe fn canChooseFiles(&self) -> bool;
 
+        /// Setter for [`canChooseFiles`][Self::canChooseFiles].
         #[method(setCanChooseFiles:)]
         pub unsafe fn setCanChooseFiles(&self, can_choose_files: bool);
 
         #[method(canResolveUbiquitousConflicts)]
         pub unsafe fn canResolveUbiquitousConflicts(&self) -> bool;
 
+        /// Setter for [`canResolveUbiquitousConflicts`][Self::canResolveUbiquitousConflicts].
         #[method(setCanResolveUbiquitousConflicts:)]
         pub unsafe fn setCanResolveUbiquitousConflicts(
             &self,
@@ -151,6 +156,7 @@ extern_methods!(
         #[method(canDownloadUbiquitousContents)]
         pub unsafe fn canDownloadUbiquitousContents(&self) -> bool;
 
+        /// Setter for [`canDownloadUbiquitousContents`][Self::canDownloadUbiquitousContents].
         #[method(setCanDownloadUbiquitousContents:)]
         pub unsafe fn setCanDownloadUbiquitousContents(
             &self,
@@ -160,6 +166,7 @@ extern_methods!(
         #[method(isAccessoryViewDisclosed)]
         pub unsafe fn isAccessoryViewDisclosed(&self) -> bool;
 
+        /// Setter for [`isAccessoryViewDisclosed`][Self::isAccessoryViewDisclosed].
         #[method(setAccessoryViewDisclosed:)]
         pub unsafe fn setAccessoryViewDisclosed(&self, accessory_view_disclosed: bool);
     }
@@ -203,6 +210,7 @@ extern_methods!(
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSViewController")]
+        /// Convenience method for creating an autoreleased titled window with the given contentViewController. A basic NSWindow with the following attributes is made: titled, closable, resizable, miniaturizable. The window's title is automatically bound to the contentViewController's title. The size of the window can easily be controlled by utilizing autolayout and applying size constraints to the view (or its subviews). The window has isReleasedWhenClosed set to NO, and it must be explicitly retained to keep the window instance alive. To have it automatically be freed when it is closed, do the following: [window retain] and [window setReleasedWhenClosed:YES].
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
@@ -250,6 +258,7 @@ extern_methods!(
         #[method(showsContentTypes)]
         pub unsafe fn showsContentTypes(&self) -> bool;
 
+        /// Setter for [`showsContentTypes`][Self::showsContentTypes].
         #[method(setShowsContentTypes:)]
         pub unsafe fn setShowsContentTypes(&self, shows_content_types: bool);
     }

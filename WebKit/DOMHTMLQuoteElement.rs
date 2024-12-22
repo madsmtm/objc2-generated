@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cite)]
         pub unsafe fn cite(&self) -> Retained<NSString>;
 
+        /// Setter for [`cite`][Self::cite].
         #[deprecated]
         #[method(setCite:)]
         pub unsafe fn setCite(&self, cite: Option<&NSString>);

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpoolingdescriptor?language=objc)
+    /// The MLCPoolingDescriptor specifies a pooling descriptor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpoolingdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -25,47 +27,58 @@ unsafe impl NSObjectProtocol for MLCPoolingDescriptor {}
 extern_methods!(
     unsafe impl MLCPoolingDescriptor {
         #[cfg(feature = "MLCTypes")]
+        /// The pooling operation
         #[deprecated]
         #[method(poolingType)]
         pub unsafe fn poolingType(&self) -> MLCPoolingType;
 
+        /// The pooling kernel size in x.
         #[deprecated]
         #[method(kernelWidth)]
         pub unsafe fn kernelWidth(&self) -> NSUInteger;
 
+        /// The pooling kernel size in y.
         #[deprecated]
         #[method(kernelHeight)]
         pub unsafe fn kernelHeight(&self) -> NSUInteger;
 
+        /// The stride of the kernel in x.
         #[deprecated]
         #[method(strideInX)]
         pub unsafe fn strideInX(&self) -> NSUInteger;
 
+        /// The stride of the kernel in y.
         #[deprecated]
         #[method(strideInY)]
         pub unsafe fn strideInY(&self) -> NSUInteger;
 
+        /// The dilation rate i.e. stride of elements in the kernel in x.
         #[deprecated]
         #[method(dilationRateInX)]
         pub unsafe fn dilationRateInX(&self) -> NSUInteger;
 
+        /// The dilation rate i.e. stride of elements in the kernel in y.
         #[deprecated]
         #[method(dilationRateInY)]
         pub unsafe fn dilationRateInY(&self) -> NSUInteger;
 
         #[cfg(feature = "MLCTypes")]
+        /// The padding policy to use.
         #[deprecated]
         #[method(paddingPolicy)]
         pub unsafe fn paddingPolicy(&self) -> MLCPaddingPolicy;
 
+        /// The padding size in x (left and right) to use if paddingPolicy is MLCPaddingPolicyUsePaddingSize
         #[deprecated]
         #[method(paddingSizeInX)]
         pub unsafe fn paddingSizeInX(&self) -> NSUInteger;
 
+        /// The padding size in y (top and bottom) to use if paddingPolicy is MLCPaddingPolicyUsePaddingSize
         #[deprecated]
         #[method(paddingSizeInY)]
         pub unsafe fn paddingSizeInY(&self) -> NSUInteger;
 
+        /// Include the zero-padding in the averaging calculation if true.  Used only with average pooling.
         #[deprecated]
         #[method(countIncludesPadding)]
         pub unsafe fn countIncludesPadding(&self) -> bool;
@@ -79,6 +92,15 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCPoolingDescriptor object
+        ///
+        /// Parameter `poolingType`: The pooling function
+        ///
+        /// Parameter `kernelSize`: The kernel sizes in x and y
+        ///
+        /// Parameter `stride`: The kernel strides in x and y
+        ///
+        /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other poolingDescriptorWithType:kernelSize:stride:)]
         pub unsafe fn poolingDescriptorWithType_kernelSize_stride(
@@ -88,6 +110,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCPoolingDescriptor object for a max pooling function
+        ///
+        /// Parameter `kernelSizes`: The kernel sizes in x and y
+        ///
+        /// Parameter `strides`: The kernel strides in x and y
+        ///
+        /// Parameter `paddingPolicy`: The padding policy
+        ///
+        /// Parameter `paddingSizes`: The padding sizes in x and y if padding policy is MLCPaddingPolicyUsePaddingSIze
+        ///
+        /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other maxPoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:)]
         pub unsafe fn maxPoolingDescriptorWithKernelSizes_strides_paddingPolicy_paddingSizes(
@@ -98,6 +131,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCPoolingDescriptor object for a max pooling function
+        ///
+        /// Parameter `kernelSizes`: The kernel sizes in x and y
+        ///
+        /// Parameter `strides`: The kernel strides in x and y
+        ///
+        /// Parameter `dilationRates`: The kernel dilation rates in x and y
+        ///
+        /// Parameter `paddingPolicy`: The padding policy
+        ///
+        /// Parameter `paddingSizes`: The padding sizes in x and y if padding policy is MLCPaddingPolicyUsePaddingSIze
+        ///
+        /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other maxPoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:)]
         pub unsafe fn maxPoolingDescriptorWithKernelSizes_strides_dilationRates_paddingPolicy_paddingSizes(
@@ -109,6 +155,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCPoolingDescriptor object for an average pooling function
+        ///
+        /// Parameter `kernelSizes`: The kernel sizes in x and y
+        ///
+        /// Parameter `strides`: The kernel strides in x and y
+        ///
+        /// Parameter `paddingPolicy`: The padding policy
+        ///
+        /// Parameter `paddingSizes`: The padding sizes in x and y if padding policy is MLCPaddingPolicyUsePaddingSIze
+        ///
+        /// Parameter `countIncludesPadding`: Whether to include zero padding in the averaging calculation
+        ///
+        /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other averagePoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:countIncludesPadding:)]
         pub unsafe fn averagePoolingDescriptorWithKernelSizes_strides_paddingPolicy_paddingSizes_countIncludesPadding(
@@ -120,6 +179,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCPoolingDescriptor object for an average pooling function
+        ///
+        /// Parameter `kernelSizes`: The kernel sizes in x and y
+        ///
+        /// Parameter `strides`: The kernel strides in x and y
+        ///
+        /// Parameter `dilationRates`: The kernel dilation rates in x and y
+        ///
+        /// Parameter `paddingPolicy`: The padding policy
+        ///
+        /// Parameter `paddingSizes`: The padding sizes in x and y if padding policy is MLCPaddingPolicyUsePaddingSIze
+        ///
+        /// Parameter `countIncludesPadding`: Whether to include zero padding in the averaging calculation
+        ///
+        /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other averagePoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:countIncludesPadding:)]
         pub unsafe fn averagePoolingDescriptorWithKernelSizes_strides_dilationRates_paddingPolicy_paddingSizes_countIncludesPadding(
@@ -132,6 +206,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCPoolingDescriptor object for a L2 norm pooling function
+        ///
+        /// Parameter `kernelSizes`: The kernel sizes in x and y
+        ///
+        /// Parameter `strides`: The kernel strides in x and y
+        ///
+        /// Parameter `paddingPolicy`: The padding policy
+        ///
+        /// Parameter `paddingSizes`: The padding sizes in x and y if padding policy is MLCPaddingPolicyUsePaddingSIze
+        ///
+        /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other l2NormPoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:)]
         pub unsafe fn l2NormPoolingDescriptorWithKernelSizes_strides_paddingPolicy_paddingSizes(
@@ -142,6 +227,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCPoolingDescriptor object for a L2 norm pooling function
+        ///
+        /// Parameter `kernelSizes`: The kernel sizes in x and y
+        ///
+        /// Parameter `strides`: The kernel strides in x and y
+        ///
+        /// Parameter `dilationRates`: The kernel dilation rates in x and y
+        ///
+        /// Parameter `paddingPolicy`: The padding policy
+        ///
+        /// Parameter `paddingSizes`: The padding sizes in x and y if padding policy is MLCPaddingPolicyUsePaddingSIze
+        ///
+        /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other l2NormPoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:)]
         pub unsafe fn l2NormPoolingDescriptorWithKernelSizes_strides_dilationRates_paddingPolicy_paddingSizes(

@@ -146,17 +146,21 @@ unsafe impl NSObjectProtocol for UITextInputAssistantItem {}
 
 extern_methods!(
     unsafe impl UITextInputAssistantItem {
+        /// Default is YES, controls if the user is allowed to hide the shortcuts bar. Does not influence the built in auto-hiding logic.
         #[method(allowsHidingShortcuts)]
         pub unsafe fn allowsHidingShortcuts(&self) -> bool;
 
+        /// Setter for [`allowsHidingShortcuts`][Self::allowsHidingShortcuts].
         #[method(setAllowsHidingShortcuts:)]
         pub unsafe fn setAllowsHidingShortcuts(&self, allows_hiding_shortcuts: bool);
 
         #[cfg(feature = "UIBarButtonItemGroup")]
+        /// Contains UIBarButtonItemGroups that should be displayed in the leading position on the keyboard's assistant bar.
         #[method_id(@__retain_semantics Other leadingBarButtonGroups)]
         pub unsafe fn leadingBarButtonGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
+        /// Setter for [`leadingBarButtonGroups`][Self::leadingBarButtonGroups].
         #[method(setLeadingBarButtonGroups:)]
         pub unsafe fn setLeadingBarButtonGroups(
             &self,
@@ -164,10 +168,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIBarButtonItemGroup")]
+        /// Contains UIBarButtonItemGroups that should be displayed in the trailing position on the keyboard's assistant bar.
         #[method_id(@__retain_semantics Other trailingBarButtonGroups)]
         pub unsafe fn trailingBarButtonGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
+        /// Setter for [`trailingBarButtonGroups`][Self::trailingBarButtonGroups].
         #[method(setTrailingBarButtonGroups:)]
         pub unsafe fn setTrailingBarButtonGroups(
             &self,
@@ -175,10 +181,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        /// A button that appears next to the text preview in the keyboard on visionOS.
         #[method_id(@__retain_semantics Other keyboardActionButtonItem)]
         pub unsafe fn keyboardActionButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        /// Setter for [`keyboardActionButtonItem`][Self::keyboardActionButtonItem].
         #[method(setKeyboardActionButtonItem:)]
         pub unsafe fn setKeyboardActionButtonItem(
             &self,
@@ -259,6 +267,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other selectedTextRange)]
         unsafe fn selectedTextRange(&self) -> Option<Retained<UITextRange>>;
 
+        /// Setter for [`selectedTextRange`][Self::selectedTextRange].
         #[method(setSelectedTextRange:)]
         unsafe fn setSelectedTextRange(&self, selected_text_range: Option<&UITextRange>);
 
@@ -270,6 +279,7 @@ extern_protocol!(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
+        /// Setter for [`markedTextStyle`][Self::markedTextStyle].
         #[method(setMarkedTextStyle:)]
         unsafe fn setMarkedTextStyle(
             &self,
@@ -333,6 +343,7 @@ extern_protocol!(
             -> Option<Retained<ProtocolObject<dyn UITextInputDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`inputDelegate`][Self::inputDelegate].
         #[method(setInputDelegate:)]
         unsafe fn setInputDelegate(
             &self,
@@ -444,6 +455,7 @@ extern_protocol!(
         #[method(selectionAffinity)]
         unsafe fn selectionAffinity(&self) -> UITextStorageDirection;
 
+        /// Setter for [`selectionAffinity`][Self::selectionAffinity].
         #[optional]
         #[method(setSelectionAffinity:)]
         unsafe fn setSelectionAffinity(&self, selection_affinity: UITextStorageDirection);
@@ -519,11 +531,23 @@ extern_protocol!(
         unsafe fn endFloatingCursor(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Similar to `-caretRectForPosition:`, optionally provide a transform for the caret at `position`. As with all geometry information in this protocol,
+        /// transforms are assumed to be relative to the `textInputView` coordinate space. If unimplemented, the identity transform is assumed.
         #[optional]
         #[method(caretTransformForPosition:)]
         unsafe fn caretTransformForPosition(&self, position: &UITextPosition) -> CGAffineTransform;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
+        /// Called when the text input is preparing an edit menu presentation for the specified text range.
+        ///
+        ///
+        /// Parameter `textRange`: The text range for which the menu is presented for.
+        ///
+        /// Parameter `suggestedActions`: The actions and commands that the system suggests.
+        ///
+        ///
+        /// Returns: Return a UIMenu describing the desired menu hierarchy. Return
+        /// `nil`to present the default system menu.
         #[optional]
         #[method_id(@__retain_semantics Other editMenuForTextRange:suggestedActions:)]
         unsafe fn editMenuForTextRange_suggestedActions(
@@ -552,6 +576,7 @@ extern_protocol!(
         #[method(supportsAdaptiveImageGlyph)]
         unsafe fn supportsAdaptiveImageGlyph(&self) -> bool;
 
+        /// Setter for [`supportsAdaptiveImageGlyph`][Self::supportsAdaptiveImageGlyph].
         #[optional]
         #[method(setSupportsAdaptiveImageGlyph:)]
         unsafe fn setSupportsAdaptiveImageGlyph(&self, supports_adaptive_image_glyph: bool);
@@ -703,6 +728,9 @@ extern_methods!(
         pub unsafe fn isVertical(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Custom transform for highlight rects.
+        /// This transform is assumed to be in the `textInputView` coordinate space.
+        /// Default is CGAffineTransformIdentity (no transform applied).
         #[method(transform)]
         pub unsafe fn transform(&self) -> CGAffineTransform;
     }

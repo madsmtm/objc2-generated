@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctensordata?language=objc)
+    /// An object to encapsulate memory to be used as tensor data
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctensordata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -18,10 +20,12 @@ unsafe impl NSObjectProtocol for MLCTensorData {}
 
 extern_methods!(
     unsafe impl MLCTensorData {
+        /// Pointer to memory that contains or will be used for tensor data
         #[deprecated]
         #[method(bytes)]
         pub unsafe fn bytes(&self) -> NonNull<c_void>;
 
+        /// The size in bytes of the tensor data
         #[deprecated]
         #[method(length)]
         pub unsafe fn length(&self) -> NSUInteger;
@@ -34,6 +38,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Creates a data object that holds a given number of bytes from a given buffer.
+        ///
+        /// Note: The returned object will not take ownership of the
+        /// `bytes`pointer and thus will not free it on deallocation.
+        ///
+        /// Parameter `bytes`: A buffer containing data for the new object.
+        ///
+        /// Parameter `length`: The number of bytes to hold from
+        /// `bytes.`This value must not exceed the length of
+        /// `bytes.`
+        /// Returns: A new
+        /// `MLCTensorData`object.
         #[deprecated]
         #[method_id(@__retain_semantics Other dataWithBytesNoCopy:length:)]
         pub unsafe fn dataWithBytesNoCopy_length(
@@ -41,6 +57,18 @@ extern_methods!(
             length: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Creates a data object that holds a given number of bytes from a given buffer.
+        ///
+        /// Note: The returned object will not take ownership of the
+        /// `bytes`pointer and thus will not free it on deallocation. The underlying bytes in the return object should not be mutated.
+        ///
+        /// Parameter `bytes`: A buffer containing data for the new object.
+        ///
+        /// Parameter `length`: The number of bytes to hold from
+        /// `bytes.`This value must not exceed the length of
+        /// `bytes.`
+        /// Returns: A new
+        /// `MLCTensorData`object.
         #[deprecated]
         #[method_id(@__retain_semantics Other dataWithImmutableBytesNoCopy:length:)]
         pub unsafe fn dataWithImmutableBytesNoCopy_length(
@@ -49,6 +77,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Creates a data object that holds a given number of bytes from a given buffer. with a custom deallocator block.
+        ///
+        /// Parameter `bytes`: A buffer containing data for the new object.
+        ///
+        /// Parameter `length`: The number of bytes to hold from
+        /// `bytes.`This value must not exceed the length of
+        /// `bytes.`
+        /// Parameter `deallocator`: A block to invoke when the resulting object is deallocated.
+        ///
+        /// Returns: A new
+        /// `MLCTensorData`object.
         #[method_id(@__retain_semantics Other dataWithBytesNoCopy:length:deallocator:)]
         pub unsafe fn dataWithBytesNoCopy_length_deallocator(
             bytes: NonNull<c_void>,

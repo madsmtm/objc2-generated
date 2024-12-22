@@ -9,34 +9,88 @@ use crate::*;
 extern_category!(
     /// Category "WebPlugIn" on [`NSObject`].
     #[doc(alias = "WebPlugIn")]
+    /// WebPlugIn is an informal protocol that enables interaction between an application
+    /// and web related plug-ins it may contain.
     pub unsafe trait NSObjectWebPlugIn {
+        /// Tell the plug-in to perform one-time initialization.
+        ///
+        /// This method must be only called once per instance of the plug-in
+        /// object and must be called before any other methods in this protocol.
         #[method(webPlugInInitialize)]
         unsafe fn webPlugInInitialize(&self);
 
+        /// Tell the plug-in to start normal operation.
+        ///
+        /// The plug-in usually begins drawing, playing sounds and/or
+        /// animation in this method.  This method must be called before calling webPlugInStop.
+        /// This method may called more than once, provided that the application has
+        /// already called webPlugInInitialize and that each call to webPlugInStart is followed
+        /// by a call to webPlugInStop.
         #[method(webPlugInStart)]
         unsafe fn webPlugInStart(&self);
 
+        /// Tell the plug-in to stop normal operation.
+        ///
+        /// webPlugInStop must be called before this method.  This method may be
+        /// called more than once, provided that the application has already called
+        /// webPlugInInitialize and that each call to webPlugInStop is preceded by a call to
+        /// webPlugInStart.
         #[method(webPlugInStop)]
         unsafe fn webPlugInStop(&self);
 
+        /// Tell the plug-in perform cleanup and prepare to be deallocated.
+        ///
+        /// The plug-in typically releases memory and other resources in this
+        /// method.  If the plug-in has retained the WebPlugInContainer, it must release
+        /// it in this mehthod.  This method must be only called once per instance of the
+        /// plug-in object.  No other methods in this interface may be called after the
+        /// application has called webPlugInDestroy.
         #[method(webPlugInDestroy)]
         unsafe fn webPlugInDestroy(&self);
 
+        /// Informs the plug-in whether or not it is selected.  This is typically
+        /// used to allow the plug-in to alter it's appearance when selected.
         #[method(webPlugInSetIsSelected:)]
         unsafe fn webPlugInSetIsSelected(&self, is_selected: bool);
 
+        /// objectForWebScript is used to expose a plug-in's scripting interface.  The
+        /// methods of the object are exposed to the script environment.  See the WebScripting
+        /// informal protocol for more details.
+        ///
+        /// Returns: Returns the object that exposes the plug-in's interface.  The class of this
+        /// object can implement methods from the WebScripting informal protocol.
         #[method_id(@__retain_semantics Other objectForWebScript)]
         unsafe fn objectForWebScript(&self) -> Option<Retained<AnyObject>>;
 
+        /// Called on the plug-in when WebKit receives -connection:didReceiveResponse:
+        /// for the plug-in's main resource.
+        ///
+        /// This method is only sent to the plug-in if the
+        /// WebPlugInShouldLoadMainResourceKey argument passed to the plug-in was NO.
         #[method(webPlugInMainResourceDidReceiveResponse:)]
         unsafe fn webPlugInMainResourceDidReceiveResponse(&self, response: Option<&NSURLResponse>);
 
+        /// Called on the plug-in when WebKit recieves -connection:didReceiveData:
+        /// for the plug-in's main resource.
+        ///
+        /// This method is only sent to the plug-in if the
+        /// WebPlugInShouldLoadMainResourceKey argument passed to the plug-in was NO.
         #[method(webPlugInMainResourceDidReceiveData:)]
         unsafe fn webPlugInMainResourceDidReceiveData(&self, data: Option<&NSData>);
 
+        /// Called on the plug-in when WebKit receives -connection:didFailWithError:
+        /// for the plug-in's main resource.
+        ///
+        /// This method is only sent to the plug-in if the
+        /// WebPlugInShouldLoadMainResourceKey argument passed to the plug-in was NO.
         #[method(webPlugInMainResourceDidFailWithError:)]
         unsafe fn webPlugInMainResourceDidFailWithError(&self, error: Option<&NSError>);
 
+        /// Called on the plug-in when WebKit receives -connectionDidFinishLoading:
+        /// for the plug-in's main resource.
+        ///
+        /// This method is only sent to the plug-in if the
+        /// WebPlugInShouldLoadMainResourceKey argument passed to the plug-in was NO.
         #[method(webPlugInMainResourceDidFinishLoading)]
         unsafe fn webPlugInMainResourceDidFinishLoading(&self);
     }

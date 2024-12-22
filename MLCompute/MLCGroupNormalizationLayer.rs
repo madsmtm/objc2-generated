@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer?language=objc)
+    /// A group normalizaion layer.  For more information, refer to https://pytorch.org/docs/stable/nn.html#groupnorm
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgroupnormalizationlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -21,39 +23,59 @@ unsafe impl NSObjectProtocol for MLCGroupNormalizationLayer {}
 extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCGroupNormalizationLayer {
+        /// The number of feature channels
         #[deprecated]
         #[method(featureChannelCount)]
         pub unsafe fn featureChannelCount(&self) -> NSUInteger;
 
+        /// The number of groups to separate the channels into
         #[deprecated]
         #[method(groupCount)]
         pub unsafe fn groupCount(&self) -> NSUInteger;
 
         #[cfg(feature = "MLCTensor")]
+        /// The beta tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other beta)]
         pub unsafe fn beta(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// The gamma tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other gamma)]
         pub unsafe fn gamma(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensorParameter")]
+        /// The beta tensor parameter used for optimizer update
         #[deprecated]
         #[method_id(@__retain_semantics Other betaParameter)]
         pub unsafe fn betaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
+        /// The gamma tensor parameter used for optimizer update
         #[deprecated]
         #[method_id(@__retain_semantics Other gammaParameter)]
         pub unsafe fn gammaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
+        /// A value used for numerical stability
         #[deprecated]
         #[method(varianceEpsilon)]
         pub unsafe fn varianceEpsilon(&self) -> c_float;
 
         #[cfg(feature = "MLCTensor")]
+        /// Create a group normalization layer
+        ///
+        /// Parameter `featureChannelCount`: The number of feature channels
+        ///
+        /// Parameter `beta`: Training parameter
+        ///
+        /// Parameter `gamma`: Training parameter
+        ///
+        /// Parameter `groupCount`: The number of groups to divide the feature channels into
+        ///
+        /// Parameter `varianceEpsilon`: A small numerical value added to variance for stability
+        ///
+        /// Returns: A new group normalization layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithFeatureChannelCount:groupCount:beta:gamma:varianceEpsilon:)]
         pub unsafe fn layerWithFeatureChannelCount_groupCount_beta_gamma_varianceEpsilon(

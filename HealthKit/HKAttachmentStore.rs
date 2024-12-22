@@ -10,7 +10,9 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkattachmentstore?language=objc)
+    /// The HKAttachmentStore class provides an interface for accessing and storing HKAttachment objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkattachmentstore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKAttachmentStore;
@@ -21,6 +23,9 @@ unsafe impl NSObjectProtocol for HKAttachmentStore {}
 extern_methods!(
     unsafe impl HKAttachmentStore {
         #[cfg(feature = "HKHealthStore")]
+        /// The designated initializer to create an HKAttachmentStore.
+        ///
+        /// Parameter `healthStore`: Specifies the HKHealthStore object to use.
         #[method_id(@__retain_semantics Init initWithHealthStore:)]
         pub unsafe fn initWithHealthStore(
             this: Allocated<Self>,
@@ -33,6 +38,20 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-uniform-type-identifiers"
         ))]
+        /// Creates a new HKAttachment using the passed in NSURL and attaches it to the specified HKObject.
+        ///
+        /// Parameter `object`: The object for which to add the HKAttachment.
+        ///
+        /// Parameter `name`: The name of the attachment.
+        ///
+        /// Parameter `contentType`: The content type of the attachment.
+        ///
+        /// Parameter `URL`: The NSURL to use to create the attachment.
+        ///
+        /// Parameter `metadata`: Extra information describing the attachment.
+        ///
+        /// Parameter `completion`: Called with an HKAttachment instance once the file was successfully saved and attached,
+        /// otherwise called with an error.
         #[method(addAttachmentToObject:name:contentType:URL:metadata:completion:)]
         pub unsafe fn addAttachmentToObject_name_contentType_URL_metadata_completion(
             &self,
@@ -45,6 +64,13 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKAttachment", feature = "HKObject", feature = "block2"))]
+        /// Removes the given HKAttachment from the specified HKObject.
+        ///
+        /// Parameter `attachment`: The HKAttachment to be removed.
+        ///
+        /// Parameter `object`: The object from which to remove the attachment.
+        ///
+        /// Parameter `completion`: Called once the remove operation finishes.
         #[method(removeAttachment:fromObject:completion:)]
         pub unsafe fn removeAttachment_fromObject_completion(
             &self,
@@ -54,6 +80,11 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKAttachment", feature = "HKObject", feature = "block2"))]
+        /// Retrieves a list of attachments for a given object.
+        ///
+        /// Parameter `object`: The object for which to retrieve attachments.
+        ///
+        /// Parameter `completion`: Called with a list of attachments or an error.
         #[method(getAttachmentsForObject:completion:)]
         pub unsafe fn getAttachmentsForObject_completion(
             &self,
@@ -62,6 +93,17 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKAttachment", feature = "block2"))]
+        /// Retrieves the NSData for the given HKAttachment.
+        ///
+        /// Prefer
+        /// `streamDataForAttachment:completion:`for large files that support incremental reading to limit your app's peak memory usage.
+        /// The attachment's data may not always be available locally, and could be stored in iCloud.
+        ///
+        /// Parameter `attachment`: The attachment object to read data from.
+        ///
+        /// Parameter `completion`: Called with an NSData or an error.
+        ///
+        /// Returns: An NSProgress object to use for tracking the progress of downloading the attachment's data from iCloud.
         #[method_id(@__retain_semantics Other getDataForAttachment:completion:)]
         pub unsafe fn getDataForAttachment_completion(
             &self,
@@ -70,6 +112,16 @@ extern_methods!(
         ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "HKAttachment", feature = "block2"))]
+        /// Streams the given HKAttachment's data as ordered NSData chunks.
+        ///
+        /// The dataHandler's done parameter is set to YES when all chunks have been streamed.
+        /// The attachment's data may not always be available locally, and could be stored in iCloud.
+        ///
+        /// Parameter `attachment`: The attachment object to read data from.
+        ///
+        /// Parameter `dataHandler`: Called with an NSData chunk or an error. When done is YES, the operation has completed.
+        ///
+        /// Returns: An NSProgress object to use for tracking the progress of downloading the attachment's data from iCloud.
         #[method_id(@__retain_semantics Other streamDataForAttachment:dataHandler:)]
         pub unsafe fn streamDataForAttachment_dataHandler(
             &self,

@@ -6,7 +6,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad?language=objc)
+    /// The GCDualShockGamepad profile represents any supported DualShock 4 controller.
+    ///
+    ///
+    /// See: GCExtendedGamepad
+    ///
+    /// See: GCMotion
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad?language=objc)
     #[unsafe(super(GCExtendedGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
@@ -20,6 +27,7 @@ extern_methods!(
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCDualShockGamepad {
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
+        /// DualShock controllers have a touchpad with a button and two-finger tracking.
         #[method_id(@__retain_semantics Other touchpadButton)]
         pub unsafe fn touchpadButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 

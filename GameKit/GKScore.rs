@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkscore?language=objc)
+    /// GKScore represents a score in the leaderboards.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkscore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -23,6 +25,7 @@ unsafe impl NSSecureCoding for GKScore {}
 
 extern_methods!(
     unsafe impl GKScore {
+        /// Initialize the score with the local player and current date.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithLeaderboardIdentifier:)]
         pub unsafe fn initWithLeaderboardIdentifier(
@@ -31,6 +34,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// Initialize the achievement for a specific player. Use to submit participant scores when ending a turn-based match.
         #[method_id(@__retain_semantics Init initWithLeaderboardIdentifier:player:)]
         pub unsafe fn initWithLeaderboardIdentifier_player(
             this: Allocated<Self>,
@@ -38,49 +42,67 @@ extern_methods!(
             player: &GKPlayer,
         ) -> Retained<Self>;
 
+        /// The score value as a 64bit integer.
         #[deprecated]
         #[method(value)]
         pub unsafe fn value(&self) -> i64;
 
+        /// Setter for [`value`][Self::value].
         #[deprecated]
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: i64);
 
+        /// The score formatted as a string, localized with a label
         #[deprecated]
         #[method_id(@__retain_semantics Other formattedValue)]
         pub unsafe fn formattedValue(&self) -> Option<Retained<NSString>>;
 
+        /// leaderboard identifier (required)
         #[method_id(@__retain_semantics Other leaderboardIdentifier)]
         pub unsafe fn leaderboardIdentifier(&self) -> Retained<NSString>;
 
+        /// Setter for [`leaderboardIdentifier`][Self::leaderboardIdentifier].
         #[method(setLeaderboardIdentifier:)]
         pub unsafe fn setLeaderboardIdentifier(&self, leaderboard_identifier: &NSString);
 
+        /// optional additional context that allows a game to store and retrieve additional data associated with the store.  Default value of zero is returned if no value is set.
         #[method(context)]
         pub unsafe fn context(&self) -> u64;
 
+        /// Setter for [`context`][Self::context].
         #[method(setContext:)]
         pub unsafe fn setContext(&self, context: u64);
 
+        /// The date this score was recorded. A newly initialized, unsubmitted GKScore records the current date at init time.
         #[deprecated]
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// The player that recorded the score.
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self) -> Option<Retained<GKPlayer>>;
 
+        /// The rank of the player within the leaderboard, only valid when returned from GKLeaderboard
         #[deprecated]
         #[method(rank)]
         pub unsafe fn rank(&self) -> NSInteger;
 
+        /// Convenience property to make the leaderboard associated with this GKScore, the default leaderboard for this player. Default value is false.
+        /// If true, reporting that score will make the category this score belongs to, the default leaderboard for this user
         #[method(shouldSetDefaultLeaderboard)]
         pub unsafe fn shouldSetDefaultLeaderboard(&self) -> bool;
 
+        /// Setter for [`shouldSetDefaultLeaderboard`][Self::shouldSetDefaultLeaderboard].
         #[method(setShouldSetDefaultLeaderboard:)]
         pub unsafe fn setShouldSetDefaultLeaderboard(&self, should_set_default_leaderboard: bool);
 
         #[cfg(feature = "block2")]
+        /// Report scores to the server. The value must be set, and date may be changed.
+        /// Possible reasons for error:
+        /// 1. Value not set
+        /// 2. Local player not authenticated
+        /// 3. Communications problem
         #[method(reportScores:withCompletionHandler:)]
         pub unsafe fn reportScores_withCompletionHandler(
             scores: &NSArray<GKScore>,
@@ -122,6 +144,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other category)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`category`][Self::category].
         #[deprecated]
         #[method(setCategory:)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
@@ -131,6 +154,7 @@ extern_methods!(
 extern_methods!(
     /// Obsoleted
     unsafe impl GKScore {
+        /// * This method is obsolete. Calling this initialiser does nothing and will return nil **
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithLeaderboardIdentifier:forPlayer:)]
         pub unsafe fn initWithLeaderboardIdentifier_forPlayer(
@@ -139,6 +163,7 @@ extern_methods!(
             player_id: &NSString,
         ) -> Option<Retained<Self>>;
 
+        /// * This property is obsolete. **
         #[deprecated]
         #[method_id(@__retain_semantics Other playerID)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;

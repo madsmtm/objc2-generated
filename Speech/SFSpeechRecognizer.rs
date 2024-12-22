@@ -72,6 +72,7 @@ extern_methods!(
         #[method(supportsOnDeviceRecognition)]
         pub unsafe fn supportsOnDeviceRecognition(&self) -> bool;
 
+        /// Setter for [`supportsOnDeviceRecognition`][Self::supportsOnDeviceRecognition].
         #[method(setSupportsOnDeviceRecognition:)]
         pub unsafe fn setSupportsOnDeviceRecognition(&self, supports_on_device_recognition: bool);
 
@@ -81,6 +82,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn SFSpeechRecognizerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -92,6 +94,7 @@ extern_methods!(
         pub unsafe fn defaultTaskHint(&self) -> SFSpeechRecognitionTaskHint;
 
         #[cfg(feature = "SFSpeechRecognitionTaskHint")]
+        /// Setter for [`defaultTaskHint`][Self::defaultTaskHint].
         #[method(setDefaultTaskHint:)]
         pub unsafe fn setDefaultTaskHint(&self, default_task_hint: SFSpeechRecognitionTaskHint);
 
@@ -122,6 +125,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other queue)]
         pub unsafe fn queue(&self) -> Retained<NSOperationQueue>;
 
+        /// Setter for [`queue`][Self::queue].
         #[method(setQueue:)]
         pub unsafe fn setQueue(&self, queue: &NSOperationQueue);
     }

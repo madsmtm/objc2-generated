@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkliveworkoutdatasource?language=objc)
+    /// An HKLiveWorkoutDataSource is to be used with an HKWorkoutBuilder to automatically collect samples
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkliveworkoutdatasource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKLiveWorkoutDataSource;
@@ -26,10 +28,19 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
+        /// The quantity types the receiver is collecting.
         #[method_id(@__retain_semantics Other typesToCollect)]
         pub unsafe fn typesToCollect(&self) -> Retained<NSSet<HKQuantityType>>;
 
         #[cfg(all(feature = "HKHealthStore", feature = "HKWorkoutConfiguration"))]
+        /// The designated initializer of HKLiveWorkoutDataSource.
+        ///
+        ///
+        /// Parameter `healthStore`: The HKHealthStore. This should match the one used to create the corresponding
+        /// HKWorkoutBuilder.
+        ///
+        /// Parameter `configuration`: An optional workout configuration. typesToCollect will be populated with default
+        /// types for the workout configuration
         #[method_id(@__retain_semantics Init initWithHealthStore:workoutConfiguration:)]
         pub unsafe fn initWithHealthStore_workoutConfiguration(
             this: Allocated<Self>,
@@ -38,6 +49,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
+        /// Adds a new type of quantity sample to collect.
+        ///
+        /// Calling this method for a type that is already being collected will override the predicate for that type.
+        ///
+        ///
+        /// Parameter `quantityType`: The type of sample to collect.
+        ///
+        /// Parameter `predicate`: If non-nil, collected samples must match this predicate.
         #[method(enableCollectionForType:predicate:)]
         pub unsafe fn enableCollectionForType_predicate(
             &self,
@@ -46,6 +65,10 @@ extern_methods!(
         );
 
         #[cfg(feature = "HKObjectType")]
+        /// Removes the specified quantity type from the types to collect.
+        ///
+        ///
+        /// Parameter `quantityType`: The type of sample to no longer collect.
         #[method(disableCollectionForType:)]
         pub unsafe fn disableCollectionForType(&self, quantity_type: &HKQuantityType);
     }

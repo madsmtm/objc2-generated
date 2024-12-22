@@ -10,7 +10,11 @@ use objc2_audio_toolbox::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittimepitch?language=objc)
+    /// an AVAudioUnitTimeEffect that provides good quality time stretching and pitch shifting
+    ///
+    /// In this time effect, the playback rate and pitch parameters function independently of each other
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittimepitch?language=objc)
     #[unsafe(super(AVAudioUnitTimeEffect, AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -35,21 +39,45 @@ extern_methods!(
         feature = "AVAudioUnitTimeEffect"
     ))]
     unsafe impl AVAudioUnitTimePitch {
+        /// playback rate of the input signal
+        ///
+        /// Range:      1/32 -> 32.0
+        /// Default:    1.0
+        /// Unit:       Generic
         #[method(rate)]
         pub unsafe fn rate(&self) -> c_float;
 
+        /// Setter for [`rate`][Self::rate].
         #[method(setRate:)]
         pub unsafe fn setRate(&self, rate: c_float);
 
+        /// amount by which the input signal is pitch shifted
+        ///
+        /// 1 octave  = 1200 cents
+        /// 1 musical semitone  = 100 cents
+        ///
+        /// Range:      -2400 -> 2400
+        /// Default:    0.0
+        /// Unit:       Cents
         #[method(pitch)]
         pub unsafe fn pitch(&self) -> c_float;
 
+        /// Setter for [`pitch`][Self::pitch].
         #[method(setPitch:)]
         pub unsafe fn setPitch(&self, pitch: c_float);
 
+        /// amount of overlap between segments of the input audio signal
+        ///
+        /// A higher value results in fewer artifacts in the output signal.
+        /// This parameter also impacts the amount of CPU used.
+        ///
+        /// Range:      3.0 -> 32.0
+        /// Default:    8.0
+        /// Unit:       Generic
         #[method(overlap)]
         pub unsafe fn overlap(&self) -> c_float;
 
+        /// Setter for [`overlap`][Self::overlap].
         #[method(setOverlap:)]
         pub unsafe fn setOverlap(&self, overlap: c_float);
     }
@@ -65,6 +93,12 @@ extern_methods!(
     unsafe impl AVAudioUnitTimePitch {
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// create an AVAudioUnitTimeEffect object
+        ///
+        ///
+        /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be initialized
+        ///
+        /// The componentType must be kAudioUnitType_FormatConverter
         #[method_id(@__retain_semantics Init initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,

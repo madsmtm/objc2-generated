@@ -41,6 +41,7 @@ extern_methods!(
             -> Retained<NSArray<CKUserIdentityLookupInfo>>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
+        /// Setter for [`userIdentityLookupInfos`][Self::userIdentityLookupInfos].
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setUserIdentityLookupInfos:)]
         pub unsafe fn setUserIdentityLookupInfos(
@@ -53,6 +54,13 @@ extern_methods!(
             feature = "CKUserIdentityLookupInfo",
             feature = "block2"
         ))]
+        /// Called once for each user identity lookup info that was successfully discovered on the server
+        ///
+        ///
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(userIdentityDiscoveredBlock)]
         pub unsafe fn userIdentityDiscoveredBlock(
@@ -64,6 +72,7 @@ extern_methods!(
             feature = "CKUserIdentityLookupInfo",
             feature = "block2"
         ))]
+        /// Setter for [`userIdentityDiscoveredBlock`][Self::userIdentityDiscoveredBlock].
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setUserIdentityDiscoveredBlock:)]
         pub unsafe fn setUserIdentityDiscoveredBlock(
@@ -74,6 +83,20 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// This block is called when the operation completes.
+        ///
+        ///
+        /// The
+        ///
+        /// ```text
+        ///  -[NSOperation completionBlock]
+        /// ```
+        ///
+        /// will also be called if both are set.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverUserIdentitiesCompletionBlock)]
         pub unsafe fn discoverUserIdentitiesCompletionBlock(
@@ -81,6 +104,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`discoverUserIdentitiesCompletionBlock`][Self::discoverUserIdentitiesCompletionBlock].
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setDiscoverUserIdentitiesCompletionBlock:)]
         pub unsafe fn setDiscoverUserIdentitiesCompletionBlock(

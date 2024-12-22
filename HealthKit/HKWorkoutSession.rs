@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate?language=objc)
+/// This enumerated type is used to represent the state of a workout session.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -35,7 +37,9 @@ unsafe impl RefEncode for HKWorkoutSessionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessiontype?language=objc)
+/// This enumerated type is used to represent the type of a workout session.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -56,7 +60,9 @@ unsafe impl RefEncode for HKWorkoutSessionType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsession?language=objc)
+    /// An HKWorkoutSession is an object describing the properties of a workout activity session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutSession;
@@ -75,48 +81,85 @@ unsafe impl NSSecureCoding for HKWorkoutSession {}
 extern_methods!(
     unsafe impl HKWorkoutSession {
         #[cfg(feature = "HKWorkout")]
+        /// Indicates the type of workout that will be performed during the session.
         #[deprecated]
         #[method(activityType)]
         pub unsafe fn activityType(&self) -> HKWorkoutActivityType;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
+        /// Indicates the type of location (indoors vs. outdoors) where the workout will take place.
+        ///
+        /// Knowing the location type allows for more accurate measurements and better performance.
         #[deprecated]
         #[method(locationType)]
         pub unsafe fn locationType(&self) -> HKWorkoutSessionLocationType;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
+        /// The configuration object describing the workout.
+        ///
+        /// This returns a copy of the configuration passed when creating the HKWorkoutSession. Changes made to
+        /// the returned object have no impact on the HKWorkoutSession.
         #[method_id(@__retain_semantics Other workoutConfiguration)]
         pub unsafe fn workoutConfiguration(&self) -> Retained<HKWorkoutConfiguration>;
 
+        /// The session delegate, which receives
+        ///
+        /// The session delegate object is the one implementing the methods that get called when the session
+        /// state changes or a failure occurs in the session.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn HKWorkoutSessionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn HKWorkoutSessionDelegate>>,
         );
 
+        /// Indicates the current state of the workout session.
+        ///
+        /// Each time this value is updated, the delegate method workoutSession:didChangeToState:fromState:date:
+        /// will be called.
         #[method(state)]
         pub unsafe fn state(&self) -> HKWorkoutSessionState;
 
+        /// Indicates the type of the workout session.
+        ///
+        /// A workout session created using an initializer will be primary, while a session retrieved with
+        /// the `HKHealthStore` `workoutSessionMirroringStartHandler` property will be mirrored.
         #[method(type)]
         pub unsafe fn r#type(&self) -> HKWorkoutSessionType;
 
+        /// Indicates the date when the workout session started running.
+        ///
+        /// This value is nil when a workout session is initialized. It is set when the workout session state
+        /// changes to HKWorkoutSessionStateRunning.
         #[method_id(@__retain_semantics Other startDate)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Indicates the date when the workout session ended.
+        ///
+        /// This value is nil when a workout session is initialized. It is set when the workout session state
+        /// changes to HKWorkoutSessionStateEnded.
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "HKWorkoutActivity")]
+        /// The current workout activity.
+        ///
+        /// This returns a copy of the session's current workout activity. It will return
+        /// a copy of the main workout activity if no new activity has begun. Changes made
+        /// to the returned object have no impact on the HKWorkoutSession.
         #[method_id(@__retain_semantics Other currentActivity)]
         pub unsafe fn currentActivity(&self) -> Retained<HKWorkoutActivity>;
 
         #[cfg(all(feature = "HKWorkout", feature = "HKWorkoutConfiguration"))]
+        /// Parameter `activityType`: The activity type of the workout session.
+        ///
+        /// Parameter `locationType`: The type of location where the workout will be performed.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithActivityType:locationType:)]
         pub unsafe fn initWithActivityType_locationType(
@@ -126,6 +169,10 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
+        /// Parameter `workoutConfiguration`: Configuration object describing the various properties of a workout.
+        ///
+        /// Parameter `error`: If the configuration does not specify valid configuration properties, an
+        /// an NSError describing the error is set and nil is returned.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithConfiguration:error:_)]
         pub unsafe fn initWithConfiguration_error(
@@ -134,6 +181,12 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "HKHealthStore", feature = "HKWorkoutConfiguration"))]
+        /// Parameter `healthStore`: Specifies the HKHealthStore object to use.
+        ///
+        /// Parameter `workoutConfiguration`: Configuration object describing the various properties of a workout.
+        ///
+        /// Parameter `error`: If the configuration does not specify valid configuration properties, an
+        /// an NSError describing the error is set and nil is returned.
         #[method_id(@__retain_semantics Init initWithHealthStore:configuration:error:_)]
         pub unsafe fn initWithHealthStore_configuration_error(
             this: Allocated<Self>,
@@ -144,29 +197,78 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Prepares the workout session for starting.
+        ///
+        /// This method will asynchronously prepare the workout session for starting. The state of the workout session
+        /// will transition to HKWorkoutSessionStatePrepared. A prepared session will put the system in session mode,
+        /// but will not start the session activity.
+        /// You might call this methods, for example, prior to displaying a countdown on your application while waiting
+        /// for the activity to start.
         #[method(prepare)]
         pub unsafe fn prepare(&self);
 
+        /// Parameter `date`: Start date for the workout session activity
+        ///
+        /// Starts the workout session activity.
+        ///
+        /// This method will asynchronously begin the workout session activity. The state of the workout session will
+        /// transition to HKWorkoutSessionStateRunning. Once a session activity is started the system will be in session
+        /// mode and sensor algorithms will be applied to generate data for the workout activity.
         #[method(startActivityWithDate:)]
         pub unsafe fn startActivityWithDate(&self, date: Option<&NSDate>);
 
+        /// Parameter `date`: Stop date for the workout session activity
+        ///
+        /// Stops the workout session activity.
+        ///
+        /// This method will asynchronously stop the session activity if it is currently running. The state of the workout
+        /// session will transition to HKWorkoutSessionStateStopped. Once a workout session is stopped, it cannot be reused to
+        /// start a new workout session. Sensor algorithms will be stopped and no new data will be generated for this session.
+        /// However, the system will remain in session mode.
         #[method(stopActivityWithDate:)]
         pub unsafe fn stopActivityWithDate(&self, date: Option<&NSDate>);
 
+        /// Ends the workout session.
+        ///
+        /// This method will end the session if it is currently running or stopped. The state of the workout session will
+        /// transition to HKWorkoutSessionStateEnded. Once a workout session is ended, it cannot be reused to start a new
+        /// workout session. Sensor algorithms will be stopped, no new data will be generated for this session, and the
+        /// system will exit session mode.
         #[method(end)]
         pub unsafe fn end(&self);
 
+        /// Pauses the workout session.
+        ///
+        /// This method will pause the session if it is currently running. The state of the workout session
+        /// will transition to HKWorkoutSessionStatePaused. An HKWorkoutEventTypePause will be generated and
+        /// delivered to the workout session's delegate.
         #[method(pause)]
         pub unsafe fn pause(&self);
 
+        /// Resumes the workout session.
+        ///
+        /// This method will resume the session if it is currently paused. The state of the workout session
+        /// will transition to HKWorkoutSessionStateRunning. An HKWorkoutEventTypeResume will be generated and
+        /// delivered to the workout session's delegate.
         #[method(resume)]
         pub unsafe fn resume(&self);
 
         #[cfg(all(feature = "HKLiveWorkoutBuilder", feature = "HKWorkoutBuilder"))]
+        /// Retrieves (and creates if necessary) an HKLiveWorkoutBuilder associated with this session.
+        ///
+        /// A session may have associated with it an HKLiveWorkoutBuilder that will be used to record the workout
+        /// for this session. This method will return the session's associated builder, creating it if needed.
+        /// Calling this method more than once will return the previously-created builder. If this session was not
+        /// initialized with initWithHealthStore:configuration:error:, an exception will be thrown.
         #[method_id(@__retain_semantics Other associatedWorkoutBuilder)]
         pub unsafe fn associatedWorkoutBuilder(&self) -> Retained<HKLiveWorkoutBuilder>;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
+        /// Begins a new workout activity for this session.
+        ///
+        /// This method will asynchronously begin the workout activity. The delegate for this session would be
+        /// informed once the activity effectively begins.  Sensor algorithms to generate data would be updated
+        /// to match the new activity.
         #[method(beginNewActivityWithConfiguration:date:metadata:)]
         pub unsafe fn beginNewActivityWithConfiguration_date_metadata(
             &self,
@@ -175,10 +277,22 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
+        /// Ends the current workout activity.
+        ///
+        /// This method will end the current activity, reverting to the main session activity. The delegate for this session
+        /// would be informed once the activity effectively ends. Sensor algorithms to generate data would be updated to
+        /// match the main session activity.
         #[method(endCurrentActivityOnDate:)]
         pub unsafe fn endCurrentActivityOnDate(&self, date: &NSDate);
 
         #[cfg(feature = "block2")]
+        /// Starts mirroring the session to the companion device.
+        ///
+        /// Calling this method will result in your app on the companion device being launched in the background.
+        /// When your app is launched set the `HKHealthStore` `workoutSessionMirroringStartHandler` property to retrieve
+        /// the mirrored session.
+        /// This method will fail if called for a session that is ended.
+        /// The completion handler will be executed on an arbitrary background queue.
         #[method(startMirroringToCompanionDeviceWithCompletion:)]
         pub unsafe fn startMirroringToCompanionDeviceWithCompletion(
             &self,
@@ -186,6 +300,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Stops mirroring the session to the companion device.
+        ///
+        /// Calling this method will stop sending data to the companion device. The mirrored session's delegate method
+        /// `didDisconnectFromRemoteDeviceWithError:` will be called to indicate that.
+        /// When a workout session is ended, mirroring is automatically stopped.
+        /// The completion handler will be executed on an arbitrary background queue.
         #[method(stopMirroringToCompanionDeviceWithCompletion:)]
         pub unsafe fn stopMirroringToCompanionDeviceWithCompletion(
             &self,
@@ -193,6 +313,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Sends an NSData object to the connected remote workout session.
+        ///
+        /// This method can be called to send data from a primary session to its mirrored counterpart and vice-versa.
+        /// It's only intended to be used for data that describes the current state of the workout, such as accumulated metrics, and any
+        /// data needed to keep your app on both devices in sync.
+        /// The maximum amount of data that can be sent is 100 KB in any given 10-second time window.
+        /// If this limit is exceeded, an error will be returned in the completion handler.
+        /// An error will also be returned if the session is not mirroring.
+        /// The completion handler will be executed on an arbitrary background queue.
         #[method(sendDataToRemoteWorkoutSession:completion:)]
         pub unsafe fn sendDataToRemoteWorkoutSession_completion(
             &self,
@@ -211,8 +340,17 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessiondelegate?language=objc)
+    /// This protocol should be implemented to be notified when a workout session's state changes.
+    ///
+    /// The methods on this protocol are called on an anonymous serial background queue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessiondelegate?language=objc)
     pub unsafe trait HKWorkoutSessionDelegate: NSObjectProtocol {
+        /// This method is called when a workout session transitions to a new state.
+        ///
+        /// The date is provided to indicate when the state change actually happened.  If your application is
+        /// suspended then the delegate will receive this call once the application resumes, which may be much later
+        /// than when the original state change ocurred.
         #[method(workoutSession:didChangeToState:fromState:date:)]
         unsafe fn workoutSession_didChangeToState_fromState_date(
             &self,
@@ -222,6 +360,10 @@ extern_protocol!(
             date: &NSDate,
         );
 
+        /// This method is called when an error occurs that stops a workout session.
+        ///
+        /// When the state of the workout session changes due to an error occurring, this method is always called
+        /// before workoutSession:didChangeToState:fromState:date:.
         #[method(workoutSession:didFailWithError:)]
         unsafe fn workoutSession_didFailWithError(
             &self,
@@ -230,6 +372,11 @@ extern_protocol!(
         );
 
         #[cfg(feature = "HKWorkout")]
+        /// This method is called whenever the system generates a workout event.
+        ///
+        /// Whenever a workout event is generated, such as pause or resume detection, the event will be passed
+        /// to the session delegate via this method. Clients may save the generated events to use when creating an
+        /// HKWorkout object.
         #[optional]
         #[method(workoutSession:didGenerateEvent:)]
         unsafe fn workoutSession_didGenerateEvent(
@@ -239,6 +386,11 @@ extern_protocol!(
         );
 
         #[cfg(feature = "HKWorkoutConfiguration")]
+        /// This method is called whenever a new activity begins.
+        ///
+        /// Whenever a new workout activity begins, the new configuration would be passed to the session delegate
+        /// via this method. Clients may use this data to create a workout activity to save when building an HKWorkout
+        /// object.
         #[optional]
         #[method(workoutSession:didBeginActivityWithConfiguration:date:)]
         unsafe fn workoutSession_didBeginActivityWithConfiguration_date(
@@ -249,6 +401,11 @@ extern_protocol!(
         );
 
         #[cfg(feature = "HKWorkoutConfiguration")]
+        /// This method is called whenever the current workout activity ends.
+        ///
+        /// Whenever a new workout activity ends, the new configuration would be passed to the session delegate
+        /// via this method. Clients may use this data to create a workout activity to save when building an HKWorkout
+        /// object.
         #[optional]
         #[method(workoutSession:didEndActivityWithConfiguration:date:)]
         unsafe fn workoutSession_didEndActivityWithConfiguration_date(
@@ -258,6 +415,7 @@ extern_protocol!(
             date: &NSDate,
         );
 
+        /// This method is called when the session receives data from its remote counterpart.
         #[optional]
         #[method(workoutSession:didReceiveDataFromRemoteWorkoutSession:)]
         unsafe fn workoutSession_didReceiveDataFromRemoteWorkoutSession(
@@ -266,6 +424,9 @@ extern_protocol!(
             data: &NSArray<NSData>,
         );
 
+        /// This method is called when the session is disconnected from its remote counterpart.
+        ///
+        /// After this method is called for a mirrored workout session, it is no longer considered valid.
         #[optional]
         #[method(workoutSession:didDisconnectFromRemoteDeviceWithError:)]
         unsafe fn workoutSession_didDisconnectFromRemoteDeviceWithError(

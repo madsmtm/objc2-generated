@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlparameterkey?language=objc)
+    /// A class to specify list of supported model update parameters.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlparameterkey?language=objc)
     #[unsafe(super(MLKey, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLKey")]

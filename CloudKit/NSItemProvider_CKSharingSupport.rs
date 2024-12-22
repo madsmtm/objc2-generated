@@ -28,6 +28,17 @@ extern_category!(
             feature = "CKShare",
             feature = "block2"
         ))]
+        /// Use this method when you want to share a collection of
+        /// `CKRecords`but don't currently have a
+        /// `CKShare.`When the
+        /// `preparationHandler`is called, you should create a new
+        /// `CKShare`with the appropriate root
+        /// `CKRecord`or
+        /// `CKRecordZoneID.`After ensuring the share and all records have been saved to the server, invoke the
+        /// `preparationCompletionHandler`with either the resulting
+        /// `CKShare,`or an
+        /// `NSError`if saving failed. Invoking the share sheet with a
+        /// `CKShare`registered with this method will prompt the user to start sharing.
         #[method(registerCKShareWithContainer:allowedSharingOptions:preparationHandler:)]
         unsafe fn registerCKShareWithContainer_allowedSharingOptions_preparationHandler(
             &self,
@@ -42,6 +53,9 @@ extern_category!(
             feature = "CKRecord",
             feature = "CKShare"
         ))]
+        /// Use this method when you have a
+        /// `CKShare`that is already saved to the server. Invoking the share sheet with a
+        /// `CKShare`registered with this method will allow the owner to make modifications to the share settings, or will allow a participant to view the share settings.
         #[method(registerCKShare:container:allowedSharingOptions:)]
         unsafe fn registerCKShare_container_allowedSharingOptions(
             &self,

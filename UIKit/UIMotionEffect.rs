@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimotioneffect?language=objc)
+    /// UIMotionEffect is an abstract superclass which declaratively represents a rendering
+    /// effect that depends on the motion of the device. Given some device pose, subclassers
+    /// provide relative values which are to be applied to the key paths of the target's view.
+    ///
+    /// Subclasses must implement conformance for NSCopying and NSCoding.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimotioneffect?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -39,6 +45,29 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Abstract method. Given the `viewerOffset`, this method should compute a set of key paths
+        /// and relative values pairs which will represent the effect of the device's motion on
+        /// the target view. The return value is a dictionary whose keys and values are these
+        /// key paths (as NSStrings) and relative values, respectively.
+        ///
+        /// The `viewerOffset` is an estimate of the viewer's position relative to direction the
+        /// screen's facing. Values in each dimension range from -1 to 1. Facing straight at the
+        /// viewer is (0, 0). Tilting the phone to the right produces a more positive horizontal
+        /// value; tilting the phone down produces a more positive vertical value.
+        ///
+        /// `keyPaths` should be expressed relative to the effect's target view. Only key paths
+        /// which would animate if set in an animation block may be targeted by motion effects.
+        ///
+        /// Example return value: `
+        /// @
+        /// {
+        /// "
+        /// center": [NSValue
+        /// valueFromCGPoint:CGPointMake(3.4, 1.2)],
+        /// "
+        /// layer.shadowOffset.x":
+        /// @
+        /// (-1.1) }`
         #[method_id(@__retain_semantics Other keyPathsAndRelativeValuesForViewerOffset:)]
         pub unsafe fn keyPathsAndRelativeValuesForViewerOffset(
             &self,
@@ -61,8 +90,14 @@ extern_methods!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIInterpolatingMotionEffectType(pub NSInteger);
 impl UIInterpolatingMotionEffectType {
+    /// Tracks the device being tilted left/right relative to the viewer. The minimum
+    /// relative values maps to the device being tilted all the way to the left, the
+    /// maximum to the right.
     #[doc(alias = "UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis")]
     pub const TiltAlongHorizontalAxis: Self = Self(0);
+    /// Tracks the device being tilted up/down relative to the viewer. The minimum
+    /// relative values maps to the device being tilted all the way down, the maximum
+    /// all the way up.
     #[doc(alias = "UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis")]
     pub const TiltAlongVerticalAxis: Self = Self(1);
 }
@@ -76,7 +111,13 @@ unsafe impl RefEncode for UIInterpolatingMotionEffectType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterpolatingmotioneffect?language=objc)
+    /// This motion effect maps movement of a particular type (e.g. left/right tilt) to an
+    /// interpolated output between two relative values provided by the client. Uses Core
+    /// Animation's implementation of interpolation for all the standard types.
+    ///
+    /// `keyPath` should be expressed relative to the effect's target view.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterpolatingmotioneffect?language=objc)
     #[unsafe(super(UIMotionEffect, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -117,12 +158,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other minimumRelativeValue)]
         pub unsafe fn minimumRelativeValue(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`minimumRelativeValue`][Self::minimumRelativeValue].
         #[method(setMinimumRelativeValue:)]
         pub unsafe fn setMinimumRelativeValue(&self, minimum_relative_value: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other maximumRelativeValue)]
         pub unsafe fn maximumRelativeValue(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`maximumRelativeValue`][Self::maximumRelativeValue].
         #[method(setMaximumRelativeValue:)]
         pub unsafe fn setMaximumRelativeValue(&self, maximum_relative_value: Option<&AnyObject>);
     }
@@ -145,7 +188,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimotioneffectgroup?language=objc)
+    /// Behaves like CAAnimationGroup. Merges key/value pairs of constituent
+    /// using Core Animation's implementations of addition for all the standard types.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimotioneffectgroup?language=objc)
     #[unsafe(super(UIMotionEffect, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -167,6 +213,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other motionEffects)]
         pub unsafe fn motionEffects(&self) -> Option<Retained<NSArray<UIMotionEffect>>>;
 
+        /// Setter for [`motionEffects`][Self::motionEffects].
         #[method(setMotionEffects:)]
         pub unsafe fn setMotionEffects(&self, motion_effects: Option<&NSArray<UIMotionEffect>>);
     }

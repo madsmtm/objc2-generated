@@ -165,24 +165,28 @@ extern_methods!(
         pub unsafe fn font(&self) -> Retained<NSFont>;
 
         #[cfg(feature = "NSFont")]
+        /// Setter for [`font`][Self::font].
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: &NSFont);
 
         #[method(tabViewType)]
         pub unsafe fn tabViewType(&self) -> NSTabViewType;
 
+        /// Setter for [`tabViewType`][Self::tabViewType].
         #[method(setTabViewType:)]
         pub unsafe fn setTabViewType(&self, tab_view_type: NSTabViewType);
 
         #[method(tabPosition)]
         pub unsafe fn tabPosition(&self) -> NSTabPosition;
 
+        /// Setter for [`tabPosition`][Self::tabPosition].
         #[method(setTabPosition:)]
         pub unsafe fn setTabPosition(&self, tab_position: NSTabPosition);
 
         #[method(tabViewBorderType)]
         pub unsafe fn tabViewBorderType(&self) -> NSTabViewBorderType;
 
+        /// Setter for [`tabViewBorderType`][Self::tabViewBorderType].
         #[method(setTabViewBorderType:)]
         pub unsafe fn setTabViewBorderType(&self, tab_view_border_type: NSTabViewBorderType);
 
@@ -191,12 +195,14 @@ extern_methods!(
         pub unsafe fn tabViewItems(&self) -> Retained<NSArray<NSTabViewItem>>;
 
         #[cfg(feature = "NSTabViewItem")]
+        /// Setter for [`tabViewItems`][Self::tabViewItems].
         #[method(setTabViewItems:)]
         pub unsafe fn setTabViewItems(&self, tab_view_items: &NSArray<NSTabViewItem>);
 
         #[method(allowsTruncatedLabels)]
         pub unsafe fn allowsTruncatedLabels(&self) -> bool;
 
+        /// Setter for [`allowsTruncatedLabels`][Self::allowsTruncatedLabels].
         #[method(setAllowsTruncatedLabels:)]
         pub unsafe fn setAllowsTruncatedLabels(&self, allows_truncated_labels: bool);
 
@@ -207,6 +213,7 @@ extern_methods!(
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
+        /// Setter for [`drawsBackground`][Self::drawsBackground].
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
@@ -215,6 +222,7 @@ extern_methods!(
         pub unsafe fn controlSize(&self) -> NSControlSize;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`controlSize`][Self::controlSize].
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
@@ -238,6 +246,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTabViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTabViewDelegate>>);
 
@@ -269,6 +278,7 @@ extern_methods!(
         pub unsafe fn controlTint(&self) -> NSControlTint;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`controlTint`][Self::controlTint].
         #[deprecated = "The controlTint property is not respected on 10.14 and later."]
         #[method(setControlTint:)]
         pub unsafe fn setControlTint(&self, control_tint: NSControlTint);

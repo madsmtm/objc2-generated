@@ -132,6 +132,7 @@ extern_methods!(
         pub unsafe fn purposeIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`purposeIdentifier`][Self::purposeIdentifier].
         #[method(setPurposeIdentifier:)]
         pub unsafe fn setPurposeIdentifier(&self, purpose_identifier: &NSString);
 

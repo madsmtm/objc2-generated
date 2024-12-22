@@ -28,30 +28,58 @@ pub const kCMFormatDescriptionBridgeError_InvalidSlice: OSStatus = -12719;
 pub type CMImageDescriptionFlavor = CFStringRef;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_quicktimemovie?language=objc)
+    /// Chooses the QuickTime Movie Image Description format.
+    ///
+    /// Passing NULL is equivalent to passing this constant.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_quicktimemovie?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMImageDescriptionFlavor_QuickTimeMovie: CMImageDescriptionFlavor;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_isofamily?language=objc)
+    /// Chooses the ISO family sample description format, used in MP4
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_isofamily?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMImageDescriptionFlavor_ISOFamily: CMImageDescriptionFlavor;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_3gpfamily?language=objc)
+    /// Chooses the 3GP family sample description format.
+    ///
+    /// This implies kCMImageDescriptionFlavor_ISOFamily and adds additional rules specific to the 3GP family.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_3gpfamily?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMImageDescriptionFlavor_3GPFamily: CMImageDescriptionFlavor;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_isofamilywithappleextensions?language=objc)
+    /// Chooses the ISO family sample description format with use of Apple extensions where appropriate for M4V and M4A.
+    ///
+    /// This implies kCMImageDescriptionFlavor_ISOFamily and adds additional rules specific to the .m4a, .m4b, and .m4v file formats.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_isofamilywithappleextensions?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMImageDescriptionFlavor_ISOFamilyWithAppleExtensions: CMImageDescriptionFlavor;
 }
 
 extern "C-unwind" {
+    /// Creates a CMVideoFormatDescription from a big-endian ImageDescription data structure.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMVideoFormatDescription object. May be NULL.
+    ///
+    /// Parameter `imageDescriptionData`: ImageDescription data structure in big-endian byte ordering.
+    ///
+    /// Parameter `size`: Size of ImageDescription data structure.
+    ///
+    /// Parameter `stringEncoding`: Pass CFStringGetSystemEncoding() or GetApplicationTextEncoding().
+    ///
+    /// Parameter `flavor`: kCMImageDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
+    ///
+    /// Parameter `formatDescriptionOut`: Receives new CMVideoFormatDescription.
     #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
     pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(
         allocator: CFAllocatorRef,
@@ -64,6 +92,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CMVideoFormatDescription from a big-endian ImageDescription data structure in a CMBlockBuffer.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMVideoFormatDescription object. May be NULL.
+    ///
+    /// Parameter `imageDescriptionBlockBuffer`: CMBlockBuffer containing ImageDescription data structure in big-endian byte ordering.
+    ///
+    /// Parameter `stringEncoding`: Pass CFStringGetSystemEncoding() or GetApplicationTextEncoding().
+    ///
+    /// Parameter `flavor`: kCMImageDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
+    ///
+    /// Parameter `formatDescriptionOut`: Receives new CMVideoFormatDescription.
     #[cfg(all(
         feature = "CMBlockBuffer",
         feature = "CMFormatDescription",
@@ -79,6 +119,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the contents of a CMVideoFormatDescription to a CMBlockBuffer in big-endian byte ordering.
+    ///
+    /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
+    /// Note that the dataRefIndex field of the SampleDescription is intentionally filled with
+    /// garbage values (0xFFFF).  The caller must overwrite these values with a valid dataRefIndex
+    /// if writing the SampleDescription to a QuickTime/ISO file.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMBlockBuffer object. May be NULL.
+    ///
+    /// Parameter `videoFormatDescription`: CMVideoFormatDescription to be copied.
+    ///
+    /// Parameter `stringEncoding`: Pass CFStringGetSystemEncoding() or GetApplicationTextEncoding().
+    ///
+    /// Parameter `flavor`: kCMImageDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
+    ///
+    /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing ImageDescription data structure in big-endian byte ordering.
     #[cfg(all(
         feature = "CMBlockBuffer",
         feature = "CMFormatDescription",
@@ -94,6 +151,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts an ImageDescription data structure from big-endian to host-endian in place.
+    ///
+    ///
+    /// Parameter `imageDescriptionData`: ImageDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+    ///
+    /// Parameter `imageDescriptionSize`: Size of ImageDescription data structure.
     pub fn CMSwapBigEndianImageDescriptionToHost(
         image_description_data: NonNull<u8>,
         image_description_size: usize,
@@ -101,6 +164,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts an ImageDescription data structure from host-endian to big-endian in place.
+    ///
+    ///
+    /// Parameter `imageDescriptionData`: ImageDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+    ///
+    /// Parameter `imageDescriptionSize`: Size of ImageDescription data structure.
     pub fn CMSwapHostEndianImageDescriptionToBig(
         image_description_data: NonNull<u8>,
         image_description_size: usize,
@@ -113,30 +182,58 @@ extern "C-unwind" {
 pub type CMSoundDescriptionFlavor = CFStringRef;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_quicktimemovie?language=objc)
+    /// Chooses the most backwards-compatible QuickTime Movie Sound Description format.
+    ///
+    /// A V1 sound description will be written if possible.
+    /// If a V1 sound description is written for CBR or PCM audio, the sample tables will need to use the legacy CBR layout.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_quicktimemovie?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSoundDescriptionFlavor_QuickTimeMovie: CMSoundDescriptionFlavor;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_quicktimemoviev2?language=objc)
+    /// Chooses the QuickTime Movie Sound Description V2 format.
+    ///
+    /// A V2 sound description will be written.
+    /// V2 Sound Descriptions contain no legacy CBR layout, and use 'lpcm' for all flavors of PCM.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_quicktimemoviev2?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSoundDescriptionFlavor_QuickTimeMovieV2: CMSoundDescriptionFlavor;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_isofamily?language=objc)
+    /// Chooses the ISO family sample description format, used in MP4, M4A, etc.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_isofamily?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSoundDescriptionFlavor_ISOFamily: CMSoundDescriptionFlavor;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_3gpfamily?language=objc)
+    /// Chooses the 3GP family sample description format.
+    ///
+    /// This implies kCMSoundDescriptionFlavor_ISOFamily and adds additional rules specific to the 3GP family.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_3gpfamily?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSoundDescriptionFlavor_3GPFamily: CMSoundDescriptionFlavor;
 }
 
 extern "C-unwind" {
+    /// Creates a CMAudioFormatDescription from a big-endian SoundDescription data structure.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMAudioFormatDescription object. May be NULL.
+    ///
+    /// Parameter `soundDescriptionData`: SoundDescription data structure in big-endian byte ordering.
+    ///
+    /// Parameter `size`: Size of SoundDescription data structure.
+    ///
+    /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
+    ///
+    /// Parameter `formatDescriptionOut`: Receives new CMAudioFormatDescription.
     #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
     pub fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData(
         allocator: CFAllocatorRef,
@@ -148,6 +245,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CMAudioFormatDescription from a big-endian SoundDescription data structure in a CMBlockBuffer.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMAudioFormatDescription object. May be NULL.
+    ///
+    /// Parameter `soundDescriptionBlockBuffer`: CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
+    ///
+    /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
+    ///
+    /// Parameter `formatDescriptionOut`: Receives new CMAudioFormatDescription.
     #[cfg(all(
         feature = "CMBlockBuffer",
         feature = "CMFormatDescription",
@@ -162,6 +269,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the contents of a CMAudioFormatDescription to a CMBlockBuffer in big-endian byte ordering.
+    ///
+    /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
+    /// Note that the dataRefIndex field of the SampleDescription is intentionally filled with
+    /// garbage values (0xFFFF).  The caller must overwrite these values with a valid dataRefIndex
+    /// if writing the SampleDescription to a QuickTime/ISO file.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMBlockBuffer object. May be NULL.
+    ///
+    /// Parameter `audioFormatDescription`: CMAudioFormatDescription to be copied.
+    ///
+    /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
+    ///
+    /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
     #[cfg(all(
         feature = "CMBlockBuffer",
         feature = "CMFormatDescription",
@@ -176,6 +298,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Examine a big-endian SoundDescription data structure in a CMBlockBuffer, and report whether the sample tables will need to use the legacy CBR layout.
+    ///
+    ///
+    /// Parameter `soundDescriptionBlockBuffer`: CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
+    ///
+    /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     #[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-foundation"))]
     pub fn CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout(
         sound_description_block_buffer: CMBlockBufferRef,
@@ -184,6 +312,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a SoundDescription data structure from big-endian to host-endian in place.
+    ///
+    ///
+    /// Parameter `soundDescriptionData`: SoundDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+    ///
+    /// Parameter `soundDescriptionSize`: Size of SoundDescription data structure.
     pub fn CMSwapBigEndianSoundDescriptionToHost(
         sound_description_data: NonNull<u8>,
         sound_description_size: usize,
@@ -191,6 +325,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a SoundDescription data structure from host-endian to big-endian in place.
+    ///
+    ///
+    /// Parameter `soundDescriptionData`: SoundDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+    ///
+    /// Parameter `soundDescriptionSize`: Size of SoundDescription data structure.
     pub fn CMSwapHostEndianSoundDescriptionToBig(
         sound_description_data: NonNull<u8>,
         sound_description_size: usize,
@@ -203,6 +343,20 @@ extern "C-unwind" {
 pub type CMTextDescriptionFlavor = CFStringRef;
 
 extern "C-unwind" {
+    /// Creates a CMTextFormatDescription from a big-endian TextDescription data structure.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMTextFormatDescription object. May be NULL.
+    ///
+    /// Parameter `textDescriptionData`: TextDescription data structure in big-endian byte ordering.
+    ///
+    /// Parameter `size`: Size of TextDescription data structure.
+    ///
+    /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// Parameter `mediaType`: Pass kCMMediaType_Text or kCMMediaType_Subtitle.
+    ///
+    /// Parameter `formatDescriptionOut`: Receives new CMTextFormatDescription.
     #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
     pub fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData(
         allocator: CFAllocatorRef,
@@ -215,6 +369,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CMTextFormatDescription from a big-endian TextDescription data structure in a CMBlockBuffer.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMTextFormatDescription object. May be NULL.
+    ///
+    /// Parameter `textDescriptionBlockBuffer`: CMBlockBuffer containing TextDescription data structure in big-endian byte ordering.
+    ///
+    /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// Parameter `mediaType`: Pass kCMMediaType_Text or kCMMediaType_Subtitle.
+    ///
+    /// Parameter `formatDescriptionOut`: Receives new CMTextFormatDescription.
     #[cfg(all(
         feature = "CMBlockBuffer",
         feature = "CMFormatDescription",
@@ -230,6 +396,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the contents of a CMTextFormatDescription to a CMBlockBuffer in big-endian byte ordering.
+    ///
+    /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
+    /// Note that the dataRefIndex field of the SampleDescription is intentionally filled with
+    /// garbage values (0xFFFF).  The caller must overwrite these values with a valid dataRefIndex
+    /// if writing the SampleDescription to a QuickTime/ISO file.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMBlockBuffer object. May be NULL.
+    ///
+    /// Parameter `textFormatDescription`: CMTextFormatDescription to be copied.
+    ///
+    /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing TextDescription data structure in big-endian byte ordering.
     #[cfg(all(
         feature = "CMBlockBuffer",
         feature = "CMFormatDescription",
@@ -244,6 +425,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a TextDescription data structure from big-endian to host-endian in place.
+    ///
+    ///
+    /// Parameter `textDescriptionData`: TextDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+    ///
+    /// Parameter `textDescriptionSize`: Size of TextDescription data structure.
     pub fn CMSwapBigEndianTextDescriptionToHost(
         text_description_data: NonNull<u8>,
         text_description_size: usize,
@@ -251,6 +438,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a TextDescription data structure from host-endian to big-endian in place.
+    ///
+    ///
+    /// Parameter `textDescriptionData`: TextDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+    ///
+    /// Parameter `textDescriptionSize`: Size of TextDescription data structure.
     pub fn CMSwapHostEndianTextDescriptionToBig(
         text_description_data: NonNull<u8>,
         text_description_size: usize,
@@ -263,6 +456,18 @@ extern "C-unwind" {
 pub type CMClosedCaptionDescriptionFlavor = CFStringRef;
 
 extern "C-unwind" {
+    /// Creates a CMClosedCaptionFormatDescription from a big-endian ClosedCaptionDescription data structure.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMClosedCaptionFormatDescription object. May be NULL.
+    ///
+    /// Parameter `closedCaptionDescriptionData`: ClosedCaptionDescription data structure in big-endian byte ordering.
+    ///
+    /// Parameter `size`: Size of ClosedCaptionDescription data structure.
+    ///
+    /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// Parameter `formatDescriptionOut`: Receives new CMClosedCaptionFormatDescription.
     #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
     pub fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData(
         allocator: CFAllocatorRef,
@@ -274,6 +479,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CMClosedCaptionFormatDescription from a big-endian ClosedCaptionDescription data structure in a CMBlockBuffer.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMClosedCaptionFormatDescription object. May be NULL.
+    ///
+    /// Parameter `closedCaptionDescriptionBlockBuffer`: CMBlockBuffer containing ClosedCaptionDescription data structure in big-endian byte ordering.
+    ///
+    /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// Parameter `formatDescriptionOut`: Receives new CMClosedCaptionFormatDescription.
     #[cfg(all(
         feature = "CMBlockBuffer",
         feature = "CMFormatDescription",
@@ -288,6 +503,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the contents of a CMClosedCaptionFormatDescription to a CMBlockBuffer in big-endian byte ordering.
+    ///
+    /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
+    /// Note that the dataRefIndex field of the SampleDescription is intentionally filled with
+    /// garbage values (0xFFFF).  The caller must overwrite these values with a valid dataRefIndex
+    /// if writing the SampleDescription to a QuickTime/ISO file.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMBlockBuffer object. May be NULL.
+    ///
+    /// Parameter `closedCaptionFormatDescription`: CMClosedCaptionFormatDescription to be copied.
+    ///
+    /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing ClosedCaptionDescription data structure in big-endian byte ordering.
     #[cfg(all(
         feature = "CMBlockBuffer",
         feature = "CMFormatDescription",
@@ -302,6 +532,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a ClosedCaptionDescription data structure from big-endian to host-endian in place.
+    ///
+    ///
+    /// Parameter `closedCaptionDescriptionData`: ClosedCaptionDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+    ///
+    /// Parameter `closedCaptionDescriptionSize`: Size of ClosedCaptionDescription data structure.
     pub fn CMSwapBigEndianClosedCaptionDescriptionToHost(
         closed_caption_description_data: NonNull<u8>,
         closed_caption_description_size: usize,
@@ -309,6 +545,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a ClosedCaptionDescription data structure from host-endian to big-endian in place.
+    ///
+    ///
+    /// Parameter `closedCaptionDescriptionData`: ClosedCaptionDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+    ///
+    /// Parameter `closedCaptionDescriptionSize`: Size of ClosedCaptionDescription data structure.
     pub fn CMSwapHostEndianClosedCaptionDescriptionToBig(
         closed_caption_description_data: NonNull<u8>,
         closed_caption_description_size: usize,
@@ -321,6 +563,18 @@ extern "C-unwind" {
 pub type CMTimeCodeDescriptionFlavor = CFStringRef;
 
 extern "C-unwind" {
+    /// Creates a CMTimeCodeFormatDescription from a big-endian TimeCodeDescription data structure.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMTimeCodeFormatDescription object. May be NULL.
+    ///
+    /// Parameter `timeCodeDescriptionData`: TimeCodeDescription data structure in big-endian byte ordering.
+    ///
+    /// Parameter `size`: Size of TimeCodeDescription data structure.
+    ///
+    /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// Parameter `formatDescriptionOut`: Receives new CMTimeCodeFormatDescription.
     #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
     pub fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData(
         allocator: CFAllocatorRef,
@@ -332,6 +586,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CMTimeCodeFormatDescription from a big-endian TimeCodeDescription data structure in a CMBlockBuffer.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMTimeCodeFormatDescription object. May be NULL.
+    ///
+    /// Parameter `timeCodeDescriptionBlockBuffer`: CMBlockBuffer containing TimeCodeDescription data structure in big-endian byte ordering.
+    ///
+    /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// Parameter `formatDescriptionOut`: Receives new CMTimeCodeFormatDescription.
     #[cfg(all(
         feature = "CMBlockBuffer",
         feature = "CMFormatDescription",
@@ -346,6 +610,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the contents of a CMTimeCodeFormatDescription to a CMBlockBuffer in big-endian byte ordering.
+    ///
+    /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
+    /// Note that the dataRefIndex field of the SampleDescription is intentionally filled with
+    /// garbage values (0xFFFF).  The caller must overwrite these values with a valid dataRefIndex
+    /// if writing the SampleDescription to a QuickTime/ISO file.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMBlockBuffer object. May be NULL.
+    ///
+    /// Parameter `timeCodeFormatDescription`: CMTimeCodeFormatDescription to be copied.
+    ///
+    /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing TimeCodeDescription data structure in big-endian byte ordering.
     #[cfg(all(
         feature = "CMBlockBuffer",
         feature = "CMFormatDescription",
@@ -360,6 +639,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a TimeCodeDescription data structure from big-endian to host-endian in place.
+    ///
+    ///
+    /// Parameter `timeCodeDescriptionData`: TimeCodeDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+    ///
+    /// Parameter `timeCodeDescriptionSize`: Size of TimeCodeDescription data structure.
     pub fn CMSwapBigEndianTimeCodeDescriptionToHost(
         time_code_description_data: NonNull<u8>,
         time_code_description_size: usize,
@@ -367,6 +652,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a TimeCodeDescription data structure from host-endian to big-endian in place.
+    ///
+    ///
+    /// Parameter `timeCodeDescriptionData`: TimeCodeDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+    ///
+    /// Parameter `timeCodeDescriptionSize`: Size of TimeCodeDescription data structure.
     pub fn CMSwapHostEndianTimeCodeDescriptionToBig(
         time_code_description_data: NonNull<u8>,
         time_code_description_size: usize,
@@ -379,6 +670,18 @@ extern "C-unwind" {
 pub type CMMetadataDescriptionFlavor = CFStringRef;
 
 extern "C-unwind" {
+    /// Creates a CMMetadataFormatDescription from a big-endian MetadataDescription data structure.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMMetadataFormatDescription object. May be NULL.
+    ///
+    /// Parameter `metadataDescriptionData`: MetadataDescription data structure in big-endian byte ordering.
+    ///
+    /// Parameter `size`: Size of MetadataDescription data structure.
+    ///
+    /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// Parameter `formatDescriptionOut`: Receives new CMMetadataFormatDescriptionRef.
     #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
     pub fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData(
         allocator: CFAllocatorRef,
@@ -390,6 +693,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CMMetadataFormatDescription from a big-endian MetadataDescription data structure in a CMBlockBuffer.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMMetadataFormatDescription object. May be NULL.
+    ///
+    /// Parameter `metadataDescriptionBlockBuffer`: CMBlockBuffer containing MetadataDescription data structure in big-endian byte ordering.
+    ///
+    /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// Parameter `formatDescriptionOut`: Receives new CMMetadataFormatDescriptionRef.
     #[cfg(all(
         feature = "CMBlockBuffer",
         feature = "CMFormatDescription",
@@ -404,6 +717,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the contents of a CMMetadataFormatDescription to a CMBlockBuffer in big-endian byte ordering.
+    ///
+    /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
+    /// Note that the dataRefIndex field of the SampleDescription is intentionally filled with
+    /// garbage values (0xFFFF).  The caller must overwrite these values with a valid dataRefIndex
+    /// if writing the SampleDescription to a QuickTime/ISO file.
+    ///
+    ///
+    /// Parameter `allocator`: Allocator to use for allocating the CMBlockBuffer object. May be NULL.
+    ///
+    /// Parameter `metadataFormatDescription`: CMMetadataFormatDescriptionRef to be copied.
+    ///
+    /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing MetadataDescription data structure in big-endian byte ordering.
     #[cfg(all(
         feature = "CMBlockBuffer",
         feature = "CMFormatDescription",
@@ -418,6 +746,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a MetadataDescription data structure from big-endian to host-endian in place.
+    ///
+    ///
+    /// Parameter `metadataDescriptionData`: MetadataDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+    ///
+    /// Parameter `metadataDescriptionSize`: Size of MetadataDescription data structure.
     pub fn CMSwapBigEndianMetadataDescriptionToHost(
         metadata_description_data: NonNull<u8>,
         metadata_description_size: usize,
@@ -425,6 +759,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a MetadataDescription data structure from host-endian to big-endian in place.
+    ///
+    ///
+    /// Parameter `metadataDescriptionData`: MetadataDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+    ///
+    /// Parameter `metadataDescriptionSize`: Size of MetadataDescription data structure.
     pub fn CMSwapHostEndianMetadataDescriptionToBig(
         metadata_description_data: NonNull<u8>,
         metadata_description_size: usize,

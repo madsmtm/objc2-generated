@@ -25,12 +25,14 @@ extern_methods!(
         pub unsafe fn draggingFormation(&self) -> NSDraggingFormation;
 
         #[cfg(feature = "NSDragging")]
+        /// Setter for [`draggingFormation`][Self::draggingFormation].
         #[method(setDraggingFormation:)]
         pub unsafe fn setDraggingFormation(&self, dragging_formation: NSDraggingFormation);
 
         #[method(animatesToStartingPositionsOnCancelOrFail)]
         pub unsafe fn animatesToStartingPositionsOnCancelOrFail(&self) -> bool;
 
+        /// Setter for [`animatesToStartingPositionsOnCancelOrFail`][Self::animatesToStartingPositionsOnCancelOrFail].
         #[method(setAnimatesToStartingPositionsOnCancelOrFail:)]
         pub unsafe fn setAnimatesToStartingPositionsOnCancelOrFail(
             &self,
@@ -40,6 +42,7 @@ extern_methods!(
         #[method(draggingLeaderIndex)]
         pub unsafe fn draggingLeaderIndex(&self) -> NSInteger;
 
+        /// Setter for [`draggingLeaderIndex`][Self::draggingLeaderIndex].
         #[method(setDraggingLeaderIndex:)]
         pub unsafe fn setDraggingLeaderIndex(&self, dragging_leader_index: NSInteger);
 

@@ -99,6 +99,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSRulerView {
         #[cfg(feature = "objc2-core-foundation")]
+        /// *********************** Registering new units ************************
         #[method(registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:)]
         pub unsafe fn registerUnitWithName_abbreviation_unitToPointsConversionFactor_stepUpCycle_stepDownCycle(
             unit_name: &NSRulerViewUnitName,
@@ -109,6 +110,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         );
 
+        /// ************************** Initialization ***************************
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
@@ -121,21 +123,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSScrollView")]
+        /// ************************** Basic setup ***************************
         #[method_id(@__retain_semantics Other scrollView)]
         pub unsafe fn scrollView(&self) -> Option<Retained<NSScrollView>>;
 
         #[cfg(feature = "NSScrollView")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`scrollView`][Self::scrollView].
         #[method(setScrollView:)]
         pub unsafe fn setScrollView(&self, scroll_view: Option<&NSScrollView>);
 
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSRulerOrientation;
 
+        /// Setter for [`orientation`][Self::orientation].
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: NSRulerOrientation);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// ************************** Ruler geometry ***************************
         #[method(baselineLocation)]
         pub unsafe fn baselineLocation(&self) -> CGFloat;
 
@@ -148,6 +154,7 @@ extern_methods!(
         pub unsafe fn ruleThickness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`ruleThickness`][Self::ruleThickness].
         #[method(setRuleThickness:)]
         pub unsafe fn setRuleThickness(&self, rule_thickness: CGFloat);
 
@@ -156,6 +163,7 @@ extern_methods!(
         pub unsafe fn reservedThicknessForMarkers(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`reservedThicknessForMarkers`][Self::reservedThicknessForMarkers].
         #[method(setReservedThicknessForMarkers:)]
         pub unsafe fn setReservedThicknessForMarkers(
             &self,
@@ -167,15 +175,18 @@ extern_methods!(
         pub unsafe fn reservedThicknessForAccessoryView(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`reservedThicknessForAccessoryView`][Self::reservedThicknessForAccessoryView].
         #[method(setReservedThicknessForAccessoryView:)]
         pub unsafe fn setReservedThicknessForAccessoryView(
             &self,
             reserved_thickness_for_accessory_view: CGFloat,
         );
 
+        /// ************************** Rule configuration ***************************
         #[method_id(@__retain_semantics Other measurementUnits)]
         pub unsafe fn measurementUnits(&self) -> Retained<NSRulerViewUnitName>;
 
+        /// Setter for [`measurementUnits`][Self::measurementUnits].
         #[method(setMeasurementUnits:)]
         pub unsafe fn setMeasurementUnits(&self, measurement_units: &NSRulerViewUnitName);
 
@@ -184,13 +195,16 @@ extern_methods!(
         pub unsafe fn originOffset(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`originOffset`][Self::originOffset].
         #[method(setOriginOffset:)]
         pub unsafe fn setOriginOffset(&self, origin_offset: CGFloat);
 
+        /// ************************** Client view setup ***************************
         #[method_id(@__retain_semantics Other clientView)]
         pub unsafe fn clientView(&self) -> Option<Retained<NSView>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`clientView`][Self::clientView].
         #[method(setClientView:)]
         pub unsafe fn setClientView(&self, client_view: Option<&NSView>);
 
@@ -207,6 +221,7 @@ extern_methods!(
         pub unsafe fn markers(&self) -> Option<Retained<NSArray<NSRulerMarker>>>;
 
         #[cfg(feature = "NSRulerMarker")]
+        /// Setter for [`markers`][Self::markers].
         #[method(setMarkers:)]
         pub unsafe fn setMarkers(&self, markers: Option<&NSArray<NSRulerMarker>>);
 
@@ -221,6 +236,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
 
+        /// Setter for [`accessoryView`][Self::accessoryView].
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
@@ -232,6 +248,7 @@ extern_methods!(
             new_location: CGFloat,
         );
 
+        /// ********************* Drawing and hash invalidation **********************
         #[method(invalidateHashMarks)]
         pub unsafe fn invalidateHashMarks(&self);
 
@@ -243,6 +260,7 @@ extern_methods!(
         #[method(drawMarkersInRect:)]
         pub unsafe fn drawMarkersInRect(&self, rect: NSRect);
 
+        /// ************************** Key overrides ***************************
         #[method(isFlipped)]
         pub unsafe fn isFlipped(&self) -> bool;
     }

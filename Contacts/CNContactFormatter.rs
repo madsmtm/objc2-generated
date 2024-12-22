@@ -7,14 +7,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactformatterstyle?language=objc)
+/// The formatting styles for contact names.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CNContactFormatterStyle(pub NSInteger);
 impl CNContactFormatterStyle {
+    /// Combine the contact name components into a displayable full name.
     #[doc(alias = "CNContactFormatterStyleFullName")]
     pub const FullName: Self = Self(0);
+    /// Combine the contact phonetic name components into a displayable phonetic full name.
     #[doc(alias = "CNContactFormatterStylePhoneticFullName")]
     pub const PhoneticFullName: Self = Self(1);
 }
@@ -27,7 +31,9 @@ unsafe impl RefEncode for CNContactFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdisplaynameorder?language=objc)
+/// The formatting order of the contact name components.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdisplaynameorder?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -50,7 +56,12 @@ unsafe impl RefEncode for CNContactDisplayNameOrder {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactformatter?language=objc)
+    /// Formats a contact name.
+    ///
+    ///
+    /// This formatter handles international ordering and delimiting of the contact name components. This includes applying the user defaults when appropriate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactFormatter;
@@ -71,22 +82,53 @@ unsafe impl NSSecureCoding for CNContactFormatter {}
 extern_methods!(
     unsafe impl CNContactFormatter {
         #[cfg(feature = "CNContact")]
+        /// The contact key descriptor required for the formatter.
+        ///
+        ///
+        /// Use to fetch all contact keys required for the formatter style. Can combine key descriptors for different formatter styles in the fetch.
+        ///
+        ///
+        /// Parameter `style`: The formatting style to be used for the contact name.
+        ///
+        /// Returns: The contact key descriptor for the formatting style.
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForStyle:)]
         pub unsafe fn descriptorForRequiredKeysForStyle(
             style: CNContactFormatterStyle,
         ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[cfg(feature = "CNContact")]
+        /// The contact key descriptor required for the name order.
+        ///
+        ///
+        /// Use to fetch all contact keys required for +nameOrderForContact:. Can combine key descriptors for different formatter styles in the fetch.
+        ///
+        ///
+        /// Returns: The contact key descriptor for the name order.
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForNameOrder)]
         pub unsafe fn descriptorForRequiredKeysForNameOrder(
         ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[cfg(feature = "CNContact")]
+        /// The contact key descriptor required for the name delimiter.
+        ///
+        ///
+        /// Use to fetch all contact keys required for +delimiterForContact:. Can combine key descriptors for different formatter styles in the fetch.
+        ///
+        ///
+        /// Returns: The contact key descriptor for the name delimiter.
         #[method_id(@__retain_semantics Other descriptorForRequiredKeysForDelimiter)]
         pub unsafe fn descriptorForRequiredKeysForDelimiter(
         ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[cfg(feature = "CNContact")]
+        /// Formats the contact name.
+        ///
+        ///
+        /// Parameter `contact`: The contact whose name is to be formatted.
+        ///
+        /// Parameter `style`: The formatting style to be used for the contact name.
+        ///
+        /// Returns: The formatted contact name.
         #[method_id(@__retain_semantics Other stringFromContact:style:)]
         pub unsafe fn stringFromContact_style(
             contact: &CNContact,
@@ -94,6 +136,19 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CNContact")]
+        /// Formats the contact name returning an attributed string.
+        ///
+        ///
+        /// This behaves like +stringFromContact:style: except it returns an attributed string. Includes the attribute key CNContactPropertyAttribute.
+        ///
+        ///
+        /// Parameter `contact`: The contact whose name is to be formatted.
+        ///
+        /// Parameter `style`: The formatting style to be used for the contact name.
+        ///
+        /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
+        ///
+        /// Returns: The formatted contact name as an attributed string.
         #[method_id(@__retain_semantics Other attributedStringFromContact:style:defaultAttributes:)]
         pub unsafe fn attributedStringFromContact_style_defaultAttributes(
             contact: &CNContact,
@@ -102,24 +157,48 @@ extern_methods!(
         ) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "CNContact")]
+        /// The recommended name order for a given contact.
         #[method(nameOrderForContact:)]
         pub unsafe fn nameOrderForContact(contact: &CNContact) -> CNContactDisplayNameOrder;
 
         #[cfg(feature = "CNContact")]
+        /// The recommended delimiter to use between name components for a given contact.
         #[method_id(@__retain_semantics Other delimiterForContact:)]
         pub unsafe fn delimiterForContact(contact: &CNContact) -> Retained<NSString>;
 
+        /// The style for a contact formatter instance.
+        ///
+        ///
+        /// The default value is CNContactFormatterStyleFullName.
         #[method(style)]
         pub unsafe fn style(&self) -> CNContactFormatterStyle;
 
+        /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: CNContactFormatterStyle);
 
         #[cfg(feature = "CNContact")]
+        /// Formats the contact name.
+        ///
+        ///
+        /// Parameter `contact`: The contact whose name is to be formatted.
+        ///
+        /// Returns: The formatted contact name.
         #[method_id(@__retain_semantics Other stringFromContact:)]
         pub unsafe fn stringFromContact(&self, contact: &CNContact) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CNContact")]
+        /// Formats the contact name returning an attributed string.
+        ///
+        ///
+        /// This behaves like -stringFromContact:style: except it returns an attributed string. CNContactPropertyAttribute key has the value of a CNContact name property key.
+        ///
+        ///
+        /// Parameter `contact`: The contact whose name is to be formatted.
+        ///
+        /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
+        ///
+        /// Returns: The formatted contact name as an attributed string.
         #[method_id(@__retain_semantics Other attributedStringFromContact:defaultAttributes:)]
         pub unsafe fn attributedStringFromContact_defaultAttributes(
             &self,

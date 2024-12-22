@@ -70,6 +70,7 @@ extern_methods!(
         pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
+        /// Setter for [`parentWindow`][Self::parentWindow].
         #[method(setParentWindow:)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
@@ -78,18 +79,21 @@ extern_methods!(
         pub unsafe fn contentView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
+        /// Setter for [`contentView`][Self::contentView].
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
         #[method(preferredEdge)]
         pub unsafe fn preferredEdge(&self) -> NSRectEdge;
 
+        /// Setter for [`preferredEdge`][Self::preferredEdge].
         #[method(setPreferredEdge:)]
         pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSDrawerDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSDrawerDelegate>>);
 
@@ -122,6 +126,7 @@ extern_methods!(
         pub unsafe fn contentSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentSize`][Self::contentSize].
         #[method(setContentSize:)]
         pub unsafe fn setContentSize(&self, content_size: NSSize);
 
@@ -130,6 +135,7 @@ extern_methods!(
         pub unsafe fn minContentSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minContentSize`][Self::minContentSize].
         #[method(setMinContentSize:)]
         pub unsafe fn setMinContentSize(&self, min_content_size: NSSize);
 
@@ -138,6 +144,7 @@ extern_methods!(
         pub unsafe fn maxContentSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maxContentSize`][Self::maxContentSize].
         #[method(setMaxContentSize:)]
         pub unsafe fn setMaxContentSize(&self, max_content_size: NSSize);
 
@@ -146,6 +153,7 @@ extern_methods!(
         pub unsafe fn leadingOffset(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`leadingOffset`][Self::leadingOffset].
         #[method(setLeadingOffset:)]
         pub unsafe fn setLeadingOffset(&self, leading_offset: CGFloat);
 
@@ -154,6 +162,7 @@ extern_methods!(
         pub unsafe fn trailingOffset(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`trailingOffset`][Self::trailingOffset].
         #[method(setTrailingOffset:)]
         pub unsafe fn setTrailingOffset(&self, trailing_offset: CGFloat);
     }

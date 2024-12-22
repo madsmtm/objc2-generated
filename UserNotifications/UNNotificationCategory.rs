@@ -71,6 +71,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other hiddenPreviewsBodyPlaceholder)]
         pub unsafe fn hiddenPreviewsBodyPlaceholder(&self) -> Retained<NSString>;
 
+        /// A format string for a summary description when notifications from this category are grouped together.
+        /// It should contain descriptive text and format arguments that will be replaced with the information
+        /// from the notifications that have been grouped together. The arguments are replaced with the number
+        /// of notifications and the list created by joining the argument in each grouped notification.
+        /// For example: "%u new messages from %@".
+        /// The arguments list is optional, "%u new messages" is also accepted.
         #[method_id(@__retain_semantics Other categorySummaryFormat)]
         pub unsafe fn categorySummaryFormat(&self) -> Retained<NSString>;
 

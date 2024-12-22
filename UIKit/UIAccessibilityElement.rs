@@ -40,30 +40,35 @@ extern_methods!(
         pub unsafe fn accessibilityContainer(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`accessibilityContainer`][Self::accessibilityContainer].
         #[method(setAccessibilityContainer:)]
         pub unsafe fn setAccessibilityContainer(&self, accessibility_container: Option<&AnyObject>);
 
         #[method(isAccessibilityElement)]
         pub unsafe fn isAccessibilityElement(&self) -> bool;
 
+        /// Setter for [`isAccessibilityElement`][Self::isAccessibilityElement].
         #[method(setIsAccessibilityElement:)]
         pub unsafe fn setIsAccessibilityElement(&self, is_accessibility_element: bool);
 
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         pub unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
         #[method(setAccessibilityLabel:)]
         pub unsafe fn setAccessibilityLabel(&self, accessibility_label: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other accessibilityHint)]
         pub unsafe fn accessibilityHint(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`accessibilityHint`][Self::accessibilityHint].
         #[method(setAccessibilityHint:)]
         pub unsafe fn setAccessibilityHint(&self, accessibility_hint: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other accessibilityValue)]
         pub unsafe fn accessibilityValue(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`accessibilityValue`][Self::accessibilityValue].
         #[method(setAccessibilityValue:)]
         pub unsafe fn setAccessibilityValue(&self, accessibility_value: Option<&NSString>);
 
@@ -72,6 +77,7 @@ extern_methods!(
         pub unsafe fn accessibilityFrame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`accessibilityFrame`][Self::accessibilityFrame].
         #[method(setAccessibilityFrame:)]
         pub unsafe fn setAccessibilityFrame(&self, accessibility_frame: CGRect);
 
@@ -80,6 +86,7 @@ extern_methods!(
         pub unsafe fn accessibilityTraits(&self) -> UIAccessibilityTraits;
 
         #[cfg(feature = "UIAccessibilityConstants")]
+        /// Setter for [`accessibilityTraits`][Self::accessibilityTraits].
         #[method(setAccessibilityTraits:)]
         pub unsafe fn setAccessibilityTraits(&self, accessibility_traits: UIAccessibilityTraits);
 
@@ -88,6 +95,7 @@ extern_methods!(
         pub unsafe fn accessibilityFrameInContainerSpace(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`accessibilityFrameInContainerSpace`][Self::accessibilityFrameInContainerSpace].
         #[method(setAccessibilityFrameInContainerSpace:)]
         pub unsafe fn setAccessibilityFrameInContainerSpace(
             &self,

@@ -9,7 +9,21 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsampling?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSCNNUpsampling filter can be used to resample an existing MPSImage
+    /// using a different sampling frequency for the x and y dimensions with the purpose of
+    /// enlarging the size of an image.
+    ///
+    /// The number of output feature channels remains the same as the number of input feature
+    /// channels.
+    ///
+    /// The scaleFactor must be an integer value >= 1. The default value is 1.
+    /// If scaleFactor == 1, the filter acts as a copy kernel.
+    ///
+    /// Nearest and bilinear variants are supported.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsampling?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -36,12 +50,17 @@ unsafe impl NSSecureCoding for MPSCNNUpsampling {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsampling {
+        /// The upsampling scale factor for the x dimension. The default value is 1.
         #[method(scaleFactorX)]
         pub unsafe fn scaleFactorX(&self) -> c_double;
 
+        /// The upsampling scale factor for the y dimension. The default value is 1.
         #[method(scaleFactorY)]
         pub unsafe fn scaleFactorY(&self) -> c_double;
 
+        /// If YES, the centers of the 4 corner pixels of the input and output regions are aligned,
+        /// preserving the values at the corner pixels.
+        /// The default is NO.
         #[method(alignCorners)]
         pub unsafe fn alignCorners(&self) -> bool;
 
@@ -57,6 +76,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsampling {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -70,6 +102,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsampling {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -91,7 +131,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingnearest?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the nearest spatial upsampling filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingnearest?language=objc)
     #[unsafe(super(MPSCNNUpsampling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -118,6 +162,15 @@ unsafe impl NSSecureCoding for MPSCNNUpsamplingNearest {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearest {
+        /// Initialize the nearest spatial upsampling filter.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `integerScaleFactorX`: The upsampling factor for the x dimension.
+        ///
+        /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
+        ///
+        /// Returns: A valid MPSCNNUpsamplingNearest object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:integerScaleFactorX:integerScaleFactorY:)]
         pub unsafe fn initWithDevice_integerScaleFactorX_integerScaleFactorY(
             this: Allocated<Self>,
@@ -144,6 +197,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearest {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -157,6 +223,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearest {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -178,7 +252,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilinear?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the bilinear spatial upsampling filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilinear?language=objc)
     #[unsafe(super(MPSCNNUpsampling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -205,6 +283,15 @@ unsafe impl NSSecureCoding for MPSCNNUpsamplingBilinear {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinear {
+        /// Initialize the bilinear spatial upsampling filter.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `integerScaleFactorX`: The upsampling factor for the x dimension.
+        ///
+        /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
+        ///
+        /// Returns: A valid MPSCNNUpsamplingBilinear object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:integerScaleFactorX:integerScaleFactorY:)]
         pub unsafe fn initWithDevice_integerScaleFactorX_integerScaleFactorY(
             this: Allocated<Self>,
@@ -213,6 +300,18 @@ extern_methods!(
             integer_scale_factor_y: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Initialize the bilinear spatial upsampling filter.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `integerScaleFactorX`: The upsampling factor for the x dimension.
+        ///
+        /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
+        ///
+        /// Parameter `alignCorners`: Specifier whether the centers of the 4 corner pixels of the input and output regions are aligned,
+        /// preserving the values at the corner pixels.
+        ///
+        /// Returns: A valid MPSCNNUpsamplingBilinear object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:integerScaleFactorX:integerScaleFactorY:alignCorners:)]
         pub unsafe fn initWithDevice_integerScaleFactorX_integerScaleFactorY_alignCorners(
             this: Allocated<Self>,
@@ -240,6 +339,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinear {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -253,6 +365,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinear {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -274,7 +394,46 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplinggradient?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSCNNUpsamplingGradient filter is used for training. It is the backward
+    /// filter for the MPSCNNUpsampling filter. It operates on the gradient input,
+    /// specifically, it reduces the size of the gradient input in the x and y dimensions.
+    ///
+    /// The number of output feature channels remains the same as the number of input feature
+    /// channels.
+    ///
+    /// The scaleFactor must be an integer value >= 1. The default value is 1.
+    /// If scaleFactor == 1, the filter acts as a copy kernel.
+    ///
+    /// Nearest and bilinear variants are supported.
+    ///
+    /// For example, for the nearest variant with scaleFactorX = scaleFactorY = 2, the
+    /// forward pass produced the following output:
+    ///
+    /// Input:        Output:
+    /// a a b b
+    /// a b         a a b b
+    /// c d         c c d d
+    /// c c d d
+    ///
+    /// To upsample the image, the input data is replicated.
+    ///
+    /// And, the backward pass for the above froward pass is computed in the following
+    /// way:
+    ///
+    /// Input:            Output:
+    /// a1 a2 b1 b2
+    /// a2 a3 b3 b4        x y
+    /// c1 c2 d1 d2        z w
+    /// c3 c4 d3 d4
+    ///
+    /// where    x = a1 + a2 + a3 + a4
+    /// y = b1 + b2 + b3 + b4
+    /// z = c1 + c2 + c3 + c4
+    /// w = d1 + d2 + d3 + d4
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplinggradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -301,9 +460,11 @@ unsafe impl NSSecureCoding for MPSCNNUpsamplingGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingGradient {
+        /// The downsampling scale factor for the x dimension. The default value is 1.
         #[method(scaleFactorX)]
         pub unsafe fn scaleFactorX(&self) -> c_double;
 
+        /// The downsampling scale factor for the y dimension. The default value is 1.
         #[method(scaleFactorY)]
         pub unsafe fn scaleFactorY(&self) -> c_double;
 
@@ -319,6 +480,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingGradient {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -332,6 +506,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -353,7 +535,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingnearestgradient?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the nearest spatial downsampling filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingnearestgradient?language=objc)
     #[unsafe(super(
         MPSCNNUpsamplingGradient,
         MPSCNNGradientKernel,
@@ -386,6 +572,15 @@ unsafe impl NSSecureCoding for MPSCNNUpsamplingNearestGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearestGradient {
+        /// Initialize the nearest spatial upsampling filter.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `integerScaleFactorX`: The downsampling factor for the x dimension.
+        ///
+        /// Parameter `integerScaleFactorY`: The downsampling factor for the y dimension.
+        ///
+        /// Returns: A valid MPSCNNUpsamplingNearestGradient object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:integerScaleFactorX:integerScaleFactorY:)]
         pub unsafe fn initWithDevice_integerScaleFactorX_integerScaleFactorY(
             this: Allocated<Self>,
@@ -412,6 +607,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearestGradient {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -425,6 +633,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearestGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -446,7 +662,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradient?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the bilinear spatial downsampling filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradient?language=objc)
     #[unsafe(super(
         MPSCNNUpsamplingGradient,
         MPSCNNGradientKernel,
@@ -479,6 +699,15 @@ unsafe impl NSSecureCoding for MPSCNNUpsamplingBilinearGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinearGradient {
+        /// Initialize the bilinear spatial downsampling filter.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `integerScaleFactorX`: The downsampling factor for the x dimension.
+        ///
+        /// Parameter `integerScaleFactorY`: The downsampling factor for the y dimension.
+        ///
+        /// Returns: A valid MPSCNNUpsamplingBilinearGradient object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:integerScaleFactorX:integerScaleFactorY:)]
         pub unsafe fn initWithDevice_integerScaleFactorX_integerScaleFactorY(
             this: Allocated<Self>,
@@ -505,6 +734,19 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinearGradient {
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -518,6 +760,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinearGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

@@ -8,7 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/larightstore?language=objc)
+    /// Persistent storage for
+    /// `LARight`instances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/larightstore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LARightStore;
@@ -18,10 +21,17 @@ unsafe impl NSObjectProtocol for LARightStore {}
 
 extern_methods!(
     unsafe impl LARightStore {
+        /// Shared instance of
+        /// `LARightStore.`
         #[method_id(@__retain_semantics Other sharedStore)]
         pub unsafe fn sharedStore() -> Retained<LARightStore>;
 
         #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
+        /// Fetches a right stored under the given identifier.
+        ///
+        /// Parameter `identifier`: Identifier associated with a previously stored right.
+        ///
+        /// Parameter `handler`: Completion handler with the fetched right or an error on failure.
         #[method(rightForIdentifier:completion:)]
         pub unsafe fn rightForIdentifier_completion(
             &self,
@@ -30,6 +40,13 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
+        /// Persists a right for later usage.
+        ///
+        /// Parameter `right`: `LARight`instance to store.
+        ///
+        /// Parameter `identifier`: Identifier to be associated with the right. Useful for later retrieval.
+        ///
+        /// Parameter `handler`: Completion handler with the persisted right or an error on failure.
         #[method(saveRight:identifier:completion:)]
         pub unsafe fn saveRight_identifier_completion(
             &self,
@@ -39,6 +56,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
+        /// Persists a right for later usage.
+        ///
+        /// Parameter `right`: `LARight`instance to store.
+        ///
+        /// Parameter `identifier`: Identifier to be associated with the right. Useful for later retrieval.
+        ///
+        /// Parameter `secret`: Secret data to be associated with the provided right.
+        ///
+        /// Parameter `handler`: Completion handler with the persisted right or an error on failure.
         #[method(saveRight:identifier:secret:completion:)]
         pub unsafe fn saveRight_identifier_secret_completion(
             &self,
@@ -49,6 +75,11 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
+        /// Removes a right from the persistent storage along with its associated resources.
+        ///
+        /// Parameter `right`: `LAPersistedRight`instance to remove.
+        ///
+        /// Parameter `handler`: Completion handler with an error on failure.
         #[method(removeRight:completion:)]
         pub unsafe fn removeRight_completion(
             &self,
@@ -57,6 +88,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Removes right with provided identifier from persistant storage.
+        ///
+        /// Parameter `identifier`: Identifier of
+        /// `LAPersistedRight`instance to remove.
+        ///
+        /// Parameter `handler`: Completion handler with an error on failure.
         #[method(removeRightForIdentifier:completion:)]
         pub unsafe fn removeRightForIdentifier_completion(
             &self,
@@ -65,15 +102,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Removes all rights stored by the client
+        ///
+        /// Parameter `handler`: Completion handler with an error on failure.
         #[method(removeAllRightsWithCompletion:)]
         pub unsafe fn removeAllRightsWithCompletion(
             &self,
             handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
 
+        /// Clients should rely on the
+        /// `shared`instance instead
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Clients should rely on the
+        /// `shared`instance instead
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

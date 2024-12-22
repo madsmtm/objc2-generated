@@ -26,6 +26,7 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Adds an animation that will be synchronized with an overlay's presentation/dismissal.
         #[method(addAnimationBlock:)]
         pub unsafe fn addAnimationBlock(&self, block: &block2::Block<dyn Fn()>);
 

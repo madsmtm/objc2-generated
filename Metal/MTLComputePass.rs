@@ -25,30 +25,50 @@ unsafe impl NSObjectProtocol for MTLComputePassSampleBufferAttachmentDescriptor 
 extern_methods!(
     unsafe impl MTLComputePassSampleBufferAttachmentDescriptor {
         #[cfg(feature = "MTLCounters")]
+        /// The sample buffer to store samples for the compute-pass defined samples.
+        /// If sampleBuffer is non-nil, the sample indices will be used to store samples into
+        /// the sample buffer.  If no sample buffer is provided, no samples will be taken.
+        /// If any of the sample indices are specified as MTLCounterDontSample, no sample
+        /// will be taken for that action.
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub unsafe fn sampleBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
         #[cfg(feature = "MTLCounters")]
+        /// Setter for [`sampleBuffer`][Self::sampleBuffer].
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
             &self,
             sample_buffer: Option<&ProtocolObject<dyn MTLCounterSampleBuffer>>,
         );
 
+        /// The sample index to use to store the sample taken at the start of
+        /// command encoder processing.  Setting the value to MTLCounterDontSample will cause
+        /// this sample to be omitted.
+        ///
+        /// On devices where MTLCounterSamplingPointAtStageBoundary is unsupported,
+        /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a compute pass will fail.
         #[method(startOfEncoderSampleIndex)]
         pub unsafe fn startOfEncoderSampleIndex(&self) -> NSUInteger;
 
+        /// Setter for [`startOfEncoderSampleIndex`][Self::startOfEncoderSampleIndex].
         #[method(setStartOfEncoderSampleIndex:)]
         pub unsafe fn setStartOfEncoderSampleIndex(
             &self,
             start_of_encoder_sample_index: NSUInteger,
         );
 
+        /// The sample index to use to store the sample taken at the end of
+        /// command encoder processing.  Setting the value to MTLCounterDontSample will cause
+        /// this sample to be omitted.
+        ///
+        /// On devices where MTLCounterSamplingPointAtStageBoundary is unsupported,
+        /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a compute pass will fail.
         #[method(endOfEncoderSampleIndex)]
         pub unsafe fn endOfEncoderSampleIndex(&self) -> NSUInteger;
 
+        /// Setter for [`endOfEncoderSampleIndex`][Self::endOfEncoderSampleIndex].
         #[method(setEndOfEncoderSampleIndex:)]
         pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
     }
@@ -103,7 +123,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomputepassdescriptor?language=objc)
+    /// MTLComputePassDescriptor represents a collection of attachments to be used to create a concrete compute command encoder
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomputepassdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLComputePassDescriptor;
@@ -119,17 +141,21 @@ unsafe impl NSObjectProtocol for MTLComputePassDescriptor {}
 
 extern_methods!(
     unsafe impl MTLComputePassDescriptor {
+        /// Create an autoreleased default frame buffer descriptor
         #[method_id(@__retain_semantics Other computePassDescriptor)]
         pub unsafe fn computePassDescriptor() -> Retained<MTLComputePassDescriptor>;
 
         #[cfg(feature = "MTLCommandBuffer")]
+        /// The dispatch type of the compute command encoder.
         #[method(dispatchType)]
         pub unsafe fn dispatchType(&self) -> MTLDispatchType;
 
         #[cfg(feature = "MTLCommandBuffer")]
+        /// Setter for [`dispatchType`][Self::dispatchType].
         #[method(setDispatchType:)]
         pub unsafe fn setDispatchType(&self, dispatch_type: MTLDispatchType);
 
+        /// An array of sample buffers and associated sample indices.
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,

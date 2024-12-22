@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other aLink)]
         pub unsafe fn aLink(&self) -> Retained<NSString>;
 
+        /// Setter for [`aLink`][Self::aLink].
         #[deprecated]
         #[method(setALink:)]
         pub unsafe fn setALink(&self, a_link: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other background)]
         pub unsafe fn background(&self) -> Retained<NSString>;
 
+        /// Setter for [`background`][Self::background].
         #[deprecated]
         #[method(setBackground:)]
         pub unsafe fn setBackground(&self, background: Option<&NSString>);
@@ -97,6 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bgColor)]
         pub unsafe fn bgColor(&self) -> Retained<NSString>;
 
+        /// Setter for [`bgColor`][Self::bgColor].
         #[deprecated]
         #[method(setBgColor:)]
         pub unsafe fn setBgColor(&self, bg_color: Option<&NSString>);
@@ -105,6 +108,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other link)]
         pub unsafe fn link(&self) -> Retained<NSString>;
 
+        /// Setter for [`link`][Self::link].
         #[deprecated]
         #[method(setLink:)]
         pub unsafe fn setLink(&self, link: Option<&NSString>);
@@ -113,6 +117,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
+        /// Setter for [`text`][Self::text].
         #[deprecated]
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
@@ -121,6 +126,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other vLink)]
         pub unsafe fn vLink(&self) -> Retained<NSString>;
 
+        /// Setter for [`vLink`][Self::vLink].
         #[deprecated]
         #[method(setVLink:)]
         pub unsafe fn setVLink(&self, v_link: Option<&NSString>);

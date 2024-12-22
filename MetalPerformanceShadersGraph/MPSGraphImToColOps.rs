@@ -10,7 +10,13 @@ use objc2_metal_performance_shaders::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor?language=objc)
+    /// The class that defines the parameters for an image to column or column to image operation.
+    ///
+    /// Use this descriptor with the following ``MPSGraph`` methods:
+    /// - ``MPSGraph/imToColWithSourceTensor:descriptor:name:``
+    /// - ``MPSGraph/colToImWithSourceTensor:outputShape:descriptor:name:``
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -31,72 +37,109 @@ unsafe impl NSObjectProtocol for MPSGraphImToColOpDescriptor {}
 extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphImToColOpDescriptor {
+        /// The property that defines the kernel size in width dimension.
         #[method(kernelWidth)]
         pub unsafe fn kernelWidth(&self) -> NSUInteger;
 
+        /// Setter for [`kernelWidth`][Self::kernelWidth].
         #[method(setKernelWidth:)]
         pub unsafe fn setKernelWidth(&self, kernel_width: NSUInteger);
 
+        /// The property that defines the kernel size  in height dimension.
         #[method(kernelHeight)]
         pub unsafe fn kernelHeight(&self) -> NSUInteger;
 
+        /// Setter for [`kernelHeight`][Self::kernelHeight].
         #[method(setKernelHeight:)]
         pub unsafe fn setKernelHeight(&self, kernel_height: NSUInteger);
 
+        /// The property that defines the stride in width dimension.
         #[method(strideInX)]
         pub unsafe fn strideInX(&self) -> NSUInteger;
 
+        /// Setter for [`strideInX`][Self::strideInX].
         #[method(setStrideInX:)]
         pub unsafe fn setStrideInX(&self, stride_in_x: NSUInteger);
 
+        /// The property that defines the stride in height dimension.
         #[method(strideInY)]
         pub unsafe fn strideInY(&self) -> NSUInteger;
 
+        /// Setter for [`strideInY`][Self::strideInY].
         #[method(setStrideInY:)]
         pub unsafe fn setStrideInY(&self, stride_in_y: NSUInteger);
 
+        /// The property that defines the dilation in width dimension.
         #[method(dilationRateInX)]
         pub unsafe fn dilationRateInX(&self) -> NSUInteger;
 
+        /// Setter for [`dilationRateInX`][Self::dilationRateInX].
         #[method(setDilationRateInX:)]
         pub unsafe fn setDilationRateInX(&self, dilation_rate_in_x: NSUInteger);
 
+        /// The property that defines the dilation in height dimension.
         #[method(dilationRateInY)]
         pub unsafe fn dilationRateInY(&self) -> NSUInteger;
 
+        /// Setter for [`dilationRateInY`][Self::dilationRateInY].
         #[method(setDilationRateInY:)]
         pub unsafe fn setDilationRateInY(&self, dilation_rate_in_y: NSUInteger);
 
+        /// The property that defines the padding in width dimension on the left side.
         #[method(paddingLeft)]
         pub unsafe fn paddingLeft(&self) -> NSUInteger;
 
+        /// Setter for [`paddingLeft`][Self::paddingLeft].
         #[method(setPaddingLeft:)]
         pub unsafe fn setPaddingLeft(&self, padding_left: NSUInteger);
 
+        /// The property that defines the padding in width dimension on the right side.
         #[method(paddingRight)]
         pub unsafe fn paddingRight(&self) -> NSUInteger;
 
+        /// Setter for [`paddingRight`][Self::paddingRight].
         #[method(setPaddingRight:)]
         pub unsafe fn setPaddingRight(&self, padding_right: NSUInteger);
 
+        /// The property that defines the padding in height dimension at the top.
         #[method(paddingTop)]
         pub unsafe fn paddingTop(&self) -> NSUInteger;
 
+        /// Setter for [`paddingTop`][Self::paddingTop].
         #[method(setPaddingTop:)]
         pub unsafe fn setPaddingTop(&self, padding_top: NSUInteger);
 
+        /// The property that defines the padding in height dimension at the bottom.
         #[method(paddingBottom)]
         pub unsafe fn paddingBottom(&self) -> NSUInteger;
 
+        /// Setter for [`paddingBottom`][Self::paddingBottom].
         #[method(setPaddingBottom:)]
         pub unsafe fn setPaddingBottom(&self, padding_bottom: NSUInteger);
 
+        /// The property that defines the layout of source or output  tensor.
+        /// e.g. `batch x channels x width x height` for `NCHW` layout
         #[method(dataLayout)]
         pub unsafe fn dataLayout(&self) -> MPSGraphTensorNamedDataLayout;
 
+        /// Setter for [`dataLayout`][Self::dataLayout].
         #[method(setDataLayout:)]
         pub unsafe fn setDataLayout(&self, data_layout: MPSGraphTensorNamedDataLayout);
 
+        /// Creates an image to column descriptor with given values for parameters.
+        /// - Parameters:
+        /// - kernelWidth: See `kernelWidth` property.
+        /// - kernelHeight: See `kernelHeight` property.
+        /// - strideInX: See `strideInX` property.
+        /// - strideInY: See `strideInY` property.
+        /// - dilationRateInX: See `dilationRateInX` property.
+        /// - dilationRateInY: See `dilationRateInY` property.
+        /// - paddingLeft: See `paddingLeft` property.
+        /// - paddingRight: See `paddingRight` property.
+        /// - paddingTop: See `paddingTop` property.
+        /// - paddingBottom: See `paddingBottom` property.
+        /// - dataLayout: See `dataLayout` property.
+        /// - Returns: A valid MPSGraphImToColOpDescriptor on autoreleasepool.
         #[method_id(@__retain_semantics Other descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:dataLayout:)]
         pub unsafe fn descriptorWithKernelWidth_kernelHeight_strideInX_strideInY_dilationRateInX_dilationRateInY_paddingLeft_paddingRight_paddingTop_paddingBottom_dataLayout(
             kernel_width: NSUInteger,
@@ -112,6 +155,16 @@ extern_methods!(
             data_layout: MPSGraphTensorNamedDataLayout,
         ) -> Option<Retained<Self>>;
 
+        /// Creates column to image descriptor with given values for parameters.
+        /// - Parameters:
+        /// - kernelWidth: See `kernelWidth` property.
+        /// - kernelHeight: See `kernelHeight` property.
+        /// - strideInX: See `strideInX` property.
+        /// - strideInY: See `strideInY` property.
+        /// - dilationRateInX: See `dilationRateInX` property.
+        /// - dilationRateInY: See `dilationRateInY` property.
+        /// - dataLayout: See `dataLayout` property.
+        /// - Returns: A valid MPSGraphImToColOpDescriptor on autoreleasepool.
         #[method_id(@__retain_semantics Other descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:dataLayout:)]
         pub unsafe fn descriptorWithKernelWidth_kernelHeight_strideInX_strideInY_dilationRateInX_dilationRateInY_dataLayout(
             kernel_width: NSUInteger,
@@ -123,6 +176,12 @@ extern_methods!(
             data_layout: MPSGraphTensorNamedDataLayout,
         ) -> Option<Retained<Self>>;
 
+        /// Sets the descriptor's padding to the given values.
+        /// - Parameters:
+        /// - paddingLeft: See `paddingLeft` property.
+        /// - paddingRight: See `paddingRight` property.
+        /// - paddingTop: See `paddingTop` property.
+        /// - paddingBottom: See `paddingBottom` property.
         #[method(setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:)]
         pub unsafe fn setExplicitPaddingWithPaddingLeft_paddingRight_paddingTop_paddingBottom(
             &self,
@@ -151,6 +210,13 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates an imToCol operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - source: The tensor containing the source data. Must be of rank 4. The layout is defined by `descriptor.dataLayout`.
+        /// - descriptor: The descriptor object that specifies the parameters of the operation.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other imToColWithSourceTensor:descriptor:name:)]
         pub unsafe fn imToColWithSourceTensor_descriptor_name(
             &self,
@@ -163,6 +229,14 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a column to image operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - source: The tensor containing the source data. Must be of rank 4. The layout is defined by `descriptor.dataLayout`.
+        /// - outputShape: The result tensor shape.
+        /// - descriptor: The descriptor object that specifies the parameters of the operation.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other colToImWithSourceTensor:outputShape:descriptor:name:)]
         pub unsafe fn colToImWithSourceTensor_outputShape_descriptor_name(
             &self,

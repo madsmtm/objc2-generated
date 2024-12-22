@@ -65,6 +65,7 @@ extern_protocol!(
         #[method(isReversed)]
         unsafe fn isReversed(&self) -> bool;
 
+        /// Setter for [`isReversed`][Self::isReversed].
         #[method(setReversed:)]
         unsafe fn setReversed(&self, reversed: bool);
 
@@ -73,6 +74,7 @@ extern_protocol!(
         unsafe fn fractionComplete(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`fractionComplete`][Self::fractionComplete].
         #[method(setFractionComplete:)]
         unsafe fn setFractionComplete(&self, fraction_complete: CGFloat);
 

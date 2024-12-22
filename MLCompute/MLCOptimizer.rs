@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcoptimizer?language=objc)
+    /// The MLCOptimizer specifies a base optimizer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcoptimizer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -25,50 +27,62 @@ unsafe impl NSObjectProtocol for MLCOptimizer {}
 
 extern_methods!(
     unsafe impl MLCOptimizer {
+        /// The learning rate.  This property is 'readwrite' so that callers can implement a 'decay' during training
         #[deprecated]
         #[method(learningRate)]
         pub unsafe fn learningRate(&self) -> c_float;
 
+        /// Setter for [`learningRate`][Self::learningRate].
         #[deprecated]
         #[method(setLearningRate:)]
         pub unsafe fn setLearningRate(&self, learning_rate: c_float);
 
+        /// The rescale value applied to gradients during optimizer update
         #[deprecated]
         #[method(gradientRescale)]
         pub unsafe fn gradientRescale(&self) -> c_float;
 
+        /// Whether gradient clipping should be applied or not.
         #[deprecated]
         #[method(appliesGradientClipping)]
         pub unsafe fn appliesGradientClipping(&self) -> bool;
 
+        /// Setter for [`appliesGradientClipping`][Self::appliesGradientClipping].
         #[deprecated]
         #[method(setAppliesGradientClipping:)]
         pub unsafe fn setAppliesGradientClipping(&self, applies_gradient_clipping: bool);
 
+        /// The maximum gradient value if gradient clipping is enabled before gradient is rescaled.
         #[deprecated]
         #[method(gradientClipMax)]
         pub unsafe fn gradientClipMax(&self) -> c_float;
 
+        /// The minimum gradient value if gradient clipping is enabled before gradient is rescaled.
         #[deprecated]
         #[method(gradientClipMin)]
         pub unsafe fn gradientClipMin(&self) -> c_float;
 
+        /// The regularization scale.
         #[deprecated]
         #[method(regularizationScale)]
         pub unsafe fn regularizationScale(&self) -> c_float;
 
         #[cfg(feature = "MLCTypes")]
+        /// The regularization type.
         #[deprecated]
         #[method(regularizationType)]
         pub unsafe fn regularizationType(&self) -> MLCRegularizationType;
 
         #[cfg(feature = "MLCTypes")]
+        /// The type of clipping applied to gradient
         #[method(gradientClippingType)]
         pub unsafe fn gradientClippingType(&self) -> MLCGradientClippingType;
 
+        /// The maximum clipping value
         #[method(maximumClippingNorm)]
         pub unsafe fn maximumClippingNorm(&self) -> c_float;
 
+        /// Used only with MLCGradientClippingTypeByGlobalNorm. If non zero, this norm will be used in place of global norm.
         #[method(customGlobalNorm)]
         pub unsafe fn customGlobalNorm(&self) -> c_float;
 

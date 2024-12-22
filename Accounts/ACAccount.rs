@@ -37,6 +37,7 @@ extern_methods!(
         pub unsafe fn accountType(&self) -> Option<Retained<ACAccountType>>;
 
         #[cfg(feature = "ACAccountType")]
+        /// Setter for [`accountType`][Self::accountType].
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(setAccountType:)]
         pub unsafe fn setAccountType(&self, account_type: Option<&ACAccountType>);
@@ -45,6 +46,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other accountDescription)]
         pub unsafe fn accountDescription(&self) -> Retained<NSString>;
 
+        /// Setter for [`accountDescription`][Self::accountDescription].
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(setAccountDescription:)]
         pub unsafe fn setAccountDescription(&self, account_description: Option<&NSString>);
@@ -53,6 +55,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other username)]
         pub unsafe fn username(&self) -> Retained<NSString>;
 
+        /// Setter for [`username`][Self::username].
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(setUsername:)]
         pub unsafe fn setUsername(&self, username: Option<&NSString>);
@@ -66,6 +69,7 @@ extern_methods!(
         pub unsafe fn credential(&self) -> Option<Retained<ACAccountCredential>>;
 
         #[cfg(feature = "ACAccountCredential")]
+        /// Setter for [`credential`][Self::credential].
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(setCredential:)]
         pub unsafe fn setCredential(&self, credential: Option<&ACAccountCredential>);

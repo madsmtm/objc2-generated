@@ -12,7 +12,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnpoint?language=objc)
+    /// VNPoint represents a single, immutable, two-dimensional point in an image.
+    ///
+    /// It should be noted that VNPoint is not intended as an overall replacement of CGPoint, NSPoint or vec2, but is used by observations that need to present points which may contain additional metadata.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnpoint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNPoint;
@@ -32,22 +36,37 @@ unsafe impl NSSecureCoding for VNPoint {}
 
 extern_methods!(
     unsafe impl VNPoint {
+        /// Returns a VNPoint object that represents the location of (0.0, 0.0).
         #[method_id(@__retain_semantics Other zeroPoint)]
         pub unsafe fn zeroPoint() -> Retained<VNPoint>;
 
+        /// Returns a new VNPoint object that is shifted by X and Y offsets of the vector.
+        ///
+        /// Parameter `vector`: The vector offset to be applied to a source point.
+        ///
+        /// Parameter `point`: The source point.
+        ///
+        /// Returns: the translated point.
         #[method_id(@__retain_semantics Other pointByApplyingVector:toPoint:)]
         pub unsafe fn pointByApplyingVector_toPoint(
             vector: &VNVector,
             point: &VNPoint,
         ) -> Retained<VNPoint>;
 
+        /// Returns the Euclidean distance between two VNPoint objects.
         #[deprecated]
         #[method(distanceBetweenPoint:point:)]
         pub unsafe fn distanceBetweenPoint_point(point1: &VNPoint, point2: &VNPoint) -> c_double;
 
+        /// Returns the Euclidean distance to another point.
+        ///
+        /// Parameter `point`: The destination point.
+        ///
+        /// Returns: the Euclidean distance between the target and specified points.
         #[method(distanceToPoint:)]
         pub unsafe fn distanceToPoint(&self, point: &VNPoint) -> c_double;
 
+        /// Initializes a VNPoint object from X and Y coordinates.
         #[method_id(@__retain_semantics Init initWithX:y:)]
         pub unsafe fn initWithX_y(
             this: Allocated<Self>,
@@ -56,16 +75,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Initializes a VNPoint object from a CGPoint.
         #[method_id(@__retain_semantics Init initWithLocation:)]
         pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Returns the X and Y coordinates of the point, as CGPoint type, with respect to the origin of the coordinate system the point is defined in.
         #[method(location)]
         pub unsafe fn location(&self) -> CGPoint;
 
+        /// Returns the X coordinate of the point with respect to the origin of the coordinate system the point is defined in.
         #[method(x)]
         pub unsafe fn x(&self) -> c_double;
 
+        /// Returns the Y coordinate of the point with respect to the origin of the coordinate system the point is defined in.
         #[method(y)]
         pub unsafe fn y(&self) -> c_double;
     }
@@ -83,7 +106,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnpoint3d?language=objc)
+    /// VNPoint3D represents a single, immutable, three-dimensional point in an image.
+    ///
+    /// It should be noted that VNPoint3D is not intended as an overall replacement of simd float4x4, but is used by observations that need to present points which may contain additional metadata.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnpoint3d?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNPoint3D;
@@ -117,7 +144,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvector?language=objc)
+    /// VNVector is a two-dimensional vector represented its X and Y axis projections. Once created, VNVector objects are immutable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvector?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVector;
@@ -137,33 +166,40 @@ unsafe impl NSSecureCoding for VNVector {}
 
 extern_methods!(
     unsafe impl VNVector {
+        /// Returns a VNVector object with zero length. The theta for zeroVector is not defined (NaN).
         #[method_id(@__retain_semantics Other zeroVector)]
         pub unsafe fn zeroVector() -> Retained<VNVector>;
 
+        /// Returns a vector that is normalized by preserving direction, such as |v|, or vector length = 1.0.
         #[method_id(@__retain_semantics Other unitVectorForVector:)]
         pub unsafe fn unitVectorForVector(vector: &VNVector) -> Retained<VNVector>;
 
+        /// Returns a vector that whose X and Y projections multiplied by a scalar value.
         #[method_id(@__retain_semantics Other vectorByMultiplyingVector:byScalar:)]
         pub unsafe fn vectorByMultiplyingVector_byScalar(
             vector: &VNVector,
             scalar: c_double,
         ) -> Retained<VNVector>;
 
+        /// Adds two vectors v1 and v2 and returns a resulting vector v, such as v = v1 + v2.
         #[method_id(@__retain_semantics Other vectorByAddingVector:toVector:)]
         pub unsafe fn vectorByAddingVector_toVector(
             v1: &VNVector,
             v2: &VNVector,
         ) -> Retained<VNVector>;
 
+        /// Substructs vector v1 from v2 and returns a resulting vector v, such as v = v2 - v1.
         #[method_id(@__retain_semantics Other vectorBySubtractingVector:fromVector:)]
         pub unsafe fn vectorBySubtractingVector_fromVector(
             v1: &VNVector,
             v2: &VNVector,
         ) -> Retained<VNVector>;
 
+        /// Caclulates a dot product (aka 'scalar product' or 'inner product') of two vectors v1 and v2 and returns dot product value.
         #[method(dotProductOfVector:vector:)]
         pub unsafe fn dotProductOfVector_vector(v1: &VNVector, v2: &VNVector) -> c_double;
 
+        /// Initializes a vector in Cartesian Coordinate space, using its X and Y axis projections.
         #[method_id(@__retain_semantics Init initWithXComponent:yComponent:)]
         pub unsafe fn initWithXComponent_yComponent(
             this: Allocated<Self>,
@@ -171,6 +207,8 @@ extern_methods!(
             y: c_double,
         ) -> Retained<Self>;
 
+        /// Initializes a vector in polar coordinate space, using R and Theta (radians), where R is the length of the vector and
+        /// Theta is the ange that the vector forms with the positive direction of X axis.
         #[method_id(@__retain_semantics Init initWithR:theta:)]
         pub unsafe fn initWithR_theta(
             this: Allocated<Self>,
@@ -178,6 +216,7 @@ extern_methods!(
             theta: c_double,
         ) -> Retained<Self>;
 
+        /// Initializes a vector in Cartesian Coordinate space, using two VNPoints - the head and the tail of the vector.
         #[method_id(@__retain_semantics Init initWithVectorHead:tail:)]
         pub unsafe fn initWithVectorHead_tail(
             this: Allocated<Self>,
@@ -185,21 +224,27 @@ extern_methods!(
             tail: &VNPoint,
         ) -> Retained<Self>;
 
+        /// Signed projection on X-axis, or X component of the vector. Sign determines direction the vector is facing in X direction.
         #[method(x)]
         pub unsafe fn x(&self) -> c_double;
 
+        /// Signed projection on Y-axis, or Y component of the vector. Sign determines direction the vector is facing in Y direction.
         #[method(y)]
         pub unsafe fn y(&self) -> c_double;
 
+        /// Radius, or absolute value, or length of the vector.
         #[method(r)]
         pub unsafe fn r(&self) -> c_double;
 
+        /// Angle between the vector direction and positive direction of X axis.
         #[method(theta)]
         pub unsafe fn theta(&self) -> c_double;
 
+        /// Returns a length, or absolute value, of the vector.
         #[method(length)]
         pub unsafe fn length(&self) -> c_double;
 
+        /// Returns a length ^ 2 of a vector.
         #[method(squaredLength)]
         pub unsafe fn squaredLength(&self) -> c_double;
     }
@@ -217,7 +262,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vncircle?language=objc)
+    /// VNCircle is two-dimensional circle represented by the center point 'center' and its radius 'radius'. Once created, VNCircle objects are immutable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncircle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNCircle;
@@ -237,9 +284,11 @@ unsafe impl NSSecureCoding for VNCircle {}
 
 extern_methods!(
     unsafe impl VNCircle {
+        /// Returns a VNCircle object with center at the Origin [0.0; 0.0] and zero radius.
         #[method_id(@__retain_semantics Other zeroCircle)]
         pub unsafe fn zeroCircle() -> Retained<VNCircle>;
 
+        /// Initializes VNCircle object with given circle center and circle radius.
         #[method_id(@__retain_semantics Init initWithCenter:radius:)]
         pub unsafe fn initWithCenter_radius(
             this: Allocated<Self>,
@@ -247,6 +296,7 @@ extern_methods!(
             radius: c_double,
         ) -> Retained<Self>;
 
+        /// Initializes VNCircle object with given circle center and circle diameter.
         #[method_id(@__retain_semantics Init initWithCenter:diameter:)]
         pub unsafe fn initWithCenter_diameter(
             this: Allocated<Self>,
@@ -254,9 +304,11 @@ extern_methods!(
             diameter: c_double,
         ) -> Retained<Self>;
 
+        /// Returns YES if the point is inside the circle, including the boundary.
         #[method(containsPoint:)]
         pub unsafe fn containsPoint(&self, point: &VNPoint) -> bool;
 
+        /// Returns YES if the point is within the ring bound by two circles [radius - delta; radius + delta].
         #[method(containsPoint:inCircumferentialRingOfWidth:)]
         pub unsafe fn containsPoint_inCircumferentialRingOfWidth(
             &self,
@@ -264,12 +316,15 @@ extern_methods!(
             ring_width: c_double,
         ) -> bool;
 
+        /// Returns circle center.
         #[method_id(@__retain_semantics Other center)]
         pub unsafe fn center(&self) -> Retained<VNPoint>;
 
+        /// Returns circle radius.
         #[method(radius)]
         pub unsafe fn radius(&self) -> c_double;
 
+        /// Returns circle diameter.
         #[method(diameter)]
         pub unsafe fn diameter(&self) -> c_double;
     }
@@ -287,7 +342,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vncontour?language=objc)
+    /// The VNContour class describes a contour provided by a VNContoursObservation.
+    ///
+    ///
+    /// VNContour objects are lightweight objects that act as a façade which allows access to a small slice of the usually much larger block of data owned by a VNContoursObservation that represents all of the contours detected in an image.
+    /// While the interface does present the notion of a hierarchy of parent/child contours, the implementation purposefully does not contain any explicit internal bookkeeping for this relationship.  Instead, contours are uniquely identified via their indexPath property.
+    /// As a side effect of this choice, repeated calls to methods that would return relational contours (e.g., -childContours or -childContourAtIndex:error:) are NOT guaranteed to return the same VNContour instances over and over again.  If this kind of parent/child object stability is an absolute requirement of the client, then they are responsible for creating the necessary data structures to represent and build that instance-stable hierarchy.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncontour?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNContour;
@@ -312,31 +374,61 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The path to the target VNContour as it is stored in the owning VNContoursObservation's hierarchy of contours.
         #[method_id(@__retain_semantics Other indexPath)]
         pub unsafe fn indexPath(&self) -> Retained<NSIndexPath>;
 
+        /// The total number of child contours in the target contour.
+        ///
+        /// The use of this property is preferred over childContours.count due to the cost of building the child objects.
         #[method(childContourCount)]
         pub unsafe fn childContourCount(&self) -> NSInteger;
 
+        /// The array of the contours enclosed by the target contour.
+        ///
+        /// This property may come with the cost of instantiating new VNContour objects; therefore, clients are strongly encouraged to hold the results in a local variable instead of repeatedly invoking it.
         #[method_id(@__retain_semantics Other childContours)]
         pub unsafe fn childContours(&self) -> Retained<NSArray<VNContour>>;
 
+        /// Returns a VNContour object that is a child of this VNContour at the specified index.
+        ///
+        /// Parameter `childContourIndex`: The index into the childContours array.
+        ///
+        /// Parameter `error`: The error returned if the child contour cannot be provided.
+        ///
+        /// Returns: The VNContour object at the specified index path, or nil of a failure occurs.
         #[method_id(@__retain_semantics Other childContourAtIndex:error:_)]
         pub unsafe fn childContourAtIndex_error(
             &self,
             child_contour_index: NSUInteger,
         ) -> Result<Retained<VNContour>, Retained<NSError>>;
 
+        /// The number of points that describe the contour.
         #[method(pointCount)]
         pub unsafe fn pointCount(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// The contour represented as a CGPath in normalized coordinates.
+        ///
+        /// The path is owned by this object and therefore will be alive as long as the the observation is alive.
         #[method(normalizedPath)]
         pub unsafe fn normalizedPath(&self) -> CGPathRef;
 
+        /// The aspect ratio of the contour from the original image aspect ratio expressed as width/height
         #[method(aspectRatio)]
         pub unsafe fn aspectRatio(&self) -> c_float;
 
+        /// Simplifies the contour's collection of points into a polygon using the Ramer Douglas Peucker Algorithm.
+        ///
+        /// See
+        /// <https
+        /// ://en.wikipedia.org/wiki/Ramer–Douglas–Peucker_algorithm>
+        ///
+        /// Parameter `epsilon`: Points that have a perpendicular distance to the line segment they are on which are greater than epsilon are kept, others are eliminated.
+        ///
+        /// Parameter `error`: The error returned if a simplified contour cannot be created.
+        ///
+        /// Returns: A new VNContour object with a simplified polygon consisting of a subset of the points that defined the original VNContour.
         #[method_id(@__retain_semantics Other polygonApproximationWithEpsilon:error:_)]
         pub unsafe fn polygonApproximationWithEpsilon_error(
             &self,

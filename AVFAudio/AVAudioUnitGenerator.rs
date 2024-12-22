@@ -10,7 +10,14 @@ use objc2_audio_toolbox::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitgenerator?language=objc)
+    /// an AVAudioUnit that generates audio output
+    ///
+    /// An AVAudioUnitGenerator represents an audio unit of type kAudioUnitType_Generator or
+    /// kAudioUnitType_RemoteGenerator.
+    /// A generator will have no audio input, but will just produce audio output.
+    /// A tone generator is an example of this.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitgenerator?language=objc)
     #[unsafe(super(AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
@@ -46,15 +53,23 @@ extern_methods!(
     unsafe impl AVAudioUnitGenerator {
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// Create an AVAudioUnitGenerator object.
+        ///
+        ///
+        /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be instantiated.
+        ///
+        /// The componentType must be kAudioUnitType_Generator or kAudioUnitType_RemoteGenerator
         #[method_id(@__retain_semantics Init initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
             audio_component_description: AudioComponentDescription,
         ) -> Retained<Self>;
 
+        /// Bypass state of the audio unit.
         #[method(bypass)]
         pub unsafe fn bypass(&self) -> bool;
 
+        /// Setter for [`bypass`][Self::bypass].
         #[method(setBypass:)]
         pub unsafe fn setBypass(&self, bypass: bool);
     }

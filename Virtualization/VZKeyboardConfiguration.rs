@@ -7,7 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzkeyboardconfiguration?language=objc)
+    /// Base class for a keyboard configuration.
+    ///
+    /// VZKeyboardConfiguration should not be instantiated directly.
+    /// One of its subclasses like VZUSBKeyboardConfiguration or VZMacKeyboardConfiguration should be used instead.
+    ///
+    ///
+    /// See: VZUSBKeyboardConfiguration
+    ///
+    /// See: VZMacKeyboardConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzkeyboardconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZKeyboardConfiguration;

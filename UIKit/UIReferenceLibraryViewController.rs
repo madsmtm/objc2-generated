@@ -51,12 +51,14 @@ unsafe impl UITraitEnvironment for UIReferenceLibraryViewController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIReferenceLibraryViewController {
+        /// Returns YES if any installed dictionary has a definition for the provided term.
         #[method(dictionaryHasDefinitionForTerm:)]
         pub unsafe fn dictionaryHasDefinitionForTerm(
             term: &NSString,
             mtm: MainThreadMarker,
         ) -> bool;
 
+        /// Initializes an instance of a UIReferenceLibraryViewController with the term provided.
         #[method_id(@__retain_semantics Init initWithTerm:)]
         pub unsafe fn initWithTerm(this: Allocated<Self>, term: &NSString) -> Retained<Self>;
 

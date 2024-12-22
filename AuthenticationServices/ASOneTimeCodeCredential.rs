@@ -33,12 +33,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Creates and initializes a new ASOneTimeCodeCredential object.
+        ///
+        /// Parameter `code`: the one time code.
         #[method_id(@__retain_semantics Other credentialWithCode:)]
         pub unsafe fn credentialWithCode(code: &NSString) -> Retained<Self>;
 
+        /// Initializes an ASOneTimeCodeCredential object.
+        ///
+        /// Parameter `code`: the one time code.
         #[method_id(@__retain_semantics Init initWithCode:)]
         pub unsafe fn initWithCode(this: Allocated<Self>, code: &NSString) -> Retained<Self>;
 
+        /// The code of this credential.
+        ///
+        /// Returns: The code string.
         #[method_id(@__retain_semantics Other code)]
         pub unsafe fn code(&self) -> Retained<NSString>;
     }

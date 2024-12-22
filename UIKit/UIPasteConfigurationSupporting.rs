@@ -17,6 +17,7 @@ extern_protocol!(
         unsafe fn pasteConfiguration(&self) -> Option<Retained<UIPasteConfiguration>>;
 
         #[cfg(feature = "UIPasteConfiguration")]
+        /// Setter for [`pasteConfiguration`][Self::pasteConfiguration].
         #[method(setPasteConfiguration:)]
         unsafe fn setPasteConfiguration(&self, paste_configuration: Option<&UIPasteConfiguration>);
 

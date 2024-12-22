@@ -10,7 +10,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalue?language=objc)
+    /// An immutable variant holding a data value of a supported MLFeatureType
+    ///
+    /// MLFeatureValue does not support type conversion in its accessor properties. It
+    /// can also have a missing or undefined value of a well defined type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLFeatureValue;
@@ -31,36 +36,46 @@ unsafe impl NSSecureCoding for MLFeatureValue {}
 extern_methods!(
     unsafe impl MLFeatureValue {
         #[cfg(feature = "MLFeatureType")]
+        /// Type of the value for which the corresponding property below is held
         #[method(type)]
         pub unsafe fn r#type(&self) -> MLFeatureType;
 
+        /// True if the value represents a missing or undefined value
         #[method(isUndefined)]
         pub unsafe fn isUndefined(&self) -> bool;
 
+        /// Populated value if the type is MLFeatureTypeInt64
         #[method(int64Value)]
         pub unsafe fn int64Value(&self) -> i64;
 
+        /// Populated value if the type is MLFeatureTypeDouble
         #[method(doubleValue)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
+        /// Populated value if the type is MLFeatureTypeString
         #[method_id(@__retain_semantics Other stringValue)]
         pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MLMultiArray")]
+        /// Populated value if the type is MLFeatureTypeMultiArray
         #[method_id(@__retain_semantics Other multiArrayValue)]
         pub unsafe fn multiArrayValue(&self) -> Option<Retained<MLMultiArray>>;
 
+        /// Populated value if the type is MLFeatureTypeDictionary
         #[method_id(@__retain_semantics Other dictionaryValue)]
         pub unsafe fn dictionaryValue(&self) -> Retained<NSDictionary<AnyObject, NSNumber>>;
 
         #[cfg(feature = "objc2-core-video")]
+        /// Populated value if the type is MLFeatureTypeImage
         #[method(imageBufferValue)]
         pub unsafe fn imageBufferValue(&self) -> CVPixelBufferRef;
 
         #[cfg(feature = "MLSequence")]
+        /// Populated value if the type is MLFeatureTypeSequence
         #[method_id(@__retain_semantics Other sequenceValue)]
         pub unsafe fn sequenceValue(&self) -> Option<Retained<MLSequence>>;
 
+        /// Hold an object with the specified value
         #[method_id(@__retain_semantics Other featureValueWithInt64:)]
         pub unsafe fn featureValueWithInt64(value: i64) -> Retained<Self>;
 
@@ -83,14 +98,29 @@ extern_methods!(
         pub unsafe fn featureValueWithSequence(sequence: &MLSequence) -> Retained<Self>;
 
         #[cfg(feature = "MLFeatureType")]
+        /// Represent an undefined value of a specified type
         #[method_id(@__retain_semantics Other undefinedFeatureValueWithType:)]
         pub unsafe fn undefinedFeatureValueWithType(r#type: MLFeatureType) -> Retained<Self>;
 
+        /// For encoding a sparse feature set or for encoding probabilities. Input keys that are not
+        /// NSNumber * or NSString * are rejected on construction and return a MLModelErrorFeatureTypeMismatch
+        /// error. Further validation for consistency occurs on evaluation
         #[method_id(@__retain_semantics Other featureValueWithDictionary:error:_)]
         pub unsafe fn featureValueWithDictionary_error(
             value: &NSDictionary<AnyObject, NSNumber>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// Returns a Boolean value that indicates whether a feature value is equal to another.
+        ///
+        ///
+        /// If the types of the MLFeatureValue objects "self" and "value"  are integer in one case and
+        /// double in the other (in either order) then those mixed mode numeric values are compared as NSNumbers.
+        /// Otherwise if the types of the MLFeatureValue objects are different NO is returned.
+        /// When "self" and "value" are both PixelBuffer MLFeatureValue types, only their CVPixelBufferRef values are compared for equality,
+        /// the underlying arrays of pixelValues are not examined.
+        /// [So, distinct PixelBuffer MLFeatureValue objects with distinct CVPixelBufferRef values which encapsulate the same array of pixels will compare *not* equal.]
+        /// For all other (matching) MLFeatureValue types, the BOOL value returned is the result of comparing "self" with "value" via
+        /// isEqualToNumber:, isEqualToString:, isEqualtoDictionary:, isEqualToMultiArray:, isEqualToArray: as chosen by the MLFeatureValue types.
         #[method(isEqualToFeatureValue:)]
         pub unsafe fn isEqualToFeatureValue(&self, value: &MLFeatureValue) -> bool;
     }

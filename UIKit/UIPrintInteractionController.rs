@@ -74,6 +74,7 @@ extern_methods!(
         pub unsafe fn printInfo(&self) -> Option<Retained<UIPrintInfo>>;
 
         #[cfg(feature = "UIPrintInfo")]
+        /// Setter for [`printInfo`][Self::printInfo].
         #[method(setPrintInfo:)]
         pub unsafe fn setPrintInfo(&self, print_info: Option<&UIPrintInfo>);
 
@@ -83,6 +84,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIPrintInteractionControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -93,6 +95,7 @@ extern_methods!(
         #[method(showsPageRange)]
         pub unsafe fn showsPageRange(&self) -> bool;
 
+        /// Setter for [`showsPageRange`][Self::showsPageRange].
         #[deprecated = "Pages can be removed from the print preview, so page range is always shown."]
         #[method(setShowsPageRange:)]
         pub unsafe fn setShowsPageRange(&self, shows_page_range: bool);
@@ -100,12 +103,14 @@ extern_methods!(
         #[method(showsNumberOfCopies)]
         pub unsafe fn showsNumberOfCopies(&self) -> bool;
 
+        /// Setter for [`showsNumberOfCopies`][Self::showsNumberOfCopies].
         #[method(setShowsNumberOfCopies:)]
         pub unsafe fn setShowsNumberOfCopies(&self, shows_number_of_copies: bool);
 
         #[method(showsPaperSelectionForLoadedPapers)]
         pub unsafe fn showsPaperSelectionForLoadedPapers(&self) -> bool;
 
+        /// Setter for [`showsPaperSelectionForLoadedPapers`][Self::showsPaperSelectionForLoadedPapers].
         #[method(setShowsPaperSelectionForLoadedPapers:)]
         pub unsafe fn setShowsPaperSelectionForLoadedPapers(
             &self,
@@ -115,6 +120,7 @@ extern_methods!(
         #[method(showsPaperOrientation)]
         pub unsafe fn showsPaperOrientation(&self) -> bool;
 
+        /// Setter for [`showsPaperOrientation`][Self::showsPaperOrientation].
         #[method(setShowsPaperOrientation:)]
         pub unsafe fn setShowsPaperOrientation(&self, shows_paper_orientation: bool);
 
@@ -127,6 +133,7 @@ extern_methods!(
         pub unsafe fn printPageRenderer(&self) -> Option<Retained<UIPrintPageRenderer>>;
 
         #[cfg(feature = "UIPrintPageRenderer")]
+        /// Setter for [`printPageRenderer`][Self::printPageRenderer].
         #[method(setPrintPageRenderer:)]
         pub unsafe fn setPrintPageRenderer(
             &self,
@@ -138,18 +145,21 @@ extern_methods!(
         pub unsafe fn printFormatter(&self) -> Option<Retained<UIPrintFormatter>>;
 
         #[cfg(feature = "UIPrintFormatter")]
+        /// Setter for [`printFormatter`][Self::printFormatter].
         #[method(setPrintFormatter:)]
         pub unsafe fn setPrintFormatter(&self, print_formatter: Option<&UIPrintFormatter>);
 
         #[method_id(@__retain_semantics Other printingItem)]
         pub unsafe fn printingItem(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`printingItem`][Self::printingItem].
         #[method(setPrintingItem:)]
         pub unsafe fn setPrintingItem(&self, printing_item: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other printingItems)]
         pub unsafe fn printingItems(&self) -> Option<Retained<NSArray>>;
 
+        /// Setter for [`printingItems`][Self::printingItems].
         #[method(setPrintingItems:)]
         pub unsafe fn setPrintingItems(&self, printing_items: Option<&NSArray>);
 
@@ -186,6 +196,9 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "UIPrinter", feature = "block2"))]
+        /// Use to print without showing the standard print panel. Use with a
+        /// UIPrinter found using the UIPrinterPickerController.
+        /// The value for the duplex property on printInfo will be ignored.
         #[method(printToPrinter:completionHandler:)]
         pub unsafe fn printToPrinter_completionHandler(
             &self,

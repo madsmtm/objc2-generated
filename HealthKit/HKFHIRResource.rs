@@ -71,7 +71,9 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresource?language=objc)
+    /// The HKFHIRResource class encapsulates a FHIR (Fast Healthcare Interoperability Resources) resource.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKFHIRResource;
@@ -96,18 +98,33 @@ unsafe impl NSSecureCoding for HKFHIRResource {}
 extern_methods!(
     unsafe impl HKFHIRResource {
         #[cfg(feature = "HKFHIRVersion")]
+        /// The FHIR version of the resource data.
         #[method_id(@__retain_semantics Other FHIRVersion)]
         pub unsafe fn FHIRVersion(&self) -> Retained<HKFHIRVersion>;
 
+        /// The resource type, corresponding to the 'resourceType' field in the resource's JSON representation.
+        ///
+        /// May be one of 8 FHIR resource types supported within HealthKit: AllergyIntolerance, Condition,
+        /// Immunization, MedicationDispense, MedicationOrder, MedicationStatement, Observation, and Procedure.
         #[method_id(@__retain_semantics Other resourceType)]
         pub unsafe fn resourceType(&self) -> Retained<HKFHIRResourceType>;
 
+        /// The identifier of the resource, corresponding to the 'id' field in the resource's JSON representation.
+        ///
+        /// Unique within a given resource type and FHIR end-point, as represented by an HKSource.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
+        /// The JSON representation of the FHIR resource.
+        ///
+        /// Conforms to the HL7 Argonaut Project resource type definitions.
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
+        /// The fully specified source URL of the FHIR resource.
+        ///
+        /// This URL can be used to help determine the provenance of the resource. Direct access is protected by
+        /// OAuth: querying without suitable authorization will result in an authorization error.
         #[method_id(@__retain_semantics Other sourceURL)]
         pub unsafe fn sourceURL(&self) -> Option<Retained<NSURL>>;
 

@@ -24,6 +24,9 @@ extern_methods!(
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIHoverGestureRecognizer {
         #[cfg(feature = "objc2-core-foundation")]
+        /// The normalized distance from the screen of the hovering device. This value will be 1 at the maximum distance
+        /// from the screen and will approach 0 as the device gets closer to the screen. Will always return 0 for devices that
+        /// don't support z offset.
         #[method(zOffset)]
         pub unsafe fn zOffset(&self) -> CGFloat;
 
@@ -32,6 +35,8 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
+        /// The azimuth angle of the current device in the specified view, or the gesture recognizer's window if nil. 0 is
+        /// returned for devices that don't support azimuth.
         #[method(azimuthAngleInView:)]
         pub unsafe fn azimuthAngleInView(&self, view: Option<&UIView>) -> CGFloat;
 
@@ -40,10 +45,13 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
+        /// The azimuth unit vector of the current device in the specified view, or the gesture recognizer's window if nil.
+        /// An empty vector is returned for devices that don't support azimuth.
         #[method(azimuthUnitVectorInView:)]
         pub unsafe fn azimuthUnitVectorInView(&self, view: Option<&UIView>) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The altitude angle of the current device. 0 is returned for devices that don't support altitude.
         #[method(altitudeAngle)]
         pub unsafe fn altitudeAngle(&self) -> CGFloat;
 

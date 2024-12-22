@@ -13,6 +13,7 @@ extern_protocol!(
         unsafe fn featureNames(&self) -> Retained<NSSet<NSString>>;
 
         #[cfg(feature = "MLFeatureValue")]
+        /// Returns nil if the provided featureName is not in the set of featureNames
         #[method_id(@__retain_semantics Other featureValueForName:)]
         unsafe fn featureValueForName(
             &self,

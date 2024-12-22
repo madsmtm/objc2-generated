@@ -10,7 +10,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdownload?language=objc)
+    /// A WebDownload works just like an NSURLDownload, with
+    /// one extra feature: if you do not implement the
+    /// authentication-related delegate methods, it will automatically
+    /// prompt for authentication using the standard WebKit authentication
+    /// panel, as either a sheet or window. It provides no extra methods,
+    /// but does have one additional delegate method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdownload?language=objc)
     #[unsafe(super(NSURLDownload, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -26,6 +33,13 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSURLDownload`
     unsafe impl WebDownload {
+        /// Initializes a NSURLDownload object and starts the download.
+        ///
+        /// Parameter `request`: The request to download. Must not be nil.
+        ///
+        /// Parameter `delegate`: The delegate of the download.
+        ///
+        /// Returns: An initialized NSURLDownload object.
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Init initWithRequest:delegate:)]
         pub unsafe fn initWithRequest_delegate(
@@ -34,6 +48,15 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSURLDownloadDelegate>>,
         ) -> Retained<Self>;
 
+        /// Initializes a NSURLDownload object for resuming a previous download.
+        ///
+        /// Parameter `resumeData`: The resume data from the previous download.
+        ///
+        /// Parameter `delegate`: The delegate of the download.
+        ///
+        /// Parameter `path`: The path of the incomplete downloaded file.
+        ///
+        /// Returns: An initialized NSURLDownload object.
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
         #[method_id(@__retain_semantics Init initWithResumeData:delegate:path:)]
         pub unsafe fn initWithResumeData_delegate_path(
@@ -57,7 +80,10 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdownloaddelegate?language=objc)
+    /// The WebDownloadDelegate delegate has one extra method used to choose
+    /// the right window when automatically prompting with a sheet.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdownloaddelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebDownloadDelegate: NSURLDownloadDelegate {
         #[cfg(feature = "objc2-app-kit")]

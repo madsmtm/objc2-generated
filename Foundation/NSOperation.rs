@@ -87,6 +87,7 @@ extern_methods!(
         #[method(queuePriority)]
         pub unsafe fn queuePriority(&self) -> NSOperationQueuePriority;
 
+        /// Setter for [`queuePriority`][Self::queuePriority].
         #[method(setQueuePriority:)]
         pub unsafe fn setQueuePriority(&self, queue_priority: NSOperationQueuePriority);
 
@@ -95,6 +96,7 @@ extern_methods!(
         pub unsafe fn completionBlock(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`completionBlock`][Self::completionBlock].
         #[method(setCompletionBlock:)]
         pub unsafe fn setCompletionBlock(&self, completion_block: Option<&block2::Block<dyn Fn()>>);
 
@@ -105,6 +107,7 @@ extern_methods!(
         #[method(threadPriority)]
         pub unsafe fn threadPriority(&self) -> c_double;
 
+        /// Setter for [`threadPriority`][Self::threadPriority].
         #[deprecated = "Not supported"]
         #[method(setThreadPriority:)]
         pub unsafe fn setThreadPriority(&self, thread_priority: c_double);
@@ -114,6 +117,7 @@ extern_methods!(
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Setter for [`qualityOfService`][Self::qualityOfService].
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
@@ -122,6 +126,7 @@ extern_methods!(
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }
@@ -254,6 +259,21 @@ unsafe impl NSProgressReporting for NSOperationQueue {}
 extern_methods!(
     unsafe impl NSOperationQueue {
         #[cfg(feature = "NSProgress")]
+        /// The `progress` property represents a total progress of the operations executed in the queue. By default NSOperationQueue
+        /// does not report progress until the `totalUnitCount` of the progress is set. When the `totalUnitCount` property of the progress is set the
+        /// queue then opts into participating in progress reporting. When enabled, each operation will contribute 1 unit of completion to the
+        /// overall progress of the queue for operations that are finished by the end of main (operations that override start and do not invoke super
+        /// will not contribute to progress). Special attention to race conditions should be made when updating the `totalUnitCount` of the progress
+        /// as well as care should be taken to avoid 'backwards progress'. For example; when a NSOperationQueue's progress is 5/10, representing 50%
+        /// completed, and there are 90 more operations about to be added and the `totalUnitCount` that would then make the progress report as 5/100
+        /// which represents 5%. In this example it would mean that any progress bar would jump from displaying 50% back to 5%, which might not be
+        /// desirable. In the cases where the `totalUnitCount` needs to be adjusted it is suggested to do this for thread-safety in a barrier by
+        /// using the `addBarrierBlock:` API. This ensures that no un-expected execution state occurs adjusting into a potentially backwards moving
+        /// progress scenario.
+        ///
+        ///
+        /// NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        /// queue.progress.totalUnitCount = 10;
         #[method_id(@__retain_semantics Other progress)]
         pub unsafe fn progress(&self) -> Retained<NSProgress>;
 
@@ -273,12 +293,18 @@ extern_methods!(
         pub unsafe fn addOperationWithBlock(&self, block: &block2::Block<dyn Fn()>);
 
         #[cfg(feature = "block2")]
+        /// Parameter `barrier`: A block to execute
+        ///
+        /// The `addBarrierBlock:` method executes the block when the NSOperationQueue has finished all enqueued operations and
+        /// prevents any subsequent operations to be executed until the barrier has been completed. This acts similarly to the
+        /// `dispatch_barrier_async` function.
         #[method(addBarrierBlock:)]
         pub unsafe fn addBarrierBlock(&self, barrier: &block2::Block<dyn Fn()>);
 
         #[method(maxConcurrentOperationCount)]
         pub unsafe fn maxConcurrentOperationCount(&self) -> NSInteger;
 
+        /// Setter for [`maxConcurrentOperationCount`][Self::maxConcurrentOperationCount].
         #[method(setMaxConcurrentOperationCount:)]
         pub unsafe fn setMaxConcurrentOperationCount(
             &self,
@@ -288,6 +314,7 @@ extern_methods!(
         #[method(isSuspended)]
         pub unsafe fn isSuspended(&self) -> bool;
 
+        /// Setter for [`isSuspended`][Self::isSuspended].
         #[method(setSuspended:)]
         pub unsafe fn setSuspended(&self, suspended: bool);
 
@@ -296,6 +323,7 @@ extern_methods!(
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
@@ -304,6 +332,7 @@ extern_methods!(
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Setter for [`qualityOfService`][Self::qualityOfService].
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 

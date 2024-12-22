@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mldictionaryfeatureprovider?language=objc)
+    /// A concrete convenience class conforming to MLFeatureProvider.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mldictionaryfeatureprovider?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLDictionaryFeatureProvider;
@@ -27,9 +29,14 @@ unsafe impl NSSecureCoding for MLDictionaryFeatureProvider {}
 extern_methods!(
     unsafe impl MLDictionaryFeatureProvider {
         #[cfg(feature = "MLFeatureValue")]
+        /// Dictionary holding the feature values
         #[method_id(@__retain_semantics Other dictionary)]
         pub unsafe fn dictionary(&self) -> Retained<NSDictionary<NSString, MLFeatureValue>>;
 
+        /// Create from a generic dictionary by converting all values to MLFeatureValues
+        /// or from a dictionary with values already stored as MLFeatureValues.
+        ///
+        /// An error results if the values are not or cannot be represented as MLFeatureValues.
         #[method_id(@__retain_semantics Init initWithDictionary:error:_)]
         pub unsafe fn initWithDictionary_error(
             this: Allocated<Self>,
@@ -37,6 +44,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "MLFeatureValue")]
+        /// Get the value for specified feature
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
         pub unsafe fn objectForKeyedSubscript(
             &self,

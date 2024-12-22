@@ -35,11 +35,13 @@ unsafe impl RefEncode for CAConstraintAttribute {
 
 extern_methods!(
     /// CAConstraintLayoutManager
+    /// The additions to CALayer for constraint layout. *
     #[cfg(feature = "CALayer")]
     unsafe impl CALayer {
         #[method_id(@__retain_semantics Other constraints)]
         pub unsafe fn constraints(&self) -> Option<Retained<NSArray<CAConstraint>>>;
 
+        /// Setter for [`constraints`][Self::constraints].
         #[method(setConstraints:)]
         pub unsafe fn setConstraints(&self, constraints: Option<&NSArray<CAConstraint>>);
 
@@ -49,7 +51,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintlayoutmanager?language=objc)
+    /// The constraint-based layout manager. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintlayoutmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAConstraintLayoutManager;
@@ -79,7 +83,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraint?language=objc)
+    /// The class representing a single layout constraint. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAConstraint;

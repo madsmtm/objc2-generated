@@ -58,6 +58,7 @@ extern_methods!(
         pub unsafe fn entities(&self) -> Retained<NSArray<NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
+        /// Setter for [`entities`][Self::entities].
         #[method(setEntities:)]
         pub unsafe fn setEntities(&self, entities: &NSArray<NSEntityDescription>);
 
@@ -107,6 +108,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
+        /// Setter for [`localizationDictionary`][Self::localizationDictionary].
         #[method(setLocalizationDictionary:)]
         pub unsafe fn setLocalizationDictionary(
             &self,
@@ -134,6 +136,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other versionIdentifiers)]
         pub unsafe fn versionIdentifiers(&self) -> Retained<NSSet>;
 
+        /// Setter for [`versionIdentifiers`][Self::versionIdentifiers].
         #[method(setVersionIdentifiers:)]
         pub unsafe fn setVersionIdentifiers(&self, version_identifiers: &NSSet);
 

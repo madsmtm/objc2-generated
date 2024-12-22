@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcpuexceptiondiagnostic?language=objc)
+    /// An MXDiagnostic subclass that encapsulates CPU exception diagnostic reports.
+    ///
+    /// CPU exceptions occur when your application consumes excessive CPU time in a short period of time.
+    ///
+    /// CPU exceptions can be both fatal and non-fatal to your application.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcpuexceptiondiagnostic?language=objc)
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]
@@ -27,12 +33,19 @@ extern_methods!(
     #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXCPUExceptionDiagnostic {
         #[cfg(feature = "MXCallStackTree")]
+        /// The application call stack tree associated with the excessive CPU consumption.
         #[method_id(@__retain_semantics Other callStackTree)]
         pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
 
+        /// Total CPU time consumed in the scope of this CPU exception.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other totalCPUTime)]
         pub unsafe fn totalCPUTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
+        /// Total time that the application was sampled for during the CPU exception.
+        ///
+        /// Dimensioned as NSUnitDuration.
         #[method_id(@__retain_semantics Other totalSampledTime)]
         pub unsafe fn totalSampledTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
     }

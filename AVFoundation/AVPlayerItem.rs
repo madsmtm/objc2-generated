@@ -58,11 +58,26 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemtimejumpedoriginatingparticipantkey?language=objc)
+    /// Indicates a time jump was caused by another participant connected through AVPlayerPlaybackCoordinator.
+    ///
+    /// Informs the receiver of an AVPlayerItemTimeJumpedNotification that a time jump originated from another AVCoordinatedPlaybackParticipant connected through AVPlayerPlaybackCoordinator. This can be used to inform UI showing why the current time changed. The type of the value for this key is an AVCoordinatedPlaybackParticipant, which is part of the AVPlayerPlaybackCoordinator.otherParticipants array.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemtimejumpedoriginatingparticipantkey?language=objc)
     pub static AVPlayerItemTimeJumpedOriginatingParticipantKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemstatus?language=objc)
+/// These constants are returned by the AVPlayerItem status property to indicate whether it can successfully be played.
+///
+///
+/// Indicates that the status of the player item is not yet known because it has not tried to load new media resources
+/// for playback.
+///
+/// Indicates that the player item is ready to be played.
+///
+/// Indicates that the player item can no longer be played because of an error. The error is described by the value of
+/// the player item's error property.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -108,15 +123,43 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Returns an instance of AVPlayerItem for playing a resource at the specified location.
+        ///
+        /// Parameter `URL`:
+        /// Returns: An instance of AVPlayerItem.
+        ///
+        /// Equivalent to +playerItemWithAsset:, passing [AVAsset assetWithURL:URL] as the value of asset.
         #[method_id(@__retain_semantics Other playerItemWithURL:)]
         pub unsafe fn playerItemWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
+        /// Returns an instance of AVPlayerItem for playing an AVAsset.
+        ///
+        /// Parameter `asset`:
+        /// Returns: An instance of AVPlayerItem.
+        ///
+        /// Equivalent to +playerItemWithAsset:automaticallyLoadedAssetKeys:, passing
+        /// @
+        /// [
+        /// "
+        /// duration" ] as the value of automaticallyLoadedAssetKeys.
+        ///
+        /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable.  If you are using a Sendable subclass of AVAsset, such as AVURLAsset, an overload of this initializer will be chosen automatically to allow you to initialize an AVPlayerItem while not running on the main actor.
         #[method_id(@__retain_semantics Other playerItemWithAsset:)]
         pub unsafe fn playerItemWithAsset(asset: &AVAsset, mtm: MainThreadMarker)
             -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
+        /// Returns an instance of AVPlayerItem for playing an AVAsset.
+        ///
+        /// Parameter `asset`:
+        /// Parameter `automaticallyLoadedAssetKeys`: An NSArray of NSStrings, each representing a property key defined by AVAsset. See AVAsset.h for property keys, e.g. duration.
+        ///
+        /// Returns: An instance of AVPlayerItem.
+        ///
+        /// The value of each key in automaticallyLoadedAssetKeys will be automatically be loaded by the underlying AVAsset before the receiver achieves the status AVPlayerItemStatusReadyToPlay; i.e. when the item is ready to play, the value of -[[AVPlayerItem asset] statusOfValueForKey:error:] will be one of the terminal status values greater than AVKeyValueStatusLoading.
+        ///
+        /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable.  If you are using a Sendable subclass of AVAsset, such as AVURLAsset, you can use `init(asset:automaticallyLoadedAssetKeys:)` to initialize an AVPlayerItem while not running on the main actor.
         #[method_id(@__retain_semantics Other playerItemWithAsset:automaticallyLoadedAssetKeys:)]
         pub unsafe fn playerItemWithAsset_automaticallyLoadedAssetKeys(
             asset: &AVAsset,
@@ -124,14 +167,43 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Initializes an AVPlayerItem with an NSURL.
+        ///
+        /// Parameter `URL`:
+        /// Returns: An instance of AVPlayerItem
+        ///
+        /// Equivalent to -initWithAsset:, passing [AVAsset assetWithURL:URL] as the value of asset.
         #[method_id(@__retain_semantics Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
+        /// Initializes an AVPlayerItem with an AVAsset.
+        ///
+        /// Parameter `asset`:
+        /// Returns: An instance of AVPlayerItem
+        ///
+        /// Equivalent to -initWithAsset:automaticallyLoadedAssetKeys:, passing
+        /// @
+        /// [
+        /// "
+        /// duration" ] as the value of automaticallyLoadedAssetKeys.
+        ///
+        /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable.  If you are using a Sendable subclass of AVAsset, such as AVURLAsset, an overload of this initializer will be chosen automatically to allow you to initialize an AVPlayerItem while not running on the main actor.
         #[method_id(@__retain_semantics Init initWithAsset:)]
         pub unsafe fn initWithAsset(this: Allocated<Self>, asset: &AVAsset) -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
+        /// Initializes an AVPlayerItem with an AVAsset.
+        ///
+        /// Parameter `asset`: An instance of AVAsset.
+        ///
+        /// Parameter `automaticallyLoadedAssetKeys`: An NSArray of NSStrings, each representing a property key defined by AVAsset. See AVAsset.h for property keys, e.g. duration.
+        ///
+        /// Returns: An instance of AVPlayerItem
+        ///
+        /// The value of each key in automaticallyLoadedAssetKeys will be automatically be loaded by the underlying AVAsset before the receiver achieves the status AVPlayerItemStatusReadyToPlay; i.e. when the item is ready to play, the value of -[[AVPlayerItem asset] statusOfValueForKey:error:] will be one of the terminal status values greater than AVKeyValueStatusLoading.
+        ///
+        /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable.  If you are using a Sendable subclass of AVAsset, such as AVURLAsset, you can use `init(asset:automaticallyLoadedAssetKeys:)` to initialize an AVPlayerItem while not running on the main actor.
         #[method_id(@__retain_semantics Init initWithAsset:automaticallyLoadedAssetKeys:)]
         pub unsafe fn initWithAsset_automaticallyLoadedAssetKeys(
             this: Allocated<Self>,
@@ -145,9 +217,22 @@ extern_methods!(
         #[method_id(@__retain_semantics Copy copy)]
         pub unsafe fn copy(&self) -> Retained<AnyObject>;
 
+        /// The ability of the receiver to be used for playback.
+        ///
+        ///
+        /// The value of this property is an AVPlayerItemStatus that indicates whether the receiver can be used for playback.
+        /// When the value of this property is AVPlayerItemStatusFailed, the receiver can no longer be used for playback and
+        /// a new instance needs to be created in its place. When this happens, clients can check the value of the error
+        /// property to determine the nature of the failure. The value of this property will not be updated after the receiver
+        /// is removed from an AVPlayer. This property is key value observable.
         #[method(status)]
         pub unsafe fn status(&self) -> AVPlayerItemStatus;
 
+        /// If the receiver's status is AVPlayerItemStatusFailed, this describes the error that caused the failure.
+        ///
+        ///
+        /// The value of this property is an NSError that describes what caused the receiver to no longer be able to be played.
+        /// If the receiver's status is not AVPlayerItemStatusFailed, the value of this property is nil.
         #[method_id(@__retain_semantics Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
@@ -157,26 +242,66 @@ extern_methods!(
     /// AVPlayerItemInspection
     unsafe impl AVPlayerItem {
         #[cfg(feature = "AVAsset")]
+        /// Accessor for underlying AVAsset.
         #[method_id(@__retain_semantics Other asset)]
         pub unsafe fn asset(&self) -> Retained<AVAsset>;
 
         #[cfg(feature = "AVPlayerItemTrack")]
+        /// Provides array of AVPlayerItem tracks. Observable (can change dynamically during playback).
+        ///
+        ///
+        /// The value of this property will accord with the properties of the underlying media resource when the receiver becomes ready to play.
+        /// Before the underlying media resource has been sufficiently loaded, its value is an empty NSArray. Use key-value observation to obtain
+        /// a valid array of tracks as soon as it becomes available.
         #[method_id(@__retain_semantics Other tracks)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVPlayerItemTrack>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the duration of the item, not considering either its forwardPlaybackEndTime or reversePlaybackEndTime.
+        ///
+        ///
+        /// This property is observable. The duration of an item can change dynamically during playback.
+        ///
+        /// Unless you omit
+        /// "
+        /// duration" from the array of asset keys you pass to +playerItemWithAsset:automaticallyLoadedAssetKeys: or
+        /// -initWithAsset:automaticallyLoadedAssetKeys:, the value of this property will accord with the properties of the underlying
+        /// AVAsset and the current state of playback once the receiver becomes ready to play.
+        ///
+        /// Before the underlying duration has been loaded, the value of this property is kCMTimeIndefinite. Use key-value observation to
+        /// obtain a valid duration as soon as it becomes available. (Note that the value of duration may remain kCMTimeIndefinite,
+        /// e.g. for live streams.)
         #[method(duration)]
         pub unsafe fn duration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The size of the receiver as presented by the player.
+        ///
+        ///
+        /// Indicates the size at which the visual portion of the item is presented by the player; can be scaled from this
+        /// size to fit within the bounds of an AVPlayerLayer via its videoGravity property. Can be scaled arbitrarily for presentation
+        /// via the frame property of an AVPlayerLayer.
+        ///
+        /// The value of this property will accord with the properties of the underlying media resource when the receiver becomes ready to play.
+        /// Before the underlying media resource is sufficiently loaded, its value is CGSizeZero. Use key-value observation to obtain a valid
+        /// presentationSize as soon as it becomes available. (Note that the value of presentationSize may remain CGSizeZero, e.g. for audio-only items.)
         #[method(presentationSize)]
         pub unsafe fn presentationSize(&self) -> CGSize;
 
         #[cfg(feature = "AVMetadataItem")]
+        /// Provides an NSArray of AVMetadataItems representing the timed metadata encountered most recently within the media as it plays. May be nil.
+        ///
+        /// Notifications of changes are available via key-value observation.
+        /// As an optimization for playback, AVPlayerItem may omit the processing of timed metadata when no observer of this property is registered. Therefore, when no such observer is registered, the value of the timedMetadata property may remain nil regardless of the contents of the underlying media.
+        ///
+        /// This property must be accessed on the main thread/queue.
         #[deprecated = "Use AVPlayerItemMetadataOutput to obtain timed metadata"]
         #[method_id(@__retain_semantics Other timedMetadata)]
         pub unsafe fn timedMetadata(&self) -> Option<Retained<NSArray<AVMetadataItem>>>;
 
+        /// An array of property keys defined on AVAsset. The value of each key in the array is automatically loaded while the receiver is being made ready to play.
+        ///
+        /// The value of each key in automaticallyLoadedAssetKeys will be automatically be loaded by the underlying AVAsset before the receiver achieves the status AVPlayerItemStatusReadyToPlay; i.e. when the item is ready to play, the value of -[[AVPlayerItem asset] statusOfValueForKey:error:] will be AVKeyValueStatusLoaded. If loading of any of the values fails, the status of the AVPlayerItem will change instead to AVPlayerItemStatusFailed..
         #[method_id(@__retain_semantics Other automaticallyLoadedAssetKeys)]
         pub unsafe fn automaticallyLoadedAssetKeys(&self) -> Retained<NSArray<NSString>>;
     }
@@ -207,10 +332,14 @@ extern_methods!(
         pub unsafe fn canStepBackward(&self) -> bool;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates how close to the latest content in a live stream playback will begin after a live start or a seek to kCMTimePositiveInfinity.
+        ///
+        /// For non-live assets this value is kCMTimeInvalid.
         #[method(configuredTimeOffsetFromLive)]
         pub unsafe fn configuredTimeOffsetFromLive(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`configuredTimeOffsetFromLive`][Self::configuredTimeOffsetFromLive].
         #[method(setConfiguredTimeOffsetFromLive:)]
         pub unsafe fn setConfiguredTimeOffsetFromLive(
             &self,
@@ -218,12 +347,25 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-media")]
+        /// A recommended value for configuredTimeOffsetFromLive, based on observed network conditions.
+        ///
+        /// For non-live assets this value is kCMTimeInvalid.
         #[method(recommendedTimeOffsetFromLive)]
         pub unsafe fn recommendedTimeOffsetFromLive(&self) -> CMTime;
 
+        /// Indicates that after the player spends a period of time buffering media, it will skip forward if necessary to restore the playhead's distance from the live edge of the presentation to what it was when buffering began.
+        ///
+        /// If the value of this property is YES and the player must buffer media from the network in order to resume playback, the player will seek forward if necessary before resuming playback to restore the position that the playhead had when rebuffering began, relative to the end of the current AVPlayerItem's seekableTimeRange.
+        ///
+        /// This behavior applies to media buffering that occurs as a consequence of starting playback, seeking, and recovering from a playback stall.
+        ///
+        /// Note that if the network cannot deliver media quickly enough to maintain the playback rate, playback may stall interminably.
+        ///
+        /// This property value has no effect if the asset is not a live stream. The default value of this property is NO.
         #[method(automaticallyPreservesTimeOffsetFromLive)]
         pub unsafe fn automaticallyPreservesTimeOffsetFromLive(&self) -> bool;
 
+        /// Setter for [`automaticallyPreservesTimeOffsetFromLive`][Self::automaticallyPreservesTimeOffsetFromLive].
         #[method(setAutomaticallyPreservesTimeOffsetFromLive:)]
         pub unsafe fn setAutomaticallyPreservesTimeOffsetFromLive(
             &self,
@@ -236,29 +378,72 @@ extern_methods!(
     /// AVPlayerItemTimeControl
     unsafe impl AVPlayerItem {
         #[cfg(feature = "objc2-core-media")]
+        /// Returns the current time of the item.
+        ///
+        /// Returns: A CMTime
+        ///
+        /// Returns the current time of the item. Not key-value observable; use -[AVPlayer addPeriodicTimeObserverForInterval:queue:usingBlock:] instead.
         #[method(currentTime)]
         pub unsafe fn currentTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The end time for forward playback.
+        ///
+        ///
+        /// Specifies the time at which playback should end when the playback rate is positive (see AVPlayer's rate property).
+        /// The default value is kCMTimeInvalid, which indicates that no end time for forward playback is specified.
+        /// In this case, the effective end time for forward playback is the receiver's duration.
+        ///
+        /// When the end time is reached, the receiver will post AVPlayerItemDidPlayToEndTimeNotification and the AVPlayer will take
+        /// the action indicated by the value of its actionAtItemEnd property (see AVPlayerActionAtItemEnd in AVPlayer.h).
+        ///
+        /// The value of this property has no effect on playback when the rate is negative.
         #[method(forwardPlaybackEndTime)]
         pub unsafe fn forwardPlaybackEndTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`forwardPlaybackEndTime`][Self::forwardPlaybackEndTime].
         #[method(setForwardPlaybackEndTime:)]
         pub unsafe fn setForwardPlaybackEndTime(&self, forward_playback_end_time: CMTime);
 
         #[cfg(feature = "objc2-core-media")]
+        /// The end time for reverse playback.
+        ///
+        ///
+        /// Specifies the time at which playback should end when the playback rate is negative (see AVPlayer's rate property).
+        /// The default value is kCMTimeInvalid, which indicates that no end time for reverse playback is specified.
+        /// In this case, the effective end time for reverse playback is kCMTimeZero.
+        ///
+        /// When the end time is reached, the receiver will post AVPlayerItemDidPlayToEndTimeNotification and the AVPlayer will take
+        /// the action indicated by the value of its actionAtItemEnd property (see AVPlayerActionAtItemEnd in AVPlayer.h).
+        ///
+        /// The value of this property has no effect on playback when the rate is positive.
         #[method(reversePlaybackEndTime)]
         pub unsafe fn reversePlaybackEndTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`reversePlaybackEndTime`][Self::reversePlaybackEndTime].
         #[method(setReversePlaybackEndTime:)]
         pub unsafe fn setReversePlaybackEndTime(&self, reverse_playback_end_time: CMTime);
 
+        /// This property provides a collection of time ranges that the player item can seek to. The ranges provided might be discontinous.
+        ///
+        /// Returns an NSArray of NSValues containing CMTimeRanges.
         #[method_id(@__retain_semantics Other seekableTimeRanges)]
         pub unsafe fn seekableTimeRanges(&self) -> Retained<NSArray<NSValue>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Moves the playback cursor and invokes the specified block when the seek operation has either been completed or been interrupted.
+        ///
+        /// Parameter `time`:
+        /// Parameter `completionHandler`:
+        /// Use this method to seek to a specified time for the item and to be notified when the seek operation is complete.
+        /// The completion handler for any prior seek request that is still in process will be invoked immediately with the finished parameter
+        /// set to NO. If the new request completes without being interrupted by another seek request or by any other operation the specified
+        /// completion handler will be invoked with the finished parameter set to YES.
+        /// If the seek time is outside of seekable time ranges as indicated by seekableTimeRanges property, the seek request will be cancelled and the completion handler will be invoked with the finished parameter set to NO.
+        ///
+        /// This method throws an exception if time is invalid or indefinite.
         #[method(seekToTime:completionHandler:)]
         pub unsafe fn seekToTime_completionHandler(
             &self,
@@ -267,6 +452,22 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Moves the playback cursor within a specified time bound and invokes the specified block when the seek operation has either been completed or been interrupted.
+        ///
+        /// Parameter `time`:
+        /// Parameter `toleranceBefore`:
+        /// Parameter `toleranceAfter`:
+        /// Parameter `completionHandler`:
+        /// Use this method to seek to a specified time for the item and to be notified when the seek operation is complete.
+        /// The time seeked to will be within the range [time-toleranceBefore, time+toleranceAfter] and may differ from the specified time for efficiency.
+        /// Pass kCMTimeZero for both toleranceBefore and toleranceAfter to request sample accurate seeking which may incur additional decoding delay.
+        /// Messaging this method with beforeTolerance:kCMTimePositiveInfinity and afterTolerance:kCMTimePositiveInfinity is the same as messaging seekToTime: directly.
+        /// The completion handler for any prior seek request that is still in process will be invoked immediately with the finished parameter set to NO. If the new
+        /// request completes without being interrupted by another seek request or by any other operation the specified completion handler will be invoked with the
+        /// finished parameter set to YES.
+        /// If the seek time is outside of seekable time ranges as indicated by seekableTimeRanges property, the seek request will be cancelled and the completion handler will be invoked with the finished parameter set to NO.
+        ///
+        /// This method throws an exception if time is invalid or indefinite or if tolerance before or tolerance after is invalid or negative.
         #[method(seekToTime:toleranceBefore:toleranceAfter:completionHandler:)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter_completionHandler(
             &self,
@@ -276,13 +477,34 @@ extern_methods!(
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         );
 
+        /// Cancel any pending seek requests and invoke the corresponding completion handlers if present.
+        ///
+        /// Use this method to cancel and release the completion handlers of pending seeks. The finished parameter of the completion handlers will
+        /// be set to NO.
         #[method(cancelPendingSeeks)]
         pub unsafe fn cancelPendingSeeks(&self);
 
+        /// If currentTime is mapped to a particular (real-time) date, return that date.
+        ///
+        /// Returns: Returns the date of current playback, or nil if playback is not mapped to any date.
         #[method_id(@__retain_semantics Other currentDate)]
         pub unsafe fn currentDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "block2")]
+        /// move playhead to a point corresponding to a particular date, and invokes the specified block when the seek operation has either been completed or been interrupted.
+        ///
+        /// For playback content that is associated with a range of dates, move the
+        /// playhead to point within that range and invokes the completion handler when the seek operation is complete.
+        /// Will fail if the supplied date is outside the range or if the content is not associated with a range of dates.
+        /// The completion handler for any prior seek request that is still in process will be invoked immediately with the finished parameter
+        /// set to NO. If the new request completes without being interrupted by another seek request or by any other operation, the specified
+        /// completion handler will be invoked with the finished parameter set to YES.
+        ///
+        /// Parameter `date`: The new position for the playhead.
+        ///
+        /// Parameter `completionHandler`: The block to invoke when seek operation is complete
+        ///
+        /// Returns: Returns true if the playhead was moved to the supplied date.
         #[method(seekToDate:completionHandler:)]
         pub unsafe fn seekToDate_completionHandler(
             &self,
@@ -290,10 +512,21 @@ extern_methods!(
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         ) -> bool;
 
+        /// Moves player's current item's current time forward or backward by the specified number of steps.
+        ///
+        /// Parameter `stepCount`: The number of steps by which to move. A positive number results in stepping forward, a negative number in stepping backward.
+        ///
+        /// The size of each step depends on the enabled AVPlayerItemTracks of the AVPlayerItem.
+        ///
+        /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
         #[method(stepByCount:)]
         pub unsafe fn stepByCount(&self, step_count: NSInteger);
 
         #[cfg(feature = "objc2-core-media")]
+        /// The item's timebase.
+        ///
+        /// You can examine the timebase to discover the relationship between the item's time and the source clock used for drift synchronization.
+        /// This timebase is read-only; you cannot set its time or rate to affect playback.
         #[method(timebase)]
         pub unsafe fn timebase(&self) -> CMTimebaseRef;
     }
@@ -303,22 +536,48 @@ extern_methods!(
     /// AVPlayerItemVisualPresentation
     unsafe impl AVPlayerItem {
         #[cfg(feature = "AVVideoComposition")]
+        /// Indicates the video composition settings to be applied during playback.
+        ///
+        /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
+        ///
+        /// This property throws an exception if a video composition is set with any of the following values:
+        /// - renderSize, renderScale, or frameDuration is less than or equal to zero
+        /// - sourceTrackIDForFrameTiming is less than or equal to zero
+        /// - uses AVVideoCompositionCoreAnimationTool (works for offline rendering only)
         #[method_id(@__retain_semantics Other videoComposition)]
         pub unsafe fn videoComposition(&self) -> Option<Retained<AVVideoComposition>>;
 
         #[cfg(feature = "AVVideoComposition")]
+        /// Setter for [`videoComposition`][Self::videoComposition].
         #[method(setVideoComposition:)]
         pub unsafe fn setVideoComposition(&self, video_composition: Option<&AVVideoComposition>);
 
         #[cfg(feature = "AVVideoCompositing")]
+        /// Indicates the custom video compositor instance.
+        ///
+        /// This property is nil if there is no video compositor, or if the internal video compositor is in use. This reference can be used to provide extra context to the custom video compositor instance if required.  The value of this property can change as a result of setting the `videoComposition` property.
+        ///
+        /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
         #[method_id(@__retain_semantics Other customVideoCompositor)]
         pub unsafe fn customVideoCompositor(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVVideoCompositing>>>;
 
+        /// Indicates whether the item's timing follows the displayed video frame when seeking with a video composition
+        ///
+        /// By default, item timing is updated as quickly as possible, not waiting for media at new times to be rendered when seeking or
+        /// during normal playback. The latency that occurs, for example, between the completion of a seek operation and the display of a
+        /// video frame at a new time is negligible in most situations. However, when video compositions are in use, the processing of
+        /// video for any particular time may introduce noticeable latency. Therefore it may be desirable when a video composition is in
+        /// use for the item's timing be updated only after the video frame for a time has been displayed. This allows, for instance, an
+        /// AVSynchronizedLayer associated with an AVPlayerItem to remain in synchronization with the displayed video and for the
+        /// currentTime property to return the time of the displayed video.
+        ///
+        /// This property has no effect on items for which videoComposition is nil.
         #[method(seekingWaitsForVideoCompositionRendering)]
         pub unsafe fn seekingWaitsForVideoCompositionRendering(&self) -> bool;
 
+        /// Setter for [`seekingWaitsForVideoCompositionRendering`][Self::seekingWaitsForVideoCompositionRendering].
         #[method(setSeekingWaitsForVideoCompositionRendering:)]
         pub unsafe fn setSeekingWaitsForVideoCompositionRendering(
             &self,
@@ -326,24 +585,36 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVTextStyleRule")]
+        /// An array of AVTextStyleRules representing text styling that can be applied to subtitles and other legible media.
+        ///
+        /// The styling information contained in each AVTextStyleRule object in the array is used only when no equivalent styling information is provided by the media resource being played.  For example, if the text style rules specify Courier font but the media resource specifies Helvetica font, the text will be drawn using Helvetica font.
+        ///
+        /// This property has an effect only for tracks with media subtype kCMSubtitleFormatType_WebVTT.
         #[method_id(@__retain_semantics Other textStyleRules)]
         pub unsafe fn textStyleRules(&self) -> Option<Retained<NSArray<AVTextStyleRule>>>;
 
         #[cfg(feature = "AVTextStyleRule")]
+        /// Setter for [`textStyleRules`][Self::textStyleRules].
         #[method(setTextStyleRules:)]
         pub unsafe fn setTextStyleRules(&self, text_style_rules: Option<&NSArray<AVTextStyleRule>>);
 
         #[cfg(feature = "AVVideoSettings")]
+        /// Specifies the video aperture mode to apply during playback.
+        ///
+        /// See AVVideoApertureMode constants defined in AVVideoSettings.h. Default is AVVideoApertureModeCleanAperture.
         #[method_id(@__retain_semantics Other videoApertureMode)]
         pub unsafe fn videoApertureMode(&self) -> Retained<AVVideoApertureMode>;
 
         #[cfg(feature = "AVVideoSettings")]
+        /// Setter for [`videoApertureMode`][Self::videoApertureMode].
         #[method(setVideoApertureMode:)]
         pub unsafe fn setVideoApertureMode(&self, video_aperture_mode: &AVVideoApertureMode);
 
+        /// Controls whether or not to apply the per frame HDR display metadata of the source during playback.
         #[method(appliesPerFrameHDRDisplayMetadata)]
         pub unsafe fn appliesPerFrameHDRDisplayMetadata(&self) -> bool;
 
+        /// Setter for [`appliesPerFrameHDRDisplayMetadata`][Self::appliesPerFrameHDRDisplayMetadata].
         #[method(setAppliesPerFrameHDRDisplayMetadata:)]
         pub unsafe fn setAppliesPerFrameHDRDisplayMetadata(
             &self,
@@ -356,29 +627,43 @@ extern_methods!(
     /// AVPlayerItemAudioProcessing
     unsafe impl AVPlayerItem {
         #[cfg(feature = "AVAudioProcessingSettings")]
+        /// Indicates the processing algorithm used to manage audio pitch at varying rates and for scaled audio edits.
+        ///
+        /// Constants for various time pitch algorithms, e.g. AVAudioTimePitchSpectral, are defined in AVAudioProcessingSettings.h.
+        /// The default value for applications linked on or after iOS 15.0 or macOS 12.0 is AVAudioTimePitchAlgorithmTimeDomain. For iOS versions prior to 15.0 the default value is AVAudioTimePitchAlgorithmLowQualityZeroLatency.
+        /// For macOS versions prior to 12.0 the default value is AVAudioTimePitchAlgorithmSpectral.
         #[method_id(@__retain_semantics Other audioTimePitchAlgorithm)]
         pub unsafe fn audioTimePitchAlgorithm(&self) -> Retained<AVAudioTimePitchAlgorithm>;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
+        /// Setter for [`audioTimePitchAlgorithm`][Self::audioTimePitchAlgorithm].
         #[method(setAudioTimePitchAlgorithm:)]
         pub unsafe fn setAudioTimePitchAlgorithm(
             &self,
             audio_time_pitch_algorithm: &AVAudioTimePitchAlgorithm,
         );
 
+        /// Indicates whether audio spatialization is allowed
+        ///
+        /// When audio spatialization is allowed for an AVPlayerItem, the AVPlayer may render multichannel audio if available even if the output device doesn't support multichannel audio on its own, via use of a synthetic channel layout. When audio spatialization is not allowed, the AVPlayer must render audio with a channel layout that best matches the capabilities of the output device. This property is not observable. Defaults to YES.
         #[deprecated = "Use allowedAudioSpatializationFormats instead"]
         #[method(isAudioSpatializationAllowed)]
         pub unsafe fn isAudioSpatializationAllowed(&self) -> bool;
 
+        /// Setter for [`isAudioSpatializationAllowed`][Self::isAudioSpatializationAllowed].
         #[deprecated = "Use allowedAudioSpatializationFormats instead"]
         #[method(setAudioSpatializationAllowed:)]
         pub unsafe fn setAudioSpatializationAllowed(&self, audio_spatialization_allowed: bool);
 
         #[cfg(feature = "AVAudioProcessingSettings")]
+        /// Indicates the source audio channel layouts allowed by the receiver for spatialization.
+        ///
+        /// Spatialization uses psychoacoustic methods to create a more immersive audio rendering when the content is played on specialized headphones and speaker arrangements. When an AVPlayerItem's allowedAudioSpatializationFormats property is set to AVAudioSpatializationFormatMonoAndStereo the AVPlayer will attempt to spatialize content tagged with a stereo channel layout, two-channel content with no layout specified as well as mono. It is considered incorrect to render a binaural recording with spatialization. A binaural recording is captured using two carefully placed microphones at each ear where the intent, when played on headphones, is to reproduce a naturally occurring spatial effect. Content tagged with a binaural channel layout will ignore this property value. When an AVPlayerItem's allowedAudioSpatializationFormats property is set to AVAudioSpatializationFormatMultichannel the AVPlayer will attempt to spatialize any decodable multichannel layout. Setting this property to AVAudioSpatializationFormatMonoStereoAndMultichannel indicates that the sender allows the AVPlayer to spatialize any decodable mono, stereo or multichannel layout. This property is not observable. The default value for this property with video content is AVAudioSpatializationFormatMonoStereoAndMultichannel. Otherwise, audio only content default value is AVAudioSpatializationFormatMultichannel.
         #[method(allowedAudioSpatializationFormats)]
         pub unsafe fn allowedAudioSpatializationFormats(&self) -> AVAudioSpatializationFormats;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
+        /// Setter for [`allowedAudioSpatializationFormats`][Self::allowedAudioSpatializationFormats].
         #[method(setAllowedAudioSpatializationFormats:)]
         pub unsafe fn setAllowedAudioSpatializationFormats(
             &self,
@@ -386,10 +671,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVAudioMix")]
+        /// Indicates the audio mix parameters to be applied during playback
+        ///
+        /// The inputParameters of the AVAudioMix must have trackIDs that correspond to a track of the receiver's asset. Otherwise they will be ignored. (See AVAudioMix.h for the declaration of AVAudioMixInputParameters and AVPlayerItem's asset property.)
         #[method_id(@__retain_semantics Other audioMix)]
         pub unsafe fn audioMix(&self) -> Option<Retained<AVAudioMix>>;
 
         #[cfg(feature = "AVAudioMix")]
+        /// Setter for [`audioMix`][Self::audioMix].
         #[method(setAudioMix:)]
         pub unsafe fn setAudioMix(&self, audio_mix: Option<&AVAudioMix>);
     }
@@ -398,30 +687,58 @@ extern_methods!(
 extern_methods!(
     /// AVPlayerItemPlayability
     unsafe impl AVPlayerItem {
+        /// This property provides a collection of time ranges for which the player has the media data readily available. The ranges provided might be discontinuous.
+        ///
+        /// Returns an NSArray of NSValues containing CMTimeRanges.
         #[method_id(@__retain_semantics Other loadedTimeRanges)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
 
+        /// Indicates whether the item will likely play through without stalling.
+        ///
+        /// This property communicates a prediction of playability. Factors considered in this prediction
+        /// include I/O throughput and media decode performance. It is possible for playbackLikelyToKeepUp to
+        /// indicate NO while the property playbackBufferFull indicates YES. In this event the playback buffer has
+        /// reached capacity but there isn't the statistical data to support a prediction that playback is likely to
+        /// keep up. It is left to the application programmer to decide to continue media playback or not.
+        /// See playbackBufferFull below.
         #[method(isPlaybackLikelyToKeepUp)]
         pub unsafe fn isPlaybackLikelyToKeepUp(&self) -> bool;
 
+        /// Indicates that the internal media buffer is full and that further I/O is suspended.
+        ///
+        /// This property reports that the data buffer used for playback has reach capacity.
+        /// Despite the playback buffer reaching capacity there might not exist sufficient statistical
+        /// data to support a playbackLikelyToKeepUp prediction of YES. See playbackLikelyToKeepUp above.
         #[method(isPlaybackBufferFull)]
         pub unsafe fn isPlaybackBufferFull(&self) -> bool;
 
         #[method(isPlaybackBufferEmpty)]
         pub unsafe fn isPlaybackBufferEmpty(&self) -> bool;
 
+        /// Indicates whether the player item can use network resources to keep playback state up to date while paused
+        ///
+        /// For live streaming content, the player item may need to use extra networking and power resources to keep playback state up to date when paused.  For example, when this property is set to YES, the seekableTimeRanges property will be periodically updated to reflect the current state of the live stream.
+        ///
+        /// For clients linked on or after macOS 10.11 or iOS 9.0, the default value is NO.  To minimize power usage, avoid setting this property to YES when you do not need playback state to stay up to date while paused.
         #[method(canUseNetworkResourcesForLiveStreamingWhilePaused)]
         pub unsafe fn canUseNetworkResourcesForLiveStreamingWhilePaused(&self) -> bool;
 
+        /// Setter for [`canUseNetworkResourcesForLiveStreamingWhilePaused`][Self::canUseNetworkResourcesForLiveStreamingWhilePaused].
         #[method(setCanUseNetworkResourcesForLiveStreamingWhilePaused:)]
         pub unsafe fn setCanUseNetworkResourcesForLiveStreamingWhilePaused(
             &self,
             can_use_network_resources_for_live_streaming_while_paused: bool,
         );
 
+        /// Indicates the media duration the caller prefers the player to buffer from the network ahead of the playhead to guard against playback disruption.
+        ///
+        /// The value is in seconds. If it is set to 0, the player will choose an appropriate level of buffering for most use cases.
+        /// Note that setting this property to a low value will increase the chance that playback will stall and re-buffer, while setting it to a high value will increase demand on system resources.
+        /// Note that the system may buffer less than the value of this property in order to manage resource consumption.
         #[method(preferredForwardBufferDuration)]
         pub unsafe fn preferredForwardBufferDuration(&self) -> NSTimeInterval;
 
+        /// Setter for [`preferredForwardBufferDuration`][Self::preferredForwardBufferDuration].
         #[method(setPreferredForwardBufferDuration:)]
         pub unsafe fn setPreferredForwardBufferDuration(
             &self,
@@ -430,7 +747,14 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvariantpreferences?language=objc)
+/// These constants can be used in any combination as the value of variantPreferences.
+///
+///
+/// Indicates that only the basic behaviors of the player for choosing among variants should be applied, including considerations of available bandwidth, compatibility of the indicated codec or codecs, the dimensions of visual output, and the number of available audio output channels.
+///
+/// Directs the item to permit the use of variants with lossless audio encodings, if sufficient bandwidth is available for their use.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvariantpreferences?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -453,15 +777,33 @@ unsafe impl RefEncode for AVVariantPreferences {
 extern_methods!(
     /// AVPlayerItemVariantControl
     unsafe impl AVPlayerItem {
+        /// Indicates the desired limit of network bandwidth consumption for this item.
+        ///
+        ///
+        /// Set preferredPeakBitRate to non-zero to indicate that the player should attempt to limit item playback to that bit rate, expressed in bits per second.
+        ///
+        /// If network bandwidth consumption cannot be lowered to meet the preferredPeakBitRate, it will be reduced as much as possible while continuing to play the item.
         #[method(preferredPeakBitRate)]
         pub unsafe fn preferredPeakBitRate(&self) -> c_double;
 
+        /// Setter for [`preferredPeakBitRate`][Self::preferredPeakBitRate].
         #[method(setPreferredPeakBitRate:)]
         pub unsafe fn setPreferredPeakBitRate(&self, preferred_peak_bit_rate: c_double);
 
+        /// Indicates the desired limit of network bandwidth consumption for this item over expensive networks.
+        ///
+        ///
+        /// When preferredPeakBitRateForExpensiveNetworks is set to non-zero, the player will attempt to limit item playback to that bit rate
+        /// when streaming over an expensive network, such as when using a cellular data plan.  (See -[NWPath isExpensive])
+        ///
+        /// If network bandwidth consumption cannot be lowered to meet the preferredPeakBitRateForExpensiveNetworks, it will be reduced as much as possible while continuing to play the item.
+        ///
+        /// Note that preferredPeakBitRate still applies unconditionally.  If preferredPeakBitRateForExpensiveNetworks is less restrictive (greater) than preferredPeakBitRate,
+        /// preferredPeakBitRateForExpensiveNetworks has no practical effect.
         #[method(preferredPeakBitRateForExpensiveNetworks)]
         pub unsafe fn preferredPeakBitRateForExpensiveNetworks(&self) -> c_double;
 
+        /// Setter for [`preferredPeakBitRateForExpensiveNetworks`][Self::preferredPeakBitRateForExpensiveNetworks].
         #[method(setPreferredPeakBitRateForExpensiveNetworks:)]
         pub unsafe fn setPreferredPeakBitRateForExpensiveNetworks(
             &self,
@@ -469,36 +811,68 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates a preferred upper limit on the resolution of the video to be downloaded (or otherwise transferred) and rendered by the player.
+        ///
+        /// The default value is CGSizeZero, which indicates that the client enforces no limit on video resolution. Other values indicate a preferred maximum video resolution.
+        /// It only applies to HTTP Live Streaming asset.
         #[method(preferredMaximumResolution)]
         pub unsafe fn preferredMaximumResolution(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredMaximumResolution`][Self::preferredMaximumResolution].
         #[method(setPreferredMaximumResolution:)]
         pub unsafe fn setPreferredMaximumResolution(&self, preferred_maximum_resolution: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates a preferred upper limit on the resolution of the video to be downloaded that applies only when the download occurs over expensive networks.
+        ///
+        /// The default value is CGSizeZero, which indicates that the client enforces no limit on video resolution. Other values indicate a preferred maximum video resolution.
+        /// This limit applies only when streaming over an expensive network, such as when using a cellular data plan.  (See -[NWPath isExpensive])
+        ///
+        /// It only applies to HTTP Live Streaming asset.
+        ///
+        /// Note that preferredMaximumResolution still applies unconditionally.  If preferredMaximumResolutionForExpensiveNetworks is less restrictive (higher resolution)
+        /// than preferredMaximumResolution, preferredMaximumResolutionForExpensiveNetworks has no practical effect.
         #[method(preferredMaximumResolutionForExpensiveNetworks)]
         pub unsafe fn preferredMaximumResolutionForExpensiveNetworks(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredMaximumResolutionForExpensiveNetworks`][Self::preferredMaximumResolutionForExpensiveNetworks].
         #[method(setPreferredMaximumResolutionForExpensiveNetworks:)]
         pub unsafe fn setPreferredMaximumResolutionForExpensiveNetworks(
             &self,
             preferred_maximum_resolution_for_expensive_networks: CGSize,
         );
 
+        /// Directs the player to start playback with the first eligible variant  that appears in the stream's master playlist.
+        ///
+        /// This property influences AVPlayer's algorithm for selecting which of the eligible variant streams in an HTTP Live Streaming master playlist is selected when playback first begins.
+        /// In all cases, AVPlayer may switch to other variants during playback.
+        ///
+        /// On releases prior to macOS 10.15, iOS 13, tvOS 13 and watchOS 6, AVPlayer starts HLS playback with the first eligible variant in the master playlist.
+        /// On releases starting with macOS 10.15, iOS 13, tvOS 13 and watchOS 6, AVPlayer starts HLS playback by choosing an initial variant that optimizes the startup experience.
+        /// On releases starting with macOS 11.0, iOS 14, tvOS 14 and watchOS 7, applications may set this property to YES to request that AVPlayer use the previous behaviour of using the first eligible variant in the master playlist. This would be appropriate, for example, for applications which wish to control initial variant selection by ordering the variants in the master playlist.
+        ///
+        /// Note that changing this property may impact stream startup performance and quality. In order to be effective this property must be set before initial variant selection occurs.
+        /// This property only applies to HTTP Live Streaming assets. The default value of this property is NO.
         #[method(startsOnFirstEligibleVariant)]
         pub unsafe fn startsOnFirstEligibleVariant(&self) -> bool;
 
+        /// Setter for [`startsOnFirstEligibleVariant`][Self::startsOnFirstEligibleVariant].
         #[method(setStartsOnFirstEligibleVariant:)]
         pub unsafe fn setStartsOnFirstEligibleVariant(
             &self,
             starts_on_first_eligible_variant: bool,
         );
 
+        /// Indicates preferences for variant switching.
+        ///
+        /// Changing variant preferences during playback may result in a variant switch.
+        /// The default value is AVVariantPreferenceNone.
         #[method(variantPreferences)]
         pub unsafe fn variantPreferences(&self) -> AVVariantPreferences;
 
+        /// Setter for [`variantPreferences`][Self::variantPreferences].
         #[method(setVariantPreferences:)]
         pub unsafe fn setVariantPreferences(&self, variant_preferences: AVVariantPreferences);
     }
@@ -508,6 +882,18 @@ extern_methods!(
     /// AVPlayerItemMediaSelection
     unsafe impl AVPlayerItem {
         #[cfg(feature = "AVMediaSelectionGroup")]
+        /// Selects the media option described by the specified instance of AVMediaSelectionOption in the specified AVMediaSelectionGroup and deselects all other options in that group.
+        ///
+        /// Parameter `mediaSelectionOption`: The option to select.
+        ///
+        /// Parameter `mediaSelectionGroup`: The media selection group, obtained from the receiver's asset, that contains the specified option.
+        ///
+        /// If the specified media selection option isn't a member of the specified media selection group, no change in presentation state will result.
+        /// If the value of the property allowsEmptySelection of the AVMediaSelectionGroup is YES, you can pass nil for mediaSelectionOption to deselect
+        /// all media selection options in the group.
+        /// Note that if multiple options within a group meet your criteria for selection according to locale or other considerations, and if these options are otherwise indistinguishable to you according to media characteristics that are meaningful for your application, content is typically authored so that the first available option that meets your criteria is appropriate for selection.
+        ///
+        /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
         #[method(selectMediaOption:inMediaSelectionGroup:)]
         pub unsafe fn selectMediaOption_inMediaSelectionGroup(
             &self,
@@ -516,6 +902,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVMediaSelectionGroup")]
+        /// Selects the media option in the specified media selection group that best matches the AVPlayer's current automatic selection criteria. Also allows automatic selection to be re-applied to the specified group subsequently if the relevant criteria are changed.
+        ///
+        /// Parameter `mediaSelectionGroup`: The media selection group, obtained from the receiver's asset, that contains the specified option.
+        ///
+        /// Has no effect unless the appliesMediaSelectionCriteriaAutomatically property of the associated AVPlayer is YES and unless automatic media selection has previously been overridden via -[AVPlayerItem selectMediaOption:inMediaSelectionGroup:].
+        ///
+        /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
         #[method(selectMediaOptionAutomaticallyInMediaSelectionGroup:)]
         pub unsafe fn selectMediaOptionAutomaticallyInMediaSelectionGroup(
             &self,
@@ -523,6 +916,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVMediaSelection")]
+        /// Provides an instance of AVMediaSelection carrying current selections for each of the receiver's media selection groups.
         #[method_id(@__retain_semantics Other currentMediaSelection)]
         pub unsafe fn currentMediaSelection(&self) -> Retained<AVMediaSelection>;
     }
@@ -531,9 +925,22 @@ extern_methods!(
 extern_methods!(
     /// AVPlayerItemLogging
     unsafe impl AVPlayerItem {
+        /// Returns an object that represents a snapshot of the network access log. Can be nil.
+        ///
+        /// An AVPlayerItemAccessLog provides methods to retrieve the network access log in a format suitable for serialization.
+        /// If nil is returned then there is no logging information currently available for this AVPlayerItem.
+        /// An AVPlayerItemNewAccessLogEntryNotification will be posted when new logging information becomes available. However, accessLog might already return a non-nil value even before the first notification is posted.
+        ///
+        /// Returns: An autoreleased AVPlayerItemAccessLog instance.
         #[method_id(@__retain_semantics Other accessLog)]
         pub unsafe fn accessLog(&self) -> Option<Retained<AVPlayerItemAccessLog>>;
 
+        /// Returns an object that represents a snapshot of the error log. Can be nil.
+        ///
+        /// An AVPlayerItemErrorLog provides methods to retrieve the error log in a format suitable for serialization.
+        /// If nil is returned then there is no logging information currently available for this AVPlayerItem.
+        ///
+        /// Returns: An autoreleased AVPlayerItemErrorLog instance.
         #[method_id(@__retain_semantics Other errorLog)]
         pub unsafe fn errorLog(&self) -> Option<Retained<AVPlayerItemErrorLog>>;
     }
@@ -543,14 +950,25 @@ extern_methods!(
     /// AVPlayerItemOutputs
     unsafe impl AVPlayerItem {
         #[cfg(feature = "AVPlayerItemOutput")]
+        /// Adds the specified instance of AVPlayerItemOutput to the receiver's collection of outputs.
+        ///
+        /// The class of AVPlayerItemOutput provided dictates the data structure that decoded samples are vended in.
+        ///
+        /// When an AVPlayerItemOutput is associated with an AVPlayerItem, samples are provided for a media type in accordance with the rules for mixing, composition, or exclusion that the AVPlayer honors among multiple enabled tracks of that media type for its own rendering purposes. For example, video media will be composed according to the instructions provided via AVPlayerItem.videoComposition, if present. Audio media will be mixed according to the parameters provided via AVPlayerItem.audioMix, if present.
+        ///
+        /// Parameter `output`: An instance of AVPlayerItemOutput
         #[method(addOutput:)]
         pub unsafe fn addOutput(&self, output: &AVPlayerItemOutput);
 
         #[cfg(feature = "AVPlayerItemOutput")]
+        /// Removes the specified instance of AVPlayerItemOutput from the receiver's collection of outputs.
+        ///
+        /// Parameter `output`: An instance of AVPlayerItemOutput
         #[method(removeOutput:)]
         pub unsafe fn removeOutput(&self, output: &AVPlayerItemOutput);
 
         #[cfg(feature = "AVPlayerItemOutput")]
+        /// The collection of associated outputs.
         #[method_id(@__retain_semantics Other outputs)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<AVPlayerItemOutput>>;
     }
@@ -560,14 +978,23 @@ extern_methods!(
     /// AVPlayerItemMediaDataCollectors
     unsafe impl AVPlayerItem {
         #[cfg(feature = "AVPlayerItemMediaDataCollector")]
+        /// Adds the specified instance of AVPlayerItemMediaDataCollector to the receiver's collection of mediaDataCollectors.
+        ///
+        /// This method may incur additional I/O to collect the requested media data asynchronously.
+        ///
+        /// Parameter `collector`: An instance of AVPlayerItemMediaDataCollector
         #[method(addMediaDataCollector:)]
         pub unsafe fn addMediaDataCollector(&self, collector: &AVPlayerItemMediaDataCollector);
 
         #[cfg(feature = "AVPlayerItemMediaDataCollector")]
+        /// Removes the specified instance of AVPlayerItemMediaDataCollector from the receiver's collection of mediaDataCollectors.
+        ///
+        /// Parameter `collector`: An instance of AVPlayerItemMediaDataCollector
         #[method(removeMediaDataCollector:)]
         pub unsafe fn removeMediaDataCollector(&self, collector: &AVPlayerItemMediaDataCollector);
 
         #[cfg(feature = "AVPlayerItemMediaDataCollector")]
+        /// The collection of associated mediaDataCollectors.
         #[method_id(@__retain_semantics Other mediaDataCollectors)]
         pub unsafe fn mediaDataCollectors(
             &self,
@@ -579,11 +1006,29 @@ extern_methods!(
     /// AVPlayerItemDeprecated
     unsafe impl AVPlayerItem {
         #[cfg(feature = "objc2-core-media")]
+        /// Moves the playback cursor.
+        ///
+        /// Parameter `time`:
+        /// Use this method to seek to a specified time for the item.
+        /// The time seeked to may differ from the specified time for efficiency. For sample accurate seeking see seekToTime:toleranceBefore:toleranceAfter:.
+        /// If the seek time is outside of seekable time ranges as indicated by seekableTimeRanges property, the seek request will be cancelled.
         #[deprecated = "Use -seekToTime:completionHandler:, passing nil for the completionHandler if you don't require notification of completion"]
         #[method(seekToTime:)]
         pub unsafe fn seekToTime(&self, time: CMTime);
 
         #[cfg(feature = "objc2-core-media")]
+        /// Moves the playback cursor within a specified time bound.
+        ///
+        /// Parameter `time`:
+        /// Parameter `toleranceBefore`:
+        /// Parameter `toleranceAfter`:
+        /// Use this method to seek to a specified time for the item.
+        /// The time seeked to will be within the range [time-toleranceBefore, time+toleranceAfter] and may differ from the specified time for efficiency.
+        /// Pass kCMTimeZero for both toleranceBefore and toleranceAfter to request sample accurate seeking which may incur additional decoding delay.
+        /// Messaging this method with beforeTolerance:kCMTimePositiveInfinity and afterTolerance:kCMTimePositiveInfinity is the same as messaging seekToTime: directly.
+        /// Seeking is constrained by the collection of seekable time ranges. If you seek to a time outside all of the seekable ranges the seek will result in a currentTime
+        /// within the seekable ranges.
+        /// If the seek time is outside of seekable time ranges as indicated by seekableTimeRanges property, the seek request will be cancelled.
         #[deprecated = "Use -seekToTime:toleranceBefore:toleranceAfter:completionHandler:, passing nil for the completionHandler if you don't require notification of completion"]
         #[method(seekToTime:toleranceBefore:toleranceAfter:)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter(
@@ -593,11 +1038,27 @@ extern_methods!(
             tolerance_after: CMTime,
         );
 
+        /// move playhead to a point corresponding to a particular date.
+        ///
+        /// For playback content that is associated with a range of dates, move the
+        /// playhead to point within that range. Will fail if the supplied date is outside
+        /// the range or if the content is not associated with a range of dates.
+        ///
+        /// Parameter `date`: The new position for the playhead.
+        ///
+        /// Returns: Returns true if the playhead was moved to the supplied date.
         #[deprecated = "Use -seekToDate:completionHandler:, passing nil for the completionHandler if you don't require notification of completion"]
         #[method(seekToDate:)]
         pub unsafe fn seekToDate(&self, date: &NSDate) -> bool;
 
         #[cfg(feature = "AVMediaSelectionGroup")]
+        /// Indicates the media selection option that's currently selected from the specified group. May be nil.
+        ///
+        /// Parameter `mediaSelectionGroup`: A media selection group obtained from the receiver's asset.
+        ///
+        /// Returns: An instance of AVMediaSelectionOption that describes the currently selection option in the group.
+        ///
+        /// If the value of the property allowsEmptySelection of the AVMediaSelectionGroup is YES, the currently selected option in the group may be nil.
         #[deprecated = "Use currentMediaSelection to obtain an instance of AVMediaSelection, which encompasses the currently selected AVMediaSelectionOption in each of the available AVMediaSelectionGroups"]
         #[method_id(@__retain_semantics Other selectedMediaOptionInMediaSelectionGroup:)]
         pub unsafe fn selectedMediaOptionInMediaSelectionGroup(
@@ -608,7 +1069,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslog?language=objc)
+    /// An AVPlayerItemAccessLog provides methods to retrieve the access log in a format suitable for serialization.
+    ///
+    /// An AVPlayerItemAccessLog acculumulates key metrics about network playback and presents them as a collection
+    /// of AVPlayerItemAccessLogEvent instances. Each AVPlayerItemAccessLogEvent instance collates the data
+    /// that relates to each uninterrupted period of playback.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslog?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemAccessLog;
@@ -634,19 +1103,41 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Serializes an AVPlayerItemAccessLog in the Extended Log File Format.
+        ///
+        /// This method converts the webserver access log into a textual format that conforms to the
+        /// W3C Extended Log File Format for web server log files.
+        /// For more information see: http://www.w3.org/pub/WWW/TR/WD-logfile.html
+        ///
+        /// Returns: An autoreleased NSData instance.
         #[method_id(@__retain_semantics Other extendedLogData)]
         pub unsafe fn extendedLogData(&self) -> Option<Retained<NSData>>;
 
+        /// Returns the NSStringEncoding for extendedLogData, see above.
+        ///
+        /// A string suitable for console output is obtainable by:
+        /// [[NSString alloc] initWithData:[myLog extendedLogData] encoding:[myLog extendedLogDataStringEncoding]]
         #[method(extendedLogDataStringEncoding)]
         pub unsafe fn extendedLogDataStringEncoding(&self) -> NSStringEncoding;
 
+        /// An ordered collection of AVPlayerItemAccessLogEvent instances.
+        ///
+        /// An ordered collection of AVPlayerItemAccessLogEvent instances that represent the chronological
+        /// sequence of events contained in the access log.
+        /// This property is not observable.
         #[method_id(@__retain_semantics Other events)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerItemAccessLogEvent>>;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemerrorlog?language=objc)
+    /// An AVPlayerItemErrorLog provides methods to retrieve the error log in a format suitable for serialization.
+    ///
+    /// An AVPlayerItemErrorLog provides data to identify if, and when, network resource playback failures occured.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemerrorlog?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemErrorLog;
@@ -672,19 +1163,42 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Serializes an AVPlayerItemErrorLog in the Extended Log File Format.
+        ///
+        /// This method converts the webserver error log into a textual format that conforms to the
+        /// W3C Extended Log File Format for web server log files.
+        /// For more information see: http://www.w3.org/pub/WWW/TR/WD-logfile.html
+        ///
+        /// Returns: An autoreleased NSData instance.
         #[method_id(@__retain_semantics Other extendedLogData)]
         pub unsafe fn extendedLogData(&self) -> Option<Retained<NSData>>;
 
+        /// Returns the NSStringEncoding for extendedLogData, see above.
+        ///
+        /// A string suitable for console output is obtainable by:
+        /// [[NSString alloc] initWithData:[myLog extendedLogData] encoding:[myLog extendedLogDataStringEncoding]]
         #[method(extendedLogDataStringEncoding)]
         pub unsafe fn extendedLogDataStringEncoding(&self) -> NSStringEncoding;
 
+        /// An ordered collection of AVPlayerItemErrorLogEvent instances.
+        ///
+        /// An ordered collection of AVPlayerItemErrorLogEvent instances that represent the chronological
+        /// sequence of events contained in the error log.
+        /// This property is not observable.
         #[method_id(@__retain_semantics Other events)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerItemErrorLogEvent>>;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent?language=objc)
+    /// An AVPlayerItemAccessLogEvent represents a single log entry.
+    ///
+    /// An AVPlayerItemAccessLogEvent provides named properties for accessing the data
+    /// fields of each log event. None of the properties of this class are observable.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemAccessLogEvent;
@@ -710,94 +1224,212 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// A count of media segments downloaded.
+        ///
+        /// Value is negative if unknown. A count of media segments downloaded from the server to this client. Corresponds to "sc-count".
+        /// This property is not observable.
+        /// This property is deprecated. Use numberOfMediaRequests instead.
         #[deprecated]
         #[method(numberOfSegmentsDownloaded)]
         pub unsafe fn numberOfSegmentsDownloaded(&self) -> NSInteger;
 
+        /// A count of media read requests.
+        ///
+        /// Value is negative if unknown. A count of media read requests from the server to this client. Corresponds to "sc-count".
+        /// For HTTP live Streaming, a count of media segments downloaded from the server to this client.
+        /// For progressive-style HTTP media downloads, a count of HTTP GET (byte-range) requests for the resource.
+        /// This property is not observable.
         #[method(numberOfMediaRequests)]
         pub unsafe fn numberOfMediaRequests(&self) -> NSInteger;
 
+        /// The date/time at which playback began for this event. Can be nil.
+        ///
+        /// If nil is returned the date is unknown. Corresponds to "date".
+        /// This property is not observable.
         #[method_id(@__retain_semantics Other playbackStartDate)]
         pub unsafe fn playbackStartDate(&self) -> Option<Retained<NSDate>>;
 
+        /// The URI of the playback item. Can be nil.
+        ///
+        /// If nil is returned the URI is unknown. Corresponds to "uri".
+        /// This property is not observable.
         #[method_id(@__retain_semantics Other URI)]
         pub unsafe fn URI(&self) -> Option<Retained<NSString>>;
 
+        /// The IP address of the server that was the source of the last delivered media segment. Can be nil.
+        ///
+        /// If nil is returned the address is unknown. Can be either an IPv4 or IPv6 address. Corresponds to "s-ip".
+        /// This property is not observable.
         #[method_id(@__retain_semantics Other serverAddress)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
+        /// A count of changes to the property serverAddress, see above, over the last uninterrupted period of playback.
+        ///
+        /// Value is negative if unknown. Corresponds to "s-ip-changes".
+        /// This property is not observable.
         #[method(numberOfServerAddressChanges)]
         pub unsafe fn numberOfServerAddressChanges(&self) -> NSInteger;
 
+        /// A GUID that identifies the playback session. This value is used in HTTP requests. Can be nil.
+        ///
+        /// If nil is returned the GUID is unknown. Corresponds to "cs-guid".
+        /// This property is not observable.
         #[method_id(@__retain_semantics Other playbackSessionID)]
         pub unsafe fn playbackSessionID(&self) -> Option<Retained<NSString>>;
 
+        /// An offset into the playlist where the last uninterrupted period of playback began. Measured in seconds.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-start-time".
+        /// This property is not observable.
         #[method(playbackStartOffset)]
         pub unsafe fn playbackStartOffset(&self) -> NSTimeInterval;
 
+        /// The accumulated duration of the media downloaded. Measured in seconds.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-duration-downloaded".
+        /// This property is not observable.
         #[method(segmentsDownloadedDuration)]
         pub unsafe fn segmentsDownloadedDuration(&self) -> NSTimeInterval;
 
+        /// The accumulated duration of the media played. Measured in seconds.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-duration-watched".
+        /// This property is not observable.
         #[method(durationWatched)]
         pub unsafe fn durationWatched(&self) -> NSTimeInterval;
 
+        /// The total number of playback stalls encountered.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-stalls".
+        /// This property is not observable.
         #[method(numberOfStalls)]
         pub unsafe fn numberOfStalls(&self) -> NSInteger;
 
+        /// The accumulated number of bytes transferred.
+        ///
+        /// Value is negative if unknown. Corresponds to "bytes".
+        /// This property is not observable.
         #[method(numberOfBytesTransferred)]
         pub unsafe fn numberOfBytesTransferred(&self) -> c_longlong;
 
+        /// The accumulated duration of active network transfer of bytes. Measured in seconds.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-transfer-duration".
+        /// This property is not observable.
         #[method(transferDuration)]
         pub unsafe fn transferDuration(&self) -> NSTimeInterval;
 
+        /// The empirical throughput across all media downloaded. Measured in bits per second.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-observed-bitrate".
+        /// This property is not observable.
         #[method(observedBitrate)]
         pub unsafe fn observedBitrate(&self) -> c_double;
 
+        /// The throughput required to play the stream, as advertised by the server. Measured in bits per second.
+        ///
+        /// Value is negative if unknown. Corresponds to "sc-indicated-bitrate".
+        /// This property is not observable.
         #[method(indicatedBitrate)]
         pub unsafe fn indicatedBitrate(&self) -> c_double;
 
+        /// Average throughput required to play the stream, as advertised by the server. Measured in bits per second.
+        ///
+        /// Value is negative if unknown. Corresponds to "sc-indicated-avg-bitrate".
+        /// This property is not observable.
         #[method(indicatedAverageBitrate)]
         pub unsafe fn indicatedAverageBitrate(&self) -> c_double;
 
+        /// The average bitrate of video track if it is unmuxed. Average bitrate of combined content if muxed. Measured in bits per second.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-avg-video-bitrate".
+        /// This property is not observable.
         #[method(averageVideoBitrate)]
         pub unsafe fn averageVideoBitrate(&self) -> c_double;
 
+        /// The average bitrate of audio track. This is not available if audio is muxed with video. Measured in bits per second.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-avg-audio-bitrate".
+        /// This property is not observable.
         #[method(averageAudioBitrate)]
         pub unsafe fn averageAudioBitrate(&self) -> c_double;
 
+        /// The total number of dropped video frames.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-frames-dropped".
+        /// This property is not observable.
         #[method(numberOfDroppedVideoFrames)]
         pub unsafe fn numberOfDroppedVideoFrames(&self) -> NSInteger;
 
+        /// The accumulated duration until player item is ready to play. Measured in seconds.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-startup-time".
+        /// This property is not observable.
         #[method(startupTime)]
         pub unsafe fn startupTime(&self) -> NSTimeInterval;
 
+        /// The total number of times the download of the segments took too long.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-overdue".
+        /// This property is not observable.
         #[method(downloadOverdue)]
         pub unsafe fn downloadOverdue(&self) -> NSInteger;
 
+        /// Maximum observed segment download bit rate.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-observed-max-bitrate".
+        /// This property is not observable.
         #[deprecated = "Use observedBitrateStandardDeviation to monitor variance in network bitrate."]
         #[method(observedMaxBitrate)]
         pub unsafe fn observedMaxBitrate(&self) -> c_double;
 
+        /// Minimum observed segment download bit rate.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-observed-min-bitrate".
+        /// This property is not observable.
         #[deprecated = "Use observedBitrateStandardDeviation to monitor variance in network bitrate."]
         #[method(observedMinBitrate)]
         pub unsafe fn observedMinBitrate(&self) -> c_double;
 
+        /// Standard deviation of observed segment download bit rates.
+        ///
+        /// Value is negative if unknown. Corresponds to "c-observed-bitrate-sd".
+        /// This property is not observable.
         #[method(observedBitrateStandardDeviation)]
         pub unsafe fn observedBitrateStandardDeviation(&self) -> c_double;
 
+        /// Playback type (LIVE, VOD, FILE).
+        ///
+        /// If nil is returned the playback type is unknown. Corresponds to "s-playback-type".
+        /// This property is not observable.
         #[method_id(@__retain_semantics Other playbackType)]
         pub unsafe fn playbackType(&self) -> Option<Retained<NSString>>;
 
+        /// Number of network read requests over WWAN.
+        ///
+        /// Value is negative if unknown. Corresponds to "sc-wwan-count".
+        /// This property is not observable.
         #[method(mediaRequestsWWAN)]
         pub unsafe fn mediaRequestsWWAN(&self) -> NSInteger;
 
+        /// Bandwidth that caused us to switch (up or down).
+        ///
+        /// Value is negative if unknown. Corresponds to "c-switch-bitrate".
+        /// This property is not observable.
         #[method(switchBitrate)]
         pub unsafe fn switchBitrate(&self) -> c_double;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemerrorlogevent?language=objc)
+    /// An AVPlayerItemErrorLogEvent represents a single log entry.
+    ///
+    /// An AVPlayerItemErrorLogEvent provides named properties for accessing the data
+    /// fields of each log event. None of the properties of this class are observable.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemerrorlogevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemErrorLogEvent;
@@ -823,24 +1455,52 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// The date and time when the error occured. Can be nil.
+        ///
+        /// If nil is returned the date is unknown. Corresponds to "date".
+        /// This property is not observable.
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date(&self) -> Option<Retained<NSDate>>;
 
+        /// The URI of the playback item. Can be nil.
+        ///
+        /// If nil is returned the URI is unknown. Corresponds to "uri".
+        /// This property is not observable.
         #[method_id(@__retain_semantics Other URI)]
         pub unsafe fn URI(&self) -> Option<Retained<NSString>>;
 
+        /// The IP address of the server that was the source of the error. Can be nil.
+        ///
+        /// If nil is returned the address is unknown. Can be either an IPv4 or IPv6 address. Corresponds to "s-ip".
+        /// This property is not observable.
         #[method_id(@__retain_semantics Other serverAddress)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
+        /// A GUID that identifies the playback session. This value is used in HTTP requests. Can be nil.
+        ///
+        /// If nil is returned the GUID is unknown. Corresponds to "cs-guid".
+        /// This property is not observable.
         #[method_id(@__retain_semantics Other playbackSessionID)]
         pub unsafe fn playbackSessionID(&self) -> Option<Retained<NSString>>;
 
+        /// A unique error code identifier.
+        ///
+        /// Corresponds to "status".
+        /// This property is not observable.
         #[method(errorStatusCode)]
         pub unsafe fn errorStatusCode(&self) -> NSInteger;
 
+        /// The domain of the error.
+        ///
+        /// Corresponds to "domain".
+        /// This property is not observable.
         #[method_id(@__retain_semantics Other errorDomain)]
         pub unsafe fn errorDomain(&self) -> Retained<NSString>;
 
+        /// A description of the error encountered. Can be nil.
+        ///
+        /// If nil is returned further information is not available. Corresponds to "comment".
+        /// This property is not observable.
         #[method_id(@__retain_semantics Other errorComment)]
         pub unsafe fn errorComment(&self) -> Option<Retained<NSString>>;
 

@@ -311,6 +311,7 @@ extern_methods!(
         >;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -322,18 +323,21 @@ extern_methods!(
         #[method(sourceType)]
         pub unsafe fn sourceType(&self) -> UIImagePickerControllerSourceType;
 
+        /// Setter for [`sourceType`][Self::sourceType].
         #[method(setSourceType:)]
         pub unsafe fn setSourceType(&self, source_type: UIImagePickerControllerSourceType);
 
         #[method_id(@__retain_semantics Other mediaTypes)]
         pub unsafe fn mediaTypes(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`mediaTypes`][Self::mediaTypes].
         #[method(setMediaTypes:)]
         pub unsafe fn setMediaTypes(&self, media_types: &NSArray<NSString>);
 
         #[method(allowsEditing)]
         pub unsafe fn allowsEditing(&self) -> bool;
 
+        /// Setter for [`allowsEditing`][Self::allowsEditing].
         #[method(setAllowsEditing:)]
         pub unsafe fn setAllowsEditing(&self, allows_editing: bool);
 
@@ -341,6 +345,7 @@ extern_methods!(
         #[method(allowsImageEditing)]
         pub unsafe fn allowsImageEditing(&self) -> bool;
 
+        /// Setter for [`allowsImageEditing`][Self::allowsImageEditing].
         #[deprecated]
         #[method(setAllowsImageEditing:)]
         pub unsafe fn setAllowsImageEditing(&self, allows_image_editing: bool);
@@ -349,6 +354,7 @@ extern_methods!(
         #[method(imageExportPreset)]
         pub unsafe fn imageExportPreset(&self) -> UIImagePickerControllerImageURLExportPreset;
 
+        /// Setter for [`imageExportPreset`][Self::imageExportPreset].
         #[deprecated = "Will be removed in a future release, use PHPicker."]
         #[method(setImageExportPreset:)]
         pub unsafe fn setImageExportPreset(
@@ -359,12 +365,14 @@ extern_methods!(
         #[method(videoMaximumDuration)]
         pub unsafe fn videoMaximumDuration(&self) -> NSTimeInterval;
 
+        /// Setter for [`videoMaximumDuration`][Self::videoMaximumDuration].
         #[method(setVideoMaximumDuration:)]
         pub unsafe fn setVideoMaximumDuration(&self, video_maximum_duration: NSTimeInterval);
 
         #[method(videoQuality)]
         pub unsafe fn videoQuality(&self) -> UIImagePickerControllerQualityType;
 
+        /// Setter for [`videoQuality`][Self::videoQuality].
         #[method(setVideoQuality:)]
         pub unsafe fn setVideoQuality(&self, video_quality: UIImagePickerControllerQualityType);
 
@@ -372,6 +380,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other videoExportPreset)]
         pub unsafe fn videoExportPreset(&self) -> Retained<NSString>;
 
+        /// Setter for [`videoExportPreset`][Self::videoExportPreset].
         #[deprecated = "Will be removed in a future release, use PHPicker."]
         #[method(setVideoExportPreset:)]
         pub unsafe fn setVideoExportPreset(&self, video_export_preset: &NSString);
@@ -379,6 +388,7 @@ extern_methods!(
         #[method(showsCameraControls)]
         pub unsafe fn showsCameraControls(&self) -> bool;
 
+        /// Setter for [`showsCameraControls`][Self::showsCameraControls].
         #[method(setShowsCameraControls:)]
         pub unsafe fn setShowsCameraControls(&self, shows_camera_controls: bool);
 
@@ -387,6 +397,7 @@ extern_methods!(
         pub unsafe fn cameraOverlayView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIView")]
+        /// Setter for [`cameraOverlayView`][Self::cameraOverlayView].
         #[method(setCameraOverlayView:)]
         pub unsafe fn setCameraOverlayView(&self, camera_overlay_view: Option<&UIView>);
 
@@ -395,6 +406,7 @@ extern_methods!(
         pub unsafe fn cameraViewTransform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`cameraViewTransform`][Self::cameraViewTransform].
         #[method(setCameraViewTransform:)]
         pub unsafe fn setCameraViewTransform(&self, camera_view_transform: CGAffineTransform);
 
@@ -410,6 +422,7 @@ extern_methods!(
         #[method(cameraCaptureMode)]
         pub unsafe fn cameraCaptureMode(&self) -> UIImagePickerControllerCameraCaptureMode;
 
+        /// Setter for [`cameraCaptureMode`][Self::cameraCaptureMode].
         #[method(setCameraCaptureMode:)]
         pub unsafe fn setCameraCaptureMode(
             &self,
@@ -419,12 +432,14 @@ extern_methods!(
         #[method(cameraDevice)]
         pub unsafe fn cameraDevice(&self) -> UIImagePickerControllerCameraDevice;
 
+        /// Setter for [`cameraDevice`][Self::cameraDevice].
         #[method(setCameraDevice:)]
         pub unsafe fn setCameraDevice(&self, camera_device: UIImagePickerControllerCameraDevice);
 
         #[method(cameraFlashMode)]
         pub unsafe fn cameraFlashMode(&self) -> UIImagePickerControllerCameraFlashMode;
 
+        /// Setter for [`cameraFlashMode`][Self::cameraFlashMode].
         #[method(setCameraFlashMode:)]
         pub unsafe fn setCameraFlashMode(
             &self,

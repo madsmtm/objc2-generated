@@ -55,12 +55,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other predicate)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
+        /// Setter for [`predicate`][Self::predicate].
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
         #[method(includesSubentities)]
         pub unsafe fn includesSubentities(&self) -> bool;
 
+        /// Setter for [`includesSubentities`][Self::includesSubentities].
         #[method(setIncludesSubentities:)]
         pub unsafe fn setIncludesSubentities(&self, includes_subentities: bool);
 
@@ -69,12 +71,14 @@ extern_methods!(
         pub unsafe fn resultType(&self) -> NSBatchUpdateRequestResultType;
 
         #[cfg(feature = "NSPersistentStoreResult")]
+        /// Setter for [`resultType`][Self::resultType].
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, result_type: NSBatchUpdateRequestResultType);
 
         #[method_id(@__retain_semantics Other propertiesToUpdate)]
         pub unsafe fn propertiesToUpdate(&self) -> Option<Retained<NSDictionary>>;
 
+        /// Setter for [`propertiesToUpdate`][Self::propertiesToUpdate].
         #[method(setPropertiesToUpdate:)]
         pub unsafe fn setPropertiesToUpdate(&self, properties_to_update: Option<&NSDictionary>);
     }

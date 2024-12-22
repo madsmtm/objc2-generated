@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctensordescriptor?language=objc)
+    /// The MLCTensorDescriptor specifies a tensor descriptor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctensordescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -25,34 +27,45 @@ unsafe impl NSObjectProtocol for MLCTensorDescriptor {}
 extern_methods!(
     unsafe impl MLCTensorDescriptor {
         #[cfg(feature = "MLCTypes")]
+        /// The tensor data type.  The default is MLCDataTypeFloat32.
         #[deprecated]
         #[method(dataType)]
         pub unsafe fn dataType(&self) -> MLCDataType;
 
+        /// The number of dimensions in the tensor
         #[deprecated]
         #[method(dimensionCount)]
         pub unsafe fn dimensionCount(&self) -> NSUInteger;
 
+        /// The size in each dimension
         #[deprecated]
         #[method_id(@__retain_semantics Other shape)]
         pub unsafe fn shape(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// The stride in bytes in each dimension
         #[deprecated]
         #[method_id(@__retain_semantics Other stride)]
         pub unsafe fn stride(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// The allocation size in bytes for a tensor.
         #[deprecated]
         #[method(tensorAllocationSizeInBytes)]
         pub unsafe fn tensorAllocationSizeInBytes(&self) -> NSUInteger;
 
+        /// TODO
         #[deprecated]
         #[method_id(@__retain_semantics Other sequenceLengths)]
         pub unsafe fn sequenceLengths(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// Specifies whether the sequences are sorted or not.
         #[deprecated]
         #[method(sortedSequences)]
         pub unsafe fn sortedSequences(&self) -> bool;
 
+        /// The batch size for each sequence
+        ///
+        /// We populate this only when sequenceLengths is valid. The length of this array should be
+        /// the maximum sequence length in sequenceLengths (i.e sequenceLengths[0]).
         #[deprecated]
         #[method_id(@__retain_semantics Other batchSizePerSequenceStep)]
         pub unsafe fn batchSizePerSequenceStep(&self) -> Option<Retained<NSArray<NSNumber>>>;
@@ -65,11 +78,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The maximum number of tensor dimensions supported
         #[deprecated]
         #[method(maxTensorDimensions)]
         pub unsafe fn maxTensorDimensions() -> NSUInteger;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensorDescriptor object
+        ///
+        /// Parameter `shape`: The tensor shape
+        ///
+        /// Parameter `dataType`: The tensor data type
+        ///
+        /// Returns: A new MLCTensorDescriptor object or nil if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithShape:dataType:)]
         pub unsafe fn descriptorWithShape_dataType(
@@ -78,6 +99,19 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensorDescriptor object
+        ///
+        /// Parameter `shape`: The tensor shape
+        ///
+        /// Parameter `sequenceLengths`: The sequence lengths in tensor
+        ///
+        /// Parameter `sortedSequences`: A boolean to indicate whether sequences are sorted
+        ///
+        /// Parameter `dataType`: The tensor data type
+        ///
+        /// Returns: A new MLCTensorDescriptor object or nil if failure.
+        ///
+        /// This method is provided as an easy to use API to create sequence tensors used by recurrent layers.
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithShape:sequenceLengths:sortedSequences:dataType:)]
         pub unsafe fn descriptorWithShape_sequenceLengths_sortedSequences_dataType(
@@ -87,6 +121,19 @@ extern_methods!(
             data_type: MLCDataType,
         ) -> Option<Retained<Self>>;
 
+        /// Create a MLCTensorDescriptor object
+        ///
+        /// Parameter `width`: The tensor width
+        ///
+        /// Parameter `height`: The tensor height
+        ///
+        /// Parameter `featureChannels`: The number of feature channels
+        ///
+        /// Parameter `batchSize`: The batch size
+        ///
+        /// Returns: A new MLCTensorDescriptor object or nil if failure.
+        ///
+        /// This method is provided as an easy to use API to create [NCHW] tensors used by convolutional layers.
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithWidth:height:featureChannelCount:batchSize:)]
         pub unsafe fn descriptorWithWidth_height_featureChannelCount_batchSize(
@@ -97,6 +144,21 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensorDescriptor object
+        ///
+        /// Parameter `width`: The tensor width
+        ///
+        /// Parameter `height`: The tensor height
+        ///
+        /// Parameter `featureChannelCount`: The number of feature channels
+        ///
+        /// Parameter `batchSize`: The batch size
+        ///
+        /// Parameter `dataType`: The tensor data type
+        ///
+        /// Returns: A new MLCTensorDescriptor object or nil if failure.
+        ///
+        /// This method is provided as an easy to use API to create [NCHW] tensors used by convolutional layers.
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithWidth:height:featureChannelCount:batchSize:dataType:)]
         pub unsafe fn descriptorWithWidth_height_featureChannelCount_batchSize_dataType(
@@ -108,6 +170,21 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensorDescriptor object
+        ///
+        /// Parameter `width`: The tensor width
+        ///
+        /// Parameter `height`: The tensor height
+        ///
+        /// Parameter `inputFeatureChannelCount`: The number of input feature channels
+        ///
+        /// Parameter `outputFeatureChannelCount`: The number of output feature channels
+        ///
+        /// Parameter `dataType`: The tensor data type
+        ///
+        /// Returns: A new MLCTensorDescriptor object or nil if failure.
+        ///
+        /// This method is provided as an easy to use API to create a weight tensor.
         #[deprecated]
         #[method_id(@__retain_semantics Other convolutionWeightsDescriptorWithWidth:height:inputFeatureChannelCount:outputFeatureChannelCount:dataType:)]
         pub unsafe fn convolutionWeightsDescriptorWithWidth_height_inputFeatureChannelCount_outputFeatureChannelCount_dataType(
@@ -119,6 +196,17 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensorDescriptor object
+        ///
+        /// Parameter `inputFeatureChannelCount`: The number of input feature channels
+        ///
+        /// Parameter `outputFeatureChannelCount`: The number of output feature channels
+        ///
+        /// Parameter `dataType`: The tensor data type
+        ///
+        /// Returns: A new MLCTensorDescriptor object or nil if failure.
+        ///
+        /// This method is provided as an easy to use API to create a weight tensor for a kernel of size 1.
         #[deprecated]
         #[method_id(@__retain_semantics Other convolutionWeightsDescriptorWithInputFeatureChannelCount:outputFeatureChannelCount:dataType:)]
         pub unsafe fn convolutionWeightsDescriptorWithInputFeatureChannelCount_outputFeatureChannelCount_dataType(
@@ -128,6 +216,15 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensorDescriptor object
+        ///
+        /// Parameter `featureChannelCount`: The number of input feature channels
+        ///
+        /// Parameter `dataType`: The tensor data type
+        ///
+        /// Returns: A new MLCTensorDescriptor object or nil if failure.
+        ///
+        /// This method is provided as an easy to use API to create a bias tensor.
         #[deprecated]
         #[method_id(@__retain_semantics Other convolutionBiasesDescriptorWithFeatureChannelCount:dataType:)]
         pub unsafe fn convolutionBiasesDescriptorWithFeatureChannelCount_dataType(

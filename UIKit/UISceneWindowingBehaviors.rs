@@ -27,12 +27,14 @@ extern_methods!(
         #[method(isClosable)]
         pub unsafe fn isClosable(&self) -> bool;
 
+        /// Setter for [`isClosable`][Self::isClosable].
         #[method(setClosable:)]
         pub unsafe fn setClosable(&self, closable: bool);
 
         #[method(isMiniaturizable)]
         pub unsafe fn isMiniaturizable(&self) -> bool;
 
+        /// Setter for [`isMiniaturizable`][Self::isMiniaturizable].
         #[method(setMiniaturizable:)]
         pub unsafe fn setMiniaturizable(&self, miniaturizable: bool);
     }

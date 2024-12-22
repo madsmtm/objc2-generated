@@ -39,12 +39,14 @@ extern_methods!(
         #[method(levelsOfDetail)]
         pub unsafe fn levelsOfDetail(&self) -> usize;
 
+        /// Setter for [`levelsOfDetail`][Self::levelsOfDetail].
         #[method(setLevelsOfDetail:)]
         pub unsafe fn setLevelsOfDetail(&self, levels_of_detail: usize);
 
         #[method(levelsOfDetailBias)]
         pub unsafe fn levelsOfDetailBias(&self) -> usize;
 
+        /// Setter for [`levelsOfDetailBias`][Self::levelsOfDetailBias].
         #[method(setLevelsOfDetailBias:)]
         pub unsafe fn setLevelsOfDetailBias(&self, levels_of_detail_bias: usize);
 
@@ -53,6 +55,7 @@ extern_methods!(
         pub unsafe fn tileSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`tileSize`][Self::tileSize].
         #[method(setTileSize:)]
         pub unsafe fn setTileSize(&self, tile_size: CGSize);
     }
@@ -62,6 +65,7 @@ extern_methods!(
     /// Methods declared on superclass `CALayer`
     #[cfg(feature = "CALayer")]
     unsafe impl CATiledLayer {
+        /// Layer creation and initialization. *
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 

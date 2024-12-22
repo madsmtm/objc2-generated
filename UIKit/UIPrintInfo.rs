@@ -107,30 +107,35 @@ extern_methods!(
         #[method_id(@__retain_semantics Other printerID)]
         pub unsafe fn printerID(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`printerID`][Self::printerID].
         #[method(setPrinterID:)]
         pub unsafe fn setPrinterID(&self, printer_id: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other jobName)]
         pub unsafe fn jobName(&self) -> Retained<NSString>;
 
+        /// Setter for [`jobName`][Self::jobName].
         #[method(setJobName:)]
         pub unsafe fn setJobName(&self, job_name: &NSString);
 
         #[method(outputType)]
         pub unsafe fn outputType(&self) -> UIPrintInfoOutputType;
 
+        /// Setter for [`outputType`][Self::outputType].
         #[method(setOutputType:)]
         pub unsafe fn setOutputType(&self, output_type: UIPrintInfoOutputType);
 
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> UIPrintInfoOrientation;
 
+        /// Setter for [`orientation`][Self::orientation].
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: UIPrintInfoOrientation);
 
         #[method(duplex)]
         pub unsafe fn duplex(&self) -> UIPrintInfoDuplex;
 
+        /// Setter for [`duplex`][Self::duplex].
         #[method(setDuplex:)]
         pub unsafe fn setDuplex(&self, duplex: UIPrintInfoDuplex);
 

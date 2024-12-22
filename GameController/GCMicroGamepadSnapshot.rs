@@ -8,7 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshot?language=objc)
+    /// A GCMicroGamepadSnapshot snapshot is a concrete GCMicroGamepad implementation. It can be used directly in an
+    /// application to implement controller input replays. It is also returned as the result of polling
+    /// a controller.
+    ///
+    /// The current snapshotData is readily available to access as NSData. A developer can serialize this to any
+    /// destination necessary using the NSData API.
+    ///
+    /// The data contains some version of a GCMicroGamepadSnapShotData structure.
+    ///
+    ///
+    /// See: -[GCMicroGamepad saveSnapshot]
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshot?language=objc)
     #[unsafe(super(GCMicroGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
@@ -26,6 +38,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other snapshotData)]
         pub unsafe fn snapshotData(&self) -> Retained<NSData>;
 
+        /// Setter for [`snapshotData`][Self::snapshotData].
         #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
         #[method(setSnapshotData:)]
         pub unsafe fn setSnapshotData(&self, snapshot_data: &NSData);
@@ -111,6 +124,10 @@ unsafe impl RefEncode for GCMicroGamepadSnapshotData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Fills out a snapshot from any compatible NSData source
+///
+///
+/// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
 #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn GCMicroGamepadSnapshotDataFromNSData(
@@ -126,6 +143,11 @@ pub unsafe extern "C-unwind" fn GCMicroGamepadSnapshotDataFromNSData(
     unsafe { GCMicroGamepadSnapshotDataFromNSData(snapshot_data, data) }.as_bool()
 }
 
+/// Creates an NSData object from a snapshot.
+/// If the version and size is not set in the snapshot the data will automatically have version GCCurrentMicroGamepadSnapshotDataVersion and sizeof(GCMicroGamepadSnapshotData) set as the values implicitly.
+///
+///
+/// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCGamepadSnapshot.snapshotData
 #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapshotData(
@@ -170,6 +192,10 @@ unsafe impl RefEncode for GCMicroGamepadSnapShotDataV100 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Fills out a v100 snapshot from any compatible NSData source
+///
+///
+/// Returns: NO if data is nil, snapshotData is nil or the contents of data does not contain a compatible snapshot. YES for all other cases.
 #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn GCMicroGamepadSnapShotDataV100FromNSData(
@@ -185,6 +211,11 @@ pub unsafe extern "C-unwind" fn GCMicroGamepadSnapShotDataV100FromNSData(
     unsafe { GCMicroGamepadSnapShotDataV100FromNSData(snapshot_data, data) }.as_bool()
 }
 
+/// Creates an NSData object from a v100 snapshot.
+/// If the version and size is not set in the snapshot the data will automatically have version 0x100 and sizeof(GCMicroGamepadSnapShotDataV100) set as the values implicitly.
+///
+///
+/// Returns: nil if the snapshot is NULL, otherwise an NSData instance compatible with GCGamepadSnapshot.snapshotData
 #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapShotDataV100(

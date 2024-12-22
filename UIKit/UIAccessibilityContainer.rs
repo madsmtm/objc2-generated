@@ -31,6 +31,7 @@ extern_category!(
         #[method_id(@__retain_semantics Other accessibilityElements)]
         unsafe fn accessibilityElements(&self, mtm: MainThreadMarker) -> Option<Retained<NSArray>>;
 
+        /// Setter for [`accessibilityElements`][Self::accessibilityElements].
         #[method(setAccessibilityElements:)]
         unsafe fn setAccessibilityElements(
             &self,
@@ -46,6 +47,7 @@ extern_category!(
         ) -> UIAccessibilityContainerType;
 
         #[cfg(feature = "UIAccessibilityConstants")]
+        /// Setter for [`accessibilityContainerType`][Self::accessibilityContainerType].
         #[method(setAccessibilityContainerType:)]
         unsafe fn setAccessibilityContainerType(
             &self,
@@ -56,6 +58,7 @@ extern_category!(
         #[method_id(@__retain_semantics Other automationElements)]
         unsafe fn automationElements(&self, mtm: MainThreadMarker) -> Option<Retained<NSArray>>;
 
+        /// Setter for [`automationElements`][Self::automationElements].
         #[method(setAutomationElements:)]
         unsafe fn setAutomationElements(
             &self,

@@ -4,7 +4,23 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype?language=objc)
+/// The types of items that AVPlayerViewController analyzes in a paused video frame.
+///
+///
+/// Defines no items to be analyzed by the analyzer.
+///
+/// Defines the default set of analysis types.
+///
+///
+/// Text that appears in a paused video frame.
+///
+/// Subject that the user can copy out of frame.
+///
+/// Objects, landmarks, art, etc. recognized visually in a paused video frame.
+///
+/// Machine-readable codes, such as QR codes, that appear in a paused video frame.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

@@ -87,24 +87,28 @@ extern_methods!(
         pub unsafe fn sliderType(&self) -> NSSliderType;
 
         #[cfg(feature = "NSSliderCell")]
+        /// Setter for [`sliderType`][Self::sliderType].
         #[method(setSliderType:)]
         pub unsafe fn setSliderType(&self, slider_type: NSSliderType);
 
         #[method(minValue)]
         pub unsafe fn minValue(&self) -> c_double;
 
+        /// Setter for [`minValue`][Self::minValue].
         #[method(setMinValue:)]
         pub unsafe fn setMinValue(&self, min_value: c_double);
 
         #[method(maxValue)]
         pub unsafe fn maxValue(&self) -> c_double;
 
+        /// Setter for [`maxValue`][Self::maxValue].
         #[method(setMaxValue:)]
         pub unsafe fn setMaxValue(&self, max_value: c_double);
 
         #[method(altIncrementValue)]
         pub unsafe fn altIncrementValue(&self) -> c_double;
 
+        /// Setter for [`altIncrementValue`][Self::altIncrementValue].
         #[method(setAltIncrementValue:)]
         pub unsafe fn setAltIncrementValue(&self, alt_increment_value: c_double);
 
@@ -116,6 +120,7 @@ extern_methods!(
         #[method(acceptsFirstMouse:)]
         pub unsafe fn acceptsFirstMouse(&self, event: Option<&NSEvent>) -> bool;
 
+        /// Setter for [`isVertical`][Self::isVertical].
         #[method(setVertical:)]
         pub unsafe fn setVertical(&self, vertical: bool);
 
@@ -124,6 +129,7 @@ extern_methods!(
         pub unsafe fn trackFillColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`trackFillColor`][Self::trackFillColor].
         #[method(setTrackFillColor:)]
         pub unsafe fn setTrackFillColor(&self, track_fill_color: Option<&NSColor>);
     }
@@ -176,6 +182,7 @@ extern_methods!(
         #[method(numberOfTickMarks)]
         pub unsafe fn numberOfTickMarks(&self) -> NSInteger;
 
+        /// Setter for [`numberOfTickMarks`][Self::numberOfTickMarks].
         #[method(setNumberOfTickMarks:)]
         pub unsafe fn setNumberOfTickMarks(&self, number_of_tick_marks: NSInteger);
 
@@ -184,12 +191,14 @@ extern_methods!(
         pub unsafe fn tickMarkPosition(&self) -> NSTickMarkPosition;
 
         #[cfg(feature = "NSSliderCell")]
+        /// Setter for [`tickMarkPosition`][Self::tickMarkPosition].
         #[method(setTickMarkPosition:)]
         pub unsafe fn setTickMarkPosition(&self, tick_mark_position: NSTickMarkPosition);
 
         #[method(allowsTickMarkValuesOnly)]
         pub unsafe fn allowsTickMarkValuesOnly(&self) -> bool;
 
+        /// Setter for [`allowsTickMarkValuesOnly`][Self::allowsTickMarkValuesOnly].
         #[method(setAllowsTickMarkValuesOnly:)]
         pub unsafe fn setAllowsTickMarkValuesOnly(&self, allows_tick_mark_values_only: bool);
 
@@ -213,6 +222,13 @@ extern_methods!(
     /// NSSliderConvenience
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSlider {
+        /// Creates a continuous horizontal slider over the range 0.0 to 1.0. The default value is 0.0.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized slider control.
         #[method_id(@__retain_semantics Other sliderWithTarget:action:)]
         pub unsafe fn sliderWithTarget_action(
             target: Option<&AnyObject>,
@@ -220,6 +236,19 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Creates a continuous horizontal slider that represents values over a specified range.
+        ///
+        /// Parameter `value`: The initial value displayed by the control.
+        ///
+        /// Parameter `minValue`: The minimum value represented by the control.
+        ///
+        /// Parameter `maxValue`: The maximum value represented by the control.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized slider control.
         #[method_id(@__retain_semantics Other sliderWithValue:minValue:maxValue:target:action:)]
         pub unsafe fn sliderWithValue_minValue_maxValue_target_action(
             value: c_double,

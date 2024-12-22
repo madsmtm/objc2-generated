@@ -30,6 +30,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn SKPaymentQueueDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "No longer supported"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(

@@ -27,15 +27,34 @@ unsafe impl NSObjectProtocol for HKQuantitySeriesSampleQuery {}
 extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKQuantitySeriesSampleQuery {
+        /// Include owning HKQuantitySample in quantityHandler handler.
+        ///
+        /// Default value is NO.
+        /// If includeSample is set then the quantitySample parameter of quantityHandler will
+        /// be non-nil anytime the quantity parameter is non-nil.
+        /// Specifying this option has a performance cost.
+        /// This property may not be modified once the query has been executed.
         #[method(includeSample)]
         pub unsafe fn includeSample(&self) -> bool;
 
+        /// Setter for [`includeSample`][Self::includeSample].
         #[method(setIncludeSample:)]
         pub unsafe fn setIncludeSample(&self, include_sample: bool);
 
+        /// Order enumerated results first by quantitySample.startDate,
+        /// then by the quantity's dateInterval.startDate.
+        ///
+        /// Default value is NO.
+        /// All quantities owned by a given quantitySample will be
+        /// enumerated before any quantities owned by any other quantity sample,
+        /// and the quantity samples will be enumerated in their startDate order.
+        /// Note that individual quantities may not be returned in their
+        /// dateInterval.startDate order if more than one quantitySample overlap in time.
+        /// This property may not be modified once the query has been executed.
         #[method(orderByQuantitySampleStartDate)]
         pub unsafe fn orderByQuantitySampleStartDate(&self) -> bool;
 
+        /// Setter for [`orderByQuantitySampleStartDate`][Self::orderByQuantitySampleStartDate].
         #[method(setOrderByQuantitySampleStartDate:)]
         pub unsafe fn setOrderByQuantitySampleStartDate(
             &self,
@@ -50,6 +69,28 @@ extern_methods!(
             feature = "HKSample",
             feature = "block2"
         ))]
+        /// Returns a query that will retrieve HKQuantity objects for samples of a specified
+        /// type that match the specified predicate.
+        ///
+        ///
+        /// Parameter `quantityType`: The type of HKQuantitySample to retrieve.
+        ///
+        /// Parameter `predicate`: The predicate which the query results should match.
+        /// To query for the quantities for a specific quantity sample
+        /// see: +[HKPredicates predicateForObjectWithUUID:]
+        ///
+        ///
+        /// Parameter `quantityHandler`: The block to invoke with results from the query. It will be
+        /// called repeatedly with HKQuantity, and NSDateInterval objects in
+        /// ascending dateInterval.startDate order, until all quantities are
+        /// returned and the done parameter is YES
+        /// or -[HKHealthStore stopQuery:] is called.
+        /// The quantitySample parameter is nil unless includeSample is YES,
+        /// in which case it will be the quantitySample which owns the current
+        /// quantity anytime the quantity paramater is non-nil.
+        /// The stopQuery call can be made within the quantityHandler block.
+        /// Once done is YES, or stopQuery has been called, the query is
+        /// complete and no more calls to quantityHandler will be made.
         #[method_id(@__retain_semantics Init initWithQuantityType:predicate:quantityHandler:)]
         pub unsafe fn initWithQuantityType_predicate_quantityHandler(
             this: Allocated<Self>,

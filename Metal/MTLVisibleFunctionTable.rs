@@ -24,12 +24,15 @@ unsafe impl NSObjectProtocol for MTLVisibleFunctionTableDescriptor {}
 
 extern_methods!(
     unsafe impl MTLVisibleFunctionTableDescriptor {
+        /// Create an autoreleased visible function table descriptor
         #[method_id(@__retain_semantics Other visibleFunctionTableDescriptor)]
         pub unsafe fn visibleFunctionTableDescriptor() -> Retained<MTLVisibleFunctionTableDescriptor>;
 
+        /// The number of functions in the table.
         #[method(functionCount)]
         pub unsafe fn functionCount(&self) -> NSUInteger;
 
+        /// Setter for [`functionCount`][Self::functionCount].
         #[method(setFunctionCount:)]
         pub unsafe fn setFunctionCount(&self, function_count: NSUInteger);
     }
@@ -51,6 +54,7 @@ extern_protocol!(
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLVisibleFunctionTable: MTLResource {
         #[cfg(feature = "MTLTypes")]
+        /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 

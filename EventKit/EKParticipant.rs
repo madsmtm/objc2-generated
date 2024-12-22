@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipant?language=objc)
+    /// Abstract class representing a participant attached to an event.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipant?language=objc)
     #[unsafe(super(EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "EKObject")]
@@ -28,27 +30,45 @@ unsafe impl NSObjectProtocol for EKParticipant {}
 extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKParticipant {
+        /// URL representing this participant.
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
+        /// Name of this participant.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "EKTypes")]
+        /// The status of the attendee.
+        ///
+        /// Returns the status of the attendee as a EKParticipantStatus value.
         #[method(participantStatus)]
         pub unsafe fn participantStatus(&self) -> EKParticipantStatus;
 
         #[cfg(feature = "EKTypes")]
+        /// The role of the attendee.
+        ///
+        /// Returns the role of the attendee as a EKParticipantRole value.
         #[method(participantRole)]
         pub unsafe fn participantRole(&self) -> EKParticipantRole;
 
         #[cfg(feature = "EKTypes")]
+        /// The type of the attendee.
+        ///
+        /// Returns the type of the attendee as a EKParticipantType value.
         #[method(participantType)]
         pub unsafe fn participantType(&self) -> EKParticipantType;
 
+        /// A boolean indicating whether this participant represents the
+        /// owner of this account.
         #[method(isCurrentUser)]
         pub unsafe fn isCurrentUser(&self) -> bool;
 
+        /// Returns a predicate to use with Contacts.framework to retrieve the corresponding
+        /// CNContact instance.
+        ///
+        /// This method returns a predicate that can be used with a CNContactStore to fetch
+        /// a CNContact instance for this participant, if one exists.
         #[method_id(@__retain_semantics Other contactPredicate)]
         pub unsafe fn contactPredicate(&self) -> Retained<NSPredicate>;
     }

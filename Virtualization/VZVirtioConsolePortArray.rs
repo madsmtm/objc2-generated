@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleportarray?language=objc)
+    /// Virtio Console Port Array
+    ///
+    /// This array stores a collection of ports configured for use by a VZVirtioConsoleDevice. VZVirtioConsolePort objects may be retrieved by index.
+    ///
+    /// See: VZVirtioConsoleDevice
+    ///
+    /// See: VZVirtioConsolePort
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleportarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioConsolePortArray;
@@ -23,12 +31,14 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtioConsolePort")]
+        /// Get a port at the specified index.
         #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             port_index: NSUInteger,
         ) -> Option<Retained<VZVirtioConsolePort>>;
 
+        /// The maximum number of ports allocated by this device.
         #[method(maximumPortCount)]
         pub unsafe fn maximumPortCount(&self) -> u32;
     }

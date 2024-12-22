@@ -5,15 +5,21 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifferencecalculationoptions?language=objc)
+/// Options supported by methods that produce difference objects.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifferencecalculationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSOrderedCollectionDifferenceCalculationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSOrderedCollectionDifferenceCalculationOptions: NSUInteger {
+/// Insertion changes do not store a reference to the inserted object.
         const NSOrderedCollectionDifferenceCalculationOmitInsertedObjects = 1<<0;
+/// Insertion changes do not store a reference to the removed object.
         const NSOrderedCollectionDifferenceCalculationOmitRemovedObjects = 1<<1;
+/// Assume objects that were uniquely removed and inserted were moved.
+/// This is useful when diffing based on identity instead of equality.
         const NSOrderedCollectionDifferenceCalculationInferMoves = 1<<2;
     }
 }
@@ -41,6 +47,18 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedCollectionDifferen
 extern_methods!(
     unsafe impl<ObjectType: Message> NSOrderedCollectionDifference<ObjectType> {
         #[cfg(all(feature = "NSArray", feature = "NSOrderedCollectionChange"))]
+        /// Creates a new difference representing the changes in the parameter.
+        ///
+        /// For clients interested in the difference between two collections, the
+        /// collection's differenceFrom method should be used instead.
+        ///
+        /// To guarantee that instances are unambiguous and safe for compatible base
+        /// states, this method requires that its parameter conform to the following
+        /// requirements:
+        ///
+        /// 1) All insertion offsets are unique
+        /// 2) All removal offsets are unique
+        /// 3) All associated indexes match a change with the opposite parity.
         #[method_id(@__retain_semantics Init initWithChanges:)]
         pub unsafe fn initWithChanges(
             this: Allocated<Self>,

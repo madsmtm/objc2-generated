@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplaybackspeed?language=objc)
+    /// Class used to define a user selectable playback speed in a playback UI.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplaybackspeed?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlaybackSpeed;
@@ -24,9 +26,15 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// A list of playback speeds to be used by default across the system.
         #[method_id(@__retain_semantics Other systemDefaultSpeeds)]
         pub unsafe fn systemDefaultSpeeds() -> Retained<NSArray<AVPlaybackSpeed>>;
 
+        /// Parameter `rate`: The rate to be used when this playback speed is selected.
+        ///
+        /// Parameter `localizedName`: A localized name to be displayed representing this playback speed in a UI.
+        ///
+        /// Initializes an AVPlaybackSpeed.
         #[method_id(@__retain_semantics Init initWithRate:localizedName:)]
         pub unsafe fn initWithRate_localizedName(
             this: Allocated<Self>,
@@ -34,12 +42,19 @@ extern_methods!(
             localized_name: &NSString,
         ) -> Retained<Self>;
 
+        /// The rate associated with this object. When this playback speed is selected this rate will be set in response to the play button being pressed.
         #[method(rate)]
         pub unsafe fn rate(&self) -> c_float;
 
+        /// A localized name for this playback speed.
+        ///
+        /// This name will be used to represent this playback speed in playback UIs where more space is available.
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
+        /// A localized name for this playback speed used when space is limited.
+        ///
+        /// This name will be used to represent this playback speed in playback UIs where limited space is available.
         #[method_id(@__retain_semantics Other localizedNumericName)]
         pub unsafe fn localizedNumericName(&self) -> Retained<NSString>;
     }

@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapersistedright?language=objc)
+    /// A type of right that, when authorized, grants access to a key and secret
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapersistedright?language=objc)
     #[unsafe(super(LARight, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "LARight")]
@@ -20,16 +22,26 @@ extern_methods!(
     #[cfg(feature = "LARight")]
     unsafe impl LAPersistedRight {
         #[cfg(feature = "LAPrivateKey")]
+        /// Managed private key
         #[method_id(@__retain_semantics Other key)]
         pub unsafe fn key(&self) -> Retained<LAPrivateKey>;
 
         #[cfg(feature = "LASecret")]
+        /// Generic secret
+        ///
+        /// This is the generic secret that would have been stored along with the right
         #[method_id(@__retain_semantics Other secret)]
         pub unsafe fn secret(&self) -> Retained<LASecret>;
 
+        /// Clients cannot create
+        /// `LAPersistedRight`instances directly. They can only obtain them from the
+        /// `LARightStore`.
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Clients cannot create
+        /// `LAPersistedRight`instances directly. They can only obtain them from the
+        /// `LARightStore`.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -40,6 +52,12 @@ extern_methods!(
     #[cfg(feature = "LARight")]
     unsafe impl LAPersistedRight {
         #[cfg(feature = "LARequirement")]
+        /// Constructs a right that will be granted only when the given
+        /// `LAAuthenticationRequirement`is statisfied.
+        ///
+        /// Parameter `requirement`: Requirement that needs to be satisfied to authorize the right
+        ///
+        /// Returns: `LARight`instance
         #[method_id(@__retain_semantics Init initWithRequirement:)]
         pub unsafe fn initWithRequirement(
             this: Allocated<Self>,

@@ -25,10 +25,14 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// When initializing with a url, UIKit will automatically lookup metadata based on the data at that url.
         #[method_id(@__retain_semantics Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(all(feature = "UIDragItem", feature = "UIDragSession", feature = "block2"))]
+        /// To support drag
+        /// &
+        /// drop, assign a closure to return an array of drag items corresponding to the represented document.
         #[method(dragItemsProvider)]
         pub unsafe fn dragItemsProvider(
             &self,
@@ -37,6 +41,7 @@ extern_methods!(
         >;
 
         #[cfg(all(feature = "UIDragItem", feature = "UIDragSession", feature = "block2"))]
+        /// Setter for [`dragItemsProvider`][Self::dragItemsProvider].
         #[method(setDragItemsProvider:)]
         pub unsafe fn setDragItemsProvider(
             &self,
@@ -55,6 +60,7 @@ extern_methods!(
             feature = "UIViewController",
             feature = "block2"
         ))]
+        /// To support sharing, assign a closure to return a UIActivityViewController configured to share the represented document.
         #[method(activityViewControllerProvider)]
         pub unsafe fn activityViewControllerProvider(
             &self,
@@ -66,6 +72,7 @@ extern_methods!(
             feature = "UIViewController",
             feature = "block2"
         ))]
+        /// Setter for [`activityViewControllerProvider`][Self::activityViewControllerProvider].
         #[method(setActivityViewControllerProvider:)]
         pub unsafe fn setActivityViewControllerProvider(
             &self,
@@ -74,9 +81,11 @@ extern_methods!(
             >,
         );
 
+        /// If enabled, shows an icon representation of the document in the navigation bar.
         #[method(wantsIconRepresentation)]
         pub unsafe fn wantsIconRepresentation(&self) -> bool;
 
+        /// Setter for [`wantsIconRepresentation`][Self::wantsIconRepresentation].
         #[method(setWantsIconRepresentation:)]
         pub unsafe fn setWantsIconRepresentation(&self, wants_icon_representation: bool);
     }

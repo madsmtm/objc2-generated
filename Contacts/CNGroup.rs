@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cngroup?language=objc)
+    /// An immutable value object representing a group.
+    ///
+    ///
+    /// CNGroup is thread safe.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cngroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNGroup;
@@ -34,6 +39,7 @@ unsafe impl NSSecureCoding for CNGroup {}
 
 extern_methods!(
     unsafe impl CNGroup {
+        /// The identifier is unique among groups on the device. It can be saved and used for fetching groups next application launch.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 

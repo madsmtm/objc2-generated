@@ -34,6 +34,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSSpeechRecognizerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -43,24 +44,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Other commands)]
         pub unsafe fn commands(&self) -> Option<Retained<NSArray<NSString>>>;
 
+        /// Setter for [`commands`][Self::commands].
         #[method(setCommands:)]
         pub unsafe fn setCommands(&self, commands: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other displayedCommandsTitle)]
         pub unsafe fn displayedCommandsTitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`displayedCommandsTitle`][Self::displayedCommandsTitle].
         #[method(setDisplayedCommandsTitle:)]
         pub unsafe fn setDisplayedCommandsTitle(&self, displayed_commands_title: Option<&NSString>);
 
         #[method(listensInForegroundOnly)]
         pub unsafe fn listensInForegroundOnly(&self) -> bool;
 
+        /// Setter for [`listensInForegroundOnly`][Self::listensInForegroundOnly].
         #[method(setListensInForegroundOnly:)]
         pub unsafe fn setListensInForegroundOnly(&self, listens_in_foreground_only: bool);
 
         #[method(blocksOtherRecognizers)]
         pub unsafe fn blocksOtherRecognizers(&self) -> bool;
 
+        /// Setter for [`blocksOtherRecognizers`][Self::blocksOtherRecognizers].
         #[method(setBlocksOtherRecognizers:)]
         pub unsafe fn setBlocksOtherRecognizers(&self, blocks_other_recognizers: bool);
     }

@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackobjectrequest?language=objc)
+    /// VNTrackObjectRequest tracks an object in a sequence of images.
+    ///
+    /// The VNTrackObjectRequest is a general purpose object tracker. This tracker is used when the tracked entity does not have a special tracker, like VNTrackRectangleRequest. The VNTrackObjectRequest is initialized with VNDetectedObjectObservation that contains bounding box for the object of interest. This tracker is processed using one of the [VNSequenceRequestHandler performRequests:...] methods.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackobjectrequest?language=objc)
     #[unsafe(super(VNTrackingRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
@@ -30,6 +34,10 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
     unsafe impl VNTrackObjectRequest {
         #[cfg(feature = "VNObservation")]
+        /// Create a new request with detected object observation.
+        ///
+        ///
+        /// Parameter `observation`: Detected object observation with bounding box info.
         #[method_id(@__retain_semantics Init initWithDetectedObjectObservation:)]
         pub unsafe fn initWithDetectedObjectObservation(
             this: Allocated<Self>,
@@ -37,6 +45,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNObservation", feature = "block2"))]
+        /// Create a new request with detected object observation.
+        ///
+        ///
+        /// Parameter `observation`: Detected object observation with bounding box info.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
         #[method_id(@__retain_semantics Init initWithDetectedObjectObservation:completionHandler:)]
         pub unsafe fn initWithDetectedObjectObservation_completionHandler(
             this: Allocated<Self>,

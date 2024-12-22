@@ -6,12 +6,15 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdevicetype?language=objc)
+/// The device type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdevicetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphDeviceType(pub u32);
 impl MPSGraphDeviceType {
+    /// Device of type Metal
     #[doc(alias = "MPSGraphDeviceTypeMetal")]
     pub const Metal: Self = Self(0);
 }
@@ -25,7 +28,9 @@ unsafe impl RefEncode for MPSGraphDeviceType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdevice?language=objc)
+    /// A class that describes the compute device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdevice?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -38,12 +43,19 @@ unsafe impl NSObjectProtocol for MPSGraphDevice {}
 extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphDevice {
+        /// Device of the MPSGraphDevice.
         #[method(type)]
         pub unsafe fn r#type(&self) -> MPSGraphDeviceType;
 
+        /// If device type is Metal then returns the corresponding MTLDevice else nil.
         #[method_id(@__retain_semantics Other metalDevice)]
         pub unsafe fn metalDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
+        /// Creates a device from a given Metal device.
+        ///
+        /// - Parameters:
+        /// - metalDevice: `MTLDevice` to create an MPSGraphDevice from.
+        /// - Returns: A valid device.
         #[method_id(@__retain_semantics Other deviceWithMTLDevice:)]
         pub unsafe fn deviceWithMTLDevice(
             metal_device: &ProtocolObject<dyn MTLDevice>,

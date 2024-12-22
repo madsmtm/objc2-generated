@@ -28,6 +28,15 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "SCStream", feature = "block2", feature = "objc2-core-media"))]
+        /// captureSampleBufferWithFilter:configuration:completionHandler:
+        ///
+        /// Parameter `contentFilter`: is the filter containing the content to take a screenshot of
+        ///
+        /// Parameter `config`: is the stream configuration containing information on how to format the screenshot
+        ///
+        /// Parameter `completionHandler`: is the handler that will deliver the screenshot to the user
+        ///
+        /// this method takes a screenshot using the filter and configuration passed in and returns it as a CMSampleBuffer
         #[method(captureSampleBufferWithFilter:configuration:completionHandler:)]
         pub unsafe fn captureSampleBufferWithFilter_configuration_completionHandler(
             content_filter: &SCContentFilter,
@@ -40,6 +49,15 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-graphics"
         ))]
+        /// captureImageWithFilter:configuration:completionHandler:
+        ///
+        /// Parameter `contentFilter`: is the filter containing the content to take a screenshot of
+        ///
+        /// Parameter `config`: is the stream configuration containing information on how to format the screenshot
+        ///
+        /// Parameter `completionHandler`: is the handler that will deliver the screenshot to the user
+        ///
+        /// this method takes a screenshot using the filter and configuration passed in and returns it as a CGImage in BGRA format if captureDynamicRange is SCCaptureDynamicRangeSDR, in RGhA format if captureDynamicRange is SCCaptureDynamicRangeHDRLocalDisplay/SCCaptureDynamicRangeHDRCanonicalDisplay
         #[method(captureImageWithFilter:configuration:completionHandler:)]
         pub unsafe fn captureImageWithFilter_configuration_completionHandler(
             content_filter: &SCContentFilter,
@@ -52,6 +70,13 @@ extern_methods!(
             feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
+        /// captureImageInRect:completionHandler:
+        ///
+        /// Parameter `rect`: the rect for the region in points on the screen space for the screen shot, this is display agnostic and supports multiple displays
+        ///
+        /// Parameter `completionHandler`: is the handler that will deliver the screenshot to the client
+        ///
+        /// this method returns an image containing the contents of the rectangle in points, specified in display space
         #[method(captureImageInRect:completionHandler:)]
         pub unsafe fn captureImageInRect_completionHandler(
             rect: CGRect,

@@ -62,6 +62,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Retained<NSString>;
 
+        /// Setter for [`data`][Self::data].
         #[deprecated]
         #[method(setData:)]
         pub unsafe fn setData(&self, data: Option<&NSString>);

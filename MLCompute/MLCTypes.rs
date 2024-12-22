@@ -7,12 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgraphcompletionhandler?language=objc)
+/// A callback completion handler you execute when a graph finishes execution.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgraphcompletionhandler?language=objc)
 #[cfg(all(feature = "MLCTensor", feature = "block2"))]
 pub type MLCGraphCompletionHandler =
     *mut block2::Block<dyn Fn(*mut MLCTensor, *mut NSError, NSTimeInterval)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcdatatype?language=objc)
+/// A tensor data type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcdatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -20,20 +24,28 @@ pub struct MLCDataType(pub i32);
 impl MLCDataType {
     #[doc(alias = "MLCDataTypeInvalid")]
     pub const Invalid: Self = Self(0);
+    /// The 32-bit floating-point data type.
     #[doc(alias = "MLCDataTypeFloat32")]
     pub const Float32: Self = Self(1);
+    /// The 16-bit floating-point data type.
     #[doc(alias = "MLCDataTypeFloat16")]
     pub const Float16: Self = Self(3);
+    /// The Boolean data type.
     #[doc(alias = "MLCDataTypeBoolean")]
     pub const Boolean: Self = Self(4);
+    /// The 64-bit integer data type.
     #[doc(alias = "MLCDataTypeInt64")]
     pub const Int64: Self = Self(5);
+    /// The 32-bit integer data type.
     #[doc(alias = "MLCDataTypeInt32")]
     pub const Int32: Self = Self(7);
+    /// The 8-bit integer data type.
     #[doc(alias = "MLCDataTypeInt8")]
     pub const Int8: Self = Self(8);
+    /// The 8-bit unsigned integer data type.
     #[doc(alias = "MLCDataTypeUInt8")]
     pub const UInt8: Self = Self(9);
+    /// The 8-bit unsigned integer data type.
     #[doc(alias = "MLCDataTypeCount")]
     pub const Count: Self = Self(10);
 }
@@ -46,7 +58,9 @@ unsafe impl RefEncode for MLCDataType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcrandominitializertype?language=objc)
+/// An initializer type you use to create a tensor with random data.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcrandominitializertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -54,12 +68,16 @@ pub struct MLCRandomInitializerType(pub i32);
 impl MLCRandomInitializerType {
     #[doc(alias = "MLCRandomInitializerTypeInvalid")]
     pub const Invalid: Self = Self(0);
+    /// The uniform random initializer type.
     #[doc(alias = "MLCRandomInitializerTypeUniform")]
     pub const Uniform: Self = Self(1);
+    /// The glorot uniform random initializer type.
     #[doc(alias = "MLCRandomInitializerTypeGlorotUniform")]
     pub const GlorotUniform: Self = Self(2);
+    /// The Xavier random initializer type.
     #[doc(alias = "MLCRandomInitializerTypeXavier")]
     pub const Xavier: Self = Self(3);
+    /// The Xavier random initializer type.
     #[doc(alias = "MLCRandomInitializerTypeCount")]
     pub const Count: Self = Self(4);
 }
@@ -72,20 +90,34 @@ unsafe impl RefEncode for MLCRandomInitializerType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcdevicetype?language=objc)
+/// A device type for execution of a neural network.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcdevicetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCDeviceType(pub i32);
 impl MLCDeviceType {
+    /// The CPU device
     #[doc(alias = "MLCDeviceTypeCPU")]
     pub const CPU: Self = Self(0);
+    /// The GPU device.
     #[doc(alias = "MLCDeviceTypeGPU")]
     pub const GPU: Self = Self(1);
+    /// The any device type.  When selected, the framework will automatically use the appropriate devices to achieve the best
+    /// performance.
     #[doc(alias = "MLCDeviceTypeAny")]
     pub const Any: Self = Self(2);
+    /// The  Apple Neural Engine device.  When selected, the framework will use the  Neural Engine to execute all layers that can be executed on it.
+    /// Layers that cannot be executed on the ANE will run on the CPU or GPU.   The Neural Engine device must be explicitly selected.  MLDeviceTypeAny
+    /// will not select the Neural Engine device.  In addition, this device can be used with inference graphs only.  This device cannot be used with a
+    /// training graph or an inference graph that shares layers with a training graph.
     #[doc(alias = "MLCDeviceTypeANE")]
     pub const ANE: Self = Self(3);
+    /// The  Apple Neural Engine device.  When selected, the framework will use the  Neural Engine to execute all layers that can be executed on it.
+    /// Layers that cannot be executed on the ANE will run on the CPU or GPU.   The Neural Engine device must be explicitly selected.  MLDeviceTypeAny
+    /// will not select the Neural Engine device.  In addition, this device can be used with inference graphs only.  This device cannot be used with a
+    /// training graph or an inference graph that shares layers with a training graph.
     #[doc(alias = "MLCDeviceTypeCount")]
     pub const Count: Self = Self(4);
 }
@@ -98,21 +130,52 @@ unsafe impl RefEncode for MLCDeviceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgraphcompilationoptions?language=objc)
+/// A bitmask that specifies the options you use when compiling a graph.
+///
+/// This is passed as an argument to the compileWithOptions method avalable on MLCTrainingGraph and MLCInferenceGraph
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgraphcompilationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCGraphCompilationOptions(pub u64);
 bitflags::bitflags! {
     impl MLCGraphCompilationOptions: u64 {
+/// No graph compilation options.
         #[doc(alias = "MLCGraphCompilationOptionsNone")]
         const None = 0x00;
+/// The option to debug layers during graph compilation.
+///
+///
+/// Include this option to disable various optimizations such as layer fusion, and ensure the framework synchronizes
+/// the resulting forward and gradients tensors host memory with device memory, for layers marked as debuggable.
         #[doc(alias = "MLCGraphCompilationOptionsDebugLayers")]
         const DebugLayers = 0x01;
+/// The option to disable layer fusion during graph compilation.
+///
+///
+/// Include this option to disable fusion of layers, which is an important optimization that helps performance and
+/// memory footprint.
         #[doc(alias = "MLCGraphCompilationOptionsDisableLayerFusion")]
         const DisableLayerFusion = 0x02;
+/// The option to link graphs during graph compilation.
+///
+///
+/// Include this option when you link together one or more sub-graphs when executing the forward, gradient, and
+/// optimizer update. For example, if the full computation graph includes a layer that the framework doesn’t support, you’ll
+/// need to create multiple sub-graphs and link them together using
+/// `MLCGraphCompilationOptionsLinkGraphs.`When doing so,
+/// include this option when you call
+/// `-compileWithOptions:`for graphs you want to link together.
         #[doc(alias = "MLCGraphCompilationOptionsLinkGraphs")]
         const LinkGraphs = 0x04;
+/// The option to compute all gradients during graph compilation.
+///
+///
+/// Include this option to compute gradients for layers with or without parameters that only take input tensors.
+/// For example, if the first layer of a graph is a convolution layer, the framework only computes the gradients for weights
+/// and biases associated with the convolution layer, but not the gradients for the input. Include this option if you want to
+/// compute all gradients for the input.
         #[doc(alias = "MLCGraphCompilationOptionsComputeAllGradients")]
         const ComputeAllGradients = 0x08;
     }
@@ -126,7 +189,9 @@ unsafe impl RefEncode for MLCGraphCompilationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcexecutionoptions?language=objc)
+/// A bitmask that specifies the options you’ll use when executing a graph.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcexecutionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -135,14 +200,44 @@ bitflags::bitflags! {
     impl MLCExecutionOptions: u64 {
         #[doc(alias = "MLCExecutionOptionsNone")]
         const None = 0x00;
+/// The option to skip writing input data to device memory.
+///
+///
+/// this option to prevent writing the input tensors to device memory associated with these tensors when the framework
+/// executes the graph.
         #[doc(alias = "MLCExecutionOptionsSkipWritingInputDataToDevice")]
         const SkipWritingInputDataToDevice = 0x01;
+/// The option to execute the graph synchronously.
+///
+///
+/// Include this option to wait until execution of the graph on specified device finishes before returning from the
+/// `execute`method.
         #[doc(alias = "MLCExecutionOptionsSynchronous")]
         const Synchronous = 0x02;
+/// The option to return profiling information in the callback before returning from execution.
+///
+///
+/// Include this option to return profliling information in the graph execute completion handler callback, including
+/// device execution time.
         #[doc(alias = "MLCExecutionOptionsProfiling")]
         const Profiling = 0x04;
+/// The option to execute the forward pass for inference only.
+///
+///
+/// If you include this option and execute a training graph using one of the
+/// `execute`methods, such as
+/// `-executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:`, the framework only
+/// executes the forward pass of the training graph, and it executes that forward pass for inference only.
+///
+/// If you include this option and execute a training graph using one of the executeForward methods, such as
+/// `-executeForwardWithBatchSize:options:completionHandler:),`the framework executes the forward pass for inference only.
         #[doc(alias = "MLCExecutionOptionsForwardForInference")]
         const ForwardForInference = 0x08;
+/// The option to enable additional per layer profiling information currently emitted using signposts.
+///
+///
+/// The option to enable per layer profiling information emitted as signposts. The per layer information
+/// can be visualized using the Logging Instrument in Xcode's Instruments. This information may not be available for all MLCDevice.
         #[doc(alias = "MLCExecutionOptionsPerLayerProfiling")]
         const PerLayerProfiling = 0x10;
     }
@@ -156,72 +251,105 @@ unsafe impl RefEncode for MLCExecutionOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcarithmeticoperation?language=objc)
+/// The list of supported arithmetic operations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcarithmeticoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCArithmeticOperation(pub i32);
 impl MLCArithmeticOperation {
+    /// An operation that calculates the elementwise sum of its two inputs.
     #[doc(alias = "MLCArithmeticOperationAdd")]
     pub const Add: Self = Self(0);
+    /// An operation that calculates the elementwise difference of its two inputs.
     #[doc(alias = "MLCArithmeticOperationSubtract")]
     pub const Subtract: Self = Self(1);
+    /// An operation that calculates the elementwise product of its two inputs.
     #[doc(alias = "MLCArithmeticOperationMultiply")]
     pub const Multiply: Self = Self(2);
+    /// An operation that calculates the elementwise division of its two inputs.
     #[doc(alias = "MLCArithmeticOperationDivide")]
     pub const Divide: Self = Self(3);
+    /// An operation that calculates the elementwise floor of its two inputs.
     #[doc(alias = "MLCArithmeticOperationFloor")]
     pub const Floor: Self = Self(4);
+    /// An operation that calculates the elementwise round of its inputs.
     #[doc(alias = "MLCArithmeticOperationRound")]
     pub const Round: Self = Self(5);
+    /// An operation that calculates the elementwise ceiling of its inputs.
     #[doc(alias = "MLCArithmeticOperationCeil")]
     pub const Ceil: Self = Self(6);
+    /// An operation that calculates the elementwise square root of its inputs.
     #[doc(alias = "MLCArithmeticOperationSqrt")]
     pub const Sqrt: Self = Self(7);
+    /// An operation that calculates the elementwise reciprocal of the square root of its inputs.
     #[doc(alias = "MLCArithmeticOperationRsqrt")]
     pub const Rsqrt: Self = Self(8);
+    /// An operation that calculates the elementwise sine of its inputs.
     #[doc(alias = "MLCArithmeticOperationSin")]
     pub const Sin: Self = Self(9);
+    /// An operation that calculates the elementwise cosine of its inputs.
     #[doc(alias = "MLCArithmeticOperationCos")]
     pub const Cos: Self = Self(10);
+    /// An operation that calculates the elementwise tangent of its inputs.
     #[doc(alias = "MLCArithmeticOperationTan")]
     pub const Tan: Self = Self(11);
+    /// An operation that calculates the elementwise inverse sine of its inputs.
     #[doc(alias = "MLCArithmeticOperationAsin")]
     pub const Asin: Self = Self(12);
+    /// An operation that calculates the elementwise inverse cosine of its inputs.
     #[doc(alias = "MLCArithmeticOperationAcos")]
     pub const Acos: Self = Self(13);
+    /// An operation that calculates the elementwise inverse tangent of its inputs.
     #[doc(alias = "MLCArithmeticOperationAtan")]
     pub const Atan: Self = Self(14);
+    /// An operation that calculates the elementwise hyperbolic sine of its inputs.
     #[doc(alias = "MLCArithmeticOperationSinh")]
     pub const Sinh: Self = Self(15);
+    /// An operation that calculates the elementwise hyperbolic cosine of its inputs.
     #[doc(alias = "MLCArithmeticOperationCosh")]
     pub const Cosh: Self = Self(16);
+    /// An operation that calculates the elementwise hyperbolic tangent of its inputs.
     #[doc(alias = "MLCArithmeticOperationTanh")]
     pub const Tanh: Self = Self(17);
+    /// An operation that calculates the elementwise inverse hyperbolic sine of its inputs.
     #[doc(alias = "MLCArithmeticOperationAsinh")]
     pub const Asinh: Self = Self(18);
+    /// An operation that calculates the elementwise inverse hyperbolic cosine of its inputs.
     #[doc(alias = "MLCArithmeticOperationAcosh")]
     pub const Acosh: Self = Self(19);
+    /// An operation that calculates the elementwise inverse hyperbolic tangent of its inputs.
     #[doc(alias = "MLCArithmeticOperationAtanh")]
     pub const Atanh: Self = Self(20);
+    /// An operation that calculates the elementwise first input raised to the power of its second input.
     #[doc(alias = "MLCArithmeticOperationPow")]
     pub const Pow: Self = Self(21);
+    /// An operation that calculates the elementwise result of e raised to the power of its input.
     #[doc(alias = "MLCArithmeticOperationExp")]
     pub const Exp: Self = Self(22);
+    /// An operation that calculates the elementwise result of 2 raised to the power of its input.
     #[doc(alias = "MLCArithmeticOperationExp2")]
     pub const Exp2: Self = Self(23);
+    /// An operation that calculates the elementwise natural logarithm of its input.
     #[doc(alias = "MLCArithmeticOperationLog")]
     pub const Log: Self = Self(24);
+    /// An operation that calculates the elementwise base 2 logarithm of its input.
     #[doc(alias = "MLCArithmeticOperationLog2")]
     pub const Log2: Self = Self(25);
+    /// An operation that calculates the elementwise product of its two inputs.  Returns 0 if y in x * y is zero, even if x is NaN or INF
     #[doc(alias = "MLCArithmeticOperationMultiplyNoNaN")]
     pub const MultiplyNoNaN: Self = Self(26);
+    /// An operations that calculates the elementwise division of its two inputs.  Returns 0 if the denominator is 0.
     #[doc(alias = "MLCArithmeticOperationDivideNoNaN")]
     pub const DivideNoNaN: Self = Self(27);
+    /// An operation that calculates the elementwise min of two inputs.
     #[doc(alias = "MLCArithmeticOperationMin")]
     pub const Min: Self = Self(28);
+    /// An operations that calculates the elementwise max of two inputs.
     #[doc(alias = "MLCArithmeticOperationMax")]
     pub const Max: Self = Self(29);
+    /// An operations that calculates the elementwise max of two inputs.
     #[doc(alias = "MLCArithmeticOperationCount")]
     pub const Count: Self = Self(30);
 }
@@ -234,30 +362,42 @@ unsafe impl RefEncode for MLCArithmeticOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclosstype?language=objc)
+/// A loss function.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclosstype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCLossType(pub i32);
 impl MLCLossType {
+    /// The mean absolute error loss.
     #[doc(alias = "MLCLossTypeMeanAbsoluteError")]
     pub const MeanAbsoluteError: Self = Self(0);
+    /// The mean squared error loss.
     #[doc(alias = "MLCLossTypeMeanSquaredError")]
     pub const MeanSquaredError: Self = Self(1);
+    /// The softmax cross entropy loss.
     #[doc(alias = "MLCLossTypeSoftmaxCrossEntropy")]
     pub const SoftmaxCrossEntropy: Self = Self(2);
+    /// The sigmoid cross entropy loss.
     #[doc(alias = "MLCLossTypeSigmoidCrossEntropy")]
     pub const SigmoidCrossEntropy: Self = Self(3);
+    /// The categorical cross entropy loss.
     #[doc(alias = "MLCLossTypeCategoricalCrossEntropy")]
     pub const CategoricalCrossEntropy: Self = Self(4);
+    /// The hinge loss.
     #[doc(alias = "MLCLossTypeHinge")]
     pub const Hinge: Self = Self(5);
+    /// The Huber loss.
     #[doc(alias = "MLCLossTypeHuber")]
     pub const Huber: Self = Self(6);
+    /// The cosine distance loss.
     #[doc(alias = "MLCLossTypeCosineDistance")]
     pub const CosineDistance: Self = Self(7);
+    /// The log loss.
     #[doc(alias = "MLCLossTypeLog")]
     pub const Log: Self = Self(8);
+    /// The log loss.
     #[doc(alias = "MLCLossTypeCount")]
     pub const Count: Self = Self(9);
 }
@@ -270,54 +410,216 @@ unsafe impl RefEncode for MLCLossType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcactivationtype?language=objc)
+/// An activation type that you specify for an activation descriptor.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcactivationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCActivationType(pub i32);
 impl MLCActivationType {
+    /// The identity activation type.
     #[doc(alias = "MLCActivationTypeNone")]
     pub const None: Self = Self(0);
+    /// The ReLU activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = x >= 0 ? x : a * x
+    /// ```
     #[doc(alias = "MLCActivationTypeReLU")]
     pub const ReLU: Self = Self(1);
+    /// The linear activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = a * x + b
+    /// ```
     #[doc(alias = "MLCActivationTypeLinear")]
     pub const Linear: Self = Self(2);
+    /// The sigmoid activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = 1 / (1 + e⁻ˣ)
+    /// ```
     #[doc(alias = "MLCActivationTypeSigmoid")]
     pub const Sigmoid: Self = Self(3);
+    /// The hard sigmoid activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = clamp((x * a) + b, 0, 1)
+    /// ```
     #[doc(alias = "MLCActivationTypeHardSigmoid")]
     pub const HardSigmoid: Self = Self(4);
+    /// The hyperbolic tangent (TanH) activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = a * tanh(b * x)
+    /// ```
     #[doc(alias = "MLCActivationTypeTanh")]
     pub const Tanh: Self = Self(5);
+    /// The absolute activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = fabs(x)
+    /// ```
     #[doc(alias = "MLCActivationTypeAbsolute")]
     pub const Absolute: Self = Self(6);
+    /// The parametric soft plus activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = a * log(1 + e^(b * x))
+    /// ```
     #[doc(alias = "MLCActivationTypeSoftPlus")]
     pub const SoftPlus: Self = Self(7);
+    /// The parametric soft sign activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = x / (1 + abs(x))
+    ///   \endcod
+    ///      
+    ///
+    /// ```
     #[doc(alias = "MLCActivationTypeSoftSign")]
     pub const SoftSign: Self = Self(8);
+    /// The parametric ELU activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = x >= 0 ? x : a * (exp(x) - 1)
+    /// ```
     #[doc(alias = "MLCActivationTypeELU")]
     pub const ELU: Self = Self(9);
+    /// The ReLUN activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = min((x >= 0 ? x : a * x), b)
+    /// ```
     #[doc(alias = "MLCActivationTypeReLUN")]
     pub const ReLUN: Self = Self(10);
+    /// The log sigmoid activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = log(1 / (1 + exp(-x)))
+    /// ```
     #[doc(alias = "MLCActivationTypeLogSigmoid")]
     pub const LogSigmoid: Self = Self(11);
+    /// The SELU activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = scale * (max(0, x) + min(0, α * (exp(x) − 1)))
+    /// ```
+    ///
+    /// where:
+    ///
+    /// ```text
+    ///   α = 1.6732632423543772848170429916717
+    ///   scale = 1.0507009873554804934193349852946
+    /// ```
     #[doc(alias = "MLCActivationTypeSELU")]
     pub const SELU: Self = Self(12);
+    /// The CELU activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = max(0, x) + min(0, a * (exp(x / a) − 1))
+    /// ```
     #[doc(alias = "MLCActivationTypeCELU")]
     pub const CELU: Self = Self(13);
+    /// The hard shrink activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = x, if x > a or x < −a, else 0
+    /// ```
     #[doc(alias = "MLCActivationTypeHardShrink")]
     pub const HardShrink: Self = Self(14);
+    /// The soft shrink activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = x - a, if x > a, x + a, if x < −a, else 0
+    /// ```
     #[doc(alias = "MLCActivationTypeSoftShrink")]
     pub const SoftShrink: Self = Self(15);
+    /// The hyperbolic tangent (TanH) shrink activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = x - tanh(x)
+    /// ```
     #[doc(alias = "MLCActivationTypeTanhShrink")]
     pub const TanhShrink: Self = Self(16);
+    /// The threshold activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = x, if x > a, else b
+    /// ```
     #[doc(alias = "MLCActivationTypeThreshold")]
     pub const Threshold: Self = Self(17);
+    /// The GELU activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = x * CDF(x)
+    /// ```
     #[doc(alias = "MLCActivationTypeGELU")]
     pub const GELU: Self = Self(18);
+    /// The hardswish activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = 0, if x <= -3
+    ///   f(x) = x, if x >= +3
+    ///   f(x) = x * (x + 3)/6, otherwise
+    /// ```
     #[doc(alias = "MLCActivationTypeHardSwish")]
     pub const HardSwish: Self = Self(19);
+    /// The clamp activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = min(max(x, a), b)
+    /// ```
     #[doc(alias = "MLCActivationTypeClamp")]
     pub const Clamp: Self = Self(20);
+    /// The clamp activation type.
+    ///
+    /// This activation type implements the following function:
+    ///
+    /// ```text
+    ///   f(x) = min(max(x, a), b)
+    /// ```
     #[doc(alias = "MLCActivationTypeCount")]
     pub const Count: Self = Self(21);
 }
@@ -330,16 +632,21 @@ unsafe impl RefEncode for MLCActivationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcconvolutiontype?language=objc)
+/// A convolution type that you specify for a convolution descriptor.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcconvolutiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCConvolutionType(pub i32);
 impl MLCConvolutionType {
+    /// The standard convolution type.
     #[doc(alias = "MLCConvolutionTypeStandard")]
     pub const Standard: Self = Self(0);
+    /// The transposed convolution type.
     #[doc(alias = "MLCConvolutionTypeTransposed")]
     pub const Transposed: Self = Self(1);
+    /// The depthwise convolution type.
     #[doc(alias = "MLCConvolutionTypeDepthwise")]
     pub const Depthwise: Self = Self(2);
 }
@@ -352,16 +659,21 @@ unsafe impl RefEncode for MLCConvolutionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpaddingpolicy?language=objc)
+/// A padding policy that you specify for a convolution or pooling layer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpaddingpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCPaddingPolicy(pub i32);
 impl MLCPaddingPolicy {
+    /// The "same" padding policy.
     #[doc(alias = "MLCPaddingPolicySame")]
     pub const Same: Self = Self(0);
+    /// The "valid" padding policy.
     #[doc(alias = "MLCPaddingPolicyValid")]
     pub const Valid: Self = Self(1);
+    /// The choice to use explicitly specified padding sizes.
     #[doc(alias = "MLCPaddingPolicyUsePaddingSize")]
     pub const UsePaddingSize: Self = Self(2);
 }
@@ -374,18 +686,24 @@ unsafe impl RefEncode for MLCPaddingPolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpaddingtype?language=objc)
+/// A padding type that you specify for a padding layer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpaddingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCPaddingType(pub i32);
 impl MLCPaddingType {
+    /// The zero padding type.
     #[doc(alias = "MLCPaddingTypeZero")]
     pub const Zero: Self = Self(0);
+    /// The reflect padding type.
     #[doc(alias = "MLCPaddingTypeReflect")]
     pub const Reflect: Self = Self(1);
+    /// The symmetric padding type.
     #[doc(alias = "MLCPaddingTypeSymmetric")]
     pub const Symmetric: Self = Self(2);
+    /// The constant padding type.
     #[doc(alias = "MLCPaddingTypeConstant")]
     pub const Constant: Self = Self(3);
 }
@@ -398,18 +716,24 @@ unsafe impl RefEncode for MLCPaddingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpoolingtype?language=objc)
+/// A pooling function type for a pooling layer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpoolingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCPoolingType(pub i32);
 impl MLCPoolingType {
+    /// The max pooling type.
     #[doc(alias = "MLCPoolingTypeMax")]
     pub const Max: Self = Self(1);
+    /// The average pooling type.
     #[doc(alias = "MLCPoolingTypeAverage")]
     pub const Average: Self = Self(2);
+    /// The L2-norm pooling type.
     #[doc(alias = "MLCPoolingTypeL2Norm")]
     pub const L2Norm: Self = Self(3);
+    /// The L2-norm pooling type.
     #[doc(alias = "MLCPoolingTypeCount")]
     pub const Count: Self = Self(4);
 }
@@ -422,32 +746,57 @@ unsafe impl RefEncode for MLCPoolingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcreductiontype?language=objc)
+/// A reduction operation type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcreductiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCReductionType(pub i32);
 impl MLCReductionType {
+    /// No reduction.
     #[doc(alias = "MLCReductionTypeNone")]
     pub const None: Self = Self(0);
+    /// The sum reduction.
     #[doc(alias = "MLCReductionTypeSum")]
     pub const Sum: Self = Self(1);
+    /// The mean reduction.
     #[doc(alias = "MLCReductionTypeMean")]
     pub const Mean: Self = Self(2);
+    /// The max reduction.
     #[doc(alias = "MLCReductionTypeMax")]
     pub const Max: Self = Self(3);
+    /// The min reduction.
     #[doc(alias = "MLCReductionTypeMin")]
     pub const Min: Self = Self(4);
+    /// The argmax reduction.
     #[doc(alias = "MLCReductionTypeArgMax")]
     pub const ArgMax: Self = Self(5);
+    /// The argmin reduction.
     #[doc(alias = "MLCReductionTypeArgMin")]
     pub const ArgMin: Self = Self(6);
+    /// The L1norm reduction.
     #[doc(alias = "MLCReductionTypeL1Norm")]
     pub const L1Norm: Self = Self(7);
+    /// Any(X) = X_0 || X_1 || ... X_n
     #[doc(alias = "MLCReductionTypeAny")]
     pub const Any: Self = Self(8);
+    /// Alf(X) = X_0
+    /// &
+    /// &
+    /// X_1
+    /// &
+    /// &
+    /// ... X_n
     #[doc(alias = "MLCReductionTypeAll")]
     pub const All: Self = Self(9);
+    /// Alf(X) = X_0
+    /// &
+    /// &
+    /// X_1
+    /// &
+    /// &
+    /// ... X_n
     #[doc(alias = "MLCReductionTypeCount")]
     pub const Count: Self = Self(10);
 }
@@ -466,10 +815,13 @@ unsafe impl RefEncode for MLCReductionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCRegularizationType(pub i32);
 impl MLCRegularizationType {
+    /// No regularization.
     #[doc(alias = "MLCRegularizationTypeNone")]
     pub const None: Self = Self(0);
+    /// The L1 regularization.
     #[doc(alias = "MLCRegularizationTypeL1")]
     pub const L1: Self = Self(1);
+    /// The L2 regularization.
     #[doc(alias = "MLCRegularizationTypeL2")]
     pub const L2: Self = Self(2);
 }
@@ -482,14 +834,18 @@ unsafe impl RefEncode for MLCRegularizationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcsamplemode?language=objc)
+/// A sampling mode for an upsample layer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcsamplemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCSampleMode(pub i32);
 impl MLCSampleMode {
+    /// The nearest sample mode.
     #[doc(alias = "MLCSampleModeNearest")]
     pub const Nearest: Self = Self(0);
+    /// The linear sample mode.
     #[doc(alias = "MLCSampleModeLinear")]
     pub const Linear: Self = Self(1);
 }
@@ -502,14 +858,18 @@ unsafe impl RefEncode for MLCSampleMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcsoftmaxoperation?language=objc)
+/// A softmax operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcsoftmaxoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCSoftmaxOperation(pub i32);
 impl MLCSoftmaxOperation {
+    /// The standard softmax operation.
     #[doc(alias = "MLCSoftmaxOperationSoftmax")]
     pub const Softmax: Self = Self(0);
+    /// The log softmax operation.
     #[doc(alias = "MLCSoftmaxOperationLogSoftmax")]
     pub const LogSoftmax: Self = Self(1);
 }
@@ -522,14 +882,19 @@ unsafe impl RefEncode for MLCSoftmaxOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclstmresultmode?language=objc)
+/// A result mode for an LSTM layer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclstmresultmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLCLSTMResultMode(pub u64);
 impl MLCLSTMResultMode {
+    /// The output result mode. When selected for an LSTM layer, the layer will produce a single result tensor representing the final output of the LSTM.
     #[doc(alias = "MLCLSTMResultModeOutput")]
     pub const Output: Self = Self(0);
+    /// The output and states result mode. When selected for an LSTM layer, the layer will produce three result tensors representing the final output of
+    /// the LSTM, the last hidden state, and the cell state, respectively.
     #[doc(alias = "MLCLSTMResultModeOutputAndStates")]
     pub const OutputAndStates: Self = Self(1);
 }
@@ -542,7 +907,9 @@ unsafe impl RefEncode for MLCLSTMResultMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlccomparisonoperation?language=objc)
+/// A comparison operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlccomparisonoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -584,7 +951,9 @@ unsafe impl RefEncode for MLCComparisonOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgradientclippingtype?language=objc)
+/// The type of clipping applied to gradient
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgradientclippingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -606,6 +975,7 @@ unsafe impl RefEncode for MLCGradientClippingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Returns a textual description of the activation type, suitable for debugging.
 #[inline]
 pub unsafe extern "C-unwind" fn MLCActivationTypeDebugDescription(
     activation_type: MLCActivationType,
@@ -620,6 +990,7 @@ pub unsafe extern "C-unwind" fn MLCActivationTypeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a textual description of the arithmetic operation, suitable for debugging.
 #[inline]
 pub unsafe extern "C-unwind" fn MLCArithmeticOperationDebugDescription(
     operation: MLCArithmeticOperation,
@@ -634,6 +1005,7 @@ pub unsafe extern "C-unwind" fn MLCArithmeticOperationDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a textual description of the padding policy, suitable for debugging.
 #[inline]
 pub unsafe extern "C-unwind" fn MLCPaddingPolicyDebugDescription(
     padding_policy: MLCPaddingPolicy,
@@ -646,6 +1018,7 @@ pub unsafe extern "C-unwind" fn MLCPaddingPolicyDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a textual description of the loss type, suitable for debugging.
 #[inline]
 pub unsafe extern "C-unwind" fn MLCLossTypeDebugDescription(
     loss_type: MLCLossType,
@@ -658,6 +1031,7 @@ pub unsafe extern "C-unwind" fn MLCLossTypeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a textual description of the reduction type, suitable for debugging.
 #[inline]
 pub unsafe extern "C-unwind" fn MLCReductionTypeDebugDescription(
     reduction_type: MLCReductionType,
@@ -670,6 +1044,7 @@ pub unsafe extern "C-unwind" fn MLCReductionTypeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a textual description of the padding type, suitable for debugging.
 #[inline]
 pub unsafe extern "C-unwind" fn MLCPaddingTypeDebugDescription(
     padding_type: MLCPaddingType,
@@ -682,6 +1057,7 @@ pub unsafe extern "C-unwind" fn MLCPaddingTypeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a textual description of the convolution type, suitable for debugging.
 #[inline]
 pub unsafe extern "C-unwind" fn MLCConvolutionTypeDebugDescription(
     convolution_type: MLCConvolutionType,
@@ -696,6 +1072,7 @@ pub unsafe extern "C-unwind" fn MLCConvolutionTypeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a textual description of the pooling type, suitable for debugging.
 #[inline]
 pub unsafe extern "C-unwind" fn MLCPoolingTypeDebugDescription(
     pooling_type: MLCPoolingType,
@@ -708,6 +1085,7 @@ pub unsafe extern "C-unwind" fn MLCPoolingTypeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a textual description of the softmax operation, suitable for debugging.
 #[inline]
 pub unsafe extern "C-unwind" fn MLCSoftmaxOperationDebugDescription(
     operation: MLCSoftmaxOperation,
@@ -721,6 +1099,7 @@ pub unsafe extern "C-unwind" fn MLCSoftmaxOperationDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a textual description of the sample mode, suitable for debugging.
 #[inline]
 pub unsafe extern "C-unwind" fn MLCSampleModeDebugDescription(
     mode: MLCSampleMode,
@@ -733,6 +1112,7 @@ pub unsafe extern "C-unwind" fn MLCSampleModeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a textual description of the LSTM result mode, suitable for debugging.
 #[inline]
 pub unsafe extern "C-unwind" fn MLCLSTMResultModeDebugDescription(
     mode: MLCLSTMResultMode,
@@ -745,6 +1125,7 @@ pub unsafe extern "C-unwind" fn MLCLSTMResultModeDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a textual description of the comparison operation, suitable for debugging.
 #[inline]
 pub unsafe extern "C-unwind" fn MLCComparisonOperationDebugDescription(
     operation: MLCComparisonOperation,
@@ -759,6 +1140,7 @@ pub unsafe extern "C-unwind" fn MLCComparisonOperationDebugDescription(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a textual description of the gradient clipping type, suitable for debugging.
 #[inline]
 pub unsafe extern "C-unwind" fn MLCGradientClippingTypeDebugDescription(
     gradient_clipping_type: MLCGradientClippingType,

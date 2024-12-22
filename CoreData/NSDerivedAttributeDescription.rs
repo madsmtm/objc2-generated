@@ -35,6 +35,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other derivationExpression)]
         pub unsafe fn derivationExpression(&self) -> Option<Retained<NSExpression>>;
 
+        /// Setter for [`derivationExpression`][Self::derivationExpression].
         #[method(setDerivationExpression:)]
         pub unsafe fn setDerivationExpression(&self, derivation_expression: Option<&NSExpression>);
     }

@@ -7,7 +7,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgraphicsdevice?language=objc)
+    /// Class representing a graphics device in a virtual machine.
+    ///
+    /// VZGraphicsDevice should not be instantiated directly.
+    ///
+    /// Graphics devices are first configured on the VZVirtualMachineConfiguration through a subclass of VZGraphicsDeviceConfiguration.
+    /// When a VZVirtualMachine is created from the configuration, the graphics devices are available through the VZVirtualMachine.graphicsDevices property.
+    ///
+    /// The real type of VZGraphicsDevice corresponds to the type used by the configuration.
+    /// For example, a VZVirtioGraphicsDeviceConfiguration leads to a device of type VZVirtioGraphicsDevice.
+    /// And a VZMacGraphicsDeviceConfiguration leads to a device of type VZMacGraphicsDevice.
+    ///
+    /// See: VZGraphicsDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgraphicsdevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZGraphicsDevice;
@@ -24,6 +37,13 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZGraphicsDisplay")]
+        /// Return the list of graphics displays configured for this graphics device.
+        ///
+        /// Graphics displays are configured on the graphics device configuration.
+        ///
+        /// See: VZMacGraphicsDisplayConfiguration
+        ///
+        /// See: VZVirtioGraphicsScanoutConfiguration
         #[method_id(@__retain_semantics Other displays)]
         pub unsafe fn displays(&self) -> Retained<NSArray<VZGraphicsDisplay>>;
     }

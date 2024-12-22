@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkusercontentcontroller?language=objc)
+    /// A WKUserContentController object provides a way for JavaScript to post
+    /// messages to a web view.
+    /// The user content controller associated with a web view is specified by its
+    /// web view configuration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkusercontentcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -24,17 +29,47 @@ unsafe impl NSSecureCoding for WKUserContentController {}
 extern_methods!(
     unsafe impl WKUserContentController {
         #[cfg(feature = "WKUserScript")]
+        /// The user scripts associated with this user content
+        /// controller.
         #[method_id(@__retain_semantics Other userScripts)]
         pub unsafe fn userScripts(&self) -> Retained<NSArray<WKUserScript>>;
 
         #[cfg(feature = "WKUserScript")]
+        /// Adds a user script.
+        ///
+        /// Parameter `userScript`: The user script to add.
         #[method(addUserScript:)]
         pub unsafe fn addUserScript(&self, user_script: &WKUserScript);
 
+        /// Removes all associated user scripts.
         #[method(removeAllUserScripts)]
         pub unsafe fn removeAllUserScripts(&self);
 
         #[cfg(all(feature = "WKContentWorld", feature = "WKScriptMessageHandler"))]
+        /// Adds a script message handler.
+        ///
+        /// Parameter `scriptMessageHandler`: The script message handler to add.
+        ///
+        /// Parameter `contentWorld`: The WKContentWorld in which to add the script message handler.
+        ///
+        /// Parameter `name`: The name of the message handler.
+        ///
+        /// Adding a script message handler adds a function
+        /// window.webkit.messageHandlers.
+        /// <name
+        /// >.postMessage(
+        /// <messageBody
+        /// >) to all frames, available in the given WKContentWorld.
+        ///
+        /// The name argument must be a non-empty string.
+        ///
+        /// Each WKContentWorld can have any number of script message handlers, but only one per unique name.
+        ///
+        /// Once any script message handler has been added to a WKContentWorld for a given name, it is an error to add another
+        /// script message handler to that WKContentWorld for that same name without first removing the previous script message handler.
+        ///
+        /// The above restriction applies to any type of script message handler - WKScriptMessageHandler and WKScriptMessageHandlerWithReply
+        /// objects will conflict with each other if you try to add them to the same WKContentWorld with the same name.
         #[method(addScriptMessageHandler:contentWorld:name:)]
         pub unsafe fn addScriptMessageHandler_contentWorld_name(
             &self,
@@ -47,6 +82,32 @@ extern_methods!(
             feature = "WKContentWorld",
             feature = "WKScriptMessageHandlerWithReply"
         ))]
+        /// Adds a script message handler.
+        ///
+        /// Parameter `scriptMessageHandlerWithReply`: The script message handler to add.
+        ///
+        /// Parameter `contentWorld`: The WKContentWorld in which to add the script message handler.
+        ///
+        /// Parameter `name`: The name of the message handler.
+        ///
+        /// Adding a script message handler adds a function
+        /// window.webkit.messageHandlers.
+        /// <name
+        /// >.postMessage(
+        /// <messageBody
+        /// >) to all frames, available in the given WKContentWorld.
+        ///
+        /// The name argument must be a non-empty string.
+        ///
+        /// Each WKContentWorld can have any number of script message handlers, but only one per unique name.
+        ///
+        /// Once any script message handler has been added to a WKContentWorld for a given name, it is an error to add another
+        /// script message handler to that WKContentWorld for that same name without first removing the previous script message handler.
+        ///
+        /// The above restriction applies to any type of script message handler - WKScriptMessageHandlerWithReply and WKScriptMessageHandler
+        /// objects will conflict with each other if you try to add them to the same WKContentWorld with the same name.
+        ///
+        /// Refer to the WKScriptMessageHandlerWithReply documentation for examples of how it is more flexible than WKScriptMessageHandler.
         #[method(addScriptMessageHandlerWithReply:contentWorld:name:)]
         pub unsafe fn addScriptMessageHandlerWithReply_contentWorld_name(
             &self,
@@ -56,6 +117,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "WKScriptMessageHandler")]
+        /// Adds a script message handler to the main world used by page content itself.
+        ///
+        /// Parameter `scriptMessageHandler`: The script message handler to add.
+        ///
+        /// Parameter `name`: The name of the message handler.
+        ///
+        /// Calling this method is equivalent to calling addScriptMessageHandler:contentWorld:name:
+        /// with [WKContentWorld pageWorld] as the contentWorld argument.
         #[method(addScriptMessageHandler:name:)]
         pub unsafe fn addScriptMessageHandler_name(
             &self,
@@ -64,6 +133,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "WKContentWorld")]
+        /// Removes a script message handler.
+        ///
+        /// Parameter `name`: The name of the message handler to remove.
+        ///
+        /// Parameter `contentWorld`: The WKContentWorld from which to remove the script message handler.
         #[method(removeScriptMessageHandlerForName:contentWorld:)]
         pub unsafe fn removeScriptMessageHandlerForName_contentWorld(
             &self,
@@ -71,27 +145,44 @@ extern_methods!(
             content_world: &WKContentWorld,
         );
 
+        /// Removes a script message handler.
+        ///
+        /// Parameter `name`: The name of the message handler to remove.
+        ///
+        /// Calling this method is equivalent to calling removeScriptMessageHandlerForName:contentWorld:
+        /// with [WKContentWorld pageWorld] as the contentWorld argument.
         #[method(removeScriptMessageHandlerForName:)]
         pub unsafe fn removeScriptMessageHandlerForName(&self, name: &NSString);
 
         #[cfg(feature = "WKContentWorld")]
+        /// Removes all script message handlers from a given WKContentWorld.
+        ///
+        /// Parameter `contentWorld`: The WKContentWorld from which to remove all script message handlers.
         #[method(removeAllScriptMessageHandlersFromContentWorld:)]
         pub unsafe fn removeAllScriptMessageHandlersFromContentWorld(
             &self,
             content_world: &WKContentWorld,
         );
 
+        /// Removes all associated script message handlers.
         #[method(removeAllScriptMessageHandlers)]
         pub unsafe fn removeAllScriptMessageHandlers(&self);
 
         #[cfg(feature = "WKContentRuleList")]
+        /// Adds a content rule list.
+        ///
+        /// Parameter `contentRuleList`: The content rule list to add.
         #[method(addContentRuleList:)]
         pub unsafe fn addContentRuleList(&self, content_rule_list: &WKContentRuleList);
 
         #[cfg(feature = "WKContentRuleList")]
+        /// Removes a content rule list.
+        ///
+        /// Parameter `contentRuleList`: The content rule list to remove.
         #[method(removeContentRuleList:)]
         pub unsafe fn removeContentRuleList(&self, content_rule_list: &WKContentRuleList);
 
+        /// Removes all associated content rule lists.
         #[method(removeAllContentRuleLists)]
         pub unsafe fn removeAllContentRuleLists(&self);
     }

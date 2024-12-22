@@ -97,10 +97,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Retained<NSDictionary>;
 
+        /// The argument to be inserted in the summary for this notification.
         #[deprecated = "summaryArgument is ignored"]
         #[method_id(@__retain_semantics Other summaryArgument)]
         pub unsafe fn summaryArgument(&self) -> Retained<NSString>;
 
+        /// A number that indicates how many items in the summary are represented in the summary.
+        /// For example if a podcast app sends one notification for 3 new episodes in a show,
+        /// the argument should be the name of the show and the count should be 3.
+        /// Default is 1 and cannot be 0.
         #[deprecated = "summaryArgumentCount is ignored"]
         #[method(summaryArgumentCount)]
         pub unsafe fn summaryArgumentCount(&self) -> NSUInteger;
@@ -117,6 +122,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other filterCriteria)]
         pub unsafe fn filterCriteria(&self) -> Option<Retained<NSString>>;
 
+        /// Contextualizes your UNNotificationContent object with other Apple SDK objects conforming to UNNotificationContentProviding. This will specialize the notification and decorate its look and behavior accordingly. For example, the notification will be treated as a message with an avatar and be promoted to the top of notification center if the object passed in is a valid INSendMessageIntent
+        /// <UNNotificationContentProviding
+        /// >. This throws an error with a UNErrorCode found in UNError.h if the UNNotificationContentProviding object is invalid. A valid UNNotificationContent result should not be mutated and be passed directly to UNUserNotificationCenter.
+        ///
+        /// This should be called in the UNNotificationServiceExtension in didReceiveNotificationRequest:withContentHandler: and the returned UNNotificationContent should be passed to the contentHandler for incoming push notifications.
         #[method_id(@__retain_semantics Other contentByUpdatingWithProvider:error:_)]
         pub unsafe fn contentByUpdatingWithProvider_error(
             &self,
@@ -168,30 +178,35 @@ extern_methods!(
         pub unsafe fn attachments(&self) -> Retained<NSArray<UNNotificationAttachment>>;
 
         #[cfg(feature = "UNNotificationAttachment")]
+        /// Setter for [`attachments`][Self::attachments].
         #[method(setAttachments:)]
         pub unsafe fn setAttachments(&self, attachments: &NSArray<UNNotificationAttachment>);
 
         #[method_id(@__retain_semantics Other badge)]
         pub unsafe fn badge(&self) -> Option<Retained<NSNumber>>;
 
+        /// Setter for [`badge`][Self::badge].
         #[method(setBadge:)]
         pub unsafe fn setBadge(&self, badge: Option<&NSNumber>);
 
         #[method_id(@__retain_semantics Other body)]
         pub unsafe fn body(&self) -> Retained<NSString>;
 
+        /// Setter for [`body`][Self::body].
         #[method(setBody:)]
         pub unsafe fn setBody(&self, body: &NSString);
 
         #[method_id(@__retain_semantics Other categoryIdentifier)]
         pub unsafe fn categoryIdentifier(&self) -> Retained<NSString>;
 
+        /// Setter for [`categoryIdentifier`][Self::categoryIdentifier].
         #[method(setCategoryIdentifier:)]
         pub unsafe fn setCategoryIdentifier(&self, category_identifier: &NSString);
 
         #[method_id(@__retain_semantics Other launchImageName)]
         pub unsafe fn launchImageName(&self) -> Retained<NSString>;
 
+        /// Setter for [`launchImageName`][Self::launchImageName].
         #[method(setLaunchImageName:)]
         pub unsafe fn setLaunchImageName(&self, launch_image_name: &NSString);
 
@@ -200,45 +215,57 @@ extern_methods!(
         pub unsafe fn sound(&self) -> Option<Retained<UNNotificationSound>>;
 
         #[cfg(feature = "UNNotificationSound")]
+        /// Setter for [`sound`][Self::sound].
         #[method(setSound:)]
         pub unsafe fn setSound(&self, sound: Option<&UNNotificationSound>);
 
         #[method_id(@__retain_semantics Other subtitle)]
         pub unsafe fn subtitle(&self) -> Retained<NSString>;
 
+        /// Setter for [`subtitle`][Self::subtitle].
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: &NSString);
 
         #[method_id(@__retain_semantics Other threadIdentifier)]
         pub unsafe fn threadIdentifier(&self) -> Retained<NSString>;
 
+        /// Setter for [`threadIdentifier`][Self::threadIdentifier].
         #[method(setThreadIdentifier:)]
         pub unsafe fn setThreadIdentifier(&self, thread_identifier: &NSString);
 
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Retained<NSDictionary>;
 
+        /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: &NSDictionary);
 
+        /// The argument to be inserted in the summary for this notification.
         #[deprecated = "summaryArgument is ignored"]
         #[method_id(@__retain_semantics Other summaryArgument)]
         pub unsafe fn summaryArgument(&self) -> Retained<NSString>;
 
+        /// Setter for [`summaryArgument`][Self::summaryArgument].
         #[deprecated = "summaryArgument is ignored"]
         #[method(setSummaryArgument:)]
         pub unsafe fn setSummaryArgument(&self, summary_argument: &NSString);
 
+        /// A number that indicates how many items in the summary are represented in the summary.
+        /// For example if a podcast app sends one notification for 3 new episodes in a show,
+        /// the argument should be the name of the show and the count should be 3.
+        /// Default is 1 and cannot be 0.
         #[deprecated = "summaryArgumentCount is ignored"]
         #[method(summaryArgumentCount)]
         pub unsafe fn summaryArgumentCount(&self) -> NSUInteger;
 
+        /// Setter for [`summaryArgumentCount`][Self::summaryArgumentCount].
         #[deprecated = "summaryArgumentCount is ignored"]
         #[method(setSummaryArgumentCount:)]
         pub unsafe fn setSummaryArgumentCount(&self, summary_argument_count: NSUInteger);
@@ -246,6 +273,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other targetContentIdentifier)]
         pub unsafe fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].
         #[method(setTargetContentIdentifier:)]
         pub unsafe fn setTargetContentIdentifier(
             &self,
@@ -255,6 +283,7 @@ extern_methods!(
         #[method(interruptionLevel)]
         pub unsafe fn interruptionLevel(&self) -> UNNotificationInterruptionLevel;
 
+        /// Setter for [`interruptionLevel`][Self::interruptionLevel].
         #[method(setInterruptionLevel:)]
         pub unsafe fn setInterruptionLevel(
             &self,
@@ -264,12 +293,14 @@ extern_methods!(
         #[method(relevanceScore)]
         pub unsafe fn relevanceScore(&self) -> c_double;
 
+        /// Setter for [`relevanceScore`][Self::relevanceScore].
         #[method(setRelevanceScore:)]
         pub unsafe fn setRelevanceScore(&self, relevance_score: c_double);
 
         #[method_id(@__retain_semantics Other filterCriteria)]
         pub unsafe fn filterCriteria(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`filterCriteria`][Self::filterCriteria].
         #[method(setFilterCriteria:)]
         pub unsafe fn setFilterCriteria(&self, filter_criteria: Option<&NSString>);
     }

@@ -545,12 +545,14 @@ extern_methods!(
         #[method(allowsExtendedAttributes)]
         pub unsafe fn allowsExtendedAttributes(&self) -> bool;
 
+        /// Setter for [`allowsExtendedAttributes`][Self::allowsExtendedAttributes].
         #[method(setAllowsExtendedAttributes:)]
         pub unsafe fn setAllowsExtendedAttributes(&self, allows_extended_attributes: bool);
 
         #[method(interpretedSyntax)]
         pub unsafe fn interpretedSyntax(&self) -> NSAttributedStringMarkdownInterpretedSyntax;
 
+        /// Setter for [`interpretedSyntax`][Self::interpretedSyntax].
         #[method(setInterpretedSyntax:)]
         pub unsafe fn setInterpretedSyntax(
             &self,
@@ -560,6 +562,7 @@ extern_methods!(
         #[method(failurePolicy)]
         pub unsafe fn failurePolicy(&self) -> NSAttributedStringMarkdownParsingFailurePolicy;
 
+        /// Setter for [`failurePolicy`][Self::failurePolicy].
         #[method(setFailurePolicy:)]
         pub unsafe fn setFailurePolicy(
             &self,
@@ -571,12 +574,14 @@ extern_methods!(
         pub unsafe fn languageCode(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`languageCode`][Self::languageCode].
         #[method(setLanguageCode:)]
         pub unsafe fn setLanguageCode(&self, language_code: Option<&NSString>);
 
         #[method(appliesSourcePositionAttributes)]
         pub unsafe fn appliesSourcePositionAttributes(&self) -> bool;
 
+        /// Setter for [`appliesSourcePositionAttributes`][Self::appliesSourcePositionAttributes].
         #[method(setAppliesSourcePositionAttributes:)]
         pub unsafe fn setAppliesSourcePositionAttributes(
             &self,
@@ -698,6 +703,9 @@ extern "C" {
 extern_methods!(
     /// NSMorphology
     unsafe impl NSAttributedString {
+        /// If the string has portions tagged with NSInflectionRuleAttributeName
+        /// that have no format specifiers, create a new string with those portions inflected
+        /// by following the rule in the attribute.
         #[method_id(@__retain_semantics Other attributedStringByInflectingString)]
         pub unsafe fn attributedStringByInflectingString(&self) -> Retained<NSAttributedString>;
     }
@@ -928,35 +936,46 @@ extern_methods!(
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
+        /// An integer value which uniquely identifies this intent in the document. Identity disambiguates attributes which apply to contiguous text -- for example, two headers in a row with the same level. It can also be used to track the location in an attributed string of a particular part of a document, even after mutation.
         #[method(identity)]
         pub unsafe fn identity(&self) -> NSInteger;
 
+        /// If the intent is not a list, this value is 0.
         #[method(ordinal)]
         pub unsafe fn ordinal(&self) -> NSInteger;
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
+        /// If the intent is not a table, this value is `nil`.
         #[method_id(@__retain_semantics Other columnAlignments)]
         pub unsafe fn columnAlignments(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// If the intent is not a table, this value is 0.
         #[method(columnCount)]
         pub unsafe fn columnCount(&self) -> NSInteger;
 
+        /// If the intent is not a header, this value is 0.
         #[method(headerLevel)]
         pub unsafe fn headerLevel(&self) -> NSInteger;
 
         #[cfg(feature = "NSString")]
+        /// If the intent is not a code block, this value is `nil`.
         #[method_id(@__retain_semantics Other languageHint)]
         pub unsafe fn languageHint(&self) -> Option<Retained<NSString>>;
 
+        /// The column to which this cell belongs (0-based). If the intent is not a cell, this value is 0.
         #[method(column)]
         pub unsafe fn column(&self) -> NSInteger;
 
+        /// The row to which this cell belongs (0-based). If the intent is not a row, this value is 0. Header rows are always row 0. If the table has more rows, those start at row 1.
         #[method(row)]
         pub unsafe fn row(&self) -> NSInteger;
 
+        /// The indentation level of this intent. Each nested list increases the indentation level by one; all elements within the same list (and not then nested into a child list intent) have the same indentation level.
+        /// Text outside list intents has an indentation level of 0.
         #[method(indentationLevel)]
         pub unsafe fn indentationLevel(&self) -> NSInteger;
 
+        /// Returns `YES` if this intent is equivalent to the other presentation intent. Equivalence is the same as equality except that identity is not taken into account.
         #[method(isEquivalentToPresentationIntent:)]
         pub unsafe fn isEquivalentToPresentationIntent(&self, other: &NSPresentationIntent)
             -> bool;

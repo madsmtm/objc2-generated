@@ -7,7 +7,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesharedobserverssnapshot?language=objc)
+    /// A collection of key-value observations which may be registered with multiple
+    /// observable objects. Create using ``-[NSKeyValueSharedObservers snapshot]``
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesharedobserverssnapshot?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSKeyValueSharedObserversSnapshot;
@@ -26,7 +29,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesharedobservers?language=objc)
+    /// A collection of key-value observations which may be registered with multiple
+    /// observable objects
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesharedobservers?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSKeyValueSharedObservers;
@@ -36,6 +42,7 @@ unsafe impl NSObjectProtocol for NSKeyValueSharedObservers {}
 
 extern_methods!(
     unsafe impl NSKeyValueSharedObservers {
+        /// A new collection of observables for an observable object of the given class
         #[method_id(@__retain_semantics Init initWithObservableClass:)]
         pub unsafe fn initWithObservableClass(
             this: Allocated<Self>,
@@ -49,6 +56,21 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "NSKeyValueObserving", feature = "NSString"))]
+        /// Add a new observer to the collection.
+        ///
+        /// This method works like `-[NSObject addObserver: forKey: options: context:]`,
+        /// but observations on nested and computed properties are disallowed. Observers
+        /// are not registered until `setSharedObservers` is called on the observable.
+        ///
+        /// - Parameter observer: The observer object to register for KVO notifications.
+        /// The observer must implement the key-value observing method ``observeValue:
+        /// forKeyPath: of: change: context:``
+        /// - Parameter key: key of the property being observed. This cannot be a nested
+        /// key path or a computed property
+        /// - Parameter options: A combination of NSKeyValueObservingOptions values that
+        /// specify what is included in observation notifications. For possible values
+        /// see NSKeyValueObservingOptions.
+        /// - Parameter context: Arbitrary data which is passed to the observer object
         #[method(addSharedObserver:forKey:options:context:)]
         pub unsafe fn addSharedObserver_forKey_options_context(
             &self,
@@ -68,6 +90,8 @@ extern_methods!(
             context: *mut c_void,
         );
 
+        /// A momentary snapshot of all observers added to the collection thus far, that
+        /// can be assigned to an observable using ``-[NSObject setSharedObservers:]``
         #[method_id(@__retain_semantics Other snapshot)]
         pub unsafe fn snapshot(&self) -> Retained<NSKeyValueSharedObserversSnapshot>;
     }
@@ -77,6 +101,20 @@ extern_category!(
     /// Category "NSKeyValueSharedObserverRegistration" on [`NSObject`].
     #[doc(alias = "NSKeyValueSharedObserverRegistration")]
     pub unsafe trait NSObjectNSKeyValueSharedObserverRegistration {
+        /// Register shared observations.
+        ///
+        /// A shared observation collection might be shared between multiple observables
+        /// to minimise registration work. Shared observers remain registered throughout
+        /// the object's lifetime and do not need to be removed using `removeObserver:`.
+        ///
+        /// An observable may only have one set of shared observations. Subsequent calls
+        /// to this method will replace existing shared observations.
+        ///
+        /// - Parameter sharedObservers: shared observer collection that was initialized
+        /// with the class of this object
+        /// - Invariant: `sharedObserers` was initialized with the class of this object
+        /// - Throws: Exception if the class of the receiving observable object does not
+        /// match the class with which `sharedObserers` was initialized.
         #[method(setSharedObservers:)]
         unsafe fn setSharedObservers(
             &self,

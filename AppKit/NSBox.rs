@@ -101,18 +101,21 @@ extern_methods!(
         #[method(boxType)]
         pub unsafe fn boxType(&self) -> NSBoxType;
 
+        /// Setter for [`boxType`][Self::boxType].
         #[method(setBoxType:)]
         pub unsafe fn setBoxType(&self, box_type: NSBoxType);
 
         #[method(titlePosition)]
         pub unsafe fn titlePosition(&self) -> NSTitlePosition;
 
+        /// Setter for [`titlePosition`][Self::titlePosition].
         #[method(setTitlePosition:)]
         pub unsafe fn setTitlePosition(&self, title_position: NSTitlePosition);
 
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
@@ -121,6 +124,7 @@ extern_methods!(
         pub unsafe fn titleFont(&self) -> Retained<NSFont>;
 
         #[cfg(feature = "NSFont")]
+        /// Setter for [`titleFont`][Self::titleFont].
         #[method(setTitleFont:)]
         pub unsafe fn setTitleFont(&self, title_font: &NSFont);
 
@@ -140,6 +144,7 @@ extern_methods!(
         pub unsafe fn contentViewMargins(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentViewMargins`][Self::contentViewMargins].
         #[method(setContentViewMargins:)]
         pub unsafe fn setContentViewMargins(&self, content_view_margins: NSSize);
 
@@ -153,12 +158,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contentView)]
         pub unsafe fn contentView(&self) -> Option<Retained<NSView>>;
 
+        /// Setter for [`contentView`][Self::contentView].
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
         #[method(isTransparent)]
         pub unsafe fn isTransparent(&self) -> bool;
 
+        /// Setter for [`isTransparent`][Self::isTransparent].
         #[method(setTransparent:)]
         pub unsafe fn setTransparent(&self, transparent: bool);
 
@@ -167,6 +174,7 @@ extern_methods!(
         pub unsafe fn borderWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`borderWidth`][Self::borderWidth].
         #[method(setBorderWidth:)]
         pub unsafe fn setBorderWidth(&self, border_width: CGFloat);
 
@@ -175,6 +183,7 @@ extern_methods!(
         pub unsafe fn cornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`cornerRadius`][Self::cornerRadius].
         #[method(setCornerRadius:)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
@@ -183,6 +192,7 @@ extern_methods!(
         pub unsafe fn borderColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`borderColor`][Self::borderColor].
         #[method(setBorderColor:)]
         pub unsafe fn setBorderColor(&self, border_color: &NSColor);
 
@@ -191,6 +201,7 @@ extern_methods!(
         pub unsafe fn fillColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`fillColor`][Self::fillColor].
         #[method(setFillColor:)]
         pub unsafe fn setFillColor(&self, fill_color: &NSColor);
     }
@@ -238,6 +249,7 @@ extern_methods!(
         #[method(borderType)]
         pub unsafe fn borderType(&self) -> NSBorderType;
 
+        /// Setter for [`borderType`][Self::borderType].
         #[deprecated = "borderType is only applicable to NSBoxOldStyle, which is deprecated. To replace a borderType of NSNoBorder, use the `transparent` property."]
         #[method(setBorderType:)]
         pub unsafe fn setBorderType(&self, border_type: NSBorderType);

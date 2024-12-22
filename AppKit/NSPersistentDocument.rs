@@ -43,6 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
+        /// Setter for [`managedObjectContext`][Self::managedObjectContext].
         #[method(setManagedObjectContext:)]
         pub unsafe fn setManagedObjectContext(
             &self,

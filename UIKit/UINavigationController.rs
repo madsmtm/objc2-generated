@@ -9,7 +9,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontrolleroperation?language=objc)
+/// UINavigationController manages a stack of view controllers and a navigation bar.
+/// It performs horizontal view transitions for pushed and popped views while keeping the navigation bar in sync.
+///
+/// Most clients will not need to subclass UINavigationController.
+///
+/// If a navigation controller is nested in a tab bar controller, it uses the title and toolbar attributes of the bottom view controller on the stack.
+///
+/// UINavigationController is rotatable if its top view controller is rotatable.
+/// Navigation between controllers with non-uniform rotatability is currently not supported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontrolleroperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -143,6 +153,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other viewControllers)]
         pub unsafe fn viewControllers(&self) -> Retained<NSArray<UIViewController>>;
 
+        /// Setter for [`viewControllers`][Self::viewControllers].
         #[method(setViewControllers:)]
         pub unsafe fn setViewControllers(&self, view_controllers: &NSArray<UIViewController>);
 
@@ -156,6 +167,7 @@ extern_methods!(
         #[method(isNavigationBarHidden)]
         pub unsafe fn isNavigationBarHidden(&self) -> bool;
 
+        /// Setter for [`isNavigationBarHidden`][Self::isNavigationBarHidden].
         #[method(setNavigationBarHidden:)]
         pub unsafe fn setNavigationBarHidden(&self, navigation_bar_hidden: bool);
 
@@ -169,6 +181,7 @@ extern_methods!(
         #[method(isToolbarHidden)]
         pub unsafe fn isToolbarHidden(&self) -> bool;
 
+        /// Setter for [`isToolbarHidden`][Self::isToolbarHidden].
         #[method(setToolbarHidden:)]
         pub unsafe fn setToolbarHidden(&self, toolbar_hidden: bool);
 
@@ -185,6 +198,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UINavigationControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -204,41 +218,55 @@ extern_methods!(
             sender: Option<&AnyObject>,
         );
 
+        /// When the keyboard appears, the navigation controller's navigationBar toolbar will be hidden. The bars will remain hidden when the keyboard dismisses, but a tap in the content area will show them.
         #[method(hidesBarsWhenKeyboardAppears)]
         pub unsafe fn hidesBarsWhenKeyboardAppears(&self) -> bool;
 
+        /// Setter for [`hidesBarsWhenKeyboardAppears`][Self::hidesBarsWhenKeyboardAppears].
         #[method(setHidesBarsWhenKeyboardAppears:)]
         pub unsafe fn setHidesBarsWhenKeyboardAppears(
             &self,
             hides_bars_when_keyboard_appears: bool,
         );
 
+        /// When the user swipes, the navigation controller's navigationBar
+        /// &
+        /// toolbar will be hidden (on a swipe up) or shown (on a swipe down). The toolbar only participates if it has items.
         #[method(hidesBarsOnSwipe)]
         pub unsafe fn hidesBarsOnSwipe(&self) -> bool;
 
+        /// Setter for [`hidesBarsOnSwipe`][Self::hidesBarsOnSwipe].
         #[method(setHidesBarsOnSwipe:)]
         pub unsafe fn setHidesBarsOnSwipe(&self, hides_bars_on_swipe: bool);
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
+        /// The gesture recognizer that triggers if the bars will hide or show due to a swipe. Do not change the delegate or attempt to replace this gesture by overriding this method.
         #[method_id(@__retain_semantics Other barHideOnSwipeGestureRecognizer)]
         pub unsafe fn barHideOnSwipeGestureRecognizer(&self) -> Retained<UIPanGestureRecognizer>;
 
+        /// When the UINavigationController's vertical size class is compact, hide the UINavigationBar and UIToolbar. Unhandled taps in the regions that would normally be occupied by these bars will reveal the bars.
         #[method(hidesBarsWhenVerticallyCompact)]
         pub unsafe fn hidesBarsWhenVerticallyCompact(&self) -> bool;
 
+        /// Setter for [`hidesBarsWhenVerticallyCompact`][Self::hidesBarsWhenVerticallyCompact].
         #[method(setHidesBarsWhenVerticallyCompact:)]
         pub unsafe fn setHidesBarsWhenVerticallyCompact(
             &self,
             hides_bars_when_vertically_compact: bool,
         );
 
+        /// When the user taps, the navigation controller's navigationBar
+        /// &
+        /// toolbar will be hidden or shown, depending on the hidden state of the navigationBar. The toolbar will only be shown if it has items to display.
         #[method(hidesBarsOnTap)]
         pub unsafe fn hidesBarsOnTap(&self) -> bool;
 
+        /// Setter for [`hidesBarsOnTap`][Self::hidesBarsOnTap].
         #[method(setHidesBarsOnTap:)]
         pub unsafe fn setHidesBarsOnTap(&self, hides_bars_on_tap: bool);
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UITapGestureRecognizer"))]
+        /// The gesture recognizer used to recognize if the bars will hide or show due to a tap in content. Do not change the delegate or attempt to replace this gesture by overriding this method.
         #[method_id(@__retain_semantics Other barHideOnTapGestureRecognizer)]
         pub unsafe fn barHideOnTapGestureRecognizer(&self) -> Retained<UITapGestureRecognizer>;
     }
@@ -348,6 +376,7 @@ extern_methods!(
         #[method(hidesBottomBarWhenPushed)]
         pub unsafe fn hidesBottomBarWhenPushed(&self) -> bool;
 
+        /// Setter for [`hidesBottomBarWhenPushed`][Self::hidesBottomBarWhenPushed].
         #[method(setHidesBottomBarWhenPushed:)]
         pub unsafe fn setHidesBottomBarWhenPushed(&self, hides_bottom_bar_when_pushed: bool);
 
@@ -365,6 +394,7 @@ extern_methods!(
         pub unsafe fn toolbarItems(&self) -> Option<Retained<NSArray<UIBarButtonItem>>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
+        /// Setter for [`toolbarItems`][Self::toolbarItems].
         #[method(setToolbarItems:)]
         pub unsafe fn setToolbarItems(&self, toolbar_items: Option<&NSArray<UIBarButtonItem>>);
 

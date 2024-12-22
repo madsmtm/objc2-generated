@@ -62,6 +62,7 @@ extern_methods!(
         pub unsafe fn identifier(&self) -> Retained<NSUserInterfaceItemIdentifier>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
+        /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
 
@@ -81,6 +82,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`tableView`][Self::tableView].
         #[method(setTableView:)]
         pub unsafe fn setTableView(&self, table_view: Option<&NSTableView>);
 
@@ -89,6 +91,7 @@ extern_methods!(
         pub unsafe fn width(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
@@ -97,6 +100,7 @@ extern_methods!(
         pub unsafe fn minWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minWidth`][Self::minWidth].
         #[method(setMinWidth:)]
         pub unsafe fn setMinWidth(&self, min_width: CGFloat);
 
@@ -105,12 +109,14 @@ extern_methods!(
         pub unsafe fn maxWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maxWidth`][Self::maxWidth].
         #[method(setMaxWidth:)]
         pub unsafe fn setMaxWidth(&self, max_width: CGFloat);
 
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
@@ -129,12 +135,14 @@ extern_methods!(
             feature = "NSTableHeaderCell",
             feature = "NSTextFieldCell"
         ))]
+        /// Setter for [`headerCell`][Self::headerCell].
         #[method(setHeaderCell:)]
         pub unsafe fn setHeaderCell(&self, header_cell: &NSTableHeaderCell);
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        /// Setter for [`isEditable`][Self::isEditable].
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
@@ -144,6 +152,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sortDescriptorPrototype)]
         pub unsafe fn sortDescriptorPrototype(&self) -> Option<Retained<NSSortDescriptor>>;
 
+        /// Setter for [`sortDescriptorPrototype`][Self::sortDescriptorPrototype].
         #[method(setSortDescriptorPrototype:)]
         pub unsafe fn setSortDescriptorPrototype(
             &self,
@@ -153,18 +162,21 @@ extern_methods!(
         #[method(resizingMask)]
         pub unsafe fn resizingMask(&self) -> NSTableColumnResizingOptions;
 
+        /// Setter for [`resizingMask`][Self::resizingMask].
         #[method(setResizingMask:)]
         pub unsafe fn setResizingMask(&self, resizing_mask: NSTableColumnResizingOptions);
 
         #[method_id(@__retain_semantics Other headerToolTip)]
         pub unsafe fn headerToolTip(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`headerToolTip`][Self::headerToolTip].
         #[method(setHeaderToolTip:)]
         pub unsafe fn setHeaderToolTip(&self, header_tool_tip: Option<&NSString>);
 
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
     }
@@ -195,6 +207,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dataCell)]
         pub unsafe fn dataCell(&self) -> Retained<AnyObject>;
 
+        /// Setter for [`dataCell`][Self::dataCell].
         #[method(setDataCell:)]
         pub unsafe fn setDataCell(&self, data_cell: &AnyObject);
 

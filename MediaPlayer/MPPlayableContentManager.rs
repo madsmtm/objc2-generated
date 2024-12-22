@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager?language=objc)
+    /// MPPlayableContentManager is a class that manages the interactions between a
+    /// media application and an external media player interface. The application
+    /// provides the content manager with a data source, which allows the media player
+    /// to browse the media content offered by the application, as well as a delegate,
+    /// which allows the media player to relay non-media remote playback commands to the application.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use CarPlay framework"]
@@ -28,6 +34,7 @@ extern_methods!(
 
         #[cfg(feature = "MPPlayableContentDataSource")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`dataSource`][Self::dataSource].
         #[deprecated = "Use CarPlay framework"]
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
@@ -44,6 +51,7 @@ extern_methods!(
 
         #[cfg(feature = "MPPlayableContentDelegate")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "Use CarPlay framework"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -56,26 +64,33 @@ extern_methods!(
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Retained<MPPlayableContentManagerContext>;
 
+        /// Tells the content manager which MPContentItems are currently playing based on their identifiers.
         #[deprecated = "Use CarPlay framework"]
         #[method_id(@__retain_semantics Other nowPlayingIdentifiers)]
         pub unsafe fn nowPlayingIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`nowPlayingIdentifiers`][Self::nowPlayingIdentifiers].
         #[deprecated = "Use CarPlay framework"]
         #[method(setNowPlayingIdentifiers:)]
         pub unsafe fn setNowPlayingIdentifiers(&self, now_playing_identifiers: &NSArray<NSString>);
 
+        /// Returns the application's instance of the content manager.
         #[deprecated = "Use CarPlay framework"]
         #[method_id(@__retain_semantics Other sharedContentManager)]
         pub unsafe fn sharedContentManager() -> Retained<Self>;
 
+        /// Tells the content manager that the data source has changed and that we need to
+        /// reload data from the data source.
         #[deprecated = "Use CarPlay framework"]
         #[method(reloadData)]
         pub unsafe fn reloadData(&self);
 
+        /// Used to begin a synchronized update to multiple MPContentItems at once.
         #[deprecated = "Use CarPlay framework"]
         #[method(beginUpdates)]
         pub unsafe fn beginUpdates(&self);
 
+        /// Ends a synchronized update.
         #[deprecated = "Use CarPlay framework"]
         #[method(endUpdates)]
         pub unsafe fn endUpdates(&self);

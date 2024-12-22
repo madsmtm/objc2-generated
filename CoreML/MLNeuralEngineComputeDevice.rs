@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlneuralenginecomputedevice?language=objc)
+    /// Represents a NeuralEngine compute device for inference of machine learning models.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlneuralenginecomputedevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLNeuralEngineComputeDevice;
@@ -29,6 +31,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// The total number of cores in the NeuralEngine.
         #[method(totalCoreCount)]
         pub unsafe fn totalCoreCount(&self) -> NSInteger;
     }

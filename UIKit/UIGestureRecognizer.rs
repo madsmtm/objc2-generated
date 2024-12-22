@@ -78,6 +78,7 @@ extern_methods!(
             -> Option<Retained<ProtocolObject<dyn UIGestureRecognizerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub fn setDelegate(
             &self,
@@ -87,6 +88,7 @@ extern_methods!(
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
@@ -97,36 +99,42 @@ extern_methods!(
         #[method(cancelsTouchesInView)]
         pub unsafe fn cancelsTouchesInView(&self) -> bool;
 
+        /// Setter for [`cancelsTouchesInView`][Self::cancelsTouchesInView].
         #[method(setCancelsTouchesInView:)]
         pub unsafe fn setCancelsTouchesInView(&self, cancels_touches_in_view: bool);
 
         #[method(delaysTouchesBegan)]
         pub unsafe fn delaysTouchesBegan(&self) -> bool;
 
+        /// Setter for [`delaysTouchesBegan`][Self::delaysTouchesBegan].
         #[method(setDelaysTouchesBegan:)]
         pub unsafe fn setDelaysTouchesBegan(&self, delays_touches_began: bool);
 
         #[method(delaysTouchesEnded)]
         pub unsafe fn delaysTouchesEnded(&self) -> bool;
 
+        /// Setter for [`delaysTouchesEnded`][Self::delaysTouchesEnded].
         #[method(setDelaysTouchesEnded:)]
         pub unsafe fn setDelaysTouchesEnded(&self, delays_touches_ended: bool);
 
         #[method_id(@__retain_semantics Other allowedTouchTypes)]
         pub unsafe fn allowedTouchTypes(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`allowedTouchTypes`][Self::allowedTouchTypes].
         #[method(setAllowedTouchTypes:)]
         pub unsafe fn setAllowedTouchTypes(&self, allowed_touch_types: &NSArray<NSNumber>);
 
         #[method_id(@__retain_semantics Other allowedPressTypes)]
         pub unsafe fn allowedPressTypes(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`allowedPressTypes`][Self::allowedPressTypes].
         #[method(setAllowedPressTypes:)]
         pub unsafe fn setAllowedPressTypes(&self, allowed_press_types: &NSArray<NSNumber>);
 
         #[method(requiresExclusiveTouchType)]
         pub unsafe fn requiresExclusiveTouchType(&self) -> bool;
 
+        /// Setter for [`requiresExclusiveTouchType`][Self::requiresExclusiveTouchType].
         #[method(setRequiresExclusiveTouchType:)]
         pub unsafe fn setRequiresExclusiveTouchType(&self, requires_exclusive_touch_type: bool);
 
@@ -162,6 +170,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 

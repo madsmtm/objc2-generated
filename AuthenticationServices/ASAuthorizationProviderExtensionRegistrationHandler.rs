@@ -140,6 +140,13 @@ extern_protocol!(
             feature = "ASAuthorizationProviderExtensionLoginManager",
             feature = "block2"
         ))]
+        /// This initiates device registration process for the SSO extension.
+        ///
+        /// Parameter `loginManager`: The login manager used to interface with Platform SSO.
+        ///
+        /// Parameter `options`: The request options that apply to the request.
+        ///
+        /// Parameter `completion`: The completion to call to continue device registration.
         #[method(beginDeviceRegistrationUsingLoginManager:options:completion:)]
         unsafe fn beginDeviceRegistrationUsingLoginManager_options_completion(
             &self,
@@ -152,6 +159,17 @@ extern_protocol!(
             feature = "ASAuthorizationProviderExtensionLoginManager",
             feature = "block2"
         ))]
+        /// This initiates user registration process for the user and the extension.
+        ///
+        /// Parameter `loginManager`: The login manager used to interface with Platform SSO.
+        ///
+        /// Parameter `userName`: The username for the user registration.
+        ///
+        /// Parameter `authenticationMethod`: The authentication method to be used for the user.
+        ///
+        /// Parameter `options`: The request options that apply to the request.
+        ///
+        /// Parameter `completion`: The completion to call to continue user registration.
         #[method(beginUserRegistrationUsingLoginManager:userName:authenticationMethod:options:completion:)]
         unsafe fn beginUserRegistrationUsingLoginManager_userName_authenticationMethod_options_completion(
             &self,
@@ -162,19 +180,23 @@ extern_protocol!(
             completion: &block2::Block<dyn Fn(ASAuthorizationProviderExtensionRegistrationResult)>,
         );
 
+        /// Call to extension to free any resources used by the extension during registration. It will be called once after all current registration calls are complete.
         #[optional]
         #[method(registrationDidComplete)]
         unsafe fn registrationDidComplete(&self);
 
+        /// Call to extension when the registration has been cancelled.
         #[optional]
         #[method(registrationDidCancel)]
         unsafe fn registrationDidCancel(&self);
 
+        /// The grant types supported by the identity provider.
         #[optional]
         #[method(supportedGrantTypes)]
         unsafe fn supportedGrantTypes(&self)
             -> ASAuthorizationProviderExtensionSupportedGrantTypes;
 
+        /// The protocol version supported by the identity provider.
         #[optional]
         #[method(protocolVersion)]
         unsafe fn protocolVersion(
@@ -182,6 +204,7 @@ extern_protocol!(
         ) -> ASAuthorizationProviderExtensionPlatformSSOProtocolVersion;
 
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+        /// The supported device signing algorithms.
         #[optional]
         #[method_id(@__retain_semantics Other supportedDeviceSigningAlgorithms)]
         unsafe fn supportedDeviceSigningAlgorithms(
@@ -189,6 +212,7 @@ extern_protocol!(
         ) -> Retained<NSArray<ASAuthorizationProviderExtensionSigningAlgorithm>>;
 
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+        /// The supported device encryption algorithms.
         #[optional]
         #[method_id(@__retain_semantics Other supportedDeviceEncryptionAlgorithms)]
         unsafe fn supportedDeviceEncryptionAlgorithms(
@@ -196,6 +220,7 @@ extern_protocol!(
         ) -> Retained<NSArray<ASAuthorizationProviderExtensionEncryptionAlgorithm>>;
 
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
+        /// The supported user Secure Enclave Key signing algorithms.
         #[optional]
         #[method_id(@__retain_semantics Other supportedUserSecureEnclaveKeySigningAlgorithms)]
         unsafe fn supportedUserSecureEnclaveKeySigningAlgorithms(

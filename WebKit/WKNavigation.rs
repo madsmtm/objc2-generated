@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigation?language=objc)
+    /// A WKNavigation object can be used for tracking the loading progress of a webpage.
+    ///
+    /// A navigation is returned from the web view load methods, and is
+    /// also passed to the navigation delegate methods, to uniquely identify a webpage
+    /// load from start to finish.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigation?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -18,6 +24,9 @@ unsafe impl NSObjectProtocol for WKNavigation {}
 extern_methods!(
     unsafe impl WKNavigation {
         #[cfg(feature = "WKWebpagePreferences")]
+        /// The content mode used when loading this webpage.
+        ///
+        /// The value is either WKContentModeMobile or WKContentModeDesktop.
         #[method(effectiveContentMode)]
         pub unsafe fn effectiveContentMode(&self) -> WKContentMode;
     }

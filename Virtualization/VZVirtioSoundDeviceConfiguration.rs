@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceconfiguration?language=objc)
+    /// Virtio Sound Device Configuration.
+    ///
+    /// The device exposes a source or destination of sound.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceconfiguration?language=objc)
     #[unsafe(super(VZAudioDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZAudioDeviceConfiguration")]
@@ -33,10 +37,12 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
+        /// List of audio streams exposed by this device. Empty by default.
         #[method_id(@__retain_semantics Other streams)]
         pub unsafe fn streams(&self) -> Retained<NSArray<VZVirtioSoundDeviceStreamConfiguration>>;
 
         #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
+        /// Setter for [`streams`][Self::streams].
         #[method(setStreams:)]
         pub unsafe fn setStreams(&self, streams: &NSArray<VZVirtioSoundDeviceStreamConfiguration>);
     }

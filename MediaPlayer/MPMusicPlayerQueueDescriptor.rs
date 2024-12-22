@@ -61,6 +61,7 @@ extern_methods!(
         pub unsafe fn startItem(&self) -> Option<Retained<MPMediaItem>>;
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
+        /// Setter for [`startItem`][Self::startItem].
         #[method(setStartItem:)]
         pub unsafe fn setStartItem(&self, start_item: Option<&MPMediaItem>);
 
@@ -109,12 +110,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other storeIDs)]
         pub unsafe fn storeIDs(&self) -> Option<Retained<NSArray<NSString>>>;
 
+        /// Setter for [`storeIDs`][Self::storeIDs].
         #[method(setStoreIDs:)]
         pub unsafe fn setStoreIDs(&self, store_i_ds: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other startItemID)]
         pub unsafe fn startItemID(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`startItemID`][Self::startItemID].
         #[method(setStartItemID:)]
         pub unsafe fn setStartItemID(&self, start_item_id: Option<&NSString>);
 
@@ -198,6 +201,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other playParametersQueue)]
         pub unsafe fn playParametersQueue(&self) -> Retained<NSArray<MPMusicPlayerPlayParameters>>;
 
+        /// Setter for [`playParametersQueue`][Self::playParametersQueue].
         #[method(setPlayParametersQueue:)]
         pub unsafe fn setPlayParametersQueue(
             &self,
@@ -209,6 +213,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<MPMusicPlayerPlayParameters>>;
 
+        /// Setter for [`startItemPlayParameters`][Self::startItemPlayParameters].
         #[method(setStartItemPlayParameters:)]
         pub unsafe fn setStartItemPlayParameters(
             &self,

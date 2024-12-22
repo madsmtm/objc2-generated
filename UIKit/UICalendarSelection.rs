@@ -18,6 +18,7 @@ unsafe impl NSObjectProtocol for UICalendarSelection {}
 
 extern_methods!(
     unsafe impl UICalendarSelection {
+        /// Called to refresh the selectable dates in the calendar view.
         #[method(updateSelectableDates)]
         pub unsafe fn updateSelectableDates(&self);
 

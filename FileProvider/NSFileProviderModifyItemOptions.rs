@@ -11,6 +11,11 @@ use crate::*;
 pub struct NSFileProviderModifyItemOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderModifyItemOptions: NSUInteger {
+/// We're moving the item to a location where it may refer to an item that already exists. This may happen
+/// when two directories are being merged together. When this happens some items may be merged to the
+/// same directory and we end up in a situation where the merged contains may also exist.
+///
+/// This is similar to NSFileProviderCreateItemMayAlreadyExist
         const NSFileProviderModifyItemMayAlreadyExist = 1<<0;
     }
 }

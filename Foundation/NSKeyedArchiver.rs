@@ -38,6 +38,18 @@ unsafe impl NSObjectProtocol for NSKeyedArchiver {}
 extern_methods!(
     #[cfg(feature = "NSCoder")]
     unsafe impl NSKeyedArchiver {
+        /// Initializes the receiver for encoding an archive, optionally disabling secure coding.
+        ///
+        /// If
+        /// `NSSecureCoding`cannot be used,
+        /// `requiresSecureCoding`may be turned off here; for improved security, however,
+        /// `requiresSecureCoding`should be left enabled whenever possible.
+        /// `requiresSecureCoding`ensures that all encoded objects conform to
+        /// `NSSecureCoding,`preventing the possibility of encoding objects which cannot be decoded later.
+        ///
+        /// To produce archives whose structure matches those previously encoded using
+        /// `+archivedDataWithRootObject,`encode the top-level object in your archive for the
+        /// `NSKeyedArchiveRootObjectKey.`
         #[method_id(@__retain_semantics Init initRequiringSecureCoding:)]
         pub unsafe fn initRequiringSecureCoding(
             this: Allocated<Self>,
@@ -45,12 +57,26 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
+        /// Returns an
+        /// `NSData`object containing the encoded form of the object graph whose root object is given, optionally disabling secure coding.
+        ///
+        /// If
+        /// `NSSecureCoding`cannot be used,
+        /// `requiresSecureCoding`may be turned off here; for improved security, however,
+        /// `requiresSecureCoding`should be left enabled whenever possible.
+        /// `requiresSecureCoding`ensures that all encoded objects conform to
+        /// `NSSecureCoding,`preventing the possibility of encoding objects which cannot be decoded later.
+        ///
+        /// If the object graph cannot be encoded, returns
+        /// `nil`and sets the
+        /// `error`out parameter.
         #[method_id(@__retain_semantics Other archivedDataWithRootObject:requiringSecureCoding:error:_)]
         pub unsafe fn archivedDataWithRootObject_requiringSecureCoding_error(
             object: &AnyObject,
             requires_secure_coding: bool,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
+        /// Initialize the archiver with empty data, ready for writing.
         #[deprecated = "Use -initRequiringSecureCoding: instead"]
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -78,6 +104,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSKeyedArchiverDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -89,10 +116,12 @@ extern_methods!(
         pub unsafe fn outputFormat(&self) -> NSPropertyListFormat;
 
         #[cfg(feature = "NSPropertyList")]
+        /// Setter for [`outputFormat`][Self::outputFormat].
         #[method(setOutputFormat:)]
         pub unsafe fn setOutputFormat(&self, output_format: NSPropertyListFormat);
 
         #[cfg(feature = "NSData")]
+        /// If encoding has not yet finished, then invoking this property will call finishEncoding and return the data. If you initialized the keyed archiver with a specific mutable data instance, then it will be returned from this property after finishEncoding is called.
         #[method_id(@__retain_semantics Other encodedData)]
         pub unsafe fn encodedData(&self) -> Retained<NSData>;
 
@@ -163,6 +192,7 @@ extern_methods!(
         #[method(requiresSecureCoding)]
         pub unsafe fn requiresSecureCoding(&self) -> bool;
 
+        /// Setter for [`requiresSecureCoding`][Self::requiresSecureCoding].
         #[method(setRequiresSecureCoding:)]
         pub unsafe fn setRequiresSecureCoding(&self, requires_secure_coding: bool);
     }
@@ -192,6 +222,20 @@ extern_methods!(
     #[cfg(feature = "NSCoder")]
     unsafe impl NSKeyedUnarchiver {
         #[cfg(all(feature = "NSData", feature = "NSError"))]
+        /// Initializes the receiver for decoding an archive previously encoded by
+        /// `NSKeyedUnarchiver.`
+        /// Enables
+        /// `requiresSecureCoding`by default. If
+        /// `NSSecureCoding`cannot be used,
+        /// `requiresSecureCoding`may be turned off manually; for improved security,
+        /// `requiresSecureCoding`should be left enabled whenever possible.
+        ///
+        /// Sets the unarchiver's
+        /// `decodingFailurePolicy`to
+        /// `NSDecodingFailurePolicySetErrorAndReturn.`
+        /// Returns
+        /// `nil`if the given data is not valid, and sets the
+        /// `error`out parameter.
         #[method_id(@__retain_semantics Init initForReadingFromData:error:_)]
         pub unsafe fn initForReadingFromData_error(
             this: Allocated<Self>,
@@ -199,6 +243,15 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
+        /// Decodes the root object of the given class from the given archive, previously encoded by
+        /// `NSKeyedArchiver.`
+        /// Enables
+        /// `requiresSecureCoding`and sets the
+        /// `decodingFailurePolicy`to
+        /// `NSDecodingFailurePolicySetErrorAndReturn.`
+        /// Returns
+        /// `nil`if the given data is not valid or cannot be decoded, and sets the
+        /// `error`out parameter.
         #[method_id(@__retain_semantics Other unarchivedObjectOfClass:fromData:error:_)]
         pub unsafe fn unarchivedObjectOfClass_fromData_error(
             cls: &AnyClass,
@@ -206,6 +259,17 @@ extern_methods!(
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSData", feature = "NSError"))]
+        /// Decodes the
+        /// `NSArray`root object from
+        /// `data`which should be an
+        /// `NSArray<cls>`containing the given non-collection class (no nested arrays or arrays of dictionaries, etc) from the given archive, previously encoded by
+        /// `NSKeyedArchiver.`Enables
+        /// `requiresSecureCoding`and sets the
+        /// `decodingFailurePolicy`to
+        /// `NSDecodingFailurePolicySetErrorAndReturn.`
+        /// Returns
+        /// `nil`if the given data is not valid or cannot be decoded, and sets the
+        /// `error`out parameter.
         #[method_id(@__retain_semantics Other unarchivedArrayOfObjectsOfClass:fromData:error:_)]
         pub unsafe fn unarchivedArrayOfObjectsOfClass_fromData_error(
             cls: &AnyClass,
@@ -213,6 +277,20 @@ extern_methods!(
         ) -> Result<Retained<NSArray>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSDictionary", feature = "NSError"))]
+        /// Decodes the
+        /// `NSDictionary`root object from
+        /// `data`which should be an
+        /// `NSDictionary<keyCls,objectCls>`with keys of type given in
+        /// `keyCls`and objects of the given non-collection class
+        /// `objectCls`(no nested dictionaries or other dictionaries contained in the dictionary, etc) from the given archive, previously encoded by
+        /// `NSKeyedArchiver.`
+        /// Enables
+        /// `requiresSecureCoding`and sets the
+        /// `decodingFailurePolicy`to
+        /// `NSDecodingFailurePolicySetErrorAndReturn.`
+        /// Returns
+        /// `nil`if the given data is not valid or cannot be decoded, and sets the
+        /// `error`out parameter.
         #[method_id(@__retain_semantics Other unarchivedDictionaryWithKeysOfClass:objectsOfClass:fromData:error:_)]
         pub unsafe fn unarchivedDictionaryWithKeysOfClass_objectsOfClass_fromData_error(
             key_cls: &AnyClass,
@@ -221,6 +299,15 @@ extern_methods!(
         ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSSet"))]
+        /// Decodes the root object of one of the given classes from the given archive, previously encoded by
+        /// `NSKeyedArchiver.`
+        /// Enables
+        /// `requiresSecureCoding`and sets the
+        /// `decodingFailurePolicy`to
+        /// `NSDecodingFailurePolicySetErrorAndReturn.`
+        /// Returns
+        /// `nil`if the given data is not valid or cannot be decoded, and sets the
+        /// `error`out parameter.
         #[method_id(@__retain_semantics Other unarchivedObjectOfClasses:fromData:error:_)]
         pub unsafe fn unarchivedObjectOfClasses_fromData_error(
             classes: &NSSet<AnyClass>,
@@ -233,6 +320,19 @@ extern_methods!(
             feature = "NSError",
             feature = "NSSet"
         ))]
+        /// Decodes the
+        /// `NSArray`root object from
+        /// `data`which should be an
+        /// `NSArray,`containing the given non-collection classes in
+        /// `classes`(no nested arrays or arrays of dictionaries, etc) from the given archive, previously encoded by
+        /// `NSKeyedArchiver.`
+        /// Enables
+        /// `requiresSecureCoding`and sets the
+        /// `decodingFailurePolicy`to
+        /// `NSDecodingFailurePolicySetErrorAndReturn.`
+        /// Returns
+        /// `nil`if the given data is not valid or cannot be decoded, and sets the
+        /// `error`out parameter.
         #[method_id(@__retain_semantics Other unarchivedArrayOfObjectsOfClasses:fromData:error:_)]
         pub unsafe fn unarchivedArrayOfObjectsOfClasses_fromData_error(
             classes: &NSSet<AnyClass>,
@@ -245,6 +345,20 @@ extern_methods!(
             feature = "NSError",
             feature = "NSSet"
         ))]
+        /// Decodes the
+        /// `NSDictionary`root object from
+        /// `data`which should be an
+        /// `NSDictionary,`with keys of the types given in
+        /// `keyClasses`and objects of the given non-collection classes in
+        /// `objectClasses`(no nested dictionaries or other dictionaries contained in the dictionary, etc) from the given archive, previously encoded by
+        /// `NSKeyedArchiver.`
+        /// Enables
+        /// `requiresSecureCoding`and sets the
+        /// `decodingFailurePolicy`to
+        /// `NSDecodingFailurePolicySetErrorAndReturn.`
+        /// Returns
+        /// `nil`if the given data is not valid or cannot be decoded, and sets the
+        /// `error`out parameter.
         #[method_id(@__retain_semantics Other unarchivedDictionaryWithKeysOfClasses:objectsOfClasses:fromData:error:_)]
         pub unsafe fn unarchivedDictionaryWithKeysOfClasses_objectsOfClasses_fromData_error(
             key_classes: &NSSet<AnyClass>,
@@ -286,6 +400,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSKeyedUnarchiverDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -354,12 +469,14 @@ extern_methods!(
         #[method(requiresSecureCoding)]
         pub unsafe fn requiresSecureCoding(&self) -> bool;
 
+        /// Setter for [`requiresSecureCoding`][Self::requiresSecureCoding].
         #[method(setRequiresSecureCoding:)]
         pub unsafe fn setRequiresSecureCoding(&self, requires_secure_coding: bool);
 
         #[method(decodingFailurePolicy)]
         pub unsafe fn decodingFailurePolicy(&self) -> NSDecodingFailurePolicy;
 
+        /// Setter for [`decodingFailurePolicy`][Self::decodingFailurePolicy].
         #[method(setDecodingFailurePolicy:)]
         pub unsafe fn setDecodingFailurePolicy(
             &self,

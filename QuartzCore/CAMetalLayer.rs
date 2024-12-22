@@ -57,6 +57,7 @@ extern_methods!(
         pub unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         #[cfg(feature = "objc2-metal")]
+        /// Setter for [`device`][Self::device].
         #[method(setDevice:)]
         pub unsafe fn setDevice(&self, device: Option<&ProtocolObject<dyn MTLDevice>>);
 
@@ -69,12 +70,14 @@ extern_methods!(
         pub unsafe fn pixelFormat(&self) -> MTLPixelFormat;
 
         #[cfg(feature = "objc2-metal")]
+        /// Setter for [`pixelFormat`][Self::pixelFormat].
         #[method(setPixelFormat:)]
         pub unsafe fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
 
         #[method(framebufferOnly)]
         pub unsafe fn framebufferOnly(&self) -> bool;
 
+        /// Setter for [`framebufferOnly`][Self::framebufferOnly].
         #[method(setFramebufferOnly:)]
         pub unsafe fn setFramebufferOnly(&self, framebuffer_only: bool);
 
@@ -83,6 +86,7 @@ extern_methods!(
         pub unsafe fn drawableSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`drawableSize`][Self::drawableSize].
         #[method(setDrawableSize:)]
         pub unsafe fn setDrawableSize(&self, drawable_size: CGSize);
 
@@ -93,12 +97,14 @@ extern_methods!(
         #[method(maximumDrawableCount)]
         pub unsafe fn maximumDrawableCount(&self) -> NSUInteger;
 
+        /// Setter for [`maximumDrawableCount`][Self::maximumDrawableCount].
         #[method(setMaximumDrawableCount:)]
         pub unsafe fn setMaximumDrawableCount(&self, maximum_drawable_count: NSUInteger);
 
         #[method(presentsWithTransaction)]
         pub unsafe fn presentsWithTransaction(&self) -> bool;
 
+        /// Setter for [`presentsWithTransaction`][Self::presentsWithTransaction].
         #[method(setPresentsWithTransaction:)]
         pub unsafe fn setPresentsWithTransaction(&self, presents_with_transaction: bool);
 
@@ -107,12 +113,14 @@ extern_methods!(
         pub unsafe fn colorspace(&self) -> CGColorSpaceRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`colorspace`][Self::colorspace].
         #[method(setColorspace:)]
         pub unsafe fn setColorspace(&self, colorspace: CGColorSpaceRef);
 
         #[method(wantsExtendedDynamicRangeContent)]
         pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;
 
+        /// Setter for [`wantsExtendedDynamicRangeContent`][Self::wantsExtendedDynamicRangeContent].
         #[method(setWantsExtendedDynamicRangeContent:)]
         pub unsafe fn setWantsExtendedDynamicRangeContent(
             &self,
@@ -124,24 +132,28 @@ extern_methods!(
         pub unsafe fn EDRMetadata(&self) -> Option<Retained<CAEDRMetadata>>;
 
         #[cfg(feature = "CAEDRMetadata")]
+        /// Setter for [`EDRMetadata`][Self::EDRMetadata].
         #[method(setEDRMetadata:)]
         pub unsafe fn setEDRMetadata(&self, edr_metadata: Option<&CAEDRMetadata>);
 
         #[method(displaySyncEnabled)]
         pub unsafe fn displaySyncEnabled(&self) -> bool;
 
+        /// Setter for [`displaySyncEnabled`][Self::displaySyncEnabled].
         #[method(setDisplaySyncEnabled:)]
         pub unsafe fn setDisplaySyncEnabled(&self, display_sync_enabled: bool);
 
         #[method(allowsNextDrawableTimeout)]
         pub unsafe fn allowsNextDrawableTimeout(&self) -> bool;
 
+        /// Setter for [`allowsNextDrawableTimeout`][Self::allowsNextDrawableTimeout].
         #[method(setAllowsNextDrawableTimeout:)]
         pub unsafe fn setAllowsNextDrawableTimeout(&self, allows_next_drawable_timeout: bool);
 
         #[method_id(@__retain_semantics Other developerHUDProperties)]
         pub unsafe fn developerHUDProperties(&self) -> Option<Retained<NSDictionary>>;
 
+        /// Setter for [`developerHUDProperties`][Self::developerHUDProperties].
         #[method(setDeveloperHUDProperties:)]
         pub unsafe fn setDeveloperHUDProperties(
             &self,
@@ -154,6 +166,7 @@ extern_methods!(
     /// Methods declared on superclass `CALayer`
     #[cfg(feature = "CALayer")]
     unsafe impl CAMetalLayer {
+        /// Layer creation and initialization. *
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 

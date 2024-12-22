@@ -89,6 +89,7 @@ extern_methods!(
         pub unsafe fn alpha(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
@@ -101,6 +102,7 @@ extern_methods!(
         pub unsafe fn blendMode(&self) -> CGBlendMode;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`blendMode`][Self::blendMode].
         #[method(setBlendMode:)]
         pub unsafe fn setBlendMode(&self, blend_mode: CGBlendMode);
     }

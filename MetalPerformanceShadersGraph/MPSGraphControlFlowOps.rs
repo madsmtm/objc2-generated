@@ -6,7 +6,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcontrolflowdependencyblock?language=objc)
+/// The scope where all the operations defined in this block get control-dependency operations.
+///
+/// - Returns: A valid tensor with the results forwarded to the return of `controlDependency` call.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcontrolflowdependencyblock?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -15,7 +19,12 @@ use crate::*;
 pub type MPSGraphControlFlowDependencyBlock =
     *mut block2::Block<dyn Fn() -> NonNull<NSArray<MPSGraphTensor>>>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphifthenelseblock?language=objc)
+/// A block of operations executed under either the if or else condition.
+///
+/// - Returns: Tensors returned by user. If not empty, the user must define both the then and else blocks,
+/// both should have the same number of arguments, and each corresponding argument should have the same element types.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphifthenelseblock?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -23,7 +32,14 @@ pub type MPSGraphControlFlowDependencyBlock =
 ))]
 pub type MPSGraphIfThenElseBlock = *mut block2::Block<dyn Fn() -> NonNull<NSArray<MPSGraphTensor>>>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphwhilebeforeblock?language=objc)
+/// The block that executes before the condition evaluates for each iteration.
+///
+/// - Parameters:
+/// - inputTensors: Input tensors to the `whileConditionBlock`, for the first iteration will be same as initialInputs passed to the while loop.
+/// - resultTensors: A valid `MPSGraphTensor` array with results forwarded to after block or returned from the while loop depending on the predicate tensor. It will be empty and the caller block should fill it up before returning.
+/// - Returns: Tensor MUST be set and have a single scalar value, used to decide between executing the body block or returning from the while loop.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphwhilebeforeblock?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -36,7 +52,13 @@ pub type MPSGraphWhileBeforeBlock = *mut block2::Block<
     ) -> NonNull<MPSGraphTensor>,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphwhileafterblock?language=objc)
+/// The block that executes after the condition evaluates for each iteration.
+///
+/// - Parameters:
+/// - bodyBlockArguments: Inputs to the body of the while loop passed by the condition block return, and should be the same element types as the return of the while loop.
+/// - Returns: A valid `MPSGraphTensor` array with results forwarded to the condition block.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphwhileafterblock?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -46,7 +68,14 @@ pub type MPSGraphWhileAfterBlock = *mut block2::Block<
     dyn Fn(NonNull<NSArray<MPSGraphTensor>>) -> NonNull<NSArray<MPSGraphTensor>>,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphforloopbodyblock?language=objc)
+/// A block for the body in the for loop.
+///
+/// - Parameters:
+/// - index: The for loop index per iteration, it is a scalar tensor.
+/// - iterationArguments: Arguments for this iteration, with the same count and corresponding element types as `initialIterationArguments` and return types of the `for` loop.
+/// - Returns: A valid MPSGraphTensor array with same count and corresponding element types as `initialIterationArguments` and return types of the `for` loop.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphforloopbodyblock?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -68,6 +97,15 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "block2"
         ))]
+        /// Runs the graph for the given feeds and returns the target tensor values, ensuring all target operations also executed.
+        ///
+        /// This call blocks until execution has completed.
+        ///
+        /// - Parameters:
+        /// - operations: Operations maked as control dependency for all ops created inside the dependent block
+        /// - dependentBlock: MPSGraphControlFlowDependencyBlock which is provided by caller to create dependent ops
+        /// - name: name of scope
+        /// - Returns: A valid MPSGraphTensor array with results returned from dependentBlock forwarded
         #[method_id(@__retain_semantics Other controlDependencyWithOperations:dependentBlock:name:)]
         pub unsafe fn controlDependencyWithOperations_dependentBlock_name(
             &self,
@@ -77,6 +115,15 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(all(feature = "MPSGraphTensor", feature = "block2"))]
+        /// Adds an if-then-else operation to the graph.
+        ///
+        /// - Parameters:
+        /// - predicateTensor: Tensor must have a single scalar value, used to decide between then/else branches
+        /// - thenBlock: If predicate is true operations in this block are executed
+        /// - elseBlock: If predicate is false operations in this block are executed
+        /// - name: name of operation
+        /// - Returns: results If no error, the tensors returned by user. If not empty, user must define both then/else block,
+        /// both should have same number of arguments and each corresponding argument should have same elementTypes.
         #[method_id(@__retain_semantics Other ifWithPredicateTensor:thenBlock:elseBlock:name:)]
         pub unsafe fn ifWithPredicateTensor_thenBlock_elseBlock_name(
             &self,
@@ -87,6 +134,14 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(all(feature = "MPSGraphTensor", feature = "block2"))]
+        /// Adds a while loop operation.
+        ///
+        /// - Parameters:
+        /// - initialInputs: inputTensors to the `beforeBlock`, for the 1st iteration will be same as initialInputs passed to the while loop.
+        /// - before: `beforeBlock`, this will be run first and then call the `afterBlock` with results or return results from the loop.
+        /// - after: `afterBlock`, this will execute after the condition evaluation.
+        /// - name: name of operation.
+        /// - Returns: A valid MPSGraphTensor array with results returned from the conditionBlock depending on the predicate tensor.
         #[method_id(@__retain_semantics Other whileWithInitialInputs:before:after:name:)]
         pub unsafe fn whileWithInitialInputs_before_after_name(
             &self,
@@ -97,6 +152,16 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(all(feature = "MPSGraphTensor", feature = "block2"))]
+        /// Adds a for loop operation, The lower and upper bounds specify a half-open range: the range includes the lower bound but does not include the upper bound.
+        ///
+        /// - Parameters:
+        /// - lowerBound: Lower bound value of the loop, this is a scalar tensor, this is the index the loop will start with.
+        /// - upperBound: Upper bound value of the loop, this is a scalar tensor.
+        /// - step: Step value of the loop, this is a scalar tensor and must be positive.
+        /// - initialBodyArguments: initial set of iteration arguments passed to the bodyBlock of the for loop.
+        /// - body: This block will execute the body of the for loop.
+        /// - name: name of operation.
+        /// - Returns: A valid `MPSGraphTensor` array with same count and corresponding element types as `initialIterationArguments` and return types of the for loop.
         #[method_id(@__retain_semantics Other forLoopWithLowerBound:upperBound:step:initialBodyArguments:body:name:)]
         pub unsafe fn forLoopWithLowerBound_upperBound_step_initialBodyArguments_body_name(
             &self,
@@ -109,6 +174,14 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(all(feature = "MPSGraphTensor", feature = "block2"))]
+        /// Adds a for loop operation, with a specific number of iterations.
+        ///
+        /// - Parameters:
+        /// - numberOfIterations: tensor with number of iterations the loop will execute
+        /// - initialBodyArguments: initial set of iteration arguments passed to the bodyBlock of the for loop
+        /// - body: bodyBlock, this will execute the body of the for loop, index will go from 0 to numberOfIterations-1
+        /// - name: name of operation
+        /// - Returns: A valid MPSGraphTensor array with same count and corresponding elementTypes as initialIterationArguments and return types of the for loop
         #[method_id(@__retain_semantics Other forLoopWithNumberOfIterations:initialBodyArguments:body:name:)]
         pub unsafe fn forLoopWithNumberOfIterations_initialBodyArguments_body_name(
             &self,

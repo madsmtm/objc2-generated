@@ -11,7 +11,9 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewaction?language=objc)
+/// Represents actions that should cause the edit view controller to be dismissed
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -73,6 +75,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn EKEventEditViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`editViewDelegate`][Self::editViewDelegate].
         #[method(setEditViewDelegate:)]
         pub unsafe fn setEditViewDelegate(
             &self,
@@ -80,21 +83,37 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-event-kit")]
+        /// The event store to use to save events.
+        ///
+        /// You must set this before presenting the view controller.
         #[method_id(@__retain_semantics Other eventStore)]
         pub unsafe fn eventStore(&self) -> Option<Retained<EKEventStore>>;
 
         #[cfg(feature = "objc2-event-kit")]
+        /// Setter for [`eventStore`][Self::eventStore].
         #[method(setEventStore:)]
         pub unsafe fn setEventStore(&self, event_store: Option<&EKEventStore>);
 
         #[cfg(feature = "objc2-event-kit")]
+        /// The event to edit.
+        ///
+        /// You must set this before presenting the view controller. You can leave
+        /// it set to nil and a new event will be created for you. If you pass an event
+        /// here and it does not belong to the event store (if set) an exception will be
+        /// raised.
         #[method_id(@__retain_semantics Other event)]
         pub unsafe fn event(&self) -> Option<Retained<EKEvent>>;
 
         #[cfg(feature = "objc2-event-kit")]
+        /// Setter for [`event`][Self::event].
         #[method(setEvent:)]
         pub unsafe fn setEvent(&self, event: Option<&EKEvent>);
 
+        /// Ends the editing session discarding any changes to the event.
+        ///
+        /// This method simulates the user tapping the Cancel button. The delegate will not
+        /// receive the eventEditViewController:didCompleteWithAction: message, so you are
+        /// responsible for dismissing the controller after calling this method.
         #[method(cancelEditing)]
         pub unsafe fn cancelEditing(&self);
     }
@@ -145,9 +164,27 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewdelegate?language=objc)
+    /// View controller to create/edit events.
+    ///
+    /// You can present this view controller to create a new event or edit an existing
+    /// event. You should present it modally. To create a new event, you can either pass
+    /// nil for the event parameter or pass a partially constructed event. If the event
+    /// you pass has no calendar set, the default calendar as set in Settings will be used.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewdelegate?language=objc)
     pub unsafe trait EKEventEditViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-ui-kit")]
+        /// Called to let delegate know the controller is done editing.
+        ///
+        /// When the user presses Cancel, presses Done, or deletes the event, this method
+        /// is called. Your delegate is responsible for dismissing the controller. If the editing
+        /// session is terminated programmatically using cancelEditing,
+        /// this method will not be called.
+        ///
+        ///
+        /// Parameter `controller`: the controller in question
+        ///
+        /// Parameter `action`: the action that is causing the dismissal
         #[method(eventEditViewController:didCompleteWithAction:)]
         unsafe fn eventEditViewController_didCompleteWithAction(
             &self,
@@ -156,6 +193,13 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "objc2-event-kit", feature = "objc2-ui-kit"))]
+        /// Allows you to supply your own default calendar for new events.
+        ///
+        /// This delegate method allows you to control what the editor chooses for the default calendar
+        /// if it needs to fill in a calendar. This might be necessary if you either don't pass an initial
+        /// event to the view controller, or you do, but you did not supply a calendar. In these cases, we
+        /// we set the calendar to a default. If this is not implemented by the delegate, the controller
+        /// will use the store's defaultCalendarForNewEvents.
         #[optional]
         #[method_id(@__retain_semantics Other eventEditViewControllerDefaultCalendarForNewEvents:)]
         unsafe fn eventEditViewControllerDefaultCalendarForNewEvents(

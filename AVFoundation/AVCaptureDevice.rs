@@ -15,22 +15,44 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicewasconnectednotification?language=objc)
+    /// Posted when a device becomes available on the system.
+    ///
+    ///
+    /// The notification object is an AVCaptureDevice instance representing the device that became available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicewasconnectednotification?language=objc)
     pub static AVCaptureDeviceWasConnectedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicewasdisconnectednotification?language=objc)
+    /// Posted when a device becomes unavailable on the system.
+    ///
+    ///
+    /// The notification object is an AVCaptureDevice instance representing the device that became unavailable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicewasdisconnectednotification?language=objc)
     pub static AVCaptureDeviceWasDisconnectedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicesubjectareadidchangenotification?language=objc)
+    /// Posted when the instance of AVCaptureDevice has detected a substantial change to the video subject area.
+    ///
+    ///
+    /// Clients may observe the AVCaptureDeviceSubjectAreaDidChangeNotification to know when an instance of AVCaptureDevice has detected a substantial change to the video subject area. This notification is only sent if you first set subjectAreaChangeMonitoringEnabled to YES.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicesubjectareadidchangenotification?language=objc)
     pub static AVCaptureDeviceSubjectAreaDidChangeNotification: &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice?language=objc)
+    /// An AVCaptureDevice represents a physical device that provides realtime input media data, such as video and audio.
+    ///
+    ///
+    /// Each instance of AVCaptureDevice corresponds to a device, such as a camera or microphone. Instances of AVCaptureDevice cannot be created directly. An array of all currently available devices can also be obtained using the AVCaptureDeviceDiscoverySession. Devices can provide one or more streams of a given media type. Applications can search for devices matching desired criteria by using AVCaptureDeviceDiscoverySession, or may obtain a reference to the default device matching desired criteria by using +[AVCaptureDevice defaultDeviceWithDeviceType:mediaType:position:].
+    ///
+    /// Instances of AVCaptureDevice can be used to provide media data to an AVCaptureSession by creating an AVCaptureDeviceInput with the device and adding that to the capture session.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDevice;
@@ -46,11 +68,27 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Returns an array of devices currently available for use as media input sources.
+        ///
+        ///
+        /// Returns: An NSArray of AVCaptureDevice instances for each available device.
+        ///
+        ///
+        /// This method returns an array of AVCaptureDevice instances for input devices currently connected and available for capture. The returned array contains all devices that are available at the time the method is called. Applications should observe AVCaptureDeviceWasConnectedNotification and AVCaptureDeviceWasDisconnectedNotification to be notified when the list of available devices has changed.
         #[deprecated = "Use AVCaptureDeviceDiscoverySession instead."]
         #[method_id(@__retain_semantics Other devices)]
         pub unsafe fn devices() -> Retained<NSArray<AVCaptureDevice>>;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// Returns an array of devices currently available for use as sources of media with the given media type.
+        ///
+        ///
+        /// Parameter `mediaType`: The media type, such as AVMediaTypeVideo, AVMediaTypeAudio, or AVMediaTypeMuxed, supported by each returned device.
+        ///
+        /// Returns: An NSArray of AVCaptureDevice instances for each available device.
+        ///
+        ///
+        /// This method returns an array of AVCaptureDevice instances for input devices currently connected and available for capture that provide media of the given type. Media type constants are defined in AVMediaFormat.h. The returned array contains all devices that are available at the time the method is called. Applications should observe AVCaptureDeviceWasConnectedNotification and AVCaptureDeviceWasDisconnectedNotification to be notified when the list of available devices has changed.
         #[deprecated = "Use AVCaptureDeviceDiscoverySession instead."]
         #[method_id(@__retain_semantics Other devicesWithMediaType:)]
         pub unsafe fn devicesWithMediaType(
@@ -58,74 +96,213 @@ extern_methods!(
         ) -> Retained<NSArray<AVCaptureDevice>>;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// Returns an AVCaptureDevice instance for the default device of the given media type.
+        ///
+        ///
+        /// Parameter `mediaType`: The media type, such as AVMediaTypeVideo, AVMediaTypeAudio, or AVMediaTypeMuxed, supported by the returned device.
+        ///
+        /// Returns: The default device with the given media type, or nil if no device with that media type exists.
+        ///
+        ///
+        /// This method returns the default device of the given media type currently available on the system. For example, for AVMediaTypeVideo, this method will return the built in camera that is primarily used for capture and recording. Media type constants are defined in AVMediaFormat.h.
         #[method_id(@__retain_semantics Other defaultDeviceWithMediaType:)]
         pub unsafe fn defaultDeviceWithMediaType(
             media_type: &AVMediaType,
         ) -> Option<Retained<AVCaptureDevice>>;
 
+        /// Returns an AVCaptureDevice instance with the given unique ID.
+        ///
+        ///
+        /// Parameter `deviceUniqueID`: The unique ID of the device instance to be returned.
+        ///
+        /// Returns: An AVCaptureDevice instance with the given unique ID, or nil if no device with that unique ID is available.
+        ///
+        ///
+        /// Every available capture device has a unique ID that persists on one system across device connections and disconnections, application restarts, and reboots of the system itself. This method can be used to recall or track the status of a specific device whose unique ID has previously been saved.
         #[method_id(@__retain_semantics Other deviceWithUniqueID:)]
         pub unsafe fn deviceWithUniqueID(
             device_unique_id: &NSString,
         ) -> Option<Retained<AVCaptureDevice>>;
 
+        /// An ID unique to the model of device corresponding to the receiver.
+        ///
+        ///
+        /// Every available capture device has a unique ID that persists on one system across device connections and disconnections, application restarts, and reboots of the system itself. Applications can store the value returned by this property to recall or track the status of a specific device in the future.
         #[method_id(@__retain_semantics Other uniqueID)]
         pub unsafe fn uniqueID(&self) -> Retained<NSString>;
 
+        /// The model ID of the receiver.
+        ///
+        ///
+        /// The value of this property is an identifier unique to all devices of the same model. The value is persistent across device connections and disconnections, and across different systems. For example, the model ID of the camera built in to two identical iPhone models will be the same even though they are different physical devices.
         #[method_id(@__retain_semantics Other modelID)]
         pub unsafe fn modelID(&self) -> Retained<NSString>;
 
+        /// A localized human-readable name for the receiver.
+        ///
+        ///
+        /// This property can be used for displaying the name of a capture device in a user interface.
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
+        /// The human-readable manufacturer name for the receiver.
+        ///
+        ///
+        /// This property can be used to identify capture devices from a particular manufacturer. All Apple devices return "Apple Inc.". Devices from third party manufacturers may return an empty string.
         #[method_id(@__retain_semantics Other manufacturer)]
         pub unsafe fn manufacturer(&self) -> Retained<NSString>;
 
+        /// The transport type of the receiver (e.g. USB, PCI, etc).
+        ///
+        ///
+        /// This property can be used to discover the transport type of a capture device. Transport types are defined in
+        /// <IOKit
+        /// /audio/IOAudioTypes.h> as kIOAudioDeviceTransportType*.
         #[method(transportType)]
         pub unsafe fn transportType(&self) -> i32;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// Returns whether the receiver provides media with the given media type.
+        ///
+        ///
+        /// Parameter `mediaType`: A media type, such as AVMediaTypeVideo, AVMediaTypeAudio, or AVMediaTypeMuxed.
+        ///
+        /// Returns: YES if the device outputs the given media type, NO otherwise.
+        ///
+        ///
+        /// Media type constants are defined in AVMediaFormat.h.
         #[method(hasMediaType:)]
         pub unsafe fn hasMediaType(&self, media_type: &AVMediaType) -> bool;
 
+        /// Requests exclusive access to configure device hardware properties.
+        ///
+        ///
+        /// Parameter `outError`: On return, if the device could not be locked, points to an NSError describing why the failure occurred.
+        ///
+        /// Returns: A BOOL indicating whether the device was successfully locked for configuration.
+        ///
+        ///
+        /// In order to set hardware properties on an AVCaptureDevice, such as focusMode and exposureMode, clients must first acquire a lock on the device. Clients should only hold the device lock if they require settable device properties to remain unchanged. Holding the device lock unnecessarily may degrade capture quality in other applications sharing the device.
         #[method(lockForConfiguration:_)]
         pub unsafe fn lockForConfiguration(&self) -> Result<(), Retained<NSError>>;
 
+        /// Release exclusive control over device hardware properties.
+        ///
+        ///
+        /// This method should be called to match an invocation of lockForConfiguration: when an application no longer needs to keep device hardware properties from changing automatically.
         #[method(unlockForConfiguration)]
         pub unsafe fn unlockForConfiguration(&self);
 
         #[cfg(feature = "AVCaptureSessionPreset")]
+        /// Returns whether the receiver can be used in an AVCaptureSession configured with the given preset.
+        ///
+        ///
+        /// Parameter `preset`: An AVCaptureSession preset.
+        ///
+        /// Returns: YES if the receiver can be used with the given preset, NO otherwise.
+        ///
+        ///
+        /// An AVCaptureSession instance can be associated with a preset that configures its inputs and outputs to fulfill common use cases. This method can be used to determine if the receiver can be used in a capture session with the given preset. Presets are defined in AVCaptureSession.h.
         #[method(supportsAVCaptureSessionPreset:)]
         pub unsafe fn supportsAVCaptureSessionPreset(
             &self,
             preset: &AVCaptureSessionPreset,
         ) -> bool;
 
+        /// Indicates whether the device is connected and available to the system.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the device represented by the receiver is connected and available for use as a capture device. Clients can key value observe the value of this property to be notified when a device is no longer available. When the value of this property becomes NO for a given instance, it will not become YES again. If the same physical device again becomes available to the system, it will be represented using a new instance of AVCaptureDevice.
         #[method(isConnected)]
         pub unsafe fn isConnected(&self) -> bool;
 
+        /// Indicates whether the device is in use by another application.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the device represented by the receiver is in use by another application. Clients can key value observe the value of this property to be notified when another app starts or stops using this device.
         #[method(isInUseByAnotherApplication)]
         pub unsafe fn isInUseByAnotherApplication(&self) -> bool;
 
+        /// Indicates whether the device is suspended.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the device represented by the receiver is currently suspended. Some devices disallow data capture due to a feature on the device. For example, isSuspended returns YES for the external iSight when its privacy iris is closed, or for the internal iSight on a notebook when the notebook's display is closed. Clients can key value observe the value of this property to be notified when the device becomes suspended or unsuspended.
         #[method(isSuspended)]
         pub unsafe fn isSuspended(&self) -> bool;
 
+        /// An array of AVCaptureDevice objects physically linked to the receiver.
+        ///
+        ///
+        /// The value of this property is an array of AVCaptureDevice objects that are a part of the same physical device as the receiver. For example, for the external iSight camera, linkedDevices returns an array containing an AVCaptureDevice for the external iSight microphone.
         #[method_id(@__retain_semantics Other linkedDevices)]
         pub unsafe fn linkedDevices(&self) -> Retained<NSArray<AVCaptureDevice>>;
 
+        /// An array of AVCaptureDeviceFormat objects supported by the receiver.
+        ///
+        ///
+        /// This property can be used to enumerate the formats natively supported by the receiver. The capture device's activeFormat property may be set to one of the formats in this array. Clients can observe automatic changes to the receiver's formats by key value observing this property.
         #[method_id(@__retain_semantics Other formats)]
         pub unsafe fn formats(&self) -> Retained<NSArray<AVCaptureDeviceFormat>>;
 
+        /// The currently active format of the receiver.
+        ///
+        ///
+        /// This property can be used to get or set the currently active device format.
+        ///
+        /// -setActiveFormat: throws an NSInvalidArgumentException if set to a format not present in the formats array.
+        ///
+        /// -setActiveFormat: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
+        ///
+        /// Clients can observe automatic changes to the receiver's activeFormat by key value observing this property.
+        ///
+        /// On iOS, use of AVCaptureDevice's setActiveFormat: and AVCaptureSession's setSessionPreset: are mutually exclusive. If you set a capture device's active format, the session to which it is attached changes its preset to AVCaptureSessionPresetInputPriority. Likewise if you set the AVCaptureSession's sessionPreset property, the session assumes control of its input devices, and configures their activeFormat appropriately. Note that audio devices do not expose any user-configurable formats on iOS. To configure audio input on iOS, you should use the AVAudioSession APIs instead (see AVAudioSession.h).
+        ///
+        /// The activeFormat, activeVideoMinFrameDuration, and activeVideoMaxFrameDuration properties may be set simultaneously by using AVCaptureSession's begin/commitConfiguration methods:
+        ///
+        /// [session beginConfiguration]; // the session to which the receiver's AVCaptureDeviceInput is added.
+        /// if ( [device lockForConfiguration:
+        /// &error
+        /// ] ) {
+        /// [device setActiveFormat:newFormat];
+        /// [device setActiveVideoMinFrameDuration:newMinDuration];
+        /// [device setActiveVideoMaxFrameDuration:newMaxDuration];
+        /// [device unlockForConfiguration];
+        /// }
+        /// [session commitConfiguration]; // The new format and frame rates are applied together in commitConfiguration
+        ///
+        /// Note that when configuring a session to use an active format intended for high resolution still photography and applying one or more of the following operations to an AVCaptureVideoDataOutput, the system may not meet the target framerate: zoom, orientation changes, format conversion.
         #[method_id(@__retain_semantics Other activeFormat)]
         pub unsafe fn activeFormat(&self) -> Retained<AVCaptureDeviceFormat>;
 
+        /// Setter for [`activeFormat`][Self::activeFormat].
         #[method(setActiveFormat:)]
         pub unsafe fn setActiveFormat(&self, active_format: &AVCaptureDeviceFormat);
 
         #[cfg(feature = "objc2-core-media")]
+        /// A property indicating the receiver's current active minimum frame duration (the reciprocal of its max frame rate).
+        ///
+        ///
+        /// An AVCaptureDevice's activeVideoMinFrameDuration property is the reciprocal of its active maximum frame rate. To limit the max frame rate of the capture device, clients may set this property to a value supported by the receiver's activeFormat (see AVCaptureDeviceFormat's videoSupportedFrameRateRanges property). Clients may set this property's value to kCMTimeInvalid to return activeVideoMinFrameDuration to its default value for the given activeFormat.
+        ///
+        /// -setActiveVideoMinFrameDuration: throws an NSInvalidArgumentException if set to an unsupported value.
+        ///
+        /// -setActiveVideoMinFrameDuration: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
+        ///
+        /// Clients can observe automatic changes to the receiver's activeVideoMinFrameDuration by key value observing this property.
+        ///
+        /// On iOS, the receiver's activeVideoMinFrameDuration resets to its default value under the following conditions:
+        /// - The receiver's activeFormat changes
+        /// - The receiver's AVCaptureDeviceInput's session's sessionPreset changes
+        /// - The receiver's AVCaptureDeviceInput is added to a session
+        ///
+        /// When exposureMode is AVCaptureExposureModeCustom, setting the activeVideoMinFrameDuration affects max frame rate, but not exposureDuration. You may use setExposureModeCustomWithDuration:ISO:completionHandler: to set a shorter exposureDuration than your activeVideoMinFrameDuration, if desired.
+        ///
+        /// When autoVideoFrameRateEnabled is true, setting activeVideoMinFrameDuration throws an NSInvalidArgumentException.
         #[method(activeVideoMinFrameDuration)]
         pub unsafe fn activeVideoMinFrameDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`activeVideoMinFrameDuration`][Self::activeVideoMinFrameDuration].
         #[method(setActiveVideoMinFrameDuration:)]
         pub unsafe fn setActiveVideoMinFrameDuration(
             &self,
@@ -133,28 +310,65 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-media")]
+        /// A property indicating the receiver's current active maximum frame duration (the reciprocal of its min frame rate).
+        ///
+        ///
+        /// An AVCaptureDevice's activeVideoMaxFrameDuration property is the reciprocal of its active minimum frame rate. To limit the min frame rate of the capture device, clients may set this property to a value supported by the receiver's activeFormat (see AVCaptureDeviceFormat's videoSupportedFrameRateRanges property). Clients may set this property's value to kCMTimeInvalid to return activeVideoMaxFrameDuration to its default value for the given activeFormat.
+        ///
+        /// -setActiveVideoMaxFrameDuration: throws an NSInvalidArgumentException if set to an unsupported value.
+        ///
+        /// -setActiveVideoMaxFrameDuration: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
+        ///
+        /// Clients can observe automatic changes to the receiver's activeVideoMaxFrameDuration by key value observing this property.
+        ///
+        /// On iOS, the receiver's activeVideoMaxFrameDuration resets to its default value under the following conditions:
+        /// - The receiver's activeFormat changes
+        /// - The receiver's AVCaptureDeviceInput's session's sessionPreset changes
+        /// - The receiver's AVCaptureDeviceInput is added to a session
+        ///
+        /// When exposureMode is AVCaptureExposureModeCustom, frame rate and exposure duration are interrelated. If you call setExposureModeCustomWithDuration:ISO:completionHandler: with an exposureDuration longer than the current activeVideoMaxFrameDuration, the activeVideoMaxFrameDuration will be lengthened to accommodate the longer exposure time. Setting a shorter exposure duration does not automatically change the activeVideoMinFrameDuration or activeVideoMaxFrameDuration. To explicitly increase the frame rate in custom exposure mode, you must set the activeVideoMaxFrameDuration to a shorter value. If your new max frame duration is shorter than the current exposureDuration, the exposureDuration will shorten as well to accommodate the new frame rate.
+        ///
+        /// When autoVideoFrameRateEnabled is true, setting activeVideoMaxFrameDuration throws an NSInvalidArgumentException.
         #[method(activeVideoMaxFrameDuration)]
         pub unsafe fn activeVideoMaxFrameDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`activeVideoMaxFrameDuration`][Self::activeVideoMaxFrameDuration].
         #[method(setActiveVideoMaxFrameDuration:)]
         pub unsafe fn setActiveVideoMaxFrameDuration(
             &self,
             active_video_max_frame_duration: CMTime,
         );
 
+        /// Indicates whether the receiver should enable auto video frame rate.
+        ///
+        /// When enabled the receiver automatically adjusts the active frame rate, depending on light level. Under low light conditions, frame rate is decreased to properly expose the scene. For formats with a maximum frame rate of 30 fps, the frame rate switches between 30 - 24. For formats with a maximum frame rate of 60 fps, the frame rate switches between 60 - 30 - 24.
+        ///
+        /// Setting this property throws an NSInvalidArgumentException if the active format's -isAutoVideoFrameRateSupported returns NO. Changing the device's active format resets isAutoVideoFrameRateEnabled to its default value of NO.
+        ///
+        /// When autoVideoFrameRateEnabled is true, setting activeVideoMinFrameDuration or activeVideoMaxFrameDuration throws an NSInvalidArgumentException.
         #[method(isAutoVideoFrameRateEnabled)]
         pub unsafe fn isAutoVideoFrameRateEnabled(&self) -> bool;
 
+        /// Setter for [`isAutoVideoFrameRateEnabled`][Self::isAutoVideoFrameRateEnabled].
         #[method(setAutoVideoFrameRateEnabled:)]
         pub unsafe fn setAutoVideoFrameRateEnabled(&self, auto_video_frame_rate_enabled: bool);
 
+        /// An array of AVCaptureDeviceInputSource objects supported by the receiver.
+        ///
+        ///
+        /// Some devices can capture data from one of multiple data sources (different input jacks on the same audio device, for example). For devices with multiple possible data sources, inputSources can be used to enumerate the possible choices. Clients can observe automatic changes to the receiver's inputSources by key value observing this property.
         #[method_id(@__retain_semantics Other inputSources)]
         pub unsafe fn inputSources(&self) -> Retained<NSArray<AVCaptureDeviceInputSource>>;
 
+        /// The currently active input source of the receiver.
+        ///
+        ///
+        /// This property can be used to get or set the currently active device input source. -setActiveInputSource: throws an NSInvalidArgumentException if set to a value not present in the inputSources array. -setActiveInputSource: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. Clients can observe automatic changes to the receiver's activeInputSource by key value observing this property.
         #[method_id(@__retain_semantics Other activeInputSource)]
         pub unsafe fn activeInputSource(&self) -> Option<Retained<AVCaptureDeviceInputSource>>;
 
+        /// Setter for [`activeInputSource`][Self::activeInputSource].
         #[method(setActiveInputSource:)]
         pub unsafe fn setActiveInputSource(
             &self,
@@ -163,7 +377,16 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceposition?language=objc)
+/// Constants indicating the physical position of an AVCaptureDevice's hardware on the system.
+///
+///
+/// Indicates that the device's position relative to the system hardware is unspecified.
+///
+/// Indicates that the device is physically located on the back of the system hardware.
+///
+/// Indicates that the device is physically located on the front of the system hardware.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -188,93 +411,195 @@ unsafe impl RefEncode for AVCaptureDevicePosition {
 extern_methods!(
     /// AVCaptureDevicePosition
     unsafe impl AVCaptureDevice {
+        /// Indicates the physical position of an AVCaptureDevice's hardware on the system.
+        ///
+        ///
+        /// The value of this property is an AVCaptureDevicePosition indicating where the receiver's device is physically located on the system hardware.
         #[method(position)]
         pub unsafe fn position(&self) -> AVCaptureDevicePosition;
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetype?language=objc)
+/// AVCaptureDeviceType string constants
+///
+///
+/// The AVCaptureDeviceType string constants are intended to be used in combination with the AVCaptureDeviceDiscoverySession class to obtain a list of devices matching certain search criteria.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetype?language=objc)
 // NS_TYPED_ENUM
 pub type AVCaptureDeviceType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypeexternal?language=objc)
+    /// An external device type. On iPad, external devices are those that conform to the UVC (USB Video Class) specification.
+    ///
+    ///
+    /// Starting in Mac Catalyst 17.0, apps may opt in for using AVCaptureDeviceTypeExternal by adding the following key to their Info.plist:
+    /// <key
+    /// >NSCameraUseExternalDeviceType
+    /// </key
+    /// >
+    /// <true
+    /// />
+    /// Otherwise, external cameras on Mac Catalyst report that their device type is AVCaptureDeviceTypeBuiltInWideAngleCamera.
+    ///
+    /// On visionOS, your app must have the `com.apple.developer.avfoundation.uvc-device-access` entitlement in order to discover and use devices of type `AVCaptureDeviceTypeExternal`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypeexternal?language=objc)
     pub static AVCaptureDeviceTypeExternal: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypemicrophone?language=objc)
+    /// A microphone. On iOS and tvOS, only one AVCaptureDevice of type AVCaptureDeviceTypeMicrophone is exposed to the system. The audio routing subsystem decides which physical microphone to use, be it a built in microphone, a wired headset, an external microphone, etc. The microphone device's `localizedName` will change as the audio subsystem switches to a different physical device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypemicrophone?language=objc)
     pub static AVCaptureDeviceTypeMicrophone: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinwideanglecamera?language=objc)
+    /// A built-in wide angle camera device. These devices are suitable for general purpose use.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinwideanglecamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInWideAngleCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltintelephotocamera?language=objc)
+    /// A built-in camera device with a longer focal length than a wide angle camera. Note that devices of this type may only be discovered using an AVCaptureDeviceDiscoverySession.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltintelephotocamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInTelephotoCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinultrawidecamera?language=objc)
+    /// A built-in camera device with a shorter focal length than a wide angle camera. Note that devices of this type may only be discovered using an AVCaptureDeviceDiscoverySession.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinultrawidecamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInUltraWideCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltindualcamera?language=objc)
+    /// A device that consists of two fixed focal length cameras, one wide and one telephoto. Note that devices of this type may only be discovered using an AVCaptureDeviceDiscoverySession or -[AVCaptureDevice defaultDeviceWithDeviceType:mediaType:position:].
+    ///
+    /// A device of this device type supports the following features:
+    /// - Auto switching from one camera to the other when zoom factor, light level, and focus position allow this.
+    /// - Higher quality zoom for still captures by fusing images from both cameras.
+    /// - Depth data delivery by measuring the disparity of matched features between the wide and telephoto cameras.
+    /// - Delivery of photos from constituent devices (wide and telephoto cameras) via a single photo capture request.
+    ///
+    /// A device of this device type does not support the following features:
+    /// - AVCaptureExposureModeCustom and manual exposure bracketing.
+    /// - Locking focus with a lens position other than AVCaptureLensPositionCurrent.
+    /// - Locking auto white balance with device white balance gains other than AVCaptureWhiteBalanceGainsCurrent.
+    ///
+    /// Even when locked, exposure duration, ISO, aperture, white balance gains, or lens position may change when the device switches from one camera to the other. The overall exposure, white balance, and focus position however should be consistent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltindualcamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInDualCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltindualwidecamera?language=objc)
+    /// A device that consists of two fixed focal length cameras, one ultra wide and one wide angle. Note that devices of this type may only be discovered using an AVCaptureDeviceDiscoverySession or -[AVCaptureDevice defaultDeviceWithDeviceType:mediaType:position:].
+    ///
+    /// A device of this device type supports the following features:
+    /// - Auto switching from one camera to the other when zoom factor, light level, and focus position allow this.
+    /// - Depth data delivery by measuring the disparity of matched features between the ultra wide and wide cameras.
+    /// - Delivery of photos from constituent devices (ultra wide and wide) via a single photo capture request.
+    ///
+    /// A device of this device type does not support the following features:
+    /// - AVCaptureExposureModeCustom and manual exposure bracketing.
+    /// - Locking focus with a lens position other than AVCaptureLensPositionCurrent.
+    /// - Locking auto white balance with device white balance gains other than AVCaptureWhiteBalanceGainsCurrent.
+    ///
+    /// Even when locked, exposure duration, ISO, aperture, white balance gains, or lens position may change when the device switches from one camera to the other. The overall exposure, white balance, and focus position however should be consistent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltindualwidecamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInDualWideCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltintriplecamera?language=objc)
+    /// A device that consists of three fixed focal length cameras, one ultra wide, one wide angle, and one telephoto. Note that devices of this type may only be discovered using an AVCaptureDeviceDiscoverySession or -[AVCaptureDevice defaultDeviceWithDeviceType:mediaType:position:].
+    ///
+    /// A device of this device type supports the following features:
+    /// - Auto switching from one camera to the other when zoom factor, light level, and focus position allow this.
+    /// - Delivery of photos from constituent devices (ultra wide, wide and telephoto cameras) via a single photo capture request.
+    ///
+    /// A device of this device type does not support the following features:
+    /// - AVCaptureExposureModeCustom and manual exposure bracketing.
+    /// - Locking focus with a lens position other than AVCaptureLensPositionCurrent.
+    /// - Locking auto white balance with device white balance gains other than AVCaptureWhiteBalanceGainsCurrent.
+    ///
+    /// Even when locked, exposure duration, ISO, aperture, white balance gains, or lens position may change when the device switches from one camera to the other. The overall exposure, white balance, and focus position however should be consistent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltintriplecamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInTripleCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltintruedepthcamera?language=objc)
+    /// A device that consists of two cameras, one YUV and one Infrared. The infrared camera provides high quality depth information that is synchronized and perspective corrected to frames produced by the YUV camera. While the resolution of the depth data and YUV frames may differ, their field of view and aspect ratio always match. Note that devices of this type may only be discovered using an AVCaptureDeviceDiscoverySession or -[AVCaptureDevice defaultDeviceWithDeviceType:mediaType:position:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltintruedepthcamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInTrueDepthCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinlidardepthcamera?language=objc)
+    /// A device that consists of two cameras, one YUV and one LiDAR. The LiDAR camera provides high quality, high accuracy depth information by measuring the round trip of an artificial light signal emitted by a laser. The depth is synchronized and perspective corrected to frames produced by the paired YUV camera. While the resolution of the depth data and YUV frames may differ, their field of view and aspect ratio always match. Note that devices of this type may only be discovered using an AVCaptureDeviceDiscoverySession or -[AVCaptureDevice defaultDeviceWithDeviceType:mediaType:position:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinlidardepthcamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInLiDARDepthCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypecontinuitycamera?language=objc)
+    /// A continuity camera device. These devices are suitable for general purpose use. Note that devices of this type may only be discovered using an AVCaptureDeviceDiscoverySession or -[AVCaptureDevice defaultDeviceWithDeviceType:mediaType:position:].
+    ///
+    ///
+    /// Starting in macOS 14.0 and Mac Catalyst 17.0, apps may opt in for using AVCaptureDeviceTypeContinuityCamera by adding the following key to their Info.plist:
+    /// <key
+    /// >NSCameraUseContinuityCameraDeviceType
+    /// </key
+    /// >
+    /// <true
+    /// />
+    ///
+    /// Otherwise, continuity cameras on macOS and Mac Catalyst report that their device type is AVCaptureDeviceTypeBuiltInWideAngleCamera.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypecontinuitycamera?language=objc)
     pub static AVCaptureDeviceTypeContinuityCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypedeskviewcamera?language=objc)
+    /// A distortion corrected cut out from an ultra wide camera, made to approximate an overhead camera pointing at a desk. Supports multicam operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypedeskviewcamera?language=objc)
     pub static AVCaptureDeviceTypeDeskViewCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypeexternalunknown?language=objc)
+    /// A deprecated synonym for AVCaptureDeviceTypeExternal. Please use AVCaptureDeviceTypeExternal instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypeexternalunknown?language=objc)
     pub static AVCaptureDeviceTypeExternalUnknown: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinduocamera?language=objc)
+    /// A deprecated synonym for AVCaptureDeviceTypeBuiltInDualCamera. Please use AVCaptureDeviceTypeBuiltInDualCamera instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinduocamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInDuoCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinmicrophone?language=objc)
+    /// A deprecated synonym for AVCaptureDeviceTypeMicrophone. Please use AVCaptureDeviceTypeMicrophone instead.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinmicrophone?language=objc)
     pub static AVCaptureDeviceTypeBuiltInMicrophone: &'static AVCaptureDeviceType;
 }
 
 extern_methods!(
     /// AVCaptureDeviceType
     unsafe impl AVCaptureDevice {
+        /// The type of the capture device.
+        ///
+        ///
+        /// A capture device's type never changes.
         #[method_id(@__retain_semantics Other deviceType)]
         pub unsafe fn deviceType(&self) -> Retained<AVCaptureDeviceType>;
     }
@@ -284,6 +609,19 @@ extern_methods!(
     /// AVCaptureDefaultDevice
     unsafe impl AVCaptureDevice {
         #[cfg(feature = "AVMediaFormat")]
+        /// Returns an AVCaptureDevice instance for the default device of the given device type, media type, and position.
+        ///
+        ///
+        /// Parameter `deviceType`: The device type supported by the returned device. It must be a valid AVCaptureDeviceType.
+        ///
+        /// Parameter `mediaType`: The media type, such as AVMediaTypeVideo, AVMediaTypeAudio, or AVMediaTypeMuxed, supported by the returned device. Pass nil to consider devices with any media type.
+        ///
+        /// Parameter `position`: The position supported by the returned device. Pass AVCaptureDevicePositionUnspecified to consider devices with any position.
+        ///
+        /// Returns: The default device with the given device type, media type and position or nil if no device with that media type exists and nil otherwise.
+        ///
+        ///
+        /// This method returns the default device of the given combination of device type, media type, and position currently available on the system.
         #[method_id(@__retain_semantics Other defaultDeviceWithDeviceType:mediaType:position:)]
         pub unsafe fn defaultDeviceWithDeviceType_mediaType_position(
             device_type: &AVCaptureDeviceType,
@@ -296,12 +634,25 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDevicePreferredCamera
     unsafe impl AVCaptureDevice {
+        /// Settable property that specifies a user preferred camera.
+        ///
+        ///
+        /// Setting this property allows an application to persist its user’s preferred camera across app launches and reboots. The property internally maintains a short history, so if your user’s most recent preferred camera is not currently connected, it still reports the next best choice. This property always returns a device that is present. If no camera is available nil is returned. Setting the property to nil has no effect.
         #[method_id(@__retain_semantics Other userPreferredCamera)]
         pub unsafe fn userPreferredCamera() -> Option<Retained<AVCaptureDevice>>;
 
+        /// Setter for [`userPreferredCamera`][Self::userPreferredCamera].
         #[method(setUserPreferredCamera:)]
         pub unsafe fn setUserPreferredCamera(user_preferred_camera: Option<&AVCaptureDevice>);
 
+        /// Specifies the best camera to use as determined by the system.
+        ///
+        ///
+        /// Apple chooses the default value. This property incorporates userPreferredCamera as well as other factors, such as camera suspension and Apple cameras appearing that should be automatically chosen. The property may change spontaneously, such as when the preferred camera goes away. This property always returns a device that is present. If no camera is available nil is returned.
+        ///
+        /// Applications that adopt this API should always key-value observe this property and update their AVCaptureSession’s input device to reflect changes to the systemPreferredCamera. The application can still offer users the ability to pick a camera by setting userPreferredCamera, which will cause the systemPreferredCamera API to put the user’s choice first until either another Apple-preferred device becomes available or the machine is rebooted (after which it reverts to its original behavior of returning the internally determined best camera to use).
+        ///
+        /// If the application wishes to offer users a fully manual camera selection mode in addition to automatic camera selection, it is recommended to call setUserPreferredCamera: each time the user makes a camera selection, but ignore key-value observer updates to systemPreferredCamera while in manual selection mode.
         #[method_id(@__retain_semantics Other systemPreferredCamera)]
         pub unsafe fn systemPreferredCamera() -> Option<Retained<AVCaptureDevice>>;
     }
@@ -311,12 +662,32 @@ extern_methods!(
     /// AVCaptureDeviceSystemPressure
     unsafe impl AVCaptureDevice {
         #[cfg(feature = "AVCaptureSystemPressure")]
+        /// A key-value observable property indicating the capture device's current system pressure state.
+        ///
+        ///
+        /// This property indicates whether the capture device is currently subject to an elevated system pressure condition. When system pressure reaches AVCaptureSystemPressureLevelShutdown, the capture device cannot continue to provide input, so the AVCaptureSession becomes interrupted until the pressured state abates. System pressure can be effectively mitigated by lowering the device's activeVideoMinFrameDuration in response to changes in the systemPressureState. Clients are encouraged to implement frame rate throttling to bring system pressure down if their capture use case can tolerate a reduced frame rate.
         #[method_id(@__retain_semantics Other systemPressureState)]
         pub unsafe fn systemPressureState(&self) -> Retained<AVCaptureSystemPressureState>;
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureprimaryconstituentdeviceswitchingbehavior?language=objc)
+/// These constants can be used to control when the virtual device is allowed to switch the active primary constituent device.
+///
+///
+/// Indicates that the device does not support constituent device switching. This is reported for cameras that do not have more than one constituent device.
+///
+/// Automatically select the best camera for the current scene. In this mode there are no restrictions on when a camera switch can occur.
+///
+/// Restrict fallback camera selection to certain conditions (see AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions). Camera switches necessary to satisfy the requested video zoom factor are still allowed without restriction.
+///
+/// Lock camera switching to the active primary constituent device. Note that this restricts the minAvailableVideoZoomFactor to the switch-over zoom factor of the activePrimaryConstituentDevice (as reported in AVCaptureDevice.virtualDeviceSwitchOverVideoZoomFactors).
+///
+///
+/// Virtual devices with multiple constituent video devices (such as the Dual Camera, Dual Wide Camera, or Triple Camera), consist of cameras that each have different properties such as focal length, maximum light sensitivity, and minimum focus distance. One of the constituent video devices is selected as the primary constituent device. For an AVCaptureSession, the primary constituent device produces for all outputs. For an AVCaptureMultiCamSession, the primary constituent device produces for all outputs connected to the virtual device's native AVCaptureDeviceInputPort (where its sourceDeviceType is equal to the virtual device's deviceType).
+///
+/// When the requested zoom factor can be achieved by multiple constituent cameras (see -virtualDeviceSwitchOverVideoZoomFactors), the virtual device chooses the best camera for the scene. The primary condition for this is the focal length; the camera with the longest focal length requires the least amount of digital upscaling and therefore normally provides the highest image quality. Secondary conditions are focus and exposure; when the scene requires focus or exposure to go beyond the limits of the active primary constituent device, a camera with a shorter focal length may be able to deliver a better quality image. Such a device is called a fallback primary constituent device. For example, a telephoto camera with a minimum focus distance of 40cm is not able to deliver a sharp image when the subject in the scene is closer than 40cm. For such a scene, the virtual device will switch to the wide-angle camera which typically has a smaller minimum focus distance and is able to achieve accurate focus on the subject. In this case the wide-angle camera is the fallback primary constitute device.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureprimaryconstituentdeviceswitchingbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -340,7 +711,23 @@ unsafe impl RefEncode for AVCapturePrimaryConstituentDeviceSwitchingBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureprimaryconstituentdevicerestrictedswitchingbehaviorconditions?language=objc)
+/// These constants can be used and combined to control the conditions that allow fallback camera selection when the primaryConstituentDeviceSelectionBehavior is set to AVCapturePrimaryConstituentDeviceSwitchingBehaviorRestricted. Note that camera switching necessary to satisfy the requested zoom factor is still allowed.
+///
+///
+/// Disallow fallback switching.
+///
+/// Restrict fallback camera switching to when the video zoom factor changes, either through AVCaptureDevice.videoZoomFactor or -[AVCaptureDevice rampToVideoZoomFactor:withRate:]. Note that any change in video zoom factor will allow a switch to a fallback camera, not just changes across switch-over zoom factors.
+///
+/// Restrict fallback camera switches to when AVCaptureDevice.focusMode is set.
+///
+/// Restrict fallback camera switches to when AVCaptureDevice.exposureMode is set.
+///
+///
+/// Whenever triggered by one or more of the enabled conditions, the fallback camera switching waits for exposure and focus to stabilize before deciding which camera to use as the primary constituent device.
+///
+/// Whenever AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionVideoZoomChanged is not included in the restricted switching behavior conditions, AVCapturePrimaryConstituentDeviceSwitchingBehaviorRestricted still allows camera selection when a change in video zoom factor makes a camera eligible or ineligible to be selected as the activePrimaryConstituentDevice. When the video zoom factor decreases to below the switch-over zoom factor of the activePrimaryConstituentDevice, a different camera will be selected to satisfy the requested zoom factor. When the video zoom factor increases and crosses a camera's switch-over zoom factor, this camera becomes eligible to be selected as the activePrimaryConstituentDevice. If exposure and focus allow, this camera then becomes the new activePrimaryConstituentDevice. Similar to the AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionVideoZoomChanged this also waits for exposure and focus to stabilize. Otherwise the activePrimaryConstituentDevice remains unchanged.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureprimaryconstituentdevicerestrictedswitchingbehaviorconditions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -365,16 +752,38 @@ unsafe impl RefEncode for AVCapturePrimaryConstituentDeviceRestrictedSwitchingBe
 extern_methods!(
     /// AVCaptureDeviceVirtual
     unsafe impl AVCaptureDevice {
+        /// A property indicating whether the receiver is a virtual device consisting of constituent physical devices.
+        ///
+        ///
+        /// Two examples of virtual devices are:
+        /// The Dual Camera, which supports seamlessly switching between a wide and telephoto camera while zooming and generating depth data from the disparities between the different points of view of the physical cameras.
+        /// The TrueDepth Camera, which generates depth data from disparities between a YUV camera and an Infrared camera pointed in the same direction.
         #[method(isVirtualDevice)]
         pub unsafe fn isVirtualDevice(&self) -> bool;
 
+        /// An array of constituent physical devices comprising a virtual device.
+        ///
+        ///
+        /// When called on a device for which virtualDevice == NO, an empty array is returned.
         #[method_id(@__retain_semantics Other constituentDevices)]
         pub unsafe fn constituentDevices(&self) -> Retained<NSArray<AVCaptureDevice>>;
 
+        /// An array of video zoom factors at or above which a virtual device (such as the Dual Camera) may switch to its next constituent device.
+        ///
+        ///
+        /// This array contains zoom factors at which one of the constituent device's field of view matches the next constituent device's full field of view. The number of switch over video zoom factors is always one less than the count of the constituentDevices property, and the factors progress in the same order as the devices listed in that property. On non-virtual devices this property returns an empty array.
         #[method_id(@__retain_semantics Other virtualDeviceSwitchOverVideoZoomFactors)]
         pub unsafe fn virtualDeviceSwitchOverVideoZoomFactors(&self)
             -> Retained<NSArray<NSNumber>>;
 
+        /// The switching behavior and conditions, unless overwritten via -[AVCaptureMovieFileOutput setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions].
+        ///
+        /// Parameter `switchingBehavior`: The desired switching behavior.
+        ///
+        /// Parameter `restrictedSwitchingBehaviorConditions`: The desired conditions for restricting camera switching. This must be set to AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone whenever switchingBehavior is not equal to AVCapturePrimaryConstituentDeviceSwitchingBehaviorRestricted.
+        ///
+        ///
+        /// The switching behavior may be overridden on the AVCaptureMovieFileOutput while recording (see -[AVCaptureMovieFileOutput setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions]). This method throws an NSInvalidArgumentException if constituent device switching is not supported by the receiver or if restrictedSwitchingBehaviorConditions is not equal to AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone and switchingBehavior is not equal to AVCapturePrimaryConstituentDeviceSwitchingBehaviorRestricted.
         #[method(setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:)]
         pub unsafe fn setPrimaryConstituentDeviceSwitchingBehavior_restrictedSwitchingBehaviorConditions(
             &self,
@@ -382,39 +791,68 @@ extern_methods!(
             restricted_switching_behavior_conditions: AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions,
         );
 
+        /// The primaryConstituentDeviceSwitchingBehavior as set by -[AVCaptureDevice setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:].
+        ///
+        ///
+        /// By default, this property is set to AVCapturePrimaryConstituentDeviceSwitchingBehaviorAuto for AVCaptureDevices that support it.  This property is key-value observable.
         #[method(primaryConstituentDeviceSwitchingBehavior)]
         pub unsafe fn primaryConstituentDeviceSwitchingBehavior(
             &self,
         ) -> AVCapturePrimaryConstituentDeviceSwitchingBehavior;
 
+        /// The primaryConstituentDeviceRestrictedSwitchingBehaviorConditions as set by -[AVCaptureDevice setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:].
+        ///
+        ///
+        /// By default, this propety is set to AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone. This property is key-value observable.
         #[method(primaryConstituentDeviceRestrictedSwitchingBehaviorConditions)]
         pub unsafe fn primaryConstituentDeviceRestrictedSwitchingBehaviorConditions(
             &self,
         ) -> AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions;
 
+        /// The active constituent device switching behavior.
+        ///
+        ///
+        /// For virtual devices with multiple constituent devices, this property returns the active switching behavior. This is equal to primaryConstituentDeviceSwitchingBehavior except while recording using an AVCaptureMovieFileOutput configured with a different switching behavior (see -[AVCaptureMovieFileOutput setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions]). Devices that do not support constituent device switching return AVCapturePrimaryConstituentDeviceSwitchingBehaviorUnsupported. This property is key-value observable.
         #[method(activePrimaryConstituentDeviceSwitchingBehavior)]
         pub unsafe fn activePrimaryConstituentDeviceSwitchingBehavior(
             &self,
         ) -> AVCapturePrimaryConstituentDeviceSwitchingBehavior;
 
+        /// The active constituent device restricted  switching behavior.
+        ///
+        ///
+        /// For virtual devices with multiple constituent devices, this property returns the active restricted switching behavior conditions. This is equal to primaryConstituentDeviceRestrictedSwitchingBehaviorConditions except while recording using an AVCaptureMovieFileOutput configured with different retricted switching behavior conditions (see -[AVCaptureMovieFileOutput setPrimaryConstituentDeviceSwitchingBehaviorForRecording:restrictedSwitchingBehaviorConditions]). Devices that do not support constituent device switching return AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone. This property is key-value observable.
         #[method(activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions)]
         pub unsafe fn activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions(
             &self,
         ) -> AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions;
 
+        /// For virtual devices, this property indicates which constituent device is currently the primary constituent device. The primary constituent device may change when zoom, exposure, or focus changes.
+        ///
+        ///
+        /// This property returns nil for non-virtual devices. On virtual devices this property returns nil until the device is used in a running AVCaptureSession. This property is key-value observable.
         #[method_id(@__retain_semantics Other activePrimaryConstituentDevice)]
         pub unsafe fn activePrimaryConstituentDevice(&self) -> Option<Retained<AVCaptureDevice>>;
 
+        /// The constituent devices that may be selected as a fallback for a longer focal length primary constituent device.
+        ///
+        ///
+        /// This property returns an empty array for non-virtual devices. This property never changes for a given virtual device.
         #[method_id(@__retain_semantics Other supportedFallbackPrimaryConstituentDevices)]
         pub unsafe fn supportedFallbackPrimaryConstituentDevices(
             &self,
         ) -> Retained<NSArray<AVCaptureDevice>>;
 
+        /// The constituent devices that may be used as a fallback device when a constituent device with a longer focal length becomes limited by its light sensitivity or minimum focus distance.
+        ///
+        ///
+        /// This may only be set to the supportedFallbackPrimaryConstituentDevices or a subset thereof. By default this is set to all supportedFallbackPrimaryConstituentDevices. This property will throw an NSInvalidArgumentException if the array includes any device not reported in supportedFallbackPrimaryConstituentDevices. This property is key-value observable.
         #[method_id(@__retain_semantics Other fallbackPrimaryConstituentDevices)]
         pub unsafe fn fallbackPrimaryConstituentDevices(
             &self,
         ) -> Retained<NSArray<AVCaptureDevice>>;
 
+        /// Setter for [`fallbackPrimaryConstituentDevices`][Self::fallbackPrimaryConstituentDevices].
         #[method(setFallbackPrimaryConstituentDevices:)]
         pub unsafe fn setFallbackPrimaryConstituentDevices(
             &self,
@@ -423,7 +861,16 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureflashmode?language=objc)
+/// Constants indicating the mode of the flash on the receiver's device, if it has one.
+///
+///
+/// Indicates that the flash should always be off.
+///
+/// Indicates that the flash should always be on.
+///
+/// Indicates that the flash should be used automatically depending on ambient light conditions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureflashmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -448,31 +895,68 @@ unsafe impl RefEncode for AVCaptureFlashMode {
 extern_methods!(
     /// AVCaptureDeviceFlash
     unsafe impl AVCaptureDevice {
+        /// Indicates whether the receiver has a flash.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver has a flash. The receiver's flashMode property can only be set when this property returns YES.
         #[method(hasFlash)]
         pub unsafe fn hasFlash(&self) -> bool;
 
+        /// Indicates whether the receiver's flash is currently available for use.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver's flash is currently available. The flash may become unavailable if, for example, the device overheats and needs to cool off. This property is key-value observable.
         #[method(isFlashAvailable)]
         pub unsafe fn isFlashAvailable(&self) -> bool;
 
+        /// Indicates whether the receiver's flash is currently active.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver's flash is currently active. When the flash is active, it will flash if a still image is captured. When a still image is captured with the flash active, exposure and white balance settings are overridden for the still. This is true even when using AVCaptureExposureModeCustom and/or AVCaptureWhiteBalanceModeLocked. This property is key-value observable.
         #[deprecated = "Use AVCapturePhotoOutput's -isFlashScene instead."]
         #[method(isFlashActive)]
         pub unsafe fn isFlashActive(&self) -> bool;
 
+        /// Returns whether the receiver supports the given flash mode.
+        ///
+        ///
+        /// Parameter `flashMode`: An AVCaptureFlashMode to be checked.
+        ///
+        /// Returns: YES if the receiver supports the given flash mode, NO otherwise.
+        ///
+        ///
+        /// The receiver's flashMode property can only be set to a certain mode if this method returns YES for that mode.
         #[deprecated = "Use AVCapturePhotoOutput's -supportedFlashModes instead."]
         #[method(isFlashModeSupported:)]
         pub unsafe fn isFlashModeSupported(&self, flash_mode: AVCaptureFlashMode) -> bool;
 
+        /// Indicates current mode of the receiver's flash, if it has one.
+        ///
+        ///
+        /// The value of this property is an AVCaptureFlashMode that determines the mode of the receiver's flash, if it has one. -setFlashMode: throws an NSInvalidArgumentException if set to an unsupported value (see -isFlashModeSupported:). -setFlashMode: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. Clients can observe automatic changes to the receiver's flashMode by key value observing this property.
+        ///
+        /// When using AVCapturePhotoOutput, AVCaptureDevice's flashMode property is ignored. You specify flashMode on a per photo basis by setting the AVCapturePhotoSettings.flashMode property.
         #[deprecated = "Use AVCapturePhotoSettings.flashMode instead."]
         #[method(flashMode)]
         pub unsafe fn flashMode(&self) -> AVCaptureFlashMode;
 
+        /// Setter for [`flashMode`][Self::flashMode].
         #[deprecated = "Use AVCapturePhotoSettings.flashMode instead."]
         #[method(setFlashMode:)]
         pub unsafe fn setFlashMode(&self, flash_mode: AVCaptureFlashMode);
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetorchmode?language=objc)
+/// Constants indicating the mode of the torch on the receiver's device, if it has one.
+///
+///
+/// Indicates that the torch should always be off.
+///
+/// Indicates that the torch should always be on.
+///
+/// Indicates that the torch should be used automatically depending on ambient light conditions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetorchmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -495,34 +979,70 @@ unsafe impl RefEncode for AVCaptureTorchMode {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemaxavailabletorchlevel?language=objc)
+    /// A special value that may be passed to -setTorchModeWithLevel:error: to set the torch to the maximum level currently available. Under thermal duress, the maximum available torch level may be less than 1.0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemaxavailabletorchlevel?language=objc)
     pub static AVCaptureMaxAvailableTorchLevel: c_float;
 }
 
 extern_methods!(
     /// AVCaptureDeviceTorch
     unsafe impl AVCaptureDevice {
+        /// Indicates whether the receiver has a torch.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver has a torch. The receiver's torchMode property can only be set when this property returns YES.
         #[method(hasTorch)]
         pub unsafe fn hasTorch(&self) -> bool;
 
+        /// Indicates whether the receiver's torch is currently available for use.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver's torch is currently available. The torch may become unavailable if, for example, the device overheats and needs to cool off. This property is key-value observable.
         #[method(isTorchAvailable)]
         pub unsafe fn isTorchAvailable(&self) -> bool;
 
+        /// Indicates whether the receiver's torch is currently active.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver's torch is currently active. If the current torchMode is AVCaptureTorchModeAuto and isTorchActive is YES, the torch will illuminate once a recording starts (see AVCaptureOutput.h -startRecordingToOutputFileURL:recordingDelegate:). This property is key-value observable.
         #[method(isTorchActive)]
         pub unsafe fn isTorchActive(&self) -> bool;
 
+        /// Indicates the receiver's current torch brightness level as a floating point value.
+        ///
+        ///
+        /// The value of this property is a float indicating the receiver's torch level from 0.0 (off) -> 1.0 (full). This property is key-value observable.
         #[method(torchLevel)]
         pub unsafe fn torchLevel(&self) -> c_float;
 
+        /// Returns whether the receiver supports the given torch mode.
+        ///
+        ///
+        /// Parameter `torchMode`: An AVCaptureTorchMode to be checked.
+        ///
+        /// Returns: YES if the receiver supports the given torch mode, NO otherwise.
+        ///
+        ///
+        /// The receiver's torchMode property can only be set to a certain mode if this method returns YES for that mode.
         #[method(isTorchModeSupported:)]
         pub unsafe fn isTorchModeSupported(&self, torch_mode: AVCaptureTorchMode) -> bool;
 
+        /// Indicates current mode of the receiver's torch, if it has one.
+        ///
+        ///
+        /// The value of this property is an AVCaptureTorchMode that determines the mode of the receiver's torch, if it has one. -setTorchMode: throws an NSInvalidArgumentException if set to an unsupported value (see -isTorchModeSupported:). -setTorchMode: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. Clients can observe automatic changes to the receiver's torchMode by key value observing this property.
         #[method(torchMode)]
         pub unsafe fn torchMode(&self) -> AVCaptureTorchMode;
 
+        /// Setter for [`torchMode`][Self::torchMode].
         #[method(setTorchMode:)]
         pub unsafe fn setTorchMode(&self, torch_mode: AVCaptureTorchMode);
 
+        /// Sets the current mode of the receiver's torch to AVCaptureTorchModeOn at the specified level.
+        ///
+        ///
+        /// This method sets the torch mode to AVCaptureTorchModeOn at a specified level. torchLevel must be a value between 0 and 1, or the special value AVCaptureMaxAvailableTorchLevel. The specified value may not be available if the iOS device is too hot. This method throws an NSInvalidArgumentException if set to an unsupported level. If the specified level is valid, but unavailable, the method returns NO with AVErrorTorchLevelUnavailable. -setTorchModeOnWithLevel:error: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. Clients can observe automatic changes to the receiver's torchMode by key value observing the torchMode property.
         #[method(setTorchModeOnWithLevel:error:_)]
         pub unsafe fn setTorchModeOnWithLevel_error(
             &self,
@@ -531,7 +1051,16 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturefocusmode?language=objc)
+/// Constants indicating the mode of the focus on the receiver's device, if it has one.
+///
+///
+/// Indicates that the focus should be locked at the lens' current position.
+///
+/// Indicates that the device should autofocus once and then change the focus mode to AVCaptureFocusModeLocked.
+///
+/// Indicates that the device should automatically focus when needed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturefocusmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -553,7 +1082,16 @@ unsafe impl RefEncode for AVCaptureFocusMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureautofocusrangerestriction?language=objc)
+/// Constants indicating the restriction of the receiver's autofocus system to a particular range of focus scan, if it supports range restrictions.
+///
+///
+/// Indicates that the autofocus system should not restrict the focus range.
+///
+/// Indicates that the autofocus system should restrict the focus range for subject matter that is near to the camera.
+///
+/// Indicates that the autofocus system should restrict the focus range for subject matter that is far from the camera.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureautofocusrangerestriction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -576,79 +1114,157 @@ unsafe impl RefEncode for AVCaptureAutoFocusRangeRestriction {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturelenspositioncurrent?language=objc)
+    /// A special value that may be passed as the lensPosition parameter of setFocusModeLockedWithLensPosition:completionHandler: to indicate that the caller does not wish to specify a value for the lensPosition property, and that it should instead be set to its current value. Note that the device may be adjusting lensPosition at the time of the call, in which case the value at which lensPosition is locked may differ from the value obtained by querying the lensPosition property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturelenspositioncurrent?language=objc)
     pub static AVCaptureLensPositionCurrent: c_float;
 }
 
 extern_methods!(
     /// AVCaptureDeviceFocus
     unsafe impl AVCaptureDevice {
+        /// Returns whether the receiver supports the given focus mode.
+        ///
+        ///
+        /// Parameter `focusMode`: An AVCaptureFocusMode to be checked.
+        ///
+        /// Returns: YES if the receiver supports the given focus mode, NO otherwise.
+        ///
+        ///
+        /// The receiver's focusMode property can only be set to a certain mode if this method returns YES for that mode.
         #[method(isFocusModeSupported:)]
         pub unsafe fn isFocusModeSupported(&self, focus_mode: AVCaptureFocusMode) -> bool;
 
+        /// Indicates whether the receiver supports a lens position other than AVCaptureLensPositionCurrent.
+        ///
+        ///
+        /// If lockingFocusWithCustomLensPositionSupported returns NO, setFocusModeLockedWithLensPosition: may only be called with AVCaptureLensPositionCurrent. Passing any other lens position will result in an exception.
         #[method(isLockingFocusWithCustomLensPositionSupported)]
         pub unsafe fn isLockingFocusWithCustomLensPositionSupported(&self) -> bool;
 
+        /// Indicates current focus mode of the receiver, if it has one.
+        ///
+        ///
+        /// The value of this property is an AVCaptureFocusMode that determines the receiver's focus mode, if it has one. -setFocusMode: throws an NSInvalidArgumentException if set to an unsupported value (see -isFocusModeSupported:). -setFocusMode: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. Clients can observe automatic changes to the receiver's focusMode by key value observing this property.
         #[method(focusMode)]
         pub unsafe fn focusMode(&self) -> AVCaptureFocusMode;
 
+        /// Setter for [`focusMode`][Self::focusMode].
         #[method(setFocusMode:)]
         pub unsafe fn setFocusMode(&self, focus_mode: AVCaptureFocusMode);
 
+        /// Indicates whether the receiver supports focus points of interest.
+        ///
+        ///
+        /// The receiver's focusPointOfInterest property can only be set if this property returns YES.
         #[method(isFocusPointOfInterestSupported)]
         pub unsafe fn isFocusPointOfInterestSupported(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates current focus point of interest of the receiver, if it has one.
+        ///
+        ///
+        /// The value of this property is a CGPoint that determines the receiver's focus point of interest, if it has one. A value of (0,0) indicates that the camera should focus on the top left corner of the image, while a value of (1,1) indicates that it should focus on the bottom right. The default value is (0.5,0.5). -setFocusPointOfInterest: throws an NSInvalidArgumentException if isFocusPointOfInterestSupported returns NO. -setFocusPointOfInterest: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. Clients can observe automatic changes to the receiver's focusPointOfInterest by key value observing this property. Note that setting focusPointOfInterest alone does not initiate a focus operation. After setting focusPointOfInterest, call -setFocusMode: to apply the new point of interest.
         #[method(focusPointOfInterest)]
         pub unsafe fn focusPointOfInterest(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`focusPointOfInterest`][Self::focusPointOfInterest].
         #[method(setFocusPointOfInterest:)]
         pub unsafe fn setFocusPointOfInterest(&self, focus_point_of_interest: CGPoint);
 
+        /// Indicates whether the receiver is currently performing a focus scan to adjust focus.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver's camera focus is being automatically adjusted by means of a focus scan, because its focus mode is AVCaptureFocusModeAutoFocus or AVCaptureFocusModeContinuousAutoFocus. Clients can observe the value of this property to determine whether the camera's focus is stable.
+        ///
+        /// See also: lensPosition
+        ///
+        /// See also: AVCaptureAutoFocusSystem
         #[method(isAdjustingFocus)]
         pub unsafe fn isAdjustingFocus(&self) -> bool;
 
+        /// Indicates whether the receiver supports autofocus range restrictions.
+        ///
+        ///
+        /// The receiver's autoFocusRangeRestriction property can only be set if this property returns YES.
         #[method(isAutoFocusRangeRestrictionSupported)]
         pub unsafe fn isAutoFocusRangeRestrictionSupported(&self) -> bool;
 
+        /// Indicates current restriction of the receiver's autofocus system to a particular range of focus scan, if it supports range restrictions.
+        ///
+        ///
+        /// The value of this property is an AVCaptureAutoFocusRangeRestriction indicating how the autofocus system should limit its focus scan. The default value is AVCaptureAutoFocusRangeRestrictionNone. -setAutoFocusRangeRestriction: throws an NSInvalidArgumentException if isAutoFocusRangeRestrictionSupported returns NO. -setAutoFocusRangeRestriction: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. This property only has an effect when the focusMode property is set to AVCaptureFocusModeAutoFocus or AVCaptureFocusModeContinuousAutoFocus. Note that setting autoFocusRangeRestriction alone does not initiate a focus operation. After setting autoFocusRangeRestriction, call -setFocusMode: to apply the new restriction.
         #[method(autoFocusRangeRestriction)]
         pub unsafe fn autoFocusRangeRestriction(&self) -> AVCaptureAutoFocusRangeRestriction;
 
+        /// Setter for [`autoFocusRangeRestriction`][Self::autoFocusRangeRestriction].
         #[method(setAutoFocusRangeRestriction:)]
         pub unsafe fn setAutoFocusRangeRestriction(
             &self,
             auto_focus_range_restriction: AVCaptureAutoFocusRangeRestriction,
         );
 
+        /// Indicates whether the receiver supports smooth autofocus.
+        ///
+        ///
+        /// The receiver's smoothAutoFocusEnabled property can only be set if this property returns YES.
         #[method(isSmoothAutoFocusSupported)]
         pub unsafe fn isSmoothAutoFocusSupported(&self) -> bool;
 
+        /// Indicates whether the receiver should use smooth autofocus.
+        ///
+        ///
+        /// On a receiver where -isSmoothAutoFocusSupported returns YES and smoothAutoFocusEnabled is set to YES, a smooth autofocus will be engaged when the focus mode is set to AVCaptureFocusModeAutoFocus or AVCaptureFocusModeContinuousAutoFocus. Enabling smooth autofocus is appropriate for movie recording. Smooth autofocus is slower and less visually invasive. Disabling smooth autofocus is more appropriate for video processing where a fast autofocus is necessary. The default value is NO. Setting this property throws an NSInvalidArgumentException if -isSmoothAutoFocusSupported returns NO. The receiver must be locked for configuration using lockForConfiguration: before clients can set this method, otherwise an NSGenericException is thrown. Note that setting smoothAutoFocusEnabled alone does not initiate a focus operation. After setting smoothAutoFocusEnabled, call -setFocusMode: to apply the new smooth autofocus mode.
         #[method(isSmoothAutoFocusEnabled)]
         pub unsafe fn isSmoothAutoFocusEnabled(&self) -> bool;
 
+        /// Setter for [`isSmoothAutoFocusEnabled`][Self::isSmoothAutoFocusEnabled].
         #[method(setSmoothAutoFocusEnabled:)]
         pub unsafe fn setSmoothAutoFocusEnabled(&self, smooth_auto_focus_enabled: bool);
 
+        /// Indicates whether the receiver should automatically adjust face-driven autofocus.
+        ///
+        ///
+        /// The value of this property is a BOOL that determines the receiver's automatic adjustment of face-driven autofocus. Default is YES on all platforms, if the receiver supports autofocus. This property must be set to NO before manually setting faceDrivenAutoFocusEnabled to YES/NO. -setAutomaticallyAdjustsFaceDrivenAutoFocusEnabled: throws an NSInvalidArgumentException if the receiver doesn't support autofocus. -setAutomaticallyAdjustsFaceDrivenAutoFocusEnabled: throws an NSGenericException if called without first obtaining exclusive access to the receiver using -lockForConfiguration:. After setting automaticallyAdjustsFaceDrivenAutoFocusEnabled, call -setFocusMode: to apply the change.
         #[method(automaticallyAdjustsFaceDrivenAutoFocusEnabled)]
         pub unsafe fn automaticallyAdjustsFaceDrivenAutoFocusEnabled(&self) -> bool;
 
+        /// Setter for [`automaticallyAdjustsFaceDrivenAutoFocusEnabled`][Self::automaticallyAdjustsFaceDrivenAutoFocusEnabled].
         #[method(setAutomaticallyAdjustsFaceDrivenAutoFocusEnabled:)]
         pub unsafe fn setAutomaticallyAdjustsFaceDrivenAutoFocusEnabled(
             &self,
             automatically_adjusts_face_driven_auto_focus_enabled: bool,
         );
 
+        /// Indicates whether face-driven autofocus is enabled on the receiver.
+        ///
+        ///
+        /// Default is YES for all apps linked on or after iOS 15.4 when the receiver supports autofocus. -setFaceDrivenAutoFocusEnabled: throws an NSInvalidArgumentException if automaticallyAdjustsFaceDrivenAutoFocusEnabled returns YES.  -setFaceDrivenAutoFocusEnabled: throws an NSInvalidArgumentException if the receiver doesn't support autofocus. -setFaceDrivenAutoFocusEnabled: throws an NSGenericException if called without first obtaining exclusive access to the receiver using -lockForConfiguration:. Note that setting faceDrivenAutoFocusEnabled alone does not initiate this focus change operation. After setting faceDrivenAutoFocusEnabled, call -setFocusMode: to apply the change.
         #[method(isFaceDrivenAutoFocusEnabled)]
         pub unsafe fn isFaceDrivenAutoFocusEnabled(&self) -> bool;
 
+        /// Setter for [`isFaceDrivenAutoFocusEnabled`][Self::isFaceDrivenAutoFocusEnabled].
         #[method(setFaceDrivenAutoFocusEnabled:)]
         pub unsafe fn setFaceDrivenAutoFocusEnabled(&self, face_driven_auto_focus_enabled: bool);
 
+        /// Indicates the focus position of the lens.
+        ///
+        ///
+        /// The range of possible positions is 0.0 to 1.0, with 0.0 being the shortest distance at which the lens can focus and 1.0 the furthest. Note that 1.0 does not represent focus at infinity. The default value is 1.0. Note that a given lens position value does not correspond to an exact physical distance, nor does it represent a consistent focus distance from device to device. This property is key-value observable. It can be read at any time, regardless of focus mode, but can only be set via setFocusModeLockedWithLensPosition:completionHandler:.
         #[method(lensPosition)]
         pub unsafe fn lensPosition(&self) -> c_float;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Sets focusMode to AVCaptureFocusModeLocked and locks lensPosition at an explicit value.
+        ///
+        ///
+        /// Parameter `lensPosition`: The lens position, as described in the documentation for the lensPosition property. A value of AVCaptureLensPositionCurrent can be used to indicate that the caller does not wish to specify a value for lensPosition.
+        ///
+        /// Parameter `handler`: A block to be called when lensPosition has been set to the value specified and focusMode is set to AVCaptureFocusModeLocked. If setFocusModeLockedWithLensPosition:completionHandler: is called multiple times, the completion handlers will be called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the master clock prior to comparison with the timestamps of buffers delivered via an AVCaptureVideoDataOutput. The client may pass nil for the handler parameter if knowledge of the operation's completion is not required.
+        ///
+        ///
+        /// This is the only way of setting lensPosition. This method throws an NSRangeException if lensPosition is set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
         #[method(setFocusModeLockedWithLensPosition:completionHandler:)]
         pub unsafe fn setFocusModeLockedWithLensPosition_completionHandler(
             &self,
@@ -656,12 +1272,27 @@ extern_methods!(
             handler: Option<&block2::Block<dyn Fn(CMTime)>>,
         );
 
+        /// A property indicating the minimum focus distance.
+        ///
+        ///
+        /// The minimum focus distance is given in millimeters, -1 if unknown. For virtual cameras (AVCaptureDeviceTypeBuiltInDualCamera, AVCaptureDeviceTypeBuiltInTripleCamera, etc.), the value reported is the smallest minimum focus distance of the auto-focus-capable cameras that it sources.
         #[method(minimumFocusDistance)]
         pub unsafe fn minimumFocusDistance(&self) -> NSInteger;
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuremode?language=objc)
+/// Constants indicating the mode of the exposure on the receiver's device, if it has adjustable exposure.
+///
+///
+/// Indicates that the exposure should be locked at its current value.
+///
+/// Indicates that the device should automatically adjust exposure once and then change the exposure mode to AVCaptureExposureModeLocked.
+///
+/// Indicates that the device should automatically adjust exposure when needed.
+///
+/// Indicates that the device should only adjust exposure according to user provided ISO, exposureDuration values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuremode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -686,56 +1317,95 @@ unsafe impl RefEncode for AVCaptureExposureMode {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuredurationcurrent?language=objc)
+    /// A special value that may be passed as the duration parameter of setExposureModeCustomWithDuration:ISO:completionHandler: to indicate that the caller does not wish to specify a value for the exposureDuration property, and that it should instead be set to its current value. Note that the device may be adjusting exposureDuration at the time of the call, in which case the value to which exposureDuration is set may differ from the value obtained by querying the exposureDuration property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuredurationcurrent?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub static AVCaptureExposureDurationCurrent: CMTime;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureisocurrent?language=objc)
+    /// A special value that may be passed as the ISO parameter of setExposureModeCustomWithDuration:ISO:completionHandler: to indicate that the caller does not wish to specify a value for the ISO property, and that it should instead be set to its current value. Note that the device may be adjusting ISO at the time of the call, in which case the value to which ISO is set may differ from the value obtained by querying the ISO property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureisocurrent?language=objc)
     pub static AVCaptureISOCurrent: c_float;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuretargetbiascurrent?language=objc)
+    /// A special value that may be passed as the bias parameter of setExposureTargetBias:completionHandler: to indicate that the caller does not wish to specify a value for the exposureTargetBias property, and that it should instead be set to its current value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuretargetbiascurrent?language=objc)
     pub static AVCaptureExposureTargetBiasCurrent: c_float;
 }
 
 extern_methods!(
     /// AVCaptureDeviceExposure
     unsafe impl AVCaptureDevice {
+        /// Returns whether the receiver supports the given exposure mode.
+        ///
+        ///
+        /// Parameter `exposureMode`: An AVCaptureExposureMode to be checked.
+        ///
+        /// Returns: YES if the receiver supports the given exposure mode, NO otherwise.
+        ///
+        ///
+        /// The receiver's exposureMode property can only be set to a certain mode if this method returns YES for that mode.
         #[method(isExposureModeSupported:)]
         pub unsafe fn isExposureModeSupported(&self, exposure_mode: AVCaptureExposureMode) -> bool;
 
+        /// Indicates current exposure mode of the receiver, if it has adjustable exposure.
+        ///
+        ///
+        /// The value of this property is an AVCaptureExposureMode that determines the receiver's exposure mode, if it has adjustable exposure. -setExposureMode: throws an NSInvalidArgumentException if set to an unsupported value (see -isExposureModeSupported:). -setExposureMode: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. When using AVCapturePhotoOutput and capturing photos with AVCapturePhotoSettings' photoQualityPrioritization property set to AVCapturePhotoQualityPrioritizationBalanced or higher, the receiver's ISO and exposureDuration values may be overridden when exposing the photo if the scene is dark enough to warrant some form of multi-image fusion to improve quality. To ensure that the receiver's ISO and exposureDuration values are honored while in AVCaptureExposureModeCustom or AVCaptureExposureModeLocked, you must set your AVCapturePhotoSettings.photoQualityPrioritization property to AVCapturePhotoQualityPrioritizationSpeed. The same rule applies if you are using the deprecated AVCapturePhotoSettings.autoStillImageStabilizationEnabled property; you must set it to NO to preserve your custom exposure values in the photo capture. Likewise if you're using AVCaptureStillImageOutput, automaticallyEnablesStillImageStabilizationWhenAvailable must be set to NO to preserve your custom exposure values in a still image capture. Clients can observe automatic changes to the receiver's exposureMode by key value observing this property.
         #[method(exposureMode)]
         pub unsafe fn exposureMode(&self) -> AVCaptureExposureMode;
 
+        /// Setter for [`exposureMode`][Self::exposureMode].
         #[method(setExposureMode:)]
         pub unsafe fn setExposureMode(&self, exposure_mode: AVCaptureExposureMode);
 
+        /// Indicates whether the receiver supports exposure points of interest.
+        ///
+        ///
+        /// The receiver's exposurePointOfInterest property can only be set if this property returns YES.
         #[method(isExposurePointOfInterestSupported)]
         pub unsafe fn isExposurePointOfInterestSupported(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates current exposure point of interest of the receiver, if it has one.
+        ///
+        ///
+        /// The value of this property is a CGPoint that determines the receiver's exposure point of interest, if it has adjustable exposure. A value of (0,0) indicates that the camera should adjust exposure based on the top left corner of the image, while a value of (1,1) indicates that it should adjust exposure based on the bottom right corner. The default value is (0.5,0.5). -setExposurePointOfInterest: throws an NSInvalidArgumentException if isExposurePointOfInterestSupported returns NO. -setExposurePointOfInterest: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. Note that setting exposurePointOfInterest alone does not initiate an exposure operation. After setting exposurePointOfInterest, call -setExposureMode: to apply the new point of interest.
         #[method(exposurePointOfInterest)]
         pub unsafe fn exposurePointOfInterest(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`exposurePointOfInterest`][Self::exposurePointOfInterest].
         #[method(setExposurePointOfInterest:)]
         pub unsafe fn setExposurePointOfInterest(&self, exposure_point_of_interest: CGPoint);
 
+        /// Indicates whether the receiver should automatically adjust face-driven auto exposure.
+        ///
+        ///
+        /// The value of this property is a BOOL that determines the receiver's automatic adjustment of face-driven auto exposure. Default is YES on all platforms, if the receiver supports auto exposure. This property must be set to NO before manually setting faceDrivenAutoExposureEnabled to YES/NO. -setAutomaticallyAdjustsFaceDrivenAutoExposureEnabled: throws an NSInvalidArgumentException if the receiver doesn't support auto exposure. -setAutomaticallyAdjustsFaceDrivenAutoExposureEnabled: throws an NSGenericException if called without first obtaining exclusive access to the receiver using -lockForConfiguration:. After setting automaticallyAdjustsFaceDrivenAutoExposureEnabled, call -setExposureMode: to apply the change.
         #[method(automaticallyAdjustsFaceDrivenAutoExposureEnabled)]
         pub unsafe fn automaticallyAdjustsFaceDrivenAutoExposureEnabled(&self) -> bool;
 
+        /// Setter for [`automaticallyAdjustsFaceDrivenAutoExposureEnabled`][Self::automaticallyAdjustsFaceDrivenAutoExposureEnabled].
         #[method(setAutomaticallyAdjustsFaceDrivenAutoExposureEnabled:)]
         pub unsafe fn setAutomaticallyAdjustsFaceDrivenAutoExposureEnabled(
             &self,
             automatically_adjusts_face_driven_auto_exposure_enabled: bool,
         );
 
+        /// Indicates whether face-driven auto exposure is enabled on the receiver.
+        ///
+        ///
+        /// Default is YES for all apps linked on or after iOS 15.4 when the receiver supports auto exposure. -setFaceDrivenAutoExposureEnabled: throws an NSInvalidArgumentException if automaticallyAdjustsFaceDrivenAutoExposureEnabled returns YES. -setFaceDrivenAutoExposureEnabled: throws an NSInvalidArgumentException if the receiver doesn't support auto exposure. -setFaceDrivenAutoExposureEnabled: throws an NSGenericException if called without first obtaining exclusive access to the receiver using -lockForConfiguration:. Note that setting faceDrivenAutoExposureEnabled alone does not initiate this exposure change operation. After setting faceDrivenAutoExposureEnabled, call -setExposureMode: to apply the change.
         #[method(isFaceDrivenAutoExposureEnabled)]
         pub unsafe fn isFaceDrivenAutoExposureEnabled(&self) -> bool;
 
+        /// Setter for [`isFaceDrivenAutoExposureEnabled`][Self::isFaceDrivenAutoExposureEnabled].
         #[method(setFaceDrivenAutoExposureEnabled:)]
         pub unsafe fn setFaceDrivenAutoExposureEnabled(
             &self,
@@ -743,27 +1413,61 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-media")]
+        /// The maximum exposure (integration) time that may be used by the auto exposure algorithm.
+        ///
+        ///
+        /// When an AVCaptureDevice's exposureMode is set to AVCaptureExposureModeAutoExpose or AVCaptureExposureModeContinuousAutoExposure, the auto exposure algorithm picks a default max exposure duration that is tuned for the current configuration, balancing low light image quality with motion preservation. By querying or key-value observing this property, you may find out the current max exposure duration in use. You may also override the default value by setting this property to a value between activeFormat.maxExposureDuration and activeFormat.minExposureDuration. An NSRangeException is thrown if you pass an out-of-bounds exposure duration. Setting the property to the special value of kCMTimeInvalid resets the auto exposure max duration to the device's default for your current configuration. When the device's activeFormat or the AVCaptureSession's sessionPreset changes, this property resets to the default max exposure duration for the new format or session preset.
+        ///
+        /// On some devices, the auto exposure algorithm picks a different max exposure duration for a given format depending whether you used the -[AVCaptureSession setSessionPreset:] API or the -[AVCaptureDevice setActiveFormat:] API to set the format. To ensure uniform default handling of max exposure duration, you can set your AVCaptureDeviceInput's unifiedAutoExposureDefaultsEnabled property to YES.
         #[method(activeMaxExposureDuration)]
         pub unsafe fn activeMaxExposureDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`activeMaxExposureDuration`][Self::activeMaxExposureDuration].
         #[method(setActiveMaxExposureDuration:)]
         pub unsafe fn setActiveMaxExposureDuration(&self, active_max_exposure_duration: CMTime);
 
+        /// Indicates whether the receiver is currently adjusting camera exposure.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver's camera exposure is being automatically adjusted because its exposure mode is AVCaptureExposureModeAutoExpose or AVCaptureExposureModeContinuousAutoExposure. Clients can observe the value of this property to determine whether the camera exposure is stable or is being automatically adjusted.
         #[method(isAdjustingExposure)]
         pub unsafe fn isAdjustingExposure(&self) -> bool;
 
+        /// The size of the lens diaphragm.
+        ///
+        ///
+        /// The value of this property is a float indicating the size (f number) of the lens diaphragm. This property does not change.
         #[method(lensAperture)]
         pub unsafe fn lensAperture(&self) -> c_float;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The length of time over which exposure takes place.
+        ///
+        ///
+        /// Only exposure duration values between activeFormat.minExposureDuration and activeFormat.maxExposureDuration are supported. This property is key-value observable. It can be read at any time, regardless of exposure mode, but can only be set via setExposureModeCustomWithDuration:ISO:completionHandler:.
         #[method(exposureDuration)]
         pub unsafe fn exposureDuration(&self) -> CMTime;
 
+        /// The current exposure ISO value.
+        ///
+        ///
+        /// This property controls the sensor's sensitivity to light by means of a gain value applied to the signal. Only ISO values between activeFormat.minISO and activeFormat.maxISO are supported. Higher values will result in noisier images. This property is key-value observable. It can be read at any time, regardless of exposure mode, but can only be set via setExposureModeCustomWithDuration:ISO:completionHandler:.
         #[method(ISO)]
         pub unsafe fn ISO(&self) -> c_float;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Sets exposureMode to AVCaptureExposureModeCustom and locks exposureDuration and ISO at explicit values.
+        ///
+        ///
+        /// Parameter `duration`: The exposure duration, as described in the documentation for the exposureDuration property. A value of AVCaptureExposureDurationCurrent can be used to indicate that the caller does not wish to specify a value for exposureDuration. Note that changes to this property may result in changes to activeVideoMinFrameDuration and/or activeVideoMaxFrameDuration.
+        ///
+        /// Parameter `ISO`: The exposure ISO value, as described in the documentation for the ISO property. A value of AVCaptureISOCurrent can be used to indicate that the caller does not wish to specify a value for ISO.
+        ///
+        /// Parameter `handler`: A block to be called when both exposureDuration and ISO have been set to the values specified and exposureMode is set to AVCaptureExposureModeCustom. If setExposureModeCustomWithDuration:ISO:completionHandler: is called multiple times, the completion handlers will be called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the master clock prior to comparison with the timestamps of buffers delivered via an AVCaptureVideoDataOutput. The client may pass nil for the handler parameter if knowledge of the operation's completion is not required.
+        ///
+        ///
+        /// This is the only way of setting exposureDuration and ISO. This method throws an NSRangeException if either exposureDuration or ISO is set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. When using AVCapturePhotoOutput to capture photos, note that the photoQualityPrioritization property of AVCapturePhotoSettings defaults to AVCapturePhotoQualityPrioritizationBalanced, which allows photo capture to temporarily override the capture device's ISO and exposureDuration values if the scene is dark enough to warrant some form of multi-image fusion to improve quality. To ensure that the receiver's ISO and exposureDuration values are honored while in AVCaptureExposureModeCustom or AVCaptureExposureModeLocked, you must set your AVCapturePhotoSettings.photoQualityPrioritization property to AVCapturePhotoQualityPrioritizationSpeed. The same rule applies if you use the deprecated AVCapturePhotoSettings.autoStillImageStabilizationEnabled property or AVCaptureStillImageOutput.automaticallyEnablesStillImageStabilizationWhenAvailable property. You must set them to NO to preserve your custom or locked exposure settings.
         #[method(setExposureModeCustomWithDuration:ISO:completionHandler:)]
         pub unsafe fn setExposureModeCustomWithDuration_ISO_completionHandler(
             &self,
@@ -772,19 +1476,44 @@ extern_methods!(
             handler: Option<&block2::Block<dyn Fn(CMTime)>>,
         );
 
+        /// Indicates the metered exposure level's offset from the target exposure value, in EV units.
+        ///
+        ///
+        /// The value of this read-only property indicates the difference between the metered exposure level of the current scene and the target exposure value. This property is key-value observable.
         #[method(exposureTargetOffset)]
         pub unsafe fn exposureTargetOffset(&self) -> c_float;
 
+        /// Bias applied to the target exposure value, in EV units.
+        ///
+        ///
+        /// When exposureMode is AVCaptureExposureModeContinuousAutoExposure or AVCaptureExposureModeLocked, the bias will affect both metering (exposureTargetOffset), and the actual exposure level (exposureDuration and ISO). When the exposure mode is AVCaptureExposureModeCustom, it will only affect metering. This property is key-value observable. It can be read at any time, but can only be set via setExposureTargetBias:completionHandler:.
         #[method(exposureTargetBias)]
         pub unsafe fn exposureTargetBias(&self) -> c_float;
 
+        /// A float indicating the minimum supported exposure bias, in EV units.
+        ///
+        ///
+        /// This read-only property indicates the minimum supported exposure bias.
         #[method(minExposureTargetBias)]
         pub unsafe fn minExposureTargetBias(&self) -> c_float;
 
+        /// A float indicating the maximum supported exposure bias, in EV units.
+        ///
+        ///
+        /// This read-only property indicates the maximum supported exposure bias.
         #[method(maxExposureTargetBias)]
         pub unsafe fn maxExposureTargetBias(&self) -> c_float;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Sets the bias to be applied to the target exposure value.
+        ///
+        ///
+        /// Parameter `bias`: The bias to be applied to the exposure target value, as described in the documentation for the exposureTargetBias property.
+        ///
+        /// Parameter `handler`: A block to be called when exposureTargetBias has been set to the value specified. If setExposureTargetBias:completionHandler: is called multiple times, the completion handlers will be called in FIFO order. The block receives a timestamp which matches that of the first buffer to which the setting has been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the master clock prior to comparison with the timestamps of buffers delivered via an AVCaptureVideoDataOutput. The client may pass nil for the handler parameter if knowledge of the operation's completion is not required.
+        ///
+        ///
+        /// This is the only way of setting exposureTargetBias. This method throws an NSRangeException if exposureTargetBias is set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
         #[method(setExposureTargetBias:completionHandler:)]
         pub unsafe fn setExposureTargetBias_completionHandler(
             &self,
@@ -797,15 +1526,42 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceToneMapping
     unsafe impl AVCaptureDevice {
+        /// Indicates whether the receiver should use global tone mapping.
+        ///
+        ///
+        /// Tone mapping is a technique used by the device to map the pixel levels in high dynamic range images to a more limited dynamic range (such as 16 bit to 8 bit), while still retaining as close an appearance as possible. Normally the device employs adaptive, local tone curves to preserve highest image quality and adapt quickly to changing lighting conditions.
+        ///
+        /// This property indicates to the receiver to use a global tone map. If set to YES, the tone map is adjusted dynamically depending on the current scene and the same tone map is applied to all pixels in an image. If set to its default value of NO, different tone maps may be applied to different pixels in an image.
+        ///
+        /// globalToneMappingEnabled may only be set to YES if the receiver's activeFormat.isGlobalToneMappingSupported property returns YES, otherwise an NSGenericException is thrown. Setting globalToneMappingEnabled throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
+        ///
+        /// When global tone mapping is enabled, an AVCapturePhotoOutput connected to the AVCaptureDeviceInput’s session disables all forms of still image fusion, resulting in still images with no automatic stabilization applied.
+        ///
+        /// The receiver’s globalToneMappingEnabled resets to its default value of NO under the following conditions:
+        /// - The receiver’s activeFormat changes
+        /// - The receiver’s AVCaptureDeviceInput’s session’s sessionPreset changes
+        /// - The receiver’s AVCaptureDeviceInput is added to a session
+        ///
+        /// Clients can observe automatic changes to the receiver's globalToneMappingEnabled by key value observing this property.
         #[method(isGlobalToneMappingEnabled)]
         pub unsafe fn isGlobalToneMappingEnabled(&self) -> bool;
 
+        /// Setter for [`isGlobalToneMappingEnabled`][Self::isGlobalToneMappingEnabled].
         #[method(setGlobalToneMappingEnabled:)]
         pub unsafe fn setGlobalToneMappingEnabled(&self, global_tone_mapping_enabled: bool);
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancemode?language=objc)
+/// Constants indicating the mode of the white balance on the receiver's device, if it has adjustable white balance.
+///
+///
+/// Indicates that the white balance should be locked at its current value.
+///
+/// Indicates that the device should automatically adjust white balance once and then change the white balance mode to AVCaptureWhiteBalanceModeLocked.
+///
+/// Indicates that the device should automatically adjust white balance when needed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -827,7 +1583,9 @@ unsafe impl RefEncode for AVCaptureWhiteBalanceMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancegains?language=objc)
+/// Structure containing RGB white balance gain values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancegains?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AVCaptureWhiteBalanceGains {
@@ -851,7 +1609,9 @@ unsafe impl RefEncode for AVCaptureWhiteBalanceGains {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancechromaticityvalues?language=objc)
+/// Structure containing CIE 1931 xy chromaticity values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancechromaticityvalues?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AVCaptureWhiteBalanceChromaticityValues {
@@ -867,7 +1627,9 @@ unsafe impl RefEncode for AVCaptureWhiteBalanceChromaticityValues {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvalues?language=objc)
+/// Structure containing a white balance color correlated temperature in kelvin, plus a tint value in the range of [-150 - +150].
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvalues?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AVCaptureWhiteBalanceTemperatureAndTintValues {
@@ -884,41 +1646,86 @@ unsafe impl RefEncode for AVCaptureWhiteBalanceTemperatureAndTintValues {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancegainscurrent?language=objc)
+    /// A special value that may be passed as a parameter of setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler: to indicate that the caller does not wish to specify a value for deviceWhiteBalanceGains, and that gains should instead be locked at their value at the moment that white balance is locked.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancegainscurrent?language=objc)
     pub static AVCaptureWhiteBalanceGainsCurrent: AVCaptureWhiteBalanceGains;
 }
 
 extern_methods!(
     /// AVCaptureDeviceWhiteBalance
     unsafe impl AVCaptureDevice {
+        /// Returns whether the receiver supports the given white balance mode.
+        ///
+        ///
+        /// Parameter `whiteBalanceMode`: An AVCaptureWhiteBalanceMode to be checked.
+        ///
+        /// Returns: YES if the receiver supports the given white balance mode, NO otherwise.
+        ///
+        ///
+        /// The receiver's whiteBalanceMode property can only be set to a certain mode if this method returns YES for that mode.
         #[method(isWhiteBalanceModeSupported:)]
         pub unsafe fn isWhiteBalanceModeSupported(
             &self,
             white_balance_mode: AVCaptureWhiteBalanceMode,
         ) -> bool;
 
+        /// Indicates whether the receiver supports white balance gains other than AVCaptureWhiteBalanceGainsCurrent.
+        ///
+        ///
+        /// If lockingWhiteBalanceWithCustomDeviceGainsSupported returns NO, setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains: may only be called with AVCaptureWhiteBalanceGainsCurrent. Passing any other white balance gains will result in an exception.
         #[method(isLockingWhiteBalanceWithCustomDeviceGainsSupported)]
         pub unsafe fn isLockingWhiteBalanceWithCustomDeviceGainsSupported(&self) -> bool;
 
+        /// Indicates current white balance mode of the receiver, if it has adjustable white balance.
+        ///
+        ///
+        /// The value of this property is an AVCaptureWhiteBalanceMode that determines the receiver's white balance mode, if it has adjustable white balance. -setWhiteBalanceMode: throws an NSInvalidArgumentException if set to an unsupported value (see -isWhiteBalanceModeSupported:). -setWhiteBalanceMode: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. Clients can observe automatic changes to the receiver's whiteBalanceMode by key value observing this property.
         #[method(whiteBalanceMode)]
         pub unsafe fn whiteBalanceMode(&self) -> AVCaptureWhiteBalanceMode;
 
+        /// Setter for [`whiteBalanceMode`][Self::whiteBalanceMode].
         #[method(setWhiteBalanceMode:)]
         pub unsafe fn setWhiteBalanceMode(&self, white_balance_mode: AVCaptureWhiteBalanceMode);
 
+        /// Indicates whether the receiver is currently adjusting camera white balance.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver's camera white balance is being automatically adjusted because its white balance mode is AVCaptureWhiteBalanceModeAutoWhiteBalance or AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance. Clients can observe the value of this property to determine whether the camera white balance is stable or is being automatically adjusted.
         #[method(isAdjustingWhiteBalance)]
         pub unsafe fn isAdjustingWhiteBalance(&self) -> bool;
 
+        /// Indicates the current device-specific RGB white balance gain values in use.
+        ///
+        ///
+        /// This property specifies the current red, green, and blue gain values used for white balance. The values can be used to adjust color casts for a given scene. For each channel, only values between 1.0 and -maxWhiteBalanceGain are supported. This property is key-value observable. It can be read at any time, regardless of white balance mode, but can only be set via setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:.
         #[method(deviceWhiteBalanceGains)]
         pub unsafe fn deviceWhiteBalanceGains(&self) -> AVCaptureWhiteBalanceGains;
 
+        /// Indicates the current device-specific Gray World RGB white balance gain values in use.
+        ///
+        ///
+        /// This property specifies the current red, green, and blue gain values derived from the current scene to deliver a neutral (or "Gray World") white point for white balance. Gray World values assume a neutral subject (e.g. a gray card) has been placed in the middle of the subject area and fills the center 50% of the frame. Clients can read these values and apply them to the device using setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:. For each channel, only values between 1.0 and -maxWhiteBalanceGain are supported. This property is key-value observable. It can be read at any time, regardless of white balance mode.
         #[method(grayWorldDeviceWhiteBalanceGains)]
         pub unsafe fn grayWorldDeviceWhiteBalanceGains(&self) -> AVCaptureWhiteBalanceGains;
 
+        /// Indicates the maximum supported value to which a channel in the AVCaptureWhiteBalanceGains may be set.
+        ///
+        ///
+        /// This property does not change for the life of the receiver.
         #[method(maxWhiteBalanceGain)]
         pub unsafe fn maxWhiteBalanceGain(&self) -> c_float;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Sets white balance to locked mode with explicit deviceWhiteBalanceGains values.
+        ///
+        ///
+        /// Parameter `whiteBalanceGains`: The white balance gain values, as described in the documentation for the deviceWhiteBalanceGains property. A value of AVCaptureWhiteBalanceGainsCurrent can be used to indicate that the caller does not wish to specify a value for deviceWhiteBalanceGains.
+        ///
+        /// Parameter `handler`: A block to be called when white balance gains have been set to the values specified and whiteBalanceMode is set to AVCaptureWhiteBalanceModeLocked. If setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler: is called multiple times, the completion handlers will be called in FIFO order. The block receives a timestamp which matches that of the first buffer to which all settings have been applied. Note that the timestamp is synchronized to the device clock, and thus must be converted to the master clock prior to comparison with the timestamps of buffers delivered via an AVCaptureVideoDataOutput. This parameter may be nil if synchronization is not required.
+        ///
+        ///
+        /// For each channel in the whiteBalanceGains struct, only values between 1.0 and -maxWhiteBalanceGain are supported. Gain values are normalized to the minimum channel value to avoid brightness changes (e.g. R:2 G:2 B:4 will be normalized to R:1 G:1 B:2). This method throws an NSRangeException if any of the whiteBalanceGains are set to an unsupported level. This method throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
         #[method(setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:)]
         pub unsafe fn setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains_completionHandler(
             &self,
@@ -926,24 +1733,60 @@ extern_methods!(
             handler: Option<&block2::Block<dyn Fn(CMTime)>>,
         );
 
+        /// Converts device-specific white balance RGB gain values to device-independent chromaticity values.
+        ///
+        ///
+        /// Parameter `whiteBalanceGains`: White balance gain values, as described in the documentation for the deviceWhiteBalanceGains property. A value of AVCaptureWhiteBalanceGainsCurrent may not be used in this function.
+        ///
+        /// Returns: A fully populated AVCaptureWhiteBalanceChromaticityValues structure containing device-independent values.
+        ///
+        ///
+        /// This method may be called on the receiver to convert device-specific white balance RGB gain values to device-independent chromaticity (little x, little y) values. For each channel in the whiteBalanceGains struct, only values between 1.0 and -maxWhiteBalanceGain are supported. This method throws an NSRangeException if any of the whiteBalanceGains are set to unsupported values.
         #[method(chromaticityValuesForDeviceWhiteBalanceGains:)]
         pub unsafe fn chromaticityValuesForDeviceWhiteBalanceGains(
             &self,
             white_balance_gains: AVCaptureWhiteBalanceGains,
         ) -> AVCaptureWhiteBalanceChromaticityValues;
 
+        /// Converts device-independent chromaticity values to device-specific white balance RGB gain values.
+        ///
+        ///
+        /// Parameter `chromaticityValues`: Little x, little y chromaticity values as described in the documentation for AVCaptureWhiteBalanceChromaticityValues.
+        ///
+        /// Returns: A fully populated AVCaptureWhiteBalanceGains structure containing device-specific RGB gain values.
+        ///
+        ///
+        /// This method may be called on the receiver to convert device-independent chromaticity values to device-specific RGB white balance gain values. This method throws an NSRangeException if any of the chromaticityValues are set outside the range [0,1]. Note that some x,y combinations yield out-of-range device RGB values that will cause an exception to be thrown if passed directly to -setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:. Be sure to check that red, green, and blue gain values are within the range of [1.0 - maxWhiteBalanceGain].
         #[method(deviceWhiteBalanceGainsForChromaticityValues:)]
         pub unsafe fn deviceWhiteBalanceGainsForChromaticityValues(
             &self,
             chromaticity_values: AVCaptureWhiteBalanceChromaticityValues,
         ) -> AVCaptureWhiteBalanceGains;
 
+        /// Converts device-specific white balance RGB gain values to device-independent temperature and tint values.
+        ///
+        ///
+        /// Parameter `whiteBalanceGains`: White balance gain values, as described in the documentation for the deviceWhiteBalanceGains property. A value of AVCaptureWhiteBalanceGainsCurrent may not be used in this function.
+        ///
+        /// Returns: A fully populated AVCaptureWhiteBalanceTemperatureAndTintValues structure containing device-independent values.
+        ///
+        ///
+        /// This method may be called on the receiver to convert device-specific white balance RGB gain values to device-independent temperature (in kelvin) and tint values. For each channel in the whiteBalanceGains struct, only values between 1.0 and -maxWhiteBalanceGain are supported. This method throws an NSRangeException if any of the whiteBalanceGains are set to unsupported values.
         #[method(temperatureAndTintValuesForDeviceWhiteBalanceGains:)]
         pub unsafe fn temperatureAndTintValuesForDeviceWhiteBalanceGains(
             &self,
             white_balance_gains: AVCaptureWhiteBalanceGains,
         ) -> AVCaptureWhiteBalanceTemperatureAndTintValues;
 
+        /// Converts device-independent temperature and tint values to device-specific white balance RGB gain values.
+        ///
+        ///
+        /// Parameter `tempAndTintValues`: Temperature and tint values as described in the documentation for AVCaptureWhiteBalanceTemperatureAndTintValues.
+        ///
+        /// Returns: A fully populated AVCaptureWhiteBalanceGains structure containing device-specific RGB gain values.
+        ///
+        ///
+        /// This method may be called on the receiver to convert device-independent temperature and tint values to device-specific RGB white balance gain values. You may pass any temperature and tint values and corresponding white balance gains will be produced. Note though that some temperature and tint combinations yield out-of-range device RGB values that will cause an exception to be thrown if passed directly to -setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:. Be sure to check that red, green, and blue gain values are within the range of [1.0 - maxWhiteBalanceGain].
         #[method(deviceWhiteBalanceGainsForTemperatureAndTintValues:)]
         pub unsafe fn deviceWhiteBalanceGainsForTemperatureAndTintValues(
             &self,
@@ -955,9 +1798,14 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceSubjectAreaChangeMonitoring
     unsafe impl AVCaptureDevice {
+        /// Indicates whether the receiver should monitor the subject area for changes.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver should monitor the video subject area for changes, such as lighting changes, substantial movement, etc. If subject area change monitoring is enabled, the receiver sends an AVCaptureDeviceSubjectAreaDidChangeNotification whenever it detects a change to the subject area, at which time an interested client may wish to re-focus, adjust exposure, white balance, etc. The receiver must be locked for configuration using lockForConfiguration: before clients can set the value of this property.
         #[method(isSubjectAreaChangeMonitoringEnabled)]
         pub unsafe fn isSubjectAreaChangeMonitoringEnabled(&self) -> bool;
 
+        /// Setter for [`isSubjectAreaChangeMonitoringEnabled`][Self::isSubjectAreaChangeMonitoringEnabled].
         #[method(setSubjectAreaChangeMonitoringEnabled:)]
         pub unsafe fn setSubjectAreaChangeMonitoringEnabled(
             &self,
@@ -969,15 +1817,28 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceLowLightBoost
     unsafe impl AVCaptureDevice {
+        /// Indicates whether the receiver supports boosting images in low light conditions.
+        ///
+        ///
+        /// The receiver's automaticallyEnablesLowLightBoostWhenAvailable property can only be set if this property returns YES.
         #[method(isLowLightBoostSupported)]
         pub unsafe fn isLowLightBoostSupported(&self) -> bool;
 
+        /// Indicates whether the receiver's low light boost feature is enabled.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver is currently enhancing images to improve quality due to low light conditions. When -isLowLightBoostEnabled returns YES, the receiver has switched into a special mode in which more light can be perceived in images. This property is key-value observable.
         #[method(isLowLightBoostEnabled)]
         pub unsafe fn isLowLightBoostEnabled(&self) -> bool;
 
+        /// Indicates whether the receiver should automatically switch to low light boost mode when necessary.
+        ///
+        ///
+        /// On a receiver where -isLowLightBoostSupported returns YES, a special low light boost mode may be engaged to improve image quality. When the automaticallyEnablesLowLightBoostWhenAvailable property is set to YES, the receiver switches at its discretion to a special boost mode under low light, and back to normal operation when the scene becomes sufficiently lit. An AVCaptureDevice that supports this feature may only engage boost mode for certain source formats or resolutions. Clients may observe changes to the lowLightBoostEnabled property to know when the mode has engaged. The switch between normal operation and low light boost mode may drop one or more video frames. The default value is NO. Setting this property throws an NSInvalidArgumentException if -isLowLightBoostSupported returns NO. The receiver must be locked for configuration using lockForConfiguration: before clients can set this method, otherwise an NSGenericException is thrown.
         #[method(automaticallyEnablesLowLightBoostWhenAvailable)]
         pub unsafe fn automaticallyEnablesLowLightBoostWhenAvailable(&self) -> bool;
 
+        /// Setter for [`automaticallyEnablesLowLightBoostWhenAvailable`][Self::automaticallyEnablesLowLightBoostWhenAvailable].
         #[method(setAutomaticallyEnablesLowLightBoostWhenAvailable:)]
         pub unsafe fn setAutomaticallyEnablesLowLightBoostWhenAvailable(
             &self,
@@ -990,35 +1851,86 @@ extern_methods!(
     /// AVCaptureDeviceVideoZoom
     unsafe impl AVCaptureDevice {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Controls zoom level of image outputs
+        ///
+        ///
+        /// Applies a centered crop for all image outputs, scaling as necessary to maintain output dimensions. Minimum value of 1.0 yields full field of view, increasing values will increase magnification, up to a maximum value specified in the activeFormat's videoMaxZoomFactor property. Modifying the zoom factor will cancel any active rampToVideoZoomFactor:withRate:, and snap directly to the assigned value. Assigning values outside the acceptable range will generate an NSRangeException. Clients can key value observe the value of this property. When depth data delivery is enabled, changing the zoom factor sets the videoZoomFactor to the nearest supportedVideoZoomFactor from -[AVCaptureDeviceFormat supportedVideoZoomFactorsForDepthDataDelivery] with a disruptive reconfiguration of the capture render pipeline.
+        ///
+        /// -setVideoZoomFactor: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
+        ///
+        ///
+        /// See also: -[AVCaptureDeviceFormat videoMaxZoomFactor], -[AVCaptureDeviceFormat videoZoomFactorUpscaleThreshold], -[AVCaptureDevice minAvailableVideoZoomFactor], -[AVCaptureDevice maxAvailableVideoZoomFactor],  -[AVCaptureDeviceFormat supportedVideoZoomFactorsForDepthDataDelivery], -[AVCaptureDeviceFormat videoMinZoomFactorForCenterStage] and -[AVCaptureDeviceFormat videoMaxZoomFactorForCenterStage]
         #[method(videoZoomFactor)]
         pub unsafe fn videoZoomFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`videoZoomFactor`][Self::videoZoomFactor].
         #[method(setVideoZoomFactor:)]
         pub unsafe fn setVideoZoomFactor(&self, video_zoom_factor: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Provides smooth changes in zoom factor.
+        ///
+        ///
+        /// This method provides a change in zoom by compounding magnification at the specified rate over time. Although the zoom factor will grow exponentially, this yields a visually linear zoom in the image over time.
+        ///
+        /// The zoom transition will stop at the specified factor, which must be in the valid range for videoZoomFactor. Assignments to videoZoomFactor while a ramp is in progress will cancel the ramp and snap to the assigned value.
+        ///
+        /// The zoom factor is continuously scaled by pow(2,rate * time). A rate of 0 causes no change in zoom factor, equivalent to calling cancelVideoZoomRamp. A rate of 1 will cause the magnification to double every second (or halve every second if zooming out), and similarly larger or smaller values will zoom faster or slower respectively. Only the absolute value of the rate is significant--sign is corrected for the direction of the target. Changes in rate will be smoothed by an internal acceleration limit.
+        ///
+        /// When depth data delivery is enabled, -rampToVideoZoomFactor:withRate: sets the videoZoomFactor to the nearest supportedVideoZoomFactor from -[AVCaptureDeviceFormat supportedVideoZoomFactorsForDepthDataDelivery] with a disruptive reconfiguration of the capture render pipeline.
+        ///
+        /// -rampToVideoZoomFactor:withRate: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
         #[method(rampToVideoZoomFactor:withRate:)]
         pub unsafe fn rampToVideoZoomFactor_withRate(&self, factor: CGFloat, rate: c_float);
 
+        /// Indicates if the zoom factor is transitioning to a value set by rampToVideoZoomFactor:withRate:
+        ///
+        ///
+        /// Clients can observe this value to determine when a ramp begins or completes.
         #[method(isRampingVideoZoom)]
         pub unsafe fn isRampingVideoZoom(&self) -> bool;
 
+        /// Eases out of any video zoom transitions initiated by rampToVideoZoomFactor:withRate:
+        ///
+        ///
+        /// This method is equivalent to calling rampToVideoZoomFactor:withRate: using the current zoom factor target and a rate of 0. This allows a smooth stop to any changes in zoom which were in progress.
+        ///
+        /// -cancelVideoZoomRamp: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
         #[method(cancelVideoZoomRamp)]
         pub unsafe fn cancelVideoZoomRamp(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The video zoom factor at or above which a DualCamera can select between its wide angle camera and its telephoto camera.
+        ///
+        ///
+        /// This is the zoom factor at which the wide angle camera's field of view matches telephoto camera's full field of view. On non-DualCamera devices this will return 1.0. As of iOS 13.0, this API has been deprecated in favor of virtualDeviceSwitchOverVideoZoomFactors.
         #[deprecated]
         #[method(dualCameraSwitchOverVideoZoomFactor)]
         pub unsafe fn dualCameraSwitchOverVideoZoomFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A multiplier that can be used with the receiver's videoZoomFactor property for displaying a video zoom factor in a user interface.
+        ///
+        ///
+        /// In some system user interfaces, like the macOS Video Effects Menu, the video zoom factor value is displayed in a way most appropriate for visual representation and might differ from the videoZoomFactor property value on the receiver by a fixed ratio. For example, if the videoZoomFactor property value is 1.0 and the displayVideoZoomFactorMultiplier property value is 0.5, then multiplying 1.0 and 0.5 produces 0.5 which can be displayed in the UI. Client applications can key value observe this property to update the display video zoom factor values in their UI to stay consistent with Apple's system UIs.
         #[method(displayVideoZoomFactorMultiplier)]
         pub unsafe fn displayVideoZoomFactorMultiplier(&self) -> CGFloat;
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avauthorizationstatus?language=objc)
+/// Constants indicating the client's authorization to the underlying hardware supporting a media type.
+///
+///
+/// Indicates that the user has not yet made a choice regarding whether the client can access the hardware.
+///
+/// The client is not authorized to access the hardware for the media type. The user cannot change the client's status, possibly due to active restrictions such as parental controls being in place.
+///
+/// The user explicitly denied access to the hardware supporting a media type for the client.
+///
+/// The client is authorized to access the hardware supporting a media type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1046,12 +1958,38 @@ extern_methods!(
     /// AVCaptureDeviceAuthorization
     unsafe impl AVCaptureDevice {
         #[cfg(feature = "AVMediaFormat")]
+        /// Returns the client's authorization status for accessing the underlying hardware that supports a given media type.
+        ///
+        ///
+        /// Parameter `mediaType`: The media type, either AVMediaTypeVideo or AVMediaTypeAudio
+        ///
+        /// Returns: The authorization status of the client
+        ///
+        ///
+        /// This method returns the AVAuthorizationStatus of the client for accessing the underlying hardware supporting the media type. Media type constants are defined in AVMediaFormat.h. If any media type other than AVMediaTypeVideo or AVMediaTypeAudio is supplied, an NSInvalidArgumentException will be thrown. If the status is AVAuthorizationStatusNotDetermined, you may use the +requestAccessForMediaType:completionHandler: method to request access by prompting the user.
         #[method(authorizationStatusForMediaType:)]
         pub unsafe fn authorizationStatusForMediaType(
             media_type: &AVMediaType,
         ) -> AVAuthorizationStatus;
 
         #[cfg(all(feature = "AVMediaFormat", feature = "block2"))]
+        /// Requests access to the underlying hardware for the media type, showing a dialog to the user if necessary.
+        ///
+        ///
+        /// Parameter `mediaType`: The media type, either AVMediaTypeVideo or AVMediaTypeAudio
+        ///
+        /// Parameter `handler`: A block called with the result of requesting access
+        ///
+        ///
+        /// Use this function to request access to the hardware for a given media type. Media type constants are defined in AVMediaFormat.h. If any media type other than AVMediaTypeVideo or AVMediaTypeAudio is supplied, an NSInvalidArgumentException will be thrown.
+        ///
+        /// This call will not block while the user is being asked for access, allowing the client to continue running. Until access has been granted, any AVCaptureDevices for the media type will vend silent audio samples or black video frames. The user is only asked for permission the first time the client requests access. Later calls use the permission granted by the user.
+        ///
+        /// Note that the authorization dialog will automatically be shown if the status is AVAuthorizationStatusNotDetermined when creating an AVCaptureDeviceInput.
+        ///
+        /// Invoking this method with AVMediaTypeAudio is equivalent to calling -[AVAudioSession requestRecordPermission:].
+        ///
+        /// The completion handler is called on an arbitrary dispatch queue. It is the client's responsibility to ensure that any UIKit-related updates are called on the main queue or main thread as a result.
         #[method(requestAccessForMediaType:completionHandler:)]
         pub unsafe fn requestAccessForMediaType_completionHandler(
             media_type: &AVMediaType,
@@ -1060,10 +1998,19 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetransportcontrolsspeed?language=objc)
+/// A constant that is used to specify the transport controls' speed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetransportcontrolsspeed?language=objc)
 pub type AVCaptureDeviceTransportControlsSpeed = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetransportcontrolsplaybackmode?language=objc)
+/// Constants indicating the transport controls' current mode of play back, if it has one.
+///
+///
+/// Indicates that the tape transport is not threaded through the play head.
+///
+/// Indicates that the tape transport is threaded through the play head.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetransportcontrolsplaybackmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1084,17 +2031,43 @@ unsafe impl RefEncode for AVCaptureDeviceTransportControlsPlaybackMode {
 extern_methods!(
     /// AVCaptureDeviceTransportControls
     unsafe impl AVCaptureDevice {
+        /// Returns whether the receiver supports transport control commands.
+        ///
+        ///
+        /// For devices with transport controls, such as AVC tape-based camcorders or pro capture devices with RS422 deck control, the value of this property is YES. If transport controls are not supported, none of the associated transport control methods and properties are available on the receiver.
         #[method(transportControlsSupported)]
         pub unsafe fn transportControlsSupported(&self) -> bool;
 
+        /// Returns the receiver's current playback mode.
+        ///
+        ///
+        /// For devices that support transport control, this property may be queried to discover the current playback mode.
         #[method(transportControlsPlaybackMode)]
         pub unsafe fn transportControlsPlaybackMode(
             &self,
         ) -> AVCaptureDeviceTransportControlsPlaybackMode;
 
+        /// Returns the receiver's current playback speed as a floating point value.
+        ///
+        ///
+        /// For devices that support transport control, this property may be queried to discover the current playback speed of the deck.
+        /// 0.0 -> stopped.
+        /// 1.0 -> forward at normal speed.
+        /// -1.0-> reverse at normal speed.
+        /// 2.0 -> forward at 2x normal speed.
+        /// etc.
         #[method(transportControlsSpeed)]
         pub unsafe fn transportControlsSpeed(&self) -> AVCaptureDeviceTransportControlsSpeed;
 
+        /// Sets both the transport controls playback mode and speed in a single method.
+        ///
+        ///
+        /// Parameter `mode`: A AVCaptureDeviceTransportControlsPlaybackMode indicating whether the deck should be put into play mode.
+        ///
+        /// Parameter `speed`: A AVCaptureDeviceTransportControlsSpeed indicating the speed at which to wind or play the tape.
+        ///
+        ///
+        /// A method for setting the receiver's transport controls playback mode and speed. The receiver must be locked for configuration using lockForConfiguration: before clients can set this method, otherwise an NSGenericException is thrown.
         #[method(setTransportControlsPlaybackMode:speed:)]
         pub unsafe fn setTransportControlsPlaybackMode_speed(
             &self,
@@ -1107,24 +2080,47 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceHighDynamicRangeSupport
     unsafe impl AVCaptureDevice {
+        /// Indicates whether the receiver is allowed to turn high dynamic range streaming on or off.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver is free to turn high dynamic range streaming on or off. This property defaults to YES. When automaticallyAdjustsVideoHDREnabled, the AVCaptureDevice turns videoHDR on automatically if it's a good fit for the activeFormat. -setAutomaticallyAdjustsVideoHDREnabled: throws an NSGenericException if called without first obtaining exclusive access to the receiver using -lockForConfiguration:. Clients can key-value observe videoHDREnabled to know when the receiver has automatically changed the value.
         #[method(automaticallyAdjustsVideoHDREnabled)]
         pub unsafe fn automaticallyAdjustsVideoHDREnabled(&self) -> bool;
 
+        /// Setter for [`automaticallyAdjustsVideoHDREnabled`][Self::automaticallyAdjustsVideoHDREnabled].
         #[method(setAutomaticallyAdjustsVideoHDREnabled:)]
         pub unsafe fn setAutomaticallyAdjustsVideoHDREnabled(
             &self,
             automatically_adjusts_video_hdr_enabled: bool,
         );
 
+        /// Indicates whether the receiver's streaming high dynamic range feature is enabled. See AVCaptureDeviceFormat.isVideoHDRSupported.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver is currently streaming high dynamic range video buffers, also known as Extended Dynamic Range (EDR). The value of this property is ignored when device.activeColorSpace is HLG BT2020 color space since HDR is effectively always on and can't be disabled. The property may only be set if you first set automaticallyAdjustsVideoHDREnabled to NO, otherwise an NSGenericException is thrown. videoHDREnabled may only be set to YES if the receiver's activeFormat.isVideoHDRSupported property returns YES, otherwise an NSGenericException is thrown. This property may be key-value observed.
+        ///
+        /// Note that setting this property may cause a lengthy reconfiguration of the receiver, similar to setting a new active format or AVCaptureSession sessionPreset. If you are setting either the active format or the AVCaptureSession's sessionPreset AND this property, you should bracket these operations with [session beginConfiguration] and [session commitConfiguration] to minimize reconfiguration time.
         #[method(isVideoHDREnabled)]
         pub unsafe fn isVideoHDREnabled(&self) -> bool;
 
+        /// Setter for [`isVideoHDREnabled`][Self::isVideoHDREnabled].
         #[method(setVideoHDREnabled:)]
         pub unsafe fn setVideoHDREnabled(&self, video_hdr_enabled: bool);
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecolorspace?language=objc)
+/// Constants indicating active or supported video color space.
+///
+///
+/// The sRGB color space ( https://www.w3.org/Graphics/Color/srgb )
+///
+/// The P3 D65 wide color space which uses Illuminant D65 as the white point.
+///
+/// The BT2020 wide color space which uses Illuminant D65 as the white point and Hybrid Log-Gamma as the transfer function.
+///
+/// The Apple Log Color space, which uses BT2020 as the color primaries, and an Apple defined Log curve as a transfer function. When this is set as the active color space on an AVCaptureDevice, any AVCapturePhotoOutput or AVCaptureStillImageOutput connected to the same AVCaptureDevice will have its video connection disabled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecolorspace?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1151,9 +2147,14 @@ unsafe impl RefEncode for AVCaptureColorSpace {
 extern_methods!(
     /// AVCaptureDeviceColorSpaceSupport
     unsafe impl AVCaptureDevice {
+        /// Indicates the receiver's current active color space.
+        ///
+        ///
+        /// By default, an AVCaptureDevice attached to an AVCaptureSession is automatically configured for wide color by the AVCaptureSession (see AVCaptureSession automaticallyConfiguresCaptureDeviceForWideColor). You may also set the activeColorSpace manually. To prevent the AVCaptureSession from undoing your work, remember to set AVCaptureSession's automaticallyConfiguresCaptureDeviceForWideColor property to NO. Changing the receiver's activeColorSpace while the session is running requires a disruptive reconfiguration of the capture render pipeline. Movie captures in progress will be ended immediately; unfulfilled photo requests will be aborted; video preview will temporarily freeze. -setActiveColorSpace: throws an NSGenericException if called without first obtaining exclusive access to the receiver using -lockForConfiguration:.
         #[method(activeColorSpace)]
         pub unsafe fn activeColorSpace(&self) -> AVCaptureColorSpace;
 
+        /// Setter for [`activeColorSpace`][Self::activeColorSpace].
         #[method(setActiveColorSpace:)]
         pub unsafe fn setActiveColorSpace(&self, active_color_space: AVCaptureColorSpace);
     }
@@ -1162,9 +2163,18 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceDepthSupport
     unsafe impl AVCaptureDevice {
+        /// The currently active depth data format of the receiver.
+        ///
+        ///
+        /// This property can be used to get or set the device's currently active depth data format. -setActiveDepthDataFormat: throws an NSInvalidArgumentException if set to a format not present in the activeFormat's -supportedDepthDataFormats array. -setActiveDepthDataFormat: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. Clients can observe automatic changes to the receiver's activeDepthDataFormat by key value observing this property. On devices where depth data is not supported, this property returns nil.
+        ///
+        /// The frame rate of depth data may not be set directly. Depth data frame rate is synchronized to the device's activeMin/MaxFrameDurations. It may match the device's current frame rate, or lower, if depth data cannot be produced fast enough for the active video frame rate.
+        ///
+        /// Delivery of depth data to a AVCaptureDepthDataOutput may increase the system load, resulting in a reduced video frame rate for thermal sustainability.
         #[method_id(@__retain_semantics Other activeDepthDataFormat)]
         pub unsafe fn activeDepthDataFormat(&self) -> Option<Retained<AVCaptureDeviceFormat>>;
 
+        /// Setter for [`activeDepthDataFormat`][Self::activeDepthDataFormat].
         #[method(setActiveDepthDataFormat:)]
         pub unsafe fn setActiveDepthDataFormat(
             &self,
@@ -1172,10 +2182,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-media")]
+        /// A property indicating the receiver's current active minimum depth data frame duration (the reciprocal of its maximum depth data frame rate).
+        ///
+        ///
+        /// This property may be used to set an upper limit to the frame rate at which depth data is produced. Lowering the depth data frame rate typically lowers power consumption which will increase the time the camera can run before an elevated system pressure state is reached.
+        ///
+        /// Setting this property to kCMTimeInvalid resets it to the active depth data format's default min frame duration. Setting this property to kCMTimePositiveInfinity results in a depth data frame rate of 0.
+        ///
+        /// The activeDepthDataMinFrameDuration gets reset whenever either the active video format or the active depth data format changes.
+        ///
+        /// -setActiveDepthDataMinFrameDuration: throws an NSRangeException if set to a value that is outside of the active depth data format's supported frame rate range.
+        /// -setActiveDepthDataMinFrameDuration: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:.
         #[method(activeDepthDataMinFrameDuration)]
         pub unsafe fn activeDepthDataMinFrameDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`activeDepthDataMinFrameDuration`][Self::activeDepthDataMinFrameDuration].
         #[method(setActiveDepthDataMinFrameDuration:)]
         pub unsafe fn setActiveDepthDataMinFrameDuration(
             &self,
@@ -1183,10 +2205,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates the minimum zoom factor available for the AVCaptureDevice's videoZoomFactor property.
+        ///
+        ///
+        /// On non-virtual devices the minAvailableVideoZoomFactor is always 1.0. If the device's videoZoomFactor property is assigned a value smaller than 1.0, an NSRangeException is thrown.
+        /// On a virtual device the minAvailableVideoZoomFactor can change when the device is delivering depth data to one or more outputs (see -[AVCaptureDeviceFormat supportedVideoZoomFactorsForDepthDataDelivery]). When depth data delivery is enabled, allowed zoom factor values are governed by -[AVCaptureDeviceFormat supportedVideoZoomFactorsForDepthDataDelivery] and this contains the absolute minimum zoom of all allowed zoom factors.
+        /// Setting the videoZoomFactor to a value greater than or equal to 1.0, but lower than minAvailableVideoZoomFactor results in the value being clamped to the minAvailableVideoZoomFactor. Clients can key value observe the value of this property.
         #[method(minAvailableVideoZoomFactor)]
         pub unsafe fn minAvailableVideoZoomFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates the maximum zoom factor available for the AVCaptureDevice's videoZoomFactor property.
+        ///
+        ///
+        /// On non-virtual devices the maxAvailableVideoZoomFactor is always equal to the activeFormat.videoMaxZoomFactor. If the device's videoZoomFactor property is assigned a value greater than activeFormat.videoMaxZoomFactor, an NSRangeException is thrown.
+        /// On a virtual device the maxAvailableVideoZoomFactor can change when the device is delivering depth data to one or more outputs (see -[AVCaptureDeviceFormat supportedVideoZoomFactorsForDepthDataDelivery]). When depth data delivery is enabled, allowed zoom factor values are governed by -[AVCaptureDeviceFormat supportedVideoZoomFactorsForDepthDataDelivery] and this contains the absolute maximum zoom of all allowed zoom factors.
+        /// Setting the videoZoomFactor to a value less than or equal to activeFormat.videoMaxZoomFactor, but greater than maxAvailableVideoZoomFactor results in the value being clamped to the maxAvailableVideoZoomFactor. Clients can key value observe the value of this property.
         #[method(maxAvailableVideoZoomFactor)]
         pub unsafe fn maxAvailableVideoZoomFactor(&self) -> CGFloat;
     }
@@ -1195,12 +2229,21 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceGeometricDistortionCorrection
     unsafe impl AVCaptureDevice {
+        /// Indicates that geometric distortion correction is supported by the receiver.
+        ///
+        ///
+        /// Some AVCaptureDevices benefit from geometric distortion correction (GDC), such as devices with a very wide field of view. GDC lessens the fisheye effect at the outer edge of the frame at the cost of losing a small amount of vertical and horizontal field of view. When GDC is enabled on the AVCaptureDevice (see geometricDistortionEnabled), the corrected image is upscaled to the original image size when needed.  With respect to the AVCaptureDevice.videoZoomFactor API, the full viewable field of view is always represented with a videoZoomFactor of 1.0. Thus, when GDC is enabled, the AVCaptureDevice.activeFormat's field of view at videoZoomFactor = 1.0 will be different than when GDC is disabled. The smaller field of view is reported through the activeFormat's geometricDistortionCorrectedVideoFieldOfView property. Beware though that RAW photo captures never have GDC applied, regardless of the value of AVCaptureDevice.geometricDistortionCorrectionEnabled.
         #[method(isGeometricDistortionCorrectionSupported)]
         pub unsafe fn isGeometricDistortionCorrectionSupported(&self) -> bool;
 
+        /// Indicates whether geometric distortion correction is enabled by the receiver.
+        ///
+        ///
+        /// Where supported, the default value is YES. The receiver must be locked for configuration using lockForConfiguration: before clients can set this method, otherwise an NSGenericException is thrown.
         #[method(isGeometricDistortionCorrectionEnabled)]
         pub unsafe fn isGeometricDistortionCorrectionEnabled(&self) -> bool;
 
+        /// Setter for [`isGeometricDistortionCorrectionEnabled`][Self::isGeometricDistortionCorrectionEnabled].
         #[method(setGeometricDistortionCorrectionEnabled:)]
         pub unsafe fn setGeometricDistortionCorrectionEnabled(
             &self,
@@ -1212,6 +2255,26 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceCalibration
     unsafe impl AVCaptureDevice {
+        /// An NSData containing the relative extrinsic matrix from one AVCaptureDevice to another.
+        ///
+        /// Parameter `fromDevice`: The AVCaptureDevice to use as the source. Must be non nil or an NSInvalidArgumentException is thrown.
+        ///
+        /// Parameter `toDevice`: The AVCaptureDevice to use as the destination. Must be non nil or an NSInvalidArgumentException is thrown.
+        ///
+        ///
+        /// The extrinsic matrix consists of a unitless 3x3 rotation matrix (R) on the left and a translation (t) 3x1 column vector on the right. The translation vector's units are millimeters. The extrinsics of the "toDevice" camera are expressed with respect to a reference camera "fromDevice". If X_from is a 3D point in "fromCamera"'s coordinate system, then it can be projected into "toCamera"'s coordinate system with X_to = [R | t] * X_from. Note that a matrix_float4x3 matrix is column major with 3 rows and 4 columns. The extrinsicMatrix is only provided for physical cameras for which factory calibrations exist. Virtual device cameras return nil.
+        /// /
+        /// \
+        /// /
+        /// \
+        /// | r1,1  r1,2  r1,3 | t1 |
+        /// |R|t| = | r2,1  r2,2  r2,3 | t2 |
+        /// \
+        /// /   | r3,1  r3,2  r3,3 | t3 |
+        /// \
+        /// /
+        ///
+        /// Note that if you enable video stabilization (see AVCaptureConnection.preferredVideoStabilizationMode), the pixels in stabilized video frames no longer match the relative extrinsicMatrix from one device to another due to warping. The extrinsicMatrix and camera intrinsics should only be used when video stabilization is disabled.
         #[method_id(@__retain_semantics Other extrinsicMatrixFromDevice:toDevice:)]
         pub unsafe fn extrinsicMatrixFromDevice_toDevice(
             from_device: &AVCaptureDevice,
@@ -1220,7 +2283,16 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecenterstagecontrolmode?language=objc)
+/// Constants indicating the current Center Stage control mode.
+///
+///
+/// Indicates that the application is unaware of the Center Stage feature. Its enablement is entirely under user control in Control Center.
+///
+/// Indicates that the application controls the Center Stage feature, disallowing input from the user in Control Center.
+///
+/// Indicates that both the user and application cooperatively share control of the Center Stage feature.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecenterstagecontrolmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1245,31 +2317,68 @@ unsafe impl RefEncode for AVCaptureCenterStageControlMode {
 extern_methods!(
     /// AVCaptureDeviceCenterStage
     unsafe impl AVCaptureDevice {
+        /// A class property indicating the current mode of Center Stage control (user, app, or cooperative).
+        ///
+        ///
+        /// This class property determines how the Center Stage feature is controlled. When set to the default value of AVCaptureCenterStageControlModeUser, centerStageEnabled may not be set programmatically and throws an NSInvalidArgumentException. In User mode, the feature may only be set by the user in Control Center. If you wish to take Center Stage control away from the user and exclusively enable / disable it programmatically, set this property to AVCaptureCenterStageControlModeApp. When under exclusive app control, Center Stage user control is disallowed (for instance, the toggle is grayed out in Control Center). If you wish to take control of Center Stage, but also cooperate with the user by listening for and appropriately reacting to their changes to the centerStageEnabled property, set this property to AVCaptureCenterStageControlModeCooperative. Note that in this mode, the onus is on you, the app developer, to honor user intent and conform your AVCaptureSession configuration to make Center Stage active (see the AVCaptureDevice instance property centerStageActive). In cooperative mode, the centerStageEnabled property may change at any time (such as when the user enables / disables the feature in Control Center).
         #[method(centerStageControlMode)]
         pub unsafe fn centerStageControlMode() -> AVCaptureCenterStageControlMode;
 
+        /// Setter for [`centerStageControlMode`][Self::centerStageControlMode].
         #[method(setCenterStageControlMode:)]
         pub unsafe fn setCenterStageControlMode(
             center_stage_control_mode: AVCaptureCenterStageControlMode,
         );
 
+        /// A class property indicating whether the Center Stage feature is currently enabled or disabled (such as in Control Center or programmatically via your app).
+        ///
+        ///
+        /// This property may only be set if centerStageControlMode is AVCaptureCenterStageControlModeApp or AVCaptureCenterStageControlModeCooperative, and otherwise throws an NSInvalidArgumentException. When centerStageControlMode is AVCaptureCenterStageControlModeUser or AVCaptureCenterStageControlModeCooperative, this property may change according to user desire (such as enabling / disabling the feature in Control Center), so you should key-value observe it.
         #[method(isCenterStageEnabled)]
         pub unsafe fn isCenterStageEnabled() -> bool;
 
+        /// Setter for [`isCenterStageEnabled`][Self::isCenterStageEnabled].
         #[method(setCenterStageEnabled:)]
         pub unsafe fn setCenterStageEnabled(center_stage_enabled: bool);
 
+        /// Indicates whether Center Stage is currently active on a particular AVCaptureDevice.
+        ///
+        ///
+        /// This readonly property returns YES when Center Stage is currently active on the receiver. When active, the camera automatically adjusts to keep people optimally framed within the field of view. The field of view may pan, tighten or widen as needed. Certain restrictions come into play when Center Stage is active:
+        /// - The device's minAvailableVideoZoomFactor and maxAvailableVideoZoomFactor become restricted (see AVCaptureDeviceFormat's videoMinZoomFactorForCenterStage and videoMaxZoomFactorForCenterStage).
+        /// - The device's activeVideoMinFrameDuration and activeVideoMaxFrameDuration are limited (see AVCaptureDeviceFormat's videoFrameRateRangeForCenterStage).
+        /// Center Stage may be enabled via user control or application control, depending on the current +AVCaptureDevice.centerStageControlMode. When +AVCaptureDevice.centerStageEnabled is YES, a particular AVCaptureDevice instance may return YES for this property, depending whether it supports the feature in its current configuration. Some device features are mutually exclusive to Center Stage:
+        /// - If depth data delivery is enabled on any output, such as AVCaptureDepthDataOutput, or -AVCapturePhotoOutput.depthDataDeliveryEnabled, Center Stage is deactivated.
+        /// - If geometricDistortionCorrectionSupported is YES, geometricDistortionCorrectionEnabled must also be YES, or Center Stage is deactivated.
+        /// This property is key-value observable.
         #[method(isCenterStageActive)]
         pub unsafe fn isCenterStageActive(&self) -> bool;
 
+        /// Indicates whether the device supports the Center Stage Rect of Interest feature.
+        ///
+        ///
+        /// This property returns YES if the device supports Center Stage Rect of Interest.
         #[method(isCenterStageRectOfInterestSupported)]
         pub unsafe fn isCenterStageRectOfInterestSupported(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Specifies the effective region within the output pixel buffer that will be used to perform Center Stage framing.
+        ///
+        ///
+        /// Applications that wish to apply additional processing (such as cropping) on top of Center Stage's output can use this property to guide Center Stage's framing.
+        ///
+        /// The rectangle's origin is top left and is relative to the coordinate space of the output pixel buffer. The default value of this property is the value CGRectMake(0, 0, 1, 1), where {0,0} represents the top left of the picture area, and {1,1} represents the bottom right on an unrotated picture. This rectangle of interest is applied prior to rotation, mirroring or scaling.
+        ///
+        /// Pixels outside of this rectangle of interest will be blackened out.
+        ///
+        /// Setting this property has no impact on objects specified in the metadata output.
+        ///
+        /// -setCenterStageRectOfInterest: throws an NSGenericException if called without first obtaining exclusive access to the receiver using -lockForConfiguration:. -setCenterStageRectOfInterest: throws an NSInvalidArgumentException if none of the AVCaptureDeviceFormats supported by the receiver support CenterStage. -setCenterStageRectOfInterest: throws an NSInvalidArgumentException if +centerStageEnabled is NO on the AVCaptureDevice class. -setCenterStageRectOfInterest: throws an NSInvalidArgumentException if the provided rectOfInterest goes outside the normalized (0-1) coordinate space.
         #[method(centerStageRectOfInterest)]
         pub unsafe fn centerStageRectOfInterest(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`centerStageRectOfInterest`][Self::centerStageRectOfInterest].
         #[method(setCenterStageRectOfInterest:)]
         pub unsafe fn setCenterStageRectOfInterest(&self, center_stage_rect_of_interest: CGRect);
     }
@@ -1278,9 +2387,26 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDevicePortraitEffect
     unsafe impl AVCaptureDevice {
+        /// A class property indicating whether the Portrait Effect feature is currently enabled in Control Center.
+        ///
+        ///
+        /// This property changes to reflect the Portrait Effect state in Control Center. It is key-value observable. On iOS, Portrait Effect only applies to video conferencing apps by default (apps that use "voip" as one of their UIBackgroundModes). Non video conferencing apps may opt in for the Portrait Effect by adding the following key to their Info.plist:
+        /// <key
+        /// >NSCameraPortraitEffectEnabled
+        /// </key
+        /// >
+        /// <true
+        /// />
         #[method(isPortraitEffectEnabled)]
         pub unsafe fn isPortraitEffectEnabled() -> bool;
 
+        /// Indicates whether Portrait Effect is currently active for a particular AVCaptureDevice.
+        ///
+        ///
+        /// This readonly property returns YES when Portrait Effect is currently active on the receiver. When active, the device blurs the background, simulating a shallow depth of field effect. Certain restrictions come into play when Portrait Effect is active:
+        /// - The device's activeVideoMinFrameDuration and activeVideoMaxFrameDuration are limited (see AVCaptureDeviceFormat's videoFrameRateRangeForPortraitEffect).
+        /// Note that when +AVCaptureDevice.portraitEffectEnabled is YES, a particular AVCaptureDevice instance may return YES for this property, depending whether it supports the feature in its current configuration.
+        /// This property is key-value observable.
         #[method(isPortraitEffectActive)]
         pub unsafe fn isPortraitEffectActive(&self) -> bool;
     }
@@ -1289,24 +2415,65 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceReactionEffects
     unsafe impl AVCaptureDevice {
+        /// A class property indicating whether the application is suitable for reaction effects, either by automatic gesture detection, or by calls to -[AVCaptureDevice performEffectForReaction:]. Reactions are only rendered when the device's activeFormat.reactionEffectsSupported is also YES, which will be reflected by canPerformReactionEffects when the feature is both enabled and supported.
+        ///
+        ///
+        /// On macOS, Reaction Effects are enabled by default for all applications. On iOS, Reaction Effects are enabled by default for video conferencing applications (apps that use "voip" as one of their UIBackgroundModes). Non video conferencing applications may opt in for Reaction Effects by adding the following key to their Info.plist:
+        /// <key
+        /// >NSCameraReactionEffectsEnabled
+        /// </key
+        /// >
+        /// <true
+        /// />
         #[method(reactionEffectsEnabled)]
         pub unsafe fn reactionEffectsEnabled() -> bool;
 
+        /// A class property indicating whether gesture detection will trigger reaction effects on the video stream. Gesture detection will only run when the device's activeFormat.reactionEffectsSupported is also YES, which will be reflected by canPerformReactionEffects.
+        ///
+        ///
+        /// This property changes to reflect the Gestures state in Control Center. It is key-value observable. Clients can call performEffectForReaction: independently of whether gesture detection is enabled, reaction effects from either source will be intermixed.
+        /// By default, gesture detection is enabled.  As of iOS 17.4 and macOS 14.4, applications can control the default value of this property by adding the following key to their Info.plist:
+        /// <key
+        /// >NSCameraReactionEffectGesturesEnabledDefault
+        /// </key
+        /// >
+        /// A value of true enables gesture detection and a value of false disables it, until such time that the user makes their own selection in Control Center.
         #[method(reactionEffectGesturesEnabled)]
         pub unsafe fn reactionEffectGesturesEnabled() -> bool;
 
+        /// Indicates whether reactions can be performed on a particular AVCaptureDevice. This requires reactionEffectsEnabled to be YES, as well as using a AVCaptureDeviceFormat with reactionEffectsSupported.
+        ///
+        ///
+        /// This readonly property returns YES when resources for reactions are available on the device instance. When YES, calls to performEffectForReaction: will render on the video feed, otherwise those calls are ignored. It is key-value observable.
         #[method(canPerformReactionEffects)]
         pub unsafe fn canPerformReactionEffects(&self) -> bool;
 
         #[cfg(feature = "AVCaptureReactions")]
+        /// Returns a list of reaction types which can be passed to performEffectForReaction.
+        ///
+        ///
+        /// The list may differ between devices, or be affected by changes to active format, and can be key-value observed.
         #[method_id(@__retain_semantics Other availableReactionTypes)]
         pub unsafe fn availableReactionTypes(&self) -> Retained<NSSet<AVCaptureReactionType>>;
 
         #[cfg(feature = "AVCaptureReactions")]
+        /// Triggers a specified reaction on the video stream.
+        ///
+        ///
+        /// Parameter `reactionType`: Indicates which reaction to perform.
+        ///
+        ///
+        /// The entries in reactionEffectsInProgress may not reflect one-to-one against calls to this method. Depending on reaction style or resource limits, triggering multiple overlapping reactions of the same type may be coalesced into extending an existing reaction rather than overlaying a new one.
+        ///
+        /// The reactionType requested must be one of those listed in availableReactionTypes or an exception will be thrown. Performing a reaction when canPerformReactionEffects is NO is ignored, and VoIP applications are encouraged to transmit and display such reactions outside of the video feed.
         #[method(performEffectForReaction:)]
         pub unsafe fn performEffectForReaction(&self, reaction_type: &AVCaptureReactionType);
 
         #[cfg(feature = "AVCaptureReactions")]
+        /// Contains an array of reaction effects that are currently being performed by the device, sorted by timestamp. If observing old and new values in the KVO callback, the reaction effects which are still running in the new array will have kCMTimeInvalid as their endTime property. Reaction effects which have ended will only be in the old array, and will have their endTime property set to the presentation time of the first frame where the reaction effect was no longer present.
+        ///
+        ///
+        /// Reaction effects which are triggered by either a call to performEffectForReaction: or by the automatic gesture detection will be reflected in this array. It is key-value observable to be notified when reaction effects begin or end.
         #[method_id(@__retain_semantics Other reactionEffectsInProgress)]
         pub unsafe fn reactionEffectsInProgress(
             &self,
@@ -1317,9 +2484,14 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceBackgroundReplacement
     unsafe impl AVCaptureDevice {
+        /// A class property indicating whether the user has enabled the Background Replacement feature for this application.
         #[method(isBackgroundReplacementEnabled)]
         pub unsafe fn isBackgroundReplacementEnabled() -> bool;
 
+        /// Indicates whether Background Replacement is currently active on a particular AVCaptureDevice.
+        ///
+        ///
+        /// This property is key-value observable.
         #[method(isBackgroundReplacementActive)]
         pub unsafe fn isBackgroundReplacementActive(&self) -> bool;
     }
@@ -1328,6 +2500,10 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceContinuityCamera
     unsafe impl AVCaptureDevice {
+        /// A property that reports YES if the receiver is a Continuity Camera.
+        ///
+        ///
+        /// Access this property to discover if the receiver is a Continuity Camera (external iPhone webcam).
         #[method(isContinuityCamera)]
         pub unsafe fn isContinuityCamera(&self) -> bool;
     }
@@ -1336,12 +2512,25 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceDeskViewCamera
     unsafe impl AVCaptureDevice {
+        /// A reference to the Desk View Camera that is associated with and derived from this camera.
+        ///
+        ///
+        /// The companionDeskViewCamera property allows you to discover if the receiver has a paired Desk View Camera which derives its desk framing from the receiver's ultra wide frame. In the presence of multiple Continuity Cameras, this property allows you to pair a particular Continuity Camera with its associated Desk View Camera.
         #[method_id(@__retain_semantics Other companionDeskViewCamera)]
         pub unsafe fn companionDeskViewCamera(&self) -> Option<Retained<AVCaptureDevice>>;
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemicrophonemode?language=objc)
+/// Constants describing microphone filtering modes.
+///
+///
+/// Indicates that microphone audio is being processed with standard voice DSP.
+///
+/// Indicates that microphone audio processing is minimized to capture all sounds in the room.
+///
+/// Indicates that microphone audio is being processed to isolate the voice and attenuate other signals.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemicrophonemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1366,15 +2555,30 @@ unsafe impl RefEncode for AVCaptureMicrophoneMode {
 extern_methods!(
     /// AVCaptureMicrophoneMode
     unsafe impl AVCaptureDevice {
+        /// Indicates the microphone mode that has been selected by the user in Control Center.
+        ///
+        ///
+        /// This readonly property returns the microphone mode selected by the user in Control Center. It is key-value observable.
         #[method(preferredMicrophoneMode)]
         pub unsafe fn preferredMicrophoneMode() -> AVCaptureMicrophoneMode;
 
+        /// Indicates the currently active microphone mode.
+        ///
+        ///
+        /// This readonly property returns the currently active microphone mode, which may differ from the preferredMicrophoneMode if the application's active audio route does not support the preferred microphone mode. This property is key-value observable.
         #[method(activeMicrophoneMode)]
         pub unsafe fn activeMicrophoneMode() -> AVCaptureMicrophoneMode;
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystemuserinterface?language=objc)
+/// Constants describing the system user interfaces available to +showSystemUserInterface:.
+///
+///
+/// Indicates the system UI for enabling / disabling video effects.
+///
+/// Indicates the system UI for selecting microphone modes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystemuserinterface?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1397,23 +2601,39 @@ unsafe impl RefEncode for AVCaptureSystemUserInterface {
 extern_methods!(
     /// AVCaptureSystemUserInterface
     unsafe impl AVCaptureDevice {
+        /// Displays the system's user interface for video effects or microphone modes.
+        ///
+        ///
+        /// Parameter `systemUserInterface`: The system UI to show.
+        ///
+        ///
+        /// This method allows the calling application to prompt the user to make changes to Video Effects (such as Center Stage or the Portrait Effect) or Microphone Modes. It brings up the system user interface and deep links to the appropriate module. This method is non-blocking. After presenting the desired system user interface, control returns immediately to the application.
         #[method(showSystemUserInterface:)]
         pub unsafe fn showSystemUserInterface(system_user_interface: AVCaptureSystemUserInterface);
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avspatialcapturediscomfortreason?language=objc)
+/// AVSpatialCaptureDiscomfortReason string constants
+///
+///
+/// The AVSpatialCaptureDiscomfortReason string constants are used to report the applicability of the current scene to create a comfortable viewing experience.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avspatialcapturediscomfortreason?language=objc)
 // NS_TYPED_ENUM
 pub type AVSpatialCaptureDiscomfortReason = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avspatialcapturediscomfortreasonnotenoughlight?language=objc)
+    /// The lighting of the current scene is not bright enough; the playback experience will likely be uncomfortable due to noise differences between the two cameras.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avspatialcapturediscomfortreasonnotenoughlight?language=objc)
     pub static AVSpatialCaptureDiscomfortReasonNotEnoughLight:
         &'static AVSpatialCaptureDiscomfortReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avspatialcapturediscomfortreasonsubjecttooclose?language=objc)
+    /// The focus point of the current scene is too close; the playback experience will likely be uncomfortable due to the subject being closer than the minimum focus distance of one or both of the lenses.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avspatialcapturediscomfortreasonsubjecttooclose?language=objc)
     pub static AVSpatialCaptureDiscomfortReasonSubjectTooClose:
         &'static AVSpatialCaptureDiscomfortReason;
 }
@@ -1421,6 +2641,10 @@ extern "C" {
 extern_methods!(
     /// AVCaptureDeviceSpatialCapture
     unsafe impl AVCaptureDevice {
+        /// Indicates whether or not the current environmental conditions are amenable to a spatial capture that is comfortable to view.
+        ///
+        ///
+        /// This property can be monitored in order to determine the presentation of U/I elements to inform the user that they should reframe their scene for a more pleasing spatial capture ("subject is too close", "scene is too dark").
         #[method_id(@__retain_semantics Other spatialCaptureDiscomfortReasons)]
         pub unsafe fn spatialCaptureDiscomfortReasons(
             &self,
@@ -1429,7 +2653,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicediscoverysession?language=objc)
+    /// The AVCaptureDeviceDiscoverySession allows clients to search for devices by certain criteria.
+    ///
+    ///
+    /// This class allows clients to discover devices by providing certain search criteria. The objective of this class is to help find devices by device type and optionally by media type or position and allow you to key-value observe changes to the returned devices list.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicediscoverysession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDeviceDiscoverySession;
@@ -1446,6 +2675,19 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// Returns an AVCaptureDeviceDiscoverySession instance for the given device types, media type, and position.
+        ///
+        ///
+        /// Parameter `deviceTypes`: An array specifying the device types to include in the list of discovered devices.
+        ///
+        /// Parameter `mediaType`: The media type, such as AVMediaTypeVideo, AVMediaTypeAudio, or AVMediaTypeMuxed, to include in the list of discovered devices. Pass nil to search for devices with any media type.
+        ///
+        /// Parameter `position`: The position to include in the list of discovered devices. Pass AVCaptureDevicePositionUnspecified to search for devices with any position.
+        ///
+        /// Returns: The AVCaptureDeviceDiscoverySession from which the list of devices can be obtained.
+        ///
+        ///
+        /// The list of device types is mandatory. This is used to make sure that clients only get access to devices of types they expect. This prevents new device types from automatically being included in the list of devices.
         #[method_id(@__retain_semantics Other discoverySessionWithDeviceTypes:mediaType:position:)]
         pub unsafe fn discoverySessionWithDeviceTypes_mediaType_position(
             device_types: &NSArray<AVCaptureDeviceType>,
@@ -1453,9 +2695,17 @@ extern_methods!(
             position: AVCaptureDevicePosition,
         ) -> Retained<Self>;
 
+        /// The list of devices that comply to the search criteria specified on the discovery session.
+        ///
+        ///
+        /// The returned array contains only devices that are available at the time the method is called. Applications can key-value observe this property to be notified when the list of available devices has changed. For apps linked against iOS 10, the devices returned are unsorted. For apps linked against iOS 11 or later, the devices are sorted by AVCaptureDeviceType, matching the order specified in the deviceTypes parameter of +[AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:mediaType:position:]. If a position of AVCaptureDevicePositionUnspecified is specified, the results are further ordered by position in the AVCaptureDevicePosition enum. Starting in Mac Catalyst 14.0, clients can key value observe the value of this property to be notified when the devices change.
         #[method_id(@__retain_semantics Other devices)]
         pub unsafe fn devices(&self) -> Retained<NSArray<AVCaptureDevice>>;
 
+        /// An array of sets of AVCaptureDevices that are allowed to be used simultaneously in an AVCaptureMultiCamSession.
+        ///
+        ///
+        /// When using an AVCaptureMultiCamSession, multiple cameras may be used as device inputs to the session, so long as they are included in one of the supportedMultiCamDeviceSets. Starting in Mac Catalyst 14.0, clients can key value observe the value of this property to be notified when the device sets change.
         #[method_id(@__retain_semantics Other supportedMultiCamDeviceSets)]
         pub unsafe fn supportedMultiCamDeviceSets(
             &self,
@@ -1464,7 +2714,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicerotationcoordinator?language=objc)
+    /// The AVCaptureDeviceRotationCoordinator allows clients to monitor rotations of a given AVCaptureDevice instance and be provided the video rotation angle that should be applied for horizon-level preview and capture relative to gravity.
+    ///
+    ///
+    /// Each instance of AVCaptureDeviceRotationCoordinator allows a client to coordinate with changes to the rotation of an AVCaptureDevice to ensure the camera's video preview and captured output are horizon-level. The coordinator delivers key-value updates on the main queue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicerotationcoordinator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDeviceRotationCoordinator;
@@ -1482,6 +2737,17 @@ extern_methods!(
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
+        /// Returns an AVCaptureDeviceRotationCoordinator instance that provides updates to the amount of rotation that should be applied for horizon-level preview and capture relative to gravity.
+        ///
+        ///
+        /// Parameter `device`: The device for which to monitor rotation.
+        ///
+        /// Parameter `previewLayer`: A layer displaying the camera's video preview. If nil, the coordinator will return 0 degrees of rotation for horizon-level preview.
+        ///
+        /// Returns: An AVCaptureDeviceRotationCoordinator from which rotation angles for preview and capture can be obtained.
+        ///
+        ///
+        /// An AVCaptureDeviceRotationCoordinator is only applicable to video devices. The given device and layer determine the amount of rotation that should be applied for horizon-level preview and capture.
         #[method_id(@__retain_semantics Init initWithDevice:previewLayer:)]
         pub unsafe fn initWithDevice_previewLayer(
             this: Allocated<Self>,
@@ -1489,26 +2755,47 @@ extern_methods!(
             preview_layer: Option<&CALayer>,
         ) -> Retained<Self>;
 
+        /// The the device for which the coordinator provides video rotation angles.
+        ///
+        ///
+        /// The value of this property is the AVCaptureDevice instance that was used to create the coordinator. The coordinator holds a weak reference to the device.
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Option<Retained<AVCaptureDevice>>;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
+        /// The CALayer for which the coordinator calculates video rotation angles for horizon-level preview.
+        ///
+        ///
+        /// The value of this property is the CALayer instance that was used to create the coordinator. Clients may specify an AVCaptureVideoPreviewLayer or other CALayer instance that displays a camera's video preview. The coordinator holds a weak reference to the layer. The coordinator will return 0 degrees of rotation from -videoRotationAngleForHorizonLevelPreview if a layer was not specified at initialization, the layer is not in a view hierarchy, or the layer has been deallocated.
         #[method_id(@__retain_semantics Other previewLayer)]
         pub unsafe fn previewLayer(&self) -> Option<Retained<CALayer>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Returns a video rotation angle in degrees for displaying the camera's video preview in the given CALayer.
+        ///
+        ///
+        /// The video rotation angle represents by how much the camera's video preview should be rotated for display in the CALayer to be horizon-level relative to gravity. An angle of 0 degrees means that video will be output in the camera's unrotated, native sensor orientation. The video rotation angle for preview may differ between cameras at different positions. For example when an iOS device is held in portrait orientation, the video preview for built-in cameras may need to be rotated by 90 degrees while the video preview for an external camera should not be rotated. External cameras return 0 degrees of rotation even if they physically rotate when their position in physical space is unknown. This property is key-value observable and delivers updates on the main queue.
         #[method(videoRotationAngleForHorizonLevelPreview)]
         pub unsafe fn videoRotationAngleForHorizonLevelPreview(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Returns a video rotation angle in degrees for horizon-level capture from this camera.
+        ///
+        ///
+        /// The video rotation angle represents by how much the photos or movies captured from the camera should be rotated to be horizon-level relative to gravity. A video rotation angle of 0 degrees means that the output will be in the camera's unrotated, native sensor orientation. The video rotation angle for capture may differ between cameras. For example when an iOS device is held in portrait orientation, photos and movies captured from built-in cameras may need to be rotated by 90 degrees while the photos and movies from an external camera should not be rotated. External cameras return 0 degrees of rotation even if they physically rotate when their position in physical space is unknown. The video rotation angle returned from this property is distinct from the angle returned by -videoRotationAngleForHorizonLevelPreview because in certain combinations of device and interface orientations, the video rotation angle needed for horizon-level preview may not match the amount of rotation needed for horizon-level capture. This property is key-value observable and delivers updates on the main queue.
         #[method(videoRotationAngleForHorizonLevelCapture)]
         pub unsafe fn videoRotationAngleForHorizonLevelCapture(&self) -> CGFloat;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexposurebiasrange?language=objc)
+    /// An AVExposureBiasRange expresses an inclusive range of supported exposure bias values, in EV units.
+    ///
+    ///
+    /// This is used by AVCaptureSystemExposureBiasSlider for the range the slider uses.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexposurebiasrange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVExposureBiasRange;
@@ -1524,19 +2811,35 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// A float indicating the minimum exposure bias in EV units supported by this range.
         #[method(minExposureBias)]
         pub unsafe fn minExposureBias(&self) -> c_float;
 
+        /// A float indicating the maximum exposure bias in EV units supported by this range.
         #[method(maxExposureBias)]
         pub unsafe fn maxExposureBias(&self) -> c_float;
 
+        /// Tests if a given exposure bias in EV units is within the exposure bias range.
+        ///
+        ///
+        /// Parameter `exposureBias`: The exposure bias to test.
+        ///
+        /// Returns: Returns YES if the given exposure bias is within the exposure bias, NO otherwise.
+        ///
+        ///
+        /// Note that the exposure bias ranges are inclusive.
         #[method(containsExposureBias:)]
         pub unsafe fn containsExposureBias(&self, exposure_bias: c_float) -> bool;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avframeraterange?language=objc)
+    /// An AVFrameRateRange expresses a range of valid frame rates as min and max rate and min and max duration.
+    ///
+    ///
+    /// An AVCaptureDevice exposes an array of formats, and its current activeFormat may be queried. The payload for the formats property is an array of AVCaptureDeviceFormat objects and the activeFormat property payload is an AVCaptureDeviceFormat. AVCaptureDeviceFormat wraps a CMFormatDescription and expresses a range of valid video frame rates as an NSArray of AVFrameRateRange objects. AVFrameRateRange expresses min and max frame rate as a rate in frames per second and duration (CMTime). An AVFrameRateRange object is immutable. Its values do not change for the life of the object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avframeraterange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVFrameRateRange;
@@ -1552,24 +2855,45 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// A Float64 indicating the minimum frame rate supported by this range.
+        ///
+        ///
+        /// This read-only property indicates the minimum frame rate supported by this range in frames per second.
         #[method(minFrameRate)]
         pub unsafe fn minFrameRate(&self) -> f64;
 
+        /// A Float64 indicating the maximum frame rate supported by this range.
+        ///
+        ///
+        /// This read-only property indicates the maximum frame rate supported by this range in frames per second.
         #[method(maxFrameRate)]
         pub unsafe fn maxFrameRate(&self) -> f64;
 
         #[cfg(feature = "objc2-core-media")]
+        /// A CMTime indicating the maximum frame duration supported by this range.
+        ///
+        ///
+        /// This read-only property indicates the maximum frame duration supported by this range. It is the reciprocal of minFrameRate, and expresses minFrameRate as a duration.
         #[method(maxFrameDuration)]
         pub unsafe fn maxFrameDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// A CMTime indicating the minimum frame duration supported by this range.
+        ///
+        ///
+        /// This read-only property indicates the minimum frame duration supported by this range. It is the reciprocal of maxFrameRate, and expresses maxFrameRate as a duration.
         #[method(minFrameDuration)]
         pub unsafe fn minFrameDuration(&self) -> CMTime;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avzoomrange?language=objc)
+    /// An AVZoomRange expresses an inclusive range of supported zoom factors.
+    ///
+    ///
+    /// This is used by features that have requirements on zoom factors falling within certain ranges.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avzoomrange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVZoomRange;
@@ -1586,20 +2910,46 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A CGFloat indicating the minimum zoom factor supported by this range.
         #[method(minZoomFactor)]
         pub unsafe fn minZoomFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A CGFloat indicating the maximum zoom factor supported by this range.
         #[method(maxZoomFactor)]
         pub unsafe fn maxZoomFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Tests if a given zoom factor is within the zoom range.
+        ///
+        /// Parameter `zoomFactor`: The zoom factor to test.
+        ///
+        /// Returns: Returns YES if the given zoom factor is within the zoom range, NO otherwise.
+        ///
+        /// Note that the zoom ranges are inclusive.
         #[method(containsZoomFactor:)]
         pub unsafe fn containsZoomFactor(&self, zoom_factor: CGFloat) -> bool;
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideostabilizationmode?language=objc)
+/// Constants indicating the modes of video stabilization supported by the device's format.
+///
+///
+/// Indicates that video should not be stabilized.
+///
+/// Indicates that video should be stabilized using the standard video stabilization algorithm introduced with iOS 5.0. Standard video stabilization has a reduced field of view. Enabling video stabilization may introduce additional latency into the video capture pipeline.
+///
+/// Indicates that video should be stabilized using the cinematic stabilization algorithm for more dramatic results. Cinematic video stabilization has a reduced field of view compared to standard video stabilization. Enabling cinematic video stabilization introduces much more latency into the video capture pipeline than standard video stabilization and consumes significantly more system memory. Use narrow or identical min and max frame durations in conjunction with this mode.
+///
+/// Indicates that the video should be stabilized using the extended cinematic stabilization algorithm. Enabling extended cinematic stabilization introduces longer latency into the video capture pipeline compared to the AVCaptureVideoStabilizationModeCinematic and consumes more memory, but yields improved stability. It is recommended to use identical or similar min and max frame durations in conjunction with this mode.
+///
+/// Indicates that video should be stabilized using the preview optimized stabilization algorithm. Preview stabilization is a low latency and low power algorithm which is supported only on connections which either have an associated preview layer or have a preview-sized VideoDataOutput.
+///
+/// Indicates that the video should be stabilized using the enhanced extended cinematic stabilization algorithm. Enhanced extended cinematic has a reduced field of view compared to extended cinematic, without any noticeable increase in latency, and it yields improved stability. It is recommended to use identical or similar min and max frame durations in conjunction with this mode.
+///
+/// Indicates that the most appropriate video stabilization mode for the device and format should be chosen.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideostabilizationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1629,7 +2979,16 @@ unsafe impl RefEncode for AVCaptureVideoStabilizationMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureautofocussystem?language=objc)
+/// Constants indicating the autofocus system.
+///
+///
+/// Indicates that autofocus is not available.
+///
+/// Indicates that autofocus is achieved by contrast detection. Contrast detection performs a focus scan to find the optimal position.
+///
+/// Indicates that autofocus is achieved by phase detection. Phase detection has the ability to achieve focus in many cases without a focus scan. Phase detection autofocus is typically less visually intrusive than contrast detection autofocus.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureautofocussystem?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1652,7 +3011,12 @@ unsafe impl RefEncode for AVCaptureAutoFocusSystem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceformat?language=objc)
+    /// An AVCaptureDeviceFormat wraps a CMFormatDescription and other format-related information, such as min and max framerate.
+    ///
+    ///
+    /// An AVCaptureDevice exposes an array of formats, and its current activeFormat may be queried. The payload for the formats property is an array of AVCaptureDeviceFormat objects and the activeFormat property payload is an AVCaptureDeviceFormat. AVCaptureDeviceFormat is a thin wrapper around a CMFormatDescription, and can carry associated device format information that doesn't go in a CMFormatDescription, such as min and max frame rate. An AVCaptureDeviceFormat object is immutable. Its values do not change for the life of the object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceformat?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDeviceFormat;
@@ -1669,121 +3033,263 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// An NSString describing the media type of an AVCaptureDevice active or supported format.
+        ///
+        ///
+        /// Supported mediaTypes are listed in AVMediaFormat.h. This is a read-only property. The caller assumes no ownership of the returned value and should not CFRelease it.
         #[method_id(@__retain_semantics Other mediaType)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// A CMFormatDescription describing an AVCaptureDevice active or supported format.
+        ///
+        ///
+        /// A CMFormatDescription describing an AVCaptureDevice active or supported format. This is a read-only property. The caller assumes no ownership of the returned value and should not CFRelease it.
         #[method(formatDescription)]
         pub unsafe fn formatDescription(&self) -> CMFormatDescriptionRef;
 
+        /// A property indicating the format's supported frame rate ranges.
+        ///
+        ///
+        /// videoSupportedFrameRateRanges is an array of AVFrameRateRange objects, one for each of the format's supported video frame rate ranges.
         #[method_id(@__retain_semantics Other videoSupportedFrameRateRanges)]
         pub unsafe fn videoSupportedFrameRateRanges(&self) -> Retained<NSArray<AVFrameRateRange>>;
 
+        /// A property indicating the format's horizontal field of view.
+        ///
+        ///
+        /// videoFieldOfView is a float value indicating the receiver's field of view in degrees. If field of view is unknown, a value of 0 is returned.
         #[method(videoFieldOfView)]
         pub unsafe fn videoFieldOfView(&self) -> c_float;
 
+        /// A property indicating whether the format is binned.
+        ///
+        ///
+        /// videoBinned is a BOOL indicating whether the format is a binned format. Binning is a pixel-combining process which can result in greater low light sensitivity at the cost of reduced resolution.
         #[method(isVideoBinned)]
         pub unsafe fn isVideoBinned(&self) -> bool;
 
+        /// Returns whether the format supports the given video stabilization mode.
+        ///
+        ///
+        /// Parameter `videoStabilizationMode`: An AVCaptureVideoStabilizationMode to be checked.
+        ///
+        ///
+        /// isVideoStabilizationModeSupported: returns a boolean value indicating whether the format can be stabilized using the given mode with -[AVCaptureConnection setPreferredVideoStabilizationMode:].
         #[method(isVideoStabilizationModeSupported:)]
         pub unsafe fn isVideoStabilizationModeSupported(
             &self,
             video_stabilization_mode: AVCaptureVideoStabilizationMode,
         ) -> bool;
 
+        /// A property indicating whether the format supports video stabilization.
+        ///
+        ///
+        /// videoStabilizationSupported is a BOOL indicating whether the format can be stabilized using AVCaptureConnection -setEnablesVideoStabilizationWhenAvailable. This property is deprecated. Use isVideoStabilizationModeSupported: instead.
         #[deprecated = "Use isVideoStabilizationModeSupported: instead."]
         #[method(isVideoStabilizationSupported)]
         pub unsafe fn isVideoStabilizationSupported(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates the maximum zoom factor available for the AVCaptureDevice's videoZoomFactor property.
+        ///
+        ///
+        /// If the device's videoZoomFactor property is assigned a larger value, an NSRangeException will be thrown. A maximum zoom factor of 1 indicates no zoom is available.
         #[method(videoMaxZoomFactor)]
         pub unsafe fn videoMaxZoomFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates the value of AVCaptureDevice's videoZoomFactor property at which the image output begins to require upscaling.
+        ///
+        ///
+        /// In some cases the image sensor's dimensions are larger than the dimensions reported by the video AVCaptureDeviceFormat. As long as the sensor crop is larger than the reported dimensions of the AVCaptureDeviceFormat, the image will be downscaled. Setting videoZoomFactor to the value of videoZoomFactorUpscalingThreshold will provide a center crop of the sensor image data without any scaling. If a greater zoom factor is used, then the sensor data will be upscaled to the device format's dimensions.
         #[method(videoZoomFactorUpscaleThreshold)]
         pub unsafe fn videoZoomFactorUpscaleThreshold(&self) -> CGFloat;
 
+        /// Indicates the system's recommended zoom range for this device format.
+        ///
+        ///
+        /// This property can be used to create a slider in your app's user interface to control the device's zoom with a system-recommended video zoom range. When a recommendation is not available, this property returns nil. Clients can key value observe AVCaptureDevice's minAvailableVideoZoomFactor and maxAvailableVideoZoomFactor properties to know when a device's supported zoom is restricted within the recommended zoom range.
+        ///
+        /// The value of this property is also used for the AVCaptureSystemZoomSlider's range.
         #[method_id(@__retain_semantics Other systemRecommendedVideoZoomRange)]
         pub unsafe fn systemRecommendedVideoZoomRange(&self) -> Option<Retained<AVZoomRange>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// A CMTime indicating the minimum supported exposure duration.
+        ///
+        ///
+        /// This read-only property indicates the minimum supported exposure duration.
         #[method(minExposureDuration)]
         pub unsafe fn minExposureDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// A CMTime indicating the maximum supported exposure duration.
+        ///
+        ///
+        /// This read-only property indicates the maximum supported exposure duration.
         #[method(maxExposureDuration)]
         pub unsafe fn maxExposureDuration(&self) -> CMTime;
 
+        /// Indicates the system's recommended exposure bias range for this device format.
+        ///
+        ///
+        /// This property can be used to create a slider in your app's user interface to control the device's exposure bias with a system-recommended exposure bias range. When a recommendation is not available, this property returns nil.
+        ///
+        /// The value of this property is also used for the AVCaptureSystemExposureBiasSlider's range.
         #[method_id(@__retain_semantics Other systemRecommendedExposureBiasRange)]
         pub unsafe fn systemRecommendedExposureBiasRange(
             &self,
         ) -> Option<Retained<AVExposureBiasRange>>;
 
+        /// A float indicating the minimum supported exposure ISO value.
+        ///
+        ///
+        /// This read-only property indicates the minimum supported exposure ISO value.
         #[method(minISO)]
         pub unsafe fn minISO(&self) -> c_float;
 
+        /// An float indicating the maximum supported exposure ISO value.
+        ///
+        ///
+        /// This read-only property indicates the maximum supported exposure ISO value.
         #[method(maxISO)]
         pub unsafe fn maxISO(&self) -> c_float;
 
+        /// A property indicating whether the format supports global tone mapping.
+        ///
+        ///
+        /// globalToneMappingSupported is a BOOL indicating whether the format supports global tone mapping. See AVCaptureDevice's globalToneMappingEnabled property.
         #[method(isGlobalToneMappingSupported)]
         pub unsafe fn isGlobalToneMappingSupported(&self) -> bool;
 
+        /// A property indicating whether the format supports high dynamic range streaming.
+        ///
+        ///
+        /// videoHDRSupported is a BOOL indicating whether the format supports high dynamic range streaming, also known as Extended Dynamic Range (EDR). When enabled, the device streams at twice the published frame rate, capturing an under-exposed frame and correctly exposed frame for each frame time at the published rate. Portions of the under-exposed frame are combined with the correctly exposed frame to recover detail in darker areas of the scene. EDR is a separate and distinct feature from 10-bit HDR video (first seen in 2020 iPhones). 10-bit formats with HLG BT2020 color space have greater dynamic range by virtue of their expanded bit depth and HLG transfer function, and when captured in movies, contain Dolby Vision metadata. They are, in effect, "always on" HDR. And thus the videoHDRSupported property is always NO for 10-bit formats only supporting HLG BT2020 colorspace, since HDR cannot be enabled or disabled. To enable videoHDR (EDR), set the AVCaptureDevice.videoHDREnabled property.
         #[method(isVideoHDRSupported)]
         pub unsafe fn isVideoHDRSupported(&self) -> bool;
 
         #[cfg(feature = "objc2-core-media")]
+        /// CMVideoDimensions indicating the highest resolution still image that can be produced by this format.
+        ///
+        ///
+        /// By default, AVCapturePhotoOutput and AVCaptureStillImageOutput emit images with the same dimensions as their source AVCaptureDevice's activeFormat.formatDescription property. Some device formats support high resolution photo output. That is, they can stream video to an AVCaptureVideoDataOutput or AVCaptureMovieFileOutput at one resolution while outputting photos to AVCapturePhotoOutput at a higher resolution. You may query this property to discover a video format's supported high resolution still image dimensions. See -[AVCapturePhotoOutput highResolutionPhotoEnabled], -[AVCapturePhotoSettings highResolutionPhotoEnabled], and -[AVCaptureStillImageOutput highResolutionStillImageOutputEnabled].
+        ///
+        /// AVCaptureDeviceFormats of type AVMediaTypeDepthData may also support the delivery of a higher resolution depth data map to an AVCapturePhotoOutput. Chief differences are:
+        /// - Depth data accompanying still images is not supported by AVCaptureStillImageOutput. You must use AVCapturePhotoOutput.
+        /// - By opting in for depth data ( -[AVCapturePhotoSettings setDepthDataDeliveryEnabled:YES] ), you implicitly opt in for high resolution depth data if it's available. You may query the -[AVCaptureDevice activeDepthDataFormat]'s highResolutionStillImageDimensions to discover the depth data resolution that will be delivered with captured photos.
         #[deprecated = "Use supportedMaxPhotoDimensions instead."]
         #[method(highResolutionStillImageDimensions)]
         pub unsafe fn highResolutionStillImageDimensions(&self) -> CMVideoDimensions;
 
+        /// A boolean value specifying whether this format supports high photo quality when selecting an AVCapturePhotoQualityPrioritization of .balanced or .quality.
+        ///
+        ///
+        /// If an AVCaptureDeviceFormat's highPhotoQualitySupported property is YES, the format produces higher image quality when selecting .balanced or .quality AVCapturePhotoQualityPrioritization compared to .speed. Such formats adhere to the following rules:
+        /// - Photo requests with a prioritization of .speed produce the fastest image result (suitable for burst captures).
+        /// - Photo requests with a prioritization of .balanced produce higher image quality without dropping frames if a video recording is underway.
+        /// - Photo requests with a prioritization of .quality produce high image quality and may cause frame drops if a video recording is underway. For maximum backward compatibility, photo requests on high photo quality formats set to .quality only cause video frame drops if your app is linked on or after iOS 15.
+        /// Formats that don't support high photo quality produce the same image quality whether you select .speed, .balanced, or .quality. Note that high photo quality is only attainable when using the AVCapturePhotoOutput with these supported formats.
         #[method(isHighPhotoQualitySupported)]
         pub unsafe fn isHighPhotoQualitySupported(&self) -> bool;
 
+        /// A boolean value specifying whether this format supports the highest possible photo quality that can be delivered on the current platform.
+        ///
+        ///
+        /// Of the many formats supported by an AVCaptureDevice, only a few of them are designated as "photo" formats which can produce the highest possible quality, such as still image stabilization and Live Photos. If you intend to connect an AVCaptureDeviceInput to an AVCapturePhotoOutput and receive the best possible images, you should ensure that you are either using the AVCaptureSessionPresetPhoto as your preset, or if using the parallel AVCaptureDevice activeFormat API, select as your activeFormat one for which this property is YES.
         #[method(isHighestPhotoQualitySupported)]
         pub unsafe fn isHighestPhotoQualitySupported(&self) -> bool;
 
+        /// A property indicating the autofocus system.
+        ///
+        ///
+        /// This read-only property indicates the autofocus system.
         #[method(autoFocusSystem)]
         pub unsafe fn autoFocusSystem(&self) -> AVCaptureAutoFocusSystem;
 
+        /// A property indicating the receiver's supported color spaces.
+        ///
+        ///
+        /// This read-only property indicates the receiver's supported color spaces as an array of AVCaptureColorSpace constants sorted from narrow to wide color.
         #[method_id(@__retain_semantics Other supportedColorSpaces)]
         pub unsafe fn supportedColorSpaces(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A deprecated property. Please use supportedVideoZoomFactorsForDepthDataDelivery instead
         #[deprecated]
         #[method(videoMinZoomFactorForDepthDataDelivery)]
         pub unsafe fn videoMinZoomFactorForDepthDataDelivery(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A deprecated property. Please use supportedVideoZoomFactorsForDepthDataDelivery instead
         #[deprecated]
         #[method(videoMaxZoomFactorForDepthDataDelivery)]
         pub unsafe fn videoMaxZoomFactorForDepthDataDelivery(&self) -> CGFloat;
 
+        /// A deprecated property. Please use supportedVideoZoomRangesForDepthDataDelivery
         #[deprecated]
         #[method_id(@__retain_semantics Other supportedVideoZoomFactorsForDepthDataDelivery)]
         pub unsafe fn supportedVideoZoomFactorsForDepthDataDelivery(
             &self,
         ) -> Retained<NSArray<NSNumber>>;
 
+        /// This property returns the zoom ranges within which depth data can be delivered.
+        ///
+        /// Virtual devices support limited zoom ranges when delivering depth data to any output. If this device format has no -supportedDepthDataFormats, this property returns an empty array.
+        /// The presence of one or more ranges where the min and max zoom factors are not equal means that "continuous zoom" with depth is supported.
+        /// For example:
+        /// a) ranges:
+        /// @
+        /// [ [2..2], [4..4] ]
+        /// only zoom factors 2 and 4 are allowed to be set when depthDataDelivery is enabled. Any other zoom factor results in an exception.
+        /// b) ranges:
+        /// @
+        /// [ [2..5] ]
+        /// depthDataDelivery is supported with zoom factors [2..5]. Zoom factors outside of this range may be set, but will result in loss of depthDataDeliery. Whenever zoom is set back to a value within the range of [2..5], depthDataDelivery will resume.
+        ///
+        /// When depth data delivery is enabled, the effective videoZoomFactorUpscaleThreshold will be 1.0, meaning that all zoom factors that are not native zoom factors (see AVCaptureDevice.virtualDeviceSwitchOverVideoZoomFactors and AVCaptureDevice.secondaryNativeResolutionZoomFactors) result in digital upscaling.
         #[method_id(@__retain_semantics Other supportedVideoZoomRangesForDepthDataDelivery)]
         pub unsafe fn supportedVideoZoomRangesForDepthDataDelivery(
             &self,
         ) -> Retained<NSArray<AVZoomRange>>;
 
+        /// This property returns whether the format supports zoom factors outside of the supportedVideoZoomFactorRangesForDepthDataDelivery.
+        ///
+        /// When a zoom factor outside of the supportedVideoZoomFactorRangesForDepthDataDelivery is set, depth data delivery will be suspended until a zoom factor within the supportedVideoZoomFactorRangesForDepthDataDelivery is set.
         #[method(zoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported)]
         pub unsafe fn zoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported(&self) -> bool;
 
+        /// Indicates this format's companion depth data formats.
+        ///
+        ///
+        /// If no depth data formats are supported by the receiver, an empty array is returned. On virtual devices, the supportedDepthDataFormats list items always match the aspect ratio of their paired video format. When the receiver is set as the device's activeFormat, you may set the device's activeDepthDataFormat to one of these supported depth data formats.
         #[method_id(@__retain_semantics Other supportedDepthDataFormats)]
         pub unsafe fn supportedDepthDataFormats(&self) -> Retained<NSArray<AVCaptureDeviceFormat>>;
 
+        /// A property indicating AVCaptureOutput subclasses the receiver does not support.
+        ///
+        ///
+        /// As a rule, AVCaptureDeviceFormats of a given mediaType are available for use with all AVCaptureOutputs that accept that media type, but there are exceptions. For instance, on apps linked against iOS versions earlier than 12.0, the photo resolution video formats may not be used as sources for AVCaptureMovieFileOutput due to bandwidth limitations. On DualCamera devices, AVCaptureDepthDataOutput is not supported when outputting full resolution (i.e. 12 MP) video due to bandwidth limitations. In order to stream depth data plus video data from a photo format, ensure that your AVCaptureVideoDataOutput's deliversPreviewSizedOutputBuffers property is set to YES. Likewise, to stream depth data while capturing video to a movie file using AVCaptureMovieFileOutput, call -[AVCaptureSession setSessionPreset:AVCaptureSessionPresetPhoto]. When using the photo preset, video is captured at preview resolution rather than the full sensor resolution.
         #[method_id(@__retain_semantics Other unsupportedCaptureOutputClasses)]
         pub unsafe fn unsupportedCaptureOutputClasses(&self) -> Retained<NSArray<AnyClass>>;
 
+        /// This property lists all of the supported maximum photo dimensions for this format. The array contains CMVideoDimensions structs encoded as NSValues.
+        ///
+        /// Enumerate all supported resolution settings for which this format may be configured to capture photos. Use these values to set AVCapturePhotoOutput.maxPhotoDimensions and AVCapturePhotoSettings.maxPhotoDimensions.
         #[method_id(@__retain_semantics Other supportedMaxPhotoDimensions)]
         pub unsafe fn supportedMaxPhotoDimensions(&self) -> Retained<NSArray<NSValue>>;
 
+        /// Indicates zoom factors at which this device transitions to secondary native resolution modes.
+        ///
+        /// Devices with this property have the means to switch their pixel sampling mode on the fly to produce a high-fidelity, non-upsampled images at a fixed zoom factor beyond 1.0x.
         #[method_id(@__retain_semantics Other secondaryNativeResolutionZoomFactors)]
         pub unsafe fn secondaryNativeResolutionZoomFactors(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Indicates whether the device format supports auto video frame rate.
+        ///
+        ///
+        /// See -[AVCaptureDevice autoVideoFrameRateEnabled] (above) for a detailed description of the feature.
         #[method(isAutoVideoFrameRateSupported)]
         pub unsafe fn isAutoVideoFrameRateSupported(&self) -> bool;
     }
@@ -1800,6 +3306,10 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceFormatMultiCamAdditions
     unsafe impl AVCaptureDeviceFormat {
+        /// A property indicating whether this format is supported in an AVCaptureMultiCamSession.
+        ///
+        ///
+        /// When using an AVCaptureSession (single camera capture), any of the formats in the device's -formats array may be set as the -activeFormat. However, when used with an AVCaptureMultiCamSession, the device's -activeFormat may only be set to one of the formats for which multiCamSupported answers YES. This limited subset of capture formats are known to run sustainably in a multi camera capture scenario.
         #[method(isMultiCamSupported)]
         pub unsafe fn isMultiCamSupported(&self) -> bool;
     }
@@ -1808,6 +3318,7 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceFormatSpatialVideoCapture
     unsafe impl AVCaptureDeviceFormat {
+        /// Returns whether or not the format supports capturing spatial video to a file.
         #[method(isSpatialVideoCaptureSupported)]
         pub unsafe fn isSpatialVideoCaptureSupported(&self) -> bool;
     }
@@ -1816,6 +3327,10 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceFormatGeometricDistortionCorrection
     unsafe impl AVCaptureDeviceFormat {
+        /// A property indicating the format's horizontal field of view post geometric distortion correction.
+        ///
+        ///
+        /// If the receiver's AVCaptureDevice does not support GDC, geometricDistortionCorrectedVideoFieldOfView matches the videoFieldOfView property.
         #[method(geometricDistortionCorrectedVideoFieldOfView)]
         pub unsafe fn geometricDistortionCorrectedVideoFieldOfView(&self) -> c_float;
     }
@@ -1824,6 +3339,10 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceFormatCenterStage
     unsafe impl AVCaptureDeviceFormat {
+        /// Indicates whether the format supports the Center Stage feature.
+        ///
+        ///
+        /// This property returns YES if the format supports "Center Stage", which automatically adjusts the camera to keep people optimally framed within the field of view. See +AVCaptureDevice.centerStageEnabled for a detailed discussion.
         #[method(isCenterStageSupported)]
         pub unsafe fn isCenterStageSupported(&self) -> bool;
 
@@ -1832,9 +3351,17 @@ extern_methods!(
         pub unsafe fn videoMinZoomFactorForCenterStage(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates the maximum zoom factor available for the AVCaptureDevice's videoZoomFactor property when centerStageActive is YES.
+        ///
+        ///
+        /// Devices support a limited zoom range when Center Stage is active. If this device format does not support Center Stage, this property returns videoMaxZoomFactor.
         #[method(videoMaxZoomFactorForCenterStage)]
         pub unsafe fn videoMaxZoomFactorForCenterStage(&self) -> CGFloat;
 
+        /// Indicates the minimum / maximum frame rates available when centerStageActive is YES.
+        ///
+        ///
+        /// Devices may support a limited frame rate range when Center Stage is active. If this device format does not support Center Stage, this property returns nil.
         #[method_id(@__retain_semantics Other videoFrameRateRangeForCenterStage)]
         pub unsafe fn videoFrameRateRangeForCenterStage(
             &self,
@@ -1845,9 +3372,17 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceFormatPortraitEffect
     unsafe impl AVCaptureDeviceFormat {
+        /// Indicates whether the format supports the Portrait Effect feature.
+        ///
+        ///
+        /// This property returns YES if the format supports Portrait Effect, the application of a shallow depth of field effect to objects in the background. See +AVCaptureDevice.portraitEffectEnabled for a detailed discussion.
         #[method(isPortraitEffectSupported)]
         pub unsafe fn isPortraitEffectSupported(&self) -> bool;
 
+        /// Indicates the minimum / maximum frame rates available when portraitEffectActive is YES.
+        ///
+        ///
+        /// Devices may support a limited frame rate range when Portrait Effect is active. If this device format does not support Portrait Effect, this property returns nil.
         #[method_id(@__retain_semantics Other videoFrameRateRangeForPortraitEffect)]
         pub unsafe fn videoFrameRateRangeForPortraitEffect(
             &self,
@@ -1858,9 +3393,23 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceStudioLight
     unsafe impl AVCaptureDevice {
+        /// A class property indicating whether the Studio Light feature is currently enabled in Control Center.
+        ///
+        ///
+        /// This property changes to reflect the Studio Light state in Control Center. It is key-value observable.  On iOS, Studio Light only applies to video conferencing apps by default (apps that use "voip" as one of their UIBackgroundModes). Non video conferencing apps may opt in for Studio Light by adding the following key to their Info.plist:
+        /// <key
+        /// >NSCameraStudioLightEnabled
+        /// </key
+        /// >
+        /// <true
+        /// />
         #[method(isStudioLightEnabled)]
         pub unsafe fn isStudioLightEnabled() -> bool;
 
+        /// Indicates whether Studio Light is currently active on a particular AVCaptureDevice.
+        ///
+        ///
+        /// This readonly property returns YES when Studio Light is currently active on the receiver. When active, the subject's face is artificially lit to simulate the presence of a studio light near the camera.
         #[method(isStudioLightActive)]
         pub unsafe fn isStudioLightActive(&self) -> bool;
     }
@@ -1869,9 +3418,17 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceFormatStudioLight
     unsafe impl AVCaptureDeviceFormat {
+        /// Indicates whether the format supports the Studio Light feature.
+        ///
+        ///
+        /// This property returns YES if the format supports Studio Light (artificial re-lighting of the subject's face). See +AVCaptureDevice.studioLightEnabled.
         #[method(isStudioLightSupported)]
         pub unsafe fn isStudioLightSupported(&self) -> bool;
 
+        /// Indicates the minimum / maximum frame rates available when studioLight is YES.
+        ///
+        ///
+        /// Devices may support a limited frame rate range when Studio Light is active. If this device format does not support Studio Light, this property returns nil.
         #[method_id(@__retain_semantics Other videoFrameRateRangeForStudioLight)]
         pub unsafe fn videoFrameRateRangeForStudioLight(
             &self,
@@ -1882,9 +3439,17 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceFormatReactionEffects
     unsafe impl AVCaptureDeviceFormat {
+        /// Indicates whether the format supports the Reaction Effects feature.
+        ///
+        ///
+        /// This property returns YES if the format supports Reaction Effects. See +AVCaptureDevice.reactionEffectsEnabled.
         #[method(reactionEffectsSupported)]
         pub unsafe fn reactionEffectsSupported(&self) -> bool;
 
+        /// Indicates the minimum / maximum frame rates available when a reaction effect is running.
+        ///
+        ///
+        /// Unlike the other video effects, enabling reaction effects does not limit the stream's frame rate because most of the time no rendering is being performed. The frame rate will only ramp down when a reaction is actually being rendered on the stream (see AVCaptureDevice.reactionEffectsInProgress)
         #[method_id(@__retain_semantics Other videoFrameRateRangeForReactionEffectsInProgress)]
         pub unsafe fn videoFrameRateRangeForReactionEffectsInProgress(
             &self,
@@ -1895,9 +3460,17 @@ extern_methods!(
 extern_methods!(
     /// AVCaptureDeviceFormatBackgroundReplacement
     unsafe impl AVCaptureDeviceFormat {
+        /// Indicates whether the format supports the Background Replacement feature.
+        ///
+        ///
+        /// This property returns YES if the format supports Background Replacement background replacement. See +AVCaptureDevice.backgroundReplacementEnabled.
         #[method(isBackgroundReplacementSupported)]
         pub unsafe fn isBackgroundReplacementSupported(&self) -> bool;
 
+        /// Indicates the minimum / maximum frame rates available when background replacement is active.
+        ///
+        ///
+        /// Devices may support a limited frame rate range when Background Replacement is active. If this device format does not support Background Replacement, this property returns nil.
         #[method_id(@__retain_semantics Other videoFrameRateRangeForBackgroundReplacement)]
         pub unsafe fn videoFrameRateRangeForBackgroundReplacement(
             &self,
@@ -1906,7 +3479,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceinputsource?language=objc)
+    /// An AVCaptureDeviceInputSource represents a distinct input source on an AVCaptureDevice object.
+    ///
+    ///
+    /// An AVCaptureDevice may optionally present an array of inputSources, representing distinct mutually exclusive inputs to the device, for example, an audio AVCaptureDevice might have ADAT optical and analog input sources. A video AVCaptureDevice might have an HDMI input source, or a component input source.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceinputsource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDeviceInputSource;
@@ -1922,9 +3500,17 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// An ID unique among the inputSources exposed by a given AVCaptureDevice.
+        ///
+        ///
+        /// An AVCaptureDevice's inputSources array must contain AVCaptureInputSource objects with unique inputSourceIDs.
         #[method_id(@__retain_semantics Other inputSourceID)]
         pub unsafe fn inputSourceID(&self) -> Retained<NSString>;
 
+        /// A localized human-readable name for the receiver.
+        ///
+        ///
+        /// This property can be used for displaying the name of the capture device input source in a user interface.
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
     }

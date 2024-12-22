@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcmatmuldescriptor?language=objc)
+    /// The MLCMatMulDescriptor specifies a batched matrix multiplication descriptor
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcmatmuldescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -33,18 +35,30 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// a scalar to scale the result in C=alpha x X x Y. Default = 1.0
         #[deprecated]
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
+        /// if true, transposes the last two dimensions of X. Default = False
         #[deprecated]
         #[method(transposesX)]
         pub unsafe fn transposesX(&self) -> bool;
 
+        /// if true, transposes the last two dimensions of Y. Default = False
         #[deprecated]
         #[method(transposesY)]
         pub unsafe fn transposesY(&self) -> bool;
 
+        /// A matrix multiplication layer descriptor
+        ///
+        /// Parameter `alpha`: a scalar to scale the left hand side, C = alpha x X x Y
+        ///
+        /// Parameter `transposesX`: if true, transposes the last two dimensions of X
+        ///
+        /// Parameter `transposesY`: if true, transposes the last two dimensions of Y
+        ///
+        /// Returns: A new matrix multiplication layer descriptor
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithAlpha:transposesX:transposesY:)]
         pub unsafe fn descriptorWithAlpha_transposesX_transposesY(
@@ -53,6 +67,7 @@ extern_methods!(
             transposes_y: bool,
         ) -> Option<Retained<Self>>;
 
+        /// A matrix multiplication layer descriptor
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor() -> Retained<Self>;

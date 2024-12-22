@@ -13,7 +13,11 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistandardtextcursorview?language=objc)
+    /// Displays a flashing cursor (aka "caret") view. Concrete implementation of UITextCursorView.
+    ///
+    /// When a selection is not ranged (or has a zero-length), a cursor view is displayed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uistandardtextcursorview?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]

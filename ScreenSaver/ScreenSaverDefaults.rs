@@ -7,7 +7,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screensaver/screensaverdefaults?language=objc)
+    /// A class that defines a set of methods for saving and restoring user defaults
+    /// for screen savers.
+    ///
+    /// ``ScreenSaverDefaults`` gives you access to preference values you need to
+    /// configure your screen saver. Because multiple apps can load a screen saver,
+    /// you can’t use the standard
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/nsuserdefaults>
+    /// object to store preferences. Instead, instantiate this class using the
+    /// ``ScreenSaverDefaults/defaultsForModuleWithName:`` method, which takes your
+    /// screen saver’s bundle identifier as a parameter. The resulting object gives
+    /// you a way to store your preference values and associate them only with your
+    /// screen saver. Use the inherited
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/nsuserdefaults>
+    /// methods to load, store, or modify values.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/screensaver/screensaverdefaults?language=objc)
     #[unsafe(super(NSUserDefaults, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ScreenSaverDefaults;
@@ -17,6 +34,11 @@ unsafe impl NSObjectProtocol for ScreenSaverDefaults {}
 
 extern_methods!(
     unsafe impl ScreenSaverDefaults {
+        /// Returns a screen saver defaults instance that reads and writes defaults for the specified
+        /// module.
+        ///
+        /// - Parameters:
+        /// - inModuleName: The bundle identifier for the module.
         #[method_id(@__retain_semantics Other defaultsForModuleWithName:)]
         pub unsafe fn defaultsForModuleWithName(
             in_module_name: &NSString,
@@ -27,15 +49,18 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUserDefaults`
     unsafe impl ScreenSaverDefaults {
+        /// -init is equivalent to -initWithSuiteName:nil
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// -initWithSuiteName: initializes an instance of NSUserDefaults that searches the shared preferences search list for the domain 'suitename'. For example, using the identifier of an application group will cause the receiver to search the preferences for that group. Passing the current application's bundle identifier, NSGlobalDomain, or the corresponding CFPreferences constants is an error. Passing nil will search the default search list.
         #[method_id(@__retain_semantics Init initWithSuiteName:)]
         pub unsafe fn initWithSuiteName(
             this: Allocated<Self>,
             suitename: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
+        /// -initWithUser: is equivalent to -init
         #[deprecated = "Use -init instead"]
         #[method_id(@__retain_semantics Init initWithUser:)]
         pub unsafe fn initWithUser(

@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusdebugger?language=objc)
+    /// UIFocusDebugger provides a collection of runtime utilities for debugging issues related to focus interaction.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusdebugger?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -17,35 +19,70 @@ unsafe impl NSObjectProtocol for UIFocusDebugger {}
 
 extern_methods!(
     unsafe impl UIFocusDebugger {
+        /// Outputs an overview of all supported debugging utilities and other relevant information.
+        /// - To use in Swift, enter `po UIFocusDebugger.help()` when paused in lldb.
+        /// - To use in Objective-C, enter `po [UIFocusDebugger help]` when paused in lldb.
         #[method_id(@__retain_semantics Other help)]
         pub unsafe fn help(
             mtm: MainThreadMarker,
         ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
 
+        /// Outputs information for the currently focused item.
+        /// - To use in Swift, enter `po UIFocusDebugger.status()` when paused in lldb.
+        /// - To use in Objective-C, enter `po [UIFocusDebugger status]` when paused in lldb.
         #[method_id(@__retain_semantics Other status)]
         pub unsafe fn status(
             mtm: MainThreadMarker,
         ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
 
         #[cfg(feature = "UIFocus")]
+        /// Outputs a diagnosis of the specified item's focusability, including any known issues that may be preventing focusability.
+        /// - To use in Swift, enter `po UIFocusDebugger.checkFocusability(for:
+        /// <item
+        /// reference>)` when paused in lldb.
+        /// - To use in Objective-C, enter `po [UIFocusDebugger checkFocusabilityForItem:
+        /// <item
+        /// reference>]` when paused in lldb.
         #[method_id(@__retain_semantics Other checkFocusabilityForItem:)]
         pub unsafe fn checkFocusabilityForItem(
             item: &ProtocolObject<dyn UIFocusItem>,
         ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
 
         #[cfg(feature = "UIFocus")]
+        /// Simulates a fake focus update requested by the specified environment (e.g. `[focusSystem requestFocusUpdateToEnvironment:environment]`), outlining each step of the process for determining the next focused item.
+        /// - To use in Swift, enter `po UIFocusDebugger.simulateFocusUpdateRequest(from:
+        /// <environment
+        /// reference>)` when paused in lldb.
+        /// - To use in Objective-C, enter `po [UIFocusDebugger simulateFocusUpdateRequestFromEnvironment:
+        /// <environment
+        /// reference>]` when paused in lldb.
         #[method_id(@__retain_semantics Other simulateFocusUpdateRequestFromEnvironment:)]
         pub unsafe fn simulateFocusUpdateRequestFromEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
         ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
 
         #[cfg(feature = "UIFocus")]
+        /// Outputs a diagnosis of the focus groups of the specified environment and its children.
+        /// Pass a focus system as the environment to get the full focus group tree for this focus system.
+        /// - To use in Swift, enter `po UIFocusDebugger.focusGroups(for:
+        /// <environment
+        /// reference>)` when paused in lldb.
+        /// - To use in Objective-C, enter `po [UIFocusDebugger focusGroupsForEnvironment:
+        /// <environment
+        /// reference>]` when paused in lldb.
         #[method_id(@__retain_semantics Other focusGroupsForEnvironment:)]
         pub unsafe fn focusGroupsForEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
         ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
 
         #[cfg(feature = "UIFocus")]
+        /// Outputs a diagnoses of the preferred focus environments tree.
+        /// - To use in Swift, enter `po UIFocusDebugger.preferredFocusEnvironments(for:
+        /// <environment
+        /// reference>)` when paused in lldb.
+        /// - To use in Objective-C, enter `po [UIFocusDebugger preferredFocusEnvironmentsForEnvironment:
+        /// <environment
+        /// reference>]` when paused in lldb.
         #[method_id(@__retain_semantics Other preferredFocusEnvironmentsForEnvironment:)]
         pub unsafe fn preferredFocusEnvironmentsForEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,

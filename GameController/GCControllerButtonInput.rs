@@ -6,12 +6,40 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttonvaluechangedhandler?language=objc)
+/// Set this block if you want to be notified when the value on this button changes.
+///
+///
+/// Parameter `button`: the element that has been modified.
+///
+/// Parameter `value`: the value the button was set to at the time the valueChangedHandler fired.
+///
+/// Parameter `pressed`: the pressed state of the button at the time the valueChangedHandler fired.
+///
+/// See: value
+///
+/// See: pressed
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttonvaluechangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerButtonValueChangedHandler =
     *mut block2::Block<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttontouchedchangedhandler?language=objc)
+/// Set this block if you want to be notified when the touched state on this button changes.
+///
+///
+/// Parameter `button`: the element that has been modified.
+///
+/// Parameter `value`: the value the button was set to at the time the valueChangedHandler fired.
+///
+/// Parameter `pressed`: the pressed state of the button at the time the valueChangedHandler fired.
+///
+/// Parameter `touched`: the touched state of the button at the time the valueChangedHandler fired.
+///
+/// See: value
+///
+/// See: pressed
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttontouchedchangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerButtonTouchedChangedHandler =
     *mut block2::Block<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool, Bool)>;
@@ -35,6 +63,7 @@ extern_methods!(
         pub unsafe fn valueChangedHandler(&self) -> GCControllerButtonValueChangedHandler;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         #[method(setValueChangedHandler:)]
         pub unsafe fn setValueChangedHandler(
             &self,
@@ -42,10 +71,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Set this block if you want to be notified when only the pressed state on this button changes. This
+        /// will get called less often than the valueChangedHandler with the additional feature of the pressed state
+        /// being different to the last time it was called.
         #[method(pressedChangedHandler)]
         pub unsafe fn pressedChangedHandler(&self) -> GCControllerButtonValueChangedHandler;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`pressedChangedHandler`][Self::pressedChangedHandler].
         #[method(setPressedChangedHandler:)]
         pub unsafe fn setPressedChangedHandler(
             &self,
@@ -57,21 +90,57 @@ extern_methods!(
         pub unsafe fn touchedChangedHandler(&self) -> GCControllerButtonTouchedChangedHandler;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`touchedChangedHandler`][Self::touchedChangedHandler].
         #[method(setTouchedChangedHandler:)]
         pub unsafe fn setTouchedChangedHandler(
             &self,
             touched_changed_handler: GCControllerButtonTouchedChangedHandler,
         );
 
+        /// A normalized value for the input. Between 0 and 1 for button inputs. Values are saturated and thus never exceed the range of [0, 1].
+        ///
+        /// See: valueChangedHandler
+        ///
+        /// See: pressed
         #[method(value)]
         pub unsafe fn value(&self) -> c_float;
 
+        /// Buttons are mostly used in a digital sense, thus we have a recommended method for checking for pressed state instead of
+        /// interpreting the value.
+        ///
+        /// As a general guideline a button is pressed if the value exceeds 0. However there may be hysterisis applied
+        /// to counter noisy input values, thus incidental values around the threshold value may not trigger a change
+        /// in pressed state.
+        ///
+        /// Others buttons may support two-stage actuation, where the button reports a value between 0 and 1 but is only considered
+        /// pressed when its value is greater than some threshold other than 0.
+        ///
+        /// See: pressedChangedHandler
+        ///
+        /// See: value
         #[method(isPressed)]
         pub unsafe fn isPressed(&self) -> bool;
 
+        /// Some buttons feature capacitive touch capabilities where the user can touch the button
+        /// without pressing it. In such cases, a button will be touched before it is pressed.
+        ///
+        /// For buttons without capacitive sensing, the touched state is true if the value exceeds 0.
+        ///
+        ///
+        /// See: touchChangedHandler
+        ///
+        /// See: pressed
         #[method(isTouched)]
         pub unsafe fn isTouched(&self) -> bool;
 
+        /// Sets the normalized value for the button input. Will update the pressed state of the button.
+        ///
+        ///
+        /// Parameter `value`: the value to set the input to.
+        ///
+        /// Note: If the controller's snapshot flag is set to NO, this method has no effect.
+        ///
+        /// See: value
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: c_float);
     }

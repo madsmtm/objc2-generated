@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneplacement?language=objc)
+    /// Base class for types that describe the placement of a window scene.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneplacement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIWindowScenePlacement;

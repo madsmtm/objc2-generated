@@ -7,7 +7,30 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webcachemodel?language=objc)
+/// Specifies a usage model for a WebView, which WebKit will use to
+/// determine its caching behavior.
+///
+/// a fixed document -- like a splash screen, a chat document, or a word processing
+/// document -- with no UI for navigation. The WebView will behave like any other
+/// view, releasing resources when they are no longer referenced. Remote resources,
+/// if any, will be cached to disk. This is the most memory-efficient setting.
+///
+/// Examples: iChat, Mail, TextMate, Growl.
+///
+/// a browsable series of documents with a UI for navigating between them -- for
+/// example, a reference materials browser or a website designer. The WebView will
+/// cache a reasonable number of resources and previously viewed documents in
+/// memory and/or on disk.
+///
+/// Examples: Dictionary, Help Viewer, Coda.
+///
+/// application that acts as the user's primary web browser. The WebView will cache
+/// a very large number of resources and previously viewed documents in memory
+/// and/or on disk.
+///
+/// Examples: Safari, OmniWeb, Shiira.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webcachemodel?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -56,6 +79,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other standardPreferences)]
         pub unsafe fn standardPreferences() -> Option<Retained<WebPreferences>>;
 
+        /// Parameter `anIdentifier`: A string used to identify the WebPreferences.
+        ///
+        /// WebViews can share instances of WebPreferences by using an instance of WebPreferences with
+        /// the same identifier.  Typically, instance are not created directly.  Instead you set the preferences
+        /// identifier on a WebView.  The identifier is used as a prefix that is added to the user defaults keys
+        /// for the WebPreferences.
+        ///
+        /// Returns: Returns a new instance of WebPreferences or a previously allocated instance with the same identifier.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
@@ -63,6 +94,7 @@ extern_methods!(
             an_identifier: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
+        /// Returns: Returns the identifier for this WebPreferences.
         #[deprecated]
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
@@ -71,6 +103,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other standardFontFamily)]
         pub unsafe fn standardFontFamily(&self) -> Retained<NSString>;
 
+        /// Setter for [`standardFontFamily`][Self::standardFontFamily].
         #[deprecated]
         #[method(setStandardFontFamily:)]
         pub unsafe fn setStandardFontFamily(&self, standard_font_family: Option<&NSString>);
@@ -79,6 +112,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fixedFontFamily)]
         pub unsafe fn fixedFontFamily(&self) -> Retained<NSString>;
 
+        /// Setter for [`fixedFontFamily`][Self::fixedFontFamily].
         #[deprecated]
         #[method(setFixedFontFamily:)]
         pub unsafe fn setFixedFontFamily(&self, fixed_font_family: Option<&NSString>);
@@ -87,6 +121,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other serifFontFamily)]
         pub unsafe fn serifFontFamily(&self) -> Retained<NSString>;
 
+        /// Setter for [`serifFontFamily`][Self::serifFontFamily].
         #[deprecated]
         #[method(setSerifFontFamily:)]
         pub unsafe fn setSerifFontFamily(&self, serif_font_family: Option<&NSString>);
@@ -95,6 +130,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sansSerifFontFamily)]
         pub unsafe fn sansSerifFontFamily(&self) -> Retained<NSString>;
 
+        /// Setter for [`sansSerifFontFamily`][Self::sansSerifFontFamily].
         #[deprecated]
         #[method(setSansSerifFontFamily:)]
         pub unsafe fn setSansSerifFontFamily(&self, sans_serif_font_family: Option<&NSString>);
@@ -103,6 +139,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cursiveFontFamily)]
         pub unsafe fn cursiveFontFamily(&self) -> Retained<NSString>;
 
+        /// Setter for [`cursiveFontFamily`][Self::cursiveFontFamily].
         #[deprecated]
         #[method(setCursiveFontFamily:)]
         pub unsafe fn setCursiveFontFamily(&self, cursive_font_family: Option<&NSString>);
@@ -111,6 +148,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fantasyFontFamily)]
         pub unsafe fn fantasyFontFamily(&self) -> Retained<NSString>;
 
+        /// Setter for [`fantasyFontFamily`][Self::fantasyFontFamily].
         #[deprecated]
         #[method(setFantasyFontFamily:)]
         pub unsafe fn setFantasyFontFamily(&self, fantasy_font_family: Option<&NSString>);
@@ -119,6 +157,7 @@ extern_methods!(
         #[method(defaultFontSize)]
         pub unsafe fn defaultFontSize(&self) -> c_int;
 
+        /// Setter for [`defaultFontSize`][Self::defaultFontSize].
         #[deprecated]
         #[method(setDefaultFontSize:)]
         pub unsafe fn setDefaultFontSize(&self, default_font_size: c_int);
@@ -127,6 +166,7 @@ extern_methods!(
         #[method(defaultFixedFontSize)]
         pub unsafe fn defaultFixedFontSize(&self) -> c_int;
 
+        /// Setter for [`defaultFixedFontSize`][Self::defaultFixedFontSize].
         #[deprecated]
         #[method(setDefaultFixedFontSize:)]
         pub unsafe fn setDefaultFixedFontSize(&self, default_fixed_font_size: c_int);
@@ -135,6 +175,7 @@ extern_methods!(
         #[method(minimumFontSize)]
         pub unsafe fn minimumFontSize(&self) -> c_int;
 
+        /// Setter for [`minimumFontSize`][Self::minimumFontSize].
         #[deprecated]
         #[method(setMinimumFontSize:)]
         pub unsafe fn setMinimumFontSize(&self, minimum_font_size: c_int);
@@ -143,6 +184,7 @@ extern_methods!(
         #[method(minimumLogicalFontSize)]
         pub unsafe fn minimumLogicalFontSize(&self) -> c_int;
 
+        /// Setter for [`minimumLogicalFontSize`][Self::minimumLogicalFontSize].
         #[deprecated]
         #[method(setMinimumLogicalFontSize:)]
         pub unsafe fn setMinimumLogicalFontSize(&self, minimum_logical_font_size: c_int);
@@ -151,6 +193,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultTextEncodingName)]
         pub unsafe fn defaultTextEncodingName(&self) -> Retained<NSString>;
 
+        /// Setter for [`defaultTextEncodingName`][Self::defaultTextEncodingName].
         #[deprecated]
         #[method(setDefaultTextEncodingName:)]
         pub unsafe fn setDefaultTextEncodingName(
@@ -162,22 +205,27 @@ extern_methods!(
         #[method(userStyleSheetEnabled)]
         pub unsafe fn userStyleSheetEnabled(&self) -> bool;
 
+        /// Setter for [`userStyleSheetEnabled`][Self::userStyleSheetEnabled].
         #[deprecated]
         #[method(setUserStyleSheetEnabled:)]
         pub unsafe fn setUserStyleSheetEnabled(&self, user_style_sheet_enabled: bool);
 
+        /// The location of the user style sheet.
         #[deprecated]
         #[method_id(@__retain_semantics Other userStyleSheetLocation)]
         pub unsafe fn userStyleSheetLocation(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`userStyleSheetLocation`][Self::userStyleSheetLocation].
         #[deprecated]
         #[method(setUserStyleSheetLocation:)]
         pub unsafe fn setUserStyleSheetLocation(&self, user_style_sheet_location: Option<&NSURL>);
 
+        /// Deprecated function that does nothing and always returns false.
         #[deprecated]
         #[method(isJavaEnabled)]
         pub unsafe fn isJavaEnabled(&self) -> bool;
 
+        /// Setter for [`isJavaEnabled`][Self::isJavaEnabled].
         #[deprecated]
         #[method(setJavaEnabled:)]
         pub unsafe fn setJavaEnabled(&self, java_enabled: bool);
@@ -186,6 +234,7 @@ extern_methods!(
         #[method(isJavaScriptEnabled)]
         pub unsafe fn isJavaScriptEnabled(&self) -> bool;
 
+        /// Setter for [`isJavaScriptEnabled`][Self::isJavaScriptEnabled].
         #[deprecated]
         #[method(setJavaScriptEnabled:)]
         pub unsafe fn setJavaScriptEnabled(&self, java_script_enabled: bool);
@@ -194,6 +243,7 @@ extern_methods!(
         #[method(javaScriptCanOpenWindowsAutomatically)]
         pub unsafe fn javaScriptCanOpenWindowsAutomatically(&self) -> bool;
 
+        /// Setter for [`javaScriptCanOpenWindowsAutomatically`][Self::javaScriptCanOpenWindowsAutomatically].
         #[deprecated]
         #[method(setJavaScriptCanOpenWindowsAutomatically:)]
         pub unsafe fn setJavaScriptCanOpenWindowsAutomatically(
@@ -205,6 +255,7 @@ extern_methods!(
         #[method(arePlugInsEnabled)]
         pub unsafe fn arePlugInsEnabled(&self) -> bool;
 
+        /// Setter for [`arePlugInsEnabled`][Self::arePlugInsEnabled].
         #[deprecated]
         #[method(setPlugInsEnabled:)]
         pub unsafe fn setPlugInsEnabled(&self, plug_ins_enabled: bool);
@@ -213,6 +264,7 @@ extern_methods!(
         #[method(allowsAnimatedImages)]
         pub unsafe fn allowsAnimatedImages(&self) -> bool;
 
+        /// Setter for [`allowsAnimatedImages`][Self::allowsAnimatedImages].
         #[deprecated]
         #[method(setAllowsAnimatedImages:)]
         pub unsafe fn setAllowsAnimatedImages(&self, allows_animated_images: bool);
@@ -221,6 +273,7 @@ extern_methods!(
         #[method(allowsAnimatedImageLooping)]
         pub unsafe fn allowsAnimatedImageLooping(&self) -> bool;
 
+        /// Setter for [`allowsAnimatedImageLooping`][Self::allowsAnimatedImageLooping].
         #[deprecated]
         #[method(setAllowsAnimatedImageLooping:)]
         pub unsafe fn setAllowsAnimatedImageLooping(&self, allows_animated_image_looping: bool);
@@ -229,14 +282,18 @@ extern_methods!(
         #[method(loadsImagesAutomatically)]
         pub unsafe fn loadsImagesAutomatically(&self) -> bool;
 
+        /// Setter for [`loadsImagesAutomatically`][Self::loadsImagesAutomatically].
         #[deprecated]
         #[method(setLoadsImagesAutomatically:)]
         pub unsafe fn setLoadsImagesAutomatically(&self, loads_images_automatically: bool);
 
+        /// If autosaves is YES the settings represented by
+        /// WebPreferences will be stored in the user defaults database.
         #[deprecated]
         #[method(autosaves)]
         pub unsafe fn autosaves(&self) -> bool;
 
+        /// Setter for [`autosaves`][Self::autosaves].
         #[deprecated]
         #[method(setAutosaves:)]
         pub unsafe fn setAutosaves(&self, autosaves: bool);
@@ -245,38 +302,72 @@ extern_methods!(
         #[method(shouldPrintBackgrounds)]
         pub unsafe fn shouldPrintBackgrounds(&self) -> bool;
 
+        /// Setter for [`shouldPrintBackgrounds`][Self::shouldPrintBackgrounds].
         #[deprecated]
         #[method(setShouldPrintBackgrounds:)]
         pub unsafe fn setShouldPrintBackgrounds(&self, should_print_backgrounds: bool);
 
+        /// If private browsing is enabled, WebKit will not store information
+        /// about sites the user visits.
         #[deprecated]
         #[method(privateBrowsingEnabled)]
         pub unsafe fn privateBrowsingEnabled(&self) -> bool;
 
+        /// Setter for [`privateBrowsingEnabled`][Self::privateBrowsingEnabled].
         #[deprecated]
         #[method(setPrivateBrowsingEnabled:)]
         pub unsafe fn setPrivateBrowsingEnabled(&self, private_browsing_enabled: bool);
 
+        /// If tabsToLinks is YES, the tab key will focus links and form controls.
+        /// The option key temporarily reverses this preference.
         #[deprecated]
         #[method(tabsToLinks)]
         pub unsafe fn tabsToLinks(&self) -> bool;
 
+        /// Setter for [`tabsToLinks`][Self::tabsToLinks].
         #[deprecated]
         #[method(setTabsToLinks:)]
         pub unsafe fn setTabsToLinks(&self, tabs_to_links: bool);
 
+        /// Whether the receiver's associated WebViews use the shared
+        /// page cache.
+        ///
+        /// Pages are cached as they are added to a WebBackForwardList, and
+        /// removed from the cache as they are removed from a WebBackForwardList. Because
+        /// the page cache is global, caching a page in one WebBackForwardList may cause
+        /// a page in another WebBackForwardList to be evicted from the cache.
         #[deprecated]
         #[method(usesPageCache)]
         pub unsafe fn usesPageCache(&self) -> bool;
 
+        /// Setter for [`usesPageCache`][Self::usesPageCache].
         #[deprecated]
         #[method(setUsesPageCache:)]
         pub unsafe fn setUsesPageCache(&self, uses_page_cache: bool);
 
+        /// Specifies a usage model for a WebView, which WebKit will use to
+        /// determine its caching behavior. If necessary, WebKit
+        /// will prune its caches to match cacheModel when set.
+        ///
+        ///
+        /// Research indicates that users tend to browse within clusters of
+        /// documents that hold resources in common, and to revisit previously visited
+        /// documents. WebKit and the frameworks below it include built-in caches that take
+        /// advantage of these patterns, substantially improving document load speed in
+        /// browsing situations. The WebKit cache model controls the behaviors of all of
+        /// these caches, including NSURLCache and the various WebCore caches.
+        ///
+        /// Applications with a browsing interface can improve document load speed
+        /// substantially by specifying WebCacheModelDocumentBrowser. Applications without
+        /// a browsing interface can reduce memory usage substantially by specifying
+        /// WebCacheModelDocumentViewer.
+        ///
+        /// If cacheModel is not set, WebKit will select a cache model automatically.
         #[deprecated]
         #[method(cacheModel)]
         pub unsafe fn cacheModel(&self) -> WebCacheModel;
 
+        /// Setter for [`cacheModel`][Self::cacheModel].
         #[deprecated]
         #[method(setCacheModel:)]
         pub unsafe fn setCacheModel(&self, cache_model: WebCacheModel);
@@ -285,6 +376,7 @@ extern_methods!(
         #[method(suppressesIncrementalRendering)]
         pub unsafe fn suppressesIncrementalRendering(&self) -> bool;
 
+        /// Setter for [`suppressesIncrementalRendering`][Self::suppressesIncrementalRendering].
         #[deprecated]
         #[method(setSuppressesIncrementalRendering:)]
         pub unsafe fn setSuppressesIncrementalRendering(
@@ -296,6 +388,7 @@ extern_methods!(
         #[method(allowsAirPlayForMediaPlayback)]
         pub unsafe fn allowsAirPlayForMediaPlayback(&self) -> bool;
 
+        /// Setter for [`allowsAirPlayForMediaPlayback`][Self::allowsAirPlayForMediaPlayback].
         #[deprecated]
         #[method(setAllowsAirPlayForMediaPlayback:)]
         pub unsafe fn setAllowsAirPlayForMediaPlayback(

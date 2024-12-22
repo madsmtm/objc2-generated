@@ -8,7 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsaverequest?language=objc)
+    /// Specifies the changes to save.
+    ///
+    ///
+    /// Create a new save request for each save execution on the contact store. Can have many changes batched into one save request. Do not access objects in the save request when it is executing.  A save request only applies the changes to the objects. If there are overlapping changes with multiple, concurrent CNSaveRequests then the last saved change wins.
+    ///
+    /// If adding an object (contact, group, container) and it is already in the contact store then the executing save request will fail to add that object and will return the error CNErrorCodeInsertedRecordAlreadyExists with CNErrorUserInfoAffectedRecordsKey value as an array containing that object.
+    ///
+    /// If updating/deleting an object (contact, group, container) and it is not in the contact store then the executing save request will fail to update/delete that object and will return the error CNErrorCodeRecordDoesNotExist with CNErrorUserInfoAffectedRecordsKey value as an array containing that object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsaverequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNSaveRequest;
@@ -19,6 +28,15 @@ unsafe impl NSObjectProtocol for CNSaveRequest {}
 extern_methods!(
     unsafe impl CNSaveRequest {
         #[cfg(all(feature = "CNContact", feature = "CNMutableContact"))]
+        /// Add a new contact to the contact store.
+        ///
+        ///
+        /// The contact may be modified by the executing save request. If the contact was previously specified to be deleted in the save request that will no longer occur.
+        ///
+        ///
+        /// Parameter `contact`: The new contact to add.
+        ///
+        /// Parameter `identifier`: The container identifier to add the new contact to. Set to nil for the default container.
         #[method(addContact:toContainerWithIdentifier:)]
         pub unsafe fn addContact_toContainerWithIdentifier(
             &self,
@@ -27,14 +45,31 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CNContact", feature = "CNMutableContact"))]
+        /// Update an existing contact in the contact store.
+        ///
+        ///
+        /// The contact must already exist in the contact store. The contact may be modified by the executing save request.
         #[method(updateContact:)]
         pub unsafe fn updateContact(&self, contact: &CNMutableContact);
 
         #[cfg(all(feature = "CNContact", feature = "CNMutableContact"))]
+        /// Delete a contact from the contact store.
+        ///
+        ///
+        /// If the contact was previously specified to be added in the save request that will no longer occur.
         #[method(deleteContact:)]
         pub unsafe fn deleteContact(&self, contact: &CNMutableContact);
 
         #[cfg(all(feature = "CNGroup", feature = "CNMutableGroup"))]
+        /// Add a new group to the contact store.
+        ///
+        ///
+        /// If the group was previously specified to be deleted in the save request that will no longer occur.
+        ///
+        ///
+        /// Parameter `group`: The new group to add.
+        ///
+        /// Parameter `identifier`: The container identifier to add the new group to. Set to nil for the default container.
         #[method(addGroup:toContainerWithIdentifier:)]
         pub unsafe fn addGroup_toContainerWithIdentifier(
             &self,
@@ -43,38 +78,97 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CNGroup", feature = "CNMutableGroup"))]
+        /// Update an existing group in the contact store.
+        ///
+        ///
+        /// The group must already exist in the contact store.
         #[method(updateGroup:)]
         pub unsafe fn updateGroup(&self, group: &CNMutableGroup);
 
         #[cfg(all(feature = "CNGroup", feature = "CNMutableGroup"))]
+        /// Delete a group from the contact store.
+        ///
+        ///
+        /// The contacts in the group are not deleted. If the group was previously specified to be added in the save request that will no longer occur.
         #[method(deleteGroup:)]
         pub unsafe fn deleteGroup(&self, group: &CNMutableGroup);
 
         #[cfg(feature = "CNGroup")]
+        /// Add a new subgroup to a group.
+        ///
+        ///
+        /// If the subgroup was previously specified to be deleted in the save request that will no longer occur.
+        ///
+        ///
+        /// Parameter `subgroup`: The new group to add.
+        ///
+        /// Parameter `group`: The group to add the subgroup to.
         #[method(addSubgroup:toGroup:)]
         pub unsafe fn addSubgroup_toGroup(&self, subgroup: &CNGroup, group: &CNGroup);
 
         #[cfg(feature = "CNGroup")]
+        /// Remove a subgroup from a group.
+        ///
+        ///
+        /// The contacts in the subgroup's membership are not affected. If the subgroup was previously specified to be added in the save request that will no longer occur.
+        ///
+        ///
+        /// Parameter `subgroup`: The new group to add.
+        ///
+        /// Parameter `group`: The group to add the subgroup to.
         #[method(removeSubgroup:fromGroup:)]
         pub unsafe fn removeSubgroup_fromGroup(&self, subgroup: &CNGroup, group: &CNGroup);
 
         #[cfg(all(feature = "CNContact", feature = "CNGroup"))]
+        /// Add a new member to a group.
+        ///
+        ///
+        /// If the membership was previously specified to be deleted in the save request that will no longer occur.
+        ///
+        ///
+        /// Parameter `contact`: The new member to add to the group.
+        ///
+        /// Parameter `group`: The group to add the member to.
         #[method(addMember:toGroup:)]
         pub unsafe fn addMember_toGroup(&self, contact: &CNContact, group: &CNGroup);
 
         #[cfg(all(feature = "CNContact", feature = "CNGroup"))]
+        /// Remove a member from a group.
+        ///
+        ///
+        /// The contact is not deleted. It is only removed as a member of the group. If the membership was previously specified to be added in the save request that will no longer occur.
+        ///
+        ///
+        /// Parameter `contact`: The member to remove from the group.
+        ///
+        /// Parameter `group`: The group to remove the member from.
         #[method(removeMember:fromGroup:)]
         pub unsafe fn removeMember_fromGroup(&self, contact: &CNContact, group: &CNGroup);
 
+        /// The author of this transaction.
+        ///
+        ///
+        /// Use this, in conjunction with
+        /// `CNChangeHistoryFetchRequest.excludedTransactionAuthors,`to suppress fetching of changes the author already knows about.
         #[method_id(@__retain_semantics Other transactionAuthor)]
         pub unsafe fn transactionAuthor(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`transactionAuthor`][Self::transactionAuthor].
         #[method(setTransactionAuthor:)]
         pub unsafe fn setTransactionAuthor(&self, transaction_author: Option<&NSString>);
 
+        /// Should the contacts be refetched as part of executing the save request.
+        ///
+        ///
+        /// Default is `YES` where added and updated contacts are refetched by the executing save request.
+        /// Set to `NO` to suppress this refetch behavior and reduce the execution time of the save request.
+        ///
+        ///
+        /// Note: If set to `NO` do not use the contacts after the executed save request as they may not be in a current state.
         #[method(shouldRefetchContacts)]
         pub unsafe fn shouldRefetchContacts(&self) -> bool;
 
+        /// Setter for [`shouldRefetchContacts`][Self::shouldRefetchContacts].
         #[method(setShouldRefetchContacts:)]
         pub unsafe fn setShouldRefetchContacts(&self, should_refetch_contacts: bool);
     }

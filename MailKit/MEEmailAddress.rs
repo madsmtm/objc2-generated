@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/meemailaddress?language=objc)
+    /// Contain information about an email address. This can include both valid and invalid email addresses.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/meemailaddress?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEEmailAddress;
@@ -27,9 +29,12 @@ unsafe impl NSSecureCoding for MEEmailAddress {}
 
 extern_methods!(
     unsafe impl MEEmailAddress {
+        /// The raw string for the email address.
         #[method_id(@__retain_semantics Other rawString)]
         pub unsafe fn rawString(&self) -> Retained<NSString>;
 
+        /// The simple address string portion of the raw string if it is valid. For example, the
+        /// `addressString`of "John Appleseed <j.appleseed@example.com>" will be "j.appleseed@example.com".
         #[method_id(@__retain_semantics Other addressString)]
         pub unsafe fn addressString(&self) -> Option<Retained<NSString>>;
 

@@ -6,7 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakeysharerecipients?language=objc)
+    /// A key for an array of INPerson objects representing recipients who will be filled in by default in the compose view if that sharing app supports it.
+    ///
+    /// This might fail to pre-fill correctly if the sharing app chosen by the user can't recognize the provided person. Also, if a people suggestion is chosen, that suggestion will override this provided value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakeysharerecipients?language=objc)
     #[cfg(feature = "UIActivityItemsConfigurationReading")]
     pub static UIActivityItemsConfigurationMetadataKeyShareRecipients:
         Option<&'static UIActivityItemsConfigurationMetadataKey>;

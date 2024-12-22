@@ -86,6 +86,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other htmlFor)]
         pub unsafe fn htmlFor(&self) -> Retained<NSString>;
 
+        /// Setter for [`htmlFor`][Self::htmlFor].
         #[deprecated]
         #[method(setHtmlFor:)]
         pub unsafe fn setHtmlFor(&self, html_for: Option<&NSString>);
@@ -94,6 +95,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other accessKey)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
+        /// Setter for [`accessKey`][Self::accessKey].
         #[deprecated]
         #[method(setAccessKey:)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);

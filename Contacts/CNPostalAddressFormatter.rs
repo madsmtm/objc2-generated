@@ -7,12 +7,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressformatterstyle?language=objc)
+/// The formatting styles for postal addresses.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CNPostalAddressFormatterStyle(pub NSInteger);
 impl CNPostalAddressFormatterStyle {
+    /// Combine the postal address components into a multi-line mailing address.
     #[doc(alias = "CNPostalAddressFormatterStyleMailingAddress")]
     pub const MailingAddress: Self = Self(0);
 }
@@ -26,7 +29,12 @@ unsafe impl RefEncode for CNPostalAddressFormatterStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressformatter?language=objc)
+    /// Formats a postal address.
+    ///
+    ///
+    /// This formatter handles international formatting of a postal address.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNPostalAddressFormatter;
@@ -45,6 +53,14 @@ unsafe impl NSObjectProtocol for CNPostalAddressFormatter {}
 extern_methods!(
     unsafe impl CNPostalAddressFormatter {
         #[cfg(feature = "CNPostalAddress")]
+        /// Formats the postal address.
+        ///
+        ///
+        /// Parameter `postalAddress`: The postal address to be formatted.
+        ///
+        /// Parameter `style`: The formatting style to be used for the postal address.
+        ///
+        /// Returns: The formatted postal address.
         #[method_id(@__retain_semantics Other stringFromPostalAddress:style:)]
         pub unsafe fn stringFromPostalAddress_style(
             postal_address: &CNPostalAddress,
@@ -52,6 +68,19 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "CNPostalAddress")]
+        /// Formats the postal address returning an attributed string.
+        ///
+        ///
+        /// This behaves like +stringFromPostalAddress: except it returns an attributed string. Includes attribute keys CNPostalAddressPropertyAttribute and CNPostalAddressLocalizedPropertyNameAttribute.
+        ///
+        ///
+        /// Parameter `postalAddress`: The postal address to be formatted.
+        ///
+        /// Parameter `style`: The formatting style to be used for the postal address.
+        ///
+        /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
+        ///
+        /// Returns: The formatted postal address as an attributed string.
         #[method_id(@__retain_semantics Other attributedStringFromPostalAddress:style:withDefaultAttributes:)]
         pub unsafe fn attributedStringFromPostalAddress_style_withDefaultAttributes(
             postal_address: &CNPostalAddress,
@@ -59,13 +88,24 @@ extern_methods!(
             attributes: &NSDictionary,
         ) -> Retained<NSAttributedString>;
 
+        /// The style for a postal address formatter instance.
+        ///
+        ///
+        /// The default value is CNPostalAddressFormatterStyleMailingAddress.
         #[method(style)]
         pub unsafe fn style(&self) -> CNPostalAddressFormatterStyle;
 
+        /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: CNPostalAddressFormatterStyle);
 
         #[cfg(feature = "CNPostalAddress")]
+        /// Formats the postal address.
+        ///
+        ///
+        /// Parameter `postalAddress`: The postal address to be formatted.
+        ///
+        /// Returns: The formatted postal address.
         #[method_id(@__retain_semantics Other stringFromPostalAddress:)]
         pub unsafe fn stringFromPostalAddress(
             &self,
@@ -73,6 +113,17 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "CNPostalAddress")]
+        /// Formats the postal address returning an attributed string.
+        ///
+        ///
+        /// This behaves like +stringFromPostalAddress: except it returns an attributed string. Includes attribute keys CNPostalAddressPropertyAttribute and CNPostalAddressLocalizedPropertyNameAttribute.
+        ///
+        ///
+        /// Parameter `postalAddress`: The postal address to be formatted.
+        ///
+        /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
+        ///
+        /// Returns: The formatted postal address as an attributed string.
         #[method_id(@__retain_semantics Other attributedStringFromPostalAddress:withDefaultAttributes:)]
         pub unsafe fn attributedStringFromPostalAddress_withDefaultAttributes(
             &self,

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype?language=objc)
+/// Represents a particular type of workout or exercise
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -227,7 +229,9 @@ unsafe impl RefEncode for HKWorkoutEventType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutevent?language=objc)
+    /// Represents a particular event that occurred during a workout.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutEvent;
@@ -251,6 +255,7 @@ unsafe impl NSSecureCoding for HKWorkoutEvent {}
 
 extern_methods!(
     unsafe impl HKWorkoutEvent {
+        /// Represents the type of event that occurred during a workout.
         #[method(type)]
         pub unsafe fn r#type(&self) -> HKWorkoutEventType;
 
@@ -258,9 +263,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
+        /// Date interval representing the time period for which the event is valid.
+        ///
+        /// Most event types only support date intervals with zero duration. Events of type HKWorkoutEventTypeLap
+        /// and HKWorkoutEventTypeSegment are currently the only events that support a nonzero duration.
         #[method_id(@__retain_semantics Other dateInterval)]
         pub unsafe fn dateInterval(&self) -> Retained<NSDateInterval>;
 
+        /// Extra information describing properties of the receiver.
+        ///
+        /// Keys must be NSString and values must be either NSString, NSNumber, NSDate, or
+        /// HKQuantity. See HKMetadata.h for potential metadata keys and values.
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
@@ -279,6 +292,13 @@ extern_methods!(
             metadata: &NSDictionary<NSString, AnyObject>,
         ) -> Retained<Self>;
 
+        /// Creates an event with a date interval with or without a duration.
+        ///
+        /// Parameter `type`: The type of event to create
+        ///
+        /// Parameter `dateInterval`: The dateInterval over which the event occurs
+        ///
+        /// Parameter `metadata`: Dictionary of metadata associated with the event, nullable
         #[method_id(@__retain_semantics Other workoutEventWithType:dateInterval:metadata:)]
         pub unsafe fn workoutEventWithType_dateInterval_metadata(
             r#type: HKWorkoutEventType,
@@ -300,7 +320,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkout?language=objc)
+    /// An HKObject subclass representing a workout or activity
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkout?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -325,50 +347,94 @@ unsafe impl NSSecureCoding for HKWorkout {}
 extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKWorkout {
+        /// Represents the activity that the user was performing during a workout
         #[method(workoutActivityType)]
         pub unsafe fn workoutActivityType(&self) -> HKWorkoutActivityType;
 
+        /// An array of HKWorkoutEvents that occurred during a workout.
+        ///
+        /// These events will be ordered by date in ascending order. All events must take place
+        /// between the start date and end date of the workout. The first workout event should never be a resume event
+        /// because it is assumed that the workout begins in a running state.
         #[method_id(@__retain_semantics Other workoutEvents)]
         pub unsafe fn workoutEvents(&self) -> Option<Retained<NSArray<HKWorkoutEvent>>>;
 
         #[cfg(feature = "HKWorkoutActivity")]
+        /// An array of HKWorkoutActivities that were performed during a workout.
+        ///
+        /// These activities will be ordered by date in ascending order. All activities must take place
+        /// between the start date and end date of the workout.
         #[method_id(@__retain_semantics Other workoutActivities)]
         pub unsafe fn workoutActivities(&self) -> Retained<NSArray<HKWorkoutActivity>>;
 
+        /// The length of time that a workout was recording
+        ///
+        /// The duration is derived from the start and end dates of the workout and takes into account periods that the
+        /// workout was paused. Periods that the workout was paused are based off of the workoutEvents property.
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "HKQuantity")]
+        /// The amount of energy that was burned during a workout
+        ///
+        /// This metric should represent the total active energy burned during the course of the workout. It should be a
+        /// quantity with a unit representing energy.
         #[deprecated = "Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned"]
         #[method_id(@__retain_semantics Other totalEnergyBurned)]
         pub unsafe fn totalEnergyBurned(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The total distance that was traveled during a workout
+        ///
+        /// This metric should represent the total distance traveled during the course of the workout. It should be a
+        /// quantity with a unit representing length.
         #[deprecated = "Use statisticsForType: passing the HKQuantityType for the desired distance type"]
         #[method_id(@__retain_semantics Other totalDistance)]
         pub unsafe fn totalDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The total count of swimming strokes that was accumulated during a workout
+        ///
+        /// This metric should represent the total count of swimming strokes accumulated during the course of the
+        /// workout. It should be a quantity with a unit representing count.
         #[deprecated = "Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount"]
         #[method_id(@__retain_semantics Other totalSwimmingStrokeCount)]
         pub unsafe fn totalSwimmingStrokeCount(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The total count of flights climbed during a workout
+        ///
+        /// This metric should represent the total count of flights accumulated during the course of the
+        /// workout. It should be a quantity with a unit representing count.
         #[deprecated = "Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierFlightClimbed"]
         #[method_id(@__retain_semantics Other totalFlightsClimbed)]
         pub unsafe fn totalFlightsClimbed(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
+        /// A dictionary of statistics per quantity type during the workout
+        ///
+        /// This dictionary will contain HKStatistics objects containing the statistics by quantity
+        /// sample type for all of the samples that have been added to the workout.
         #[method_id(@__retain_semantics Other allStatistics)]
         pub unsafe fn allStatistics(&self) -> Retained<NSDictionary<HKQuantityType, HKStatistics>>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
+        /// Returns an HKStatistics object containing the statistics for all the samples of the given type that
+        /// have been added to the workout. If there are no samples of the given type then nil is returned.
+        ///
+        ///
+        /// Parameter `quantityType`: The quantity type to gather statistics about.
         #[method_id(@__retain_semantics Other statisticsForType:)]
         pub unsafe fn statisticsForType(
             &self,
             quantity_type: &HKQuantityType,
         ) -> Option<Retained<HKStatistics>>;
 
+        /// Parameter `workoutActivityType`: The activity type of the workout
+        ///
+        /// Parameter `startDate`: The point in time that the workout was started
+        ///
+        /// Parameter `endDate`: The point in time that the workout was ended
         #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate(
@@ -378,6 +444,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "HKQuantity")]
+        /// If the optional total parameters are specified, matching samples that add up to the calculated total quantities
+        /// should be associated with this workout using addSamples:toWorkout:completion: in HKHealthStore.
+        ///
+        ///
+        /// Parameter `workoutActivityType`: The activity type of the workout
+        ///
+        /// Parameter `startDate`: The point in time that the workout was started
+        ///
+        /// Parameter `endDate`: The point in time that the workout was ended
+        ///
+        /// Parameter `workoutEvents`: An array of HKWorkoutEvents. The workout's duration is derived from these events. (Optional)
+        ///
+        /// Parameter `totalEnergyBurned`: The amount of energy that was burned during the workout. (Optional)
+        ///
+        /// Parameter `totalDistance`: The total distance that was traveled during the workout. (Optional)
+        ///
+        /// Parameter `metadata`: Metadata for the workout. (Optional)
         #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:metadata:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_workoutEvents_totalEnergyBurned_totalDistance_metadata(
@@ -391,6 +474,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKQuantity"))]
+        /// If the optional total parameters are specified, matching samples that add up to the calculated total quantities
+        /// should be associated with this workout using addSamples:toWorkout:completion: in HKHealthStore.
+        ///
+        ///
+        /// Parameter `workoutActivityType`: The activity type of the workout
+        ///
+        /// Parameter `startDate`: The point in time that the workout was started
+        ///
+        /// Parameter `endDate`: The point in time that the workout was ended
+        ///
+        /// Parameter `workoutEvents`: An array of HKWorkoutEvents. The workout's duration is derived from these events. (Optional)
+        ///
+        /// Parameter `totalEnergyBurned`: The amount of energy that was burned during the workout. (Optional)
+        ///
+        /// Parameter `totalDistance`: The total distance that was traveled during the workout. (Optional)
+        ///
+        /// Parameter `device`: The HKDevice associated with the workout. (Optional)
+        ///
+        /// Parameter `metadata`: Metadata for the workout. (Optional)
         #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_workoutEvents_totalEnergyBurned_totalDistance_device_metadata(
@@ -405,6 +507,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "HKQuantity")]
+        /// If the optional total parameters are specified, matching samples that add up to the calculated total quantities
+        /// should be associated with this workout using addSamples:toWorkout:completion: in HKHealthStore.
+        ///
+        ///
+        /// Parameter `workoutActivityType`: The activity type of the workout
+        ///
+        /// Parameter `startDate`: The point in time that the workout was started
+        ///
+        /// Parameter `endDate`: The point in time that the workout was ended
+        ///
+        /// Parameter `duration`: The duration of the workout. If 0, the difference between startDate and endDate is used.
+        ///
+        /// Parameter `totalEnergyBurned`: The amount of energy that was burned during the workout. (Optional)
+        ///
+        /// Parameter `totalDistance`: The total distance that was traveled during the workout. (Optional)
+        ///
+        /// Parameter `metadata`: Metadata for the workout. (Optional)
         #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:metadata:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_duration_totalEnergyBurned_totalDistance_metadata(
@@ -418,6 +537,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKQuantity"))]
+        /// If the optional total parameters are specified, matching samples that add up to the calculated total quantities
+        /// should be associated with this workout using addSamples:toWorkout:completion: in HKHealthStore.
+        ///
+        ///
+        /// Parameter `workoutActivityType`: The activity type of the workout
+        ///
+        /// Parameter `startDate`: The point in time that the workout was started
+        ///
+        /// Parameter `endDate`: The point in time that the workout was ended
+        ///
+        /// Parameter `duration`: The duration of the workout. If 0, the difference between startDate and endDate is used.
+        ///
+        /// Parameter `totalEnergyBurned`: The amount of energy that was burned during the workout. (Optional)
+        ///
+        /// Parameter `totalDistance`: The total distance that was traveled during the workout. (Optional)
+        ///
+        /// Parameter `device`: The HKDevice associated with the workout. (Optional)
+        ///
+        /// Parameter `metadata`: Metadata for the workout. (Optional)
         #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:device:metadata:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_duration_totalEnergyBurned_totalDistance_device_metadata(
@@ -432,6 +570,27 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKQuantity"))]
+        /// If the optional total parameters are specified, matching samples that add up to the calculated total quantities
+        /// should be associated with this workout using addSamples:toWorkout:completion: in HKHealthStore.
+        ///
+        ///
+        /// Parameter `workoutActivityType`: The activity type of the workout
+        ///
+        /// Parameter `startDate`: The point in time that the workout was started
+        ///
+        /// Parameter `endDate`: The point in time that the workout was ended
+        ///
+        /// Parameter `workoutEvents`: An array of HKWorkoutEvents. The workout's duration is derived from these events. (Optional)
+        ///
+        /// Parameter `totalEnergyBurned`: The amount of energy that was burned during the workout. (Optional)
+        ///
+        /// Parameter `totalDistance`: The total distance that was traveled during the workout. (Optional)
+        ///
+        /// Parameter `totalSwimmingStrokeCount`: The total count of swimming strokes that was accumulated during the workout. (Optional)
+        ///
+        /// Parameter `device`: The HKDevice associated with the workout. (Optional)
+        ///
+        /// Parameter `metadata`: Metadata for the workout. (Optional)
         #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_workoutEvents_totalEnergyBurned_totalDistance_totalSwimmingStrokeCount_device_metadata(
@@ -447,6 +606,28 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKQuantity"))]
+        /// If the optional total parameters are specified, matching samples that add up to the calculated total
+        /// quantities should be associated with this workout using addSamples:toWorkout:completion: in
+        /// HKHealthStore.
+        ///
+        ///
+        /// Parameter `workoutActivityType`: The activity type of the workout
+        ///
+        /// Parameter `startDate`: The point in time that the workout was started
+        ///
+        /// Parameter `endDate`: The point in time that the workout was ended
+        ///
+        /// Parameter `workoutEvents`: An array of HKWorkoutEvents. The workout's duration is derived from these events. (Optional)
+        ///
+        /// Parameter `totalEnergyBurned`: The amount of energy that was burned during the workout. (Optional)
+        ///
+        /// Parameter `totalDistance`: The total distance that was traveled during the workout. (Optional)
+        ///
+        /// Parameter `totalFlightsClimbed`: The total count of flights climbed that was accumulated during the workout. (Optional)
+        ///
+        /// Parameter `device`: The HKDevice associated with the workout. (Optional)
+        ///
+        /// Parameter `metadata`: Metadata for the workout. (Optional)
         #[deprecated = "Use HKWorkoutBuilder"]
         #[method_id(@__retain_semantics Other workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_workoutEvents_totalEnergyBurned_totalDistance_totalFlightsClimbed_device_metadata(

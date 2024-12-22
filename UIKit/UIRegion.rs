@@ -29,30 +29,40 @@ unsafe impl NSObjectProtocol for UIRegion {}
 
 extern_methods!(
     unsafe impl UIRegion {
+        /// A shared infinite region
         #[method_id(@__retain_semantics Other infiniteRegion)]
         pub unsafe fn infiniteRegion(mtm: MainThreadMarker) -> Retained<UIRegion>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Create a circular region with radius
         #[method_id(@__retain_semantics Init initWithRadius:)]
         pub unsafe fn initWithRadius(this: Allocated<Self>, radius: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Create a rectangular region of size.
         #[method_id(@__retain_semantics Init initWithSize:)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
+        /// Create a new region that is the inverse of the current region.
+        /// The inverse of the infiniteRegion is an empty region.
+        /// Subclasses of UIRegion need to provide an implementation of inverseRegion.
         #[method_id(@__retain_semantics Other inverseRegion)]
         pub unsafe fn inverseRegion(&self) -> Retained<Self>;
 
+        /// Create a new region that is the original region plus the supplied region
         #[method_id(@__retain_semantics Other regionByUnionWithRegion:)]
         pub unsafe fn regionByUnionWithRegion(&self, region: &UIRegion) -> Retained<Self>;
 
+        /// Create a new region that is the original region minus the supplied region
         #[method_id(@__retain_semantics Other regionByDifferenceFromRegion:)]
         pub unsafe fn regionByDifferenceFromRegion(&self, region: &UIRegion) -> Retained<Self>;
 
+        /// Create a new region that is the region covered by the original region and the supplied region
         #[method_id(@__retain_semantics Other regionByIntersectionWithRegion:)]
         pub unsafe fn regionByIntersectionWithRegion(&self, region: &UIRegion) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Test for containment
         #[method(containsPoint:)]
         pub unsafe fn containsPoint(&self, point: CGPoint) -> bool;
     }

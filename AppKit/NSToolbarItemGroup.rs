@@ -7,7 +7,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroupselectionmode?language=objc)
+/// `NSToolbarItemGroup` is a subclass of `NSToolbarItem` which can be used to create sets of `NSToolbarItems` that are always attached to one another and that are added, removed, or reordered as a single unit.
+/// Properties that get set on the parent toolbar item, such as label or view, apply to the entire item.
+/// Otherwise, the individual properties are displayed adjacent to one another.
+/// Subitems will inherit the group's action if no action is defined on the subitem and will validate based on that action when autovalidates is enabled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroupselectionmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -74,6 +79,10 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSToolbarItemGroup {
         #[cfg(feature = "NSToolbar")]
+        /// Convenience constructors for creating segmented control based toolbar items with images or text.
+        /// The item returned will have a custom view for representing the control and automatically create subitems for the group.
+        /// The labels array, if not nil, will be used to provide individual labels under the item for each segment of the control.
+        /// When space in the toolbar is tight, the control may switch to a smaller alternate representation as necessary to remain in the toolbar.
         #[method_id(@__retain_semantics Other groupWithItemIdentifier:titles:selectionMode:labels:target:action:)]
         pub unsafe fn groupWithItemIdentifier_titles_selectionMode_labels_target_action(
             item_identifier: &NSToolbarItemIdentifier,
@@ -97,33 +106,47 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Set or get the array of subitems for the toolbar item.
+        /// By default, a `NSToolbarItemGroup` has an empty array of subitems.
+        /// You should call this to set the subitems before returning the item to the toolbar.
+        /// `NSToolbarItemGroups` may not contain other `NSToolbarItemGroups` as subitems.
         #[method_id(@__retain_semantics Other subitems)]
         pub unsafe fn subitems(&self) -> Retained<NSArray<NSToolbarItem>>;
 
+        /// Setter for [`subitems`][Self::subitems].
         #[method(setSubitems:)]
         pub unsafe fn setSubitems(&self, subitems: &NSArray<NSToolbarItem>);
 
+        /// The style in which this item will be represented to the user.
+        /// Defaults to `NSToolbarItemGroupControlRepresentationAutomatic`.
         #[method(controlRepresentation)]
         pub unsafe fn controlRepresentation(&self) -> NSToolbarItemGroupControlRepresentation;
 
+        /// Setter for [`controlRepresentation`][Self::controlRepresentation].
         #[method(setControlRepresentation:)]
         pub unsafe fn setControlRepresentation(
             &self,
             control_representation: NSToolbarItemGroupControlRepresentation,
         );
 
+        /// Get and set how selection is handled by the control.
+        /// Only applies when using one of the constructors to create the item with a system defined control representation.
         #[method(selectionMode)]
         pub unsafe fn selectionMode(&self) -> NSToolbarItemGroupSelectionMode;
 
+        /// Setter for [`selectionMode`][Self::selectionMode].
         #[method(setSelectionMode:)]
         pub unsafe fn setSelectionMode(&self, selection_mode: NSToolbarItemGroupSelectionMode);
 
+        /// The most recently selected item of the group, or -1 if nothing is selected.
         #[method(selectedIndex)]
         pub unsafe fn selectedIndex(&self) -> NSInteger;
 
+        /// Setter for [`selectedIndex`][Self::selectedIndex].
         #[method(setSelectedIndex:)]
         pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
+        /// Get and set selection of individual subitems of the group item.
         #[method(setSelected:atIndex:)]
         pub unsafe fn setSelected_atIndex(&self, selected: bool, index: NSInteger);
 
@@ -137,6 +160,7 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSToolbarItemGroup {
         #[cfg(feature = "NSToolbar")]
+        /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,

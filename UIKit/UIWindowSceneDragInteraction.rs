@@ -21,6 +21,8 @@ unsafe impl UIInteraction for UIWindowSceneDragInteraction {}
 extern_methods!(
     unsafe impl UIWindowSceneDragInteraction {
         #[cfg(feature = "UIGestureRecognizer")]
+        /// Use this to set up failure relationships with other gesture recognizers that may conflict.
+        /// Note that this is only available on platforms where gesture recognizers are used for window dragging.
         #[method_id(@__retain_semantics Other gestureForFailureRelationships)]
         pub unsafe fn gestureForFailureRelationships(&self) -> Retained<UIGestureRecognizer>;
     }

@@ -6,6 +6,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Returns an array containing all compute devices.
+///
+///
+/// The returned array contains all compute devices that are accessible. If a compute
+/// device becomes inaccessible for some reason (for e.g. if an external GPU is unplugged)
+/// then the subsequent call to`MLAllComputeDevices` will return an array without the compute device.
 #[cfg(feature = "MLComputeDeviceProtocol")]
 #[inline]
 pub unsafe extern "C-unwind" fn MLAllComputeDevices(

@@ -19,7 +19,9 @@ pub type PHLivePhotoRequestID = i32;
 pub static PHLivePhotoRequestIDInvalid: PHLivePhotoRequestID = 0;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoinfoerrorkey?language=objc)
+    /// These keys may be found in the info dictionary delivered to a live photo request result handler block.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoinfoerrorkey?language=objc)
     pub static PHLivePhotoInfoErrorKey: &'static NSString;
 }
 
@@ -58,6 +60,7 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The dimensions of the live photo measured in pixels.
         #[method(size)]
         pub unsafe fn size(&self) -> CGSize;
 
@@ -77,6 +80,7 @@ extern_methods!(
             result_handler: &block2::Block<dyn Fn(*mut PHLivePhoto, NonNull<NSDictionary>)>,
         ) -> PHLivePhotoRequestID;
 
+        /// Cancels the loading of a PHLivePhoto. The request's completion handler will be called.
         #[method(cancelLivePhotoRequestWithRequestID:)]
         pub unsafe fn cancelLivePhotoRequestWithRequestID(request_id: PHLivePhotoRequestID);
     }

@@ -37,6 +37,7 @@ extern_methods!(
         #[method(isAsynchronous)]
         pub unsafe fn isAsynchronous(&self) -> bool;
 
+        /// Setter for [`isAsynchronous`][Self::isAsynchronous].
         #[deprecated = "OpenGL is deprecated"]
         #[method(setAsynchronous:)]
         pub unsafe fn setAsynchronous(&self, asynchronous: bool);
@@ -47,6 +48,7 @@ extern_methods!(
         pub unsafe fn colorspace(&self) -> CGColorSpaceRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`colorspace`][Self::colorspace].
         #[deprecated = "OpenGL is deprecated"]
         #[method(setColorspace:)]
         pub unsafe fn setColorspace(&self, colorspace: CGColorSpaceRef);
@@ -55,6 +57,7 @@ extern_methods!(
         #[method(wantsExtendedDynamicRangeContent)]
         pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;
 
+        /// Setter for [`wantsExtendedDynamicRangeContent`][Self::wantsExtendedDynamicRangeContent].
         #[deprecated = "OpenGL is deprecated"]
         #[method(setWantsExtendedDynamicRangeContent:)]
         pub unsafe fn setWantsExtendedDynamicRangeContent(
@@ -68,6 +71,7 @@ extern_methods!(
     /// Methods declared on superclass `CALayer`
     #[cfg(feature = "CALayer")]
     unsafe impl CAOpenGLLayer {
+        /// Layer creation and initialization. *
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 

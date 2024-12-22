@@ -254,6 +254,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedPrintInfo)]
         pub unsafe fn sharedPrintInfo() -> Retained<NSPrintInfo>;
 
+        /// Setter for [`sharedPrintInfo`][Self::sharedPrintInfo].
         #[method(setSharedPrintInfo:)]
         pub unsafe fn setSharedPrintInfo(shared_print_info: &NSPrintInfo);
 
@@ -279,6 +280,7 @@ extern_methods!(
         pub unsafe fn paperName(&self) -> Option<Retained<NSPrinterPaperName>>;
 
         #[cfg(feature = "NSPrinter")]
+        /// Setter for [`paperName`][Self::paperName].
         #[method(setPaperName:)]
         pub unsafe fn setPaperName(&self, paper_name: Option<&NSPrinterPaperName>);
 
@@ -287,12 +289,14 @@ extern_methods!(
         pub unsafe fn paperSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`paperSize`][Self::paperSize].
         #[method(setPaperSize:)]
         pub unsafe fn setPaperSize(&self, paper_size: NSSize);
 
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> NSPaperOrientation;
 
+        /// Setter for [`orientation`][Self::orientation].
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: NSPaperOrientation);
 
@@ -301,6 +305,7 @@ extern_methods!(
         pub unsafe fn scalingFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`scalingFactor`][Self::scalingFactor].
         #[method(setScalingFactor:)]
         pub unsafe fn setScalingFactor(&self, scaling_factor: CGFloat);
 
@@ -309,6 +314,7 @@ extern_methods!(
         pub unsafe fn leftMargin(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`leftMargin`][Self::leftMargin].
         #[method(setLeftMargin:)]
         pub unsafe fn setLeftMargin(&self, left_margin: CGFloat);
 
@@ -317,6 +323,7 @@ extern_methods!(
         pub unsafe fn rightMargin(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`rightMargin`][Self::rightMargin].
         #[method(setRightMargin:)]
         pub unsafe fn setRightMargin(&self, right_margin: CGFloat);
 
@@ -325,6 +332,7 @@ extern_methods!(
         pub unsafe fn topMargin(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`topMargin`][Self::topMargin].
         #[method(setTopMargin:)]
         pub unsafe fn setTopMargin(&self, top_margin: CGFloat);
 
@@ -333,24 +341,28 @@ extern_methods!(
         pub unsafe fn bottomMargin(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`bottomMargin`][Self::bottomMargin].
         #[method(setBottomMargin:)]
         pub unsafe fn setBottomMargin(&self, bottom_margin: CGFloat);
 
         #[method(isHorizontallyCentered)]
         pub unsafe fn isHorizontallyCentered(&self) -> bool;
 
+        /// Setter for [`isHorizontallyCentered`][Self::isHorizontallyCentered].
         #[method(setHorizontallyCentered:)]
         pub unsafe fn setHorizontallyCentered(&self, horizontally_centered: bool);
 
         #[method(isVerticallyCentered)]
         pub unsafe fn isVerticallyCentered(&self) -> bool;
 
+        /// Setter for [`isVerticallyCentered`][Self::isVerticallyCentered].
         #[method(setVerticallyCentered:)]
         pub unsafe fn setVerticallyCentered(&self, vertically_centered: bool);
 
         #[method(horizontalPagination)]
         pub unsafe fn horizontalPagination(&self) -> NSPrintingPaginationMode;
 
+        /// Setter for [`horizontalPagination`][Self::horizontalPagination].
         #[method(setHorizontalPagination:)]
         pub unsafe fn setHorizontalPagination(
             &self,
@@ -360,12 +372,14 @@ extern_methods!(
         #[method(verticalPagination)]
         pub unsafe fn verticalPagination(&self) -> NSPrintingPaginationMode;
 
+        /// Setter for [`verticalPagination`][Self::verticalPagination].
         #[method(setVerticalPagination:)]
         pub unsafe fn setVerticalPagination(&self, vertical_pagination: NSPrintingPaginationMode);
 
         #[method_id(@__retain_semantics Other jobDisposition)]
         pub unsafe fn jobDisposition(&self) -> Retained<NSPrintJobDispositionValue>;
 
+        /// Setter for [`jobDisposition`][Self::jobDisposition].
         #[method(setJobDisposition:)]
         pub unsafe fn setJobDisposition(&self, job_disposition: &NSPrintJobDispositionValue);
 
@@ -374,6 +388,7 @@ extern_methods!(
         pub unsafe fn printer(&self) -> Retained<NSPrinter>;
 
         #[cfg(feature = "NSPrinter")]
+        /// Setter for [`printer`][Self::printer].
         #[method(setPrinter:)]
         pub unsafe fn setPrinter(&self, printer: &NSPrinter);
 
@@ -414,6 +429,7 @@ extern_methods!(
         #[method(isSelectionOnly)]
         pub unsafe fn isSelectionOnly(&self) -> bool;
 
+        /// Setter for [`isSelectionOnly`][Self::isSelectionOnly].
         #[method(setSelectionOnly:)]
         pub unsafe fn setSelectionOnly(&self, selection_only: bool);
 

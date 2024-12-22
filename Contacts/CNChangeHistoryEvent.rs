@@ -48,7 +48,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistorydropeverythingevent?language=objc)
+    /// Drop all cached information your app has persisted
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistorydropeverythingevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryDropEverythingEvent;
@@ -82,7 +84,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddcontactevent?language=objc)
+    /// A contact was added
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddcontactevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddContactEvent;
@@ -123,7 +127,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryupdatecontactevent?language=objc)
+    /// A contact was updated
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryupdatecontactevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryUpdateContactEvent;
@@ -161,7 +167,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistorydeletecontactevent?language=objc)
+    /// A contact was removed
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistorydeletecontactevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryDeleteContactEvent;
@@ -198,7 +206,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddgroupevent?language=objc)
+    /// A group was added
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddgroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddGroupEvent;
@@ -239,7 +249,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryupdategroupevent?language=objc)
+    /// A group was updated
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryupdategroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryUpdateGroupEvent;
@@ -277,7 +289,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistorydeletegroupevent?language=objc)
+    /// A group was deleted
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistorydeletegroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryDeleteGroupEvent;
@@ -314,7 +328,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddmembertogroupevent?language=objc)
+    /// A contact was added to a group
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddmembertogroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddMemberToGroupEvent;
@@ -356,7 +372,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryremovememberfromgroupevent?language=objc)
+    /// A contact was removed from a group
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryremovememberfromgroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryRemoveMemberFromGroupEvent;
@@ -398,7 +416,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddsubgrouptogroupevent?language=objc)
+    /// A subgroup was added to a group
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddsubgrouptogroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddSubgroupToGroupEvent;
@@ -440,7 +460,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryremovesubgroupfromgroupevent?language=objc)
+    /// A subgroup was removed from a group
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryremovesubgroupfromgroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryRemoveSubgroupFromGroupEvent;

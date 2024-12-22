@@ -26,7 +26,12 @@ unsafe impl RefEncode for CNContactType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsortorder?language=objc)
+/// Sort order for contacts.
+///
+///
+/// CNContactSortOrderUserDefault is the user's preferred sort order.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsortorder?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -51,7 +56,9 @@ unsafe impl RefEncode for CNContactSortOrder {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnkeydescriptor?language=objc)
+    /// This protocol is reserved for Contacts framework usage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnkeydescriptor?language=objc)
     pub unsafe trait CNKeyDescriptor: NSCopying + NSObjectProtocol + NSSecureCoding {}
 
     unsafe impl ProtocolType for dyn CNKeyDescriptor {}
@@ -60,7 +67,14 @@ extern_protocol!(
 unsafe impl CNKeyDescriptor for NSString {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontact?language=objc)
+    /// An immutable value object representing a contact.
+    ///
+    ///
+    /// CNContact is thread safe.
+    ///
+    /// If using a CNContact instance where you are not certain of the keys that were fetched, use isKeyAvailable: or areKeysAvailable:. If these return NO you need to refetch the contact by the contact identifier with the keys you want to fetch. Accessing a property that was not fetched will throw CNContactPropertyNotFetchedExceptionName.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontact?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContact;
@@ -87,6 +101,7 @@ unsafe impl NSSecureCoding for CNContact {}
 
 extern_methods!(
     unsafe impl CNContact {
+        /// The identifier is unique among contacts on the device. It can be saved and used for fetching contacts next application launch.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
@@ -179,36 +194,45 @@ extern_methods!(
             &self,
         ) -> Retained<NSArray<CNLabeledValue<CNInstantMessageAddress>>>;
 
+        /// The Gregorian birthday.
         #[method_id(@__retain_semantics Other birthday)]
         pub unsafe fn birthday(&self) -> Option<Retained<NSDateComponents>>;
 
+        /// The alternate birthday (Lunisolar).
         #[method_id(@__retain_semantics Other nonGregorianBirthday)]
         pub unsafe fn nonGregorianBirthday(&self) -> Option<Retained<NSDateComponents>>;
 
         #[cfg(feature = "CNLabeledValue")]
+        /// Other Gregorian dates (anniversaries, etc).
         #[method_id(@__retain_semantics Other dates)]
         pub unsafe fn dates(&self) -> Retained<NSArray<CNLabeledValue<NSDateComponents>>>;
 
+        /// Returns YES if the value for the specified key was fetched.
         #[method(isKeyAvailable:)]
         pub unsafe fn isKeyAvailable(&self, key: &NSString) -> bool;
 
+        /// Returns YES if the values for the keys specified by all the descriptors were fetched.
         #[method(areKeysAvailable:)]
         pub unsafe fn areKeysAvailable(
             &self,
             key_descriptors: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
         ) -> bool;
 
+        /// Returns a user displayable property name.
         #[method_id(@__retain_semantics Other localizedStringForKey:)]
         pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]
+        /// The contact comparator for a given sort order.
         #[method(comparatorForNameSortOrder:)]
         pub unsafe fn comparatorForNameSortOrder(sort_order: CNContactSortOrder) -> NSComparator;
 
+        /// Use to fetch all contact keys required for the contact sort comparator.
         #[method_id(@__retain_semantics Other descriptorForAllComparatorKeys)]
         pub unsafe fn descriptorForAllComparatorKeys(
         ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
 
+        /// Returns YES if the receiver was fetched as a unified contact and includes the contact having contactIdentifier in its unification
         #[method(isUnifiedWithContactWithIdentifier:)]
         pub unsafe fn isUnifiedWithContactWithIdentifier(
             &self,

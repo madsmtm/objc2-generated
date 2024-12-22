@@ -32,52 +32,66 @@ unsafe impl NSSecureCoding for UIContentUnavailableTextProperties {}
 extern_methods!(
     unsafe impl UIContentUnavailableTextProperties {
         #[cfg(feature = "UIFont")]
+        /// The font used for the text.
         #[method_id(@__retain_semantics Other font)]
         pub unsafe fn font(&self) -> Retained<UIFont>;
 
         #[cfg(feature = "UIFont")]
+        /// Setter for [`font`][Self::font].
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: &UIFont);
 
         #[cfg(feature = "UIColor")]
+        /// The color of the text.
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &UIColor);
 
         #[cfg(feature = "NSParagraphStyle")]
+        /// The line break mode to use for the text.
         #[method(lineBreakMode)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
         #[cfg(feature = "NSParagraphStyle")]
+        /// Setter for [`lineBreakMode`][Self::lineBreakMode].
         #[method(setLineBreakMode:)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
+        /// The maximum number of lines for the text. 0 indicates the number of lines is unlimited.
         #[method(numberOfLines)]
         pub unsafe fn numberOfLines(&self) -> NSInteger;
 
+        /// Setter for [`numberOfLines`][Self::numberOfLines].
         #[method(setNumberOfLines:)]
         pub unsafe fn setNumberOfLines(&self, number_of_lines: NSInteger);
 
+        /// Whether the font size of the text is automatically adjusted when necessary to fit in the available width.
         #[method(adjustsFontSizeToFitWidth)]
         pub unsafe fn adjustsFontSizeToFitWidth(&self) -> bool;
 
+        /// Setter for [`adjustsFontSizeToFitWidth`][Self::adjustsFontSizeToFitWidth].
         #[method(setAdjustsFontSizeToFitWidth:)]
         pub unsafe fn setAdjustsFontSizeToFitWidth(&self, adjusts_font_size_to_fit_width: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// When `adjustsFontSizeToFitWidth` is enabled, the smallest multiplier for the font size used to make the text fit.
         #[method(minimumScaleFactor)]
         pub unsafe fn minimumScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumScaleFactor`][Self::minimumScaleFactor].
         #[method(setMinimumScaleFactor:)]
         pub unsafe fn setMinimumScaleFactor(&self, minimum_scale_factor: CGFloat);
 
+        /// Whether the text is tightened before truncating.
         #[method(allowsDefaultTighteningForTruncation)]
         pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
 
+        /// Setter for [`allowsDefaultTighteningForTruncation`][Self::allowsDefaultTighteningForTruncation].
         #[method(setAllowsDefaultTighteningForTruncation:)]
         pub unsafe fn setAllowsDefaultTighteningForTruncation(
             &self,

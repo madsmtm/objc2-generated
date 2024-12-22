@@ -12,6 +12,11 @@
 #![allow(clippy::upper_case_acronyms)]
 #![allow(clippy::identity_op)]
 #![allow(clippy::missing_safety_doc)]
+#![allow(clippy::doc_lazy_continuation)]
+#![allow(rustdoc::broken_intra_doc_links)]
+#![allow(rustdoc::bare_urls)]
+#![allow(rustdoc::unportable_markdown)]
+#![allow(rustdoc::invalid_html_tags)]
 
 #[link(name = "FinderSync", kind = "framework")]
 extern "C" {}
@@ -26,7 +31,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/findersync/fifindersynccontroller?language=objc)
+    /// A controller that acts as a bridge between your Finder Sync extension and the Finder itself.
+    ///
+    /// Use the Finder Sync controller to configure your extension, to set badges
+    /// on items in the Finder’s window, and to get a list of selected and targeted
+    /// items.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fifindersynccontroller?language=objc)
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FIFinderSyncController;
@@ -36,16 +47,46 @@ unsafe impl NSObjectProtocol for FIFinderSyncController {}
 
 extern_methods!(
     unsafe impl FIFinderSyncController {
+        /// Returns the shared Finder Sync controller object.
+        ///
+        /// - Returns: The default Finder Sync controller object for this extension.
         #[method_id(@__retain_semantics Other defaultController)]
         pub unsafe fn defaultController() -> Retained<Self>;
 
+        /// The directories managed by this extension.
+        ///
+        /// The extension receives
+        /// ``FIFinderSync/beginObservingDirectoryAtURL:`` and
+        /// ``FIFinderSync/endObservingDirectoryAtURL:`` messages for every
+        /// directory in this set and for all of their subdirectories.
+        ///
+        /// Always set `directoryURLs` when the extension starts. If there are no
+        /// directories to watch, set `directoryURLs` to an empty set.
         #[method_id(@__retain_semantics Other directoryURLs)]
         pub unsafe fn directoryURLs(&self) -> Retained<NSSet<NSURL>>;
 
+        /// Setter for [`directoryURLs`][Self::directoryURLs].
         #[method(setDirectoryURLs:)]
         pub unsafe fn setDirectoryURLs(&self, directory_ur_ls: Option<&NSSet<NSURL>>);
 
         #[cfg(feature = "objc2-app-kit")]
+        /// Sets the badge image and label for the given ID.
+        ///
+        /// Use this method to configure your badges. Finder may display the image, the
+        /// label or both. Your Finder Sync extension typically sets up a fixed number
+        /// of badges during its `init` method.
+        ///
+        /// - Parameters:
+        /// - image: An
+        /// <doc
+        /// ://com.apple.documentation/documentation/appkit/nsimage>
+        /// object. The system may or may not draw this image on top of the item’s
+        /// icon; when it does, the system determines the overlay position. Don't
+        /// add any padding to the image to adjust this positioning. The image draws
+        /// at up to 320 x 320 points.
+        /// - label: A label describing the sync state represented by this badge.
+        /// Each label should be a short localized string, such as "Waiting."
+        /// - badgeID: A unique ID, identifying this badge.
         #[method(setBadgeImage:label:forBadgeIdentifier:)]
         pub unsafe fn setBadgeImage_label_forBadgeIdentifier(
             &self,
@@ -54,12 +95,57 @@ extern_methods!(
             badge_id: &NSString,
         );
 
+        /// Sets the badge for a file or directory.
+        ///
+        /// Adds the specified badge to the given file or directory. Setting the
+        /// identifier to an empty string (`
+        /// "
+        /// "`) removes the badge.
+        ///
+        /// Avoid adding badges to items that the Finder hasn't displayed yet.
+        /// When setting the initial badge, call this method from your Finder Sync
+        /// extension’s ``FIFinderSync/requestBadgeIdentifierForURL:``
+        /// method. When updating badges, call this method only for items that have
+        /// already received a badge.
+        ///
+        /// - Parameters:
+        /// - badgeID: A unique ID, identifying the badge.
+        /// - url: The URL of the file or directory.
+        ///
+        /// ## See Also
+        /// - ``FIFinderSync/requestBadgeIdentifierForURL:``
         #[method(setBadgeIdentifier:forURL:)]
         pub unsafe fn setBadgeIdentifier_forURL(&self, badge_id: &NSString, url: &NSURL);
 
+        /// Returns the URL of the Finder’s current target.
+        ///
+        /// Use this method when creating a custom shortcut menu for the Finder. This
+        /// returns the URL of the item that the user Control-clicked, letting you
+        /// customize the menu for that item.
+        ///
+        /// This method returns valid values only from the Finder Sync extension’s
+        /// ``FIFinderSync/menuForMenuKind:`` method or from one of the menu
+        /// actions created in this method. If the selected items are outside the
+        /// extension’s managed directories (for example, when the user clicks on the
+        /// toolbar button), this method returns `nil`.
+        ///
+        /// - Returns: The URL of the Finder’s current target.
         #[method_id(@__retain_semantics Other targetedURL)]
         pub unsafe fn targetedURL(&self) -> Option<Retained<NSURL>>;
 
+        /// Returns an array of selected items.
+        ///
+        /// Use this method when creating a shortcut menu or a menu for the extension’s
+        /// toolbar button. You can then modify the menu’s content based on the items
+        /// currently selected.
+        ///
+        /// This method returns valid values only from the Finder Sync extension’s
+        /// ``FIFinderSync/menuForMenuKind:`` method or from one of the menu
+        /// actions created in this method. If the selected items are outside the
+        /// extension’s managed directories (for example, when the user clicks on the
+        /// toolbar button), this method returns `nil`.
+        ///
+        /// - Returns: An array of items currently selected in the Finder window.
         #[method_id(@__retain_semantics Other selectedItemURLs)]
         pub unsafe fn selectedItemURLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
@@ -109,18 +195,28 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/findersync/fimenukind?language=objc)
+/// The different kinds of custom menus that the Finder Sync extension can
+/// provide.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fimenukind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct FIMenuKind(pub NSUInteger);
 impl FIMenuKind {
+    /// A shortcut menu created when the user control-clicks on an item or a
+    /// group of selected items inside the Finder window.
     #[doc(alias = "FIMenuKindContextualMenuForItems")]
     pub const ContextualMenuForItems: Self = Self(0);
+    /// A shortcut menu created when the user control-clicks on the Finder
+    /// window’s background.
     #[doc(alias = "FIMenuKindContextualMenuForContainer")]
     pub const ContextualMenuForContainer: Self = Self(1);
+    /// A shortcut menu created when the user control-clicks on an item in the
+    /// sidebar.
     #[doc(alias = "FIMenuKindContextualMenuForSidebar")]
     pub const ContextualMenuForSidebar: Self = Self(2);
+    /// A menu created when the user clicks on the extension’s toolbar button.
     #[doc(alias = "FIMenuKindToolbarItemMenu")]
     pub const ToolbarItemMenu: Self = Self(3);
 }
@@ -134,9 +230,32 @@ unsafe impl RefEncode for FIMenuKind {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/findersync/fifindersyncprotocol?language=objc)
+    /// The group of methods to implement for modifying the Finder user interface to express file synchronization status and control.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fifindersyncprotocol?language=objc)
     pub unsafe trait FIFinderSyncProtocol {
         #[cfg(feature = "objc2-app-kit")]
+        /// Requests a custom menu from the extension.
+        ///
+        /// Override this method to provide custom menus in the Finder. You can
+        /// customize this menu based both on the menu’s kind and on the selected and
+        /// targeted items (if any). You can get the selected and targeted items from
+        /// the extension’s ``FIFinderSyncController``.
+        ///
+        /// If `kind` is ``FIMenuKindToolbarItemMenu``, the system always calls this
+        /// method even if the target and selection are not related to the extension.
+        ///
+        /// The extension's principal object provides a method for each menu item's
+        /// assigned action.
+        ///
+        /// - Parameters:
+        /// - menu: The type of menu being displayed. For a list of possible values, see ``FinderSync/FIMenuKind``.
+        ///
+        /// - Returns: A custom menu.
+        ///
+        /// ## See Also
+        /// - ``FinderSync/FIFinderSyncController/targetedURL``
+        /// - ``FinderSync/FIFinderSyncController/selectedItemURLs``
         #[optional]
         #[method_id(@__retain_semantics Other menuForMenuKind:)]
         unsafe fn menuForMenuKind(
@@ -145,27 +264,78 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSMenu>>;
 
+        /// Tells the extension that the user is looking at a monitored directory or at
+        /// one of its subdirectories.
+        ///
+        /// Override this method to receive notifications when the user opens the
+        /// contents of a monitored directory or one of its subdirectories in the
+        /// Finder. The system calls `beginObservingDirectoryAtURL:` only once for each
+        /// unique URL. As long as the content remains visible in at least one Finder
+        /// window, any additional Finder windows that open to the same URL are ignored.
+        ///
+        /// - Note: The system creates additional instances of your extension for any
+        /// Open and Save dialogs. These extensions receive their own calls to
+        /// `beginObservingDirectoryAtURL:`, even if the directory is already open in a
+        /// Finder window.
+        ///
+        /// - Parameters:
+        /// - url: The URL of the directory.
         #[optional]
         #[method(beginObservingDirectoryAtURL:)]
         unsafe fn beginObservingDirectoryAtURL(&self, url: &NSURL);
 
+        /// Tells the extension that the user has stopped looking at a monitored
+        /// directory or at one of its subdirectories.
+        ///
+        /// Override this method to receive notifications when the user is no longer
+        /// looking at the contents of the given URL. As with
+        /// ``FIFinderSync/beginObservingDirectoryAtURL:``, the Open and Save
+        /// dialogs are tracked separately from the Finder.
+        ///
+        /// - Parameters:
+        /// - url: The URL of the directory.
         #[optional]
         #[method(endObservingDirectoryAtURL:)]
         unsafe fn endObservingDirectoryAtURL(&self, url: &NSURL);
 
+        /// Requests a badge for the given file or directory.
+        ///
+        /// Override this method to receive notifications whenever a new item becomes
+        /// visible in the Finder. Check the item’s state, and call
+        /// ``FIFinderSyncController/setBadgeIdentifier:forURL:`` to set an appropriate
+        /// badge.
+        ///
+        /// - Parameters:
+        /// - url: The URL of a file or directory inside the extension’s monitored
+        /// directories.
+        ///
+        /// ## See Also
+        /// - ``FinderSync/FIFinderSyncController/setBadgeIdentifier:forURL:``
         #[optional]
         #[method(requestBadgeIdentifierForURL:)]
         unsafe fn requestBadgeIdentifierForURL(&self, url: &NSURL);
 
+        /// The name of the extension’s toolbar button.
+        ///
+        /// To add a toolbar item to the Finder, override the getter method for the
+        /// toolbar image, name, and tooltip properties.
         #[optional]
         #[method_id(@__retain_semantics Other toolbarItemName)]
         unsafe fn toolbarItemName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-app-kit")]
+        /// The image for the extension’s toolbar button.
+        ///
+        /// To add a toolbar item to the Finder, override the getter method for the
+        /// toolbar image, name, and tooltip properties.
         #[optional]
         #[method_id(@__retain_semantics Other toolbarItemImage)]
         unsafe fn toolbarItemImage(&self) -> Retained<NSImage>;
 
+        /// The tooltip text for the extension’s toolbar button.
+        ///
+        /// To add a toolbar item to the Finder, override the getter method for the
+        /// toolbar image, name, and tooltip properties.
         #[optional]
         #[method_id(@__retain_semantics Other toolbarItemToolTip)]
         unsafe fn toolbarItemToolTip(&self) -> Retained<NSString>;
@@ -204,7 +374,23 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/findersync/fifindersync?language=objc)
+    /// A type to subclass to add badges, custom shortcut menus, and toolbar buttons to the Finder.
+    ///
+    /// Subclass the FIFinderSync class when you want to customize the appearance of
+    /// the Finder. Although the FIFinderSync class doesn’t provide any developer
+    /// accessible API, it does adopt the ``FIFinderSyncProtocol``
+    /// protocol. This protocol declares methods you can implement to modify the
+    /// appearance of the Finder. For more information on these methods, see
+    /// ``FIFinderSyncProtocol``. To learn more about creating a Finder Sync
+    /// extension, see [Finder
+    /// Sync](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/Finder.html#//apple_ref/doc/uid/TP40014214-CH15)
+    /// in [App Extension Programming
+    /// Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/index.html#//apple_ref/doc/uid/TP40014214).
+    ///
+    /// ## See Also
+    /// - ``FinderSync/FIFinderSyncProtocol``
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fifindersync?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FIFinderSync;

@@ -25,6 +25,15 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
+        /// Begins a loupe session at the specified point. The system will animate the presentation of the loupe, as well as its position and hierarchy.
+        ///
+        ///
+        /// Parameter `at`: The point in
+        /// `view's`coordinate space where the loupe should begin.
+        ///
+        /// Parameter `widgetView`: Optionally, a system-provided selection view that the animation can start from.
+        ///
+        /// Parameter `view`: The coordinate space that all subsequent movement updates are provided in.
         #[method_id(@__retain_semantics Other beginLoupeSessionAtPoint:fromSelectionWidgetView:inView:)]
         pub unsafe fn beginLoupeSessionAtPoint_fromSelectionWidgetView_inView(
             point: CGPoint,
@@ -33,6 +42,14 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Call this when a text selection gesture moves to a particular point.
+        ///
+        ///
+        /// Parameter `point`: The center point of the touch tracked by the gesture recognizer.
+        ///
+        /// Parameter `caretRect`: The current position of the caret/range handle. Pass in CGRectNull if there is no current selection/no caret rect visible.
+        ///
+        /// Parameter `trackingCaret`: Provide YES if the loupe should track the caret instead of the touch.
         #[method(moveToPoint:withCaretRect:trackingCaret:)]
         pub unsafe fn moveToPoint_withCaretRect_trackingCaret(
             &self,
@@ -41,6 +58,7 @@ extern_methods!(
             tracks_caret: bool,
         );
 
+        /// Invalidates the loupe session. Hides the loupe and cleans up transient state.
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
     }

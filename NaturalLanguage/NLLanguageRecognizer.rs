@@ -47,6 +47,7 @@ extern_methods!(
         pub unsafe fn languageHints(&self) -> Retained<NSDictionary<NLLanguage, NSNumber>>;
 
         #[cfg(feature = "NLLanguage")]
+        /// Setter for [`languageHints`][Self::languageHints].
         #[method(setLanguageHints:)]
         pub unsafe fn setLanguageHints(&self, language_hints: &NSDictionary<NLLanguage, NSNumber>);
 
@@ -55,6 +56,7 @@ extern_methods!(
         pub unsafe fn languageConstraints(&self) -> Retained<NSArray<NLLanguage>>;
 
         #[cfg(feature = "NLLanguage")]
+        /// Setter for [`languageConstraints`][Self::languageConstraints].
         #[method(setLanguageConstraints:)]
         pub unsafe fn setLanguageConstraints(&self, language_constraints: &NSArray<NLLanguage>);
     }

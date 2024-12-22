@@ -8,7 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiographicsdeviceconfiguration?language=objc)
+    /// Configuration for a Virtio graphics device.
+    ///
+    /// This device configuration creates a graphics device using paravirtualization.
+    /// The emulated device follows the Virtio GPU Device specification.
+    ///
+    /// This device can be used to attach a display to be shown in a VZVirtualMachineView.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiographicsdeviceconfiguration?language=objc)
     #[unsafe(super(VZGraphicsDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDeviceConfiguration")]
@@ -36,6 +43,9 @@ extern_methods!(
             feature = "VZGraphicsDisplayConfiguration",
             feature = "VZVirtioGraphicsScanoutConfiguration"
         ))]
+        /// The scanouts to be attached to this graphics device.
+        ///
+        /// Maximum of one scanout is supported.
         #[method_id(@__retain_semantics Other scanouts)]
         pub unsafe fn scanouts(&self) -> Retained<NSArray<VZVirtioGraphicsScanoutConfiguration>>;
 
@@ -43,6 +53,7 @@ extern_methods!(
             feature = "VZGraphicsDisplayConfiguration",
             feature = "VZVirtioGraphicsScanoutConfiguration"
         ))]
+        /// Setter for [`scanouts`][Self::scanouts].
         #[method(setScanouts:)]
         pub unsafe fn setScanouts(&self, scanouts: &NSArray<VZVirtioGraphicsScanoutConfiguration>);
     }

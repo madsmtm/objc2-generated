@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem?language=objc)
+    /// The command system to build or rebuild.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -18,9 +20,11 @@ unsafe impl NSObjectProtocol for UIMenuSystem {}
 
 extern_methods!(
     unsafe impl UIMenuSystem {
+        /// The main command system.
         #[method_id(@__retain_semantics Other mainSystem)]
         pub unsafe fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
+        /// The context command system.
         #[method_id(@__retain_semantics Other contextSystem)]
         pub unsafe fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
@@ -30,9 +34,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Trigger a rebuild of this system at a suitable time.
         #[method(setNeedsRebuild)]
         pub unsafe fn setNeedsRebuild(&self);
 
+        /// Trigger a revalidate of this system at a suitable time.
         #[method(setNeedsRevalidate)]
         pub unsafe fn setNeedsRevalidate(&self);
     }

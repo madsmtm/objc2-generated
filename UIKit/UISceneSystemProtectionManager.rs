@@ -7,7 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesystemprotectiondidchangenotification?language=objc)
+    /// A notification posted when the system protection attributes of a scene change. The object of
+    /// the notification is the scene whose protection attributes changed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesystemprotectiondidchangenotification?language=objc)
     pub static UISceneSystemProtectionDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -29,6 +32,12 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// `YES`if the system requires requires device owner authentication challenges to reveal the
+        /// content of the scene associated with this manager, else
+        /// `NO`. Note in particular that this
+        /// is
+        /// _not_the instantaneous state of whether any system-provided shield is covering the UI at
+        /// the moment, but whether protection is enabled in general.
         #[method(isUserAuthenticationEnabled)]
         pub unsafe fn isUserAuthenticationEnabled(&self) -> bool;
     }

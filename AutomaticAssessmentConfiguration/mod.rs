@@ -12,6 +12,11 @@
 #![allow(clippy::upper_case_acronyms)]
 #![allow(clippy::identity_op)]
 #![allow(clippy::missing_safety_doc)]
+#![allow(clippy::doc_lazy_continuation)]
+#![allow(rustdoc::broken_intra_doc_links)]
+#![allow(rustdoc::bare_urls)]
+#![allow(rustdoc::unportable_markdown)]
+#![allow(rustdoc::invalid_html_tags)]
 
 #[link(name = "AutomaticAssessmentConfiguration", kind = "framework")]
 extern "C" {}
@@ -49,6 +54,7 @@ extern_methods!(
         #[method(requiresSignatureValidation)]
         pub unsafe fn requiresSignatureValidation(&self) -> bool;
 
+        /// Setter for [`requiresSignatureValidation`][Self::requiresSignatureValidation].
         #[method(setRequiresSignatureValidation:)]
         pub unsafe fn setRequiresSignatureValidation(&self, requires_signature_validation: bool);
 
@@ -117,54 +123,63 @@ extern_methods!(
         #[method(autocorrectMode)]
         pub unsafe fn autocorrectMode(&self) -> AEAutocorrectMode;
 
+        /// Setter for [`autocorrectMode`][Self::autocorrectMode].
         #[method(setAutocorrectMode:)]
         pub unsafe fn setAutocorrectMode(&self, autocorrect_mode: AEAutocorrectMode);
 
         #[method(allowsSpellCheck)]
         pub unsafe fn allowsSpellCheck(&self) -> bool;
 
+        /// Setter for [`allowsSpellCheck`][Self::allowsSpellCheck].
         #[method(setAllowsSpellCheck:)]
         pub unsafe fn setAllowsSpellCheck(&self, allows_spell_check: bool);
 
         #[method(allowsPredictiveKeyboard)]
         pub unsafe fn allowsPredictiveKeyboard(&self) -> bool;
 
+        /// Setter for [`allowsPredictiveKeyboard`][Self::allowsPredictiveKeyboard].
         #[method(setAllowsPredictiveKeyboard:)]
         pub unsafe fn setAllowsPredictiveKeyboard(&self, allows_predictive_keyboard: bool);
 
         #[method(allowsKeyboardShortcuts)]
         pub unsafe fn allowsKeyboardShortcuts(&self) -> bool;
 
+        /// Setter for [`allowsKeyboardShortcuts`][Self::allowsKeyboardShortcuts].
         #[method(setAllowsKeyboardShortcuts:)]
         pub unsafe fn setAllowsKeyboardShortcuts(&self, allows_keyboard_shortcuts: bool);
 
         #[method(allowsActivityContinuation)]
         pub unsafe fn allowsActivityContinuation(&self) -> bool;
 
+        /// Setter for [`allowsActivityContinuation`][Self::allowsActivityContinuation].
         #[method(setAllowsActivityContinuation:)]
         pub unsafe fn setAllowsActivityContinuation(&self, allows_activity_continuation: bool);
 
         #[method(allowsDictation)]
         pub unsafe fn allowsDictation(&self) -> bool;
 
+        /// Setter for [`allowsDictation`][Self::allowsDictation].
         #[method(setAllowsDictation:)]
         pub unsafe fn setAllowsDictation(&self, allows_dictation: bool);
 
         #[method(allowsAccessibilitySpeech)]
         pub unsafe fn allowsAccessibilitySpeech(&self) -> bool;
 
+        /// Setter for [`allowsAccessibilitySpeech`][Self::allowsAccessibilitySpeech].
         #[method(setAllowsAccessibilitySpeech:)]
         pub unsafe fn setAllowsAccessibilitySpeech(&self, allows_accessibility_speech: bool);
 
         #[method(allowsPasswordAutoFill)]
         pub unsafe fn allowsPasswordAutoFill(&self) -> bool;
 
+        /// Setter for [`allowsPasswordAutoFill`][Self::allowsPasswordAutoFill].
         #[method(setAllowsPasswordAutoFill:)]
         pub unsafe fn setAllowsPasswordAutoFill(&self, allows_password_auto_fill: bool);
 
         #[method(allowsContinuousPathKeyboard)]
         pub unsafe fn allowsContinuousPathKeyboard(&self) -> bool;
 
+        /// Setter for [`allowsContinuousPathKeyboard`][Self::allowsContinuousPathKeyboard].
         #[method(setAllowsContinuousPathKeyboard:)]
         pub unsafe fn setAllowsContinuousPathKeyboard(&self, allows_continuous_path_keyboard: bool);
 
@@ -221,12 +236,14 @@ extern_methods!(
         #[method(allowsNetworkAccess)]
         pub unsafe fn allowsNetworkAccess(&self) -> bool;
 
+        /// Setter for [`allowsNetworkAccess`][Self::allowsNetworkAccess].
         #[method(setAllowsNetworkAccess:)]
         pub unsafe fn setAllowsNetworkAccess(&self, allows_network_access: bool);
 
         #[method_id(@__retain_semantics Other configurationInfo)]
         pub unsafe fn configurationInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
+        /// Setter for [`configurationInfo`][Self::configurationInfo].
         #[method(setConfigurationInfo:)]
         pub unsafe fn setConfigurationInfo(
             &self,
@@ -264,6 +281,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn AEAssessmentSessionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

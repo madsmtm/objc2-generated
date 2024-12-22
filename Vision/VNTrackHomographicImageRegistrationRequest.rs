@@ -10,7 +10,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackhomographicimageregistrationrequest?language=objc)
+    /// An image registration request that will produce a homographic transformation that can morph one image to another.
+    ///
+    /// Because this is a stateful request, it must be performed on at least two images in order to produce an observation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackhomographicimageregistrationrequest?language=objc)
     #[unsafe(super(VNStatefulRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
@@ -31,10 +35,16 @@ unsafe impl NSObjectProtocol for VNTrackHomographicImageRegistrationRequest {}
 extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNTrackHomographicImageRegistrationRequest {
+        /// Create a new request that can statefully track the homographic registration of two images.
+        ///
+        /// This is a convenience initializer for a frame analysis spacing of kCMTimeZero and a nil completion handler.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Create a new request that can statefully track the homographic registration of two images.
+        ///
+        /// This is a convenience initializer for a frame analysis spacing of kCMTimeZero.
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -42,6 +52,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "VNObservation")]
+        /// VNImageHomographicAlignmentObservation results.
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(
             &self,
@@ -57,6 +68,12 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Create a new video-based stateful request.
+        ///
+        ///
+        /// Parameter `frameAnalysisSpacing`: The reciprocal of maximum rate at which buffers will be processed. The request will not process buffers that fall within the frameAnalysisSpacing after it has performed the analysis. The analysis is not done by wall time but by analysis of of the time stamps of the samplebuffers being processed.
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithFrameAnalysisSpacing:completionHandler:)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,

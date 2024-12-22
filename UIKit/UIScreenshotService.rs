@@ -10,7 +10,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenshotservice?language=objc)
+    /// This class allows your application to produce a higher fidelity, PDF screenshot to the user. Set the delegate so that when a screenshot is taken, screenshots can show the full document content from the application.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenshotservice?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -27,12 +29,14 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Assign a delegate in order to send PDF data to accompany the screenshot taken by the user
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIScreenshotServiceDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -44,6 +48,7 @@ extern_methods!(
             feature = "UIScene",
             feature = "UIWindowScene"
         ))]
+        /// The window scene associated with the screenshot service
         #[method_id(@__retain_semantics Other windowScene)]
         pub unsafe fn windowScene(&self) -> Option<Retained<UIWindowScene>>;
     }
@@ -57,6 +62,9 @@ extern_methods!(
         feature = "UIWindowScene"
     ))]
     unsafe impl UIWindowScene {
+        /// The screenshot object associated with the scene
+        ///
+        /// This is non-null if the screenshot service is available for this window scene
         #[method_id(@__retain_semantics Other screenshotService)]
         pub unsafe fn screenshotService(&self) -> Option<Retained<UIScreenshotService>>;
     }
@@ -66,6 +74,14 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenshotservicedelegate?language=objc)
     pub unsafe trait UIScreenshotServiceDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// The delegate method to send the PDF data to screenshots
+        ///
+        /// The delegate is required to send the data via the completion handler
+        ///
+        /// Parameter `screenshotService`: The screenshot service object associated per scene
+        ///
+        /// Parameter `completionHandler`: The block to execute when the PDF data is ready.
+        /// If no PDF data is available, data can be nil. The indexOfCurrentPage is zero-based, and is the index of the current page of the snapshotted PDF. The rectInCurrentPage is the rect in PDF coordinates with respect to the current page. If the receiver cannot provide the visible area, pass CGRectZero for rectInCurrentPage.
         #[optional]
         #[method(screenshotService:generatePDFRepresentationWithCompletion:)]
         unsafe fn screenshotService_generatePDFRepresentationWithCompletion(

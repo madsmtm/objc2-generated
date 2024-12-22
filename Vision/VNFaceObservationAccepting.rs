@@ -7,13 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfaceobservationaccepting?language=objc)
+    /// A protocol that allows a user to provide an input collection of VNFaceObservations as part of a request. The protocol can be adopted by request objects that request additional information about detected faces, such as facial landmarks.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnfaceobservationaccepting?language=objc)
     pub unsafe trait VNFaceObservationAccepting: NSObjectProtocol {
         #[cfg(feature = "VNObservation")]
+        /// The VNFaceObservation objects to be processed as part of the request.
         #[method_id(@__retain_semantics Other inputFaceObservations)]
         unsafe fn inputFaceObservations(&self) -> Option<Retained<NSArray<VNFaceObservation>>>;
 
         #[cfg(feature = "VNObservation")]
+        /// Setter for [`inputFaceObservations`][Self::inputFaceObservations].
         #[method(setInputFaceObservations:)]
         unsafe fn setInputFaceObservations(
             &self,

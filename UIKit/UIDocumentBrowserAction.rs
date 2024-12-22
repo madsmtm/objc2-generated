@@ -30,7 +30,9 @@ unsafe impl RefEncode for UIDocumentBrowserActionAvailability {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowseraction?language=objc)
+    /// UIDocumentBrowserAction instances are custom, contextual actions that are presented to the user by a UIDocumentBrowserViewController.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowseraction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIDocumentBrowserAction;
@@ -67,18 +69,23 @@ extern_methods!(
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
+        /// Allows clients to restrict the action to only a specific set of content types. Default: [UTTypeItem.identifier]
         #[method_id(@__retain_semantics Other supportedContentTypes)]
         pub unsafe fn supportedContentTypes(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`supportedContentTypes`][Self::supportedContentTypes].
         #[method(setSupportedContentTypes:)]
         pub unsafe fn setSupportedContentTypes(&self, supported_content_types: &NSArray<NSString>);
 
+        /// If NO, the action is only available, if there is only one item selected. Default: YES.
         #[method(supportsMultipleItems)]
         pub unsafe fn supportsMultipleItems(&self) -> bool;
 
+        /// Setter for [`supportsMultipleItems`][Self::supportsMultipleItems].
         #[method(setSupportsMultipleItems:)]
         pub unsafe fn setSupportsMultipleItems(&self, supports_multiple_items: bool);
     }

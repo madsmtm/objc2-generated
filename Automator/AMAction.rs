@@ -66,12 +66,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selectedInputType)]
         pub unsafe fn selectedInputType(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`selectedInputType`][Self::selectedInputType].
         #[method(setSelectedInputType:)]
         pub unsafe fn setSelectedInputType(&self, selected_input_type: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other selectedOutputType)]
         pub unsafe fn selectedOutputType(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`selectedOutputType`][Self::selectedOutputType].
         #[method(setSelectedOutputType:)]
         pub unsafe fn setSelectedOutputType(&self, selected_output_type: Option<&NSString>);
 
@@ -80,6 +82,7 @@ extern_methods!(
         pub unsafe fn progressValue(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`progressValue`][Self::progressValue].
         #[method(setProgressValue:)]
         pub unsafe fn setProgressValue(&self, progress_value: CGFloat);
 
@@ -117,6 +120,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other output)]
         pub unsafe fn output(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`output`][Self::output].
         #[method(setOutput:)]
         pub unsafe fn setOutput(&self, output: Option<&AnyObject>);
 

@@ -58,12 +58,14 @@ extern_methods!(
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Setter for [`qualityOfService`][Self::qualityOfService].
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
         #[method(repeats)]
         pub unsafe fn repeats(&self) -> bool;
 
+        /// Setter for [`repeats`][Self::repeats].
         #[method(setRepeats:)]
         pub unsafe fn setRepeats(&self, repeats: bool);
 
@@ -72,6 +74,7 @@ extern_methods!(
         pub unsafe fn interval(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
+        /// Setter for [`interval`][Self::interval].
         #[method(setInterval:)]
         pub unsafe fn setInterval(&self, interval: NSTimeInterval);
 
@@ -80,6 +83,7 @@ extern_methods!(
         pub unsafe fn tolerance(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
+        /// Setter for [`tolerance`][Self::tolerance].
         #[method(setTolerance:)]
         pub unsafe fn setTolerance(&self, tolerance: NSTimeInterval);
 

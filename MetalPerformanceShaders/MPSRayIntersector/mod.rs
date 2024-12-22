@@ -113,14 +113,21 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiontype?language=objc)
+/// Options for the MPSRayIntersector intersection type property
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSIntersectionType(pub NSUInteger);
 impl MPSIntersectionType {
+    /// Find the closest intersection to the ray's origin along the ray direction. This is
+    /// potentially slower than MPSIntersectionTypeAny but is well suited to primary visibility
+    /// rays.
     #[doc(alias = "MPSIntersectionTypeNearest")]
     pub const Nearest: Self = Self(0);
+    /// Find any intersection along the ray direction. This is potentially faster than
+    /// MPSIntersectionTypeNearest and is well suited to shadow and occlusion rays.
     #[doc(alias = "MPSIntersectionTypeAny")]
     pub const Any: Self = Self(1);
 }
@@ -133,16 +140,22 @@ unsafe impl RefEncode for MPSIntersectionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstriangleintersectiontesttype?language=objc)
+/// Options for the MPSRayIntersector triangle intersection test type property
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstriangleintersectiontesttype?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSTriangleIntersectionTestType(pub NSUInteger);
 impl MPSTriangleIntersectionTestType {
+    /// Use the default ray/triangle intersection test
     #[deprecated]
     #[doc(alias = "MPSTriangleIntersectionTestTypeDefault")]
     pub const Default: Self = Self(0);
+    /// Use a watertight ray/triangle intersection test which avoids gaps along shared
+    /// triangle edges. Shared vertices may still have gaps. This intersection test may be slower
+    /// than MPSTriangleIntersectionTestTypeDefault.
     #[deprecated]
     #[doc(alias = "MPSTriangleIntersectionTestTypeWatertight")]
     pub const Watertight: Self = Self(1);
@@ -156,19 +169,42 @@ unsafe impl RefEncode for MPSTriangleIntersectionTestType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsboundingboxintersectiontesttype?language=objc)
+/// Options for the MPSRayIntersector bounding box intersection test type property
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsboundingboxintersectiontesttype?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSBoundingBoxIntersectionTestType(pub NSUInteger);
 impl MPSBoundingBoxIntersectionTestType {
+    /// Use the default MPSBoundingBoxIntersectionTestTypeAxisAligned ray/bounding box
+    /// intersection test.
+    ///
+    /// Note: this option was equivalent to MPSBoundingBoxIntersectionTestTypeFast in
+    /// macOS 10.14/iOS 12.0. This option was changed in macOS 10.15/iOS 13.0 to handle axis-aligned
+    /// rays correctly by default. The old behavior can be restored by explicitly setting the
+    /// intersection test type to MPSBoundingBoxIntersectionTestTypeFast on macOS 10.15/iOS 13.0
+    /// and above.
     #[deprecated]
     #[doc(alias = "MPSBoundingBoxIntersectionTestTypeDefault")]
     pub const Default: Self = Self(0);
+    /// This intersection test is potentially slower than
+    /// MPSBoundingBoxIntersectionTestTypeFast but does not generate false negatives for
+    /// axis aligned rays (i.e. rays which have one or more components of their direction set to
+    /// zero). These rays often do not come up in practice due to perspective projections and
+    /// randomized ray distributions. However, synthetic ray distributions or orthographic
+    /// projections can generate these rays. It may be faster to slightly perturb the ray
+    /// direction and use the fast intersection test type.
     #[deprecated]
     #[doc(alias = "MPSBoundingBoxIntersectionTestTypeAxisAligned")]
     pub const AxisAligned: Self = Self(1);
+    /// This intersection test is potentially faster than
+    /// MPSBoundingBoxIntersectionTestTypeAxisAligned but can generate false negatives for
+    /// axis aligned rays (i.e. rays which have one or more components of their direction set to
+    /// zero). These rays often do not come up in practice due to perspective projections and
+    /// randomized ray distributions. However, synthetic ray distributions or orthographic
+    /// projections can generate these rays.
     #[deprecated]
     #[doc(alias = "MPSBoundingBoxIntersectionTestTypeFast")]
     pub const Fast: Self = Self(2);
@@ -182,7 +218,9 @@ unsafe impl RefEncode for MPSBoundingBoxIntersectionTestType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoptions?language=objc)
+/// Options for the MPSRayIntersector ray mask options property
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoptions?language=objc)
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
@@ -190,10 +228,13 @@ unsafe impl RefEncode for MPSBoundingBoxIntersectionTestType {
 pub struct MPSRayMaskOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSRayMaskOptions: NSUInteger {
+/// Disable primitive and instance masks
 #[deprecated]
         const MPSRayMaskOptionNone = 0;
+/// Enable primitive masks
 #[deprecated]
         const MPSRayMaskOptionPrimitive = 1;
+/// Enable instance masks
 #[deprecated]
         const MPSRayMaskOptionInstance = 2;
     }
@@ -207,18 +248,24 @@ unsafe impl RefEncode for MPSRayMaskOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraydatatype?language=objc)
+/// Options for the MPSRayIntersector ray data type property
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraydatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSRayDataType(pub NSUInteger);
 impl MPSRayDataType {
+    /// Use the MPSRayOriginDirection struct type
     #[doc(alias = "MPSRayDataTypeOriginDirection")]
     pub const OriginDirection: Self = Self(0);
+    /// Use the MPSRayOriginMinDistanceDirectionMaxDistance struct type
     #[doc(alias = "MPSRayDataTypeOriginMinDistanceDirectionMaxDistance")]
     pub const OriginMinDistanceDirectionMaxDistance: Self = Self(1);
+    /// Use the MPSRayOriginMaxDistanceDirectionMask struct type
     #[doc(alias = "MPSRayDataTypeOriginMaskDirectionMaxDistance")]
     pub const OriginMaskDirectionMaxDistance: Self = Self(2);
+    /// Use the MPSPackedRayOriginDirection struct type
     #[doc(alias = "MPSRayDataTypePackedOriginDirection")]
     pub const PackedOriginDirection: Self = Self(3);
 }
@@ -231,28 +278,39 @@ unsafe impl RefEncode for MPSRayDataType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondatatype?language=objc)
+/// Intersection data type options
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSIntersectionDataType(pub NSUInteger);
 impl MPSIntersectionDataType {
+    /// Use the MPSIntersectionDistance struct type
     #[doc(alias = "MPSIntersectionDataTypeDistance")]
     pub const Distance: Self = Self(0);
+    /// Use the MPSIntersectionDistancePrimitiveIndex struct type
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndex")]
     pub const DistancePrimitiveIndex: Self = Self(1);
+    /// Use the MPSIntersectionDistancePrimitiveIndexCoordinates struct type
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndexCoordinates")]
     pub const DistancePrimitiveIndexCoordinates: Self = Self(2);
+    /// Use the DistancePrimitiveIndexInstanceIndex struct type
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndexInstanceIndex")]
     pub const DistancePrimitiveIndexInstanceIndex: Self = Self(3);
+    /// Use the DistancePrimitiveIndexInstanceIndexCoordinates struct type
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndexInstanceIndexCoordinates")]
     pub const DistancePrimitiveIndexInstanceIndexCoordinates: Self = Self(4);
+    /// Use the MPSIntersectionDistancePrimitiveIndexBufferIndex struct type
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndexBufferIndex")]
     pub const DistancePrimitiveIndexBufferIndex: Self = Self(5);
+    /// Use the MPSIntersectionDistancePrimitiveIndexBufferIndexCoordinates struct type
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndexBufferIndexCoordinates")]
     pub const DistancePrimitiveIndexBufferIndexCoordinates: Self = Self(6);
+    /// Use the DistancePrimitiveIndexBufferIndexInstanceIndex struct type
     #[doc(alias = "MPSIntersectionDataTypeDistancePrimitiveIndexBufferIndexInstanceIndex")]
     pub const DistancePrimitiveIndexBufferIndexInstanceIndex: Self = Self(7);
+    /// Use the DistancePrimitiveIndexBufferIndexInstanceIndexCoordinates struct type
     #[doc(
         alias = "MPSIntersectionDataTypeDistancePrimitiveIndexBufferIndexInstanceIndexCoordinates"
     )]
@@ -267,46 +325,68 @@ unsafe impl RefEncode for MPSIntersectionDataType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator?language=objc)
+/// Options for the MPSRayIntersector ray mask operator property
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraymaskoperator?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSRayMaskOperator(pub NSUInteger);
 impl MPSRayMaskOperator {
+    /// Accept the intersection if (primitive mask
+    /// &
+    /// ray mask) != 0.
     #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorAnd")]
     pub const And: Self = Self(0);
+    /// Accept the intersection if ~(primitive mask
+    /// &
+    /// ray mask) != 0.
     #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorNotAnd")]
     pub const NotAnd: Self = Self(1);
+    /// Accept the intersection if (primitive mask | ray mask) != 0.
     #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorOr")]
     pub const Or: Self = Self(2);
+    /// Accept the intersection if ~(primitive mask | ray mask) != 0.
     #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorNotOr")]
     pub const NotOr: Self = Self(3);
+    /// Accept the intersection if (primitive mask ^ ray mask) != 0.
     #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorXor")]
     pub const Xor: Self = Self(4);
+    /// Accept the intersection if ~(primitive mask ^ ray mask) != 0.
     #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorNotXor")]
     pub const NotXor: Self = Self(5);
+    /// Accept the intersection if primitive mask
+    /// <
+    /// ray mask.
     #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorLessThan")]
     pub const LessThan: Self = Self(6);
+    /// Accept the intersection if primitive mask
+    /// <
+    /// = ray mask.
     #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorLessThanOrEqualTo")]
     pub const LessThanOrEqualTo: Self = Self(7);
+    /// Accept the intersection if primitive mask > ray mask.
     #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorGreaterThan")]
     pub const GreaterThan: Self = Self(8);
+    /// Accept the intersection if primitive mask >= ray mask.
     #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorGreaterThanOrEqualTo")]
     pub const GreaterThanOrEqualTo: Self = Self(9);
+    /// Accept the intersection if primitive mask == ray mask.
     #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorEqual")]
     pub const Equal: Self = Self(10);
+    /// Accept the intersection if primitive mask != ray mask.
     #[deprecated]
     #[doc(alias = "MPSRayMaskOperatorNotEqual")]
     pub const NotEqual: Self = Self(11);
@@ -321,7 +401,402 @@ unsafe impl RefEncode for MPSRayMaskOperator {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector?language=objc)
+    /// Performs intersection tests between rays and the geometry in an MPSAccelerationStructure
+    ///
+    ///
+    /// An MPSRayIntersector is used to schedule intersection tests between rays and geometry
+    /// into an MTLCommandBuffer. First, create a raytracer with a Metal device. Then, configure the
+    /// properties of the raytracer:
+    ///
+    ///
+    /// ```text
+    ///      id <MTLDevice> device = MTLCreateSystemDefaultDevice();
+    ///      id <MTLCommandQueue> commandQueue = [device newCommandQueue];
+    ///   
+    ///      MPSRayIntersector *raytracer = [[MPSRayIntersector alloc] initWithDevice:device];
+    ///
+    ///      // Configure raytracer properties
+    /// ```
+    ///
+    /// Before scheduling intersection tests, an MPSAccelerationStructure must be created. The
+    /// acceleration structure is built over geometry and is used to accelerate intersection testing.
+    /// For example, to create a triangle acceleration structure, allocate an
+    /// MPSTriangleAccelerationStructure object. Then, configure the properties of the acceleration
+    /// structure. For example, triangle acceleration structures require a vertex buffer and a triangle
+    /// count:
+    ///
+    ///
+    /// ```text
+    ///      MPSTriangleAccelerationStructure *accelerationStructure =
+    ///          [[MPSTriangleAccelerationStructure alloc] initWithDevice:device];
+    ///   
+    ///      accelerationStructure.vertexBuffer = vertexBuffer;
+    ///      accelerationStructure.triangleCount = triangleCount;
+    /// ```
+    ///
+    /// Acceleration structures must be built at least once before they are used for intersection
+    /// testing, and must be rebuilt when the geometry changes. Rebuilding an acceleration structure
+    /// is a time consuming operation, so an asynchronous version of this method is also available.
+    ///
+    ///
+    /// ```text
+    ///      [accelerationStructure rebuild];
+    /// ```
+    ///
+    /// The raytracer is then used to schedule intersection tests into an MTLCommandBuffer. Rays
+    /// are provided in batches through a Metal buffer, and intersection results are returned through
+    /// another Metal buffer in the same order, one intersection per ray.
+    ///
+    /// There are several choices of ray data type controlled by the rayDataType property. The default
+    /// ray data type is MPSRayOriginDirection, which includes just the ray origin direction. The other
+    /// data types add support for minimum and maximum intersection distances and ray masks. These
+    /// data types are available in the Metal Shading Language by including the
+    /// MetalPerformanceShaders/MetalPerformanceShaders.h header. Additional application specific
+    /// per-ray data can also be appended to the end of the ray data type using the rayStride property.
+    /// This data will be ignored by the intersector.
+    ///
+    /// If the rays were generated on the CPU:
+    ///
+    ///
+    /// ```text
+    ///      typedef MPSRayOriginDirection Ray;
+    ///
+    ///      // Create a buffer to hold the rays
+    ///      id <MTLBuffer> rayBuffer = [device newBufferWithLength:sizeof(Ray) * rayCount options:0];
+    ///
+    ///      // Copy the rays into the ray buffer
+    ///      memcpy(rayBuffer.contents, rays, sizeof(Ray) * rayCount);
+    ///   
+    ///      // Create a buffer to hold the intersections
+    ///      id <MTLBuffer> intersectionBuffer = [device newBufferWithLength:sizeof(Intersection) * rayCount
+    ///                                                              options:0];
+    /// ```
+    ///
+    /// It can be useful to prevent certain rays from participating in intersection testing. For
+    /// example: rays which have bounced out of the scene in previous intersection tests. It may be
+    /// more efficient to do this by compacting the ray buffer so that threads with invalid rays are
+    /// not left idle during intersection testing. However, it can be more convenient to disable the
+    /// ray in place. This can be done by setting most fields to invalid values. For example, setting
+    /// the maximum distance to a negative value, setting the mask to zero, setting the direction to
+    /// the zero vector, etc.
+    ///
+    /// Finally, the intersection testing is encoded into an MTLCommandBuffer. There are two
+    /// intersection types. The "nearest" intersection type returns the closest intersection along each
+    /// ray. The "any" intersection type returns immediately when the first intersection is found. The
+    /// "any" intersection type is useful for determining whether a point is visible from another point
+    /// for, e.g., shadow rays or ambient occlusion rays and is typically much faster than the "nearest"
+    /// intersection type.
+    ///
+    ///
+    /// ```text
+    ///      id <MTLCommandBuffer> commandBuffer = [commandQueue commandBuffer];
+    ///   
+    ///      [raytracer encodeIntersectionToCommandBuffer:commandBuffer
+    ///                                  intersectionType:MPSIntersectionTypeNearest
+    ///                                         rayBuffer:rayBuffer
+    ///                                   rayBufferOffset:0
+    ///                                intersectionBuffer:intersectionBuffer
+    ///                          intersectionBufferOffset:0
+    ///                                          rayCount:rayCount
+    ///                             accelerationStructure:accelerationStructure];
+    ///
+    ///      [commandBuffer commit];
+    /// ```
+    ///
+    /// The intersection results are not available until the command buffer has finished executing
+    /// on the GPU. It is not safe for the CPU to write or read the contents of the ray buffer,
+    /// intersection buffer, vertex buffer, etc. until the command buffer has finished executing.
+    /// Use the waitUntilCompleted or addCompletedHandler methods of the MTLCommandBuffer to block
+    /// the CPU until the GPU has finished executing. Then retrieve the intersection results
+    /// from the intersection buffer:
+    ///
+    ///
+    /// ```text
+    ///      typedef MPSIntersectionDistancePrimitiveIndexCoordinates Intersection;
+    /// ```
+    ///
+    ///
+    /// ```text
+    ///      [commandBuffer waitUntilCompleted];
+    ///
+    ///      Intersection *intersections = (Intersection *)intersectionBuffer.contents;
+    /// ```
+    ///
+    /// There are also several choices of intersection data type controlled by the intersectionDataType
+    /// property. The default intersection data type is MPSIntersectionDistancePrimitiveIndexCoordinates,
+    /// which includes the intersection distance, primitive index, and barycentric coordinates. The
+    /// other data types remove the primitive index or barycentric coordinates, which can be used to
+    /// reduce the memory and memory bandwidth usage of the intersection buffer. These data types are
+    /// available in the Metal Shading Language by including the
+    /// MetalPerformanceShaders/MetalPerformanceShaders.h header.
+    ///
+    /// The intersection distance field is positive when an intersection has been found and negative
+    /// when there is no intersection. When using the "nearest" intersection type, the intersection
+    /// point is the ray origin plus the ray direction multiplied by the intersection distance. The
+    /// other fields are not valid if there is no intersection. Only the intersection distance field is
+    /// valid for the "any" intersection type, and the distance is either a negative or positive value
+    /// to indicate an intersection or miss. It does not necessarily contain the actual intersection
+    /// distance when using the "any" intersection type.
+    ///
+    /// Asynchronous Raytracing: Copying rays and intersections to and from the CPU is expensive.
+    /// Furthermore, generating rays and consuming intersections on the CPU causes the CPU and GPU to
+    /// block each other. If the CPU must generate rays and consume intersections, it is better
+    /// to add an asynchronous completion handler to the MTLCommandBuffer. The CPU can then proceed
+    /// to do other useful work and will be notified when the GPU has finished executing. Use double
+    /// or triple buffered ray and intersection buffers to avoid race conditions such as the CPU
+    /// overwriting data the GPU may be reading. Then the CPU can safely write to one range of the
+    /// buffer while the GPU reads from another range of the buffer. Once the GPU is done
+    /// executing, the CPU and GPU can advance to the next range of the buffer. This method can be
+    /// implemented using a completion handler and a semaphore:
+    ///
+    ///
+    /// ```text
+    ///      #define MAX_ASYNC_OPERATIONS 3
+    ///
+    ///      // Initialization:
+    ///
+    ///      // Create a semaphore with the maximum number of asynchronous operations in flight
+    ///      dispatch_semaphore_t asyncOperationSemaphore = dispatch_semaphore_create(MAX_ASYNC_OPERATIONS);
+    ///
+    ///      // Create a ray and intersection buffer large enough for the maximum number of operations
+    ///      id <MTLBuffer> rayBuffer =
+    ///          [device newBufferWithLength:sizeof(Ray) * rayCount * MAX_ASYNC_OPERATIONS
+    ///                              options:0];
+    ///
+    ///      id <MTLBuffer> intersectionBuffer =
+    ///          [device newBufferWithLength:sizeof(Intersection) * rayCount * MAX_ASYNC_OPERATIONS
+    ///                              options:0];
+    ///
+    ///      NSUInteger asyncOperationIndex = 0;
+    ///
+    ///      // Encode intersection testing:
+    ///
+    ///      // Wait until there is a free buffer range
+    ///      dispatch_semaphore_wait(asyncOperationSemaphore, DISPATCH_TIME_FOREVER);
+    ///
+    ///      // Copy rays into ray buffer
+    ///      NSUInteger rayBufferOffset = sizeof(Ray) * rayCount * asyncOperationIndex;
+    ///      NSUInteger intersectionBufferOffset = sizeof(Intersection) * rayCount * asyncOperationIndex;
+    ///
+    ///      memcpy((uint8_t *)rayBuffer.contents + rayBufferOffset, rays, sizeof(Ray) * rayCount);
+    ///
+    ///      // Advance the async operation index
+    ///      asyncOperationIndex = (asyncOperationIndex + 1) % MAX_ASYNC_OPERATIONS;
+    ///
+    ///      // Create a command buffer
+    ///      id <MTLCommandBuffer> commandBuffer = [commandQueue commandBuffer];
+    ///
+    ///      // Encode actual intersection work
+    ///      [raytracer encodeIntersectionToCommandBuffer:commandBuffer
+    ///                                  intersectionType:MPSIntersectionTypeNearest
+    ///                                         rayBuffer:rayBuffer
+    ///                                   rayBufferOffset:rayBufferOffset
+    ///                                intersectionBuffer:intersectionBuffer
+    ///                          intersectionBufferOffset:intersectionBufferOffset
+    ///                                          rayCount:rayCount
+    ///                             accelerationStructure:accelerationStructure];
+    ///
+    ///      // Register a completion handler to run when the GPU finishes executing
+    ///      [commandBuffer addCompletedHandler:^(id <MTLCommandBuffer> commandBuffer) {
+    ///          Intersection *intersections = (Intersection *)((uint8_t *)intersectionBuffer.contents +
+    ///              intersectionBufferOffset);
+    ///
+    ///          // Process intersections
+    ///
+    ///          // Signal that the ray and intersection buffer ranges are now available for reuse
+    ///          dispatch_semaphore_signal(asyncOperationSemaphore);
+    ///      }];
+    ///
+    ///      // Commit the command buffer to allow the GPU to start executing
+    ///      [commandBuffer commit];
+    /// ```
+    ///
+    /// GPU Driven Raytracing: Pipelining CPU and GPU work with asynchronous raytracing is better than
+    /// allowing the CPU and GPU block each other, but it is even better to produce rays and consume
+    /// intersections entirely on the GPU. This avoids the need to copy rays and intersections to and
+    /// from the GPU and avoids any kind of CPU/GPU synchronization. To do this, encode compute kernels
+    /// before and after intersection testing. By processing rays in parallel, the compute kernels may
+    /// also be able to generate and consume rays faster than the CPU. The ray generation kernel
+    /// typically produces rays according to some camera model, and the intersection consumption kernel
+    /// typically updates the output buffer or texture according to some shading model.
+    ///
+    /// Since the rays and intersections will never leave the GPU, store them in private Metal buffers
+    /// that are allocated in GPU memory rather than system memory. Because the ray generation,
+    /// intersection testing, and intersection consumption kernels are pipelined on the GPU, there
+    /// is no need to double or triple buffer the ray or intersection buffers, which saves memory.
+    ///
+    ///
+    /// ```text
+    ///      id <MTLBuffer> rayBuffer =
+    ///          [device newBufferWithLength:sizeof(Ray) * rayCount
+    ///                              options:MTLResourceStorageModePrivate];
+    ///      id <MTLBuffer> intersectionBuffer =
+    ///          [device newBufferWithLength:sizeof(Intersection) * rayCount
+    ///                              options:MTLResourceStorageModePrivate];
+    ///
+    ///      id <MTLCommandBuffer> commandBuffer = [commandQueue commandBuffer];
+    ///
+    ///      // Generate rays
+    ///      id <MTLComputeCommandEncoder> encoder = [commandBuffer computeCommandEncoder];
+    ///
+    ///      [encoder setBuffer:rayBuffer offset:0 atIndex:0];
+    ///      [encoder setBytes:&uniformData length:sizeof(uniformData) atIndex:1];
+    ///
+    ///      [encoder setComputePipelineState:cameraPipeline];
+    ///
+    ///      [encoder dispatchThreads:MTLSizeMake(rayCount, 1, 1)
+    ///         threadsPerThreadgroup:MTLSizeMake(64, 1, 1)];
+    ///
+    ///      [encoder endEncoding];
+    ///
+    ///      [raytracer encodeIntersectionToCommandBuffer:commandBuffer
+    ///                                  intersectionType:MPSIntersectionTypeNearest
+    ///                                         rayBuffer:rayBuffer
+    ///                                   rayBufferOffset:0
+    ///                                intersectionBuffer:intersectionBuffer
+    ///                          intersectionBufferOffset:0
+    ///                                          rayCount:rayCount
+    ///                             accelerationStructure:accelerationStructure];
+    ///
+    ///      // Perform shading at intersections and update framebuffer texture
+    ///      encoder = [commandBuffer computeCommandEncoder];
+    ///
+    ///      [encoder setBuffer:rayBuffer offset:0 atIndex:0];
+    ///      [encoder setBuffer:intersectionBuffer offset:0 atIndex:1];
+    ///      [encoder setBytes:&uniformData length:sizeof(uniformData) atIndex:2];
+    ///
+    ///      [encoder setTexture:framebufferTexture atIndex:0];
+    ///
+    ///      [encoder setComputePipelineState:shadingPipeline];
+    ///
+    ///      [encoder dispatchThreads:MTLSizeMake(rayCount, 1, 1)
+    ///         threadsPerThreadgroup:MTLSizeMake(64, 1, 1)];
+    ///
+    ///      [encoder endEncoding];
+    ///
+    ///      [commandBuffer commit];
+    /// ```
+    ///
+    /// Note that the intersection consumption kernel can in turn produce new rays that can be passed
+    /// back to the MPSRayIntersector. This technique can be used to implement iterative techniques such as
+    /// progressive path tracing without leaving the GPU. For example, the shading kernel in the example
+    /// above could produce both a secondary ray that will be passed back to the raytracer in the
+    /// next iteration as well as a shadow ray that will be used to sample the direct lighting. A
+    /// final kernel can consume the shadow ray intersections to accumulate lighting contributions
+    /// into the framebuffer.
+    ///
+    /// There is an alternative version of the intersection test encoding method that does not accept
+    /// a literal ray count. The ray count is instead fetched indirectly by the GPU. For example,
+    /// this can be combined with a parallel reduction on the GPU to compact the ray buffer after each
+    /// iteration as rays bounce out of the scene or are absorbed. Alternatively, setting the maximum
+    /// distance of a ray to a negative number indicates that the ray has become inactive and causes the
+    /// raytracer to ignore the ray.
+    ///
+    ///
+    /// ```text
+    ///      [raytracer encodeIntersectionToCommandBuffer:commandBuffer
+    ///                                  intersectionType:MPSIntersectionTypeNearest
+    ///                                         rayBuffer:rayBuffer
+    ///                                   rayBufferOffset:0
+    ///                                intersectionBuffer:intersectionBuffer
+    ///                          intersectionBufferOffset:0
+    ///                                    rayCountBuffer:rayCountBuffer
+    ///                              rayCountBufferOffset:0
+    ///                             accelerationStructure:accelerationStructure];
+    /// ```
+    ///
+    /// Multi-GPU Raytracing: to implement multi-GPU raytracing, create the MPSRayIntersector and
+    /// MPSAccelerationStructure objects first with one Metal device and copy them to the other Metal
+    /// device(s). The raytracing process can then proceed independently on each GPU. For example,
+    /// divide the output image into tiles or slices that are rendered independently. Then composite
+    /// finished tiles or slices back together on one GPU and present the output image to the screen.
+    /// The workload should be distributed across GPUs according to their performance to avoid a more
+    /// powerful GPU idly waiting for a less powerful GPU to finish.
+    ///
+    /// Acceleration Structure Serialization: MPSAccelerationStructure objects can be serialized
+    /// and deserialized using the NSSecureCoding protocol. This can be used to build acceleration
+    /// structures offline and reload them at runtime rather than building them from scratch.
+    ///
+    /// Performance Guidelines:
+    ///
+    /// - For vertex buffers, ray buffers, intersection buffers, etc., use private or managed
+    /// buffers rather than shared buffers when possible on discrete memory GPU architectures as
+    /// they are much faster than fetching data over the PCIe bus. If the CPU only writes once
+    /// to a ray buffer once and reads once from the intersection buffer, then a shared buffer may
+    /// be acceptable and avoids extra copies to and from the GPU. However, it is generally
+    /// preferable to generate and consume rays and intersections on the GPU instead, in which
+    /// case a private buffer should be used. Vertex data is typically static and reused many
+    /// times so it should be stored in private or managed buffers.
+    ///
+    /// - If the CPU must generate and consume rays and intersections, use double or triple
+    /// buffering as described above. This avoids the CPU and GPU mutually blocking each other.
+    ///
+    /// - In general, disable any unused features such as ray masks, backface culling,
+    /// etc. Enabling extra features increases the number of instructions and register usage of
+    /// the ray intersection kernel(s), reducing intersection performance. For example, it may be
+    /// more efficient to compute barycentric coordinates in your intersection consumption
+    /// kernel rather getting them from the raytracer. Use of an index buffer may also reduce
+    /// performance, so consider disabling the index buffer if there is enough memory available.
+    ///
+    /// - Try to submit rays in large batches. This amortizes the costs involved in dispatching
+    /// work to the GPU and also allows the GPU to perform more effective latency hiding.
+    /// Use the recommendedMinimumRayBatchSizeForRayCount method to get an estimate of the
+    /// minimum recommended ray batch size. For this reason, small images or sample counts
+    /// may not perform as well as large images or sample counts. Note, however, that submitting
+    /// rays in very large batches can reduce the responsiveness of the system because the GPU
+    /// will be busy for long periods. Experiment to find a balance between raytracing throughput
+    /// and system responsiveness.
+    ///
+    /// - When possible, organize rays within a batch for spatial locality. Rays that originate
+    /// at nearby points or are oriented in similar directions tend to access the same
+    /// locations in memory and can therefore make more effective use of the GPU's caches.
+    /// For example, the camera rays associated with nearby pixels in the output image will likely
+    /// originate at the same point and travel in very similar directions. Therefore, divide the
+    /// output image into small tiles (e.g., 8x8). Rather than laying out all of the rays in the
+    /// ray buffer in scanline order, first lay out the ray in scanline order within each tile,
+    /// then lay out the tiles in scanline order or according to some space filling curve.
+    ///
+    /// - If CPU encode time is an issue, disable Metal API validation and enable
+    /// MPSKernelOptionsSkipAPIValidation.
+    ///
+    /// - Choose the minimal ray and intersection data types for your use case. Loading and storing
+    /// extra values such as ray masks or primitive indices can reduce raytracing performance, so
+    /// use a simpler data type if they are not needed. For example, camera rays typically have no
+    /// need for a maximum distance field, while shadow rays do.
+    ///
+    /// - Use MPSIntersectionTestTypeAny when possible: this is typically much faster than
+    /// MPSIntersectionTestTypeNearest and can be used when you only need to check for
+    /// binary visibility between two points such as shadow and ambient occlusion rays. Combine
+    /// this with MPSRayDataTypeDistance to minimize memory bandwidth usage.
+    ///
+    /// - Try to keep the geometry, textures, ray buffers, etc. within the Metal device's
+    /// recommended working set size. Paging data into GPU memory can significantly reduce
+    /// raytracing performance.
+    ///
+    /// - Changes to MPSRayIntersector properties can trigger internal pipeline compilations when
+    /// intersection tests are next encoded. If you need to avoid hitches due to pipeline
+    /// compilation, encode a small ray intersection with each raytracer configuration you will
+    /// use at encode-time. This creates and caches the corresponding pipelines.
+    ///
+    /// - Disable rays which should not participate in intersection testing. This can be done either
+    /// by compacting the ray buffer such that it only contains valid rays, or by setting fields
+    /// of the ray struct to invalid values. For example, setting the maximum distance to a
+    /// negative value, setting the mask to zero, setting the direction to the zero vector, etc.
+    /// In particular, rays should NOT be disabled using schemes such as moving their origin
+    /// outside the scene. These rays will still partially traverse the acceleration structure,
+    /// potentially evicting data from the cache which could have been used by valid rays. Note
+    /// that it is preferable to provide only valid rays so that threads are not left idle if
+    /// their rays are found to be invalid, but it can be convenient to disable rays in place in
+    /// the ray buffer.
+    ///
+    /// See MPSAccelerationStructure and MPSInstanceAccelerationStructure for more performance
+    /// guidelines.
+    ///
+    /// Thread Safety: MPSRayIntersectors are generally not thread safe: changing properties and encoding
+    /// intersection tests from multiple threads result in undefined behavior. Instead, multiple
+    /// threads should copy or create their own MPSRayIntersectors.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -349,26 +824,54 @@ unsafe impl NSSecureCoding for MPSRayIntersector {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSRayIntersector {
+        /// Whether to ignore intersections between rays and back-facing or front-facing triangles
+        /// or quadrilaterals. Defaults to MTLCullModeNone.
+        ///
+        ///
+        /// A triangle or quadrilateral is back-facing if its normal points in the same
+        /// direction as a ray and front-facing if its normal points in the opposite direction as a ray. If
+        /// the cull mode is set to MTLCullModeBack, then back-facing triangles and quadrilaterals will be
+        /// ignored. If the cull mode is set to MTLCullModeFront, then front-facing triangles and
+        /// quadrilaterals will be ignored. Otherwise, if the cull mode is set to MTLCullModeNone, no
+        /// triangles or quadrilaterals will be ignored. The front and back faces can be swapped using the
+        /// frontFacingWinding property.
+        ///
+        /// Backface culling is necessary for some scenes but can reduce raytracing performance.
         #[deprecated]
         #[method(cullMode)]
         pub unsafe fn cullMode(&self) -> MTLCullMode;
 
+        /// Setter for [`cullMode`][Self::cullMode].
         #[deprecated]
         #[method(setCullMode:)]
         pub unsafe fn setCullMode(&self, cull_mode: MTLCullMode);
 
+        /// Winding order used to determine which direction a triangle or quadrilateral's normal
+        /// points when back face or front face culling is enabled. Defaults to MTLWindingClockwise.
+        ///
+        ///
+        /// If the front face winding is set to MTLWindingClockwise, the triangle or
+        /// quadrilateral normal is considered to point towards the direction where the vertices are in
+        /// clockwise order when viewed from that direction. Otherwise, if the front facing winding is set
+        /// to MTLWindingCounterClockwise, the triangle or quadrilateral normal is considered to point in
+        /// the opposite direction.
         #[deprecated]
         #[method(frontFacingWinding)]
         pub unsafe fn frontFacingWinding(&self) -> MTLWinding;
 
+        /// Setter for [`frontFacingWinding`][Self::frontFacingWinding].
         #[deprecated]
         #[method(setFrontFacingWinding:)]
         pub unsafe fn setFrontFacingWinding(&self, front_facing_winding: MTLWinding);
 
+        /// Ray/triangle intersection test type. Defaults to MPSTriangleIntersectionTestTypeDefault.
+        /// Quads are broken into two triangles for intersection testing, so this property also applies to
+        /// quadrilateral intersections.
         #[deprecated]
         #[method(triangleIntersectionTestType)]
         pub unsafe fn triangleIntersectionTestType(&self) -> MPSTriangleIntersectionTestType;
 
+        /// Setter for [`triangleIntersectionTestType`][Self::triangleIntersectionTestType].
         #[deprecated]
         #[method(setTriangleIntersectionTestType:)]
         pub unsafe fn setTriangleIntersectionTestType(
@@ -376,10 +879,13 @@ extern_methods!(
             triangle_intersection_test_type: MPSTriangleIntersectionTestType,
         );
 
+        /// Ray/bounding box intersection test type. Defaults to
+        /// MPSBoundingBoxIntersectionTestTypeDefault.
         #[deprecated]
         #[method(boundingBoxIntersectionTestType)]
         pub unsafe fn boundingBoxIntersectionTestType(&self) -> MPSBoundingBoxIntersectionTestType;
 
+        /// Setter for [`boundingBoxIntersectionTestType`][Self::boundingBoxIntersectionTestType].
         #[deprecated]
         #[method(setBoundingBoxIntersectionTestType:)]
         pub unsafe fn setBoundingBoxIntersectionTestType(
@@ -387,50 +893,91 @@ extern_methods!(
             bounding_box_intersection_test_type: MPSBoundingBoxIntersectionTestType,
         );
 
+        /// Whether to enable primitive and instance masks. Defaults to MPSRayMaskOptionNone.
+        ///
+        ///
+        /// If MPSRayMaskOptionPrimitive or MPSRayMaskOptionInstance is enabled, each ray and
+        /// primitive and/or instance is associated with a 32 bit unsigned integer mask. Before checking
+        /// for intersection between a ray and a primitive or instance, the corresponding masks are
+        /// compared using the ray mask operator defined by the rayMaskOperator property. If the result is
+        /// zero, the intersection is skipped.
+        ///
+        /// This can be used to make certain primitives or instances invisible to certain rays. For example,
+        /// objects can be grouped into layers and their visibility can be toggled by modifying the ray
+        /// masks rather than removing the objects from the scene and rebuilding the acceleration structure.
+        /// Alternatively, certain objects can be prevented from casting shadows by making them invisible to
+        /// shadow rays.
+        ///
+        /// Enabling this option may reduce raytracing performance.
         #[deprecated]
         #[method(rayMaskOptions)]
         pub unsafe fn rayMaskOptions(&self) -> MPSRayMaskOptions;
 
+        /// Setter for [`rayMaskOptions`][Self::rayMaskOptions].
         #[deprecated]
         #[method(setRayMaskOptions:)]
         pub unsafe fn setRayMaskOptions(&self, ray_mask_options: MPSRayMaskOptions);
 
+        /// The operator to apply to determine whether to accept an intersection between a ray and a
+        /// primitive or instance. Defaults to MPSRayMaskOperatorAnd.
         #[deprecated]
         #[method(rayMaskOperator)]
         pub unsafe fn rayMaskOperator(&self) -> MPSRayMaskOperator;
 
+        /// Setter for [`rayMaskOperator`][Self::rayMaskOperator].
         #[deprecated]
         #[method(setRayMaskOperator:)]
         pub unsafe fn setRayMaskOperator(&self, ray_mask_operator: MPSRayMaskOperator);
 
+        /// Offset, in bytes, between consecutive rays in the ray buffer. Defaults to 0, indicating
+        /// that the rays are packed according to their natural aligned size.
+        ///
+        ///
+        /// This can be used to skip past any additional per-ray data that may be stored
+        /// alongside the MPSRay struct such as the current radiance along the ray or the source pixel
+        /// coordinates. Must be aligned to the alignment of the ray data type.
         #[deprecated]
         #[method(rayStride)]
         pub unsafe fn rayStride(&self) -> NSUInteger;
 
+        /// Setter for [`rayStride`][Self::rayStride].
         #[deprecated]
         #[method(setRayStride:)]
         pub unsafe fn setRayStride(&self, ray_stride: NSUInteger);
 
+        /// Offset, in bytes, between consecutive intersections in the intersection buffer. Defaults
+        /// to 0, indicating that the intersections are packed according to their natural aligned size.
+        ///
+        ///
+        /// This can be used to skip past any additional per-intersection that which may be
+        /// stored alongside the MPSRayIntersection struct such as the surface normal at the point
+        /// of intersection. Must be aligned to the alignment of the intersection data type.
         #[deprecated]
         #[method(intersectionStride)]
         pub unsafe fn intersectionStride(&self) -> NSUInteger;
 
+        /// Setter for [`intersectionStride`][Self::intersectionStride].
         #[deprecated]
         #[method(setIntersectionStride:)]
         pub unsafe fn setIntersectionStride(&self, intersection_stride: NSUInteger);
 
+        /// Ray data type. Defaults to MPSRayDataTypeOriginDirection.
         #[deprecated]
         #[method(rayDataType)]
         pub unsafe fn rayDataType(&self) -> MPSRayDataType;
 
+        /// Setter for [`rayDataType`][Self::rayDataType].
         #[deprecated]
         #[method(setRayDataType:)]
         pub unsafe fn setRayDataType(&self, ray_data_type: MPSRayDataType);
 
+        /// Intersection data type. Defaults to
+        /// MPSIntersectionDataTypeDistancePrimitiveIndexCoordinates.
         #[deprecated]
         #[method(intersectionDataType)]
         pub unsafe fn intersectionDataType(&self) -> MPSIntersectionDataType;
 
+        /// Setter for [`intersectionDataType`][Self::intersectionDataType].
         #[deprecated]
         #[method(setIntersectionDataType:)]
         pub unsafe fn setIntersectionDataType(
@@ -439,19 +986,25 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Ray index data type. Defaults to MPSDataTypeUInt32. Only MPSDataTypeUInt16 and
+        /// MPSDataTypeUInt32 are supported.
         #[deprecated]
         #[method(rayIndexDataType)]
         pub unsafe fn rayIndexDataType(&self) -> MPSDataType;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`rayIndexDataType`][Self::rayIndexDataType].
         #[deprecated]
         #[method(setRayIndexDataType:)]
         pub unsafe fn setRayIndexDataType(&self, ray_index_data_type: MPSDataType);
 
+        /// Global ray mask. Defaults to 0xFFFFFFFF. This value will be logically AND-ed with the
+        /// per-ray mask if the ray data type contains a mask.
         #[deprecated]
         #[method(rayMask)]
         pub unsafe fn rayMask(&self) -> c_uint;
 
+        /// Setter for [`rayMask`][Self::rayMask].
         #[deprecated]
         #[method(setRayMask:)]
         pub unsafe fn setRayMask(&self, ray_mask: c_uint);
@@ -460,6 +1013,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initialize the raytracer with a Metal device
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -467,6 +1021,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Initialize the raytracer with an NSCoder and a Metal device
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
@@ -475,6 +1030,15 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Copy the raytracer with a Metal device
+        ///
+        ///
+        /// Parameter `zone`: The NSZone in which to allocate the object
+        ///
+        /// Parameter `device`: The Metal device for the new MPSRayIntersector
+        ///
+        ///
+        /// Returns: A pointer to a copy of this MPSRayIntersector
         #[deprecated]
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
@@ -483,6 +1047,22 @@ extern_methods!(
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
 
+        /// Get the recommended minimum number of rays to submit for intersection in one batch
+        ///
+        ///
+        /// In order to keep the system responsive, and to limit the amount of memory allocated
+        /// to ray and intersection buffers, it may be desirable to divide the rays to be intersected
+        /// against an acceleration structure into smaller batches. However, submitting too few rays in a
+        /// batch reduces GPU utilization and performance. This method provides a recommended minimum
+        /// number of rays to submit in any given batch. For example, for a 1920x1080 image, this method may
+        /// recommend that the image be divided into 512x512 tiles. The actual recommendation varies per
+        /// device and total ray count.
+        ///
+        ///
+        /// Parameter `rayCount`: The total number of rays to be submitted
+        ///
+        ///
+        /// Returns: The recommended minimum ray batch size
         #[deprecated]
         #[method(recommendedMinimumRayBatchSizeForRayCount:)]
         pub unsafe fn recommendedMinimumRayBatchSizeForRayCount(
@@ -495,6 +1075,31 @@ extern_methods!(
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
         #[cfg(feature = "MPSAccelerationStructure")]
+        /// Schedule intersection tests between rays and an acceleration structure
+        ///
+        ///
+        /// Parameter `commandBuffer`: Command buffer to schedule intersection testing in
+        ///
+        /// Parameter `intersectionType`: Which type of intersection to test for
+        ///
+        /// Parameter `rayBuffer`: Buffer containing rays to intersect against the acceleration
+        /// structure. The ray data type is defined by the rayDataType
+        /// and rayStride properties.
+        ///
+        /// Parameter `rayBufferOffset`: Offset, in bytes, into the ray buffer. Must be a multiple of
+        /// the ray stride.
+        ///
+        /// Parameter `intersectionBuffer`: Buffer to store intersection in. Intersections are stored in
+        /// the same order as the ray buffer, one intersection per ray.
+        /// The intersection data type is defined by the
+        /// intersectionDataType and intersectionStride properties.
+        ///
+        /// Parameter `intersectionBufferOffset`: Offset, in bytes, into the intersection buffer. Must be a
+        /// multiple of the intersection stride.
+        ///
+        /// Parameter `rayCount`: Number of rays
+        ///
+        /// Parameter `accelerationStructure`: Acceleration structure to test against
         #[deprecated]
         #[method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:intersectionBuffer:intersectionBufferOffset:rayCount:accelerationStructure:)]
         pub unsafe fn encodeIntersectionToCommandBuffer_intersectionType_rayBuffer_rayBufferOffset_intersectionBuffer_intersectionBufferOffset_rayCount_accelerationStructure(
@@ -510,6 +1115,35 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSAccelerationStructure")]
+        /// Schedule intersection tests between rays and an acceleration structure with a ray count
+        /// provided in a buffer
+        ///
+        ///
+        /// Parameter `commandBuffer`: Command buffer to schedule intersection testing in
+        ///
+        /// Parameter `intersectionType`: Which type of intersection to test for
+        ///
+        /// Parameter `rayBuffer`: Buffer containing rays to intersect against the acceleration
+        /// structure. The ray data type is defined by the rayDataType
+        /// and rayStride properties.
+        ///
+        /// Parameter `rayBufferOffset`: Offset, in bytes, into the ray buffer. Must be a multiple of
+        /// the ray stride.
+        ///
+        /// Parameter `intersectionBuffer`: Buffer to store intersection in. Intersections are stored in
+        /// the same order as the ray buffer, one intersection per ray.
+        /// The intersection data type is defined by the
+        /// intersectionDataType and intersectionStride properties.
+        ///
+        /// Parameter `intersectionBufferOffset`: Offset, in bytes, into the intersection buffer. Must be a
+        /// multiple of the intersection stride.
+        ///
+        /// Parameter `rayCountBuffer`: Buffer containing number of rays as a 32 bit unsigned integer
+        ///
+        /// Parameter `rayCountBufferOffset`: Offset, in bytes, into the ray count buffer. Must be a multiple
+        /// of 4 bytes.
+        ///
+        /// Parameter `accelerationStructure`: Acceleration structure to test against
         #[deprecated]
         #[method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:intersectionBuffer:intersectionBufferOffset:rayCountBuffer:rayCountBufferOffset:accelerationStructure:)]
         pub unsafe fn encodeIntersectionToCommandBuffer_intersectionType_rayBuffer_rayBufferOffset_intersectionBuffer_intersectionBufferOffset_rayCountBuffer_rayCountBufferOffset_accelerationStructure(
@@ -526,6 +1160,38 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSAccelerationStructure")]
+        /// Schedule intersection tests between rays and an acceleration structure
+        ///
+        ///
+        /// Parameter `commandBuffer`: Command buffer to schedule intersection testing in
+        ///
+        /// Parameter `intersectionType`: Which type of intersection to test for
+        ///
+        /// Parameter `rayBuffer`: Buffer containing rays to intersect against the acceleration
+        /// structure. The ray data type is defined by the rayDataType
+        /// and rayStride properties.
+        ///
+        /// Parameter `rayBufferOffset`: Offset, in bytes, into the ray buffer. Must be a multiple of
+        /// the ray stride.
+        ///
+        /// Parameter `rayIndexBuffer`: Buffer containing ray indices. Each index references a ray in
+        /// the ray buffer. The ray index data type is controlled by the
+        /// rayIndexDataType property.
+        ///
+        /// Parameter `rayIndexBufferOffset`: Offset, in bytes, into the ray index buffer. Must be a multiple
+        /// of the stride of the ray index type.
+        ///
+        /// Parameter `intersectionBuffer`: Buffer to store intersection in. Intersections are stored in
+        /// the same order as the ray buffer, one intersection per ray.
+        /// The intersection data type is defined by the
+        /// intersectionDataType and intersectionStride properties.
+        ///
+        /// Parameter `intersectionBufferOffset`: Offset, in bytes, into the intersection buffer. Must be a
+        /// multiple of the intersection stride.
+        ///
+        /// Parameter `rayIndexCount`: Number of ray indices
+        ///
+        /// Parameter `accelerationStructure`: Acceleration structure to test against
         #[deprecated]
         #[method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCount:accelerationStructure:)]
         pub unsafe fn encodeIntersectionToCommandBuffer_intersectionType_rayBuffer_rayBufferOffset_rayIndexBuffer_rayIndexBufferOffset_intersectionBuffer_intersectionBufferOffset_rayIndexCount_accelerationStructure(
@@ -543,6 +1209,42 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSAccelerationStructure")]
+        /// Schedule intersection tests between rays and an acceleration structure with a ray count
+        /// provided in a buffer
+        ///
+        ///
+        /// Parameter `commandBuffer`: Command buffer to schedule intersection testing in
+        ///
+        /// Parameter `intersectionType`: Which type of intersection to test for
+        ///
+        /// Parameter `rayBuffer`: Buffer containing rays to intersect against the acceleration
+        /// structure. The ray data type is defined by the rayDataType
+        /// and rayStride properties.
+        ///
+        /// Parameter `rayBufferOffset`: Offset, in bytes, into the ray buffer. Must be a multiple of
+        /// the ray stride.
+        ///
+        /// Parameter `rayIndexBuffer`: Buffer containing ray indices. Each index references a ray in
+        /// the ray buffer. The ray index data type is controlled by the
+        /// rayIndexDataType property.
+        ///
+        /// Parameter `rayIndexBufferOffset`: Offset, in bytes, into the ray index buffer. Must be a multiple
+        /// of the stride of the ray index type.
+        ///
+        /// Parameter `intersectionBuffer`: Buffer to store intersection in. Intersections are stored in
+        /// the same order as the ray buffer, one intersection per ray.
+        /// The intersection data type is defined by the
+        /// intersectionDataType and intersectionStride properties.
+        ///
+        /// Parameter `intersectionBufferOffset`: Offset, in bytes, into the intersection buffer. Must be a
+        /// multiple of the intersection stride.
+        ///
+        /// Parameter `rayIndexCountBuffer`: Buffer containing number of rays as a 32 bit unsigned integer
+        ///
+        /// Parameter `rayIndexCountBufferOffset`: Offset, in bytes, into the ray count buffer. Must be a multiple
+        /// of 4 bytes.
+        ///
+        /// Parameter `accelerationStructure`: Acceleration structure to test against
         #[deprecated]
         #[method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCountBuffer:rayIndexCountBufferOffset:accelerationStructure:)]
         pub unsafe fn encodeIntersectionToCommandBuffer_intersectionType_rayBuffer_rayBufferOffset_rayIndexBuffer_rayIndexBufferOffset_intersectionBuffer_intersectionBufferOffset_rayIndexCountBuffer_rayIndexCountBufferOffset_accelerationStructure(
@@ -561,6 +1263,63 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSAccelerationStructure")]
+        /// Schedule intersection tests between rays and an acceleration structure, where rays and
+        /// loaded from a texture and intersections are stored into a texture.
+        ///
+        /// This is convenient for hybrid rendering applications which produce ray data from a fragment
+        /// shader. The ray and intersection texture must be 2D array textures. Ray data must be packed into
+        /// consecutive channels and slices of the ray texture. Intersection data will be packed the same
+        /// way. The ray and intersection data types are defined by the rayDataType and intersectionDataType
+        /// properties. The rayStride and intersectionStride properties are ignored. Channels and slices
+        /// beyond the required number are ignored when reading from the ray texture. Channels and slices
+        /// beyond the required number are undefined when writing to the intersection texture.
+        ///
+        /// For example, if the ray data type is MPSRayDataTypeOriginMaskDirectionMaxDistance, the ray
+        /// texture must have pixel format MTLPixelFormatRGBA32Float and at least two array slices, packed
+        /// as follows:
+        ///
+        ///
+        /// ```text
+        ///      tex.write(float4(ray.position, as_type<float>(ray.mask)), pixel, 0); // slice 0
+        ///      tex.write(float4(ray.direction, ray.maxDistance), pixel, 1);         // slice 1
+        ///      @end
+        ///
+        ///  If the intersection data type is MPSIntersectionDataTypeDistance, the intersection texture may
+        ///  have pixel format MTLPixelFormatR32Float with just a single channel and one array slice, and
+        ///  should be unpacked as follows:
+        ///
+        ///      @code
+        ///      float distance = tex.read(pixel, 0).x;
+        ///      @end
+        ///
+        ///  On the other hand, if the intersection data type is
+        ///  MPSIntersectionDistancePrimitiveIndexInstanceIndexCoordinates, the intersection texture must
+        ///  have pixel format MTLPixelFormatRGBA32Float and at least two slices:
+        ///
+        ///      @code
+        ///      float3 f0 = tex.read(pixel, 0);
+        ///
+        ///      float distance = f0.x;
+        ///      unsigned int primitiveIndex = as_type<unsigned int>(f0.y);
+        ///      unsigned int instanceIndex = as_type<unsigned int>(f0.z);
+        ///      // w component is padding for this intersection data type
+        ///
+        ///      float2 coordinates = tex.read(pixel, 1).xy;
+        ///      @end
+        ///
+        ///  @param commandBuffer            Command buffer to schedule intersection testing in
+        ///  @param intersectionType         Which type of intersection to test for
+        ///  @param rayTexture               A 2D array texture containing rays to intersect against the
+        ///                                  acceleration structure. The ray data type is defined by the
+        ///                                  rayDataType property.
+        ///  @param intersectionTexture      Texture to store intersection in. Intersections are stored in
+        ///                                  the same position as the ray texture, one intersection per ray.
+        ///                                  The intersection data type is defined by the
+        ///                                  intersectionDataType property.
+        ///  @param accelerationStructure    Acceleration structure to test against
+        ///  
+        ///
+        /// ```
         #[deprecated]
         #[method(encodeIntersectionToCommandBuffer:intersectionType:rayTexture:intersectionTexture:accelerationStructure:)]
         pub unsafe fn encodeIntersectionToCommandBuffer_intersectionType_rayTexture_intersectionTexture_accelerationStructure(
@@ -578,6 +1337,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSRayIntersector {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

@@ -383,12 +383,14 @@ extern_methods!(
         #[method(isUserInteractionEnabled)]
         pub unsafe fn isUserInteractionEnabled(&self) -> bool;
 
+        /// Setter for [`isUserInteractionEnabled`][Self::isUserInteractionEnabled].
         #[method(setUserInteractionEnabled:)]
         pub unsafe fn setUserInteractionEnabled(&self, user_interaction_enabled: bool);
 
         #[method(tag)]
         pub unsafe fn tag(&self) -> NSInteger;
 
+        /// Setter for [`tag`][Self::tag].
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: NSInteger);
 
@@ -403,31 +405,39 @@ extern_methods!(
         #[method(isFocused)]
         pub unsafe fn isFocused(&self) -> bool;
 
+        /// The identifier of the focus group that this view belongs to. If this is nil, subviews inherit their superview's focus group.
         #[method_id(@__retain_semantics Other focusGroupIdentifier)]
         pub unsafe fn focusGroupIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`focusGroupIdentifier`][Self::focusGroupIdentifier].
         #[method(setFocusGroupIdentifier:)]
         pub unsafe fn setFocusGroupIdentifier(&self, focus_group_identifier: Option<&NSString>);
 
         #[cfg(feature = "UIFocus")]
+        /// The priority this item has in its focus group. The higher the priority, the more likely it is to get picked when focus moves into this group.
+        /// Note: this method can only be used to increase an item's priority, not decrease it. For example if an item is currently selected, the actual priority of this item will be determined by MAX(focusGroupPriority, UIFocusGroupPrioritySelected).
         #[method(focusGroupPriority)]
         pub unsafe fn focusGroupPriority(&self) -> UIFocusGroupPriority;
 
         #[cfg(feature = "UIFocus")]
+        /// Setter for [`focusGroupPriority`][Self::focusGroupPriority].
         #[method(setFocusGroupPriority:)]
         pub unsafe fn setFocusGroupPriority(&self, focus_group_priority: UIFocusGroupPriority);
 
         #[cfg(feature = "UIFocusEffect")]
+        /// Describes a visual effect to apply when this item is focused. If this property is nil no effect will be applied when this view becomes focused.
         #[method_id(@__retain_semantics Other focusEffect)]
         pub unsafe fn focusEffect(&self) -> Option<Retained<UIFocusEffect>>;
 
         #[cfg(feature = "UIFocusEffect")]
+        /// Setter for [`focusEffect`][Self::focusEffect].
         #[method(setFocusEffect:)]
         pub unsafe fn setFocusEffect(&self, focus_effect: Option<&UIFocusEffect>);
 
         #[method(semanticContentAttribute)]
         pub unsafe fn semanticContentAttribute(&self) -> UISemanticContentAttribute;
 
+        /// Setter for [`semanticContentAttribute`][Self::semanticContentAttribute].
         #[method(setSemanticContentAttribute:)]
         pub unsafe fn setSemanticContentAttribute(
             &self,
@@ -478,6 +488,7 @@ extern_methods!(
         pub fn frame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
         pub fn setFrame(&self, frame: CGRect);
 
@@ -486,6 +497,7 @@ extern_methods!(
         pub fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`bounds`][Self::bounds].
         #[method(setBounds:)]
         pub fn setBounds(&self, bounds: CGRect);
 
@@ -494,6 +506,7 @@ extern_methods!(
         pub unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         pub unsafe fn setCenter(&self, center: CGPoint);
 
@@ -502,6 +515,7 @@ extern_methods!(
         pub unsafe fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`transform`][Self::transform].
         #[method(setTransform:)]
         pub unsafe fn setTransform(&self, transform: CGAffineTransform);
 
@@ -512,6 +526,7 @@ extern_methods!(
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
+        /// Setter for [`transform3D`][Self::transform3D].
         #[method(setTransform3D:)]
         pub unsafe fn setTransform3D(&self, transform3_d: CATransform3D);
 
@@ -520,6 +535,7 @@ extern_methods!(
         pub fn contentScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentScaleFactor`][Self::contentScaleFactor].
         #[method(setContentScaleFactor:)]
         pub fn setContentScaleFactor(&self, content_scale_factor: CGFloat);
 
@@ -528,18 +544,21 @@ extern_methods!(
         pub unsafe fn anchorPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`anchorPoint`][Self::anchorPoint].
         #[method(setAnchorPoint:)]
         pub unsafe fn setAnchorPoint(&self, anchor_point: CGPoint);
 
         #[method(isMultipleTouchEnabled)]
         pub unsafe fn isMultipleTouchEnabled(&self) -> bool;
 
+        /// Setter for [`isMultipleTouchEnabled`][Self::isMultipleTouchEnabled].
         #[method(setMultipleTouchEnabled:)]
         pub fn setMultipleTouchEnabled(&self, multiple_touch_enabled: bool);
 
         #[method(isExclusiveTouch)]
         pub unsafe fn isExclusiveTouch(&self) -> bool;
 
+        /// Setter for [`isExclusiveTouch`][Self::isExclusiveTouch].
         #[method(setExclusiveTouch:)]
         pub unsafe fn setExclusiveTouch(&self, exclusive_touch: bool);
 
@@ -579,12 +598,14 @@ extern_methods!(
         #[method(autoresizesSubviews)]
         pub unsafe fn autoresizesSubviews(&self) -> bool;
 
+        /// Setter for [`autoresizesSubviews`][Self::autoresizesSubviews].
         #[method(setAutoresizesSubviews:)]
         pub unsafe fn setAutoresizesSubviews(&self, autoresizes_subviews: bool);
 
         #[method(autoresizingMask)]
         pub unsafe fn autoresizingMask(&self) -> UIViewAutoresizing;
 
+        /// Setter for [`autoresizingMask`][Self::autoresizingMask].
         #[method(setAutoresizingMask:)]
         pub unsafe fn setAutoresizingMask(&self, autoresizing_mask: UIViewAutoresizing);
 
@@ -678,6 +699,7 @@ extern_methods!(
         pub unsafe fn layoutMargins(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`layoutMargins`][Self::layoutMargins].
         #[method(setLayoutMargins:)]
         pub unsafe fn setLayoutMargins(&self, layout_margins: UIEdgeInsets);
 
@@ -686,6 +708,7 @@ extern_methods!(
         pub unsafe fn directionalLayoutMargins(&self) -> NSDirectionalEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`directionalLayoutMargins`][Self::directionalLayoutMargins].
         #[method(setDirectionalLayoutMargins:)]
         pub unsafe fn setDirectionalLayoutMargins(
             &self,
@@ -695,6 +718,7 @@ extern_methods!(
         #[method(preservesSuperviewLayoutMargins)]
         pub unsafe fn preservesSuperviewLayoutMargins(&self) -> bool;
 
+        /// Setter for [`preservesSuperviewLayoutMargins`][Self::preservesSuperviewLayoutMargins].
         #[method(setPreservesSuperviewLayoutMargins:)]
         pub unsafe fn setPreservesSuperviewLayoutMargins(
             &self,
@@ -704,6 +728,7 @@ extern_methods!(
         #[method(insetsLayoutMarginsFromSafeArea)]
         pub unsafe fn insetsLayoutMarginsFromSafeArea(&self) -> bool;
 
+        /// Setter for [`insetsLayoutMarginsFromSafeArea`][Self::insetsLayoutMarginsFromSafeArea].
         #[method(setInsetsLayoutMarginsFromSafeArea:)]
         pub unsafe fn setInsetsLayoutMarginsFromSafeArea(
             &self,
@@ -725,6 +750,7 @@ extern_methods!(
         pub unsafe fn layoutMarginsGuide(&self) -> Retained<UILayoutGuide>;
 
         #[cfg(feature = "UILayoutGuide")]
+        /// This content guide provides a layout area that you can use to place text and related content whose width should generally be constrained to a size that is easy for the user to read. This guide provides a centered region that you can place content within to get this behavior for this view.
         #[method_id(@__retain_semantics Other readableContentGuide)]
         pub unsafe fn readableContentGuide(&self) -> Retained<UILayoutGuide>;
 
@@ -737,6 +763,7 @@ extern_methods!(
             feature = "UILayoutGuide",
             feature = "UITrackingLayoutGuide"
         ))]
+        /// Follows the keyboard when on screen and docked. See UIKeyboardLayoutGuide.h for additional options.
         #[method_id(@__retain_semantics Other keyboardLayoutGuide)]
         pub unsafe fn keyboardLayoutGuide(&self) -> Retained<UIKeyboardLayoutGuide>;
     }
@@ -760,6 +787,7 @@ extern_methods!(
         #[method(clipsToBounds)]
         pub unsafe fn clipsToBounds(&self) -> bool;
 
+        /// Setter for [`clipsToBounds`][Self::clipsToBounds].
         #[method(setClipsToBounds:)]
         pub unsafe fn setClipsToBounds(&self, clips_to_bounds: bool);
 
@@ -768,6 +796,7 @@ extern_methods!(
         pub fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub fn setBackgroundColor(&self, background_color: Option<&UIColor>);
 
@@ -776,30 +805,35 @@ extern_methods!(
         pub unsafe fn alpha(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
         #[method(isOpaque)]
         pub unsafe fn isOpaque(&self) -> bool;
 
+        /// Setter for [`isOpaque`][Self::isOpaque].
         #[method(setOpaque:)]
         pub unsafe fn setOpaque(&self, opaque: bool);
 
         #[method(clearsContextBeforeDrawing)]
         pub unsafe fn clearsContextBeforeDrawing(&self) -> bool;
 
+        /// Setter for [`clearsContextBeforeDrawing`][Self::clearsContextBeforeDrawing].
         #[method(setClearsContextBeforeDrawing:)]
         pub unsafe fn setClearsContextBeforeDrawing(&self, clears_context_before_drawing: bool);
 
         #[method(isHidden)]
         pub fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         pub fn setHidden(&self, hidden: bool);
 
         #[method(contentMode)]
         pub unsafe fn contentMode(&self) -> UIViewContentMode;
 
+        /// Setter for [`contentMode`][Self::contentMode].
         #[method(setContentMode:)]
         pub unsafe fn setContentMode(&self, content_mode: UIViewContentMode);
 
@@ -809,6 +843,7 @@ extern_methods!(
         pub unsafe fn contentStretch(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentStretch`][Self::contentStretch].
         #[deprecated]
         #[method(setContentStretch:)]
         pub unsafe fn setContentStretch(&self, content_stretch: CGRect);
@@ -816,6 +851,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other maskView)]
         pub unsafe fn maskView(&self) -> Option<Retained<UIView>>;
 
+        /// Setter for [`maskView`][Self::maskView].
         #[method(setMaskView:)]
         pub unsafe fn setMaskView(&self, mask_view: Option<&UIView>);
 
@@ -824,12 +860,14 @@ extern_methods!(
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`tintColor`][Self::tintColor].
         #[method(setTintColor:)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
         #[method(tintAdjustmentMode)]
         pub unsafe fn tintAdjustmentMode(&self) -> UIViewTintAdjustmentMode;
 
+        /// Setter for [`tintAdjustmentMode`][Self::tintAdjustmentMode].
         #[method(setTintAdjustmentMode:)]
         pub unsafe fn setTintAdjustmentMode(&self, tint_adjustment_mode: UIViewTintAdjustmentMode);
 
@@ -995,6 +1033,7 @@ extern_methods!(
         pub fn gestureRecognizers(&self) -> Option<Retained<NSArray<UIGestureRecognizer>>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
+        /// Setter for [`gestureRecognizers`][Self::gestureRecognizers].
         #[method(setGestureRecognizers:)]
         pub unsafe fn setGestureRecognizers(
             &self,
@@ -1023,10 +1062,17 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIView {
         #[cfg(feature = "UIMotionEffect")]
+        /// Begins applying `effect` to the receiver. The effect's emitted keyPath/value pairs will be
+        /// applied to the view's presentation layer.
+        ///
+        /// Animates the transition to the motion effect's values using the present UIView animation
+        /// context.
         #[method(addMotionEffect:)]
         pub unsafe fn addMotionEffect(&self, effect: &UIMotionEffect);
 
         #[cfg(feature = "UIMotionEffect")]
+        /// Stops applying `effect` to the receiver. Any affected presentation values will animate to
+        /// their post-removal values using the present UIView animation context.
         #[method(removeMotionEffect:)]
         pub unsafe fn removeMotionEffect(&self, effect: &UIMotionEffect);
 
@@ -1035,6 +1081,7 @@ extern_methods!(
         pub unsafe fn motionEffects(&self) -> Retained<NSArray<UIMotionEffect>>;
 
         #[cfg(feature = "UIMotionEffect")]
+        /// Setter for [`motionEffects`][Self::motionEffects].
         #[method(setMotionEffects:)]
         pub unsafe fn setMotionEffects(&self, motion_effects: &NSArray<UIMotionEffect>);
     }
@@ -1111,6 +1158,7 @@ extern_methods!(
         #[method(translatesAutoresizingMaskIntoConstraints)]
         pub unsafe fn translatesAutoresizingMaskIntoConstraints(&self) -> bool;
 
+        /// Setter for [`translatesAutoresizingMaskIntoConstraints`][Self::translatesAutoresizingMaskIntoConstraints].
         #[method(setTranslatesAutoresizingMaskIntoConstraints:)]
         pub unsafe fn setTranslatesAutoresizingMaskIntoConstraints(
             &self,
@@ -1338,6 +1386,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other restorationIdentifier)]
         pub unsafe fn restorationIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`restorationIdentifier`][Self::restorationIdentifier].
         #[method(setRestorationIdentifier:)]
         pub unsafe fn setRestorationIdentifier(&self, restoration_identifier: Option<&NSString>);
 
@@ -1459,6 +1508,7 @@ extern_methods!(
         pub unsafe fn overrideUserInterfaceStyle(&self) -> UIUserInterfaceStyle;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`overrideUserInterfaceStyle`][Self::overrideUserInterfaceStyle].
         #[method(setOverrideUserInterfaceStyle:)]
         pub unsafe fn setOverrideUserInterfaceStyle(
             &self,
@@ -1472,10 +1522,25 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIView {
         #[cfg(feature = "UIContentSizeCategory")]
+        /// Specify content size category limits. Setting one or both of these properties will limit the
+        /// content size category for this view (and its subviews) to a minimum or a maximum value.
+        /// You can use this to limit the support content size categories on part of your view hierarchy.
+        /// Setting this to nil removes the limit on the minimum or maximum.
+        /// Limits will be applied immediately and when future content size category updates occur.
+        ///
+        /// Specifying a minimum limit that is greater than the maximum limit (or vice versa) will effectively
+        /// only use the maximum limit.
+        ///
+        /// Example:
+        ///
+        /// // limit the support content size categories between .medium and .accessibilityExtraLarge (included).
+        /// view.minimumContentSizeCategory = UIContentSizeCategoryMedium;
+        /// view.maximumContentSizeCategory = UIContentSizeCategoryAccessibilityExtraLarge;
         #[method_id(@__retain_semantics Other minimumContentSizeCategory)]
         pub unsafe fn minimumContentSizeCategory(&self) -> Option<Retained<UIContentSizeCategory>>;
 
         #[cfg(feature = "UIContentSizeCategory")]
+        /// Setter for [`minimumContentSizeCategory`][Self::minimumContentSizeCategory].
         #[method(setMinimumContentSizeCategory:)]
         pub unsafe fn setMinimumContentSizeCategory(
             &self,
@@ -1487,12 +1552,16 @@ extern_methods!(
         pub unsafe fn maximumContentSizeCategory(&self) -> Option<Retained<UIContentSizeCategory>>;
 
         #[cfg(feature = "UIContentSizeCategory")]
+        /// Setter for [`maximumContentSizeCategory`][Self::maximumContentSizeCategory].
         #[method(setMaximumContentSizeCategory:)]
         pub unsafe fn setMaximumContentSizeCategory(
             &self,
             maximum_content_size_category: Option<&UIContentSizeCategory>,
         );
 
+        /// Will return a string with a log of all the superviews of this view, alongside with what
+        /// content size category each view has and if that view has limits applied.
+        /// This is for debugging purposes only.
         #[method_id(@__retain_semantics Other appliedContentSizeCategoryLimitsDescription)]
         pub unsafe fn appliedContentSizeCategoryLimitsDescription(&self) -> Retained<NSString>;
     }
@@ -1505,6 +1574,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other traitOverrides)]
         pub unsafe fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
 
+        /// Forces an immediate trait update for this view (and its view controller, if applicable) and any subviews,
+        /// including any view controllers or views in its subtree. Any trait change callbacks are sent synchronously.
         #[method(updateTraitsIfNeeded)]
         pub unsafe fn updateTraitsIfNeeded(&self);
     }

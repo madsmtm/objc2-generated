@@ -37,6 +37,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
@@ -45,6 +46,7 @@ extern_methods!(
         pub unsafe fn handler(&self) -> *mut block2::Block<dyn Fn() -> Bool>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`handler`][Self::handler].
         #[method(setHandler:)]
         pub unsafe fn setHandler(&self, handler: Option<&block2::Block<dyn Fn() -> Bool>>);
 
@@ -52,12 +54,14 @@ extern_methods!(
         pub unsafe fn target(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&ProtocolObject<dyn NSObjectProtocol>>);
 
         #[method(selector)]
         pub unsafe fn selector(&self) -> Option<Sel>;
 
+        /// Setter for [`selector`][Self::selector].
         #[method(setSelector:)]
         pub unsafe fn setSelector(&self, selector: Option<Sel>);
     }

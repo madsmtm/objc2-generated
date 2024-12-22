@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkobjecttype?language=objc)
+    /// An abstract class representing a type of object that can be stored by HealthKit.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkobjecttype?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKObjectType;
@@ -32,6 +34,9 @@ unsafe impl NSSecureCoding for HKObjectType {}
 
 extern_methods!(
     unsafe impl HKObjectType {
+        /// A unique string identifying a type of health object.
+        ///
+        /// See HKTypeIdentifiers.h for possible values.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
@@ -97,6 +102,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stateOfMindType)]
         pub unsafe fn stateOfMindType() -> Retained<HKStateOfMindType>;
 
+        /// Returns YES if the authorization for the object type needs to be requested on per object basis.
         #[method(requiresPerObjectAuthorization)]
         pub unsafe fn requiresPerObjectAuthorization(&self) -> bool;
     }
@@ -111,7 +117,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictype?language=objc)
+    /// Represents a type of object that describes a characteristic of the user (such as date of birth).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictype?language=objc)
     #[unsafe(super(HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCharacteristicType;
@@ -154,7 +162,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksampletype?language=objc)
+    /// Represents a type of HKSample.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksampletype?language=objc)
     #[unsafe(super(HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSampleType;
@@ -178,18 +188,30 @@ unsafe impl NSSecureCoding for HKSampleType {}
 
 extern_methods!(
     unsafe impl HKSampleType {
+        /// Returns YES if the start and end date for samples of this type are restricted by a maximum duration.
         #[method(isMaximumDurationRestricted)]
         pub unsafe fn isMaximumDurationRestricted(&self) -> bool;
 
+        /// When the duration is restricted for samples of this type, returns the maximum duration allowed,
+        /// calculated as the difference between end and start dates.
+        ///
+        /// Throws an exception if there is no maximum restriction on duration for samples of this type.
         #[method(maximumAllowedDuration)]
         pub unsafe fn maximumAllowedDuration(&self) -> NSTimeInterval;
 
+        /// Returns YES if the start and end date for samples of this type are restricted by a minimum duration.
         #[method(isMinimumDurationRestricted)]
         pub unsafe fn isMinimumDurationRestricted(&self) -> bool;
 
+        /// When the duration is restricted for samples of this type, returns the minimum duration allowed,
+        /// calculated as the difference between end and start dates.
+        ///
+        /// Throws an exception if there is no minimum restriction on duration for samples of this type.
         #[method(minimumAllowedDuration)]
         pub unsafe fn minimumAllowedDuration(&self) -> NSTimeInterval;
 
+        /// Returns YES if first-party samples of this type are produced using a prediction algorithm, and that algorithm supports recalibration. To recalibrate the
+        /// estimates for a sample type, see -[HKHealthStore recalibrateEstimatesForSampleType:atDate:completion:]
         #[method(allowsRecalibrationForEstimates)]
         pub unsafe fn allowsRecalibrationForEstimates(&self) -> bool;
     }
@@ -212,7 +234,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytype?language=objc)
+    /// Represent a type of HKCategorySample.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCategoryType;
@@ -255,7 +279,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcorrelationtype?language=objc)
+    /// Represents a type of HKCorrelation
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcorrelationtype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCorrelationType;
@@ -298,7 +324,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdocumenttype?language=objc)
+    /// Represents a type of HKDocument.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdocumenttype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKDocumentType;
@@ -341,7 +369,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytype?language=objc)
+    /// Represents types of HKQuantitySamples.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKQuantityType;
@@ -370,6 +400,8 @@ extern_methods!(
         pub unsafe fn aggregationStyle(&self) -> HKQuantityAggregationStyle;
 
         #[cfg(feature = "HKUnit")]
+        /// Returns YES if the type of HKQuantitySample represented by the receiver can be created with quantities
+        /// of the given unit.
         #[method(isCompatibleWithUnit:)]
         pub unsafe fn isCompatibleWithUnit(&self, unit: &HKUnit) -> bool;
     }
@@ -392,7 +424,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouttype?language=objc)
+    /// Represents a workout or exercise
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouttype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutType;
@@ -435,7 +469,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkseriestype?language=objc)
+    /// Represents a type of HKSeriesSample
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkseriestype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSeriesType;
@@ -484,7 +520,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitysummarytype?language=objc)
+    /// Represents an HKActivitySummary
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitysummarytype?language=objc)
     #[unsafe(super(HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKActivitySummaryType;
@@ -527,7 +565,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsampletype?language=objc)
+    /// Represents an audiogram sample.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsampletype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKAudiogramSampleType;
@@ -570,7 +610,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramtype?language=objc)
+    /// Represents an electrocardiogram sample.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramtype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKElectrocardiogramType;
@@ -613,7 +655,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprescriptiontype?language=objc)
+    /// Represents a prescription type
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprescriptiontype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKPrescriptionType;
@@ -656,7 +700,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkscoredassessmenttype?language=objc)
+    /// Represents a scored assessment sample
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkscoredassessmenttype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKScoredAssessmentType;
@@ -699,7 +745,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindtype?language=objc)
+    /// Represents an experienced feeling and its surrounding context.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindtype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKStateOfMindType;

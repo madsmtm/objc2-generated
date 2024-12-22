@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetexturemappingmode?language=objc)
+/// Type of mapping operation for sparse texture
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetexturemappingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,7 +28,16 @@ unsafe impl RefEncode for MTLSparseTextureMappingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmapindirectarguments?language=objc)
+/// Structure describing indirect mapping region. This structure is used to populate a buffer for the method  'MTLResourceStateCommandEncoder updateTextureMapping:indirectBuffer:indirectBufferOffset:'
+///
+/// The correct data format for the buffer used in 'MTLResourceStateCommandEncoder updateTextureMapping:indirectBuffer:indirectBufferOffset: is the following:
+///
+/// struct MTLMapIndirectBufferFormat{
+/// uint32_t numMappings;
+/// MTLMapIndirectArguments mappings[numMappings];
+/// }
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmapindirectarguments?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLMapIndirectArguments {
@@ -70,6 +81,7 @@ extern_protocol!(
             feature = "MTLTexture",
             feature = "MTLTypes"
         ))]
+        /// Updates multiple regions within a sparse texture.
         #[optional]
         #[method(updateTextureMappings:mode:regions:mipLevels:slices:numRegions:)]
         unsafe fn updateTextureMappings_mode_regions_mipLevels_slices_numRegions(
@@ -88,6 +100,7 @@ extern_protocol!(
             feature = "MTLTexture",
             feature = "MTLTypes"
         ))]
+        /// Updates mapping for given sparse texture
         #[optional]
         #[method(updateTextureMapping:mode:region:mipLevel:slice:)]
         unsafe fn updateTextureMapping_mode_region_mipLevel_slice(
@@ -105,6 +118,12 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTexture"
         ))]
+        /// Updates mapping for given sparse texture. Updates are driven via a MTLBuffer with the structure format defined by MTLMapIndirectBufferFormat.
+        ///
+        /// struct MTLMapIndirectBufferFormat{
+        /// uint32_t numMappings;
+        /// MTLMapIndirectArguments mappings[numMappings];
+        /// }
         #[optional]
         #[method(updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:)]
         unsafe fn updateTextureMapping_mode_indirectBuffer_indirectBufferOffset(
@@ -116,11 +135,19 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLFence")]
+        /// Update the fence to capture all GPU work so far enqueued by this encoder.
+        ///
+        /// The fence is updated at kernel submission to maintain global order and prevent deadlock.
+        /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
         #[optional]
         #[method(updateFence:)]
         unsafe fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
         #[cfg(feature = "MTLFence")]
+        /// Prevent further GPU work until the fence is reached.
+        ///
+        /// The fence is evaluated at kernel submission to maintain global order and prevent deadlock.
+        /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
         #[optional]
         #[method(waitForFence:)]
         unsafe fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
@@ -131,6 +158,10 @@ extern_protocol!(
             feature = "MTLTexture",
             feature = "MTLTypes"
         ))]
+        /// Move sparse page mappings from one sparse texture to another from the same heap.
+        ///
+        /// The tile mapping is moved from the source texture only if the destination texture tile is unmapped. The textures must also have matching a texture format,
+        /// texture type, sample count, usage and resource options.
         #[optional]
         #[method(moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
         unsafe fn moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(

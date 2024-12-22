@@ -6,7 +6,21 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiographicsdevice?language=objc)
+    /// A Virtio graphics device.
+    ///
+    /// The VZVirtioGraphicsDevice is the runtime counterpart of VZVirtioGraphicsDeviceConfiguration.
+    ///
+    /// For example, if a `VZVirtualMachineConfiguration.graphicsDevices[0]` is an instance of `VZVirtioGraphicsDeviceConfiguration`, when creating the virtual machine, the `VZVirtualMachine.graphicsDevices[0]` is the corresponding `VZVirtioGraphicsDevice`.
+    ///
+    /// An important property is the `displays` inherited from `VZGraphicsDevice`. It provides the list of scanouts on the graphics device,
+    /// each corresponding to the scanout configuration set on `VZVirtioGraphicsDeviceConfiguration`.
+    ///
+    ///
+    /// See: VZVirtioGraphicsDeviceConfiguration
+    ///
+    /// See: VZGraphicsDevice.displays
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiographicsdevice?language=objc)
     #[unsafe(super(VZGraphicsDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDevice")]

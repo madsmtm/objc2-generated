@@ -8,7 +8,46 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeplan?language=objc)
+    /// A class describing the plan for executing a model.
+    ///
+    /// The application can use the plan to estimate the necessary cost and
+    /// resources of the model before running the predictions.
+    ///
+    /// ```
+    /// // Load the compute plan of an ML Program model.
+    /// [MLComputePlan loadContentsOfURL:modelURL configuration:configuration completionHandler:^(MLComputePlan * _Nullable computePlan, NSError * _Nullable error) {
+    /// if (!computePlan) {
+    /// // Handle error.
+    /// return;
+    /// }
+    /// MLModelStructureProgram *program = computePlan.modelStructure.program;
+    /// if (!program) {
+    /// [NSException raise:NSInternalInconsistencyException format:
+    /// "
+    /// Unexpected model type."];
+    /// }
+    ///
+    /// MLModelStructureFunction *mainFunction = program.functions["main"];
+    /// if (!mainFunction) {
+    /// [NSException raise:NSInternalInconsistencyException format:
+    /// "
+    /// Missing main function."];
+    /// }
+    ///
+    /// NSArray
+    /// <MLModelStructureProgramOperation
+    /// *> *operations = mainFunction.block.operations;
+    /// for (MLModelStructureProgramOperation *operation in operations) {
+    /// // Get the compute device usage for the operation.
+    /// MLComputeDeviceUsage *computeDeviceUsage = [computePlan computeDeviceUsageForMLProgramOperation:operation];
+    /// // Get the estimated cost of executing the operation.
+    /// MLComputePlanCost *estimatedCost = [computePlan estimatedCostOfMLProgramOperation:operation];
+    ///
+    /// }
+    /// }];
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeplan?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLComputePlan;
@@ -25,6 +64,14 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "MLModelConfiguration", feature = "block2"))]
+        /// Construct the compute plan of a model asynchronously given the location of its on-disk representation.
+        ///
+        ///
+        /// Parameter `url`: The location of its on-disk representation (.mlmodelc directory).
+        ///
+        /// Parameter `configuration`: The model configuration.
+        ///
+        /// Parameter `handler`: When the compute plan is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLComputePlan instance or NSError object.
         #[method(loadContentsOfURL:configuration:completionHandler:)]
         pub unsafe fn loadContentsOfURL_configuration_completionHandler(
             url: &NSURL,
@@ -37,6 +84,14 @@ extern_methods!(
             feature = "MLModelConfiguration",
             feature = "block2"
         ))]
+        /// Construct the compute plan of a model asynchronously given the model asset.
+        ///
+        ///
+        /// Parameter `asset`: The model asset.
+        ///
+        /// Parameter `configuration`: The model configuration.
+        ///
+        /// Parameter `handler`: When the compute plan is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLComputePlan instance or NSError object.
         #[method(loadModelAsset:configuration:completionHandler:)]
         pub unsafe fn loadModelAsset_configuration_completionHandler(
             asset: &MLModelAsset,
@@ -48,6 +103,12 @@ extern_methods!(
             feature = "MLComputePlanCost",
             feature = "MLModelStructureProgramOperation"
         ))]
+        /// Returns the estimated cost of executing an ML Program operation.
+        ///
+        ///
+        /// Parameter `operation`: An ML Program operation.
+        ///
+        /// Returns: The estimated cost of executing the operation or nil if the cost couldn't be estimated.
         #[method_id(@__retain_semantics Other estimatedCostOfMLProgramOperation:)]
         pub unsafe fn estimatedCostOfMLProgramOperation(
             &self,
@@ -58,6 +119,12 @@ extern_methods!(
             feature = "MLComputePlanDeviceUsage",
             feature = "MLModelStructureNeuralNetworkLayer"
         ))]
+        /// Returns the anticipated compute devices that would be used for executing a NeuralNetwork layer.
+        ///
+        ///
+        /// Parameter `layer`: A NeuralNetwork layer.
+        ///
+        /// Returns: The anticipated compute devices that would be used for executing the layer or `nil` if the usage couldn't be determined.
         #[method_id(@__retain_semantics Other computeDeviceUsageForNeuralNetworkLayer:)]
         pub unsafe fn computeDeviceUsageForNeuralNetworkLayer(
             &self,
@@ -68,6 +135,12 @@ extern_methods!(
             feature = "MLComputePlanDeviceUsage",
             feature = "MLModelStructureProgramOperation"
         ))]
+        /// Returns The anticipated compute devices that would be used for executing an ML Program operation.
+        ///
+        ///
+        /// Parameter `operation`: An ML Program operation.
+        ///
+        /// Returns: The anticipated compute devices that would be used for executing the operation or `nil`if the usage couldn't be determined.
         #[method_id(@__retain_semantics Other computeDeviceUsageForMLProgramOperation:)]
         pub unsafe fn computeDeviceUsageForMLProgramOperation(
             &self,
@@ -75,6 +148,7 @@ extern_methods!(
         ) -> Option<Retained<MLComputePlanDeviceUsage>>;
 
         #[cfg(feature = "MLModelStructure")]
+        /// The model structure.
         #[method_id(@__retain_semantics Other modelStructure)]
         pub unsafe fn modelStructure(&self) -> Retained<MLModelStructure>;
     }

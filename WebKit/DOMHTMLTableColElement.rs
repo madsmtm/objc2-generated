@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other align)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
+        /// Setter for [`align`][Self::align].
         #[deprecated]
         #[method(setAlign:)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other ch)]
         pub unsafe fn ch(&self) -> Retained<NSString>;
 
+        /// Setter for [`ch`][Self::ch].
         #[deprecated]
         #[method(setCh:)]
         pub unsafe fn setCh(&self, ch: Option<&NSString>);
@@ -97,6 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other chOff)]
         pub unsafe fn chOff(&self) -> Retained<NSString>;
 
+        /// Setter for [`chOff`][Self::chOff].
         #[deprecated]
         #[method(setChOff:)]
         pub unsafe fn setChOff(&self, ch_off: Option<&NSString>);
@@ -105,6 +108,7 @@ extern_methods!(
         #[method(span)]
         pub unsafe fn span(&self) -> c_int;
 
+        /// Setter for [`span`][Self::span].
         #[deprecated]
         #[method(setSpan:)]
         pub unsafe fn setSpan(&self, span: c_int);
@@ -113,6 +117,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other vAlign)]
         pub unsafe fn vAlign(&self) -> Retained<NSString>;
 
+        /// Setter for [`vAlign`][Self::vAlign].
         #[deprecated]
         #[method(setVAlign:)]
         pub unsafe fn setVAlign(&self, v_align: Option<&NSString>);
@@ -121,6 +126,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other width)]
         pub unsafe fn width(&self) -> Retained<NSString>;
 
+        /// Setter for [`width`][Self::width].
         #[deprecated]
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: Option<&NSString>);

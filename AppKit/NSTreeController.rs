@@ -49,30 +49,35 @@ extern_methods!(
         #[method_id(@__retain_semantics Other childrenKeyPath)]
         pub unsafe fn childrenKeyPath(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`childrenKeyPath`][Self::childrenKeyPath].
         #[method(setChildrenKeyPath:)]
         pub unsafe fn setChildrenKeyPath(&self, children_key_path: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other countKeyPath)]
         pub unsafe fn countKeyPath(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`countKeyPath`][Self::countKeyPath].
         #[method(setCountKeyPath:)]
         pub unsafe fn setCountKeyPath(&self, count_key_path: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other leafKeyPath)]
         pub unsafe fn leafKeyPath(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`leafKeyPath`][Self::leafKeyPath].
         #[method(setLeafKeyPath:)]
         pub unsafe fn setLeafKeyPath(&self, leaf_key_path: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Retained<NSArray<NSSortDescriptor>>;
 
+        /// Setter for [`sortDescriptors`][Self::sortDescriptors].
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
         #[method_id(@__retain_semantics Other content)]
         pub unsafe fn content(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`content`][Self::content].
         #[method(setContent:)]
         pub unsafe fn setContent(&self, content: Option<&AnyObject>);
 
@@ -126,24 +131,28 @@ extern_methods!(
         #[method(avoidsEmptySelection)]
         pub unsafe fn avoidsEmptySelection(&self) -> bool;
 
+        /// Setter for [`avoidsEmptySelection`][Self::avoidsEmptySelection].
         #[method(setAvoidsEmptySelection:)]
         pub unsafe fn setAvoidsEmptySelection(&self, avoids_empty_selection: bool);
 
         #[method(preservesSelection)]
         pub unsafe fn preservesSelection(&self) -> bool;
 
+        /// Setter for [`preservesSelection`][Self::preservesSelection].
         #[method(setPreservesSelection:)]
         pub unsafe fn setPreservesSelection(&self, preserves_selection: bool);
 
         #[method(selectsInsertedObjects)]
         pub unsafe fn selectsInsertedObjects(&self) -> bool;
 
+        /// Setter for [`selectsInsertedObjects`][Self::selectsInsertedObjects].
         #[method(setSelectsInsertedObjects:)]
         pub unsafe fn setSelectsInsertedObjects(&self, selects_inserted_objects: bool);
 
         #[method(alwaysUsesMultipleValuesMarker)]
         pub unsafe fn alwaysUsesMultipleValuesMarker(&self) -> bool;
 
+        /// Setter for [`alwaysUsesMultipleValuesMarker`][Self::alwaysUsesMultipleValuesMarker].
         #[method(setAlwaysUsesMultipleValuesMarker:)]
         pub unsafe fn setAlwaysUsesMultipleValuesMarker(
             &self,

@@ -159,6 +159,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Graphics state functions. *
     pub fn CGContextSaveGState(c: CGContextRef);
 }
 
@@ -167,6 +168,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Coordinate space transformations. *
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextScaleCTM(c: CGContextRef, sx: CGFloat, sy: CGFloat);
 }
@@ -192,6 +194,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Drawing attribute functions. *
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetLineWidth(c: CGContextRef, width: CGFloat);
 }
@@ -236,6 +239,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Path construction functions. *
     pub fn CGContextBeginPath(c: CGContextRef);
 }
 
@@ -278,6 +282,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Path construction convenience functions. *
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextAddRect(c: CGContextRef, rect: CGRect);
 }
@@ -332,6 +337,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Path information functions. *
     pub fn CGContextIsPathEmpty(c: CGContextRef) -> bool;
 }
 
@@ -360,10 +366,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Path drawing functions. *
     pub fn CGContextDrawPath(c: CGContextRef, mode: CGPathDrawingMode);
 }
 
 extern "C-unwind" {
+    /// Path drawing convenience functions. *
     pub fn CGContextFillPath(c: CGContextRef);
 }
 
@@ -416,6 +424,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Clipping functions. *
     pub fn CGContextClip(c: CGContextRef);
 }
 
@@ -438,6 +447,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Clipping convenience functions. *
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextClipToRect(c: CGContextRef, rect: CGRect);
 }
@@ -448,6 +458,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Primitive color functions. *
     #[cfg(feature = "CGColor")]
     pub fn CGContextSetFillColorWithColor(c: CGContextRef, color: CGColorRef);
 }
@@ -458,6 +469,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Color space functions. *
     #[cfg(feature = "CGColorSpace")]
     pub fn CGContextSetFillColorSpace(c: CGContextRef, space: CGColorSpaceRef);
 }
@@ -468,6 +480,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Color functions. *
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetFillColor(c: CGContextRef, components: *const CGFloat);
 }
@@ -478,6 +491,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Pattern functions. *
     #[cfg(all(feature = "CGPattern", feature = "objc2-core-foundation"))]
     pub fn CGContextSetFillPattern(
         c: CGContextRef,
@@ -501,6 +515,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Color convenience functions. *
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetGrayFillColor(c: CGContextRef, gray: CGFloat, alpha: CGFloat);
 }
@@ -557,6 +572,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Rendering intent. *
     #[cfg(feature = "CGColorSpace")]
     pub fn CGContextSetRenderingIntent(c: CGContextRef, intent: CGColorRenderingIntent);
 }
@@ -570,6 +586,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Image functions. *
     #[cfg(all(feature = "CGImage", feature = "objc2-core-foundation"))]
     pub fn CGContextDrawImage(c: CGContextRef, rect: CGRect, image: CGImageRef);
 }
@@ -657,6 +674,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Text functions. *
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetCharacterSpacing(c: CGContextRef, spacing: CGFloat);
 }
@@ -706,11 +724,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// PDF functions. *
     #[cfg(feature = "CGPDFPage")]
     pub fn CGContextDrawPDFPage(c: CGContextRef, page: CGPDFPageRef);
 }
 
 extern "C-unwind" {
+    /// Output page functions. *
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextBeginPage(c: CGContextRef, media_box: *const CGRect);
 }
@@ -720,6 +740,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Context functions. *
     pub fn CGContextRetain(c: CGContextRef) -> CGContextRef;
 }
 
@@ -780,6 +801,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Transparency layer support. *
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextBeginTransparencyLayer(c: CGContextRef, auxiliary_info: CFDictionaryRef);
 }
@@ -798,6 +820,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// User space to device space tranformations. *
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextGetUserSpaceToDeviceSpaceTransform(c: CGContextRef) -> CGAffineTransform;
 }

@@ -112,6 +112,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSSoundDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSSoundDelegate>>);
 
@@ -121,18 +122,21 @@ extern_methods!(
         #[method(volume)]
         pub unsafe fn volume(&self) -> c_float;
 
+        /// Setter for [`volume`][Self::volume].
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
         #[method(currentTime)]
         pub unsafe fn currentTime(&self) -> NSTimeInterval;
 
+        /// Setter for [`currentTime`][Self::currentTime].
         #[method(setCurrentTime:)]
         pub unsafe fn setCurrentTime(&self, current_time: NSTimeInterval);
 
         #[method(loops)]
         pub unsafe fn loops(&self) -> bool;
 
+        /// Setter for [`loops`][Self::loops].
         #[method(setLoops:)]
         pub unsafe fn setLoops(&self, loops: bool);
 
@@ -141,6 +145,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSSoundPlaybackDeviceIdentifier>>;
 
+        /// Setter for [`playbackDeviceIdentifier`][Self::playbackDeviceIdentifier].
         #[method(setPlaybackDeviceIdentifier:)]
         pub unsafe fn setPlaybackDeviceIdentifier(
             &self,

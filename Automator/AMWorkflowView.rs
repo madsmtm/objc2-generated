@@ -49,6 +49,7 @@ extern_methods!(
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        /// Setter for [`isEditable`][Self::isEditable].
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
@@ -58,6 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "AMWorkflowController")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`workflowController`][Self::workflowController].
         #[method(setWorkflowController:)]
         pub unsafe fn setWorkflowController(
             &self,

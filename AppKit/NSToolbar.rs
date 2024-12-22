@@ -92,15 +92,22 @@ unsafe impl NSObjectProtocol for NSToolbar {}
 
 extern_methods!(
     unsafe impl NSToolbar {
+        /// The identifier is used to form the toolbar's autosave name.
+        /// Toolbars with the same identifier are implicitly synchronized so that they maintain the same state.
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSToolbarIdentifier,
         ) -> Retained<Self>;
 
+        /// Calls through to -initWithIdentifier: with an empty string identifier.
+        /// Customizable toolbars should use `-initWithIdentifier:` with a unique identifier instead.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Inserts an item with the specified identifier in the receiving toolbar at the specified index.
+        ///
+        /// Any change made will be propagated immediately to all other toolbars with the same identifier.
         #[method(insertItemWithItemIdentifier:atIndex:)]
         pub unsafe fn insertItemWithItemIdentifier_atIndex(
             &self,
@@ -108,105 +115,170 @@ extern_methods!(
             index: NSInteger,
         );
 
+        /// Removes the item at the specified index in the receiving toolbar.
+        ///
+        /// Any change made will be propagated immediately to all other toolbars with the same identifier.
         #[method(removeItemAtIndex:)]
         pub unsafe fn removeItemAtIndex(&self, index: NSInteger);
 
+        /// Removes the item with matching `itemIdentifier` in the receiving toolbar. If multiple items share the same identifier (as is the case with space items) all matching items will be removed. To remove only a single space item, use `-removeItemAtIndex:` instead.
+        ///
+        /// Any change made will be propagated immediately to all other toolbars with the same identifier.
         #[method(removeItemWithItemIdentifier:)]
         pub unsafe fn removeItemWithItemIdentifier(
             &self,
             item_identifier: &NSToolbarItemIdentifier,
         );
 
+        /// Customizable toolbars must have a delegate, and must implement the required `NSToolbarDelegate` methods.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSToolbarDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSToolbarDelegate>>);
 
+        /// Toggles the visibility of the toolbar.
+        /// This property may be modified by the user in toolbars with `allowsUserCustomization` enabled.
+        /// This property is key value observable on macOS 14.0 and higher.
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;
 
+        /// Setter for [`isVisible`][Self::isVisible].
         #[method(setVisible:)]
         pub unsafe fn setVisible(&self, visible: bool);
 
+        /// Customizable toolbars (those with delegates) can show a palette which allows users to populate the toolbar with individual items or to reset the toolbar to some default set of items.
+        /// The items and item sets in the palette are specified by the delegate (`-toolbarAllowedItemIdentifiers:` and `-toolbarDefaultItemIdentifiers:`).
+        /// When the user is done configuring, they will dismiss the palette.
         #[method(runCustomizationPalette:)]
         pub unsafe fn runCustomizationPalette(&self, sender: Option<&AnyObject>);
 
+        /// Whether or not the customization palette is currently running.
+        /// On macOS 15.0 and above this property is key value observable.
         #[method(customizationPaletteIsRunning)]
         pub unsafe fn customizationPaletteIsRunning(&self) -> bool;
 
+        /// The current display mode of items in the toolbar.
+        /// In toolbars with `allowsDisplayModeCustomization` enabled this is a user modifiable property.
+        /// This property is key value observable.
         #[method(displayMode)]
         pub unsafe fn displayMode(&self) -> NSToolbarDisplayMode;
 
+        /// Setter for [`displayMode`][Self::displayMode].
         #[method(setDisplayMode:)]
         pub unsafe fn setDisplayMode(&self, display_mode: NSToolbarDisplayMode);
 
+        /// Sets the toolbar's selected item by identifier.
+        /// Use this to force an item identifier to be selected.
+        /// Toolbar manages selection of image items automatically.
+        /// This method can be used to select identifiers of custom view items, or to force a selection change.
+        /// See `-toolbarSelectableItemIdentifiers:` delegate method for more details.
+        /// This property is key value observable.
         #[method_id(@__retain_semantics Other selectedItemIdentifier)]
         pub unsafe fn selectedItemIdentifier(&self) -> Option<Retained<NSToolbarItemIdentifier>>;
 
+        /// Setter for [`selectedItemIdentifier`][Self::selectedItemIdentifier].
         #[method(setSelectedItemIdentifier:)]
         pub unsafe fn setSelectedItemIdentifier(
             &self,
             selected_item_identifier: Option<&NSToolbarItemIdentifier>,
         );
 
+        /// This flag controls whether or not users can configure the toolbar by dragging items around, and whether or not the customization palette can be used.
+        /// The default value is NO, but can be changed at any time.
+        /// For instance, a developer may not want users to be able to edit the toolbar while some event is being processed.
         #[method(allowsUserCustomization)]
         pub unsafe fn allowsUserCustomization(&self) -> bool;
 
+        /// Setter for [`allowsUserCustomization`][Self::allowsUserCustomization].
         #[method(setAllowsUserCustomization:)]
         pub unsafe fn setAllowsUserCustomization(&self, allows_user_customization: bool);
 
+        /// Whether or not the user is allowed to change display modes at run time.
+        /// This functionality is independent of customizing the order of the items themselves.
+        /// Only disable when the functionality or legibility of your toolbar could not be improved by another display mode.
+        /// The user's selection will be persisted using the toolbar's `identifier` when `autosavesConfiguration` is enabled.
+        /// The default is YES for apps linked on macOS 15.0 and above.
         #[method(allowsDisplayModeCustomization)]
         pub unsafe fn allowsDisplayModeCustomization(&self) -> bool;
 
+        /// Setter for [`allowsDisplayModeCustomization`][Self::allowsDisplayModeCustomization].
         #[method(setAllowsDisplayModeCustomization:)]
         pub unsafe fn setAllowsDisplayModeCustomization(
             &self,
             allows_display_mode_customization: bool,
         );
 
+        /// All toolbars with the same name will share the same display attributes, and item order.
+        /// If a toolbar autosaves its configuration, the item identifier will be used as the autosave name.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSToolbarIdentifier>;
 
         #[cfg(feature = "NSToolbarItem")]
+        /// Allows you to access all current items in the toolbar.
         #[method_id(@__retain_semantics Other items)]
         pub unsafe fn items(&self) -> Retained<NSArray<NSToolbarItem>>;
 
         #[cfg(feature = "NSToolbarItem")]
+        /// Allows you to access the current visible items (non clipped).
         #[method_id(@__retain_semantics Other visibleItems)]
         pub unsafe fn visibleItems(&self) -> Option<Retained<NSArray<NSToolbarItem>>>;
 
+        /// An array of itemIdentifiers that represent the current items in the toolbar.
+        /// Setting this property will set the current items in the toolbar by diffing against items that already exist.
+        /// Use this with great caution if `allowsUserCustomization` is enabled as it will override any customizations the user has made.
+        /// This property is key value observable.
         #[method_id(@__retain_semantics Other itemIdentifiers)]
         pub unsafe fn itemIdentifiers(&self) -> Retained<NSArray<NSToolbarItemIdentifier>>;
 
+        /// Setter for [`itemIdentifiers`][Self::itemIdentifiers].
         #[method(setItemIdentifiers:)]
         pub unsafe fn setItemIdentifiers(
             &self,
             item_identifiers: &NSArray<NSToolbarItemIdentifier>,
         );
 
+        /// Items with centered identifiers will be centered together in the Toolbar relative to the window assuming space allows.
+        /// The order of items is initially defined by the default set of identifiers, but may be customized by the user.
+        /// Centered items may not be moved outside of the center set of items by the user.
+        /// This property is archived.
         #[method_id(@__retain_semantics Other centeredItemIdentifiers)]
         pub unsafe fn centeredItemIdentifiers(&self) -> Retained<NSSet<NSToolbarItemIdentifier>>;
 
+        /// Setter for [`centeredItemIdentifiers`][Self::centeredItemIdentifiers].
         #[method(setCenteredItemIdentifiers:)]
         pub unsafe fn setCenteredItemIdentifiers(
             &self,
             centered_item_identifiers: &NSSet<NSToolbarItemIdentifier>,
         );
 
+        /// If `autosavesConfiguration` is YES, the toolbar will automatically write changes the user makes to user defaults.
+        /// Customizable toolbars will want to set this flag to YES.
+        /// Setting this to NO means changes in configuration are not written automatically, however you can use the `configurationDictionary` method to do it yourself.
+        /// Default is NO.
         #[method(autosavesConfiguration)]
         pub unsafe fn autosavesConfiguration(&self) -> bool;
 
+        /// Setter for [`autosavesConfiguration`][Self::autosavesConfiguration].
         #[method(setAutosavesConfiguration:)]
         pub unsafe fn setAutosavesConfiguration(&self, autosaves_configuration: bool);
 
+        /// Typically you should not invoke this method.
+        /// This method is called on window updates with the purpose of validating each of the visible items.
+        /// The toolbar will iterate through the list of visible items, sending each a `-validate` message.
+        /// If this method is invoked directly, all visible items including those with `autovalidates` disabled will get a `-validate` message.
         #[method(validateVisibleItems)]
         pub unsafe fn validateVisibleItems(&self);
 
+        /// When YES, the receiver can dynamically create toolbar items for Action extensions in the toolbar configuration panel.
+        /// To be included, an extension needs to declare NSExtensionServiceAllowsToolbarItem=YES in its Info.plist.
+        /// The default value is NO.
         #[method(allowsExtensionItems)]
         pub unsafe fn allowsExtensionItems(&self) -> bool;
 
+        /// Setter for [`allowsExtensionItems`][Self::allowsExtensionItems].
         #[method(setAllowsExtensionItems:)]
         pub unsafe fn setAllowsExtensionItems(&self, allows_extension_items: bool);
     }
@@ -224,6 +296,12 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbardelegate?language=objc)
     pub unsafe trait NSToolbarDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSToolbarItem")]
+        /// Given an item identifier, this method returns an item.
+        /// Note that it is expected that each toolbar receives its own distinct copies and each time this method is called a new item must be returned.
+        /// If the item has a custom view, that view should be in place when the item is returned.
+        /// Finally, do not assume the returned item is going to be added as an active item in the toolbar.
+        /// In fact, the toolbar may ask for items here in order to construct the customization palette.
+        /// If `willBeInsertedIntoToolbar` is YES, the returned item will be inserted, and you can expect `toolbarWillAddItem:` is about to be posted.
         #[optional]
         #[method_id(@__retain_semantics Other toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:)]
         unsafe fn toolbar_itemForItemIdentifier_willBeInsertedIntoToolbar(
@@ -233,6 +311,8 @@ extern_protocol!(
             flag: bool,
         ) -> Option<Retained<NSToolbarItem>>;
 
+        /// Returns the ordered list of items to be shown in the toolbar by default.
+        /// If during initialization, no overriding values are found in the user defaults, or if the user chooses to revert to the default items this set will be used.
         #[optional]
         #[method_id(@__retain_semantics Other toolbarDefaultItemIdentifiers:)]
         unsafe fn toolbarDefaultItemIdentifiers(
@@ -240,6 +320,11 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Retained<NSArray<NSToolbarItemIdentifier>>;
 
+        /// Returns the list of all allowed items by identifier.
+        /// By default, the toolbar does not assume any items are allowed so every allowed item must be explicitly listed.
+        /// The set of allowed items is used to construct the customization palette.
+        /// The order of items does not necessarily guarantee the order of appearance in the palette.
+        /// At minimum, you should return the default item list.
         #[optional]
         #[method_id(@__retain_semantics Other toolbarAllowedItemIdentifiers:)]
         unsafe fn toolbarAllowedItemIdentifiers(
@@ -247,6 +332,12 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Retained<NSArray<NSToolbarItemIdentifier>>;
 
+        /// Optional method.
+        /// Those wishing to indicate item selection in a toolbar should implement this method to return a non-empty array of selectable item identifiers.
+        /// If implemented, the toolbar will remember and display the selected item with a special highlight.
+        /// A selected item is one whose item identifier matches the current selected item identifier.
+        /// Clicking on an item whose identifier is selectable will automatically update the toolbar's `selectedItemIdentifier` when possible.
+        /// See `selectedItemIdentifier` for more details.
         #[optional]
         #[method_id(@__retain_semantics Other toolbarSelectableItemIdentifiers:)]
         unsafe fn toolbarSelectableItemIdentifiers(
@@ -254,6 +345,7 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Retained<NSArray<NSToolbarItemIdentifier>>;
 
+        /// Items in this set cannot be dragged or removed by the user.
         #[optional]
         #[method_id(@__retain_semantics Other toolbarImmovableItemIdentifiers:)]
         unsafe fn toolbarImmovableItemIdentifiers(
@@ -261,6 +353,9 @@ extern_protocol!(
             toolbar: &NSToolbar,
         ) -> Retained<NSSet<NSToolbarItemIdentifier>>;
 
+        /// Whether or not an item can be moved to a specified position in the toolbar.
+        /// If implemented, this method will be called during a user drag and does not necessarily indicate the final position of an item.
+        /// An index of NSNotFound indicates the item would be removed from the toolbar.
         #[optional]
         #[method(toolbar:itemIdentifier:canBeInsertedAtIndex:)]
         unsafe fn toolbar_itemIdentifier_canBeInsertedAtIndex(
@@ -270,10 +365,19 @@ extern_protocol!(
             index: NSInteger,
         ) -> bool;
 
+        /// Before a new item is added to the toolbar, this notification is posted.
+        /// This is the best place to notice a new item is going into the toolbar.
+        /// For instance, if you need to cache a reference to the toolbar item or need to set up some initial state, this is the best place to do it.
+        /// The notification object is the toolbar to which the item is being added.
+        /// The item being added and its new index can be found by referencing `NSToolbarItemKey` and `NSToolbarNewIndexKey` in the userInfo dictionary respectively.
         #[optional]
         #[method(toolbarWillAddItem:)]
         unsafe fn toolbarWillAddItem(&self, notification: &NSNotification);
 
+        /// After an item is removed from a toolbar the notification is sent.
+        /// This allows the chance to tear down information related to the item that may have been cached.
+        /// The notification object is the toolbar from which the item is being removed.
+        /// The item being removed is found by referencing the `NSToolbarItemKey` in the userInfo.
         #[optional]
         #[method(toolbarDidRemoveItem:)]
         unsafe fn toolbarDidRemoveItem(&self, notification: &NSNotification);
@@ -283,7 +387,9 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarwilladditemnotification?language=objc)
+    /// Notifications
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarwilladditemnotification?language=objc)
     pub static NSToolbarWillAddItemNotification: &'static NSNotificationName;
 }
 
@@ -299,6 +405,7 @@ extern_methods!(
         #[method(sizeMode)]
         pub unsafe fn sizeMode(&self) -> NSToolbarSizeMode;
 
+        /// Setter for [`sizeMode`][Self::sizeMode].
         #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
         #[method(setSizeMode:)]
         pub unsafe fn setSizeMode(&self, size_mode: NSToolbarSizeMode);
@@ -307,6 +414,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other centeredItemIdentifier)]
         pub unsafe fn centeredItemIdentifier(&self) -> Option<Retained<NSToolbarItemIdentifier>>;
 
+        /// Setter for [`centeredItemIdentifier`][Self::centeredItemIdentifier].
         #[deprecated = "Use the centeredItemIdentifiers property instead"]
         #[method(setCenteredItemIdentifier:)]
         pub unsafe fn setCenteredItemIdentifier(
@@ -320,6 +428,7 @@ extern_methods!(
         pub unsafe fn fullScreenAccessoryView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// Setter for [`fullScreenAccessoryView`][Self::fullScreenAccessoryView].
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead"]
         #[method(setFullScreenAccessoryView:)]
         pub unsafe fn setFullScreenAccessoryView(
@@ -333,6 +442,7 @@ extern_methods!(
         pub unsafe fn fullScreenAccessoryViewMinHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`fullScreenAccessoryViewMinHeight`][Self::fullScreenAccessoryViewMinHeight].
         #[deprecated = "Use NSTitlebarAccessoryViewController and its fullScreenMinHeight property with NSWindow instead."]
         #[method(setFullScreenAccessoryViewMinHeight:)]
         pub unsafe fn setFullScreenAccessoryViewMinHeight(
@@ -346,6 +456,7 @@ extern_methods!(
         pub unsafe fn fullScreenAccessoryViewMaxHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`fullScreenAccessoryViewMaxHeight`][Self::fullScreenAccessoryViewMaxHeight].
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead. The max height of a titlebar accessory is implied by its view's height."]
         #[method(setFullScreenAccessoryViewMaxHeight:)]
         pub unsafe fn setFullScreenAccessoryViewMaxHeight(
@@ -357,6 +468,7 @@ extern_methods!(
         #[method(showsBaselineSeparator)]
         pub unsafe fn showsBaselineSeparator(&self) -> bool;
 
+        /// Setter for [`showsBaselineSeparator`][Self::showsBaselineSeparator].
         #[deprecated = "No longer supported"]
         #[method(setShowsBaselineSeparator:)]
         pub unsafe fn setShowsBaselineSeparator(&self, shows_baseline_separator: bool);

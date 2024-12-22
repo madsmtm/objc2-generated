@@ -8,7 +8,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration?language=objc)
+    /// The platform configuration for booting macOS on Apple Silicon.
+    ///
+    /// When creating a virtual machine from scratch, the `hardwareModel` and `auxiliaryStorage` depend on the restore image
+    /// that will be used to install macOS.
+    ///
+    /// To choose the hardware model, start from VZMacOSRestoreImage.mostFeaturefulSupportedConfiguration to get a supported configuration, then
+    /// use its VZMacOSConfigurationRequirements.hardwareModel property to get the hardware model.
+    /// Use the hardware model to set up VZMacPlatformConfiguration and to initialize a new auxiliary storage with
+    /// -[VZMacAuxiliaryStorage initCreatingStorageAtURL:hardwareModel:options:error:].
+    ///
+    /// When a virtual machine is saved to disk then loaded again, the `hardwareModel`, `machineIdentifier` and `auxiliaryStorage`
+    /// must be restored to their original values.
+    ///
+    /// If multiple virtual machines are created from the same configuration, each should have a unique  `auxiliaryStorage` and `machineIdentifier`.
+    ///
+    /// See also: VZMacOSRestoreImage
+    ///
+    /// See also: VZMacOSConfigurationRequirements
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration?language=objc)
     #[unsafe(super(VZPlatformConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZPlatformConfiguration")]
@@ -33,26 +52,37 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZMacHardwareModel")]
+        /// The Mac hardware model.
         #[method_id(@__retain_semantics Other hardwareModel)]
         pub unsafe fn hardwareModel(&self) -> Retained<VZMacHardwareModel>;
 
         #[cfg(feature = "VZMacHardwareModel")]
+        /// Setter for [`hardwareModel`][Self::hardwareModel].
         #[method(setHardwareModel:)]
         pub unsafe fn setHardwareModel(&self, hardware_model: &VZMacHardwareModel);
 
         #[cfg(feature = "VZMacMachineIdentifier")]
+        /// The unique Mac machine identifier.
+        ///
+        /// Running two virtual machines concurrently with the same identifier results in undefined behavior in the guest operating system.
         #[method_id(@__retain_semantics Other machineIdentifier)]
         pub unsafe fn machineIdentifier(&self) -> Retained<VZMacMachineIdentifier>;
 
         #[cfg(feature = "VZMacMachineIdentifier")]
+        /// Setter for [`machineIdentifier`][Self::machineIdentifier].
         #[method(setMachineIdentifier:)]
         pub unsafe fn setMachineIdentifier(&self, machine_identifier: &VZMacMachineIdentifier);
 
         #[cfg(feature = "VZMacAuxiliaryStorage")]
+        /// The Mac auxiliary storage.
+        ///
+        /// When creating a virtual machine from scratch, the hardware model of the `auxiliaryStorage` must match the hardware model of
+        /// the `hardwareModel` property.
         #[method_id(@__retain_semantics Other auxiliaryStorage)]
         pub unsafe fn auxiliaryStorage(&self) -> Option<Retained<VZMacAuxiliaryStorage>>;
 
         #[cfg(feature = "VZMacAuxiliaryStorage")]
+        /// Setter for [`auxiliaryStorage`][Self::auxiliaryStorage].
         #[method(setAuxiliaryStorage:)]
         pub unsafe fn setAuxiliaryStorage(&self, auxiliary_storage: Option<&VZMacAuxiliaryStorage>);
     }

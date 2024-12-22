@@ -10,11 +10,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchart?language=objc)
+    /// Chart or graph container elements may adopt this protocol to enable Audio Graph support.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchart?language=objc)
     pub unsafe trait AXChart: NSObjectProtocol {
         #[method_id(@__retain_semantics Other accessibilityChartDescriptor)]
         unsafe fn accessibilityChartDescriptor(&self) -> Option<Retained<AXChartDescriptor>>;
 
+        /// Setter for [`accessibilityChartDescriptor`][Self::accessibilityChartDescriptor].
         #[method(setAccessibilityChartDescriptor:)]
         unsafe fn setAccessibilityChartDescriptor(
             &self,
@@ -26,17 +29,26 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdataaxisdescriptor?language=objc)
+    /// Describes a data axis for the chart (e.g. X, Y, etc.)
+    /// Each AXChart requires at least two AXDataAxis objects
+    /// to describe, at minimum, and X and a Y axis.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdataaxisdescriptor?language=objc)
     pub unsafe trait AXDataAxisDescriptor: NSCopying {
+        /// The name or title of this axis.
         #[method_id(@__retain_semantics Other title)]
         unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         unsafe fn setTitle(&self, title: &NSString);
 
+        /// An attributed version of the title of this axis.
+        /// When set, this will be used instead of `title`.
         #[method_id(@__retain_semantics Other attributedTitle)]
         unsafe fn attributedTitle(&self) -> Retained<NSAttributedString>;
 
+        /// Setter for [`attributedTitle`][Self::attributedTitle].
         #[method(setAttributedTitle:)]
         unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
     }
@@ -82,40 +94,52 @@ unsafe impl NSObjectProtocol for AXNumericDataAxisDescriptor {}
 
 extern_methods!(
     unsafe impl AXNumericDataAxisDescriptor {
+        /// The scale to use for this axis. This should match the visual representation in the chart.
+        /// If not set explicitly, this will default to `linear`.
         #[method(scaleType)]
         pub unsafe fn scaleType(&self) -> AXNumericDataAxisDescriptorScale;
 
+        /// Setter for [`scaleType`][Self::scaleType].
         #[method(setScaleType:)]
         pub unsafe fn setScaleType(&self, scale_type: AXNumericDataAxisDescriptorScale);
 
+        /// The minimum displayable value for the axis.
         #[method(lowerBound)]
         pub unsafe fn lowerBound(&self) -> c_double;
 
+        /// Setter for [`lowerBound`][Self::lowerBound].
         #[method(setLowerBound:)]
         pub unsafe fn setLowerBound(&self, lower_bound: c_double);
 
+        /// The maximum displayable value for the axis.
         #[method(upperBound)]
         pub unsafe fn upperBound(&self) -> c_double;
 
+        /// Setter for [`upperBound`][Self::upperBound].
         #[method(setUpperBound:)]
         pub unsafe fn setUpperBound(&self, upper_bound: c_double);
 
         #[cfg(feature = "block2")]
+        /// Provides a value description to be spoken for a particular data value on this axis.
+        /// Use this to format data values to string representations that include units, dates, times, etc.
         #[method(valueDescriptionProvider)]
         pub unsafe fn valueDescriptionProvider(
             &self,
         ) -> NonNull<block2::Block<dyn Fn(c_double) -> NonNull<NSString>>>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`valueDescriptionProvider`][Self::valueDescriptionProvider].
         #[method(setValueDescriptionProvider:)]
         pub unsafe fn setValueDescriptionProvider(
             &self,
             value_description_provider: &block2::Block<dyn Fn(c_double) -> NonNull<NSString>>,
         );
 
+        /// The positions of any gridlines along this axis.
         #[method_id(@__retain_semantics Other gridlinePositions)]
         pub unsafe fn gridlinePositions(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`gridlinePositions`][Self::gridlinePositions].
         #[method(setGridlinePositions:)]
         pub unsafe fn setGridlinePositions(&self, gridline_positions: &NSArray<NSNumber>);
 
@@ -168,9 +192,14 @@ unsafe impl NSObjectProtocol for AXCategoricalDataAxisDescriptor {}
 
 extern_methods!(
     unsafe impl AXCategoricalDataAxisDescriptor {
+        /// The order of the category values for this axis.
+        /// This list should contain every possible category value for this axis, in the order they are displayed visually in the graph or legend.
+        /// For example, if your categorical axis represented 'blood type', and the legend contained 'AB, A, B, O' in that order,
+        /// you would provide an array containing "AB", "A", "B" and "O" in the same order.
         #[method_id(@__retain_semantics Other categoryOrder)]
         pub unsafe fn categoryOrder(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`categoryOrder`][Self::categoryOrder].
         #[method(setCategoryOrder:)]
         pub unsafe fn setCategoryOrder(&self, category_order: &NSArray<NSString>);
 
@@ -197,7 +226,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdatapointvalue?language=objc)
+    /// Describes a single data value, either numeric or categorical. Only the `number`
+    /// property will be used for data points in a numeric axis, and only the `category`
+    /// property will be used for data points in a categorical axis.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdatapointvalue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXDataPointValue;
@@ -216,12 +249,14 @@ extern_methods!(
         #[method(number)]
         pub unsafe fn number(&self) -> c_double;
 
+        /// Setter for [`number`][Self::number].
         #[method(setNumber:)]
         pub unsafe fn setNumber(&self, number: c_double);
 
         #[method_id(@__retain_semantics Other category)]
         pub unsafe fn category(&self) -> Retained<NSString>;
 
+        /// Setter for [`category`][Self::category].
         #[method(setCategory:)]
         pub unsafe fn setCategory(&self, category: &NSString);
 
@@ -240,7 +275,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdatapoint?language=objc)
+    /// Provides axis values for a single data point within a series.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdatapoint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXDataPoint;
@@ -256,33 +293,46 @@ unsafe impl NSObjectProtocol for AXDataPoint {}
 
 extern_methods!(
     unsafe impl AXDataPoint {
+        /// The x-axis value for this data point.
+        /// Should be a Double for a numeric x-axis or a String for a categorical x-axis.
         #[method_id(@__retain_semantics Other xValue)]
         pub unsafe fn xValue(&self) -> Retained<AXDataPointValue>;
 
+        /// Setter for [`xValue`][Self::xValue].
         #[method(setXValue:)]
         pub unsafe fn setXValue(&self, x_value: &AXDataPointValue);
 
+        /// The y-axis value for this data point.
         #[method_id(@__retain_semantics Other yValue)]
         pub unsafe fn yValue(&self) -> Option<Retained<AXDataPointValue>>;
 
+        /// Setter for [`yValue`][Self::yValue].
         #[method(setYValue:)]
         pub unsafe fn setYValue(&self, y_value: Option<&AXDataPointValue>);
 
+        /// Any additional values for additional axes for this data point.
+        /// These should be provided in the same order as their corresponding
+        /// `AXDataAxisDescriptor` objects in `AXChartDescriptor.additionalAxes`.
         #[method_id(@__retain_semantics Other additionalValues)]
         pub unsafe fn additionalValues(&self) -> Retained<NSArray<AXDataPointValue>>;
 
+        /// Setter for [`additionalValues`][Self::additionalValues].
         #[method(setAdditionalValues:)]
         pub unsafe fn setAdditionalValues(&self, additional_values: &NSArray<AXDataPointValue>);
 
+        /// A name or label for this data point.
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
+        /// An attributed version of the name or label for this data point.
         #[method_id(@__retain_semantics Other attributedLabel)]
         pub unsafe fn attributedLabel(&self) -> Option<Retained<NSAttributedString>>;
 
+        /// Setter for [`attributedLabel`][Self::attributedLabel].
         #[method(setAttributedLabel:)]
         pub unsafe fn setAttributedLabel(&self, attributed_label: Option<&NSAttributedString>);
 
@@ -319,7 +369,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdataseriesdescriptor?language=objc)
+    /// Provides information about a data series. A chart may have one or many data series.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdataseriesdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXDataSeriesDescriptor;
@@ -335,27 +387,36 @@ unsafe impl NSObjectProtocol for AXDataSeriesDescriptor {}
 
 extern_methods!(
     unsafe impl AXDataSeriesDescriptor {
+        /// The name or title of this data series.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
+        /// An attributed version of the name of this data series.
+        /// When set, this will be used instead of `name`.
         #[method_id(@__retain_semantics Other attributedName)]
         pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
 
+        /// Setter for [`attributedName`][Self::attributedName].
         #[method(setAttributedName:)]
         pub unsafe fn setAttributedName(&self, attributed_name: &NSAttributedString);
 
+        /// Whether or not this data series should be treated as continuous.
         #[method(isContinuous)]
         pub unsafe fn isContinuous(&self) -> bool;
 
+        /// Setter for [`isContinuous`][Self::isContinuous].
         #[method(setIsContinuous:)]
         pub unsafe fn setIsContinuous(&self, is_continuous: bool);
 
+        /// The data points that make up the series.
         #[method_id(@__retain_semantics Other dataPoints)]
         pub unsafe fn dataPoints(&self) -> Retained<NSArray<AXDataPoint>>;
 
+        /// Setter for [`dataPoints`][Self::dataPoints].
         #[method(setDataPoints:)]
         pub unsafe fn setDataPoints(&self, data_points: &NSArray<AXDataPoint>);
 
@@ -383,7 +444,10 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptorcontentdirection?language=objc)
+/// Describes the content direction of the chart (i.e. the direction in which the X axis is rendered).
+/// For example, a bar chart might be leftToRight, while a pie chart might be radialClockwise.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptorcontentdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -406,7 +470,9 @@ unsafe impl RefEncode for AXChartDescriptorContentDirection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor?language=objc)
+    /// The top-level descriptor object for an accessible chart.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXChartDescriptor;
@@ -422,27 +488,37 @@ unsafe impl NSObjectProtocol for AXChartDescriptor {}
 
 extern_methods!(
     unsafe impl AXChartDescriptor {
+        /// The title of the chart.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
+        /// An attributed version of the title of the chart.
+        /// When set, this will be used instead of `title`.
         #[method_id(@__retain_semantics Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
+        /// Setter for [`attributedTitle`][Self::attributedTitle].
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
+        /// A natural language summary of the key message or features of the chart.
+        /// e.g. "The chart shows that fuel efficiency decreases as vehicle weight increases."
         #[method_id(@__retain_semantics Other summary)]
         pub unsafe fn summary(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`summary`][Self::summary].
         #[method(setSummary:)]
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);
 
+        /// The direction of the chart's X axis.
         #[method(contentDirection)]
         pub unsafe fn contentDirection(&self) -> AXChartDescriptorContentDirection;
 
+        /// Setter for [`contentDirection`][Self::contentDirection].
         #[method(setContentDirection:)]
         pub unsafe fn setContentDirection(
             &self,
@@ -450,36 +526,48 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The bounds of the view area for visually rendering data values if applicable, provided in superview coordinates.
         #[method(contentFrame)]
         pub unsafe fn contentFrame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentFrame`][Self::contentFrame].
         #[method(setContentFrame:)]
         pub unsafe fn setContentFrame(&self, content_frame: CGRect);
 
+        /// A set of data series descriptors describing each series in the chart.
         #[method_id(@__retain_semantics Other series)]
         pub unsafe fn series(&self) -> Retained<NSArray<AXDataSeriesDescriptor>>;
 
+        /// Setter for [`series`][Self::series].
         #[method(setSeries:)]
         pub unsafe fn setSeries(&self, series: &NSArray<AXDataSeriesDescriptor>);
 
+        /// The axis descriptor for the chart's X axis.
         #[method_id(@__retain_semantics Other xAxis)]
         pub unsafe fn xAxis(&self) -> Retained<ProtocolObject<dyn AXDataAxisDescriptor>>;
 
+        /// Setter for [`xAxis`][Self::xAxis].
         #[method(setXAxis:)]
         pub unsafe fn setXAxis(&self, x_axis: &ProtocolObject<dyn AXDataAxisDescriptor>);
 
+        /// The axis descriptor for the chart's Y axis.
         #[method_id(@__retain_semantics Other yAxis)]
         pub unsafe fn yAxis(&self) -> Option<Retained<AXNumericDataAxisDescriptor>>;
 
+        /// Setter for [`yAxis`][Self::yAxis].
         #[method(setYAxis:)]
         pub unsafe fn setYAxis(&self, y_axis: Option<&AXNumericDataAxisDescriptor>);
 
+        /// Descriptors for additional categorical or numerical axes beyond x and y.
+        /// For example, in a visual chart, these values might be represented by the size
+        /// or color of data points.
         #[method_id(@__retain_semantics Other additionalAxes)]
         pub unsafe fn additionalAxes(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>>;
 
+        /// Setter for [`additionalAxes`][Self::additionalAxes].
         #[method(setAdditionalAxes:)]
         pub unsafe fn setAdditionalAxes(
             &self,
@@ -547,12 +635,16 @@ unsafe impl NSObjectProtocol for AXLiveAudioGraph {}
 
 extern_methods!(
     unsafe impl AXLiveAudioGraph {
+        /// Begins a live audio graph session.
         #[method(start)]
         pub unsafe fn start();
 
+        /// Sets the pitch of the audio graph's tone. This should be a normalized value in the range [0.0, 1.0], where 0 represents the minimum displayable y-axis value for your series
+        /// and 1 represents the maximum displayable y-axis value for your series.
         #[method(updateValue:)]
         pub unsafe fn updateValue(value: c_double);
 
+        /// Ends the live audio graph session.
         #[method(stop)]
         pub unsafe fn stop();
     }

@@ -10,7 +10,9 @@ use crate::*;
 pub type CBL2CAPPSM = u16;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbl2capchannel?language=objc)
+    /// A CBL2CAPChannel represents a live L2CAP connection to a remote device
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbl2capchannel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBL2CAPChannel;
@@ -21,15 +23,19 @@ unsafe impl NSObjectProtocol for CBL2CAPChannel {}
 extern_methods!(
     unsafe impl CBL2CAPChannel {
         #[cfg(feature = "CBPeer")]
+        /// The peer connected to the channel
         #[method_id(@__retain_semantics Other peer)]
         pub unsafe fn peer(&self) -> Option<Retained<CBPeer>>;
 
+        /// An NSStream used for reading data from the remote peer
         #[method_id(@__retain_semantics Other inputStream)]
         pub unsafe fn inputStream(&self) -> Option<Retained<NSInputStream>>;
 
+        /// An NSStream used for writing data to the peer
         #[method_id(@__retain_semantics Other outputStream)]
         pub unsafe fn outputStream(&self) -> Option<Retained<NSOutputStream>>;
 
+        /// The PSM (Protocol/Service Multiplexer) of the channel
         #[method(PSM)]
         pub unsafe fn PSM(&self) -> CBL2CAPPSM;
     }

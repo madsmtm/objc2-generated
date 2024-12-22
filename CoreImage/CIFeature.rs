@@ -10,7 +10,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeature?language=objc)
+    /// Generic feature found by a CIDetector.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeature?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFeature;
@@ -20,10 +22,12 @@ unsafe impl NSObjectProtocol for CIFeature {}
 
 extern_methods!(
     unsafe impl CIFeature {
+        /// The type of the feature.
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The bounds of the feature in the image it was detected in.
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> CGRect;
     }
@@ -41,27 +45,38 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetypeface?language=objc)
+    /// Specifies the type of a feature that is a face.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetypeface?language=objc)
     pub static CIFeatureTypeFace: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetyperectangle?language=objc)
+    /// Specifies the type of a feature that is a rectangle.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetyperectangle?language=objc)
     pub static CIFeatureTypeRectangle: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetypeqrcode?language=objc)
+    /// Specifies the type of a feature that is a QR code.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetypeqrcode?language=objc)
     pub static CIFeatureTypeQRCode: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetypetext?language=objc)
+    /// Specifies the type of a feature that is a text.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetypetext?language=objc)
     pub static CIFeatureTypeText: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifacefeature?language=objc)
+    /// A face feature found by a CIDetector.
+    /// All positions are relative to the original image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifacefeature?language=objc)
     #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFaceFeature;
@@ -72,6 +87,11 @@ unsafe impl NSObjectProtocol for CIFaceFeature {}
 extern_methods!(
     unsafe impl CIFaceFeature {
         #[cfg(feature = "objc2-core-foundation")]
+        /// coordinates of various cardinal points within a face.
+        ///
+        /// Note that the left eye is the eye on the left side of the face
+        /// from the observer's perspective. It is not the left eye from
+        /// the subject's perspective.
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> CGRect;
 
@@ -137,7 +157,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirectanglefeature?language=objc)
+    /// A rectangle feature found by a CIDetector
+    /// All positions are relative to the original image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirectanglefeature?language=objc)
     #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIRectangleFeature;

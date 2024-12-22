@@ -9,7 +9,35 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayquantizedmatrixmultiplication?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// A quantized matrix multiplication kernel: C = AB, where each input A and B can be quantized.
+    ///
+    /// The kernel works with 2-8 inputs, order of inputs: First all LHS inputs, then all RHS inputs.
+    /// The order of inputs for LUT based LHS or RHS: 1) quantized input 2) Lookup Table.
+    /// The order of inputs for affine LHS or RHS: 1) quantized input 2) scale 3) zeropoint 4) minValue.
+    /// The full order of inputs for the encode methods is:
+    /// `[LHS, RHS,
+    /// <LHS
+    /// quantization inputs>,
+    /// <RHS
+    /// quantization inputs>]`,
+    /// where `LHS` is the left input (quantized or float) `RHS` is the right input (quantized or float) and
+    /// `
+    /// <LHS
+    /// quantization inputs>` are the auxiliary quantization inputs for the LHS array (scales, zeropoints etc).
+    /// and `
+    /// <RHS
+    /// quantization inputs>` are the auxiliary quantization input for the RHS array.
+    /// The inputs are provided as a compacted `NSArray
+    /// <MPSNDArray
+    /// *>`, for example for computing
+    /// `C = A * B^T` where `A` is quantized with a LUT and `B` is quantized with affine quantization that
+    /// uses scale and minValue the array of inputs is:
+    /// ` [ Aq, Bq^T, ALUT, BScale^T, BMin^T ] `.
+    /// NOTE: For affine scale, zeropoint and minValue must have same transposes as quantized input.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayquantizedmatrixmultiplication?language=objc)
     #[unsafe(super(
         MPSNDArrayMatrixMultiplication,
         MPSNDArrayMultiaryKernel,
@@ -78,6 +106,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSNDArrayQuantization")]
+        /// Initializes a quantized matrix multiplication kernel.
+        ///
+        /// Parameter `leftQuantizationDescriptor`: The quantization definition for the LHS input.
+        ///
+        /// Parameter `rightQuantizationDescriptor`: The quantization definition for the RHS input.
+        ///
+        /// Returns: A new valid quantized matrix multiplication kernel.
         #[method_id(@__retain_semantics Init initWithDevice:leftQuantizationDescriptor:rightQuantizationDescriptor:)]
         pub unsafe fn initWithDevice_leftQuantizationDescriptor_rightQuantizationDescriptor(
             this: Allocated<Self>,
@@ -129,6 +164,14 @@ extern_methods!(
         feature = "MPSNDArrayMatrixMultiplication"
     ))]
     unsafe impl MPSNDArrayQuantizedMatrixMultiplication {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -154,7 +197,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraylutdequantize?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// A kernel which dequantizes a lookup-table based NDArray.
+    ///
+    /// The kernel works with 2 inputs: 1) The quantized input, 2) The LookUp table array.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraylutdequantize?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
@@ -213,6 +262,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
     unsafe impl MPSNDArrayLUTDequantize {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -234,7 +291,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayvectorlutdequantize?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// A kernel which dequantizes a lookup-table based NDArray with vector LUT support.
+    ///
+    /// The kernel works with 2 inputs: 1) The quantized input, 2) The LookUp table array.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayvectorlutdequantize?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
@@ -261,12 +324,21 @@ unsafe impl NSSecureCoding for MPSNDArrayVectorLUTDequantize {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
     unsafe impl MPSNDArrayVectorLUTDequantize {
+        /// Which axis in the destination will receive the vector component, must be less than 4.
         #[method(vectorAxis)]
         pub unsafe fn vectorAxis(&self) -> NSUInteger;
 
+        /// Setter for [`vectorAxis`][Self::vectorAxis].
         #[method(setVectorAxis:)]
         pub unsafe fn setVectorAxis(&self, vector_axis: NSUInteger);
 
+        /// Initializes a kernel for vector-based LUT dequantization.
+        ///
+        /// Parameter `device`: The Metal device to be used with this kernel.
+        ///
+        /// Parameter `axis`: The vector axis in the output.
+        ///
+        /// Returns: A new vector LUT dequantization kernel.
         #[method_id(@__retain_semantics Init initWithDevice:axis:)]
         pub unsafe fn initWithDevice_axis(
             this: Allocated<Self>,
@@ -312,6 +384,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
     unsafe impl MPSNDArrayVectorLUTDequantize {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -333,7 +413,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayaffineint4dequantize?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// A kernel which dequantizes an input with affine quantization scheme.
+    ///
+    /// The kernel works with 2-4 inputs, order of inputs: 1) quantized input, 2) scale, 3) zeropoint, 4) minValue
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayaffineint4dequantize?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
@@ -367,6 +453,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSNDArrayQuantization")]
+        /// Initializes a kernel for 4-bit affine dequantization.
+        ///
+        /// Parameter `device`: The Metal device to be used with this kernel.
+        ///
+        /// Parameter `quantizationDescriptor`: Describes the quantization scheme.
+        ///
+        /// Returns: A new vector LUT dequantization kernel.
         #[method_id(@__retain_semantics Init initWithDevice:quantizationDescriptor:)]
         pub unsafe fn initWithDevice_quantizationDescriptor(
             this: Allocated<Self>,
@@ -400,6 +493,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
     unsafe impl MPSNDArrayAffineInt4Dequantize {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

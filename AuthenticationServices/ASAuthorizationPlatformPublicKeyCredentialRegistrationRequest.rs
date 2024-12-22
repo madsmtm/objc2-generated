@@ -13,8 +13,17 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle(pub NSInteger);
 impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle {
+    /// Perform a request using the standard presentation style. This is the default style.
     #[doc(alias = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyleStandard")]
     pub const Standard: Self = Self(0);
+    /// Perform a conditional request. This style of request is meant to opportunistically add passkeys to existing
+    /// password-based accounts, at the discretion of the user's credential manager. It should be performed
+    /// shortly after a user has signed in with a password. If the user is using a password and passkey manager,
+    /// and certain internal conditions of that credential manager are met (e.g. the user signed in recently with a
+    /// matching password-based account and does not yet have a passkey for this account), then this request
+    /// may proceed automatically, without further user interaction. If any of the internal conditions are not met,
+    /// this request will return an error without showing any UI to the user, and may be retried the next time they
+    /// sign in.
     #[doc(alias = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyleConditional")]
     pub const Conditional: Self = Self(1);
 }
@@ -77,6 +86,7 @@ extern_methods!(
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput>>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput")]
+        /// Setter for [`largeBlob`][Self::largeBlob].
         #[method(setLargeBlob:)]
         pub unsafe fn setLargeBlob(
             &self,
@@ -90,6 +100,7 @@ extern_methods!(
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFRegistrationInput>>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFRegistrationInput")]
+        /// Setter for [`prf`][Self::prf].
         #[method(setPrf:)]
         pub unsafe fn setPrf(
             &self,
@@ -101,6 +112,7 @@ extern_methods!(
             &self,
         ) -> ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle;
 
+        /// Setter for [`requestStyle`][Self::requestStyle].
         #[method(setRequestStyle:)]
         pub unsafe fn setRequestStyle(
             &self,

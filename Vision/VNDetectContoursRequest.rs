@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectcontoursrequest?language=objc)
+    /// A request that will detect the contours for the edges in an image.
+    ///
+    ///
+    /// This request will produce a VNContoursObservation which describes the contours.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectcontoursrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -29,21 +34,31 @@ unsafe impl NSObjectProtocol for VNDetectContoursRequest {}
 extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectContoursRequest {
+        /// The amount to adjust the image's contrast by.
+        /// A value of +1.0 means that the contrast is not adjusted. The default value is +2.0.
+        ///
+        /// Contour detection works best with high contrast images. The default value of 2 doubles the image's contrast to aid in detection. If the image already has a high contrast then this value should be set to 1.
         #[method(contrastAdjustment)]
         pub unsafe fn contrastAdjustment(&self) -> c_float;
 
+        /// Setter for [`contrastAdjustment`][Self::contrastAdjustment].
         #[method(setContrastAdjustment:)]
         pub unsafe fn setContrastAdjustment(&self, contrast_adjustment: c_float);
 
+        /// The pixel value to use as a pivot for the contrast. Valid values are from [0.0 ... +1.0], or nil to auto-detect based on image intensity.
+        /// The default value is +0.5 (i.e. pixel center).
         #[method_id(@__retain_semantics Other contrastPivot)]
         pub unsafe fn contrastPivot(&self) -> Option<Retained<NSNumber>>;
 
+        /// Setter for [`contrastPivot`][Self::contrastPivot].
         #[method(setContrastPivot:)]
         pub unsafe fn setContrastPivot(&self, contrast_pivot: Option<&NSNumber>);
 
+        /// Identifies to the request if detecting a dark object on a light background, or vice versa, to aid in detection. The default value is YES.
         #[method(detectsDarkOnLight)]
         pub unsafe fn detectsDarkOnLight(&self) -> bool;
 
+        /// Setter for [`detectsDarkOnLight`][Self::detectsDarkOnLight].
         #[method(setDetectsDarkOnLight:)]
         pub unsafe fn setDetectsDarkOnLight(&self, detects_dark_on_light: bool);
 
@@ -51,17 +66,23 @@ extern_methods!(
         #[method(detectDarkOnLight)]
         pub unsafe fn detectDarkOnLight(&self) -> bool;
 
+        /// Setter for [`detectDarkOnLight`][Self::detectDarkOnLight].
         #[deprecated]
         #[method(setDetectDarkOnLight:)]
         pub unsafe fn setDetectDarkOnLight(&self, detect_dark_on_light: bool);
 
+        /// The limit on the maximum dimension of the image to be used for contour detection. Valid range of values is [64 ... NSUIntegerMax]. The default value is 512.
+        ///
+        /// As the contour request is compute intensive, the input image is scaled down maintaining aspect ratio (if needed), such that its maximum dimension is the value of this property. The image never gets scaled up, so specifying the maximum value ensures that the image gets processed in its original size and not downscaled.
         #[method(maximumImageDimension)]
         pub unsafe fn maximumImageDimension(&self) -> NSUInteger;
 
+        /// Setter for [`maximumImageDimension`][Self::maximumImageDimension].
         #[method(setMaximumImageDimension:)]
         pub unsafe fn setMaximumImageDimension(&self, maximum_image_dimension: NSUInteger);
 
         #[cfg(feature = "VNObservation")]
+        /// VNContoursObservation results.
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNContoursObservation>>>;
     }
@@ -71,10 +92,15 @@ extern_methods!(
     /// Methods declared on superclass `VNRequest`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectContoursRequest {
+        /// Creates a new VNRequest with no completion handler.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Creates a new VNRequest with an optional completion handler.
+        ///
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,

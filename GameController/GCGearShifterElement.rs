@@ -6,7 +6,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcgearshifterelement?language=objc)
+    /// A
+    /// `GCGearShifterElement`object represents an attached gear shifter.  Both
+    /// pattern and sequential gear shifters are supported.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcgearshifterelement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCGearShifterElement;
@@ -20,12 +24,23 @@ unsafe impl NSObjectProtocol for GCGearShifterElement {}
 extern_methods!(
     unsafe impl GCGearShifterElement {
         #[cfg(feature = "GCSwitchPositionInput")]
+        /// Get the input reporting the position of the pattern gear shifter.  If this
+        /// property is
+        /// `nil,`the gear shifter is not a pattern gear shifter.
+        ///
+        /// In the returned input, a position of
+        /// `-1`corresponds to the "reverse gear".
+        /// A position of
+        /// `0`corresponds to the neutral gear.
         #[method_id(@__retain_semantics Other patternInput)]
         pub unsafe fn patternInput(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GCSwitchPositionInput>>>;
 
         #[cfg(feature = "GCRelativeInput")]
+        /// Get the input reporting changes to the sequential gear shifter.  If this
+        /// property is
+        /// `nil,`the gear shifter is not a sequential gear shifter.
         #[method_id(@__retain_semantics Other sequentialInput)]
         pub unsafe fn sequentialInput(
             &self,

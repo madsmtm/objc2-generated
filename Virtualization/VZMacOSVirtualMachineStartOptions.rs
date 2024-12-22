@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosvirtualmachinestartoptions?language=objc)
+    /// Options controlling startup behavior of a virtual machine using VZMacOSBootLoader.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosvirtualmachinestartoptions?language=objc)
     #[unsafe(super(VZVirtualMachineStartOptions, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZVirtualMachineStartOptions")]
@@ -20,9 +22,11 @@ unsafe impl NSObjectProtocol for VZMacOSVirtualMachineStartOptions {}
 extern_methods!(
     #[cfg(feature = "VZVirtualMachineStartOptions")]
     unsafe impl VZMacOSVirtualMachineStartOptions {
+        /// Whether to start up from macOS Recovery.
         #[method(startUpFromMacOSRecovery)]
         pub unsafe fn startUpFromMacOSRecovery(&self) -> bool;
 
+        /// Setter for [`startUpFromMacOSRecovery`][Self::startUpFromMacOSRecovery].
         #[method(setStartUpFromMacOSRecovery:)]
         pub unsafe fn setStartUpFromMacOSRecovery(&self, start_up_from_mac_os_recovery: bool);
     }

@@ -42,6 +42,7 @@ extern_methods!(
         pub unsafe fn script(&self) -> Option<Retained<OSAScript>>;
 
         #[cfg(feature = "objc2-osa-kit")]
+        /// Setter for [`script`][Self::script].
         #[method(setScript:)]
         pub unsafe fn setScript(&self, script: Option<&OSAScript>);
     }

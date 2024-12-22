@@ -38,6 +38,7 @@ extern_methods!(
         ) -> Option<Retained<NSArray<CKUserIdentityLookupInfo>>>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
+        /// Setter for [`userIdentityLookupInfos`][Self::userIdentityLookupInfos].
         #[method(setUserIdentityLookupInfos:)]
         pub unsafe fn setUserIdentityLookupInfos(
             &self,
@@ -45,6 +46,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
+        /// Called once for each share participant created from a submitted user identity lookup info.
+        ///
+        ///
+        /// If the replacement callback
+        /// `perShareParticipantCompletionBlock`is set, this callback block is ignored.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated = "Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors"]
         #[method(shareParticipantFetchedBlock)]
         pub unsafe fn shareParticipantFetchedBlock(
@@ -52,6 +62,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<CKShareParticipant>)>;
 
         #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
+        /// Setter for [`shareParticipantFetchedBlock`][Self::shareParticipantFetchedBlock].
         #[deprecated = "Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors"]
         #[method(setShareParticipantFetchedBlock:)]
         pub unsafe fn setShareParticipantFetchedBlock(
@@ -66,6 +77,13 @@ extern_methods!(
             feature = "CKUserIdentityLookupInfo",
             feature = "block2"
         ))]
+        /// Called once for each lookup info.
+        ///
+        ///
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perShareParticipantCompletionBlock)]
         pub unsafe fn perShareParticipantCompletionBlock(
             &self,
@@ -78,6 +96,7 @@ extern_methods!(
             feature = "CKUserIdentityLookupInfo",
             feature = "block2"
         ))]
+        /// Setter for [`perShareParticipantCompletionBlock`][Self::perShareParticipantCompletionBlock].
         #[method(setPerShareParticipantCompletionBlock:)]
         pub unsafe fn setPerShareParticipantCompletionBlock(
             &self,
@@ -93,12 +112,31 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// This block is called when the operation completes.
+        ///
+        ///
+        /// The
+        ///
+        /// ```text
+        ///  -[NSOperation completionBlock]
+        /// ```
+        ///
+        /// will also be called if both are set.
+        /// If the error is
+        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of lookup infos to errors keyed off of
+        /// `CKPartialErrorsByItemIDKey.`These errors are repeats of those sent back in previous
+        /// `perShareParticipantCompletionBlock`invocations
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(fetchShareParticipantsCompletionBlock)]
         pub unsafe fn fetchShareParticipantsCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`fetchShareParticipantsCompletionBlock`][Self::fetchShareParticipantsCompletionBlock].
         #[method(setFetchShareParticipantsCompletionBlock:)]
         pub unsafe fn setFetchShareParticipantsCompletionBlock(
             &self,

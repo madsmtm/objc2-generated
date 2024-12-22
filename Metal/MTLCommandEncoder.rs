@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceusage?language=objc)
+/// Describes how a resource will be used by a shader through an argument buffer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceusage?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,7 +34,9 @@ unsafe impl RefEncode for MTLResourceUsage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbarrierscope?language=objc)
+/// Describes the types of resources that the a barrier operates on
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbarrierscope?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -57,27 +61,36 @@ unsafe impl RefEncode for MTLBarrierScope {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencoder?language=objc)
+    /// MTLCommandEncoder is the common interface for objects that write commands into MTLCommandBuffers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencoder?language=objc)
     pub unsafe trait MTLCommandEncoder: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
+        /// The device this resource was created against.
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
+        /// A string to help identify this object.
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
+        /// Declare that all command generation from this encoder is complete, and detach from the MTLCommandBuffer.
         #[method(endEncoding)]
         fn endEncoding(&self);
 
+        /// Inserts a debug string into the command buffer.  This does not change any API behavior, but can be useful when debugging.
         #[method(insertDebugSignpost:)]
         fn insertDebugSignpost(&self, string: &NSString);
 
+        /// Push a new named string onto a stack of string labels.
         #[method(pushDebugGroup:)]
         fn pushDebugGroup(&self, string: &NSString);
 
+        /// Pop the latest named string off of the stack.
         #[method(popDebugGroup)]
         fn popDebugGroup(&self);
     }

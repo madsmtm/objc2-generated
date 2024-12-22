@@ -7,12 +7,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydeviceserialnumber?language=objc)
+    /// Represents the serial number of the device that created the HKObject.
+    ///
+    /// The expected value type is NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydeviceserialnumber?language=objc)
     pub static HKMetadataKeyDeviceSerialNumber: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeybodytemperaturesensorlocation?language=objc)
+    /// Represents the location where a particular body temperature reading was taken.
+    ///
+    /// The expected value type is an NSNumber containing a HKBodyTemperatureSensorLocation value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeybodytemperaturesensorlocation?language=objc)
     pub static HKMetadataKeyBodyTemperatureSensorLocation: &'static NSString;
 }
 
@@ -57,7 +65,11 @@ unsafe impl RefEncode for HKBodyTemperatureSensorLocation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartratesensorlocation?language=objc)
+    /// Represents the location where a particular heart rate reading was taken.
+    ///
+    /// The expected value type is an NSNumber containing a HKHeartRateSensorLocation value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartratesensorlocation?language=objc)
     pub static HKMetadataKeyHeartRateSensorLocation: &'static NSString;
 }
 
@@ -92,7 +104,13 @@ unsafe impl RefEncode for HKHeartRateSensorLocation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartratemotioncontext?language=objc)
+    /// Represents the context in which a particular heart rate reading was taken.
+    ///
+    /// The expected value type is an NSNumber containing a HKHeartRateMotionContext value. The value is active
+    /// (HKHeartRateMotionContextActive) if the user is in motion or working out, sedentary if the user is
+    /// still (HKHeartRateMotionContextSedentary), or not set (HKHeartRateMotionContextNotSet) otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartratemotioncontext?language=objc)
     pub static HKMetadataKeyHeartRateMotionContext: &'static NSString;
 }
 
@@ -119,7 +137,13 @@ unsafe impl RefEncode for HKHeartRateMotionContext {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyusermotioncontext?language=objc)
+    /// Represents the user's motion when a particular sample was taken.
+    ///
+    /// The expected value type is an NSNumber containing a HKUserMotionContext value. The value is active
+    /// (HKUserMotionContextActive) if the user is in motion or working out, stationary if the user is
+    /// still (HKUserMotionContextStationary), or not set (HKUserMotionContextNotSet) otherwise.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyusermotioncontext?language=objc)
     pub static HKMetadataKeyUserMotionContext: &'static NSString;
 }
 
@@ -146,11 +170,17 @@ unsafe impl RefEncode for HKUserMotionContext {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeysessionestimate?language=objc)
+    /// Represents a per-session estimate prior to longitudinal smoothing applied to the value stored in the associated HKQuantitySample.
+    ///
+    /// The expected value type is an HKQuantity object with a unit compatible with the associated HKQuantitySample.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeysessionestimate?language=objc)
     pub static HKMetadataKeySessionEstimate: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartraterecoverytesttype?language=objc)
+/// Represents the test used to determine a Heart Rate Recovery value
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartraterecoverytesttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -173,122 +203,243 @@ unsafe impl RefEncode for HKHeartRateRecoveryTestType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartraterecoverytesttype?language=objc)
+    /// Represents the test used to determine a Heart Rate Recovery value
+    ///
+    /// The expected value type is an NSNumber containing a HKHeartRateRecoveryTestType value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartraterecoverytesttype?language=objc)
     pub static HKMetadataKeyHeartRateRecoveryTestType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartraterecoveryactivitytype?language=objc)
+    /// Represents the activity which preceded a Heart Rate Recovery value
+    ///
+    /// The expected value type is an NSNumber containing a HKWorkoutActivityType value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartraterecoveryactivitytype?language=objc)
     pub static HKMetadataKeyHeartRateRecoveryActivityType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartraterecoveryactivityduration?language=objc)
+    /// Represents the duration of activity which preceded a Heart Rate Recovery value
+    ///
+    /// The expected value type is an HKQuantity object compatible with a time unit.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartraterecoveryactivityduration?language=objc)
     pub static HKMetadataKeyHeartRateRecoveryActivityDuration: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartraterecoverymaxobservedrecoveryheartrate?language=objc)
+    /// Represents the maximum heart rate observed during the corresponding Heart Rate Recovery sample interval
+    ///
+    /// The expected value type is an HKQuantity object compatible with "count/min" unit (eg "BPM").
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartraterecoverymaxobservedrecoveryheartrate?language=objc)
     pub static HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyfoodtype?language=objc)
+    /// Represents the type of food that was consumed when creating an HKObject.
+    ///
+    /// This should be a short string representing the type of food, such as 'Banana'. The expected value type
+    /// is NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyfoodtype?language=objc)
     pub static HKMetadataKeyFoodType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyudideviceidentifier?language=objc)
+    /// Represents the device identifier portion of a device's UDI (Unique Device Identifier).
+    ///
+    /// The device identifier can be used to reference the GUDID (Globally Unique Device Identifier Database).
+    /// The expected value type is NSString.
+    ///
+    /// * Note that the use of this key is now discouraged in favor of the HKDevice class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyudideviceidentifier?language=objc)
     pub static HKMetadataKeyUDIDeviceIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyudiproductionidentifier?language=objc)
+    /// Represents the production identifier portion of a device's UDI (Unique Device Identifier).
+    ///
+    /// While part of a device's UDI, the production identifier is not saved in the FDA's GUDID
+    /// (Globally Unique Device Identifier Database) and its use in HealthKit is now discouraged for
+    /// user privacy reasons. Apps should consider handling this independently of HealthKit APIs if
+    /// needed.
+    /// The expected value type is NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyudiproductionidentifier?language=objc)
     pub static HKMetadataKeyUDIProductionIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydigitalsignature?language=objc)
+    /// Represents a digital signature validating the origin of an HKObject's value.
+    ///
+    /// Intended to provide data integrity for sample data produced by trusted (tamper resistant) measuring devices.
+    /// The digital signature format should be CMS (Cryptographic Message Syntax specified in IETF RFC 5652).
+    /// It should be a “Signed-data” type signature containing the data items to be signed (e.g., timestamp, value, etc.)
+    /// using ASN.1 encoding with DER (Distinguished Encoding Rules). The entire enveloping signature should be further
+    /// encoded using base64. Recommended digest is SHA256, and recommended cipher is FIPS PUB 186-4 Digital Signature
+    /// Standard Elliptic Curve P-256. See documentation for details.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydigitalsignature?language=objc)
     pub static HKMetadataKeyDigitalSignature: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyexternaluuid?language=objc)
+    /// Represents a unique identifier for an HKObject that is set by its source.
+    /// Uniqueness of objects with the same value of this key is not enforced by HealthKit.
+    ///
+    /// The expected value type is NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyexternaluuid?language=objc)
     pub static HKMetadataKeyExternalUUID: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeysyncidentifier?language=objc)
+    /// Represents an identifier for an HKObject that is set by its source and is used by HealthKit to uniquely
+    /// identify an object.
+    ///
+    /// Saving a HKObject with a HKMetadataKeySyncIdentifier will replace an existing HKObject with the
+    /// same HKMetadataKeySyncIdentifier value if the new HKObject has a greater HKMetadataKeySyncVersion.
+    /// The new sample will be added to all HKWorkouts or HKCorrelations containing the replaced sample.
+    /// HKMetadataKeySyncVersion must be provided if HKMetadataKeySyncIdentifier is provided.
+    /// The expected value type is NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeysyncidentifier?language=objc)
     pub static HKMetadataKeySyncIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeysyncversion?language=objc)
+    /// Represents the version of the HKObject that is set by its source and is used by HealthKit to identify an
+    /// object's version.
+    ///
+    /// HKMetadataKeySyncVersion may not be provided if HKMetadataKeySyncIdentifier is not provided.
+    /// The expected value type is NSNumber.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeysyncversion?language=objc)
     pub static HKMetadataKeySyncVersion: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeytimezone?language=objc)
+    /// Represents the time zone that the user was in when the HKObject was created.
+    ///
+    /// The expected value type is an NSString compatible with NSTimeZone's +timeZoneWithName:.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeytimezone?language=objc)
     pub static HKMetadataKeyTimeZone: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydevicename?language=objc)
+    /// Represents the name of the device that took the reading.
+    ///
+    /// The expected value type is NSString.
+    ///
+    /// * Note that the use of this key is now discouraged in favor of the HKDevice class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydevicename?language=objc)
     pub static HKMetadataKeyDeviceName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydevicemanufacturername?language=objc)
+    /// Represents the name of the manufacturer of the device that took the reading.
+    ///
+    /// The expected value type is NSString.
+    ///
+    /// * Note that the use of this key is now discouraged in favor of the HKDevice class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydevicemanufacturername?language=objc)
     pub static HKMetadataKeyDeviceManufacturerName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeywastakeninlab?language=objc)
+    /// Represents whether or not the reading was taken in a lab.
+    ///
+    /// The expected value type is an NSNumber containing a BOOL value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeywastakeninlab?language=objc)
     pub static HKMetadataKeyWasTakenInLab: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyreferencerangelowerlimit?language=objc)
+    /// Represents the lower limit of the reference range for a lab result.
+    ///
+    /// The expected value type is an NSNumber.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyreferencerangelowerlimit?language=objc)
     pub static HKMetadataKeyReferenceRangeLowerLimit: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyreferencerangeupperlimit?language=objc)
+    /// Represents the upper limit of the reference range for a lab result.
+    ///
+    /// The expected value type is an NSNumber.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyreferencerangeupperlimit?language=objc)
     pub static HKMetadataKeyReferenceRangeUpperLimit: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeywasuserentered?language=objc)
+    /// Represents whether or not the reading was entered by the user.
+    ///
+    /// The expected value type is an NSNumber containing a BOOL value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeywasuserentered?language=objc)
     pub static HKMetadataKeyWasUserEntered: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyworkoutbrandname?language=objc)
+    /// Represents the brand name of a particular workout.
+    ///
+    /// The expected value type is NSString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyworkoutbrandname?language=objc)
     pub static HKMetadataKeyWorkoutBrandName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeygroupfitness?language=objc)
+    /// Represents whether or not a workout was performed as part of a group fitness class.
+    ///
+    /// The expected value type is an NSNumber containing a BOOL value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeygroupfitness?language=objc)
     pub static HKMetadataKeyGroupFitness: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyapplefitnesspluscatalogidentifier?language=objc)
+    /// Contains the catalog identifier of the Fitness+ workout.
+    ///
+    /// This key only exists if the workout was completed in Fitness+. The expected value type is an NSString containing the Fitness+ catalog identifier.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyapplefitnesspluscatalogidentifier?language=objc)
     pub static HKMetadataKeyAppleFitnessPlusCatalogIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyapplefitnessplussession?language=objc)
+    /// Represents whether or not a workout is a Fitness+ workout.
+    ///
+    /// The expected value type is an NSNumber containing a BOOL value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyapplefitnessplussession?language=objc)
     pub static HKMetadataKeyAppleFitnessPlusSession: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyindoorworkout?language=objc)
+    /// Represents whether or not a workout was performed indoors as opposed to outdoors.
+    ///
+    /// The expected value type is an NSNumber containing a BOOL value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyindoorworkout?language=objc)
     pub static HKMetadataKeyIndoorWorkout: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeycoachedworkout?language=objc)
+    /// Represents whether or not a workout was performed with a coach or personal trainer.
+    ///
+    /// The expected value type is an NSNumber containing a BOOL value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeycoachedworkout?language=objc)
     pub static HKMetadataKeyCoachedWorkout: &'static NSString;
 }
 
@@ -365,36 +516,70 @@ unsafe impl RefEncode for HKWeatherCondition {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyweathercondition?language=objc)
+    /// Represents the weather condition during the sample.
+    ///
+    /// The expected value type is an NSNumber containing an HKWeatherCondition value. This key may be set on an
+    /// HKWorkout object to represent the overall weather condition during the workout.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyweathercondition?language=objc)
     pub static HKMetadataKeyWeatherCondition: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyweathertemperature?language=objc)
+    /// Represents the weather temperature during the sample.
+    ///
+    /// The expected value type is an HKQuantity expressed in a temperature unit. This key may be set on an
+    /// HKWorkout object to represent the overall temperature during the workout.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyweathertemperature?language=objc)
     pub static HKMetadataKeyWeatherTemperature: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyweatherhumidity?language=objc)
+    /// Represents the weather humidity during the sample.
+    ///
+    /// The expected value type is an HKQuantity expressed in percent. This key may be set on an HKWorkout
+    /// object to represent the overall humidity during the workout.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyweatherhumidity?language=objc)
     pub static HKMetadataKeyWeatherHumidity: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeysexualactivityprotectionused?language=objc)
+    /// Represents whether or not protection was used during sexual activity. This can be used to track either
+    /// protection from STIs or protection from pregnancy.
+    ///
+    /// The expected value type is an NSNumber containing a BOOL value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeysexualactivityprotectionused?language=objc)
     pub static HKMetadataKeySexualActivityProtectionUsed: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeymenstrualcyclestart?language=objc)
+    /// Indicates whether or not the sample represents the start of a menstrual cycle. This is a required
+    /// metadata key for category samples of type HKCategoryTypeIdentifierMenstrualFlow.
+    ///
+    /// The expected value type is an NSNumber containing a BOOL value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeymenstrualcyclestart?language=objc)
     pub static HKMetadataKeyMenstrualCycleStart: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeylaplength?language=objc)
+    /// Represents the length of a lap recorded during a workout.
+    ///
+    /// The expected value type is an HKQuantity object compatible with a length unit. This key may be set on an
+    /// HKWorkout object to represent the length of a lap.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeylaplength?language=objc)
     pub static HKMetadataKeyLapLength: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutswimminglocationtype?language=objc)
+/// This enumerated type is used to represent the location type of a swimming workout.
+///
+/// This value indicates whether a swimming workout was performed in a pool or open water.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutswimminglocationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -417,11 +602,18 @@ unsafe impl RefEncode for HKWorkoutSwimmingLocationType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyswimminglocationtype?language=objc)
+    /// Represents the location type of a swimming workout.
+    ///
+    /// The expected value type is an NSNumber containing an HKWorkoutSwimmingLocationType value. This key may
+    /// be set on an HKWorkout object to represent the swimming location type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyswimminglocationtype?language=objc)
     pub static HKMetadataKeySwimmingLocationType: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle?language=objc)
+/// Represents a style of stroke used during a swimming workout.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -452,11 +644,25 @@ unsafe impl RefEncode for HKSwimmingStrokeStyle {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyswimmingstrokestyle?language=objc)
+    /// Represents the predominant stroke style during a lap of a swimming workout.
+    ///
+    /// The expected value type is an NSNumber containing an HKSwimmingStrokeStyle value. This key may be set on
+    /// an HKWorkoutEvent object with the type HKWorkoutEventTypeLap to represent the predominant style used
+    /// during the lap.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyswimmingstrokestyle?language=objc)
     pub static HKMetadataKeySwimmingStrokeStyle: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkinsulindeliveryreason?language=objc)
+/// Represents a medical reason for the delivery of insulin
+///
+///
+/// administered as a continuous rate from an insulin pump, or a periodic
+/// injection of slow-acting insulin.
+///
+/// glucose level correction.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkinsulindeliveryreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -477,11 +683,18 @@ unsafe impl RefEncode for HKInsulinDeliveryReason {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyinsulindeliveryreason?language=objc)
+    /// Represents the medical reason for the delivery of an insulin dose. This is a required metadata key for
+    /// samples of type HKQuantityTypeIdentifierInsulinDelivery.
+    ///
+    /// The expected value type is an NSNumber containing a HKInsulinDeliveryReason value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyinsulindeliveryreason?language=objc)
     pub static HKMetadataKeyInsulinDeliveryReason: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodglucosemealtime?language=objc)
+/// Indicates how your blood glucose reading relates to a meal.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodglucosemealtime?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -502,11 +715,21 @@ unsafe impl RefEncode for HKBloodGlucoseMealTime {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeybloodglucosemealtime?language=objc)
+    /// Indicates the relative timing of a blood glucose reading to a meal.
+    ///
+    /// This timing, as well as other factors like meal composition, can be used by medical professionals to
+    /// determine the acceptable value range for a blood glucose reading. For use cases requiring the capture of
+    /// precise timing and composition information, developers should record additional dietary samples, such as
+    /// HKQuantityTypeIdentifierDietaryCarbohydrates. The expected value type is an NSNumber containing a
+    /// HKBloodGlucoseMealTime value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeybloodglucosemealtime?language=objc)
     pub static HKMetadataKeyBloodGlucoseMealTime: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvo2maxtesttype?language=objc)
+/// Represents the test used to create a VO2 Max Sample.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvo2maxtesttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -529,71 +752,148 @@ unsafe impl RefEncode for HKVO2MaxTestType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyvo2maxtesttype?language=objc)
+    /// Represents the test used to create VO2 Max Sample
+    ///
+    /// The expected value type is an NSNumber containing a HKVO2MaxTestType value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyvo2maxtesttype?language=objc)
     pub static HKMetadataKeyVO2MaxTestType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyaveragespeed?language=objc)
+    /// Represents the average speed for a workout segment or distance sample.
+    ///
+    /// This represents the average speed when moving so it may not match the value of distance/time for a
+    /// distance sample.
+    ///
+    /// The expected value type is an HKQuantity object compatible with a speed unit (e.g. m/s). This key may be
+    /// set on quantity samples of type HKQuantityTypeIdentifierDistanceDownhillSnowSports or a workout segment
+    /// representing a skiing run.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyaveragespeed?language=objc)
     pub static HKMetadataKeyAverageSpeed: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeymaximumspeed?language=objc)
+    /// Represents the maximum speed for a workout segment or distance sample.
+    ///
+    /// The expected value type is an HKQuantity object compatible with a speed unit (e.g. m/s). This key may be
+    /// set on quantity samples of type HKQuantityTypeIdentifierDistanceDownhillSnowSports or a workout segment
+    /// representing a skiing run.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeymaximumspeed?language=objc)
     pub static HKMetadataKeyMaximumSpeed: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyalpineslopegrade?language=objc)
+    /// Represents the grade of a ski run.
+    ///
+    /// Alpine slope grade is measured in percent where 100% grade is a 45 degree slope.
+    ///
+    /// The expected value type is an HKQuantity object compatible with percent unit. This key may be set on
+    /// quantity samples of type HKQuantityTypeIdentifierDistanceDownhillSnowSports or a workout segment
+    /// representing a skiing run.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyalpineslopegrade?language=objc)
     pub static HKMetadataKeyAlpineSlopeGrade: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyelevationascended?language=objc)
+    /// Represents the cumulative elevation ascent during a workout.
+    ///
+    /// The expected value type is an HKQuantity object compatible with length unit. This key may be set on a
+    /// workout, workout segments or distance samples.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyelevationascended?language=objc)
     pub static HKMetadataKeyElevationAscended: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyelevationdescended?language=objc)
+    /// Represents the cumulative elevation descent during a workout.
+    ///
+    /// The expected value type is an HKQuantity object compatible with length unit. This key may be set on a
+    /// workout, workout segments or distance samples.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyelevationdescended?language=objc)
     pub static HKMetadataKeyElevationDescended: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyfitnessmachineduration?language=objc)
+    /// Represents the workout duration as displayed by a GymKit connected fitness machine.
+    ///
+    /// The expected value type is an HKQuantity object compatible with a time unit. This key may be set on an
+    /// HKWorkout object to represent the duration of the workout as displayed by a GymKit connected fitness
+    /// machine.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyfitnessmachineduration?language=objc)
     pub static HKMetadataKeyFitnessMachineDuration: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyindoorbikedistance?language=objc)
+    /// Represents the distance covered during an indoor bike workout.
+    ///
+    /// The expected value type is an HKQuantity object compatible with a length unit. This key may be set on an
+    /// HKWorkout object to represent the distance covered during an indoor bike workout.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyindoorbikedistance?language=objc)
     pub static HKMetadataKeyIndoorBikeDistance: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeycrosstrainerdistance?language=objc)
+    /// Represents the distance covered during a cross trainer workout.
+    ///
+    /// The expected value type is an HKQuantity object compatible with a length unit. This key may be set on an
+    /// HKWorkout object to represent the distance covered during a cross trainer workout.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeycrosstrainerdistance?language=objc)
     pub static HKMetadataKeyCrossTrainerDistance: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartrateeventthreshold?language=objc)
+    /// Represents the threshold heart rate that triggered a heart rate event.
+    ///
+    /// The expected value is an HKQuantity object with a compatible unit (e.g. count/min).
+    /// This key will be set on heart rate event samples of type HKCategoryTypeIdentifierHighHeartRateEvent and
+    /// HKCategoryTypeIdentifierLowHeartRateEvent.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartrateeventthreshold?language=objc)
     pub static HKMetadataKeyHeartRateEventThreshold: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyaveragemets?language=objc)
+    /// Represents the average METs, or Metabolic Equivalent of Task during a workout.
+    ///
+    /// The expected value type is an HKQuantity expressed in a METs (kcal/(kg*hr)) unit. This key may be set on an
+    /// HKWorkout object to represent the average workout intensity represented as METs over the entire workout duration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyaveragemets?language=objc)
     pub static HKMetadataKeyAverageMETs: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyaudioexposurelevel?language=objc)
+    /// Represents the audio level associated with an audio event.
+    ///
+    /// The expected value is an HKQuantity whose value is the audio level
+    /// associated with the event measured in dBASPL units.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyaudioexposurelevel?language=objc)
     pub static HKMetadataKeyAudioExposureLevel: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyaudioexposureduration?language=objc)
+    /// Represents the duration of time that is covered by audio samples.
+    ///
+    /// The expected value type is an HKQuantity object compatible with a time unit.
+    /// This key may be set on headphone audio exposure event samples to indicate
+    /// the duration of time that the user was actually exposed to audio through their headphones.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyaudioexposureduration?language=objc)
     pub static HKMetadataKeyAudioExposureDuration: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkappleecgalgorithmversion?language=objc)
+/// Indicates which algorithm version number was used by the ECG app on Apple Watch.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkappleecgalgorithmversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -612,11 +912,17 @@ unsafe impl RefEncode for HKAppleECGAlgorithmVersion {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyappleecgalgorithmversion?language=objc)
+    /// Represents the ECG algorithm version that was used to generate a particular HKElectrocardiogram.
+    ///
+    /// The expected value type is an an NSNumber containing a HKAppleECGAlgorithmVersion value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyappleecgalgorithmversion?language=objc)
     pub static HKMetadataKeyAppleECGAlgorithmVersion: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeviceplacementside?language=objc)
+/// The detected placement of the device during the bout of walking
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeviceplacementside?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -641,61 +947,111 @@ unsafe impl RefEncode for HKDevicePlacementSide {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydeviceplacementside?language=objc)
+    /// Represents the detected placement of the device during the bout of walking
+    ///
+    /// The expected value type is an NSNumber containing a HKDevicePlacementSide value.  This key is expected to
+    /// be written for Walking Aymmetry Percentage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydeviceplacementside?language=objc)
     pub static HKMetadataKeyDevicePlacementSide: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeybarometricpressure?language=objc)
+    /// Represents the barometric pressure recorded at the time of a sample.
+    ///
+    /// The expected value type is an HKQuantity representing a value in units of pressure (atmospheres, pascals, millimeters of Mercury).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeybarometricpressure?language=objc)
     pub static HKMetadataKeyBarometricPressure: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyappledevicecalibrated?language=objc)
+    /// Represents the calibration status of the devices used to generate this sample.
+    ///
+    /// The expected value is a boolean NSNumber indicating whether the sample value was estimated using a sufficient set of device calibration data. The calibration status of a device may vary per data type. This key is read-only.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyappledevicecalibrated?language=objc)
     pub static HKMetadataKeyAppleDeviceCalibrated: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyvo2maxvalue?language=objc)
+    /// Represents a VO2Max value that can be associated with, for example, Cardio Fitness Events
+    ///
+    /// This key should be used to store an HKQuantity with a unit of `ml/kg·min`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyvo2maxvalue?language=objc)
     pub static HKMetadataKeyVO2MaxValue: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeylowcardiofitnesseventthreshold?language=objc)
+    /// Can be used to store a snapshot of the threshold used to classify VO2Max values as "low"
+    ///
+    /// This key should be used to store an HKQuantity, with a unit of `ml/kg·min`, representing the low fitness threshold.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeylowcardiofitnesseventthreshold?language=objc)
     pub static HKMetadataKeyLowCardioFitnessEventThreshold: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydateofearliestdatausedforestimate?language=objc)
+    /// Represents how far back an estimation algorithm incorporated data from.
+    ///
+    /// The expected value is an NSDate indicating the earliest date of data used to produce an estimated value for an HKSample.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeydateofearliestdatausedforestimate?language=objc)
     pub static HKMetadataKeyDateOfEarliestDataUsedForEstimate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyalgorithmversion?language=objc)
+    /// The version of the algorithm used to generate the sample.
+    ///
+    /// The key for an NSNumber containing an NSInteger indicating the version of the algorithm used to generate the sample.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyalgorithmversion?language=objc)
     pub static HKMetadataKeyAlgorithmVersion: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyswolfscore?language=objc)
+    /// Represents sum of strokes per length and time for the length. Calculated for each lap event and segment event during swimming workout.
+    ///
+    /// The expected value type is an NSNumber containing a score. This key may be set on an HKWorkout object to represent the SWOLF Score during the whole workout.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyswolfscore?language=objc)
     pub static HKMetadataKeySWOLFScore: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyquantityclampedtolowerbound?language=objc)
+    /// Indicates the quantity was clamped to a lower bound.
+    ///
+    /// Value is a BOOL indicating whether or not the quantity value in the sample has been clamped to some lower bound
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyquantityclampedtolowerbound?language=objc)
     pub static HKMetadataKeyQuantityClampedToLowerBound: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyquantityclampedtoupperbound?language=objc)
+    /// Indicates the quantity was clamped to an upper bound.
+    ///
+    /// Value is a BOOL indicating whether or not the quantity value in the sample has been clamped to some upper bound
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyquantityclampedtoupperbound?language=objc)
     pub static HKMetadataKeyQuantityClampedToUpperBound: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyglassesprescriptiondescription?language=objc)
+    /// Represents the description that may be associated with a HKGlassesPrescription.
+    ///
+    /// Glasses are often customized for different purposes like reading or distance. Prescriptions received by an eye care professional can provide different ocular functions.
+    /// Users may also customize their glasses for different scenarios. The value of the metadata is a NSString that describes the purpose of a HKGlassesPrescription.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyglassesprescriptiondescription?language=objc)
     pub static HKMetadataKeyGlassesPrescriptionDescription: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwatersalinity?language=objc)
+/// Represents the water salinity for an underwater depth or water temperature sample.
+///
+/// This value indicates the water salinity
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwatersalinity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -716,21 +1072,36 @@ unsafe impl RefEncode for HKWaterSalinity {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeywatersalinity?language=objc)
+    /// Represents the water salinity for an underwater depth or water temperature sample.
+    ///
+    /// The expected value type is an NSNumber containing a HKWaterSalinity value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeywatersalinity?language=objc)
     pub static HKMetadataKeyWaterSalinity: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheadphonegain?language=objc)
+    /// Represents the headphone gain associated with a Headphone audio exposure event.
+    ///
+    /// The expected value is an HKQuantity whose value is the gain
+    /// associated with the event measured in decibels in A-weighted Sound Pressure Level units.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheadphonegain?language=objc)
     pub static HKMetadataKeyHeadphoneGain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeycyclingfunctionalthresholdpowertesttype?language=objc)
+    /// Represents the test used to determine a Cycling Functional Threshold Power value.
+    ///
+    /// The expected value type is an NSNumber containing a HKCyclingFunctionalThresholdPowerTestType value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeycyclingfunctionalthresholdpowertesttype?language=objc)
     pub static HKMetadataKeyCyclingFunctionalThresholdPowerTestType: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcyclingfunctionalthresholdpowertesttype?language=objc)
+/// Represents the test used to determine a Cycling Functional Threshold Power value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcyclingfunctionalthresholdpowertesttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -755,16 +1126,26 @@ unsafe impl RefEncode for HKCyclingFunctionalThresholdPowerTestType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyactivitytype?language=objc)
+    /// Represents the activity type related to the sample
+    ///
+    /// The expected value type is an NSNumber containing a HKWorkoutActivityType value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyactivitytype?language=objc)
     pub static HKMetadataKeyActivityType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyphysicaleffortestimationtype?language=objc)
+    /// Represents the estimation type used to create the Physical Effort Sample
+    ///
+    /// The expected value type is an NSNumber containing a HKPhysicalEffortEstimationType value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeyphysicaleffortestimationtype?language=objc)
     pub static HKMetadataKeyPhysicalEffortEstimationType: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphysicaleffortestimationtype?language=objc)
+/// Represents the estimation used to create a Physical Effort Sample.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphysicaleffortestimationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -785,6 +1166,10 @@ unsafe impl RefEncode for HKPhysicalEffortEstimationType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeymaximumlightintensity?language=objc)
+    /// Represents maximum intensity of light for an outdoor time sample.
+    ///
+    /// The expected value type is an HKQuantity expressed in HKUnit Lux.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetadatakeymaximumlightintensity?language=objc)
     pub static HKMetadataKeyMaximumLightIntensity: &'static NSString;
 }

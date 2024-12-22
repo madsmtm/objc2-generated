@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttextrecognitionlevel?language=objc)
+/// Text recognition level options to favor speed over recognition accuracy. The VNRequestTextRecognitionLevelAccurate is the default option used by VNRecognizeTextRequest.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttextrecognitionlevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -28,7 +30,12 @@ unsafe impl RefEncode for VNRequestTextRecognitionLevel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequest?language=objc)
+    /// A request that will detect regions of text and recognize the containing text in an image.
+    ///
+    ///
+    /// This request will generate VNRecognizedTextObservation objects describing the locations of text and the actual text recognized.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -52,6 +59,7 @@ unsafe impl VNRequestProgressProviding for VNRecognizeTextRequest {}
 extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNRecognizeTextRequest {
+        /// Returns all the supported languages for a given text recognition level. Note that a language supported in one recognition level might not be available in another.
         #[deprecated]
         #[method_id(@__retain_semantics Other supportedRecognitionLanguagesForTextRecognitionLevel:revision:error:_)]
         pub unsafe fn supportedRecognitionLanguagesForTextRecognitionLevel_revision_error(
@@ -59,48 +67,70 @@ extern_methods!(
             request_revision: NSUInteger,
         ) -> Result<Retained<NSArray<NSString>>, Retained<NSError>>;
 
+        /// Obtain the collection of supported recognition languages.
+        ///
+        /// This method will return the collection of all possible language identifiers that are recognized by the target request based on its current state of configuration at the time of the call.
+        ///
+        ///
+        /// Parameter `error`: The address of the variable that will be populated with the error if the call fails.
+        ///
+        ///
+        /// Returns: The collection of language identifiers, or nil if a failure occurs.
         #[method_id(@__retain_semantics Other supportedRecognitionLanguagesAndReturnError:_)]
         pub unsafe fn supportedRecognitionLanguagesAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<NSString>>, Retained<NSError>>;
 
+        /// Specify the languages used for the detection. The order of the languages in the array defines the order in which languages will be used during the language processing.
+        /// The languages are specified as ISO language codes.
         #[method_id(@__retain_semantics Other recognitionLanguages)]
         pub unsafe fn recognitionLanguages(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`recognitionLanguages`][Self::recognitionLanguages].
         #[method(setRecognitionLanguages:)]
         pub fn setRecognitionLanguages(&self, recognition_languages: &NSArray<NSString>);
 
+        /// An array of strings that will be used at the word recognition stage in addition to the recognition languages. The customWords list takes precedence over the standard lexicon.
         #[method_id(@__retain_semantics Other customWords)]
         pub fn customWords(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`customWords`][Self::customWords].
         #[method(setCustomWords:)]
         pub fn setCustomWords(&self, custom_words: &NSArray<NSString>);
 
+        /// The recognition level selects which techniques will be used during the text recognition. There are trade-offs between performance and accuracy.
         #[method(recognitionLevel)]
         pub fn recognitionLevel(&self) -> VNRequestTextRecognitionLevel;
 
+        /// Setter for [`recognitionLevel`][Self::recognitionLevel].
         #[method(setRecognitionLevel:)]
         pub fn setRecognitionLevel(&self, recognition_level: VNRequestTextRecognitionLevel);
 
+        /// Determines whether language correction should be applied during the recognition process. Disabling this will return the raw recognition results providing performance benefits but less accurate results.
         #[method(usesLanguageCorrection)]
         pub fn usesLanguageCorrection(&self) -> bool;
 
+        /// Setter for [`usesLanguageCorrection`][Self::usesLanguageCorrection].
         #[method(setUsesLanguageCorrection:)]
         pub fn setUsesLanguageCorrection(&self, uses_language_correction: bool);
 
+        /// Language detection will try to automatically identify the script/langauge during the detection and use the appropiate model for recognition and language correction. This can be particularly helpful, if the nature of the content is unkown and with this flag being set it will for instance determine if text is latin vs chinese so you don't have to pick the language model in the first case. But as the language correction cannot always guarantee the correct detection, it is advisable to set the languages, if you have domain knowledge of what language to expect. The default value is NO. Also note that this feature is only available since VNRecognizeTextRequestRevision3 and is a no-op before that.
         #[method(automaticallyDetectsLanguage)]
         pub fn automaticallyDetectsLanguage(&self) -> bool;
 
+        /// Setter for [`automaticallyDetectsLanguage`][Self::automaticallyDetectsLanguage].
         #[method(setAutomaticallyDetectsLanguage:)]
         pub fn setAutomaticallyDetectsLanguage(&self, automatically_detects_language: bool);
 
         #[method(minimumTextHeight)]
         pub fn minimumTextHeight(&self) -> c_float;
 
+        /// Setter for [`minimumTextHeight`][Self::minimumTextHeight].
         #[method(setMinimumTextHeight:)]
         pub fn setMinimumTextHeight(&self, minimum_text_height: c_float);
 
         #[cfg(feature = "VNObservation")]
+        /// VNRecognizedTextObservation results.
         #[method_id(@__retain_semantics Other results)]
         pub fn results(&self) -> Option<Retained<NSArray<VNRecognizedTextObservation>>>;
     }
@@ -110,10 +140,15 @@ extern_methods!(
     /// Methods declared on superclass `VNRequest`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNRecognizeTextRequest {
+        /// Creates a new VNRequest with no completion handler.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Creates a new VNRequest with an optional completion handler.
+        ///
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,

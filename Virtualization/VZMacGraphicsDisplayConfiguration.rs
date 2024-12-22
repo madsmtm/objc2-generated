@@ -12,7 +12,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacgraphicsdisplayconfiguration?language=objc)
+    /// Configuration for a display attached to a Mac graphics device.
+    ///
+    /// This display can be shown in a VZVirtualMachineView.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacgraphicsdisplayconfiguration?language=objc)
     #[unsafe(super(VZGraphicsDisplayConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDisplayConfiguration")]
@@ -33,6 +37,13 @@ unsafe impl NSObjectProtocol for VZMacGraphicsDisplayConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZGraphicsDisplayConfiguration")]
     unsafe impl VZMacGraphicsDisplayConfiguration {
+        /// Create a display configuration with the specified pixel dimensions and pixel density.
+        ///
+        /// Parameter `widthInPixels`: The width of the display, in pixels.
+        ///
+        /// Parameter `heightInPixels`: The height of the display, in pixels.
+        ///
+        /// Parameter `pixelsPerInch`: The pixel density as a number of pixels per inch.
         #[method_id(@__retain_semantics Init initWithWidthInPixels:heightInPixels:pixelsPerInch:)]
         pub unsafe fn initWithWidthInPixels_heightInPixels_pixelsPerInch(
             this: Allocated<Self>,
@@ -42,6 +53,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
+        /// Create a display configuration suitable for showing on the specified screen.
+        ///
+        /// Parameter `screen`: The screen on which you intend to present the VZVirtualMachineView for the display.
+        ///
+        /// Parameter `sizeInPoints`: The intended logical size of the display.
+        ///
+        /// The pixel dimensions and pixel density will be initialized based on the specified screen and
+        /// size. Note: an instance of macOS running in the virtual machine may not necessarily provide
+        /// a display mode with a backing scale factor matching the specified screen.
         #[method_id(@__retain_semantics Init initForScreen:sizeInPoints:)]
         pub unsafe fn initForScreen_sizeInPoints(
             this: Allocated<Self>,
@@ -49,21 +69,27 @@ extern_methods!(
             size_in_points: NSSize,
         ) -> Retained<Self>;
 
+        /// The width of the display, in pixels.
         #[method(widthInPixels)]
         pub unsafe fn widthInPixels(&self) -> NSInteger;
 
+        /// Setter for [`widthInPixels`][Self::widthInPixels].
         #[method(setWidthInPixels:)]
         pub unsafe fn setWidthInPixels(&self, width_in_pixels: NSInteger);
 
+        /// The height of the display, in pixels.
         #[method(heightInPixels)]
         pub unsafe fn heightInPixels(&self) -> NSInteger;
 
+        /// Setter for [`heightInPixels`][Self::heightInPixels].
         #[method(setHeightInPixels:)]
         pub unsafe fn setHeightInPixels(&self, height_in_pixels: NSInteger);
 
+        /// The pixel density as a number of pixels per inch.
         #[method(pixelsPerInch)]
         pub unsafe fn pixelsPerInch(&self) -> NSInteger;
 
+        /// Setter for [`pixelsPerInch`][Self::pixelsPerInch].
         #[method(setPixelsPerInch:)]
         pub unsafe fn setPixelsPerInch(&self, pixels_per_inch: NSInteger);
     }

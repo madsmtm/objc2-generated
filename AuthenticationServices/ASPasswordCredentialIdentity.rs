@@ -8,7 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasswordcredentialidentity?language=objc)
+    /// An ASPasswordCredentialIdentity is used to describe an identity that can use a service upon successful password based authentication.
+    /// Use this class to save entries into ASCredentialIdentityStore.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasswordcredentialidentity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPasswordCredentialIdentity;
@@ -35,6 +38,13 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "ASCredentialServiceIdentifier")]
+        /// Initializes an instance of ASPasswordCredentialIdentity.
+        ///
+        /// Parameter `serviceIdentifier`: the service identifier for which this credential identity is valid.
+        ///
+        /// Parameter `user`: the user that can authenticate into the service indicated by the serviceIdentifier.
+        ///
+        /// Parameter `recordIdentifier`: an optional string to uniquely identify this record in your local database.
         #[method_id(@__retain_semantics Init initWithServiceIdentifier:user:recordIdentifier:)]
         pub unsafe fn initWithServiceIdentifier_user_recordIdentifier(
             this: Allocated<Self>,
@@ -44,6 +54,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "ASCredentialServiceIdentifier")]
+        /// Creates and initializes an instance of ASPasswordCredentialIdentity.
+        ///
+        /// Parameter `serviceIdentifier`: the service identifier for which this credential identity is valid.
+        ///
+        /// Parameter `user`: the user that can authenticate into the service indicated by the serviceIdentifier.
+        ///
+        /// Parameter `recordIdentifier`: an optional string to uniquely identify this record in your local database.
         #[method_id(@__retain_semantics Other identityWithServiceIdentifier:user:recordIdentifier:)]
         pub unsafe fn identityWithServiceIdentifier_user_recordIdentifier(
             service_identifier: &ASCredentialServiceIdentifier,
@@ -52,18 +69,36 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "ASCredentialServiceIdentifier")]
+        /// Get the service identifier.
+        ///
+        /// Returns: The service identifier for this credential identity.
         #[method_id(@__retain_semantics Other serviceIdentifier)]
         pub unsafe fn serviceIdentifier(&self) -> Retained<ASCredentialServiceIdentifier>;
 
+        /// Get the user.
+        ///
+        /// Returns: The user string.
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Retained<NSString>;
 
+        /// Get the record identifier.
+        ///
+        /// Returns: The record identifier.
+        ///
+        /// You can utilize the record identifier to uniquely identify the credential identity in your local database.
         #[method_id(@__retain_semantics Other recordIdentifier)]
         pub unsafe fn recordIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Get or set the rank of the credential identity object.
+        ///
+        /// The system may utilize the rank to decide which credential identity precedes the other
+        /// if two identities have the same service identifier. A credential identity with a larger rank value
+        /// precedes one with a smaller value if both credential identities have the same service identifier.
+        /// The default value of this property is 0.
         #[method(rank)]
         pub unsafe fn rank(&self) -> NSInteger;
 
+        /// Setter for [`rank`][Self::rank].
         #[method(setRank:)]
         pub unsafe fn setRank(&self, rank: NSInteger);
     }

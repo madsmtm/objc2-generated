@@ -70,6 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "MKMapView")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`mapView`][Self::mapView].
         #[method(setMapView:)]
         pub unsafe fn setMapView(&self, map_view: Option<&MKMapView>);
     }

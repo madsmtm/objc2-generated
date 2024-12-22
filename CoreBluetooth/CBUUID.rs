@@ -9,52 +9,100 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicextendedpropertiesstring?language=objc)
+    /// The string representation of the UUID for the extended properties descriptor.
+    /// The corresponding value for this descriptor is an
+    /// <code>
+    /// NSNumber
+    /// </code>
+    /// object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicextendedpropertiesstring?language=objc)
     pub static CBUUIDCharacteristicExtendedPropertiesString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicuserdescriptionstring?language=objc)
+    /// The string representation of the UUID for the user description descriptor.
+    /// The corresponding value for this descriptor is an
+    /// <code>
+    /// NSString
+    /// </code>
+    /// object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicuserdescriptionstring?language=objc)
     pub static CBUUIDCharacteristicUserDescriptionString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidclientcharacteristicconfigurationstring?language=objc)
+    /// The string representation of the UUID for the client configuration descriptor.
+    /// The corresponding value for this descriptor is an
+    /// <code>
+    /// NSNumber
+    /// </code>
+    /// object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidclientcharacteristicconfigurationstring?language=objc)
     pub static CBUUIDClientCharacteristicConfigurationString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidservercharacteristicconfigurationstring?language=objc)
+    /// The string representation of the UUID for the server configuration descriptor.
+    /// The corresponding value for this descriptor is an
+    /// <code>
+    /// NSNumber
+    /// </code>
+    /// object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidservercharacteristicconfigurationstring?language=objc)
     pub static CBUUIDServerCharacteristicConfigurationString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicformatstring?language=objc)
+    /// The string representation of the UUID for the presentation format descriptor.
+    /// The corresponding value for this descriptor is an
+    /// <code>
+    /// NSData
+    /// </code>
+    /// object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicformatstring?language=objc)
     pub static CBUUIDCharacteristicFormatString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicaggregateformatstring?language=objc)
+    /// The string representation of the UUID for the aggregate descriptor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicaggregateformatstring?language=objc)
     pub static CBUUIDCharacteristicAggregateFormatString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicvalidrangestring?language=objc)
+    /// Data representing the valid min/max values accepted for a characteristic.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicvalidrangestring?language=objc)
     pub static CBUUIDCharacteristicValidRangeString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicobservationschedulestring?language=objc)
+    /// Data representing the observation schedule for a characteristic.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicobservationschedulestring?language=objc)
     pub static CBUUIDCharacteristicObservationScheduleString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidl2cappsmcharacteristicstring?language=objc)
+    /// The PSM (a little endian uint16_t) of an L2CAP Channel associated with the GATT service
+    /// containing this characteristic.  Servers can publish this characteristic with the UUID
+    /// ABDD3056-28FA-441D-A470-55A75A52553A
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuidl2cappsmcharacteristicstring?language=objc)
     pub static CBUUIDL2CAPPSMCharacteristicString: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuid?language=objc)
+    /// A 16-bit, 32-bit, or 128-bit Bluetooth UUID.
+    /// 16-bit and 32-bit UUIDs are implicitly pre-filled with the Bluetooth Base UUID.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbuuid?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBUUID;
@@ -70,23 +118,30 @@ unsafe impl NSObjectProtocol for CBUUID {}
 
 extern_methods!(
     unsafe impl CBUUID {
+        /// The UUID as NSData.
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
+        /// The UUID as NSString.
         #[method_id(@__retain_semantics Other UUIDString)]
         pub unsafe fn UUIDString(&self) -> Retained<NSString>;
 
+        /// Creates a CBUUID with a 16-bit, 32-bit, or 128-bit UUID string representation.
+        /// The expected format for 128-bit UUIDs is a string punctuated by hyphens, for example 68753A44-4D6F-1226-9C60-0050E4C00067.
         #[method_id(@__retain_semantics Other UUIDWithString:)]
         pub unsafe fn UUIDWithString(the_string: &NSString) -> Retained<CBUUID>;
 
+        /// Creates a CBUUID with a 16-bit, 32-bit, or 128-bit UUID data container.
         #[method_id(@__retain_semantics Other UUIDWithData:)]
         pub unsafe fn UUIDWithData(the_data: &NSData) -> Retained<CBUUID>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Creates a CBUUID with a CFUUIDRef.
         #[deprecated]
         #[method_id(@__retain_semantics Other UUIDWithCFUUID:)]
         pub unsafe fn UUIDWithCFUUID(the_uuid: CFUUIDRef) -> Retained<CBUUID>;
 
+        /// Creates a CBUUID with an NSUUID.
         #[method_id(@__retain_semantics Other UUIDWithNSUUID:)]
         pub unsafe fn UUIDWithNSUUID(the_uuid: &NSUUID) -> Retained<CBUUID>;
     }

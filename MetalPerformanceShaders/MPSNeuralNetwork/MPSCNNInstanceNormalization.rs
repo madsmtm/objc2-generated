@@ -9,7 +9,15 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationgradientstate?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// A state to hold information necessary to execute a gradient
+    /// pass for MPSCNNInstanceNormalization.  Gradient states should
+    /// be created by using the forward kernel's methods.  This will
+    /// ensure that the state captures all information necessary to
+    /// execute the corresponding gradient pass.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationgradientstate?language=objc)
     #[unsafe(super(MPSNNGradientState, MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
@@ -23,12 +31,15 @@ extern_methods!(
     #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
     unsafe impl MPSCNNInstanceNormalizationGradientState {
         #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+        /// The MPSCNNInstanceNormalization object that created this state object.
         #[method_id(@__retain_semantics Other instanceNormalization)]
         pub unsafe fn instanceNormalization(&self) -> Retained<MPSCNNInstanceNormalization>;
 
+        /// Return an MTLBuffer object with the state's current gamma values.
         #[method_id(@__retain_semantics Other gamma)]
         pub unsafe fn gamma(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
+        /// Return an MTLBuffer object with the state's current beta values..
         #[method_id(@__retain_semantics Other beta)]
         pub unsafe fn beta(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
@@ -38,6 +49,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other gradientForBeta)]
         pub unsafe fn gradientForBeta(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
+        /// Unavailable.  Use MPSCNNInstanceNormalization state creation methods.
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:textureDescriptor:)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -55,6 +67,7 @@ extern_methods!(
             buffer_size: usize,
         ) -> Retained<Self>;
 
+        /// Unavailable.  Use MPSCNNInstanceNormalization state creation methods.
         #[method_id(@__retain_semantics Init initWithDevice:textureDescriptor:)]
         pub unsafe fn initWithDevice_textureDescriptor(
             this: Allocated<Self>,
@@ -62,6 +75,7 @@ extern_methods!(
             descriptor: &MTLTextureDescriptor,
         ) -> Retained<Self>;
 
+        /// Unavailable.  Use MPSCNNInstanceNormalization state creation methods.
         #[method_id(@__retain_semantics Init initWithResource:)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
@@ -84,6 +98,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
+        /// Initialize a non-temporary state to hold a number of textures and buffers
+        ///
+        /// The allocation of each resource will be deferred  until it is needed.
+        /// This occurs when -resource or -resourceAtIndex: is called.
+        ///
+        /// Parameter `resourceList`: The list of resources to create.
         #[method_id(@__retain_semantics Init initWithDevice:resourceList:)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
@@ -91,12 +111,21 @@ extern_methods!(
             resource_list: &MPSStateResourceList,
         ) -> Retained<Self>;
 
+        /// Initialize a temporary state to hold a number of textures and buffers
+        ///
+        /// The textures occur first in sequence
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:resourceList:)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             resource_list: &MPSStateResourceList,
         ) -> Retained<Self>;
 
+        /// Create a state object with a list of MTLResources
+        ///
+        /// Because MPS prefers deferred allocation of resources
+        /// your application should use -initWithTextures:bufferSizes:bufferCount:
+        /// whenever possible. This method is useful for cases when the
+        /// MTLResources must be initialized by the CPU.
         #[method_id(@__retain_semantics Init initWithResources:)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
@@ -120,19 +149,28 @@ pub type MPSCNNInstanceNormalizationGradientStateBatch =
     NSArray<MPSCNNInstanceNormalizationGradientState>;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationdatasource?language=objc)
+    /// The MPSCNNInstanceNormalizationDataSource protocol declares the methods that an
+    /// instance of MPSCNNInstanceNormalization uses to initialize the
+    /// scale factors (gamma) and bias terms (beta).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationdatasource?language=objc)
     pub unsafe trait MPSCNNInstanceNormalizationDataSource:
         NSCopying + NSObjectProtocol
     {
+        /// Return a pointer to an array containing the gamma terms.
         #[method(gamma)]
         unsafe fn gamma(&self) -> *mut c_float;
 
+        /// Return a pointer to an array containing the beta terms.
         #[method(beta)]
         unsafe fn beta(&self) -> *mut c_float;
 
         #[method(numberOfFeatureChannels)]
         unsafe fn numberOfFeatureChannels(&self) -> NSUInteger;
 
+        /// A label that is transferred to the instance normalization filter at init time
+        ///
+        /// Overridden by a MPSCNNInstanceNormalizationNode.label if it is non-nil.
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
@@ -141,6 +179,32 @@ extern_protocol!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Compute new gamma and beta values using current values and gradients contained within a
+        /// MPSCNNInstanceNormalizationStateBatch.
+        ///
+        /// This is for use in the context of training a network within a MPSNNGraph. If you are
+        /// writing your own graph using the low level interface or aren't training instance normalization
+        /// it isn't needed.
+        ///
+        /// In this mathod, you should perform the update on a GPU, because at the time it is called
+        /// the data isn't in the state objects yet and the CPU can't do the work. You should not attempt
+        /// to update the MPSCNNInstanceNormalization kernel directly with the results. The state object
+        /// returned from the function will be used for that.  A batch of states will be passed in.
+        /// You should accumulate the gradients and then update the weights.
+        ///
+        /// This operation is expected to also decrement the read count of instanceNormalizationStateBatch by 1,
+        /// if the states are temporary.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer on which to encode the update.
+        ///
+        ///
+        /// Parameter `instanceNormalizationStateBatch`: A batch of MPSCNNInstanceNormalizationGradientState objects containing
+        /// current weights and gradients.
+        ///
+        ///
+        /// Returns: A MPSCNNNormalizationGammaAndBetaState object containing updated gamma and beta values.  If NULL no
+        /// update was performed.
         #[optional]
         #[method_id(@__retain_semantics Other updateGammaAndBetaWithCommandBuffer:instanceNormalizationStateBatch:)]
         unsafe fn updateGammaAndBetaWithCommandBuffer_instanceNormalizationStateBatch(
@@ -150,6 +214,15 @@ extern_protocol!(
         ) -> Option<Retained<MPSCNNNormalizationGammaAndBetaState>>;
 
         #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+        /// Compute new gamma and beta values using current values and gradients contained within a
+        /// batch MPSCNNInstanceNormalizationState objects.  Perform the update on the CPU.
+        ///
+        ///
+        /// Parameter `instanceNormalizationStateBatch`: A batch of MPSCNNInstanceNormalizationGradientState objects containing
+        /// current gamma and beta values and gradients.
+        ///
+        ///
+        /// Returns: A boolean value indicating if the update was performed.
         #[optional]
         #[method(updateGammaAndBetaWithInstanceNormalizationStateBatch:)]
         unsafe fn updateGammaAndBetaWithInstanceNormalizationStateBatch(
@@ -157,10 +230,15 @@ extern_protocol!(
             instance_normalization_state_batch: &MPSCNNInstanceNormalizationGradientStateBatch,
         ) -> bool;
 
+        /// An optional tiny number to use to maintain numerical stability.
+        ///
+        /// output_image = (input_image - mean[c]) * gamma[c] / sqrt(variance[c] + epsilon) + beta[c];
+        /// Defalt value if method unavailable: FLT_MIN
         #[optional]
         #[method(epsilon)]
         unsafe fn epsilon(&self) -> c_float;
 
+        /// Optional NSSecureCoding compatibility.
         #[optional]
         #[method(encodeWithCoder:)]
         unsafe fn encodeWithCoder(&self, a_coder: &NSCoder);
@@ -176,6 +254,15 @@ extern_protocol!(
         #[method(supportsSecureCoding)]
         unsafe fn supportsSecureCoding() -> bool;
 
+        /// Optional copy method to create a copy of the data source for use with a new device.
+        ///
+        ///
+        /// Parameter `zone`: The NSZone on which to allocate.
+        ///
+        /// Parameter `device`: The device where the kernel which uses this data source will be used.
+        ///
+        ///
+        /// Returns: A pointer to a copy of this data source.
         #[optional]
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         unsafe fn copyWithZone_device(
@@ -184,10 +271,15 @@ extern_protocol!(
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
 
+        /// Alerts the data source that the data will be needed soon
+        ///
+        /// Returns: Returns YES on success.  If NO is returned, expect MPS
+        /// object construction to fail.
         #[optional]
         #[method(load)]
         unsafe fn load(&self) -> bool;
 
+        /// Alerts the data source that the data is no longer needed
         #[optional]
         #[method(purge)]
         unsafe fn purge(&self);
@@ -197,7 +289,16 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalization?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// This kernel normalizes each image, on a per-channel basis, to
+    /// have zero mean and unit variance:
+    ///
+    /// for each image:
+    /// for each channel:
+    /// y = (x - mean) * gamma / sqrt(variance + epsilon) + beta;
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalization?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -224,17 +325,24 @@ unsafe impl NSSecureCoding for MPSCNNInstanceNormalization {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNInstanceNormalization {
+        /// The epsilon value used to bias the variance when normalizing.
         #[method(epsilon)]
         pub unsafe fn epsilon(&self) -> c_float;
 
+        /// Setter for [`epsilon`][Self::epsilon].
         #[method(setEpsilon:)]
         pub unsafe fn setEpsilon(&self, epsilon: c_float);
 
+        /// The data source that the object was initialized with
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(
             &self,
         ) -> Retained<ProtocolObject<dyn MPSCNNInstanceNormalizationDataSource>>;
 
+        /// Initialize a MPSCNNInstanceNormalization kernel on a device.
+        ///
+        /// Parameter `dataSource`: An object conforming to the MPSCNNInstanceNormalizationDataSource
+        /// protocol which
         #[method_id(@__retain_semantics Init initWithDevice:dataSource:)]
         pub unsafe fn initWithDevice_dataSource(
             this: Allocated<Self>,
@@ -242,12 +350,26 @@ extern_methods!(
             data_source: &ProtocolObject<dyn MPSCNNInstanceNormalizationDataSource>,
         ) -> Retained<Self>;
 
+        /// Use initWithDevice:dataSource instead
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSCNNInstanceNormalization object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -255,6 +377,11 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Reload data using a data source.
+        ///
+        ///
+        /// Parameter `dataSource`: The data source which will provide the gamma and beta terms
+        /// to scale and bias the normalized result respectively.
         #[deprecated]
         #[method(reloadDataSource:)]
         pub unsafe fn reloadDataSource(
@@ -262,10 +389,20 @@ extern_methods!(
             data_source: &ProtocolObject<dyn MPSCNNInstanceNormalizationDataSource>,
         );
 
+        /// Reinitialize the filter using the data source provided at kernel initialization.
         #[method(reloadGammaAndBetaFromDataSource)]
         pub unsafe fn reloadGammaAndBetaFromDataSource(&self);
 
         #[cfg(all(feature = "MPSCNNNormalizationWeights", feature = "MPSState"))]
+        /// Reload data using new gamma and beta terms contained within an
+        /// MPSCNNInstanceNormalizationGradientState object.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer on which to encode the reload.
+        ///
+        ///
+        /// Parameter `gammaAndBetaState`: The state containing the updated weights which are to
+        /// be reloaded.
         #[method(reloadGammaAndBetaWithCommandBuffer:gammaAndBetaState:)]
         pub unsafe fn reloadGammaAndBetaWithCommandBuffer_gammaAndBetaState(
             &self,
@@ -278,6 +415,8 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Return a MPSCNNInstanceNormalizationGradientState object for the provided
+        /// source image, source states, and destination image.
         #[method_id(@__retain_semantics Other resultStateForSourceImage:sourceStates:destinationImage:)]
         pub unsafe fn resultStateForSourceImage_sourceStates_destinationImage(
             &self,
@@ -291,6 +430,8 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
+        /// Return a temporary MPSCNNInstanceNormalizationGradientState object which may be used with
+        /// a MPSCNNInstanceNormalization filter.
         #[method_id(@__retain_semantics Other temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:)]
         pub unsafe fn temporaryResultStateForCommandBuffer_sourceImage_sourceStates_destinationImage(
             &self,
@@ -306,6 +447,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNInstanceNormalization {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -327,7 +476,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationgradient?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// This kernel executes a gradient pass corresponding to MPSCNNInstanceNormalization.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -360,12 +513,32 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNInstanceNormalizationGradient {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: A pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -379,6 +552,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNInstanceNormalizationGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

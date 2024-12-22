@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcconvolutiondescriptor?language=objc)
+    /// The MLCConvolutionDescriptor specifies a convolution descriptor
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcconvolutiondescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -25,68 +27,107 @@ unsafe impl NSObjectProtocol for MLCConvolutionDescriptor {}
 extern_methods!(
     unsafe impl MLCConvolutionDescriptor {
         #[cfg(feature = "MLCTypes")]
+        /// The type of convolution.
         #[deprecated]
         #[method(convolutionType)]
         pub unsafe fn convolutionType(&self) -> MLCConvolutionType;
 
+        /// The convolution kernel size in x.
         #[deprecated]
         #[method(kernelWidth)]
         pub unsafe fn kernelWidth(&self) -> NSUInteger;
 
+        /// The convolution kernel size in y.
         #[deprecated]
         #[method(kernelHeight)]
         pub unsafe fn kernelHeight(&self) -> NSUInteger;
 
+        /// Number of channels in the input tensor
         #[deprecated]
         #[method(inputFeatureChannelCount)]
         pub unsafe fn inputFeatureChannelCount(&self) -> NSUInteger;
 
+        /// Number of channels in the output tensor
         #[deprecated]
         #[method(outputFeatureChannelCount)]
         pub unsafe fn outputFeatureChannelCount(&self) -> NSUInteger;
 
+        /// The stride of the kernel in x.
         #[deprecated]
         #[method(strideInX)]
         pub unsafe fn strideInX(&self) -> NSUInteger;
 
+        /// The stride of the kernel in y.
         #[deprecated]
         #[method(strideInY)]
         pub unsafe fn strideInY(&self) -> NSUInteger;
 
+        /// The dilation rate i.e. stride of elements in the kernel in x.
         #[deprecated]
         #[method(dilationRateInX)]
         pub unsafe fn dilationRateInX(&self) -> NSUInteger;
 
+        /// The dilation rate i.e. stride of elements in the kernel in y.
         #[deprecated]
         #[method(dilationRateInY)]
         pub unsafe fn dilationRateInY(&self) -> NSUInteger;
 
+        /// Number of blocked connections from input channels to output channels
         #[deprecated]
         #[method(groupCount)]
         pub unsafe fn groupCount(&self) -> NSUInteger;
 
         #[cfg(feature = "MLCTypes")]
+        /// The padding policy to use.
         #[deprecated]
         #[method(paddingPolicy)]
         pub unsafe fn paddingPolicy(&self) -> MLCPaddingPolicy;
 
+        /// The pooling size in x (left and right) to use if paddingPolicy is MLCPaddingPolicyUsePaddingSize
         #[deprecated]
         #[method(paddingSizeInX)]
         pub unsafe fn paddingSizeInX(&self) -> NSUInteger;
 
+        /// The pooling size in y (top and bottom) to use if paddingPolicy is MLCPaddingPolicyUsePaddingSize
         #[deprecated]
         #[method(paddingSizeInY)]
         pub unsafe fn paddingSizeInY(&self) -> NSUInteger;
 
+        /// A flag to indicate if this is a convolution transpose
         #[deprecated]
         #[method(isConvolutionTranspose)]
         pub unsafe fn isConvolutionTranspose(&self) -> bool;
 
+        /// A flag to indicate depthwise convolution
         #[deprecated]
         #[method(usesDepthwiseConvolution)]
         pub unsafe fn usesDepthwiseConvolution(&self) -> bool;
 
         #[cfg(feature = "MLCTypes")]
+        /// Creates a convolution descriptor with the specified convolution type.
+        ///
+        /// Parameter `convolutionType`: The type of convolution.
+        ///
+        /// Parameter `kernelSizes`: The kernel sizes in x and y.
+        ///
+        /// Parameter `inputFeatureChannelCount`: The number of feature channels in the input tensor.
+        ///
+        /// Parameter `outputFeatureChannelCount`: The number of feature channels in the output tensor. When the convolution type is
+        /// `MLCConvolutionTypeDepthwise`, this value must be a multiple of
+        /// `inputFeatureChannelCount`.
+        ///
+        /// Parameter `groupCount`: The number of groups.
+        ///
+        /// Parameter `strides`: The kernel strides in x and y.
+        ///
+        /// Parameter `dilationRates`: The dilation rates in x and y.
+        ///
+        /// Parameter `paddingPolicy`: The padding policy.
+        ///
+        /// Parameter `paddingSizes`: The padding sizes in x and y if padding policy is
+        /// `MLCPaddingPolicyUsePaddingSize`.
+        ///
+        /// Returns: A new convolution descriptor.
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithType:kernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:groupCount:strides:dilationRates:paddingPolicy:paddingSizes:)]
         pub unsafe fn descriptorWithType_kernelSizes_inputFeatureChannelCount_outputFeatureChannelCount_groupCount_strides_dilationRates_paddingPolicy_paddingSizes(
@@ -101,6 +142,17 @@ extern_methods!(
             padding_sizes: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
 
+        /// Create a MLCConvolutionDescriptor object
+        ///
+        /// Parameter `kernelWidth`: The kernel size in x
+        ///
+        /// Parameter `kernelHeight`: The kernel size in x
+        ///
+        /// Parameter `inputFeatureChannelCount`: The number of feature channels in the input tensor
+        ///
+        /// Parameter `outputFeatureChannelCount`: The number of feature channels in the output tensor
+        ///
+        /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:outputFeatureChannelCount:)]
         pub unsafe fn descriptorWithKernelWidth_kernelHeight_inputFeatureChannelCount_outputFeatureChannelCount(
@@ -111,6 +163,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCConvolutionDescriptor object
+        ///
+        /// Parameter `kernelSizes`: The kernel sizes in x and y
+        ///
+        /// Parameter `inputFeatureChannelCount`: The number of feature channels in the input tensor
+        ///
+        /// Parameter `outputFeatureChannelCount`: The number of feature channels in the output tensor
+        ///
+        /// Parameter `strides`: The kernel strides in x and y
+        ///
+        /// Parameter `paddingPolicy`: The padding policy
+        ///
+        /// Parameter `paddingSizes`: The padding sizes in x and y if padding policy is MLCPaddingPolicyUsePaddingSIze
+        ///
+        /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:strides:paddingPolicy:paddingSizes:)]
         pub unsafe fn descriptorWithKernelSizes_inputFeatureChannelCount_outputFeatureChannelCount_strides_paddingPolicy_paddingSizes(
@@ -123,6 +190,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCConvolutionDescriptor object
+        ///
+        /// Parameter `kernelSizes`: The kernel sizes in x and y
+        ///
+        /// Parameter `inputFeatureChannelCount`: The number of feature channels in the input tensor
+        ///
+        /// Parameter `outputFeatureChannelCount`: The number of feature channels in the output tensor
+        ///
+        /// Parameter `groupCount`: Number of groups
+        ///
+        /// Parameter `strides`: The kernel strides in x and y
+        ///
+        /// Parameter `dilationRates`: The dilation rates in x and y
+        ///
+        /// Parameter `paddingPolicy`: The padding policy
+        ///
+        /// Parameter `paddingSizes`: The padding sizes in x and y if padding policy is MLCPaddingPolicyUsePaddingSIze
+        ///
+        /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:groupCount:strides:dilationRates:paddingPolicy:paddingSizes:)]
         pub unsafe fn descriptorWithKernelSizes_inputFeatureChannelCount_outputFeatureChannelCount_groupCount_strides_dilationRates_paddingPolicy_paddingSizes(
@@ -136,6 +222,17 @@ extern_methods!(
             padding_sizes: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
 
+        /// Create a MLCConvolutionDescriptor object for convolution transpose
+        ///
+        /// Parameter `kernelWidth`: The kernel size in x
+        ///
+        /// Parameter `kernelHeight`: The kernel size in x
+        ///
+        /// Parameter `inputFeatureChannelCount`: The number of feature channels in the input tensor
+        ///
+        /// Parameter `outputFeatureChannelCount`: The number of feature channels in the output tensor
+        ///
+        /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other convolutionTransposeDescriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:outputFeatureChannelCount:)]
         pub unsafe fn convolutionTransposeDescriptorWithKernelWidth_kernelHeight_inputFeatureChannelCount_outputFeatureChannelCount(
@@ -146,6 +243,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCConvolutionDescriptor object for convolution transpose
+        ///
+        /// Parameter `kernelSizes`: The kernel sizes in x and y
+        ///
+        /// Parameter `inputFeatureChannelCount`: The number of feature channels in the input tensor
+        ///
+        /// Parameter `outputFeatureChannelCount`: The number of feature channels in the output tensor
+        ///
+        /// Parameter `strides`: The kernel strides in x and y
+        ///
+        /// Parameter `paddingPolicy`: The padding policy
+        ///
+        /// Parameter `paddingSizes`: The padding sizes in x and y if padding policy is MLCPaddingPolicyUsePaddingSIze
+        ///
+        /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other convolutionTransposeDescriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:strides:paddingPolicy:paddingSizes:)]
         pub unsafe fn convolutionTransposeDescriptorWithKernelSizes_inputFeatureChannelCount_outputFeatureChannelCount_strides_paddingPolicy_paddingSizes(
@@ -158,6 +270,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCConvolutionDescriptor object for convolution transpose
+        ///
+        /// Parameter `kernelSizes`: The kernel sizes in x and y
+        ///
+        /// Parameter `inputFeatureChannelCount`: The number of feature channels in the input tensor
+        ///
+        /// Parameter `outputFeatureChannelCount`: The number of feature channels in the output tensor
+        ///
+        /// Parameter `groupCount`: Number of groups
+        ///
+        /// Parameter `strides`: The kernel strides in x and y
+        ///
+        /// Parameter `dilationRates`: The dilation rates in x and y
+        ///
+        /// Parameter `paddingPolicy`: The padding policy
+        ///
+        /// Parameter `paddingSizes`: The padding sizes in x and y if padding policy is MLCPaddingPolicyUsePaddingSIze
+        ///
+        /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other convolutionTransposeDescriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:groupCount:strides:dilationRates:paddingPolicy:paddingSizes:)]
         pub unsafe fn convolutionTransposeDescriptorWithKernelSizes_inputFeatureChannelCount_outputFeatureChannelCount_groupCount_strides_dilationRates_paddingPolicy_paddingSizes(
@@ -171,6 +302,17 @@ extern_methods!(
             padding_sizes: Option<&NSArray<NSNumber>>,
         ) -> Retained<Self>;
 
+        /// Create a MLCConvolutionDescriptor object for depthwise convolution
+        ///
+        /// Parameter `kernelWidth`: The kernel size in x
+        ///
+        /// Parameter `kernelHeight`: The kernel size in x
+        ///
+        /// Parameter `inputFeatureChannelCount`: The number of feature channels in the input tensor
+        ///
+        /// Parameter `channelMultiplier`: The channel multiplier
+        ///
+        /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other depthwiseConvolutionDescriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:channelMultiplier:)]
         pub unsafe fn depthwiseConvolutionDescriptorWithKernelWidth_kernelHeight_inputFeatureChannelCount_channelMultiplier(
@@ -181,6 +323,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCConvolutionDescriptor object for depthwise convolution
+        ///
+        /// Parameter `kernelSizes`: The kernel sizes in x and y
+        ///
+        /// Parameter `inputFeatureChannelCount`: The number of feature channels in the input tensor
+        ///
+        /// Parameter `channelMultiplier`: The channel multiplier
+        ///
+        /// Parameter `strides`: The kernel strides in x and y
+        ///
+        /// Parameter `paddingPolicy`: The padding policy
+        ///
+        /// Parameter `paddingSizes`: The padding sizes in x and y if padding policy is MLCPaddingPolicyUsePaddingSIze
+        ///
+        /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other depthwiseConvolutionDescriptorWithKernelSizes:inputFeatureChannelCount:channelMultiplier:strides:paddingPolicy:paddingSizes:)]
         pub unsafe fn depthwiseConvolutionDescriptorWithKernelSizes_inputFeatureChannelCount_channelMultiplier_strides_paddingPolicy_paddingSizes(
@@ -193,6 +350,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCConvolutionDescriptor object for depthwise convolution
+        ///
+        /// Parameter `kernelSizes`: The kernel sizes in x and y
+        ///
+        /// Parameter `inputFeatureChannelCount`: The number of feature channels in the input tensor
+        ///
+        /// Parameter `channelMultiplier`: The channel multiplier
+        ///
+        /// Parameter `strides`: The kernel strides in x and y
+        ///
+        /// Parameter `dilationRates`: The dilation rates in x and y
+        ///
+        /// Parameter `paddingPolicy`: The padding policy
+        ///
+        /// Parameter `paddingSizes`: The padding sizes in x and y if padding policy is MLCPaddingPolicyUsePaddingSIze
+        ///
+        /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
         #[method_id(@__retain_semantics Other depthwiseConvolutionDescriptorWithKernelSizes:inputFeatureChannelCount:channelMultiplier:strides:dilationRates:paddingPolicy:paddingSizes:)]
         pub unsafe fn depthwiseConvolutionDescriptorWithKernelSizes_inputFeatureChannelCount_channelMultiplier_strides_dilationRates_paddingPolicy_paddingSizes(

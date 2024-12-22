@@ -59,6 +59,7 @@ extern_methods!(
         #[method(allowsSimultaneousRecognitionDuringLift)]
         pub unsafe fn allowsSimultaneousRecognitionDuringLift(&self) -> bool;
 
+        /// Setter for [`allowsSimultaneousRecognitionDuringLift`][Self::allowsSimultaneousRecognitionDuringLift].
         #[method(setAllowsSimultaneousRecognitionDuringLift:)]
         pub unsafe fn setAllowsSimultaneousRecognitionDuringLift(
             &self,
@@ -68,6 +69,7 @@ extern_methods!(
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 

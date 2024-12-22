@@ -6,7 +6,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzserialportattachment?language=objc)
+    /// Base class for a serial port attachment.
+    ///
+    /// A serial port attachment defines how the virtual machine's serial port interfaces with the host system.
+    /// VZSerialPortAttachment should not be instantiated directly.
+    /// One of its subclasses like VZFileHandleSerialPortAttachment should be used instead.
+    ///
+    ///
+    /// See: VZFileHandleSerialPortAttachment
+    ///
+    /// See: VZFileSerialPortAttachment
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzserialportattachment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZSerialPortAttachment;

@@ -66,6 +66,7 @@ extern_methods!(
         pub unsafe fn frame(&self) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
 
@@ -74,6 +75,7 @@ extern_methods!(
         pub unsafe fn size(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
 
@@ -82,24 +84,28 @@ extern_methods!(
         pub unsafe fn alpha(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
         #[method(zIndex)]
         pub unsafe fn zIndex(&self) -> NSInteger;
 
+        /// Setter for [`zIndex`][Self::zIndex].
         #[method(setZIndex:)]
         pub unsafe fn setZIndex(&self, z_index: NSInteger);
 
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[method_id(@__retain_semantics Other indexPath)]
         pub unsafe fn indexPath(&self) -> Option<Retained<NSIndexPath>>;
 
+        /// Setter for [`indexPath`][Self::indexPath].
         #[method(setIndexPath:)]
         pub unsafe fn setIndexPath(&self, index_path: Option<&NSIndexPath>);
 
@@ -266,6 +272,7 @@ extern_methods!(
         pub unsafe fn contentOffsetAdjustment(&self) -> NSPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentOffsetAdjustment`][Self::contentOffsetAdjustment].
         #[method(setContentOffsetAdjustment:)]
         pub unsafe fn setContentOffsetAdjustment(&self, content_offset_adjustment: NSPoint);
 
@@ -274,6 +281,7 @@ extern_methods!(
         pub unsafe fn contentSizeAdjustment(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentSizeAdjustment`][Self::contentSizeAdjustment].
         #[method(setContentSizeAdjustment:)]
         pub unsafe fn setContentSizeAdjustment(&self, content_size_adjustment: NSSize);
     }

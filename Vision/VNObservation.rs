@@ -20,7 +20,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnobservation?language=objc)
+    /// VNObservation describes the results of performing a VNRequest. The result has a confidence score. The different types of requests will create different subclasses of VNObservation to return their results in properties of those subclasses.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnobservation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNObservation;
@@ -43,14 +45,21 @@ unsafe impl VNRequestRevisionProviding for VNObservation {}
 
 extern_methods!(
     unsafe impl VNObservation {
+        /// The unique identifier assigned to an observation.
         #[method_id(@__retain_semantics Other uuid)]
         pub unsafe fn uuid(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "VNTypes")]
+        /// The level of confidence normalized to [0, 1] where 1 is most confident. The only exception is results coming from VNCoreMLRequest, where confidence values are forwarded as is from relevant CoreML models
+        ///
+        /// Confidence can always be returned as 1.0 if confidence is not supported or has no meaning
         #[method(confidence)]
         pub unsafe fn confidence(&self) -> VNConfidence;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The duration of the observation reporting when first detected and how long it is valid.
+        ///
+        /// The duration of the observation when used with a sequence of buffers. If a request does not support a timeRange or the timeRange is not known, the start time and duration will be set to 0.
         #[method(timeRange)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
     }
@@ -68,7 +77,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectedobjectobservation?language=objc)
+    /// VNDetectedObjectObservation is VNObservation in an image that has a location and/or dimension. Further attributes depend on the specific detected object.
+    ///
+    /// All result objects (faces, scene objects, shapes etc) must extend from this class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectedobjectobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNDetectedObjectObservation;
@@ -92,6 +105,7 @@ unsafe impl VNRequestRevisionProviding for VNDetectedObjectObservation {}
 extern_methods!(
     unsafe impl VNDetectedObjectObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[method_id(@__retain_semantics Other observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
@@ -103,9 +117,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The bounding box of the detected object. The coordinates are normalized to the dimensions of the processed image, with the origin at the image's lower-left corner.
         #[method(boundingBox)]
         pub unsafe fn boundingBox(&self) -> CGRect;
 
+        /// The resulting CVPixelBuffer from requests that generate a segmentation mask for the entire image.
         #[method_id(@__retain_semantics Other globalSegmentationMask)]
         pub unsafe fn globalSegmentationMask(&self) -> Option<Retained<VNPixelBufferObservation>>;
     }
@@ -123,7 +139,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfaceobservation?language=objc)
+    /// VNFaceObservation is the result of a face detection request or derivatives like a face landmark request.
+    ///
+    /// The properties filled in this obervation depend on the request being performed. For instance, if just a VNDetectFaceRectanglesRequest was performed the landmarks will not be populated. VNFaceObservation are also used as inputs to other request as defined by the VNFaceObservationAccepting protocol. An example would be the VNDetectFaceLandmarksRequest. This can be helpful for instance if the face rectangles in an image are not derived from a VNDetectFaceRectanglesRequest but instead come from other sources like EXIF or other face detectors. In that case the client of the API creates a VNFaceObservation with the boundingBox (in normalized coordinates) that were based on those detected faces.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnfaceobservation?language=objc)
     #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceObservation;
@@ -147,6 +167,15 @@ unsafe impl VNRequestRevisionProviding for VNFaceObservation {}
 extern_methods!(
     unsafe impl VNFaceObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Create a new VNFaceObservation with a normalized bounding box, roll and yaw.
+        ///
+        /// Parameter `requestRevision`: The revision of the VNDetectFaceRectanglesRequest that provided the bounding box.  If this observation is being created with data that did not originate from a Vision request, this parameter should be VNRequestRevisionUnspecified.
+        ///
+        /// Parameter `roll`: The roll angle of the face, reported in radians.  A positive angle corresponds to counterclockwise direction, range [-Pi, Pi). If no roll information is available, this parameter should be nil.
+        ///
+        /// Parameter `yaw`: The yaw angle of the face, reported in radians.  A positive angle corresponds to counterclockwise direction, range [-Pi/2, Pi/2). If no yaw information is available, this parameter should be nil.
+        ///
+        /// Parameter `pitch`: The pitch angle of the face, reported in radians.  A positive angle corresponds to nodding head down direction, range [-Pi/2, Pi/2]. If no pitch information is available, this parameter should be nil.
         #[deprecated]
         #[method_id(@__retain_semantics Other faceObservationWithRequestRevision:boundingBox:roll:yaw:)]
         pub unsafe fn faceObservationWithRequestRevision_boundingBox_roll_yaw(
@@ -167,18 +196,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "VNFaceLandmarks")]
+        /// The face landmarks populated by the VNDetectFaceLandmarksRequest. This is set to nil if only a VNDetectFaceRectanglesRequest was performed.
         #[method_id(@__retain_semantics Other landmarks)]
         pub unsafe fn landmarks(&self) -> Option<Retained<VNFaceLandmarks2D>>;
 
+        /// The capture quality of the face as a normalized value between 0.0 and 1.0 that can be used to compare the quality of the face in terms of it capture attributes (lighting, blur, position). This score can be used to compare the capture quality of a face against other captures of the same face in a given set.
         #[method_id(@__retain_semantics Other faceCaptureQuality)]
         pub unsafe fn faceCaptureQuality(&self) -> Option<Retained<NSNumber>>;
 
+        /// Face roll angle populated by VNDetectFaceRectanglesRequest. The roll is reported in radians, positive angle corresponds to counterclockwise direction, range [-Pi, Pi). nil value indicates that the roll angle hasn't been computed
         #[method_id(@__retain_semantics Other roll)]
         pub unsafe fn roll(&self) -> Option<Retained<NSNumber>>;
 
+        /// Face yaw angle populated by VNDetectFaceRectanglesRequest. The yaw is reported in radians, positive angle corresponds to counterclockwise direction, range [-Pi/2, Pi/2]. nil value indicates that the yaw angle hasn't been computed
         #[method_id(@__retain_semantics Other yaw)]
         pub unsafe fn yaw(&self) -> Option<Retained<NSNumber>>;
 
+        /// Face pitch angle populated by VNDetectFaceRectanglesRequest. The pitch is reported in radians, positive angle corresponds to nodding head down direction, range [-Pi/2, Pi/2]. nil value indicates that the pitch angle hasn't been computed
         #[method_id(@__retain_semantics Other pitch)]
         pub unsafe fn pitch(&self) -> Option<Retained<NSNumber>>;
     }
@@ -188,6 +222,7 @@ extern_methods!(
     /// Methods declared on superclass `VNDetectedObjectObservation`
     unsafe impl VNFaceObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[method_id(@__retain_semantics Other observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
@@ -212,7 +247,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnclassificationobservation?language=objc)
+    /// VNClassificationObservation returns the classifcation in form of a string.
+    ///
+    /// VNClassificationObservation is the observation returned by VNCoreMLRequests that using a model that is a classifier. A classifier produces an arrary (this can be a single entry) of classifications which are labels (identifiers) and confidence scores.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnclassificationobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNClassificationObservation;
@@ -235,6 +274,7 @@ unsafe impl VNRequestRevisionProviding for VNClassificationObservation {}
 
 extern_methods!(
     unsafe impl VNClassificationObservation {
+        /// The is the label or identifier of a classification request. An example classification could be a string like 'cat' or 'hotdog'. The string is defined in the model that was used for the classification. Usually these are technical labels that are not localized and not meant to be used directly to be presented to an end user in the UI.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
     }
@@ -253,10 +293,26 @@ extern_methods!(
 
 extern_methods!(
     /// PrecisionRecallAdditions
+    /// VNClassificationObservation mave have precision/recall curves which can be used to decide on an "optimal" operation point.
+    /// Precision is a value in the range of [0..1] which represents the fraction of relevant instances among the retrieved instances.
+    /// Recall is a value in the range of [0..1] which represents the fraction of relevant instances that have been retrieved over the total amount of relevant instances.
     unsafe impl VNClassificationObservation {
+        /// Determine whether or not precision/recall curves are available with the observation.
+        ///
+        /// If this property is YES, then all other precision/recall related methods in this addition can be called.
         #[method(hasPrecisionRecallCurve)]
         pub unsafe fn hasPrecisionRecallCurve(&self) -> bool;
 
+        /// Determine whether or not the observation's operation point for a specific precision has a minimum recall value.
+        ///
+        ///
+        /// Parameter `minimumRecall`: The minimum recall desired for an operation point.
+        ///
+        ///
+        /// Parameter `precision`: The precision value used to select the operation point.
+        ///
+        ///
+        /// Returns: YES if the recall value for the operation point specified by a precision value has the minimum value; otherwise, NO.
         #[method(hasMinimumRecall:forPrecision:)]
         pub unsafe fn hasMinimumRecall_forPrecision(
             &self,
@@ -264,6 +320,16 @@ extern_methods!(
             precision: c_float,
         ) -> bool;
 
+        /// Determine whether or not the observation's operation point for a specific recall has a minimum precision value.
+        ///
+        ///
+        /// Parameter `minimumPrecision`: The minimum precision desired for an operation point.
+        ///
+        ///
+        /// Parameter `recall`: The recall value used to select the operation point.
+        ///
+        ///
+        /// Returns: YES if the precision value for the operation point specified by a recall value has the minimum value; otherwise, NO.
         #[method(hasMinimumPrecision:forRecall:)]
         pub unsafe fn hasMinimumPrecision_forRecall(
             &self,
@@ -274,7 +340,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedobjectobservation?language=objc)
+    /// VNRecognizedObjectObservation is a VNDetectedObjectObservation with an array of classifications that classify the recognized object. The confidence of the classifications sum up to 1.0. It is common practice to multiply the classification confidence with the confidence of this observation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedobjectobservation?language=objc)
     #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedObjectObservation;
@@ -306,6 +374,7 @@ extern_methods!(
     /// Methods declared on superclass `VNDetectedObjectObservation`
     unsafe impl VNRecognizedObjectObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[method_id(@__retain_semantics Other observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
@@ -330,7 +399,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation?language=objc)
+    /// VNCoreMLFeatureValueObservation returns the prediction of a model as an MLFeatureValue.
+    ///
+    /// This is the returned observations for models that are not classifiers and that do not return an image as a prediction. The confidence for these observations is always 1.0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNCoreMLFeatureValueObservation;
@@ -354,9 +427,11 @@ unsafe impl VNRequestRevisionProviding for VNCoreMLFeatureValueObservation {}
 extern_methods!(
     unsafe impl VNCoreMLFeatureValueObservation {
         #[cfg(feature = "objc2-core-ml")]
+        /// The result VNCoreMLRequest where the model produces an MLFeatureValue that is neither a classification or image. Refer to the Core ML documentation and the model itself for the handling of the content of the featureValue.
         #[method_id(@__retain_semantics Other featureValue)]
         pub unsafe fn featureValue(&self) -> Retained<MLFeatureValue>;
 
+        /// The name used in the model description of the CoreML model that produced this observation allowing to correlate the observation back to the output of the model.
         #[method_id(@__retain_semantics Other featureName)]
         pub unsafe fn featureName(&self) -> Retained<NSString>;
     }
@@ -374,7 +449,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnpixelbufferobservation?language=objc)
+    /// VNPixelBufferObservation returns the prediction of a model as a CVPixelBufferRef.
+    ///
+    /// This is the returned observations for models that are not classifiers and return an image as a prediction. The confidence for these observations is always 1.0.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnpixelbufferobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNPixelBufferObservation;
@@ -398,9 +477,11 @@ unsafe impl VNRequestRevisionProviding for VNPixelBufferObservation {}
 extern_methods!(
     unsafe impl VNPixelBufferObservation {
         #[cfg(feature = "objc2-core-video")]
+        /// The resulting image from a request like VNCoreMLRequest where the model produces an image as an output.
         #[method(pixelBuffer)]
         pub unsafe fn pixelBuffer(&self) -> CVPixelBufferRef;
 
+        /// The name used in the model description of the CoreML model that produced this observation allowing to correlate the observation back to the output of the model. This can be nil if the observation is not the result of a VNCoreMLRequest operation.
         #[method_id(@__retain_semantics Other featureName)]
         pub unsafe fn featureName(&self) -> Option<Retained<NSString>>;
     }
@@ -418,7 +499,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrectangleobservation?language=objc)
+    /// VNRectangleObservation is the result of a rectangle detector
+    ///
+    /// The VNRectangleObservation has a bounding box that encompasses the rectangle found in the image. The rectangle itself is defined by the four corner point properties. The rectangle can be rotated in or even out of plane. A common use case is to use the CIPerspectiveTransform filter to correct a detected rectangle to its 'flat upright' representation. All coordinates are normalized and the coordinates can be outside the image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrectangleobservation?language=objc)
     #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRectangleObservation;
@@ -442,6 +527,20 @@ unsafe impl VNRequestRevisionProviding for VNRectangleObservation {}
 extern_methods!(
     unsafe impl VNRectangleObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Create a synthesized `VNRectangleObservation`.
+        ///
+        /// Note: The clockwise parameter ordered `+[VNRectangleObservation rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:]` is the preferred initializer.
+        ///
+        ///
+        /// Parameter `requestRevision`: The revision of the VNDetectRectanglesRequest that the observation is to be treated as originating from.
+        ///
+        /// Parameter `topLeft`: The top-left corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomLeft`: The bottom-left corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomRight`: The bottom-right corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `topRight`: The top-right corner of the rectangle in normalized coordinate space.
         #[deprecated]
         #[method_id(@__retain_semantics Other rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_bottomLeft_bottomRight_topRight(
@@ -453,6 +552,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Create a synthesized `VNRectangleObservation`.
+        ///
+        ///
+        /// Parameter `requestRevision`: The revision of the VNDetectRectanglesRequest that the observation is to be treated as originating from.
+        ///
+        /// Parameter `topLeft`: The top-left corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `topRight`: The top-right corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomRight`: The bottom-right corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomLeft`: The bottom-left corner of the rectangle in normalized coordinate space.
         #[method_id(@__retain_semantics Other rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_topRight_bottomRight_bottomLeft(
             request_revision: NSUInteger,
@@ -484,6 +595,7 @@ extern_methods!(
     /// Methods declared on superclass `VNDetectedObjectObservation`
     unsafe impl VNRectangleObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[method_id(@__retain_semantics Other observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
@@ -508,7 +620,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrajectoryobservation?language=objc)
+    /// The VNTrajectoryObservation describes a detected trajectory with the points on the trajectory and the equation describing the trajectory. The observation also reprorts the duration describing when the trajectory was first detected (which will be in the past).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrajectoryobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNTrajectoryObservation;
@@ -532,14 +646,23 @@ unsafe impl VNRequestRevisionProviding for VNTrajectoryObservation {}
 extern_methods!(
     unsafe impl VNTrajectoryObservation {
         #[cfg(feature = "VNGeometry")]
+        /// The centroids of the contour being detected along the trajectory.
+        ///
+        /// These are the unprocessed centroid points of the detected contour that is tracked on the trajectory. The points may be slightly off the ideal trajectory as these are the measured points that fall within the allowed tolerance. The maximum number or past points is limited by the maximum trajectory length set in the request.
         #[method_id(@__retain_semantics Other detectedPoints)]
         pub unsafe fn detectedPoints(&self) -> Retained<NSArray<VNPoint>>;
 
         #[cfg(feature = "VNGeometry")]
+        /// The centroids of  the calculated trajectory from the detected points.
+        ///
+        /// These are the calculated centroid points along the ideal trajectory described by the parabolic equation. The equation and the projected points of the detected trajectory get refined over time. The maximum number of cached points is limited by the maximum points needed to describe the trajectory together with the parabolic equation.
         #[method_id(@__retain_semantics Other projectedPoints)]
         pub unsafe fn projectedPoints(&self) -> Retained<NSArray<VNPoint>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The moving average radius of the object being tracked.
+        ///
+        /// This is the radius of the object at each detected point (used to determine the trajectory) averaged.
         #[method(movingAverageRadius)]
         pub unsafe fn movingAverageRadius(&self) -> CGFloat;
     }
@@ -557,7 +680,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntextobservation?language=objc)
+    /// VNTextObservation Describes a text area detected by the VNRequestNameDetectTextRectangles request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntextobservation?language=objc)
     #[unsafe(super(
         VNRectangleObservation,
         VNDetectedObjectObservation,
@@ -585,6 +710,10 @@ unsafe impl VNRequestRevisionProviding for VNTextObservation {}
 
 extern_methods!(
     unsafe impl VNTextObservation {
+        /// Array of individual character bounding boxes found within the observation's boundingBox.
+        ///
+        /// If the associated request indicated that it is interested in character boxes by setting the VNDetectTextRectanglesRequest reportCharacterBoxes property to
+        /// `true`, this property will be non-nil (but may still be empty, depending on the detection results).
         #[method_id(@__retain_semantics Other characterBoxes)]
         pub unsafe fn characterBoxes(&self) -> Option<Retained<NSArray<VNRectangleObservation>>>;
     }
@@ -594,6 +723,20 @@ extern_methods!(
     /// Methods declared on superclass `VNRectangleObservation`
     unsafe impl VNTextObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Create a synthesized `VNRectangleObservation`.
+        ///
+        /// Note: The clockwise parameter ordered `+[VNRectangleObservation rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:]` is the preferred initializer.
+        ///
+        ///
+        /// Parameter `requestRevision`: The revision of the VNDetectRectanglesRequest that the observation is to be treated as originating from.
+        ///
+        /// Parameter `topLeft`: The top-left corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomLeft`: The bottom-left corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomRight`: The bottom-right corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `topRight`: The top-right corner of the rectangle in normalized coordinate space.
         #[deprecated]
         #[method_id(@__retain_semantics Other rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_bottomLeft_bottomRight_topRight(
@@ -605,6 +748,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Create a synthesized `VNRectangleObservation`.
+        ///
+        ///
+        /// Parameter `requestRevision`: The revision of the VNDetectRectanglesRequest that the observation is to be treated as originating from.
+        ///
+        /// Parameter `topLeft`: The top-left corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `topRight`: The top-right corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomRight`: The bottom-right corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomLeft`: The bottom-left corner of the rectangle in normalized coordinate space.
         #[method_id(@__retain_semantics Other rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_topRight_bottomRight_bottomLeft(
             request_revision: NSUInteger,
@@ -620,6 +775,7 @@ extern_methods!(
     /// Methods declared on superclass `VNDetectedObjectObservation`
     unsafe impl VNTextObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[method_id(@__retain_semantics Other observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
@@ -644,7 +800,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedtext?language=objc)
+    /// VNRecognizedText A block of recognized text. There can be multiple VNRecognizedText objects returned in a VNRecognizedTextObservation - one for each candidate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedtext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedText;
@@ -667,10 +825,14 @@ unsafe impl VNRequestRevisionProviding for VNRecognizedText {}
 
 extern_methods!(
     unsafe impl VNRecognizedText {
+        /// Field that contains recognized text.
+        ///
+        /// This is the top candidate of the recognized text.
         #[method_id(@__retain_semantics Other string)]
         pub fn string(&self) -> Retained<NSString>;
 
         #[cfg(feature = "VNTypes")]
+        /// The level of confidence normalized to [0.0, 1.0] where 1.0 is most confident
         #[method(confidence)]
         pub fn confidence(&self) -> VNConfidence;
     }
@@ -688,7 +850,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedtextobservation?language=objc)
+    /// VNRecognizedTextObservation Describes a text area detected and recognized by the VNRecognizeTextRequest request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedtextobservation?language=objc)
     #[unsafe(super(
         VNRectangleObservation,
         VNDetectedObjectObservation,
@@ -716,6 +880,9 @@ unsafe impl VNRequestRevisionProviding for VNRecognizedTextObservation {}
 
 extern_methods!(
     unsafe impl VNRecognizedTextObservation {
+        /// Returns the top N candidates sorted by decreasing confidence score
+        ///
+        /// This will return no more than N but can be less than N candidates. The maximum number of candidates returned cannot exceed 10 candidates.
         #[method_id(@__retain_semantics Other topCandidates:)]
         pub fn topCandidates(
             &self,
@@ -728,6 +895,20 @@ extern_methods!(
     /// Methods declared on superclass `VNRectangleObservation`
     unsafe impl VNRecognizedTextObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Create a synthesized `VNRectangleObservation`.
+        ///
+        /// Note: The clockwise parameter ordered `+[VNRectangleObservation rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:]` is the preferred initializer.
+        ///
+        ///
+        /// Parameter `requestRevision`: The revision of the VNDetectRectanglesRequest that the observation is to be treated as originating from.
+        ///
+        /// Parameter `topLeft`: The top-left corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomLeft`: The bottom-left corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomRight`: The bottom-right corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `topRight`: The top-right corner of the rectangle in normalized coordinate space.
         #[deprecated]
         #[method_id(@__retain_semantics Other rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_bottomLeft_bottomRight_topRight(
@@ -739,6 +920,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Create a synthesized `VNRectangleObservation`.
+        ///
+        ///
+        /// Parameter `requestRevision`: The revision of the VNDetectRectanglesRequest that the observation is to be treated as originating from.
+        ///
+        /// Parameter `topLeft`: The top-left corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `topRight`: The top-right corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomRight`: The bottom-right corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomLeft`: The bottom-left corner of the rectangle in normalized coordinate space.
         #[method_id(@__retain_semantics Other rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_topRight_bottomRight_bottomLeft(
             request_revision: NSUInteger,
@@ -754,6 +947,7 @@ extern_methods!(
     /// Methods declared on superclass `VNDetectedObjectObservation`
     unsafe impl VNRecognizedTextObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[method_id(@__retain_semantics Other observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
@@ -778,7 +972,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodeobservation?language=objc)
+    /// VNBarcodeObservation Describes an area containing a barcode detected by the VNRequestNameDetectBarcodes request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodeobservation?language=objc)
     #[unsafe(super(
         VNRectangleObservation,
         VNDetectedObjectObservation,
@@ -807,32 +1003,44 @@ unsafe impl VNRequestRevisionProviding for VNBarcodeObservation {}
 extern_methods!(
     unsafe impl VNBarcodeObservation {
         #[cfg(feature = "VNTypes")]
+        /// The symbology of the detected barcode.
         #[method_id(@__retain_semantics Other symbology)]
         pub unsafe fn symbology(&self) -> Retained<VNBarcodeSymbology>;
 
         #[cfg(feature = "objc2-core-image")]
+        /// An object that provides symbology-specific data for the barcode.
         #[method_id(@__retain_semantics Other barcodeDescriptor)]
         pub unsafe fn barcodeDescriptor(&self) -> Option<Retained<CIBarcodeDescriptor>>;
 
+        /// The string representation of the barcode's payload.  Depending on the symbology of the barcode and/or the payload data itself, a string representation of the payload may not be available.
         #[method_id(@__retain_semantics Other payloadStringValue)]
         pub unsafe fn payloadStringValue(&self) -> Option<Retained<NSString>>;
 
+        /// The raw data representation of the barcode's payload if available.
         #[method_id(@__retain_semantics Other payloadData)]
         pub unsafe fn payloadData(&self) -> Option<Retained<NSData>>;
 
+        /// Boolean indicating if the barcode carries any GS1 application specific data
         #[method(isGS1DataCarrier)]
         pub unsafe fn isGS1DataCarrier(&self) -> bool;
 
+        /// A boolean indicating if the barcode is color inverted
         #[method(isColorInverted)]
         pub unsafe fn isColorInverted(&self) -> bool;
 
         #[cfg(feature = "VNTypes")]
+        /// Represents the supplemental composite type. Currently, this can only refer to the composite flag of the 2D symbology as part of a GS1 composite symbology.
+        /// This attribute only exists when the primary descriptor is the 1D symbology of a GS1 composite symbology, and of which a valid 2D counterpart has been coalesced into.
         #[method(supplementalCompositeType)]
         pub unsafe fn supplementalCompositeType(&self) -> VNBarcodeCompositeType;
 
+        /// Decode the supplemental code in the descriptor as a string value. Note: this property might be expensive the first time it is accessed
+        /// When non-NULL, and if the descriptor has supplemental raw payload data, the pointee will be set to the decoded supplemental payload string value.
         #[method_id(@__retain_semantics Other supplementalPayloadString)]
         pub unsafe fn supplementalPayloadString(&self) -> Option<Retained<NSString>>;
 
+        /// Decode the supplemental code in the descriptor as a string value. Note: this property might be expensive the first time it is accessed
+        /// When non-NULL, and if the descriptor has supplemental raw payload data, the pointee will be set to the decoded supplemental payload raw data value.
         #[method_id(@__retain_semantics Other supplementalPayloadData)]
         pub unsafe fn supplementalPayloadData(&self) -> Option<Retained<NSData>>;
     }
@@ -842,6 +1050,20 @@ extern_methods!(
     /// Methods declared on superclass `VNRectangleObservation`
     unsafe impl VNBarcodeObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Create a synthesized `VNRectangleObservation`.
+        ///
+        /// Note: The clockwise parameter ordered `+[VNRectangleObservation rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:]` is the preferred initializer.
+        ///
+        ///
+        /// Parameter `requestRevision`: The revision of the VNDetectRectanglesRequest that the observation is to be treated as originating from.
+        ///
+        /// Parameter `topLeft`: The top-left corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomLeft`: The bottom-left corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomRight`: The bottom-right corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `topRight`: The top-right corner of the rectangle in normalized coordinate space.
         #[deprecated]
         #[method_id(@__retain_semantics Other rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_bottomLeft_bottomRight_topRight(
@@ -853,6 +1075,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Create a synthesized `VNRectangleObservation`.
+        ///
+        ///
+        /// Parameter `requestRevision`: The revision of the VNDetectRectanglesRequest that the observation is to be treated as originating from.
+        ///
+        /// Parameter `topLeft`: The top-left corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `topRight`: The top-right corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomRight`: The bottom-right corner of the rectangle in normalized coordinate space.
+        ///
+        /// Parameter `bottomLeft`: The bottom-left corner of the rectangle in normalized coordinate space.
         #[method_id(@__retain_semantics Other rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_topRight_bottomRight_bottomLeft(
             request_revision: NSUInteger,
@@ -868,6 +1102,7 @@ extern_methods!(
     /// Methods declared on superclass `VNDetectedObjectObservation`
     unsafe impl VNBarcodeObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[method_id(@__retain_semantics Other observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
@@ -892,7 +1127,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhorizonobservation?language=objc)
+    /// VNHorizonObservation is the result of a VNDetectHorizonRequest
+    ///
+    /// Use the transform or angle to upright the image and make the detected horizon level.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnhorizonobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNHorizonObservation;
@@ -916,14 +1155,19 @@ unsafe impl VNRequestRevisionProviding for VNHorizonObservation {}
 extern_methods!(
     unsafe impl VNHorizonObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Transform applied to the detected horizon in image coordinates.
+        ///
+        /// This is the transform in image coordinates and not a normalized transform.
         #[method(transform)]
         pub unsafe fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Angle of the observed horizon.
         #[method(angle)]
         pub unsafe fn angle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Creates a transform for the specified width and height.
         #[method(transformForImageWidth:height:)]
         pub unsafe fn transformForImageWidth_height(
             &self,
@@ -945,7 +1189,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagealignmentobservation?language=objc)
+    /// VNImageAlignmentObservation is generated from an image registration. This is an abstract base class. The type of registration request used defines which subclass describes the result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagealignmentobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageAlignmentObservation;
@@ -982,7 +1228,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagetranslationalignmentobservation?language=objc)
+    /// An observation describing the results of performing a translational image alignment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagetranslationalignmentobservation?language=objc)
     #[unsafe(super(VNImageAlignmentObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageTranslationAlignmentObservation;
@@ -1023,7 +1271,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagehomographicalignmentobservation?language=objc)
+    /// An observation describing the results of performing a homographic image alignment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagehomographicalignmentobservation?language=objc)
     #[unsafe(super(VNImageAlignmentObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageHomographicAlignmentObservation;
@@ -1060,7 +1310,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnsaliencyimageobservation?language=objc)
+    /// VNSaliencyImageObservation provides a grayscale "heat" map of important areas of an image.
+    ///
+    /// In the revision1, the "heat" map is a OneComponent32Float pixel format CVPixelBuffer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnsaliencyimageobservation?language=objc)
     #[unsafe(super(VNPixelBufferObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNSaliencyImageObservation;
@@ -1083,6 +1337,7 @@ unsafe impl VNRequestRevisionProviding for VNSaliencyImageObservation {}
 
 extern_methods!(
     unsafe impl VNSaliencyImageObservation {
+        /// An array of bounds of salient objects within the image. Each box represents a distinct mode of the heat map.
         #[method_id(@__retain_semantics Other salientObjects)]
         pub unsafe fn salientObjects(&self) -> Option<Retained<NSArray<VNRectangleObservation>>>;
     }
@@ -1124,15 +1379,21 @@ unsafe impl VNRequestRevisionProviding for VNFeaturePrintObservation {}
 extern_methods!(
     unsafe impl VNFeaturePrintObservation {
         #[cfg(feature = "VNTypes")]
+        /// The type of each element in the data.
         #[method(elementType)]
         pub unsafe fn elementType(&self) -> VNElementType;
 
+        /// The total number of elements in the data.
         #[method(elementCount)]
         pub unsafe fn elementCount(&self) -> NSUInteger;
 
+        /// The feature print data.
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
+        /// Computes the distance between two observations.
+        ///
+        /// The larger the distance the more dissimlar the feature prints are. In case of an error this method returns false with an error describing the error condition, for instance comparing two non-comparable feature prints.
         #[method(computeDistance:toFeaturePrintObservation:error:_)]
         pub unsafe fn computeDistance_toFeaturePrintObservation_error(
             &self,
@@ -1177,24 +1438,47 @@ unsafe impl VNRequestRevisionProviding for VNContoursObservation {}
 
 extern_methods!(
     unsafe impl VNContoursObservation {
+        /// The total number of contours detected.
         #[method(contourCount)]
         pub unsafe fn contourCount(&self) -> NSInteger;
 
         #[cfg(feature = "VNGeometry")]
+        /// Returns the VNContour object at the specified index, irrespective of hierarchy.
+        ///
+        /// Parameter `contourIndex`: The index of the contour to request. Valid values are in the range [0..contourCount-1].
+        ///
+        /// Parameter `error`: The error returned if the index path is out of range.
+        ///
+        /// Returns: The detected VNContour at the specified index without regard to hierarchy.
         #[method_id(@__retain_semantics Other contourAtIndex:error:_)]
         pub unsafe fn contourAtIndex_error(
             &self,
             contour_index: NSInteger,
         ) -> Result<Retained<VNContour>, Retained<NSError>>;
 
+        /// The total number of top-level contours detected.
         #[method(topLevelContourCount)]
         pub unsafe fn topLevelContourCount(&self) -> NSInteger;
 
         #[cfg(feature = "VNGeometry")]
+        /// An array of the top level contours (i.e. contours that are not enclosed inside another contour),.
+        ///
+        /// This array constitutes the top of the contour hierarchy. Each contour object can be further iterated to determine its children.
+        ///
+        /// See: VNContour for more information.
         #[method_id(@__retain_semantics Other topLevelContours)]
         pub unsafe fn topLevelContours(&self) -> Retained<NSArray<VNContour>>;
 
         #[cfg(feature = "VNGeometry")]
+        /// Returns the VNContour object at the specified index path.
+        ///
+        /// Use the indexPath property from a VNContour instance to pass to this method.
+        ///
+        /// Parameter `indexPath`: The index path is the heirarchical path to the contour.
+        ///
+        /// Parameter `error`: The error returned if the index path is out of range.
+        ///
+        /// Returns: The VNContour object at the specified index path.
         #[method_id(@__retain_semantics Other contourAtIndexPath:error:_)]
         pub unsafe fn contourAtIndexPath_error(
             &self,
@@ -1202,6 +1486,9 @@ extern_methods!(
         ) -> Result<Retained<VNContour>, Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Obtain all of the contours represented as a CGPath in normalized coordinates.
+        ///
+        /// The path is owned by the observation and therefore will be alive as long as the the observation is alive.
         #[method(normalizedPath)]
         pub unsafe fn normalizedPath(&self) -> CGPathRef;
     }
@@ -1225,7 +1512,9 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpointsobservation?language=objc)
+    /// VNRecognizedPointsObservation is a request result detailing points in an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpointsobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedPointsObservation;
@@ -1255,10 +1544,12 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
+        /// Returns all of the point group keys available in the observation.
         #[method_id(@__retain_semantics Other availableKeys)]
         pub unsafe fn availableKeys(&self) -> Retained<NSArray<VNRecognizedPointKey>>;
 
         #[cfg(feature = "VNTypes")]
+        /// The availableGroupKeys property returns all of the point group labels usable with the observation.
         #[method_id(@__retain_semantics Other availableGroupKeys)]
         pub unsafe fn availableGroupKeys(&self) -> Retained<NSArray<VNRecognizedPointGroupKey>>;
 
@@ -1267,6 +1558,16 @@ extern_methods!(
             feature = "VNGeometry",
             feature = "VNTypes"
         ))]
+        /// Obtains a specific normalized recognized point.
+        ///
+        ///
+        /// Parameter `pointKey`: The key specifying the desired recognized point.
+        ///
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
+        ///
+        ///
+        /// Returns: the recognized point, or nil if the specific point is not defined.
         #[method_id(@__retain_semantics Other recognizedPointForKey:error:_)]
         pub unsafe fn recognizedPointForKey_error(
             &self,
@@ -1278,6 +1579,17 @@ extern_methods!(
             feature = "VNGeometry",
             feature = "VNTypes"
         ))]
+        /// Obtains the collection of points associated with an identified grouping.
+        ///
+        ///
+        /// The obtained collection is a dictionary that provides the mapping of a recognized point's key to the recognized point.
+        ///
+        ///
+        /// Parameter `groupKey`: The key representing a specific grouping of points.
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
+        ///
+        /// Returns: the dictionary of recognized points in the group, or nil if an error was encountered.
         #[method_id(@__retain_semantics Other recognizedPointsForGroupKey:error:_)]
         pub unsafe fn recognizedPointsForGroupKey_error(
             &self,
@@ -1288,6 +1600,17 @@ extern_methods!(
         >;
 
         #[cfg(feature = "objc2-core-ml")]
+        /// Returns the recognized points packaged into an MLMultiArray.
+        ///
+        ///
+        /// The MLMultiArray will contain the raw data output of (x coordinate, y coordinate, confidence) for specific points in the format expected by CreateML action recognition models.
+        /// The datatype of the elements in the array is double and the dimensions are [1, 3, # of possible points].  If an expected point key is not available in the obeservation, that entry in the MLMultiArray will be populated with 0s.
+        ///
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
+        ///
+        ///
+        /// Returns: the MLMultiArray representation of the points, or nil if an error was encountered.
         #[method_id(@__retain_semantics Other keypointsMultiArrayAndReturnError:_)]
         pub unsafe fn keypointsMultiArrayAndReturnError(
             &self,
@@ -1296,7 +1619,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanobservation?language=objc)
+    /// VNHumanObservation is the result of a Human rectangles detection request
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanobservation?language=objc)
     #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNHumanObservation;
@@ -1319,6 +1644,7 @@ unsafe impl VNRequestRevisionProviding for VNHumanObservation {}
 
 extern_methods!(
     unsafe impl VNHumanObservation {
+        /// Boolean property to specify whether the human upper body or full body detection is recorded in the observation. This setting is propagated from [VNDetectHumanRectanglesRequest -upperBodyOnly]
         #[method(upperBodyOnly)]
         pub unsafe fn upperBodyOnly(&self) -> bool;
     }
@@ -1328,6 +1654,7 @@ extern_methods!(
     /// Methods declared on superclass `VNDetectedObjectObservation`
     unsafe impl VNHumanObservation {
         #[cfg(feature = "objc2-core-foundation")]
+        /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
         #[method_id(@__retain_semantics Other observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
@@ -1352,7 +1679,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vninstancemaskobservation?language=objc)
+    /// An observation resulting from an instance mask generation request. It contains an instance mask that labels instances in the mask that labels per pixel an instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vninstancemaskobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNInstanceMaskObservation;
@@ -1376,9 +1705,12 @@ unsafe impl VNRequestRevisionProviding for VNInstanceMaskObservation {}
 extern_methods!(
     unsafe impl VNInstanceMaskObservation {
         #[cfg(feature = "objc2-core-video")]
+        /// The resulting mask represents all instances in a mask image where 0 represents the background and all other values represent the indices of the instances identified.
+        /// Note that a pixel can only correspond to one instance and not multiple instances.
         #[method(instanceMask)]
         pub unsafe fn instanceMask(&self) -> CVPixelBufferRef;
 
+        /// *The IndexSet that encompases all instances except the background
         #[method_id(@__retain_semantics Other allInstances)]
         pub unsafe fn allInstances(&self) -> Retained<NSIndexSet>;
     }
@@ -1420,12 +1752,14 @@ unsafe impl VNRequestRevisionProviding for VNAnimalBodyPoseObservation {}
 extern_methods!(
     unsafe impl VNAnimalBodyPoseObservation {
         #[cfg(feature = "VNTypes")]
+        /// All animal joint names available in the observation.
         #[method_id(@__retain_semantics Other availableJointNames)]
         pub unsafe fn availableJointNames(
             &self,
         ) -> Retained<NSArray<VNAnimalBodyPoseObservationJointName>>;
 
         #[cfg(feature = "VNTypes")]
+        /// All animal joints group names available in the observation.
         #[method_id(@__retain_semantics Other availableJointGroupNames)]
         pub unsafe fn availableJointGroupNames(
             &self,
@@ -1436,6 +1770,14 @@ extern_methods!(
             feature = "VNGeometry",
             feature = "VNTypes"
         ))]
+        /// Obtain a specific normalized point for a named animal body joint.
+        ///
+        ///
+        /// Parameter `jointName`: The name of the animal body joint.
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
+        ///
+        /// Returns: the recognized point, or nil if the point could not be obtained.
         #[method_id(@__retain_semantics Other recognizedPointForJointName:error:_)]
         pub unsafe fn recognizedPointForJointName_error(
             &self,
@@ -1447,6 +1789,17 @@ extern_methods!(
             feature = "VNGeometry",
             feature = "VNTypes"
         ))]
+        /// Obtains the collection of points associated with a named animal body joints group.
+        ///
+        ///
+        /// The obtained collection is a dictionary that provides the mapping of animal join names to the recognized point.
+        ///
+        ///
+        /// Parameter `jointsGroupName`: The name of the animal body joints group.
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
+        ///
+        /// Returns: a dictionary of recognized points in the group, or nil if an error was encountered.
         #[method_id(@__retain_semantics Other recognizedPointsForJointsGroupName:error:_)]
         pub unsafe fn recognizedPointsForJointsGroupName_error(
             &self,
@@ -1476,7 +1829,11 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation?language=objc)
+    /// Observation
+    ///
+    /// VNRecognizedPointsObservation is a request result detailing points in an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedPoints3DObservation;
@@ -1506,10 +1863,12 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
+        /// Returns all of the point group keys available in the observation.
         #[method_id(@__retain_semantics Other availableKeys)]
         pub unsafe fn availableKeys(&self) -> Retained<NSArray<VNRecognizedPointKey>>;
 
         #[cfg(feature = "VNTypes")]
+        /// The availableGroupKeys property returns all of the point group labels usable with the observation.
         #[method_id(@__retain_semantics Other availableGroupKeys)]
         pub unsafe fn availableGroupKeys(&self) -> Retained<NSArray<VNRecognizedPointGroupKey>>;
 
@@ -1518,6 +1877,13 @@ extern_methods!(
             feature = "VNRecognizedPoint3D",
             feature = "VNTypes"
         ))]
+        /// Obtains a specific normalized recognized point.
+        ///
+        /// Parameter `pointKey`: The key specifying the desired recognized point.
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
+        ///
+        /// Returns: the recognized point, or nil if the specific point is not defined.
         #[method_id(@__retain_semantics Other recognizedPointForKey:error:_)]
         pub unsafe fn recognizedPointForKey_error(
             &self,
@@ -1529,6 +1895,15 @@ extern_methods!(
             feature = "VNRecognizedPoint3D",
             feature = "VNTypes"
         ))]
+        /// Obtains the collection of points associated with an identified grouping.
+        ///
+        /// The obtained collection is a dictionary that provides the mapping of a recognized point's key to the recognized point.
+        ///
+        /// Parameter `groupKey`: The key representing a specific grouping of points.
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
+        ///
+        /// Returns: the dictionary of recognized points in the group, or nil if an error was encountered.
         #[method_id(@__retain_semantics Other recognizedPointsForGroupKey:error:_)]
         pub unsafe fn recognizedPointsForGroupKey_error(
             &self,
@@ -1540,7 +1915,13 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationheightestimation?language=objc)
+/// Height estimation technique used in observation based on available metadata
+/// VNHumanBodyPose3DObservationHeightEstimationReference is the default if no LiDAR depth is present
+///
+/// reference -   Since no depth was present, a reference height of 1.8 meters is used
+/// measured -   LiDAR depth was used to measure a more accurate `bodyHeight` in meters
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationheightestimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1584,21 +1965,28 @@ unsafe impl VNRequestRevisionProviding for VNHumanBodyPose3DObservation {}
 
 extern_methods!(
     unsafe impl VNHumanBodyPose3DObservation {
+        /// Technique used to estimate body height.   `VNHumanBodyPose3DObservationHeightEstimationMeasured`   indicates`bodyHeight` returns measured height in meters more accurate to true world height.
+        /// `VNHumanBodyPose3DObservationHeightEstimationReference` indicates `bodyHeight` returns reference height of 1.8 m
         #[method(heightEstimation)]
         pub unsafe fn heightEstimation(&self) -> VNHumanBodyPose3DObservationHeightEstimation;
 
         #[cfg(feature = "VNTypes")]
+        /// All of the joints group names available in the observation.
         #[method_id(@__retain_semantics Other availableJointsGroupNames)]
         pub unsafe fn availableJointsGroupNames(
             &self,
         ) -> Retained<NSArray<VNHumanBodyPose3DObservationJointsGroupName>>;
 
         #[cfg(feature = "VNTypes")]
+        /// All of the joint names available in the observation.
         #[method_id(@__retain_semantics Other availableJointNames)]
         pub unsafe fn availableJointNames(
             &self,
         ) -> Retained<NSArray<VNHumanBodyPose3DObservationJointName>>;
 
+        /// Estimated human height, in meters.
+        ///
+        /// Note: A measured height will be returned in meters if  `heightEstimation` is  `VNHumanBodyPose3DObservationHeightEstimationMeasured`, otherwise reference height of 1.8 meters is returned for `VNHumanBodyPose3DObservationHeightEstimationReference`
         #[method(bodyHeight)]
         pub unsafe fn bodyHeight(&self) -> c_float;
 
@@ -1608,6 +1996,15 @@ extern_methods!(
             feature = "VNRecognizedPoint3D",
             feature = "VNTypes"
         ))]
+        /// Obtains the collection of joints associated with a named human body joints group.
+        ///
+        /// The obtained collection is a dictionary that provides the mapping of human joint names to the recognized point.
+        ///
+        /// Parameter `jointsGroupName`: The name of the human body joints group.
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
+        ///
+        /// Returns: a dictionary of recognized points in the group, or nil if an error was encountered.
         #[method_id(@__retain_semantics Other recognizedPointsForJointsGroupName:error:_)]
         pub unsafe fn recognizedPointsForJointsGroupName_error(
             &self,
@@ -1625,6 +2022,16 @@ extern_methods!(
             feature = "VNRecognizedPoint3D",
             feature = "VNTypes"
         ))]
+        /// Obtain a specific point for a named human body joint.
+        /// Each returned `VNHumanBodyRecognizedPoint3D` instance contains position relative to the model (`position`) and the parent joint (`localPosition`)
+        /// Model position is relative to root joint (hip) for a named human body joint in meters .
+        /// Local position is relative to parent joint for a named human body joint in meters.
+        ///
+        /// Parameter `jointName`: The name of the human body joint.
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
+        ///
+        /// Returns: The recognized point, or nil if the point could not be obtained.
         #[method_id(@__retain_semantics Other recognizedPointForJointName:error:_)]
         pub unsafe fn recognizedPointForJointName_error(
             &self,
@@ -1632,6 +2039,11 @@ extern_methods!(
         ) -> Result<Retained<VNHumanBodyRecognizedPoint3D>, Retained<NSError>>;
 
         #[cfg(all(feature = "VNGeometry", feature = "VNTypes"))]
+        /// Obtain 2D point relative to the input image for named human body joint
+        ///
+        /// Parameter `jointName`: The name of the human body joint
+        ///
+        /// Returns: A projection of the determined 3D position onto the original 2D image in normalized, lower left origin coordinates
         #[method_id(@__retain_semantics Other pointInImageForJointName:error:_)]
         pub unsafe fn pointInImageForJointName_error(
             &self,
@@ -1639,6 +2051,11 @@ extern_methods!(
         ) -> Result<Retained<VNPoint>, Retained<NSError>>;
 
         #[cfg(feature = "VNTypes")]
+        /// Obtain the parent joint of a specified joint
+        ///
+        /// Parameter `jointName`: The name of the human body joint
+        ///
+        /// Returns: The name of the parent joint
         #[method_id(@__retain_semantics Other parentJointNameForJointName:)]
         pub unsafe fn parentJointNameForJointName(
             &self,
@@ -1659,7 +2076,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageaestheticsscoresobservation?language=objc)
+    /// VNImageAestheticsScoresObservation provides an overall score of aesthetic attributes for an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageaestheticsscoresobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageAestheticsScoresObservation;
@@ -1685,9 +2104,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// `isUtility` represents images that are not necessarily of poor image quality but may not have memorable or exciting content. `isUtility` can be true or false.
         #[method(isUtility)]
         pub unsafe fn isUtility(&self) -> bool;
 
+        /// A score which incorporates aesthetic score, failure score and utility labels. `overallScore` is within the range [-1, 1] where 1 is most desirable and -1 is not desirable.
         #[method(overallScore)]
         pub unsafe fn overallScore(&self) -> c_float;
     }

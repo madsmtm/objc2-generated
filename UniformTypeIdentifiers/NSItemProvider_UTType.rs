@@ -12,6 +12,27 @@ extern_category!(
     #[doc(alias = "UTType")]
     pub unsafe trait NSItemProviderUTType {
         #[cfg(feature = "UTType")]
+        /// Initialize this instance with the contents of a URL
+        ///
+        /// The filename of the URL is copied into the
+        /// `suggestedName`property
+        ///
+        /// Parameter `fileURL`: The URL of the file.
+        ///
+        /// Parameter `contentType`: The content type associated with this file, or
+        /// `nil`to deduce the content type from the
+        /// file extension.
+        ///
+        /// Parameter `openInPlace`: Pass
+        /// `YES`to allow this file to be opened in place.
+        ///
+        /// Parameter `coordinated`: Pass
+        /// `YES`to use file coordination to access this file, even if it is not opened in place.
+        /// If
+        /// `openInPlace`is set to
+        /// `YES`file coordination will be used and this parameter is ignored.
+        ///
+        /// Parameter `visibility`: The visibility of this representation.
         #[method_id(@__retain_semantics Init initWithContentsOfURL:contentType:openInPlace:coordinated:visibility:)]
         unsafe fn initWithContentsOfURL_contentType_openInPlace_coordinated_visibility(
             this: Allocated<Self>,
@@ -23,6 +44,17 @@ extern_category!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UTType", feature = "block2"))]
+        /// Register a representation backed by an
+        /// `NSData`
+        /// The load handler must call the completion block when loading is complete. Pass either a non-nil data
+        /// object, or a non-nil error. If the load handler returns a non-nil progress object, it should report loading progress
+        /// and respond to cancelation.
+        ///
+        /// Parameter `contentType`: The content type associated with the data representation.
+        ///
+        /// Parameter `visibility`: Specifies which processes have access to this representation.
+        ///
+        /// Parameter `loadHandler`: A block called to provide the data representation.
         #[method(registerDataRepresentationForContentType:visibility:loadHandler:)]
         unsafe fn registerDataRepresentationForContentType_visibility_loadHandler(
             &self,
@@ -36,6 +68,30 @@ extern_category!(
         );
 
         #[cfg(all(feature = "UTType", feature = "block2"))]
+        /// Register a representation backed by a file
+        ///
+        /// It is permissible to provide a URL pointing to a folder. A folder requested as
+        /// `NSData`will yield a
+        /// data object containing a zip archive holding a copy of the source folder tree.
+        ///
+        /// The load handler must call the completion block when loading is complete. Pass either a non-nil url, or a non-nil
+        /// error. Pass
+        /// `YES`to
+        /// `coordinated`if the file should be accessed using file coordination even if it is not opened
+        /// in-place. Files registered as open-in-place are assumed to need coordination, and this parameter will be ignored
+        /// in those cases. If the load handler returns a non-nil progress object, it should report loading progress and respond
+        /// to cancelation.
+        ///
+        /// Note: Not all files specified as openable in place can be opened in place by the destination. System security or
+        /// privacy policies may restrict which files can be opened in place.
+        ///
+        /// Parameter `contentType`: The content type associated with the file representation.
+        ///
+        /// Parameter `visibility`: Specifies which processes have access to this representation.
+        ///
+        /// Parameter `openInPlace`: Specifies whether the file should be openable in place.
+        ///
+        /// Parameter `loadHandler`: A block called to provide the file representation.
         #[method(registerFileRepresentationForContentType:visibility:openInPlace:loadHandler:)]
         unsafe fn registerFileRepresentationForContentType_visibility_openInPlace_loadHandler(
             &self,
@@ -50,14 +106,23 @@ extern_category!(
         );
 
         #[cfg(feature = "UTType")]
+        /// Registered content types, in the order they were registered
+        ///
+        /// Content types should be registered in order of fidelity. Prefer using content types that appear earlier
+        /// in the array.
         #[method_id(@__retain_semantics Other registeredContentTypes)]
         unsafe fn registeredContentTypes(&self) -> Retained<NSArray<UTType>>;
 
         #[cfg(feature = "UTType")]
+        /// Registered content types that can be loaded as files opened in place
         #[method_id(@__retain_semantics Other registeredContentTypesForOpenInPlace)]
         unsafe fn registeredContentTypesForOpenInPlace(&self) -> Retained<NSArray<UTType>>;
 
         #[cfg(feature = "UTType")]
+        /// Return an array of registered content types that conform to a given content type.
+        ///
+        /// The returned content types are given in order of fidelity. Prefer content types that appear earlier
+        /// in the array.
         #[method_id(@__retain_semantics Other registeredContentTypesConformingToContentType:)]
         unsafe fn registeredContentTypesConformingToContentType(
             &self,
@@ -65,6 +130,24 @@ extern_category!(
         ) -> Retained<NSArray<UTType>>;
 
         #[cfg(all(feature = "UTType", feature = "block2"))]
+        /// Load a representation as data
+        ///
+        /// If the requested representation was registered as a file, an
+        /// `NSData`with the contents of the file
+        /// will be provided. If the registered URL points to a folder, an
+        /// `NSData`containing a zip archive containing that
+        /// folder will be provided.
+        ///
+        /// Note: The completion handler may be scheduled on an arbitrary queue.
+        ///
+        /// Parameter `contentType`: Content type of the representation to load. Must conform to one of the content types returned
+        /// by
+        /// `registeredContentTypes`
+        /// Parameter `completionHandler`: A block that will be called when loading is complete. It will either have a non-nil
+        /// `data`or a non-nil
+        /// `error`parameter.
+        ///
+        /// Returns: A progress object. Use it to monitor loading progress, or to cancel loading.
         #[method_id(@__retain_semantics Other loadDataRepresentationForContentType:completionHandler:)]
         unsafe fn loadDataRepresentationForContentType_completionHandler(
             &self,
@@ -73,6 +156,38 @@ extern_category!(
         ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "UTType", feature = "block2"))]
+        /// Load a representation as a file
+        ///
+        /// Except for files registered as open-in-place, a temporary file containing a copy of the original
+        /// will be provided to your completion handler. This temporary file will be deleted once your completion handler
+        /// returns. To keep a copy of this file, move or copy it into another directory before returning from the completion
+        /// handler.
+        ///
+        /// If the representation was registered as
+        /// `NSData`its contents will be written to a temporary file.
+        ///
+        /// If
+        /// `suggestedName`is non-nil, an attempt will be made to use it as the file name, with an appropriate
+        /// file extension based on the content type. Otherwise, a suitable name and file extension will be chosen based on the
+        /// content type.
+        ///
+        /// Note: The completion handler may be scheduled on an arbitrary queue
+        ///
+        /// Parameter `contentType`: Content type of the representation to load. Must conform to one of the content types returned
+        /// by
+        /// `registeredContentTypes`
+        /// Parameter `openInPlace`: Pass
+        /// `YES`to attempt to open a file representation in place
+        ///
+        /// Parameter `completionHandler`: A block that will be called when loading is complete. It will either have a non-nil
+        /// `URL`or a non-nill
+        /// `error`parameter. The
+        /// `openInPlace`parameter will be set to
+        /// `YES`if the file was successfully opened in place, or
+        /// `NO`if a copy of the file was
+        /// created in a temporary directory.
+        ///
+        /// Returns: A progress object. Use it to monitor loading progress, or to cancel loading.
         #[method_id(@__retain_semantics Other loadFileRepresentationForContentType:openInPlace:completionHandler:)]
         unsafe fn loadFileRepresentationForContentType_openInPlace_completionHandler(
             &self,

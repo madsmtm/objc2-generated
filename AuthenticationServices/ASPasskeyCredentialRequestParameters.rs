@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeycredentialrequestparameters?language=objc)
+    /// A class that holds various parameters related to a passkey credential request.
+    /// This class is provided by the system to the credential provider extension when there is an active passkey request as part of
+    /// -[ASCredentialProviderViewController prepareCredentialListForServiceIdentifiers:requestParameters:] and should be used
+    /// to construct a passkey credential response using the item selected by the user from the extension's UI.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeycredentialrequestparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPasskeyCredentialRequestParameters;
@@ -34,22 +39,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The relying party identifier for this request.
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
+        /// Hash of client data for credential provider to sign as part of the operation.
         #[method_id(@__retain_semantics Other clientDataHash)]
         pub unsafe fn clientDataHash(&self) -> Retained<NSData>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
+        /// A preference for whether the authenticator should attempt to verify that it is being used by its owner, such as through a PIN or biometrics.
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         pub unsafe fn userVerificationPreference(
             &self,
         ) -> Retained<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
+        /// A list of allowed credential IDs for this request. An empty list means all credentials are allowed.
         #[method_id(@__retain_semantics Other allowedCredentials)]
         pub unsafe fn allowedCredentials(&self) -> Retained<NSArray<NSData>>;
 
         #[cfg(feature = "ASPasskeyAssertionCredentialExtensionInput")]
+        /// Inputs for WebAuthn extensions used for passkey assertion.
         #[method_id(@__retain_semantics Other extensionInput)]
         pub unsafe fn extensionInput(
             &self,

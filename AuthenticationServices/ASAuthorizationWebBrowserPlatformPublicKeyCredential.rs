@@ -23,21 +23,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The user name of the saved credential.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// A user-specified title for the credential.
         #[method_id(@__retain_semantics Other customTitle)]
         pub unsafe fn customTitle(&self) -> Option<Retained<NSString>>;
 
+        /// The "relying party" (generally website) the credential was saved for.
         #[method_id(@__retain_semantics Other relyingParty)]
         pub unsafe fn relyingParty(&self) -> Retained<NSString>;
 
+        /// A unique identifier for this credential.
         #[method_id(@__retain_semantics Other credentialID)]
         pub unsafe fn credentialID(&self) -> Retained<NSData>;
 
+        /// A unique identifier for the user account associated with this credential. One account may have multiple associated credentials.
         #[method_id(@__retain_semantics Other userHandle)]
         pub unsafe fn userHandle(&self) -> Retained<NSData>;
 
+        /// The localized name of the credential provider that provided this passkey, either the name of a third party app or "iCloud Keychain".
         #[method_id(@__retain_semantics Other providerName)]
         pub unsafe fn providerName(&self) -> Retained<NSString>;
     }

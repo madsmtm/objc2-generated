@@ -252,6 +252,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileManagerDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

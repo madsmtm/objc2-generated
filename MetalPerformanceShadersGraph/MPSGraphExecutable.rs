@@ -10,7 +10,13 @@ use objc2_metal_performance_shaders::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutablecompletionhandler?language=objc)
+/// A notification when graph executable execution finishes.
+///
+/// - Parameters:
+/// - results: If no error, the results produced by the graph operation. If Graph hasn't yet allocated the results, this will be `NSNull`.
+/// - error: If an error occurs, more information might be found here.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutablecompletionhandler?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensorData",
@@ -19,7 +25,13 @@ use crate::*;
 pub type MPSGraphExecutableCompletionHandler =
     *mut block2::Block<dyn Fn(NonNull<NSArray<MPSGraphTensorData>>, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutablescheduledhandler?language=objc)
+/// A notification when graph executable execution schedules.
+///
+/// - Parameters:
+/// - results: If no error, the results produced by the graph operation.
+/// - error: If an error occurs, more information might be found here.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutablescheduledhandler?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensorData",
@@ -29,7 +41,9 @@ pub type MPSGraphExecutableScheduledHandler =
     *mut block2::Block<dyn Fn(NonNull<NSArray<MPSGraphTensorData>>, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableexecutiondescriptor?language=objc)
+    /// A class that consists of all the levers  to synchronize and schedule executable execution.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableexecutiondescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -51,10 +65,14 @@ extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphExecutableExecutionDescriptor {
         #[cfg(all(feature = "MPSGraphTensorData", feature = "block2"))]
+        /// A notification that appears when graph-executable execution is scheduled.
+        ///
+        /// Default value is nil.
         #[method(scheduledHandler)]
         pub unsafe fn scheduledHandler(&self) -> MPSGraphExecutableScheduledHandler;
 
         #[cfg(all(feature = "MPSGraphTensorData", feature = "block2"))]
+        /// Setter for [`scheduledHandler`][Self::scheduledHandler].
         #[method(setScheduledHandler:)]
         pub unsafe fn setScheduledHandler(
             &self,
@@ -62,22 +80,37 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSGraphTensorData", feature = "block2"))]
+        /// A notification that appears when graph-executable execution is finished.
+        ///
+        /// Default value is nil.
         #[method(completionHandler)]
         pub unsafe fn completionHandler(&self) -> MPSGraphExecutableCompletionHandler;
 
         #[cfg(all(feature = "MPSGraphTensorData", feature = "block2"))]
+        /// Setter for [`completionHandler`][Self::completionHandler].
         #[method(setCompletionHandler:)]
         pub unsafe fn setCompletionHandler(
             &self,
             completion_handler: MPSGraphExecutableCompletionHandler,
         );
 
+        /// Flag for the graph executable to wait till the execution has completed.
+        ///
+        /// Default value is false.
         #[method(waitUntilCompleted)]
         pub unsafe fn waitUntilCompleted(&self) -> bool;
 
+        /// Setter for [`waitUntilCompleted`][Self::waitUntilCompleted].
         #[method(setWaitUntilCompleted:)]
         pub unsafe fn setWaitUntilCompleted(&self, wait_until_completed: bool);
 
+        /// Waits on these shared events before scheduling execution on the HW.
+        ///
+        /// This does not include encoding which can still continue.
+        ///
+        /// - Parameters:
+        /// - event: Shared event to wait on.
+        /// - value: Value for shared event to wait on.
         #[method(waitForEvent:value:)]
         pub unsafe fn waitForEvent_value(
             &self,
@@ -86,6 +119,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSGraph")]
+        /// Signals these shared events at execution stage and immediately proceeds.
+        ///
+        /// - Parameters:
+        /// - event: Shared event to signal.
+        /// - executionStage: Execution stage to signal event at.
+        /// - value: Value for shared event to wait on.
         #[method(signalEvent:atExecutionEvent:value:)]
         pub unsafe fn signalEvent_atExecutionEvent_value(
             &self,
@@ -108,18 +147,24 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdeploymentplatform?language=objc)
+/// The options available to a graph.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdeploymentplatform?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphDeploymentPlatform(pub u64);
 impl MPSGraphDeploymentPlatform {
+    /// Deployment platofmr for macOS.
     #[doc(alias = "MPSGraphDeploymentPlatformMacOS")]
     pub const MacOS: Self = Self(0);
+    /// Deployment target for iOS.
     #[doc(alias = "MPSGraphDeploymentPlatformIOS")]
     pub const IOS: Self = Self(1);
+    /// Deployment target for tvOS.
     #[doc(alias = "MPSGraphDeploymentPlatformTvOS")]
     pub const TvOS: Self = Self(2);
+    /// Deployment target for visionOS.
     #[doc(alias = "MPSGraphDeploymentPlatformVisionOS")]
     pub const VisionOS: Self = Self(3);
 }
@@ -133,7 +178,9 @@ unsafe impl RefEncode for MPSGraphDeploymentPlatform {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor?language=objc)
+    /// A class that consists of all the levers  to serialize an executable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -146,21 +193,33 @@ unsafe impl NSObjectProtocol for MPSGraphExecutableSerializationDescriptor {}
 extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphExecutableSerializationDescriptor {
+        /// Flag to append to an existing .mpsgraphpackage if found at provided url.
+        ///
+        /// If false, the exisiting .mpsgraphpackage will be overwritten.
         #[method(append)]
         pub unsafe fn append(&self) -> bool;
 
+        /// Setter for [`append`][Self::append].
         #[method(setAppend:)]
         pub unsafe fn setAppend(&self, append: bool);
 
+        /// The deployment platform used to serialize the executable.
+        ///
+        /// Defaults to the current platform.
         #[method(deploymentPlatform)]
         pub unsafe fn deploymentPlatform(&self) -> MPSGraphDeploymentPlatform;
 
+        /// Setter for [`deploymentPlatform`][Self::deploymentPlatform].
         #[method(setDeploymentPlatform:)]
         pub unsafe fn setDeploymentPlatform(&self, deployment_platform: MPSGraphDeploymentPlatform);
 
+        /// The minimum deployment target to serialize the executable.
+        ///
+        /// If not set, the package created will target the latest version of the `deploymentPlatform` set.
         #[method_id(@__retain_semantics Other minimumDeploymentTarget)]
         pub unsafe fn minimumDeploymentTarget(&self) -> Retained<NSString>;
 
+        /// Setter for [`minimumDeploymentTarget`][Self::minimumDeploymentTarget].
         #[method(setMinimumDeploymentTarget:)]
         pub unsafe fn setMinimumDeploymentTarget(&self, minimum_deployment_target: &NSString);
     }
@@ -179,7 +238,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutable?language=objc)
+    /// The compiled representation of a compute graph executable.
+    ///
+    /// An `MPSGraphExecutable` is a compiled graph for specific feeds for specific target tensors and target operations.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutable?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -193,22 +256,36 @@ extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphExecutable {
         #[cfg(feature = "MPSGraph")]
+        /// Options for the graph executable.
+        ///
+        /// Default value is `MPSGraphOptionsDefault`.
         #[method(options)]
         pub unsafe fn options(&self) -> MPSGraphOptions;
 
         #[cfg(feature = "MPSGraph")]
+        /// Setter for [`options`][Self::options].
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: MPSGraphOptions);
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Tensors fed to the graph, can be used to order the inputs when executable is created with a graph.
         #[method_id(@__retain_semantics Other feedTensors)]
         pub unsafe fn feedTensors(&self) -> Option<Retained<NSArray<MPSGraphTensor>>>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Tensors targeted by the graph, can be used to order the outputs when executable was created with a graph.
         #[method_id(@__retain_semantics Other targetTensors)]
         pub unsafe fn targetTensors(&self) -> Option<Retained<NSArray<MPSGraphTensor>>>;
 
         #[cfg(all(feature = "MPSGraph", feature = "MPSGraphDevice"))]
+        /// Specialize the executable and optimize it.
+        ///
+        /// Use this method to choose when specialization happens, else it occurs at encode time automatically.
+        ///
+        /// - Parameters:
+        /// - device:Ooptional MPSGraph device to compile with.
+        /// - inputTypes: Input types expected to be passed to the executable.
+        /// - compilationDescriptor: Compilation descriptor to be used to specialize, since the executable was created with a compilationDescriptor already this one overrides those settings to the extent it can.
         #[method(specializeWithDevice:inputTypes:compilationDescriptor:)]
         pub unsafe fn specializeWithDevice_inputTypes_compilationDescriptor(
             &self,
@@ -218,6 +295,14 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSGraph", feature = "MPSGraphDevice"))]
+        /// Get output shapes for a specialized executable.
+        ///
+        /// In case specialization has not been done yet then calling this function will specialize for the given input shapes.
+        ///
+        /// - Parameters:
+        /// - device: Optional MPSGraph device to compile with
+        /// - inputTypes: Input types expected to be passed to the executable.
+        /// - compilationDescriptor: CompilationDescriptor to be used to specialize, since the executable was created with a compilationDescriptor already this one overrides those settings to the extent it can.
         #[method_id(@__retain_semantics Other getOutputTypesWithDevice:inputTypes:compilationDescriptor:)]
         pub unsafe fn getOutputTypesWithDevice_inputTypes_compilationDescriptor(
             &self,
@@ -227,6 +312,15 @@ extern_methods!(
         ) -> Option<Retained<NSArray<MPSGraphShapedType>>>;
 
         #[cfg(feature = "MPSGraphTensorData")]
+        /// Runs the graph for the given feeds and returns the target tensor values, ensuring all target operations also executed.
+        ///
+        /// This call is synchronous and will return on completion of execution.
+        ///
+        /// - Parameters:
+        /// - commandQueue: CommandQueue passed to exectute the graph on.
+        /// - inputsArray: Feeds tensorData for the placeholder tensors, same order as arguments of main function.
+        /// - resultsArray: Results tensorData for which the caller wishes MPSGraphTensorData to be returned.
+        /// - Returns: A valid MPSGraphTensorData array with results synchronized to the CPU memory if MPSGraphOptionsSynchronizeResults set.
         #[method_id(@__retain_semantics Other runWithMTLCommandQueue:inputsArray:resultsArray:executionDescriptor:)]
         pub unsafe fn runWithMTLCommandQueue_inputsArray_resultsArray_executionDescriptor(
             &self,
@@ -237,6 +331,15 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensorData>>;
 
         #[cfg(feature = "MPSGraphTensorData")]
+        /// Runs the graph for the given feeds and returns the target tensor values, ensuring all target operations also executed.
+        /// This call is asynchronous and will return immediately.
+        ///
+        /// - Parameters:
+        /// - commandQueue: CommandQueue passed to exectute the graph on.
+        /// - inputsArray: Feeds tensorData for the placeholder tensors, same order as arguments of main function.
+        /// - resultsArray: Tensors for which the caller wishes MPSGraphTensorData to be returned.
+        /// - executionDescriptor: ExecutionDescriptor to be passed in and used.
+        /// - Returns: A valid MPSGraphTensorData array with results synchronized to the CPU memory if MPSGraphOptionsSynchronizeResults set.
         #[method_id(@__retain_semantics Other runAsyncWithMTLCommandQueue:inputsArray:resultsArray:executionDescriptor:)]
         pub unsafe fn runAsyncWithMTLCommandQueue_inputsArray_resultsArray_executionDescriptor(
             &self,
@@ -250,6 +353,15 @@ extern_methods!(
             feature = "MPSGraphTensorData",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Runs the graph for the given feeds and returns the target tensor values, ensuring all target operations also executed.
+        /// This call is asynchronous and will return immediately after finishing encoding.
+        ///
+        /// - Parameters:
+        /// - commandBuffer: CommandBuffer passed to exectute the graph on, commitAndContinue might be called, please don't rely on underlying MTLCommandBuffer to remain uncommitted
+        /// - inputsArray: Feeds tensorData for the placeholder tensors, same order as arguments of main function
+        /// - resultsArray: Tensors for which the caller wishes MPSGraphTensorData to be returned
+        /// - executionDescriptor: ExecutionDescriptor to be passed in and used,
+        /// - Returns: A valid MPSGraphTensorData array with results synchronized to the CPU memory if MPSGraphOptionsSynchronizeResults set.
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:inputsArray:resultsArray:executionDescriptor:)]
         pub unsafe fn encodeToCommandBuffer_inputsArray_resultsArray_executionDescriptor(
             &self,
@@ -259,6 +371,11 @@ extern_methods!(
             execution_descriptor: Option<&MPSGraphExecutableExecutionDescriptor>,
         ) -> Retained<NSArray<MPSGraphTensorData>>;
 
+        /// Serialize the MPSGraph executable at the provided url.
+        ///
+        /// - Parameters:
+        /// - url: The URL where to serialize the MPSGraph executable.
+        /// - descriptor: The descriptor to be used to serialize the graph.
         #[method(serializeToMPSGraphPackageAtURL:descriptor:)]
         pub unsafe fn serializeToMPSGraphPackageAtURL_descriptor(
             &self,
@@ -267,6 +384,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSGraph")]
+        /// Initialize the executable with the Metal Performance Shaders Graph package at the provided URL.
+        ///
+        /// - Parameters:
+        /// - mpsgraphPackageURL: The URL where to read the serialized MPSGraphExecutable.
+        /// - compilationDescriptor: Compilation descriptor to be used to specialize, since the executable was created with a compilationDescriptor already this one overrides those settings to the extent it can.
         #[method_id(@__retain_semantics Init initWithMPSGraphPackageAtURL:compilationDescriptor:)]
         pub unsafe fn initWithMPSGraphPackageAtURL_compilationDescriptor(
             this: Allocated<Self>,
@@ -275,6 +397,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSGraph")]
+        /// Initialize the executable with the Core ML model package at the provided URL.
+        ///
+        /// - Parameters:
+        /// - coreMLPackageURL: The URL where to read the Core ML model package.
+        /// - compilationDescriptor: Compilation descriptor to be used to specialize, since the executable was created with a compilationDescriptor already this one overrides those settings to the extent it can.
         #[method_id(@__retain_semantics Init initWithCoreMLPackageAtURL:compilationDescriptor:)]
         pub unsafe fn initWithCoreMLPackageAtURL_compilationDescriptor(
             this: Allocated<Self>,

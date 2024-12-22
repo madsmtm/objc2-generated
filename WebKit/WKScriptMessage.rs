@@ -10,7 +10,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkscriptmessage?language=objc)
+    /// A WKScriptMessage object contains information about a message sent from
+    /// a webpage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkscriptmessage?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -21,22 +24,30 @@ unsafe impl NSObjectProtocol for WKScriptMessage {}
 
 extern_methods!(
     unsafe impl WKScriptMessage {
+        /// The body of the message.
+        ///
+        /// Allowed types are NSNumber, NSString, NSDate, NSArray,
+        /// NSDictionary, and NSNull.
         #[method_id(@__retain_semantics Other body)]
         pub unsafe fn body(&self) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// The web view sending the message.
         #[method_id(@__retain_semantics Other webView)]
         pub unsafe fn webView(&self) -> Option<Retained<WKWebView>>;
 
         #[cfg(feature = "WKFrameInfo")]
+        /// The frame sending the message.
         #[method_id(@__retain_semantics Other frameInfo)]
         pub unsafe fn frameInfo(&self) -> Retained<WKFrameInfo>;
 
+        /// The name of the message handler to which the message is sent.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "WKContentWorld")]
+        /// The content world from which the message was sent.
         #[method_id(@__retain_semantics Other world)]
         pub unsafe fn world(&self) -> Retained<WKContentWorld>;
     }

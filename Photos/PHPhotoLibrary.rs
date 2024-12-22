@@ -92,6 +92,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sharedPhotoLibrary)]
         pub unsafe fn sharedPhotoLibrary() -> Retained<PHPhotoLibrary>;
 
+        /// Replaces
+        /// `+authorizationStatus`to support add-only/read-write access level status
         #[method(authorizationStatusForAccessLevel:)]
         pub unsafe fn authorizationStatusForAccessLevel(
             access_level: PHAccessLevel,
@@ -104,6 +106,8 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(PHAuthorizationStatus)>,
         );
 
+        /// Deprecated and replaced by authorizationStatusForAccessLevel:, will return
+        /// `PHAuthorizationStatusAuthorized`if the user has chosen limited photo library access
         #[deprecated]
         #[method(authorizationStatus)]
         pub unsafe fn authorizationStatus() -> PHAuthorizationStatus;

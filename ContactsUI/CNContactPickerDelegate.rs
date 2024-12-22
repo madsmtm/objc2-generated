@@ -12,6 +12,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/contactsui/cncontactpickerdelegate?language=objc)
     pub unsafe trait CNContactPickerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "CNContactPicker", feature = "objc2-contacts"))]
+        /// Notifies the delegate when the user selects a contact. Only called when keysToDisplay is empty.
         #[optional]
         #[method(contactPicker:didSelectContact:)]
         unsafe fn contactPicker_didSelectContact(
@@ -21,6 +22,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CNContactPicker", feature = "objc2-contacts"))]
+        /// Notifies the delegate when the user selects a particular value of contact. Only called when keysToDisplay is non-empty.
         #[optional]
         #[method(contactPicker:didSelectContactProperty:)]
         unsafe fn contactPicker_didSelectContactProperty(
@@ -30,11 +32,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "CNContactPicker")]
+        /// Notifies the delegate when the contact picker's popover will close.
         #[optional]
         #[method(contactPickerWillClose:)]
         unsafe fn contactPickerWillClose(&self, picker: &CNContactPicker);
 
         #[cfg(feature = "CNContactPicker")]
+        /// Notifies the delegate when the contact picker's popover has closed.
         #[optional]
         #[method(contactPickerDidClose:)]
         unsafe fn contactPickerDidClose(&self, picker: &CNContactPicker);

@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcrashdiagnosticobjectivecexceptionreason?language=objc)
+    /// A class that represents Crash exception reason.
+    ///
+    /// Crash reports that are caused by an uncaught Objective-C NSException can in some cases contain detailed information about the type, name and description of the exception object.
+    /// This information is captured in a structured way in a MXCrashDiagnosticObjectiveCExceptionReason object and may have some pieces redacted to avoid exposing sensitive user data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcrashdiagnosticobjectivecexceptionreason?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXCrashDiagnosticObjectiveCExceptionReason;
@@ -21,27 +26,41 @@ unsafe impl NSSecureCoding for MXCrashDiagnosticObjectiveCExceptionReason {}
 
 extern_methods!(
     unsafe impl MXCrashDiagnosticObjectiveCExceptionReason {
+        /// A human-readable message string summarizing the reason for the exception.
         #[method_id(@__retain_semantics Other composedMessage)]
         pub unsafe fn composedMessage(&self) -> Retained<NSString>;
 
+        /// A string representing the exception message before arguments are substituted into the message
         #[method_id(@__retain_semantics Other formatString)]
         pub unsafe fn formatString(&self) -> Retained<NSString>;
 
+        /// An NSArray of strings representing arguments passed to the formatString.
         #[method_id(@__retain_semantics Other arguments)]
         pub unsafe fn arguments(&self) -> Retained<NSArray<NSString>>;
 
+        /// A human-readable string denoting type of the exception
         #[method_id(@__retain_semantics Other exceptionType)]
         pub unsafe fn exceptionType(&self) -> Retained<NSString>;
 
+        /// A string representing the class name of the exception, for example NSException.
         #[method_id(@__retain_semantics Other className)]
         pub unsafe fn className(&self) -> Retained<NSString>;
 
+        /// A string representing name of the exception
+        ///
+        /// This will align with the "name" field of the NSException
         #[method_id(@__retain_semantics Other exceptionName)]
         pub unsafe fn exceptionName(&self) -> Retained<NSString>;
 
+        /// Convenience method to return a JSON representation of this MXCrashDiagnosticObjectiveCExceptionReason object.
+        ///
+        /// Returns: An NSData object containing the JSON representation
         #[method_id(@__retain_semantics Other JSONRepresentation)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
+        /// Convenience method to return a NSDictionary representation of this MXCrashDiagnosticObjectiveCExceptionReason object.
+        ///
+        /// Returns: An NSDictionary object containing the dictionary representation
         #[method_id(@__retain_semantics Other dictionaryRepresentation)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }

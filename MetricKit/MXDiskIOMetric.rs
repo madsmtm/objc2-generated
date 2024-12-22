@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdiskiometric?language=objc)
+    /// An MXMetric subclass that encapsulates disk IO metrics.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdiskiometric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
@@ -26,6 +28,9 @@ unsafe impl NSSecureCoding for MXDiskIOMetric {}
 extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXDiskIOMetric {
+        /// Cumulative amount of logical writes.
+        ///
+        /// Dimensioned as NSUnitInformationStorage.
         #[method_id(@__retain_semantics Other cumulativeLogicalWrites)]
         pub unsafe fn cumulativeLogicalWrites(
             &self,

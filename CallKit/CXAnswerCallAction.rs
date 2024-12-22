@@ -35,6 +35,7 @@ unsafe impl NSSecureCoding for CXAnswerCallAction {}
 extern_methods!(
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXAnswerCallAction {
+        /// Normally, providers can just call -[CXAction fulfill] to indicate action fulfillment. Use this method to note a specific date that the call connected. A call is considered connected when both caller and callee can start communicating.
         #[method(fulfillWithDateConnected:)]
         pub unsafe fn fulfillWithDateConnected(&self, date_connected: &NSDate);
     }

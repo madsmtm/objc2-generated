@@ -45,6 +45,7 @@ unsafe impl NSObjectProtocol for UINotificationFeedbackGenerator {}
 extern_methods!(
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UINotificationFeedbackGenerator {
+        /// call when a notification is displayed, passing the corresponding type
         #[method(notificationOccurred:)]
         pub unsafe fn notificationOccurred(&self, notification_type: UINotificationFeedbackType);
 
@@ -63,6 +64,7 @@ extern_methods!(
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UINotificationFeedbackGenerator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// initalize the generator with a view to attach it to the provided view as an interaction.
         #[method_id(@__retain_semantics Other feedbackGeneratorForView:)]
         pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 

@@ -4,7 +4,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle?language=objc)
+/// Describes how quantities can be aggregated over time.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

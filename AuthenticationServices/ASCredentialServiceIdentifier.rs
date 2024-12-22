@@ -6,7 +6,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialserviceidentifiertype?language=objc)
+/// The type of value represented by the service identifier.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialserviceidentifiertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -47,6 +49,11 @@ unsafe impl NSSecureCoding for ASCredentialServiceIdentifier {}
 
 extern_methods!(
     unsafe impl ASCredentialServiceIdentifier {
+        /// Initializes an ASCredentialServiceIdentifier object.
+        ///
+        /// Parameter `identifier`: string value for the service identifier.
+        ///
+        /// Parameter `type`: the type that the service identifier string represents.
         #[method_id(@__retain_semantics Init initWithIdentifier:type:)]
         pub unsafe fn initWithIdentifier_type(
             this: Allocated<Self>,
@@ -54,9 +61,15 @@ extern_methods!(
             r#type: ASCredentialServiceIdentifierType,
         ) -> Retained<Self>;
 
+        /// Get the identifier.
+        ///
+        /// Returns: The service identifier.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
+        /// Get the service identifier type.
+        ///
+        /// Returns: The service identifier type.
         #[method(type)]
         pub unsafe fn r#type(&self) -> ASCredentialServiceIdentifierType;
     }

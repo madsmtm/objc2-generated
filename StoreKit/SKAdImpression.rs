@@ -18,81 +18,105 @@ unsafe impl NSObjectProtocol for SKAdImpression {}
 
 extern_methods!(
     unsafe impl SKAdImpression {
+        /// The App Store item identifier for the source app.
         #[method_id(@__retain_semantics Other sourceAppStoreItemIdentifier)]
         pub unsafe fn sourceAppStoreItemIdentifier(&self) -> Retained<NSNumber>;
 
+        /// Setter for [`sourceAppStoreItemIdentifier`][Self::sourceAppStoreItemIdentifier].
         #[method(setSourceAppStoreItemIdentifier:)]
         pub unsafe fn setSourceAppStoreItemIdentifier(
             &self,
             source_app_store_item_identifier: &NSNumber,
         );
 
+        /// The App Store item identifier for the app being advertised.
         #[method_id(@__retain_semantics Other advertisedAppStoreItemIdentifier)]
         pub unsafe fn advertisedAppStoreItemIdentifier(&self) -> Retained<NSNumber>;
 
+        /// Setter for [`advertisedAppStoreItemIdentifier`][Self::advertisedAppStoreItemIdentifier].
         #[method(setAdvertisedAppStoreItemIdentifier:)]
         pub unsafe fn setAdvertisedAppStoreItemIdentifier(
             &self,
             advertised_app_store_item_identifier: &NSNumber,
         );
 
+        /// The identifier for the ad network.
         #[method_id(@__retain_semantics Other adNetworkIdentifier)]
         pub unsafe fn adNetworkIdentifier(&self) -> Retained<NSString>;
 
+        /// Setter for [`adNetworkIdentifier`][Self::adNetworkIdentifier].
         #[method(setAdNetworkIdentifier:)]
         pub unsafe fn setAdNetworkIdentifier(&self, ad_network_identifier: &NSString);
 
+        /// The ad campaign identifier.
         #[method_id(@__retain_semantics Other adCampaignIdentifier)]
         pub unsafe fn adCampaignIdentifier(&self) -> Retained<NSNumber>;
 
+        /// Setter for [`adCampaignIdentifier`][Self::adCampaignIdentifier].
         #[method(setAdCampaignIdentifier:)]
         pub unsafe fn setAdCampaignIdentifier(&self, ad_campaign_identifier: &NSNumber);
 
+        /// The source identifier
         #[method_id(@__retain_semantics Other sourceIdentifier)]
         pub unsafe fn sourceIdentifier(&self) -> Retained<NSNumber>;
 
+        /// Setter for [`sourceIdentifier`][Self::sourceIdentifier].
         #[method(setSourceIdentifier:)]
         pub unsafe fn setSourceIdentifier(&self, source_identifier: &NSNumber);
 
+        /// The nonce used to generate the signature.
         #[method_id(@__retain_semantics Other adImpressionIdentifier)]
         pub unsafe fn adImpressionIdentifier(&self) -> Retained<NSString>;
 
+        /// Setter for [`adImpressionIdentifier`][Self::adImpressionIdentifier].
         #[method(setAdImpressionIdentifier:)]
         pub unsafe fn setAdImpressionIdentifier(&self, ad_impression_identifier: &NSString);
 
+        /// The type of ad being presented.
         #[method_id(@__retain_semantics Other adType)]
         pub unsafe fn adType(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`adType`][Self::adType].
         #[method(setAdType:)]
         pub unsafe fn setAdType(&self, ad_type: Option<&NSString>);
 
+        /// The description of the ad.
         #[method_id(@__retain_semantics Other adDescription)]
         pub unsafe fn adDescription(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`adDescription`][Self::adDescription].
         #[method(setAdDescription:)]
         pub unsafe fn setAdDescription(&self, ad_description: Option<&NSString>);
 
+        /// Name of entity that purchased the ad being presented.
         #[method_id(@__retain_semantics Other adPurchaserName)]
         pub unsafe fn adPurchaserName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`adPurchaserName`][Self::adPurchaserName].
         #[method(setAdPurchaserName:)]
         pub unsafe fn setAdPurchaserName(&self, ad_purchaser_name: Option<&NSString>);
 
+        /// The timestamp of the start and end call.
         #[method_id(@__retain_semantics Other timestamp)]
         pub unsafe fn timestamp(&self) -> Retained<NSNumber>;
 
+        /// Setter for [`timestamp`][Self::timestamp].
         #[method(setTimestamp:)]
         pub unsafe fn setTimestamp(&self, timestamp: &NSNumber);
 
+        /// The signature of the impression.
         #[method_id(@__retain_semantics Other signature)]
         pub unsafe fn signature(&self) -> Retained<NSString>;
 
+        /// Setter for [`signature`][Self::signature].
         #[method(setSignature:)]
         pub unsafe fn setSignature(&self, signature: &NSString);
 
+        /// The version of SKAdNetwork being used.
         #[method_id(@__retain_semantics Other version)]
         pub unsafe fn version(&self) -> Retained<NSString>;
 
+        /// Setter for [`version`][Self::version].
         #[method(setVersion:)]
         pub unsafe fn setVersion(&self, version: &NSString);
     }

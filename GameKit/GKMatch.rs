@@ -14,6 +14,7 @@ use crate::*;
 pub struct GKMatchSendDataMode(pub NSInteger);
 impl GKMatchSendDataMode {
     pub const GKMatchSendDataReliable: Self = Self(0);
+    /// a.s.a.p. but requires fragmentation and reassembly for large messages, may stall if network congestion occurs
     pub const GKMatchSendDataUnreliable: Self = Self(1);
 }
 
@@ -32,7 +33,9 @@ unsafe impl RefEncode for GKMatchSendDataMode {
 pub struct GKPlayerConnectionState(pub NSInteger);
 impl GKPlayerConnectionState {
     pub const GKPlayerStateUnknown: Self = Self(0);
+    /// initial player state
     pub const GKPlayerStateConnected: Self = Self(1);
+    /// connected to the match
     pub const GKPlayerStateDisconnected: Self = Self(2);
 }
 
@@ -45,7 +48,9 @@ unsafe impl RefEncode for GKPlayerConnectionState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatch?language=objc)
+    /// GKMatch represents an active networking sessions between players. It handles network communications and can report player connection status. All matches are created by a GKMatchmaker.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatch?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKMatch;
@@ -59,10 +64,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other players)]
         pub unsafe fn players(&self) -> Retained<NSArray<GKPlayer>>;
 
+        /// all the GKPlayers in the match
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn GKMatchDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKMatchDelegate>>);
 
@@ -80,6 +87,7 @@ extern_methods!(
         ) -> Option<Retained<NSDictionary<GKPlayer, GKMatchProperties>>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// Asynchronously send data to one or more GKPlayers. Returns YES if delivery started, NO if unable to start sending and error will be set.
         #[method(sendData:toPlayers:dataMode:error:_)]
         pub unsafe fn sendData_toPlayers_dataMode_error(
             &self,
@@ -88,6 +96,7 @@ extern_methods!(
             mode: GKMatchSendDataMode,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Asynchronously broadcasts data to all players. Returns YES if delivery started, NO if unable to start sending and error will be set.
         #[method(sendDataToAllPlayers:withDataMode:error:_)]
         pub unsafe fn sendDataToAllPlayers_withDataMode_error(
             &self,
@@ -95,10 +104,12 @@ extern_methods!(
             mode: GKMatchSendDataMode,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Disconnect the match. This will show all other players in the match that the local player has disconnected. This should be called before releasing the match instance.
         #[method(disconnect)]
         pub unsafe fn disconnect(&self);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
+        /// Choose the best host from among the connected players using gathered estimates for bandwidth and packet loss. This is intended for applications that wish to implement a client-server model on top of the match. The returned player ID will be nil if the best host cannot currently be determined (e.g. players are still connecting).
         #[method(chooseBestHostingPlayerWithCompletionHandler:)]
         pub unsafe fn chooseBestHostingPlayerWithCompletionHandler(
             &self,
@@ -106,6 +117,10 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Automatching to recreate a previous peer-to-peer match that became disconnected. A new match with the same set of players will be returned by the completion handler. All players should perform this when the match has ended for automatching to succeed. Error will be nil on success.
+        /// Possible reasons for error:
+        /// 1. Communications failure
+        /// 2. Timeout
         #[method(rematchWithCompletionHandler:)]
         pub unsafe fn rematchWithCompletionHandler(
             &self,
@@ -113,6 +128,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "GKVoiceChat")]
+        /// * This method is deprecated. GKVoiceChat is no longer supported. **
         #[deprecated = "No longer supported"]
         #[method_id(@__retain_semantics Other voiceChatWithName:)]
         pub unsafe fn voiceChatWithName(&self, name: &NSString) -> Option<Retained<GKVoiceChat>>;
@@ -134,6 +150,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchdelegate?language=objc)
     pub unsafe trait GKMatchDelegate: NSObjectProtocol {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// The match received data sent from the player.
         #[optional]
         #[method(match:didReceiveData:fromRemotePlayer:)]
         unsafe fn match_didReceiveData_fromRemotePlayer(
@@ -155,6 +172,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// The player state changed (eg. connected or disconnected)
         #[optional]
         #[method(match:player:didChangeConnectionState:)]
         unsafe fn match_player_didChangeConnectionState(
@@ -164,11 +182,13 @@ extern_protocol!(
             state: GKPlayerConnectionState,
         );
 
+        /// The match was unable to be established with any players due to an error.
         #[optional]
         #[method(match:didFailWithError:)]
         unsafe fn match_didFailWithError(&self, r#match: &GKMatch, error: Option<&NSError>);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// This method is called when the match is interrupted; if it returns YES, a new invite will be sent to attempt reconnection. This is supported only for 1v1 games
         #[optional]
         #[method(match:shouldReinviteDisconnectedPlayer:)]
         unsafe fn match_shouldReinviteDisconnectedPlayer(
@@ -177,6 +197,7 @@ extern_protocol!(
             player: &GKPlayer,
         ) -> bool;
 
+        /// * These protocol methods are obsoleted. They will never be invoked and their implementation does nothing**
         #[deprecated]
         #[optional]
         #[method(match:didReceiveData:fromPlayer:)]
@@ -214,6 +235,7 @@ extern_methods!(
     /// Obsoleted
     unsafe impl GKMatch {
         #[cfg(feature = "block2")]
+        /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(chooseBestHostPlayerWithCompletionHandler:)]
         pub unsafe fn chooseBestHostPlayerWithCompletionHandler(
@@ -221,6 +243,7 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(*mut NSString)>,
         );
 
+        /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(sendData:toPlayers:withDataMode:error:_)]
         pub unsafe fn sendData_toPlayers_withDataMode_error(
@@ -230,6 +253,7 @@ extern_methods!(
             mode: GKMatchSendDataMode,
         ) -> Result<(), Retained<NSError>>;
 
+        /// * This property is obsolete.  **
         #[deprecated]
         #[method_id(@__retain_semantics Other playerIDs)]
         pub unsafe fn playerIDs(&self) -> Option<Retained<NSArray<NSString>>>;

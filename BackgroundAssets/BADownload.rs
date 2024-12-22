@@ -32,22 +32,33 @@ unsafe impl RefEncode for BADownloadState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderpriority?language=objc)
+/// A download's priority
+///
+/// The priority applied to a given download or group of downloads. This is a range from `BADownloaderPriorityMin` to `BADownloaderPriorityMax`.
+/// The priority only applies to how downloads are ordered for your application. Higher priority items will be enqued for download before lower priority items regardless of order in which they are scheduled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderpriority?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type BADownloaderPriority = NSInteger;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderprioritymin?language=objc)
+    /// A value that represents the lowest priority for a download.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderprioritymin?language=objc)
     pub static BADownloaderPriorityMin: BADownloaderPriority;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderprioritydefault?language=objc)
+    /// A value that represents average priority for a download.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderprioritydefault?language=objc)
     pub static BADownloaderPriorityDefault: BADownloaderPriority;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderprioritymax?language=objc)
+    /// A value that represents the highest priority for a download.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderprioritymax?language=objc)
     pub static BADownloaderPriorityMax: BADownloaderPriority;
 }
 
@@ -72,21 +83,36 @@ unsafe impl NSSecureCoding for BADownload {}
 
 extern_methods!(
     unsafe impl BADownload {
+        /// The current state of the respresented download.
         #[method(state)]
         pub unsafe fn state(&self) -> BADownloadState;
 
+        /// A client defined identifier that uniquely identifies this asset.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
+        /// A UUID that uniquely identifies the download object.
         #[method_id(@__retain_semantics Other uniqueIdentifier)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSString>;
 
+        /// A client set priority to try to order downloads in order of importance
         #[method(priority)]
         pub unsafe fn priority(&self) -> BADownloaderPriority;
 
+        /// Whether this download is essential.
+        /// Essential downloads will occur while the app is being installed. Users cannot launch the app while these downloads are occurring.
+        /// Essential downloads cannot be scheduled with `BADownloadManager`, they may only be scheduled from the extension with
+        /// a `BAContentRequest` type of `Update` or `Install`.
+        /// Essential downloads must have an accurate `fileSize` or they will fail.
         #[method(isEssential)]
         pub unsafe fn isEssential(&self) -> bool;
 
+        /// Copies an existing download ensuring that it has `isEssential == false`.
+        ///
+        /// This serves as a convenience method for constructing a non-essential representation of an existing
+        /// download. It is important to note that essential downloads can only be enqueued by
+        /// the app extension during a content request. If an essential download fails, `copyAsNonEssential`
+        /// can be used to create a copy with `isEssential == false` that can be re-queued with `BADownloadManager`.
         #[method_id(@__retain_semantics Copy copyAsNonEssential)]
         pub unsafe fn copyAsNonEssential(&self) -> Retained<Self>;
 

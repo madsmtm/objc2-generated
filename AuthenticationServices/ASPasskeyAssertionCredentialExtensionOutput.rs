@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredentialextensionoutput?language=objc)
+    /// This class encapsulates output for various WebAuthn extensions used during passkey assertion.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredentialextensionoutput?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPasskeyAssertionCredentialExtensionOutput;
@@ -35,6 +37,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput")]
+        /// Output for `largeBlob` operation during passkey assertion.
         #[method_id(@__retain_semantics Other largeBlobAssertionOutput)]
         pub unsafe fn largeBlobAssertionOutput(
             &self,

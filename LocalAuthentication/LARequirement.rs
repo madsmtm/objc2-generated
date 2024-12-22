@@ -6,7 +6,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laauthenticationrequirement?language=objc)
+    /// Builds requirements that can be used for protecting a
+    /// `LARight`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laauthenticationrequirement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LAAuthenticationRequirement;
@@ -16,15 +19,44 @@ unsafe impl NSObjectProtocol for LAAuthenticationRequirement {}
 
 extern_methods!(
     unsafe impl LAAuthenticationRequirement {
+        /// Requires user authentication
+        ///
+        /// Returns: `LAAuthenticationRequirement`instance
         #[method_id(@__retain_semantics Other defaultRequirement)]
         pub unsafe fn defaultRequirement() -> Retained<LAAuthenticationRequirement>;
 
+        /// Requires biometric authentication
+        ///
+        /// The authorization will fail if:
+        ///
+        /// • Biometry is not available in the current device
+        ///
+        /// • There are no biometric enrollments
+        ///
+        /// Returns: `LAAuthenticationRequirement`instance
         #[method_id(@__retain_semantics Other biometryRequirement)]
         pub unsafe fn biometryRequirement() -> Retained<LAAuthenticationRequirement>;
 
+        /// Requires user authentication with the current biometric set
+        ///
+        /// The authorization will fail if:
+        ///
+        /// • Biometry is not available in the current device
+        ///
+        /// • There are no biometric enrollments
+        ///
+        /// • There is a change in the enrollment database -e.g a new TouchID finger is enrolled.
+        ///
+        /// Returns: `LAAuthenticationRequirement`instance
         #[method_id(@__retain_semantics Other biometryCurrentSetRequirement)]
         pub unsafe fn biometryCurrentSetRequirement() -> Retained<LAAuthenticationRequirement>;
 
+        /// Requires biometric authentication or the given fallback method.
+        ///
+        /// Parameter `fallback`: Fallback used in case biometry authentication fails, is not available or
+        /// not preferred by the user.
+        ///
+        /// Returns: `LAAuthenticationRequirement`instance
         #[method_id(@__retain_semantics Other biometryRequirementWithFallback:)]
         pub unsafe fn biometryRequirementWithFallback(
             fallback: &LABiometryFallbackRequirement,
@@ -44,7 +76,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometryfallbackrequirement?language=objc)
+    /// Builds authentication requirements that can be used as fallbacks for  biometric authentication
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometryfallbackrequirement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LABiometryFallbackRequirement;
@@ -54,9 +88,15 @@ unsafe impl NSObjectProtocol for LABiometryFallbackRequirement {}
 
 extern_methods!(
     unsafe impl LABiometryFallbackRequirement {
+        /// Use default biometric fallback
+        ///
+        /// Returns: `LABiometryFallbackRequirement`instance
         #[method_id(@__retain_semantics Other defaultRequirement)]
         pub unsafe fn defaultRequirement() -> Retained<LABiometryFallbackRequirement>;
 
+        /// Requires authorization using the device passcode
+        ///
+        /// Returns: `LABiometryFallbackRequirement`instance
         #[method_id(@__retain_semantics Other devicePasscodeRequirement)]
         pub unsafe fn devicePasscodeRequirement() -> Retained<LABiometryFallbackRequirement>;
     }

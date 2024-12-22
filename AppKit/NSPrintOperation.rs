@@ -161,6 +161,7 @@ extern_methods!(
         pub unsafe fn currentOperation(mtm: MainThreadMarker)
             -> Option<Retained<NSPrintOperation>>;
 
+        /// Setter for [`currentOperation`][Self::currentOperation].
         #[method(setCurrentOperation:)]
         pub unsafe fn setCurrentOperation(
             current_operation: Option<&NSPrintOperation>,
@@ -176,18 +177,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other jobTitle)]
         pub unsafe fn jobTitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`jobTitle`][Self::jobTitle].
         #[method(setJobTitle:)]
         pub unsafe fn setJobTitle(&self, job_title: Option<&NSString>);
 
         #[method(showsPrintPanel)]
         pub unsafe fn showsPrintPanel(&self) -> bool;
 
+        /// Setter for [`showsPrintPanel`][Self::showsPrintPanel].
         #[method(setShowsPrintPanel:)]
         pub unsafe fn setShowsPrintPanel(&self, shows_print_panel: bool);
 
         #[method(showsProgressPanel)]
         pub unsafe fn showsProgressPanel(&self) -> bool;
 
+        /// Setter for [`showsProgressPanel`][Self::showsProgressPanel].
         #[method(setShowsProgressPanel:)]
         pub unsafe fn setShowsProgressPanel(&self, shows_progress_panel: bool);
 
@@ -196,6 +200,7 @@ extern_methods!(
         pub unsafe fn printPanel(&self) -> Retained<NSPrintPanel>;
 
         #[cfg(feature = "NSPrintPanel")]
+        /// Setter for [`printPanel`][Self::printPanel].
         #[method(setPrintPanel:)]
         pub unsafe fn setPrintPanel(&self, print_panel: &NSPrintPanel);
 
@@ -204,18 +209,21 @@ extern_methods!(
         pub unsafe fn PDFPanel(&self) -> Retained<NSPDFPanel>;
 
         #[cfg(feature = "NSPDFPanel")]
+        /// Setter for [`PDFPanel`][Self::PDFPanel].
         #[method(setPDFPanel:)]
         pub unsafe fn setPDFPanel(&self, pdf_panel: &NSPDFPanel);
 
         #[method(canSpawnSeparateThread)]
         pub unsafe fn canSpawnSeparateThread(&self) -> bool;
 
+        /// Setter for [`canSpawnSeparateThread`][Self::canSpawnSeparateThread].
         #[method(setCanSpawnSeparateThread:)]
         pub unsafe fn setCanSpawnSeparateThread(&self, can_spawn_separate_thread: bool);
 
         #[method(pageOrder)]
         pub unsafe fn pageOrder(&self) -> NSPrintingPageOrder;
 
+        /// Setter for [`pageOrder`][Self::pageOrder].
         #[method(setPageOrder:)]
         pub unsafe fn setPageOrder(&self, page_order: NSPrintingPageOrder);
 
@@ -241,6 +249,7 @@ extern_methods!(
         pub unsafe fn printInfo(&self) -> Retained<NSPrintInfo>;
 
         #[cfg(feature = "NSPrintInfo")]
+        /// Setter for [`printInfo`][Self::printInfo].
         #[method(setPrintInfo:)]
         pub unsafe fn setPrintInfo(&self, print_info: &NSPrintInfo);
 

@@ -18,6 +18,7 @@ unsafe impl NSObjectProtocol for CXCallController {}
 
 extern_methods!(
     unsafe impl CXCallController {
+        /// Initialize call controller with a private, serial queue.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -26,6 +27,12 @@ extern_methods!(
         pub unsafe fn callObserver(&self) -> Retained<CXCallObserver>;
 
         #[cfg(all(feature = "CXTransaction", feature = "block2"))]
+        /// Request a transaction to be performed by the in-app provider.
+        ///
+        /// If the completion block is called with a nil error, then the transaction will be passed to the CXProvider's -provider:executeTransaction: delegate callback.
+        /// A non-nil error indicates that the requested transaction could not be executed.
+        ///
+        /// Completion block is performed on the queue supplied to designated initializer.
         #[method(requestTransaction:completion:)]
         pub unsafe fn requestTransaction_completion(
             &self,
@@ -34,6 +41,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CXAction", feature = "block2"))]
+        /// Request a transaction containing the specified actions to be performed by the in-app provider.
+        ///
+        /// If the completion block is called with a nil error, then the transaction will be passed to the CXProvider's -provider:executeTransaction: delegate callback.
+        /// A non-nil error indicates that the requested transaction could not be executed.
+        ///
+        /// Completion block is performed on the queue supplied to designated initializer.
         #[method(requestTransactionWithActions:completion:)]
         pub unsafe fn requestTransactionWithActions_completion(
             &self,
@@ -42,6 +55,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CXAction", feature = "block2"))]
+        /// Request a transaction containing the specified action to be performed by the in-app provider.
+        ///
+        /// If the completion block is called with a nil error, then the transaction will be passed to the CXProvider's -provider:executeTransaction: delegate callback.
+        /// A non-nil error indicates that the requested transaction could not be executed.
+        ///
+        /// Completion block is performed on the queue supplied to designated initializer.
         #[method(requestTransactionWithAction:completion:)]
         pub unsafe fn requestTransactionWithAction_completion(
             &self,

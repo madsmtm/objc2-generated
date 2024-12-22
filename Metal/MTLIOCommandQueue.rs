@@ -75,24 +75,43 @@ unsafe impl RefEncode for MTLIOError {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueue?language=objc)
+    /// Represents a queue that schedules command buffers containing command that
+    /// read from handle objects and write to MTLResource objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueue?language=objc)
     pub unsafe trait MTLIOCommandQueue: NSObjectProtocol {
+        /// Inserts a barrier that ensures that all commandBuffers commited
+        /// prior are completed before any commandBuffers after start execution.
+        ///
+        /// A serial commandQueue has implicit barriers between
+        /// each commandBuffer.
         #[method(enqueueBarrier)]
         unsafe fn enqueueBarrier(&self);
 
         #[cfg(feature = "MTLIOCommandBuffer")]
+        /// Vends an autoreleased commandBuffer that can be used to
+        /// encode  commands that read from handle objects and write to MTLResource objects.
         #[method_id(@__retain_semantics Other commandBuffer)]
         unsafe fn commandBuffer(&self) -> Retained<ProtocolObject<dyn MTLIOCommandBuffer>>;
 
         #[cfg(feature = "MTLIOCommandBuffer")]
+        /// Vends an autoreleased commandBuffer that can be used to
+        /// encode  commands that read from handle objects and write to MTLResource objects.
+        /// This commandBuffer does not retain objects referenced by the commandBuffer
+        /// as an optimization.
+        ///
+        /// For correct execution its the application's responsibility to retain
+        /// objects referenced by commands within the commandBuffer.
         #[method_id(@__retain_semantics Other commandBufferWithUnretainedReferences)]
         unsafe fn commandBufferWithUnretainedReferences(
             &self,
         ) -> Retained<ProtocolObject<dyn MTLIOCommandBuffer>>;
 
+        /// An optional label for this handle.
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
     }
@@ -101,7 +120,11 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioscratchbuffer?language=objc)
+    /// An extendible protocol that can be used to wrap the buffers vended by
+    /// a custom allocator. The underlying buffer is used as scratch space for IO commands
+    /// that need it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioscratchbuffer?language=objc)
     pub unsafe trait MTLIOScratchBuffer: NSObjectProtocol {
         #[cfg(all(
             feature = "MTLAllocation",
@@ -116,8 +139,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioscratchbufferallocator?language=objc)
+    /// An extendible protocol that can implement a custom allocator passed
+    /// to the queue descriptor.
+    ///
+    /// If provided, the queue will call newScratchBufferWithMinimumSize
+    /// when it needs scratch storage for IO commands. When the commands that use the memory
+    /// complete they return the storage by dealloc'ing the MTLIOScratchBuffer objects (where
+    /// the application can optionally pool the memory for use by future commands.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioscratchbufferallocator?language=objc)
     pub unsafe trait MTLIOScratchBufferAllocator: NSObjectProtocol {
+        /// This method is called when additional scratch memory is required by a load command.
+        /// The scratch buffer returned should NOT be an autoreleased object.
+        ///
+        /// Scratch memory is needed for cases where a texture is being copied to. minimumSize
+        /// is the smallest buffer that will allow the command to execute, however a larger buffer can be provided and
+        /// susequent commands will be able to use it, thus avoiding the need for an additional callback. Returning nil
+        /// from the function will result in the load command being skipped and the commandBuffer getting cancelled.
         #[method_id(@__retain_semantics New newScratchBufferWithMinimumSize:)]
         unsafe fn newScratchBufferWithMinimumSize(
             &self,
@@ -129,7 +167,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueuedescriptor?language=objc)
+    /// Represents a descriptor to create a MTLIOCommandQueue.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueuedescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIOCommandQueueDescriptor;
@@ -145,35 +185,51 @@ unsafe impl NSObjectProtocol for MTLIOCommandQueueDescriptor {}
 
 extern_methods!(
     unsafe impl MTLIOCommandQueueDescriptor {
+        /// The maximum number of commandBuffers that can be in flight at a given time for the queue.
         #[method(maxCommandBufferCount)]
         pub unsafe fn maxCommandBufferCount(&self) -> NSUInteger;
 
+        /// Setter for [`maxCommandBufferCount`][Self::maxCommandBufferCount].
         #[method(setMaxCommandBufferCount:)]
         pub unsafe fn setMaxCommandBufferCount(&self, max_command_buffer_count: NSUInteger);
 
+        /// The priority of the commands executed by this queue.
         #[method(priority)]
         pub unsafe fn priority(&self) -> MTLIOPriority;
 
+        /// Setter for [`priority`][Self::priority].
         #[method(setPriority:)]
         pub unsafe fn setPriority(&self, priority: MTLIOPriority);
 
+        /// The type (serial or concurrent) of the queue.
         #[method(type)]
         pub unsafe fn r#type(&self) -> MTLIOCommandQueueType;
 
+        /// Setter for [`type`][Self::type].
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: MTLIOCommandQueueType);
 
+        /// The maximum number of IO commands that can be in flight at a given time for the queue.
+        ///
+        /// A zero value defaults to the system dependent maximum value, a smaller number can be
+        /// provided to bound the utilization of the storage device.
         #[method(maxCommandsInFlight)]
         pub unsafe fn maxCommandsInFlight(&self) -> NSUInteger;
 
+        /// Setter for [`maxCommandsInFlight`][Self::maxCommandsInFlight].
         #[method(setMaxCommandsInFlight:)]
         pub unsafe fn setMaxCommandsInFlight(&self, max_commands_in_flight: NSUInteger);
 
+        /// An optional property that allows setting a custom allocator for scratch buffers by the queue.
+        ///
+        /// An application can manage scratch buffers manually by implemeting a class  conforming
+        /// to the MTLIOScratchBufferAllocator protocol and creating an instance that is passed in here.
         #[method_id(@__retain_semantics Other scratchBufferAllocator)]
         pub unsafe fn scratchBufferAllocator(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLIOScratchBufferAllocator>>>;
 
+        /// Setter for [`scratchBufferAllocator`][Self::scratchBufferAllocator].
         #[method(setScratchBufferAllocator:)]
         pub unsafe fn setScratchBufferAllocator(
             &self,
@@ -194,11 +250,16 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliofilehandle?language=objc)
+    /// Represents a  file (raw or compressed) that can be used as a source
+    /// for load commands encoded in a MTLIOCommandBuffer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtliofilehandle?language=objc)
     pub unsafe trait MTLIOFileHandle: NSObjectProtocol {
+        /// An optional label for this handle.
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
     }

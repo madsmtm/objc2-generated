@@ -99,6 +99,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITabBarDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UITabBarDelegate>>);
 
@@ -107,6 +108,7 @@ extern_methods!(
         pub unsafe fn items(&self) -> Option<Retained<NSArray<UITabBarItem>>>;
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
+        /// Setter for [`items`][Self::items].
         #[method(setItems:)]
         pub unsafe fn setItems(&self, items: Option<&NSArray<UITabBarItem>>);
 
@@ -116,6 +118,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`selectedItem`][Self::selectedItem].
         #[method(setSelectedItem:)]
         pub unsafe fn setSelectedItem(&self, selected_item: Option<&UITabBarItem>);
 
@@ -142,6 +145,7 @@ extern_methods!(
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`tintColor`][Self::tintColor].
         #[method(setTintColor:)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
@@ -150,14 +154,17 @@ extern_methods!(
         pub unsafe fn barTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`barTintColor`][Self::barTintColor].
         #[method(setBarTintColor:)]
         pub unsafe fn setBarTintColor(&self, bar_tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
+        /// Unselected items in this tab bar will be tinted with this color. Setting this value to nil indicates that UITabBar should use its default value instead.
         #[method_id(@__retain_semantics Other unselectedItemTintColor)]
         pub unsafe fn unselectedItemTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`unselectedItemTintColor`][Self::unselectedItemTintColor].
         #[method(setUnselectedItemTintColor:)]
         pub unsafe fn setUnselectedItemTintColor(
             &self,
@@ -170,6 +177,7 @@ extern_methods!(
         pub unsafe fn selectedImageTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`selectedImageTintColor`][Self::selectedImageTintColor].
         #[deprecated]
         #[method(setSelectedImageTintColor:)]
         pub unsafe fn setSelectedImageTintColor(&self, selected_image_tint_color: Option<&UIColor>);
@@ -179,6 +187,7 @@ extern_methods!(
         pub unsafe fn backgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`backgroundImage`][Self::backgroundImage].
         #[method(setBackgroundImage:)]
         pub unsafe fn setBackgroundImage(&self, background_image: Option<&UIImage>);
 
@@ -187,6 +196,7 @@ extern_methods!(
         pub unsafe fn selectionIndicatorImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`selectionIndicatorImage`][Self::selectionIndicatorImage].
         #[method(setSelectionIndicatorImage:)]
         pub unsafe fn setSelectionIndicatorImage(
             &self,
@@ -198,12 +208,14 @@ extern_methods!(
         pub unsafe fn shadowImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`shadowImage`][Self::shadowImage].
         #[method(setShadowImage:)]
         pub unsafe fn setShadowImage(&self, shadow_image: Option<&UIImage>);
 
         #[method(itemPositioning)]
         pub unsafe fn itemPositioning(&self) -> UITabBarItemPositioning;
 
+        /// Setter for [`itemPositioning`][Self::itemPositioning].
         #[method(setItemPositioning:)]
         pub unsafe fn setItemPositioning(&self, item_positioning: UITabBarItemPositioning);
 
@@ -212,6 +224,7 @@ extern_methods!(
         pub unsafe fn itemWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`itemWidth`][Self::itemWidth].
         #[method(setItemWidth:)]
         pub unsafe fn setItemWidth(&self, item_width: CGFloat);
 
@@ -220,6 +233,7 @@ extern_methods!(
         pub unsafe fn itemSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`itemSpacing`][Self::itemSpacing].
         #[method(setItemSpacing:)]
         pub unsafe fn setItemSpacing(&self, item_spacing: CGFloat);
 
@@ -228,28 +242,34 @@ extern_methods!(
         pub unsafe fn barStyle(&self) -> UIBarStyle;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`barStyle`][Self::barStyle].
         #[method(setBarStyle:)]
         pub unsafe fn setBarStyle(&self, bar_style: UIBarStyle);
 
         #[method(isTranslucent)]
         pub unsafe fn isTranslucent(&self) -> bool;
 
+        /// Setter for [`isTranslucent`][Self::isTranslucent].
         #[method(setTranslucent:)]
         pub unsafe fn setTranslucent(&self, translucent: bool);
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
+        /// Describes the appearance attributes for the tab bar to use.
         #[method_id(@__retain_semantics Other standardAppearance)]
         pub unsafe fn standardAppearance(&self) -> Retained<UITabBarAppearance>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
+        /// Setter for [`standardAppearance`][Self::standardAppearance].
         #[method(setStandardAppearance:)]
         pub unsafe fn setStandardAppearance(&self, standard_appearance: &UITabBarAppearance);
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
+        /// Describes the appearance attributes for the tabBar to use when an observable scroll view is scrolled to the bottom. If not set, standardAppearance will be used instead.
         #[method_id(@__retain_semantics Other scrollEdgeAppearance)]
         pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UITabBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
+        /// Setter for [`scrollEdgeAppearance`][Self::scrollEdgeAppearance].
         #[method(setScrollEdgeAppearance:)]
         pub unsafe fn setScrollEdgeAppearance(
             &self,

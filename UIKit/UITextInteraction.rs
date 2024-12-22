@@ -74,6 +74,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UITextInteractionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -94,6 +95,7 @@ extern_methods!(
             feature = "UITextInputTraits"
         ))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`textInput`][Self::textInput].
         #[method(setTextInput:)]
         pub unsafe fn setTextInput(&self, text_input: Option<&UIResponder>);
 

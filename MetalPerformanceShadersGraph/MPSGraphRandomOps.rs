@@ -9,16 +9,21 @@ use objc2_metal_performance_shaders::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomdistribution?language=objc)
+/// The distributions supported by random operations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomdistribution?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphRandomDistribution(pub u64);
 impl MPSGraphRandomDistribution {
+    /// The uniform distribution, with samples drawn uniformly from [min, max) for float types, and [min, max] for integer types.
     #[doc(alias = "MPSGraphRandomDistributionUniform")]
     pub const Uniform: Self = Self(0);
+    /// The normal distribution defined by mean and standard deviation.
     #[doc(alias = "MPSGraphRandomDistributionNormal")]
     pub const Normal: Self = Self(1);
+    /// The normal distribution defined by mean and standard deviation, truncated to the range [min, max)
     #[doc(alias = "MPSGraphRandomDistributionTruncatedNormal")]
     pub const TruncatedNormal: Self = Self(2);
 }
@@ -31,13 +36,17 @@ unsafe impl RefEncode for MPSGraphRandomDistribution {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomnormalsamplingmethod?language=objc)
+/// The sampling method to use when generating values in the normal distribution.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomnormalsamplingmethod?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphRandomNormalSamplingMethod(pub u64);
 impl MPSGraphRandomNormalSamplingMethod {
+    /// Use inverse erf to convert uniform values to values in the normal distribution
     pub const MPSGraphRandomNormalSamplingInvCDF: Self = Self(0);
+    /// Use Box Muller transform to convert uniform values to values in the normal distribution. For bounded distributions this is a rejection sampling method.
     pub const MPSGraphRandomNormalSamplingBoxMuller: Self = Self(1);
 }
 
@@ -50,7 +59,9 @@ unsafe impl RefEncode for MPSGraphRandomNormalSamplingMethod {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor?language=objc)
+    /// A class that describes the random operation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -71,63 +82,111 @@ unsafe impl NSObjectProtocol for MPSGraphRandomOpDescriptor {}
 extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphRandomOpDescriptor {
+        /// The type of distribution to draw samples from. See MPSGraphRandomDistribution.
         #[method(distribution)]
         pub unsafe fn distribution(&self) -> MPSGraphRandomDistribution;
 
+        /// Setter for [`distribution`][Self::distribution].
         #[method(setDistribution:)]
         pub unsafe fn setDistribution(&self, distribution: MPSGraphRandomDistribution);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// The data type of the generated result values.
+        ///
+        /// When sampling from the uniform distribution, valid types are MPSDataTypeFloat16,
+        /// MPSDataTypeFloat32, and MPSDataTypeInt32.
+        /// When sampling from the normal or truncated normal distribution, valid types are
+        /// MPSDataTypeFloat16 and MPSDataTypeFloat32.
         #[method(dataType)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Setter for [`dataType`][Self::dataType].
         #[method(setDataType:)]
         pub unsafe fn setDataType(&self, data_type: MPSDataType);
 
+        /// The lower range of the distribution.
+        ///
+        /// This value is used for Uniform distributions with float data types and Truncated Normal disributions.
+        /// Defaults to 0 for uniform distributions and -2 for normal distributions.
         #[method(min)]
         pub unsafe fn min(&self) -> c_float;
 
+        /// Setter for [`min`][Self::min].
         #[method(setMin:)]
         pub unsafe fn setMin(&self, min: c_float);
 
+        /// The upper range of the distribution.
+        ///
+        /// This value is used for Uniform distributions with float data types and Truncated Normal disributions.
+        /// Defaults to 1 for uniform distributions and 2 for normal distributions.
         #[method(max)]
         pub unsafe fn max(&self) -> c_float;
 
+        /// Setter for [`max`][Self::max].
         #[method(setMax:)]
         pub unsafe fn setMax(&self, max: c_float);
 
+        /// The lower range of the distribution.
+        ///
+        /// This value is used for Uniform with integer data types
+        /// Defaults to 0.
         #[method(minInteger)]
         pub unsafe fn minInteger(&self) -> NSInteger;
 
+        /// Setter for [`minInteger`][Self::minInteger].
         #[method(setMinInteger:)]
         pub unsafe fn setMinInteger(&self, min_integer: NSInteger);
 
+        /// The upper range of the distribution.
+        ///
+        /// This value is used for Uniform with integer data types
+        /// Defaults to INT32_MAX for uniform distributions and 0 for normal distributions.
         #[method(maxInteger)]
         pub unsafe fn maxInteger(&self) -> NSInteger;
 
+        /// Setter for [`maxInteger`][Self::maxInteger].
         #[method(setMaxInteger:)]
         pub unsafe fn setMaxInteger(&self, max_integer: NSInteger);
 
+        /// The mean of the distribution.
+        ///
+        /// This value is used for Normal and Truncated Normal disributions.
+        /// Defaults to 0.
         #[method(mean)]
         pub unsafe fn mean(&self) -> c_float;
 
+        /// Setter for [`mean`][Self::mean].
         #[method(setMean:)]
         pub unsafe fn setMean(&self, mean: c_float);
 
+        /// The standard deviation of the distribution.
+        ///
+        /// This value is used for Normal and Truncated Normal disributions.
+        /// For Truncated Normal distribution this defines the standard deviation parameter of the underlying Normal distribution, that is the width
+        /// of the Gaussian, not the true standard deviation of the truncated distribution which typically differs from the standard deviation of the
+        /// original Normal distribution.
+        /// Defaults to 0 for uniform distributions and 1 for normal distributions.
         #[method(standardDeviation)]
         pub unsafe fn standardDeviation(&self) -> c_float;
 
+        /// Setter for [`standardDeviation`][Self::standardDeviation].
         #[method(setStandardDeviation:)]
         pub unsafe fn setStandardDeviation(&self, standard_deviation: c_float);
 
+        /// The sampling method of the distribution.
+        ///
+        /// This value is used for Normal and Truncated Normal disributions. See MPSGraphRandomNormalSamplingMethod.
+        /// Defaults to MPSGraphRandomNormalSamplingInvCDF.
         #[method(samplingMethod)]
         pub unsafe fn samplingMethod(&self) -> MPSGraphRandomNormalSamplingMethod;
 
+        /// Setter for [`samplingMethod`][Self::samplingMethod].
         #[method(setSamplingMethod:)]
         pub unsafe fn setSamplingMethod(&self, sampling_method: MPSGraphRandomNormalSamplingMethod);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Class method to initialize a distribution descriptor.
         #[method_id(@__retain_semantics Other descriptorWithDistribution:dataType:)]
         pub unsafe fn descriptorWithDistribution_dataType(
             distribution: MPSGraphRandomDistribution,
@@ -153,6 +212,29 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a tensor representing state using the Philox algorithm with given counter and key values.
+        ///
+        /// Generates random numbers using the Philox counter-based algorithm, for further details see:
+        /// John K. Salmon, Mark A. Moraes, Ron O. Dror, and David E. Shaw. Parallel Random Numbers: As Easy as 1, 2, 3.
+        /// A stateTensor generated with this API can be used in MPSGraph Random APIs which accept a stateTensor. The
+        /// updated stateTensor is returned alongside the random values, and can be fed to the following random layer. In
+        /// most use cases, a stateTensor should only need to be initialized once at the start of the graph. A stateTensor can
+        /// be set as a target tensor of an MPSGraph execution to obtain a stateTensor serialized as an NDArray. This can be
+        /// used as input to a placeholder in the graph to avoid ever needing to have a state intilization layer in an MPSGraph.
+        /// This can allow for a continued stream through multiple executions of a single MPSGraph by having the final
+        /// stateTensor as a target tensor passed into the following MPSGraph execution as a placeholder input. This may be
+        /// helpful for training graphs in particular.
+        /// ```md
+        /// MPSGraph *graph = [MPSGraph new];
+        /// MPSGraphTensor *stateTensor = [graph randomPhiloxStateTensorWithSeed: seed name: nil];
+        /// NSArray
+        /// <MPSGraphTensor
+        /// *> *resultTensors0 = [graph randomUniformTensorWithShape:
+        ///
+        /// - Parameters:
+        /// - seed: Initial counter and key values will be generated using seed.
+        /// - name: Name for the operation
+        /// - Returns: An MPSGraphTensor representing a random state, to be passed as an input to a random op.
         #[method_id(@__retain_semantics Other randomPhiloxStateTensorWithSeed:name:)]
         pub unsafe fn randomPhiloxStateTensorWithSeed_name(
             &self,
@@ -161,6 +243,16 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a tensor representing state using the Philox algorithm with given counter and key values.
+        ///
+        /// See randomPhiloxStateTensorWithSeed.
+        ///
+        /// - Parameters:
+        /// - counterLow: The value to initilaize lower 64 bits of counter to. Philox utilizes a 128 bit counter
+        /// - counterHigh: The value to initilaize upper 64 bits of counter to. Philox utilizes a 128 bit counter
+        /// - key: The value to initialize the key to in Philox algorithm.
+        /// - name: Name for the operation
+        /// - Returns: An MPSGraphTensor representing a random state, to be passed as an input to a random op.
         #[method_id(@__retain_semantics Other randomPhiloxStateTensorWithCounterLow:counterHigh:key:name:)]
         pub unsafe fn randomPhiloxStateTensorWithCounterLow_counterHigh_key_name(
             &self,
@@ -174,6 +266,17 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a Random op of type matching distribution in descriptor and returns random values.
+        ///
+        /// Returns a tensor of provided shape of random values in the distribution specified. Uses a random seed value
+        /// to initalize state. No state is preserved, and subsequent calls are not guaranteed to result in a unique stream of
+        /// random values.
+        ///
+        /// - Parameters:
+        /// - shape: The shape of the tensor generated
+        /// - descriptor: The descriptor of the distribution. See MPSGraphRandomOpDescriptor.
+        /// - name: The name for the operation.
+        /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
         #[method_id(@__retain_semantics Other randomTensorWithShape:descriptor:name:)]
         pub unsafe fn randomTensorWithShape_descriptor_name(
             &self,
@@ -183,6 +286,17 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Random op of type matching distribution in descriptor and returns random values.
+        ///
+        /// Returns a tensor of provided shape of random values in the distribution specified. Uses a random seed value
+        /// to initalize state. No state is preserved, and subsequent calls are not guaranteed to result in a unique stream of
+        /// random values.
+        ///
+        /// - Parameters:
+        /// - shapeTensor: 1D Int32 or Int64 tensor. The shape of the tensor generated
+        /// - descriptor: The descriptor of the distribution. See MPSGraphRandomOpDescriptor.
+        /// - name: The name for the operation.
+        /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
         #[method_id(@__retain_semantics Other randomTensorWithShapeTensor:descriptor:name:)]
         pub unsafe fn randomTensorWithShapeTensor_descriptor_name(
             &self,
@@ -195,6 +309,17 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a Random op of type matching distribution in descriptor and returns random values.
+        ///
+        /// Returns a tensor of provided shape of random values in the distribution specified. Uses the provided seed value
+        /// to initalize state. No state is preserved, and all calls with equal seed yield an identical stream of random values.
+        ///
+        /// - Parameters:
+        /// - shape: The shape of the tensor generated
+        /// - descriptor: The descriptor of the distribution. See MPSGraphRandomOpDescriptor.
+        /// - seed: The seed to use to initialize state. All calls with equal seed yield an identical stream of random values.
+        /// - name: The name for the operation.
+        /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
         #[method_id(@__retain_semantics Other randomTensorWithShape:descriptor:seed:name:)]
         pub unsafe fn randomTensorWithShape_descriptor_seed_name(
             &self,
@@ -205,6 +330,17 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Random op of type matching distribution in descriptor and returns random values.
+        ///
+        /// Returns a tensor of provided shape of random values in the distribution specified. Uses the provided seed value
+        /// to initalize state. No state is preserved, and all calls with equal seed yield an identical stream of random values.
+        ///
+        /// - Parameters:
+        /// - shapeTensor: 1D Int32 or Int64 tensor. The shape of the tensor generated
+        /// - descriptor: The descriptor of the distribution. See MPSGraphRandomOpDescriptor.
+        /// - seed: The seed to use to initialize state. All calls with equal seed yield an identical stream of random values.
+        /// - name: The name for the operation.
+        /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
         #[method_id(@__retain_semantics Other randomTensorWithShapeTensor:descriptor:seed:name:)]
         pub unsafe fn randomTensorWithShapeTensor_descriptor_seed_name(
             &self,
@@ -218,6 +354,22 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a Random op of type matching distribution in descriptor, and returns random values and updated state.
+        ///
+        /// Returns an array of 2 tensors, where the first is of provided shape of random values in the distribution specified,
+        /// and the second is the updated state tensor.
+        /// Uses the provided state to define a stream of random values. No state is preserved, and all calls with equal state
+        /// yield an identical stream of random values. The initial stateTensor provided should be created using the MPSGraph
+        /// randomPhiloxStateTensor APIs. The resulting stateTensor from this op can be passed as an argument to the following
+        /// random calls to continue sampling from the stream.
+        ///
+        /// - Parameters:
+        /// - shape: The shape of the tensor generated
+        /// - descriptor: The descriptor of the distribution. See MPSGraphRandomOpDescriptor.
+        /// - state: The state to define a stream of random values. All calls with equal state yield an identical stream of random values.
+        /// - name: The name for the operation.
+        /// - Returns: An array of MPSGraphTensor of size 2. The first MPSGraphTensor is of shape containing random values in the defined range.
+        /// The second MPSGraphTensor is the updated state tensor.
         #[method_id(@__retain_semantics Other randomTensorWithShape:descriptor:stateTensor:name:)]
         pub unsafe fn randomTensorWithShape_descriptor_stateTensor_name(
             &self,
@@ -228,6 +380,22 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Random op of type matching distribution in descriptor, and returns random values and updated state.
+        ///
+        /// Returns an array of 2 tensors, where the first is of provided shape of random values in the distribution specified,
+        /// and the second is the updated state tensor.
+        /// Uses the provided state to define a stream of random values. No state is preserved, and all calls with equal state
+        /// yield an identical stream of random values. The initial stateTensor provided should be created using the MPSGraph
+        /// randomPhiloxStateTensor APIs. The resulting stateTensor from this op can be passed as an argument to the following
+        /// random calls to continue sampling from the stream.
+        ///
+        /// - Parameters:
+        /// - shapeTensor: 1D Int32 or Int64 tensor. The shape of the tensor generated.
+        /// - descriptor: The descriptor of the distribution. See MPSGraphRandomOpDescriptor.
+        /// - state: The state to define a stream of random values. All calls with equal state yield an identical stream of random values.
+        /// - name: The name for the operation.
+        /// - Returns: An array of MPSGraphTensor of size 2. The first MPSGraphTensor is of shape containing random values in the defined range.
+        /// The second MPSGraphTensor is the updated state tensor.
         #[method_id(@__retain_semantics Other randomTensorWithShapeTensor:descriptor:stateTensor:name:)]
         pub unsafe fn randomTensorWithShapeTensor_descriptor_stateTensor_name(
             &self,
@@ -241,6 +409,16 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a RandomUniform operation and returns random uniform values
+        ///
+        /// Returns a tensor of provided shape of random uniform values in the range [0.0, 1.0). Uses a random seed value
+        /// to initalize state. No state is preserved, and subsequent calls are not guaranteed to result in a unique stream of
+        /// random values.
+        ///
+        /// - Parameters:
+        /// - shape: The shape of the tensor generated
+        /// - name: The name for the operation.
+        /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
         #[method_id(@__retain_semantics Other randomUniformTensorWithShape:name:)]
         pub unsafe fn randomUniformTensorWithShape_name(
             &self,
@@ -249,6 +427,16 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a RandomUniform operation and returns random uniform values
+        ///
+        /// Returns a tensor of provided shape of random uniform values in the range [0.0, 1.0). Uses a random seed value
+        /// to initalize state. No state is preserved, and subsequent calls are not guaranteed to result in a unique stream of
+        /// random values.
+        ///
+        /// - Parameters:
+        /// - shapeTensor: 1D Int32 or Int64 tensor. The shape of the tensor generated
+        /// - name: The name for the operation.
+        /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
         #[method_id(@__retain_semantics Other randomUniformTensorWithShapeTensor:name:)]
         pub unsafe fn randomUniformTensorWithShapeTensor_name(
             &self,
@@ -260,6 +448,16 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a RandomUniform operation and returns random uniform values
+        ///
+        /// Returns a tensor of provided shape of random uniform values in the range [0.0, 1.0). Uses the provided seed value
+        /// to initalize state. No state is preserved, and all calls with equal seed yield an identical stream of random values.
+        ///
+        /// - Parameters:
+        /// - shape: The shape of the tensor generated
+        /// - seed: The seed to use to initialize state. All calls with equal seed yield an identical stream of random values.
+        /// - name: The name for the operation.
+        /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
         #[method_id(@__retain_semantics Other randomUniformTensorWithShape:seed:name:)]
         pub unsafe fn randomUniformTensorWithShape_seed_name(
             &self,
@@ -269,6 +467,16 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a RandomUniform operation and returns random uniform values
+        ///
+        /// Returns a tensor of provided shape of random uniform values in the range [0.0, 1.0). Uses the provided seed value
+        /// to initalize state. No state is preserved, and all calls with equal seed yield an identical stream of random values.
+        ///
+        /// - Parameters:
+        /// - shapeTensor: 1D Int32 or Int64 tensor. The shape of the tensor generated
+        /// - seed: The seed to use to initialize state. All calls with equal seed yield an identical stream of random values.
+        /// - name: The name for the operation.
+        /// - Returns: An MPSGraphTensor of shape containing random values in the defined range.
         #[method_id(@__retain_semantics Other randomUniformTensorWithShapeTensor:seed:name:)]
         pub unsafe fn randomUniformTensorWithShapeTensor_seed_name(
             &self,
@@ -281,6 +489,21 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a RandomUniform operation and returns random uniform values and updated state
+        ///
+        /// Returns an array of 2 tensors, where the first is a tensor of provided shape of random uniform values in the range
+        /// [0.0, 1.0), and the second is the updated state tensor.
+        /// The provided state is used to define a stream of random values. No state is preserved, and all calls with equal state
+        /// yield an identical stream of random values. The initial stateTensor provided should be created using the MPSGraph
+        /// randomPhiloxStateTensor APIs. The resulting stateTensor from this op can be passed as an argument to the following
+        /// random calls to continue sampling from the stream.
+        ///
+        /// - Parameters:
+        /// - shape: The shape of the tensor generated
+        /// - state: The state to define a stream of random values. All calls with equal state yield an identical stream of random values.
+        /// - name: The name for the operation.
+        /// - Returns: An array of MPSGraphTensor of size 2. The first MPSGraphTensor is of shape containing random values in the defined range.
+        /// The second MPSGraphTensor is the updated state tensor.
         #[method_id(@__retain_semantics Other randomUniformTensorWithShape:stateTensor:name:)]
         pub unsafe fn randomUniformTensorWithShape_stateTensor_name(
             &self,
@@ -290,6 +513,21 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a RandomUniform operation and returns random uniform values and updated state
+        ///
+        /// Returns an array of 2 tensors, where the first is a tensor of provided shape of random uniform values in the range
+        /// [0.0, 1.0), and the second is the updated state tensor.
+        /// The provided state is used to define a stream of random values. No state is preserved, and all calls with equal state
+        /// yield an identical stream of random values. The initial stateTensor provided should be created using the MPSGraph
+        /// randomPhiloxStateTensor APIs. The resulting stateTensor from this op can be passed as an argument to the following
+        /// random calls to continue sampling from the stream.
+        ///
+        /// - Parameters:
+        /// - shapeTensor: 1D Int32 or Int64 tensor. The shape of the tensor generated
+        /// - state: The state to define a stream of random values. All calls with equal state yield an identical stream of random values.
+        /// - name: The name for the operation.
+        /// - Returns: An array of MPSGraphTensor of size 2. The first MPSGraphTensor is of shape containing random values in the defined range.
+        /// The second MPSGraphTensor is the updated state tensor.
         #[method_id(@__retain_semantics Other randomUniformTensorWithShapeTensor:stateTensor:name:)]
         pub unsafe fn randomUniformTensorWithShapeTensor_stateTensor_name(
             &self,
@@ -299,6 +537,15 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a dropout operation and returns the result
+        ///
+        /// Removes values in the `tensor` with a percentage chance equal to `rate`. Removed values are set to 0
+        ///
+        /// - Parameters:
+        /// - tensor: Input tensor
+        /// - rate: The rate of values to be set to 0
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other dropoutTensor:rate:name:)]
         pub unsafe fn dropoutTensor_rate_name(
             &self,
@@ -308,6 +555,15 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a dropout operation and returns the result
+        ///
+        /// Removes values in the `tensor` with a percentage chance equal to `rate`. Removed values are set to 0
+        ///
+        /// - Parameters:
+        /// - tensor: Input tensor
+        /// - rate: The rate of values to be set to 0
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other dropoutTensor:rateTensor:name:)]
         pub unsafe fn dropoutTensor_rateTensor_name(
             &self,

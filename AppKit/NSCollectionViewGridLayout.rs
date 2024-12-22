@@ -31,6 +31,7 @@ extern_methods!(
         pub unsafe fn margins(&self) -> NSEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`margins`][Self::margins].
         #[method(setMargins:)]
         pub unsafe fn setMargins(&self, margins: NSEdgeInsets);
 
@@ -39,6 +40,7 @@ extern_methods!(
         pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumInteritemSpacing`][Self::minimumInteritemSpacing].
         #[method(setMinimumInteritemSpacing:)]
         pub unsafe fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
 
@@ -47,18 +49,21 @@ extern_methods!(
         pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumLineSpacing`][Self::minimumLineSpacing].
         #[method(setMinimumLineSpacing:)]
         pub unsafe fn setMinimumLineSpacing(&self, minimum_line_spacing: CGFloat);
 
         #[method(maximumNumberOfRows)]
         pub unsafe fn maximumNumberOfRows(&self) -> NSUInteger;
 
+        /// Setter for [`maximumNumberOfRows`][Self::maximumNumberOfRows].
         #[method(setMaximumNumberOfRows:)]
         pub unsafe fn setMaximumNumberOfRows(&self, maximum_number_of_rows: NSUInteger);
 
         #[method(maximumNumberOfColumns)]
         pub unsafe fn maximumNumberOfColumns(&self) -> NSUInteger;
 
+        /// Setter for [`maximumNumberOfColumns`][Self::maximumNumberOfColumns].
         #[method(setMaximumNumberOfColumns:)]
         pub unsafe fn setMaximumNumberOfColumns(&self, maximum_number_of_columns: NSUInteger);
 
@@ -67,6 +72,7 @@ extern_methods!(
         pub unsafe fn minimumItemSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumItemSize`][Self::minimumItemSize].
         #[method(setMinimumItemSize:)]
         pub unsafe fn setMinimumItemSize(&self, minimum_item_size: NSSize);
 
@@ -75,6 +81,7 @@ extern_methods!(
         pub unsafe fn maximumItemSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumItemSize`][Self::maximumItemSize].
         #[method(setMaximumItemSize:)]
         pub unsafe fn setMaximumItemSize(&self, maximum_item_size: NSSize);
 
@@ -83,6 +90,7 @@ extern_methods!(
         pub unsafe fn backgroundColors(&self) -> Retained<NSArray<NSColor>>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColors`][Self::backgroundColors].
         #[method(setBackgroundColors:)]
         pub unsafe fn setBackgroundColors(&self, background_colors: Option<&NSArray<NSColor>>);
     }

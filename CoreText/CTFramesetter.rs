@@ -13,16 +13,45 @@ use crate::*;
 pub type CTFramesetterRef = *const c_void;
 
 extern "C-unwind" {
+    /// Returns the CFType of the framesetter object
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFramesetterGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
+    /// Creates a framesetter directly from a typesetter.
+    ///
+    ///
+    /// Each framesetter uses a typesetter internally to perform
+    /// line breaking and other contextual analysis based on the
+    /// characters in a string. This function allows use of a
+    /// typesetter that was constructed using specific options.
+    ///
+    ///
+    /// Parameter `typesetter`: The typesetter to be used by the newly-created framesetter.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTFramesetter object.
+    ///
+    ///
+    /// See also: CTTypesetterCreateWithAttributedStringAndOptions
     #[cfg(feature = "CTTypesetter")]
     pub fn CTFramesetterCreateWithTypesetter(typesetter: CTTypesetterRef) -> CTFramesetterRef;
 }
 
 extern "C-unwind" {
+    /// Creates an immutable framesetter object from an attributed
+    /// string.
+    ///
+    ///
+    /// The resultant framesetter object can be used to create and
+    /// fill text frames with the CTFramesetterCreateFrame call.
+    ///
+    ///
+    /// Parameter `attrString`: The attributed string to construct the framesetter with.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTFramesetter object.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFramesetterCreateWithAttributedString(
         attr_string: CFAttributedStringRef,
@@ -30,6 +59,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an immutable frame from a framesetter.
+    ///
+    ///
+    /// This call will create a frame full of glyphs in the shape of
+    /// the path provided by the "path" parameter. The framesetter
+    /// will continue to fill the frame until it either runs out of
+    /// text or it finds that text no longer fits.
+    ///
+    ///
+    /// Parameter `framesetter`: The framesetter that will be used to create the frame.
+    ///
+    ///
+    /// Parameter `stringRange`: The string range which the new frame will be based on. The
+    /// string range is a range over the string that was used to
+    /// create the framesetter. If the length portion of the range
+    /// is set to 0, then the framesetter will continue to add lines
+    /// until it runs out of text or space.
+    ///
+    ///
+    /// Parameter `path`: A CGPath object that specifies the shape which the frame will
+    /// take on.
+    ///
+    ///
+    /// Parameter `frameAttributes`: Additional attributes that control the frame filling process
+    /// can be specified here, or NULL if there are no such attributes.
+    /// See CTFrame.h for available attributes.
+    ///
+    ///
+    /// Returns: This function will return a reference to a new CTFrame object.
     #[cfg(all(
         feature = "CTFrame",
         feature = "objc2-core-foundation",
@@ -44,11 +102,57 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the typesetter object being used by the framesetter.
+    ///
+    ///
+    /// Each framesetter uses a typesetter internally to perform
+    /// line breaking and other contextual analysis based on the
+    /// characters in a string; this function returns the typesetter
+    /// being used by a particular framesetter if the caller would
+    /// like to perform other operations on that typesetter.
+    ///
+    ///
+    /// Parameter `framesetter`: The framesetter from which a typesetter is being requested.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTTypesetter
+    /// object, which should not be released by the caller.
     #[cfg(feature = "CTTypesetter")]
     pub fn CTFramesetterGetTypesetter(framesetter: CTFramesetterRef) -> CTTypesetterRef;
 }
 
 extern "C-unwind" {
+    /// Determines the frame size needed for a string range.
+    ///
+    ///
+    /// This function may be used to determine how much space is needed
+    /// to display a string, optionally by constraining the space along
+    /// either dimension.
+    ///
+    ///
+    /// Parameter `framesetter`: The framesetter that will be used for measuring the frame size.
+    ///
+    ///
+    /// Parameter `stringRange`: The string range to which the frame size will apply. The
+    /// string range is a range over the string that was used to
+    /// create the framesetter. If the length portion of the range
+    /// is set to 0, then the framesetter will continue to add lines
+    /// until it runs out of text or space.
+    ///
+    ///
+    /// Parameter `frameAttributes`: Additional attributes that control the frame filling process
+    /// can be specified here, or NULL if there are no such attributes.
+    ///
+    ///
+    /// Parameter `constraints`: The width and height to which the frame size will be constrained,
+    /// A value of CGFLOAT_MAX for either dimension indicates that it
+    /// should be treated as unconstrained.
+    ///
+    ///
+    /// Parameter `fitRange`: The range of the string that actually fit in the constrained size.
+    ///
+    ///
+    /// Returns: The actual dimensions for the given string range and constraints.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFramesetterSuggestFrameSizeWithConstraints(
         framesetter: CTFramesetterRef,

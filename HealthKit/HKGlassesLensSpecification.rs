@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkglasseslensspecification?language=objc)
+    /// An object subclass representing lens specification for glasses
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkglasseslensspecification?language=objc)
     #[unsafe(super(HKLensSpecification, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKLensSpecification")]
@@ -41,22 +43,45 @@ extern_methods!(
     #[cfg(feature = "HKLensSpecification")]
     unsafe impl HKGlassesLensSpecification {
         #[cfg(feature = "HKQuantity")]
+        /// The distance between the back of the eyeglass lens and the eye (measured in mm)
         #[method_id(@__retain_semantics Other vertexDistance)]
         pub unsafe fn vertexDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKVisionPrism")]
+        /// The object encapsulating the prism fields
         #[method_id(@__retain_semantics Other prism)]
         pub unsafe fn prism(&self) -> Option<Retained<HKVisionPrism>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The distance from each pupil to the center of the nose (measured in mm) when looking at a far target.
+        /// Can be described as combined or individual value. For distance prescriptions, the pupillary distance will be a far value.
         #[method_id(@__retain_semantics Other farPupillaryDistance)]
         pub unsafe fn farPupillaryDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The distance from each pupil to the center of the nose (measured in mm) when looking at a near target.
+        /// Can be described as combined or individual value. For near prescriptions, the pupillary distance will be a near value.
         #[method_id(@__retain_semantics Other nearPupillaryDistance)]
         pub unsafe fn nearPupillaryDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKVisionPrism"))]
+        /// Parameter `sphere`: The lens power to correct nearsightedness or farsightedness
+        ///
+        /// Parameter `cylinder`: The lens power required to correct astigmatism
+        ///
+        /// Parameter `axis`: The angle along which cylindrical power should be positioned to correct astigmatism
+        ///
+        /// Parameter `addPower`: The power adjustment applied to a multifocal lens to correct presbyopia
+        ///
+        /// Parameter `vertexDistance`: The distance between the back of the eyeglass lens and the eye
+        ///
+        /// Parameter `prism`: The object encapsulating the prism fields
+        ///
+        /// Parameter `farPupillaryDistance`: The distance from each pupil to the center of the nose (measured in mm) when looking at a far target.
+        /// Can be described as combined or individual value. For distance prescriptions, the pupillary distance will be a far value.
+        ///
+        /// Parameter `nearPupillaryDistance`: The distance from each pupil to the center of the nose (measured in mm) when looking at a near target.
+        /// Can be described as combined or individual value. For near prescriptions, the pupillary distance will be a near value.
         #[method_id(@__retain_semantics Init initWithSphere:cylinder:axis:addPower:vertexDistance:prism:farPupillaryDistance:nearPupillaryDistance:)]
         pub unsafe fn initWithSphere_cylinder_axis_addPower_vertexDistance_prism_farPupillaryDistance_nearPupillaryDistance(
             this: Allocated<Self>,

@@ -25,6 +25,7 @@ unsafe impl NSSecureCoding for NSTextContainer {}
 extern_methods!(
     unsafe impl NSTextContainer {
         #[cfg(feature = "objc2-core-foundation")]
+        /// ************************** Initialization ***************************
         #[method_id(@__retain_semantics Init initWithSize:)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
@@ -36,10 +37,12 @@ extern_methods!(
         pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// *********************** Container shape properties ************************
         #[method(size)]
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: CGSize);
 
@@ -48,24 +51,29 @@ extern_methods!(
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
         #[cfg(feature = "NSParagraphStyle")]
+        /// Setter for [`lineBreakMode`][Self::lineBreakMode].
         #[method(setLineBreakMode:)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// *********************** Layout constraint properties ************************
         #[method(lineFragmentPadding)]
         pub unsafe fn lineFragmentPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`lineFragmentPadding`][Self::lineFragmentPadding].
         #[method(setLineFragmentPadding:)]
         pub unsafe fn setLineFragmentPadding(&self, line_fragment_padding: CGFloat);
 
         #[method(maximumNumberOfLines)]
         pub unsafe fn maximumNumberOfLines(&self) -> NSUInteger;
 
+        /// Setter for [`maximumNumberOfLines`][Self::maximumNumberOfLines].
         #[method(setMaximumNumberOfLines:)]
         pub unsafe fn setMaximumNumberOfLines(&self, maximum_number_of_lines: NSUInteger);
 
         #[cfg(all(feature = "NSText", feature = "objc2-core-foundation"))]
+        /// ************************** Line fragments ***************************
         #[method(lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:)]
         pub unsafe fn lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect(
             &self,
@@ -78,15 +86,18 @@ extern_methods!(
         #[method(isSimpleRectangularTextContainer)]
         pub unsafe fn isSimpleRectangularTextContainer(&self) -> bool;
 
+        /// ************************** View synchronization ***************************
         #[method(widthTracksTextView)]
         pub unsafe fn widthTracksTextView(&self) -> bool;
 
+        /// Setter for [`widthTracksTextView`][Self::widthTracksTextView].
         #[method(setWidthTracksTextView:)]
         pub unsafe fn setWidthTracksTextView(&self, width_tracks_text_view: bool);
 
         #[method(heightTracksTextView)]
         pub unsafe fn heightTracksTextView(&self) -> bool;
 
+        /// Setter for [`heightTracksTextView`][Self::heightTracksTextView].
         #[method(setHeightTracksTextView:)]
         pub unsafe fn setHeightTracksTextView(&self, height_tracks_text_view: bool);
     }
@@ -110,6 +121,7 @@ extern_methods!(
         pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
 
         #[cfg(feature = "NSLayoutManager")]
+        /// Setter for [`layoutManager`][Self::layoutManager].
         #[method(setLayoutManager:)]
         pub unsafe fn setLayoutManager(&self, layout_manager: Option<&NSLayoutManager>);
 
@@ -122,6 +134,7 @@ extern_methods!(
         pub unsafe fn exclusionPaths(&self) -> Retained<NSArray<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]
+        /// Setter for [`exclusionPaths`][Self::exclusionPaths].
         #[method(setExclusionPaths:)]
         pub unsafe fn setExclusionPaths(&self, exclusion_paths: &NSArray<UIBezierPath>);
     }

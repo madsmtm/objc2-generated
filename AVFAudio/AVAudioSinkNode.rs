@@ -8,7 +8,23 @@ use objc2_core_audio_types::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosinknodereceiverblock?language=objc)
+/// Block to receive audio data from AVAudioSinkNode
+///
+/// Parameter `timestamp`: The time at which the input data will be rendered.
+///
+/// Parameter `frameCount`: The number of sample frames of input provided.
+///
+/// Parameter `inputData`: The input audio data.
+///
+/// The engine will supply valid buffers in inputData's mBuffers' mData and mDataByteSize.
+/// mDataByteSize will be consistent with frameCount.
+///
+/// The pointer to the AudioBufferList is only valid within the scope of this block.
+///
+/// Returns: An OSStatus result code. If an error is returned, the input data should be assumed to be
+/// invalid.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosinknodereceiverblock?language=objc)
 #[cfg(all(
     feature = "AVAudioTypes",
     feature = "block2",
@@ -19,7 +35,23 @@ pub type AVAudioSinkNodeReceiverBlock = *mut block2::Block<
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosinknode?language=objc)
+    /// AVAudioSinkNode wraps a client provided block to receive input audio on the audio IO thread.
+    ///
+    /// AVAudioSinkNode is restricted to be used in the input chain and does not support format
+    /// conversion. Hence when connecting to an AVAudioSinkNode node, the format for the connection
+    /// should be the output scope format of the input node (essentialy the format should match the input hardware
+    /// sample rate).
+    ///
+    /// The voice processing IO unit is an exception to the above as it supports sample rate conversion.
+    /// The input scope format (HW format) and output scope format (client format) of the input node can differ
+    /// in that case.
+    ///
+    /// This node is only supported when the engine is rendering to the audio device and not in
+    /// manual rendering mode.
+    ///
+    /// AVAudioSinkNode does not have an output bus and therefore it does not support tapping.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosinknode?language=objc)
     #[unsafe(super(AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]
@@ -40,6 +72,19 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-audio-types"
         ))]
+        /// Create a node with a receiver block.
+        ///
+        /// Parameter `block`: The block that receives audio data from the input.
+        ///
+        /// The receiver block is called when the input data is available.
+        ///
+        /// The block will be called on the realtime thread and it is the client's responsibility to
+        /// handle it in a thread-safe manner and to not make any blocking calls.
+        ///
+        /// The audio format for the input bus will be set from the connection format when connecting
+        /// to another node.
+        ///
+        /// The audio format for the data received by the block will be set to the node's input format.
         #[method_id(@__retain_semantics Init initWithReceiverBlock:)]
         pub unsafe fn initWithReceiverBlock(
             this: Allocated<Self>,

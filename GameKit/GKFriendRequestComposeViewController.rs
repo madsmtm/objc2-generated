@@ -94,15 +94,20 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKFriendRequestComposeViewController {
+        /// Get the maximum number of recipients permitted
         #[deprecated]
         #[method(maxNumberOfRecipients)]
         pub unsafe fn maxNumberOfRecipients(mtm: MainThreadMarker) -> NSUInteger;
 
+        /// Specify the message sent to the invitee. A default message will be used if you don't specify one.
         #[deprecated]
         #[method(setMessage:)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// Add recipients to the request.
+        /// If you don't specify at least one recipient before presenting the view, the recipients field will be made firstResponder, to encourage the user to add some.
+        /// If you add more than maxNumberOfRecipients recipients, these methods will throw an exception.
         #[method(addRecipientPlayers:)]
         pub unsafe fn addRecipientPlayers(&self, players: &NSArray<GKPlayer>);
 
@@ -121,6 +126,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn GKFriendRequestComposeViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`composeViewDelegate`][Self::composeViewDelegate].
         #[deprecated]
         #[method(setComposeViewDelegate:)]
         pub unsafe fn setComposeViewDelegate(
@@ -133,11 +139,14 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontrollerdelegate?language=objc)
+    /// Optional delegate
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontrollerdelegate?language=objc)
     #[deprecated]
     pub unsafe trait GKFriendRequestComposeViewControllerDelegate {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// The compose view has finished
         #[deprecated]
         #[method(friendRequestComposeViewControllerDidFinish:)]
         unsafe fn friendRequestComposeViewControllerDidFinish(

@@ -232,6 +232,7 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other contentType)]
         unsafe fn contentType(&self) -> Option<Retained<NSTextContentType>>;
 
+        /// Setter for [`contentType`][Self::contentType].
         #[method(setContentType:)]
         unsafe fn setContentType(&self, content_type: Option<&NSTextContentType>);
     }

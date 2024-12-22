@@ -334,6 +334,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other quinaryLabelColor)]
         pub unsafe fn quinaryLabelColor() -> Retained<NSColor>;
 
+        /// Used for large scale images or subtle decorative elements; not for general foreground content.
         #[method_id(@__retain_semantics Other linkColor)]
         pub unsafe fn linkColor() -> Retained<NSColor>;
 
@@ -460,21 +461,30 @@ extern_methods!(
         #[method_id(@__retain_semantics Other systemCyanColor)]
         pub unsafe fn systemCyanColor() -> Retained<NSColor>;
 
+        /// Fill colors for UI elements.
+        /// These are meant to be used over the background colors, since their alpha component is less than 1.
+        ///
+        /// systemFillColor is appropriate for filling thin shapes, such as the track of a slider.
         #[method_id(@__retain_semantics Other systemFillColor)]
         pub unsafe fn systemFillColor() -> Retained<NSColor>;
 
+        /// secondarySystemFillColor is appropriate for filling small-size shapes, such as the backing of a progress indicator.
         #[method_id(@__retain_semantics Other secondarySystemFillColor)]
         pub unsafe fn secondarySystemFillColor() -> Retained<NSColor>;
 
+        /// tertiarySystemFillColor is appropriate for filling medium-size shapes,  such as the backing of a switch.
         #[method_id(@__retain_semantics Other tertiarySystemFillColor)]
         pub unsafe fn tertiarySystemFillColor() -> Retained<NSColor>;
 
+        /// quaternarySystemFillColor is appropriate for filling large areas, such as a group box or tab pane.
         #[method_id(@__retain_semantics Other quaternarySystemFillColor)]
         pub unsafe fn quaternarySystemFillColor() -> Retained<NSColor>;
 
+        /// quinarySystemFillColor is appropriate for filling large areas that require subtle emphasis, such as content of a form..
         #[method_id(@__retain_semantics Other quinarySystemFillColor)]
         pub unsafe fn quinarySystemFillColor() -> Retained<NSColor>;
 
+        /// A dynamic color that reflects the user's current preferred accent color. This color automatically updates when the accent color preference changes. Do not make assumptions about the color space of this color, which may change across releases.
         #[method_id(@__retain_semantics Other controlAccentColor)]
         pub unsafe fn controlAccentColor() -> Retained<NSColor>;
 
@@ -501,6 +511,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other shadowWithLevel:)]
         pub unsafe fn shadowWithLevel(&self, val: CGFloat) -> Option<Retained<NSColor>>;
 
+        /// Returns a color representing the base color with a system defined effect applied to it. This color is safe to create before draw time, as the resolution of the final color only happens when being `-set`, retrieving its `CGColor`, resolving with `-colorWithType:`, etc. The return color type is `.named`.
         #[method_id(@__retain_semantics Other colorWithSystemEffect:)]
         pub unsafe fn colorWithSystemEffect(
             &self,
@@ -529,6 +540,7 @@ extern_methods!(
         pub unsafe fn colorWithAlphaComponent(&self, alpha: CGFloat) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColorList")]
+        /// * Methods to get various components of colors. Not all of the methods apply to all colors; if called, they raise. **
         #[method_id(@__retain_semantics Other catalogNameComponent)]
         pub unsafe fn catalogNameComponent(&self) -> Retained<NSColorListName>;
 
@@ -666,6 +678,7 @@ extern_methods!(
         #[method(ignoresAlpha)]
         pub unsafe fn ignoresAlpha(mtm: MainThreadMarker) -> bool;
 
+        /// Setter for [`ignoresAlpha`][Self::ignoresAlpha].
         #[deprecated = "Use `showsAlpha` in `NSColorPanel` and `supportsAlpha` in `NSColorWell` to control alpha behavior for individual controls."]
         #[method(setIgnoresAlpha:)]
         pub unsafe fn setIgnoresAlpha(ignores_alpha: bool, mtm: MainThreadMarker);
@@ -683,54 +696,67 @@ extern_methods!(
 extern_methods!(
     /// NSDeprecated
     unsafe impl NSColor {
+        /// Historically used as the inner border highlight color for beveled buttons. No longer used.
         #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
         #[method_id(@__retain_semantics Other controlHighlightColor)]
         pub unsafe fn controlHighlightColor() -> Retained<NSColor>;
 
+        /// Historically used as the outer border highlight color for beveled buttons. No longer used.
         #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
         #[method_id(@__retain_semantics Other controlLightHighlightColor)]
         pub unsafe fn controlLightHighlightColor() -> Retained<NSColor>;
 
+        /// Historically used as the inner border shadow color for beveled buttons. No longer used.
         #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
         #[method_id(@__retain_semantics Other controlShadowColor)]
         pub unsafe fn controlShadowColor() -> Retained<NSColor>;
 
+        /// Historically used as the outer border shadow color for beveled buttons. No longer used.
         #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
         #[method_id(@__retain_semantics Other controlDarkShadowColor)]
         pub unsafe fn controlDarkShadowColor() -> Retained<NSColor>;
 
+        /// Historically used as the color of scroll bars. No longer used.
         #[deprecated = "Use NSScroller instead"]
         #[method_id(@__retain_semantics Other scrollBarColor)]
         pub unsafe fn scrollBarColor() -> Retained<NSColor>;
 
+        /// Historically used as the color of scroll bar knobs. No longer used.
         #[deprecated = "Use NSScroller instead"]
         #[method_id(@__retain_semantics Other knobColor)]
         pub unsafe fn knobColor() -> Retained<NSColor>;
 
+        /// Historically used as the color of scroll bar knobs being dragged. No longer used.
         #[deprecated = "Use NSScroller instead"]
         #[method_id(@__retain_semantics Other selectedKnobColor)]
         pub unsafe fn selectedKnobColor() -> Retained<NSColor>;
 
+        /// Historically used as the color of the window chrome, which is no longer able to be represented by a color. No longer used.
         #[deprecated = "Use NSVisualEffectMaterialTitlebar"]
         #[method_id(@__retain_semantics Other windowFrameColor)]
         pub unsafe fn windowFrameColor() -> Retained<NSColor>;
 
+        /// Historically used as the color of selected menu items, which is no longer a color but a tinted blur effect. No longer used.
         #[deprecated = "Use NSVisualEffectMaterialSelection"]
         #[method_id(@__retain_semantics Other selectedMenuItemColor)]
         pub unsafe fn selectedMenuItemColor() -> Retained<NSColor>;
 
+        /// Historically used as the color of table headers, which is no longer a color but a tinted blur effect.
         #[deprecated = "Use NSVisualEffectMaterialHeaderView"]
         #[method_id(@__retain_semantics Other headerColor)]
         pub unsafe fn headerColor() -> Retained<NSColor>;
 
+        /// The background color of selected content or text that is unemphasized. Older alias for +unemphasizedSelectedContentBackgroundColor and +unemphasizedSelectedTextBackgroundColor
         #[deprecated]
         #[method_id(@__retain_semantics Other secondarySelectedControlColor)]
         pub unsafe fn secondarySelectedControlColor() -> Retained<NSColor>;
 
+        /// The background color of selected and emphasized (focused) content: table views rows, collection views, etc. Older alias for +selectedContentBackgroundColor
         #[deprecated]
         #[method_id(@__retain_semantics Other alternateSelectedControlColor)]
         pub unsafe fn alternateSelectedControlColor() -> Retained<NSColor>;
 
+        /// The background colors for alternating content items: such as table view rows, collection view items. Older alias for +alternatingContentBackgroundColors
         #[deprecated]
         #[method_id(@__retain_semantics Other controlAlternatingRowBackgroundColors)]
         pub unsafe fn controlAlternatingRowBackgroundColors() -> Retained<NSArray<NSColor>>;

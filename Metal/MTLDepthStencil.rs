@@ -91,24 +91,31 @@ extern_methods!(
         #[method(stencilCompareFunction)]
         pub fn stencilCompareFunction(&self) -> MTLCompareFunction;
 
+        /// Setter for [`stencilCompareFunction`][Self::stencilCompareFunction].
         #[method(setStencilCompareFunction:)]
         pub fn setStencilCompareFunction(&self, stencil_compare_function: MTLCompareFunction);
 
+        /// Stencil is tested first.  stencilFailureOperation declares how the stencil buffer is updated when the stencil test fails.
         #[method(stencilFailureOperation)]
         pub fn stencilFailureOperation(&self) -> MTLStencilOperation;
 
+        /// Setter for [`stencilFailureOperation`][Self::stencilFailureOperation].
         #[method(setStencilFailureOperation:)]
         pub fn setStencilFailureOperation(&self, stencil_failure_operation: MTLStencilOperation);
 
+        /// If stencil passes, depth is tested next.  Declare what happens when the depth test fails.
         #[method(depthFailureOperation)]
         pub fn depthFailureOperation(&self) -> MTLStencilOperation;
 
+        /// Setter for [`depthFailureOperation`][Self::depthFailureOperation].
         #[method(setDepthFailureOperation:)]
         pub fn setDepthFailureOperation(&self, depth_failure_operation: MTLStencilOperation);
 
+        /// If both the stencil and depth tests pass, declare how the stencil buffer is updated.
         #[method(depthStencilPassOperation)]
         pub fn depthStencilPassOperation(&self) -> MTLStencilOperation;
 
+        /// Setter for [`depthStencilPassOperation`][Self::depthStencilPassOperation].
         #[method(setDepthStencilPassOperation:)]
         pub fn setDepthStencilPassOperation(
             &self,
@@ -118,12 +125,14 @@ extern_methods!(
         #[method(readMask)]
         pub fn readMask(&self) -> u32;
 
+        /// Setter for [`readMask`][Self::readMask].
         #[method(setReadMask:)]
         pub fn setReadMask(&self, read_mask: u32);
 
         #[method(writeMask)]
         pub fn writeMask(&self) -> u32;
 
+        /// Setter for [`writeMask`][Self::writeMask].
         #[method(setWriteMask:)]
         pub fn setWriteMask(&self, write_mask: u32);
     }
@@ -160,30 +169,36 @@ extern_methods!(
         #[method(depthCompareFunction)]
         pub fn depthCompareFunction(&self) -> MTLCompareFunction;
 
+        /// Setter for [`depthCompareFunction`][Self::depthCompareFunction].
         #[method(setDepthCompareFunction:)]
         pub fn setDepthCompareFunction(&self, depth_compare_function: MTLCompareFunction);
 
         #[method(isDepthWriteEnabled)]
         pub fn isDepthWriteEnabled(&self) -> bool;
 
+        /// Setter for [`isDepthWriteEnabled`][Self::isDepthWriteEnabled].
         #[method(setDepthWriteEnabled:)]
         pub fn setDepthWriteEnabled(&self, depth_write_enabled: bool);
 
         #[method_id(@__retain_semantics Other frontFaceStencil)]
         pub fn frontFaceStencil(&self) -> Retained<MTLStencilDescriptor>;
 
+        /// Setter for [`frontFaceStencil`][Self::frontFaceStencil].
         #[method(setFrontFaceStencil:)]
         pub fn setFrontFaceStencil(&self, front_face_stencil: Option<&MTLStencilDescriptor>);
 
         #[method_id(@__retain_semantics Other backFaceStencil)]
         pub fn backFaceStencil(&self) -> Retained<MTLStencilDescriptor>;
 
+        /// Setter for [`backFaceStencil`][Self::backFaceStencil].
         #[method(setBackFaceStencil:)]
         pub fn setBackFaceStencil(&self, back_face_stencil: Option<&MTLStencilDescriptor>);
 
+        /// A string to help identify the created object.
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
     }
@@ -203,10 +218,12 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthstencilstate?language=objc)
     pub unsafe trait MTLDepthStencilState: NSObjectProtocol {
+        /// A string to help identify this object.
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLDevice")]
+        /// The device this resource was created against.  This resource can only be used with this device.
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
     }

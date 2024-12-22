@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturedescription?language=objc)
+    /// Description of a feature
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturedescription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLFeatureDescription;
@@ -27,17 +29,21 @@ unsafe impl NSSecureCoding for MLFeatureDescription {}
 
 extern_methods!(
     unsafe impl MLFeatureDescription {
+        /// Name of feature
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MLFeatureType")]
+        /// Type of data
         #[method(type)]
         pub unsafe fn r#type(&self) -> MLFeatureType;
 
+        /// Whether this feature can take an undefined value or not
         #[method(isOptional)]
         pub unsafe fn isOptional(&self) -> bool;
 
         #[cfg(feature = "MLFeatureValue")]
+        /// Check if MLFeatureValue is valid based on this description
         #[method(isAllowedValue:)]
         pub unsafe fn isAllowedValue(&self, value: &MLFeatureValue) -> bool;
     }
@@ -56,24 +62,32 @@ extern_methods!(
 
 extern_methods!(
     /// MLFeatureValueConstraints
+    /// Feature value constraints for specific types
     unsafe impl MLFeatureDescription {
         #[cfg(feature = "MLMultiArrayConstraint")]
+        /// Constraint when type == MLFeatureTypeMultiArray, nil otherwise
         #[method_id(@__retain_semantics Other multiArrayConstraint)]
         pub unsafe fn multiArrayConstraint(&self) -> Option<Retained<MLMultiArrayConstraint>>;
 
         #[cfg(feature = "MLImageConstraint")]
+        /// Constraint when type == MLFeatureTypeImage, nil otherwise
         #[method_id(@__retain_semantics Other imageConstraint)]
         pub unsafe fn imageConstraint(&self) -> Option<Retained<MLImageConstraint>>;
 
         #[cfg(feature = "MLDictionaryConstraint")]
+        /// Constraint when type == MLFeatureTypeDictionary, nil otherwise
         #[method_id(@__retain_semantics Other dictionaryConstraint)]
         pub unsafe fn dictionaryConstraint(&self) -> Option<Retained<MLDictionaryConstraint>>;
 
         #[cfg(feature = "MLSequenceConstraint")]
+        /// Constraint when type == MLFeatureTypeSequence, nil otherwise
         #[method_id(@__retain_semantics Other sequenceConstraint)]
         pub unsafe fn sequenceConstraint(&self) -> Option<Retained<MLSequenceConstraint>>;
 
         #[cfg(feature = "MLStateConstraint")]
+        /// The state feature value constraint.
+        ///
+        /// The property has a value when `.type == MLFeatureTypeState`.
         #[method_id(@__retain_semantics Other stateConstraint)]
         pub unsafe fn stateConstraint(&self) -> Option<Retained<MLStateConstraint>>;
     }

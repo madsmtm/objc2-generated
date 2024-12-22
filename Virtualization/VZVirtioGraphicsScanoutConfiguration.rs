@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiographicsscanoutconfiguration?language=objc)
+    /// Configuration for a scanout attached to a Virtio graphics device.
+    ///
+    /// This scanout can be shown in a VZVirtualMachineView.
+    ///
+    /// See also: VZVirtioGraphicsDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiographicsscanoutconfiguration?language=objc)
     #[unsafe(super(VZGraphicsDisplayConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDisplayConfiguration")]
@@ -29,6 +35,11 @@ unsafe impl NSObjectProtocol for VZVirtioGraphicsScanoutConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZGraphicsDisplayConfiguration")]
     unsafe impl VZVirtioGraphicsScanoutConfiguration {
+        /// Create a scanout configuration with the specified pixel dimensions.
+        ///
+        /// Parameter `widthInPixels`: The width of the scanout, in pixels.
+        ///
+        /// Parameter `heightInPixels`: The height of the scanout, in pixels.
         #[method_id(@__retain_semantics Init initWithWidthInPixels:heightInPixels:)]
         pub unsafe fn initWithWidthInPixels_heightInPixels(
             this: Allocated<Self>,
@@ -36,15 +47,19 @@ extern_methods!(
             height_in_pixels: NSInteger,
         ) -> Retained<Self>;
 
+        /// The width of the scanout, in pixels.
         #[method(widthInPixels)]
         pub unsafe fn widthInPixels(&self) -> NSInteger;
 
+        /// Setter for [`widthInPixels`][Self::widthInPixels].
         #[method(setWidthInPixels:)]
         pub unsafe fn setWidthInPixels(&self, width_in_pixels: NSInteger);
 
+        /// The height of the scanout, in pixels.
         #[method(heightInPixels)]
         pub unsafe fn heightInPixels(&self) -> NSInteger;
 
+        /// Setter for [`heightInPixels`][Self::heightInPixels].
         #[method(setHeightInPixels:)]
         pub unsafe fn setHeightInPixels(&self, height_in_pixels: NSInteger);
     }

@@ -86,6 +86,7 @@ extern_methods!(
         pub unsafe fn CGPath(&self) -> CGPathRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`CGPath`][Self::CGPath].
         #[method(setCGPath:)]
         pub unsafe fn setCGPath(&self, cg_path: CGPathRef);
 
@@ -161,6 +162,7 @@ extern_methods!(
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`lineWidth`][Self::lineWidth].
         #[method(setLineWidth:)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
@@ -169,6 +171,7 @@ extern_methods!(
         pub unsafe fn lineCapStyle(&self) -> CGLineCap;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`lineCapStyle`][Self::lineCapStyle].
         #[method(setLineCapStyle:)]
         pub unsafe fn setLineCapStyle(&self, line_cap_style: CGLineCap);
 
@@ -177,6 +180,7 @@ extern_methods!(
         pub unsafe fn lineJoinStyle(&self) -> CGLineJoin;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`lineJoinStyle`][Self::lineJoinStyle].
         #[method(setLineJoinStyle:)]
         pub unsafe fn setLineJoinStyle(&self, line_join_style: CGLineJoin);
 
@@ -185,6 +189,7 @@ extern_methods!(
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`miterLimit`][Self::miterLimit].
         #[method(setMiterLimit:)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
@@ -193,12 +198,14 @@ extern_methods!(
         pub unsafe fn flatness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`flatness`][Self::flatness].
         #[method(setFlatness:)]
         pub unsafe fn setFlatness(&self, flatness: CGFloat);
 
         #[method(usesEvenOddFillRule)]
         pub unsafe fn usesEvenOddFillRule(&self) -> bool;
 
+        /// Setter for [`usesEvenOddFillRule`][Self::usesEvenOddFillRule].
         #[method(setUsesEvenOddFillRule:)]
         pub unsafe fn setUsesEvenOddFillRule(&self, uses_even_odd_fill_rule: bool);
 

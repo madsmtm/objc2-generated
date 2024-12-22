@@ -51,6 +51,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other ignoredWords)]
         pub unsafe fn ignoredWords(&self) -> Option<Retained<NSArray<NSString>>>;
 
+        /// Setter for [`ignoredWords`][Self::ignoredWords].
         #[method(setIgnoredWords:)]
         pub unsafe fn setIgnoredWords(&self, ignored_words: Option<&NSArray<NSString>>);
 

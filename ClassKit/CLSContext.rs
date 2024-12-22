@@ -106,7 +106,14 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontext?language=objc)
+    /// Contexts represent activities, documents, and areas within your app.
+    ///
+    /// Contexts have two major components.
+    ///
+    /// (1) Child contexts, used to model your app hierarchy.
+    /// (2) Activity, holds user generated data that pertains to this context.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontext?language=objc)
     #[unsafe(super(CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLSObject")]
@@ -131,83 +138,160 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Context identifier path of this context.
+        ///
+        /// The identifier path starts with the main app context object and finishes with the identifier of this context. This is the identifier path that one would use in
+        ///
+        /// ```text
+        ///  -[CLSDataStore contextsMatchingIdintifierPath:completion:]
+        /// ```
+        ///
+        /// to find `this' context.
         #[method_id(@__retain_semantics Other identifierPath)]
         pub unsafe fn identifierPath(&self) -> Retained<NSArray<NSString>>;
 
+        /// App-assigned identifier. This identifier should work across users and devices and be unique with regards to its siblings within its parent.
+        ///
+        /// The identifier could be used to embed information later used for deep linking. For example:
+        /// _hydrogen-element,_or
+        /// _chapter-1._
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
+        /// Alternative deep link URL using universal links.
+        ///
+        /// If your app supports universal links, you can supply them here to link the content this context represents.
         #[method_id(@__retain_semantics Other universalLinkURL)]
         pub unsafe fn universalLinkURL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`universalLinkURL`][Self::universalLinkURL].
         #[method(setUniversalLinkURL:)]
         pub unsafe fn setUniversalLinkURL(&self, universal_link_url: Option<&NSURL>);
 
+        /// Type of this context
+        ///
+        /// The type that best describes this context.
         #[method(type)]
         pub unsafe fn r#type(&self) -> CLSContextType;
 
+        /// An optional user-visible name for the context if its type is CLSContextTypeCustom.
+        ///
+        /// This property is relevant only if the type is CLSContextTypeCustom. This string should be localized. If this property is not set for a context of type CLSContextTypeCustom, Schoolwork app will use a default localized string ‘Custom’ as the name of the activity representing this context.
         #[method_id(@__retain_semantics Other customTypeName)]
         pub unsafe fn customTypeName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`customTypeName`][Self::customTypeName].
         #[method(setCustomTypeName:)]
         pub unsafe fn setCustomTypeName(&self, custom_type_name: Option<&NSString>);
 
+        /// Title of this context.
+        ///
+        /// For example:
+        /// _Level_1
+        /// _._
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
+        /// The displayOrder is by default sorted ascending.
+        ///
+        /// Set the displayOrder if you want your contexts to be displayed in a particular order. The sort key is used as a way to sort sibling contexts in a particular order.
         #[method(displayOrder)]
         pub unsafe fn displayOrder(&self) -> NSInteger;
 
+        /// Setter for [`displayOrder`][Self::displayOrder].
         #[method(setDisplayOrder:)]
         pub unsafe fn setDisplayOrder(&self, display_order: NSInteger);
 
+        /// Topic associated with this context.
+        ///
+        /// See above for valid, predefined topics.
         #[method_id(@__retain_semantics Other topic)]
         pub unsafe fn topic(&self) -> Option<Retained<CLSContextTopic>>;
 
+        /// Setter for [`topic`][Self::topic].
         #[method(setTopic:)]
         pub unsafe fn setTopic(&self, topic: Option<&CLSContextTopic>);
 
+        /// This property is true if the context can be assigned as an activity.
+        ///
+        /// The default value of this property is true. This should be set to false for a context that is used as a container for other contexts, but by itself, is not an assignable activity.
         #[method(isAssignable)]
         pub unsafe fn isAssignable(&self) -> bool;
 
+        /// Setter for [`isAssignable`][Self::isAssignable].
         #[method(setAssignable:)]
         pub unsafe fn setAssignable(&self, assignable: bool);
 
+        /// Suggested age range of students, expressed in years, for whom this context is suitable. This information is intended to help teachers to choose age-appropriate activities for their students.
+        ///
+        /// The default value is [0, NSIntegerMax - 1]. This is
+        /// _NSRange(0...Int.max-1)_in
+        /// _Swift_or
+        /// _NSMakeRange(0,NSIntegerMax)_in
+        /// _Objective-C._Set the lower bound to 0 to specify no minimum age limit and set the upper bound to NSIntegerMax - 1 to specify no maximum age limit.
         #[method(suggestedAge)]
         pub unsafe fn suggestedAge(&self) -> NSRange;
 
+        /// Setter for [`suggestedAge`][Self::suggestedAge].
         #[method(setSuggestedAge:)]
         pub unsafe fn setSuggestedAge(&self, suggested_age: NSRange);
 
+        /// Suggested time range, expressed in minutes, to complete the activity. This information will help teachers as they choose activities for their students.
+        ///
+        /// The default value is [0, NSIntegerMax - 1]. This is
+        /// _NSRange(0...Int.max-1)_in
+        /// _Swift_or
+        /// _NSMakeRange(0,NSIntegerMax)_in
+        /// _Objective-C._Set the lower bound value to 0 to specify no minimum time limit and set the upper bound to NSIntegerMax - 1 to specify no maximum time limit.
         #[method(suggestedCompletionTime)]
         pub unsafe fn suggestedCompletionTime(&self) -> NSRange;
 
+        /// Setter for [`suggestedCompletionTime`][Self::suggestedCompletionTime].
         #[method(setSuggestedCompletionTime:)]
         pub unsafe fn setSuggestedCompletionTime(&self, suggested_completion_time: NSRange);
 
         #[cfg(feature = "CLSProgressReportingCapability")]
+        /// Specifies progress reporting capablities of the app for this context.
+        ///
+        /// This information is intended to help teachers as they choose activities for their students. By default a CLSContext will have one CLSProgressReportingCapability instance of kind CLSProgressReportingCapabilityKindDuration. More progress reporting capabilities can be specified via '-addProgressReportingCapabilities:' to customize this set.
         #[method_id(@__retain_semantics Other progressReportingCapabilities)]
         pub unsafe fn progressReportingCapabilities(
             &self,
         ) -> Retained<NSSet<CLSProgressReportingCapability>>;
 
+        /// An optional user-visible summary describing the context limited to 4000 characters in length.
+        ///
+        /// This may be used to provide information about the types of activities available under a given context or the context itself. This string should be localized.
         #[method_id(@__retain_semantics Other summary)]
         pub unsafe fn summary(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`summary`][Self::summary].
         #[method(setSummary:)]
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// An optional thumbnail image associated with the context.
+        ///
+        /// The size of this image should be equal to or larger than 80x80 pixels and equal to or smaller than 330x330 pixels. Images larger than 330x330 pixels will be scaled down. Images with both dimensions smaller than 80x80 pixels will not be accepted.
         #[method(thumbnail)]
         pub unsafe fn thumbnail(&self) -> CGImageRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`thumbnail`][Self::thumbnail].
         #[method(setThumbnail:)]
         pub unsafe fn setThumbnail(&self, thumbnail: CGImageRef);
 
+        /// Initialize and configure the type of content this context represents.
+        ///
+        /// Parameter `identifier`: App-assigned identifier for this context. 256 characters max length.
+        ///
+        /// Parameter `type`: The type of content this context represents.
+        ///
+        /// Parameter `title`: Title for what this context represents. 256 characters max length.
         #[method_id(@__retain_semantics Init initWithType:identifier:title:)]
         pub unsafe fn initWithType_identifier_title(
             this: Allocated<Self>,
@@ -216,25 +300,43 @@ extern_methods!(
             title: &NSString,
         ) -> Retained<Self>;
 
+        /// Returns true if self is the active context.
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
+        /// Marks contexts as active.
+        ///
+        /// If a context is already active, it will remain active. If another context is active, the other will resign active before this one becomes active.
         #[method(becomeActive)]
         pub unsafe fn becomeActive(&self);
 
+        /// Resign being active.
+        ///
+        /// This method does nothing if the reciever of the message is not active.
         #[method(resignActive)]
         pub unsafe fn resignActive(&self);
 
+        /// Sets the type.
+        ///
+        /// Use this to update a previously saved context.
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: CLSContextType);
 
         #[cfg(feature = "CLSProgressReportingCapability")]
+        /// Add or replace additional progress reporting capabilities of the app for this context.
+        ///
+        /// If this parameter contains multiple items with the same value for kind, then one of them will be arbitrarily selected and used. If this parameter contains a capability of kind CLSProgressReportingCapabilityKindDuration, it will be ignored.
+        ///
+        /// Parameter `capabilities`: Progress reporting capabilities to add or replace existing capabilties.
         #[method(addProgressReportingCapabilities:)]
         pub unsafe fn addProgressReportingCapabilities(
             &self,
             capabilities: &NSSet<CLSProgressReportingCapability>,
         );
 
+        /// Clears CLSProgressReportingCapability objects added to the receiver.
+        ///
+        /// Removes all capabilities added via '-addProgressReportingCapabilities:'. The context will have the default progress reporting capability of kind CLSProgressReportingCapabilityKindDuration.
         #[method(resetProgressReportingCapabilities)]
         pub unsafe fn resetProgressReportingCapabilities(&self);
     }
@@ -244,16 +346,34 @@ extern_methods!(
     /// Hierarchy
     #[cfg(feature = "CLSObject")]
     unsafe impl CLSContext {
+        /// Returns the parent of this context.
         #[method_id(@__retain_semantics Other parent)]
         pub unsafe fn parent(&self) -> Option<Retained<CLSContext>>;
 
+        /// Removes this child context from its parent.
+        ///
+        /// If you remove a context from its parent and do not add it as a child of another context, it will be deleted when you call -save on the dataStore.
         #[method(removeFromParent)]
         pub unsafe fn removeFromParent(&self);
 
+        /// Adds a child context.
+        ///
+        /// A context can only have a single parent.
+        ///
+        /// Note: objectID of child context may change after it's been added.
         #[method(addChildContext:)]
         pub unsafe fn addChildContext(&self, child: &CLSContext);
 
         #[cfg(feature = "block2")]
+        /// Returns a descendant of this context matching the context path you provide. Context path must start with an identifier of a child context of the context to which this message is sent.
+        ///
+        /// If there are any missing contexts, they will be filled in by calling the following method on the context's data store's delegate:
+        ///
+        /// ```text
+        ///  -[CLSDataStoreDelegate createContextForIdentifier:parentContext:parentIdentifierPath:]
+        /// ```
+        ///
+        /// If the dataStore does not have a delegate and there are missing contexts then an incomplete list of contexts will be passed to the completion handler. Completion block is called on a background thread.
         #[method(descendantMatchingIdentifierPath:completion:)]
         pub unsafe fn descendantMatchingIdentifierPath_completion(
             &self,
@@ -261,12 +381,37 @@ extern_methods!(
             completion: &block2::Block<dyn Fn(*mut CLSContext, *mut NSError)>,
         );
 
+        /// Child contexts that can be navigated to from this context.
+        ///
+        /// Returns all the child contexts added via
+        ///
+        /// ```text
+        ///  -[CLSContext addNavigationChildContext:]
+        /// ```
         #[method_id(@__retain_semantics Other navigationChildContexts)]
         pub unsafe fn navigationChildContexts(&self) -> Retained<NSArray<CLSContext>>;
 
+        /// Adds a child context to specify the user can navigate to the child from this context.
+        ///
+        /// Used only for presentation purpose. Unlike
+        ///
+        /// ```text
+        ///  -[CLSContext addChildContext:]
+        /// ```
+        ///
+        /// , this method does not affect the identifierPath.
         #[method(addNavigationChildContext:)]
         pub unsafe fn addNavigationChildContext(&self, child: &CLSContext);
 
+        /// Removes the navigation path to the child context from this context.
+        ///
+        /// Used only for presentation purpose. Unlike
+        ///
+        /// ```text
+        ///  -[CLSContext removeFromParent:]
+        /// ```
+        ///
+        /// , this method does not affect the identiferPath.
         #[method(removeNavigationChildContext:)]
         pub unsafe fn removeNavigationChildContext(&self, child: &CLSContext);
     }

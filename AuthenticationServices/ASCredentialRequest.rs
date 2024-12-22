@@ -31,14 +31,20 @@ unsafe impl RefEncode for ASCredentialRequestType {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialrequest?language=objc)
+    /// ASCredentialRequest is used by Credential Provider Extensions to identify a credential to use
+    /// for an authorization request. For passkey requests it also carries the assertion challenge to
+    /// be used by the extension to create the assertion response.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialrequest?language=objc)
     pub unsafe trait ASCredentialRequest:
         NSCopying + NSObjectProtocol + NSSecureCoding
     {
+        /// The type of credential used for this request.
         #[method(type)]
         unsafe fn r#type(&self) -> ASCredentialRequestType;
 
         #[cfg(feature = "ASCredentialIdentity")]
+        /// The credential identity selected by the user to authenticate.
         #[method_id(@__retain_semantics Other credentialIdentity)]
         unsafe fn credentialIdentity(&self) -> Retained<ProtocolObject<dyn ASCredentialIdentity>>;
     }

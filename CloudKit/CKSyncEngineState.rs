@@ -8,7 +8,29 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginestate?language=objc)
+    /// An object that tracks some state required for proper and efficient operation of `CKSyncEngine`.
+    ///
+    /// `CKSyncEngine` needs to track several things in order to properly sync.
+    /// For example, it needs to remember the last server change tokens for your database and zones.
+    /// It also needs to keep track of things like the last known user record ID and other various pieces of state.
+    ///
+    /// A lot of this state is hidden internally, but some of it you can control.
+    ///
+    /// ## Pending changes
+    ///
+    /// One of the main things you can control is the list of pending changes to send to the server.
+    /// You can control these by calling functions like ``addPendingDatabaseChanges:`` and  ``addPendingRecordZoneChanges:``.
+    /// When you add new pending changes, the sync engine will automatically schedule a task to sync with the server.
+    ///
+    /// ## State serialization
+    ///
+    /// `CKSyncEngine` will occasionally update its state in the background.
+    /// When it updates its state, your delegate will receive a ``CKSyncEngineStateUpdateEvent``.
+    ///
+    /// This event will contain a ``CKSyncEngineStateSerialization``, which you should persist locally.
+    /// The next time your process launches, you initialize your sync engine with the last state serialization you received.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginestate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineState;
@@ -28,45 +50,81 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// A list of record changes that need to be sent to the server.
+        ///
+        /// `CKSyncEngine` provides the convenience of tracking your pending record zone changes.
+        /// When the user makes some changes that need to be sent to the server, you can track them in this list.
+        /// Then, you can use this list when creating your next `CKSyncEngineRecordZoneChangeBatch` in your `CKSyncEngineDelegate`.
+        ///
+        /// The sync engine will ensure consistency and deduplicate these pending changes under the hood.
+        /// For example, if you add a pending save for record A, then record B, then record A again, this will result in a list of `[saveRecordA, saveRecordB]`.
+        /// Similarly, if you add a pending save for record A, then add a pending delete for the same record A, this will result in a single pending change of `[deleteRecordA]`.
+        ///
+        /// The sync engine will manage this list while it sends changes to the server.
+        /// For example, when it successfully saves a record, it will remove that change from this list.
+        /// If it fails to send a change due to some retryable error (e.g. a network failure), it will keep that change in this list.
+        ///
+        /// If you'd prefer to track pending changes yourself, you can use `hasPendingUntrackedChanges` instead.
         #[method_id(@__retain_semantics Other pendingRecordZoneChanges)]
         pub unsafe fn pendingRecordZoneChanges(
             &self,
         ) -> Retained<NSArray<CKSyncEnginePendingRecordZoneChange>>;
 
+        /// A list of database changes that need to be sent to the server, similar to `pendingRecordZoneChanges`.
         #[method_id(@__retain_semantics Other pendingDatabaseChanges)]
         pub unsafe fn pendingDatabaseChanges(
             &self,
         ) -> Retained<NSArray<CKSyncEnginePendingDatabaseChange>>;
 
+        /// This represents whether or not you have pending changes to send to the server that aren't tracked in `pendingRecordZoneChanges`.
+        /// This is useful if you want to track pending changes in your own local database instead of the sync engine state.
+        ///
+        /// When this property is set, the sync engine will automatically schedule a sync.
+        /// When the sync task runs, it will ask your delegate for pending changes in `nextRecordZoneChangeBatch`.
         #[method(hasPendingUntrackedChanges)]
         pub unsafe fn hasPendingUntrackedChanges(&self) -> bool;
 
+        /// Setter for [`hasPendingUntrackedChanges`][Self::hasPendingUntrackedChanges].
         #[method(setHasPendingUntrackedChanges:)]
         pub unsafe fn setHasPendingUntrackedChanges(&self, has_pending_untracked_changes: bool);
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// The list of zone IDs that have new changes to fetch from the server.
+        /// `CKSyncEngine` keeps track of these zones and will update this list as it receives new information.
         #[method_id(@__retain_semantics Other zoneIDsWithUnfetchedServerChanges)]
         pub unsafe fn zoneIDsWithUnfetchedServerChanges(&self)
             -> Retained<NSArray<CKRecordZoneID>>;
 
+        /// Adds to the list of pending record zone changes.
+        ///
+        /// When you add a new pending change, the sync engine will automatically schedule a sync task.
+        ///
+        /// The sync engine will ensure consistency and deduplicate these changes under the hood.
         #[method(addPendingRecordZoneChanges:)]
         pub unsafe fn addPendingRecordZoneChanges(
             &self,
             changes: &NSArray<CKSyncEnginePendingRecordZoneChange>,
         );
 
+        /// Removes from the list of pending record zone changes.
         #[method(removePendingRecordZoneChanges:)]
         pub unsafe fn removePendingRecordZoneChanges(
             &self,
             changes: &NSArray<CKSyncEnginePendingRecordZoneChange>,
         );
 
+        /// Adds to the list of pending database changes.
+        ///
+        /// When you add a new pending change, the sync engine will automatically schedule a sync task.
+        ///
+        /// The sync engine will ensure consistency and deduplicate these changes under the hood.
         #[method(addPendingDatabaseChanges:)]
         pub unsafe fn addPendingDatabaseChanges(
             &self,
             changes: &NSArray<CKSyncEnginePendingDatabaseChange>,
         );
 
+        /// Removes from the list of pending database changes.
         #[method(removePendingDatabaseChanges:)]
         pub unsafe fn removePendingDatabaseChanges(
             &self,
@@ -76,7 +134,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginestateserialization?language=objc)
+    /// A serialized representation of a ``CKSyncEngineState``.
+    ///
+    /// This will be passed to your delegate via ``CKSyncEngineStateUpdateEvent``.
+    /// You should use `NSSecureCoding` to persist this locally alongside your other data and use it the next time you initialize your sync engine.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginestateserialization?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineStateSerialization;
@@ -123,7 +186,9 @@ unsafe impl RefEncode for CKSyncEnginePendingRecordZoneChangeType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingrecordzonechange?language=objc)
+    /// A change in a record zone that needs to be sent to the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingrecordzonechange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingRecordZoneChange;
@@ -181,7 +246,9 @@ unsafe impl RefEncode for CKSyncEnginePendingDatabaseChangeType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingdatabasechange?language=objc)
+    /// A change in a database that needs to be sent to the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingdatabasechange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingDatabaseChange;
@@ -211,7 +278,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingzonesave?language=objc)
+    /// A zone save that needs to be sent to the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingzonesave?language=objc)
     #[unsafe(super(CKSyncEnginePendingDatabaseChange, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingZoneSave;
@@ -247,7 +316,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingzonedelete?language=objc)
+    /// A zone delete that needs to be sent to the server.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingzonedelete?language=objc)
     #[unsafe(super(CKSyncEnginePendingDatabaseChange, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingZoneDelete;

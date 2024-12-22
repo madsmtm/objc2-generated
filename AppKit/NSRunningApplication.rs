@@ -7,14 +7,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationactivationoptions?language=objc)
+/// The following flags are for `-activateWithOptions:` and equivalent.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationactivationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSApplicationActivationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSApplicationActivationOptions: NSUInteger {
+/// By default, activation brings only the main and key
+/// windows forward. If you specify `activateAllWindows`,
+/// all of the application's windows are brought forward.
         const NSApplicationActivateAllWindows = 1<<0;
+/// The application is activated regardless of the currently
+/// active app.
 #[deprecated = "ignoringOtherApps is deprecated in macOS 14 and will have no effect."]
         const NSApplicationActivateIgnoringOtherApps = 1<<1;
     }
@@ -28,7 +35,10 @@ unsafe impl RefEncode for NSApplicationActivationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationactivationpolicy?language=objc)
+/// The following activation policies control whether and how an application may be activated.
+/// They are determined by the `Info.plist`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationactivationpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -51,7 +61,19 @@ unsafe impl RefEncode for NSApplicationActivationPolicy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrunningapplication?language=objc)
+    /// `NSRunningApplication` is a class to manipulate and provide information for a single instance of an application.  Only user applications are tracked; this does not provide information about every process on the system.
+    ///
+    /// Some properties of an application are fixed, such as the bundle identifier.  Other properties may vary over time, such as whether the app is hidden.  Properties that vary can be observed with KVO, in which case the description comment for the method will mention it.
+    ///
+    /// Properties that vary over time are inherently race-prone.  For example, a hidden app may unhide itself at any time.  To ameliorate this, properties persist until the next turn of the main run loop in a common mode.  For example, if you repeatedly poll an unhidden app for its hidden property without allowing the run loop to run, it will continue to return `NO`, even if the app hides, until the next turn of the run loop.
+    ///
+    /// `NSRunningApplication` is thread safe, in that its properties are returned atomically.  However, it is still subject to the main run loop policy described above.  If you access an instance of `NSRunningApplication` from a background thread, be aware that its time-varying properties may change from under you as the main run loop runs (or not).
+    ///
+    /// An `NSRunningApplication` instance remains valid after the application exits.  However, most properties lose their significance, and some properties may not be available on a terminated application.
+    ///
+    /// To access the list of all running applications, use the `-runningApplications` method on `NSWorkspace`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrunningapplication?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRunningApplication;
@@ -65,56 +87,107 @@ unsafe impl NSObjectProtocol for NSRunningApplication {}
 
 extern_methods!(
     unsafe impl NSRunningApplication {
+        /// Indicates that the process is an exited application.
+        /// This is observable through KVO.
         #[method(isTerminated)]
         pub unsafe fn isTerminated(&self) -> bool;
 
+        /// Indicates that the process is finished launching, which corresponds to the
+        /// `NSApplicationDidFinishLaunching`internal notification.
+        /// This is observable through KVO.
+        /// Some applications do not post this notification and so are never reported as finished launching.
         #[method(isFinishedLaunching)]
         pub unsafe fn isFinishedLaunching(&self) -> bool;
 
+        /// Indicates whether the application is currently hidden.
+        /// This is observable through KVO.
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        /// Indicates whether the application is currently frontmost.
+        /// This is observable through KVO.
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
+        /// Indicates whether the application currently owns the menu bar.
+        /// This is observable through KVO.
         #[method(ownsMenuBar)]
         pub unsafe fn ownsMenuBar(&self) -> bool;
 
+        /// Indicates the activation policy of the application.
+        /// This is observable through KVO (the type is usually fixed, but may be changed through a call to `-[NSApplication setActivationPolicy:]`).
         #[method(activationPolicy)]
         pub unsafe fn activationPolicy(&self) -> NSApplicationActivationPolicy;
 
+        /// Indicates the name of the application.
+        /// This is dependent on the current localization of the referenced app, and is suitable for presentation to the user.
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
+        /// Indicates the `CFBundleIdentifier` of the application, or nil if the application does not have an `Info.plist`.
         #[method_id(@__retain_semantics Other bundleIdentifier)]
         pub unsafe fn bundleIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Indicates the URL to the application's bundle, or nil if the application does not have a bundle.
         #[method_id(@__retain_semantics Other bundleURL)]
         pub unsafe fn bundleURL(&self) -> Option<Retained<NSURL>>;
 
+        /// Indicates the URL to the application's executable.
         #[method_id(@__retain_semantics Other executableURL)]
         pub unsafe fn executableURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "libc")]
+        /// Indicates the process identifier (pid) of the application.
+        /// Do not rely on this for comparing processes.  Use `-isEqual:` instead.
+        ///
+        /// Note: Not all applications have a pid.  Applications without a pid return -1 from this method.
+        /// This is observable through KVO (an application's pid may change if it is automatically terminated).
         #[method(processIdentifier)]
         pub unsafe fn processIdentifier(&self) -> libc::pid_t;
 
+        /// Indicates the date when the application was launched.
+        /// This property is not available for all applications.
+        /// Specifically, it is not available for applications that were launched without going through `LaunchServices`.
         #[method_id(@__retain_semantics Other launchDate)]
         pub unsafe fn launchDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSImage")]
+        /// Returns: The icon of the application.
         #[method_id(@__retain_semantics Other icon)]
         pub unsafe fn icon(&self) -> Option<Retained<NSImage>>;
 
+        /// Indicates the executing processor architecture for the application, as an
+        /// `NSBundleExecutableArchitecture`from `NSBundle.h`.
         #[method(executableArchitecture)]
         pub unsafe fn executableArchitecture(&self) -> NSInteger;
 
+        /// Attempts to hide the receiver.
+        ///
+        /// Returns: `YES` if the request to hide or unhide was successfully sent, `NO` if not (for example, if the application has quit, or is of a type that cannot be unhidden).
         #[method(hide)]
         pub unsafe fn hide(&self) -> bool;
 
+        /// Attempts to unhide the receiver.
+        ///
+        /// Returns: `YES` if the request to hide or unhide was successfully sent, `NO` if not (for example, if the application has quit, or is of a type that cannot be unhidden).
         #[method(unhide)]
         pub unsafe fn unhide(&self) -> bool;
 
+        /// Attempts to activate the application using the specified options.
+        ///
+        /// You shouldn’t assume the app will be active immediately
+        /// after sending this message. The framework also does not
+        /// guarantee that the app will be activated at all.
+        ///
+        /// Additionally allows specifying another application to take
+        /// the active status from, which can be used for coordinated
+        /// or cooperative activation. The other application should
+        /// call `-yieldActivationToApplication:` or equivalent prior to this
+        /// request being sent.
+        ///
+        ///
+        /// Returns: `YES` if the request has been allowed by the system,
+        /// otherwise `NO`.
         #[method(activateFromApplication:options:)]
         pub unsafe fn activateFromApplication_options(
             &self,
@@ -122,29 +195,47 @@ extern_methods!(
             options: NSApplicationActivationOptions,
         ) -> bool;
 
+        /// Attempts to activate the receiver.
+        ///
+        /// Returns: `YES` if the request to activate was successfully sent, `NO` if not (for example, if the application has quit, or is of a type that cannot be activated).
         #[method(activateWithOptions:)]
         pub unsafe fn activateWithOptions(&self, options: NSApplicationActivationOptions) -> bool;
 
+        /// Attempts to quit the receiver normally.
+        ///
+        /// Returns: `YES` if the request was successfully sent, `NO` if not (for example, if the application is no longer running).
+        /// This method may return before the receiver exits; you should observe the terminated property or listen for the notification to detect when the app has exited.
         #[method(terminate)]
         pub unsafe fn terminate(&self) -> bool;
 
+        /// Attempts to force the receiver to quit.
+        ///
+        /// Returns: `YES` if the request was successfully sent, `NO` if not (for example, if the application is no longer running).
+        /// This method may return before the receiver exits; you should observe the terminated property or listen for the notification to detect when the app has exited.
         #[method(forceTerminate)]
         pub unsafe fn forceTerminate(&self) -> bool;
 
+        /// Returns: An array of currently running applications with the given bundle identifier, or an empty array if no apps match.
         #[method_id(@__retain_semantics Other runningApplicationsWithBundleIdentifier:)]
         pub unsafe fn runningApplicationsWithBundleIdentifier(
             bundle_identifier: &NSString,
         ) -> Retained<NSArray<NSRunningApplication>>;
 
         #[cfg(feature = "libc")]
+        /// Returns: The running application with the given process identifier, or nil if no application has that pid.
+        /// Applications that do not have PIDs cannot be returned from this method.
         #[method_id(@__retain_semantics Other runningApplicationWithProcessIdentifier:)]
         pub unsafe fn runningApplicationWithProcessIdentifier(
             pid: libc::pid_t,
         ) -> Option<Retained<Self>>;
 
+        /// Returns: An
+        /// `NSRunningApplication`representing this application.
         #[method_id(@__retain_semantics Other currentApplication)]
         pub unsafe fn currentApplication() -> Retained<NSRunningApplication>;
 
+        /// Cause any applications that are invisibly still running (see `NSProcessInfo.h` automatic termination methods and docs) to terminate as if triggered by system memory pressure.
+        /// This is intended for installer apps and the like to make sure that nothing is unexpectedly relying on the files they're replacing.
         #[method(terminateAutomaticallyTerminableApplications)]
         pub unsafe fn terminateAutomaticallyTerminableApplications();
     }
@@ -165,6 +256,10 @@ extern_methods!(
     /// NSWorkspaceRunningApplications
     #[cfg(feature = "NSWorkspace")]
     unsafe impl NSWorkspace {
+        /// Returns: An array of `NSRunningApplication`s representing currently running applications.
+        /// The order of the array is unspecified, but it is stable, meaning that the relative order of particular applications will not change across multiple calls to `runningApplications`.
+        /// Similar to `NSRunningApplication`'s properties, this property will only change when the main run loop is run in a common mode.  Instead of polling, use key-value observing to be notified of changes to this array property.
+        /// This property is thread safe, in that it may be called from background threads and the result is returned atomically.  This property is observable through KVO.
         #[method_id(@__retain_semantics Other runningApplications)]
         pub unsafe fn runningApplications(&self) -> Retained<NSArray<NSRunningApplication>>;
     }

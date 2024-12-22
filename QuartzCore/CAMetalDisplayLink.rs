@@ -94,6 +94,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn CAMetalDisplayLinkDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -103,6 +104,7 @@ extern_methods!(
         #[method(preferredFrameLatency)]
         pub unsafe fn preferredFrameLatency(&self) -> c_float;
 
+        /// Setter for [`preferredFrameLatency`][Self::preferredFrameLatency].
         #[method(setPreferredFrameLatency:)]
         pub unsafe fn setPreferredFrameLatency(&self, preferred_frame_latency: c_float);
 
@@ -111,6 +113,7 @@ extern_methods!(
         pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
 
         #[cfg(feature = "CAFrameRateRange")]
+        /// Setter for [`preferredFrameRateRange`][Self::preferredFrameRateRange].
         #[method(setPreferredFrameRateRange:)]
         pub unsafe fn setPreferredFrameRateRange(
             &self,
@@ -120,6 +123,7 @@ extern_methods!(
         #[method(isPaused)]
         pub unsafe fn isPaused(&self) -> bool;
 
+        /// Setter for [`isPaused`][Self::isPaused].
         #[method(setPaused:)]
         pub unsafe fn setPaused(&self, paused: bool);
     }

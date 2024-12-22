@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactfetchrequest?language=objc)
+    /// Specifies the search criteria to fetch contacts.
+    ///
+    ///
+    /// Used with [CNContactStore enumerateContactsWithFetchRequest:error:usingBlock:]. Can combine any of these options to create a contact fetch request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactfetchrequest?language=objc)
     #[unsafe(super(CNFetchRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CNFetchRequest")]
@@ -34,46 +39,78 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CNContact")]
+        /// Parameter `keysToFetch`: The properties to fetch for the returned contacts.
+        ///
+        ///
+        /// Only fetch the properties that will be used.
         #[method_id(@__retain_semantics Init initWithKeysToFetch:)]
         pub unsafe fn initWithKeysToFetch(
             this: Allocated<Self>,
             keys_to_fetch: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
         ) -> Retained<Self>;
 
+        /// The predicate to match contacts against.
+        ///
+        ///
+        /// Use only predicates from CNContact+Predicates.h. Compound predicates are not supported. Set to nil to match all contacts.
         #[method_id(@__retain_semantics Other predicate)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
+        /// Setter for [`predicate`][Self::predicate].
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
         #[cfg(feature = "CNContact")]
+        /// The properties to fetch in the returned contacts.
+        ///
+        ///
+        /// Should only fetch the properties that will be used. Can combine contact keys and contact key descriptors.
         #[method_id(@__retain_semantics Other keysToFetch)]
         pub unsafe fn keysToFetch(&self) -> Retained<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>;
 
         #[cfg(feature = "CNContact")]
+        /// Setter for [`keysToFetch`][Self::keysToFetch].
         #[method(setKeysToFetch:)]
         pub unsafe fn setKeysToFetch(
             &self,
             keys_to_fetch: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
         );
 
+        /// To return mutable contacts.
+        ///
+        ///
+        /// If YES returns CNMutableContact objects, otherwise returns CNContact objects. Default is NO.
         #[method(mutableObjects)]
         pub unsafe fn mutableObjects(&self) -> bool;
 
+        /// Setter for [`mutableObjects`][Self::mutableObjects].
         #[method(setMutableObjects:)]
         pub unsafe fn setMutableObjects(&self, mutable_objects: bool);
 
+        /// To return linked contacts as unified contacts.
+        ///
+        ///
+        /// If YES returns unified contacts, otherwise returns individual contacts. Default is YES.
+        ///
+        ///
+        /// Note: A unified contact is the aggregation of properties from a set of linked individual contacts. If an individual contact is not linked then the unified contact is simply that individual contact.
         #[method(unifyResults)]
         pub unsafe fn unifyResults(&self) -> bool;
 
+        /// Setter for [`unifyResults`][Self::unifyResults].
         #[method(setUnifyResults:)]
         pub unsafe fn setUnifyResults(&self, unify_results: bool);
 
         #[cfg(feature = "CNContact")]
+        /// To return contacts in a specific sort order.
+        ///
+        ///
+        /// Default is CNContactSortOrderNone.
         #[method(sortOrder)]
         pub unsafe fn sortOrder(&self) -> CNContactSortOrder;
 
         #[cfg(feature = "CNContact")]
+        /// Setter for [`sortOrder`][Self::sortOrder].
         #[method(setSortOrder:)]
         pub unsafe fn setSortOrder(&self, sort_order: CNContactSortOrder);
     }

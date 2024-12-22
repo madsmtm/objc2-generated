@@ -6,7 +6,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksenddatamode?language=objc)
+/// Delivery options for GKSession's -(BOOL)sendData... methods.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksenddatamode?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -15,6 +17,7 @@ pub struct GKSendDataMode(pub c_int);
 impl GKSendDataMode {
     #[deprecated]
     pub const GKSendDataReliable: Self = Self(0);
+    /// a.s.a.p. but requires fragmentation and reassembly for large messages, may stall if network congestion occurs
     #[deprecated]
     pub const GKSendDataUnreliable: Self = Self(1);
 }
@@ -37,9 +40,11 @@ impl GKSessionMode {
     #[deprecated]
     #[doc(alias = "GKSessionModeServer")]
     pub const Server: Self = Self(0);
+    /// delegate will get -didReceiveConnectionRequestFromPeer callback when a client wants to connect
     #[deprecated]
     #[doc(alias = "GKSessionModeClient")]
     pub const Client: Self = Self(1);
+    /// delegate will get -session:peer:didChangeState: callback with GKPeerStateAvailable, or GKPeerStateUnavailable for discovered servers
     #[deprecated]
     #[doc(alias = "GKSessionModePeer")]
     pub const Peer: Self = Self(2);
@@ -53,7 +58,9 @@ unsafe impl RefEncode for GKSessionMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkpeerconnectionstate?language=objc)
+/// Specifies the type of peers to return in method -peersWithConnectionState:
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkpeerconnectionstate?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -62,14 +69,19 @@ pub struct GKPeerConnectionState(pub c_int);
 impl GKPeerConnectionState {
     #[deprecated]
     pub const GKPeerStateAvailable: Self = Self(0);
+    /// not connected to session, but available for connectToPeer:withTimeout:
     #[deprecated]
     pub const GKPeerStateUnavailable: Self = Self(1);
+    /// no longer available
     #[deprecated]
     pub const GKPeerStateConnected: Self = Self(2);
+    /// connected to the session
     #[deprecated]
     pub const GKPeerStateDisconnected: Self = Self(3);
+    /// disconnected from the session
     #[deprecated]
     pub const GKPeerStateConnecting: Self = Self(4);
+    /// waiting for accept, or deny response
     #[deprecated]
     pub const GKPeerStateConnectedRelay: Self = Self(5);
 }

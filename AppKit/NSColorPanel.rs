@@ -168,24 +168,28 @@ extern_methods!(
         pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
+        /// Setter for [`accessoryView`][Self::accessoryView].
         #[method(setAccessoryView:)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[method(isContinuous)]
         pub unsafe fn isContinuous(&self) -> bool;
 
+        /// Setter for [`isContinuous`][Self::isContinuous].
         #[method(setContinuous:)]
         pub unsafe fn setContinuous(&self, continuous: bool);
 
         #[method(showsAlpha)]
         pub unsafe fn showsAlpha(&self) -> bool;
 
+        /// Setter for [`showsAlpha`][Self::showsAlpha].
         #[method(setShowsAlpha:)]
         pub unsafe fn setShowsAlpha(&self, shows_alpha: bool);
 
         #[method(mode)]
         pub unsafe fn mode(&self) -> NSColorPanelMode;
 
+        /// Setter for [`mode`][Self::mode].
         #[method(setMode:)]
         pub unsafe fn setMode(&self, mode: NSColorPanelMode);
 
@@ -194,6 +198,7 @@ extern_methods!(
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
@@ -250,6 +255,7 @@ extern_methods!(
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSViewController")]
+        /// Convenience method for creating an autoreleased titled window with the given contentViewController. A basic NSWindow with the following attributes is made: titled, closable, resizable, miniaturizable. The window's title is automatically bound to the contentViewController's title. The size of the window can easily be controlled by utilizing autolayout and applying size constraints to the view (or its subviews). The window has isReleasedWhenClosed set to NO, and it must be explicitly retained to keep the window instance alive. To have it automatically be freed when it is closed, do the following: [window retain] and [window setReleasedWhenClosed:YES].
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,

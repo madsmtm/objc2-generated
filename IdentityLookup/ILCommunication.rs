@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilcommunication?language=objc)
+    /// An incident of communication via some medium.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilcommunication?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILCommunication;
@@ -21,6 +23,7 @@ unsafe impl NSSecureCoding for ILCommunication {}
 
 extern_methods!(
     unsafe impl ILCommunication {
+        /// The phone number or e-mail address of the sender.  The value will be nil if the sender is unknown.
         #[method_id(@__retain_semantics Other sender)]
         pub unsafe fn sender(&self) -> Option<Retained<NSString>>;
 

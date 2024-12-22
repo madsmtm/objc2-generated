@@ -14,7 +14,9 @@ use crate::*;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct UIPointerAccessoryPosition {
+    /// Offset from the primary pointer shape. Only allows positive values.
     pub offset: CGFloat,
+    /// Clock-wise angle from top in radians.
     pub angle: CGFloat,
 }
 
@@ -103,20 +105,31 @@ unsafe impl NSObjectProtocol for UIPointerAccessory {}
 extern_methods!(
     unsafe impl UIPointerAccessory {
         #[cfg(feature = "UIPointerStyle")]
+        /// This accessory's shape.
         #[method_id(@__retain_semantics Other shape)]
         pub unsafe fn shape(&self) -> Retained<UIPointerShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// This accessory shape's position relative to the pointer.
         #[method(position)]
         pub unsafe fn position(&self) -> UIPointerAccessoryPosition;
 
+        /// Indicates whether the accessory is rotated to match its angle.
+        /// This is false by default for custom accessories, but varies for system vended ones.
         #[method(orientationMatchesAngle)]
         pub unsafe fn orientationMatchesAngle(&self) -> bool;
 
+        /// Setter for [`orientationMatchesAngle`][Self::orientationMatchesAngle].
         #[method(setOrientationMatchesAngle:)]
         pub unsafe fn setOrientationMatchesAngle(&self, orientation_matches_angle: bool);
 
         #[cfg(all(feature = "UIPointerStyle", feature = "objc2-core-foundation"))]
+        /// Creates an accessory with the given pointer shape and position.
+        ///
+        ///
+        /// Parameter `shape`: The desired accessory shape.
+        ///
+        /// Parameter `position`: The desired accessory position.
         #[method_id(@__retain_semantics Other accessoryWithShape:position:)]
         pub unsafe fn accessoryWithShape_position(
             shape: &UIPointerShape,
@@ -124,6 +137,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Returns an arrow shaped accessory with the given position.
         #[method_id(@__retain_semantics Other arrowAccessoryWithPosition:)]
         pub unsafe fn arrowAccessoryWithPosition(
             position: UIPointerAccessoryPosition,

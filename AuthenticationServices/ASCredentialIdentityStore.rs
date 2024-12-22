@@ -78,6 +78,13 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "ASCredentialIdentityStoreState", feature = "block2"))]
+        /// Get the state of the credential identity store.
+        ///
+        /// Parameter `completion`: completion handler to be called with the current state of the store.
+        ///
+        /// Call this method to find out the current state of the store before attempting to call other store methods.
+        /// Use the provided ASCredentialIdentityStoreState to find out if the store is enabled and whether it supports incremental
+        /// updates.
         #[method(getCredentialIdentityStoreStateWithCompletion:)]
         pub unsafe fn getCredentialIdentityStoreStateWithCompletion(
             &self,
@@ -89,6 +96,15 @@ extern_methods!(
             feature = "ASCredentialServiceIdentifier",
             feature = "block2"
         ))]
+        /// List the currently saved credential identities.
+        ///
+        /// Parameter `serviceIdentifier`: Specify a service identifier to get only credential identities for that service.
+        /// Pass nil to get credential identities for all services.
+        ///
+        /// Parameter `credentialIdentityTypes`: Specify one or more types to get only credential identities of those types.
+        /// Pass ASCredentialIdentityTypesAll to get credential identities of all types.
+        ///
+        /// Call this method to get a list of all credential identities saved in the store for your extension.
         #[method(getCredentialIdentitiesForService:credentialIdentityTypes:completionHandler:)]
         pub unsafe fn getCredentialIdentitiesForService_credentialIdentityTypes_completionHandler(
             &self,
@@ -100,6 +116,19 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "ASPasswordCredentialIdentity", feature = "block2"))]
+        /// Save the given credential identities to the store.
+        ///
+        /// Parameter `credentialIdentities`: array of ASPasswordCredentialIdentity objects to save to the store.
+        ///
+        /// Parameter `completion`: optional completion handler to be called after adding the credential identities.
+        /// If the operation fails, an error with domain ASCredentialIdentityStoreErrorDomain will be provided
+        /// and none of the objects in credentialIdentities will be saved to the store.
+        ///
+        /// If the store supports incremental updates, call this method to add new credential
+        /// identities since the last time the store was updated. Otherwise, call this method to pass all credential
+        /// identities.
+        /// If some credential identities in credentialIdentities already exist in the store, they will be replaced by
+        /// those from credentialIdentities.
         #[deprecated]
         #[method(saveCredentialIdentities:completion:)]
         pub unsafe fn saveCredentialIdentities_completion(
@@ -109,6 +138,19 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "ASCredentialIdentity", feature = "block2"))]
+        /// Save the given credential identities to the store.
+        ///
+        /// Parameter `credentialIdentities`: array of ASCredentialIdentity objects to save to the store.
+        ///
+        /// Parameter `completion`: optional completion handler to be called after adding the credential identities.
+        /// If the operation fails, an error with domain ASCredentialIdentityStoreErrorDomain will be provided
+        /// and none of the objects in credentialIdentities will be saved to the store.
+        ///
+        /// If the store supports incremental updates, call this method to add new credential
+        /// identities since the last time the store was updated. Otherwise, call this method to pass all credential
+        /// identities.
+        /// If some credential identities in credentialIdentities already exist in the store, they will be replaced by
+        /// those from credentialIdentities.
         #[method(saveCredentialIdentityEntries:completion:)]
         pub unsafe fn saveCredentialIdentityEntries_completion(
             &self,
@@ -117,6 +159,16 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "ASPasswordCredentialIdentity", feature = "block2"))]
+        /// Remove the given credential identities from the store.
+        ///
+        /// Parameter `credentialIdentities`: array of ASPasswordCredentialIdentity objects to remove from the store.
+        ///
+        /// Parameter `completion`: optional completion handler to be called after removing the credential identities.
+        /// If the operation fails, an error with domain ASCredentialIdentityStoreErrorDomain will be provided
+        /// and none of the objects in credentialIdentities will be removed from the store.
+        ///
+        /// Use this method only if the store supports incremental updates to remove previously added
+        /// credentials to the store.
         #[deprecated]
         #[method(removeCredentialIdentities:completion:)]
         pub unsafe fn removeCredentialIdentities_completion(
@@ -126,6 +178,16 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "ASCredentialIdentity", feature = "block2"))]
+        /// Remove the given credential identities from the store.
+        ///
+        /// Parameter `credentialIdentities`: array of ASCredentialIdentity objects to remove from the store.
+        ///
+        /// Parameter `completion`: optional completion handler to be called after removing the credential identities.
+        /// If the operation fails, an error with domain ASCredentialIdentityStoreErrorDomain will be provided
+        /// and none of the objects in credentialIdentities will be removed from the store.
+        ///
+        /// Use this method only if the store supports incremental updates to remove previously added
+        /// credentials to the store.
         #[method(removeCredentialIdentityEntries:completion:)]
         pub unsafe fn removeCredentialIdentityEntries_completion(
             &self,
@@ -134,6 +196,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Remove all existing credential identities from the store.
+        ///
+        /// Parameter `completion`: optional completion handler to be called after removing all existing credential identities.
+        /// If the operation fails, an error with domain ASCredentialIdentityStoreErrorDomain will be provided and none of
+        /// the existing credential identities will be removed from the store.
         #[method(removeAllCredentialIdentitiesWithCompletion:)]
         pub unsafe fn removeAllCredentialIdentitiesWithCompletion(
             &self,
@@ -141,6 +208,16 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "ASPasswordCredentialIdentity", feature = "block2"))]
+        /// Replace existing credential identities with new credential identities.
+        ///
+        /// Parameter `newCredentialIdentities`: array of new credential identity objects to replace the old ones.
+        ///
+        /// Parameter `completion`: an optional completion block to be called after the operation is finished.
+        ///
+        /// This method will delete all existing credential identities that are persisted in the
+        /// store and replace them with the provided array of credential identities. If the operation fails, an
+        /// error with domain ASCredentialIdentityStoreErrorDomain will be provided and none of the new credential
+        /// identities will be saved.
         #[deprecated]
         #[method(replaceCredentialIdentitiesWithIdentities:completion:)]
         pub unsafe fn replaceCredentialIdentitiesWithIdentities_completion(
@@ -150,6 +227,16 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "ASCredentialIdentity", feature = "block2"))]
+        /// Replace existing credential identities with new credential identities.
+        ///
+        /// Parameter `newCredentialIdentities`: array of new credential identity objects to replace the old ones.
+        ///
+        /// Parameter `completion`: an optional completion block to be called after the operation is finished.
+        ///
+        /// This method will delete all existing credential identities that are persisted in the
+        /// store and replace them with the provided array of credential identities. If the operation fails, an
+        /// error with domain ASCredentialIdentityStoreErrorDomain will be provided and none of the new credential
+        /// identities will be saved.
         #[method(replaceCredentialIdentityEntries:completion:)]
         pub unsafe fn replaceCredentialIdentityEntries_completion(
             &self,

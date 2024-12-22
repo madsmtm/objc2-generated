@@ -9,20 +9,31 @@ use objc2_metal_performance_shaders::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode?language=objc)
+/// The flattening mode for returned indices with max-pooling.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphPoolingReturnIndicesMode(pub NSUInteger);
 impl MPSGraphPoolingReturnIndicesMode {
+    /// No indices returned.
     pub const MPSGraphPoolingReturnIndicesNone: Self = Self(0);
+    /// Returns indices flattened in inner most (last) dimension.
     pub const MPSGraphPoolingReturnIndicesGlobalFlatten1D: Self = Self(1);
+    /// Returns indices flattened in 2 innermost dimensions. eg: HW in NCHW.
     pub const MPSGraphPoolingReturnIndicesGlobalFlatten2D: Self = Self(2);
+    /// Returns indices flattened in 3 innernost dimensions. eg: HWC in NHWC.
     pub const MPSGraphPoolingReturnIndicesGlobalFlatten3D: Self = Self(3);
+    /// Returns indices flattened in 4 innermost dimensions.
     pub const MPSGraphPoolingReturnIndicesGlobalFlatten4D: Self = Self(4);
+    /// Returns indices within pooling window, flattened in inner most dimension.
     pub const MPSGraphPoolingReturnIndicesLocalFlatten1D: Self = Self(5);
+    /// Returns indices within pooling window, flattened in 2 innermost dimensions. eg: HW in NCHW.
     pub const MPSGraphPoolingReturnIndicesLocalFlatten2D: Self = Self(6);
+    /// Returns indices within pooling window, flattened in 3 innernost dimensions. eg: HWC in NHWC.
     pub const MPSGraphPoolingReturnIndicesLocalFlatten3D: Self = Self(7);
+    /// Returns indices within pooling window, flattened in 4 innermost dimensions.
     pub const MPSGraphPoolingReturnIndicesLocalFlatten4D: Self = Self(8);
 }
 
@@ -35,7 +46,18 @@ unsafe impl RefEncode for MPSGraphPoolingReturnIndicesMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor?language=objc)
+    /// The class that defines the parameters for a 2D pooling operation.
+    ///
+    /// Use this descriptor with the following methods:
+    /// - ``MPSGraph/maxPooling2DWithSourceTensor:descriptor:name:``
+    /// - ``MPSGraph/maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:``
+    /// - ``MPSGraph/maxPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:``
+    /// - ``MPSGraph/maxPooling2DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:``
+    /// - ``MPSGraph/maxPooling2DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:``
+    /// - ``MPSGraph/avgPooling2DWithSourceTensor:descriptor:name:``
+    /// - ``MPSGraph/avgPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:``
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -56,81 +78,130 @@ unsafe impl NSObjectProtocol for MPSGraphPooling2DOpDescriptor {}
 extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphPooling2DOpDescriptor {
+        /// Defines the pooling window size for the width dimension.
         #[method(kernelWidth)]
         pub unsafe fn kernelWidth(&self) -> NSUInteger;
 
+        /// Setter for [`kernelWidth`][Self::kernelWidth].
         #[method(setKernelWidth:)]
         pub unsafe fn setKernelWidth(&self, kernel_width: NSUInteger);
 
+        /// Defines the pooling window size for the height dimension.
         #[method(kernelHeight)]
         pub unsafe fn kernelHeight(&self) -> NSUInteger;
 
+        /// Setter for [`kernelHeight`][Self::kernelHeight].
         #[method(setKernelHeight:)]
         pub unsafe fn setKernelHeight(&self, kernel_height: NSUInteger);
 
+        /// Defines the stride for the width dimension.
+        ///
+        /// Default value: 1.
         #[method(strideInX)]
         pub unsafe fn strideInX(&self) -> NSUInteger;
 
+        /// Setter for [`strideInX`][Self::strideInX].
         #[method(setStrideInX:)]
         pub unsafe fn setStrideInX(&self, stride_in_x: NSUInteger);
 
+        /// Defines the stride for the height dimension.
+        ///
+        /// Default value: 1.
         #[method(strideInY)]
         pub unsafe fn strideInY(&self) -> NSUInteger;
 
+        /// Setter for [`strideInY`][Self::strideInY].
         #[method(setStrideInY:)]
         pub unsafe fn setStrideInY(&self, stride_in_y: NSUInteger);
 
+        /// Defines the dilation rate for the width dimension.
+        ///
+        /// Default value: 1.
         #[method(dilationRateInX)]
         pub unsafe fn dilationRateInX(&self) -> NSUInteger;
 
+        /// Setter for [`dilationRateInX`][Self::dilationRateInX].
         #[method(setDilationRateInX:)]
         pub unsafe fn setDilationRateInX(&self, dilation_rate_in_x: NSUInteger);
 
+        /// Defines the dilation rate for the height dimension.
+        ///
+        /// Default value: 1.
         #[method(dilationRateInY)]
         pub unsafe fn dilationRateInY(&self) -> NSUInteger;
 
+        /// Setter for [`dilationRateInY`][Self::dilationRateInY].
         #[method(setDilationRateInY:)]
         pub unsafe fn setDilationRateInY(&self, dilation_rate_in_y: NSUInteger);
 
+        /// Defines the explicit padding value for the width dimension to add before the data.
+        ///
+        /// Default value: 0.
         #[method(paddingLeft)]
         pub unsafe fn paddingLeft(&self) -> NSUInteger;
 
+        /// Setter for [`paddingLeft`][Self::paddingLeft].
         #[method(setPaddingLeft:)]
         pub unsafe fn setPaddingLeft(&self, padding_left: NSUInteger);
 
+        /// Defines the explicit padding value for the width dimension to add after the data.
+        ///
+        /// Default value: 0.
         #[method(paddingRight)]
         pub unsafe fn paddingRight(&self) -> NSUInteger;
 
+        /// Setter for [`paddingRight`][Self::paddingRight].
         #[method(setPaddingRight:)]
         pub unsafe fn setPaddingRight(&self, padding_right: NSUInteger);
 
+        /// Defines the explicit padding value for the height dimension to add before the data.
+        ///
+        /// Default value: 0.
         #[method(paddingTop)]
         pub unsafe fn paddingTop(&self) -> NSUInteger;
 
+        /// Setter for [`paddingTop`][Self::paddingTop].
         #[method(setPaddingTop:)]
         pub unsafe fn setPaddingTop(&self, padding_top: NSUInteger);
 
+        /// Defines the explicit padding value for the height dimension to add after the data.
+        ///
+        /// Default value: 0.
         #[method(paddingBottom)]
         pub unsafe fn paddingBottom(&self) -> NSUInteger;
 
+        /// Setter for [`paddingBottom`][Self::paddingBottom].
         #[method(setPaddingBottom:)]
         pub unsafe fn setPaddingBottom(&self, padding_bottom: NSUInteger);
 
+        /// Defines what kind of padding graph applies to the operation.
+        ///
+        /// Default value: `MPSGraphPaddingStyleExplicit`.
         #[method(paddingStyle)]
         pub unsafe fn paddingStyle(&self) -> MPSGraphPaddingStyle;
 
+        /// Setter for [`paddingStyle`][Self::paddingStyle].
         #[method(setPaddingStyle:)]
         pub unsafe fn setPaddingStyle(&self, padding_style: MPSGraphPaddingStyle);
 
+        /// Defines the data layout of the input data in the forward pass. See: ``MPSGraphTensorNamedDataLayout``.
         #[method(dataLayout)]
         pub unsafe fn dataLayout(&self) -> MPSGraphTensorNamedDataLayout;
 
+        /// Setter for [`dataLayout`][Self::dataLayout].
         #[method(setDataLayout:)]
         pub unsafe fn setDataLayout(&self, data_layout: MPSGraphTensorNamedDataLayout);
 
+        /// Defines the mode for returned indices of maximum values within each pooling window.
+        /// Use this in conjunction with ``MPSGraph/maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:`` API.
+        /// If `returnIndicesMode = MPSGraphPoolingReturnIndicesNone` then only the first result
+        /// MPSGraph returns from ``MPSGraph/maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:``
+        /// will be valid and using the second result will assert.
+        /// Default value: `MPSGraphPoolingReturnIndicesNone`.
         #[method(returnIndicesMode)]
         pub unsafe fn returnIndicesMode(&self) -> MPSGraphPoolingReturnIndicesMode;
 
+        /// Setter for [`returnIndicesMode`][Self::returnIndicesMode].
         #[method(setReturnIndicesMode:)]
         pub unsafe fn setReturnIndicesMode(
             &self,
@@ -138,25 +209,56 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Defines the data type for returned indices.
+        /// Use this in conjunction with ``MPSGraph/maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:`` API.
+        /// Currently MPSGraph supports the following datatypes: `MPSDataTypeInt32`.
+        /// Default value: `MPSDataTypeInt32`.
         #[method(returnIndicesDataType)]
         pub unsafe fn returnIndicesDataType(&self) -> MPSDataType;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Setter for [`returnIndicesDataType`][Self::returnIndicesDataType].
         #[method(setReturnIndicesDataType:)]
         pub unsafe fn setReturnIndicesDataType(&self, return_indices_data_type: MPSDataType);
 
+        /// Affects how the graph computes the output size.
+        ///
+        /// if set to `YES` then output size is computed by rounding up instead of down when dividing input size by stride.
+        /// Default value: `NO`.
         #[method(ceilMode)]
         pub unsafe fn ceilMode(&self) -> bool;
 
+        /// Setter for [`ceilMode`][Self::ceilMode].
         #[method(setCeilMode:)]
         pub unsafe fn setCeilMode(&self, ceil_mode: bool);
 
+        /// Defines a mode for average pooling, where samples outside the input tensor count as zeroes in the average computation.
+        ///
+        /// Otherwise the result is sum over samples divided by number of samples that didn't come from padding.
+        /// Default value: `NO`.
         #[method(includeZeroPadToAverage)]
         pub unsafe fn includeZeroPadToAverage(&self) -> bool;
 
+        /// Setter for [`includeZeroPadToAverage`][Self::includeZeroPadToAverage].
         #[method(setIncludeZeroPadToAverage:)]
         pub unsafe fn setIncludeZeroPadToAverage(&self, include_zero_pad_to_average: bool);
 
+        /// Creates a 2D pooling descriptor with given values.
+        ///
+        /// - Parameters:
+        /// - kernelWidth: See `kernelWidth` property.
+        /// - kernelHeight: See `kernelHeight` property.
+        /// - strideInX: See `strideInX` property.
+        /// - strideInY: See `strideInY` property.
+        /// - dilationRateInX: See `dilationRateInX` property.
+        /// - dilationRateInY: See `dilationRateInY` property.
+        /// - paddingLeft: See `paddingLeft` property.
+        /// - paddingRight: See `paddingRight` property.
+        /// - paddingTop: See `paddingTop` property.
+        /// - paddingBottom: See `paddingBottom` property.
+        /// - paddingStyle: See `paddingStyle` property.
+        /// - dataLayout: See `dataLayout` property.
+        /// - Returns: The descriptor on autoreleasepool.
         #[method_id(@__retain_semantics Other descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:)]
         pub unsafe fn descriptorWithKernelWidth_kernelHeight_strideInX_strideInY_dilationRateInX_dilationRateInY_paddingLeft_paddingRight_paddingTop_paddingBottom_paddingStyle_dataLayout(
             kernel_width: NSUInteger,
@@ -173,6 +275,16 @@ extern_methods!(
             data_layout: MPSGraphTensorNamedDataLayout,
         ) -> Option<Retained<Self>>;
 
+        /// Creates a 2D pooling descriptor with given values.
+        ///
+        /// - Parameters:
+        /// - kernelWidth: See `kernelWidth` property.
+        /// - kernelHeight: See `kernelHeight`` property.
+        /// - strideInX: See `strideInX` property.
+        /// - strideInY: See `strideInY` property.
+        /// - paddingStyle: See `paddingStyle` property.
+        /// - dataLayout: See `dataLayout` property.
+        /// - Returns: The descriptor on autoreleasepool.
         #[method_id(@__retain_semantics Other descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:paddingStyle:dataLayout:)]
         pub unsafe fn descriptorWithKernelWidth_kernelHeight_strideInX_strideInY_paddingStyle_dataLayout(
             kernel_width: NSUInteger,
@@ -183,6 +295,13 @@ extern_methods!(
             data_layout: MPSGraphTensorNamedDataLayout,
         ) -> Option<Retained<Self>>;
 
+        /// Sets the explicit padding values and sets padding style to explicit.
+        ///
+        /// - Parameters:
+        /// - paddingLeft: See `paddingLeft` property.
+        /// - paddingRight: See `paddingRight` property.
+        /// - paddingTop: See `paddingTop` property.
+        /// - paddingBottom: See `paddingBottom` property.
         #[method(setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:)]
         pub unsafe fn setExplicitPaddingWithPaddingLeft_paddingRight_paddingTop_paddingBottom(
             &self,
@@ -207,7 +326,20 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor?language=objc)
+    /// The class that defines the parameters for a 4D pooling operation.
+    ///
+    /// Use this descriptor with the following methods:
+    /// - ``MPSGraph/maxPooling4DWithSourceTensor:descriptor:name:``
+    /// - ``MPSGraph/maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:``
+    /// - ``MPSGraph/maxPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:``
+    /// - ``MPSGraph/maxPooling4DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:``
+    /// - ``MPSGraph/maxPooling4DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:``
+    /// - ``MPSGraph/avgPooling4DWithSourceTensor:descriptor:name:``
+    /// - ``MPSGraph/avgPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:``
+    /// - ``MPSGraph/L2NormPooling4DWithSourceTensor:descriptor:name:``
+    /// - ``MPSGraph/L2NormPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:``
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -228,51 +360,133 @@ unsafe impl NSObjectProtocol for MPSGraphPooling4DOpDescriptor {}
 extern_methods!(
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphPooling4DOpDescriptor {
+        /// Defines the pooling window size.
+        ///
+        /// Must be four numbers, one for each spatial dimension, fastest running index last.
         #[method_id(@__retain_semantics Other kernelSizes)]
         pub unsafe fn kernelSizes(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`kernelSizes`][Self::kernelSizes].
         #[method(setKernelSizes:)]
         pub unsafe fn setKernelSizes(&self, kernel_sizes: &NSArray<NSNumber>);
 
+        /// Defines strides for spatial dimensions. Must be four numbers, one for each spatial dimension, fastest running index last.
+        ///
+        /// Default value: `
+        /// @
+        /// [
+        /// @
+        /// 1,
+        /// @
+        /// 1,
+        /// @
+        /// 1,
+        /// @
+        /// 1 ]`
         #[method_id(@__retain_semantics Other strides)]
         pub unsafe fn strides(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`strides`][Self::strides].
         #[method(setStrides:)]
         pub unsafe fn setStrides(&self, strides: &NSArray<NSNumber>);
 
+        /// Defines dilation rates for spatial dimensions. Must be four numbers, one for each spatial dimension, fastest running index last.
+        ///
+        /// Default value: `
+        /// @
+        /// [
+        /// @
+        /// 1,
+        /// @
+        /// 1,
+        /// @
+        /// 1,
+        /// @
+        /// 1 ]`
         #[method_id(@__retain_semantics Other dilationRates)]
         pub unsafe fn dilationRates(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`dilationRates`][Self::dilationRates].
         #[method(setDilationRates:)]
         pub unsafe fn setDilationRates(&self, dilation_rates: &NSArray<NSNumber>);
 
+        /// Defines padding values for spatial dimensions which must be eight numbers, two for each spatial dimension.
+        ///
+        /// For example `paddingValues[0]` defines the explicit padding
+        /// amount before the first spatial dimension (slowest running index of spatial dimensions),
+        /// `paddingValues[1]` defines the padding amount after the first spatial dimension etc.
+        /// Used only when `paddingStyle = MPSGraphPaddingStyleExplicit`.
+        /// Default value: `
+        /// @
+        /// [
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0,
+        /// @
+        /// 0 ]`
         #[method_id(@__retain_semantics Other paddingValues)]
         pub unsafe fn paddingValues(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`paddingValues`][Self::paddingValues].
         #[method(setPaddingValues:)]
         pub unsafe fn setPaddingValues(&self, padding_values: &NSArray<NSNumber>);
 
+        /// Defines what kind of padding graph applies to the operation.
+        ///
+        /// Default value: `MPSGraphPaddingStyleExplicit`.
         #[method(paddingStyle)]
         pub unsafe fn paddingStyle(&self) -> MPSGraphPaddingStyle;
 
+        /// Setter for [`paddingStyle`][Self::paddingStyle].
         #[method(setPaddingStyle:)]
         pub unsafe fn setPaddingStyle(&self, padding_style: MPSGraphPaddingStyle);
 
+        /// Affects how MPSGraph computes the output size: if set to `YES` then output size is
+        /// computed by rounding up instead of down when dividing input size by stride.
+        ///
+        /// Default value: `NO`.
         #[method(ceilMode)]
         pub unsafe fn ceilMode(&self) -> bool;
 
+        /// Setter for [`ceilMode`][Self::ceilMode].
         #[method(setCeilMode:)]
         pub unsafe fn setCeilMode(&self, ceil_mode: bool);
 
+        /// Defines a mode for average pooling, where samples outside the input tensor count as
+        /// zeroes in the average computation.
+        ///
+        /// Otherwise the result is sum over samples divided by
+        /// number of samples that didn't come from padding.
+        /// Default value: `NO`.
         #[method(includeZeroPadToAverage)]
         pub unsafe fn includeZeroPadToAverage(&self) -> bool;
 
+        /// Setter for [`includeZeroPadToAverage`][Self::includeZeroPadToAverage].
         #[method(setIncludeZeroPadToAverage:)]
         pub unsafe fn setIncludeZeroPadToAverage(&self, include_zero_pad_to_average: bool);
 
+        /// Defines the mode for returned indices of maximum values within each pooling window.
+        ///
+        /// Use this in conjunction with ``MPSGraph/maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:`` API.
+        /// If `returnIndicesMode = MPSGraphPoolingReturnIndicesNone` then only the first result
+        /// MPSGraph returns from ``MPSGraph/maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:``
+        /// will be valid and using the second result will assert.
+        /// Default value: `MPSGraphPoolingReturnIndicesNone`.
         #[method(returnIndicesMode)]
         pub unsafe fn returnIndicesMode(&self) -> MPSGraphPoolingReturnIndicesMode;
 
+        /// Setter for [`returnIndicesMode`][Self::returnIndicesMode].
         #[method(setReturnIndicesMode:)]
         pub unsafe fn setReturnIndicesMode(
             &self,
@@ -280,13 +494,28 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Defines the data type for returned indices.
+        ///
+        /// Use this in conjunction with ``MPSGraph/maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:`` API.
+        /// Currently MPSGraph supports the following datatypes: `MPSDataTypeInt32`.
+        /// Default value: `MPSDataTypeInt32`.
         #[method(returnIndicesDataType)]
         pub unsafe fn returnIndicesDataType(&self) -> MPSDataType;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
+        /// Setter for [`returnIndicesDataType`][Self::returnIndicesDataType].
         #[method(setReturnIndicesDataType:)]
         pub unsafe fn setReturnIndicesDataType(&self, return_indices_data_type: MPSDataType);
 
+        /// Creates a 4D pooling descriptor with given values.
+        ///
+        /// - Parameters:
+        /// - kernelSizes: See `kernelSizes` property.
+        /// - strides: See `strides` property.
+        /// - dilationRates: See `dilationRates` property.
+        /// - paddingValues: See `paddingValues` property.
+        /// - paddingStyle: See `paddingStyle` property.
+        /// - Returns: The descriptor on autoreleasepool.
         #[method_id(@__retain_semantics Other descriptorWithKernelSizes:strides:dilationRates:paddingValues:paddingStyle:)]
         pub unsafe fn descriptorWithKernelSizes_strides_dilationRates_paddingValues_paddingStyle(
             kernel_sizes: &NSArray<NSNumber>,
@@ -296,6 +525,12 @@ extern_methods!(
             padding_style: MPSGraphPaddingStyle,
         ) -> Option<Retained<Self>>;
 
+        /// Creates a 4D pooling descriptor with default values.
+        ///
+        /// - Parameters:
+        /// - kernelSizes: See `kernelSizes` property.
+        /// - paddingStyle: See `paddingStyle` property.
+        /// - Returns: The descriptor on autoreleasepool.
         #[method_id(@__retain_semantics Other descriptorWithKernelSizes:paddingStyle:)]
         pub unsafe fn descriptorWithKernelSizes_paddingStyle(
             kernel_sizes: &NSArray<NSNumber>,
@@ -321,6 +556,13 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 2D max-pooling operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - source: A 2D Image source as tensor - must be of rank=4. The layout is defined by `descriptor.dataLayout`.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other maxPooling2DWithSourceTensor:descriptor:name:)]
         pub unsafe fn maxPooling2DWithSourceTensor_descriptor_name(
             &self,
@@ -330,6 +572,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 2D max-pooling operation and returns the result tensor and the corresponding indices tensor.
+        ///
+        /// In order to Computes the indices, `returnIndicesMode` of the descriptor must be set. The datatype of indices tensor can be set
+        /// using `returnIndicesDataType`.
+        /// If `returnIndicesMode = MPSGraphPoolingReturnIndicesNone` then only the first result
+        /// MPSGraph returns will be valid and using the second result will assert.
+        ///
+        /// - Parameters:
+        /// - source: A 2D Image source as tensor - must be of rank=4. The layout is defined by `descriptor.dataLayout`.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
+        /// - name: The name for the operation.
+        /// - Returns: An array of two MPSGraphTensors. The first tensor holds the result of max pool and the second tensor holds the corresponding indices
         #[method_id(@__retain_semantics Other maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:)]
         pub unsafe fn maxPooling2DReturnIndicesWithSourceTensor_descriptor_name(
             &self,
@@ -339,6 +593,14 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a max-pooling gradient operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - gradient: A 2D input gradient tensor - must be of rank=4. The layout is defined by `descriptor.dataLayout`.
+        /// - source: The input tensor for the forward pass.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other maxPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
         pub unsafe fn maxPooling2DGradientWithGradientTensor_sourceTensor_descriptor_name(
             &self,
@@ -352,6 +614,18 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a max-pooling gradient operation and returns the result tensor.
+        ///
+        /// With this API MPSGraph computes the max-pooling gradient efficiently by reusing the indices from the forward API instead of recomputing them.
+        /// The descriptor must set `returnIndicesMode` and `returnIndicesDataType` to the same value as that set by the forward pass.
+        ///
+        /// - Parameters:
+        /// - gradient: A 2D input gradient tensor - must be of rank=4. The layout is defined by `descriptor.dataLayout`.
+        /// - indices: The indices tensor returned from ``MPSGraph/maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:``.
+        /// - outputShape: The shape of the destination gradient.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
+        /// - name: The name for the operation.
+        /// - Returns: Destination gradient tensor.
         #[method_id(@__retain_semantics Other maxPooling2DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:)]
         pub unsafe fn maxPooling2DGradientWithGradientTensor_indicesTensor_outputShape_descriptor_name(
             &self,
@@ -363,6 +637,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a max-pooling gradient operation and returns the result tensor.
+        ///
+        /// With this API MPSGraph computes the max-pooling gradient efficiently by reusing the indices from the forward API instead of recomputing them.
+        /// The descriptor must set `returnIndicesMode` and `returnIndicesDataType` to the same value as that set by the forward pass.
+        ///
+        /// - Parameters:
+        /// - gradient: A 2D input gradient tensor - must be of rank=4. The layout is defined by `descriptor.dataLayout`.
+        /// - indices: The indices tensor returned from ``MPSGraph/maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:``.
+        /// - outputShape: A tensor containing the shape of the destination gradient.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
+        /// - name: The name for the operation.
+        /// - Returns: Destination gradient tensor.
         #[method_id(@__retain_semantics Other maxPooling2DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:)]
         pub unsafe fn maxPooling2DGradientWithGradientTensor_indicesTensor_outputShapeTensor_descriptor_name(
             &self,
@@ -374,6 +660,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 2D average-pooling operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - source: A 2D Image source as tensor - must be of rank=4. The layout is defined by `descriptor.dataLayout`.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other avgPooling2DWithSourceTensor:descriptor:name:)]
         pub unsafe fn avgPooling2DWithSourceTensor_descriptor_name(
             &self,
@@ -383,6 +676,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 2D average pooling gradient operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - gradient: A 2D input gradient tensor - must be of rank=4. The layout is defined by `descriptor.dataLayout`.
+        /// - source: The input tensor for the forward pass.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other avgPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
         pub unsafe fn avgPooling2DGradientWithGradientTensor_sourceTensor_descriptor_name(
             &self,
@@ -393,6 +694,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 4D max-pooling operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - source: A source tensor.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other maxPooling4DWithSourceTensor:descriptor:name:)]
         pub unsafe fn maxPooling4DWithSourceTensor_descriptor_name(
             &self,
@@ -402,6 +710,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 4D max-pooling operation and returns the result tensor and the corresponding indices tensor.
+        ///
+        /// In order to Computes the indices, `returnIndicesMode` of the descriptor must be set. The datatype of indices tensor can be set
+        /// using `returnIndicesDataType`.
+        /// If `returnIndicesMode = MPSGraphPoolingReturnIndicesNone` then only the first result
+        /// MPSGraph returns will be valid and using the second result will assert.
+        ///
+        /// - Parameters:
+        /// - source: The source tensor on which pooling will be performed.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
+        /// - name: The name for the operation.
+        /// - Returns: An array of two MPSGraphTensors. The first tensor holds the result of max pool and the second tensor holds the corresponding indices.
         #[method_id(@__retain_semantics Other maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:)]
         pub unsafe fn maxPooling4DReturnIndicesWithSourceTensor_descriptor_name(
             &self,
@@ -411,6 +731,14 @@ extern_methods!(
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a max-pooling gradient operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - gradient: An input gradient tensor.
+        /// - source: The input tensor for the forward pass.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other maxPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
         pub unsafe fn maxPooling4DGradientWithGradientTensor_sourceTensor_descriptor_name(
             &self,
@@ -424,6 +752,18 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a max-pooling gradient operation and returns the result tensor.
+        ///
+        /// With this API MPSGraph computes the max-pooling gradient efficiently by reusing the indices from the forward API instead of recomputing them.
+        /// The descriptor must set `returnIndicesMode` and `returnIndicesDataType` to the same value as that set by the forward pass.
+        ///
+        /// - Parameters:
+        /// - gradient: An input gradient tensor.
+        /// - indices: Indices tensor returned from ``MPSGraph/maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:``.
+        /// - outputShape: The shape of the destination gradient.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
+        /// - name: The name for the operation.
+        /// - Returns: Destination gradient tensor.
         #[method_id(@__retain_semantics Other maxPooling4DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:)]
         pub unsafe fn maxPooling4DGradientWithGradientTensor_indicesTensor_outputShape_descriptor_name(
             &self,
@@ -435,6 +775,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a max-pooling gradient operation and returns the result tensor.
+        ///
+        /// With this API MPSGraph computes the max-pooling gradient efficiently by reusing the indices from the forward API instead of recomputing them.
+        /// The descriptor must set `returnIndicesMode` and `returnIndicesDataType` to the same value as that set by the forward pass.
+        ///
+        /// - Parameters:
+        /// - gradient: An input gradient tensor.
+        /// - indices: The indices tensor returned from ``MPSGraph/maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:``.
+        /// - outputShape: A tensor containing the shape of the destination gradient.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
+        /// - name: The name for the operation.
+        /// - Returns: Destination gradient tensor.
         #[method_id(@__retain_semantics Other maxPooling4DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:)]
         pub unsafe fn maxPooling4DGradientWithGradientTensor_indicesTensor_outputShapeTensor_descriptor_name(
             &self,
@@ -446,6 +798,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 4D average pooling operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - source: A source tensor.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other avgPooling4DWithSourceTensor:descriptor:name:)]
         pub unsafe fn avgPooling4DWithSourceTensor_descriptor_name(
             &self,
@@ -455,6 +814,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates an average pooling gradient operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - gradient: An input gradient tensor.
+        /// - source: The input tensor for the forward pass.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other avgPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
         pub unsafe fn avgPooling4DGradientWithGradientTensor_sourceTensor_descriptor_name(
             &self,
@@ -465,6 +832,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a 4D L2-norm pooling operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - source: A source tensor.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other L2NormPooling4DWithSourceTensor:descriptor:name:)]
         pub unsafe fn L2NormPooling4DWithSourceTensor_descriptor_name(
             &self,
@@ -474,6 +848,14 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a L2-Norm pooling gradient operation and returns the result tensor.
+        ///
+        /// - Parameters:
+        /// - gradient: An input gradient tensor.
+        /// - source: The input tensor for the forward pass.
+        /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object.
         #[method_id(@__retain_semantics Other L2NormPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
         pub unsafe fn L2NormPooling4DGradientWithGradientTensor_sourceTensor_descriptor_name(
             &self,

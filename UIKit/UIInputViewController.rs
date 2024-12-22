@@ -101,6 +101,7 @@ extern_methods!(
         pub unsafe fn inputView(&self) -> Option<Retained<UIInputView>>;
 
         #[cfg(all(feature = "UIInputView", feature = "UIView"))]
+        /// Setter for [`inputView`][Self::inputView].
         #[method(setInputView:)]
         pub unsafe fn setInputView(&self, input_view: Option<&UIInputView>);
 
@@ -112,12 +113,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other primaryLanguage)]
         pub unsafe fn primaryLanguage(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`primaryLanguage`][Self::primaryLanguage].
         #[method(setPrimaryLanguage:)]
         pub unsafe fn setPrimaryLanguage(&self, primary_language: Option<&NSString>);
 
         #[method(hasDictationKey)]
         pub unsafe fn hasDictationKey(&self) -> bool;
 
+        /// Setter for [`hasDictationKey`][Self::hasDictationKey].
         #[method(setHasDictationKey:)]
         pub unsafe fn setHasDictationKey(&self, has_dictation_key: bool);
 

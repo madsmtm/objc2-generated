@@ -186,7 +186,9 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxisname?language=objc)
+    /// * Keys for the font variation axis dictionary. **
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxisname?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCGFontVariationAxisName: CFStringRef;
 }

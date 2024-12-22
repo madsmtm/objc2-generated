@@ -13,11 +13,30 @@ use crate::*;
 pub type CTParagraphStyleRef = *const c_void;
 
 extern "C-unwind" {
+    /// Returns the CFType of the paragraph style object
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTParagraphStyleGetTypeID() -> CFTypeID;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment?language=objc)
+/// These constants specify text alignment.
+///
+///
+/// Text is visually left-aligned.
+///
+///
+/// Text is visually right-aligned.
+///
+///
+/// Text is visually center-aligned.
+///
+///
+/// Text is fully justified. The last line in a paragraph is
+/// naturally aligned.
+///
+///
+/// Use the natural alignment of the text's script.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -50,7 +69,34 @@ unsafe impl RefEncode for CTTextAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode?language=objc)
+/// These constants specify what happens when a line is too long for
+/// its frame.
+///
+///
+/// Wrapping occurs at word boundaries, unless the word itself doesn't
+/// fit on a single line.
+///
+///
+/// Wrapping occurs before the first character that doesn't fit.
+///
+///
+/// Lines are simply not drawn past the edge of the frame.
+///
+///
+/// Each line is displayed so that the end fits in the frame and the
+/// missing text is indicated by some kind of ellipsis glyph.
+///
+///
+/// Each line is displayed so that the beginning fits in the
+/// container and the missing text is indicated by some kind of
+/// ellipsis glyph.
+///
+///
+/// Each line is displayed so that the beginning and end fit in the
+/// container and the missing text is indicated by some kind of
+/// ellipsis glyph in the middle.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -74,7 +120,19 @@ unsafe impl RefEncode for CTLineBreakMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctwritingdirection?language=objc)
+/// These constants specify the writing direction
+///
+///
+/// The writing direction is algorithmically determined
+/// using the Unicode Bidirectional Algorithm rules P2 and P3.
+///
+///
+/// The writing direction is left to right.
+///
+///
+/// The writing direction is right to left.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctwritingdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -95,7 +153,174 @@ unsafe impl RefEncode for CTWritingDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier?language=objc)
+/// These constants are used to query and modify the CTParagraphStyle
+/// object.
+///
+///
+/// Each specifier has a type and a default value associated with it.
+/// The type must always be observed when setting or fetching the
+/// value from the CTParagraphStyle object. In addition, some
+/// specifiers affect the behavior of both the framesetter and
+/// the typesetter, and others only affect the behavior of the
+/// framesetter; this is also noted below.
+///
+///
+/// The text alignment. Natural text alignment is realized as
+/// left or right alignment, depending on the line sweep direction
+/// of the first script contained in the paragraph.
+///
+/// Type: CTTextAlignment
+/// Default: kCTTextAlignmentNatural
+/// Application: CTFramesetter
+///
+///
+/// The distance in points from the leading margin of a frame to
+/// the beginning of the paragraph's first line. This value is always
+/// nonnegative.
+///
+/// Type: CGFloat
+/// Default: 0.0
+/// Application: CTFramesetter
+///
+///
+/// The distance in points from the leading margin of a text
+/// container to the beginning of lines other than the first.
+/// This value is always nonnegative.
+///
+/// Type: CGFloat
+/// Default: 0.0
+/// Application: CTFramesetter
+///
+///
+/// The distance in points from the margin of a frame to the end of
+/// lines. If positive, this value is the distance from the leading
+/// margin (for example, the left margin in left-to-right text).
+/// If 0 or negative, it's the distance from the trailing margin.
+///
+/// Type: CGFloat
+/// Default: 0.0
+/// Application: CTFramesetter
+///
+///
+/// The CTTextTab objects, sorted by location, that define the tab
+/// stops for the paragraph style.
+///
+/// Type: CFArray of CTTextTabRef
+/// Default: 12 left-aligned tabs, spaced by 28.0 points
+/// Application: CTFramesetter, CTTypesetter
+///
+///
+/// The document-wide default tab interval. Tabs after the last
+/// specified by kCTParagraphStyleSpecifierTabStops are placed at
+/// integer multiples of this distance (if positive).
+///
+/// Type: CGFloat
+/// Default: 0.0
+/// Application: CTFramesetter, CTTypesetter
+///
+///
+/// The mode that should be used to break lines when laying out
+/// the paragraph's text.
+///
+/// Type: CTLineBreakMode
+/// Default: kCTLineBreakByWordWrapping
+/// Application: CTFramesetter
+///
+///
+/// The line height multiple. The natural line height of the
+/// receiver is multiplied by this factor (if positive) before
+/// being constrained by minimum and maximum line height.
+///
+/// Type: CGFloat
+/// Default: 0.0
+/// Application: CTFramesetter
+///
+///
+/// The maximum height that any line in the frame will occupy,
+/// regardless of the font size or size of any attached graphic.
+/// Glyphs and graphics exceeding this height will overlap
+/// neighboring lines. A maximum height of 0 implies
+/// no line height limit. This value is always nonnegative.
+///
+/// Type: CGFloat
+/// Default: 0.0
+/// Application: CTFramesetter
+///
+///
+/// The minimum height that any line in the frame will occupy,
+/// regardless of the font size or size of any attached graphic.
+/// This value is always nonnegative.
+///
+/// Type: CGFloat
+/// Default: 0.0
+/// Application: CTFramesetter
+///
+///
+/// Deprecated.
+/// Use kCTParagraphStyleSpecifierMaximumLineSpacing, kCTParagraphStyleSpecifierMinimumLineSpacing,
+/// and kCTParagraphStyleSpecifierLineSpacingAdjustment to control
+/// space between lines.
+///
+///
+/// The space added at the end of the paragraph to separate it from
+/// the following paragraph. This value is always nonnegative and is
+/// determined by adding the previous paragraph's
+/// kCTParagraphStyleSpecifierParagraphSpacing setting and the
+/// current paragraph's kCTParagraphStyleSpecifierParagraphSpacingBefore
+/// setting.
+///
+/// Type: CGFloat
+/// Default: 0.0
+/// Application: CTFramesetter
+///
+///
+/// The distance between the paragraph's top and the beginning of
+/// its text content.
+///
+/// Type: CGFloat
+/// Default: 0.0
+/// Application: CTFramesetter
+///
+///
+/// The base writing direction of the lines.
+///
+/// Type: CTWritingDirection
+/// Default: kCTWritingDirectionNatural
+/// Application: CTFramesetter, CTTypesetter
+///
+///
+/// The maximum space in points between lines within the paragraph
+/// (commonly known as leading).
+///
+/// Type: CGFloat
+/// Default: some large number.
+/// Application: CTFramesetter
+///
+///
+/// The minimum space in points between lines within the paragraph
+/// (commonly known as leading).
+///
+/// Type: CGFloat
+/// Default: 0.0
+/// Application: CTFramesetter
+///
+///
+/// The space in points added between lines within the paragraph
+/// (commonly known as leading).
+///
+/// Type: CGFloat
+/// Default: 0.0
+/// Application: CTFramesetter
+///
+///
+/// The options controlling the alignment of the line edges with
+/// the leading and trailing margins.
+///
+/// Type: CTLineBoundsOptions
+/// Default: 0 (no options)
+/// Application: CTTypesetter
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -133,7 +358,22 @@ unsafe impl RefEncode for CTParagraphStyleSpecifier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylesetting?language=objc)
+/// This structure is used to alter the paragraph style.
+///
+/// Field: spec
+/// The specifier of the setting.
+///
+/// Field: valueSize
+/// The size of the value pointed to by the "value" field. This
+/// must match the size of the value required by the
+/// CTParagraphStyleSpecifier set in the "spec" field.
+///
+/// Field: value
+/// A reference to the value of the setting specified by the
+/// "spec" field. The value must be in the proper range for the
+/// spec value. The value must also be at least valueSize.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylesetting?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CTParagraphStyleSetting {
@@ -160,6 +400,33 @@ unsafe impl RefEncode for CTParagraphStyleSetting {
 }
 
 extern "C-unwind" {
+    /// Creates an immutable paragraph style.
+    ///
+    ///
+    /// Using this function is the easiest and most efficient way to
+    /// create a paragraph style. Paragraph styles should be kept
+    /// immutable for totally lock-free operation.
+    ///
+    /// If an invalid paragraph style setting specifier is passed into
+    /// the "settings" parameter, nothing bad will happen but just don't
+    /// expect to be able to query for this value. This is to allow
+    /// backwards compatibility with style setting specifiers that may
+    /// be introduced in future versions.
+    ///
+    ///
+    /// Parameter `settings`: The settings that you wish to pre-load the paragraph style
+    /// with. If you wish to specify the default set of settings,
+    /// then this parameter may be set to NULL.
+    ///
+    ///
+    /// Parameter `settingCount`: The number of settings that you have specified in the
+    /// "settings" parameter. This must be greater than or equal
+    /// to zero.
+    ///
+    ///
+    /// Returns: If the paragraph style creation was successful, this function
+    /// will return a valid reference to an immutable CTParagraphStyle
+    /// object. Otherwise, this function will return NULL.
     pub fn CTParagraphStyleCreate(
         settings: *const CTParagraphStyleSetting,
         setting_count: usize,
@@ -167,10 +434,53 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an immutable copy of a paragraph style.
+    ///
+    ///
+    /// Parameter `paragraphStyle`: The style that you wish to copy.
+    ///
+    ///
+    /// Returns: If the "paragraphStyle" reference is valid, then this
+    /// function will return valid reference to an immutable
+    /// CTParagraphStyle object that is a copy of the one passed into
+    /// "paragraphStyle".
     pub fn CTParagraphStyleCreateCopy(paragraph_style: CTParagraphStyleRef) -> CTParagraphStyleRef;
 }
 
 extern "C-unwind" {
+    /// Obtains the current value for a single setting specifier.
+    ///
+    ///
+    /// This function will return the current value of the specifier
+    /// whether or not the user had actually set it. If the user has
+    /// not set it, this function will return the default value.
+    ///
+    /// If an invalid paragraph style setting specifier is passed into
+    /// the "spec" parameter, nothing bad will happen and the buffer
+    /// value will simply be zeroed out. This is to allow backwards
+    /// compatibility with style setting specifier that may be introduced
+    /// in future versions.
+    ///
+    ///
+    /// Parameter `paragraphStyle`: The paragraph style that you wish to get the value from.
+    ///
+    ///
+    /// Parameter `spec`: The setting specifier that you want to get the value for.
+    ///
+    ///
+    /// Parameter `valueBufferSize`: The size of the buffer pointed to by the "valueBuffer" parameter.
+    /// This value must be at least as large as the size the required by
+    /// the CTParagraphSpecifier value set in the "spec" parameter.
+    ///
+    ///
+    /// Parameter `valueBuffer`: The buffer where the requested setting value will be written
+    /// upon successful completion. The buffer's size needs to be at least
+    /// as large as the value passed into "valueBufferSize".
+    ///
+    ///
+    /// Returns: This function will return "true" if the valueBuffer had been
+    /// successfully filled. Otherwise, this function will return false,
+    /// indicating that one or more of the parameters is not valid.
     pub fn CTParagraphStyleGetValueForSpecifier(
         paragraph_style: CTParagraphStyleRef,
         spec: CTParagraphStyleSpecifier,

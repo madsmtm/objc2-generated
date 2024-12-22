@@ -15,12 +15,15 @@ extern_protocol!(
     pub unsafe trait ASAuthorizationPublicKeyCredentialAssertion:
         ASPublicKeyCredential
     {
+        /// A byte sequence containing the encoded authenticatorData blob returned by the authenticator.
         #[method_id(@__retain_semantics Other rawAuthenticatorData)]
         unsafe fn rawAuthenticatorData(&self) -> Retained<NSData>;
 
+        /// The userID provided when creating this credential.
         #[method_id(@__retain_semantics Other userID)]
         unsafe fn userID(&self) -> Retained<NSData>;
 
+        /// The signature provided by the authenticator using the credential's private key.
         #[method_id(@__retain_semantics Other signature)]
         unsafe fn signature(&self) -> Retained<NSData>;
     }

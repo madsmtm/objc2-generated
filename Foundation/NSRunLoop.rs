@@ -106,6 +106,9 @@ extern_methods!(
             feature = "NSString",
             feature = "block2"
         ))]
+        /// Schedules the execution of a block on the target run loop in given modes.
+        /// - parameter: modes   An array of input modes for which the block may be executed.
+        /// - parameter: block   The block to execute
         #[method(performInModes:block:)]
         pub unsafe fn performInModes_block(
             &self,
@@ -114,6 +117,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Schedules the execution of a block on the target run loop.
+        /// - parameter: block   The block to execute
         #[method(performBlock:)]
         pub unsafe fn performBlock(&self, block: &block2::Block<dyn Fn()>);
     }
@@ -122,6 +127,7 @@ extern_methods!(
 extern_category!(
     /// Category "NSDelayedPerforming" on [`NSObject`].
     #[doc(alias = "NSDelayedPerforming")]
+    /// **************     Delayed perform     *****************
     pub unsafe trait NSObjectNSDelayedPerforming {
         #[cfg(all(
             feature = "NSArray",

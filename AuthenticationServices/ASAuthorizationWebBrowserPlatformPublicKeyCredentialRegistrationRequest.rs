@@ -20,6 +20,7 @@ extern_protocol!(
         ) -> Option<Retained<NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>>>;
 
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
+        /// Setter for [`excludedCredentials`][Self::excludedCredentials].
         #[method(setExcludedCredentials:)]
         unsafe fn setExcludedCredentials(
             &self,
@@ -31,6 +32,7 @@ extern_protocol!(
         #[method(shouldShowHybridTransport)]
         unsafe fn shouldShowHybridTransport(&self) -> bool;
 
+        /// Setter for [`shouldShowHybridTransport`][Self::shouldShowHybridTransport].
         #[method(setShouldShowHybridTransport:)]
         unsafe fn setShouldShowHybridTransport(&self, should_show_hybrid_transport: bool);
     }

@@ -9,52 +9,73 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectmaterial?language=objc)
+/// The main material that this view displays.  Materials are dynamic, and their exact look depends on the view's effectiveAppearance, blendingMode, state, emphasized, and possibly other factors.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectmaterial?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSVisualEffectMaterial(pub NSInteger);
 impl NSVisualEffectMaterial {
+    /// The material used by window titlebars.
     #[doc(alias = "NSVisualEffectMaterialTitlebar")]
     pub const Titlebar: Self = Self(3);
+    /// The material used in some table views, menus, etc., to indicate selection.
     #[doc(alias = "NSVisualEffectMaterialSelection")]
     pub const Selection: Self = Self(4);
+    /// The material used by menus.
     #[doc(alias = "NSVisualEffectMaterialMenu")]
     pub const Menu: Self = Self(5);
+    /// The material used in the background of NSPopover windows.
     #[doc(alias = "NSVisualEffectMaterialPopover")]
     pub const Popover: Self = Self(6);
+    /// The material used in the background of window sidebars.
     #[doc(alias = "NSVisualEffectMaterialSidebar")]
     pub const Sidebar: Self = Self(7);
+    /// The material used in various in-line header or footer views (e.g., by NSTableView).
     #[doc(alias = "NSVisualEffectMaterialHeaderView")]
     pub const HeaderView: Self = Self(10);
+    /// The material used as the background of sheet windows.
     #[doc(alias = "NSVisualEffectMaterialSheet")]
     pub const Sheet: Self = Self(11);
+    /// The material used by opaque window backgrounds.
     #[doc(alias = "NSVisualEffectMaterialWindowBackground")]
     pub const WindowBackground: Self = Self(12);
+    /// The material used as the background of heads-up display (HUD) windows.
     #[doc(alias = "NSVisualEffectMaterialHUDWindow")]
     pub const HUDWindow: Self = Self(13);
+    /// The material used as the background of full-screen modal UI.
     #[doc(alias = "NSVisualEffectMaterialFullScreenUI")]
     pub const FullScreenUI: Self = Self(15);
+    /// The material used as the background of tool tips.
     #[doc(alias = "NSVisualEffectMaterialToolTip")]
     pub const ToolTip: Self = Self(17);
+    /// The material used as the opaque background of content (e.g., by NSScrollView, NSTableView, NSCollectionView, etc.).
     #[doc(alias = "NSVisualEffectMaterialContentBackground")]
     pub const ContentBackground: Self = Self(18);
+    /// The material used under window backgrounds.
     #[doc(alias = "NSVisualEffectMaterialUnderWindowBackground")]
     pub const UnderWindowBackground: Self = Self(21);
+    /// The material used as the background behind document pages.
     #[doc(alias = "NSVisualEffectMaterialUnderPageBackground")]
     pub const UnderPageBackground: Self = Self(22);
+    /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
     #[deprecated = "Use a specific semantic material instead."]
     #[doc(alias = "NSVisualEffectMaterialAppearanceBased")]
     pub const AppearanceBased: Self = Self(0);
+    /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
     #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     #[doc(alias = "NSVisualEffectMaterialLight")]
     pub const Light: Self = Self(1);
+    /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
     #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     #[doc(alias = "NSVisualEffectMaterialDark")]
     pub const Dark: Self = Self(2);
+    /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
     #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     #[doc(alias = "NSVisualEffectMaterialMediumLight")]
     pub const MediumLight: Self = Self(8);
+    /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
     #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     #[doc(alias = "NSVisualEffectMaterialUltraDark")]
     pub const UltraDark: Self = Self(9);
@@ -74,8 +95,10 @@ unsafe impl RefEncode for NSVisualEffectMaterial {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSVisualEffectBlendingMode(pub NSInteger);
 impl NSVisualEffectBlendingMode {
+    /// Blend with the area behind the window (such as the Desktop or other windows).
     #[doc(alias = "NSVisualEffectBlendingModeBehindWindow")]
     pub const BehindWindow: Self = Self(0);
+    /// Blend with the area behind the view in the window.
     #[doc(alias = "NSVisualEffectBlendingModeWithinWindow")]
     pub const WithinWindow: Self = Self(1);
 }
@@ -94,10 +117,13 @@ unsafe impl RefEncode for NSVisualEffectBlendingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSVisualEffectState(pub NSInteger);
 impl NSVisualEffectState {
+    /// Use the active look only when the containing window is active.
     #[doc(alias = "NSVisualEffectStateFollowsWindowActiveState")]
     pub const FollowsWindowActiveState: Self = Self(0);
+    /// Use the active look always.
     #[doc(alias = "NSVisualEffectStateActive")]
     pub const Active: Self = Self(1);
+    /// Use the inactive look always.
     #[doc(alias = "NSVisualEffectStateInactive")]
     pub const Inactive: Self = Self(2);
 }
@@ -157,39 +183,50 @@ unsafe impl NSUserInterfaceItemIdentification for NSVisualEffectView {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSVisualEffectView {
+        /// A value indicating which material is shown by the NSVisualEffectView.  See the comments on NSVisualEffectMaterial.  Defaults to NSVisualEffectMaterialAppearanceBased.  You should instead specify an appropriate semantic material value.  See the comments on NSVisualEffectMaterial.
         #[method(material)]
         pub unsafe fn material(&self) -> NSVisualEffectMaterial;
 
+        /// Setter for [`material`][Self::material].
         #[method(setMaterial:)]
         pub unsafe fn setMaterial(&self, material: NSVisualEffectMaterial);
 
         #[cfg(feature = "NSCell")]
+        /// An NSBackgroundStyle value that most closely matches the look of the material shown by the NSVisualEffectView.
         #[method(interiorBackgroundStyle)]
         pub unsafe fn interiorBackgroundStyle(&self) -> NSBackgroundStyle;
 
+        /// A value controlling how the NSVisualEffectView generates its material.  See the comments on NSVisualEffectBlendingMode.  Not all materials support both blending modes, so NSVisualEffectView may fall back to a more appropriate blending mode as needed.  Defaults to NSVisualEffectBlendingModeBehindWindow.
         #[method(blendingMode)]
         pub unsafe fn blendingMode(&self) -> NSVisualEffectBlendingMode;
 
+        /// Setter for [`blendingMode`][Self::blendingMode].
         #[method(setBlendingMode:)]
         pub unsafe fn setBlendingMode(&self, blending_mode: NSVisualEffectBlendingMode);
 
+        /// A value controlling when the NSVisualEffectView takes on the active look.  See the comments on NSVisualEffectState.  Defaults to NSVisualEffectStateFollowsWindowActiveState.
         #[method(state)]
         pub unsafe fn state(&self) -> NSVisualEffectState;
 
+        /// Setter for [`state`][Self::state].
         #[method(setState:)]
         pub unsafe fn setState(&self, state: NSVisualEffectState);
 
         #[cfg(feature = "NSImage")]
+        /// An image whose alpha channel is used to mask the material generated by the NSVisualEffectView.  (It does not also mask subviews.)  Defaults to nil.  It is best to set this to the smallest mask image possible and properly set the image's capInsets property to stretch it.  Setting the maskImage on an NSVisualEffectView that is the contentView of a window will correctly influence the window's shadow.
         #[method_id(@__retain_semantics Other maskImage)]
         pub unsafe fn maskImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`maskImage`][Self::maskImage].
         #[method(setMaskImage:)]
         pub unsafe fn setMaskImage(&self, mask_image: Option<&NSImage>);
 
+        /// When YES, the material takes on the emphasized look.  Defaults to NO.  Some, but not all, materials change their look when emphasized.  This is used to indicate that an associated view has firstResponder status.
         #[method(isEmphasized)]
         pub unsafe fn isEmphasized(&self) -> bool;
 
+        /// Setter for [`isEmphasized`][Self::isEmphasized].
         #[method(setEmphasized:)]
         pub unsafe fn setEmphasized(&self, emphasized: bool);
 

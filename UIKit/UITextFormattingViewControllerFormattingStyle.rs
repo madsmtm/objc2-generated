@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerformattingstyle?language=objc)
+    /// Type that defines formatting style presented in text formatting view.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerformattingstyle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerFormattingStyle;
@@ -27,12 +29,17 @@ unsafe impl NSSecureCoding for UITextFormattingViewControllerFormattingStyle {}
 
 extern_methods!(
     unsafe impl UITextFormattingViewControllerFormattingStyle {
+        /// Formatting style key.
         #[method_id(@__retain_semantics Other styleKey)]
         pub unsafe fn styleKey(&self) -> Retained<NSString>;
 
+        /// Style title displayed in UI.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Attributes corresponding to this formatting style.
+        ///
+        /// Alongside `title`, these may be used to create a preview for this formatting style.
         #[method_id(@__retain_semantics Other attributes)]
         pub unsafe fn attributes(&self)
             -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;

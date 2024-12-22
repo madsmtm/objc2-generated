@@ -348,6 +348,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSTableViewDataSource>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`dataSource`][Self::dataSource].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
@@ -358,6 +359,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTableViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -369,30 +371,35 @@ extern_methods!(
         pub unsafe fn headerView(&self) -> Option<Retained<NSTableHeaderView>>;
 
         #[cfg(feature = "NSTableHeaderView")]
+        /// Setter for [`headerView`][Self::headerView].
         #[method(setHeaderView:)]
         pub unsafe fn setHeaderView(&self, header_view: Option<&NSTableHeaderView>);
 
         #[method_id(@__retain_semantics Other cornerView)]
         pub unsafe fn cornerView(&self) -> Option<Retained<NSView>>;
 
+        /// Setter for [`cornerView`][Self::cornerView].
         #[method(setCornerView:)]
         pub unsafe fn setCornerView(&self, corner_view: Option<&NSView>);
 
         #[method(allowsColumnReordering)]
         pub unsafe fn allowsColumnReordering(&self) -> bool;
 
+        /// Setter for [`allowsColumnReordering`][Self::allowsColumnReordering].
         #[method(setAllowsColumnReordering:)]
         pub unsafe fn setAllowsColumnReordering(&self, allows_column_reordering: bool);
 
         #[method(allowsColumnResizing)]
         pub unsafe fn allowsColumnResizing(&self) -> bool;
 
+        /// Setter for [`allowsColumnResizing`][Self::allowsColumnResizing].
         #[method(setAllowsColumnResizing:)]
         pub unsafe fn setAllowsColumnResizing(&self, allows_column_resizing: bool);
 
         #[method(columnAutoresizingStyle)]
         pub unsafe fn columnAutoresizingStyle(&self) -> NSTableViewColumnAutoresizingStyle;
 
+        /// Setter for [`columnAutoresizingStyle`][Self::columnAutoresizingStyle].
         #[method(setColumnAutoresizingStyle:)]
         pub unsafe fn setColumnAutoresizingStyle(
             &self,
@@ -402,6 +409,7 @@ extern_methods!(
         #[method(gridStyleMask)]
         pub unsafe fn gridStyleMask(&self) -> NSTableViewGridLineStyle;
 
+        /// Setter for [`gridStyleMask`][Self::gridStyleMask].
         #[method(setGridStyleMask:)]
         pub unsafe fn setGridStyleMask(&self, grid_style_mask: NSTableViewGridLineStyle);
 
@@ -410,12 +418,14 @@ extern_methods!(
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`intercellSpacing`][Self::intercellSpacing].
         #[method(setIntercellSpacing:)]
         pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
 
         #[method(usesAlternatingRowBackgroundColors)]
         pub unsafe fn usesAlternatingRowBackgroundColors(&self) -> bool;
 
+        /// Setter for [`usesAlternatingRowBackgroundColors`][Self::usesAlternatingRowBackgroundColors].
         #[method(setUsesAlternatingRowBackgroundColors:)]
         pub unsafe fn setUsesAlternatingRowBackgroundColors(
             &self,
@@ -427,6 +437,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
@@ -435,12 +446,14 @@ extern_methods!(
         pub unsafe fn gridColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`gridColor`][Self::gridColor].
         #[method(setGridColor:)]
         pub unsafe fn setGridColor(&self, grid_color: &NSColor);
 
         #[method(rowSizeStyle)]
         pub unsafe fn rowSizeStyle(&self) -> NSTableViewRowSizeStyle;
 
+        /// Setter for [`rowSizeStyle`][Self::rowSizeStyle].
         #[method(setRowSizeStyle:)]
         pub unsafe fn setRowSizeStyle(&self, row_size_style: NSTableViewRowSizeStyle);
 
@@ -452,6 +465,7 @@ extern_methods!(
         pub unsafe fn rowHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`rowHeight`][Self::rowHeight].
         #[method(setRowHeight:)]
         pub unsafe fn setRowHeight(&self, row_height: CGFloat);
 
@@ -539,12 +553,14 @@ extern_methods!(
         #[method(doubleAction)]
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
+        /// Setter for [`doubleAction`][Self::doubleAction].
         #[method(setDoubleAction:)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
         #[method_id(@__retain_semantics Other sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Retained<NSArray<NSSortDescriptor>>;
 
+        /// Setter for [`sortDescriptors`][Self::sortDescriptors].
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
@@ -569,6 +585,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTableColumn")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`highlightedTableColumn`][Self::highlightedTableColumn].
         #[method(setHighlightedTableColumn:)]
         pub unsafe fn setHighlightedTableColumn(
             &self,
@@ -578,6 +595,7 @@ extern_methods!(
         #[method(verticalMotionCanBeginDrag)]
         pub unsafe fn verticalMotionCanBeginDrag(&self) -> bool;
 
+        /// Setter for [`verticalMotionCanBeginDrag`][Self::verticalMotionCanBeginDrag].
         #[method(setVerticalMotionCanBeginDrag:)]
         pub unsafe fn setVerticalMotionCanBeginDrag(&self, vertical_motion_can_begin_drag: bool);
 
@@ -622,18 +640,21 @@ extern_methods!(
         #[method(allowsMultipleSelection)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
+        /// Setter for [`allowsMultipleSelection`][Self::allowsMultipleSelection].
         #[method(setAllowsMultipleSelection:)]
         pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
         #[method(allowsEmptySelection)]
         pub unsafe fn allowsEmptySelection(&self) -> bool;
 
+        /// Setter for [`allowsEmptySelection`][Self::allowsEmptySelection].
         #[method(setAllowsEmptySelection:)]
         pub unsafe fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
 
         #[method(allowsColumnSelection)]
         pub unsafe fn allowsColumnSelection(&self) -> bool;
 
+        /// Setter for [`allowsColumnSelection`][Self::allowsColumnSelection].
         #[method(setAllowsColumnSelection:)]
         pub unsafe fn setAllowsColumnSelection(&self, allows_column_selection: bool);
 
@@ -690,12 +711,14 @@ extern_methods!(
         #[method(allowsTypeSelect)]
         pub unsafe fn allowsTypeSelect(&self) -> bool;
 
+        /// Setter for [`allowsTypeSelect`][Self::allowsTypeSelect].
         #[method(setAllowsTypeSelect:)]
         pub unsafe fn setAllowsTypeSelect(&self, allows_type_select: bool);
 
         #[method(style)]
         pub unsafe fn style(&self) -> NSTableViewStyle;
 
+        /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
         pub unsafe fn setStyle(&self, style: NSTableViewStyle);
 
@@ -705,6 +728,7 @@ extern_methods!(
         #[method(selectionHighlightStyle)]
         pub unsafe fn selectionHighlightStyle(&self) -> NSTableViewSelectionHighlightStyle;
 
+        /// Setter for [`selectionHighlightStyle`][Self::selectionHighlightStyle].
         #[method(setSelectionHighlightStyle:)]
         pub unsafe fn setSelectionHighlightStyle(
             &self,
@@ -716,6 +740,7 @@ extern_methods!(
             &self,
         ) -> NSTableViewDraggingDestinationFeedbackStyle;
 
+        /// Setter for [`draggingDestinationFeedbackStyle`][Self::draggingDestinationFeedbackStyle].
         #[method(setDraggingDestinationFeedbackStyle:)]
         pub unsafe fn setDraggingDestinationFeedbackStyle(
             &self,
@@ -753,12 +778,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other autosaveName)]
         pub unsafe fn autosaveName(&self) -> Option<Retained<NSTableViewAutosaveName>>;
 
+        /// Setter for [`autosaveName`][Self::autosaveName].
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSTableViewAutosaveName>);
 
         #[method(autosaveTableColumns)]
         pub unsafe fn autosaveTableColumns(&self) -> bool;
 
+        /// Setter for [`autosaveTableColumns`][Self::autosaveTableColumns].
         #[method(setAutosaveTableColumns:)]
         pub unsafe fn setAutosaveTableColumns(&self, autosave_table_columns: bool);
 
@@ -828,12 +855,14 @@ extern_methods!(
         #[method(floatsGroupRows)]
         pub unsafe fn floatsGroupRows(&self) -> bool;
 
+        /// Setter for [`floatsGroupRows`][Self::floatsGroupRows].
         #[method(setFloatsGroupRows:)]
         pub unsafe fn setFloatsGroupRows(&self, floats_group_rows: bool);
 
         #[method(rowActionsVisible)]
         pub unsafe fn rowActionsVisible(&self) -> bool;
 
+        /// Setter for [`rowActionsVisible`][Self::rowActionsVisible].
         #[method(setRowActionsVisible:)]
         pub unsafe fn setRowActionsVisible(&self, row_actions_visible: bool);
 
@@ -902,6 +931,7 @@ extern_methods!(
         #[method(usesStaticContents)]
         pub unsafe fn usesStaticContents(&self) -> bool;
 
+        /// Setter for [`usesStaticContents`][Self::usesStaticContents].
         #[method(setUsesStaticContents:)]
         pub unsafe fn setUsesStaticContents(&self, uses_static_contents: bool);
 
@@ -910,6 +940,7 @@ extern_methods!(
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
         #[cfg(feature = "NSUserInterfaceLayout")]
+        /// Setter for [`userInterfaceLayoutDirection`][Self::userInterfaceLayoutDirection].
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
@@ -919,6 +950,7 @@ extern_methods!(
         #[method(usesAutomaticRowHeights)]
         pub unsafe fn usesAutomaticRowHeights(&self) -> bool;
 
+        /// Setter for [`usesAutomaticRowHeights`][Self::usesAutomaticRowHeights].
         #[method(setUsesAutomaticRowHeights:)]
         pub unsafe fn setUsesAutomaticRowHeights(&self, uses_automatic_row_heights: bool);
     }

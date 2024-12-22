@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer?language=objc)
+    /// The layer normalizaion layer.  For more information, refer to https://pytorch.org/docs/stable/nn.html#layernorm.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -22,35 +24,52 @@ unsafe impl NSObjectProtocol for MLCLayerNormalizationLayer {}
 extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCLayerNormalizationLayer {
+        /// The shape of the axes over which normalization occurs, (W), (H,W) or (C,H,W)
         #[deprecated]
         #[method_id(@__retain_semantics Other normalizedShape)]
         pub unsafe fn normalizedShape(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// The beta tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other beta)]
         pub unsafe fn beta(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// The gamma tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other gamma)]
         pub unsafe fn gamma(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensorParameter")]
+        /// The beta tensor parameter used for optimizer update
         #[deprecated]
         #[method_id(@__retain_semantics Other betaParameter)]
         pub unsafe fn betaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
+        /// The gamma tensor parameter used for optimizer update
         #[deprecated]
         #[method_id(@__retain_semantics Other gammaParameter)]
         pub unsafe fn gammaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
+        /// A value used for numerical stability
         #[deprecated]
         #[method(varianceEpsilon)]
         pub unsafe fn varianceEpsilon(&self) -> c_float;
 
         #[cfg(feature = "MLCTensor")]
+        /// Create a layer normalization layer
+        ///
+        /// Parameter `normalizedShape`: The shape of the axes over which normalization occurs, currently (C,H,W) only
+        ///
+        /// Parameter `beta`: Training parameter
+        ///
+        /// Parameter `gamma`: Training parameter
+        ///
+        /// Parameter `varianceEpsilon`: A small numerical value added to variance for stability
+        ///
+        /// Returns: A new layer normalization layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithNormalizedShape:beta:gamma:varianceEpsilon:)]
         pub unsafe fn layerWithNormalizedShape_beta_gamma_varianceEpsilon(

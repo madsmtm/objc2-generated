@@ -71,6 +71,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentDevice)]
         pub unsafe fn currentDevice(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`currentDevice`][Self::currentDevice].
         #[method(setCurrentDevice:)]
         pub unsafe fn setCurrentDevice(&self, current_device: Option<&NSString>);
 
@@ -80,6 +81,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn AVAudioPlayerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -95,12 +97,14 @@ extern_methods!(
         #[method(pan)]
         pub unsafe fn pan(&self) -> c_float;
 
+        /// Setter for [`pan`][Self::pan].
         #[method(setPan:)]
         pub unsafe fn setPan(&self, pan: c_float);
 
         #[method(volume)]
         pub unsafe fn volume(&self) -> c_float;
 
+        /// Setter for [`volume`][Self::volume].
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
@@ -110,18 +114,21 @@ extern_methods!(
         #[method(enableRate)]
         pub unsafe fn enableRate(&self) -> bool;
 
+        /// Setter for [`enableRate`][Self::enableRate].
         #[method(setEnableRate:)]
         pub unsafe fn setEnableRate(&self, enable_rate: bool);
 
         #[method(rate)]
         pub unsafe fn rate(&self) -> c_float;
 
+        /// Setter for [`rate`][Self::rate].
         #[method(setRate:)]
         pub unsafe fn setRate(&self, rate: c_float);
 
         #[method(currentTime)]
         pub unsafe fn currentTime(&self) -> NSTimeInterval;
 
+        /// Setter for [`currentTime`][Self::currentTime].
         #[method(setCurrentTime:)]
         pub unsafe fn setCurrentTime(&self, current_time: NSTimeInterval);
 
@@ -131,6 +138,7 @@ extern_methods!(
         #[method(numberOfLoops)]
         pub unsafe fn numberOfLoops(&self) -> NSInteger;
 
+        /// Setter for [`numberOfLoops`][Self::numberOfLoops].
         #[method(setNumberOfLoops:)]
         pub unsafe fn setNumberOfLoops(&self, number_of_loops: NSInteger);
 
@@ -144,6 +152,7 @@ extern_methods!(
         #[method(isMeteringEnabled)]
         pub unsafe fn isMeteringEnabled(&self) -> bool;
 
+        /// Setter for [`isMeteringEnabled`][Self::isMeteringEnabled].
         #[method(setMeteringEnabled:)]
         pub unsafe fn setMeteringEnabled(&self, metering_enabled: bool);
 
@@ -163,6 +172,7 @@ extern_methods!(
         ) -> Option<Retained<NSArray<AVAudioSessionChannelDescription>>>;
 
         #[cfg(feature = "AVAudioSessionRoute")]
+        /// Setter for [`channelAssignments`][Self::channelAssignments].
         #[method(setChannelAssignments:)]
         pub unsafe fn setChannelAssignments(
             &self,

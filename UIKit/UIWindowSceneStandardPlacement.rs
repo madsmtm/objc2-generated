@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenestandardplacement?language=objc)
+    /// The default placement scene placement provided by the system.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenestandardplacement?language=objc)
     #[unsafe(super(UIWindowScenePlacement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowScenePlacement")]
@@ -28,6 +30,7 @@ unsafe impl NSObjectProtocol for UIWindowSceneStandardPlacement {}
 extern_methods!(
     #[cfg(feature = "UIWindowScenePlacement")]
     unsafe impl UIWindowSceneStandardPlacement {
+        /// Creates a standard placement.
         #[method_id(@__retain_semantics Other standardPlacement)]
         pub unsafe fn standardPlacement() -> Retained<Self>;
     }

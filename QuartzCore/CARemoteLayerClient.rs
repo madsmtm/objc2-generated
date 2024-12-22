@@ -35,6 +35,7 @@ extern_methods!(
         pub unsafe fn layer(&self) -> Option<Retained<CALayer>>;
 
         #[cfg(feature = "CALayer")]
+        /// Setter for [`layer`][Self::layer].
         #[method(setLayer:)]
         pub unsafe fn setLayer(&self, layer: Option<&CALayer>);
     }

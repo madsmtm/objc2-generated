@@ -8,7 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbcontrollerconfiguration?language=objc)
+    /// Base class for a USB Controller configuration.
+    ///
+    /// VZUSBControllerConfiguration should not be instantiated directly.
+    /// One of its subclasses like VZXHCIControllerConfiguration should be used instead.
+    ///
+    /// See: VZXHCIControllerConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbcontrollerconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZUSBControllerConfiguration;
@@ -31,12 +38,23 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZUSBDeviceConfiguration")]
+        /// List of USB devices. Empty by default.
+        ///
+        /// This list represents a set of USB devices that virtual machine will start with.
+        /// For each entry in this list, there will be a corresponding runtime object created in VZUSBController.usbDevices property.
+        ///
+        /// See: VZUSBController
+        ///
+        /// See: VZUSBDeviceConfiguration
+        ///
+        /// See: VZUSBMassStorageDeviceConfiguration
         #[method_id(@__retain_semantics Other usbDevices)]
         pub unsafe fn usbDevices(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn VZUSBDeviceConfiguration>>>;
 
         #[cfg(feature = "VZUSBDeviceConfiguration")]
+        /// Setter for [`usbDevices`][Self::usbDevices].
         #[method(setUsbDevices:)]
         pub unsafe fn setUsbDevices(
             &self,

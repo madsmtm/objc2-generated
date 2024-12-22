@@ -9,7 +9,15 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcdevice?language=objc)
+    /// A device that will be used to execute a neural network.
+    /// If a MLCdevice is created with multiple devices using the [devicesWithType:selectMultipleDvices], on configurations
+    /// where multiple GPUs are available such as on the Mac Pro, the framework may transparently schedule the execution
+    /// across multiple GPUs.  There are some requirements for a MLCDevice with multiple devices such as there can only be
+    /// one training and/or inference graph associated with this device.  If multiple graphs are used, they must be compiled using
+    /// MLCGraphCompilationOptionsLinkGraphs specified in compileOptions and the multiple graphs should be linked together
+    /// with linkWithGraphs.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcdevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -27,11 +35,21 @@ unsafe impl NSObjectProtocol for MLCDevice {}
 extern_methods!(
     unsafe impl MLCDevice {
         #[cfg(feature = "MLCTypes")]
+        /// The type specified when the device is created
+        ///
+        /// Recommend that developers use MLCDeviceTypeAny as the device type.
+        /// This will ensure that MLCompute will select the best device to execute the neural network.
+        /// If developers want to be able to control device selection, they can select CPU or GPU and
+        /// for the GPU, they can also select a specific Metal device.
         #[deprecated]
         #[method(type)]
         pub unsafe fn r#type(&self) -> MLCDeviceType;
 
         #[cfg(feature = "MLCTypes")]
+        /// The specific device selected.
+        ///
+        /// This can be CPU, GPU or ANE.  If type is MLCDeviceTypeAny, this property
+        /// can be used to find out the specific device type that is selected.
         #[method(actualDeviceType)]
         pub unsafe fn actualDeviceType(&self) -> MLCDeviceType;
 
@@ -40,23 +58,44 @@ extern_methods!(
         #[method_id(@__retain_semantics Other gpuDevices)]
         pub unsafe fn gpuDevices(&self) -> Retained<NSArray<ProtocolObject<dyn MTLDevice>>>;
 
+        /// Creates a device which uses the CPU.
+        ///
+        /// Returns: A new device.
         #[deprecated]
         #[method_id(@__retain_semantics Other cpuDevice)]
         pub unsafe fn cpuDevice() -> Retained<Self>;
 
+        /// Creates a device which uses a GPU, if any.
+        ///
+        /// Returns: A new device, or `nil` if no GPU exists.
         #[deprecated]
         #[method_id(@__retain_semantics Other gpuDevice)]
         pub unsafe fn gpuDevice() -> Option<Retained<Self>>;
 
+        /// Creates a device which uses the Apple Neural Engine, if any.
+        ///
+        /// Returns: A new device, or `nil` if no ANE exists.
         #[method_id(@__retain_semantics Other aneDevice)]
         pub unsafe fn aneDevice() -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCDevice object
+        ///
+        /// Parameter `type`: A device type
+        ///
+        /// Returns: A new device object
         #[deprecated]
         #[method_id(@__retain_semantics Other deviceWithType:)]
         pub unsafe fn deviceWithType(r#type: MLCDeviceType) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCDevice object that uses multiple devices if available
+        ///
+        /// Parameter `type`: A device type
+        ///
+        /// Parameter `selectsMultipleComputeDevices`: A boolean to indicate whether to select multiple compute devices
+        ///
+        /// Returns: A new device object
         #[method_id(@__retain_semantics Other deviceWithType:selectsMultipleComputeDevices:)]
         pub unsafe fn deviceWithType_selectsMultipleComputeDevices(
             r#type: MLCDeviceType,
@@ -64,6 +103,13 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-metal")]
+        /// Create a MLCDevice object
+        ///
+        /// This method can be used by developers to select specific GPUs
+        ///
+        /// Parameter `gpus`: List of Metal devices
+        ///
+        /// Returns: A new device object
         #[deprecated]
         #[method_id(@__retain_semantics Other deviceWithGPUDevices:)]
         pub unsafe fn deviceWithGPUDevices(

@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldtdnodekind?language=objc)
+/// The subkind of a DTD node kind.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldtdnodekind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -43,7 +45,37 @@ unsafe impl RefEncode for NSXMLDTDNodeKind {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldtdnode?language=objc)
+    /// The nodes that are exclusive to a DTD
+    ///
+    /// Every DTD node has a name. Object value is defined as follows:
+    /// <ul>
+    /// <li>
+    /// <b>
+    /// Entity declaration
+    /// </b>
+    /// - the string that that entity resolves to eg "&lt;"
+    /// </li>
+    /// <li>
+    /// <b>
+    /// Attribute declaration
+    /// </b>
+    /// - the default value, if any
+    /// </li>
+    /// <li>
+    /// <b>
+    /// Element declaration
+    /// </b>
+    /// - the validation string
+    /// </li>
+    /// <li>
+    /// <b>
+    /// Notation declaration
+    /// </b>
+    /// - no objectValue
+    /// </li>
+    /// </ul>
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldtdnode?language=objc)
     #[unsafe(super(NSXMLNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSXMLNode")]
@@ -65,6 +97,7 @@ extern_methods!(
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDTDNode {
         #[cfg(feature = "NSString")]
+        /// Returns an element, attribute, entity, or notation DTD node based on the full XML string.
         #[method_id(@__retain_semantics Init initWithXMLString:)]
         pub unsafe fn initWithXMLString(
             this: Allocated<Self>,
@@ -82,36 +115,45 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Sets the DTD sub kind.
         #[method(DTDKind)]
         pub unsafe fn DTDKind(&self) -> NSXMLDTDNodeKind;
 
+        /// Setter for [`DTDKind`][Self::DTDKind].
         #[method(setDTDKind:)]
         pub unsafe fn setDTDKind(&self, dtd_kind: NSXMLDTDNodeKind);
 
+        /// True if the system id is set. Valid for entities and notations.
         #[method(isExternal)]
         pub unsafe fn isExternal(&self) -> bool;
 
         #[cfg(feature = "NSString")]
+        /// Sets the public id. This identifier should be in the default catalog in /etc/xml/catalog or in a path specified by the environment variable XML_CATALOG_FILES. When the public id is set the system id must also be set. Valid for entities and notations.
         #[method_id(@__retain_semantics Other publicID)]
         pub unsafe fn publicID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`publicID`][Self::publicID].
         #[method(setPublicID:)]
         pub unsafe fn setPublicID(&self, public_id: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// Sets the system id. This should be a URL that points to a valid DTD. Valid for entities and notations.
         #[method_id(@__retain_semantics Other systemID)]
         pub unsafe fn systemID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`systemID`][Self::systemID].
         #[method(setSystemID:)]
         pub unsafe fn setSystemID(&self, system_id: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// Set the notation name. Valid for entities only.
         #[method_id(@__retain_semantics Other notationName)]
         pub unsafe fn notationName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`notationName`][Self::notationName].
         #[method(setNotationName:)]
         pub unsafe fn setNotationName(&self, notation_name: Option<&NSString>);
     }
@@ -121,6 +163,13 @@ extern_methods!(
     /// Methods declared on superclass `NSXMLNode`
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDTDNode {
+        /// Invokes
+        ///
+        /// ```text
+        ///  initWithKind:options:
+        /// ```
+        ///
+        /// with options set to NSXMLNodeOptionsNone
         #[method_id(@__retain_semantics Init initWithKind:)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
     }

@@ -10,7 +10,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchtoolbaritem?language=objc)
+    /// `NSSearchToolbarItem` provides the standard UI behavior for integrating a search field into the toolbar.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchtoolbaritem?language=objc)
     #[unsafe(super(NSToolbarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSToolbarItem")]
@@ -38,6 +40,11 @@ extern_methods!(
             feature = "NSTextField",
             feature = "NSView"
         ))]
+        /// An `NSSearchField` displayed in the toolbar item.
+        /// While inside the toolbar item, the field properties and layout constraints are managed by the item.
+        /// The field should be configured before assigned.
+        /// The width constraint for the field could be updated after assigned.
+        /// When set to nil, will reset to a search field with the default configuration.
         #[method_id(@__retain_semantics Other searchField)]
         pub unsafe fn searchField(&self) -> Retained<NSSearchField>;
 
@@ -48,20 +55,26 @@ extern_methods!(
             feature = "NSTextField",
             feature = "NSView"
         ))]
+        /// Setter for [`searchField`][Self::searchField].
         #[method(setSearchField:)]
         pub unsafe fn setSearchField(&self, search_field: &NSSearchField);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// The base view property is owned by the toolbar item and not available for customization.
         #[method_id(@__retain_semantics Other view)]
         pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// Setter for [`view`][Self::view].
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
+        /// When YES, the cancel button in the field resigns the first responder status of the search field as clearing the contents.
+        /// The default is YES.
         #[method(resignsFirstResponderWithCancel)]
         pub unsafe fn resignsFirstResponderWithCancel(&self) -> bool;
 
+        /// Setter for [`resignsFirstResponderWithCancel`][Self::resignsFirstResponderWithCancel].
         #[method(setResignsFirstResponderWithCancel:)]
         pub unsafe fn setResignsFirstResponderWithCancel(
             &self,
@@ -69,19 +82,28 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The preferred width for the search field.
+        /// This value is used to configure the search field width whenever it gets the keyboard focus.
+        /// If specifying custom width constraints to the search field, they should not conflict with this value.
         #[method(preferredWidthForSearchField)]
         pub unsafe fn preferredWidthForSearchField(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredWidthForSearchField`][Self::preferredWidthForSearchField].
         #[method(setPreferredWidthForSearchField:)]
         pub unsafe fn setPreferredWidthForSearchField(
             &self,
             preferred_width_for_search_field: CGFloat,
         );
 
+        /// Starts a search interaction.
+        /// If necessary, expands to the preferred width and moves the keyboard focus to the search field.
         #[method(beginSearchInteraction)]
         pub unsafe fn beginSearchInteraction(&self);
 
+        /// Ends a search interaction.
+        /// Gives up the first responder by calling `-endEditing:` to the search field.
+        /// Adjusts to the natural available width for the toolbar item if necessary.
         #[method(endSearchInteraction)]
         pub unsafe fn endSearchInteraction(&self);
     }
@@ -92,6 +114,7 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSearchToolbarItem {
         #[cfg(feature = "NSToolbar")]
+        /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,

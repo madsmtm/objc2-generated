@@ -20,6 +20,18 @@ pub const kCMAttachmentMode_ShouldNotPropagate: CMAttachmentMode = 0;
 pub const kCMAttachmentMode_ShouldPropagate: CMAttachmentMode = 1;
 
 extern "C-unwind" {
+    /// Sets or adds a attachment of a CMAttachmentBearer
+    ///
+    /// You can attach any CF object to a CMAttachmentBearer object to store additional information. CMSetAttachment stores an attachment identified by a key. If the key doesn't exist, the attachment will be added. If the key does exist, the existing attachment will be replaced. In both cases the retain count of the attachment will be incremented. The value can be any CFType but nil has no defined behavior.  Given a CVBufferRef, CMSetAttachment is equivalent to CVBufferSetAttachment.
+    ///
+    /// Parameter `target`: Target CMAttachmentBearer.
+    ///
+    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+    ///
+    /// Parameter `value`: Attachment in form af a CF object.
+    ///
+    /// Parameter `attachmentMode`: Specifies which attachment mode is desired for this attachment.   A particular attachment key may only exist in
+    /// a single mode at a time.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMSetAttachment(
         target: CMAttachmentBearerRef,
@@ -30,6 +42,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a specific attachment of a CMAttachmentBearer
+    ///
+    /// You can attach any CF object to a CMAttachmentBearer to store additional information. CMGetAttachment retrieves an attachment identified by a key.  Given a CVBufferRef, CMGetAttachment is equivalent to CVBufferGetAttachment.
+    ///
+    /// Parameter `target`: Target CMAttachmentBearer.
+    ///
+    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+    ///
+    /// Parameter `attachmentModeOut`: Returns the mode of the attachment, if desired.  May be NULL.
+    ///
+    /// Returns: If found the attachment object; else NULL.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMGetAttachment(
         target: CMAttachmentBearerRef,
@@ -39,16 +62,38 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes a specific attachment of a CMAttachmentBearer
+    ///
+    /// CMRemoveAttachment removes an attachment identified by a key. If found the attachment is removed and the retain count decremented.  Given a CVBufferRef, CMRemoveAttachment is equivalent to CVBufferRemoveAttachment.
+    ///
+    /// Parameter `target`: Target CMAttachmentBearer.
+    ///
+    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMRemoveAttachment(target: CMAttachmentBearerRef, key: CFStringRef);
 }
 
 extern "C-unwind" {
+    /// Removes all attachments of a CMAttachmentBearer
+    ///
+    /// While CMRemoveAttachment removes a specific attachment identified by a key CMRemoveAllAttachments removes all attachments of a buffer and decrements their retain counts.  Given a CVBufferRef, CMRemoveAllAttachments is equivalent to CVBufferRemoveAllAttachments.
+    ///
+    /// Parameter `target`: Target CMAttachmentBearer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMRemoveAllAttachments(target: CMAttachmentBearerRef);
 }
 
 extern "C-unwind" {
+    /// Returns all attachments of a CMAttachmentBearer
+    ///
+    /// CMCopyDictionaryOfAttachments is a convenience call that returns all attachments with their corresponding keys in a new CFDictionary that the caller must dispose by calling CFRelease.  Given a CVBufferRef, CMCopyDictionaryOfAttachments is similar to CVBufferGetAttachments, except that CVBufferGetAttachments returns a CFDictionary that may change if attachments are added later.
+    ///
+    /// Parameter `allocator`: Allocator for the new dictionary; pass kCFAllocatorDefault or NULL to use the default allocator.
+    ///
+    /// Parameter `target`: Target CMAttachmentBearer.
+    ///
+    /// Returns: A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, NULL is returned.  Returns NULL
+    /// for invalid attachment mode.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMCopyDictionaryOfAttachments(
         allocator: CFAllocatorRef,
@@ -58,6 +103,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets a set of attachments for a CMAttachmentBearer
+    ///
+    /// CMSetAttachments is a convenience call that in turn calls CMSetAttachment for each key and value in the given dictionary. All key value pairs must be in the root level of the dictionary.  Given a CVBufferRef, CMSetAttachments is equivalent to CVBufferSetAttachments.
+    ///
+    /// Parameter `target`: Target CMAttachmentBearer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMSetAttachments(
         target: CMAttachmentBearerRef,
@@ -67,6 +117,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copy all propagatable attachments from one buffer to another.
+    ///
+    /// CMPropagateAttachments is a convenience call that copies all attachments with a mode of kCMAttachmentMode_ShouldPropagate from one
+    /// buffer to another.  Given a CVBufferRef, CMPropagateAttachments is equivalent to CVBufferPropagateAttachments.
+    ///
+    /// Parameter `source`: CMAttachmentBearer to copy attachments from.
+    ///
+    /// Parameter `destination`: CMAttachmentBearer to copy attachments to.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMPropagateAttachments(
         source: CMAttachmentBearerRef,

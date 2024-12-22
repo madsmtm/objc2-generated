@@ -51,12 +51,14 @@ extern_methods!(
         #[method(numberOfTouchesRequired)]
         pub unsafe fn numberOfTouchesRequired(&self) -> NSUInteger;
 
+        /// Setter for [`numberOfTouchesRequired`][Self::numberOfTouchesRequired].
         #[method(setNumberOfTouchesRequired:)]
         pub unsafe fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSUInteger);
 
         #[method(direction)]
         pub unsafe fn direction(&self) -> UISwipeGestureRecognizerDirection;
 
+        /// Setter for [`direction`][Self::direction].
         #[method(setDirection:)]
         pub unsafe fn setDirection(&self, direction: UISwipeGestureRecognizerDirection);
     }

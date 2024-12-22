@@ -32,6 +32,7 @@ extern_methods!(
         #[method(scanLocation)]
         pub unsafe fn scanLocation(&self) -> NSUInteger;
 
+        /// Setter for [`scanLocation`][Self::scanLocation].
         #[method(setScanLocation:)]
         pub unsafe fn setScanLocation(&self, scan_location: NSUInteger);
 
@@ -40,6 +41,7 @@ extern_methods!(
         pub unsafe fn charactersToBeSkipped(&self) -> Option<Retained<NSCharacterSet>>;
 
         #[cfg(feature = "NSCharacterSet")]
+        /// Setter for [`charactersToBeSkipped`][Self::charactersToBeSkipped].
         #[method(setCharactersToBeSkipped:)]
         pub unsafe fn setCharactersToBeSkipped(
             &self,
@@ -49,12 +51,14 @@ extern_methods!(
         #[method(caseSensitive)]
         pub unsafe fn caseSensitive(&self) -> bool;
 
+        /// Setter for [`caseSensitive`][Self::caseSensitive].
         #[method(setCaseSensitive:)]
         pub unsafe fn setCaseSensitive(&self, case_sensitive: bool);
 
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`locale`][Self::locale].
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&AnyObject>);
 

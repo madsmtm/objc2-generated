@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwnetworkprofile?language=objc)
+    /// Encapsulates a preferred network entry.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwnetworkprofile?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWNetworkProfile;
@@ -34,33 +36,76 @@ unsafe impl NSSecureCoding for CWNetworkProfile {}
 
 extern_methods!(
     unsafe impl CWNetworkProfile {
+        /// Returns the service set identifier (SSID) for the Wi-Fi network profile, encoded as a string.
+        ///
+        ///
+        /// Returns nil if the SSID can not be encoded as a valid UTF-8 or WinLatin1 string.
         #[method_id(@__retain_semantics Other ssid)]
         pub unsafe fn ssid(&self) -> Option<Retained<NSString>>;
 
+        /// Returns the service set identifier (SSID) for the Wi-Fi network profile, encapsulated in an NSData object.
+        ///
+        ///
+        /// The SSID is 1-32 octets.
         #[method_id(@__retain_semantics Other ssidData)]
         pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "CoreWLANTypes")]
+        /// Returns the security type of the Wi-Fi network profile.
         #[method(security)]
         pub unsafe fn security(&self) -> CWSecurity;
 
+        /// Convenience method for getting a CWNetworkProfile object.
         #[method_id(@__retain_semantics Other networkProfile)]
         pub unsafe fn networkProfile() -> Retained<Self>;
 
+        /// Initializes a CWNetworkProfile object.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Parameter `networkProfile`: A CWNetworkProfile object.
+        ///
+        ///
+        /// Returns: A CWNetworkProfile object.
+        ///
+        ///
+        /// Initializes a CWNetworkProfile object with the properties of an existing CWNetworkProfile object.
         #[method_id(@__retain_semantics Init initWithNetworkProfile:)]
         pub unsafe fn initWithNetworkProfile(
             this: Allocated<Self>,
             network_profile: &CWNetworkProfile,
         ) -> Retained<Self>;
 
+        /// Parameter `networkProfile`: A CWNetworkProfile object.
+        ///
+        ///
+        /// Returns: A CWNetworkProfile object.
+        ///
+        ///
+        /// Convenience method for getting a CWNetworkProfile object initialized with the properties of an existing CWNetworkProfile object.
         #[method_id(@__retain_semantics Other networkProfileWithNetworkProfile:)]
         pub unsafe fn networkProfileWithNetworkProfile(
             network_profile: &CWNetworkProfile,
         ) -> Retained<Self>;
 
+        /// Parameter `network`: A CWNetworkProfile object.
+        ///
+        ///
+        /// Returns: YES if the objects are equal, NO otherwise.
+        ///
+        ///
+        /// Determine CWNetworkProfile equality.
+        ///
+        ///
+        /// CWNetworkProfile objects are considered equal if their corresponding
+        /// <i>
+        /// ssidData
+        /// </i>
+        /// and
+        /// <i>
+        /// security
+        /// </i>
+        /// properties are equal.
         #[method(isEqualToNetworkProfile:)]
         pub unsafe fn isEqualToNetworkProfile(&self, network_profile: &CWNetworkProfile) -> bool;
     }
@@ -75,7 +120,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwmutablenetworkprofile?language=objc)
+    /// Mutable subclass of CWNetworkProfile.  Use this class for changing profile properties.
+    ///
+    ///
+    /// To commit Wi-Fi network profile changes, use -[CWMutableConfiguration setNetworkProfiles:] and
+    /// -[CWInterface commitConfiguration:authorization:error:].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwmutablenetworkprofile?language=objc)
     #[unsafe(super(CWNetworkProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWMutableNetworkProfile;
@@ -101,17 +152,21 @@ unsafe impl NSSecureCoding for CWMutableNetworkProfile {}
 
 extern_methods!(
     unsafe impl CWMutableNetworkProfile {
+        /// Set the service set identifier (SSID).
         #[method_id(@__retain_semantics Other ssidData)]
         pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`ssidData`][Self::ssidData].
         #[method(setSsidData:)]
         pub unsafe fn setSsidData(&self, ssid_data: Option<&NSData>);
 
         #[cfg(feature = "CoreWLANTypes")]
+        /// Set the security type.
         #[method(security)]
         pub unsafe fn security(&self) -> CWSecurity;
 
         #[cfg(feature = "CoreWLANTypes")]
+        /// Setter for [`security`][Self::security].
         #[method(setSecurity:)]
         pub unsafe fn setSecurity(&self, security: CWSecurity);
     }
@@ -120,18 +175,34 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CWNetworkProfile`
     unsafe impl CWMutableNetworkProfile {
+        /// Convenience method for getting a CWNetworkProfile object.
         #[method_id(@__retain_semantics Other networkProfile)]
         pub unsafe fn networkProfile() -> Retained<Self>;
 
+        /// Initializes a CWNetworkProfile object.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Parameter `networkProfile`: A CWNetworkProfile object.
+        ///
+        ///
+        /// Returns: A CWNetworkProfile object.
+        ///
+        ///
+        /// Initializes a CWNetworkProfile object with the properties of an existing CWNetworkProfile object.
         #[method_id(@__retain_semantics Init initWithNetworkProfile:)]
         pub unsafe fn initWithNetworkProfile(
             this: Allocated<Self>,
             network_profile: &CWNetworkProfile,
         ) -> Retained<Self>;
 
+        /// Parameter `networkProfile`: A CWNetworkProfile object.
+        ///
+        ///
+        /// Returns: A CWNetworkProfile object.
+        ///
+        ///
+        /// Convenience method for getting a CWNetworkProfile object initialized with the properties of an existing CWNetworkProfile object.
         #[method_id(@__retain_semantics Other networkProfileWithNetworkProfile:)]
         pub unsafe fn networkProfileWithNetworkProfile(
             network_profile: &CWNetworkProfile,

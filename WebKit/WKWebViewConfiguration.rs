@@ -10,7 +10,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserinterfacedirectionpolicy?language=objc)
+/// The policy used to determine the directionality of user interface elements inside a web view.
+///
+/// specifications.
+///
+/// userInterfaceLayoutDirection property
+///
+/// When WKUserInterfaceDirectionPolicyContent is specified, the directionality of user interface
+/// elements is affected by the "dir" attribute or the "direction" CSS property. When
+/// WKUserInterfaceDirectionPolicySystem is specified, the directionality of user interface elements is
+/// affected by the direction of the view.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserinterfacedirectionpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -30,7 +41,9 @@ unsafe impl RefEncode for WKUserInterfaceDirectionPolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkaudiovisualmediatypes?language=objc)
+/// The types of audiovisual media which will require a user gesture to begin playing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkaudiovisualmediatypes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -53,7 +66,18 @@ unsafe impl RefEncode for WKAudiovisualMediaTypes {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration?language=objc)
+    /// A WKWebViewConfiguration object is a collection of properties with
+    /// which to initialize a web view.
+    ///
+    /// Contains properties used to configure a
+    ///
+    /// ```text
+    ///  WKWebView
+    /// ```
+    ///
+    /// .
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -75,26 +99,37 @@ unsafe impl NSSecureCoding for WKWebViewConfiguration {}
 extern_methods!(
     unsafe impl WKWebViewConfiguration {
         #[cfg(feature = "WKProcessPool")]
+        /// The process pool from which to obtain the view's web content
+        /// process.
+        ///
+        /// When a web view is initialized, a new web content process
+        /// will be created for it from the specified pool, or an existing process in
+        /// that pool will be used.
         #[method_id(@__retain_semantics Other processPool)]
         pub unsafe fn processPool(&self) -> Retained<WKProcessPool>;
 
         #[cfg(feature = "WKProcessPool")]
+        /// Setter for [`processPool`][Self::processPool].
         #[method(setProcessPool:)]
         pub unsafe fn setProcessPool(&self, process_pool: &WKProcessPool);
 
         #[cfg(feature = "WKPreferences")]
+        /// The preference settings to be used by the web view.
         #[method_id(@__retain_semantics Other preferences)]
         pub unsafe fn preferences(&self) -> Retained<WKPreferences>;
 
         #[cfg(feature = "WKPreferences")]
+        /// Setter for [`preferences`][Self::preferences].
         #[method(setPreferences:)]
         pub unsafe fn setPreferences(&self, preferences: &WKPreferences);
 
         #[cfg(feature = "WKUserContentController")]
+        /// The user content controller to associate with the web view.
         #[method_id(@__retain_semantics Other userContentController)]
         pub unsafe fn userContentController(&self) -> Retained<WKUserContentController>;
 
         #[cfg(feature = "WKUserContentController")]
+        /// Setter for [`userContentController`][Self::userContentController].
         #[method(setUserContentController:)]
         pub unsafe fn setUserContentController(
             &self,
@@ -102,49 +137,67 @@ extern_methods!(
         );
 
         #[cfg(feature = "WKWebsiteDataStore")]
+        /// The website data store to be used by the web view.
         #[method_id(@__retain_semantics Other websiteDataStore)]
         pub unsafe fn websiteDataStore(&self) -> Retained<WKWebsiteDataStore>;
 
         #[cfg(feature = "WKWebsiteDataStore")]
+        /// Setter for [`websiteDataStore`][Self::websiteDataStore].
         #[method(setWebsiteDataStore:)]
         pub unsafe fn setWebsiteDataStore(&self, website_data_store: &WKWebsiteDataStore);
 
+        /// A Boolean value indicating whether the web view suppresses
+        /// content rendering until it is fully loaded into memory.
+        ///
+        /// The default value is NO.
         #[method(suppressesIncrementalRendering)]
         pub unsafe fn suppressesIncrementalRendering(&self) -> bool;
 
+        /// Setter for [`suppressesIncrementalRendering`][Self::suppressesIncrementalRendering].
         #[method(setSuppressesIncrementalRendering:)]
         pub unsafe fn setSuppressesIncrementalRendering(
             &self,
             suppresses_incremental_rendering: bool,
         );
 
+        /// The name of the application as used in the user agent string.
         #[method_id(@__retain_semantics Other applicationNameForUserAgent)]
         pub unsafe fn applicationNameForUserAgent(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`applicationNameForUserAgent`][Self::applicationNameForUserAgent].
         #[method(setApplicationNameForUserAgent:)]
         pub unsafe fn setApplicationNameForUserAgent(
             &self,
             application_name_for_user_agent: Option<&NSString>,
         );
 
+        /// A Boolean value indicating whether AirPlay is allowed.
+        ///
+        /// The default value is YES.
         #[method(allowsAirPlayForMediaPlayback)]
         pub unsafe fn allowsAirPlayForMediaPlayback(&self) -> bool;
 
+        /// Setter for [`allowsAirPlayForMediaPlayback`][Self::allowsAirPlayForMediaPlayback].
         #[method(setAllowsAirPlayForMediaPlayback:)]
         pub unsafe fn setAllowsAirPlayForMediaPlayback(
             &self,
             allows_air_play_for_media_playback: bool,
         );
 
+        /// A Boolean value indicating whether HTTP requests to servers known to support HTTPS should be automatically upgraded to HTTPS requests.
+        ///
+        /// The default value is YES.
         #[method(upgradeKnownHostsToHTTPS)]
         pub unsafe fn upgradeKnownHostsToHTTPS(&self) -> bool;
 
+        /// Setter for [`upgradeKnownHostsToHTTPS`][Self::upgradeKnownHostsToHTTPS].
         #[method(setUpgradeKnownHostsToHTTPS:)]
         pub unsafe fn setUpgradeKnownHostsToHTTPS(&self, upgrade_known_hosts_to_https: bool);
 
         #[method(mediaTypesRequiringUserActionForPlayback)]
         pub unsafe fn mediaTypesRequiringUserActionForPlayback(&self) -> WKAudiovisualMediaTypes;
 
+        /// Setter for [`mediaTypesRequiringUserActionForPlayback`][Self::mediaTypesRequiringUserActionForPlayback].
         #[method(setMediaTypesRequiringUserActionForPlayback:)]
         pub unsafe fn setMediaTypesRequiringUserActionForPlayback(
             &self,
@@ -152,10 +205,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "WKWebpagePreferences")]
+        /// The set of default webpage preferences to use when loading and rendering content.
+        ///
+        /// These default webpage preferences are additionally passed to the navigation delegate
+        /// in -webView:decidePolicyForNavigationAction:preferences:decisionHandler:.
         #[method_id(@__retain_semantics Other defaultWebpagePreferences)]
         pub unsafe fn defaultWebpagePreferences(&self) -> Retained<WKWebpagePreferences>;
 
         #[cfg(feature = "WKWebpagePreferences")]
+        /// Setter for [`defaultWebpagePreferences`][Self::defaultWebpagePreferences].
         #[method(setDefaultWebpagePreferences:)]
         pub unsafe fn setDefaultWebpagePreferences(
             &self,
@@ -165,21 +223,33 @@ extern_methods!(
         #[method(limitsNavigationsToAppBoundDomains)]
         pub unsafe fn limitsNavigationsToAppBoundDomains(&self) -> bool;
 
+        /// Setter for [`limitsNavigationsToAppBoundDomains`][Self::limitsNavigationsToAppBoundDomains].
         #[method(setLimitsNavigationsToAppBoundDomains:)]
         pub unsafe fn setLimitsNavigationsToAppBoundDomains(
             &self,
             limits_navigations_to_app_bound_domains: bool,
         );
 
+        /// A Boolean value indicating whether inline predictions are allowed.
+        ///
+        /// The default value is `NO`. If false, inline predictions
+        /// are disabled regardless of the system setting. If true, they are enabled based
+        /// on the system setting.
         #[method(allowsInlinePredictions)]
         pub unsafe fn allowsInlinePredictions(&self) -> bool;
 
+        /// Setter for [`allowsInlinePredictions`][Self::allowsInlinePredictions].
         #[method(setAllowsInlinePredictions:)]
         pub unsafe fn setAllowsInlinePredictions(&self, allows_inline_predictions: bool);
 
+        /// The directionality of user interface elements.
+        ///
+        /// Possible values are described in WKUserInterfaceDirectionPolicy.
+        /// The default value is WKUserInterfaceDirectionPolicyContent.
         #[method(userInterfaceDirectionPolicy)]
         pub unsafe fn userInterfaceDirectionPolicy(&self) -> WKUserInterfaceDirectionPolicy;
 
+        /// Setter for [`userInterfaceDirectionPolicy`][Self::userInterfaceDirectionPolicy].
         #[method(setUserInterfaceDirectionPolicy:)]
         pub unsafe fn setUserInterfaceDirectionPolicy(
             &self,
@@ -201,19 +271,28 @@ extern_methods!(
             url_scheme: &NSString,
         ) -> Option<Retained<ProtocolObject<dyn WKURLSchemeHandler>>>;
 
+        /// A Boolean value indicating whether insertion of adaptive image glyphs is allowed.
+        ///
+        /// The default value is `NO`. If `NO`, adaptive image glyphs are inserted as regular
+        /// images. If `YES`, they are inserted with the full adaptive sizing behavior.
         #[method(supportsAdaptiveImageGlyph)]
         pub unsafe fn supportsAdaptiveImageGlyph(&self) -> bool;
 
+        /// Setter for [`supportsAdaptiveImageGlyph`][Self::supportsAdaptiveImageGlyph].
         #[method(setSupportsAdaptiveImageGlyph:)]
         pub unsafe fn setSupportsAdaptiveImageGlyph(&self, supports_adaptive_image_glyph: bool);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// The preferred behavior of Writing Tools.
+        ///
+        /// The default behavior is equivalent to `NSWritingToolsBehaviorLimited`.
         #[method(writingToolsBehavior)]
         pub unsafe fn writingToolsBehavior(&self) -> NSWritingToolsBehavior;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Setter for [`writingToolsBehavior`][Self::writingToolsBehavior].
         #[method(setWritingToolsBehavior:)]
         pub unsafe fn setWritingToolsBehavior(
             &self,

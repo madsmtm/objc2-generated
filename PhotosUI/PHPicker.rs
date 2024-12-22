@@ -13,16 +13,22 @@ use objc2_photos::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationassetrepresentationmode?language=objc)
+/// A mode that determines which representation
+/// `PHPickerViewController`should provide for an asset given a type identifier, if multiple representations are available.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationassetrepresentationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHPickerConfigurationAssetRepresentationMode(pub NSInteger);
 impl PHPickerConfigurationAssetRepresentationMode {
+    /// Uses the best representation determined by the system. This may change in future releases.
     #[doc(alias = "PHPickerConfigurationAssetRepresentationModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Uses the current representation to avoid transcoding if possible.
     #[doc(alias = "PHPickerConfigurationAssetRepresentationModeCurrent")]
     pub const Current: Self = Self(1);
+    /// Uses the most compatible representation if possible, even if transcoding is required.
     #[doc(alias = "PHPickerConfigurationAssetRepresentationModeCompatible")]
     pub const Compatible: Self = Self(2);
 }
@@ -39,18 +45,25 @@ unsafe impl Send for PHPickerConfigurationAssetRepresentationMode {}
 
 unsafe impl Sync for PHPickerConfigurationAssetRepresentationMode {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationselection?language=objc)
+/// An enum that determines how
+/// `PHPickerViewController`handles user selection.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationselection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHPickerConfigurationSelection(pub NSInteger);
 impl PHPickerConfigurationSelection {
+    /// Uses the default selection behavior.
     #[doc(alias = "PHPickerConfigurationSelectionDefault")]
     pub const Default: Self = Self(0);
+    /// Uses the selection order made by the user. Selected assets are numbered.
     #[doc(alias = "PHPickerConfigurationSelectionOrdered")]
     pub const Ordered: Self = Self(1);
+    /// Selection can be delivered continuously.
     #[doc(alias = "PHPickerConfigurationSelectionContinuous")]
     pub const Continuous: Self = Self(2);
+    /// Selection can be delivered continuously and uses the selection order made by the user. Selected assets are numbered.
     #[doc(alias = "PHPickerConfigurationSelectionContinuousAndOrdered")]
     pub const ContinuousAndOrdered: Self = Self(3);
 }
@@ -67,14 +80,19 @@ unsafe impl Send for PHPickerConfigurationSelection {}
 
 unsafe impl Sync for PHPickerConfigurationSelection {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickermode?language=objc)
+/// An enum that determines the mode of
+/// `PHPickerViewController.`
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHPickerMode(pub NSInteger);
 impl PHPickerMode {
+    /// Default picker mode.
     #[doc(alias = "PHPickerModeDefault")]
     pub const Default: Self = Self(0);
+    /// Compact picker mode (single row).
     #[doc(alias = "PHPickerModeCompact")]
     pub const Compact: Self = Self(1);
 }
@@ -87,23 +105,32 @@ unsafe impl RefEncode for PHPickerMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities?language=objc)
+/// Constants that specify one or a set of
+/// `PHPickerViewController`capabilities.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHPickerCapabilities(pub NSUInteger);
 bitflags::bitflags! {
     impl PHPickerCapabilities: NSUInteger {
+/// No specified capabilities.
         #[doc(alias = "PHPickerCapabilitiesNone")]
         const None = 0;
+/// The search bar.
         #[doc(alias = "PHPickerCapabilitiesSearch")]
         const Search = 1<<0;
+/// The staging area.
         #[doc(alias = "PHPickerCapabilitiesStagingArea")]
         const StagingArea = 1<<1;
+/// The sidebar or the albums tab.
         #[doc(alias = "PHPickerCapabilitiesCollectionNavigation")]
         const CollectionNavigation = 1<<2;
+/// The "Cancel" and the "Add" (if possible) button.
         #[doc(alias = "PHPickerCapabilitiesSelectionActions")]
         const SelectionActions = 1<<3;
+/// Show intervention UI explaining potential risks for kids or teens if a sensitive asset is selected. Analysis and intervention will only be performed if "Communication Safety" is enabled in ScreenTime.
         #[doc(alias = "PHPickerCapabilitiesSensitivityAnalysisIntervention")]
         const SensitivityAnalysisIntervention = 1<<4;
     }
@@ -118,7 +145,10 @@ unsafe impl RefEncode for PHPickerCapabilities {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerfilter?language=objc)
+    /// A filter that restricts which types of assets
+    /// `PHPickerViewController`can show.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerfilter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerFilter;
@@ -134,59 +164,75 @@ unsafe impl NSObjectProtocol for PHPickerFilter {}
 
 extern_methods!(
     unsafe impl PHPickerFilter {
+        /// The filter for images.
         #[method_id(@__retain_semantics Other imagesFilter)]
         pub unsafe fn imagesFilter() -> Retained<PHPickerFilter>;
 
+        /// The filter for videos.
         #[method_id(@__retain_semantics Other videosFilter)]
         pub unsafe fn videosFilter() -> Retained<PHPickerFilter>;
 
+        /// The filter for live photos.
         #[method_id(@__retain_semantics Other livePhotosFilter)]
         pub unsafe fn livePhotosFilter() -> Retained<PHPickerFilter>;
 
+        /// The filter for Depth Effect photos.
         #[method_id(@__retain_semantics Other depthEffectPhotosFilter)]
         pub unsafe fn depthEffectPhotosFilter() -> Retained<PHPickerFilter>;
 
+        /// The filter for bursts.
         #[method_id(@__retain_semantics Other burstsFilter)]
         pub unsafe fn burstsFilter() -> Retained<PHPickerFilter>;
 
+        /// The filter for panorama photos.
         #[method_id(@__retain_semantics Other panoramasFilter)]
         pub unsafe fn panoramasFilter() -> Retained<PHPickerFilter>;
 
+        /// The filter for screenshots.
         #[method_id(@__retain_semantics Other screenshotsFilter)]
         pub unsafe fn screenshotsFilter() -> Retained<PHPickerFilter>;
 
+        /// The filter for screen recordings.
         #[method_id(@__retain_semantics Other screenRecordingsFilter)]
         pub unsafe fn screenRecordingsFilter() -> Retained<PHPickerFilter>;
 
+        /// The filter for Cinematic videos.
         #[method_id(@__retain_semantics Other cinematicVideosFilter)]
         pub unsafe fn cinematicVideosFilter() -> Retained<PHPickerFilter>;
 
+        /// The filter for Slow-Mo videos.
         #[method_id(@__retain_semantics Other slomoVideosFilter)]
         pub unsafe fn slomoVideosFilter() -> Retained<PHPickerFilter>;
 
+        /// The filter for time-lapse videos.
         #[method_id(@__retain_semantics Other timelapseVideosFilter)]
         pub unsafe fn timelapseVideosFilter() -> Retained<PHPickerFilter>;
 
+        /// The filter for spatial media.
         #[method_id(@__retain_semantics Other spatialMediaFilter)]
         pub unsafe fn spatialMediaFilter() -> Retained<PHPickerFilter>;
 
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
+        /// Returns a new filter based on the asset playback style.
         #[method_id(@__retain_semantics Other playbackStyleFilter:)]
         pub unsafe fn playbackStyleFilter(
             playback_style: PHAssetPlaybackStyle,
         ) -> Retained<PHPickerFilter>;
 
+        /// Returns a new filter formed by OR-ing the filters in a given array.
         #[method_id(@__retain_semantics Other anyFilterMatchingSubfilters:)]
         pub unsafe fn anyFilterMatchingSubfilters(
             subfilters: &NSArray<PHPickerFilter>,
         ) -> Retained<PHPickerFilter>;
 
+        /// Returns a new filter formed by AND-ing the filters in a given array.
         #[method_id(@__retain_semantics Other allFilterMatchingSubfilters:)]
         pub unsafe fn allFilterMatchingSubfilters(
             subfilters: &NSArray<PHPickerFilter>,
         ) -> Retained<PHPickerFilter>;
 
+        /// Returns a new filter formed by negating the given filter.
         #[method_id(@__retain_semantics Other notFilterOfSubfilter:)]
         pub unsafe fn notFilterOfSubfilter(subfilter: &PHPickerFilter) -> Retained<PHPickerFilter>;
 
@@ -199,7 +245,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerupdateconfiguration?language=objc)
+    /// An update configuration for
+    /// `PHPickerViewController.`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerupdateconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerUpdateConfiguration;
@@ -215,19 +264,23 @@ unsafe impl NSObjectProtocol for PHPickerUpdateConfiguration {}
 
 extern_methods!(
     unsafe impl PHPickerUpdateConfiguration {
+        /// The maximum number of assets that can be selected.
         #[method(selectionLimit)]
         pub unsafe fn selectionLimit(&self) -> NSInteger;
 
+        /// Setter for [`selectionLimit`][Self::selectionLimit].
         #[method(setSelectionLimit:)]
         pub unsafe fn setSelectionLimit(&self, selection_limit: NSInteger);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Edges of the picker that have no margin between the content and the edge (e.g. without bars in between).
         #[method(edgesWithoutContentMargins)]
         pub unsafe fn edgesWithoutContentMargins(&self) -> NSDirectionalRectEdge;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Setter for [`edgesWithoutContentMargins`][Self::edgesWithoutContentMargins].
         #[method(setEdgesWithoutContentMargins:)]
         pub unsafe fn setEdgesWithoutContentMargins(
             &self,
@@ -248,7 +301,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfiguration?language=objc)
+    /// A configuration for
+    /// `PHPickerViewController.`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerConfiguration;
@@ -264,77 +320,115 @@ unsafe impl NSObjectProtocol for PHPickerConfiguration {}
 
 extern_methods!(
     unsafe impl PHPickerConfiguration {
+        /// The preferred representation mode of selected assets. Default is
+        /// `PHPickerConfigurationAssetRepresentationModeAutomatic.`
+        /// Setting
+        /// `preferredAssetRepresentationMode`to
+        /// `PHPickerConfigurationAssetRepresentationModeAutomatic`means the best representation determined by the system will be used.
         #[method(preferredAssetRepresentationMode)]
         pub unsafe fn preferredAssetRepresentationMode(
             &self,
         ) -> PHPickerConfigurationAssetRepresentationMode;
 
+        /// Setter for [`preferredAssetRepresentationMode`][Self::preferredAssetRepresentationMode].
         #[method(setPreferredAssetRepresentationMode:)]
         pub unsafe fn setPreferredAssetRepresentationMode(
             &self,
             preferred_asset_representation_mode: PHPickerConfigurationAssetRepresentationMode,
         );
 
+        /// The selection behavior of the picker. Default is
+        /// `PHPickerConfigurationSelectionDefault.`
         #[method(selection)]
         pub unsafe fn selection(&self) -> PHPickerConfigurationSelection;
 
+        /// Setter for [`selection`][Self::selection].
         #[method(setSelection:)]
         pub unsafe fn setSelection(&self, selection: PHPickerConfigurationSelection);
 
+        /// The maximum number of assets that can be selected. Default is 1.
+        ///
+        /// Setting
+        /// `selectionLimit`to 0 means maximum supported by the system.
         #[method(selectionLimit)]
         pub unsafe fn selectionLimit(&self) -> NSInteger;
 
+        /// Setter for [`selectionLimit`][Self::selectionLimit].
         #[method(setSelectionLimit:)]
         pub unsafe fn setSelectionLimit(&self, selection_limit: NSInteger);
 
+        /// Types of assets that can be shown. Default is
+        /// `nil.`
+        /// Setting
+        /// `filter`to
+        /// `nil`means all asset types can be shown.
         #[method_id(@__retain_semantics Other filter)]
         pub unsafe fn filter(&self) -> Option<Retained<PHPickerFilter>>;
 
+        /// Setter for [`filter`][Self::filter].
         #[method(setFilter:)]
         pub unsafe fn setFilter(&self, filter: Option<&PHPickerFilter>);
 
+        /// Local identifiers of assets to be shown as selected when the picker is presented. Default is an empty array.
+        ///
+        /// `preselectedAssetIdentifiers`should be an empty array if
+        /// `selectionLimit`is 1 or
+        /// `photoLibrary`is not specified. Returned item providers for preselected assets are always empty.
         #[method_id(@__retain_semantics Other preselectedAssetIdentifiers)]
         pub unsafe fn preselectedAssetIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`preselectedAssetIdentifiers`][Self::preselectedAssetIdentifiers].
         #[method(setPreselectedAssetIdentifiers:)]
         pub unsafe fn setPreselectedAssetIdentifiers(
             &self,
             preselected_asset_identifiers: &NSArray<NSString>,
         );
 
+        /// The mode of the picker. Default is
+        /// `PHPickerModeDefault.`
         #[method(mode)]
         pub unsafe fn mode(&self) -> PHPickerMode;
 
+        /// Setter for [`mode`][Self::mode].
         #[method(setMode:)]
         pub unsafe fn setMode(&self, mode: PHPickerMode);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Edges of the picker that have no margin between the content and the edge (e.g. without bars in between). Default is
+        /// `NSDirectionalRectEdgeNone.`
         #[method(edgesWithoutContentMargins)]
         pub unsafe fn edgesWithoutContentMargins(&self) -> NSDirectionalRectEdge;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Setter for [`edgesWithoutContentMargins`][Self::edgesWithoutContentMargins].
         #[method(setEdgesWithoutContentMargins:)]
         pub unsafe fn setEdgesWithoutContentMargins(
             &self,
             edges_without_content_margins: NSDirectionalRectEdge,
         );
 
+        /// Capabilities of the picker that should be disabled. Default is
+        /// `PHPickerCapabilitiesNone.`
         #[method(disabledCapabilities)]
         pub unsafe fn disabledCapabilities(&self) -> PHPickerCapabilities;
 
+        /// Setter for [`disabledCapabilities`][Self::disabledCapabilities].
         #[method(setDisabledCapabilities:)]
         pub unsafe fn setDisabledCapabilities(&self, disabled_capabilities: PHPickerCapabilities);
 
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
+        /// Initializes a new configuration with the
+        /// `photoLibrary`the picker should use.
         #[method_id(@__retain_semantics Init initWithPhotoLibrary:)]
         pub unsafe fn initWithPhotoLibrary(
             this: Allocated<Self>,
             photo_library: &PHPhotoLibrary,
         ) -> Retained<Self>;
 
+        /// Initializes a new configuration with the system photo library. This configuration never returns asset identifiers.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -349,7 +443,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerresult?language=objc)
+    /// A user selected asset from
+    /// `PHPickerViewController.`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerResult;
@@ -359,9 +456,11 @@ unsafe impl NSObjectProtocol for PHPickerResult {}
 
 extern_methods!(
     unsafe impl PHPickerResult {
+        /// Representations of the selected asset.
         #[method_id(@__retain_semantics Other itemProvider)]
         pub unsafe fn itemProvider(&self) -> Retained<NSItemProvider>;
 
+        /// The local identifier of the selected asset.
         #[method_id(@__retain_semantics Other assetIdentifier)]
         pub unsafe fn assetIdentifier(&self) -> Option<Retained<NSString>>;
 
@@ -374,12 +473,19 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerviewcontrollerdelegate?language=objc)
+    /// A set of methods that the delegate must implement to respond to
+    /// `PHPickerViewController`user events.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerviewcontrollerdelegate?language=objc)
     pub unsafe trait PHPickerViewControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Called when the user completes a selection or dismisses
+        /// `PHPickerViewController`using the cancel button.
+        ///
+        /// The picker won't be automatically dismissed when this method is called.
         #[method(picker:didFinishPicking:)]
         unsafe fn picker_didFinishPicking(
             &self,
@@ -424,36 +530,51 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl PHPickerViewController {
+        /// The configuration passed in during initialization.
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Retained<PHPickerConfiguration>;
 
+        /// The delegate to be notified.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn PHPickerViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn PHPickerViewControllerDelegate>>,
         );
 
+        /// Initializes a new picker with the
+        /// `configuration`the picker should use.
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &PHPickerConfiguration,
         ) -> Retained<Self>;
 
+        /// Updates the picker using the configuration.
         #[method(updatePickerUsingConfiguration:)]
         pub unsafe fn updatePickerUsingConfiguration(
             &self,
             configuration: &PHPickerUpdateConfiguration,
         );
 
+        /// Deselects selected assets in the picker.
+        ///
+        /// Does nothing if asset identifiers are invalid or not selected, or
+        /// `photoLibrary`is not specified in the configuration.
         #[method(deselectAssetsWithIdentifiers:)]
         pub unsafe fn deselectAssetsWithIdentifiers(&self, identifiers: &NSArray<NSString>);
 
+        /// Reorders selected assets in the picker. A
+        /// `nil``afterIdentifier`means moving to the front.
+        ///
+        /// Does nothing if asset identifiers are invalid or not selected, or
+        /// `photoLibrary`is not specified in the configuration.
         #[method(moveAssetWithIdentifier:afterAssetWithIdentifier:)]
         pub unsafe fn moveAssetWithIdentifier_afterAssetWithIdentifier(
             &self,
@@ -461,12 +582,15 @@ extern_methods!(
             after_identifier: Option<&NSString>,
         );
 
+        /// Scrolls content to the initial position if possible.
         #[method(scrollToInitialPosition)]
         pub unsafe fn scrollToInitialPosition(&self);
 
+        /// Zooms in content if possible.
         #[method(zoomIn)]
         pub unsafe fn zoomIn(&self);
 
+        /// Zooms out content if possible.
         #[method(zoomOut)]
         pub unsafe fn zoomOut(&self);
 

@@ -9,7 +9,70 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnneurondescriptor?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSNNNeuronDescriptor specifies a neuron descriptor.
+    /// Supported neuron types:
+    ///
+    /// Neuron type "none": f(x) = x
+    /// Parameters: none
+    ///
+    /// ReLU neuron filter: f(x) = x >= 0 ? x : a * x
+    /// This is called Leaky ReLU in literature. Some literature defines
+    /// classical ReLU as max(0, x). If you want this behavior, simply pass a = 0.
+    /// Parameters: a
+    /// For default behavior, set the value of a to 0.0f.
+    ///
+    /// Linear neuron filter: f(x) = a * x + b
+    /// Parameters: a, b
+    /// For default behavior, set the value of a to 1.0f and the value of b to 0.0f.
+    ///
+    /// Sigmoid neuron filter: f(x) = 1 / (1 + e^-x)
+    /// Parameters: none
+    ///
+    /// Hard Sigmoid filter: f(x) = clamp((x * a) + b, 0, 1)
+    /// Parameters: a, b
+    /// For default behavior, set the value of a to 0.2f and the value of b to 0.5f.
+    ///
+    /// Hyperbolic tangent (TanH) neuron filter: f(x) = a * tanh(b * x)
+    /// Parameters: a, b
+    /// For default behavior, set the value of a to 1.0f and the value of b to 1.0f.
+    ///
+    /// Absolute neuron filter: f(x) = fabs(x)
+    /// Parameters: none
+    ///
+    /// Parametric Soft Plus neuron filter: f(x) = a * log(1 + e^(b * x))
+    /// Parameters: a, b
+    /// For default behavior, set the value of a to 1.0f and the value of b to 1.0f.
+    ///
+    /// Parametric Soft Sign neuron filter: f(x) = x / (1 + abs(x))
+    /// Parameters: none
+    ///
+    /// Parametric ELU neuron filter: f(x) = x >= 0 ? x : a * (exp(x) - 1)
+    /// Parameters: a
+    /// For default behavior, set the value of a to 1.0f.
+    ///
+    /// Parametric ReLU (PReLU) neuron filter: Same as ReLU, except parameter
+    /// aArray is per channel.
+    /// For each pixel, applies the following function: f(x_i) = x_i, if x_i >= 0
+    /// = a_i * x_i if x_i
+    /// <
+    /// 0
+    /// i in [0...channels-1]
+    /// i.e. parameters a_i are learned and applied to each channel separately. Compare
+    /// this to ReLu where parameter a is shared across all channels.
+    /// See https://arxiv.org/pdf/1502.01852.pdf for details.
+    /// Parameters: aArray - Array of floats containing per channel value of PReLu parameter
+    /// count - Number of float values in array aArray.
+    ///
+    /// ReLUN neuron filter: f(x) = min((x >= 0 ? x : a * x), b)
+    /// Parameters: a, b
+    /// As an example, the TensorFlow Relu6 activation layer can be implemented
+    /// by setting the parameter b to 6.0f:
+    /// https://www.tensorflow.org/api_docs/cc/class/tensorflow/ops/relu6.
+    /// For default behavior, set the value of a to 1.0f and the value of b to 6.0f.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnneurondescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNNeuronDescriptor;
@@ -34,43 +97,61 @@ extern_methods!(
         pub unsafe fn neuronType(&self) -> MPSCNNNeuronType;
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Setter for [`neuronType`][Self::neuronType].
         #[method(setNeuronType:)]
         pub unsafe fn setNeuronType(&self, neuron_type: MPSCNNNeuronType);
 
         #[method(a)]
         pub unsafe fn a(&self) -> c_float;
 
+        /// Setter for [`a`][Self::a].
         #[method(setA:)]
         pub unsafe fn setA(&self, a: c_float);
 
         #[method(b)]
         pub unsafe fn b(&self) -> c_float;
 
+        /// Setter for [`b`][Self::b].
         #[method(setB:)]
         pub unsafe fn setB(&self, b: c_float);
 
         #[method(c)]
         pub unsafe fn c(&self) -> c_float;
 
+        /// Setter for [`c`][Self::c].
         #[method(setC:)]
         pub unsafe fn setC(&self, c: c_float);
 
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`data`][Self::data].
         #[method(setData:)]
         pub unsafe fn setData(&self, data: Option<&NSData>);
 
+        /// You must use one of the interfaces below instead.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Make a descriptor for a MPSCNNNeuron object.
+        ///
+        /// Parameter `neuronType`: The type of a neuron filter.
+        ///
+        /// Returns: A valid MPSNNNeuronDescriptor object or nil, if failure.
         #[method_id(@__retain_semantics Other cnnNeuronDescriptorWithType:)]
         pub unsafe fn cnnNeuronDescriptorWithType(
             neuron_type: MPSCNNNeuronType,
         ) -> Retained<MPSNNNeuronDescriptor>;
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Make a descriptor for a MPSCNNNeuron object.
+        ///
+        /// Parameter `neuronType`: The type of a neuron filter.
+        ///
+        /// Parameter `a`: Parameter "a".
+        ///
+        /// Returns: A valid MPSNNNeuronDescriptor object or nil, if failure.
         #[method_id(@__retain_semantics Other cnnNeuronDescriptorWithType:a:)]
         pub unsafe fn cnnNeuronDescriptorWithType_a(
             neuron_type: MPSCNNNeuronType,
@@ -78,6 +159,15 @@ extern_methods!(
         ) -> Retained<MPSNNNeuronDescriptor>;
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Initialize the neuron descriptor.
+        ///
+        /// Parameter `neuronType`: The type of a neuron filter.
+        ///
+        /// Parameter `a`: Parameter "a".
+        ///
+        /// Parameter `b`: Parameter "b".
+        ///
+        /// Returns: A valid MPSNNNeuronDescriptor object or nil, if failure.
         #[method_id(@__retain_semantics Other cnnNeuronDescriptorWithType:a:b:)]
         pub unsafe fn cnnNeuronDescriptorWithType_a_b(
             neuron_type: MPSCNNNeuronType,
@@ -86,6 +176,17 @@ extern_methods!(
         ) -> Retained<MPSNNNeuronDescriptor>;
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Make a descriptor for a MPSCNNNeuron object.
+        ///
+        /// Parameter `neuronType`: The type of a neuron filter.
+        ///
+        /// Parameter `a`: Parameter "a".
+        ///
+        /// Parameter `b`: Parameter "b".
+        ///
+        /// Parameter `c`: Parameter "c".
+        ///
+        /// Returns: A valid MPSNNNeuronDescriptor object or nil, if failure.
         #[method_id(@__retain_semantics Other cnnNeuronDescriptorWithType:a:b:c:)]
         pub unsafe fn cnnNeuronDescriptorWithType_a_b_c(
             neuron_type: MPSCNNNeuronType,
@@ -94,6 +195,22 @@ extern_methods!(
             c: c_float,
         ) -> Retained<MPSNNNeuronDescriptor>;
 
+        /// Make a descriptor for a neuron of type MPSCNNNeuronTypePReLU.
+        ///
+        /// The PReLU neuron is the same as a ReLU neuron, except parameter "a" is per feature channel.
+        ///
+        /// Parameter `data`: A NSData containing a float array with the per feature channel value
+        /// of PReLu parameter. The number of float values in this array usually
+        /// corresponds to number of output channels in a convolution layer.
+        /// The descriptor retains the NSData object.
+        ///
+        /// Parameter `noCopy`: An optimization flag that tells us whether the NSData allocation is
+        /// suitable for use directly with no copying of the data into internal
+        /// storage. This allocation has to match the same restrictions as listed
+        /// for the newBufferWithBytesNoCopy:length:options:deallocator: method of
+        /// MTLBuffer.
+        ///
+        /// Returns: A valid MPSNNNeuronDescriptor object for a neuron of type MPSCNNNeuronTypePReLU or nil, if failure
         #[method_id(@__retain_semantics Other cnnNeuronPReLUDescriptorWithData:noCopy:)]
         pub unsafe fn cnnNeuronPReLUDescriptorWithData_noCopy(
             data: &NSData,
@@ -111,7 +228,62 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuron?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// This filter applies a neuron activation function.
+    /// You must use one of the sub-classes of MPSCNNNeuron.
+    ///
+    /// The following filter types are supported:
+    /// MPSCNNNeuronTypeNone            ///
+    /// <
+    /// f(x) = x
+    /// MPSCNNNeuronTypeLinear          ///
+    /// <
+    /// f(x) = a * x + b
+    /// MPSCNNNeuronTypeReLU            ///
+    /// <
+    /// f(x) = x >= 0 ? x : a * x
+    /// MPSCNNNeuronTypeSigmoid         ///
+    /// <
+    /// f(x) = 1 / (1 + e^-x)
+    /// MPSCNNNeuronTypeHardSigmoid     ///
+    /// <
+    /// f(x) = clamp((x * a) + b, 0, 1)
+    /// MPSCNNNeuronTypeTanH            ///
+    /// <
+    /// f(x) = a * tanh(b * x)
+    /// MPSCNNNeuronTypeAbsolute        ///
+    /// <
+    /// f(x) = fabs(x)
+    /// MPSCNNNeuronTypeSoftPlus        ///
+    /// <
+    /// f(x) = a * log(1 + e^(b * x))
+    /// MPSCNNNeuronTypeSoftSign        ///
+    /// <
+    /// f(x) = x / (1 + abs(x))
+    /// MPSCNNNeuronTypeELU             ///
+    /// <
+    /// f(x) = x >= 0 ? x : a * (exp(x) - 1)
+    /// MPSCNNNeuronTypePReLU           ///
+    /// <
+    /// Same as ReLU except parameter a is per channel
+    /// MPSCNNNeuronTypeReLUN           ///
+    /// <
+    /// f(x) = min((x >= 0 ? x : a * x), b)
+    /// MPSCNNNeuronTypePower           ///
+    /// <
+    /// f(x) = (a * x + b) ^ c
+    /// MPSCNNNeuronTypeExponential     ///
+    /// <
+    /// f(x) = c ^ (a * x + b)
+    /// MPSCNNNeuronTypeLogarithm       ///
+    /// <
+    /// f(x) = log_c(a * x + b)
+    /// MPSCNNNeuronTypeGeLU            ///
+    /// <
+    /// f(x) = (1.0 + erf(x * sqrt(0.5))) * 0.5 * x
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuron?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -160,6 +332,17 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -167,6 +350,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -180,6 +376,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuron {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -201,7 +405,82 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurongradient?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// This filter is a backward filter for the neuron activation function filter.
+    ///
+    /// The following filter types are supported:
+    /// MPSCNNNeuronTypeNone            ///
+    /// <
+    /// df/dx = 1
+    /// MPSCNNNeuronTypeLinear          ///
+    /// <
+    /// df/dx = a
+    /// MPSCNNNeuronTypeReLU            ///
+    /// <
+    /// df/dx = [ 1, if x >= 0
+    /// [ a, if x
+    /// <
+    /// 0
+    /// MPSCNNNeuronTypeSigmoid         ///
+    /// <
+    /// df/dx = e^x / (e^x + 1)^2
+    /// MPSCNNNeuronTypeHardSigmoid     ///
+    /// <
+    /// df/dx = [ a, if ((x * a) + b >= 0) and ((x * a) + b
+    /// <
+    /// = 1)
+    /// [ 0, otherwise
+    /// MPSCNNNeuronTypeTanH            ///
+    /// <
+    /// df/dx = a * b * (1 - tanh^2(b * x))
+    /// MPSCNNNeuronTypeAbsolute        ///
+    /// <
+    /// df/dx = sign(x)
+    /// MPSCNNNeuronTypeSoftPlus        ///
+    /// <
+    /// df/dx = (a * b * exp(b * x)) / (exp(b * x) + 1)
+    /// MPSCNNNeuronTypeSoftSign        ///
+    /// <
+    /// df/dx = 1 / (|x| + 1)^2
+    /// MPSCNNNeuronTypeELU             ///
+    /// <
+    /// df/dx = [ a * exp(x), x
+    /// <
+    /// 0
+    /// [          1, x >= 0
+    /// MPSCNNNeuronTypePReLU           ///
+    /// <
+    /// df/dx = [  1, if x >= 0
+    /// [ aV, if x
+    /// <
+    /// 0
+    /// MPSCNNNeuronTypeReLUN           ///
+    /// <
+    /// df/dx = [ 1, if x >= 0
+    /// [ a, if x
+    /// <
+    /// 0
+    /// [ b, if x >= b
+    /// MPSCNNNeuronTypePower           ///
+    /// <
+    /// df/dx = a * c * (a * x + b)^(c - 1)
+    /// MPSCNNNeuronTypeExponential     ///
+    /// <
+    /// df/dx = [         a * exp(a * x + b), if c == -1
+    /// [ a * log(c) * c^(a * x + b), if c != -1
+    /// MPSCNNNeuronTypeLogarithm       ///
+    /// <
+    /// df/dx = [            a / (a * in + b), if c == -1
+    /// [ a / (log(c) * (a * in + b)), if c != -1
+    /// MPSCNNNeuronTypeGeLU            ///
+    /// <
+    /// df/dx = 0.5 * (1.0 + erf(x * sqrt(0.5))) + (sqrt(0.5) * M_2_SQRTPI * exp(-x*x * 0.5) * x) )
+    ///
+    /// The result of the above operation is multiplied with the gradient, computed
+    /// by the preceeding filter (going backwards).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurongradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -250,6 +529,17 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Initialize the neuron gradient filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuronGradient retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuronGradient object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -257,6 +547,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -270,6 +573,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -291,7 +602,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronlinear?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the linear neuron filter. For each pixel, applies the following function: f(x) = a * x + b
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronlinear?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -318,6 +633,15 @@ unsafe impl NSSecureCoding for MPSCNNNeuronLinear {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronLinear {
+        /// Initialize the linear neuron filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `a`: Filter property "a". See class discussion.
+        ///
+        /// Parameter `b`: Filter property "b". See class discussion.
+        ///
+        /// Returns: A valid MPSCNNNeuronLinear object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:a:b:)]
         pub unsafe fn initWithDevice_a_b(
@@ -339,6 +663,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronLinear {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -346,6 +681,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -359,6 +707,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronLinear {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -380,7 +736,17 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelu?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the ReLU neuron filter.
+    /// For each pixel, applies the following function: f(x) = x, if x >= 0
+    /// = a * x if x
+    /// <
+    /// 0
+    /// This is called Leaky ReLU in literature. Some literature defines
+    /// classical ReLU as max(0, x). If you want this behavior, simply pass a = 0
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelu?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -407,6 +773,13 @@ unsafe impl NSSecureCoding for MPSCNNNeuronReLU {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronReLU {
+        /// Initialize the ReLU neuron filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `a`: Filter property "a". See class discussion.
+        ///
+        /// Returns: A valid MPSCNNNeuronReLU object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:a:)]
         pub unsafe fn initWithDevice_a(
@@ -427,6 +800,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronReLU {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -434,6 +818,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -447,6 +844,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronReLU {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -468,7 +873,19 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronprelu?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the parametric ReLU neuron filter.
+    /// For each pixel, applies the following function: f(x_i) = x_i, if x_i >= 0
+    /// = a_i * x_i if x_i
+    /// <
+    /// 0
+    /// i in [0...channels-1]
+    /// i.e. parameters a_i are learned and applied to each channel separately. Compare
+    /// this to ReLu where parameter a is shared across all channels.
+    /// See https://arxiv.org/pdf/1502.01852.pdf for details.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronprelu?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -495,6 +912,16 @@ unsafe impl NSSecureCoding for MPSCNNNeuronPReLU {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronPReLU {
+        /// Initialize the PReLU neuron filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `a`: Array of floats containing per channel value of PReLu parameter
+        ///
+        /// Parameter `count`: Number of float values in array a.
+        /// This usually corresponds to number of output channels in convolution layer
+        ///
+        /// Returns: A valid MPSCNNNeuronPReLU object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:a:count:)]
         pub unsafe fn initWithDevice_a_count(
@@ -516,6 +943,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronPReLU {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -523,6 +961,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -536,6 +987,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronPReLU {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -557,7 +1016,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsigmoid?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the sigmoid neuron filter.  For each pixel, applies the following function: f(x) = 1 / (1 + e^-x)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsigmoid?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -584,6 +1047,11 @@ unsafe impl NSSecureCoding for MPSCNNNeuronSigmoid {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronSigmoid {
+        /// Initialize a neuron filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSCNNNeuronSigmoid object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -597,6 +1065,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronSigmoid {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -604,6 +1083,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -617,6 +1109,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronSigmoid {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -638,7 +1138,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronhardsigmoid?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the hard sigmoid neuron filter.  For each pixel, applies the following function: f(x) = clamp((a * x) + b, 0, 1)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronhardsigmoid?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -665,6 +1169,15 @@ unsafe impl NSSecureCoding for MPSCNNNeuronHardSigmoid {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronHardSigmoid {
+        /// Initialize a neuron filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `a`: Filter property "a". See class discussion.
+        ///
+        /// Parameter `b`: Filter property "b". See class discussion.
+        ///
+        /// Returns: A valid MPSCNNNeuronHardSigmoid object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:a:b:)]
         pub unsafe fn initWithDevice_a_b(
@@ -686,6 +1199,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronHardSigmoid {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -693,6 +1217,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -706,6 +1243,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronHardSigmoid {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -727,7 +1272,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontanh?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the hyperbolic tangent neuron filter.
+    /// For each pixel, applies the following function: f(x) = a * tanh(b * x)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontanh?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -754,6 +1304,15 @@ unsafe impl NSSecureCoding for MPSCNNNeuronTanH {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronTanH {
+        /// Initialize the hyperbolic tangent neuron filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `a`: Filter property "a". See class discussion.
+        ///
+        /// Parameter `b`: Filter property "b". See class discussion.
+        ///
+        /// Returns: A valid MPSCNNNeuronTanH object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:a:b:)]
         pub unsafe fn initWithDevice_a_b(
@@ -775,6 +1334,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronTanH {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -782,6 +1352,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -795,6 +1378,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronTanH {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -816,7 +1407,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronabsolute?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the absolute neuron filter.  For each pixel, applies the following function: f(x) = | x |
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronabsolute?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -843,6 +1438,11 @@ unsafe impl NSSecureCoding for MPSCNNNeuronAbsolute {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronAbsolute {
+        /// Initialize a neuron filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSCNNNeuronAbsolute object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -856,6 +1456,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronAbsolute {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -863,6 +1474,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -876,6 +1500,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronAbsolute {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -897,7 +1529,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsoftplus?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the parametric softplus neuron filter.
+    /// For each pixel, applies the following function: f(x) = a * log(1 + e^(b * x))
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsoftplus?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -924,6 +1561,15 @@ unsafe impl NSSecureCoding for MPSCNNNeuronSoftPlus {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronSoftPlus {
+        /// Initialize a parametric softplus neuron filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `a`: Filter property "a". See class discussion.
+        ///
+        /// Parameter `b`: Filter property "b". See class discussion.
+        ///
+        /// Returns: A valid MPSCNNNeuronSoftPlus object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:a:b:)]
         pub unsafe fn initWithDevice_a_b(
@@ -945,6 +1591,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronSoftPlus {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -952,6 +1609,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -965,6 +1635,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronSoftPlus {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -986,7 +1664,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsoftsign?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the softsign neuron filter.
+    /// For each pixel, applies the following function: f(x) = x / (1 + abs(x))
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsoftsign?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -1013,6 +1696,11 @@ unsafe impl NSSecureCoding for MPSCNNNeuronSoftSign {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronSoftSign {
+        /// Initialize a softsign neuron filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Returns: A valid MPSCNNNeuronSoftSign object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -1026,6 +1714,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronSoftSign {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1033,6 +1732,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1046,6 +1758,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronSoftSign {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1067,7 +1787,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronelu?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the parametric ELU neuron filter.
+    /// For each pixel, applies the following function: f(x) = [ a * (exp(x) - 1), x
+    /// <
+    /// 0
+    /// [ x               , x >= 0
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronelu?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -1094,6 +1822,13 @@ unsafe impl NSSecureCoding for MPSCNNNeuronELU {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronELU {
+        /// Initialize a parametric ELU neuron filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `a`: Filter property "a". See class discussion.
+        ///
+        /// Returns: A valid MPSCNNNeuronELU object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:a:)]
         pub unsafe fn initWithDevice_a(
@@ -1114,6 +1849,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronELU {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1121,6 +1867,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1134,6 +1893,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronELU {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1155,7 +1922,19 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelun?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the ReLUN neuron filter.
+    /// For each pixel, applies the following function: f(x) = [ x    , x >= 0
+    /// [ a * x, x
+    /// <
+    /// 0
+    /// [ b    , x >= b
+    /// As an example, the TensorFlow Relu6 activation layer can be implemented
+    /// by setting the parameter b to 6.0f:
+    /// https://www.tensorflow.org/api_docs/cc/class/tensorflow/ops/relu6.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelun?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -1182,6 +1961,15 @@ unsafe impl NSSecureCoding for MPSCNNNeuronReLUN {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronReLUN {
+        /// Initialize a ReLUN neuron filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `a`: Filter property "a". See class discussion.
+        ///
+        /// Parameter `b`: Filter property "b". See class discussion.
+        ///
+        /// Returns: A valid MPSCNNNeuronReLUN object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:a:b:)]
         pub unsafe fn initWithDevice_a_b(
@@ -1203,6 +1991,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronReLUN {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1210,6 +2009,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1223,6 +2035,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronReLUN {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1244,7 +2064,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronpower?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the Power neuron filter.
+    /// For each pixel, applies the following function: f(x) = (a * x + b) ^ c.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronpower?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -1271,6 +2096,17 @@ unsafe impl NSSecureCoding for MPSCNNNeuronPower {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronPower {
+        /// Initialize a Power neuron filter.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `a`: Filter property "a". See class discussion.
+        ///
+        /// Parameter `b`: Filter property "b". See class discussion.
+        ///
+        /// Parameter `c`: Filter property "c". See class discussion.
+        ///
+        /// Returns: A valid MPSCNNNeuronPower object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:a:b:c:)]
         pub unsafe fn initWithDevice_a_b_c(
@@ -1293,6 +2129,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronPower {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1300,6 +2147,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1313,6 +2173,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronPower {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1334,7 +2202,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronexponential?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the Exponential neuron filter.
+    /// For each pixel, applies the following function: f(x) = c ^ (a * x + b).
+    ///
+    /// If the value of c is -1.0f, the base (c) is set to e.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronexponential?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -1361,6 +2236,17 @@ unsafe impl NSSecureCoding for MPSCNNNeuronExponential {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronExponential {
+        /// Initialize a Exponential neuron filter.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `a`: Filter property "a". See class discussion.
+        ///
+        /// Parameter `b`: Filter property "b". See class discussion.
+        ///
+        /// Parameter `c`: Filter property "c". See class discussion.
+        ///
+        /// Returns: A valid MPSCNNNeuronExponential object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:a:b:c:)]
         pub unsafe fn initWithDevice_a_b_c(
@@ -1383,6 +2269,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronExponential {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1390,6 +2287,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1403,6 +2313,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronExponential {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1424,7 +2342,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronlogarithm?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    /// Specifies the Logarithm neuron filter.
+    /// For each pixel, applies the following function: f(x) = log_c(a * x + b).
+    ///
+    /// If the value of c is -1.0f, the base (c) is set to e.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronlogarithm?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -1451,6 +2376,17 @@ unsafe impl NSSecureCoding for MPSCNNNeuronLogarithm {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronLogarithm {
+        /// Initialize a Logarithm neuron filter.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `a`: Filter property "a". See class discussion.
+        ///
+        /// Parameter `b`: Filter property "b". See class discussion.
+        ///
+        /// Parameter `c`: Filter property "c". See class discussion.
+        ///
+        /// Returns: A valid MPSCNNNeuronLogarithm object or nil, if failure.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:a:b:c:)]
         pub unsafe fn initWithDevice_a_b_c(
@@ -1473,6 +2409,17 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNNeuron`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronLogarithm {
+        /// Initialize the neuron filter with a neuron descriptor.
+        ///
+        /// Parameter `device`: The device the filter will run on.
+        ///
+        /// Parameter `neuronDescriptor`: The neuron descriptor.
+        /// For the neuron of type MPSCNNNeuronTypePReLU, the neuron
+        /// descriptor references an NSData object containing a float array
+        /// with the per feature channel value of PReLu parameter and, in this
+        /// case, the MPSCNNNeuron retains the NSData object.
+        ///
+        /// Returns: A valid MPSCNNNeuron object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:neuronDescriptor:)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1480,6 +2427,19 @@ extern_methods!(
             neuron_descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1493,6 +2453,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronLogarithm {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

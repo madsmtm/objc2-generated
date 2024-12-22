@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdictionary?language=objc)
+    /// **************    Immutable Dictionary    ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdictionary?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSDictionary<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
@@ -245,6 +247,7 @@ extern_methods!(
 extern_methods!(
     /// NSDeprecated
     unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
+        /// This method is unsafe because it could potentially cause buffer overruns. You should use -getObjects:andKeys:count:
         #[deprecated = "Use -getObjects:andKeys:count: instead"]
         #[method(getObjects:andKeys:)]
         pub unsafe fn getObjects_andKeys(
@@ -414,7 +417,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutabledictionary?language=objc)
+    /// **************    Mutable Dictionary    ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutabledictionary?language=objc)
     #[unsafe(super(NSDictionary<KeyType, ObjectType, >, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableDictionary<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;

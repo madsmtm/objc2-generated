@@ -6,13 +6,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetref?language=objc)
+/// This is the type of a reference to immutable CFCharacterSets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetref?language=objc)
 pub type CFCharacterSetRef = *const c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablecharactersetref?language=objc)
+/// This is the type of a reference to mutable CFMutableCharacterSets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablecharactersetref?language=objc)
 pub type CFMutableCharacterSetRef = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset?language=objc)
+/// Type of the predefined CFCharacterSet selector values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset?language=objc)
 // NS_ENUM
 #[cfg(feature = "CFBase")]
 #[repr(transparent)]
@@ -48,11 +54,21 @@ unsafe impl RefEncode for CFCharacterSetPredefinedSet {
 }
 
 extern "C-unwind" {
+    /// Returns the type identifier of all CFCharacterSet instances.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
+    /// Returns a predefined CFCharacterSet instance.
+    ///
+    /// Parameter `theSetIdentifier`: The CFCharacterSetPredefinedSet selector
+    /// which specifies the predefined character set.  If the
+    /// value is not in CFCharacterSetPredefinedSet, the behavior
+    /// is undefined.
+    ///
+    /// Returns: A reference to the predefined immutable CFCharacterSet.
+    /// This instance is owned by CF.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetGetPredefined(
         the_set_identifier: CFCharacterSetPredefinedSet,
@@ -60,6 +76,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new immutable character set with the values from the given range.
+    ///
+    /// Parameter `alloc`: The CFAllocator which should be used to allocate
+    /// memory for the array and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `theRange`: The CFRange which should be used to specify the
+    /// Unicode range the character set is filled with.  It
+    /// accepts the range in 32-bit in the UTF-32 format.  The
+    /// valid character point range is from 0x00000 to 0x10FFFF.
+    /// If the range is outside of the valid Unicode character
+    /// point, the behavior is undefined.
+    ///
+    /// Returns: A reference to the new immutable CFCharacterSet.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetCreateWithCharactersInRange(
         alloc: CFAllocatorRef,
@@ -68,6 +100,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new immutable character set with the values in the given string.
+    ///
+    /// Parameter `alloc`: The CFAllocator which should be used to allocate
+    /// memory for the array and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `theString`: The CFString which should be used to specify
+    /// the Unicode characters the character set is filled with.
+    /// If this parameter is not a valid CFString, the behavior
+    /// is undefined.
+    ///
+    /// Returns: A reference to the new immutable CFCharacterSet.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetCreateWithCharactersInString(
         alloc: CFAllocatorRef,
@@ -76,6 +122,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new immutable character set with the bitmap representtion in the given data.
+    ///
+    /// Parameter `alloc`: The CFAllocator which should be used to allocate
+    /// memory for the array and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `theData`: The CFData which should be used to specify the
+    /// bitmap representation of the Unicode character points
+    /// the character set is filled with.  The bitmap
+    /// representation could contain all the Unicode character
+    /// range starting from BMP to Plane 16.  The first 8192 bytes
+    /// of the data represent the BMP range.  The BMP range 8192
+    /// bytes can be followed by zero to sixteen 8192 byte
+    /// bitmaps, each one with the plane index byte prepended.
+    /// For example, the bitmap representing the BMP and Plane 2
+    /// has the size of 16385 bytes (8192 bytes for BMP, 1 byte
+    /// index + 8192 bytes bitmap for Plane 2).  The plane index
+    /// byte, in this case, contains the integer value two.  If
+    /// this parameter is not a valid CFData or it contains a
+    /// Plane index byte outside of the valid Plane range
+    /// (1 to 16), the behavior is undefined.
+    ///
+    /// Returns: A reference to the new immutable CFCharacterSet.
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
     pub fn CFCharacterSetCreateWithBitmapRepresentation(
         alloc: CFAllocatorRef,
@@ -84,6 +155,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new immutable character set that is the invert of the specified character set.
+    ///
+    /// Parameter `alloc`: The CFAllocator which should be used to allocate
+    /// memory for the array and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `theSet`: The CFCharacterSet which is to be inverted.  If this
+    /// parameter is not a valid CFCharacterSet, the behavior is
+    /// undefined.
+    ///
+    /// Returns: A reference to the new immutable CFCharacterSet.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetCreateInvertedSet(
         alloc: CFAllocatorRef,
@@ -92,6 +176,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Reports whether or not the character set is a superset of the character set specified as the second parameter.
+    ///
+    /// Parameter `theSet`: The character set to be checked for the membership of theOtherSet.
+    /// If this parameter is not a valid CFCharacterSet, the behavior is undefined.
+    ///
+    /// Parameter `theOtherset`: The character set to be checked whether or not it is a subset of theSet.
+    /// If this parameter is not a valid CFCharacterSet, the behavior is undefined.
     pub fn CFCharacterSetIsSupersetOfSet(
         the_set: CFCharacterSetRef,
         the_otherset: CFCharacterSetRef,
@@ -99,6 +190,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Reports whether or not the character set contains at least one member character in the specified plane.
+    ///
+    /// Parameter `theSet`: The character set to be checked for the membership.  If this
+    /// parameter is not a valid CFCharacterSet, the behavior is undefined.
+    ///
+    /// Parameter `thePlane`: The plane number to be checked for the membership.
+    /// The valid value range is from 0 to 16.  If the value is outside of the valid
+    /// plane number range, the behavior is undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetHasMemberInPlane(
         the_set: CFCharacterSetRef,
@@ -107,11 +206,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new empty mutable character set.
+    ///
+    /// Parameter `alloc`: The CFAllocator which should be used to allocate
+    /// memory for the array and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Returns: A reference to the new mutable CFCharacterSet.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetCreateMutable(alloc: CFAllocatorRef) -> CFMutableCharacterSetRef;
 }
 
 extern "C-unwind" {
+    /// Creates a new character set with the values from the given character set.  This function tries to compact the backing store where applicable.
+    ///
+    /// Parameter `alloc`: The CFAllocator which should be used to allocate
+    /// memory for the array and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `theSet`: The CFCharacterSet which is to be copied.  If this
+    /// parameter is not a valid CFCharacterSet, the behavior is
+    /// undefined.
+    ///
+    /// Returns: A reference to the new CFCharacterSet.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetCreateCopy(
         alloc: CFAllocatorRef,
@@ -120,6 +241,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new mutable character set with the values from the given character set.
+    ///
+    /// Parameter `alloc`: The CFAllocator which should be used to allocate
+    /// memory for the array and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `theSet`: The CFCharacterSet which is to be copied.  If this
+    /// parameter is not a valid CFCharacterSet, the behavior is
+    /// undefined.
+    ///
+    /// Returns: A reference to the new mutable CFCharacterSet.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetCreateMutableCopy(
         alloc: CFAllocatorRef,
@@ -128,6 +262,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Reports whether or not the Unicode character is in the character set.
+    ///
+    /// Parameter `theSet`: The character set to be searched. If this parameter
+    /// is not a valid CFCharacterSet, the behavior is undefined.
+    ///
+    /// Parameter `theChar`: The Unicode character for which to test against the
+    /// character set.  Note that this function takes 16-bit Unicode
+    /// character value; hence, it does not support access to the
+    /// non-BMP planes.
+    ///
+    /// Returns: true, if the value is in the character set, otherwise false.
     pub fn CFCharacterSetIsCharacterMember(
         the_set: CFCharacterSetRef,
         the_char: UniChar,
@@ -135,6 +280,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Reports whether or not the UTF-32 character is in the character set.
+    ///
+    /// Parameter `theSet`: The character set to be searched. If this parameter
+    /// is not a valid CFCharacterSet, the behavior is undefined.
+    ///
+    /// Parameter `theChar`: The UTF-32 character for which to test against the
+    /// character set.
+    ///
+    /// Returns: true, if the value is in the character set, otherwise false.
     pub fn CFCharacterSetIsLongCharacterMember(
         the_set: CFCharacterSetRef,
         the_char: UTF32Char,
@@ -142,6 +296,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new immutable data with the bitmap representation from the given character set.
+    ///
+    /// Parameter `alloc`: The CFAllocator which should be used to allocate
+    /// memory for the array and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `theSet`: The CFCharacterSet which is to be used create the
+    /// bitmap representation from.  Refer to the comments for
+    /// CFCharacterSetCreateWithBitmapRepresentation for the
+    /// detailed discussion of the bitmap representation format.
+    /// If this parameter is not a valid CFCharacterSet, the
+    /// behavior is undefined.
+    ///
+    /// Returns: A reference to the new immutable CFData.
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
     pub fn CFCharacterSetCreateBitmapRepresentation(
         alloc: CFAllocatorRef,
@@ -150,6 +320,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds the given range to the charaacter set.
+    ///
+    /// Parameter `theSet`: The character set to which the range is to be added.
+    /// If this parameter is not a valid mutable CFCharacterSet,
+    /// the behavior is undefined.
+    ///
+    /// Parameter `theRange`: The range to add to the character set.  It accepts
+    /// the range in 32-bit in the UTF-32 format.  The valid
+    /// character point range is from 0x00000 to 0x10FFFF.  If the
+    /// range is outside of the valid Unicode character point,
+    /// the behavior is undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetAddCharactersInRange(
         the_set: CFMutableCharacterSetRef,
@@ -158,6 +339,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes the given range from the charaacter set.
+    ///
+    /// Parameter `theSet`: The character set from which the range is to be
+    /// removed.  If this parameter is not a valid mutable
+    /// CFCharacterSet, the behavior is undefined.
+    ///
+    /// Parameter `theRange`: The range to remove from the character set.
+    /// It accepts the range in 32-bit in the UTF-32 format.
+    /// The valid character point range is from 0x00000 to 0x10FFFF.
+    /// If the range is outside of the valid Unicode character point,
+    /// the behavior is undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetRemoveCharactersInRange(
         the_set: CFMutableCharacterSetRef,
@@ -166,6 +358,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds the characters in the given string to the charaacter set.
+    ///
+    /// Parameter `theSet`: The character set to which the characters in the
+    /// string are to be added.  If this parameter is not a
+    /// valid mutable CFCharacterSet, the behavior is undefined.
+    ///
+    /// Parameter `theString`: The string to add to the character set.
+    /// If this parameter is not a valid CFString, the behavior
+    /// is undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetAddCharactersInString(
         the_set: CFMutableCharacterSetRef,
@@ -174,6 +375,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes the characters in the given string from the charaacter set.
+    ///
+    /// Parameter `theSet`: The character set from which the characters in the
+    /// string are to be remove.  If this parameter is not a
+    /// valid mutable CFCharacterSet, the behavior is undefined.
+    ///
+    /// Parameter `theString`: The string to remove from the character set.
+    /// If this parameter is not a valid CFString, the behavior
+    /// is undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetRemoveCharactersInString(
         the_set: CFMutableCharacterSetRef,
@@ -182,10 +392,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Forms the union with the given character set.
+    ///
+    /// Parameter `theSet`: The destination character set into which the
+    /// union of the two character sets is stored.  If this
+    /// parameter is not a valid mutable CFCharacterSet, the
+    /// behavior is undefined.
+    ///
+    /// Parameter `theOtherSet`: The character set with which the union is
+    /// formed.  If this parameter is not a valid CFCharacterSet,
+    /// the behavior is undefined.
     pub fn CFCharacterSetUnion(the_set: CFMutableCharacterSetRef, the_other_set: CFCharacterSetRef);
 }
 
 extern "C-unwind" {
+    /// Forms the intersection with the given character set.
+    ///
+    /// Parameter `theSet`: The destination character set into which the
+    /// intersection of the two character sets is stored.
+    /// If this parameter is not a valid mutable CFCharacterSet,
+    /// the behavior is undefined.
+    ///
+    /// Parameter `theOtherSet`: The character set with which the intersection
+    /// is formed.  If this parameter is not a valid CFCharacterSet,
+    /// the behavior is undefined.
     pub fn CFCharacterSetIntersect(
         the_set: CFMutableCharacterSetRef,
         the_other_set: CFCharacterSetRef,
@@ -193,5 +423,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Inverts the content of the given character set.
+    ///
+    /// Parameter `theSet`: The character set to be inverted.
+    /// If this parameter is not a valid mutable CFCharacterSet,
+    /// the behavior is undefined.
     pub fn CFCharacterSetInvert(the_set: CFMutableCharacterSetRef);
 }

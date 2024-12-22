@@ -27,18 +27,21 @@ extern_methods!(
         #[method(buttonMask)]
         pub unsafe fn buttonMask(&self) -> NSUInteger;
 
+        /// Setter for [`buttonMask`][Self::buttonMask].
         #[method(setButtonMask:)]
         pub unsafe fn setButtonMask(&self, button_mask: NSUInteger);
 
         #[method(numberOfClicksRequired)]
         pub unsafe fn numberOfClicksRequired(&self) -> NSInteger;
 
+        /// Setter for [`numberOfClicksRequired`][Self::numberOfClicksRequired].
         #[method(setNumberOfClicksRequired:)]
         pub unsafe fn setNumberOfClicksRequired(&self, number_of_clicks_required: NSInteger);
 
         #[method(numberOfTouchesRequired)]
         pub unsafe fn numberOfTouchesRequired(&self) -> NSInteger;
 
+        /// Setter for [`numberOfTouchesRequired`][Self::numberOfTouchesRequired].
         #[method(setNumberOfTouchesRequired:)]
         pub unsafe fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSInteger);
     }

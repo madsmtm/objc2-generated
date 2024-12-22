@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdirectorysharingdeviceconfiguration?language=objc)
+    /// Base class for a directory sharing device configuration.
+    ///
+    /// VZDirectorySharingDeviceConfiguration should not be instantiated directly.
+    /// One of its subclasses like VZVirtioFileSystemDeviceConfiguration should be used instead.
+    ///
+    ///
+    /// See: VZVirtioFileSystemDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdirectorysharingdeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZDirectorySharingDeviceConfiguration;

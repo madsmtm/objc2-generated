@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledeviceserialportconfiguration?language=objc)
+    /// Virtio Console Serial Port Device
+    ///
+    /// The device creates a console which enables communication between the host and the guest through the Virtio interface.
+    ///
+    /// The device sets up a single port on the Virtio console device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledeviceserialportconfiguration?language=objc)
     #[unsafe(super(VZSerialPortConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZSerialPortConfiguration")]

@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitysummary?language=objc)
+    /// An object that represents a summary of a user's activity for a given day.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitysummary?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKActivitySummary;
@@ -28,6 +30,9 @@ unsafe impl NSSecureCoding for HKActivitySummary {}
 
 extern_methods!(
     unsafe impl HKActivitySummary {
+        /// The date components representing the day for this particular HKActivitySummary.
+        ///
+        /// These date components will contain era, year, month, and day components in the provided calendar.
         #[method_id(@__retain_semantics Other dateComponentsForCalendar:)]
         pub unsafe fn dateComponentsForCalendar(
             &self,
@@ -35,100 +40,151 @@ extern_methods!(
         ) -> Retained<NSDateComponents>;
 
         #[cfg(feature = "HKCharacteristicValues")]
+        /// The move mode of this activity summary
+        ///
+        /// The move mode of an activity summary determines if activeEnergyBurned or appleMoveTime are used for the move ring.
         #[method(activityMoveMode)]
         pub unsafe fn activityMoveMode(&self) -> HKActivityMoveMode;
 
         #[cfg(feature = "HKCharacteristicValues")]
+        /// Setter for [`activityMoveMode`][Self::activityMoveMode].
         #[method(setActivityMoveMode:)]
         pub unsafe fn setActivityMoveMode(&self, activity_move_mode: HKActivityMoveMode);
 
+        /// The paused state of this activity summary
+        ///
+        /// The paused state of an activity summary indicates if the user is tracking their rings for the given day.
         #[method(isPaused)]
         pub unsafe fn isPaused(&self) -> bool;
 
+        /// Setter for [`isPaused`][Self::isPaused].
         #[method(setPaused:)]
         pub unsafe fn setPaused(&self, paused: bool);
 
         #[cfg(feature = "HKQuantity")]
+        /// The amount of active energy that the user burned.
+        ///
+        /// This quantity is compatible with energy units.
         #[method_id(@__retain_semantics Other activeEnergyBurned)]
         pub unsafe fn activeEnergyBurned(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Setter for [`activeEnergyBurned`][Self::activeEnergyBurned].
         #[method(setActiveEnergyBurned:)]
         pub unsafe fn setActiveEnergyBurned(&self, active_energy_burned: &HKQuantity);
 
         #[cfg(feature = "HKQuantity")]
+        /// The amount of move time that the user performed.
+        ///
+        /// This quantity is compatible with time units. The measurement criteria of
+        /// move time time is defined by Apple.
         #[method_id(@__retain_semantics Other appleMoveTime)]
         pub unsafe fn appleMoveTime(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Setter for [`appleMoveTime`][Self::appleMoveTime].
         #[method(setAppleMoveTime:)]
         pub unsafe fn setAppleMoveTime(&self, apple_move_time: &HKQuantity);
 
         #[cfg(feature = "HKQuantity")]
+        /// The amount of exercise time that the user performed.
+        ///
+        /// This quantity is compatible with time units. The measurement criteria of
+        /// exercise time is defined by Apple.
         #[method_id(@__retain_semantics Other appleExerciseTime)]
         pub unsafe fn appleExerciseTime(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Setter for [`appleExerciseTime`][Self::appleExerciseTime].
         #[method(setAppleExerciseTime:)]
         pub unsafe fn setAppleExerciseTime(&self, apple_exercise_time: &HKQuantity);
 
         #[cfg(feature = "HKQuantity")]
+        /// The number of stand hours that the user earned.
+        ///
+        /// This quantity is compatible with the count unit. The measurement criteria of
+        /// stand hours is defined by Apple.
         #[method_id(@__retain_semantics Other appleStandHours)]
         pub unsafe fn appleStandHours(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Setter for [`appleStandHours`][Self::appleStandHours].
         #[method(setAppleStandHours:)]
         pub unsafe fn setAppleStandHours(&self, apple_stand_hours: &HKQuantity);
 
         #[cfg(feature = "HKQuantity")]
+        /// The user's active energy goal for the day.
+        ///
+        /// This quantity is compatible with energy units.
         #[method_id(@__retain_semantics Other activeEnergyBurnedGoal)]
         pub unsafe fn activeEnergyBurnedGoal(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Setter for [`activeEnergyBurnedGoal`][Self::activeEnergyBurnedGoal].
         #[method(setActiveEnergyBurnedGoal:)]
         pub unsafe fn setActiveEnergyBurnedGoal(&self, active_energy_burned_goal: &HKQuantity);
 
         #[cfg(feature = "HKQuantity")]
+        /// The user's move time goal for the day.
+        ///
+        /// This quantity is compatible with time units.
         #[method_id(@__retain_semantics Other appleMoveTimeGoal)]
         pub unsafe fn appleMoveTimeGoal(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Setter for [`appleMoveTimeGoal`][Self::appleMoveTimeGoal].
         #[method(setAppleMoveTimeGoal:)]
         pub unsafe fn setAppleMoveTimeGoal(&self, apple_move_time_goal: &HKQuantity);
 
         #[cfg(feature = "HKQuantity")]
+        /// The user's exercise time goal for the day.
+        ///
+        /// This quantity is compatible with time units.
         #[deprecated]
         #[method_id(@__retain_semantics Other appleExerciseTimeGoal)]
         pub unsafe fn appleExerciseTimeGoal(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Setter for [`appleExerciseTimeGoal`][Self::appleExerciseTimeGoal].
         #[deprecated]
         #[method(setAppleExerciseTimeGoal:)]
         pub unsafe fn setAppleExerciseTimeGoal(&self, apple_exercise_time_goal: &HKQuantity);
 
         #[cfg(feature = "HKQuantity")]
+        /// The user's exercise time goal for the day.
+        ///
+        /// This quantity is compatible with time units.
         #[method_id(@__retain_semantics Other exerciseTimeGoal)]
         pub unsafe fn exerciseTimeGoal(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Setter for [`exerciseTimeGoal`][Self::exerciseTimeGoal].
         #[method(setExerciseTimeGoal:)]
         pub unsafe fn setExerciseTimeGoal(&self, exercise_time_goal: Option<&HKQuantity>);
 
         #[cfg(feature = "HKQuantity")]
+        /// The user's active stand hours goal for the day.
+        ///
+        /// This quantity is compatible with the count unit.
         #[deprecated]
         #[method_id(@__retain_semantics Other appleStandHoursGoal)]
         pub unsafe fn appleStandHoursGoal(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Setter for [`appleStandHoursGoal`][Self::appleStandHoursGoal].
         #[deprecated]
         #[method(setAppleStandHoursGoal:)]
         pub unsafe fn setAppleStandHoursGoal(&self, apple_stand_hours_goal: &HKQuantity);
 
         #[cfg(feature = "HKQuantity")]
+        /// The user's active stand hours goal for the day.
+        ///
+        /// This quantity is compatible with the count unit.
         #[method_id(@__retain_semantics Other standHoursGoal)]
         pub unsafe fn standHoursGoal(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Setter for [`standHoursGoal`][Self::standHoursGoal].
         #[method(setStandHoursGoal:)]
         pub unsafe fn setStandHoursGoal(&self, stand_hours_goal: Option<&HKQuantity>);
     }

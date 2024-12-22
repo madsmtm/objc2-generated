@@ -22,17 +22,24 @@ unsafe impl NSObjectProtocol for UICalendarSelectionSingleDate {}
 extern_methods!(
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionSingleDate {
+        /// The object that acts as the delegate of the calendar view selection
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICalendarSelectionSingleDateDelegate>>>;
 
+        /// The currently selected dates in the Calendar view. If this property is
+        /// `nil`then nothing in the calendar
+        /// view is currently selected. The default value is
+        /// `nil.`
         #[method_id(@__retain_semantics Other selectedDate)]
         pub unsafe fn selectedDate(&self) -> Option<Retained<NSDateComponents>>;
 
+        /// Setter for [`selectedDate`][Self::selectedDate].
         #[method(setSelectedDate:)]
         pub unsafe fn setSelectedDate(&self, selected_date: Option<&NSDateComponents>);
 
+        /// Sets the selected date to be displayed in the calendar, with an option to animate the setting.
         #[method(setSelectedDate:animated:)]
         pub unsafe fn setSelectedDate_animated(
             &self,
@@ -40,6 +47,7 @@ extern_methods!(
             animated: bool,
         );
 
+        /// Creates a new single selection with the specified delegate.
         #[method_id(@__retain_semantics Init initWithDelegate:)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
@@ -64,6 +72,14 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselectionsingledatedelegate?language=objc)
     pub unsafe trait UICalendarSelectionSingleDateDelegate: NSObjectProtocol {
         #[cfg(feature = "UICalendarSelection")]
+        /// Called after the user selects a date in the calendar view.
+        ///
+        ///
+        /// Parameter `selection`: The
+        /// `UICalendarSelectionMultiDate`
+        /// Parameter `dateComponents`: The date that was selected by the user.
+        /// `dateComponents`can be
+        /// `nil`when the selected date is deselected by the user.
         #[method(dateSelection:didSelectDate:)]
         unsafe fn dateSelection_didSelectDate(
             &self,
@@ -72,6 +88,18 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UICalendarSelection")]
+        /// Determines if a date is selectable. Dates that are not selectable will be disabled in the calendar view.
+        /// By default,
+        /// `dateSelection:canSelectDate:`returns YES if dateComponents is non-nil.
+        ///
+        ///
+        /// Parameter `selection`: The
+        /// `UICalendarSelectionMultiDate`
+        /// Parameter `dateComponents`: The date to be checked by selection; a
+        /// `nil`date represents a deselected date.
+        ///
+        ///
+        /// Returns: YES if the date can be selected, NO otherwise.
         #[optional]
         #[method(dateSelection:canSelectDate:)]
         unsafe fn dateSelection_canSelectDate(

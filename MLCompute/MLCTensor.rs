@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctensor?language=objc)
+    /// A tensor object
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctensor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -25,38 +27,51 @@ unsafe impl NSObjectProtocol for MLCTensor {}
 
 extern_methods!(
     unsafe impl MLCTensor {
+        /// The tensor ID
+        ///
+        /// A unique number to identify each tensor.  Assigned when the tensor is created.
         #[deprecated]
         #[method(tensorID)]
         pub unsafe fn tensorID(&self) -> NSUInteger;
 
         #[cfg(feature = "MLCTensorDescriptor")]
+        /// The tensor descriptor
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MLCTensorDescriptor>;
 
+        /// The tensor data
         #[deprecated]
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
+        /// A string to help identify this object.
         #[deprecated]
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
+        /// Setter for [`label`][Self::label].
         #[deprecated]
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
         #[cfg(feature = "MLCDevice")]
+        /// The device associated with this tensor.
         #[deprecated]
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Option<Retained<MLCDevice>>;
 
         #[cfg(feature = "MLCTensorData")]
+        /// These are the host side optimizer (momentum and velocity) buffers which developers can query and initialize
+        ///
+        /// When customizing optimizer data, the contents of these buffers must be initialized before executing optimizer
+        /// update for a graph.
         #[deprecated]
         #[method_id(@__retain_semantics Other optimizerData)]
         pub unsafe fn optimizerData(&self) -> Retained<NSArray<MLCTensorData>>;
 
         #[cfg(feature = "MLCTensorOptimizerDeviceData")]
+        /// These are the device side optimizer (momentum and velocity) buffers which developers can query
         #[deprecated]
         #[method_id(@__retain_semantics Other optimizerDeviceData)]
         pub unsafe fn optimizerDeviceData(&self)
@@ -71,6 +86,11 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensorDescriptor")]
+        /// Create a MLCTensor object
+        ///
+        /// Create a tensor object without any data
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithDescriptor:)]
         pub unsafe fn tensorWithDescriptor(
@@ -78,6 +98,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensorDescriptor", feature = "MLCTypes"))]
+        /// Create a MLCTensor object
+        ///
+        /// Create a tensor object initialized with a random initializer such as Glorot Uniform.
+        ///
+        /// Parameter `tensorDescriptor`: The tensor descriptor
+        ///
+        /// Parameter `randomInitializerType`: The random initializer type
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithDescriptor:randomInitializerType:)]
         pub unsafe fn tensorWithDescriptor_randomInitializerType(
@@ -86,6 +115,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensorDescriptor")]
+        /// Create a MLCTensor object
+        ///
+        /// Create a tensor object with a MLCTensorData object that specifies the tensor data buffer
+        ///
+        /// Parameter `tensorDescriptor`: The tensor descriptor
+        ///
+        /// Parameter `fillData`: The scalar data to fill to tensor with
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithDescriptor:fillWithData:)]
         pub unsafe fn tensorWithDescriptor_fillWithData(
@@ -94,6 +132,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensorData", feature = "MLCTensorDescriptor"))]
+        /// Create a MLCTensor object
+        ///
+        /// Create a tensor object with a MLCTensorData object that specifies the tensor data buffer
+        ///
+        /// Parameter `tensorDescriptor`: The tensor descriptor
+        ///
+        /// Parameter `data`: The random initializer type
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithDescriptor:data:)]
         pub unsafe fn tensorWithDescriptor_data(
@@ -101,11 +148,28 @@ extern_methods!(
             data: &MLCTensorData,
         ) -> Retained<Self>;
 
+        /// Create a MLCTensor object
+        ///
+        /// Create a tensor object without any data.  The tensor data type is MLCDataTypeFloat32.
+        ///
+        /// Parameter `shape`: The tensor shape
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithShape:)]
         pub unsafe fn tensorWithShape(shape: &NSArray<NSNumber>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensor object
+        ///
+        /// Create a tensor object initialized with a random initializer such as Glorot Uniform.
+        /// The tensor data type is MLCDataTypeFloat32
+        ///
+        /// Parameter `shape`: The tensor shape
+        ///
+        /// Parameter `randomInitializerType`: The random initializer type
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithShape:randomInitializerType:)]
         pub unsafe fn tensorWithShape_randomInitializerType(
@@ -114,6 +178,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensor object
+        ///
+        /// Create a tensor object initialized with a random initializer such as Glorot Uniform.
+        /// The tensor data type is MLCDataTypeFloat32
+        ///
+        /// Parameter `shape`: The tensor shape
+        ///
+        /// Parameter `randomInitializerType`: The random initializer type
+        ///
+        /// Parameter `dataType`: The tensor data type
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithShape:randomInitializerType:dataType:)]
         pub unsafe fn tensorWithShape_randomInitializerType_dataType(
@@ -123,6 +199,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensor object
+        ///
+        /// Create a tensor object without any data
+        ///
+        /// Parameter `shape`: The tensor shape
+        ///
+        /// Parameter `dataType`: The tensor data type
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithShape:dataType:)]
         pub unsafe fn tensorWithShape_dataType(
@@ -131,6 +216,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensorData", feature = "MLCTypes"))]
+        /// Create a MLCTensor object
+        ///
+        /// Create a tensor object with data
+        ///
+        /// Parameter `shape`: The tensor shape
+        ///
+        /// Parameter `data`: The tensor data
+        ///
+        /// Parameter `dataType`: The tensor data type
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithShape:data:dataType:)]
         pub unsafe fn tensorWithShape_data_dataType(
@@ -140,6 +236,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensor object
+        ///
+        /// Create a tensor object with data
+        ///
+        /// Parameter `shape`: The tensor shape
+        ///
+        /// Parameter `fillData`: The scalar value to initialize the tensor data with
+        ///
+        /// Parameter `dataType`: The tensor data type
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithShape:fillWithData:dataType:)]
         pub unsafe fn tensorWithShape_fillWithData_dataType(
@@ -148,6 +255,19 @@ extern_methods!(
             data_type: MLCDataType,
         ) -> Retained<Self>;
 
+        /// Create a MLCTensor  object
+        ///
+        /// Create a NCHW tensor object with tensor data type = MLCDataTypeFloat32
+        ///
+        /// Parameter `width`: The tensor width
+        ///
+        /// Parameter `height`: The tensor height
+        ///
+        /// Parameter `featureChannelCount`: Number of feature channels
+        ///
+        /// Parameter `batchSize`: The tensor batch size
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithWidth:height:featureChannelCount:batchSize:)]
         pub unsafe fn tensorWithWidth_height_featureChannelCount_batchSize(
@@ -158,6 +278,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensor  object
+        ///
+        /// Create a NCHW tensor object initialized with a scalar value
+        ///
+        /// Parameter `width`: The tensor width
+        ///
+        /// Parameter `height`: The tensor height
+        ///
+        /// Parameter `featureChannelCount`: Number of feature channels
+        ///
+        /// Parameter `batchSize`: The tensor batch size
+        ///
+        /// Parameter `fillData`: The scalar value to initialize the tensor data with
+        ///
+        /// Parameter `dataType`: The tensor data type
+        ///
+        /// Returns: A new MLCTensorData object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithWidth:height:featureChannelCount:batchSize:fillWithData:dataType:)]
         pub unsafe fn tensorWithWidth_height_featureChannelCount_batchSize_fillWithData_dataType(
@@ -170,6 +307,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensor  object
+        ///
+        /// Create a NCHW tensor object initialized with a random initializer type.
+        /// The tensor data type is MLCDataTypeFloat32
+        ///
+        /// Parameter `width`: The tensor width
+        ///
+        /// Parameter `height`: The tensor height
+        ///
+        /// Parameter `featureChannelCount`: Number of feature channels
+        ///
+        /// Parameter `batchSize`: The tensor batch size
+        ///
+        /// Parameter `randomInitializerType`: The random initializer type
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithWidth:height:featureChannelCount:batchSize:randomInitializerType:)]
         pub unsafe fn tensorWithWidth_height_featureChannelCount_batchSize_randomInitializerType(
@@ -181,6 +334,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensorData")]
+        /// Create a MLCTensor  object
+        ///
+        /// Create a NCHW tensor object with a tensor data object
+        /// The tensor data type is MLCDataTypeFloat32.
+        ///
+        /// Parameter `width`: The tensor width
+        ///
+        /// Parameter `height`: The tensor height
+        ///
+        /// Parameter `featureChannelCount`: Number of feature channels
+        ///
+        /// Parameter `batchSize`: The tensor batch size
+        ///
+        /// Parameter `data`: The tensor data
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithWidth:height:featureChannelCount:batchSize:data:)]
         pub unsafe fn tensorWithWidth_height_featureChannelCount_batchSize_data(
@@ -192,6 +361,24 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensorData", feature = "MLCTypes"))]
+        /// Create a MLCTensor  object
+        ///
+        /// Create a NCHW tensor object with a tensor data object
+        /// The tensor data type is MLCDataTypeFloat32.
+        ///
+        /// Parameter `width`: The tensor width
+        ///
+        /// Parameter `height`: The tensor height
+        ///
+        /// Parameter `featureChannelCount`: Number of feature channels
+        ///
+        /// Parameter `batchSize`: The tensor batch size
+        ///
+        /// Parameter `data`: The tensor data
+        ///
+        /// Parameter `dataType`: The tensor data type
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithWidth:height:featureChannelCount:batchSize:data:dataType:)]
         pub unsafe fn tensorWithWidth_height_featureChannelCount_batchSize_data_dataType(
@@ -203,6 +390,18 @@ extern_methods!(
             data_type: MLCDataType,
         ) -> Retained<Self>;
 
+        /// Create a MLCTensor  object
+        ///
+        /// Create a tensor typically used by a recurrent layer
+        /// The tensor data type is MLCDataTypeFloat32.
+        ///
+        /// Parameter `sequenceLength`: The length of sequences stored in the tensor
+        ///
+        /// Parameter `featureChannelCount`: Number of feature channels
+        ///
+        /// Parameter `batchSize`: The tensor batch size
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithSequenceLength:featureChannelCount:batchSize:)]
         pub unsafe fn tensorWithSequenceLength_featureChannelCount_batchSize(
@@ -212,6 +411,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensor  object
+        ///
+        /// Create a tensor typically used by a recurrent layer
+        /// The tensor data type is MLCDataTypeFloat32.
+        ///
+        /// Parameter `sequenceLength`: The length of sequences stored in the tensor
+        ///
+        /// Parameter `featureChannelCount`: Number of feature channels
+        ///
+        /// Parameter `batchSize`: The tensor batch size
+        ///
+        /// Parameter `randomInitializerType`: The random initializer type
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithSequenceLength:featureChannelCount:batchSize:randomInitializerType:)]
         pub unsafe fn tensorWithSequenceLength_featureChannelCount_batchSize_randomInitializerType(
@@ -222,6 +435,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensorData")]
+        /// Create a MLCTensor  object
+        ///
+        /// Create a tensor typically used by a recurrent layer
+        /// The tensor data type is MLCDataTypeFloat32.
+        ///
+        /// Parameter `sequenceLength`: The length of sequences stored in the tensor
+        ///
+        /// Parameter `featureChannelCount`: Number of feature channels
+        ///
+        /// Parameter `batchSize`: The tensor batch size
+        ///
+        /// Parameter `data`: The tensor data
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithSequenceLength:featureChannelCount:batchSize:data:)]
         pub unsafe fn tensorWithSequenceLength_featureChannelCount_batchSize_data(
@@ -232,6 +459,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a MLCTensor  object
+        ///
+        /// Create a tensor of variable length sequences typically used by a recurrent layer
+        /// The tensor data type is MLCDataTypeFloat32.
+        ///
+        /// Parameter `sequenceLengths`: An array of sequence lengths
+        ///
+        /// Parameter `sortedSequences`: A flag to indicate if the sequence lengths are sorted.  If yes, they must be sorted in descending order
+        ///
+        /// Parameter `featureChannelCount`: Number of feature channels
+        ///
+        /// Parameter `batchSize`: The tensor batch size
+        ///
+        /// Parameter `randomInitializerType`: The random initializer type
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithSequenceLengths:sortedSequences:featureChannelCount:batchSize:randomInitializerType:)]
         pub unsafe fn tensorWithSequenceLengths_sortedSequences_featureChannelCount_batchSize_randomInitializerType(
@@ -243,6 +486,22 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTensorData")]
+        /// Create a MLCTensor  object
+        ///
+        /// Create a tensor of variable length sequences typically used by a recurrent layer
+        /// The tensor data type is MLCDataTypeFloat32.
+        ///
+        /// Parameter `sequenceLengths`: An array of sequence lengths
+        ///
+        /// Parameter `sortedSequences`: A flag to indicate if the sequence lengths are sorted.  If yes, they must be sorted in descending order
+        ///
+        /// Parameter `featureChannelCount`: Number of feature channels
+        ///
+        /// Parameter `batchSize`: The tensor batch size
+        ///
+        /// Parameter `data`: The tensor data
+        ///
+        /// Returns: A new MLCTensor object
         #[deprecated]
         #[method_id(@__retain_semantics Other tensorWithSequenceLengths:sortedSequences:featureChannelCount:batchSize:data:)]
         pub unsafe fn tensorWithSequenceLengths_sortedSequences_featureChannelCount_batchSize_data(
@@ -253,18 +512,53 @@ extern_methods!(
             data: Option<&MLCTensorData>,
         ) -> Option<Retained<Self>>;
 
+        /// Returns a Boolean value indicating whether the underlying data has valid floating-point numerics, i.e. it
+        /// does not contain NaN or INF floating-point values.
         #[deprecated]
         #[method(hasValidNumerics)]
         pub unsafe fn hasValidNumerics(&self) -> bool;
 
+        /// Synchronize the data in host memory.
+        ///
+        /// Synchronize the data in host memory i.e. tensor.data with latest contents in device memory
+        /// This should only be called once the graph that this tensor is used with has finished execution;
+        /// Otherwise the results in device memory may not be up to date.
+        /// NOTE:  This method should not be called from a completion callback when device is the GPU.
+        ///
+        /// Returns: Returns YES if success, NO if there is a failure to synchronize
         #[deprecated]
         #[method(synchronizeData)]
         pub unsafe fn synchronizeData(&self) -> bool;
 
+        /// Synchronize the optimizer data in host memory.
+        ///
+        /// Synchronize the optimizer data in host memory with latest contents in device memory
+        /// This should only be called once the graph that this tensor is used with has finished execution;
+        /// Otherwise the results in device memory may not be up to date.
+        /// NOTE:  This method should not be called from a completion callback when device is the GPU.
+        ///
+        /// Returns: Returns YES if success, NO if there is a failure to synchronize
         #[deprecated]
         #[method(synchronizeOptimizerData)]
         pub unsafe fn synchronizeOptimizerData(&self) -> bool;
 
+        /// Copy tensor data from device memory to user specified memory
+        ///
+        /// Before copying tensor data from device memory, one may need to synchronize the device memory for example
+        /// when device is the GPU.  The synchronizeWithDevice argumet can be set appropraitely to indicate this.
+        /// For CPU this is ignored.  If the tensor has been specified in outputs of a graph using addOutputs,
+        /// synchronizeWithDevice should be set to NO.
+        /// NOTE:  This method should only be called once the graph that this tensor is used with has finished execution;
+        /// Otherwise the results in device memory may not be up to date.  synchronizeWithDevice must be set to NO
+        /// when this method is called from a completion callback for GPU.
+        ///
+        /// Parameter `bytes`: The user specified data in which to copy
+        ///
+        /// Parameter `length`: The size in bytes to copy
+        ///
+        /// Parameter `synchronizeWithDevice`: Whether to synchronize device memory if device is GPU
+        ///
+        /// Returns: Returns YES if success, NO if there is a failure to synchronize
         #[deprecated]
         #[method(copyDataFromDeviceMemoryToBytes:length:synchronizeWithDevice:)]
         pub unsafe fn copyDataFromDeviceMemoryToBytes_length_synchronizeWithDevice(
@@ -275,6 +569,21 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "MLCDevice", feature = "MLCTensorData"))]
+        /// Associates the given data to the tensor. If the device is GPU, also copies the data to the device memory.
+        /// Returns true if the data is successfully associated with the tensor and copied to the device.
+        ///
+        /// The caller must guarantee the lifetime of the underlying memory of
+        /// `data`for the entirety of the tensor's
+        /// lifetime.  For input tensors, we recommend that the bindAndwriteData method provided by MLCTrainingGraph
+        /// and MLCInferenceGraph be used.  This method should only be used to allocate and copy data to device memory
+        /// for tensors that are typically layer parameters such as weights, bias for convolution layers, beta, gamma for
+        /// normalization layers.
+        ///
+        /// Parameter `data`: The data to associated with the tensor
+        ///
+        /// Parameter `device`: The compute device
+        ///
+        /// Returns: A Boolean value indicating whether the data is successfully associated with the tensor and copied to the device.
         #[deprecated]
         #[method(bindAndWriteData:toDevice:)]
         pub unsafe fn bindAndWriteData_toDevice(
@@ -284,6 +593,20 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "MLCTensorData", feature = "MLCTensorOptimizerDeviceData"))]
+        /// Associates the given optimizer data and device data buffers to the tensor.
+        /// Returns true if the data is successfully associated with the tensor and copied to the device.
+        ///
+        /// The caller must guarantee the lifetime of the underlying memory of
+        /// `data`for the entirety of the tensor's
+        /// lifetime.  The
+        /// `deviceData`buffers are allocated by MLCompute.  This method must be called
+        /// before executeOptimizerUpdateWithOptions or executeWithInputsData is called for the training graph.
+        ///
+        /// Parameter `data`: The optimizer data to be associated with the tensor
+        ///
+        /// Parameter `deviceData`: The optimizer device data to be associated with the tensor
+        ///
+        /// Returns: A Boolean value indicating whether the data is successfully associated with the tensor .
         #[deprecated]
         #[method(bindOptimizerData:deviceData:)]
         pub unsafe fn bindOptimizerData_deviceData(
@@ -293,6 +616,16 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "MLCTypes")]
+        /// Converts a 32-bit floating-point tensor with given scale and a zero point
+        /// Returns a quantized tensor
+        ///
+        /// Parameter `type`: The quantized data type.  Must be MLCDataTypeInt8, MLCDataTypeUInt8 or MLCDataTypeInt32
+        ///
+        /// Parameter `scale`: The scale to apply in quantization
+        ///
+        /// Parameter `bias`: The offset value that maps to float zero
+        ///
+        /// Returns: A quantized tensor
         #[method_id(@__retain_semantics Other tensorByQuantizingToType:scale:bias:)]
         pub unsafe fn tensorByQuantizingToType_scale_bias(
             &self,
@@ -302,6 +635,18 @@ extern_methods!(
         ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Converts a 32-bit floating-point tensor with given scale and a zero point
+        /// Returns a quantized tensor
+        ///
+        /// Parameter `type`: The quantized data type.  Must be MLCDataTypeInt8, MLCDataTypeUInt8 or MLCDataTypeInt32
+        ///
+        /// Parameter `scale`: The scale to apply in quantization
+        ///
+        /// Parameter `bias`: The offset value that maps to float zero
+        ///
+        /// Parameter `axis`: The dimension on which to apply per-channel quantization
+        ///
+        /// Returns: A quantized tensor
         #[method_id(@__retain_semantics Other tensorByQuantizingToType:scale:bias:axis:)]
         pub unsafe fn tensorByQuantizingToType_scale_bias_axis(
             &self,
@@ -312,6 +657,18 @@ extern_methods!(
         ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Converts a quantized tensor to a 32-bit floating-point tensor
+        /// Returns a de-quantized tensor
+        ///
+        /// Parameter `type`: The de-quantized data type.  Must be MLCFloat32
+        ///
+        /// Parameter `scale`: The scale thst was used for the quantized data
+        ///
+        /// Parameter `bias`: The offset value that maps to float zero used for the quantized data
+        ///
+        /// Parameter `axis`: The dimension on which to apply per-channel quantization
+        ///
+        /// Returns: A quantized tensor
         #[method_id(@__retain_semantics Other tensorByDequantizingToType:scale:bias:axis:)]
         pub unsafe fn tensorByDequantizingToType_scale_bias_axis(
             &self,

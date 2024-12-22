@@ -10,7 +10,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snclassification?language=objc)
+    /// The likelihood of a sound belonging to identified class
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snclassification?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNClassification;
@@ -20,9 +22,11 @@ unsafe impl NSObjectProtocol for SNClassification {}
 
 extern_methods!(
     unsafe impl SNClassification {
+        /// The identifier of a classification request. An example classification could be a string like 'laughter' or 'applause'. The string is defined in the model that was used for the classification. Usually these are technical labels that are not localized and not meant to be used directly to be presented to an end user in the UI.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
+        /// The level of confidence normalized to [0, 1], where 1 is most confident
         #[method(confidence)]
         pub unsafe fn confidence(&self) -> c_double;
 
@@ -35,7 +39,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snclassificationresult?language=objc)
+    /// A result containing the most likely classification candidates in the time range specified
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snclassificationresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNClassificationResult;
@@ -48,10 +54,14 @@ unsafe impl SNResult for SNClassificationResult {}
 
 extern_methods!(
     unsafe impl SNClassificationResult {
+        /// All classification candidates, sorted with highest confidence first.
         #[method_id(@__retain_semantics Other classifications)]
         pub unsafe fn classifications(&self) -> Retained<NSArray<SNClassification>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The time range in the client-provided audio stream to which this classification result corresponds
+        ///
+        /// Each CMTime contains of a value (audio frame count) and timescale (client sample rate). This enables the client to precisely identify the frame range in the original audio stream to which this result corresponds. Time ranges will often be in the past compared to the frame count of the most recent audio buffer provided to the analyzer, due to the inherent audio buffering operations required to deliver a full block of audio to an MLModel.
         #[method(timeRange)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
@@ -61,6 +71,11 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Retrieves the classification candidate with the specified identifier.
+        ///
+        /// - Parameter identifier: An identifier on which to query for a particular classification candidate. The query will match to any classification candidate whose `identifier` property (see `identifier` property of `SNClassification`) contains a value equal to the provided argument.
+        ///
+        /// - Returns: The classification candidate which has the specified identifier, if it exists. If no such candidate exists, `nil` will be returned.
         #[method_id(@__retain_semantics Other classificationForIdentifier:)]
         pub unsafe fn classificationForIdentifier(
             &self,

@@ -68,12 +68,14 @@ extern_methods!(
         #[method(isRestorable)]
         pub unsafe fn isRestorable(&self) -> bool;
 
+        /// Setter for [`isRestorable`][Self::isRestorable].
         #[method(setRestorable:)]
         pub unsafe fn setRestorable(&self, restorable: bool);
 
         #[method(restorationClass)]
         pub unsafe fn restorationClass(&self) -> Option<&'static AnyClass>;
 
+        /// Setter for [`restorationClass`][Self::restorationClass].
         #[method(setRestorationClass:)]
         pub unsafe fn setRestorationClass(&self, restoration_class: Option<&AnyClass>);
 
@@ -109,6 +111,7 @@ extern_methods!(
         pub unsafe fn restorableStateKeyPaths(mtm: MainThreadMarker)
             -> Retained<NSArray<NSString>>;
 
+        /// When secure state restoration is used, values at restorableStateKeyPaths must support NSSecureCoding and this method will be consulted when restoring state. Any values not of an allowed class will not be set.
         #[method_id(@__retain_semantics Other allowedClassesForRestorableStateKeyPath:)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,

@@ -29,6 +29,20 @@ extern_methods!(
     #[cfg(feature = "AVAssetTrackSegment")]
     unsafe impl AVCompositionTrackSegment {
         #[cfg(feature = "objc2-core-media")]
+        /// Returns an instance of AVCompositionTrackSegment that presents a portion of a file referenced by URL.
+        ///
+        /// Parameter `URL`: An instance of NSURL that references the container file to be presented by the AVCompositionTrackSegment.
+        ///
+        /// Parameter `trackID`: The track identifier that specifies the track of the container file to be presented by the AVCompositionTrackSegment.
+        ///
+        /// Parameter `sourceTimeRange`: The timeRange of the track of the container file to be presented by the AVCompositionTrackSegment.
+        ///
+        /// Parameter `targetTimeRange`: The timeRange of the composition track during which the AVCompositionTrackSegment is to be presented.
+        ///
+        /// Returns: An instance of AVCompositionTrackSegment.
+        ///
+        /// To specify that the segment be played at the asset's normal rate, set source.duration == target.duration in the timeMapping.
+        /// Otherwise, the segment will be played at a rate equal to the ratio source.duration / target.duration.
         #[method_id(@__retain_semantics Other compositionTrackSegmentWithURL:trackID:sourceTimeRange:targetTimeRange:)]
         pub unsafe fn compositionTrackSegmentWithURL_trackID_sourceTimeRange_targetTimeRange(
             url: &NSURL,
@@ -38,12 +52,31 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Returns an instance of AVCompositionTrackSegment that presents an empty track segment.
+        ///
+        /// Parameter `timeRange`: The timeRange of the empty AVCompositionTrackSegment.
+        ///
+        /// Returns: An instance of AVCompositionTrackSegment.
         #[method_id(@__retain_semantics Other compositionTrackSegmentWithTimeRange:)]
         pub unsafe fn compositionTrackSegmentWithTimeRange(
             time_range: CMTimeRange,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Initializes an instance of AVCompositionTrackSegment that presents a portion of a file referenced by URL.
+        ///
+        /// Parameter `URL`: An instance of NSURL that references the container file to be presented by the AVCompositionTrackSegment.
+        ///
+        /// Parameter `trackID`: The track identifier that specifies the track of the container file to be presented by the AVCompositionTrackSegment.
+        ///
+        /// Parameter `sourceTimeRange`: The timeRange of the track of the container file to be presented by the AVCompositionTrackSegment.
+        ///
+        /// Parameter `targetTimeRange`: The timeRange of the composition track during which the AVCompositionTrackSegment is to be presented.
+        ///
+        /// Returns: An instance of AVCompositionTrackSegment.
+        ///
+        /// To specify that the segment be played at the asset's normal rate, set source.duration == target.duration in the timeMapping.
+        /// Otherwise, the segment will be played at a rate equal to the ratio source.duration / target.duration.
         #[method_id(@__retain_semantics Init initWithURL:trackID:sourceTimeRange:targetTimeRange:)]
         pub unsafe fn initWithURL_trackID_sourceTimeRange_targetTimeRange(
             this: Allocated<Self>,
@@ -54,6 +87,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Initializes an instance of AVCompositionTrackSegment that presents an empty track segment.
+        ///
+        /// Parameter `timeRange`: The timeRange of the empty AVCompositionTrackSegment.
+        ///
+        /// Returns: An instance of AVCompositionTrackSegment.
         #[method_id(@__retain_semantics Init initWithTimeRange:)]
         pub unsafe fn initWithTimeRange(
             this: Allocated<Self>,

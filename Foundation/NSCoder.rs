@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecodingfailurepolicy?language=objc)
+/// Describes the action an NSCoder should take when it encounters decode failures (e.g. corrupt data) for non-TopLevel decodes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecodingfailurepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -269,6 +271,19 @@ extern_methods!(
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Decodes the
+        /// `NSArray`object for the given
+        /// `key,`which should be an
+        /// `NSArray<cls>,`containing the given non-collection class (no nested arrays or arrays of dictionaries, etc) from the coder.
+        ///
+        /// Requires
+        /// `NSSecureCoding`otherwise an exception is thrown and sets the
+        /// `decodingFailurePolicy`to
+        /// `NSDecodingFailurePolicySetErrorAndReturn.`
+        /// Returns
+        /// `nil`if the object for
+        /// `key`is not of the expected types, or cannot be decoded, and sets the
+        /// `error`on the decoder.
         #[method_id(@__retain_semantics Other decodeArrayOfObjectsOfClass:forKey:)]
         pub unsafe fn decodeArrayOfObjectsOfClass_forKey(
             &self,
@@ -277,6 +292,21 @@ extern_methods!(
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Decodes the
+        /// `NSDictionary`object for the given
+        /// `key,`which should be an
+        /// `NSDictionary<keyCls,objectCls>`, with keys of type given in
+        /// `keyCls`and objects of the given non-collection class
+        /// `objectCls`(no nested dictionaries or other dictionaries contained in the dictionary, etc) from the coder.
+        ///
+        /// Requires
+        /// `NSSecureCoding`otherwise an exception is thrown and sets the
+        /// `decodingFailurePolicy`to
+        /// `NSDecodingFailurePolicySetErrorAndReturn.`
+        /// Returns
+        /// `nil`if the object for
+        /// `key`is not of the expected types, or cannot be decoded, and sets the
+        /// `error`on the decoder.
         #[method_id(@__retain_semantics Other decodeDictionaryWithKeysOfClass:objectsOfClass:forKey:)]
         pub unsafe fn decodeDictionaryWithKeysOfClass_objectsOfClass_forKey(
             &self,
@@ -302,6 +332,19 @@ extern_methods!(
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSSet", feature = "NSString"))]
+        /// Decodes the
+        /// `NSArray`object for the given
+        /// `key,`which should be an
+        /// `NSArray,`containing the given non-collection classes (no nested arrays or arrays of dictionaries, etc) from the coder.
+        ///
+        /// Requires
+        /// `NSSecureCoding`otherwise an exception is thrown and sets the
+        /// `decodingFailurePolicy`to
+        /// `NSDecodingFailurePolicySetErrorAndReturn.`
+        /// Returns
+        /// `nil`if the object for
+        /// `key`is not of the expected types, or cannot be decoded, and sets the
+        /// `error`on the decoder.
         #[method_id(@__retain_semantics Other decodeArrayOfObjectsOfClasses:forKey:)]
         pub unsafe fn decodeArrayOfObjectsOfClasses_forKey(
             &self,
@@ -310,6 +353,21 @@ extern_methods!(
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSSet", feature = "NSString"))]
+        /// Decodes the
+        /// `NSDictionary`object for the given
+        /// `key,`which should be an
+        /// `NSDictionary,`with keys of the types given in
+        /// `keyClasses`and objects of the given non-collection classes in
+        /// `objectClasses`(no nested dictionaries or other dictionaries contained in the dictionary, etc) from the given coder.
+        ///
+        /// Requires
+        /// `NSSecureCoding`otherwise an exception is thrown and sets the
+        /// `decodingFailurePolicy`to
+        /// `NSDecodingFailurePolicySetErrorAndReturn.`
+        /// Returns
+        /// `nil`if the object for
+        /// `key`is not of the expected types, or cannot be decoded, and sets the
+        /// `error`on the decoder.
         #[method_id(@__retain_semantics Other decodeDictionaryWithKeysOfClasses:objectsOfClasses:forKey:)]
         pub unsafe fn decodeDictionaryWithKeysOfClasses_objectsOfClasses_forKey(
             &self,
@@ -330,13 +388,54 @@ extern_methods!(
         pub unsafe fn allowedClasses(&self) -> Option<Retained<NSSet<AnyClass>>>;
 
         #[cfg(feature = "NSError")]
+        /// Signals to this coder that the decode has failed.
+        /// Parameter non-nil error that describes the reason why the decode failed
+        ///
+        /// Sets an error on this NSCoder once per TopLevel decode; calling it repeatedly will have no effect until the call stack unwinds to one of the TopLevel decode entry-points.
+        ///
+        /// This method is only meaningful to call for decodes.
+        ///
+        /// Typically, you would want to call this method in your -initWithCoder: implementation when you detect situations like:
+        /// - lack of secure coding
+        /// - corruption of your data
+        /// - domain validation failures
+        ///
+        /// After calling -failWithError: within your -initWithCoder: implementation, you should clean up and return nil as early as possible.
+        ///
+        /// Once an error has been signaled to a decoder, it remains set until it has handed off to the first TopLevel decode invocation above it.  For example, consider the following call graph:
+        /// A    -decodeTopLevelObjectForKey:error:
+        /// B        -initWithCoder:
+        /// C            -decodeObjectForKey:
+        /// D                -initWithCoder:
+        /// E                    -decodeObjectForKey:
+        /// F                        -failWithError:
+        ///
+        /// In this case the error provided in stack-frame F will be returned via the outError in stack-frame A. Furthermore the result object from decodeTopLevelObjectForKey:error: will be nil, regardless of the result of stack-frame B.
+        ///
+        /// NSCoder implementations support two mechanisms for the stack-unwinding from F to A:
+        /// - forced (NSException based)
+        /// - particpatory (error based)
+        ///
+        /// The kind of unwinding you get is determined by the decodingFailurePolicy property of this NSCoder (which defaults to NSDecodingFailurePolicyRaiseException to match historical behavior).
         #[method(failWithError:)]
         pub unsafe fn failWithError(&self, error: &NSError);
 
+        /// Defines the behavior this NSCoder should take on decode failure (i.e. corrupt archive, invalid data, etc.).
+        ///
+        /// The default result of this property is NSDecodingFailurePolicyRaiseException, subclasses can change this to an alternative policy.
         #[method(decodingFailurePolicy)]
         pub unsafe fn decodingFailurePolicy(&self) -> NSDecodingFailurePolicy;
 
         #[cfg(feature = "NSError")]
+        /// The current error (if there is one) for the current TopLevel decode.
+        ///
+        /// The meaning of this property changes based on the result of the decodingFailurePolicy property:
+        /// For NSDecodingFailurePolicyRaiseException, this property will always be nil.
+        /// For NSDecodingFailurePolicySetErrorAndReturn, this property can be non-nil, and if so, indicates that there was a failure while decoding the archive (specifically its the very first error encountered).
+        ///
+        /// While .error is non-nil, all attempts to decode data from this coder will return a nil/zero-equivalent value.
+        ///
+        /// This error is consumed by a TopLevel decode API (which resets this coder back to a being able to potentially decode data).
         #[method_id(@__retain_semantics Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }

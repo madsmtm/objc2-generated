@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest?language=objc)
+    /// Detects specific landmark points on animal bodies.
+    ///
+    /// This request will produce a collection of VNAnimalBodyPoseObservation objects which describe the pose of each detected animal body.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -30,18 +34,29 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectAnimalBodyPoseRequest {
         #[cfg(feature = "VNTypes")]
+        /// Obtain the collection of animal body joint names that are supported by a request object configured with a request revision.
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with an error upon failure.  If the caller does not need this information, NULL can be passed.
+        ///
+        /// Returns: An array of VNAnimalBodyPoseObservationJointName symbols that are supported by the request, or nil if a failure occurs.
         #[method_id(@__retain_semantics Other supportedJointNamesAndReturnError:_)]
         pub unsafe fn supportedJointNamesAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<VNAnimalBodyPoseObservationJointName>>, Retained<NSError>>;
 
         #[cfg(feature = "VNTypes")]
+        /// Obtain the collection of animal body joints group names that are supported by a request object configured with a request revision.
+        ///
+        /// Parameter `error`: The address of a variable that will be populated with an error upon failure.  If the caller does not need this information, NULL can be passed.
+        ///
+        /// Returns: An array of VNAnimalBodyPoseObservationJointsGroupName symbols that are supported by the request, or nil if a failure occurs.
         #[method_id(@__retain_semantics Other supportedJointsGroupNamesAndReturnError:_)]
         pub unsafe fn supportedJointsGroupNamesAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<VNAnimalBodyPoseObservationJointsGroupName>>, Retained<NSError>>;
 
         #[cfg(feature = "VNObservation")]
+        /// VNAnimalBodyPoseObservation results.
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNAnimalBodyPoseObservation>>>;
     }
@@ -51,10 +66,15 @@ extern_methods!(
     /// Methods declared on superclass `VNRequest`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectAnimalBodyPoseRequest {
+        /// Creates a new VNRequest with no completion handler.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Creates a new VNRequest with an optional completion handler.
+        ///
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,

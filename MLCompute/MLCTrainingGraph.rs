@@ -8,7 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctraininggraph?language=objc)
+    /// A training graph created from one or more MLCGraph objects
+    /// plus additional layers added directly to the training graph.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctraininggraph?language=objc)
     #[unsafe(super(MLCGraph, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCGraph")]
@@ -23,15 +26,33 @@ extern_methods!(
     #[cfg(feature = "MLCGraph")]
     unsafe impl MLCTrainingGraph {
         #[cfg(feature = "MLCOptimizer")]
+        /// The optimizer to be used with the training graph
         #[deprecated]
         #[method_id(@__retain_semantics Other optimizer)]
         pub unsafe fn optimizer(&self) -> Option<Retained<MLCOptimizer>>;
 
+        /// Returns the total size in bytes of device memory used for all intermediate tensors
+        /// for forward, gradient passes and optimizer update for all layers in the training graph.
+        /// We recommend executing an iteration before checking the device memory size as
+        /// the buffers needed get allocated when the corresponding pass such as gradient,
+        /// optimizer update is executed.
+        ///
+        /// Returns: A NSUInteger value
         #[deprecated]
         #[method(deviceMemorySize)]
         pub unsafe fn deviceMemorySize(&self) -> NSUInteger;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCOptimizer"))]
+        /// Create a training graph
+        ///
+        /// Parameter `graphObjects`: The layers from these graph objects will be added to the training graph
+        ///
+        /// Parameter `lossLayer`: The loss layer to use.  The loss layer can also be added to the training graph
+        /// using nodeWithLayer:sources:lossLabels
+        ///
+        /// Parameter `optimizer`: The optimizer to use
+        ///
+        /// Returns: A new training graph object
         #[deprecated]
         #[method_id(@__retain_semantics Other graphWithGraphObjects:lossLayer:optimizer:)]
         pub unsafe fn graphWithGraphObjects_lossLayer_optimizer(
@@ -41,6 +62,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add the list of inputs to the training graph
+        ///
+        /// Parameter `inputs`: The inputs
+        ///
+        /// Parameter `lossLabels`: The loss label inputs
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(addInputs:lossLabels:)]
         pub unsafe fn addInputs_lossLabels(
@@ -50,6 +78,20 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add the list of inputs to the training graph
+        ///
+        /// Each input, loss label or label weights tensor is identified by a NSString.
+        /// When the training graph is executed, this NSString is used to identify which data object
+        /// should be as input data for each tensor whose device memory needs to be updated
+        /// before the graph is executed.
+        ///
+        /// Parameter `inputs`: The inputs
+        ///
+        /// Parameter `lossLabels`: The loss label inputs
+        ///
+        /// Parameter `lossLabelWeights`: The loss label weights
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(addInputs:lossLabels:lossLabelWeights:)]
         pub unsafe fn addInputs_lossLabels_lossLabelWeights(
@@ -60,16 +102,33 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add the list of outputs to the training graph
+        ///
+        /// Parameter `outputs`: The outputs
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(addOutputs:)]
         pub unsafe fn addOutputs(&self, outputs: &NSDictionary<NSString, MLCTensor>) -> bool;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add the list of tensors whose contributions are not to be taken when computing gradients during gradient pass
+        ///
+        /// Parameter `tensors`: The list of tensors
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(stopGradientForTensors:)]
         pub unsafe fn stopGradientForTensors(&self, tensors: &NSArray<MLCTensor>) -> bool;
 
         #[cfg(all(feature = "MLCDevice", feature = "MLCTypes"))]
+        /// Compile the training graph for a device.
+        ///
+        /// Parameter `options`: The compiler options to use when compiling the training graph
+        ///
+        /// Parameter `device`: The MLCDevice object
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(compileWithOptions:device:)]
         pub unsafe fn compileWithOptions_device(
@@ -84,6 +143,19 @@ extern_methods!(
             feature = "MLCTensorData",
             feature = "MLCTypes"
         ))]
+        /// Compile the training graph for a device.
+        ///
+        /// Specifying the list of constant tensors when we compile the graph allows MLCompute to perform additional optimizations at compile time.
+        ///
+        /// Parameter `options`: The compiler options to use when compiling the training graph
+        ///
+        /// Parameter `device`: The MLCDevice object
+        ///
+        /// Parameter `inputTensors`: The list of input tensors that are constants
+        ///
+        /// Parameter `inputTensorsData`: The tensor data to be used with these constant input tensors
+        ///
+        /// Returns: A boolean indicating success or failure
         #[method(compileWithOptions:device:inputTensors:inputTensorsData:)]
         pub unsafe fn compileWithOptions_device_inputTensors_inputTensorsData(
             &self,
@@ -94,15 +166,38 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "MLCOptimizer")]
+        /// Compile the optimizer to be used with a training graph.
+        ///
+        /// Typically the optimizer to be used with a training graph is specifed when the training graph is created using
+        /// graphWithGraphObjects:lossLayer:optimizer.  The optimizer will be compiled in when compileWithOptions:device
+        /// is called if an optimizer is specified with the training graph.  In the case where the optimizer to be used is not known
+        /// when the graph is created or compiled, this method can be used to associate and compile a training graph with an optimizer.
+        ///
+        /// Parameter `optimizer`: The MLCOptimizer object
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(compileOptimizer:)]
         pub unsafe fn compileOptimizer(&self, optimizer: &MLCOptimizer) -> bool;
 
+        /// Link mutiple training graphs
+        ///
+        /// This is used to link subsequent training graphs with first training sub-graph.
+        /// This method should be used when we have tensors shared by one or more layers in multiple sub-graphs
+        ///
+        /// Parameter `graphs`: The list of training graphs to link
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(linkWithGraphs:)]
         pub unsafe fn linkWithGraphs(&self, graphs: &NSArray<MLCTrainingGraph>) -> bool;
 
         #[cfg(feature = "MLCTensor")]
+        /// Get the gradient tensor for an input tensor
+        ///
+        /// Parameter `input`: The input tensor
+        ///
+        /// Returns: The gradient tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other gradientTensorForInput:)]
         pub unsafe fn gradientTensorForInput(
@@ -111,6 +206,11 @@ extern_methods!(
         ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
+        /// Get the source gradient tensors for a layer in the training graph
+        ///
+        /// Parameter `layer`: A layer in the training graph
+        ///
+        /// Returns: A list of tensors
         #[deprecated]
         #[method_id(@__retain_semantics Other sourceGradientTensorsForLayer:)]
         pub unsafe fn sourceGradientTensorsForLayer(
@@ -119,6 +219,11 @@ extern_methods!(
         ) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
+        /// Get the result gradient tensors for a layer in the training graph
+        ///
+        /// Parameter `layer`: A layer in the training graph
+        ///
+        /// Returns: A list of tensors
         #[deprecated]
         #[method_id(@__retain_semantics Other resultGradientTensorsForLayer:)]
         pub unsafe fn resultGradientTensorsForLayer(
@@ -127,6 +232,25 @@ extern_methods!(
         ) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
+        /// Get the gradient data for a trainable parameter associated with a layer
+        ///
+        /// This can be used to get the gradient data for weights or biases parameters associated with a convolution,
+        /// fully connected or convolution transpose layer
+        ///
+        /// Parameter `parameter`: The updatable parameter associated with the layer
+        ///
+        /// Parameter `layer`: A layer in the training graph.  Must be one of the following:
+        /// - MLCConvolutionLayer
+        /// - MLCFullyConnectedLayer
+        /// - MLCBatchNormalizationLayer
+        /// - MLCInstanceNormalizationLayer
+        /// - MLCGroupNormalizationLayer
+        /// - MLCLayerNormalizationLayer
+        /// - MLCEmbeddingLayer
+        /// - MLCMultiheadAttentionLayer
+        ///
+        /// Returns: The gradient data.  Will return nil if the layer is marked as not trainable or if
+        /// training graph is not executed with separate calls to forward and gradient passes.
         #[deprecated]
         #[method_id(@__retain_semantics Other gradientDataForParameter:layer:)]
         pub unsafe fn gradientDataForParameter_layer(
@@ -136,6 +260,13 @@ extern_methods!(
         ) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// Allocate an entry for a user specified gradient for a tensor
+        ///
+        /// Parameter `tensor`: A result tensor produced by a layer in the training graph
+        /// that is input to some user specified code and will need to
+        /// provide a user gradient during the gradient pass.
+        ///
+        /// Returns: A gradient tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other allocateUserGradientForTensor:)]
         pub unsafe fn allocateUserGradientForTensor(
@@ -149,6 +280,26 @@ extern_methods!(
             feature = "MLCTypes",
             feature = "block2"
         ))]
+        /// Execute the training graph (forward, gradient and optimizer update) with given source and label data
+        ///
+        /// Execute the training graph with given source and label data.  If an optimizer is specified, the optimizer update is applied.
+        /// If MLCExecutionOptionsSynchronous is specified in 'options', this method returns after the graph has been executed.
+        /// Otherwise, this method returns after the graph has been queued for execution. The completion handler is called after the graph
+        /// has finished execution.
+        ///
+        /// Parameter `inputsData`: The data objects to use for inputs
+        ///
+        /// Parameter `lossLabelsData`: The data objects to use for loss labels
+        ///
+        /// Parameter `lossLabelWeightsData`: The data objects to use for loss label weights
+        ///
+        /// Parameter `batchSize`: The batch size to use.  For a graph where batch size changes between layers this value must be 0.
+        ///
+        /// Parameter `options`: The execution options
+        ///
+        /// Parameter `completionHandler`: The completion handler
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)]
         pub unsafe fn executeWithInputsData_lossLabelsData_lossLabelWeightsData_batchSize_options_completionHandler(
@@ -167,6 +318,23 @@ extern_methods!(
             feature = "MLCTypes",
             feature = "block2"
         ))]
+        /// Execute the training graph (forward, gradient and optimizer update) with given source and label data
+        ///
+        /// Parameter `inputsData`: The data objects to use for inputs
+        ///
+        /// Parameter `lossLabelsData`: The data objects to use for loss labels
+        ///
+        /// Parameter `lossLabelWeightsData`: The data objects to use for loss label weights
+        ///
+        /// Parameter `outputsData`: The data objects to use for outputs
+        ///
+        /// Parameter `batchSize`: The batch size to use.  For a graph where batch size changes between layers this value must be 0.
+        ///
+        /// Parameter `options`: The execution options
+        ///
+        /// Parameter `completionHandler`: The completion handler
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)]
         pub unsafe fn executeWithInputsData_lossLabelsData_lossLabelWeightsData_outputsData_batchSize_options_completionHandler(
@@ -181,6 +349,15 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes", feature = "block2"))]
+        /// Execute the forward pass of the training graph
+        ///
+        /// Parameter `batchSize`: The batch size to use.  For a graph where batch size changes between layers this value must be 0.
+        ///
+        /// Parameter `options`: The execution options
+        ///
+        /// Parameter `completionHandler`: The completion handler
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeForwardWithBatchSize:options:completionHandler:)]
         pub unsafe fn executeForwardWithBatchSize_options_completionHandler(
@@ -196,6 +373,17 @@ extern_methods!(
             feature = "MLCTypes",
             feature = "block2"
         ))]
+        /// Execute the forward pass for the training graph
+        ///
+        /// Parameter `batchSize`: The batch size to use.  For a graph where batch size changes between layers this value must be 0.
+        ///
+        /// Parameter `options`: The execution options
+        ///
+        /// Parameter `outputsData`: The data objects to use for outputs
+        ///
+        /// Parameter `completionHandler`: The completion handler
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeForwardWithBatchSize:options:outputsData:completionHandler:)]
         pub unsafe fn executeForwardWithBatchSize_options_outputsData_completionHandler(
@@ -207,6 +395,15 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes", feature = "block2"))]
+        /// Execute the gradient pass of the training graph
+        ///
+        /// Parameter `batchSize`: The batch size to use.  For a graph where batch size changes between layers this value must be 0.
+        ///
+        /// Parameter `options`: The execution options
+        ///
+        /// Parameter `completionHandler`: The completion handler
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeGradientWithBatchSize:options:completionHandler:)]
         pub unsafe fn executeGradientWithBatchSize_options_completionHandler(
@@ -222,6 +419,17 @@ extern_methods!(
             feature = "MLCTypes",
             feature = "block2"
         ))]
+        /// Execute the gradient pass of the training graph
+        ///
+        /// Parameter `batchSize`: The batch size to use.  For a graph where batch size changes between layers this value must be 0.
+        ///
+        /// Parameter `options`: The execution options
+        ///
+        /// Parameter `outputsData`: The data objects to use for outputs
+        ///
+        /// Parameter `completionHandler`: The completion handler
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeGradientWithBatchSize:options:outputsData:completionHandler:)]
         pub unsafe fn executeGradientWithBatchSize_options_outputsData_completionHandler(
@@ -233,6 +441,13 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes", feature = "block2"))]
+        /// Execute the optimizer update pass of the training graph
+        ///
+        /// Parameter `options`: The execution options
+        ///
+        /// Parameter `completionHandler`: The completion handler
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeOptimizerUpdateWithOptions:completionHandler:)]
         pub unsafe fn executeOptimizerUpdateWithOptions_completionHandler(
@@ -241,11 +456,22 @@ extern_methods!(
             completion_handler: MLCGraphCompletionHandler,
         ) -> bool;
 
+        /// Synchronize updates (weights/biases from convolution, fully connected and LSTM layers, tensor parameters)
+        /// from device memory to host memory.
         #[deprecated]
         #[method(synchronizeUpdates)]
         pub unsafe fn synchronizeUpdates(&self);
 
         #[cfg(feature = "MLCTensorParameter")]
+        /// Set the input tensor parameters that also will be updated by the optimizer
+        ///
+        /// These represent the list of input tensors to be updated when we execute the optimizer update
+        /// Weights, bias or beta, gamma tensors are not included in this list.  MLCompute automatically
+        /// adds them to the parameter list based on whether the layer is marked as updatable or not.
+        ///
+        /// Parameter `parameters`: The list of input tensors to be updated by the optimizer
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(setTrainingTensorParameters:)]
         pub unsafe fn setTrainingTensorParameters(
@@ -258,6 +484,24 @@ extern_methods!(
             feature = "MLCTensorData",
             feature = "MLCTensorOptimizerDeviceData"
         ))]
+        /// Associates the given optimizer data and device data buffers with the tensor.
+        /// Returns true if the data is successfully associated with the tensor and copied to the device.
+        ///
+        /// The caller must guarantee the lifetime of the underlying memory of
+        /// `data`for the entirety of the tensor's
+        /// lifetime.  The
+        /// `deviceData`buffers are allocated by MLCompute.  This method must be called
+        /// before executeOptimizerUpdateWithOptions or executeWithInputsData is called for the training graph.
+        /// We recommend using this method instead of using [MLCTensor bindOptimizerData] especially if the
+        /// optimizer update is being called multiple times for each batch.
+        ///
+        /// Parameter `data`: The optimizer data to be associated with the tensor
+        ///
+        /// Parameter `deviceData`: The optimizer device data to be associated with the tensor
+        ///
+        /// Parameter `tensor`: The tensor
+        ///
+        /// Returns: A Boolean value indicating whether the data is successfully associated with the tensor .
         #[deprecated]
         #[method(bindOptimizerData:deviceData:withTensor:)]
         pub unsafe fn bindOptimizerData_deviceData_withTensor(
@@ -273,6 +517,9 @@ extern_methods!(
     /// Methods declared on superclass `MLCGraph`
     #[cfg(feature = "MLCGraph")]
     unsafe impl MLCTrainingGraph {
+        /// Creates a new graph.
+        ///
+        /// Returns: A new graph.
         #[deprecated]
         #[method_id(@__retain_semantics Other graph)]
         pub unsafe fn graph() -> Retained<Self>;

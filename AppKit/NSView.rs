@@ -183,6 +183,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other subviews)]
         pub unsafe fn subviews(&self) -> Retained<NSArray<NSView>>;
 
+        /// Setter for [`subviews`][Self::subviews].
         #[method(setSubviews:)]
         pub unsafe fn setSubviews(&self, subviews: &NSArray<NSView>);
 
@@ -198,6 +199,7 @@ extern_methods!(
         #[method(isHidden)]
         pub unsafe fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         pub fn setHidden(&self, hidden: bool);
 
@@ -282,6 +284,7 @@ extern_methods!(
         #[method(postsFrameChangedNotifications)]
         pub unsafe fn postsFrameChangedNotifications(&self) -> bool;
 
+        /// Setter for [`postsFrameChangedNotifications`][Self::postsFrameChangedNotifications].
         #[method(setPostsFrameChangedNotifications:)]
         pub fn setPostsFrameChangedNotifications(&self, posts_frame_changed_notifications: bool);
 
@@ -296,12 +299,14 @@ extern_methods!(
         #[method(autoresizesSubviews)]
         pub unsafe fn autoresizesSubviews(&self) -> bool;
 
+        /// Setter for [`autoresizesSubviews`][Self::autoresizesSubviews].
         #[method(setAutoresizesSubviews:)]
         pub unsafe fn setAutoresizesSubviews(&self, autoresizes_subviews: bool);
 
         #[method(autoresizingMask)]
         pub unsafe fn autoresizingMask(&self) -> NSAutoresizingMaskOptions;
 
+        /// Setter for [`autoresizingMask`][Self::autoresizingMask].
         #[method(setAutoresizingMask:)]
         pub unsafe fn setAutoresizingMask(&self, autoresizing_mask: NSAutoresizingMaskOptions);
 
@@ -318,6 +323,7 @@ extern_methods!(
         pub fn frame(&self) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
 
@@ -326,6 +332,7 @@ extern_methods!(
         pub unsafe fn frameRotation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`frameRotation`][Self::frameRotation].
         #[method(setFrameRotation:)]
         pub unsafe fn setFrameRotation(&self, frame_rotation: CGFloat);
 
@@ -334,6 +341,7 @@ extern_methods!(
         pub unsafe fn frameCenterRotation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`frameCenterRotation`][Self::frameCenterRotation].
         #[method(setFrameCenterRotation:)]
         pub unsafe fn setFrameCenterRotation(&self, frame_center_rotation: CGFloat);
 
@@ -350,6 +358,7 @@ extern_methods!(
         pub unsafe fn boundsRotation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`boundsRotation`][Self::boundsRotation].
         #[method(setBoundsRotation:)]
         pub unsafe fn setBoundsRotation(&self, bounds_rotation: CGFloat);
 
@@ -370,6 +379,7 @@ extern_methods!(
         pub fn bounds(&self) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`bounds`][Self::bounds].
         #[method(setBounds:)]
         pub unsafe fn setBounds(&self, bounds: NSRect);
 
@@ -472,6 +482,7 @@ extern_methods!(
         #[method(canDrawConcurrently)]
         pub unsafe fn canDrawConcurrently(&self) -> bool;
 
+        /// Setter for [`canDrawConcurrently`][Self::canDrawConcurrently].
         #[method(setCanDrawConcurrently:)]
         pub unsafe fn setCanDrawConcurrently(&self, can_draw_concurrently: bool);
 
@@ -486,6 +497,7 @@ extern_methods!(
         #[method(needsDisplay)]
         pub unsafe fn needsDisplay(&self) -> bool;
 
+        /// Setter for [`needsDisplay`][Self::needsDisplay].
         #[method(setNeedsDisplay:)]
         pub unsafe fn setNeedsDisplay(&self, needs_display: bool);
 
@@ -510,6 +522,11 @@ extern_methods!(
         pub unsafe fn focusView(mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The portion of the view that isn’t clipped by its superviews.
+        ///
+        /// Visibility, as reflected by this property, doesn’t account for whether other view or window objects overlap the current view or whether the current view is installed in a window at all. This value of this property is `NSZeroRect` if the current view is effectively hidden.
+        ///
+        /// During a printing operation, the visible rectangle is further clipped to the page being imaged.
         #[method(visibleRect)]
         pub fn visibleRect(&self) -> NSRect;
 
@@ -641,6 +658,7 @@ extern_methods!(
         #[method(acceptsTouchEvents)]
         pub unsafe fn acceptsTouchEvents(&self) -> bool;
 
+        /// Setter for [`acceptsTouchEvents`][Self::acceptsTouchEvents].
         #[deprecated = "Use allowedTouchTypes instead"]
         #[method(setAcceptsTouchEvents:)]
         pub unsafe fn setAcceptsTouchEvents(&self, accepts_touch_events: bool);
@@ -648,6 +666,7 @@ extern_methods!(
         #[method(wantsRestingTouches)]
         pub unsafe fn wantsRestingTouches(&self) -> bool;
 
+        /// Setter for [`wantsRestingTouches`][Self::wantsRestingTouches].
         #[method(setWantsRestingTouches:)]
         pub unsafe fn setWantsRestingTouches(&self, wants_resting_touches: bool);
 
@@ -659,6 +678,7 @@ extern_methods!(
         #[method(layerContentsRedrawPolicy)]
         pub unsafe fn layerContentsRedrawPolicy(&self) -> NSViewLayerContentsRedrawPolicy;
 
+        /// Setter for [`layerContentsRedrawPolicy`][Self::layerContentsRedrawPolicy].
         #[method(setLayerContentsRedrawPolicy:)]
         pub unsafe fn setLayerContentsRedrawPolicy(
             &self,
@@ -668,6 +688,7 @@ extern_methods!(
         #[method(layerContentsPlacement)]
         pub unsafe fn layerContentsPlacement(&self) -> NSViewLayerContentsPlacement;
 
+        /// Setter for [`layerContentsPlacement`][Self::layerContentsPlacement].
         #[method(setLayerContentsPlacement:)]
         pub unsafe fn setLayerContentsPlacement(
             &self,
@@ -677,6 +698,7 @@ extern_methods!(
         #[method(wantsLayer)]
         pub unsafe fn wantsLayer(&self) -> bool;
 
+        /// Setter for [`wantsLayer`][Self::wantsLayer].
         #[method(setWantsLayer:)]
         pub fn setWantsLayer(&self, wants_layer: bool);
 
@@ -687,6 +709,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
+        /// Setter for [`layer`][Self::layer].
         #[method(setLayer:)]
         pub unsafe fn setLayer(&self, layer: Option<&CALayer>);
 
@@ -699,6 +722,7 @@ extern_methods!(
         #[method(canDrawSubviewsIntoLayer)]
         pub unsafe fn canDrawSubviewsIntoLayer(&self) -> bool;
 
+        /// Setter for [`canDrawSubviewsIntoLayer`][Self::canDrawSubviewsIntoLayer].
         #[method(setCanDrawSubviewsIntoLayer:)]
         pub unsafe fn setCanDrawSubviewsIntoLayer(&self, can_draw_subviews_into_layer: bool);
 
@@ -711,6 +735,7 @@ extern_methods!(
         #[method(needsLayout)]
         pub unsafe fn needsLayout(&self) -> bool;
 
+        /// Setter for [`needsLayout`][Self::needsLayout].
         #[method(setNeedsLayout:)]
         pub unsafe fn setNeedsLayout(&self, needs_layout: bool);
 
@@ -719,12 +744,14 @@ extern_methods!(
         pub unsafe fn alphaValue(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`alphaValue`][Self::alphaValue].
         #[method(setAlphaValue:)]
         pub unsafe fn setAlphaValue(&self, alpha_value: CGFloat);
 
         #[method(layerUsesCoreImageFilters)]
         pub unsafe fn layerUsesCoreImageFilters(&self) -> bool;
 
+        /// Setter for [`layerUsesCoreImageFilters`][Self::layerUsesCoreImageFilters].
         #[method(setLayerUsesCoreImageFilters:)]
         pub unsafe fn setLayerUsesCoreImageFilters(&self, layer_uses_core_image_filters: bool);
 
@@ -735,6 +762,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
+        /// Setter for [`backgroundFilters`][Self::backgroundFilters].
         #[method(setBackgroundFilters:)]
         pub unsafe fn setBackgroundFilters(&self, background_filters: &NSArray<CIFilter>);
 
@@ -745,6 +773,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
+        /// Setter for [`compositingFilter`][Self::compositingFilter].
         #[method(setCompositingFilter:)]
         pub unsafe fn setCompositingFilter(&self, compositing_filter: Option<&CIFilter>);
 
@@ -755,6 +784,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
+        /// Setter for [`contentFilters`][Self::contentFilters].
         #[method(setContentFilters:)]
         pub unsafe fn setContentFilters(&self, content_filters: &NSArray<CIFilter>);
 
@@ -763,18 +793,21 @@ extern_methods!(
         pub unsafe fn shadow(&self) -> Option<Retained<NSShadow>>;
 
         #[cfg(feature = "NSShadow")]
+        /// Setter for [`shadow`][Self::shadow].
         #[method(setShadow:)]
         pub unsafe fn setShadow(&self, shadow: Option<&NSShadow>);
 
         #[method(clipsToBounds)]
         pub unsafe fn clipsToBounds(&self) -> bool;
 
+        /// Setter for [`clipsToBounds`][Self::clipsToBounds].
         #[method(setClipsToBounds:)]
         pub unsafe fn setClipsToBounds(&self, clips_to_bounds: bool);
 
         #[method(postsBoundsChangedNotifications)]
         pub unsafe fn postsBoundsChangedNotifications(&self) -> bool;
 
+        /// Setter for [`postsBoundsChangedNotifications`][Self::postsBoundsChangedNotifications].
         #[method(setPostsBoundsChangedNotifications:)]
         pub unsafe fn setPostsBoundsChangedNotifications(
             &self,
@@ -794,16 +827,29 @@ extern_methods!(
         pub unsafe fn defaultMenu(mtm: MainThreadMarker) -> Option<Retained<NSMenu>>;
 
         #[cfg(all(feature = "NSEvent", feature = "NSMenu"))]
+        /// A contextual menu is being opened from the receiving view.
+        /// The view should update any visual state in response — such as making a selection.
+        ///
+        /// Parameter `menu`: The contextual menu that is being opened on the view
+        ///
+        /// Parameter `event`: The event that caused the menu to open.
         #[method(willOpenMenu:withEvent:)]
         pub unsafe fn willOpenMenu_withEvent(&self, menu: &NSMenu, event: &NSEvent);
 
         #[cfg(all(feature = "NSEvent", feature = "NSMenu"))]
+        /// A contextual menu shown from the receiving view has been closed. This is only called if the menu had been opened and the view previously received
+        /// `-willOpenMenu:withEvent:.`The view should update any visual state in response — such as removing a temporary selection.
+        ///
+        /// Parameter `menu`: The contextual menu that was open on the view
+        ///
+        /// Parameter `event`: The event that caused the menu to close. This may be nil if there is no specific event that triggered the closing.
         #[method(didCloseMenu:withEvent:)]
         pub unsafe fn didCloseMenu_withEvent(&self, menu: &NSMenu, event: Option<&NSEvent>);
 
         #[method_id(@__retain_semantics Other toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`toolTip`][Self::toolTip].
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
@@ -855,6 +901,7 @@ extern_methods!(
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
         #[cfg(feature = "NSUserInterfaceLayout")]
+        /// Setter for [`userInterfaceLayoutDirection`][Self::userInterfaceLayoutDirection].
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
@@ -876,12 +923,14 @@ extern_methods!(
         pub unsafe fn preparedContentRect(&self) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preparedContentRect`][Self::preparedContentRect].
         #[method(setPreparedContentRect:)]
         pub unsafe fn setPreparedContentRect(&self, prepared_content_rect: NSRect);
 
         #[method(allowsVibrancy)]
         pub unsafe fn allowsVibrancy(&self) -> bool;
 
+        /// Override point for reacting to the effective appearance of the receiver changing. At this point `effectiveAppearance` property reflects the new appearance.
         #[method(viewDidChangeEffectiveAppearance)]
         pub unsafe fn viewDidChangeEffectiveAppearance(&self);
     }
@@ -946,7 +995,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontentselectioninfo?language=objc)
+    /// A protocol to request information from NSView subclasses about the selected content in the view.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontentselectioninfo?language=objc)
     pub unsafe trait NSViewContentSelectionInfo: NSObjectProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
@@ -964,6 +1015,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nextKeyView)]
         pub unsafe fn nextKeyView(&self) -> Option<Retained<NSView>>;
 
+        /// Setter for [`nextKeyView`][Self::nextKeyView].
         #[method(setNextKeyView:)]
         pub unsafe fn setNextKeyView(&self, next_key_view: Option<&NSView>);
 
@@ -988,6 +1040,7 @@ extern_methods!(
         pub unsafe fn focusRingType(&self) -> NSFocusRingType;
 
         #[cfg(feature = "NSGraphics")]
+        /// Setter for [`focusRingType`][Self::focusRingType].
         #[method(setFocusRingType:)]
         pub unsafe fn setFocusRingType(&self, focus_ring_type: NSFocusRingType);
 
@@ -1088,6 +1141,7 @@ extern_methods!(
         pub unsafe fn pageFooter(&self) -> Retained<NSAttributedString>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// * This method is obsolete.  It will never be invoked from within AppKit, and NSView's implementation of it does nothing. **
         #[deprecated = "This is never invoked and the NSView implementation does nothing"]
         #[method(drawSheetBorderWithSize:)]
         pub unsafe fn drawSheetBorderWithSize(&self, border_size: NSSize);
@@ -1255,6 +1309,7 @@ extern_methods!(
         pub unsafe fn gestureRecognizers(&self) -> Retained<NSArray<NSGestureRecognizer>>;
 
         #[cfg(feature = "NSGestureRecognizer")]
+        /// Setter for [`gestureRecognizers`][Self::gestureRecognizers].
         #[method(setGestureRecognizers:)]
         pub unsafe fn setGestureRecognizers(
             &self,
@@ -1280,6 +1335,7 @@ extern_methods!(
         pub unsafe fn allowedTouchTypes(&self) -> NSTouchTypeMask;
 
         #[cfg(feature = "NSTouch")]
+        /// Setter for [`allowedTouchTypes`][Self::allowedTouchTypes].
         #[method(setAllowedTouchTypes:)]
         pub unsafe fn setAllowedTouchTypes(&self, allowed_touch_types: NSTouchTypeMask);
     }
@@ -1298,6 +1354,7 @@ extern_methods!(
         pub unsafe fn additionalSafeAreaInsets(&self) -> NSEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`additionalSafeAreaInsets`][Self::additionalSafeAreaInsets].
         #[method(setAdditionalSafeAreaInsets:)]
         pub unsafe fn setAdditionalSafeAreaInsets(&self, additional_safe_area_insets: NSEdgeInsets);
 
@@ -1490,6 +1547,7 @@ extern_methods!(
             -> Option<Retained<NSWritingToolsCoordinator>>;
 
         #[cfg(feature = "NSWritingToolsCoordinator")]
+        /// Setter for [`writingToolsCoordinator`][Self::writingToolsCoordinator].
         #[method(setWritingToolsCoordinator:)]
         pub unsafe fn setWritingToolsCoordinator(
             &self,

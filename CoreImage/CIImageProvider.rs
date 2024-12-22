@@ -41,6 +41,7 @@ extern_methods!(
 extern_category!(
     /// Category "CIImageProvider" on [`NSObject`].
     #[doc(alias = "CIImageProvider")]
+    /// Informal protocol used to lazily supply image data.
     pub unsafe trait NSObjectCIImageProvider {
         #[method(provideImageData:bytesPerRow:origin::size::userInfo:)]
         unsafe fn provideImageData_bytesPerRow_origin__size__userInfo(

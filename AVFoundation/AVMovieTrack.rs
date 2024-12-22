@@ -37,10 +37,12 @@ extern_methods!(
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMovieTrack {
         #[cfg(feature = "objc2-core-media")]
+        /// A CMTimeRange indicating the range of presentation times for the track's media.
         #[method(mediaPresentationTimeRange)]
         pub unsafe fn mediaPresentationTimeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-media")]
+        /// A CMTimeRange indicating the range of decode times for the track's media.
         #[method(mediaDecodeTimeRange)]
         pub unsafe fn mediaDecodeTimeRange(&self) -> CMTimeRange;
 
@@ -66,6 +68,9 @@ extern_methods!(
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMovieTrack {
         #[cfg(feature = "AVMovie")]
+        /// The storage container for media data added to a track.
+        ///
+        /// The value of this property is an AVMediaDataStorage object that indicates the location at which media data inserted or appended to the track will be written.
         #[method_id(@__retain_semantics Other mediaDataStorage)]
         pub unsafe fn mediaDataStorage(&self) -> Option<Retained<AVMediaDataStorage>>;
     }
@@ -97,45 +102,74 @@ extern_methods!(
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableMovieTrack {
         #[cfg(feature = "AVMovie")]
+        /// The storage container for media data added to a track.
+        ///
+        /// The value of this property is an AVMediaDataStorage object that indicates the location at which media data inserted or appended to the track will be written.
         #[method_id(@__retain_semantics Other mediaDataStorage)]
         pub unsafe fn mediaDataStorage(&self) -> Option<Retained<AVMediaDataStorage>>;
 
         #[cfg(feature = "AVMovie")]
+        /// Setter for [`mediaDataStorage`][Self::mediaDataStorage].
         #[method(setMediaDataStorage:)]
         pub unsafe fn setMediaDataStorage(&self, media_data_storage: Option<&AVMediaDataStorage>);
 
+        /// For file types that support writing sample references, such as QuickTime Movie files, specifies the base URL that sample references are relative to; may be nil.
+        ///
+        /// If the value of this property can be resolved as an absolute URL, the sample locations written to the file when appending sample references to this track will be relative to this URL. The URL must point to a location contained by any common parent directory of the locations that will be referenced. For example, setting the sampleReferenceBaseURL property to "file:///Users/johnappleseed/Movies/" and appending sample buffers that refer to "file:///Users/johnappleseed/Movies/data/movie1.mov" will cause the sample reference "data/movie1.mov" to be written to the movie file.
+        ///
+        /// If the value of the property cannot be resolved as an absolute URL or if it points to a location that is not contained by any common parent directory of the locations that will be referenced, the location will be written unmodified.
+        ///
+        /// The default value is nil, which means that the location will be written unmodified.
         #[method_id(@__retain_semantics Other sampleReferenceBaseURL)]
         pub unsafe fn sampleReferenceBaseURL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`sampleReferenceBaseURL`][Self::sampleReferenceBaseURL].
         #[method(setSampleReferenceBaseURL:)]
         pub unsafe fn setSampleReferenceBaseURL(&self, sample_reference_base_url: Option<&NSURL>);
 
+        /// A BOOL value indicating whether the track is enabled by default for presentation.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        /// An integer indicating the track as a member of a particular alternate group.
         #[method(alternateGroupID)]
         pub unsafe fn alternateGroupID(&self) -> NSInteger;
 
+        /// Setter for [`alternateGroupID`][Self::alternateGroupID].
         #[method(setAlternateGroupID:)]
         pub unsafe fn setAlternateGroupID(&self, alternate_group_id: NSInteger);
 
+        /// Whether a track has been modified.
+        ///
+        /// The value of this property is a BOOL that indicates whether the AVMutableMovieTrack object has been modified since it was created, was last written, or had its modified state cleared via a call to setModified:NO.
         #[method(isModified)]
         pub unsafe fn isModified(&self) -> bool;
 
+        /// Setter for [`isModified`][Self::isModified].
         #[method(setModified:)]
         pub unsafe fn setModified(&self, modified: bool);
 
+        /// Whether a track contains protected content.
+        ///
+        /// The value of this property is a BOOL that indicates whether the track contains protected content.
         #[method(hasProtectedContent)]
         pub unsafe fn hasProtectedContent(&self) -> bool;
 
         #[cfg(feature = "objc2-core-media")]
+        /// For file types that contain a 'moov' atom, such as QuickTime Movie files, specifies the time scale of the track's media.
+        ///
+        /// The default media time scale is 0.
+        ///
+        /// This property should be set on a new empty track before any edits are performed on the track.
         #[method(timescale)]
         pub unsafe fn timescale(&self) -> CMTimeScale;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`timescale`][Self::timescale].
         #[method(setTimescale:)]
         pub unsafe fn setTimescale(&self, timescale: CMTimeScale);
     }
@@ -157,15 +191,23 @@ extern_methods!(
     /// AVMutableMovieTrackLanguageProperties
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableMovieTrack {
+        /// The language associated with the track.
+        ///
+        /// The value of this property is an ISO 639-2/T language code indicating the language associated with the track; may be nil if no language is indicated.
         #[method_id(@__retain_semantics Other languageCode)]
         pub unsafe fn languageCode(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`languageCode`][Self::languageCode].
         #[method(setLanguageCode:)]
         pub unsafe fn setLanguageCode(&self, language_code: Option<&NSString>);
 
+        /// The language tag associated with the track.
+        ///
+        /// The value of this property is an IETF BCP 47 (RFC 4646) language identifier indicating the language tag associated with the track; may be nil if no language tag is indicated.
         #[method_id(@__retain_semantics Other extendedLanguageTag)]
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`extendedLanguageTag`][Self::extendedLanguageTag].
         #[method(setExtendedLanguageTag:)]
         pub unsafe fn setExtendedLanguageTag(&self, extended_language_tag: Option<&NSString>);
     }
@@ -176,40 +218,50 @@ extern_methods!(
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableMovieTrack {
         #[cfg(feature = "objc2-core-foundation")]
+        /// A CGSize indicating the dimensions at which the visual media data of the track should be displayed.
         #[method(naturalSize)]
         pub unsafe fn naturalSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`naturalSize`][Self::naturalSize].
         #[method(setNaturalSize:)]
         pub unsafe fn setNaturalSize(&self, natural_size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A CGAffineTransform indicating the transform specified in the track's storage container as the preferred transformation of the visual media data for display purposes; the value is often but not always CGAffineTransformIdentity.
         #[method(preferredTransform)]
         pub unsafe fn preferredTransform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredTransform`][Self::preferredTransform].
         #[method(setPreferredTransform:)]
         pub unsafe fn setPreferredTransform(&self, preferred_transform: CGAffineTransform);
 
+        /// The layer level of the visual media data of the track.
         #[method(layer)]
         pub unsafe fn layer(&self) -> NSInteger;
 
+        /// Setter for [`layer`][Self::layer].
         #[method(setLayer:)]
         pub unsafe fn setLayer(&self, layer: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A CGSize indicating the clean aperture dimensions of the track.
         #[method(cleanApertureDimensions)]
         pub unsafe fn cleanApertureDimensions(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`cleanApertureDimensions`][Self::cleanApertureDimensions].
         #[method(setCleanApertureDimensions:)]
         pub unsafe fn setCleanApertureDimensions(&self, clean_aperture_dimensions: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A CGSize indicating the production aperture dimensions of the track.
         #[method(productionApertureDimensions)]
         pub unsafe fn productionApertureDimensions(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`productionApertureDimensions`][Self::productionApertureDimensions].
         #[method(setProductionApertureDimensions:)]
         pub unsafe fn setProductionApertureDimensions(
             &self,
@@ -217,10 +269,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// A CGSize indicating the dimensions encoded pixels dimensions of the track.
         #[method(encodedPixelsDimensions)]
         pub unsafe fn encodedPixelsDimensions(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`encodedPixelsDimensions`][Self::encodedPixelsDimensions].
         #[method(setEncodedPixelsDimensions:)]
         pub unsafe fn setEncodedPixelsDimensions(&self, encoded_pixels_dimensions: CGSize);
     }
@@ -230,9 +284,11 @@ extern_methods!(
     /// AVMutableMovieTrackAudibleProperties
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableMovieTrack {
+        /// The preferred volume of the audible media data of the track; often but not always 1.0.
         #[method(preferredVolume)]
         pub unsafe fn preferredVolume(&self) -> c_float;
 
+        /// Setter for [`preferredVolume`][Self::preferredVolume].
         #[method(setPreferredVolume:)]
         pub unsafe fn setPreferredVolume(&self, preferred_volume: c_float);
     }
@@ -242,23 +298,41 @@ extern_methods!(
     /// AVMutableMovieTrackChunkProperties
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableMovieTrack {
+        /// For file types that support media chunk sizes, the maximum size (in bytes) to be used for each chunk of sample data written to the file.
+        ///
+        /// The total size of the samples in a chunk will be no larger than this preferred chunk size, or the size of a single sample if the sample is larger than this preferred chunk size.
+        ///
+        /// The default media chunk size is 1024 * 1024 bytes. It is an error to set a negative chunk size.
         #[method(preferredMediaChunkSize)]
         pub unsafe fn preferredMediaChunkSize(&self) -> NSInteger;
 
+        /// Setter for [`preferredMediaChunkSize`][Self::preferredMediaChunkSize].
         #[method(setPreferredMediaChunkSize:)]
         pub unsafe fn setPreferredMediaChunkSize(&self, preferred_media_chunk_size: NSInteger);
 
         #[cfg(feature = "objc2-core-media")]
+        /// For file types that support media chunk durations, the maximum duration to be used for each chunk of sample data written to the file.
+        ///
+        ///
+        /// The total duration of the samples in a chunk will be no greater than this preferred chunk duration, or the duration of a single sample if the sample's duration is greater than this preferred chunk duration.
+        ///
+        /// The default media chunk duration is 1.0 second. It is an error to set a chunk duration that is negative or non-numeric.
         #[method(preferredMediaChunkDuration)]
         pub unsafe fn preferredMediaChunkDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`preferredMediaChunkDuration`][Self::preferredMediaChunkDuration].
         #[method(setPreferredMediaChunkDuration:)]
         pub unsafe fn setPreferredMediaChunkDuration(&self, preferred_media_chunk_duration: CMTime);
 
+        /// For file types that support media chunk alignment, the boundary for media chunk alignment (in bytes).
+        ///
+        ///
+        /// The default value is 0, which means that no padding should be used to achieve chunk alignment. It is an error to set a negative value for chunk alignment.
         #[method(preferredMediaChunkAlignment)]
         pub unsafe fn preferredMediaChunkAlignment(&self) -> NSInteger;
 
+        /// Setter for [`preferredMediaChunkAlignment`][Self::preferredMediaChunkAlignment].
         #[method(setPreferredMediaChunkAlignment:)]
         pub unsafe fn setPreferredMediaChunkAlignment(
             &self,
@@ -272,6 +346,24 @@ extern_methods!(
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableMovieTrack {
         #[cfg(feature = "objc2-core-media")]
+        /// Inserts a portion of an AVAssetTrack object into the target movie.
+        ///
+        /// Parameter `timeRange`: The time range from the track from which media is to be inserted.
+        ///
+        /// Parameter `track`: An AVAssetTrack object indicating the source of the inserted media. Only AVAssetTracks of AVURLAssets and AVCompositions are supported.
+        /// Must not be nil.
+        ///
+        /// Parameter `startTime`: The time in the target track at which the media is to be inserted.
+        ///
+        /// Parameter `copySampleData`: A BOOL value that indicates whether sample data is to be copied from the source to the destination during edits.
+        /// If YES, the sample data is written to the file specified by the track property mediaDataStorage if non-nil,
+        /// or else by the movie property defaultMediaDataStorage if non-nil; if both are nil, the method will fail and return NO.
+        /// If NO, sample data will not be written and sample references to the samples in their original container will be added
+        /// as necessary. Note that in this case, this method will fail if the original samples are fragmented.
+        ///
+        /// Parameter `outError`: If the insertion fails, describes the nature of the failure.
+        ///
+        /// Returns: A BOOL value that indicates the success of the insertion.
         #[method(insertTimeRange:ofTrack:atTime:copySampleData:error:_)]
         pub unsafe fn insertTimeRange_ofTrack_atTime_copySampleData_error(
             &self,
@@ -282,14 +374,25 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Adds an empty time range to the target track.
+        ///
+        /// Parameter `timeRange`: The time range to be made empty. Note that you cannot add empty time ranges to the end of a track.
         #[method(insertEmptyTimeRange:)]
         pub unsafe fn insertEmptyTimeRange(&self, time_range: CMTimeRange);
 
         #[cfg(feature = "objc2-core-media")]
+        /// Removes a specified time range from a track.
+        ///
+        /// Parameter `timeRange`: The time range to be removed.
         #[method(removeTimeRange:)]
         pub unsafe fn removeTimeRange(&self, time_range: CMTimeRange);
 
         #[cfg(feature = "objc2-core-media")]
+        /// Changes the duration of a time range of a track.
+        ///
+        /// Parameter `timeRange`: The time range to be scaled.
+        ///
+        /// Parameter `duration`: The new duration of the time range.
         #[method(scaleTimeRange:toDuration:)]
         pub unsafe fn scaleTimeRange_toDuration(&self, time_range: CMTimeRange, duration: CMTime);
     }
@@ -300,10 +403,14 @@ extern_methods!(
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableMovieTrack {
         #[cfg(feature = "AVMetadataItem")]
+        /// A collection of metadata stored by the track.
+        ///
+        /// The value of this property is an array of AVMetadataItem objects representing the collection of metadata stored by the track.
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
+        /// Setter for [`metadata`][Self::metadata].
         #[method(setMetadata:)]
         pub unsafe fn setMetadata(&self, metadata: &NSArray<AVMetadataItem>);
     }
@@ -313,6 +420,13 @@ extern_methods!(
     /// AVMutableMovieTrackTrackAssociations
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableMovieTrack {
+        /// Establishes a track association of a specific type between two tracks.
+        ///
+        /// Parameter `movieTrack`: An AVMovieTrack object that is to be associated with the receiver.
+        ///
+        /// Parameter `trackAssociationType`: The type of track association to add between the receiver and the specified movieTrack (for instance, AVTrackAssociationTypeChapterList).
+        ///
+        /// This method throws an exception if the movie track belongs to a different movie.
         #[method(addTrackAssociationToTrack:type:)]
         pub unsafe fn addTrackAssociationToTrack_type(
             &self,
@@ -320,6 +434,13 @@ extern_methods!(
             track_association_type: &AVTrackAssociationType,
         );
 
+        /// Removes a track association of a specific type between two tracks.
+        ///
+        /// Parameter `movieTrack`: An AVMovieTrack object that is associated with the receiver.
+        ///
+        /// Parameter `trackAssociationType`: The type of track association to remove between the receiver and the specified movieTrack (for instance, AVTrackAssociationTypeChapterList).
+        ///
+        /// This method throws an exception if the movie track belongs to a different movie.
         #[method(removeTrackAssociationToTrack:type:)]
         pub unsafe fn removeTrackAssociationToTrack_type(
             &self,
@@ -334,6 +455,15 @@ extern_methods!(
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableMovieTrack {
         #[cfg(feature = "objc2-core-media")]
+        /// Replaces one of the receiver's format descriptions with another format description
+        ///
+        /// Parameter `formatDescription`: A CMFormatDescription occurring in the array returned by the -formatDescriptions method.
+        ///
+        /// Parameter `newFormatDescription`: A CMFormatDescription to replace the specified format description.
+        ///
+        /// You can use this method to make surgical changes to a track's format descriptions, such as adding format description extensions to a format description or changing the audio channel layout of an audio track. You should note that a format description can have extensions of type kCMFormatDescriptionExtension_VerbatimSampleDescription and kCMFormatDescriptionExtension_VerbatimISOSampleEntry; if you modify a copy of a format description, you should delete those extensions from the copy or your changes might be ignored.
+        ///
+        /// This method throws an exception if the media type of the new format description does not match the media type of the receiver.
         #[method(replaceFormatDescription:withFormatDescription:)]
         pub unsafe fn replaceFormatDescription_withFormatDescription(
             &self,
@@ -348,6 +478,40 @@ extern_methods!(
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableMovieTrack {
         #[cfg(feature = "objc2-core-media")]
+        /// Appends sample data to a media file and adds sample references for the added data to a track's media sample tables.
+        ///
+        /// Parameter `sampleBuffer`: The CMSampleBuffer to be appended; this may be obtained from an instance of AVAssetReader.
+        ///
+        /// Parameter `outDecodeTime`: A pointer to a CMTime structure to receive the decode time in the media of the first sample appended from the sample buffer. Pass NULL if you do not need this information.
+        ///
+        /// Parameter `outPresentationTime`: A pointer to a CMTime structure to receive the presentation time in the media of the first sample appended from the sample buffer. Pass NULL if you do not need this information.
+        ///
+        /// Parameter `outError`: If the appending fails, describes the nature of the failure. For example, if the device containing the track's media data storage is full, AVErrorDiskFull is returned.
+        ///
+        /// Returns: A BOOL value indicating the success of the operation.
+        ///
+        /// If the sample buffer carries sample data, the sample data is written to the container specified by the track property mediaDataStorage if non-nil,
+        /// or else by the movie property defaultMediaDataStorage if non-nil, and sample references will be appended to the track's media.
+        /// If both media data storage properties are nil, the method will fail and return NO.
+        /// If the sample buffer carries sample references only, sample data will not be written and sample references to the samples in their
+        /// original container will be appended to the track's media as necessary.
+        ///
+        /// Note regarding sample timing: in a track's media, the first sample's decode timestamp must always be zero.
+        /// For an audio track, each sample buffer's duration is used as the sample decode duration.
+        /// For other track types, difference between a sample's decode timestamp and the following
+        /// sample's decode timestamp is used as the first sample's decode duration, so as to preserve the relative timing.
+        ///
+        /// Note that this method does not modify the track's sourceTimeMappings but only appends sample references and sample data to the track's media.
+        /// To make the new samples appear in the track's timeline, invoke -insertMediaTimeRange:intoTimeRange:.
+        /// You can retrieve the mediaPresentationTimeRange property before and after appending a sequence of samples,
+        /// using CMTimeRangeGetEnd on each to calculate the media TimeRange for -insertMediaTimeRange:intoTimeRange:.
+        ///
+        /// It's safe for multiple threads to call this method on different tracks at once.
+        ///
+        /// This method throws an exception for any of the following reasons:
+        /// - the sample buffer's media type does not match the track's media type
+        /// - the sample buffer contains image buffers (must contain encoded video)
+        /// - the sample buffer contains caption groups (must contain encoded media data)
         #[method(appendSampleBuffer:decodeTime:presentationTime:error:_)]
         pub unsafe fn appendSampleBuffer_decodeTime_presentationTime_error(
             &self,
@@ -357,6 +521,20 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Inserts a reference to a media time range into a track.
+        ///
+        /// Parameter `mediaTimeRange`: The presentation time range of the media to be inserted.
+        ///
+        /// Parameter `trackTimeRange`: The time range of the track into which the media is to be inserted.
+        ///
+        /// Returns: A BOOL value indicating the success of the operation.
+        ///
+        /// Use this method after you have appended samples or sample references to a track's media.
+        ///
+        /// To specify that the media time range be played at its natural rate, pass mediaTimeRange.duration == trackTimeRange.duration;
+        /// otherwise, the ratio between these is used to determine the playback rate.
+        ///
+        /// Pass kCMTimeInvalid for trackTimeRange.start to indicate that the segment should be appended to the end of the track.
         #[method(insertMediaTimeRange:intoTimeRange:)]
         pub unsafe fn insertMediaTimeRange_intoTimeRange(
             &self,
@@ -367,17 +545,27 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovietracktimerangedidchangenotification?language=objc)
+    /// Posted when the timeRange of an AVFragmentedMovieTrack changes while the associated instance of AVFragmentedMovie is being minded by an AVFragmentedMovieMinder, but only for changes that occur after the status of the value of
+    /// "
+    /// timeRange" has reached AVKeyValueStatusLoaded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovietracktimerangedidchangenotification?language=objc)
     pub static AVFragmentedMovieTrackTimeRangeDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovietracksegmentsdidchangenotification?language=objc)
+    /// Posted when the array of segments of an AVFragmentedMovieTrack changes while the associated instance of AVFragmentedMovie is being minded by an AVFragmentedMovieMinder, but only for changes that occur after the status of the value of
+    /// "
+    /// segments" has reached AVKeyValueStatusLoaded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovietracksegmentsdidchangenotification?language=objc)
     pub static AVFragmentedMovieTrackSegmentsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovietracktotalsampledatalengthdidchangenotification?language=objc)
+    /// This notification name has been deprecated. Use either AVFragmentedMovieTrackTimeRangeDidChangeNotification or AVFragmentedMovieTrackSegmentsDidChangeNotification instead; in either case, you can assume that timing changes to fragmented tracks result in changes to the total length of the sample data used by the track.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovietracktotalsampledatalengthdidchangenotification?language=objc)
     pub static AVFragmentedMovieTrackTotalSampleDataLengthDidChangeNotification: &'static NSString;
 }
 
@@ -428,6 +616,9 @@ extern_methods!(
 
 extern_methods!(
     /// SynchronousTrackInterface
+    /// Redeclarations of async-only AVAssetTrack interfaces to allow synchronous usage in the synchronous subclass.
+    ///
+    /// See AVAssetTrack's interface for more information about these interfaces.
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableMovieTrack {
         #[cfg(feature = "AVMediaFormat")]

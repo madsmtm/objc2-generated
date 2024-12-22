@@ -18,7 +18,9 @@ extern "C" {
     pub static kCVMetalTextureCacheMaximumTextureAgeKey: CFStringRef;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecacheref?language=objc)
+/// CoreVideo Metal Texture Cache
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecacheref?language=objc)
 pub type CVMetalTextureCacheRef = *mut c_void;
 
 extern "C-unwind" {
@@ -27,6 +29,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new Texture Cache.
+    ///
+    /// Parameter `allocator`: The CFAllocatorRef to use for allocating the cache.  May be NULL.
+    ///
+    /// Parameter `cacheAttributes`: A CFDictionaryRef containing the attributes of the cache itself.   May be NULL.
+    ///
+    /// Parameter `metalDevice`: The Metal device for which the texture objects will be created.
+    ///
+    /// Parameter `textureAttributes`: A CFDictionaryRef containing the attributes to be used for creating the CVMetalTexture objects.  May be NULL.
+    ///
+    /// Parameter `cacheOut`: The newly created texture cache will be placed here
+    ///
+    /// Returns: Returns kCVReturnSuccess on success
     #[cfg(all(
         feature = "CVReturn",
         feature = "objc2",
@@ -44,6 +59,61 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CVMetalTexture object from an existing CVImageBuffer
+    ///
+    /// Parameter `allocator`: The CFAllocatorRef to use for allocating the CVMetalTexture object.  May be NULL.
+    ///
+    /// Parameter `textureCache`: The texture cache object that will manage the texture.
+    ///
+    /// Parameter `sourceImage`: The CVImageBuffer that you want to create a CVMetalTexture from.
+    ///
+    /// Parameter `textureAttributes`: A CFDictionaryRef containing attributes to be used for creating the CVMetalTexture objects.  May be NULL.
+    ///
+    /// Parameter `pixelFormat`: Specifies the Metal pixel format.
+    ///
+    /// Parameter `width`: Specifies the width of the texture image.
+    ///
+    /// Parameter `height`: Specifies the height of the texture image.
+    ///
+    /// Parameter `planeIndex`: Specifies the plane of the CVImageBuffer to map bind.  Ignored for non-planar CVImageBuffers.
+    ///
+    /// Parameter `textureOut`: The newly created texture object will be placed here.
+    ///
+    /// Returns: Returns kCVReturnSuccess on success
+    ///
+    /// Creates or returns a cached CVMetalTexture texture object mapped to the CVImageBuffer and
+    /// associated params.  This creates a live binding between the CVImageBuffer and underlying
+    /// CVMetalTexture texture object.
+    ///
+    /// IMPORTANT NOTE: Clients should retain CVMetalTexture objects until they are done using the images in them.
+    /// Retaining a CVMetalTexture is your way to indicate that you're still using the image in the buffer, and that it should not be recycled yet.
+    ///
+    /// Note that CoreVideo does not explicitly declare any pixel format types to be Metal compatible.  The assumption
+    /// is that if the CVPixelBufferMetalCompatibilityKey has been specified, all buffers will be Metal compatible
+    /// (IOSurface backed), and thus it is the developer's responsibility to choose an appropriate Metal pixel format
+    /// for the CVPixelBuffers.
+    ///
+    /// Here are some example mappings:
+    ///
+    /// Mapping a BGRA buffer:
+    /// CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, pixelBuffer, NULL, MTLPixelFormatBGRA8Unorm, width, height, 0,
+    /// &outTexture
+    /// );
+    ///
+    /// Mapping the luma plane of a 420v buffer:
+    /// CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width, height, 0,
+    /// &outTexture
+    /// );
+    ///
+    /// Mapping the chroma plane of a 420v buffer as a source texture:
+    /// CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, pixelBuffer, NULL, MTLPixelFormatRG8Unorm width/2, height/2, 1,
+    /// &outTexture
+    /// );
+    ///
+    /// Mapping a yuvs buffer as a source texture (note: yuvs/f and 2vuy are unpacked and resampled -- not colorspace converted)
+    /// CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, pixelBuffer, NULL, MTLPixelFormatGBGR422, width, height, 1,
+    /// &outTexture
+    /// );
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",
@@ -68,6 +138,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Performs internal housekeeping/recycling operations
+    ///
+    /// This call must be made periodically to give the texture cache a chance to do internal housekeeping operations.
+    ///
+    /// Parameter `textureCache`: The texture cache object to flush
+    ///
+    /// Parameter `options`: Currently unused, set to 0.
     #[cfg(feature = "CVBase")]
     pub fn CVMetalTextureCacheFlush(texture_cache: CVMetalTextureCacheRef, options: CVOptionFlags);
 }

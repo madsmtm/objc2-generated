@@ -7,7 +7,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheaptype?language=objc)
+/// Describes the mode of operation for an MTLHeap.
+///
+/// In this mode, resources are placed in the heap automatically.
+/// Automatically placed resources have optimal GPU-specific layout, and may perform better than MTLHeapTypePlacement.
+/// This heap type is recommended when the heap primarily contains temporary write-often resources.
+///
+/// In this mode, the app places resources in the heap.
+/// Manually placed resources allow the app to control memory usage and heap fragmentation directly.
+/// This heap type is recommended when the heap primarily contains persistent write-rarely resources.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheaptype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -46,55 +56,88 @@ unsafe impl NSObjectProtocol for MTLHeapDescriptor {}
 
 extern_methods!(
     unsafe impl MTLHeapDescriptor {
+        /// Requested size of the heap's backing memory.
+        ///
+        /// The size may be rounded up to GPU page granularity.
         #[method(size)]
         pub fn size(&self) -> NSUInteger;
 
+        /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         pub fn setSize(&self, size: NSUInteger);
 
         #[cfg(feature = "MTLResource")]
+        /// Storage mode for the heap. Default is MTLStorageModePrivate.
+        ///
+        /// All resources created from this heap share the same storage mode.
+        /// MTLStorageModeManaged and MTLStorageModeMemoryless are disallowed.
         #[method(storageMode)]
         pub fn storageMode(&self) -> MTLStorageMode;
 
         #[cfg(feature = "MTLResource")]
+        /// Setter for [`storageMode`][Self::storageMode].
         #[method(setStorageMode:)]
         pub fn setStorageMode(&self, storage_mode: MTLStorageMode);
 
         #[cfg(feature = "MTLResource")]
+        /// CPU cache mode for the heap. Default is MTLCPUCacheModeDefaultCache.
+        ///
+        /// All resources created from this heap share the same cache mode.
+        /// CPU cache mode is ignored for MTLStorageModePrivate.
         #[method(cpuCacheMode)]
         pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
 
         #[cfg(feature = "MTLResource")]
+        /// Setter for [`cpuCacheMode`][Self::cpuCacheMode].
         #[method(setCpuCacheMode:)]
         pub fn setCpuCacheMode(&self, cpu_cache_mode: MTLCPUCacheMode);
 
         #[cfg(feature = "MTLDevice")]
+        /// The sparse page size to use for resources created from the heap.
         #[method(sparsePageSize)]
         pub unsafe fn sparsePageSize(&self) -> MTLSparsePageSize;
 
         #[cfg(feature = "MTLDevice")]
+        /// Setter for [`sparsePageSize`][Self::sparsePageSize].
         #[method(setSparsePageSize:)]
         pub unsafe fn setSparsePageSize(&self, sparse_page_size: MTLSparsePageSize);
 
         #[cfg(feature = "MTLResource")]
+        /// Set hazard tracking mode for the heap. The default value is MTLHazardTrackingModeDefault.
+        ///
+        /// For heaps, MTLHazardTrackingModeDefault is treated as MTLHazardTrackingModeUntracked.
+        /// Setting hazardTrackingMode to MTLHazardTrackingModeTracked causes hazard tracking to be enabled heap.
+        /// When a resource on a hazard tracked heap is modified, reads and writes from all resources suballocated on that heap will be delayed until the modification is complete.
+        /// Similarly, modifying heap resources will be delayed until all in-flight reads and writes from all resources suballocated on that heap have completed.
+        /// For optimal performance, perform hazard tracking manually through MTLFence or MTLEvent instead.
+        /// All resources created from this heap shared the same hazard tracking mode.
         #[method(hazardTrackingMode)]
         pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
 
         #[cfg(feature = "MTLResource")]
+        /// Setter for [`hazardTrackingMode`][Self::hazardTrackingMode].
         #[method(setHazardTrackingMode:)]
         pub fn setHazardTrackingMode(&self, hazard_tracking_mode: MTLHazardTrackingMode);
 
         #[cfg(feature = "MTLResource")]
+        /// A packed tuple of the storageMode, cpuCacheMode and hazardTrackingMode properties.
+        ///
+        /// Modifications to this property are reflected in the other properties and vice versa.
         #[method(resourceOptions)]
         pub fn resourceOptions(&self) -> MTLResourceOptions;
 
         #[cfg(feature = "MTLResource")]
+        /// Setter for [`resourceOptions`][Self::resourceOptions].
         #[method(setResourceOptions:)]
         pub fn setResourceOptions(&self, resource_options: MTLResourceOptions);
 
+        /// The type of the heap. The default value is MTLHeapTypeAutomatic.
+        ///
+        /// This constrains the resource creation functions that are available.
         #[method(type)]
         pub unsafe fn r#type(&self) -> MTLHeapType;
 
+        /// Setter for [`type`][Self::type].
         #[method(setType:)]
         pub fn setType(&self, r#type: MTLHeapType);
     }
@@ -115,45 +158,73 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheap?language=objc)
     #[cfg(feature = "MTLAllocation")]
     pub unsafe trait MTLHeap: MTLAllocation {
+        /// A string to help identify this heap.
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
+        /// The device this heap was created against. This heap can only be used with this device.
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLResource")]
+        /// Current heap storage mode, default is MTLStorageModePrivate.
+        ///
+        /// All resources created from this heap share the same storage mode.
         #[method(storageMode)]
         fn storageMode(&self) -> MTLStorageMode;
 
         #[cfg(feature = "MTLResource")]
+        /// CPU cache mode for the heap. Default is MTLCPUCacheModeDefaultCache.
+        ///
+        /// All resources created from this heap share the same cache mode.
         #[method(cpuCacheMode)]
         fn cpuCacheMode(&self) -> MTLCPUCacheMode;
 
         #[cfg(feature = "MTLResource")]
+        /// Whether or not the heap is hazard tracked.
+        ///
+        /// When a resource on a hazard tracked heap is modified, reads and writes from any other resource on that heap will be delayed until the modification is complete.
+        /// Similarly, modifying heap resources will be delayed until all in-flight reads and writes from resources suballocated on that heap have completed.
+        /// For optimal performance, perform hazard tracking manually through MTLFence or MTLEvent instead.
+        /// Resources on the heap may opt-out of hazard tracking individually when the heap is hazard tracked,
+        /// however resources cannot opt-in to hazard tracking when the heap is not hazard tracked.
         #[method(hazardTrackingMode)]
         fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
 
         #[cfg(feature = "MTLResource")]
+        /// A packed tuple of the storageMode, cpuCacheMode and hazardTrackingMode properties.
         #[method(resourceOptions)]
         fn resourceOptions(&self) -> MTLResourceOptions;
 
+        /// Heap size in bytes, specified at creation time and rounded up to device specific alignment.
         #[method(size)]
         fn size(&self) -> NSUInteger;
 
+        /// The size in bytes, of all resources allocated from the heap.
         #[method(usedSize)]
         fn usedSize(&self) -> NSUInteger;
 
+        /// The size in bytes of the current heap allocation.
         #[method(currentAllocatedSize)]
         fn currentAllocatedSize(&self) -> NSUInteger;
 
+        /// The maximum size that can be successfully allocated from the heap in bytes, taking into notice given alignment. Alignment needs to be zero, or power of two.
+        ///
+        /// Provides a measure of fragmentation within the heap.
         #[method(maxAvailableSizeWithAlignment:)]
         fn maxAvailableSizeWithAlignment(&self, alignment: NSUInteger) -> NSUInteger;
 
         #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        /// Create a new buffer backed by heap memory.
+        ///
+        /// The requested storage and CPU cache modes must match the storage and CPU cache modes of the heap.
+        ///
+        /// Returns: The buffer or nil if heap is full.
         #[method_id(@__retain_semantics New newBufferWithLength:options:)]
         fn newBufferWithLength_options(
             &self,
@@ -162,6 +233,11 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
+        /// Create a new texture backed by heap memory.
+        ///
+        /// The requested storage and CPU cache modes must match the storage and CPU cache modes of the heap, with the exception that the requested storage mode can be MTLStorageModeMemoryless.
+        ///
+        /// Returns: The texture or nil if heap is full.
         #[method_id(@__retain_semantics New newTextureWithDescriptor:)]
         fn newTextureWithDescriptor(
             &self,
@@ -169,13 +245,30 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "MTLResource")]
+        /// Set or query the purgeability state of the heap.
         #[method(setPurgeableState:)]
         fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
 
+        /// The type of the heap. The default value is MTLHeapTypeAutomatic.
+        ///
+        /// This constrains the resource creation functions that are available on the heap.
         #[method(type)]
         unsafe fn r#type(&self) -> MTLHeapType;
 
         #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
+        /// Create a new buffer backed by heap memory at the specified placement offset.
+        ///
+        /// This method can only be used when heapType is set to MTLHeapTypePlacement.
+        /// Use "MTLDevice heapBufferSizeAndAlignWithLength:options:" to determine requiredSize and requiredAlignment.
+        /// Any resources that exist in this heap at overlapping half-open range [offset, offset + requiredSize) are implicitly aliased with the new resource.
+        ///
+        /// Parameter `length`: The requested size of the buffer, in bytes.
+        ///
+        /// Parameter `options`: The requested options of the buffer, of which the storage and CPU cache mode must match these of the heap.
+        ///
+        /// Parameter `offset`: The requested offset of the buffer inside the heap, in bytes. Behavior is undefined if "offset + requiredSize > heap.size" or "offset % requiredAlignment != 0".
+        ///
+        /// Returns: The buffer, or nil if the heap is not a placement heap
         #[method_id(@__retain_semantics New newBufferWithLength:options:offset:)]
         unsafe fn newBufferWithLength_options_offset(
             &self,
@@ -185,6 +278,17 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(feature = "MTLResource", feature = "MTLTexture"))]
+        /// Create a new texture backed by heap memory at the specified placement offset.
+        ///
+        /// This method can only be used when heapType is set to MTLHeapTypePlacement.
+        /// Use "MTLDevice heapTextureSizeAndAlignWithDescriptor:" to determine requiredSize and requiredAlignment.
+        /// Any resources that exist in this heap at overlapping half-open range [offset, offset + requiredSize) are implicitly aliased with the new resource.
+        ///
+        /// Parameter `descriptor`: The requested properties of the texture, of which the storage and CPU cache mode must match those of the heap.
+        ///
+        /// Parameter `offset`: The requested offset of the texture inside the heap, in bytes. Behavior is undefined if "offset + requiredSize > heap.size" and "offset % requiredAlignment != 0".
+        ///
+        /// Returns: The texture, or nil if the heap is not a placement heap.
         #[method_id(@__retain_semantics New newTextureWithDescriptor:offset:)]
         unsafe fn newTextureWithDescriptor_offset(
             &self,
@@ -193,6 +297,9 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
+        /// Create a new acceleration structure backed by heap memory.
+        ///
+        /// Returns: The acceleration structure or nil if heap is full. Note that the MTLAccelerationStructure merely represents storage for an acceleration structure. It will still need to be populated via a build, copy, refit, etc.
         #[method_id(@__retain_semantics New newAccelerationStructureWithSize:)]
         unsafe fn newAccelerationStructureWithSize(
             &self,
@@ -200,6 +307,11 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
 
         #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
+        /// Create a new acceleration structure backed by heap memory.
+        ///
+        /// This is a convenience method which creates the acceleration structure backed by heap memory. The acceleration structure size is inferred based on the descriptor.
+        ///
+        /// Returns: The acceleration structure or nil if heap is full. Note that the MTLAccelerationStructure merely represents storage for an acceleration structure. It will still need to be populated via a build, copy, refit, etc.
         #[method_id(@__retain_semantics New newAccelerationStructureWithDescriptor:)]
         unsafe fn newAccelerationStructureWithDescriptor(
             &self,
@@ -207,6 +319,17 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
 
         #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
+        /// Create a new acceleration structure backed by heap memory at the specified placement offset.
+        ///
+        /// This method can only be used when heapType is set to MTLHeapTypePlacement.
+        /// Use "MTLDevice heapAccelerationStructureSizeAndAlignWithSize:" or "MTLDevice heapAccelerationStructureSizeAndAlignWithDescriptor:" to determine requiredSize and requiredAlignment.
+        /// Any resources that exist in this heap at overlapping half-open range [offset, offset + requiredSize) are implicitly aliased with the new resource.
+        ///
+        /// Parameter `size`: The requested size of the acceleration structure, in bytes.
+        ///
+        /// Parameter `offset`: The requested offset of the acceleration structure inside the heap, in bytes. Behavior is undefined if "offset + requiredSize > heap.size" or "offset % requiredAlignment != 0".
+        ///
+        /// Returns: The acceleration structure, or nil if the heap is not a placement heap
         #[method_id(@__retain_semantics New newAccelerationStructureWithSize:offset:)]
         unsafe fn newAccelerationStructureWithSize_offset(
             &self,
@@ -215,6 +338,18 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
 
         #[cfg(all(feature = "MTLAccelerationStructure", feature = "MTLResource"))]
+        /// Create a new acceleration structure backed by heap memory at the specified placement offset.
+        ///
+        /// This is a convenience method which computes the acceleration structure size based on the descriptor.
+        /// This method can only be used when heapType is set to MTLHeapTypePlacement.
+        /// Use "MTLDevice heapAccelerationStructureSizeAndAlignWithSize:" or "MTLDevice heapAccelerationStructureSizeAndAlignWithDescriptor:" to determine requiredSize and requiredAlignment.
+        /// Any resources that exist in this heap at overlapping half-open range [offset, offset + requiredSize) are implicitly aliased with the new resource.
+        ///
+        /// Parameter `descriptor`: The acceleration structure descriptor
+        ///
+        /// Parameter `offset`: The requested offset of the acceleration structure inside the heap, in bytes. Behavior is undefined if "offset + requiredSize > heap.size" or "offset % requiredAlignment != 0".
+        ///
+        /// Returns: The acceleration structure, or nil if the heap is not a placement heap
         #[method_id(@__retain_semantics New newAccelerationStructureWithDescriptor:offset:)]
         unsafe fn newAccelerationStructureWithDescriptor_offset(
             &self,

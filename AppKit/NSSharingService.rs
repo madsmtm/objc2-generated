@@ -12,7 +12,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicename?language=objc)
+/// Built-in sharing services
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicename?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSSharingServiceName = NSString;
 
@@ -112,12 +114,20 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamecloudsharing?language=objc)
+    /// This service differs from other NSSharingServices in that it allows the user to establish a persistent sharing session for the specified items with potentially many participants, instead of sending a copy of the items. You can invoke this service with an NSItemProvider that has registered a CKShare
+    /// &
+    /// CKContainer via either -registerCloudKitShare:container: or -registerCloudKitShareWithPreparationHandler:. (Registering other types on the same provider to enable other sharing services is allowed.)
+    ///
+    /// When performed, this service gives the user the opportunity to invite participants and start sharing. If the content is already shared, the service instead allows the user to view or modify participation or stop sharing. To detect changes the service makes to the CKShare, implement -sharingService:didSaveShare: and -sharingService:didStopSharing:.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamecloudsharing?language=objc)
     pub static NSSharingServiceNameCloudSharing: &'static NSSharingServiceName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice?language=objc)
+    /// NSSharingService can be used to share items to different kinds of local and remote services. Items are objects which respond to the NSPasteboardWriting protocol, like NSURL, NSImage or NSString. If an NSURL is a file URL (point to a video for example), then the content of the file will be shared. If the URL is remote, then the URL itself will be shared.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSharingService;
@@ -134,6 +144,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSSharingServiceDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -151,48 +162,63 @@ extern_methods!(
         #[method_id(@__retain_semantics Other alternateImage)]
         pub unsafe fn alternateImage(&self) -> Option<Retained<NSImage>>;
 
+        /// Title of the service in the Share menu. Can be modified.
         #[method_id(@__retain_semantics Other menuItemTitle)]
         pub unsafe fn menuItemTitle(&self) -> Retained<NSString>;
 
+        /// Setter for [`menuItemTitle`][Self::menuItemTitle].
         #[method(setMenuItemTitle:)]
         pub unsafe fn setMenuItemTitle(&self, menu_item_title: &NSString);
 
+        /// NSArray of NSString objects representing handles (example: email adresses)
         #[method_id(@__retain_semantics Other recipients)]
         pub unsafe fn recipients(&self) -> Option<Retained<NSArray<NSString>>>;
 
+        /// Setter for [`recipients`][Self::recipients].
         #[method(setRecipients:)]
         pub unsafe fn setRecipients(&self, recipients: Option<&NSArray<NSString>>);
 
         #[method_id(@__retain_semantics Other subject)]
         pub unsafe fn subject(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`subject`][Self::subject].
         #[method(setSubject:)]
         pub unsafe fn setSubject(&self, subject: Option<&NSString>);
 
+        /// Message body as string
         #[method_id(@__retain_semantics Other messageBody)]
         pub unsafe fn messageBody(&self) -> Option<Retained<NSString>>;
 
+        /// URL to access the post on Facebook, Twitter, Sina Weibo, etc. (also known as permalink)
         #[method_id(@__retain_semantics Other permanentLink)]
         pub unsafe fn permanentLink(&self) -> Option<Retained<NSURL>>;
 
+        /// Account name used for sending on Twitter or Sina Weibo
         #[method_id(@__retain_semantics Other accountName)]
         pub unsafe fn accountName(&self) -> Option<Retained<NSString>>;
 
+        /// NSArray of NSURL objects representing the files that were shared
         #[method_id(@__retain_semantics Other attachmentFileURLs)]
         pub unsafe fn attachmentFileURLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
+        /// Returns a list of NSSharingServices which could share all the provided items together. sharingServicesForItems can be used to build a custom UI, or to populate a contextual NSMenu.
+        /// The items represent the objects to be shared and must conform to the
+        /// <NSPasteboardWriting
+        /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
         #[deprecated = "Use -[NSSharingServicePicker standardShareMenuItem] instead."]
         #[method_id(@__retain_semantics Other sharingServicesForItems:)]
         pub unsafe fn sharingServicesForItems(
             items: &NSArray,
         ) -> Retained<NSArray<NSSharingService>>;
 
+        /// Returns an NSSharingService representing one of the built-in services.
         #[method_id(@__retain_semantics Other sharingServiceNamed:)]
         pub unsafe fn sharingServiceNamed(
             service_name: &NSSharingServiceName,
         ) -> Option<Retained<NSSharingService>>;
 
         #[cfg(all(feature = "NSImage", feature = "block2"))]
+        /// Creates a custom NSSharingService object. Custom sharing services can be added to the NSSharingServicePicker with the sharingServicePicker:sharingServicesForItems:proposedSharingServices: delegate method.
         #[method_id(@__retain_semantics Init initWithTitle:image:alternateImage:handler:)]
         pub unsafe fn initWithTitle_image_alternateImage_handler(
             this: Allocated<Self>,
@@ -202,12 +228,23 @@ extern_methods!(
             block: &block2::Block<dyn Fn()>,
         ) -> Retained<Self>;
 
+        /// Use -initWithTitle:image:alternateImage:handler: instead
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Returns whether a service can do something with all the provided items. This can be used to validate a custom UI such as a dedicated Twitter button. If items is nil, the method will return YES when the service is configured. Therefore you could call it once at launch time with nil items to check whether to display the button or not, and then with real items to enable and disable the button depending on the context or selection.
+        ///
+        /// The items represent the objects to be shared and must conform to the
+        /// <NSPasteboardWriting
+        /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
         #[method(canPerformWithItems:)]
         pub unsafe fn canPerformWithItems(&self, items: Option<&NSArray>) -> bool;
 
+        /// Manually performs the service on the provided items. In most cases this will display a sharing window.
+        ///
+        /// The items represent the objects to be shared and must conform to the
+        /// <NSPasteboardWriting
+        /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
         #[method(performWithItems:)]
         pub unsafe fn performWithItems(&self, items: &NSArray);
     }
@@ -221,16 +258,23 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingcontentscope?language=objc)
+/// Use the sharing scope to specify the nature of the things you are sharing.
+///
+/// The sharing scope can be modified from the default value of NSSharingContentScopeItem by setting a different value in the out parameter in sharingService:sourceWindowForShareItems:sharingContentScope:.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingcontentscope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSharingContentScope(pub NSInteger);
 impl NSSharingContentScope {
+    /// NSSharingContentScopeItem: use when sharing a clearly identified item, e.g. a file represented by its icon.
     #[doc(alias = "NSSharingContentScopeItem")]
     pub const Item: Self = Self(0);
+    /// NSSharingContentScopePartial: use when sharing a portion of a more global content, e.g. part of a webpage
     #[doc(alias = "NSSharingContentScopePartial")]
     pub const Partial: Self = Self(1);
+    /// NSSharingContentScopeFull: use when sharing the whole content of the current document, e.g. the url of the webpage
     #[doc(alias = "NSSharingContentScopeFull")]
     pub const Full: Self = Self(2);
 }
@@ -281,6 +325,7 @@ extern_protocol!(
         ) -> NSRect;
 
         #[cfg(all(feature = "NSImage", feature = "objc2-core-foundation"))]
+        /// When non-nil, the image returned would be used for the transitioning animation. When nil, the transitioning animation is disabled.
         #[optional]
         #[method_id(@__retain_semantics Other sharingService:transitionImageForShareItem:contentRect:)]
         unsafe fn sharingService_transitionImageForShareItem_contentRect(
@@ -305,6 +350,9 @@ extern_protocol!(
             feature = "NSView",
             feature = "objc2-core-foundation"
         ))]
+        /// The following method is invoked when the service is performed and wants to display its contents in a popover. The delegate should return the view that will act as the anchor of the popover, along with the target rectangle within the bounds of that view and preferred edge of that rectangle for the popover to appear. The delegate may also return nil, indicating that there is no anchoring view currently available, in which case the service may attempt to display the service via some other means.
+        ///
+        /// The service named NSSharingServiceNameCloudSharing prefers to display itself using a popover anchored to an "Add People" or "Share" button. If no such button is available or visible, return nil.
         #[optional]
         #[method_id(@__retain_semantics Other anchoringViewForSharingService:showRelativeToRect:preferredEdge:)]
         unsafe fn anchoringViewForSharingService_showRelativeToRect_preferredEdge(
@@ -325,10 +373,15 @@ extern_protocol!(
 pub struct NSCloudKitSharingServiceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCloudKitSharingServiceOptions: NSUInteger {
+/// Allow the user to configure the share with the standard set of options.
         const NSCloudKitSharingServiceStandard = 0;
+/// The user is allowed to share publicly.
         const NSCloudKitSharingServiceAllowPublic = 1<<0;
+/// The user is allowed to share privately.
         const NSCloudKitSharingServiceAllowPrivate = 1<<1;
+/// The user is allowed to grant participants read-only permissions.
         const NSCloudKitSharingServiceAllowReadOnly = 1<<4;
+/// The user is allowed to grant participants read/write permissions.
         const NSCloudKitSharingServiceAllowReadWrite = 1<<5;
     }
 }
@@ -344,6 +397,7 @@ unsafe impl RefEncode for NSCloudKitSharingServiceOptions {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscloudsharingservicedelegate?language=objc)
     pub unsafe trait NSCloudSharingServiceDelegate: NSSharingServiceDelegate {
+        /// When an NSSharingServiceNameCloudSharing sharing service is dismissed it will invoke this method on the delegate, with an error if there was any. If the delegate implements this method, NSSharingServiceNameCloudSharing will not send -sharingService:didFailToShareItems:error: or -sharingService:didShareItems:.
         #[optional]
         #[method(sharingService:didCompleteForItems:error:)]
         unsafe fn sharingService_didCompleteForItems_error(
@@ -353,6 +407,7 @@ extern_protocol!(
             error: Option<&NSError>,
         );
 
+        /// The options returned by this method describe how the user is allowed to configure the share: whether the share is public or private, and whether participants have read-only or read/write permissions. If this method is not implemented, NSCloudKitSharingServiceStandard is assumed.
         #[optional]
         #[method(optionsForSharingService:shareProvider:)]
         unsafe fn optionsForSharingService_shareProvider(
@@ -363,6 +418,7 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-cloud-kit")]
         #[cfg(target_vendor = "apple")]
+        /// When an NSSharingServiceNameCloudSharing sharing service successfully saves modifications to the CKShare, it will invoke this method on the delegate with the last-known state of the CKShare on the server.
         #[optional]
         #[method(sharingService:didSaveShare:)]
         unsafe fn sharingService_didSaveShare(
@@ -373,6 +429,7 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-cloud-kit")]
         #[cfg(target_vendor = "apple")]
+        /// When an NSSharingServiceNameCloudSharing sharing service stops sharing it will delete the CKShare from the server, then invoke this method on the delegate with the last-known state of the CKShare.
         #[optional]
         #[method(sharingService:didStopSharing:)]
         unsafe fn sharingService_didStopSharing(
@@ -391,6 +448,7 @@ extern_category!(
     pub unsafe trait NSItemProviderNSCloudKitSharing {
         #[cfg(all(feature = "block2", feature = "objc2-cloud-kit"))]
         #[cfg(target_vendor = "apple")]
+        /// Use this method when you want to share a collection of CKRecords but don't currently have a CKShare. When the preparationHandler is called, you should create a new CKShare with the appropriate root CKRecord. After ensuring the share and all records have been saved to the server, invoke the preparationCompletionHandler with either the resulting CKShare and its CKContainer, or an NSError if saving failed. Invoking the service with a CKShare registered with this method will prompt the user to start sharing.
         #[method(registerCloudKitShareWithPreparationHandler:)]
         unsafe fn registerCloudKitShareWithPreparationHandler(
             &self,
@@ -403,6 +461,7 @@ extern_category!(
 
         #[cfg(feature = "objc2-cloud-kit")]
         #[cfg(target_vendor = "apple")]
+        /// Use this method when you have a CKShare that is already saved to the server. Invoking the service with a CKShare registerd with this method will allow the owner to make modifications to the share settings, or will allow a participant to view the share settings.
         #[method(registerCloudKitShare:container:)]
         unsafe fn registerCloudKitShare_container(&self, share: &CKShare, container: &CKContainer);
     }
@@ -427,15 +486,20 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSSharingServicePickerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSSharingServicePickerDelegate>>,
         );
 
+        /// Returns a new picker. The items represent the objects to be shared and must conform to the
+        /// <NSPasteboardWriting
+        /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
         #[method_id(@__retain_semantics Init initWithItems:)]
         pub unsafe fn initWithItems(this: Allocated<Self>, items: &NSArray) -> Retained<Self>;
 
+        /// Use initWithItems: instead.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -444,6 +508,7 @@ extern_methods!(
             feature = "NSView",
             feature = "objc2-core-foundation"
         ))]
+        /// Shows the picker, populated with sharing services related to the instance items. When the user selects one of the sharing services, the sharing service will be performed. Note that this method must be called on mouseDown.
         #[method(showRelativeToRect:ofView:preferredEdge:)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
             &self,
@@ -452,10 +517,12 @@ extern_methods!(
             preferred_edge: NSRectEdge,
         );
 
+        /// Closes the picker UI. `-[NSSharingServicePickerDelegate sharingServicePicker:didChooseSharingService:]` will be invoked if `delegate` is set, with a `nil` service.
         #[method(close)]
         pub unsafe fn close(&self);
 
         #[cfg(feature = "NSMenuItem")]
+        /// Returns a menu item suitable to display the picker for the given items.
         #[method_id(@__retain_semantics Other standardShareMenuItem)]
         pub unsafe fn standardShareMenuItem(&self, mtm: MainThreadMarker) -> Retained<NSMenuItem>;
     }
@@ -472,6 +539,21 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepickerdelegate?language=objc)
     pub unsafe trait NSSharingServicePickerDelegate: NSObjectProtocol {
+        /// Allows the delegate to customize exactly what appears in the sharing service picker by reordering or removing the services before the picker is presented. It's possible to add custom services by mutating the proposedSharingServices array and adding new NSSharingService instances:
+        ///
+        /// ```objc
+        /// NSMutableArray *sharingServices = [proposedServices mutableCopy];
+        /// NSSharingService * customService = [[NSSharingService alloc] initWithTitle:
+        /// "
+        /// Service Title"
+        /// image:image alternateImage:alternateImage
+        /// handler:^{ [self doCustomServiceWithItems:items]; } ];
+        /// [sharingServices addObject:customService];
+        /// return [sharingServices autorelease];
+        /// ```
+        /// The items represent the objects to be shared and must conform to the
+        /// <NSPasteboardWriting
+        /// > protocol or be an NSItemProvider or an NSDocument. (e.g. NSString, NSImage, NSURL, etc.)
         #[optional]
         #[method_id(@__retain_semantics Other sharingServicePicker:sharingServicesForItems:proposedSharingServices:)]
         unsafe fn sharingServicePicker_sharingServicesForItems_proposedSharingServices(
@@ -481,6 +563,7 @@ extern_protocol!(
             proposed_services: &NSArray<NSSharingService>,
         ) -> Retained<NSArray<NSSharingService>>;
 
+        /// Sent when the user has selected a service and the picker is about to execute it.
         #[optional]
         #[method_id(@__retain_semantics Other sharingServicePicker:delegateForSharingService:)]
         unsafe fn sharingServicePicker_delegateForSharingService(
@@ -490,6 +573,7 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn NSSharingServiceDelegate>>>;
 
+        /// Sent when the user has selected a service and before it is executed. Service will be nil if the picker was dismissed.
         #[optional]
         #[method(sharingServicePicker:didChooseSharingService:)]
         unsafe fn sharingServicePicker_didChooseSharingService(
@@ -499,6 +583,8 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSSharingCollaborationModeRestriction")]
+        /// Used to specify the case where the share picker should not support some modes of sharing even if they are supported by the items being shared.
+        /// Disabling all possible modes at the same time is not supported behavior.
         #[optional]
         #[method_id(@__retain_semantics Other sharingServicePickerCollaborationModeRestrictions:)]
         unsafe fn sharingServicePickerCollaborationModeRestrictions(

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureneuralnetworklayer?language=objc)
+    /// A class representing a layer in a NeuralNetwork.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureneuralnetworklayer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructureNeuralNetworkLayer;
@@ -27,15 +29,19 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// The layer name.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// The type of the layer, e,g, "elementwise", "pooling", etc.
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
+        /// The input names.
         #[method_id(@__retain_semantics Other inputNames)]
         pub unsafe fn inputNames(&self) -> Retained<NSArray<NSString>>;
 
+        /// The output names.
         #[method_id(@__retain_semantics Other outputNames)]
         pub unsafe fn outputNames(&self) -> Retained<NSArray<NSString>>;
     }

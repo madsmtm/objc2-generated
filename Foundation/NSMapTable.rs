@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablestrongmemory?language=objc)
+/// **************    Class    ***************
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablestrongmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableStrongMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsStrongMemory.0);
@@ -185,7 +187,9 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapenumerator?language=objc)
+/// **************    void * Map table operations    ***************
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapenumerator?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSMapEnumerator {
@@ -341,7 +345,9 @@ pub unsafe extern "C-unwind" fn NSAllMapTableValues(table: &NSMapTable) -> Retai
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablekeycallbacks?language=objc)
+/// **************     Legacy     **************************************
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablekeycallbacks?language=objc)
 #[cfg(feature = "NSString")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -439,7 +445,9 @@ pub unsafe extern "C-unwind" fn NSCreateMapTable(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegermapkeycallbacks?language=objc)
+    /// **************    Common map table key callbacks    ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegermapkeycallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntegerMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
@@ -481,7 +489,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegermapvaluecallbacks?language=objc)
+    /// **************    Common map table value callbacks    ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegermapvaluecallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntegerMapValueCallBacks: NSMapTableValueCallBacks;
 }

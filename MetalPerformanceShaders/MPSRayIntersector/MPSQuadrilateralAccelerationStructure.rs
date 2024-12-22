@@ -9,7 +9,12 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsquadrilateralaccelerationstructure?language=objc)
+    /// An acceleration structure built over quadrilaterals
+    ///
+    ///
+    /// See MPSPolygonAccelerationStructure for more information
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsquadrilateralaccelerationstructure?language=objc)
     #[unsafe(super(
         MPSPolygonAccelerationStructure,
         MPSAccelerationStructure,
@@ -70,10 +75,13 @@ extern_methods!(
         feature = "MPSPolygonAccelerationStructure"
     ))]
     unsafe impl MPSQuadrilateralAccelerationStructure {
+        /// Number of quads. Changes to this property require rebuilding the acceleration
+        /// structure. This is an alias for the polygonCount property.
         #[deprecated]
         #[method(quadrilateralCount)]
         pub unsafe fn quadrilateralCount(&self) -> NSUInteger;
 
+        /// Setter for [`quadrilateralCount`][Self::quadrilateralCount].
         #[deprecated]
         #[method(setQuadrilateralCount:)]
         pub unsafe fn setQuadrilateralCount(&self, quadrilateral_count: NSUInteger);
@@ -92,6 +100,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initialize the acceleration structure with a Metal device
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -99,6 +108,9 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Initialize the acceleration structure with an NSCoder and a Metal device. Buffer
+        /// properties such as the vertex buffer, instance buffer, etc. are set to nil. Encode and decode
+        /// these buffers along with the acceleration structure instead.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
@@ -108,6 +120,12 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MPSAccelerationStructureGroup")]
+        /// Initialize the acceleration structure with an acceleration structure group, if the
+        /// acceleration structure will be used in an instance hierarchy.
+        ///
+        ///
+        /// The Metal device is determined from the acceleration structure group. All
+        /// acceleration structures in the instance hierarchy must share the same group.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithGroup:)]
         pub unsafe fn initWithGroup(
@@ -116,6 +134,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSAccelerationStructureGroup")]
+        /// Initialize the acceleration structure with an NSCoder and an acceleration structure
+        /// group, if the acceleration structure will be used in an instance hierarchy. All acceleration
+        /// structures in the instance hierarchy must share the same group. Buffer properties such as the
+        /// vertex buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with
+        /// the acceleration structure instead.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithCoder:group:)]
         pub unsafe fn initWithCoder_group(
@@ -134,6 +157,14 @@ extern_methods!(
         feature = "MPSPolygonAccelerationStructure"
     ))]
     unsafe impl MPSQuadrilateralAccelerationStructure {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

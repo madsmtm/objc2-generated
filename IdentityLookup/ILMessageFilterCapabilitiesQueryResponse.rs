@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltercapabilitiesqueryresponse?language=objc)
+    /// A response to an ILMessageFilterCapabilitiesQueryRequest.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltercapabilitiesqueryresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILMessageFilterCapabilitiesQueryResponse;
@@ -22,18 +24,22 @@ unsafe impl NSSecureCoding for ILMessageFilterCapabilitiesQueryResponse {}
 
 extern_methods!(
     unsafe impl ILMessageFilterCapabilitiesQueryResponse {
+        /// Array of type ILMessageFilterSubAction under Transactional
         #[method_id(@__retain_semantics Other transactionalSubActions)]
         pub unsafe fn transactionalSubActions(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`transactionalSubActions`][Self::transactionalSubActions].
         #[method(setTransactionalSubActions:)]
         pub unsafe fn setTransactionalSubActions(
             &self,
             transactional_sub_actions: &NSArray<NSNumber>,
         );
 
+        /// Array of type ILMessageFilterSubAction under Promotional
         #[method_id(@__retain_semantics Other promotionalSubActions)]
         pub unsafe fn promotionalSubActions(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`promotionalSubActions`][Self::promotionalSubActions].
         #[method(setPromotionalSubActions:)]
         pub unsafe fn setPromotionalSubActions(&self, promotional_sub_actions: &NSArray<NSNumber>);
     }

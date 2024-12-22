@@ -29,12 +29,14 @@ extern_methods!(
         pub unsafe fn popoverTouchBar(&self) -> Retained<NSTouchBar>;
 
         #[cfg(feature = "NSTouchBar")]
+        /// Setter for [`popoverTouchBar`][Self::popoverTouchBar].
         #[method(setPopoverTouchBar:)]
         pub unsafe fn setPopoverTouchBar(&self, popover_touch_bar: &NSTouchBar);
 
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
+        /// Setter for [`customizationLabel`][Self::customizationLabel].
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
@@ -43,6 +45,7 @@ extern_methods!(
         pub unsafe fn collapsedRepresentation(&self) -> Retained<NSView>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
+        /// Setter for [`collapsedRepresentation`][Self::collapsedRepresentation].
         #[method(setCollapsedRepresentation:)]
         pub unsafe fn setCollapsedRepresentation(&self, collapsed_representation: &NSView);
 
@@ -51,6 +54,7 @@ extern_methods!(
         pub unsafe fn collapsedRepresentationImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`collapsedRepresentationImage`][Self::collapsedRepresentationImage].
         #[method(setCollapsedRepresentationImage:)]
         pub unsafe fn setCollapsedRepresentationImage(
             &self,
@@ -60,6 +64,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other collapsedRepresentationLabel)]
         pub unsafe fn collapsedRepresentationLabel(&self) -> Retained<NSString>;
 
+        /// Setter for [`collapsedRepresentationLabel`][Self::collapsedRepresentationLabel].
         #[method(setCollapsedRepresentationLabel:)]
         pub unsafe fn setCollapsedRepresentationLabel(
             &self,
@@ -71,12 +76,14 @@ extern_methods!(
         pub unsafe fn pressAndHoldTouchBar(&self) -> Option<Retained<NSTouchBar>>;
 
         #[cfg(feature = "NSTouchBar")]
+        /// Setter for [`pressAndHoldTouchBar`][Self::pressAndHoldTouchBar].
         #[method(setPressAndHoldTouchBar:)]
         pub unsafe fn setPressAndHoldTouchBar(&self, press_and_hold_touch_bar: Option<&NSTouchBar>);
 
         #[method(showsCloseButton)]
         pub unsafe fn showsCloseButton(&self) -> bool;
 
+        /// Setter for [`showsCloseButton`][Self::showsCloseButton].
         #[method(setShowsCloseButton:)]
         pub unsafe fn setShowsCloseButton(&self, shows_close_button: bool);
 

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcellularconditionmetric?language=objc)
+    /// An MXMetric subclass that encapsulates cellular condition metrics.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcellularconditionmetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
@@ -27,6 +29,13 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXCellularConditionMetric {
         #[cfg(all(feature = "MXHistogram", feature = "MXUnit"))]
+        /// Application run time bucketized by cellular condition.
+        ///
+        /// This data represents the percentage of time an application spent running in different cellular conditions.
+        ///
+        /// In the event that no data for any buckets is available, the histogram data will be empty.
+        ///
+        /// Dimensioned as MXUnitSignalBars.
         #[method_id(@__retain_semantics Other histogrammedCellularConditionTime)]
         pub unsafe fn histogrammedCellularConditionTime(
             &self,

@@ -8,7 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webbackforwardlist?language=objc)
+    /// WebBackForwardList holds an ordered list of WebHistoryItems that comprises the back and
+    /// forward lists.
+    ///
+    /// Note that the methods which modify instances of this class do not cause
+    /// navigation to happen in other layers of the stack;  they are only for maintaining this data
+    /// structure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webbackforwardlist?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -20,68 +27,106 @@ unsafe impl NSObjectProtocol for WebBackForwardList {}
 extern_methods!(
     unsafe impl WebBackForwardList {
         #[cfg(feature = "WebHistoryItem")]
+        /// Adds an entry to the list.
+        ///
+        /// Parameter `item`: The entry to add.
+        ///
+        /// The added entry is inserted immediately after the current entry.
+        /// If the current position in the list is not at the end of the list, elements in the
+        /// forward list will be dropped at this point.  In addition, entries may be dropped to keep
+        /// the size of the list within the maximum size.
         #[deprecated]
         #[method(addItem:)]
         pub unsafe fn addItem(&self, item: Option<&WebHistoryItem>);
 
+        /// Move the current pointer back to the entry before the current entry.
         #[deprecated]
         #[method(goBack)]
         pub unsafe fn goBack(&self);
 
+        /// Move the current pointer ahead to the entry after the current entry.
         #[deprecated]
         #[method(goForward)]
         pub unsafe fn goForward(&self);
 
         #[cfg(feature = "WebHistoryItem")]
+        /// Move the current pointer to the given entry.
+        ///
+        /// Parameter `item`: The history item to move the pointer to
         #[deprecated]
         #[method(goToItem:)]
         pub unsafe fn goToItem(&self, item: Option<&WebHistoryItem>);
 
         #[cfg(feature = "WebHistoryItem")]
+        /// The entry right before the current entry, or nil if there isn't one.
         #[deprecated]
         #[method_id(@__retain_semantics Other backItem)]
         pub unsafe fn backItem(&self) -> Option<Retained<WebHistoryItem>>;
 
         #[cfg(feature = "WebHistoryItem")]
+        /// Returns the current entry.
         #[deprecated]
         #[method_id(@__retain_semantics Other currentItem)]
         pub unsafe fn currentItem(&self) -> Option<Retained<WebHistoryItem>>;
 
         #[cfg(feature = "WebHistoryItem")]
+        /// The entry right after the current entry, or nil if there isn't one.
         #[deprecated]
         #[method_id(@__retain_semantics Other forwardItem)]
         pub unsafe fn forwardItem(&self) -> Option<Retained<WebHistoryItem>>;
 
+        /// Returns a portion of the list before the current entry.
+        ///
+        /// Parameter `limit`: A cap on the size of the array returned.
+        ///
+        /// Returns: An array of items before the current entry, or nil if there are none.  The entries are in the order that they were originally visited.
         #[deprecated]
         #[method_id(@__retain_semantics Other backListWithLimit:)]
         pub unsafe fn backListWithLimit(&self, limit: c_int) -> Option<Retained<NSArray>>;
 
+        /// Returns a portion of the list after the current entry.
+        ///
+        /// Parameter `limit`: A cap on the size of the array returned.
+        ///
+        /// Returns: An array of items after the current entry, or nil if there are none.  The entries are in the order that they were originally visited.
         #[deprecated]
         #[method_id(@__retain_semantics Other forwardListWithLimit:)]
         pub unsafe fn forwardListWithLimit(&self, limit: c_int) -> Option<Retained<NSArray>>;
 
+        /// The list's maximum size.
         #[deprecated]
         #[method(capacity)]
         pub unsafe fn capacity(&self) -> c_int;
 
+        /// Setter for [`capacity`][Self::capacity].
         #[deprecated]
         #[method(setCapacity:)]
         pub unsafe fn setCapacity(&self, capacity: c_int);
 
+        /// The number of items in the list.
         #[deprecated]
         #[method(backListCount)]
         pub unsafe fn backListCount(&self) -> c_int;
 
+        /// Returns: The number of items in the list.
         #[deprecated]
         #[method(forwardListCount)]
         pub unsafe fn forwardListCount(&self) -> c_int;
 
         #[cfg(feature = "WebHistoryItem")]
+        /// Parameter `item`: The item that will be checked for presence in the WebBackForwardList.
+        ///
+        /// Returns: Returns YES if the item is in the list.
         #[deprecated]
         #[method(containsItem:)]
         pub unsafe fn containsItem(&self, item: Option<&WebHistoryItem>) -> bool;
 
         #[cfg(feature = "WebHistoryItem")]
+        /// Returns an entry the given distance from the current entry.
+        ///
+        /// Parameter `index`: Index of the desired list item relative to the current item; 0 is current item, -1 is back item, 1 is forward item, etc.
+        ///
+        /// Returns: The entry the given distance from the current entry. If index exceeds the limits of the list, nil is returned.
         #[deprecated]
         #[method_id(@__retain_semantics Other itemAtIndex:)]
         pub unsafe fn itemAtIndex(&self, index: c_int) -> Option<Retained<WebHistoryItem>>;
@@ -102,10 +147,19 @@ extern_methods!(
 extern_methods!(
     /// WebBackForwardListDeprecated
     unsafe impl WebBackForwardList {
+        /// The size passed to this method determines whether the WebView
+        /// associated with this WebBackForwardList will use the shared page cache.
+        ///
+        /// Parameter `size`: If size is 0, the WebView associated with this WebBackForwardList
+        /// will not use the shared page cache. Otherwise, it will.
         #[deprecated]
         #[method(setPageCacheSize:)]
         pub unsafe fn setPageCacheSize(&self, size: NSUInteger);
 
+        /// Returns the size of the shared page cache, or 0.
+        ///
+        /// Returns: The size of the shared page cache (in pages), or 0 if the WebView
+        /// associated with this WebBackForwardList will not use the shared page cache.
         #[deprecated]
         #[method(pageCacheSize)]
         pub unsafe fn pageCacheSize(&self) -> NSUInteger;

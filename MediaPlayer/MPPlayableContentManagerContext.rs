@@ -6,7 +6,11 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext?language=objc)
+    /// MPPlayableContentManagerContext represents the current state of
+    /// the playable content endpoint. A context is retrievable from an instance
+    /// of MPPlayableContentManager.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use CarPlay framework"]
@@ -17,14 +21,18 @@ unsafe impl NSObjectProtocol for MPPlayableContentManagerContext {}
 
 extern_methods!(
     unsafe impl MPPlayableContentManagerContext {
+        /// The number of items the content server will display when content limiting is enforced.
+        /// Returns NSIntegerMax if the content server will never limit the number of items.
         #[deprecated = "Use CarPlay framework"]
         #[method(enforcedContentItemsCount)]
         pub unsafe fn enforcedContentItemsCount(&self) -> NSInteger;
 
+        /// The depth of the navigation hierarchy the content server will allow. Exceeding this limit will result in a crash.
         #[deprecated = "Use CarPlay framework"]
         #[method(enforcedContentTreeDepth)]
         pub unsafe fn enforcedContentTreeDepth(&self) -> NSInteger;
 
+        /// Represents whether content limits are being enforced by the content server or not.
         #[deprecated = "Use CarPlay framework"]
         #[method(contentLimitsEnforced)]
         pub unsafe fn contentLimitsEnforced(&self) -> bool;
@@ -33,6 +41,7 @@ extern_methods!(
         #[method(contentLimitsEnabled)]
         pub unsafe fn contentLimitsEnabled(&self) -> bool;
 
+        /// Represents whether the content server is available or not.
         #[deprecated = "Use CarPlay framework"]
         #[method(endpointAvailable)]
         pub unsafe fn endpointAvailable(&self) -> bool;

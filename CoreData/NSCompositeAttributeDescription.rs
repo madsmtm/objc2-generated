@@ -35,6 +35,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other elements)]
         pub unsafe fn elements(&self) -> Retained<NSArray<NSAttributeDescription>>;
 
+        /// Setter for [`elements`][Self::elements].
         #[method(setElements:)]
         pub unsafe fn setElements(&self, elements: &NSArray<NSAttributeDescription>);
     }

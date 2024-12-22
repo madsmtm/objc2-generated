@@ -40,6 +40,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UISearchDisplayDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -51,6 +52,7 @@ extern_methods!(
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
+        /// Setter for [`isActive`][Self::isActive].
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[method(setActive:)]
         pub unsafe fn setActive(&self, active: bool);
@@ -88,6 +90,7 @@ extern_methods!(
 
         #[cfg(feature = "UITableView")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`searchResultsDataSource`][Self::searchResultsDataSource].
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[method(setSearchResultsDataSource:)]
         pub unsafe fn setSearchResultsDataSource(
@@ -104,6 +107,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIScrollView", feature = "UITableView"))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`searchResultsDelegate`][Self::searchResultsDelegate].
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[method(setSearchResultsDelegate:)]
         pub unsafe fn setSearchResultsDelegate(
@@ -114,12 +118,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other searchResultsTitle)]
         pub unsafe fn searchResultsTitle(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`searchResultsTitle`][Self::searchResultsTitle].
         #[method(setSearchResultsTitle:)]
         pub unsafe fn setSearchResultsTitle(&self, search_results_title: Option<&NSString>);
 
         #[method(displaysSearchBarInNavigationBar)]
         pub unsafe fn displaysSearchBarInNavigationBar(&self) -> bool;
 
+        /// Setter for [`displaysSearchBarInNavigationBar`][Self::displaysSearchBarInNavigationBar].
         #[method(setDisplaysSearchBarInNavigationBar:)]
         pub unsafe fn setDisplaysSearchBarInNavigationBar(
             &self,

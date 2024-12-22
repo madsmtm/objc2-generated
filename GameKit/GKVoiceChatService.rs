@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatservice?language=objc)
+    /// This a not a Game Center feature. To support voice chat as part of Game Center online play, see GKVoiceChat.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatservice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKVoiceChatService;
@@ -29,6 +31,7 @@ extern_methods!(
         pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn GKVoiceChatClient>>>;
 
         #[cfg(feature = "GKPublicProtocols")]
+        /// Setter for [`client`][Self::client].
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn GKVoiceChatClient>>);
 
@@ -55,24 +58,28 @@ extern_methods!(
         #[method(isMicrophoneMuted)]
         pub unsafe fn isMicrophoneMuted(&self) -> bool;
 
+        /// Setter for [`isMicrophoneMuted`][Self::isMicrophoneMuted].
         #[method(setMicrophoneMuted:)]
         pub unsafe fn setMicrophoneMuted(&self, microphone_muted: bool);
 
         #[method(remoteParticipantVolume)]
         pub unsafe fn remoteParticipantVolume(&self) -> c_float;
 
+        /// Setter for [`remoteParticipantVolume`][Self::remoteParticipantVolume].
         #[method(setRemoteParticipantVolume:)]
         pub unsafe fn setRemoteParticipantVolume(&self, remote_participant_volume: c_float);
 
         #[method(isOutputMeteringEnabled)]
         pub unsafe fn isOutputMeteringEnabled(&self) -> bool;
 
+        /// Setter for [`isOutputMeteringEnabled`][Self::isOutputMeteringEnabled].
         #[method(setOutputMeteringEnabled:)]
         pub unsafe fn setOutputMeteringEnabled(&self, output_metering_enabled: bool);
 
         #[method(isInputMeteringEnabled)]
         pub unsafe fn isInputMeteringEnabled(&self) -> bool;
 
+        /// Setter for [`isInputMeteringEnabled`][Self::isInputMeteringEnabled].
         #[method(setInputMeteringEnabled:)]
         pub unsafe fn setInputMeteringEnabled(&self, input_metering_enabled: bool);
 

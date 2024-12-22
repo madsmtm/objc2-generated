@@ -7,7 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekspan?language=objc)
+/// Values for controlling what occurrences to affect in a recurring event.
+///
+/// This enumerated type is used to indicate the scope of a change being made to a repeating event. EKSpanThisEvent
+/// indicates the changes should apply only to this event, EKSpanFutureEvents indicates the changes should apply to
+/// this event and all future events in the pattern.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekspan?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -42,7 +48,16 @@ pub type EKEventStoreRequestAccessCompletionHandler =
     *mut block2::Block<dyn Fn(Bool, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstore?language=objc)
+    /// The EKEventStore class provides an interface for accessing and manipulating calendar events and reminders.
+    ///
+    /// The EKEventStore class is the main point of contact for accessing Calendar data. You must
+    /// create a EKEventStore object in order to retrieve/add/delete events or reminders from the Calendar database.
+    ///
+    /// Events, Reminders, and Calendar objects retrieved from an event store cannot be used with any other event
+    /// store. It is generally best to hold onto a long-lived instance of an event store, most
+    /// likely as a singleton instance in your application.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKEventStore;
@@ -53,12 +68,23 @@ unsafe impl NSObjectProtocol for EKEventStore {}
 extern_methods!(
     unsafe impl EKEventStore {
         #[cfg(feature = "EKTypes")]
+        /// Returns the authorization status for the given entity type
         #[method(authorizationStatusForEntityType:)]
         pub unsafe fn authorizationStatusForEntityType(
             entity_type: EKEntityType,
         ) -> EKAuthorizationStatus;
 
         #[cfg(feature = "EKTypes")]
+        /// Users are able to grant or deny access to event and reminder data on a per-app basis. To request access to
+        /// event and/or reminder data, instantiate an EKEventStore using this method. This call will not block the
+        /// program while the user is being asked to grant or deny access. Until access has been granted for an entity
+        /// type, this event store will not contain any calendars for that entity type, and any attempt to save entities
+        /// of that entity type will fail. If access is later granted or declined, the event store will broadcast an
+        /// EKEventStoreChangedNotification. You can check the current access status for an entity type
+        /// using +authorizationStatusForEntityType:. The user will only be prompted the first time access is requested; any
+        /// subsequent instantiations of EKEventStore will use the existing permissions.
+        ///
+        /// Parameter `entityTypes`: A bit mask of entity types to which you want access
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithAccessToEntityTypes:)]
         pub unsafe fn initWithAccessToEntityTypes(
@@ -70,6 +96,9 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "EKObject", feature = "EKSource"))]
+        /// Creates a new event store that only includes items and calendars for a subset of sources.
+        ///
+        /// Parameter `sources`: The sources you want this event store to recognize. This may include delegate sources.
         #[method_id(@__retain_semantics Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
@@ -106,18 +135,22 @@ extern_methods!(
             completion: EKEventStoreRequestAccessCompletionHandler,
         );
 
+        /// Returns a unique identifier string representing this calendar store.
         #[method_id(@__retain_semantics Other eventStoreIdentifier)]
         pub unsafe fn eventStoreIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "EKObject", feature = "EKSource"))]
+        /// Returns an unordered array of sources for all available delegates.
         #[method_id(@__retain_semantics Other delegateSources)]
         pub unsafe fn delegateSources(&self) -> Retained<NSArray<EKSource>>;
 
         #[cfg(all(feature = "EKObject", feature = "EKSource"))]
+        /// Returns an unordered array of sources.
         #[method_id(@__retain_semantics Other sources)]
         pub unsafe fn sources(&self) -> Retained<NSArray<EKSource>>;
 
         #[cfg(all(feature = "EKObject", feature = "EKSource"))]
+        /// Returns a source with a specified identifier.
         #[method_id(@__retain_semantics Other sourceWithIdentifier:)]
         pub unsafe fn sourceWithIdentifier(
             &self,
@@ -125,10 +158,14 @@ extern_methods!(
         ) -> Option<Retained<EKSource>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
+        /// While this returns an array, the calendars are unordered. This call is deprecated
+        /// and only returns calendars that support events. If you want reminder calendars
+        /// you should use calendarsForEntityType:
         #[method_id(@__retain_semantics Other calendars)]
         pub unsafe fn calendars(&self) -> Retained<NSArray<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject", feature = "EKTypes"))]
+        /// Returns calendars that support a given entity type (reminders, events)
         #[method_id(@__retain_semantics Other calendarsForEntityType:)]
         pub unsafe fn calendarsForEntityType(
             &self,
@@ -136,14 +173,21 @@ extern_methods!(
         ) -> Retained<NSArray<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
+        /// Returns the calendar that events should be added to by default.
+        ///
+        /// This may be nil if there is no default calendar for new events.
         #[method_id(@__retain_semantics Other defaultCalendarForNewEvents)]
         pub unsafe fn defaultCalendarForNewEvents(&self) -> Option<Retained<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
+        /// Returns the calendar that reminders should be added to by default.
+        ///
+        /// This may be nil if there is no default calendar for new reminders.
         #[method_id(@__retain_semantics Other defaultCalendarForNewReminders)]
         pub unsafe fn defaultCalendarForNewReminders(&self) -> Option<Retained<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
+        /// Returns a calendar with a specified identifier.
         #[method_id(@__retain_semantics Other calendarWithIdentifier:)]
         pub unsafe fn calendarWithIdentifier(
             &self,
@@ -151,6 +195,20 @@ extern_methods!(
         ) -> Option<Retained<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
+        /// Saves changes to a calendar, or adds a new calendar to the database.
+        ///
+        /// This method attempts to save the given calendar to the calendar database. It
+        /// returns YES if successful and NO otherwise. Passing a calendar fetched from
+        /// another EKEventStore instance into this function will raise an exception.
+        /// On WatchOS, saving changes is not supported.
+        ///
+        ///
+        /// Parameter `calendar`: The calendar to save.
+        ///
+        /// Parameter `commit`: Pass YES to cause the database to save. You can pass NO to save multiple
+        /// calendars and then call commit: to save them all at once.
+        ///
+        /// Parameter `error`: If an error occurs, this will contain a valid NSError object on exit.
         #[method(saveCalendar:commit:error:_)]
         pub unsafe fn saveCalendar_commit_error(
             &self,
@@ -159,6 +217,30 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
+        /// Removes a calendar from the database.
+        ///
+        /// This method attempts to delete the given calendar from the calendar database. It
+        /// returns YES if successful and NO otherwise. Passing a calendar fetched from
+        /// another EKEventStore instance into this function will raise an exception.
+        ///
+        /// If the calendar supports multiple entity types (allowedEntityTypes), but the user has
+        /// not granted you access to all those entity types, then we will delete all of the entity types
+        /// for which you have access and remove that entity type from the allowedEntityTypes.
+        /// For example: If a calendar supports both events and reminders, but you only have access to reminders,
+        /// we will delete all the reminders and make the calendar only support events.
+        ///
+        /// If you have access to all of its allowedEntityTypes, then it will delete the calendar and
+        /// all of the events and reminders in the calendar.
+        ///
+        /// On WatchOS, modifying the database is not supported.
+        ///
+        ///
+        /// Parameter `calendar`: The calendar to delete.
+        ///
+        /// Parameter `commit`: Pass YES to cause the database to save. You can pass NO to batch multiple
+        /// changes and then call commit: to save them all at once.
+        ///
+        /// Parameter `error`: If an error occurs, this will contain a valid NSError object on exit.
         #[method(removeCalendar:commit:error:_)]
         pub unsafe fn removeCalendar_commit_error(
             &self,
@@ -167,6 +249,7 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
+        /// Returns either a reminder or the first occurrence of an event.
         #[method_id(@__retain_semantics Other calendarItemWithIdentifier:)]
         pub unsafe fn calendarItemWithIdentifier(
             &self,
@@ -174,6 +257,18 @@ extern_methods!(
         ) -> Option<Retained<EKCalendarItem>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
+        /// Returns either matching reminders or the first occurrences of any events matching
+        /// the given external identifier.
+        ///
+        /// This method returns a set of EKEvents or EKReminders with the given external identifier.
+        /// Due to reasons discussed in -[EKCalendarItem calendarItemExternalIdentifier], there may be
+        /// more than one matching calendar item.
+        ///
+        ///
+        /// Parameter `externalIdentifier`: The value obtained from EKCalendarItem's
+        /// calendarItemExternalIdentifier property
+        ///
+        /// Returns: An unsorted array of EKCalendarItem instances
         #[method_id(@__retain_semantics Other calendarItemsWithExternalIdentifier:)]
         pub unsafe fn calendarItemsWithExternalIdentifier(
             &self,
@@ -181,6 +276,28 @@ extern_methods!(
         ) -> Retained<NSArray<EKCalendarItem>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKEvent", feature = "EKObject"))]
+        /// Saves changes to an event permanently.
+        ///
+        /// This method attempts to save the event to the calendar database. It returns YES if
+        /// successful and NO otherwise. It's possible for this method to return NO, and error
+        /// will be set to nil. This occurs if the event wasn't dirty and didn't need saving. This
+        /// means the correct way to detect failure is a result of NO and a non-nil error parameter.
+        /// Passing an event fetched from another EKEventStore instance into this function will
+        /// raise an exception.
+        ///
+        /// After an event is successfully saved, it is also put into sync with the database, meaning
+        /// that all fields you did not change will be updated to the latest values. If you save the
+        /// event, but it was deleted by a different store/process, you will effectively recreate the
+        /// event as a new event.
+        ///
+        /// On WatchOS, saving changes is not supported.
+        ///
+        ///
+        /// Parameter `event`: The event to save.
+        ///
+        /// Parameter `span`: The span to use (this event, or this and future events).
+        ///
+        /// Parameter `error`: If an error occurs, this will contain a valid NSError object on exit.
         #[method(saveEvent:span:error:_)]
         pub unsafe fn saveEvent_span_error(
             &self,
@@ -189,6 +306,24 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKEvent", feature = "EKObject"))]
+        /// Removes an event from the calendar store.
+        ///
+        /// This method attempts to remove the event from the calendar database. It returns YES if
+        /// successful and NO otherwise. It's possible for this method to return NO, and error
+        /// will be set to nil. This occurs if the event wasn't ever added and didn't need removing. This
+        /// means the correct way to detect failure is a result of NO and a non-nil error parameter.
+        /// Passing an event from another CalendarStore into this function will raise an exception. After
+        /// an event is removed, it is no longer tied to this calendar store, and all data in the event
+        /// is cleared except for the eventIdentifier.
+        ///
+        /// On WatchOS, modifying the database is not supported.
+        ///
+        ///
+        /// Parameter `event`: The event to save.
+        ///
+        /// Parameter `span`: The span to use (this event, or this and future events).
+        ///
+        /// Parameter `error`: If an error occurs, this will contain a valid NSError object on exit.
         #[method(removeEvent:span:error:_)]
         pub unsafe fn removeEvent_span_error(
             &self,
@@ -215,6 +350,12 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKEvent", feature = "EKObject"))]
+        /// Returns the first occurrence of an event matching the given event identifier.
+        ///
+        ///
+        /// Parameter `identifier`: The eventIdentifier to search for.
+        ///
+        /// Returns: An EKEvent object, or nil if not found.
         #[method_id(@__retain_semantics Other eventWithIdentifier:)]
         pub unsafe fn eventWithIdentifier(
             &self,
@@ -222,6 +363,19 @@ extern_methods!(
         ) -> Option<Retained<EKEvent>>;
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKEvent", feature = "EKObject"))]
+        /// Searches for events that match the given predicate.
+        ///
+        /// This call executes a search for the events indicated by the predicate passed to it.
+        ///
+        /// It is synchronous. If you want async behavior, you should either use dispatch_async or
+        /// NSOperation to run the query someplace other than the main thread, and then funnel the
+        /// array back to the main thread.
+        ///
+        ///
+        /// Parameter `predicate`: The predicate to invoke. If this predicate was not created with the predicate
+        /// creation functions in this class, an exception is raised.
+        ///
+        /// Returns: An array of EKEvent objects, or nil. There is no guaranteed order to the events.
         #[method_id(@__retain_semantics Other eventsMatchingPredicate:)]
         pub unsafe fn eventsMatchingPredicate(
             &self,
@@ -234,6 +388,20 @@ extern_methods!(
             feature = "EKObject",
             feature = "block2"
         ))]
+        /// Searches for events that match the given predicate.
+        ///
+        /// This call executes a search for the events indicated by the predicate passed to it, calling
+        /// the block specified in the callback parameter for each event.
+        ///
+        /// This method is synchronous. If you want async behavior, you should either use dispatch_async or
+        /// NSOperation to run the query someplace other than the main thread.
+        ///
+        ///
+        /// Parameter `predicate`: The predicate to invoke. If this predicate was not created with the predicate
+        /// creation functions in this class, an exception is raised.
+        ///
+        /// Parameter `block`: The block to call for each event. Your block should return YES in the stop
+        /// parameter to stop iterating.
         #[method(enumerateEventsMatchingPredicate:usingBlock:)]
         pub unsafe fn enumerateEventsMatchingPredicate_usingBlock(
             &self,
@@ -242,6 +410,21 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
+        /// Creates a predicate for use with eventsMatchingPredicate or enumerateEventsMatchingPredicate:usingBlock:.
+        ///
+        /// Creates a simple query predicate to search for events within a certain date range. At present,
+        /// this will return events in the default time zone ([NSTimeZone defaultTimeZone]).
+        ///
+        /// For performance reasons, this method will only return events within a four year timespan.
+        /// If the date range between the startDate and endDate is greater than four years, then it will be shortened
+        /// to the first four years.
+        ///
+        ///
+        /// Parameter `startDate`: The start date.
+        ///
+        /// Parameter `endDate`: The end date.
+        ///
+        /// Parameter `calendars`: The calendars to search for events in, or nil to search all calendars.
         #[method_id(@__retain_semantics Other predicateForEventsWithStartDate:endDate:calendars:)]
         pub unsafe fn predicateForEventsWithStartDate_endDate_calendars(
             &self,
@@ -255,6 +438,24 @@ extern_methods!(
             feature = "EKObject",
             feature = "EKReminder"
         ))]
+        /// Saves changes to a reminder.
+        ///
+        /// This method attempts to save the reminder to the event store database. It returns YES if
+        /// successful and NO otherwise. Passing a reminder fetched from another EKEventStore instance
+        /// into this function will raise an exception.
+        ///
+        /// After a reminder is successfully saved, its fields are updated to the latest values in
+        /// the database.
+        ///
+        /// On WatchOS, saving changes is not supported.
+        ///
+        ///
+        /// Parameter `reminder`: The reminder to save.
+        ///
+        /// Parameter `commit`: Whether to save to the database or not. Pass NO to batch changes together and
+        /// commit with [EKEventStore commit:].
+        ///
+        /// Parameter `error`: If an error occurs, this will contain a valid NSError object on exit.
         #[method(saveReminder:commit:error:_)]
         pub unsafe fn saveReminder_commit_error(
             &self,
@@ -267,6 +468,21 @@ extern_methods!(
             feature = "EKObject",
             feature = "EKReminder"
         ))]
+        /// Removes a reminder from the event store.
+        ///
+        /// This method attempts to remove the reminder from the event store database. It returns YES if
+        /// successful and NO otherwise. Passing a reminder from another EKEventStore into this function
+        /// will raise an exception. After a reminder is removed, it is no longer tied to this event store.
+        ///
+        /// On WatchOS, modifying the database is not supported.
+        ///
+        ///
+        /// Parameter `reminder`: The reminder to save.
+        ///
+        /// Parameter `commit`: Whether to save to the database or not. Pass NO to batch changes together and
+        /// commit with [EKEventStore commit:].
+        ///
+        /// Parameter `error`: If an error occurs, this will contain a valid NSError object on exit.
         #[method(removeReminder:commit:error:_)]
         pub unsafe fn removeReminder_commit_error(
             &self,
@@ -280,6 +496,11 @@ extern_methods!(
             feature = "EKReminder",
             feature = "block2"
         ))]
+        /// Fetches reminders asynchronously.
+        ///
+        /// This method fetches reminders asynchronously and returns a value which can be
+        /// used in cancelFetchRequest: to cancel the request later if desired. The completion
+        /// block is called with an array of reminders that match the given predicate (or potentially nil).
         #[method_id(@__retain_semantics Other fetchRemindersMatchingPredicate:completion:)]
         pub unsafe fn fetchRemindersMatchingPredicate_completion(
             &self,
@@ -287,10 +508,16 @@ extern_methods!(
             completion: &block2::Block<dyn Fn(*mut NSArray<EKReminder>)>,
         ) -> Retained<AnyObject>;
 
+        /// Given a value returned from fetchRemindersMatchingPredicate, this method can be used to
+        /// cancel the request. Once called, the completion block specified in fetchReminders... will
+        /// not be called.
         #[method(cancelFetchRequest:)]
         pub unsafe fn cancelFetchRequest(&self, fetch_identifier: &AnyObject);
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
+        /// Fetch all reminders in a set of calendars.
+        ///
+        /// You can pass nil for calendars to fetch from all available calendars.
         #[method_id(@__retain_semantics Other predicateForRemindersInCalendars:)]
         pub unsafe fn predicateForRemindersInCalendars(
             &self,
@@ -298,6 +525,13 @@ extern_methods!(
         ) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
+        /// Fetch incomplete reminders in a set of calendars.
+        ///
+        /// You can use this method to search for incomplete reminders due in a range.
+        /// You can pass nil for start date to find all reminders due before endDate.
+        /// You can pass nil for both start and end date to get all incomplete reminders
+        /// in the specified calendars.
+        /// You can pass nil for calendars to fetch from all available calendars.
         #[method_id(@__retain_semantics Other predicateForIncompleteRemindersWithDueDateStarting:ending:calendars:)]
         pub unsafe fn predicateForIncompleteRemindersWithDueDateStarting_ending_calendars(
             &self,
@@ -307,6 +541,13 @@ extern_methods!(
         ) -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
+        /// Fetch completed reminders in a set of calendars.
+        ///
+        /// You can use this method to search for reminders completed between a range of dates.
+        /// You can pass nil for start date to find all reminders completed before endDate.
+        /// You can pass nil for both start and end date to get all completed reminders
+        /// in the specified calendars.
+        /// You can pass nil for calendars to fetch from all available calendars.
         #[method_id(@__retain_semantics Other predicateForCompletedRemindersWithCompletionDateStarting:ending:calendars:)]
         pub unsafe fn predicateForCompletedRemindersWithCompletionDateStarting_ending_calendars(
             &self,
@@ -315,12 +556,36 @@ extern_methods!(
             calendars: Option<&NSArray<EKCalendar>>,
         ) -> Retained<NSPredicate>;
 
+        /// Commits pending changes to the database.
+        ///
+        /// If you use saveCalendar/saveEvent/removeCalendar/removeEvent, etc. and you pass NO to their
+        /// parameter, you are batching changes for a later commit. This method does that commit. This
+        /// allows you to save the database only once for many additions or changes.  If you pass
+        /// YES to methods' commit parameter, then you don't need to call this method.
+        ///
+        /// This method will return YES as long as nothing went awry, even if nothing was actually
+        /// committed. If it returns NO, error should contain the reason it became unhappy.
+        ///
+        /// On WatchOS, modifying the database is not supported.
         #[method(commit:_)]
         pub unsafe fn commit(&self) -> Result<(), Retained<NSError>>;
 
+        /// Resets the event store.
+        ///
+        /// You can use this method to forget ALL changes made to the event store (all additions, all
+        /// fetched objects, etc.). It essentially is as if you released the store and then created a
+        /// new one. It brings it back to its initial state. All objects ever created/fetched, etc.
+        /// using this store are no longer connected to it and are considered invalid.
         #[method(reset)]
         pub unsafe fn reset(&self);
 
+        /// Cause a sync to potentially occur taking into account the necessity of it.
+        ///
+        /// You can call this method to pull new data from remote sources.
+        /// This only updates the event store's data.  If you want to update your objects after
+        /// refreshing the sources, you should call refresh on each of them afterwards.
+        /// On iOS and macOS, this sync only occurs if deemed necessary.
+        /// On WatchOS, initiating sync is not available. Sync will occur automatically with the paired iOS device.
         #[method(refreshSourcesIfNecessary)]
         pub unsafe fn refreshSourcesIfNecessary(&self);
     }
@@ -335,6 +600,18 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstorechangednotification?language=objc)
+    /// Notification name sent out when the database is changed by either an external process,
+    /// another event store in the same process, or by calling saveEvent: or removeEvent: on a
+    /// store you are managing. When you receive this notification, you should consider all EKEvent
+    /// instances you have to be invalid. If you had selected events for a date range using
+    /// eventsMatchingPredicate, etc. for display, you should release them and re-fetch the events
+    /// again. If you have an event you are actively using (e.g. you are currently viewing details
+    /// for it or editing it), you can call [EKEvent refresh] to try to revalidate it against the
+    /// latest state of the database. If that method returns YES, you can continue to use the event,
+    /// otherwise, you should release it and abandon what you were doing with it. The view
+    /// controllers provided by EventKitUI automatically deal with this for you.
+    /// This notification will also be posted if access to events or reminders is changed by the user.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstorechangednotification?language=objc)
     pub static EKEventStoreChangedNotification: &'static NSString;
 }

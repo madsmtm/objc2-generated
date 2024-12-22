@@ -9,7 +9,32 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsum?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// MPSMatrixSum performs a pointwise summation of N MPSMatrix
+    /// objects and applies an optional bias term and neuron activation
+    /// function.
+    ///
+    /// MPSMatrix A = empty matrix;
+    /// for (i = 0; i
+    /// <
+    /// N; ++i)
+    /// A += alpha[i]*B[i];
+    ///
+    /// if (bias)
+    /// A += broadcast(bias);
+    ///
+    /// if (neuron)
+    /// A = applyNeuron(A);
+    ///
+    /// Where B is the array of MPSMatrix objects, A is the destination
+    /// MPSMatrix, alpha is an array of scalar values, bias is a vector
+    /// which is broadcast and accumulated across each row of the intermediate
+    /// result, and applyNeuron is a neuron activation function.
+    ///
+    /// Each matrix in the array may have an independent origin.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsum?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -42,6 +67,18 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Initialize a MPSMatrixSum kernel.
+        ///
+        /// Parameter `device`: The device on which to initialize the kernel.
+        ///
+        /// Parameter `count`: The number of matrices to be summed.
+        ///
+        /// Parameter `rows`: The number of rows to use in the input matrices.
+        ///
+        /// Parameter `columns`: The number of columns to use in the input matrices.
+        ///
+        /// Parameter `transpose`: If YES the result of the summation is to be transposed
+        /// prior to applying the bias and activation.
         #[method_id(@__retain_semantics Init initWithDevice:count:rows:columns:transpose:)]
         pub unsafe fn initWithDevice_count_rows_columns_transpose(
             this: Allocated<Self>,
@@ -52,25 +89,53 @@ extern_methods!(
             transpose: bool,
         ) -> Retained<Self>;
 
+        /// The number of rows to sum.
         #[method(rows)]
         pub unsafe fn rows(&self) -> NSUInteger;
 
+        /// The number of columns to sum.
         #[method(columns)]
         pub unsafe fn columns(&self) -> NSUInteger;
 
+        /// The number of matrices to sum.
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
+        /// The transposition used to initialize the kernel.
         #[method(transpose)]
         pub unsafe fn transpose(&self) -> bool;
 
+        /// The origin, relative to [0, 0] in the result matrix, at which to
+        /// start writing results.  This property is modifiable and defaults
+        /// to [0, 0] at initialization time.  If a different origin is desired
+        /// then this should be modified prior to encoding the kernel.
         #[method(resultMatrixOrigin)]
         pub unsafe fn resultMatrixOrigin(&self) -> MTLOrigin;
 
+        /// Setter for [`resultMatrixOrigin`][Self::resultMatrixOrigin].
         #[method(setResultMatrixOrigin:)]
         pub unsafe fn setResultMatrixOrigin(&self, result_matrix_origin: MTLOrigin);
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Specifies a neuron activation function to be used.
+        ///
+        ///
+        /// This method can be used to add a neuron activation funtion of given type with
+        /// associated scalar parameters A, B, and C that are shared across all output values.
+        /// Note that this method can only be used to specify neurons which are specified by three (or fewer)
+        /// parameters shared across all output values (or channels, in CNN nomenclature). It is an error to call
+        /// this method for neuron activation functions like MPSCNNNeuronTypePReLU,
+        /// which require per-channel parameter values. An MPSMatrixSum kernel is initialized
+        /// with a default neuron function of MPSCNNNeuronTypeNone.
+        ///
+        ///
+        /// Parameter `neuronType`: Type of neuron activation function. For full list see MPSCNNNeuronType.h
+        ///
+        /// Parameter `parameterA`: parameterA of neuron activation that is shared across all output values.
+        ///
+        /// Parameter `parameterB`: parameterB of neuron activation that is shared across all output values.
+        ///
+        /// Parameter `parameterC`: parameterC of neuron activation that is shared across all output values.
         #[method(setNeuronType:parameterA:parameterB:parameterC:)]
         pub unsafe fn setNeuronType_parameterA_parameterB_parameterC(
             &self,
@@ -81,19 +146,41 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronType)]
         pub unsafe fn neuronType(&self) -> MPSCNNNeuronType;
 
+        /// Neuron parameter A.
         #[method(neuronParameterA)]
         pub unsafe fn neuronParameterA(&self) -> c_float;
 
+        /// Neuron parameter B.
         #[method(neuronParameterB)]
         pub unsafe fn neuronParameterB(&self) -> c_float;
 
+        /// Neuron parameter C.
         #[method(neuronParameterC)]
         pub unsafe fn neuronParameterC(&self) -> c_float;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode the operations to the command buffer
+        ///
+        /// Parameter `buffer`: The command buffer in which to encode the operation.
+        ///
+        /// Parameter `sourceMatrices`: A list of matrices from which the matrix data is read.
+        ///
+        /// Parameter `resultMatrix`: The result matrix.
+        ///
+        /// Parameter `scaleVector`: A MPSVector of type MPSDataTypeFloat32 containing the list of
+        /// scale factors, specified in single precision.
+        ///
+        /// Parameter `offsetVector`: A MPSVector of type MPSDataTypeUInt32 containing the list of
+        /// offsets, stored as a packed array of MPSMatrixOffset values.
+        ///
+        /// Parameter `biasVector`: A MPSVector containing the bias terms to add to the result
+        /// prior to applying the neuron function, if any.  May be nil.
+        ///
+        /// Parameter `startIndex`: The starting index into the scale and offset vectors.
         #[method(encodeToCommandBuffer:sourceMatrices:resultMatrix:scaleVector:offsetVector:biasVector:startIndex:)]
         pub unsafe fn encodeToCommandBuffer_sourceMatrices_resultMatrix_scaleVector_offsetVector_biasVector_startIndex(
             &self,
@@ -106,6 +193,15 @@ extern_methods!(
             start_index: NSUInteger,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSMatrixSum kernel.
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSum object.
+        ///
+        /// Returns: A new MPSMatrixSum object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -119,6 +215,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSMatrixSum {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

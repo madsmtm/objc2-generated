@@ -4,7 +4,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalue?language=objc)
+/// This category value is to be used for types which don't have a specific value defined.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalue?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -22,7 +24,9 @@ unsafe impl RefEncode for HKCategoryValue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueappetitechanges?language=objc)
+/// Set of values to indicate the direction of appetite changes.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueappetitechanges?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -46,7 +50,15 @@ unsafe impl RefEncode for HKCategoryValueAppetiteChanges {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplestandhour?language=objc)
+/// Set of values that may be used for HKCategorySamples with the HKCategoryTypeIdentifierAppleStandHour
+/// type.
+///
+///
+/// the sample.
+///
+/// continuous minute during the sample.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplestandhour?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -66,7 +78,25 @@ unsafe impl RefEncode for HKCategoryValueAppleStandHour {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplewalkingsteadinessevent?language=objc)
+/// Set of values that may be used for HKCategorySamples with the
+/// HKCategoryTypeIdentifierAppleWalkingSteadinessEvent type.
+///
+///
+/// Steadiness events associated with the user's
+/// walking steadiness being low.
+///
+/// Steadiness events associated with the user's
+/// walking steadiness being very low.
+///
+/// Steadiness events associated with the user's
+/// walking steadiness remaining low over a
+/// significant time period.
+///
+/// Steadiness events associated with the user's
+/// walking steadiness remaining very low over a
+/// significant time period.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplewalkingsteadinessevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -90,7 +120,12 @@ unsafe impl RefEncode for HKCategoryValueAppleWalkingSteadinessEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecervicalmucusquality?language=objc)
+/// Set of values that may be used for HKCategorySamples with the
+/// HKCategoryTypeIdentifierCervicalMucusQuality type.
+///
+/// These cervical mucus quality values are ordered from least-fertile (Dry) to most-fertile (EggWhite).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecervicalmucusquality?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -116,7 +151,9 @@ unsafe impl RefEncode for HKCategoryValueCervicalMucusQuality {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecontraceptive?language=objc)
+/// Set of values to indicate the type of contraceptive.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecontraceptive?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -146,7 +183,14 @@ unsafe impl RefEncode for HKCategoryValueContraceptive {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueenvironmentalaudioexposureevent?language=objc)
+/// Specifies the kind of environmental audio exposure event associated with the sample.
+///
+///
+/// events associated with the user being
+/// exposed to a loud environment during a
+/// short timespan.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueenvironmentalaudioexposureevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -164,7 +208,14 @@ unsafe impl RefEncode for HKCategoryValueEnvironmentalAudioExposureEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueheadphoneaudioexposureevent?language=objc)
+/// Specifies the kind of headphone audio exposure event associated with the sample.
+///
+///
+/// associated with the user being exposed to
+/// significant audio levels throught a
+/// seven-day period.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueheadphoneaudioexposureevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -182,7 +233,13 @@ unsafe impl RefEncode for HKCategoryValueHeadphoneAudioExposureEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluelowcardiofitnessevent?language=objc)
+/// Specifies the type of cardio fitness event.
+///
+///
+/// measurement was recorded that falls into the "Low"
+/// fitness classification
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluelowcardiofitnessevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -200,7 +257,9 @@ unsafe impl RefEncode for HKCategoryValueLowCardioFitnessEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluemenstrualflow?language=objc)
+/// Set of values to indicate the type of menstrual flow.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluemenstrualflow?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -232,7 +291,13 @@ unsafe impl RefEncode for HKCategoryValueMenstrualFlow {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueovulationtestresult?language=objc)
+/// Set of values that may be used for HKCategorySamples with the
+/// HKCategoryTypeIdentifierOvulationTestResult type.
+///
+/// This category value tracks the result of a home ovulation test that use surges in hormone levels to
+/// indicate fertility.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueovulationtestresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -259,7 +324,13 @@ unsafe impl RefEncode for HKCategoryValueOvulationTestResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluepregnancytestresult?language=objc)
+/// Set of values that may be used for HKCategorySamples with the
+/// HKCategoryTypeIdentifierPregnancyTestResult type.
+///
+/// This category value tracks the result of a home pregnancy test that checks for presence of the human
+/// chorionic gonadotrophin (hCG) hormone in urine to confirm pregnancy.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluepregnancytestresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -281,7 +352,9 @@ unsafe impl RefEncode for HKCategoryValuePregnancyTestResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluepresence?language=objc)
+/// Set of values to indicate whether a data type is present or not.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluepresence?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -301,7 +374,13 @@ unsafe impl RefEncode for HKCategoryValuePresence {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueprogesteronetestresult?language=objc)
+/// Set of values that may be used for HKCategorySamples with the
+/// HKCategoryTypeIdentifierProgesteroneTestResult type.
+///
+/// This category value tracks the result of a home ovulation confirmation test that use surges in hormone
+/// levels to confirm if ovulation has occurred.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueprogesteronetestresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -323,7 +402,9 @@ unsafe impl RefEncode for HKCategoryValueProgesteroneTestResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity?language=objc)
+/// Set of values to indicate the severity of a symptom.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -349,7 +430,18 @@ unsafe impl RefEncode for HKCategoryValueSeverity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysis?language=objc)
+/// Set of values that may be used for HKCategorySamples with the HKCategoryTypeIdentifierSleepAnalysis
+/// type.
+///
+/// To represent the user being both in bed and asleep, use two or more samples with overlapping times. By
+/// comparing the start and end times of these samples, it is possible to calculate a number of secondary
+/// statistics:
+/// 1) The amount of time it took for the user to fall asleep
+/// 2) The percentage of time in bed that the user actually spent sleeping,
+/// 3) The number of times the user woke while in bed
+/// 4) The total amount of time spent both in bed and asleep.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysis?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -380,7 +472,9 @@ unsafe impl RefEncode for HKCategoryValueSleepAnalysis {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluevaginalbleeding?language=objc)
+/// Set of values to indicate the type of bleeding.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluevaginalbleeding?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -406,7 +500,9 @@ unsafe impl RefEncode for HKCategoryValueVaginalBleeding {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueaudioexposureevent?language=objc)
+/// Specifies the kind of audio exposure event associated with the sample.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueaudioexposureevent?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]

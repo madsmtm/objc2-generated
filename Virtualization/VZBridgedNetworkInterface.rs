@@ -7,7 +7,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface?language=objc)
+    /// Define a network interface that bridges a physical interface with a virtual machine.
+    ///
+    /// A bridged interface is shared between the virtual machine and the host system. Both host and virtual machine send and receive packets on the same physical interface
+    /// but have distinct network layers.
+    ///
+    /// VZBridgedNetworkInterface cannot be instantiated directly. A list of supported network interfaces can be obtained using +[VZBridgedNetworkInterface networkInterfaces].
+    ///
+    /// The VZBridgedNetworkInterface can be used with a VZBridgedNetworkDeviceAttachment to set up a network device VZNetworkDeviceConfiguration.
+    ///
+    ///
+    /// See also: VZBridgedNetworkDeviceAttachment
+    ///
+    /// See also: VZNATNetworkDeviceAttachment
+    ///
+    /// See also: VZNetworkDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZBridgedNetworkInterface;
@@ -23,12 +39,15 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Return the list of network interfaces available for bridging.
         #[method_id(@__retain_semantics Other networkInterfaces)]
         pub unsafe fn networkInterfaces() -> Retained<NSArray<VZBridgedNetworkInterface>>;
 
+        /// Return the unique identifier for this interface. The identifier is the BSD name associated with the interface (e.g. "en0").
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
+        /// Return a display name if available (e.g. "Ethernet").
         #[method_id(@__retain_semantics Other localizedDisplayName)]
         pub unsafe fn localizedDisplayName(&self) -> Option<Retained<NSString>>;
     }

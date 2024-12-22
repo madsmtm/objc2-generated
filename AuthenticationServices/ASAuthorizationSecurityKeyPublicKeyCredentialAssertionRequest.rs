@@ -45,21 +45,25 @@ extern_methods!(
     #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+        /// A list of descriptors indicating credentials that may be used to sign in. If this is non-empty, only credentials matching the provided descriptors can be used when authenticating.
         #[method_id(@__retain_semantics Other allowedCredentials)]
         pub unsafe fn allowedCredentials(
             &self,
         ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>>;
 
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
+        /// Setter for [`allowedCredentials`][Self::allowedCredentials].
         #[method(setAllowedCredentials:)]
         pub unsafe fn setAllowedCredentials(
             &self,
             allowed_credentials: &NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>,
         );
 
+        /// Use this value to request the appid WebAuthn extension. This can only be requested by web browsers.
         #[method_id(@__retain_semantics Other appID)]
         pub unsafe fn appID(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`appID`][Self::appID].
         #[method(setAppID:)]
         pub unsafe fn setAppID(&self, app_id: Option<&NSString>);
     }

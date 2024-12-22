@@ -8,7 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquery?language=objc)
+    /// Only AND compound predicates are allowed.
+    ///
+    /// Key names must begin with either an upper or lower case character ([a-zA-Z]) and may be followed by characters, numbers, or underscores ([0-9a-zA-Z_]). Keypaths may only resolve to the currently evaluated object, so the '.' character is not allowed in key names.
+    ///
+    /// A limited subset of classes are allowed as predicate arguments:
+    /// - NSString
+    /// - NSDate
+    /// - NSData
+    /// - NSNumber
+    /// - NSArray
+    /// - CKReference
+    /// - CKRecord
+    /// - CLLocation
+    ///
+    /// Any other class as an argument will result in an error when executing the query.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquery?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKQuery;
@@ -38,6 +54,13 @@ extern_methods!(
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
+        /// Use
+        ///
+        /// ```text
+        ///  [NSPredicate predicateWithValue:YES] / NSPredicate(value: true)
+        /// ```
+        ///
+        /// if you want to query for all records of a given type.
         #[method_id(@__retain_semantics Init initWithRecordType:predicate:)]
         pub unsafe fn initWithRecordType_predicate(
             this: Allocated<Self>,
@@ -55,6 +78,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Option<Retained<NSArray<NSSortDescriptor>>>;
 
+        /// Setter for [`sortDescriptors`][Self::sortDescriptors].
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(
             &self,

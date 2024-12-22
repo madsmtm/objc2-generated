@@ -21,12 +21,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other native)]
         pub unsafe fn native(&self) -> Retained<NSString>;
 
+        /// Setter for [`native`][Self::native].
         #[method(setNative:)]
         pub unsafe fn setNative(&self, native: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other odPredicate)]
         pub unsafe fn odPredicate(&self) -> Retained<NSDictionary>;
 
+        /// Setter for [`odPredicate`][Self::odPredicate].
         #[method(setOdPredicate:)]
         pub unsafe fn setOdPredicate(&self, od_predicate: Option<&NSDictionary>);
 
@@ -36,10 +38,18 @@ extern_methods!(
         #[method_id(@__retain_semantics Other standardAttributeTypes)]
         pub unsafe fn standardAttributeTypes(&self) -> Retained<NSArray>;
 
+        /// Returns an initialized and autoreleased ODRecordMap object.
+        ///
+        ///
+        /// Returns an initialized and autoreleased ODRecordMap object.
         #[method_id(@__retain_semantics Other recordMap)]
         pub unsafe fn recordMap() -> Option<Retained<Self>>;
 
         #[cfg(feature = "ODAttributeMap")]
+        /// Returns an ODAttributeMap object for the given OD standard attribute.
+        ///
+        ///
+        /// Returns an ODAttributeMap object for the given OD standard attribute.
         #[method_id(@__retain_semantics Other attributeMapForStandardAttribute:)]
         pub unsafe fn attributeMapForStandardAttribute(
             &self,
@@ -47,6 +57,10 @@ extern_methods!(
         ) -> Option<Retained<ODAttributeMap>>;
 
         #[cfg(feature = "ODAttributeMap")]
+        /// Sets an ODAttributeMap object for a given OD standard attribute.
+        ///
+        ///
+        /// Sets an ODAttributeMap object for a given OD standard attribute.
         #[method(setAttributeMap:forStandardAttribute:)]
         pub unsafe fn setAttributeMap_forStandardAttribute(
             &self,

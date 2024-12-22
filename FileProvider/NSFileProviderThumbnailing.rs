@@ -18,6 +18,34 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// The system calls this method to fetch thumbnails.
+        ///
+        /// The
+        /// `perThumbnailCompletionHandler`should be called for each thumbnail, and
+        /// `completionHandler`only after all the per thumbnail completion blocks.
+        ///
+        /// In the event of a global error, the implementation is allowed to skip calling
+        /// the
+        /// `perThumbnailCompletionHandler`for individual thumbnails. In that case,
+        /// the
+        /// `completionHandler's`error parameter would apply to all item identifiers
+        /// for which
+        /// `perThumbnailCompletionHandler`had not been called.
+        ///
+        /// If there is no thumbnail for a given item, the
+        /// `perThumbnailCompletionHandler`should be called with its
+        /// `imageData`and
+        /// `error`parameters both
+        /// set to nil.
+        ///
+        /// If the system decides that an in-flight thumbnail request is not needed anymore,
+        /// it will call the returned
+        /// `NSProgress`object's
+        /// `-cancel`method,
+        /// at which time the implementation should clean up any held resources.
+        ///
+        /// The system will cache the thumbnail for the item, and the cache will be
+        /// invalidated when itemVersion.contentVersion changes.
         #[method_id(@__retain_semantics Other fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:)]
         pub unsafe fn fetchThumbnailsForItemIdentifiers_requestedSize_perThumbnailCompletionHandler_completionHandler(
             &self,

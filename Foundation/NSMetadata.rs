@@ -22,6 +22,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSMetadataQueryDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -33,6 +34,7 @@ extern_methods!(
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         #[cfg(feature = "NSPredicate")]
+        /// Setter for [`predicate`][Self::predicate].
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
@@ -41,6 +43,7 @@ extern_methods!(
         pub unsafe fn sortDescriptors(&self) -> Retained<NSArray<NSSortDescriptor>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSSortDescriptor"))]
+        /// Setter for [`sortDescriptors`][Self::sortDescriptors].
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
@@ -49,6 +52,7 @@ extern_methods!(
         pub unsafe fn valueListAttributes(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Setter for [`valueListAttributes`][Self::valueListAttributes].
         #[method(setValueListAttributes:)]
         pub unsafe fn setValueListAttributes(&self, value_list_attributes: &NSArray<NSString>);
 
@@ -57,6 +61,7 @@ extern_methods!(
         pub unsafe fn groupingAttributes(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Setter for [`groupingAttributes`][Self::groupingAttributes].
         #[method(setGroupingAttributes:)]
         pub unsafe fn setGroupingAttributes(&self, grouping_attributes: Option<&NSArray<NSString>>);
 
@@ -65,6 +70,7 @@ extern_methods!(
         pub unsafe fn notificationBatchingInterval(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
+        /// Setter for [`notificationBatchingInterval`][Self::notificationBatchingInterval].
         #[method(setNotificationBatchingInterval:)]
         pub unsafe fn setNotificationBatchingInterval(
             &self,
@@ -76,6 +82,7 @@ extern_methods!(
         pub unsafe fn searchScopes(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "NSArray")]
+        /// Setter for [`searchScopes`][Self::searchScopes].
         #[method(setSearchScopes:)]
         pub unsafe fn setSearchScopes(&self, search_scopes: &NSArray);
 
@@ -84,6 +91,7 @@ extern_methods!(
         pub unsafe fn searchItems(&self) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "NSArray")]
+        /// Setter for [`searchItems`][Self::searchItems].
         #[method(setSearchItems:)]
         pub unsafe fn setSearchItems(&self, search_items: Option<&NSArray>);
 
@@ -92,6 +100,7 @@ extern_methods!(
         pub unsafe fn operationQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
         #[cfg(feature = "NSOperation")]
+        /// Setter for [`operationQueue`][Self::operationQueue].
         #[method(setOperationQueue:)]
         pub unsafe fn setOperationQueue(&self, operation_queue: Option<&NSOperationQueue>);
 

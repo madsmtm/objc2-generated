@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgenericexception?language=objc)
+    /// *************    Generic Exception names        **************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgenericexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSGenericException: &'static NSExceptionName;
 }

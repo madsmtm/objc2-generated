@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laprivatekey?language=objc)
+    /// Managed Private Key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laprivatekey?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LAPrivateKey;
@@ -17,12 +19,20 @@ unsafe impl NSObjectProtocol for LAPrivateKey {}
 extern_methods!(
     unsafe impl LAPrivateKey {
         #[cfg(feature = "LAPublicKey")]
+        /// Offers the public key counterpart of a
+        /// `LAPrivateKey`instance
         #[method_id(@__retain_semantics Other publicKey)]
         pub unsafe fn publicKey(&self) -> Retained<LAPublicKey>;
 
+        /// Clients cannot create
+        /// `LAPrivateKey`instances directly. They typically obtain them from a
+        /// `LAPersistedRight`instance.
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Clients cannot create
+        /// `LAPrivateKey`instances directly. They typically obtain them from a
+        /// `LAPersistedRight`instance.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

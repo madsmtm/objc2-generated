@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other alt)]
         pub unsafe fn alt(&self) -> Retained<NSString>;
 
+        /// Setter for [`alt`][Self::alt].
         #[deprecated]
         #[method(setAlt:)]
         pub unsafe fn setAlt(&self, alt: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other coords)]
         pub unsafe fn coords(&self) -> Retained<NSString>;
 
+        /// Setter for [`coords`][Self::coords].
         #[deprecated]
         #[method(setCoords:)]
         pub unsafe fn setCoords(&self, coords: Option<&NSString>);
@@ -97,6 +99,7 @@ extern_methods!(
         #[method(noHref)]
         pub unsafe fn noHref(&self) -> bool;
 
+        /// Setter for [`noHref`][Self::noHref].
         #[deprecated]
         #[method(setNoHref:)]
         pub unsafe fn setNoHref(&self, no_href: bool);
@@ -105,6 +108,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other shape)]
         pub unsafe fn shape(&self) -> Retained<NSString>;
 
+        /// Setter for [`shape`][Self::shape].
         #[deprecated]
         #[method(setShape:)]
         pub unsafe fn setShape(&self, shape: Option<&NSString>);
@@ -113,6 +117,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
+        /// Setter for [`target`][Self::target].
         #[deprecated]
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&NSString>);
@@ -121,6 +126,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other accessKey)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
+        /// Setter for [`accessKey`][Self::accessKey].
         #[deprecated]
         #[method(setAccessKey:)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
@@ -132,6 +138,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other href)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
+        /// Setter for [`href`][Self::href].
         #[deprecated]
         #[method(setHref:)]
         pub unsafe fn setHref(&self, href: Option<&NSString>);

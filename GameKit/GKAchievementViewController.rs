@@ -11,7 +11,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementviewcontroller?language=objc)
+    /// View controller that provides the standard user interface for achievements. Present modally from the top view controller.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementviewcontroller?language=objc)
     #[unsafe(super(GKGameCenterViewController, NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
@@ -59,6 +61,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn GKAchievementViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`achievementDelegate`][Self::achievementDelegate].
         #[deprecated]
         #[method(setAchievementDelegate:)]
         pub unsafe fn setAchievementDelegate(
@@ -109,11 +112,14 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementviewcontrollerdelegate?language=objc)
+    /// Optional delegate
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementviewcontrollerdelegate?language=objc)
     #[deprecated]
     pub unsafe trait GKAchievementViewControllerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// The achievement view has finished
         #[deprecated]
         #[method(achievementViewControllerDidFinish:)]
         unsafe fn achievementViewControllerDidFinish(

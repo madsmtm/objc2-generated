@@ -32,6 +32,11 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKObserverQuery {
         #[cfg(all(feature = "HKObjectType", feature = "block2"))]
+        /// This method installs a handler that is called when a sample type has a new sample added.
+        ///
+        /// If you have subscribed to background updates you must call the passed completion block
+        /// once you have processed data from this notification. Otherwise the system will continue
+        /// to notify you of this data.
         #[method_id(@__retain_semantics Init initWithSampleType:predicate:updateHandler:)]
         pub unsafe fn initWithSampleType_predicate_updateHandler(
             this: Allocated<Self>,
@@ -47,6 +52,15 @@ extern_methods!(
             feature = "HKQueryDescriptor",
             feature = "block2"
         ))]
+        /// This method installs a handler that is called when a sample matching the query descriptors is added.
+        ///
+        /// If you have subscribed to background updates you must call the passed completion block
+        /// once you have processed data from this notification. Otherwise the system will continue
+        /// to notify you of this data.
+        ///
+        ///
+        /// Parameter `queryDescriptors`: An array of query descriptors that describes the sample types and predicates for
+        /// which you are interested in getting notified.
         #[method_id(@__retain_semantics Init initWithQueryDescriptors:updateHandler:)]
         pub unsafe fn initWithQueryDescriptors_updateHandler(
             this: Allocated<Self>,

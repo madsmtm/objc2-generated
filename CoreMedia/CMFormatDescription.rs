@@ -20,10 +20,14 @@ pub const kCMFormatDescriptionError_AllocationFailed: OSStatus = -12711;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionerror_valuenotavailable?language=objc)
 pub const kCMFormatDescriptionError_ValueNotAvailable: OSStatus = -12718;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmformatdescriptionref?language=objc)
+/// A reference to a CMFormatDescription, a CF object describing media of a particular type (audio, video, muxed, etc).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmformatdescriptionref?language=objc)
 pub type CMFormatDescriptionRef = *const c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmediatype?language=objc)
+/// The type of media described by a CMFormatDescription.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmediatype?language=objc)
 pub type CMMediaType = FourCharCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmediatype_video?language=objc)
@@ -49,6 +53,15 @@ pub const kCMMediaType_TaggedBufferGroup: CMMediaType = 0x74626772;
 pub const kCMMediaType_AuxiliaryPicture: CMMediaType = 0x61757876;
 
 extern "C-unwind" {
+    /// Creates a generic CMFormatDescription object.
+    ///
+    /// Use this call to create any CMFormatDescription that is composed solely of extensions, and for which
+    /// CFEqual() of a the extensions dictionaries is a valid test for Format Description equality.  Note that
+    /// for some media types using this routine may result in creating a format description that is not fully
+    /// specified for the purpose of media processing. Whenever possible, use media-specific format description
+    /// creations routines such as CMVideoFormatDescriptionCreate, CMAudioFormatDescriptionCreate, etc.
+    ///
+    /// Returns: A new CMFormatDescription object.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMFormatDescriptionCreate(
         allocator: CFAllocatorRef,
@@ -60,11 +73,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the CFTypeID of CMFormatDescription objects.
+    ///
+    /// You can check if a CFTypeRef object is actually a CMFormatDescription
+    /// by comparing CFGetTypeID(object) with CMFormatDescriptionGetTypeID().
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMFormatDescriptionGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
+    /// Compares two CMFormatDescription objects for equality.
+    ///
+    /// This calls CFEqual on the provided CMFormatDescription objects.
+    /// In contrast to the CF call it is NULL safe.
     pub fn CMFormatDescriptionEqual(
         format_description: CMFormatDescriptionRef,
         other_format_description: CMFormatDescriptionRef,
@@ -72,6 +93,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Compares two CMFormatDescription objects for equality, ignoring differences in specified lists of format description extension keys and sample description extension keys.
+    ///
+    /// This function is NULL safe.
+    /// If any keys are passed, kCMFormatDescriptionExtension_VerbatimSampleDescription
+    /// and kCMFormatDescriptionExtension_VerbatimISOSampleEntry will also be automatically
+    /// ignored for the purpose of comparison.
+    ///
+    /// Parameter `formatDescriptionExtensionKeysToIgnore`: Either a single format description extension key (CFString)
+    /// or a CFArray of such keys.
+    ///
+    /// Parameter `sampleDescriptionExtensionAtomKeysToIgnore`: Either a single sample description extension atom key (four-character CFString)
+    /// or a CFArray of such keys.
+    /// See kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMFormatDescriptionEqualIgnoringExtensionKeys(
         format_description: CMFormatDescriptionRef,
@@ -82,43 +116,119 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the media type of a CMFormatDescription.
+    ///
+    /// For example, returns kCMMediaType_Audio for a description of an audio stream.
+    ///
+    /// Returns: The media type of the CMFormatDescription.
     pub fn CMFormatDescriptionGetMediaType(desc: CMFormatDescriptionRef) -> CMMediaType;
 }
 
 extern "C-unwind" {
+    /// Returns the media subtype of a CMFormatDescription.
+    ///
+    /// The media subtype is defined in a media-specific way.
+    /// For audio streams, the media subtype is the asbd.mFormatID.
+    /// For video streams, the media subtype is the video codec type.
+    /// For muxed streams, it is the format of the muxed stream.
+    /// For example, 'aac ' is returned for a description of an AAC audio
+    /// stream, 'avc1' is returned for a description of an H.264 video
+    /// stream, and 'mp2t' is returned for a description of an MPEG-2
+    /// transport (muxed) stream.  If a particular type of media stream
+    /// does not have subtypes, this API may return 0.
+    ///
+    /// Returns: The media subtype of the CMFormatDescription.
     pub fn CMFormatDescriptionGetMediaSubType(desc: CMFormatDescriptionRef) -> FourCharCode;
 }
 
 extern "C-unwind" {
+    /// Returns an immutable dictionary containing all the extensions of a CMFormatDescription.
+    ///
+    /// If there are no extensions, NULL is returned. Extensions dictionaries are valid property list
+    /// objects.  This means that dictionary keys are all CFStrings, and the values are all either
+    /// CFNumber, CFString, CFBoolean, CFArray, CFDictionary, CFDate, or CFData. The returned
+    /// dictionary is not retained by this call, so clients are required to retain it if they
+    /// need to keep it longer.
+    ///
+    /// Returns: An immutable dictionary containing all the extensions of the CMFormatDescription.  May be NULL.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMFormatDescriptionGetExtensions(desc: CMFormatDescriptionRef) -> CFDictionaryRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_originalcompressionsettings?language=objc)
+    /// kCMFormatDescriptionExtension_OriginalCompressionSettings
+    ///
+    /// This extension contains a media-type-specific dictionary of settings used to produce a compressed media buffer.
+    ///
+    /// This extension is valid for format descriptions of all media types, but the contents of the dictionary are defined
+    /// in a media-specific way.  The dictionary and its contents are valid property list objects. This means that
+    /// dictionary keys are all CFStrings, and the values are all either CFNumber, CFString, CFBoolean, CFArray,
+    /// CFDictionary, CFDate, or CFData.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_originalcompressionsettings?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_OriginalCompressionSettings: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_sampledescriptionextensionatoms?language=objc)
+    /// kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms
+    ///
+    /// Sample description extension atoms that were not translated into other entries in the extensions dictionary.
+    ///
+    /// This key is used by sample description bridges to hold sample description
+    /// extension atoms that they do not recognize.
+    /// The extension is a CFDictionary mapping CFStrings of the four-char-code atom types
+    /// to either CFDatas containing the atom payload or (to represent multiple atoms of a
+    /// specific type) to CFArrays of CFData containing those payloads.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_sampledescriptionextensionatoms?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_verbatimsampledescription?language=objc)
+    /// kCMFormatDescriptionExtension_VerbatimSampleDescription
+    ///
+    /// Preserves the original SampleDescription data.
+    ///
+    /// This extension is used to ensure that roundtrips from sample descriptions
+    /// to CMFormatDescriptions back to sample descriptions preserve the exact original
+    /// sample descriptions.
+    /// IMPORTANT: If you make a modified clone of a CMFormatDescription, you must
+    /// delete this extension from the clone, or your modifications could be lost.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_verbatimsampledescription?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_VerbatimSampleDescription: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_verbatimisosampleentry?language=objc)
+    /// kCMFormatDescriptionExtension_VerbatimISOSampleEntry
+    ///
+    /// Preserves the original ISOSampleEntry data.
+    ///
+    /// This extension is used to ensure that roundtrips from ISO Sample Entry (ie. AudioSampleEntry or VisualSampleEntry)
+    /// to CMFormatDescriptions back to ISO Sample Entry preserve the exact original
+    /// sample descriptions.
+    /// IMPORTANT: If you make a modified clone of a CMFormatDescription, you must
+    /// delete this extension from the clone, or your modifications could be lost.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_verbatimisosampleentry?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_VerbatimISOSampleEntry: CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Returns the specified extension of a CMFormatDescription.
+    ///
+    /// If the named extension does not exist, NULL is returned. The extension is always a valid
+    /// property list object. This means that it will be either a CFNumber, CFString, CFBoolean,
+    /// CFArray, CFDictionary, CFDate, or CFData. If it is a CFDictionary, the keys will all be
+    /// CFStrings. The returned extension is not retained by this call, so it is only valid as
+    /// long as the CMFormatDescription is valid. Clients are required to retain it if they
+    /// need to keep it longer.
+    ///
+    /// Returns: The specified extension of the CMFormatDescription.  May be NULL.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMFormatDescriptionGetExtension(
         desc: CMFormatDescriptionRef,
@@ -126,7 +236,9 @@ extern "C-unwind" {
     ) -> CFPropertyListRef;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudiocodectype?language=objc)
+/// Four-character codes identifying the code type. Certain codec types are also audio formats.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudiocodectype?language=objc)
 pub type CMAudioCodecType = FourCharCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmaudiocodectype_aac_lcprotected?language=objc)
@@ -134,10 +246,19 @@ pub const kCMAudioCodecType_AAC_LCProtected: CMAudioCodecType = 0x70616163;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmaudiocodectype_aac_audibleprotected?language=objc)
 pub const kCMAudioCodecType_AAC_AudibleProtected: CMAudioCodecType = 0x61616163;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptionref?language=objc)
+/// SYnonym type used for manipulating audio CMFormatDescriptions
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptionref?language=objc)
 pub type CMAudioFormatDescriptionRef = CMFormatDescriptionRef;
 
 extern "C-unwind" {
+    /// Creates a format description for an audio media stream.
+    ///
+    /// The ASBD is required, the channel layout is optional, and the magic cookie is required
+    /// for some compression formats (and must be NULL for all others). The caller owns the
+    /// returned CMFormatDescription, and must release it when done with it.  The ASBD,
+    /// magic cookie, channel layout, and extensions are all copied (the extensions are
+    /// deep-copied).  The caller can deallocate them or re-use them after making this call.
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn CMAudioFormatDescriptionCreate(
         allocator: CFAllocatorRef,
@@ -152,6 +273,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a read-only pointer to the AudioStreamBasicDescription inside an audio CMFormatDescription.
+    ///
+    /// See CoreAudioTypes.h for the definition of AudioStreamBasicDescription.
+    /// This API is specific to audio format descriptions, and will return NULL if
+    /// used with a non-audio format descriptions.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetStreamBasicDescription(
         desc: CMAudioFormatDescriptionRef,
@@ -159,6 +285,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a read-only pointer to (and size of) the magic cookie inside an audio CMFormatDescription.
+    ///
+    /// The magic cookie is a completely opaque piece of data, written and read only by
+    /// the codec itself. A magic cookie is only present for codecs that require it;
+    /// this API will return NULL if one does not exist. This API is specific to audio
+    /// format descriptions, and will return NULL if called with a non-audio format
+    /// description.
+    ///
+    /// Returns: A read-only pointer to the magic cookie inside the audio format description.
     pub fn CMAudioFormatDescriptionGetMagicCookie(
         desc: CMAudioFormatDescriptionRef,
         size_out: *mut usize,
@@ -166,6 +301,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a read-only pointer to (and size of) the AudioChannelLayout inside an audio CMFormatDescription.
+    ///
+    /// See CoreAudioTypes.h for the definition of AudioChannelLayout.
+    /// AudioChannelLayouts are optional; this API will return NULL if
+    /// one does not exist. This API is specific to audio format
+    /// descriptions, and will return NULL if called with a non-audio
+    /// format description.
+    ///
+    /// Returns: A read-only pointer to the AudioChannelLayout inside the audio format description.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetChannelLayout(
         desc: CMAudioFormatDescriptionRef,
@@ -174,6 +318,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a read-only pointer to (and size of) the array of AudioFormatListItem structs inside an audio CMFormatDescription.
+    ///
+    /// This property is analogous to kAudioFormatProperty_FormatList (See AudioFormat.h) and follows
+    /// its conventions.  Namely, formats are returned in order from the most to least 'rich', with
+    /// channel count taking the highest precedence followed by sample rate.
+    /// This API is specific to audio format descriptions, and will return NULL if called with a non-audio
+    /// format description.
+    ///
+    /// Returns: A read-only pointer to the array of AudioFormatListItem structs inside the audio format description.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetFormatList(
         desc: CMAudioFormatDescriptionRef,
@@ -182,6 +335,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a read-only pointer to the appropriate AudioFormatListItem inside an audio CMFormatDescription.
+    ///
+    /// This property performs validation on the formats represented by the audio in the description.  It
+    /// finds the first AudioFormatListItem for which the current system has a valid decoder.
+    /// This API is specific to audio format descriptions, and will return NULL if called with a non-audio
+    /// format description.  It may also return NULL if there is no suitable decoder available on the
+    /// current system for this audio format.
+    ///
+    /// Returns: A read-only pointer to the appropriate AudioFormatListItem inside the audio format description.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetRichestDecodableFormat(
         desc: CMAudioFormatDescriptionRef,
@@ -189,6 +351,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a read-only pointer to the appropriate AudioFormatListItem inside an audio CMFormatDescription.
+    ///
+    /// This property returns a pointer to the last AudioFormatListItem in the kAudioFormatProperty_FormatList
+    /// (see AudioFormat.h).  This API is specific to audio format descriptions, and will return NULL if called
+    /// with a non-audio format description.
+    ///
+    /// Returns: A read-only pointer to the appropriate AudioFormatListItem inside the audio format description.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionGetMostCompatibleFormat(
         desc: CMAudioFormatDescriptionRef,
@@ -196,6 +365,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a summary audio format description from an array of audio format descriptions.
+    ///
+    /// The summary format description will be canonical LPCM and deep enough in
+    /// sample rate, channel layout and channel count to sensibly contain the result of decoding
+    /// and mixing the constituent format descriptions.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMAudioFormatDescriptionCreateSummary(
         allocator: CFAllocatorRef,
@@ -205,7 +379,10 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptionmask?language=objc)
+/// Mask bits passed to (and returned from) CMAudioFormatDescriptionEqual,
+/// representing various parts of an audio format description.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptionmask?language=objc)
 pub type CMAudioFormatDescriptionMask = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmaudioformatdescriptionmask_streambasicdescription?language=objc)
@@ -225,6 +402,25 @@ pub const kCMAudioFormatDescriptionMask_All: CMAudioFormatDescriptionMask =
         | kCMAudioFormatDescriptionMask_Extensions;
 
 extern "C-unwind" {
+    /// Evaluates equality for the specified parts of two audio format descriptions.
+    ///
+    /// Bits in equalityMask specify the caller's interest in the equality of various parts of the descriptions.
+    /// Bits set and returned in equalityMaskOut represent the subset of those parts that are equal.
+    /// If there is any sort of error that prevents the comparison from occurring, false will be returned, and
+    /// all bits in equalityMaskOut will be cleared. If you pass kCMAudioFormatDescriptionMask_All in equalityMask,
+    /// and NULL for equalityMaskOut, this API is equivalent to CFEqual(desc1, desc2).
+    ///
+    /// On releases up to macOS 12, iOS 15, tvOS 15 and watchOS 8, the kCMAudioFormatDescriptionMask_Extensions
+    /// flag was ignored in equalityMask. So this API always treated two audio format descriptions as equal even
+    /// when they had different extensions.
+    ///
+    /// Starting with macOS 13, iOS 16, tvOS 16 and watchOS 9, kCMAudioFormatDescriptionMask_Extensions is correctly
+    /// accounted for when determining equality of two audio format descriptions. This also affects CFEqual(desc1, desc2)
+    /// as it will return false when two audio format descriptions have different extensions.
+    ///
+    ///
+    /// Returns: The result of the comparison.  True if all parts in which the caller is interested are equal.
+    /// False if any of the parts in which the caller is interested are not equal.
     pub fn CMAudioFormatDescriptionEqual(
         format_description: CMAudioFormatDescriptionRef,
         other_format_description: CMAudioFormatDescriptionRef,
@@ -233,10 +429,15 @@ extern "C-unwind" {
     ) -> Boolean;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptionref?language=objc)
+/// Synonym type used for manipulating video CMFormatDescriptions
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptionref?language=objc)
 pub type CMVideoFormatDescriptionRef = CMFormatDescriptionRef;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmpixelformattype?language=objc)
+/// Four-character codes identifying the pixel format. Only some codec types are pixel formats.
+/// In general, CoreVideo CVPixelFormatType constants may be used too.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmpixelformattype?language=objc)
 pub type CMPixelFormatType = FourCharCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmpixelformat_32argb?language=objc)
@@ -272,7 +473,24 @@ pub const kCMPixelFormat_444YpCbCr10: CMPixelFormatType = 0x76343130;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmpixelformat_8indexedgray_whiteiszero?language=objc)
 pub const kCMPixelFormat_8IndexedGray_WhiteIsZero: CMPixelFormatType = 0x00000028;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideocodectype?language=objc)
+/// Four-character codes identifying the video codec. Certain codec types are also pixel formats.
+/// Note: There is no kCMVideoCodecType_Raw -- use the appropriate pixel format type as the codec type.
+///
+///
+///
+///
+///
+///
+///
+///
+///
+///
+///
+///
+/// IMPORTANT NOTE: this constant is used to select the appropriate encoder, but is NOT used on the encoded content,
+/// which is backwards compatible and hence uses 'hvc1' as its codec type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideocodectype?language=objc)
 pub type CMVideoCodecType = FourCharCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmvideocodectype_422ypcbcr8?language=objc)
@@ -354,7 +572,9 @@ pub const kCMVideoCodecType_DepthHEVC: CMVideoCodecType = 0x64657068;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmvideocodectype_av1?language=objc)
 pub const kCMVideoCodecType_AV1: CMVideoCodecType = 0x61763031;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideodimensions?language=objc)
+/// Type used for video dimensions, units are pixels
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideodimensions?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMVideoDimensions {
@@ -906,7 +1126,16 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_logtransferfunction?language=objc)
+    /// Indicates that the transfer function or gamma of the content is a log format and identifies the specific log curve.
+    ///
+    /// The value is a CFString holding fully specified reverse DNS identifier.
+    /// Content captured in Apple Log will have this key set to kCMFormatDescriptionLogTransferFunction_AppleLog.
+    ///
+    /// Indicates the Apple Log identifier.
+    ///
+    /// You can download the Apple Log Profile White Paper from the Apple Developer Downloads website.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_logtransferfunction?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_LogTransferFunction: CFStringRef;
 }
@@ -918,7 +1147,15 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_heroeye?language=objc)
+    /// Indicates which of the two eyes should be used as the primary when rendering in 2D. It is usually perpendicular to the target image surface.
+    ///
+    /// Indicates the left eye is the hero eye.
+    ///
+    /// Indicates the right eye is the hero eye.
+    ///
+    /// The value is a CFString holding one of the kCMFormatDescriptionHeroEye_* constants.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_heroeye?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_HeroEye: CFStringRef;
 }
@@ -936,37 +1173,66 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_stereocamerabaseline?language=objc)
+    /// Indicates the distance between centers of the lenses of the camera system.
+    ///
+    /// The value is a CFNumber holding an unsigned 32-bit integer that is interpreted in micrometers or thousandths of a millimeter (e.g., 63123 is 63.123 millimeters).
+    /// This property is optional and should only be specified if the distance is known.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_stereocamerabaseline?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_StereoCameraBaseline: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_horizontaldisparityadjustment?language=objc)
+    /// Indicates a relative shift of the left and right images, which changes the zero parallax plane.
+    ///
+    /// The value encoded in normalized image space is a CFNumber holding a signed 32-bit integer measured over the range of -10000 to 10000 mapping to the uniform range [-1.0...1.0]. The interval of 0.0 to 1.0 or 0 to 10000 maps onto the stereo eye view image width. The negative interval 0.0 to -1.0 or 0 to -10000 similarly map onto the stereo eye view image width.
+    /// The default value of 0 is interpreted if this property is not set. If the property is not set, NULL may be set and retrieved. The NULL value should be interpreted as meaning 0.
+    /// This property is optional and should only be specified if a disparity adjustment including 0 is known.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_horizontaldisparityadjustment?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_HorizontalDisparityAdjustment: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_hasleftstereoeyeview?language=objc)
+    /// Indicates the stereo left eye is present in video frames.
+    ///
+    /// The value is a CFBoolean holding presence of left eye view in the stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_hasleftstereoeyeview?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_HasLeftStereoEyeView: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_hasrightstereoeyeview?language=objc)
+    /// Indicates the stereo right eye is present in video frames.
+    ///
+    /// The value is a CFBoolean holding presence of right eye view in the stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_hasrightstereoeyeview?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_HasRightStereoEyeView: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_hasadditionalviews?language=objc)
+    /// Indicates that one or more additional views may be present beyond stereo left and stereo right eyes (e.g,. a “centerline” view).
+    ///
+    /// The value is a CFBoolean holding presence of additional eye views in the stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_hasadditionalviews?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_HasAdditionalViews: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_projectionkind?language=objc)
+    /// Indicates the projection that should be applied to presented decoded video frames.
+    ///
+    /// Indicates rectilinear projection. Generally less than 90 degree field of view with no barrel distortion.
+    ///
+    /// The value is a CFString holding one of the kCMFormatDescriptionProjectionKind_* constants.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_projectionkind?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_ProjectionKind: CFStringRef;
 }
@@ -978,7 +1244,15 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_viewpackingkind?language=objc)
+    /// Indicates the packing type of stereoscopic video frames.
+    ///
+    /// Indicates that frames are packed side-by-side.
+    ///
+    /// Indicates that frames are packed over under.
+    ///
+    /// The value is a CFString holding one of the kCMFormatDescriptionViewPackingKind_* constants.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_viewpackingkind?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_ViewPackingKind: CFStringRef;
 }
@@ -996,6 +1270,10 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// Creates a format description for a video media stream.
+    ///
+    /// The caller owns the returned CMFormatDescription, and must release it when done with it. All input parameters
+    /// are copied (the extensions are deep-copied).  The caller can deallocate them or re-use them after making this call.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionCreate(
         allocator: CFAllocatorRef,
@@ -1008,6 +1286,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a format description for a video media stream contained in CVImageBuffers of the type provided.
+    ///
+    /// This convenience function is equivalent to:
+    ///
+    /// CMVideoFormatDescriptionCreate( allocator,
+    /// ( CVPixelBufferGetTypeID() == CFGetTypeID( imageBuffer ) ? CVPixelBufferGetPixelFormatType( imageBuffer ) : 0,
+    /// width of image,
+    /// height of image,
+    /// extensions );
+    ///
+    /// where extensions is a CFDictionary of attachments to image buffer with keys specified by
+    /// CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers, and also
+    /// kCMFormatDescriptionExtension_BytesPerRow if applicable.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-video"))]
     pub fn CMVideoFormatDescriptionCreateForImageBuffer(
         allocator: CFAllocatorRef,
@@ -1017,6 +1308,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a format description for a video media stream described by H.264 parameter set NAL units.
+    ///
+    /// This function parses the dimensions provided by the parameter sets and creates a format description suitable for a raw H.264 stream.
+    /// The parameter sets' data can come from raw NAL units and must have any emulation prevention bytes needed.
+    /// The supported NAL unit types to be included in the format description are 7 (sequence parameter set), 8 (picture parameter set) and 13 (sequence parameter set extension). At least one sequence parameter set and one picture parameter set must be provided.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionCreateFromH264ParameterSets(
         allocator: CFAllocatorRef,
@@ -1029,6 +1325,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a format description for a video media stream described by HEVC (H.265) parameter set NAL units.
+    ///
+    /// This function parses the dimensions provided by the parameter sets and creates a format description suitable for a raw H.265 stream.
+    /// The parameter sets' data can come from raw NAL units and must have any emulation prevention bytes needed.
+    /// The supported NAL unit types to be included in the format description are 32 (video parameter set), 33 (sequence parameter set), 34 (picture parameter set), 39 (prefix SEI) and 40 (suffix SEI). At least one of each parameter set must be provided.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionCreateFromHEVCParameterSets(
         allocator: CFAllocatorRef,
@@ -1042,6 +1343,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a parameter set contained in a H.264 format description.
+    ///
+    /// This function parses the AVC decoder configuration record contained in a H.264 video format description and returns the NAL unit at the given index from it.  These NAL units are typically parameter sets (e.g. SPS, PPS), but may contain others as specified by ISO/IEC 14496-15 (e.g. user-data SEI).
+    /// Both parameterSetPointerOut and parameterSetSizeOut may be NULL, parameterSetCountOut will return the total number of parameter set NAL units contained in the AVC decoder configuration record.
+    /// The parameter set NAL units returned will already have any emulation prevention bytes needed.
+    /// The pointer returned in parameterSetPointerOut points to internal memory of videoDesc, and may only be accessed as long as a retain on videoDesc is held.
     pub fn CMVideoFormatDescriptionGetH264ParameterSetAtIndex(
         video_desc: CMFormatDescriptionRef,
         parameter_set_index: usize,
@@ -1053,6 +1360,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a parameter set contained in a HEVC (H.265) format description.
+    ///
+    /// This function parses the HEVC decoder configuration record contained in a H.265 video format description and returns the NAL unit at the given index from it.  These NAL units are typically parameter sets (e.g. VPS, SPS, PPS), but may contain others as specified by ISO/IEC 14496-15 (e.g. user-data SEI).
+    /// Both parameterSetPointerOut and parameterSetSizeOut may be NULL, parameterSetCountOut will return the total number of parameter set NAL units contained in the HEVC decoder configuration record.
+    /// The parameter set NAL units returned will already have any emulation prevention bytes needed.
+    /// The pointer returned in parameterSetPointerOut points to internal memory of videoDesc, and may only be accessed as long as a retain on videoDesc is held.
     pub fn CMVideoFormatDescriptionGetHEVCParameterSetAtIndex(
         video_desc: CMFormatDescriptionRef,
         parameter_set_index: usize,
@@ -1064,12 +1377,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the dimensions (in encoded pixels)
+    ///
+    /// This does not take into account pixel aspect ratio or clean aperture tags.
     pub fn CMVideoFormatDescriptionGetDimensions(
         video_desc: CMVideoFormatDescriptionRef,
     ) -> CMVideoDimensions;
 }
 
 extern "C-unwind" {
+    /// Returns the dimensions, adjusted to take pixel aspect ratio and/or clean aperture into account.
+    ///
+    /// Pixel aspect ratio is used to adjust the width, leaving the height alone.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionGetPresentationDimensions(
         video_desc: CMVideoFormatDescriptionRef,
@@ -1079,6 +1398,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the clean aperture.
+    ///
+    /// The clean aperture is a rectangle that defines the portion of the encoded pixel dimensions
+    /// that represents image data valid for display.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionGetCleanAperture(
         video_desc: CMVideoFormatDescriptionRef,
@@ -1087,11 +1410,42 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns an array of the keys that are used both as CMVideoFormatDescription extensions
+    /// and CVImageBuffer attachments and attributes.
+    ///
+    /// When specifying a CMFormatDescription for a CMSampleBuffer, the format description must
+    /// be consistent with formatting information attached to the CVImageBuffer. The width, height,
+    /// and codecType must match (for CVPixelBuffers the codec type is given by
+    /// CVPixelBufferGetPixelFormatType(pixelBuffer); for other CVImageBuffers, the codecType must be 0).
+    /// The format description extensions must match the image buffer attachments for all the keys in the
+    /// list returned by this function (if absent in either they must be absent in both).
+    ///
+    /// Currently, the list is:
+    ///
+    /// kCMFormatDescriptionExtension_CleanAperture
+    /// kCMFormatDescriptionExtension_FieldCount
+    /// kCMFormatDescriptionExtension_FieldDetail
+    /// kCMFormatDescriptionExtension_PixelAspectRatio
+    /// kCMFormatDescriptionExtension_ColorPrimaries
+    /// kCMFormatDescriptionExtension_TransferFunction
+    /// kCMFormatDescriptionExtension_GammaLevel
+    /// kCMFormatDescriptionExtension_YCbCrMatrix
+    /// kCMFormatDescriptionExtension_ICCProfile
+    /// kCMFormatDescriptionExtension_ChromaLocationTopField
+    /// kCMFormatDescriptionExtension_ChromaLocationBottomField
+    /// kCMFormatDescriptionExtension_MasteringDisplayColorVolume
+    /// kCMFormatDescriptionExtension_ContentLightLevelInfo
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers() -> CFArrayRef;
 }
 
 extern "C-unwind" {
+    /// Checks to see if a given format description matches an image buffer.
+    ///
+    /// This function uses the keys returned by CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers
+    /// to compares the extensions of the given format description to the attachments of the
+    /// given image buffer (if an attachment is absent in either it must be absent in both).
+    /// It also checks kCMFormatDescriptionExtension_BytesPerRow against CVPixelBufferGetBytesPerRow, if applicable.
     #[cfg(feature = "objc2-core-video")]
     pub fn CMVideoFormatDescriptionMatchesImageBuffer(
         desc: CMVideoFormatDescriptionRef,
@@ -1100,6 +1454,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the multi-image encoding properties as an array of CMTagCollections.
+    ///
+    /// Parameter `formatDescription`: CMVideoFormatDescription being interrogated.
+    ///
+    /// Parameter `tagCollectionsOut`: Returned TagCollections with CMTags such as kCMTagCategory_VideoLayerID and kCMTagCategory_StereoViewType.
+    ///
+    /// On return, the caller owns the returned CFArrayRef and must release it when done with it.
+    /// This function copies the VideoLayerIDs and LeftAndRightViewIDs from hvcC and 3D Reference Displays Info SEI in the formatDescription.
+    /// The returned values can be used to enable the multi-image decoding with kVTDecompressionPropertyKey_RequestedMVHEVCVideoLayerIDs.
+    /// It also gives the eye mapping information for the pixel buffers of the decoded CMTaggedBufferGroups.
+    ///
+    /// Returns: Array of CMTagCollections. The result will be NULL if the CMVideoFormatDescription does not contain multi-image encoding parameters, or if there is some other error.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionCopyTagCollectionArray(
         format_description: CMVideoFormatDescriptionRef,
@@ -1107,20 +1473,35 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupformatdescriptionref?language=objc)
+/// Synonym type used for manipulating CMTaggedBufferGroup media CMFormatDescriptions
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupformatdescriptionref?language=objc)
 pub type CMTaggedBufferGroupFormatDescriptionRef = CMFormatDescriptionRef;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupformattype?language=objc)
+/// The subtypes of CMTaggedBufferGroup media type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupformattype?language=objc)
 pub type CMTaggedBufferGroupFormatType = FourCharCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtaggedbuffergroupformattype_taggedbuffergroup?language=objc)
 pub const kCMTaggedBufferGroupFormatType_TaggedBufferGroup: CMTaggedBufferGroupFormatType =
     0x74626772;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmuxedformatdescriptionref?language=objc)
+/// Synonym type used for manipulating muxed media CMFormatDescriptions
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmuxedformatdescriptionref?language=objc)
 pub type CMMuxedFormatDescriptionRef = CMFormatDescriptionRef;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmuxedstreamtype?language=objc)
+/// Muxed media format/subtype.
+///
+///
+///
+///
+///
+///
+/// Contains interleaved sample buffers from multiple media types. The receiver should query the media type of each CMSampleBuffer’s format description to discover if it’s video or audio, and process it accordingly.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmuxedstreamtype?language=objc)
 pub type CMMuxedStreamType = FourCharCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmuxedstreamtype_mpeg1system?language=objc)
@@ -1135,6 +1516,14 @@ pub const kCMMuxedStreamType_DV: CMMuxedStreamType = 0x64762020;
 pub const kCMMuxedStreamType_EmbeddedDeviceScreenRecording: CMMuxedStreamType = 0x69737220;
 
 extern "C-unwind" {
+    /// Creates a format description for a muxed media stream.
+    ///
+    /// A muxed format description does not know what the formats are of the substreams within the muxed stream.
+    /// That information will only be discoverable by the demuxer software (or other software which understands
+    /// the details of the muxed bitstream) which will need to produce separate format descriptions for each of
+    /// its output streams. The caller owns the returned CMFormatDescription, and must release it when done
+    /// with it. All input parameters are copied (the extensions are deep-copied).  The caller can deallocate
+    /// them or re-use them after making this call.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMuxedFormatDescriptionCreate(
         allocator: CFAllocatorRef,
@@ -1144,10 +1533,15 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptionformatdescriptionref?language=objc)
+/// Synonym type used for manipulating closed-caption media CMFormatDescriptions
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptionformatdescriptionref?language=objc)
 pub type CMClosedCaptionFormatDescriptionRef = CMFormatDescriptionRef;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptionformattype?language=objc)
+/// Closed-caption media format/subtype.
+/// Note:  use CMFormatDescriptionCreate to create a CMClosedCaptionFormatDescriptionRef.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptionformattype?language=objc)
 pub type CMClosedCaptionFormatType = FourCharCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmclosedcaptionformattype_cea608?language=objc)
@@ -1157,10 +1551,14 @@ pub const kCMClosedCaptionFormatType_CEA708: CMClosedCaptionFormatType = 0x63373
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmclosedcaptionformattype_atsc?language=objc)
 pub const kCMClosedCaptionFormatType_ATSC: CMClosedCaptionFormatType = 0x61746363;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescriptionref?language=objc)
+/// Synonym type used for manipulating Text media CMFormatDescriptions
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescriptionref?language=objc)
 pub type CMTextFormatDescriptionRef = CMFormatDescriptionRef;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformattype?language=objc)
+/// Text media format/subtype.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformattype?language=objc)
 pub type CMTextFormatType = FourCharCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformattype_qttext?language=objc)
@@ -1168,7 +1566,9 @@ pub const kCMTextFormatType_QTText: CMTextFormatType = 0x74657874;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformattype_3gtext?language=objc)
 pub const kCMTextFormatType_3GText: CMTextFormatType = 0x74783367;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextdisplayflags?language=objc)
+/// Display mode flags for text media.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextdisplayflags?language=objc)
 pub type CMTextDisplayFlags = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextdisplayflag_scrollin?language=objc)
@@ -1198,7 +1598,9 @@ pub const kCMTextDisplayFlag_forcedSubtitlesPresent: CMTextDisplayFlags = 0x4000
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextdisplayflag_allsubtitlesforced?language=objc)
 pub const kCMTextDisplayFlag_allSubtitlesForced: CMTextDisplayFlags = 0x80000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextjustificationvalue?language=objc)
+/// Justification modes for text media. Used when specifying either horizontal or vertical justification.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextjustificationvalue?language=objc)
 pub type CMTextJustificationValue = i8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextjustification_left_top?language=objc)
@@ -1365,6 +1767,9 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// Returns the displayFlags.
+    ///
+    /// These are the flags that control how the text appears. The function can return kCMFormatDescriptionError_ValueNotAvailable for formats without display flags.
     pub fn CMTextFormatDescriptionGetDisplayFlags(
         desc: CMFormatDescriptionRef,
         display_flags_out: NonNull<CMTextDisplayFlags>,
@@ -1372,6 +1777,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns horizontal and vertical justification.
+    ///
+    /// Values are kCMTextJustification_* constants. The function returns kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry text justification.
     pub fn CMTextFormatDescriptionGetJustification(
         desc: CMFormatDescriptionRef,
         horizonta_justificationl_out: *mut CMTextJustificationValue,
@@ -1380,6 +1788,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the default text box.
+    ///
+    /// Within a text track, text is rendered within a text box.  There is a default text box set, which can be over-ridden by a sample. The function can return kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry a default text box.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTextFormatDescriptionGetDefaultTextBox(
         desc: CMFormatDescriptionRef,
@@ -1390,6 +1801,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the font name for a local font ID.
+    ///
+    /// Some format descriptions carry a mapping from local font IDs to font names. The function returns kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry such a font mapping table.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTextFormatDescriptionGetFontName(
         desc: CMFormatDescriptionRef,
@@ -1406,10 +1820,14 @@ pub const kCMSubtitleFormatType_3GText: CMSubtitleFormatType = 0x74783367;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsubtitleformattype_webvtt?language=objc)
 pub const kCMSubtitleFormatType_WebVTT: CMSubtitleFormatType = 0x77767474;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescriptionref?language=objc)
+/// SYnonym type used for manipulating TimeCode media CMFormatDescriptions
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescriptionref?language=objc)
 pub type CMTimeCodeFormatDescriptionRef = CMFormatDescriptionRef;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformattype?language=objc)
+/// The types of TimeCode.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformattype?language=objc)
 pub type CMTimeCodeFormatType = FourCharCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimecodeformattype_timecode32?language=objc)
@@ -1429,6 +1847,10 @@ pub const kCMTimeCodeFlag_24HourMax: u32 = 1 << 1;
 pub const kCMTimeCodeFlag_NegTimesOK: u32 = 1 << 2;
 
 extern "C-unwind" {
+    /// Creates a format description for a timecode media.
+    ///
+    /// The caller owns the returned CMFormatDescription, and must release it when done with it. All input parameters
+    /// are copied (the extensions are deep-copied).  The caller can deallocate them or re-use them after making this call.
     #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
     pub fn CMTimeCodeFormatDescriptionCreate(
         allocator: CFAllocatorRef,
@@ -1442,6 +1864,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the duration of each frame (eg. 100/2997)
     #[cfg(feature = "CMTime")]
     pub fn CMTimeCodeFormatDescriptionGetFrameDuration(
         time_code_format_description: CMTimeCodeFormatDescriptionRef,
@@ -1449,12 +1872,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the frames/sec for timecode (eg. 30) OR frames/tick for counter mode
     pub fn CMTimeCodeFormatDescriptionGetFrameQuanta(
         time_code_format_description: CMTimeCodeFormatDescriptionRef,
     ) -> u32;
 }
 
 extern "C-unwind" {
+    /// Returns the flags for kCMTimeCodeFlag_DropFrame, kCMTimeCodeFlag_24HourMax, kCMTimeCodeFlag_NegTimesOK
     pub fn CMTimeCodeFormatDescriptionGetTimeCodeFlags(desc: CMTimeCodeFormatDescriptionRef)
         -> u32;
 }
@@ -1477,10 +1902,14 @@ extern "C" {
     pub static kCMTimeCodeFormatDescriptionKey_LangCode: CFStringRef;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptionref?language=objc)
+/// SYnonym type used for manipulating Metadata media CMFormatDescriptions
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptionref?language=objc)
 pub type CMMetadataFormatDescriptionRef = CMFormatDescriptionRef;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformattype?language=objc)
+/// The subtypes of Metadata media type.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformattype?language=objc)
 pub type CMMetadataFormatType = FourCharCode;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformattype_icy?language=objc)

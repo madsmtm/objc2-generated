@@ -7,7 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionmanager?language=objc)
+    /// CMFallDetectionManager
+    ///
+    ///
+    /// Use CMFallDetectionManager to receive information about Fall Detection events. Not all watch models support Fall Detection, check for availability before creating an instance of CMFallDetectionManager.
+    /// CMFallDetectionManager requires an entitlement from Apple. To apply for the entitlement, see Fall Detection Entitlement Request.
+    ///
+    /// Set the delegate immediately after creating an instance of CMFallDetectionManager. Creating multiple instances of CMFallDetectionManager is not supported and should be avoided.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMFallDetectionManager;
@@ -17,19 +25,29 @@ unsafe impl NSObjectProtocol for CMFallDetectionManager {}
 
 extern_methods!(
     unsafe impl CMFallDetectionManager {
+        /// available
+        ///
+        /// Returns a  value indicating whether the current device supports Fall Detection.
         #[method(isAvailable)]
         pub unsafe fn isAvailable() -> bool;
 
         #[cfg(feature = "CMAuthorization")]
+        /// authorizationStatus
+        ///
+        /// Returns a value indicating whether the user has authorized the app to receive Fall Detection updates
         #[method(authorizationStatus)]
         pub unsafe fn authorizationStatus(&self) -> CMAuthorizationStatus;
 
+        /// delegate
+        ///
+        /// The delegate object to receive Fall Detection events.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CMFallDetectionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -37,6 +55,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CMAuthorization", feature = "block2"))]
+        /// Requests the user’s permission to access Fall Detection information.
         #[method(requestAuthorizationWithHandler:)]
         pub unsafe fn requestAuthorizationWithHandler(
             &self,
@@ -57,9 +76,31 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectiondelegate?language=objc)
+    /// CMFallDetectionDelegate
+    ///
+    ///
+    /// CMFallDetectionManager notifies its delegate about Fall Detection related information using this protocol
+    ///
+    /// See also: CMFallDetectionManager
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectiondelegate?language=objc)
     pub unsafe trait CMFallDetectionDelegate: NSObjectProtocol {
         #[cfg(all(feature = "CMFallDetectionEvent", feature = "block2"))]
+        /// Update the delegate with a new Fall Detection event
+        ///
+        ///
+        /// Parameter `handler`: Apps running in the background have a finite amount of time to process Fall Detection events. Call this handler to indicate that the app has finished handling the event. The system may suspend or terminate the app before calling this block.
+        ///
+        ///
+        /// Fall Detection events may occur when the app is not running.
+        /// Following a Fall Detection event, the system will launch the watchOS app in the background giving it small amount of background execution time. This time should be used for critical tasks related to the Fall Event. For example: placing a network request or scheduling a local notification.
+        /// In order to receive Fall Detection events, create a new CMFallDetectionManager instance and set its delegate early in the watchOS app lifecycle (applicationDidFinishLaunching for example). Note that instances of WKInterfaceController may not be created when launched in the background.
+        ///
+        /// If multiple Fall Detection events are generated while the app is not running, only the most recent event will be reported on the next app launch.
+        ///
+        /// The same event may be reported across different app launches, always check the date of the event before processing it.
+        ///
+        /// Fall Detection events can be simulated with the watchOS simulator. Use it to test the background functionality of your app.
         #[optional]
         #[method(fallDetectionManager:didDetectEvent:completionHandler:)]
         unsafe fn fallDetectionManager_didDetectEvent_completionHandler(
@@ -69,6 +110,7 @@ extern_protocol!(
             handler: &block2::Block<dyn Fn()>,
         );
 
+        /// Update the delegate when the app's Fall Detection authorization status changes
         #[optional]
         #[method(fallDetectionManagerDidChangeAuthorization:)]
         unsafe fn fallDetectionManagerDidChangeAuthorization(

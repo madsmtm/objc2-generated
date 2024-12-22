@@ -7,7 +7,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerminmagfilter?language=objc)
+/// Options for filtering texels within a mip level.
+///
+///
+/// Select the single texel nearest to the sample point.
+///
+///
+/// Select two texels in each dimension, and interpolate linearly between them.  Not all devices support linear filtering for all formats.  Integer textures can not use linear filtering on any device, and only some devices support linear filtering of Float textures.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerminmagfilter?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,7 +35,9 @@ unsafe impl RefEncode for MTLSamplerMinMagFilter {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplermipfilter?language=objc)
+/// Options for selecting and filtering between mipmap levels
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplermipfilter?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -49,7 +59,27 @@ unsafe impl RefEncode for MTLSamplerMipFilter {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode?language=objc)
+/// Options for what value is returned when a fetch falls outside the bounds of a texture.
+///
+///
+/// Texture coordinates will be clamped between 0 and 1.
+///
+///
+/// Mirror the texture while coordinates are within -1..1, and clamp to edge when outside.
+///
+///
+/// Wrap to the other side of the texture, effectively ignoring fractional parts of the texture coordinate.
+///
+///
+/// Between -1 and 1 the texture is mirrored across the 0 axis.  The image is repeated outside of that range.
+///
+///
+/// ClampToZero returns transparent zero (0,0,0,0) for images with an alpha channel, and returns opaque zero (0,0,0,1) for images without an alpha channel.
+///
+///
+/// Clamp to border color returns the value specified by the borderColor variable of the MTLSamplerDesc.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -77,7 +107,18 @@ unsafe impl RefEncode for MTLSamplerAddressMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerbordercolor?language=objc)
+/// Specify the color value that will be clamped to when the sampler address mode is MTLSamplerAddressModeClampToBorderColor.
+///
+///
+/// Transparent black returns {0,0,0,0} for clamped texture values.
+///
+///
+/// OpaqueBlack returns {0,0,0,1} for clamped texture values.
+///
+///
+/// OpaqueWhite returns {1,1,1,1} for clamped texture values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerbordercolor?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -100,7 +141,9 @@ unsafe impl RefEncode for MTLSamplerBorderColor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerdescriptor?language=objc)
+    /// A mutable descriptor used to configure a sampler.  When complete, this can be used to create an immutable MTLSamplerState.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSamplerDescriptor;
@@ -116,95 +159,141 @@ unsafe impl NSObjectProtocol for MTLSamplerDescriptor {}
 
 extern_methods!(
     unsafe impl MTLSamplerDescriptor {
+        /// Filter option for combining texels within a mipmap level the sample footprint is larger than a pixel (minification).
+        ///
+        /// The default value is MTLSamplerMinMagFilterNearest.
         #[method(minFilter)]
         pub fn minFilter(&self) -> MTLSamplerMinMagFilter;
 
+        /// Setter for [`minFilter`][Self::minFilter].
         #[method(setMinFilter:)]
         pub fn setMinFilter(&self, min_filter: MTLSamplerMinMagFilter);
 
+        /// Filter option for combining texels within a mipmap level the sample footprint is smaller than a pixel (magnification).
+        ///
+        /// The default value is MTLSamplerMinMagFilterNearest.
         #[method(magFilter)]
         pub fn magFilter(&self) -> MTLSamplerMinMagFilter;
 
+        /// Setter for [`magFilter`][Self::magFilter].
         #[method(setMagFilter:)]
         pub fn setMagFilter(&self, mag_filter: MTLSamplerMinMagFilter);
 
+        /// Filter options for filtering between two mipmap levels.
+        ///
+        /// The default value is MTLSamplerMipFilterNotMipmapped
         #[method(mipFilter)]
         pub fn mipFilter(&self) -> MTLSamplerMipFilter;
 
+        /// Setter for [`mipFilter`][Self::mipFilter].
         #[method(setMipFilter:)]
         pub fn setMipFilter(&self, mip_filter: MTLSamplerMipFilter);
 
+        /// The number of samples that can be taken to improve quality of sample footprints that are anisotropic.
+        ///
+        /// The default value is 1.
         #[method(maxAnisotropy)]
         pub fn maxAnisotropy(&self) -> NSUInteger;
 
+        /// Setter for [`maxAnisotropy`][Self::maxAnisotropy].
         #[method(setMaxAnisotropy:)]
         pub fn setMaxAnisotropy(&self, max_anisotropy: NSUInteger);
 
+        /// Set the wrap mode for the S texture coordinate.  The default value is MTLSamplerAddressModeClampToEdge.
         #[method(sAddressMode)]
         pub fn sAddressMode(&self) -> MTLSamplerAddressMode;
 
+        /// Setter for [`sAddressMode`][Self::sAddressMode].
         #[method(setSAddressMode:)]
         pub fn setSAddressMode(&self, s_address_mode: MTLSamplerAddressMode);
 
+        /// Set the wrap mode for the T texture coordinate.  The default value is MTLSamplerAddressModeClampToEdge.
         #[method(tAddressMode)]
         pub fn tAddressMode(&self) -> MTLSamplerAddressMode;
 
+        /// Setter for [`tAddressMode`][Self::tAddressMode].
         #[method(setTAddressMode:)]
         pub fn setTAddressMode(&self, t_address_mode: MTLSamplerAddressMode);
 
+        /// Set the wrap mode for the R texture coordinate.  The default value is MTLSamplerAddressModeClampToEdge.
         #[method(rAddressMode)]
         pub fn rAddressMode(&self) -> MTLSamplerAddressMode;
 
+        /// Setter for [`rAddressMode`][Self::rAddressMode].
         #[method(setRAddressMode:)]
         pub fn setRAddressMode(&self, r_address_mode: MTLSamplerAddressMode);
 
+        /// Set the color for the MTLSamplerAddressMode to one of the predefined in the MTLSamplerBorderColor enum.
         #[method(borderColor)]
         pub fn borderColor(&self) -> MTLSamplerBorderColor;
 
+        /// Setter for [`borderColor`][Self::borderColor].
         #[method(setBorderColor:)]
         pub fn setBorderColor(&self, border_color: MTLSamplerBorderColor);
 
+        /// If YES, texture coordates are from 0 to 1.  If NO, texture coordinates are 0..width, 0..height.
+        ///
+        /// normalizedCoordinates defaults to YES.  Non-normalized coordinates should only be used with 1D and 2D textures with the ClampToEdge wrap mode, otherwise the results of sampling are undefined.
         #[method(normalizedCoordinates)]
         pub fn normalizedCoordinates(&self) -> bool;
 
+        /// Setter for [`normalizedCoordinates`][Self::normalizedCoordinates].
         #[method(setNormalizedCoordinates:)]
         pub fn setNormalizedCoordinates(&self, normalized_coordinates: bool);
 
+        /// The minimum level of detail that will be used when sampling from a texture.
+        ///
+        /// The default value of lodMinClamp is 0.0.  Clamp values are ignored for texture sample variants that specify an explicit level of detail.
         #[method(lodMinClamp)]
         pub fn lodMinClamp(&self) -> c_float;
 
+        /// Setter for [`lodMinClamp`][Self::lodMinClamp].
         #[method(setLodMinClamp:)]
         pub fn setLodMinClamp(&self, lod_min_clamp: c_float);
 
+        /// The maximum level of detail that will be used when sampling from a texture.
+        ///
+        /// The default value of lodMaxClamp is FLT_MAX.  Clamp values are ignored for texture sample variants that specify an explicit level of detail.
         #[method(lodMaxClamp)]
         pub fn lodMaxClamp(&self) -> c_float;
 
+        /// Setter for [`lodMaxClamp`][Self::lodMaxClamp].
         #[method(setLodMaxClamp:)]
         pub fn setLodMaxClamp(&self, lod_max_clamp: c_float);
 
+        /// If YES, an average level of detail will be used when sampling from a texture. If NO, no averaging is performed.
+        ///
+        /// lodAverage defaults to NO. This option is a performance hint. An implementation is free to ignore this property.
         #[method(lodAverage)]
         pub fn lodAverage(&self) -> bool;
 
+        /// Setter for [`lodAverage`][Self::lodAverage].
         #[method(setLodAverage:)]
         pub fn setLodAverage(&self, lod_average: bool);
 
         #[cfg(feature = "MTLDepthStencil")]
+        /// Set the comparison function used when sampling shadow maps. The default value is MTLCompareFunctionNever.
         #[method(compareFunction)]
         pub fn compareFunction(&self) -> MTLCompareFunction;
 
         #[cfg(feature = "MTLDepthStencil")]
+        /// Setter for [`compareFunction`][Self::compareFunction].
         #[method(setCompareFunction:)]
         pub fn setCompareFunction(&self, compare_function: MTLCompareFunction);
 
+        /// true if the sampler can be used inside an argument buffer
         #[method(supportArgumentBuffers)]
         pub fn supportArgumentBuffers(&self) -> bool;
 
+        /// Setter for [`supportArgumentBuffers`][Self::supportArgumentBuffers].
         #[method(setSupportArgumentBuffers:)]
         pub fn setSupportArgumentBuffers(&self, support_argument_buffers: bool);
 
+        /// A string to help identify the created object.
         #[method_id(@__retain_semantics Other label)]
         pub fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         pub fn setLabel(&self, label: Option<&NSString>);
     }
@@ -229,16 +318,21 @@ impl DefaultRetained for MTLSamplerDescriptor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerstate?language=objc)
+    /// An immutable collection of sampler state compiled for a single device.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerstate?language=objc)
     pub unsafe trait MTLSamplerState: NSObjectProtocol {
+        /// A string to help identify this object.
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLDevice")]
+        /// The device this resource was created against.  This resource can only be used with this device.
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLTypes")]
+        /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }

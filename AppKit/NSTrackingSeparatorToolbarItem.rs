@@ -35,6 +35,9 @@ extern_methods!(
             feature = "NSToolbar",
             feature = "NSView"
         ))]
+        /// Creates a new `NSTrackingSeparatorToolbarItem` and configures it to attempt to visually align with the specified divider of the `splitView`.
+        /// The `splitView` must be in the same window as the toolbar containing this item by the time the toolbar is shown.
+        /// Only vertical `splitViews` are supported.
         #[method_id(@__retain_semantics Other trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:)]
         pub unsafe fn trackingSeparatorToolbarItemWithIdentifier_splitView_dividerIndex(
             identifier: &NSToolbarItemIdentifier,
@@ -43,16 +46,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSSplitView", feature = "NSView"))]
+        /// The `splitView` must be in the same window as the toolbar containing this item by the time the toolbar is shown.
+        /// Only vertical `splitViews` are supported.
         #[method_id(@__retain_semantics Other splitView)]
         pub unsafe fn splitView(&self) -> Retained<NSSplitView>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSSplitView", feature = "NSView"))]
+        /// Setter for [`splitView`][Self::splitView].
         #[method(setSplitView:)]
         pub unsafe fn setSplitView(&self, split_view: &NSSplitView);
 
+        /// The specific divider of the `splitView` which will be tracked.
         #[method(dividerIndex)]
         pub unsafe fn dividerIndex(&self) -> NSInteger;
 
+        /// Setter for [`dividerIndex`][Self::dividerIndex].
         #[method(setDividerIndex:)]
         pub unsafe fn setDividerIndex(&self, divider_index: NSInteger);
     }
@@ -63,6 +71,7 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSTrackingSeparatorToolbarItem {
         #[cfg(feature = "NSToolbar")]
+        /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
         #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,

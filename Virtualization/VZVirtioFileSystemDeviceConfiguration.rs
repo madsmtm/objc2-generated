@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration?language=objc)
+    /// Configuration of a Virtio file system device.
+    ///
+    /// This configuration creates a Virtio file system device which allows for exposing
+    /// directories on the host to a guest via a tag label.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration?language=objc)
     #[unsafe(super(VZDirectorySharingDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
@@ -29,26 +34,57 @@ unsafe impl NSObjectProtocol for VZVirtioFileSystemDeviceConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
     unsafe impl VZVirtioFileSystemDeviceConfiguration {
+        /// Configuration of the Virtio file system device.
+        ///
+        /// Parameter `tag`: The label identifying this device in the guest.
+        ///
+        /// The tag is presented as a label in the guest identifying this device for mounting. The tag must be valid, which can be checked with +[VZVirtioFileSystemDeviceConfiguration validateTag:error:].
+        ///
+        /// See: +[VZVirtioFileSystemDeviceConfiguration validateTag:error:]
         #[method_id(@__retain_semantics Init initWithTag:)]
         pub unsafe fn initWithTag(this: Allocated<Self>, tag: &NSString) -> Retained<Self>;
 
+        /// Check if tag is a valid Virtio file system tag.
+        ///
+        /// Parameter `tag`: The tag to validate.
+        ///
+        /// Parameter `error`: If not nil, assigned with an error describing why the tag is not valid.
+        ///
+        /// The tag must be non-empty and less than 36 bytes when encoded in UTF-8.
         #[method(validateTag:error:_)]
         pub unsafe fn validateTag_error(tag: &NSString) -> Result<(), Retained<NSError>>;
 
+        /// The tag is a string identifying the device.
+        ///
+        /// The tag is presented as a label in the guest identifying this device for mounting. The tag must be valid, which can be checked with +[VZVirtioFileSystemDeviceConfiguration validateTag:error:].
+        ///
+        /// See: +[VZVirtioFileSystemDeviceConfiguration validateTag:error:]
         #[method_id(@__retain_semantics Other tag)]
         pub unsafe fn tag(&self) -> Retained<NSString>;
 
+        /// Setter for [`tag`][Self::tag].
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: &NSString);
 
         #[cfg(feature = "VZDirectoryShare")]
+        /// Directory share. Defines how host resources are exposed to the guest virtual machine.
+        ///
+        /// See: VZSingleDirectoryShare
+        ///
+        /// See: VZMultipleDirectoryShare
+        ///
+        /// See: VZLinuxRosettaDirectoryShare
         #[method_id(@__retain_semantics Other share)]
         pub unsafe fn share(&self) -> Option<Retained<VZDirectoryShare>>;
 
         #[cfg(feature = "VZDirectoryShare")]
+        /// Setter for [`share`][Self::share].
         #[method(setShare:)]
         pub unsafe fn setShare(&self, share: Option<&VZDirectoryShare>);
 
+        /// The macOS automount tag.
+        ///
+        /// A device configured with this tag will be automatically mounted in a macOS guest.
         #[method_id(@__retain_semantics Other macOSGuestAutomountTag)]
         pub unsafe fn macOSGuestAutomountTag() -> Retained<NSString>;
     }

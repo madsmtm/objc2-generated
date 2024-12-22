@@ -214,7 +214,18 @@ pub const kAudioUnitProperty_IsInterAppConnected: AudioUnitPropertyID = 101;
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_PeerURL: AudioUnitPropertyID = 102;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitconnection?language=objc)
+/// This structure contains the information needed to make a connection between a source
+/// and destination audio unit.
+///
+/// The structure is set on the destination audio unit's input element
+///
+/// The audio unit that is the source for the connection
+///
+/// The source audio unit's output element to be used in the connection
+///
+/// The destination audio unit's input element to be used in the connection
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitconnection?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -237,7 +248,9 @@ unsafe impl RefEncode for AudioUnitConnection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auchannelinfo?language=objc)
+/// Define an audio unit's channel handling capabilities
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auchannelinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AUChannelInfo {
@@ -254,7 +267,9 @@ unsafe impl RefEncode for AUChannelInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitexternalbuffer?language=objc)
+/// Allow a host to tell an audio unit to use the provided memory for its input callback
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitexternalbuffer?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitExternalBuffer {
@@ -273,7 +288,9 @@ unsafe impl RefEncode for AudioUnitExternalBuffer {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendercallbackstruct?language=objc)
+/// Used by a host when registering a callback with the audio unit to provide input
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendercallbackstruct?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -295,7 +312,16 @@ unsafe impl RefEncode for AURenderCallbackStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aupreset?language=objc)
+/// Used to publish and set factory presets on an audio unit
+///
+/// If
+/// <
+/// 0, then preset is a user preset
+/// If >= 0, then this field is used to select the factory preset
+///
+/// If a factory preset, the name of the specified factory preset
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aupreset?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -329,7 +355,14 @@ pub const kRenderQuality_Min: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/knumberofresponsefrequencies?language=objc)
 pub const kNumberOfResponseFrequencies: c_uint = 1024;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitfrequencyresponsebin?language=objc)
+/// Structure used to get the magnitude of the frequency response at a particular frequency via kAudioUnitProperty_FrequencyResponse.
+///
+/// An array of AudioUnitFrequencyResponseBin are passed in to kAudioUnitProperty_FrequencyResponse
+/// with the mFrequency field filled in. The array is returned with the mMagnitude fields filled in.
+/// If fewer than kNumberOfResponseFrequencies are needed, then the first unused bin should be marked with
+/// a negative frequency.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitfrequencyresponsebin?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitFrequencyResponseBin {
@@ -348,16 +381,85 @@ unsafe impl RefEncode for AudioUnitFrequencyResponseBin {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_getbeatandtempo?language=objc)
+/// Retrieve information about the current beat and/or tempo
+///
+/// If the host app has set this callback, then the audio unit can use this to get the current
+/// beat and tempo as they relate to the first sample in the render buffer. The audio unit can
+/// call this callback only from within the audio unit render call (otherwise the host is unable
+/// to provide information accurately to the audio unit as the information obtained is relate to
+/// the current AudioUnitRender call). If the host cannot provide the requested information, it
+/// will return kAudioUnitErr_CannotDoInCurrentContext.
+///
+/// The AudioUnit can provide NULL for any of the requested parameters (except for
+/// inHostUserData) if it is not interested in that particular piece of information
+///
+///
+/// Parameter `inHostUserData`: Must be provided by the audio unit when it makes this call. It is the client data provided by the host when it set the HostCallbacks property
+///
+/// Parameter `outCurrentBeat`: The current beat, where 0 is the first beat. Tempo is defined as the number of whole-number (integer) beat values (as indicated by the outCurrentBeat field) per minute.
+///
+/// Parameter `outCurrentTempo`: The current tempo
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_getbeatandtempo?language=objc)
 pub type HostCallback_GetBeatAndTempo =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut f64, *mut f64) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_getmusicaltimelocation?language=objc)
+/// Retrieve information about the musical time state of the host
+///
+/// If the host app has set this callback, then the audio unit can use this to obtain
+/// information about the state of musical time in the host. The audio unit can call this
+/// callback only from within the audio unit render call (otherwise the host is unable to
+/// provide information accurately to the audio unit as the information obtained is relate to
+/// the current AudioUnitRender call). If the host cannot provide the requested information, it
+/// will return kAudioUnitErr_CannotDoInCurrentContext.
+///
+/// The AudioUnit can provide NULL for any of the requested parameters (except for
+/// inHostUserData) if it is not interested in that particular piece of information
+///
+///
+/// Parameter `inHostUserData`: Must be provided by the audio unit when it makes this call. It is the client data provided by the host when it set the HostCallbacks property
+///
+/// Parameter `outDeltaSampleOffsetToNextBeat`: The number of samples until the next whole beat from the start sample of the current rendering buffer
+///
+/// Parameter `outTimeSig_Numerator`: The Numerator of the current time signature
+///
+/// Parameter `outTimeSig_Denominator`: The Denominator of the current time signature (4 is a quarter note, etc)
+///
+/// Parameter `outCurrentMeasureDownBeat`: The beat that corresponds to the downbeat (first beat) of the current measure that is being rendered
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_getmusicaltimelocation?language=objc)
 pub type HostCallback_GetMusicalTimeLocation = Option<
     unsafe extern "C-unwind" fn(*mut c_void, *mut u32, *mut f32, *mut u32, *mut f64) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_gettransportstate?language=objc)
+/// Retrieve information about the time line's (or transport) state of the host.
+///
+/// If the host app has set this callback, then the audio unit can use this to obtain
+/// information about the transport state of the host's time line. The audio unit can call this
+/// callback only from within the audio unit render call (otherwise the host is unable to
+/// provide information accurately to the audio unit as the information obtained is relate to
+/// the current AudioUnitRender call. If the host cannot provide the requested information, it
+/// will return kAudioUnitErr_CannotDoInCurrentContext.
+///
+/// The AudioUnit can provide NULL for any of the requested parameters (except for
+/// inHostUserData) if it is not interested in that particular piece of information
+///
+///
+/// Parameter `inHostUserData`: Must be provided by the audio unit when it makes this call. It is the client data provided by the host when it set the HostCallbacks property
+///
+/// Parameter `outIsPlaying`: Returns true if the host's transport is currently playing, false if stopped
+///
+/// Parameter `outTransportStateChanged`: Returns true if there was a change to the state of, or discontinuities in, the host's transport (generally since the callback was last called). Can indicate such state changes as start/top, time moves (jump from one time line to another).
+///
+/// Parameter `outCurrentSampleInTimeLine`: Returns the current sample count in the time line of the host's transport time.
+///
+/// Parameter `outIsCycling`: Returns true if the host's transport is currently cycling or looping
+///
+/// Parameter `outCycleStartBeat`: If cycling is true, the start beat of the cycle or loop point in the host's transport
+///
+/// Parameter `outCycleEndBeat`: If cycling is true, the end beat of the cycle or loop point in the host's transport
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_gettransportstate?language=objc)
 pub type HostCallback_GetTransportState = Option<
     unsafe extern "C-unwind" fn(
         *mut c_void,
@@ -370,7 +472,36 @@ pub type HostCallback_GetTransportState = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_gettransportstate2?language=objc)
+/// Retrieve information about the time line's (or transport) state of the host.
+///
+/// If the host app has set this callback, then the audio unit can use this to obtain
+/// information about the transport state of the host's time line. The audio unit can call this
+/// callback only from within the audio unit render call (otherwise the host is unable to
+/// provide information accurately to the audio unit as the information obtained is relate to
+/// the current AudioUnitRender call. If the host cannot provide the requested information, it
+/// will return kAudioUnitErr_CannotDoInCurrentContext.
+///
+/// The AudioUnit can provide NULL for any of the requested parameters (except for
+/// inHostUserData) if it is not interested in that particular piece of information
+///
+///
+/// Parameter `inHostUserData`: Must be provided by the audio unit when it makes this call. It is the client data provided by the host when it set the HostCallbacks property
+///
+/// Parameter `outIsPlaying`: Returns true if the host's transport is currently playing, false if stopped
+///
+/// Parameter `outIsRecording`: Returns true if the host is currently record-enabled, otherwise false.
+///
+/// Parameter `outTransportStateChanged`: Returns true if there was a change to the state of, or discontinuities in, the host's transport (generally since the callback was last called). Can indicate such state changes as start/top, time moves (jump from one time line to another).
+///
+/// Parameter `outCurrentSampleInTimeLine`: Returns the current sample count in the time line of the host's transport time.
+///
+/// Parameter `outIsCycling`: Returns true if the host's transport is currently cycling or looping
+///
+/// Parameter `outCycleStartBeat`: If cycling is true, the start beat of the cycle or loop point in the host's transport
+///
+/// Parameter `outCycleEndBeat`: If cycling is true, the end beat of the cycle or loop point in the host's transport
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_gettransportstate2?language=objc)
 pub type HostCallback_GetTransportState2 = Option<
     unsafe extern "C-unwind" fn(
         *mut c_void,
@@ -384,7 +515,11 @@ pub type HostCallback_GetTransportState2 = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallbackinfo?language=objc)
+/// Contains the various callbacks for an audio unit to call
+///
+/// Any callback can be NULL.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallbackinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct HostCallbackInfo {
@@ -412,7 +547,10 @@ unsafe impl RefEncode for HostCallbackInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audependentparameter?language=objc)
+/// Used to represent a dependent parameter that can change as a result of its parent meta-parameter
+/// changing
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audependentparameter?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -434,7 +572,13 @@ unsafe impl RefEncode for AUDependentParameter {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitcocoaviewinfo?language=objc)
+/// The location and class name of one or more view factory objects an Audio Unit publishes
+///
+/// Contains the location of the bundle which the host app can then use to locate the bundle
+///
+/// Contains the names of the classes that implements the required protocol (AUCocoaUIBase). This class is a view factory that creates the NSView object that is the AudioUnit view.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitcocoaviewinfo?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -456,7 +600,9 @@ unsafe impl RefEncode for AudioUnitCocoaViewInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhostversionidentifier?language=objc)
+/// Used to describe the name and version of the audio unit's host
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhostversionidentifier?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -478,7 +624,10 @@ unsafe impl RefEncode for AUHostVersionIdentifier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auinputsamplesinoutputcallbackstruct?language=objc)
+/// Used by a host when registering a callback with an audio unit, to provide
+/// input-to-output samples mapping
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auinputsamplesinoutputcallbackstruct?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -503,7 +652,14 @@ unsafe impl RefEncode for AUInputSamplesInOutputCallbackStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterhistoryinfo?language=objc)
+/// This structure contains the suggested update rate and history duration for parameters which have the kAudioUnitParameterFlag_PlotHistory flag set.
+/// The structure is filled out by getting kAudioUnitProperty_ParameterHistoryInfo.
+///
+/// This is the number of times per second that it is suggested that the host get the value of this parameter.
+///
+/// This is the duration in seconds of history that should be plotted.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterhistoryinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitParameterHistoryInfo {
@@ -522,10 +678,72 @@ unsafe impl RefEncode for AudioUnitParameterHistoryInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aueventsampletime?language=objc)
+/// Expresses time as a sample count.
+///
+/// Sample times are normally positive, but hosts can propagate HAL sample times through audio
+/// units, and HAL sample times can be small negative numbers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aueventsampletime?language=objc)
 pub type AUEventSampleTime = i64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit?language=objc)
+/// untyped value generally between 0.0 and 1.0
+///
+/// takes an integer value (good for menu selections)
+///
+/// 0.0 means FALSE, non-zero means TRUE
+///
+/// usually from 0 -> 100, sometimes -50 -> +50
+///
+/// absolute or relative time
+///
+/// one sample frame equals (1.0/sampleRate) seconds
+///
+/// -180 to 180 degrees
+///
+/// rate multiplier, for playback speed, etc. (e.g. 2.0 == twice as fast)
+///
+/// absolute frequency/pitch in cycles/second
+///
+/// unit of relative pitch
+///
+/// useful for coarse detuning
+///
+/// absolute pitch as defined in the MIDI spec (exact freq may depend on tuning table)
+///
+/// a generic MIDI controller value from 0 -> 127
+///
+/// logarithmic relative gain
+///
+/// linear relative gain
+///
+/// -180 to 180 degrees, similar to phase but more general (good for 3D coord system)
+///
+/// 0 -> 100, crossfade mix two sources according to sqrt(x) and sqrt(1.0 - x)
+///
+/// 0.0 -> 1.0, pow(x, 3.0) -> linear gain to simulate a reasonable mixer channel fader response
+///
+/// standard left to right mixer pan
+///
+/// distance measured in meters
+///
+/// absolute frequency measurement :
+/// if f is freq in hertz then absoluteCents = 1200 * log2(f / 440) + 6900
+///
+/// octaves in relative pitch where a value of 1 is equal to 1200 cents
+///
+/// beats per minute, ie tempo
+///
+/// time relative to tempo, i.e., 1.0 at 120 BPM would equal 1/2 a second
+///
+/// parameter is expressed in milliseconds
+///
+/// for compression, expansion ratio, etc.
+///
+/// this is the parameter unit type for parameters that present a custom unit name
+///
+/// a generic MIDI 2.0 controller value with 32-bit range
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -569,7 +787,45 @@ unsafe impl RefEncode for AudioUnitParameterUnit {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions?language=objc)
+/// Bit positions 18, 17, and 16 are set aside for display scales. Bit 19 is reserved.
+///
+///
+///
+///
+///
+///
+///
+///
+///
+///
+///
+///
+///
+/// This flag provides a hint to a host that this parameter should be controlled through the
+/// highest resolution if the host has limitations on the control resolution of parameter
+/// values. Generally this means that controlling this parameter with a single MIDI Control
+/// message (i.e. 128 values) is too course a grain for that parameter, and a finer control
+/// resolution should be used if possible. If this flag is not set, then a host can assume that
+/// a 7-bit control quantization is acceptable. Ideally, parameters should be controlled in the
+/// fullest resolution that they are published with.
+///
+/// Changing the parameter in real-time will cause a glitch or otherwise undesirable effect.
+///
+/// If set, the parameter can be ramped.
+///
+/// If set, the parameter is obscure (hint to UI to only display in expert mode).
+///
+/// In the original ParameterInfo a C string only was specified. With MacOS 10.2 and later, the
+/// last four bytes of this string are reserved for a CFStringRef, which gives the ability to
+/// used Unicode encoding, necessary for providing a name in languages using non-ASCII
+/// characters. If this flag bit is set, the CFStringRef is valid.
+///
+/// If set, changing this parameter may change any number of others in the AudioUnit.
+///
+/// If set, changing this parameter may change others in the same element as the current
+/// parameter.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -609,7 +865,41 @@ unsafe impl RefEncode for AudioUnitParameterOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterinfo?language=objc)
+/// UNUSED - set to zero - UTF8 encoded C string (originally).
+///
+/// Only valid if the unit field equals kAudioUnitParameterUnit_CustomUnit, in
+/// which case, unitName must contain a valid CFStringRef. As with cfNameString,
+/// if (flags
+/// &
+/// kAudioUnitParameterFlag_CFNameRelease) is non-zero, the
+/// AudioUnit must return a +1 reference to this string, and the host must
+/// release it.
+///
+/// Only valid if kAudioUnitParameterFlag_HasClump is set.
+///
+/// Only valid if kAudioUnitParameterFlag_HasCFNameString is set.
+///
+/// If the "unit" field contains a value not in the enum above, then assume
+/// kAudioUnitParameterUnit_Generic
+///
+/// The parameter's minimum value.
+///
+/// The parameter's maximum value.
+///
+/// The parameter's default value.
+///
+/// Due to some vagaries about the ways in which Parameter's CFNames have been
+/// described, it was necessary to add a flag:
+/// kAudioUnitParameterFlag_CFNameRelease. In normal usage a parameter name is
+/// essentially a static object, but sometimes an audio unit will generate
+/// parameter names dynamically.. As these are expected to be CFStrings, in that
+/// case the host should release those names when it is finished with them, but
+/// there was no way to communicate this distinction in behavior. Thus, if an
+/// audio unit will (or could) generate a name dynamically, it should set this
+/// flag in the parameter's info. The host should check for this flag, and if
+/// present, release the parameter name when it is finished with it.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterinfo?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -658,7 +948,9 @@ pub const kAudioUnitClumpID_System: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitparametername_full?language=objc)
 pub const kAudioUnitParameterName_Full: c_int = -1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameternameinfo?language=objc)
+/// Used to provide shorter names for a specified parameter
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameternameinfo?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -689,7 +981,9 @@ unsafe impl RefEncode for AudioUnitParameterNameInfo {
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 pub type AudioUnitParameterIDName = AudioUnitParameterNameInfo;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterstringfromvalue?language=objc)
+/// Provide a string representation of a parameter's value
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterstringfromvalue?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -716,7 +1010,9 @@ unsafe impl RefEncode for AudioUnitParameterStringFromValue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparametervaluefromstring?language=objc)
+/// Provide the parameter's value for a given string representation of it
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparametervaluefromstring?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -743,7 +1039,9 @@ unsafe impl RefEncode for AudioUnitParameterValueFromString {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremotecontrolevent?language=objc)
+/// In inter-app audio, messages to control the host's transport state.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremotecontrolevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -762,7 +1060,9 @@ unsafe impl RefEncode for AudioUnitRemoteControlEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremotecontroleventlistener?language=objc)
+/// Block called to receive a remote control event.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremotecontroleventlistener?language=objc)
 #[cfg(feature = "block2")]
 pub type AudioUnitRemoteControlEventListener =
     *mut block2::Block<dyn Fn(AudioUnitRemoteControlEvent)>;
@@ -780,7 +1080,51 @@ pub const kAudioUnitProperty_RemoveParameterMIDIMapping: AudioUnitPropertyID = 4
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_HotMapParameterMIDIMapping: AudioUnitPropertyID = 44;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags?language=objc)
+/// General defined values to customize the behavior of parameter-to-MIDI mappings
+///
+///
+///
+/// If this flag is set and the value of the mStatus field is a MIDI channel message, then
+/// the MIDI channel number in the status byte is ignored; the mapping is from the specified
+/// MIDI message on any channel.
+///
+///
+///
+/// If this flag is set and the value of the mStatus field is a Note On, Note Off, or
+/// Polyphonic Pressure message, the message's note number is ignored. The mapping is from
+/// any note number.
+///
+///
+///
+/// Set this flag if the MIDI control should map only to a sub-range of the parameter's value.
+/// Then specify that range in the mSubRangeMin and mSubRangeMax member fields.
+///
+///
+///
+/// Intended for Boolean typed parameters. When this property is set, it means that the
+/// parameter's value should be toggled when the mapped MIDI message is received. For example,
+/// if the parameter's value is currently TRUE, when the mapped MIDI message is received
+/// the value changes to FALSE.
+///
+///
+///
+/// This property is useful when mapping a parameter to a MIDI Controller. When set, it
+/// indicates that the parameter can assume only two values: on or off. For this reason, a
+/// parameter associated with this property is typically Boolean. For example, if this
+/// property is set for a parameter mapped to a sustain pedal MIDI controller, controller
+/// values from 0 to 64 result in the parameter switched to its "off" state; controller
+/// values from 65 to 127 result in the parameter switched to its "on" state.
+///
+/// This property works in connection with the kAUParameterMIDIMapping_Bipolar_On property.
+/// The value of the kAUParameterMIDIMapping_Bipolar_On property
+///
+///
+///
+/// Determines whether the  "on" state of a parameter is mapped to the "on" or "off" state
+/// of the associated MIDI controller. Only valid  if the  kAUParameterMIDIMapping_Bipolar
+/// property is set.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -804,7 +1148,13 @@ unsafe impl RefEncode for AUParameterMIDIMappingFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimapping?language=objc)
+/// Represents a mapping between a MIDI message and an audio unit's parameter.
+///
+/// The reserved fields in this structure are for future use. In the current implementation,
+/// they help align the structure to 64 bit size. Do not use the names of these fields in a
+/// host application. They are subject to change.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimapping?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -909,7 +1259,23 @@ pub const kOtherPluginFormat_kVST: u32 = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kotherpluginformat_au?language=objc)
 pub const kOtherPluginFormat_AU: u32 = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitotherplugindesc?language=objc)
+/// One of the OtherPluginFormat values
+///
+///
+/// struct AudioClassDescription {
+/// OSType mType;
+/// OSType mSubType;
+/// OSType mManufacturer;
+/// };
+/// is defined in
+/// <CoreAudioTypes
+/// /CoreAudioTypes.h>
+///
+/// mType specifies a generic, plug-in format defined descriptor
+/// mSubType is usually left to the manufacturer to use at their discretion
+/// mManufacturer is a registered code to identify all plugins from the same manufacturer
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitotherplugindesc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -931,7 +1297,10 @@ unsafe impl RefEncode for AudioUnitOtherPluginDesc {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparametervaluetranslation?language=objc)
+/// Used to translate another plug-in's parameter values to  audio unit parameter
+/// values
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparametervaluetranslation?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -962,7 +1331,10 @@ unsafe impl RefEncode for AudioUnitParameterValueTranslation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitpresetmas_settingdata?language=objc)
+/// AU-MAS specific structs for the data contained in the "masdata" key of an audio
+/// unit preset dictionary
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitpresetmas_settingdata?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitPresetMAS_SettingData {
@@ -988,7 +1360,9 @@ unsafe impl RefEncode for AudioUnitPresetMAS_SettingData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitpresetmas_settings?language=objc)
+/// See MAS documentation
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitpresetmas_settings?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitPresetMAS_Settings {
@@ -1073,7 +1447,12 @@ pub const kAudioOutputUnitProperty_HostTransportState: AudioUnitPropertyID = 201
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_NodeComponentDescription: AudioUnitPropertyID = 2014;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitmidicallbacks?language=objc)
+/// For inter-app audio, callbacks for receiving MIDI messages.
+///
+/// The supplied callback functions are called from the realtime rendering thread, before each
+/// render cycle, to provide any incoming MIDI messages.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitmidicallbacks?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioOutputUnitMIDICallbacks {
@@ -1147,7 +1526,9 @@ unsafe impl RefEncode for AUVoiceIOSpeechActivityEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiomutedspeechactivityeventlistener?language=objc)
+/// Block called to receive speech activity event while the client is muted.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiomutedspeechactivityeventlistener?language=objc)
 #[cfg(feature = "block2")]
 pub type AUVoiceIOMutedSpeechActivityEventListener =
     *mut block2::Block<dyn Fn(AUVoiceIOSpeechActivityEvent)>;
@@ -1156,7 +1537,14 @@ pub type AUVoiceIOMutedSpeechActivityEventListener =
 #[cfg(feature = "AUComponent")]
 pub const kAUVoiceIOProperty_MutedSpeechActivityEventListener: AudioUnitPropertyID = 2106;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckinglevel?language=objc)
+/// Ducking level applied to other (i.e. non-voice) audio by AUVoiceIO.
+///
+/// DuckingLevelDefault = Default ducking level to other audio for typical voice chat.
+/// DuckingLevelMin = minimum ducking to other audio.
+/// DuckingLevelMid = medium ducking to other audio.
+/// DuckingLevelMax = maximum ducking to other audio.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckinglevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1176,7 +1564,14 @@ unsafe impl RefEncode for AUVoiceIOOtherAudioDuckingLevel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckingconfiguration?language=objc)
+/// The configuration of ducking other (i.e. non-voice) audio
+///
+///
+/// Enables advanced ducking which ducks other audio based on the presence of voice activity from local and/or remote chat participants.
+///
+/// Ducking level of other audio
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckingconfiguration?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AUVoiceIOOtherAudioDuckingConfiguration {
@@ -1236,7 +1631,13 @@ pub const kAudioUnitProperty_MeterClipping: AudioUnitPropertyID = 3011;
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_InputAnchorTimeStamp: AudioUnitPropertyID = 3016;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitmeterclipping?language=objc)
+/// The maximum value seen on the channel since the last time the property was retrieved.
+///
+/// TRUE if there was an infinite value on this channel.
+///
+/// TRUE if there was a floating point Not-A-Number value on this channel.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitmeterclipping?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitMeterClipping {
@@ -1294,7 +1695,10 @@ pub const kAudioUnitProperty_SpatialMixerPersonalizedHRTFMode: AudioUnitProperty
 pub const kAudioUnitProperty_SpatialMixerAnyInputIsUsingPersonalizedHRTF: AudioUnitPropertyID =
     3116;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm?language=objc)
+/// Use kSpatializationAlgorithm_UseOutputType with appropriate kAudioUnitProperty_SpatialMixerOutputType
+/// for highest-quality spatial rendering across different hardware.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1318,7 +1722,33 @@ unsafe impl RefEncode for AUSpatializationAlgorithm {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixersourcemode?language=objc)
+/// Mono input is spatialized using kAudioUnitProperty_SpatializationAlgorithm.
+/// Any input with more than one channel is passed through without spatialization. This is
+/// the default mode and corresponds to legacy behavior. The rendering is equivalent to
+/// kSpatialMixerSourceMode_PointSource for mono input and
+/// kSpatialMixerSourceMode_Bypass for input with more than one channel.
+///
+///
+///
+/// No spatial rendering. If input and output AudioChannelLayouts are equivalent, all
+/// input channels are copied to corresponding output channels. If the input and
+/// output AudioChannelLayouts differ, mixing is done according to the
+/// kAudioFormatProperty_MatrixMixMap property of the layouts. No occlusion, obstruction,
+/// or reverb is applied in this mode.
+///
+///
+///
+/// All channels of the input signal are rendered as a single source except if rendering
+/// in-head with kSpatialMixerPointSourceInHeadMode_Bypass.
+///
+///
+///
+/// The input channels are spatialized around the listener as far-field sources.
+/// The relative directions of the individual channels are specified by the
+/// AudioChannelLayout of the bus. The rotation of the whole bed in the global space is
+/// controlled by azimuth and elevation parameters.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixersourcemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1338,7 +1768,10 @@ unsafe impl RefEncode for AUSpatialMixerSourceMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype?language=objc)
+/// Used to specify room type (as identified by a factory preset number) on Apple audio
+/// units that use internal reverb.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1427,7 +1860,18 @@ unsafe impl RefEncode for AUSpatialMixerRenderingFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpersonalizedhrtfmode?language=objc)
+/// Use generic head-related transfer function (HRTF).
+///
+///
+///
+/// Use personalized head-related transfer function (HRTF), if available.
+///
+///
+///
+/// Follow system preferences to choose between personalized vs generic
+/// head-related transfer function (HRTF).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpersonalizedhrtfmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1446,7 +1890,20 @@ unsafe impl RefEncode for AUSpatialMixerPersonalizedHRTFMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixeroutputtype?language=objc)
+/// Render for headphones.
+///
+///
+///
+/// Render for built-in speakers. The spatialization is optimized for current hardware and
+/// will not be suitable for playback on other hardware. On iOS devices, the rendering may
+/// be specific to device orientation. Non-realtime rendering may not provide intended results
+/// if the orientation changes between rendering the audio and playing it back.
+///
+///
+///
+/// Render for external speakers based on the mixer's output channel layout.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixeroutputtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1465,7 +1922,21 @@ unsafe impl RefEncode for AUSpatialMixerOutputType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpointsourceinheadmode?language=objc)
+/// This setting only affects spatialization when using kSpatializationAlgorithm_UseOutputType
+/// with kSpatialMixerSourceMode_PointSource.
+///
+///
+///
+/// A point source remains a single mono source inside the listener's head regardless
+/// of the channels it consists of.
+///
+///
+///
+/// A point source splits into bypass inside the listener's head. This enables transitions
+/// between traditional, non-spatialized rendering and spatialized sources outside the
+/// listener's head.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpointsourceinheadmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1563,7 +2034,25 @@ pub const kAudioUnitProperty_ScheduleStartTimeStamp: AudioUnitPropertyID = 3301;
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_CurrentPlayTime: AudioUnitPropertyID = 3302;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags?language=objc)
+/// bits in ScheduledAudioSlice.mFlags
+///
+///
+/// Set if the unit is done with this slice
+///
+/// Set if any portion of the buffer has been played
+///
+/// Set if any portion of the buffer was not played because it was scheduled late
+///
+/// specifies that the buffer should loop indefinitely
+///
+/// specifies that the buffer should interrupt any previously scheduled buffer
+/// (by default, buffers following a playing buffer are not played until the
+/// playing buffer has completed).
+///
+/// specifies that the buffer should interrupt any previously scheduled buffer,
+/// but only at a loop point in that buffer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1814,7 +2303,9 @@ unsafe impl RefEncode for AUNumVersion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhostidentifier?language=objc)
+/// Used to describe the name and version of the audio unit's host
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhostidentifier?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]

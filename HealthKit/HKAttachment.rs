@@ -9,7 +9,9 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkattachment?language=objc)
+    /// An HKAttachment represents a file attachment stored in the HealthKit database.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkattachment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKAttachment;
@@ -33,28 +35,38 @@ unsafe impl NSSecureCoding for HKAttachment {}
 
 extern_methods!(
     unsafe impl HKAttachment {
+        /// A unique identifier of the receiver in the HealthKit database.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
 
+        /// Represents the name of the file.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
+        /// The Uniform Type of the file.
         #[method_id(@__retain_semantics Other contentType)]
         pub unsafe fn contentType(&self) -> Retained<UTType>;
 
+        /// The size in bytes of the file.
         #[method(size)]
         pub unsafe fn size(&self) -> NSInteger;
 
+        /// The date the receiver was created.
         #[method_id(@__retain_semantics Other creationDate)]
         pub unsafe fn creationDate(&self) -> Retained<NSDate>;
 
+        /// Extra information describing the attachment.
+        ///
+        /// Keys must be NSString and values must be either NSString, NSNumber, or NSDate.
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// The init method is unavailable. To create an attachment, use HKAttachmentStore.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The new method is unavailable. To create an attachment, use HKAttachmentStore.
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
     }

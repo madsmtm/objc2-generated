@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceinputstreamconfiguration?language=objc)
+    /// Virtio Sound Device Input Stream Configuration.
+    ///
+    /// A PCM stream of input audio data, such as from a microphone.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceinputstreamconfiguration?language=objc)
     #[unsafe(super(VZVirtioSoundDeviceStreamConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
@@ -29,14 +33,21 @@ unsafe impl NSObjectProtocol for VZVirtioSoundDeviceInputStreamConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
     unsafe impl VZVirtioSoundDeviceInputStreamConfiguration {
+        /// Initialize the input stream configuration.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZAudioInputStreamSource")]
+        /// Audio Stream Source. Defines how the audio data is supplied on the host for the guest. The default is nil.
+        ///
+        /// Not specifying a Source will have a default handler that produces audio silence.
+        ///
+        /// See: VZAudioInputStreamSource
         #[method_id(@__retain_semantics Other source)]
         pub unsafe fn source(&self) -> Option<Retained<VZAudioInputStreamSource>>;
 
         #[cfg(feature = "VZAudioInputStreamSource")]
+        /// Setter for [`source`][Self::source].
         #[method(setSource:)]
         pub unsafe fn setSource(&self, source: Option<&VZAudioInputStreamSource>);
     }

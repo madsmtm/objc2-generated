@@ -12,8 +12,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GCDevicePhysicalInputElementChange(pub NSInteger);
 impl GCDevicePhysicalInputElementChange {
+    /// Indicates that a change could not be determined.  This is typically
+    /// because the input state queue filled up and older input state snapshots
+    /// were dropped.
     pub const GCDevicePhysicalInputElementUnknownChange: Self = Self(-1);
+    /// Indicates that no value of the element changed.
     pub const GCDevicePhysicalInputElementNoChange: Self = Self(0);
+    /// Indicates that a value of the element changed.
     #[doc(alias = "GCDevicePhysicalInputElementChanged")]
     pub const d: Self = Self(1);
 }
@@ -27,9 +32,23 @@ unsafe impl RefEncode for GCDevicePhysicalInputElementChange {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputstatediff?language=objc)
+    /// An object conforming to the
+    /// `GCDevicePhysicalInputStateDiff`protocol
+    /// contains the input state differences between the current and previous
+    /// `GCDevicePhysicalInputState`objects returned from the
+    /// `-nextInputState`method of
+    /// `GCDevicePhysicalInput.`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputstatediff?language=objc)
     pub unsafe trait GCDevicePhysicalInputStateDiff: NSObjectProtocol {
         #[cfg(feature = "GCPhysicalInputElement")]
+        /// Check if a value of
+        /// _element_changed, compared the previous input state.
+        ///
+        ///
+        /// Parameter `element`: The element to check.  This may be a pointer to either the "live" element
+        /// from the device's physical input, or a pointer to an element from any input
+        /// state "snapshot" of the device's physical input.
         #[method(changeForElement:)]
         unsafe fn changeForElement(
             &self,
@@ -37,6 +56,13 @@ extern_protocol!(
         ) -> GCDevicePhysicalInputElementChange;
 
         #[cfg(feature = "GCPhysicalInputElement")]
+        /// Gets an enumerator that iterates over the elements that have changed, compared
+        /// the previous input state.
+        ///
+        /// This method returns
+        /// `nil`if the changed elements could not be determined -
+        /// typically because the input state queue filled up and older input state
+        /// snapshots were dropped.
         #[method_id(@__retain_semantics Other changedElements)]
         unsafe fn changedElements(
             &self,

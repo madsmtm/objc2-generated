@@ -13,6 +13,7 @@ extern_protocol!(
         #[method(adjustsFontForContentSizeCategory)]
         unsafe fn adjustsFontForContentSizeCategory(&self) -> bool;
 
+        /// Setter for [`adjustsFontForContentSizeCategory`][Self::adjustsFontForContentSizeCategory].
         #[method(setAdjustsFontForContentSizeCategory:)]
         unsafe fn setAdjustsFontForContentSizeCategory(
             &self,

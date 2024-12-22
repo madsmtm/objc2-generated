@@ -8,16 +8,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextselectionhighlightview?language=objc)
+    /// A view that displays a tinted highlight behind rendered text to indicate selection.
+    ///
+    /// When a selection is ranged (i.e., length is > 0), a highlight view is shown to indicate the selected text range.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextselectionhighlightview?language=objc)
     #[cfg(feature = "UIView")]
     pub unsafe trait UITextSelectionHighlightView:
         UICoordinateSpace + MainThreadOnly
     {
         #[cfg(feature = "UITextInput")]
+        /// A collection of
+        /// `UITextSelectionRects`representing the geometry of the current selection. Rects are expected to be in the
+        /// receiver's coordinate space.
         #[method_id(@__retain_semantics Other selectionRects)]
         unsafe fn selectionRects(&self) -> Retained<NSArray<UITextSelectionRect>>;
 
         #[cfg(feature = "UITextInput")]
+        /// Setter for [`selectionRects`][Self::selectionRects].
         #[method(setSelectionRects:)]
         unsafe fn setSelectionRects(&self, selection_rects: &NSArray<UITextSelectionRect>);
     }

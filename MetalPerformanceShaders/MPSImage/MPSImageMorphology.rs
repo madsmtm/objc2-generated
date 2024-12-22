@@ -9,7 +9,11 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamax?language=objc)
+    /// The MPSImageAreaMax kernel finds the maximum pixel value in a rectangular region centered around each pixel
+    /// in the source image. If there are multiple channels in the source image, each channel is processed independently.
+    /// The edgeMode property is assumed to always be MPSImageEdgeModeClamp for this filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamax?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -36,12 +40,21 @@ unsafe impl NSSecureCoding for MPSImageAreaMax {}
 extern_methods!(
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAreaMax {
+        /// The height of the filter window. Must be an odd number.
         #[method(kernelHeight)]
         pub unsafe fn kernelHeight(&self) -> NSUInteger;
 
+        /// The width of the filter window. Must be an odd number.
         #[method(kernelWidth)]
         pub unsafe fn kernelWidth(&self) -> NSUInteger;
 
+        /// Set the kernel height and width
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `kernelWidth`: The width of the kernel. Must be an odd number.
+        ///
+        /// Parameter `kernelHeight`: The height of the kernel. Must be an odd number.
         #[method_id(@__retain_semantics Init initWithDevice:kernelWidth:kernelHeight:)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -50,6 +63,19 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -69,6 +95,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAreaMax {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -90,7 +124,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamin?language=objc)
+    /// The MPSImageAreaMin finds the minimum pixel value in a rectangular region centered around each pixel in the
+    /// source image. If there are multiple channels in the source image, each channel is processed independently.
+    /// It has the same methods as MPSImageAreaMax
+    /// The edgeMode property is assumed to always be MPSImageEdgeModeClamp for this filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamin?language=objc)
     #[unsafe(super(MPSImageAreaMax, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -123,6 +162,13 @@ extern_methods!(
     /// Methods declared on superclass `MPSImageAreaMax`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAreaMin {
+        /// Set the kernel height and width
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `kernelWidth`: The width of the kernel. Must be an odd number.
+        ///
+        /// Parameter `kernelHeight`: The height of the kernel. Must be an odd number.
         #[method_id(@__retain_semantics Init initWithDevice:kernelWidth:kernelHeight:)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -131,6 +177,19 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -150,6 +209,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAreaMin {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -171,7 +238,26 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedilate?language=objc)
+    /// The MPSImageDilate finds the maximum pixel value in a rectangular region centered around each pixel in the
+    /// source image. It is like the MPSImageAreaMax, except that the intensity at each position is calculated relative
+    /// to a different value before determining which is the maximum pixel value, allowing for shaped, non-rectangular
+    /// morphological probes.
+    ///
+    /// ```text
+    ///           for each pixel in the filter window:
+    ///               value =  pixel[filterY][filterX] - filter[filterY*filter_width+filterX]
+    ///               if( value > bestValue ){
+    ///                    result = value
+    ///                    bestValue = value;
+    ///               }
+    /// ```
+    ///
+    /// A filter that contains all zeros and is identical to a MPSImageAreaMax filter.  The center filter element
+    /// is assumed to be 0 to avoid causing a general darkening of the image.
+    ///
+    /// The edgeMode property is assumed to always be MPSImageEdgeModeClamp for this filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedilate?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -198,12 +284,35 @@ unsafe impl NSSecureCoding for MPSImageDilate {}
 extern_methods!(
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageDilate {
+        /// The height of the filter window. Must be an odd number.
         #[method(kernelHeight)]
         pub unsafe fn kernelHeight(&self) -> NSUInteger;
 
+        /// The width of the filter window. Must be an odd number.
         #[method(kernelWidth)]
         pub unsafe fn kernelWidth(&self) -> NSUInteger;
 
+        /// Init a object with kernel height, width and weight values.
+        ///
+        /// Each dilate shape probe defines a 3D surface of values.
+        /// These are arranged in order left to right, then top to bottom
+        /// in a 1D array. (values[kernelWidth*y+x] = probe[y][x])
+        /// Values should be generally be in the range [0,1] with the center
+        /// pixel tending towards 0 and edges towards 1. However, any numerical
+        /// value is allowed. Calculations are subject to the usual floating-point
+        /// rounding error.
+        ///
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `kernelWidth`: The width of the kernel. Must be an odd number.
+        ///
+        /// Parameter `kernelHeight`: The height of the kernel. Must be an odd number.
+        ///
+        /// Parameter `values`: The set of values to use as the dilate probe.
+        /// The values are copied into the filter. To avoid
+        /// image ligthening or darkening, the center value should
+        /// be 0.0f.
         #[method_id(@__retain_semantics Init initWithDevice:kernelWidth:kernelHeight:values:)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_values(
             this: Allocated<Self>,
@@ -219,6 +328,19 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -232,6 +354,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageDilate {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -253,7 +383,28 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageerode?language=objc)
+    /// The MPSImageErode filter finds the minimum pixel value in a rectangular region centered around each pixel in the
+    /// source image. It is like the MPSImageAreaMin, except that the intensity at each position is calculated relative
+    /// to a different value before determining which is the maximum pixel value, allowing for shaped, non-rectangular
+    /// morphological probes.
+    ///
+    /// ```text
+    ///           for each pixel in the filter window:
+    ///               value =  pixel[filterY][filterX] + filter[filterY*filter_width+filterX]
+    ///               if( value < bestValue ){
+    ///                    result = value
+    ///                    bestValue = value;
+    ///               }
+    /// ```
+    ///
+    /// A filter that contains all zeros is identical to a MPSImageAreaMin filter. The center filter element
+    /// is assumed to be 0, to avoid causing a general lightening of the image.
+    ///
+    /// The definition of the filter for MPSImageErode is different from vImage. (MPSErode_filter_value = 1.0f-vImageErode_filter_value.)
+    /// This allows MPSImageDilate and MPSImageErode to use the same filter, making open and close operators easier to write.
+    /// The edgeMode property is assumed to always be MPSImageEdgeModeClamp for this filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageerode?language=objc)
     #[unsafe(super(MPSImageDilate, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -286,6 +437,27 @@ extern_methods!(
     /// Methods declared on superclass `MPSImageDilate`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageErode {
+        /// Init a object with kernel height, width and weight values.
+        ///
+        /// Each dilate shape probe defines a 3D surface of values.
+        /// These are arranged in order left to right, then top to bottom
+        /// in a 1D array. (values[kernelWidth*y+x] = probe[y][x])
+        /// Values should be generally be in the range [0,1] with the center
+        /// pixel tending towards 0 and edges towards 1. However, any numerical
+        /// value is allowed. Calculations are subject to the usual floating-point
+        /// rounding error.
+        ///
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `kernelWidth`: The width of the kernel. Must be an odd number.
+        ///
+        /// Parameter `kernelHeight`: The height of the kernel. Must be an odd number.
+        ///
+        /// Parameter `values`: The set of values to use as the dilate probe.
+        /// The values are copied into the filter. To avoid
+        /// image ligthening or darkening, the center value should
+        /// be 0.0f.
         #[method_id(@__retain_semantics Init initWithDevice:kernelWidth:kernelHeight:values:)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight_values(
             this: Allocated<Self>,
@@ -301,6 +473,19 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -314,6 +499,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageErode {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

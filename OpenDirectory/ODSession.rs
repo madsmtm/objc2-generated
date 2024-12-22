@@ -7,27 +7,48 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxyaddress?language=objc)
+    /// the address to connect to via proxy, used when making the options dictionary
+    ///
+    /// the address to connect to via proxy, used when making the options dictionary
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxyaddress?language=objc)
     pub static ODSessionProxyAddress: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxyport?language=objc)
+    /// the port to connect to via proxy, used when making the options dictionary
+    ///
+    /// the port to connect to via proxy, used when making the options dictionary.  This parameter
+    /// is optional and should not be passed normally.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxyport?language=objc)
     pub static ODSessionProxyPort: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxyusername?language=objc)
+    /// the username to connect with via proxy, used when making the options dictionary
+    ///
+    /// the username to connect with via proxy, used when making the options dictionary
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxyusername?language=objc)
     pub static ODSessionProxyUsername: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxypassword?language=objc)
+    /// the password to connect with via proxy, used when making the options dictionary
+    ///
+    /// the password to connect with via proxy, used when making the options dictionary
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxypassword?language=objc)
     pub static ODSessionProxyPassword: Option<&'static NSString>;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsession?language=objc)
+    /// Class for working with OpenDirectory sessions.
+    ///
+    /// Class for working with OpenDirectory sessions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ODSession;
@@ -37,15 +58,43 @@ unsafe impl NSObjectProtocol for ODSession {}
 
 extern_methods!(
     unsafe impl ODSession {
+        /// Returns a shared instance of a local ODSession
+        ///
+        /// Returns a shared instance of a local ODSession.  This can be used for most situations unless
+        /// more control is needed over the session.
         #[method_id(@__retain_semantics Other defaultSession)]
         pub unsafe fn defaultSession() -> Option<Retained<ODSession>>;
 
+        /// Creates an autoreleased instance of ODSession directed over Proxy to another host
+        ///
+        /// Creates an autoreleased instance of ODSession directed over Proxy to another host.  nil
+        /// can be passed for no options. outError is optional parameter, nil can be passed if error
+        /// details are not needed.  Options include:
+        ///
+        /// If proxy is required then a dictionary with keys should be:
+        /// Key                             Value
+        /// ODSessionProxyAddress        NSString(hostname or IP)
+        /// ODSessionProxyPort           NSNumber(IP port, should not be set as it will default)
+        /// ODSessionProxyUsername       NSString(username)
+        /// ODSessionProxyPassword       NSString(password)
         #[method_id(@__retain_semantics Other sessionWithOptions:error:)]
         pub unsafe fn sessionWithOptions_error(
             in_options: Option<&NSDictionary>,
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<Self>>;
 
+        /// Creates an instance of ODSession directed over Proxy to another host
+        ///
+        /// Creates an instance of ODSession directed over Proxy to another host.  nil can be
+        /// passed for no options. outError is optional parameter, nil can be passed if error
+        /// details are not needed. Options include:
+        ///
+        /// If proxy is required then a dictionary with keys should be:
+        /// Key                             Value
+        /// ODSessionProxyAddress        NSString(hostname or IP)
+        /// ODSessionProxyPort           NSNumber(IP port, should not be set as it will default)
+        /// ODSessionProxyUsername       NSString(username)
+        /// ODSessionProxyPassword       NSString(password)
         #[method_id(@__retain_semantics Init initWithOptions:error:)]
         pub unsafe fn initWithOptions_error(
             this: Allocated<Self>,
@@ -53,19 +102,38 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<Self>>;
 
+        /// Returns the node names that are registered on this ODSession
+        ///
+        /// Returns the node names that are registered on this ODSession.  outError can be nil if
+        /// error details are not needed.
         #[method_id(@__retain_semantics Other nodeNamesAndReturnError:)]
         pub unsafe fn nodeNamesAndReturnError(
             &self,
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSArray>>;
 
+        /// Returns a list of names as NSStrings for all available configuration templates.
+        ///
+        ///
+        /// Returns a list of names as NSStrings for all available configuration templates.  Configuration templates
+        /// have pre-configured modules and/or mappings.  Useful for re-using existing configurations
+        /// that may change with operating system without changing the actual configuration.
         #[method_id(@__retain_semantics Other configurationTemplateNames)]
         pub unsafe fn configurationTemplateNames(&self) -> Retained<NSArray>;
 
+        /// Returns a list names as NSStrings for all available mapping templates.
+        ///
+        ///
+        /// Returns a list names as NSStrings for all available mapping templates.  Mapping templates have pre-configured
+        /// record/attribute mappings.  Useful if a configuration uses a common layout of mappings for a type of server.
         #[method_id(@__retain_semantics Other mappingTemplateNames)]
         pub unsafe fn mappingTemplateNames(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "ODConfiguration")]
+        /// Reads the configuration for a given nodename.
+        ///
+        ///
+        /// Reads the configuration for a given nodename.
         #[method_id(@__retain_semantics Other configurationForNodename:)]
         pub unsafe fn configurationForNodename(
             &self,

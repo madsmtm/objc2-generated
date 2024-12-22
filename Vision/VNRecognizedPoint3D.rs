@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpoint3d?language=objc)
+    /// An extension of VNPoint3D that associates an identifier to the point.
+    ///
+    /// It should be noted that VNRecognizedPoint3D is not intended as an overall replacement of simd float 4x4, but is used by observations that recognize labeled points of interest.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpoint3d?language=objc)
     #[unsafe(super(VNPoint3D, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNGeometry")]
@@ -41,6 +45,9 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
+        /// The is the identifier that provides context as to the kind of point that was recognized.
+        ///
+        /// The string is defined by the model that recognized the point. Usually these are technical labels that are not localized and not meant to be used directly to be presented to an end user in the UI.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<VNRecognizedPointKey>;
     }

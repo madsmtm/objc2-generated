@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerydelegate?language=objc)
+    /// The delegate method for receiving query results from the NSRunLoop-based queries
+    ///
+    /// The delegate method called as results are returned from an NSRunLoop-based query.  These results are only partial
+    /// and delegate is called repeatedly as results are available.  The incoming result must be retained or copied.  The
+    /// array will be released by the NSRunLoop upon return.  Incoming results do not include previous results,
+    /// only the most resent results are returned.  inResults can be nil if an error occurs or the query is complete.  If
+    /// inResults and inError are nil then the query has completed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerydelegate?language=objc)
     pub unsafe trait ODQueryDelegate: NSObjectProtocol {
         #[method(query:foundResults:error:)]
         unsafe fn query_foundResults_error(
@@ -23,7 +31,11 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquery?language=objc)
+    /// Class used for querying OpenDirectory.
+    ///
+    /// OpenDirectory queries may be used to search for different types of records, e.g. users, groups.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquery?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ODQuery;
@@ -40,6 +52,12 @@ unsafe impl NSObjectProtocol for ODQuery {}
 extern_methods!(
     unsafe impl ODQuery {
         #[cfg(all(feature = "CFOpenDirectoryConstants", feature = "ODNode"))]
+        /// Creates an autoreleased query with the node using the parameters provided
+        ///
+        /// Creates an autoreleased query with the node using the supplied query parameters.  Some parameters
+        /// can either be NSString or NSData or an NSArray of either NSString or NSData.  Passing nil for
+        /// returnAttributes is equivalent to passing kODAttributeTypeStandardOnly.  outError is optional parameter,
+        /// nil can be passed if error details are not needed.
         #[method_id(@__retain_semantics Other queryWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:)]
         pub unsafe fn queryWithNode_forRecordTypes_attribute_matchType_queryValues_returnAttributes_maximumResults_error(
             in_node: Option<&ODNode>,
@@ -53,6 +71,12 @@ extern_methods!(
         ) -> Option<Retained<ODQuery>>;
 
         #[cfg(all(feature = "CFOpenDirectoryConstants", feature = "ODNode"))]
+        /// Creates a query with the node using the parameters provided
+        ///
+        /// Creates a query with the node using the supplied query parameters.  Some parameters
+        /// can either be NSString or NSData or an NSArray of either NSString or NSData.  Passing nil for
+        /// returnAttributes is equivalent to passing kODAttributeTypeStandardOnly. outError is optional parameter,
+        /// nil can be passed if error details are not needed.
         #[method_id(@__retain_semantics Init initWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:)]
         pub unsafe fn initWithNode_forRecordTypes_attribute_matchType_queryValues_returnAttributes_maximumResults_error(
             this: Allocated<Self>,
@@ -66,6 +90,12 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<Self>>;
 
+        /// Returns results from a provided ODQuery synchronously
+        ///
+        /// Returns results from a provided ODQuery synchronously.  Passing NO to inAllowPartialResults
+        /// will block the call until all results are returned or an error occurs.  YES can be passed at any time
+        /// even if previous calls were made with NO.  outError is optional parameter, nil can be passed if error
+        /// details are not needed.
         #[method_id(@__retain_semantics Other resultsAllowingPartial:error:)]
         pub unsafe fn resultsAllowingPartial_error(
             &self,
@@ -73,12 +103,20 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSArray>>;
 
+        /// The currently set delegate
+        ///
+        /// The query delegate which will receive asynchronous query results.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn ODQueryDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn ODQueryDelegate>>);
 
+        /// Adds the query object to the specified NSRunLoop to receive asynchronous results
+        ///
+        /// Adds the query object to the specified NSRunLoop to receive asynchronous results.  A delegate must be set
+        /// in advance otherwise results may be lost due to the lack of a receiver.
         #[method(scheduleInRunLoop:forMode:)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
@@ -86,6 +124,9 @@ extern_methods!(
             in_mode: Option<&NSString>,
         );
 
+        /// Removes the query object from the specified NSRunLoop
+        ///
+        /// Removes the query object from the specified NSRunLoop.
         #[method(removeFromRunLoop:forMode:)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,
@@ -93,12 +134,22 @@ extern_methods!(
             in_mode: Option<&NSString>,
         );
 
+        /// Will dispose of any results and restart the query.
+        ///
+        /// Will dispose of any results and restart the query for subsequent resultsAllowingPartial: calls.  If the query
+        /// is currently scheduled on a RunLoop, then the delegate will be called with inResults == nil and
+        /// [inError code] == kODErrorQuerySynchronize and [inError domain] == ODFrameworkErrorDomain, signifying that
+        /// all existing results should be thrown away in preparation for new results.
         #[method(synchronize)]
         pub unsafe fn synchronize(&self);
 
+        /// The NSOperationQueue on which asynchronous results are delivered to the delegate.
+        ///
+        /// The NSOperationQueue on which asynchronous results are delivered to the delegate.
         #[method_id(@__retain_semantics Other operationQueue)]
         pub unsafe fn operationQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
+        /// Setter for [`operationQueue`][Self::operationQueue].
         #[method(setOperationQueue:)]
         pub unsafe fn setOperationQueue(&self, operation_queue: Option<&NSOperationQueue>);
     }

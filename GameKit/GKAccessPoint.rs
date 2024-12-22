@@ -50,33 +50,42 @@ extern_methods!(
         #[method_id(@__retain_semantics Other shared)]
         pub unsafe fn shared() -> Retained<GKAccessPoint>;
 
+        /// set this true to enable access point in your app.  Setting this will cause the access point to appear after the notification banner is presented.  If it already was presented it will appear immediately
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
+        /// Setter for [`isActive`][Self::isActive].
         #[method(setActive:)]
         pub unsafe fn setActive(&self, active: bool);
 
+        /// set this on tvOS to put the accessPoint into focused mode
         #[method(isFocused)]
         pub unsafe fn isFocused(&self) -> bool;
 
+        /// Setter for [`isFocused`][Self::isFocused].
         #[method(setFocused:)]
         pub unsafe fn setFocused(&self, focused: bool);
 
         #[method(isVisible)]
         pub unsafe fn isVisible(&self) -> bool;
 
+        /// observable property that indicates when the access point is visible.
         #[method(isPresentingGameCenter)]
         pub unsafe fn isPresentingGameCenter(&self) -> bool;
 
+        /// Set this property to true if you wish to show the highlights for most recent achievement, current rank on default leaderboard, etc
         #[method(showHighlights)]
         pub unsafe fn showHighlights(&self) -> bool;
 
+        /// Setter for [`showHighlights`][Self::showHighlights].
         #[method(setShowHighlights:)]
         pub unsafe fn setShowHighlights(&self, show_highlights: bool);
 
+        /// These properties control the placement of the widget
         #[method(location)]
         pub unsafe fn location(&self) -> GKAccessPointLocation;
 
+        /// Setter for [`location`][Self::location].
         #[method(setLocation:)]
         pub unsafe fn setLocation(&self, location: GKAccessPointLocation);
 
@@ -92,10 +101,12 @@ extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`parentWindow`][Self::parentWindow].
         #[method(setParentWindow:)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
         #[cfg(feature = "block2")]
+        /// this lets the developer trigger the access point as if the user had touched it.  This is useful for games that use controllers or the remote on AppleTV.  the argument lets you specify a specific state (default, profile, achievements, leaderboards) for GameCenterViewController
         #[method(triggerAccessPointWithHandler:)]
         pub unsafe fn triggerAccessPointWithHandler(&self, handler: &block2::Block<dyn Fn()>);
 

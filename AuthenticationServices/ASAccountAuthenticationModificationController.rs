@@ -45,6 +45,7 @@ extern_protocol!(
     {
         #[cfg(feature = "ASFoundation")]
         #[cfg(target_os = "macos")]
+        /// Return a view anchor that is most appropriate for authorization UI to be presented over.
         #[method_id(@__retain_semantics Other presentationAnchorForAccountAuthenticationModificationController:)]
         unsafe fn presentationAnchorForAccountAuthenticationModificationController(
             &self,
@@ -69,6 +70,7 @@ unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationController {
 
 extern_methods!(
     unsafe impl ASAccountAuthenticationModificationController {
+        /// This delegate will be notified upon completion of the upgrade to report success or failure.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
@@ -77,6 +79,7 @@ extern_methods!(
         >;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -85,6 +88,7 @@ extern_methods!(
             >,
         );
 
+        /// This will be used to provide a presentation context to display authorization UI.
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
@@ -98,6 +102,7 @@ extern_methods!(
         >;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`presentationContextProvider`][Self::presentationContextProvider].
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,
@@ -109,6 +114,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
+        /// Perform an upgrade request, one at a time. Any requests initiated with a request already in progress will fail immediately.
         #[method(performRequest:)]
         pub unsafe fn performRequest(&self, request: &ASAccountAuthenticationModificationRequest);
     }

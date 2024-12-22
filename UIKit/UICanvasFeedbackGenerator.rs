@@ -24,10 +24,15 @@ extern_methods!(
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UICanvasFeedbackGenerator {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Provide user feedback that an alignment occured, such as snapping to a guide or ruler.
+        /// - Parameter location: The location in the feedback's view where the alignment occured.
         #[method(alignmentOccurredAtLocation:)]
         pub unsafe fn alignmentOccurredAtLocation(&self, location: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Provide user feedback that a path has been completed and/or recognized.
+        /// Can be used for things like path drawing and shape recognition.
+        /// - Parameter location: The location in the feedback's view where the completion occured.
         #[method(pathCompletedAtLocation:)]
         pub unsafe fn pathCompletedAtLocation(&self, location: CGPoint);
     }
@@ -38,6 +43,7 @@ extern_methods!(
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UICanvasFeedbackGenerator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// initalize the generator with a view to attach it to the provided view as an interaction.
         #[method_id(@__retain_semantics Other feedbackGeneratorForView:)]
         pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 

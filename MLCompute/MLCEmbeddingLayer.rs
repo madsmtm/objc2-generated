@@ -6,7 +6,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcembeddinglayer?language=objc)
+    /// An embedding layer which stores the words embedding
+    ///
+    /// For details refer to: https://pytorch.org/docs/stable/nn.html#embedding
+    /// Only supported on CPU and can only be used as the first layer in a graph. If needs to be used with another graph compiled for a GPU device,
+    /// a second graph containing the embedding layer can be created first. The result of this layer can then be fed as an input to the second graph
+    /// and respectively the gradient result of the first layer of the second graph can be passed to this graph for weight update.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcembeddinglayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -26,11 +33,13 @@ extern_methods!(
         pub unsafe fn descriptor(&self) -> Retained<MLCEmbeddingDescriptor>;
 
         #[cfg(feature = "MLCTensor")]
+        /// The array of word embeddings
         #[deprecated]
         #[method_id(@__retain_semantics Other weights)]
         pub unsafe fn weights(&self) -> Retained<MLCTensor>;
 
         #[cfg(feature = "MLCTensorParameter")]
+        /// The weights tensor parameter used for optimizer update
         #[deprecated]
         #[method_id(@__retain_semantics Other weightsParameter)]
         pub unsafe fn weightsParameter(&self) -> Retained<MLCTensorParameter>;

@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxmetricmanager?language=objc)
+    /// An instance of this class can be used to retrieve periodic, aggregated power and performance metrics.
+    ///
+    /// To receive metrics, clients must acquire a reference to the shared instance of the metric manager and add an eligible MXMetricManagerSubscriber.
+    ///
+    /// Metrics are not guaranteed to be delivered, but can be expected atleast once per day when conditions permit.
+    ///
+    /// Subscribers to the metric manager can remove themselves using removeSubscriber:subscriber if they no longer wish to receive metrics.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxmetricmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXMetricManager;
@@ -19,22 +27,35 @@ unsafe impl NSObjectProtocol for MXMetricManager {}
 extern_methods!(
     unsafe impl MXMetricManager {
         #[cfg(feature = "MXMetricPayload")]
+        /// A list of past metric payloads received.
         #[method_id(@__retain_semantics Other pastPayloads)]
         pub unsafe fn pastPayloads(&self) -> Retained<NSArray<MXMetricPayload>>;
 
         #[cfg(feature = "MXDiagnosticPayload")]
+        /// A list of past diagnostic payloads received.
         #[method_id(@__retain_semantics Other pastDiagnosticPayloads)]
         pub unsafe fn pastDiagnosticPayloads(&self) -> Retained<NSArray<MXDiagnosticPayload>>;
 
+        /// Singleton instance of MXMetricManager.
         #[method_id(@__retain_semantics Other sharedManager)]
         pub unsafe fn sharedManager() -> Retained<MXMetricManager>;
 
+        /// Adds a subscriber to the metric manager.
+        ///
+        /// Parameter `subscriber`: An object that conforms to the MXMetricManagerSubscriber protocol.
+        ///
+        /// Subscribers can receive metric payloads by conforming to the MXMetricManagerSubscriber protocol.
         #[method(addSubscriber:)]
         pub unsafe fn addSubscriber(
             &self,
             subscriber: &ProtocolObject<dyn MXMetricManagerSubscriber>,
         );
 
+        /// Removes a subscriber from the metric manager.
+        ///
+        /// Parameter `subscriber`: An object that conforms to the MXMetricManagerSubscriber protocol.
+        ///
+        /// The subscriber indicated, if previously registered, will no longer receive metric payloads.
         #[method(removeSubscriber:)]
         pub unsafe fn removeSubscriber(
             &self,
@@ -55,14 +76,42 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxmetricmanagersubscriber?language=objc)
+    /// A protocol that allows the conforming object to receive metric payloads from the metric manager.
+    ///
+    /// In order to receive metric payloads, atleast one object must conform to this protocol and be subscribed   to the metric manager.
+    ///
+    /// Objects which conform to this protocol can be passed to addSubscriber:subscriber and removeSubscriber:subscriber to manage their subscription state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxmetricmanagersubscriber?language=objc)
     pub unsafe trait MXMetricManagerSubscriber: NSObjectProtocol {
         #[cfg(feature = "MXMetricPayload")]
+        /// This method is invoked when a new MXMetricPayload has been received.
+        ///
+        /// Parameter `payloads`: An NSArray of MXMetricPayload objects. This array of payloads contains data from previous usage sessions.
+        ///
+        /// You can expect for this method to be invoked atleast once per day when the app is running and subscribers are available.
+        ///
+        /// If no subscribers are available, this method will not be invoked.
+        ///
+        /// Atleast one subscriber must be available to receive metrics.
+        ///
+        /// This method is invoked on a background queue.
         #[optional]
         #[method(didReceiveMetricPayloads:)]
         unsafe fn didReceiveMetricPayloads(&self, payloads: &NSArray<MXMetricPayload>);
 
         #[cfg(feature = "MXDiagnosticPayload")]
+        /// This method is invoked when a new MXDiagnosticPayload has been received.
+        ///
+        /// Parameter `payloads`: An NSArray of MXDiagnosticPayload objects. This array of payloads contains diagnostics from previous usage sessions.
+        ///
+        /// You can expect for this method to be invoked atleast once per day when the app is running and subscribers are available.
+        ///
+        /// If no subscribers are available, this method will not be invoked.
+        ///
+        /// Atleast one subscriber must be available to receive diagnostics.
+        ///
+        /// This method is invoked on a background queue.
         #[optional]
         #[method(didReceiveDiagnosticPayloads:)]
         unsafe fn didReceiveDiagnosticPayloads(&self, payloads: &NSArray<MXDiagnosticPayload>);

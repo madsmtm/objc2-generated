@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacgraphicsdeviceconfiguration?language=objc)
+    /// Configuration for a Mac graphics device.
+    ///
+    /// This device can be used to attach a display to be shown in a VZVirtualMachineView.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacgraphicsdeviceconfiguration?language=objc)
     #[unsafe(super(VZGraphicsDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDeviceConfiguration")]
@@ -36,6 +40,9 @@ extern_methods!(
             feature = "VZGraphicsDisplayConfiguration",
             feature = "VZMacGraphicsDisplayConfiguration"
         ))]
+        /// The displays to be attached to this graphics device.
+        ///
+        /// Maximum of one display is supported.
         #[method_id(@__retain_semantics Other displays)]
         pub unsafe fn displays(&self) -> Retained<NSArray<VZMacGraphicsDisplayConfiguration>>;
 
@@ -43,6 +50,7 @@ extern_methods!(
             feature = "VZGraphicsDisplayConfiguration",
             feature = "VZMacGraphicsDisplayConfiguration"
         ))]
+        /// Setter for [`displays`][Self::displays].
         #[method(setDisplays:)]
         pub unsafe fn setDisplays(&self, displays: &NSArray<VZMacGraphicsDisplayConfiguration>);
     }

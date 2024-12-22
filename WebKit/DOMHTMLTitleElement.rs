@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
+        /// Setter for [`text`][Self::text].
         #[deprecated]
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);

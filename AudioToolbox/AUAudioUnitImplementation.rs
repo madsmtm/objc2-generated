@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendereventtype?language=objc)
+/// Describes the type of a render event.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendereventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -30,9 +32,21 @@ unsafe impl RefEncode for AURenderEventType {
 
 extern_methods!(
     /// AUAudioUnitImplementation
+    /// Aspects of AUAudioUnit of interest only to subclassers.
     #[cfg(feature = "AUAudioUnit")]
     unsafe impl AUAudioUnit {
         #[cfg(feature = "AudioComponent")]
+        /// Register an audio unit component implemented as an AUAudioUnit subclass.
+        ///
+        /// This method dynamically registers the supplied AUAudioUnit subclass with the Audio Component
+        /// system, in the context of the current process (only). After registering the subclass, it can
+        /// be instantiated via AudioComponentInstanceNew,
+        /// -[AUAudioUnit initWithComponentDescription:options:error:], and via any other API's which
+        /// instantiate audio units via their component descriptions (e.g.
+        /// <AudioToolbox
+        /// /AUGraph.h>, or
+        /// <AVFoundation
+        /// /AVAudioUnitEffect.h>).
         #[method(registerSubclass:asComponentDescription:name:version:)]
         pub unsafe fn registerSubclass_asComponentDescription_name_version(
             cls: &AnyClass,
@@ -41,12 +55,34 @@ extern_methods!(
             version: u32,
         );
 
+        /// Hint to control the size of the allocated buffer for outgoing MIDI events.
+        ///
+        /// This property allows the plug-in to provide a hint to the framework regarding the size of
+        /// its outgoing MIDI data buffer.
+        ///
+        /// If the plug-in produces more MIDI output data than the default size of the allocated buffer,
+        /// then the plug-in can provide this property to increase the size of this buffer.
+        ///
+        /// The value represents the number of 3-byte Legacy MIDI messages that fit into the buffer or
+        /// a single MIDIEventList containing 1 MIDIEventPacket of 2 words when using MIDI 2.0 (MIDIEventList based API's).
+        ///
+        /// This property is set to the default value by the framework.
+        ///
+        /// In case of kAudioUnitErr_MIDIOutputBufferFull errors caused by producing too much MIDI
+        /// output in one render call, set this property to increase the buffer.
+        ///
+        /// This only provides a recommendation to the framework.
+        ///
+        /// Bridged to kAudioUnitProperty_MIDIOutputBufferSizeHint.
         #[method(MIDIOutputBufferSizeHint)]
         pub unsafe fn MIDIOutputBufferSizeHint(&self) -> NSInteger;
 
+        /// Setter for [`MIDIOutputBufferSizeHint`][Self::MIDIOutputBufferSizeHint].
         #[method(setMIDIOutputBufferSizeHint:)]
         pub unsafe fn setMIDIOutputBufferSizeHint(&self, midi_output_buffer_size_hint: NSInteger);
 
+        /// Parameter `flag`: In the base class implementation of allocateRenderResourcesAndReturnError:, the property renderResourcesAllocated is set to YES.
+        /// If allocateRenderResourcesAndReturnError: should fail in a subclass, subclassers must use this method to set renderResourcesAllocated to NO.
         #[method(setRenderResourcesAllocated:)]
         pub unsafe fn setRenderResourcesAllocated(&self, flag: bool);
     }
@@ -54,20 +90,33 @@ extern_methods!(
 
 extern_methods!(
     /// AUAudioUnitImplementation
+    /// Aspects of AUAudioUnitBus of interest only to the implementation of v3 AUs.
     #[cfg(feature = "AUAudioUnit")]
     unsafe impl AUAudioUnitBus {
+        /// An array of numbers giving the supported numbers of channels for this bus.
+        ///
+        /// If supportedChannelCounts is nil, then any number less than or equal to maximumChannelCount
+        /// is supported. If setting supportedChannelCounts makes the current format unsupported, then
+        /// format will be set to nil. The default value is nil.
         #[method_id(@__retain_semantics Other supportedChannelCounts)]
         pub unsafe fn supportedChannelCounts(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// Setter for [`supportedChannelCounts`][Self::supportedChannelCounts].
         #[method(setSupportedChannelCounts:)]
         pub unsafe fn setSupportedChannelCounts(
             &self,
             supported_channel_counts: Option<&NSArray<NSNumber>>,
         );
 
+        /// The maximum numbers of channels supported for this bus.
+        ///
+        /// If supportedChannelCounts is set, then this value is derived from supportedChannelCounts. If
+        /// setting maximumChannelCount makes the current format unsupported, then format will be set to
+        /// nil. The default value is UINT_MAX.
         #[method(maximumChannelCount)]
         pub unsafe fn maximumChannelCount(&self) -> AUAudioChannelCount;
 
+        /// Setter for [`maximumChannelCount`][Self::maximumChannelCount].
         #[method(setMaximumChannelCount:)]
         pub unsafe fn setMaximumChannelCount(&self, maximum_channel_count: AUAudioChannelCount);
     }
@@ -75,8 +124,10 @@ extern_methods!(
 
 extern_methods!(
     /// AUAudioUnitBusImplementation
+    /// Aspects of AUAudioUnitBusArray of interest only to subclassers.
     #[cfg(feature = "AUAudioUnit")]
     unsafe impl AUAudioUnitBusArray {
+        /// Sets the bus array to be a copy of the supplied array. The base class issues KVO notifications.
         #[method(replaceBusses:)]
         pub unsafe fn replaceBusses(&self, bus_array: &NSArray<AUAudioUnitBus>);
     }
@@ -84,9 +135,16 @@ extern_methods!(
 
 extern_methods!(
     /// Factory
+    /// Factory methods for building parameters, parameter groups, and parameter trees.
+    ///
+    ///
+    /// Note: In non-ARC code, "create" methods return unretained objects (unlike "create"
+    /// C functions); the caller should generally retain them.
     #[cfg(feature = "AUParameters")]
     unsafe impl AUParameterTree {
         #[cfg(feature = "AudioUnitProperties")]
+        /// Create an AUParameter.
+        /// See AUParameter's properties for descriptions of the arguments.
         #[method_id(@__retain_semantics Other createParameterWithIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:)]
         pub unsafe fn createParameterWithIdentifier_name_address_min_max_unit_unitName_flags_valueStrings_dependentParameters(
             identifier: &NSString,
@@ -101,6 +159,13 @@ extern_methods!(
             dependent_parameters: Option<&NSArray<NSNumber>>,
         ) -> Retained<AUParameter>;
 
+        /// Create an AUParameterGroup.
+        ///
+        /// Parameter `identifier`: An identifier for the group (non-localized, persistent).
+        ///
+        /// Parameter `name`: The group's human-readable name (localized).
+        ///
+        /// Parameter `children`: The group's child nodes.
         #[method_id(@__retain_semantics Other createGroupWithIdentifier:name:children:)]
         pub unsafe fn createGroupWithIdentifier_name_children(
             identifier: &NSString,
@@ -108,11 +173,28 @@ extern_methods!(
             children: &NSArray<AUParameterNode>,
         ) -> Retained<AUParameterGroup>;
 
+        /// Create a template group which may be used as a prototype for further group instances.
+        ///
+        ///
+        /// Template groups provide a way to construct multiple instances of identical parameter
+        /// groups, sharing certain immutable state between the instances.
+        ///
+        /// Template groups may not appear in trees except at the root.
         #[method_id(@__retain_semantics Other createGroupTemplate:)]
         pub unsafe fn createGroupTemplate(
             children: &NSArray<AUParameterNode>,
         ) -> Retained<AUParameterGroup>;
 
+        /// Initialize a group as a copied instance of a template group.
+        ///
+        /// Parameter `templateGroup`: A group to be used as a template and largely copied.
+        ///
+        /// Parameter `identifier`: An identifier for the new group (non-localized, persistent).
+        ///
+        /// Parameter `name`: The new group's human-readable name (localized).
+        ///
+        /// Parameter `addressOffset`: The new group's parameters' addresses will be offset from those in
+        /// the template by this value.
         #[method_id(@__retain_semantics Other createGroupFromTemplate:identifier:name:addressOffset:)]
         pub unsafe fn createGroupFromTemplate_identifier_name_addressOffset(
             template_group: &AUParameterGroup,
@@ -121,6 +203,9 @@ extern_methods!(
             address_offset: AUParameterAddress,
         ) -> Retained<AUParameterGroup>;
 
+        /// Create an AUParameterTree.
+        ///
+        /// Parameter `children`: The tree's top-level child nodes.
         #[method_id(@__retain_semantics Other createTreeWithChildren:)]
         pub unsafe fn createTreeWithChildren(
             children: &NSArray<AUParameterNode>,
@@ -128,38 +213,55 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvalueobserver?language=objc)
+/// A block called to notify the AUAudioUnit implementation of changes to AUParameter values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvalueobserver?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorValueObserver = *mut block2::Block<dyn Fn(NonNull<AUParameter>, AUValue)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvalueprovider?language=objc)
+/// A block called to fetch an AUParameter's current value from the AUAudioUnit implementation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvalueprovider?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorValueProvider = *mut block2::Block<dyn Fn(NonNull<AUParameter>) -> AUValue>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorstringfromvaluecallback?language=objc)
+/// A block called to convert an AUParameter's value to a string.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorstringfromvaluecallback?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorStringFromValueCallback =
     *mut block2::Block<dyn Fn(NonNull<AUParameter>, *const AUValue) -> NonNull<NSString>>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvaluefromstringcallback?language=objc)
+/// A block called to convert a string to an AUParameter's value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvaluefromstringcallback?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorValueFromStringCallback =
     *mut block2::Block<dyn Fn(NonNull<AUParameter>, NonNull<NSString>) -> AUValue>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementordisplaynamewithlengthcallback?language=objc)
+/// A block called to return a group or parameter's localized display name, abbreviated to the requested length.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementordisplaynamewithlengthcallback?language=objc)
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorDisplayNameWithLengthCallback =
     *mut block2::Block<dyn Fn(NonNull<AUParameterNode>, NSInteger) -> NonNull<NSString>>;
 
 extern_methods!(
     /// AUParameterNodeImplementation
+    /// Aspects of AUParameterNode of interest only to AUAudioUnit subclassers.
     #[cfg(feature = "AUParameters")]
     unsafe impl AUParameterNode {
         #[cfg(feature = "block2")]
+        /// Called when a parameter changes value.
+        ///
+        /// This block, used only in an audio unit implementation, receives all externally-generated
+        /// changes to parameter values. It should store the new value in its audio signal processing
+        /// state (assuming that that state is separate from the AUParameter object).
         #[method(implementorValueObserver)]
         pub unsafe fn implementorValueObserver(&self) -> AUImplementorValueObserver;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`implementorValueObserver`][Self::implementorValueObserver].
         #[method(setImplementorValueObserver:)]
         pub unsafe fn setImplementorValueObserver(
             &self,
@@ -167,10 +269,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Called when a value of a parameter in the tree is known to have a stale value
+        /// needing to be refreshed.
+        ///
+        /// The audio unit should return the current value for this parameter; the AUParameterNode will
+        /// store the value.
         #[method(implementorValueProvider)]
         pub unsafe fn implementorValueProvider(&self) -> AUImplementorValueProvider;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`implementorValueProvider`][Self::implementorValueProvider].
         #[method(setImplementorValueProvider:)]
         pub unsafe fn setImplementorValueProvider(
             &self,
@@ -178,12 +286,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Called to provide string representations of parameter values.
+        /// If value is nil, the callback uses the current value of the parameter.
         #[method(implementorStringFromValueCallback)]
         pub unsafe fn implementorStringFromValueCallback(
             &self,
         ) -> AUImplementorStringFromValueCallback;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`implementorStringFromValueCallback`][Self::implementorStringFromValueCallback].
         #[method(setImplementorStringFromValueCallback:)]
         pub unsafe fn setImplementorStringFromValueCallback(
             &self,
@@ -191,12 +302,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Called to convert string to numeric representations of parameter values.
         #[method(implementorValueFromStringCallback)]
         pub unsafe fn implementorValueFromStringCallback(
             &self,
         ) -> AUImplementorValueFromStringCallback;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`implementorValueFromStringCallback`][Self::implementorValueFromStringCallback].
         #[method(setImplementorValueFromStringCallback:)]
         pub unsafe fn setImplementorValueFromStringCallback(
             &self,
@@ -204,12 +317,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Called to obtain an abbreviated version of a parameter or group name.
         #[method(implementorDisplayNameWithLengthCallback)]
         pub unsafe fn implementorDisplayNameWithLengthCallback(
             &self,
         ) -> AUImplementorDisplayNameWithLengthCallback;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`implementorDisplayNameWithLengthCallback`][Self::implementorDisplayNameWithLengthCallback].
         #[method(setImplementorDisplayNameWithLengthCallback:)]
         pub unsafe fn setImplementorDisplayNameWithLengthCallback(
             &self,
@@ -219,7 +334,19 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitv2bridge?language=objc)
+    /// Wraps a v2 audio unit in an AUAudioUnit subclass.
+    ///
+    /// Implementors of version 3 audio units may derive their implementations from
+    /// AUAudioUnitV2Bridge. It expects the component description with which it is initialized to
+    /// refer to a registered component with a v2 implementation using an
+    /// AudioComponentFactoryFunction. The bridge will instantiate the v2 audio unit via the factory
+    /// function and communicate it with it using the v2 AudioUnit API's (AudioUnitSetProperty,
+    /// etc.)
+    ///
+    /// Hosts should not access this class; it will be instantiated when needed when creating an
+    /// AUAudioUnit.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitv2bridge?language=objc)
     #[unsafe(super(AUAudioUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AUAudioUnit")]
@@ -233,6 +360,15 @@ extern_methods!(
     #[cfg(feature = "AUAudioUnit")]
     unsafe impl AUAudioUnitV2Bridge {
         #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+        /// The underlying v2 AudioUnit
+        ///
+        /// We generally discourage interacting with the underlying v2 AudioUnit directly and
+        /// recommend using the v3 equivalent methods and properties from AUAudioUnitV2Bridge.
+        ///
+        /// In some rare cases it may be desirable to interact with the v2 AudioUnit.
+        /// For example, a v2 plugin may define custom properties that are not bridged to v3.
+        /// Implementors can sublcass AUAudioUnitV2Bridge and call the v2 API methods
+        /// AudioUnitGetProperty / AudioUnitSetProperty with the v2 AudioUnit.
         #[method(audioUnit)]
         pub unsafe fn audioUnit(&self) -> AudioUnit;
     }
@@ -246,6 +382,15 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AudioComponent")]
+        /// Designated initializer.
+        ///
+        /// Parameter `componentDescription`: A single AUAudioUnit subclass may implement multiple audio units, for example, an effect
+        /// that can also function as a generator, or a cluster of related effects. The component
+        /// description specifies the component which was instantiated.
+        ///
+        /// Parameter `options`: Options for loading the unit in-process or out-of-process.
+        ///
+        /// Parameter `outError`: Returned in the event of failure.
         #[method_id(@__retain_semantics Init initWithComponentDescription:options:error:_)]
         pub unsafe fn initWithComponentDescription_options_error(
             this: Allocated<Self>,
@@ -254,6 +399,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "AudioComponent")]
+        /// Convenience initializer (omits options).
         #[method_id(@__retain_semantics Init initWithComponentDescription:error:_)]
         pub unsafe fn initWithComponentDescription_error(
             this: Allocated<Self>,
@@ -272,9 +418,26 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitfactory?language=objc)
+    /// Protocol to which principal classes of v3 audio units (extensions) must conform.
+    ///
+    /// The principal class of a non-UI v3 audio unit extension will generally derive from NSObject
+    /// and implement this protocol.
+    ///
+    /// The principal class of a UI v3 audio unit extension must derive from AUViewController and
+    /// implement this protocol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitfactory?language=objc)
     pub unsafe trait AUAudioUnitFactory: NSExtensionRequestHandling {
         #[cfg(all(feature = "AUAudioUnit", feature = "AudioComponent"))]
+        /// Create an instance of an extension's AUAudioUnit.
+        ///
+        /// This method should create and return an instance of its audio unit.
+        ///
+        /// This method will be called only once per instance of the factory.
+        ///
+        /// Note that in non-ARC code, "create" methods return unretained objects (unlike "create"
+        /// C functions); the implementor should return an object with reference count 1 but
+        /// autoreleased.
         #[method_id(@__retain_semantics Other createAudioUnitWithComponentDescription:error:_)]
         unsafe fn createAudioUnitWithComponentDescription_error(
             &self,

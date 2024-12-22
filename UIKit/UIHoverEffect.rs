@@ -7,14 +7,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uihovereffect?language=objc)
+    /// A hover effect that can be applied to a `UIView` via a `UIHoverStyle`.
+    /// You don't conform to this protocol directly. Instead, you use a built-in
+    /// `UIHoverEffect` like `UIHoverAutomaticEffect`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihovereffect?language=objc)
     pub unsafe trait UIHoverEffect: NSCopying + NSObjectProtocol + MainThreadOnly {}
 
     unsafe impl ProtocolType for dyn UIHoverEffect {}
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uihoverhighlighteffect?language=objc)
+    /// An effect that applies a highlight to the view on hover.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihoverhighlighteffect?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -45,7 +51,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uihoverlifteffect?language=objc)
+    /// An effect that can visually lift the view on hover where appropriate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihoverlifteffect?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -76,7 +84,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uihoverautomaticeffect?language=objc)
+    /// A system-default hover effect that automatically selects the appropriate
+    /// effect based on the view to which it is applied.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihoverautomaticeffect?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

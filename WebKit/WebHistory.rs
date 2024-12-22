@@ -38,7 +38,10 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistory?language=objc)
+    /// WebHistory is used to track pages that have been loaded
+    /// by WebKit.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistory?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -49,18 +52,24 @@ unsafe impl NSObjectProtocol for WebHistory {}
 
 extern_methods!(
     unsafe impl WebHistory {
+        /// Returns a shared WebHistory instance initialized with the default history file.
+        ///
+        /// Returns: A WebHistory object.
         #[deprecated]
         #[method_id(@__retain_semantics Other optionalSharedHistory)]
         pub unsafe fn optionalSharedHistory() -> Option<Retained<WebHistory>>;
 
+        /// Parameter `history`: The history to use for the global WebHistory.
         #[deprecated]
         #[method(setOptionalSharedHistory:)]
         pub unsafe fn setOptionalSharedHistory(history: Option<&WebHistory>);
 
+        /// Parameter `newItems`: An array of WebHistoryItems to add to the WebHistory.
         #[deprecated]
         #[method(addItems:)]
         pub unsafe fn addItems(&self, new_items: Option<&NSArray>);
 
+        /// Parameter `items`: An array of WebHistoryItems to remove from the WebHistory.
         #[deprecated]
         #[method(removeItems:)]
         pub unsafe fn removeItems(&self, items: Option<&NSArray>);
@@ -69,6 +78,10 @@ extern_methods!(
         #[method(removeAllItems)]
         pub unsafe fn removeAllItems(&self);
 
+        /// An array of NSCalendarDates for which history items exist in the WebHistory.
+        ///
+        /// An array of NSCalendarDates, each one representing a unique day that contains one
+        /// or more history items, ordered from most recent to oldest.
         #[deprecated]
         #[method_id(@__retain_semantics Other orderedLastVisitedDays)]
         pub unsafe fn orderedLastVisitedDays(&self) -> Retained<NSArray>;
@@ -81,22 +94,31 @@ extern_methods!(
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "WebHistoryItem")]
+        /// Get an item for a specific URL
+        ///
+        /// Parameter `URL`: The URL of the history item to search for
+        ///
+        /// Returns: Returns an item matching the URL
         #[deprecated]
         #[method_id(@__retain_semantics Other itemForURL:)]
         pub unsafe fn itemForURL(&self, url: Option<&NSURL>) -> Option<Retained<WebHistoryItem>>;
 
+        /// The maximum number of items that will be stored by the WebHistory.
         #[deprecated]
         #[method(historyItemLimit)]
         pub unsafe fn historyItemLimit(&self) -> c_int;
 
+        /// Setter for [`historyItemLimit`][Self::historyItemLimit].
         #[deprecated]
         #[method(setHistoryItemLimit:)]
         pub unsafe fn setHistoryItemLimit(&self, history_item_limit: c_int);
 
+        /// The maximum number of days to be read from stored history.
         #[deprecated]
         #[method(historyAgeInDaysLimit)]
         pub unsafe fn historyAgeInDaysLimit(&self) -> c_int;
 
+        /// Setter for [`historyAgeInDaysLimit`][Self::historyAgeInDaysLimit].
         #[deprecated]
         #[method(setHistoryAgeInDaysLimit:)]
         pub unsafe fn setHistoryAgeInDaysLimit(&self, history_age_in_days_limit: c_int);

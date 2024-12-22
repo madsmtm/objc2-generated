@@ -13,10 +13,15 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITabBarControllerMode(pub NSInteger);
 impl UITabBarControllerMode {
+    /// The default tab bar controller mode.
+    /// Resolves to `tabSidebar` if any of the tab elements of the tab bar controller is a group, and
+    /// if the platform supports displaying a sidebar mode. Otherwise, resolves to `tabBar`.
     #[doc(alias = "UITabBarControllerModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Displays tabs in a tab bar.
     #[doc(alias = "UITabBarControllerModeTabBar")]
     pub const TabBar: Self = Self(1);
+    /// Displays tabs in a tab bar and sidebar.
     #[doc(alias = "UITabBarControllerModeTabSidebar")]
     pub const TabSidebar: Self = Self(2);
 }
@@ -30,7 +35,17 @@ unsafe impl RefEncode for UITabBarControllerMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller?language=objc)
+    /// UITabBarController manages a button bar and transition view, for an application with multiple top-level modes.
+    ///
+    /// To use in your application, add its view to the view hierarchy, then add top-level view controllers in order.
+    /// Most clients will not need to subclass UITabBarController.
+    ///
+    /// If more than five view controllers are added to a tab bar controller, only the first four will display.
+    /// The rest will be accessible under an automatically generated More item.
+    ///
+    /// UITabBarController is rotatable if all of its view controllers are rotatable.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller?language=objc)
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -81,40 +96,50 @@ unsafe impl UITraitEnvironment for UITabBarController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITabBarController {
+        /// The object managing the delegate of the tab bar controller. Default is nil.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITabBarControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UITabBarControllerDelegate>>,
         );
 
+        /// The object managing the tab sidebar for the tab bar controller. Default is `UITabBarControllerModeAutomatic`
         #[method(mode)]
         pub unsafe fn mode(&self) -> UITabBarControllerMode;
 
+        /// Setter for [`mode`][Self::mode].
         #[method(setMode:)]
         pub unsafe fn setMode(&self, mode: UITabBarControllerMode);
 
         #[cfg(feature = "UITabBarControllerSidebar")]
+        /// The object managing the tab sidebar for the tab bar controller.
         #[method_id(@__retain_semantics Other sidebar)]
         pub unsafe fn sidebar(&self) -> Retained<UITabBarControllerSidebar>;
 
+        /// The customization identifier for the tab bar and sidebar for persistence. The identifier is useful for when an app has multiple tab bar controllers,
+        /// each with their own customizations. If the identifier is nil, a system default is used. Default is nil.
         #[method_id(@__retain_semantics Other customizationIdentifier)]
         pub unsafe fn customizationIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`customizationIdentifier`][Self::customizationIdentifier].
         #[method(setCustomizationIdentifier:)]
         pub unsafe fn setCustomizationIdentifier(
             &self,
             customization_identifier: Option<&NSString>,
         );
 
+        /// An optional filter to display only select root-level tabs when in a compact appearance. Default is nil, which would make all tabs available.
         #[method_id(@__retain_semantics Other compactTabIdentifiers)]
         pub unsafe fn compactTabIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;
 
+        /// Setter for [`compactTabIdentifiers`][Self::compactTabIdentifiers].
         #[method(setCompactTabIdentifiers:)]
         pub unsafe fn setCompactTabIdentifiers(
             &self,
@@ -122,45 +147,57 @@ extern_methods!(
         );
 
         #[cfg(feature = "UITab")]
+        /// The currently selected tab, which can be a root tab or any of their descendants. Default is nil.
         #[method_id(@__retain_semantics Other selectedTab)]
         pub unsafe fn selectedTab(&self) -> Option<Retained<UITab>>;
 
         #[cfg(feature = "UITab")]
+        /// Setter for [`selectedTab`][Self::selectedTab].
         #[method(setSelectedTab:)]
         pub unsafe fn setSelectedTab(&self, selected_tab: Option<&UITab>);
 
         #[cfg(feature = "UITab")]
+        /// An array of root tabs representing view controllers to display by the tab bar interface. Default is empty.
+        /// Once set, `UITabBarController.viewControllers` and related properties and methods will not be called.
         #[method_id(@__retain_semantics Other tabs)]
         pub unsafe fn tabs(&self) -> Retained<NSArray<UITab>>;
 
         #[cfg(feature = "UITab")]
+        /// Setter for [`tabs`][Self::tabs].
         #[method(setTabs:)]
         pub unsafe fn setTabs(&self, tabs: &NSArray<UITab>);
 
         #[cfg(feature = "UITab")]
+        /// Sets the root tabs of the tab bar controller, with an option to animate the change.
         #[method(setTabs:animated:)]
         pub unsafe fn setTabs_animated(&self, tabs: &NSArray<UITab>, animated: bool);
 
         #[cfg(feature = "UITab")]
+        /// Returns the `tab` matching the specified `identifier` in the tab bar controller's tabs. Returns nil if no tab is found matching the `identifier`.
         #[method_id(@__retain_semantics Other tabForIdentifier:)]
         pub unsafe fn tabForIdentifier(&self, identifier: &NSString) -> Option<Retained<UITab>>;
 
         #[cfg(feature = "UITab")]
+        /// Creates a tab bar controller with the specified tabs.
         #[method_id(@__retain_semantics Init initWithTabs:)]
         pub unsafe fn initWithTabs(this: Allocated<Self>, tabs: &NSArray<UITab>) -> Retained<Self>;
 
+        /// Determines if the active tab bar is currently hidden. Default is NO.
         #[method(isTabBarHidden)]
         pub unsafe fn isTabBarHidden(&self) -> bool;
 
+        /// Setter for [`isTabBarHidden`][Self::isTabBarHidden].
         #[method(setTabBarHidden:)]
         pub unsafe fn setTabBarHidden(&self, tab_bar_hidden: bool);
 
+        /// Changes the active tab bar's visibility with an option to animate the change.
         #[method(setTabBarHidden:animated:)]
         pub unsafe fn setTabBarHidden_animated(&self, hidden: bool, animated: bool);
 
         #[method_id(@__retain_semantics Other viewControllers)]
         pub unsafe fn viewControllers(&self) -> Option<Retained<NSArray<UIViewController>>>;
 
+        /// Setter for [`viewControllers`][Self::viewControllers].
         #[method(setViewControllers:)]
         pub unsafe fn setViewControllers(
             &self,
@@ -177,6 +214,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selectedViewController)]
         pub unsafe fn selectedViewController(&self) -> Option<Retained<UIViewController>>;
 
+        /// Setter for [`selectedViewController`][Self::selectedViewController].
         #[method(setSelectedViewController:)]
         pub unsafe fn setSelectedViewController(
             &self,
@@ -186,6 +224,7 @@ extern_methods!(
         #[method(selectedIndex)]
         pub unsafe fn selectedIndex(&self) -> NSUInteger;
 
+        /// Setter for [`selectedIndex`][Self::selectedIndex].
         #[method(setSelectedIndex:)]
         pub unsafe fn setSelectedIndex(&self, selected_index: NSUInteger);
 
@@ -198,6 +237,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSArray<UIViewController>>>;
 
+        /// Setter for [`customizableViewControllers`][Self::customizableViewControllers].
         #[method(setCustomizableViewControllers:)]
         pub unsafe fn setCustomizableViewControllers(
             &self,
@@ -249,6 +289,7 @@ extern_protocol!(
             feature = "UITab",
             feature = "UIViewController"
         ))]
+        /// Return YES if the specified `tab` can be selected by the user. Otherwise, return NO.
         #[optional]
         #[method(tabBarController:shouldSelectTab:)]
         unsafe fn tabBarController_shouldSelectTab(
@@ -262,6 +303,7 @@ extern_protocol!(
             feature = "UITab",
             feature = "UIViewController"
         ))]
+        /// Called when the selected tab has changed in the tab bar controller. The specified selected `tab` is either a root tab or its decendants.
         #[optional]
         #[method(tabBarController:didSelectTab:previousTab:)]
         unsafe fn tabBarController_didSelectTab_previousTab(
@@ -278,6 +320,9 @@ extern_protocol!(
             feature = "UITab",
             feature = "UIViewController"
         ))]
+        /// Determines if items from the specified drop session can be dropped into the specified `tab`. If the operation is either a `.move` or `.copy`,
+        /// then the drop will proceed and `tabBarController:tab:acceptItemsFromDropSession:` is called. By default, the drop will be
+        /// treated as a cancel operation if this is not implemented.
         #[optional]
         #[method(tabBarController:tab:operationForAcceptingItemsFromDropSession:)]
         unsafe fn tabBarController_tab_operationForAcceptingItemsFromDropSession(
@@ -293,6 +338,8 @@ extern_protocol!(
             feature = "UITab",
             feature = "UIViewController"
         ))]
+        /// Receive the drop from into the tab using the specified session. This is only called if the drop operation returned
+        /// from `tabBarController:tab:operationForAcceptingItemsFromDropSession` is valid for a drop.
         #[optional]
         #[method(tabBarController:tab:acceptItemsFromDropSession:)]
         unsafe fn tabBarController_tab_acceptItemsFromDropSession(
@@ -303,11 +350,13 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// Notifies the delegate when the tab bar controller is about to begin editing.
         #[optional]
         #[method(tabBarControllerWillBeginEditing:)]
         unsafe fn tabBarControllerWillBeginEditing(&self, tab_bar_controller: &UITabBarController);
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// Notifies the delegate when the tab bar controller's current editing state has ended.
         #[optional]
         #[method(tabBarControllerDidEndEditing:)]
         unsafe fn tabBarControllerDidEndEditing(&self, tab_bar_controller: &UITabBarController);
@@ -317,6 +366,7 @@ extern_protocol!(
             feature = "UITab",
             feature = "UIViewController"
         ))]
+        /// Notifies the delegate when editing has ended and the specified tabs have had their `isHidden` values changed by the user.
         #[optional]
         #[method(tabBarController:visibilityDidChangeForTabs:)]
         unsafe fn tabBarController_visibilityDidChangeForTabs(
@@ -331,6 +381,7 @@ extern_protocol!(
             feature = "UITabGroup",
             feature = "UIViewController"
         ))]
+        /// Notifies the deleagte that the display order for the specified tab has been changed by the user.
         #[optional]
         #[method(tabBarController:displayOrderDidChangeForGroup:)]
         unsafe fn tabBarController_displayOrderDidChangeForGroup(
@@ -344,6 +395,21 @@ extern_protocol!(
             feature = "UITab",
             feature = "UIViewController"
         ))]
+        /// Used with `UITabGroup.managingNavigationController`, this method allows the delegate to customize the displayed view controllers
+        /// within the navigation stack for each level of selected tab. This method is called by the system if the selected tab in the `UITabBarController`
+        /// belongs to or is in the hierarchy of a managing tab group (i.e. a `UITabGroup` with a non-nil `managingNavigationController`). By default,
+        /// if this method is not implemented, the system will build the navigation stack by adding each tab's `viewController` into the hierarchy, if one exists.
+        /// This is especially useful to hide certain view controllers when transitioning between compact and regular size classes.
+        ///
+        ///
+        /// Parameter `tabBarController`: The tab bar controller managed by the delegate.
+        ///
+        /// Parameter `tab`: The tab for which the displayed view controllers is being requested for by its `managingTabGroup`. Each tab in the selection hierarchy will be called once.
+        ///
+        /// Parameter `proposedViewControllers`: The proposed view controllers for the given tab. In general, the propoesd view controller is a single-item array of the tab's viewController. If other view controllers are pushed onto the navigation stack, they will be part of the last (leafmost) tab's `proposedViewControllers` such that they are preserved between updates.
+        ///
+        ///
+        /// Returns: A list of view controllers represented by the tab in the navigation stack.
         #[optional]
         #[method_id(@__retain_semantics Other tabBarController:displayedViewControllersForTab:proposedViewControllers:)]
         unsafe fn tabBarController_displayedViewControllersForTab_proposedViewControllers(
@@ -464,6 +530,7 @@ extern_methods!(
         pub unsafe fn tabBarItem(&self) -> Option<Retained<UITabBarItem>>;
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
+        /// Setter for [`tabBarItem`][Self::tabBarItem].
         #[method(setTabBarItem:)]
         pub unsafe fn setTabBarItem(&self, tab_bar_item: Option<&UITabBarItem>);
 
@@ -476,6 +543,7 @@ extern_methods!(
         pub unsafe fn tabBarObservedScrollView(&self) -> Option<Retained<UIScrollView>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UIView"))]
+        /// Setter for [`tabBarObservedScrollView`][Self::tabBarObservedScrollView].
         #[deprecated = "Use -setContentScrollView:forEdge: instead."]
         #[method(setTabBarObservedScrollView:)]
         pub unsafe fn setTabBarObservedScrollView(

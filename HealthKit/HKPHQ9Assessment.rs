@@ -6,7 +6,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessmentrisk?language=objc)
+/// Depression risk level determined by PHQ-9 assessment.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessmentrisk?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,7 +34,9 @@ unsafe impl RefEncode for HKPHQ9AssessmentRisk {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessmentanswer?language=objc)
+/// Answer to question on PHQ-9 assessment.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessmentanswer?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -59,15 +63,19 @@ unsafe impl RefEncode for HKPHQ9AssessmentAnswer {
 }
 
 extern "C-unwind" {
+    /// Returns the lower bound of the score range for the given PHQ-9 risk classification.
     pub fn HKMinimumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger;
 }
 
 extern "C-unwind" {
+    /// Returns the upper bound of the score range for the given PHQ-9 risk classification.
     pub fn HKMaximumScoreForPHQ9AssessmentRisk(risk: HKPHQ9AssessmentRisk) -> NSInteger;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment?language=objc)
+    /// Represents the result of a PHQ-9 assessment. Learn more about Pfizer's PHQ-9 at https://support.apple.com/en-us/105070
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment?language=objc)
     #[unsafe(super(HKScoredAssessment, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -136,18 +144,24 @@ extern_methods!(
         feature = "HKScoredAssessment"
     ))]
     unsafe impl HKPHQ9Assessment {
+        /// Answers on the PHQ-9 assessment. There are exactly 9 answers, one for each multiple choice question. Each answer is of type `HKPHQ9AssessmentAnswer`. If the 9th question was unanswered,  the answer is `HKPHQ9AssessmentAnswerPreferNotToAnswer`.
         #[method_id(@__retain_semantics Other answers)]
         pub unsafe fn answers(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// The risk determined by the score on a PHQ-9 assessment.
         #[method(risk)]
         pub unsafe fn risk(&self) -> HKPHQ9AssessmentRisk;
 
+        /// Creates a new PHQ-9 sample. There must be exactly 9 elements in answers, each answer must be of type `HKPHQ9AssessmentAnswer`.
+        /// Question #9 is considered optional. If the user does not answer #9, use `HKPHQ9AssessmentAnswerPreferNotToAnswer`
         #[method_id(@__retain_semantics Other assessmentWithDate:answers:)]
         pub unsafe fn assessmentWithDate_answers(
             date: &NSDate,
             answers: &NSArray<NSNumber>,
         ) -> Retained<Self>;
 
+        /// Creates a new PHQ-9 sample. There must be exactly 9 elements in answers, each answer must be of type `HKPHQ9AssessmentAnswer`.
+        /// Question #9 is considered optional. If the user does not answer #9, use `HKPHQ9AssessmentAnswerPreferNotToAnswer`
         #[method_id(@__retain_semantics Other assessmentWithDate:answers:metadata:)]
         pub unsafe fn assessmentWithDate_answers_metadata(
             date: &NSDate,

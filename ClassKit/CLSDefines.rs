@@ -53,17 +53,23 @@ unsafe impl RefEncode for CLSErrorCode {
 pub type CLSErrorUserInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserrorobjectkey?language=objc)
+    /// Any object that caused a failure will be available in - [NSError userInfo]; under this key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clserrorobjectkey?language=objc)
     pub static CLSErrorObjectKey: Option<&'static CLSErrorUserInfoKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserrorunderlyingerrorskey?language=objc)
+    /// If multiple objects cause errors we return an error with code `CLSErrorCodePartialFailure` which will contain an array of errors in - [NSError userInfo]; under this key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clserrorunderlyingerrorskey?language=objc)
     pub static CLSErrorUnderlyingErrorsKey: Option<&'static CLSErrorUserInfoKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserrorsuccessfulobjectskey?language=objc)
+    /// Errors with the code `CLSErrorCodePartialFailure` may contain an array of successful entities in - [NSError userInfo]; under this key.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clserrorsuccessfulobjectskey?language=objc)
     pub static CLSErrorSuccessfulObjectsKey: Option<&'static CLSErrorUserInfoKey>;
 }
 

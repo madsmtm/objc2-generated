@@ -69,6 +69,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other filterPredicates)]
         pub unsafe fn filterPredicates(&self) -> Option<Retained<NSSet<MPMediaPredicate>>>;
 
+        /// Setter for [`filterPredicates`][Self::filterPredicates].
         #[method(setFilterPredicates:)]
         pub unsafe fn setFilterPredicates(
             &self,
@@ -92,6 +93,7 @@ extern_methods!(
         #[method(groupingType)]
         pub unsafe fn groupingType(&self) -> MPMediaGrouping;
 
+        /// Setter for [`groupingType`][Self::groupingType].
         #[method(setGroupingType:)]
         pub unsafe fn setGroupingType(&self, grouping_type: MPMediaGrouping);
 

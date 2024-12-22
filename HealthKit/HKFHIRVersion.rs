@@ -7,7 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirversion?language=objc)
+    /// Represents a FHIR version.
+    ///
+    /// FHIR uses semantic versions ("1.0.2", "4.0.1") to communicate which FHIR version a server supports or a
+    /// given resource is represented in. A FHIR version is associated with one FHIR release.
+    ///
+    /// See: http://hl7.org/fhir/versions.html#versions
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirversion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKFHIRVersion;
@@ -44,6 +51,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other FHIRRelease)]
         pub unsafe fn FHIRRelease(&self) -> Retained<HKFHIRRelease>;
 
+        /// A string representation in the format "{major}.{minor}.{patch}".
         #[method_id(@__retain_semantics Other stringRepresentation)]
         pub unsafe fn stringRepresentation(&self) -> Retained<NSString>;
 

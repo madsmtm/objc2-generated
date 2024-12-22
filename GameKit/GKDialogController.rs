@@ -42,6 +42,7 @@ extern_methods!(
         pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`parentWindow`][Self::parentWindow].
         #[method(setParentWindow:)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 

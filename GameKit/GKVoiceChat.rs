@@ -35,7 +35,9 @@ unsafe impl RefEncode for GKVoiceChatPlayerState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat?language=objc)
+    /// GKVoiceChat represents an instance of a named voice communications channel
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "No longer supported"]
@@ -50,11 +52,13 @@ extern_methods!(
         #[method(start)]
         pub unsafe fn start(&self);
 
+        /// start receiving audio from the chat
         #[deprecated = "No longer supported"]
         #[method(stop)]
         pub unsafe fn stop(&self);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// stop receiving audio from the chat
         #[method(setPlayer:muted:)]
         pub unsafe fn setPlayer_muted(&self, player: &GKPlayer, is_muted: bool);
 
@@ -65,6 +69,7 @@ extern_methods!(
         ) -> NonNull<block2::Block<dyn Fn(NonNull<GKPlayer>, GKVoiceChatPlayerState)>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
+        /// Setter for [`playerVoiceChatStateDidChangeHandler`][Self::playerVoiceChatStateDidChangeHandler].
         #[method(setPlayerVoiceChatStateDidChangeHandler:)]
         pub unsafe fn setPlayerVoiceChatStateDidChangeHandler(
             &self,
@@ -81,6 +86,7 @@ extern_methods!(
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
+        /// Setter for [`isActive`][Self::isActive].
         #[deprecated = "No longer supported"]
         #[method(setActive:)]
         pub unsafe fn setActive(&self, active: bool);
@@ -89,6 +95,7 @@ extern_methods!(
         #[method(volume)]
         pub unsafe fn volume(&self) -> c_float;
 
+        /// Setter for [`volume`][Self::volume].
         #[deprecated = "No longer supported"]
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
@@ -125,6 +132,7 @@ extern_methods!(
         ) -> NonNull<block2::Block<dyn Fn(NonNull<NSString>, GKVoiceChatPlayerState)>>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`playerStateUpdateHandler`][Self::playerStateUpdateHandler].
         #[deprecated]
         #[method(setPlayerStateUpdateHandler:)]
         pub unsafe fn setPlayerStateUpdateHandler(
@@ -139,10 +147,12 @@ extern_methods!(
 extern_methods!(
     /// Obsoleted
     unsafe impl GKVoiceChat {
+        /// * This property is obsolete. **
         #[deprecated]
         #[method_id(@__retain_semantics Other playerIDs)]
         pub unsafe fn playerIDs(&self) -> Option<Retained<NSArray<NSString>>>;
 
+        /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(setMute:forPlayer:)]
         pub unsafe fn setMute_forPlayer(&self, is_muted: bool, player_id: &NSString);

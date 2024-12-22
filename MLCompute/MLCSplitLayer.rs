@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcsplitlayer?language=objc)
+    /// A split layer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcsplitlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -21,18 +23,33 @@ unsafe impl NSObjectProtocol for MLCSplitLayer {}
 extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCSplitLayer {
+        /// The dimension (or axis) along which to split tensor
         #[deprecated]
         #[method(dimension)]
         pub unsafe fn dimension(&self) -> NSUInteger;
 
+        /// The number of splits.
+        ///
+        /// The tensor will be split into equally sized chunks.  The last chunk may be smaller in size.
         #[deprecated]
         #[method(splitCount)]
         pub unsafe fn splitCount(&self) -> NSUInteger;
 
+        /// Lengths of each split section.
+        ///
+        /// The tensor will be split into chunks along dimensions with sizes given in
+        /// `splitSectionLengths`.
         #[deprecated]
         #[method_id(@__retain_semantics Other splitSectionLengths)]
         pub unsafe fn splitSectionLengths(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// Create a split layer
+        ///
+        /// Parameter `splitCount`: The number of splits.
+        ///
+        /// Parameter `dimension`: The dimension along which the tensor should be split.
+        ///
+        /// Returns: A new split layer
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithSplitCount:dimension:)]
         pub unsafe fn layerWithSplitCount_dimension(
@@ -40,6 +57,13 @@ extern_methods!(
             dimension: NSUInteger,
         ) -> Retained<Self>;
 
+        /// Create a split layer
+        ///
+        /// Parameter `splitSectionLengths`: Lengths of each split section.
+        ///
+        /// Parameter `dimension`: The dimension along which the tensor should be split.
+        ///
+        /// Returns: A new split layer
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithSplitSectionLengths:dimension:)]
         pub unsafe fn layerWithSplitSectionLengths_dimension(

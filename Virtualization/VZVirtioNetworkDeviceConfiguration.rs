@@ -7,7 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtionetworkdeviceconfiguration?language=objc)
+    /// Configuration of a paravirtualized network device of type Virtio Network Device.
+    ///
+    /// The communication channel used on the host is defined through the attachment. It is set with the VZNetworkDeviceConfiguration.attachment property.
+    ///
+    /// The configuration is only valid with valid MACAddress and attachment.
+    ///
+    ///
+    /// See: VZVirtualMachineConfiguration.networkDevices
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtionetworkdeviceconfiguration?language=objc)
     #[unsafe(super(VZNetworkDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZNetworkDeviceConfiguration")]

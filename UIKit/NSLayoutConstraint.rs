@@ -190,12 +190,14 @@ extern_methods!(
         #[method(priority)]
         pub unsafe fn priority(&self) -> UILayoutPriority;
 
+        /// Setter for [`priority`][Self::priority].
         #[method(setPriority:)]
         pub unsafe fn setPriority(&self, priority: UILayoutPriority);
 
         #[method(shouldBeArchived)]
         pub unsafe fn shouldBeArchived(&self) -> bool;
 
+        /// Setter for [`shouldBeArchived`][Self::shouldBeArchived].
         #[method(setShouldBeArchived:)]
         pub unsafe fn setShouldBeArchived(&self, should_be_archived: bool);
 
@@ -231,12 +233,14 @@ extern_methods!(
         pub unsafe fn constant(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`constant`][Self::constant].
         #[method(setConstant:)]
         pub unsafe fn setConstant(&self, constant: CGFloat);
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
+        /// Setter for [`isActive`][Self::isActive].
         #[method(setActive:)]
         pub unsafe fn setActive(&self, active: bool);
 
@@ -271,6 +275,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
     }

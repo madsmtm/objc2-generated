@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceoutputstreamconfiguration?language=objc)
+    /// Virtio Sound Device Output Stream Configuration.
+    ///
+    /// A PCM stream of output audio data, such as to a speaker.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceoutputstreamconfiguration?language=objc)
     #[unsafe(super(VZVirtioSoundDeviceStreamConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
@@ -29,14 +33,21 @@ unsafe impl NSObjectProtocol for VZVirtioSoundDeviceOutputStreamConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
     unsafe impl VZVirtioSoundDeviceOutputStreamConfiguration {
+        /// Initialize the output stream configuration.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZAudioOutputStreamSink")]
+        /// Audio Stream Sink. Defines how the audio data produced by the guest is handled on the host. The default is nil.
+        ///
+        /// Not specifying a Sink will have a default handler that swallows the audio.
+        ///
+        /// See: VZAudioOutputStreamSink
         #[method_id(@__retain_semantics Other sink)]
         pub unsafe fn sink(&self) -> Option<Retained<VZAudioOutputStreamSink>>;
 
         #[cfg(feature = "VZAudioOutputStreamSink")]
+        /// Setter for [`sink`][Self::sink].
         #[method(setSink:)]
         pub unsafe fn setSink(&self, sink: Option<&VZAudioOutputStreamSink>);
     }

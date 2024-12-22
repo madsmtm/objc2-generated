@@ -30,7 +30,9 @@ pub const kCMBlockBufferUnallocatedBlockErr: OSStatus = -12707;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferinsufficientspaceerr?language=objc)
 pub const kCMBlockBufferInsufficientSpaceErr: OSStatus = -12708;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferflags?language=objc)
+/// Type used for parameters containing CMBlockBuffer feature and control flags
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferflags?language=objc)
 pub type CMBlockBufferFlags = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferassurememorynowflag?language=objc)
@@ -42,10 +44,26 @@ pub const kCMBlockBufferDontOptimizeDepthFlag: CMBlockBufferFlags = 1 << 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferpermitemptyreferenceflag?language=objc)
 pub const kCMBlockBufferPermitEmptyReferenceFlag: CMBlockBufferFlags = 1 << 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferref?language=objc)
+/// A reference to a CMBlockBuffer, a CF object that adheres to retain/release semantics. When CFRelease() is performed
+/// on the last reference to the CMBlockBuffer, any referenced BlockBuffers are released and eligible memory blocks are
+/// deallocated. These operations are recursive, so one release could result in many follow on releses.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferref?language=objc)
 pub type CMBlockBufferRef = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercustomblocksource?language=objc)
+/// Used with functions that accept a memory block allocator, this structure allows a client to provide a custom facility for
+/// obtaining the memory block to be used in a CMBlockBuffer. The AllocateBlock function must be non-zero if the CMBlockBuffer code will
+/// need to call for allocation (not required if a previously-obtained memory block is provided to the CMBlockBuffer API). The
+/// FreeBlock() routine, if non-NULL, will be called once when the CMBlockBuffer is disposed. It will not be called if no memory block
+/// is ever allocated or supplied. The refCon will be passed to both the AllocateBlock and FreeBlock() calls. The client is responsible for
+/// its disposal (if any) during the FreeBlock() callback.
+///
+/// Note that for 64-bit architectures, this struct contains misaligned function pointers.
+/// To avoid link-time issues, it is recommended that clients fill CMBlockBufferCustomBlockSource's function pointer fields
+/// by using assignment statements, rather than declaring them as global or static structs.
+/// The functions that accept CMBlockBufferCustomBlockSource pointers copy the fields and do not require the struct to stay valid after they return.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercustomblocksource?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMBlockBufferCustomBlockSource {
@@ -77,6 +95,28 @@ unsafe impl RefEncode for CMBlockBufferCustomBlockSource {
 pub const kCMBlockBufferCustomBlockSourceVersion: u32 = 0;
 
 extern "C-unwind" {
+    /// Creates an empty CMBlockBuffer
+    ///
+    /// Creates an empty CMBlockBuffer, i.e. one which has no memory block nor reference to a CMBlockBuffer
+    /// supplying bytes to it. It is ready to be populated using CMBlockBufferAppendMemoryBlock()
+    /// and/or CMBlockBufferAppendBufferReference(). CMBlockBufferGetDataLength() will return zero for
+    /// an empty CMBlockBuffer and CMBlockBufferGetDataPointer() and CMBlockBufferAssureBufferMemory() will fail.
+    /// The memory for the CMBlockBuffer object will be allocated using the given allocator.
+    /// If NULL is passed for the allocator, the default allocator is used.
+    ///
+    ///
+    /// Parameter `structureAllocator`: Allocator to use for allocating the CMBlockBuffer object. NULL will cause the
+    /// default allocator to be used.
+    ///
+    /// Parameter `subBlockCapacity`: Number of subBlocks the newBlockBuffer shall accommodate before expansion occurs.
+    /// A value of zero means "do the reasonable default"
+    ///
+    /// Parameter `flags`: Feature and control flags
+    ///
+    /// Parameter `blockBufferOut`: Receives newly-created empty CMBlockBuffer object with retain count of 1. Must not be  NULL.
+    ///
+    ///
+    /// Returns: Returns kCMBlockBufferNoErr if successful.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBlockBufferCreateEmpty(
         structure_allocator: CFAllocatorRef,
@@ -87,6 +127,46 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new CMBlockBuffer backed by a memory block (or promise thereof).
+    ///
+    /// Creates a new CMBlockBuffer backed by a memory block. The memory block may be statically allocated, dynamically allocated
+    /// using the given allocator (or customBlockSource) or not yet allocated. The returned CMBlockBuffer may be further expanded using
+    /// CMBlockBufferAppendMemoryBlock() and/or CMBlockBufferAppendBufferReference().
+    ///
+    /// If the kCMBlockBufferAssureMemoryNowFlag is set in the flags parameter, the memory block is allocated immediately using the blockAllocator or
+    /// customBlockSource.
+    ///
+    ///
+    /// Parameter `structureAllocator`: Allocator to use for allocating the CMBlockBuffer object. NULL will cause the
+    /// default allocator to be used.
+    ///
+    /// Parameter `memoryBlock`: Block of memory to hold buffered data. If NULL, a memory block will be allocated when needed (via a call
+    /// to CMBlockBufferAssureBlockMemory()) using the provided blockAllocator or customBlockSource. If non-NULL,
+    /// the block will be used and will be deallocated when the new CMBlockBuffer is finalized (i.e. released for
+    /// the last time).
+    ///
+    /// Parameter `blockLength`: Overall length of the memory block in bytes. Must not be zero. This is the size of the
+    /// supplied memory block or the size to allocate if memoryBlock is NULL.
+    ///
+    /// Parameter `blockAllocator`: Allocator to be used for allocating the memoryBlock, if memoryBlock is NULL. If memoryBlock is non-NULL,
+    /// this allocator will be used to deallocate it if provided. Passing NULL will cause the default allocator
+    /// (as set at the time of the call) to be used. Pass kCFAllocatorNull if no deallocation is desired.
+    ///
+    /// Parameter `customBlockSource`: If non-NULL, it will be used for the allocation and freeing of the memory block (the blockAllocator
+    /// parameter is ignored). If provided, and the memoryBlock parameter is NULL, its Allocate() routine must
+    /// be non-NULL. Allocate will be called once, if successful, when the memoryBlock is allocated. Free() will
+    /// be called once when the CMBlockBuffer is disposed.
+    ///
+    /// Parameter `offsetToData`: Offset within the memoryBlock at which the CMBlockBuffer should refer to data.
+    ///
+    /// Parameter `dataLength`: Number of relevant data bytes, starting at offsetToData, within the memory block.
+    ///
+    /// Parameter `flags`: Feature and control flags
+    ///
+    /// Parameter `blockBufferOut`: Receives newly-created CMBlockBuffer object with a retain count of 1. Must not be  NULL.
+    ///
+    ///
+    /// Returns: Returns kCMBlockBufferNoErr if successful.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBlockBufferCreateWithMemoryBlock(
         structure_allocator: CFAllocatorRef,
@@ -102,6 +182,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new CMBlockBuffer that refers to another CMBlockBuffer.
+    ///
+    /// Creates a new CMBlockBuffer that refers to (a possibly subset portion of) another CMBlockBuffer.
+    /// The returned CMBlockBuffer may be further expanded using CMBlockBufferAppendMemoryBlock() and/or CMBlockBufferAppendBufferReference().
+    ///
+    ///
+    /// Parameter `structureAllocator`: Allocator to use for allocating the CMBlockBuffer object. NULL will cause the
+    /// default allocator to be used.
+    ///
+    /// Parameter `bufferReference`: CMBlockBuffer to refer to. This parameter must not be NULL. Unless the kCMBlockBufferPermitEmptyReferenceFlag
+    /// is passed, it must not be empty and it must have a data length at least large enough to supply the data subset
+    /// specified (i.e. offsetToData+dataLength bytes).
+    ///
+    /// Parameter `offsetToData`: Offset within the reference CMBlockBuffer at which the new CMBlockBuffer should refer to data.
+    ///
+    /// Parameter `dataLength`: Number of relevant data bytes, starting at offsetToData, within the target CMBlockBuffer.
+    ///
+    /// Parameter `flags`: Feature and control flags
+    ///
+    /// Parameter `blockBufferOut`: Receives newly-created CMBlockBuffer object with a retain count of 1. Must not be  NULL.
+    ///
+    ///
+    /// Returns: Returns kCMBlockBufferNoErr if successful.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBlockBufferCreateWithBufferReference(
         structure_allocator: CFAllocatorRef,
@@ -114,6 +217,39 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Produces a CMBlockBuffer containing a contiguous copy of or reference to the data specified by the parameters.
+    ///
+    /// Produces a CMBlockBuffer containing a contiguous copy of or reference to the data specified by the parameters.
+    /// The resulting new CMBlockBuffer may contain an allocated copy of the data, or may contain a contiguous CMBlockBuffer reference.
+    ///
+    /// If the kCMBlockBufferAlwaysCopyDataFlag is set in the flags parameter, the resulting CMBlockBuffer will contain an allocated
+    /// copy of the data rather than a reference to sourceBuffer.
+    ///
+    ///
+    /// Parameter `structureAllocator`: Allocator to use for allocating the CMBlockBuffer object. NULL will cause the
+    /// default allocator to be used.
+    ///
+    /// Parameter `sourceBuffer`: CMBlockBuffer from which data will be copied or referenced. Must not be NULL nor empty,
+    ///
+    /// Parameter `blockAllocator`: Allocator to be used for allocating the memoryBlock if a contiguous copy of the data is to be made. Passing NULL will cause the default
+    /// allocator (as set at the time of the call) to be used.
+    ///
+    /// Parameter `customBlockSource`: If non-NULL, it will be used for the allocation and freeing of the memory block (the blockAllocator
+    /// parameter is ignored). If provided, and the memoryBlock parameter is NULL, its Allocate() routine must
+    /// be non-NULL. Allocate will be called once, if successful, when the memoryBlock is allocated. Free() will
+    /// be called once when the CMBlockBuffer is disposed.
+    ///
+    /// Parameter `offsetToData`: Offset within the source CMBlockBuffer at which the new CMBlockBuffer should obtain data.
+    ///
+    /// Parameter `dataLength`: Number of relevant data bytes, starting at offsetToData, within the source CMBlockBuffer. If zero, the
+    /// target buffer's total available dataLength (starting at offsetToData) will be referenced.
+    ///
+    /// Parameter `flags`: Feature and control flags
+    ///
+    /// Parameter `blockBufferOut`: Receives newly-created CMBlockBuffer object with a retain count of 1. Must not be  NULL.
+    ///
+    ///
+    /// Returns: Returns kCMBlockBufferNoErr if successful
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBlockBufferCreateContiguous(
         structure_allocator: CFAllocatorRef,
@@ -128,11 +264,56 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the CoreFoundation type ID for the CMBlockBuffer type.
+    ///
+    /// Obtains the CoreFoundation type ID for the CMBlockBuffer type.
+    ///
+    ///
+    /// Returns: Returns the CFTypeID corresponding to CMBlockBuffer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBlockBufferGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
+    /// Adds a memoryBlock to an existing CMBlockBuffer.
+    ///
+    /// Adds a memoryBlock to an existing CMBlockBuffer. The memory block may be statically allocated,
+    /// dynamically allocated using the given allocator or not yet allocated. The CMBlockBuffer's total
+    /// data length will be increased by the specified dataLength.
+    ///
+    /// If the kCMBlockBufferAssureMemoryNowFlag is set in the flags parameter, the memory block is
+    /// allocated immediately using the blockAllocator or customBlockSource. Note that append operations
+    /// are not thread safe, so care must be taken when appending to BlockBuffers that are used by multiple threads.
+    ///
+    ///
+    /// Parameter `theBuffer`: CMBlockBuffer to which the new memoryBlock will be added. Must not be NULL
+    ///
+    /// Parameter `memoryBlock`: Block of memory to hold buffered data. If NULL, a memory block will be allocated when needed
+    /// (via a call to CMBlockBufferAssureBlockMemory()) using the provided blockAllocator or customBlockSource.
+    /// If non-NULL, the block will be used and will be deallocated when the CMBlockBuffer is finalized (i.e. released
+    /// for the last time).
+    ///
+    /// Parameter `blockLength`: Overall length of the memory block in bytes. Must not be zero. This is the size of the supplied
+    /// memory block or the size to allocate if memoryBlock is NULL.
+    ///
+    /// Parameter `blockAllocator`: Allocator to be used for allocating the memoryBlock, if memoryBlock is NULL. If memoryBlock is
+    /// non-NULL, this allocator will be used to deallocate it if provided. Passing NULL will cause
+    /// the default allocator (as set at the time of the call) to be used. Pass kCFAllocatorNull if no
+    /// deallocation is desired.
+    ///
+    /// Parameter `customBlockSource`: If non-NULL, it will be used for the allocation and freeing of the memory block (the blockAllocator
+    /// parameter is ignored). If provided, and the memoryBlock parameter is NULL, its Allocate() routine must
+    /// be non-NULL. Allocate will be called once, if successful, when the memoryBlock is allocated. Free() will
+    /// be called once when the CMBlockBuffer is disposed.
+    ///
+    /// Parameter `offsetToData`: Offset within the memoryBlock at which the CMBlockBuffer should refer to data.
+    ///
+    /// Parameter `dataLength`: Number of relevant data bytes, starting at offsetToData, within the memory block.
+    ///
+    /// Parameter `flags`: Feature and control flags
+    ///
+    ///
+    /// Returns: Returns kCMBlockBufferNoErr if successful.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBlockBufferAppendMemoryBlock(
         the_buffer: CMBlockBufferRef,
@@ -147,6 +328,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds a CMBlockBuffer reference to an existing CMBlockBuffer.
+    ///
+    /// Adds a buffer reference to (a possibly subset portion of) another CMBlockBuffer to an existing CMBlockBuffer.
+    /// The CMBlockBuffer's total data length will be increased by the specified dataLength. Note that append operations
+    /// are not thread safe, so care must be taken when appending to BlockBuffers that are used by multiple threads.
+    ///
+    ///
+    /// Parameter `theBuffer`: CMBlockBuffer to which the new CMBlockBuffer reference will be added. Must not be NULL
+    ///
+    /// Parameter `targetBBuf`: CMBlockBuffer to refer to. This parameter must not be NULL. Unless the kCMBlockBufferPermitEmptyReferenceFlag
+    /// is passed, it must not be empty and it must have a data length at least large enough to supply the data subset
+    /// specified (i.e. offsetToData+dataLength bytes).
+    ///
+    /// Parameter `offsetToData`: Offset within the target CMBlockBuffer at which the CMBlockBuffer should refer to data.
+    ///
+    /// Parameter `dataLength`: Number of relevant data bytes, starting at offsetToData, within the target CMBlockBuffer. If zero, the target
+    /// buffer's total available dataLength (starting at offsetToData) will be referenced.
+    ///
+    /// Parameter `flags`: Feature and control flags
+    ///
+    ///
+    /// Returns: Returns kCMBlockBufferNoErr if successful.
     pub fn CMBlockBufferAppendBufferReference(
         the_buffer: CMBlockBufferRef,
         target_b_buf: CMBlockBufferRef,
@@ -157,10 +360,41 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Assures all memory blocks in a CMBlockBuffer are allocated.
+    ///
+    /// Traverses the possibly complex CMBlockBuffer, allocating the memory for any constituent
+    /// memory blocks that are not yet allocated.
+    ///
+    ///
+    /// Parameter `theBuffer`: CMBlockBuffer to operate on. Must not be NULL
+    ///
+    ///
+    /// Returns: Returns kCMBlockBufferNoErr if successful.
     pub fn CMBlockBufferAssureBlockMemory(the_buffer: CMBlockBufferRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Accesses potentially noncontiguous data in a CMBlockBuffer.
+    ///
+    /// Used for accessing potentially noncontiguous data, this routine will return a pointer directly
+    /// into the given CMBlockBuffer if possible, otherwise the data will be assembled and copied into the
+    /// given temporary block and its pointer will be returned.
+    ///
+    ///
+    /// Parameter `theBuffer`: CMBlockBuffer to operate on. Must not be NULL
+    ///
+    /// Parameter `offset`: Offset within the CMBlockBuffer's offset range.
+    ///
+    /// Parameter `length`: Desired number of bytes to access at offset
+    ///
+    /// Parameter `temporaryBlock`: A piece of memory, assumed to be at least length bytes in size. Must not be NULL
+    ///
+    /// Parameter `returnedPointerOut`: Receives NULL if the desired amount of data could not be accessed at the given offset.
+    /// Receives non-NULL if it could. The value returned will either be a direct pointer into
+    /// the CMBlockBuffer or temporaryBlock Must not be NULL.
+    ///
+    ///
+    /// Returns: Returns kCMBlockBufferNoErr if the desired amount of data could be accessed at the given offset.
     pub fn CMBlockBufferAccessDataBytes(
         the_buffer: CMBlockBufferRef,
         offset: usize,
@@ -171,6 +405,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies bytes from a CMBlockBuffer into a provided memory area.
+    ///
+    /// This function is used to copy bytes out of a CMBlockBuffer into a provided piece of memory.
+    /// It deals with the possibility of the desired range of data being noncontiguous. The function
+    /// assumes that the memory at the destination is sufficient to hold the data. If length bytes
+    /// of data are not available in the CMBlockBuffer, an error is returned and the contents of the
+    /// destination are undefined.
+    ///
+    ///
+    /// Parameter `theSourceBuffer`: The buffer from which data will be  copied into the destination
+    ///
+    /// Parameter `offsetToData`: Offset within the source CMBlockBuffer at which the copy should begin.
+    ///
+    /// Parameter `dataLength`: Number of bytes to copy, starting at offsetToData, within the source CMBlockBuffer. Must not be zero.
+    ///
+    /// Parameter `destination`: Memory into which the data should be copied.
+    ///
+    ///
+    /// Returns: Returns kCMBlockBufferNoErr if the copy succeeded, returns an error otherwise.
     pub fn CMBlockBufferCopyDataBytes(
         the_source_buffer: CMBlockBufferRef,
         offset_to_data: usize,
@@ -180,6 +433,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies bytes from a given memory block into a CMBlockBuffer, replacing bytes in the underlying data blocks
+    ///
+    /// This function is used to replace bytes in a CMBlockBuffer's memory blocks with those from a provided piece of memory.
+    /// It deals with the possibility of the destination range of data being noncontiguous. CMBlockBufferAssureBlockMemory() is
+    /// called on the given CMBlockBuffer. If desired range is subsequently not accessible in the CMBlockBuffer, an error is returned
+    /// and the contents of the CMBlockBuffer are untouched.
+    ///
+    ///
+    /// Parameter `sourceBytes`: Memory block from which bytes are copied into the CMBlockBuffer
+    ///
+    /// Parameter `destinationBuffer`: CMBlockBuffer whose range of bytes will be replaced by the sourceBytes.
+    ///
+    /// Parameter `offsetIntoDestination`: Offset within the destination CMBlockBuffer at which replacement should begin.
+    ///
+    /// Parameter `dataLength`: Number of bytes to be replaced, starting at offsetIntoDestination, in the destinationBuffer.
+    ///
+    ///
+    /// Returns: Returns kCMBlockBufferNoErr if the replacement succeeded, returns an error otherwise.
     pub fn CMBlockBufferReplaceDataBytes(
         source_bytes: NonNull<c_void>,
         destination_buffer: CMBlockBufferRef,
@@ -189,6 +460,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Fills a CMBlockBuffer with a given byte value, replacing bytes in the underlying data blocks
+    ///
+    /// This function is used to fill bytes in a CMBlockBuffer's memory blocks with a given byte value.
+    /// It deals with the possibility of the destination range of data being noncontiguous. CMBlockBufferAssureBlockMemory() is
+    /// called on the given CMBlockBuffer. If desired range is subsequently not accessible in the CMBlockBuffer, an error is returned
+    /// and the contents of the CMBlockBuffer are untouched.
+    ///
+    ///
+    /// Parameter `fillByte`: The value with which to fill the specified data range
+    ///
+    /// Parameter `destinationBuffer`: CMBlockBuffer whose range of bytes will be filled.
+    ///
+    /// Parameter `offsetIntoDestination`: Offset within the destination CMBlockBuffer at which filling should begin.
+    ///
+    /// Parameter `dataLength`: Number of bytes to be filled, starting at offsetIntoDestination, in the destinationBuffer. If zero, the
+    /// destinationBuffer's total available dataLength (starting at offsetToData) will be filled.
+    ///
+    ///
+    /// Returns: Returns kCMBlockBufferNoErr if the fill succeeded, returns an error otherwise.
     pub fn CMBlockBufferFillDataBytes(
         fill_byte: c_char,
         destination_buffer: CMBlockBufferRef,
@@ -198,6 +488,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gains access to the data represented by a CMBlockBuffer.
+    ///
+    /// Gains access to the data represented by a CMBlockBuffer. A pointer into a memory block is returned
+    /// which corresponds to the offset within the CMBlockBuffer. The number of bytes addressable at the
+    /// pointer can also be returned. This length-at-offset may be smaller than the number of bytes actually
+    /// available starting at the offset if the dataLength of the CMBlockBuffer is covered by multiple memory
+    /// blocks (a noncontiguous CMBlockBuffer). The data pointer returned will remain valid as long as the
+    /// original CMBlockBuffer is referenced - once the CMBlockBuffer is released for the last time, any pointers
+    /// into it will be invalid.
+    ///
+    ///
+    /// Parameter `theBuffer`: CMBlockBuffer to operate on. Must not be NULL
+    ///
+    /// Parameter `offset`: Offset within the buffer's offset range.
+    ///
+    /// Parameter `lengthAtOffsetOut`: On return, contains the amount of data available at the specified offset. May be NULL.
+    ///
+    /// Parameter `totalLengthOut`: On return, contains the block buffer's total data length (from offset 0). May be NULL.
+    /// The caller can compare (offset+lengthAtOffset) with totalLength to determine whether
+    /// the entire CMBlockBuffer has been referenced and whether it is possible to access the CMBlockBuffer's
+    /// data with a contiguous reference.
+    ///
+    /// Parameter `dataPointerOut`: On return, contains a pointer to the data byte at the specified offset; lengthAtOffset bytes are
+    /// available at this address. May be NULL.
+    ///
+    ///
+    /// Returns: Returns kCMBlockBufferNoErr if data was accessible at the specified offset within the given CMBlockBuffer, false otherwise.
     pub fn CMBlockBufferGetDataPointer(
         the_buffer: CMBlockBufferRef,
         offset: usize,
@@ -208,10 +525,38 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the total data length reachable via a CMBlockBuffer.
+    ///
+    /// Obtains the total data length reachable via a CMBlockBuffer. This total is the sum of the dataLengths
+    /// of the CMBlockBuffer's memoryBlocks and buffer references. Note that the dataLengths are
+    /// the _portions_ of those constituents that this CMBlockBuffer subscribes to. This CMBlockBuffer presents a
+    /// contiguous range of offsets from zero to its totalDataLength as returned by this routine.
+    ///
+    ///
+    /// Parameter `theBuffer`: CMBlockBuffer to examine.
+    ///
+    ///
+    /// Returns: Returns the total data length available via this CMBlockBuffer, or zero if it is empty, NULL, or somehow invalid.
     pub fn CMBlockBufferGetDataLength(the_buffer: CMBlockBufferRef) -> usize;
 }
 
 extern "C-unwind" {
+    /// Determines whether the specified range within the given CMBlockBuffer is contiguous.
+    ///
+    /// Determines whether the specified range within the given CMBlockBuffer is contiguous. if CMBlockBufferGetDataPointer()
+    /// were to be called with the same parameters, the returned pointer would address the desired number of bytes.
+    ///
+    ///
+    /// Parameter `theBuffer`: CMBlockBuffer to examine. Must not be NULL
+    ///
+    /// Parameter `offset`: Offset within the buffer's offset range.
+    ///
+    /// Parameter `length`: Desired number of bytes to access at offset. If zero, the number of bytes available at offset
+    /// (dataLength – offset), contiguous or not, is used.
+    ///
+    ///
+    /// Returns: Returns true if the specified range is contiguous within the CMBlockBuffer, false otherwise. Also returns false if the
+    /// CMBlockBuffer is NULL or empty.
     pub fn CMBlockBufferIsRangeContiguous(
         the_buffer: CMBlockBufferRef,
         offset: usize,
@@ -220,5 +565,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Indicates whether the given CMBlockBuffer is empty.
+    ///
+    /// Indicates whether the given CMBlockBuffer is empty, i.e., devoid of any memoryBlocks or CMBlockBuffer references.
+    /// Note that a CMBlockBuffer containing a not-yet allocated memoryBlock is not considered empty.
+    ///
+    ///
+    /// Parameter `theBuffer`: CMBlockBuffer to examine. Must not be NULL
+    ///
+    ///
+    /// Returns: Returns the result of the emptiness test. Will return false if the CMBlockBuffer is NULL.
     pub fn CMBlockBufferIsEmpty(the_buffer: CMBlockBufferRef) -> Boolean;
 }

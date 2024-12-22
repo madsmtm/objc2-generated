@@ -6,7 +6,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzxhcicontroller?language=objc)
+    /// Class representing a USB XHCI controller in a virtual machine.
+    ///
+    /// VZXHCIController should not be instantiated directly.
+    /// In order to create a runtime VZXHCIController object, the usbControllers property of
+    /// VZVirtualMachineConfiguration object needs to be populated with VZXHCIControllerConfiguration object.
+    ///
+    /// See: VZUSBController
+    ///
+    /// See: VZXHCIControllerConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzxhcicontroller?language=objc)
     #[unsafe(super(VZUSBController, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZUSBController")]

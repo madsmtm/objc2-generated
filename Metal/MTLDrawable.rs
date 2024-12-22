@@ -8,13 +8,19 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawablepresentedhandler?language=objc)
+/// The presented callback function protocol
+///
+/// Be careful when you use delta between this presentedTime and previous frame's presentedTime to animate next frame. If the frame was presented using presentAfterMinimumDuration or presentAtTime, the presentedTime might includes delays to meet your specified present time. If you want to measure how much frame you can achieve, use GPUStartTime in the first command buffer of your frame rendering and GPUEndTime of your last frame rendering to calculate the frame interval.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawablepresentedhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLDrawablePresentedHandler =
     *mut block2::Block<dyn Fn(NonNull<ProtocolObject<dyn MTLDrawable>>)>;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawable?language=objc)
+    /// All "drawable" objects (such as those coming from CAMetalLayer) are expected to conform to this protocol
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawable?language=objc)
     pub unsafe trait MTLDrawable: NSObjectProtocol {
         #[method(present)]
         fn present(&self);
@@ -24,17 +30,27 @@ extern_protocol!(
         unsafe fn presentAtTime(&self, presentation_time: CFTimeInterval);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Present this drawable while setting a minimum duration in seconds before allowing this drawable to appear on the display.
+        ///
+        /// Parameter `duration`: Duration in seconds before this drawable is allowed to appear on the display
         #[method(presentAfterMinimumDuration:)]
         unsafe fn presentAfterMinimumDuration(&self, duration: CFTimeInterval);
 
         #[cfg(feature = "block2")]
+        /// Add a block to be called when this drawable is presented on screen.
         #[method(addPresentedHandler:)]
         unsafe fn addPresentedHandler(&self, block: MTLDrawablePresentedHandler);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The host time that this drawable was presented on screen.
+        ///
+        /// Returns 0 if a frame has not been presented or has been skipped.
         #[method(presentedTime)]
         unsafe fn presentedTime(&self) -> CFTimeInterval;
 
+        /// The monotonically incremented ID for all MTLDrawable objects created from the same CAMetalLayer object.
+        ///
+        /// The value starts from 0.
         #[method(drawableID)]
         fn drawableID(&self) -> NSUInteger;
     }

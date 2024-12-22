@@ -64,12 +64,14 @@ extern_methods!(
         #[method(collationType)]
         pub unsafe fn collationType(&self) -> NSFetchIndexElementType;
 
+        /// Setter for [`collationType`][Self::collationType].
         #[method(setCollationType:)]
         pub unsafe fn setCollationType(&self, collation_type: NSFetchIndexElementType);
 
         #[method(isAscending)]
         pub unsafe fn isAscending(&self) -> bool;
 
+        /// Setter for [`isAscending`][Self::isAscending].
         #[method(setAscending:)]
         pub unsafe fn setAscending(&self, ascending: bool);
 

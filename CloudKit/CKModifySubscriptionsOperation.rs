@@ -37,6 +37,7 @@ extern_methods!(
         pub unsafe fn subscriptionsToSave(&self) -> Option<Retained<NSArray<CKSubscription>>>;
 
         #[cfg(feature = "CKSubscription")]
+        /// Setter for [`subscriptionsToSave`][Self::subscriptionsToSave].
         #[method(setSubscriptionsToSave:)]
         pub unsafe fn setSubscriptionsToSave(
             &self,
@@ -49,6 +50,7 @@ extern_methods!(
             -> Option<Retained<NSArray<CKSubscriptionID>>>;
 
         #[cfg(feature = "CKSubscription")]
+        /// Setter for [`subscriptionIDsToDelete`][Self::subscriptionIDsToDelete].
         #[method(setSubscriptionIDsToDelete:)]
         pub unsafe fn setSubscriptionIDsToDelete(
             &self,
@@ -56,12 +58,20 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
+        /// Called on success or failure of a subscription save
+        ///
+        ///
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perSubscriptionSaveBlock)]
         pub unsafe fn perSubscriptionSaveBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError)>;
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
+        /// Setter for [`perSubscriptionSaveBlock`][Self::perSubscriptionSaveBlock].
         #[method(setPerSubscriptionSaveBlock:)]
         pub unsafe fn setPerSubscriptionSaveBlock(
             &self,
@@ -73,12 +83,20 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
+        /// Called on success or failure of a subscription deletion
+        ///
+        ///
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perSubscriptionDeleteBlock)]
         pub unsafe fn perSubscriptionDeleteBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKSubscriptionID>, *mut NSError)>;
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
+        /// Setter for [`perSubscriptionDeleteBlock`][Self::perSubscriptionDeleteBlock].
         #[method(setPerSubscriptionDeleteBlock:)]
         pub unsafe fn setPerSubscriptionDeleteBlock(
             &self,
@@ -88,6 +106,26 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
+        /// This block is called when the operation completes.
+        ///
+        ///
+        /// The
+        ///
+        /// ```text
+        ///  -[NSOperation completionBlock]
+        /// ```
+        ///
+        /// will also be called if both are set.
+        /// If the error is
+        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of subscriptionIDs to errors keyed off of
+        /// `CKPartialErrorsByItemIDKey.``savedSubscriptions,``deletedSubscriptionIDs`and any
+        /// `CKPartialErrorsByItemIDKey`errors are repeats of the data sent back in previous
+        /// `perSubscriptionSaveBlock`and
+        /// `perSubscriptionDeleteBlock`invocations
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(modifySubscriptionsCompletionBlock)]
         pub unsafe fn modifySubscriptionsCompletionBlock(
             &self,
@@ -96,6 +134,7 @@ extern_methods!(
         >;
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
+        /// Setter for [`modifySubscriptionsCompletionBlock`][Self::modifySubscriptionsCompletionBlock].
         #[method(setModifySubscriptionsCompletionBlock:)]
         pub unsafe fn setModifySubscriptionsCompletionBlock(
             &self,

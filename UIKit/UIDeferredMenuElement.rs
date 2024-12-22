@@ -37,6 +37,14 @@ extern_methods!(
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UIDeferredMenuElement {
         #[cfg(feature = "block2")]
+        /// Returns a placeholder menu element that is replaced with the result of the block's
+        /// completion handler. A loading UI takes the place of the element in the menu
+        /// until it is fulfilled. While the element may be stored and re-used across menus, its block is
+        /// called only once, when the element is first encountered in a menu.
+        ///
+        ///
+        /// Parameter `elementProvider`: Called by the system to request the deferred menu items when the containing menu is presented.
+        /// Call this block's completion handler when the menu items are available.
         #[method_id(@__retain_semantics Other elementWithProvider:)]
         pub unsafe fn elementWithProvider(
             element_provider: &block2::Block<
@@ -46,6 +54,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Returns a placeholder menu element that is replaced with the result of the block's
+        /// completion handler. A loading UI takes the place of the element in the menu
+        /// until it is fulfilled. Elements created using this initializer are "uncached",
+        /// so their
+        /// `elementProvider`block is called every time the element is displayed.
+        ///
+        ///
+        /// Parameter `elementProvider`: Called by the system to request the deferred menu items when the containing menu is presented.
+        /// Call this block's completion handler when the menu items are available.
         #[method_id(@__retain_semantics Other elementWithUncachedProvider:)]
         pub unsafe fn elementWithUncachedProvider(
             element_provider: &block2::Block<

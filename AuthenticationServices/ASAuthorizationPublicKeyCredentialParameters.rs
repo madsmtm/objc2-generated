@@ -35,6 +35,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "ASCOSEConstants")]
+        /// A COSE algorithm indentifier.
         #[method(algorithm)]
         pub unsafe fn algorithm(&self) -> ASCOSEAlgorithmIdentifier;
 

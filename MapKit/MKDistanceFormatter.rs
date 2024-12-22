@@ -86,18 +86,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
+        /// Setter for [`locale`][Self::locale].
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[method(units)]
         pub unsafe fn units(&self) -> MKDistanceFormatterUnits;
 
+        /// Setter for [`units`][Self::units].
         #[method(setUnits:)]
         pub unsafe fn setUnits(&self, units: MKDistanceFormatterUnits);
 
         #[method(unitStyle)]
         pub unsafe fn unitStyle(&self) -> MKDistanceFormatterUnitStyle;
 
+        /// Setter for [`unitStyle`][Self::unitStyle].
         #[method(setUnitStyle:)]
         pub unsafe fn setUnitStyle(&self, unit_style: MKDistanceFormatterUnitStyle);
     }

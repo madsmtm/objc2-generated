@@ -50,6 +50,7 @@ extern_methods!(
         pub unsafe fn affectedStores(&self) -> Option<Retained<NSArray<NSPersistentStore>>>;
 
         #[cfg(feature = "NSPersistentStore")]
+        /// Setter for [`affectedStores`][Self::affectedStores].
         #[method(setAffectedStores:)]
         pub unsafe fn setAffectedStores(
             &self,

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdocumentsample?language=objc)
+    /// An abstract class representing a health document.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdocumentsample?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]

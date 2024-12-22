@@ -6,11 +6,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerrordomain?language=objc)
+    /// Error domain for NSError values stemming from the MetricKit Framework API.
+    ///
+    /// This error domain is used as the domain for all NSError instances stemming from the MetricKit Framework.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerrordomain?language=objc)
     pub static MXErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerrorcode?language=objc)
+/// Error codes for NSError values stemming from the MetricKit Framework.
+///
+/// These error codes are used as the codes for all NSError instances stemmming from the MetricKit Framework.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxforegroundexitdata?language=objc)
+    /// A class that encapsulates cumulative application exit metrics when the application is on screen.
+    ///
+    /// Foreground exits are user visible terminations that, when unexpected, interrupt usage.
+    ///
+    /// Not all foreground exits are unexpected. See the documentation for each exit reason for more information.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxforegroundexitdata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXForegroundExitData;
@@ -21,21 +27,33 @@ unsafe impl NSSecureCoding for MXForegroundExitData {}
 
 extern_methods!(
     unsafe impl MXForegroundExitData {
+        /// Cumulative number of times the application exited normally, or was gracefully terminated by the system.
         #[method(cumulativeNormalAppExitCount)]
         pub unsafe fn cumulativeNormalAppExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application was terminated for exceeding a memory consumption limit.
         #[method(cumulativeMemoryResourceLimitExitCount)]
         pub unsafe fn cumulativeMemoryResourceLimitExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application was terminated for attempting to access invalid memory, or attempting to access memory in a manner not allowed by the memory's protection level (e.g. writing to read-only memory).
         #[method(cumulativeBadAccessExitCount)]
         pub unsafe fn cumulativeBadAccessExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application exited abnormally.
+        ///
+        /// The most common causes of crashes with this exception type are uncaught Objective-C/C++ exceptions and calls to abort().
         #[method(cumulativeAbnormalExitCount)]
         pub unsafe fn cumulativeAbnormalExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application terminated for attempting to execute an illegal or undefined instruction.
+        ///
+        /// The process may have attempted to jump to an invalid address via a misconfigured function pointer.
         #[method(cumulativeIllegalInstructionExitCount)]
         pub unsafe fn cumulativeIllegalInstructionExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application was terminated because a watchdog timeout occured.
+        ///
+        /// These can occur when the application took too long to launch, terminate, or respond to system events.
         #[method(cumulativeAppWatchdogExitCount)]
         pub unsafe fn cumulativeAppWatchdogExitCount(&self) -> NSUInteger;
     }
@@ -53,7 +71,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata?language=objc)
+    /// A class that encapsulates cumulative application exit metrics when the application is off screen.
+    ///
+    /// Background exits are terminations that, when unexpected, can impact performance metrics, such as launch time.
+    ///
+    /// Not all background exits are unexpected. See the documentation for each exit reason for more information.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXBackgroundExitData;
@@ -67,33 +91,53 @@ unsafe impl NSSecureCoding for MXBackgroundExitData {}
 
 extern_methods!(
     unsafe impl MXBackgroundExitData {
+        /// Cumulative number of times the application exited normally, or was gracefully terminated by the system.
         #[method(cumulativeNormalAppExitCount)]
         pub unsafe fn cumulativeNormalAppExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application was terminated for exceeding a memory consumption limit.
         #[method(cumulativeMemoryResourceLimitExitCount)]
         pub unsafe fn cumulativeMemoryResourceLimitExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application was terminated for exceeding a CPU consumption limit.
         #[method(cumulativeCPUResourceLimitExitCount)]
         pub unsafe fn cumulativeCPUResourceLimitExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application exited due to memory pressure on the system.
         #[method(cumulativeMemoryPressureExitCount)]
         pub unsafe fn cumulativeMemoryPressureExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application was terminated for attempting to access invalid memory, or attempting to access memory in a manner not allowed by the memory's protection level (e.g. writing to read-only memory).
         #[method(cumulativeBadAccessExitCount)]
         pub unsafe fn cumulativeBadAccessExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application exited abnormally.
+        ///
+        /// The most common causes of crashes with this exception type are uncaught Objective-C/C++ exceptions and calls to abort().
         #[method(cumulativeAbnormalExitCount)]
         pub unsafe fn cumulativeAbnormalExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application terminated for attempting to execute an illegal or undefined instruction.
+        ///
+        /// The process may have attempted to jump to an invalid address via a misconfigured function pointer.
         #[method(cumulativeIllegalInstructionExitCount)]
         pub unsafe fn cumulativeIllegalInstructionExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application was terminated because a watchdog timeout occured.
+        ///
+        /// These can occur when the application took too long to launch, terminate, or respond to system events.
         #[method(cumulativeAppWatchdogExitCount)]
         pub unsafe fn cumulativeAppWatchdogExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application was terminated because it became suspended while holding onto file locks or sqlite database locks.
+        ///
+        /// If your application is performing operations on a locked file or sqlite database at suspension time, it must request additional background execution time to complete those operations and relinquish the lock before suspending.
         #[method(cumulativeSuspendedWithLockedFileExitCount)]
         pub unsafe fn cumulativeSuspendedWithLockedFileExitCount(&self) -> NSUInteger;
 
+        /// Cumulative number of times the application was terminated for exceeding the alotted time limit associated with a background tasks.
+        ///
+        /// If your application begins a background task, you must call endBackgroundTask() to signal completion of the task to prevent your application from being terminated. You can do this in the expiration handler of the task, but it must be done immediately.
         #[method(cumulativeBackgroundTaskAssertionTimeoutExitCount)]
         pub unsafe fn cumulativeBackgroundTaskAssertionTimeoutExitCount(&self) -> NSUInteger;
     }
@@ -111,7 +155,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxappexitmetric?language=objc)
+    /// A class that encapsulates application exit metrics for both on screen and off screen exits.
+    ///
+    /// Application exits can be expected, such as when the application is killed in the app switcher by the user, or unexpected, such as when a runtime error occurs.
+    ///
+    /// Minimizing unexpected exits and maximizing expected exits can improve performance and reliability of your application.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxappexitmetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
@@ -130,9 +180,15 @@ unsafe impl NSSecureCoding for MXAppExitMetric {}
 extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppExitMetric {
+        /// Cumulative foreground exit data.
+        ///
+        /// This includes application exit data when the application was on screen and visible to the user.
         #[method_id(@__retain_semantics Other foregroundExitData)]
         pub unsafe fn foregroundExitData(&self) -> Retained<MXForegroundExitData>;
 
+        /// Cumulative background exit data.
+        ///
+        /// This includes application exit data when the application was off screen and not visible to the user.
         #[method_id(@__retain_semantics Other backgroundExitData)]
         pub unsafe fn backgroundExitData(&self) -> Retained<MXBackgroundExitData>;
     }

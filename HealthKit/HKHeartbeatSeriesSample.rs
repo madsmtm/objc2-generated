@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartbeatseriessample?language=objc)
+    /// An HKHeartbeatSeriesSample represents a series of heartbeats.
+    ///
+    /// To retrieve the underlying series data for an HKHeartbeatSeriesSample, use HKHeartbeatSeriesQuery
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartbeatseriessample?language=objc)
     #[unsafe(super(HKSeriesSample, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKSeriesSample"))]

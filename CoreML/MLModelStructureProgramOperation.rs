@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureprogramoperation?language=objc)
+    /// A class representing an Operation in a Program.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureprogramoperation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructureProgramOperation;
@@ -27,20 +29,24 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// The name of the operator, e.g., "conv", "pool", "softmax", etc.
         #[method_id(@__retain_semantics Other operatorName)]
         pub unsafe fn operatorName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MLModelStructureProgramArgument")]
+        /// The arguments to the Operation.
         #[method_id(@__retain_semantics Other inputs)]
         pub unsafe fn inputs(
             &self,
         ) -> Retained<NSDictionary<NSString, MLModelStructureProgramArgument>>;
 
         #[cfg(feature = "MLModelStructureProgramNamedValueType")]
+        /// The outputs of the Operation.
         #[method_id(@__retain_semantics Other outputs)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<MLModelStructureProgramNamedValueType>>;
 
         #[cfg(feature = "MLModelStructureProgramBlock")]
+        /// Nested blocks for loops and conditionals, e.g., a conditional block will have two entries here.
         #[method_id(@__retain_semantics Other blocks)]
         pub unsafe fn blocks(&self) -> Retained<NSArray<MLModelStructureProgramBlock>>;
     }

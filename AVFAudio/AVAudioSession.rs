@@ -22,14 +22,19 @@ unsafe impl NSObjectProtocol for AVAudioSession {}
 
 extern_methods!(
     unsafe impl AVAudioSession {
+        /// Return singleton instance.
         #[method_id(@__retain_semantics Other sharedInstance)]
         pub unsafe fn sharedInstance() -> Retained<AVAudioSession>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Get the list of categories available on the device.  Certain categories may be unavailable on
+        /// particular devices.  For example, AVAudioSessionCategoryRecord will not be available on devices
+        /// that have no support for audio input.
         #[method_id(@__retain_semantics Other availableCategories)]
         pub unsafe fn availableCategories(&self) -> Retained<NSArray<AVAudioSessionCategory>>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Set session category.
         #[method(setCategory:error:_)]
         pub unsafe fn setCategory_error(
             &self,
@@ -37,6 +42,7 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Set session category with options.
         #[method(setCategory:withOptions:error:_)]
         pub unsafe fn setCategory_withOptions_error(
             &self,
@@ -45,6 +51,7 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Set session category and mode with options.
         #[method(setCategory:mode:options:error:_)]
         pub unsafe fn setCategory_mode_options_error(
             &self,
@@ -54,6 +61,18 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Set session category, mode, routing sharing policy, and options.
+        ///
+        /// Use of the long-form route sharing policy is only valid in conjunction with a limited set of
+        /// category, mode, and option values.
+        ///
+        /// Allowed categories: AVAudioSessionCategoryPlayback.
+        ///
+        /// Allowed modes: AVAudioSessionModeDefault, AVAudioSessionModeMoviePlayback,
+        /// AVAudioSessionModeSpokenAudio.
+        ///
+        /// Allowed options: None. Options are allowed when changing the routing policy back to Default,
+        /// however.
         #[method(setCategory:mode:routeSharingPolicy:options:error:_)]
         pub unsafe fn setCategory_mode_routeSharingPolicy_options_error(
             &self,
@@ -64,22 +83,37 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Get session category.
+        /// Examples: AVAudioSessionCategoryRecord, AVAudioSessionCategoryPlayAndRecord, etc.
         #[method_id(@__retain_semantics Other category)]
         pub unsafe fn category(&self) -> Retained<AVAudioSessionCategory>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Get the current set of AVAudioSessionCategoryOptions.
         #[method(categoryOptions)]
         pub unsafe fn categoryOptions(&self) -> AVAudioSessionCategoryOptions;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Get the route sharing policy.
+        ///
+        /// See AVAudioSessionRouteSharingPolicy for a description of the available policies.
+        /// See setCategory:mode:routeSharingPolicy:options:error: for additional discussion.
         #[method(routeSharingPolicy)]
         pub unsafe fn routeSharingPolicy(&self) -> AVAudioSessionRouteSharingPolicy;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Get the list of modes available on the device.  Certain modes may be unavailable on particular
+        /// devices.  For example, AVAudioSessionModeVideoRecording will not be available on devices that
+        /// have no support for recording video.
         #[method_id(@__retain_semantics Other availableModes)]
         pub unsafe fn availableModes(&self) -> Retained<NSArray<AVAudioSessionMode>>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Set the session's mode.
+        ///
+        /// Modes modify the audio category in order to introduce behavior that is tailored to the specific
+        /// use of audio within an application. Examples:  AVAudioSessionModeVideoRecording,
+        /// AVAudioSessionModeVoiceChat, AVAudioSessionModeMeasurement, etc.
         #[method(setMode:error:_)]
         pub unsafe fn setMode_error(
             &self,
@@ -87,29 +121,48 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Get the session's mode.
         #[method_id(@__retain_semantics Other mode)]
         pub unsafe fn mode(&self) -> Retained<AVAudioSessionMode>;
 
+        /// Set allowHapticsAndSystemSoundsDuringRecording to YES in order to allow system sounds and haptics to play while the session is actively using audio input.
+        /// Default value is NO.
         #[method(setAllowHapticsAndSystemSoundsDuringRecording:error:_)]
         pub unsafe fn setAllowHapticsAndSystemSoundsDuringRecording_error(
             &self,
             in_value: bool,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Whether system sounds and haptics can play while the session is actively using audio input.
         #[method(allowHapticsAndSystemSoundsDuringRecording)]
         pub unsafe fn allowHapticsAndSystemSoundsDuringRecording(&self) -> bool;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Returns an enum indicating whether the user has granted or denied permission to record, or has
+        /// not been asked
         #[deprecated = "Please use AVAudioApplication recordPermission"]
         #[method(recordPermission)]
         pub unsafe fn recordPermission(&self) -> AVAudioSessionRecordPermission;
 
         #[cfg(feature = "block2")]
+        /// Checks to see if calling process has permission to record audio.
+        ///
+        /// The 'response' block will be called immediately if permission has already been granted or
+        /// denied.  Otherwise, it presents a dialog to notify the user and allow them to choose, and calls
+        /// the block once the UI has been dismissed.  'granted' indicates whether permission has been
+        /// granted. Note that the block may be called in a different thread context.
         #[deprecated = "Please use AVAudioApplication requestRecordPermissionWithCompletionHandler"]
         #[method(requestRecordPermission:)]
         pub unsafe fn requestRecordPermission(&self, response: &block2::Block<dyn Fn(Bool)>);
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Use this method to temporarily override the output to built-in speaker.
+        ///
+        /// This method is only valid for a session using PlayAndRecord category. This change remains in
+        /// effect only until the current route changes or you call this method again with the
+        /// AVAudioSessionPortOverrideNone option. Sessions using PlayAndRecord category that always want to
+        /// prefer the built-in speaker output over the receiver, should use
+        /// AVAudioSessionCategoryOptionDefaultToSpeaker instead.
         #[method(overrideOutputAudioPort:error:_)]
         pub unsafe fn overrideOutputAudioPort_error(
             &self,
@@ -117,6 +170,11 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "AVAudioSessionRoute")]
+        /// Select a preferred input port for audio routing.
+        ///
+        /// If the input port is already part of the current audio route, this will have no effect.
+        /// Otherwise, selecting an input port for routing will initiate a route change to use the preferred
+        /// input port. Setting a nil value will clear the preference.
         #[method(setPreferredInput:error:_)]
         pub unsafe fn setPreferredInput_error(
             &self,
@@ -124,9 +182,22 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "AVAudioSessionRoute")]
+        /// Get the preferred input port.  Will be nil if no preference has been set.
         #[method_id(@__retain_semantics Other preferredInput)]
         pub unsafe fn preferredInput(&self) -> Option<Retained<AVAudioSessionPortDescription>>;
 
+        /// Set ringtone and alert interruption preference.
+        ///
+        /// Inform the system when the session prefers to not be interrupted by
+        /// ringtones and alerts. By setting this property to YES, clients will not be interrupted
+        /// by incoming call notifications and other alerts. Starting in iOS 14.0, users can set a global
+        /// preference for incoming call display style to "Banner" or "Full Screen". With "Banner" display style,
+        /// if below property is set to YES then system audio will be silenced. Thus, clients will not be interrupted
+        /// on incoming call notification and user will have opportunity to accept or decline the call. If call is declined,
+        /// the session will not be interrupted, but if user accepts the incoming call, the session will be interrupted.
+        /// With  display style set as "Full Screen", below property will have no effect and clients will be
+        /// interrupted by incoming calls. Apps that record audio and/or video and apps that are used for
+        /// music performance are candidates for using this feature.
         #[method(setPrefersNoInterruptionsFromSystemAlerts:error:_)]
         pub unsafe fn setPrefersNoInterruptionsFromSystemAlerts_error(
             &self,
@@ -137,9 +208,27 @@ extern_methods!(
         pub unsafe fn prefersNoInterruptionsFromSystemAlerts(&self) -> bool;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Get the currently resolved rendering mode to badge content appropriately.
+        /// Clients should use this property to determine what to badge content as.
         #[method(renderingMode)]
         pub unsafe fn renderingMode(&self) -> AVAudioSessionRenderingMode;
 
+        /// Set a preference to enable echo cancelled input on supported hardware
+        ///
+        /// Applications might want to record the built-in microphone's input while also playing audio out via the built-in speaker.
+        /// Enabling echo cancelled input is useful when the application needs the input signal to be clear of any echoes
+        /// from the audio playing out of the built-in speaker.
+        ///
+        /// Audio sessions using Voice Processor don't need this option as echo cancellation is implicitly applied for those routes.
+        /// The Voice Processor solution is tuned for voice signals, unlike this option, which is tuned for better capture
+        /// of wider range of audio signals in the presence of built-in speaker echo.
+        ///
+        /// This option is valid only when used with AVAudioSessionCategoryPlayAndRecord and AVAudioSessionModeDefault and is only available
+        /// on certain 2024 or later iPhone models. Support can be queried using property `isEchoCancelledInputAvailable`.
+        /// Other recording sessions might be interrupted if this option is not compatible with sessions that are already recording.
+        ///
+        /// After an audio session goes active, `isEchoCancelledInputEnabled` property can be queried to check if the option was honored.
+        /// Note that the enabled state may change after route changes, e.g. if user plugs in a headset, that route might not support echo cancellation.
         #[method(setPrefersEchoCancelledInput:error:_)]
         pub unsafe fn setPrefersEchoCancelledInput_error(
             &self,
@@ -149,9 +238,13 @@ extern_methods!(
         #[method(prefersEchoCancelledInput)]
         pub unsafe fn prefersEchoCancelledInput(&self) -> bool;
 
+        /// Returns YES if echo cancelled input is successfully enabled on an active session.
+        /// Please see `prefersEchoCancelledInput` above for more details.
         #[method(isEchoCancelledInputEnabled)]
         pub unsafe fn isEchoCancelledInputEnabled(&self) -> bool;
 
+        /// Query whether built-in mic / built-in speaker route supports echo cancellation for the session's given category and mode.
+        /// Returns YES if device model supports echo cancellation and the audio category is PlayAndRecord and the mode is Default.
         #[method(isEchoCancelledInputAvailable)]
         pub unsafe fn isEchoCancelledInputAvailable(&self) -> bool;
     }
@@ -160,6 +253,23 @@ extern_methods!(
 extern_methods!(
     /// Activation
     unsafe impl AVAudioSession {
+        /// Set the session active or inactive.
+        ///
+        /// Note that activating an audio session is a synchronous (blocking) operation.
+        /// Therefore, we recommend that applications not activate their session from a thread where a long
+        /// blocking operation will be problematic.
+        /// Apps may activate a AVAudioSessionCategoryPlayback session when another app is hosting a
+        /// call (to start a SharePlay activity for example). However, they are not permitted to capture the
+        /// microphone of the active call, so attempts to activate a session with category
+        /// AVAudioSessionCategoryRecord or AVAudioSessionCategoryPlayAndRecord will fail with error
+        /// AVAudioSessionErrorCodeInsufficientPriority.
+        /// When deactivating a session, the caller is required to
+        /// first stop or pause all running I/Os (e.g. audio queues, players, recorders, converters,
+        /// remote I/Os, etc.). Starting in iOS 8, if the session has running I/Os at the time that
+        /// deactivation is requested, the session will be deactivated, but the method will return NO and
+        /// populate the NSError with the code property set to AVAudioSessionErrorCodeIsBusy to indicate the
+        /// misuse of the API. Prior to iOS 8, the session would have remained active if it had running I/Os
+        /// at the time of the deactivation request.
         #[method(setActive:error:_)]
         pub unsafe fn setActive_error(&self, active: bool) -> Result<(), Retained<NSError>>;
 
@@ -172,6 +282,15 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "AVAudioSessionTypes", feature = "block2"))]
+        /// Asynchronously activate the session.
+        ///
+        /// This is a relatively time consuming operation. The completion handler will be called when the
+        /// activation completes or if an error occurs while attempting to activate the session. If the
+        /// session is configured to use AVAudioSessionRouteSharingPolicyLongFormAudio on watchOS, this
+        /// method will also cause a route picker to be presented to the user in cases where an appropriate
+        /// output route has not already been selected automatically. watchOS apps using
+        /// AVAudioSessionRouteSharingPolicyLongFormAudio should be prepared for this method to fail if no
+        /// eligible audio route can be activated or if the user cancels the route picker view.
         #[method(activateWithOptions:completionHandler:)]
         pub unsafe fn activateWithOptions_completionHandler(
             &self,
@@ -183,7 +302,11 @@ extern_methods!(
 
 extern_methods!(
     /// AVAudioSessionHardwareConfiguration
+    /// this category deals with the set of properties that reflect the current state of
+    /// audio hardware in the current route.  Applications whose functionality depends on these
+    /// properties should reevaluate them any time the route changes.
     unsafe impl AVAudioSession {
+        /// The preferred hardware sample rate for the session. The actual sample rate may be different.
         #[method(setPreferredSampleRate:error:_)]
         pub unsafe fn setPreferredSampleRate_error(
             &self,
@@ -193,6 +316,8 @@ extern_methods!(
         #[method(preferredSampleRate)]
         pub unsafe fn preferredSampleRate(&self) -> c_double;
 
+        /// The preferred hardware IO buffer duration in seconds. The actual IO buffer duration may be
+        /// different.
         #[method(setPreferredIOBufferDuration:error:_)]
         pub unsafe fn setPreferredIOBufferDuration_error(
             &self,
@@ -202,6 +327,7 @@ extern_methods!(
         #[method(preferredIOBufferDuration)]
         pub unsafe fn preferredIOBufferDuration(&self) -> NSTimeInterval;
 
+        /// Sets the number of input channels that the app would prefer for the current route
         #[method(setPreferredInputNumberOfChannels:error:_)]
         pub unsafe fn setPreferredInputNumberOfChannels_error(
             &self,
@@ -211,6 +337,7 @@ extern_methods!(
         #[method(preferredInputNumberOfChannels)]
         pub unsafe fn preferredInputNumberOfChannels(&self) -> NSInteger;
 
+        /// Sets the number of output channels that the app would prefer for the current route
         #[method(setPreferredOutputNumberOfChannels:error:_)]
         pub unsafe fn setPreferredOutputNumberOfChannels_error(
             &self,
@@ -221,6 +348,13 @@ extern_methods!(
         pub unsafe fn preferredOutputNumberOfChannels(&self) -> NSInteger;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Sets the preferred input orientation.
+        /// The input orientation determines which directions will be left and right
+        /// when a built-in mic data source with the AVAudioSessionPolarPatternStereo polar pattern is selected.
+        /// Typically, this orientation should match how the user is holding the device while recording, which will match
+        /// the application's interface orientation when a single app is on the screen.
+        /// The actual input orientation may be different, for example, if another app's session is in control of routing.
+        /// The input orientation is independent of the orientation property of an AVAudioSessionDataSourceDescription.
         #[method(setPreferredInputOrientation:error:_)]
         pub unsafe fn setPreferredInputOrientation_error(
             &self,
@@ -232,40 +366,68 @@ extern_methods!(
         pub unsafe fn preferredInputOrientation(&self) -> AVAudioStereoOrientation;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Describes the orientation of the input data source (valid for the built-in mic input data source when a stereo polar pattern is selected).
         #[method(inputOrientation)]
         pub unsafe fn inputOrientation(&self) -> AVAudioStereoOrientation;
 
+        /// Returns the largest number of audio input channels available for the current route
         #[method(maximumInputNumberOfChannels)]
         pub unsafe fn maximumInputNumberOfChannels(&self) -> NSInteger;
 
+        /// Returns the largest number of audio output channels available for the current route
         #[method(maximumOutputNumberOfChannels)]
         pub unsafe fn maximumOutputNumberOfChannels(&self) -> NSInteger;
 
+        /// A value defined over the range [0.0, 1.0], with 0.0 corresponding to the lowest analog
+        /// gain setting and 1.0 corresponding to the highest analog gain setting.
+        ///
+        /// Attempting to set values outside of the defined range will result in the value being "clamped"
+        /// to a valid input.  This is a global input gain setting that applies to the current input source
+        /// for the entire system. When no applications are using the input gain control, the system will
+        /// restore the default input gain setting for the input source.  Note that some audio accessories,
+        /// such as USB devices, may not have a default value.  This property is only valid if
+        /// inputGainSettable is true.  Note: inputGain is key-value observable.
         #[method(setInputGain:error:_)]
         pub unsafe fn setInputGain_error(&self, gain: c_float) -> Result<(), Retained<NSError>>;
 
+        /// value in range [0.0, 1.0]
         #[method(inputGain)]
         pub unsafe fn inputGain(&self) -> c_float;
 
+        /// True when audio input gain is available.  Some input ports may not provide the ability to set the
+        /// input gain, so check this value before attempting to set input gain.
         #[method(isInputGainSettable)]
         pub unsafe fn isInputGainSettable(&self) -> bool;
 
+        /// True if input hardware is available. Key-value observable.
         #[method(isInputAvailable)]
         pub unsafe fn isInputAvailable(&self) -> bool;
 
         #[cfg(feature = "AVAudioSessionRoute")]
+        /// DataSource methods are for use with routes that support input or output data source
+        /// selection.
+        ///
+        /// If the attached accessory supports data source selection, the data source properties/methods
+        /// provide for discovery and selection of input and/or output data sources. Note that the
+        /// properties and methods for data source selection below are equivalent to the properties and
+        /// methods on AVAudioSessionPortDescription. The methods below only apply to the currently routed
+        /// ports.
+        ///
+        /// Key-value observable.
         #[method_id(@__retain_semantics Other inputDataSources)]
         pub unsafe fn inputDataSources(
             &self,
         ) -> Option<Retained<NSArray<AVAudioSessionDataSourceDescription>>>;
 
         #[cfg(feature = "AVAudioSessionRoute")]
+        /// Obtain the currently selected input data source.  Will be nil if no data sources are available.
         #[method_id(@__retain_semantics Other inputDataSource)]
         pub unsafe fn inputDataSource(
             &self,
         ) -> Option<Retained<AVAudioSessionDataSourceDescription>>;
 
         #[cfg(feature = "AVAudioSessionRoute")]
+        /// Select a new input data source. Setting a nil value will clear the data source preference.
         #[method(setInputDataSource:error:_)]
         pub unsafe fn setInputDataSource_error(
             &self,
@@ -273,43 +435,56 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "AVAudioSessionRoute")]
+        /// See inputDataSources for background. Key-value observable.
         #[method_id(@__retain_semantics Other outputDataSources)]
         pub unsafe fn outputDataSources(
             &self,
         ) -> Option<Retained<NSArray<AVAudioSessionDataSourceDescription>>>;
 
         #[cfg(feature = "AVAudioSessionRoute")]
+        /// Obtain the currently selected output data source.  Will be nil if no data sources are available.
         #[method_id(@__retain_semantics Other outputDataSource)]
         pub unsafe fn outputDataSource(
             &self,
         ) -> Option<Retained<AVAudioSessionDataSourceDescription>>;
 
         #[cfg(feature = "AVAudioSessionRoute")]
+        /// Select a new output data source. Setting a nil value will clear the data source preference.
         #[method(setOutputDataSource:error:_)]
         pub unsafe fn setOutputDataSource_error(
             &self,
             data_source: Option<&AVAudioSessionDataSourceDescription>,
         ) -> Result<(), Retained<NSError>>;
 
+        /// The current hardware sample rate. Is key-value observable (starting iOS 18.0).
         #[method(sampleRate)]
         pub unsafe fn sampleRate(&self) -> c_double;
 
+        /// The current number of hardware input channels. Is key-value observable.
         #[method(inputNumberOfChannels)]
         pub unsafe fn inputNumberOfChannels(&self) -> NSInteger;
 
+        /// The current number of hardware output channels. Is key-value observable.
         #[method(outputNumberOfChannels)]
         pub unsafe fn outputNumberOfChannels(&self) -> NSInteger;
 
+        /// The current hardware input latency in seconds.
         #[method(inputLatency)]
         pub unsafe fn inputLatency(&self) -> NSTimeInterval;
 
+        /// The current hardware output latency in seconds.
         #[method(outputLatency)]
         pub unsafe fn outputLatency(&self) -> NSTimeInterval;
 
+        /// The current hardware IO buffer duration in seconds.
         #[method(IOBufferDuration)]
         pub unsafe fn IOBufferDuration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "AVAudioChannelLayout")]
+        /// Get an array of channel layouts that the current route supports.
+        /// This property is only supported when the output is routed to ports of type AVAudioSessionPortCarAudio or AVAudioSessionPortAirPlay
+        /// Otherwise, an empty array will be returned. Note that this will return an empty array if session is inactive.
+        /// Clients should listen to AVAudioSessionRenderingCapabilitiesChangeNotification to be notified when this changes.
         #[method_id(@__retain_semantics Other supportedOutputChannelLayouts)]
         pub unsafe fn supportedOutputChannelLayouts(
             &self,
@@ -320,16 +495,34 @@ extern_methods!(
 extern_methods!(
     /// Observation
     unsafe impl AVAudioSession {
+        /// True when another application is playing audio.
+        ///
+        /// Note: As of iOS 8.0, Apple recommends that most applications use
+        /// secondaryAudioShouldBeSilencedHint instead of this property. The otherAudioPlaying property
+        /// will be true if any other audio (including audio from an app using
+        /// AVAudioSessionCategoryAmbient) is playing, whereas the secondaryAudioShouldBeSilencedHint
+        /// property is more restrictive in its consideration of whether primary audio from another
+        /// application is playing.
         #[method(isOtherAudioPlaying)]
         pub unsafe fn isOtherAudioPlaying(&self) -> bool;
 
+        /// True when another application with a non-mixable audio session is playing audio.
+        ///
+        /// Applications may use this property as a hint to silence audio that is secondary to the
+        /// functionality of the application. For example, a game app using AVAudioSessionCategoryAmbient
+        /// may use this property to decide to mute its soundtrack while leaving its sound effects unmuted.
+        /// Note: This property is closely related to AVAudioSessionSilenceSecondaryAudioHintNotification.
         #[method(secondaryAudioShouldBeSilencedHint)]
         pub unsafe fn secondaryAudioShouldBeSilencedHint(&self) -> bool;
 
+        /// The current output volume. Value in range [0.0, 1.0]. Is key-value observable.
         #[method(outputVolume)]
         pub unsafe fn outputVolume(&self) -> c_float;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// The prompt style is a hint to sessions using AVAudioSessionModeVoicePrompt to alter the type of
+        /// prompts they issue in response to other audio activity on the system, such as Siri and phone
+        /// calls. This property is key-value observable.
         #[method(promptStyle)]
         pub unsafe fn promptStyle(&self) -> AVAudioSessionPromptStyle;
     }
@@ -339,22 +532,39 @@ extern_methods!(
     /// RoutingConfiguration
     unsafe impl AVAudioSession {
         #[cfg(feature = "AVAudioSessionRoute")]
+        /// Get the set of input ports that are available for routing.
+        ///
+        /// Note that this property only applies to the session's current category and mode. For
+        /// example, if the session's current category is AVAudioSessionCategoryPlayback, there will be
+        /// no available inputs.
         #[method_id(@__retain_semantics Other availableInputs)]
         pub unsafe fn availableInputs(
             &self,
         ) -> Option<Retained<NSArray<AVAudioSessionPortDescription>>>;
 
         #[cfg(feature = "AVAudioSessionRoute")]
+        /// A description of the current route, consisting of zero or more input ports and zero or more
+        /// output ports
         #[method_id(@__retain_semantics Other currentRoute)]
         pub unsafe fn currentRoute(&self) -> Retained<AVAudioSessionRouteDescription>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Controls whether audio input and output are aggregated. Only valid in combination with
+        /// AVAudioSessionCategoryPlayAndRecord or AVAudioSessionCategoryMultiRoute.
+        ///
+        /// See the AVAudioSessionIOType documentation for a more detailed explanation of why a client may
+        /// want to change the IO type.
         #[method(setAggregatedIOPreference:error:_)]
         pub unsafe fn setAggregatedIOPreference_error(
             &self,
             in_io_type: AVAudioSessionIOType,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Set YES to inform the system if the app can supply multichannel audio content.
+        /// Default value is NO. This property is intended to be used by 'Now Playing' applications.
+        /// See https://developer.apple.com/documentation/mediaplayer/becoming_a_now_playable_app for more information
+        /// about what it means to be a 'Now Playing' application. Typically 'Now Playing' applications will also use
+        /// AVAudioSessionRouteSharingPolicyLongFormAudio or AVAudioSessionRouteSharingPolicyLongFormVideo.
         #[method(setSupportsMultichannelContent:error:_)]
         pub unsafe fn setSupportsMultichannelContent_error(
             &self,
@@ -364,12 +574,21 @@ extern_methods!(
         #[method(supportsMultichannelContent)]
         pub unsafe fn supportsMultichannelContent(&self) -> bool;
 
+        /// Use this method to opt in or opt out of interruption on route disconnect policy.
+        ///
+        /// As described in the Audio Session Programming Guide, most media playback apps are expected
+        /// to pause playback if the route change reason is AVAudioSessionRouteChangeReasonOldDeviceUnavailable.
+        ///
+        /// Starting in iOS 17, by default Now Playing sessions will be interrupted if they are active
+        /// when a route change occurs because of a disconnect event. All other sessions will not be
+        /// interrupted due to a disconnect event.
         #[method(setPrefersInterruptionOnRouteDisconnect:error:_)]
         pub unsafe fn setPrefersInterruptionOnRouteDisconnect_error(
             &self,
             in_value: bool,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Indicates if session will be interrupted on route disconnect.
         #[method(prefersInterruptionOnRouteDisconnect)]
         pub unsafe fn prefersInterruptionOnRouteDisconnect(&self) -> bool;
     }
@@ -379,6 +598,8 @@ extern_methods!(
     /// MicrophoneInjection
     unsafe impl AVAudioSession {
         #[cfg(feature = "AVAudioSessionTypes")]
+        /// Set the preferred form of audio injection into another app's input stream
+        /// See AVAudioSessionMicrophoneInjectionMode for available modes
         #[method(setPreferredMicrophoneInjectionMode:error:_)]
         pub unsafe fn setPreferredMicrophoneInjectionMode_error(
             &self,
@@ -391,104 +612,200 @@ extern_methods!(
             &self,
         ) -> AVAudioSessionMicrophoneInjectionMode;
 
+        /// Indicates if microphone injection is available.
+        /// Observe AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification for changes to this property
         #[method(isMicrophoneInjectionAvailable)]
         pub unsafe fn isMicrophoneInjectionAvailable(&self) -> bool;
     }
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionnotification?language=objc)
+    /// Notification sent to registered listeners when the system has interrupted the audio
+    /// session and when the interruption has ended.
+    ///
+    /// Check the notification's userInfo dictionary for the interruption type, which is either
+    /// Begin or End. In the case of an end interruption notification, check the userInfo dictionary
+    /// for AVAudioSessionInterruptionOptions that indicate whether audio playback should resume.
+    /// In the case of a begin interruption notification, the reason for the interruption can be found
+    /// within the info dictionary under the key AVAudioSessionInterruptionReasonKey.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionnotification?language=objc)
     pub static AVAudioSessionInterruptionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangenotification?language=objc)
+    /// Notification sent to registered listeners when an audio route change has occurred.
+    ///
+    /// Check the notification's userInfo dictionary for the route change reason and for a description
+    /// of the previous audio route.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangenotification?language=objc)
     pub static AVAudioSessionRouteChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmediaserviceswerelostnotification?language=objc)
+    /// Notification sent to registered listeners if the media server is killed.
+    ///
+    /// In the event that the server is killed, take appropriate steps to handle requests that come in
+    /// before the server resets.  See Technical Q
+    /// &A
+    /// QA1749.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmediaserviceswerelostnotification?language=objc)
     pub static AVAudioSessionMediaServicesWereLostNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmediaserviceswereresetnotification?language=objc)
+    /// Notification sent to registered listeners when the media server restarts.
+    ///
+    /// In the event that the server restarts, take appropriate steps to re-initialize any audio objects
+    /// used by your application.  See Technical Q
+    /// &A
+    /// QA1749.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmediaserviceswereresetnotification?language=objc)
     pub static AVAudioSessionMediaServicesWereResetNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsilencesecondaryaudiohintnotification?language=objc)
+    /// Notification sent to registered listeners when they are in the foreground with an active
+    /// audio session and primary audio from other applications starts and stops.
+    ///
+    /// Check the notification's userInfo dictionary for the notification type, which is either Begin or
+    /// End. Foreground applications may use this notification as a hint to enable or disable audio that
+    /// is secondary to the functionality of the application. For more information, see the related
+    /// property secondaryAudioShouldBeSilencedHint.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsilencesecondaryaudiohintnotification?language=objc)
     pub static AVAudioSessionSilenceSecondaryAudioHintNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionspatialplaybackcapabilitieschangednotification?language=objc)
+    /// Notification sent to registered listeners when spatial playback capabilities are changed due to a
+    /// change in user preference.
+    ///
+    /// Check the notification's userInfo dictionary for AVAudioSessionSpatialAudioEnabledKey to check if spatial
+    /// audio is enabled.
+    ///
+    /// Observers of this notification should also observe AVAudioSessionRouteChangeNotification since a route change
+    /// may also result in a change in the ability for the system to play spatial audio. Use
+    /// AVAudioSessionPortDescription's isSpatialAudioEnabled property to check if the current route supports
+    /// spatialized playback.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionspatialplaybackcapabilitieschangednotification?language=objc)
     pub static AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingmodechangenotification?language=objc)
+    /// Notification sent to registered listeners when the resolved rendering mode changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingmodechangenotification?language=objc)
     pub static AVAudioSessionRenderingModeChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingcapabilitieschangenotification?language=objc)
+    /// Notification sent to registered listeners when the rendering capabilities change.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingcapabilitieschangenotification?language=objc)
     pub static AVAudioSessionRenderingCapabilitiesChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectioncapabilitieschangenotification?language=objc)
+    /// Notification sent to registered listeners when the system's capability to inject audio into input stream is changed
+    ///
+    /// Check the notification's userInfo dictionary for AVAudioSessionMicrophoneInjectionIsAvailableKey to check if microphone
+    /// injection is available. Use AVAudioSession's isMicrophoneInjectionAvailable property to check if microphone injection is available
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectioncapabilitieschangenotification?language=objc)
     pub static AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionspatialaudioenabledkey?language=objc)
+    /// keys for AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification
+    /// value is an NSNumber whose boolean value indicates if spatial audio enabled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionspatialaudioenabledkey?language=objc)
     pub static AVAudioSessionSpatialAudioEnabledKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptiontypekey?language=objc)
+    /// keys for AVAudioSessionInterruptionNotification
+    /// Value is an NSNumber representing an AVAudioSessionInterruptionType
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptiontypekey?language=objc)
     pub static AVAudioSessionInterruptionTypeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionoptionkey?language=objc)
+    /// Only present for end interruption events.  Value is of type AVAudioSessionInterruptionOptions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionoptionkey?language=objc)
     pub static AVAudioSessionInterruptionOptionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionreasonkey?language=objc)
+    /// Only present in begin interruption events. Value is of type AVAudioSessionInterruptionReason.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionreasonkey?language=objc)
     pub static AVAudioSessionInterruptionReasonKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionwassuspendedkey?language=objc)
+    /// Only present in begin interruption events, where the interruption is a direct result of the
+    /// application being suspended by the operating sytem. Value is a boolean NSNumber, where a true
+    /// value indicates that the interruption is the result of the application being suspended, rather
+    /// than being interrupted by another audio session.
+    ///
+    /// Starting in iOS 10, the system will deactivate the audio session of most apps in response to the
+    /// app process being suspended. When the app starts running again, it will receive the notification
+    /// that its session has been deactivated by the system. Note that the notification is necessarily
+    /// delayed in time, due to the fact that the application was suspended at the time the session was
+    /// deactivated by the system and the notification can only be delivered once the app is running
+    /// again.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionwassuspendedkey?language=objc)
     pub static AVAudioSessionInterruptionWasSuspendedKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangereasonkey?language=objc)
+    /// keys for AVAudioSessionRouteChangeNotification
+    /// value is an NSNumber representing an AVAudioSessionRouteChangeReason
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangereasonkey?language=objc)
     pub static AVAudioSessionRouteChangeReasonKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangepreviousroutekey?language=objc)
+    /// value is AVAudioSessionRouteDescription *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangepreviousroutekey?language=objc)
     pub static AVAudioSessionRouteChangePreviousRouteKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsilencesecondaryaudiohinttypekey?language=objc)
+    /// keys for AVAudioSessionSilenceSecondaryAudioHintNotification
+    /// value is an NSNumber representing an AVAudioSessionSilenceSecondaryAudioHintType
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsilencesecondaryaudiohinttypekey?language=objc)
     pub static AVAudioSessionSilenceSecondaryAudioHintTypeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingmodenewrenderingmodekey?language=objc)
+    /// keys for AVAudioSessionRenderingModeChangeNotification
+    /// Contains a payload of NSInteger representing the new resolved rendering mode
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingmodenewrenderingmodekey?language=objc)
     pub static AVAudioSessionRenderingModeNewRenderingModeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectionisavailablekey?language=objc)
+    /// Keys for AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification
+    ///
+    /// Indicates if microphone injection is available.
+    /// Value is an NSNumber whose boolean value indicates if microphone injection is available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectionisavailablekey?language=objc)
     pub static AVAudioSessionMicrophoneInjectionIsAvailableKey: &'static NSString;
 }

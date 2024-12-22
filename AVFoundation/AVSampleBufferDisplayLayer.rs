@@ -70,21 +70,51 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSampleBufferDisplayLayer {
         #[cfg(feature = "objc2-core-media")]
+        /// The layer's control timebase, which governs how time stamps are interpreted.
+        ///
+        /// By default, this property is NULL, in which case time stamps will be interpreted
+        /// according to the host time clock (mach_absolute_time with the appropriate timescale
+        /// conversion; this is the same as Core Animation's CACurrentMediaTime).  With no
+        /// control timebase, once frames are enqueued, it is not possible to adjust exactly
+        /// when they are displayed.
+        ///
+        /// If a non-NULL control timebase is set, it will be used to interpret time stamps.
+        /// You can control the timing of frame display by setting the rate and time of the
+        /// control timebase.
+        /// If you are synchronizing video to audio, you can use a timebase whose source clock
+        /// is a CMAudioDeviceClock for the appropriate audio device to prevent drift.
+        ///
+        /// Note that prior to OSX 10.10 and iOS 8.0, the control timebase could not be changed after enqueueSampleBuffer: was called.  As of OSX 10.10 and iOS 8.0, the control timebase may be changed at any time.
         #[method(controlTimebase)]
         pub unsafe fn controlTimebase(&self) -> CMTimebaseRef;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`controlTimebase`][Self::controlTimebase].
         #[method(setControlTimebase:)]
         pub unsafe fn setControlTimebase(&self, control_timebase: CMTimebaseRef);
 
         #[cfg(feature = "AVAnimation")]
+        /// A string defining how the video is displayed within an AVSampleBufferDisplayLayer bounds rect.
+        ///
+        /// Options are AVLayerVideoGravityResizeAspect, AVLayerVideoGravityResizeAspectFill
+        /// and AVLayerVideoGravityResize. AVLayerVideoGravityResizeAspect is default.
+        /// See
+        /// <AVFoundation
+        /// /AVAnimation.h> for a description of these options.
         #[method_id(@__retain_semantics Other videoGravity)]
         pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "AVAnimation")]
+        /// Setter for [`videoGravity`][Self::videoGravity].
         #[method(setVideoGravity:)]
         pub unsafe fn setVideoGravity(&self, video_gravity: &AVLayerVideoGravity);
 
+        /// Boolean indicating that the first video frame has been made ready for display.
+        ///
+        /// Use this property as an indicator of when best to show or animate-in an AVSampleBufferDisplayLayer into view.
+        /// An AVSampleBufferDisplayLayer may be displayed, or made visible, while this property is NO, however the layer will not have any user-visible content until the value becomes YES. Note that if an animation is added to an AVSampleBufferDisplayLayer before it becomes readyForDisplay the video image displayed inside might not animate with the receiver.
+        /// readyForDisplay will change to NO when the layer can no longer display frames. readyForDisplay will be YES when the first video frame has been made ready for display.
+        /// This property is not key-value observable.  AVSampleBufferDisplayLayerReadyForDisplayDidChangeNotification is posted when this value changes.
         #[method(isReadyForDisplay)]
         pub unsafe fn isReadyForDisplay(&self) -> bool;
     }
@@ -95,6 +125,7 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSampleBufferDisplayLayer {
+        /// Layer creation and initialization. *
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 
@@ -122,44 +153,128 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSampleBufferDisplayLayer {
         #[cfg(feature = "objc2-core-media")]
+        /// The renderer's timebase, which governs how time stamps are interpreted.
+        ///
+        /// The timebase is used to interpret time stamps.
+        ///
+        /// The timebase is read-only.  Use the AVSampleBufferRenderSynchronizer to set the rate or time.
         #[deprecated = "Use sampleBufferRenderer's timebase instead"]
         #[method(timebase)]
         pub unsafe fn timebase(&self) -> CMTimebaseRef;
 
         #[cfg(feature = "AVQueuedSampleBufferRendering")]
+        /// The ability of the display layer to be used for enqueuing sample buffers.
+        ///
+        /// The value of this property is an AVQueuedSampleBufferRenderingStatus that indicates whether the receiver can be used for enqueuing and rendering sample buffers. When the value of this property is AVQueuedSampleBufferRenderingStatusFailed, clients can check the value of the error property to determine the failure. To resume rendering sample buffers using the display layer after a failure, clients must first reset the status to AVQueuedSampleBufferRenderingStatusUnknown. This can be achieved by invoking -flush on the display layer.
+        ///
+        /// This property is key value observable.
         #[deprecated = "Use sampleBufferRenderer's status instead"]
         #[method(status)]
         pub unsafe fn status(&self) -> AVQueuedSampleBufferRenderingStatus;
 
+        /// If the display layer's status is AVQueuedSampleBufferRenderingStatusFailed, this describes the error that caused the failure.
+        ///
+        /// The value of this property is an NSError that describes what caused the display layer to no longer be able to enqueue sample buffers. If the status is not AVQueuedSampleBufferRenderingStatusFailed, the value of this property is nil.
         #[deprecated = "Use sampleBufferRenderer's error instead"]
         #[method_id(@__retain_semantics Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Sends a sample buffer for display.
+        ///
+        /// If sampleBuffer has the kCMSampleAttachmentKey_DoNotDisplay attachment set to
+        /// kCFBooleanTrue, the frame will be decoded but not displayed.
+        /// Otherwise, if sampleBuffer has the kCMSampleAttachmentKey_DisplayImmediately
+        /// attachment set to kCFBooleanTrue, the decoded image will be displayed as soon
+        /// as possible, replacing all previously enqueued images regardless of their timestamps.
+        /// Otherwise, the decoded image will be displayed at sampleBuffer's output presentation
+        /// timestamp, as interpreted by the control timebase (or the mach_absolute_time timeline
+        /// if there is no control timebase).
+        ///
+        /// To schedule the removal of previous images at a specific timestamp, enqueue
+        /// a marker sample buffer containing no samples, with the
+        /// kCMSampleBufferAttachmentKey_EmptyMedia attachment set to kCFBooleanTrue.
+        ///
+        /// IMPORTANT NOTE: attachments with the kCMSampleAttachmentKey_ prefix must be set via
+        /// CMSampleBufferGetSampleAttachmentsArray and CFDictionarySetValue.
+        /// Attachments with the kCMSampleBufferAttachmentKey_ prefix must be set via
+        /// CMSetAttachment.
+        ///
+        /// IMPORTANT NOTE:  When using CMSampleBuffers that wrap CVPixelBuffer, it is important that such CVPixelBuffers be IOSurface-backed.
+        /// CoreVideo allocates IOSurface-backed CVPixelBuffers when the pixel buffer attribute dictionary passed to CVPixelBufferPoolCreate contains
+        /// an entry with key kCVPixelBufferIOSurfacePropertiesKey and value being a dictionary (which can be an empty dictionary).
+        ///
+        /// The combination of either a non-NULL controlTimebase or an AVSampleBufferRenderSynchronizer with the use of kCMSampleAttachmentKey_DisplayImmediately as an attachment to the CMSampleBuffers that are enqueued for display is not recommended.
         #[deprecated = "Use sampleBufferRenderer's enqueueSampleBuffer: instead"]
         #[method(enqueueSampleBuffer:)]
         pub unsafe fn enqueueSampleBuffer(&self, sample_buffer: CMSampleBufferRef);
 
+        /// Instructs the layer to discard pending enqueued sample buffers.
+        ///
+        /// It is not possible to determine which sample buffers have been decoded,
+        /// so the next frame passed to enqueueSampleBuffer: should be an IDR frame
+        /// (also known as a key frame or sync sample).
         #[deprecated = "Use sampleBufferRenderer's flush instead"]
         #[method(flush)]
         pub unsafe fn flush(&self);
 
+        /// Instructs the layer to discard pending enqueued sample buffers and remove any
+        /// currently displayed image.
+        ///
+        /// It is not possible to determine which sample buffers have been decoded,
+        /// so the next frame passed to enqueueSampleBuffer: should be an IDR frame
+        /// (also known as a key frame or sync sample).
         #[deprecated = "Use sampleBufferRenderer's flushWithRemovalOfDisplayedImage:completionHandler: instead"]
         #[method(flushAndRemoveImage)]
         pub unsafe fn flushAndRemoveImage(&self);
 
+        /// Indicates that the receiver is in a state where it requires a call to -flush to continue decoding frames.
+        ///
+        /// When the application enters a state where use of video decoder resources is not permissible, the value of this property changes to YES along with the display layer's status changing to AVQueuedSampleBufferRenderingStatusFailed.
+        /// To resume rendering sample buffers using the display layer after this property's value is YES, clients must first reset the display layer's status to AVQueuedSampleBufferRenderingStatusUnknown. This can be achieved by invoking -flush on the display layer.
+        /// Clients can track changes to this property via AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChangeNotification.
+        /// This property is not key value observable.
         #[deprecated = "Use sampleBufferRenderer's requiresFlushToResumeDecoding instead"]
         #[method(requiresFlushToResumeDecoding)]
         pub unsafe fn requiresFlushToResumeDecoding(&self) -> bool;
 
+        /// Indicates the readiness of the layer to accept more sample buffers.
+        ///
+        /// AVSampleBufferDisplayLayer keeps track of the occupancy levels of its internal queues
+        /// for the benefit of clients that enqueue sample buffers from non-real-time sources --
+        /// i.e., clients that can supply sample buffers faster than they are consumed, and so
+        /// need to decide when to hold back.
+        ///
+        /// Clients enqueueing sample buffers from non-real-time sources may hold off from
+        /// generating or obtaining more sample buffers to enqueue when the value of
+        /// readyForMoreMediaData is NO.
+        ///
+        /// It is safe to call enqueueSampleBuffer: when readyForMoreMediaData is NO, but
+        /// it is a bad idea to enqueue sample buffers without bound.
+        ///
+        /// To help with control of the non-real-time supply of sample buffers, such clients can use
+        /// -requestMediaDataWhenReadyOnQueue:usingBlock
+        /// in order to specify a block that the layer should invoke whenever it's ready for
+        /// sample buffers to be appended.
+        ///
+        /// The value of readyForMoreMediaData will often change from NO to YES asynchronously,
+        /// as previously supplied sample buffers are decoded and displayed.
+        ///
+        /// This property is not key value observable.
         #[deprecated = "Use sampleBufferRenderer's readyForMoreMediaData instead"]
         #[method(isReadyForMoreMediaData)]
         pub unsafe fn isReadyForMoreMediaData(&self) -> bool;
 
+        /// Cancels any current requestMediaDataWhenReadyOnQueue:usingBlock: call.
+        ///
+        /// This method may be called from outside the block or from within the block.
         #[deprecated = "Use sampleBufferRenderer's stopRequestingMediaData instead"]
         #[method(stopRequestingMediaData)]
         pub unsafe fn stopRequestingMediaData(&self);
 
+        /// Indicates whether the enqueued media data meets the renderer's preroll level.
+        ///
+        /// Clients should fetch the value of this property to learn if the renderer has had enough media data enqueued to start playback reliably. Starting playback when this property is NO may prevent smooth playback following an immediate start.
         #[deprecated = "Use sampleBufferRenderer's hasSufficientMediaDataForReliablePlaybackStart instead"]
         #[method(hasSufficientMediaDataForReliablePlaybackStart)]
         pub unsafe fn hasSufficientMediaDataForReliablePlaybackStart(&self) -> bool;
@@ -178,9 +293,11 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSampleBufferDisplayLayer {
+        /// Indicates that image data should be protected from capture.
         #[method(preventsCapture)]
         pub unsafe fn preventsCapture(&self) -> bool;
 
+        /// Setter for [`preventsCapture`][Self::preventsCapture].
         #[method(setPreventsCapture:)]
         pub unsafe fn setPreventsCapture(&self, prevents_capture: bool);
     }
@@ -191,9 +308,15 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSampleBufferDisplayLayer {
+        /// Indicates whether video playback prevents display and device sleep.
+        ///
+        /// Default is YES on iOS, tvOS and in Mac Catalyst apps.  Default is NO on macOS.
+        /// Setting this property to NO does not force the display to sleep, it simply stops preventing display sleep.  Other apps or frameworks within your app may still be preventing display sleep for various reasons.
+        /// Note: If sample buffers are being enqueued for playback at the user's request, you should ensure that the value of this property is set to YES. If video is not being displayed as part of the user's primary focus, you should ensure that the value of this property is set to NO.
         #[method(preventsDisplaySleepDuringVideoPlayback)]
         pub unsafe fn preventsDisplaySleepDuringVideoPlayback(&self) -> bool;
 
+        /// Setter for [`preventsDisplaySleepDuringVideoPlayback`][Self::preventsDisplaySleepDuringVideoPlayback].
         #[method(setPreventsDisplaySleepDuringVideoPlayback:)]
         pub unsafe fn setPreventsDisplaySleepDuringVideoPlayback(
             &self,
@@ -207,9 +330,15 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSampleBufferDisplayLayer {
+        /// Indicates whether video playback prevents the app from automatically getting backgrounded.
+        ///
+        /// Default is YES.
+        /// Setting this property to YES prevents an application that is playing video from automatically getting backgrounded.  This property does not prevent the user from backgrounding the application.
+        /// Note: If sample buffers are being enqueued for playback at the user's request, you should ensure that the value of this property is set to YES. If video is not being displayed as part of the user's primary focus, you should ensure that the value of this property is set to NO.
         #[method(preventsAutomaticBackgroundingDuringVideoPlayback)]
         pub unsafe fn preventsAutomaticBackgroundingDuringVideoPlayback(&self) -> bool;
 
+        /// Setter for [`preventsAutomaticBackgroundingDuringVideoPlayback`][Self::preventsAutomaticBackgroundingDuringVideoPlayback].
         #[method(setPreventsAutomaticBackgroundingDuringVideoPlayback:)]
         pub unsafe fn setPreventsAutomaticBackgroundingDuringVideoPlayback(
             &self,
@@ -223,6 +352,21 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSampleBufferDisplayLayer {
+        /// Whether or not decoded output is being obscured due to insufficient external protection.
+        ///
+        ///
+        /// The value of this property indicates whether the layer is purposefully obscuring its visual output
+        /// because the requirement for an external protection mechanism is not met by the current device
+        /// configuration. The change of this property can be observed through AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChangeNotification
+        ///
+        /// It is highly recommended that clients whose content requires external
+        /// protection observe this property and set the playback rate to zero and display an appropriate user
+        /// interface when the value changes to YES.
+        ///
+        /// Note that the value of this property is dependent on the external protection requirements of the
+        /// media being displayed by the layer. These requirements are inherent to the content itself and cannot
+        /// be externally specified. If the content does not require external protection, the value of this
+        /// property will be NO.
         #[method(outputObscuredDueToInsufficientExternalProtection)]
         pub unsafe fn outputObscuredDueToInsufficientExternalProtection(&self) -> bool;
     }
@@ -234,6 +378,9 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSampleBufferDisplayLayer {
         #[cfg(feature = "AVSampleBufferVideoRenderer")]
+        /// An AVSampleBufferVideoRenderer instance that allows enqueuing sample buffers for rendering.
+        ///
+        /// Although AVSampleBufferDisplayLayer conforms to the AVQueuedSampleBufferRendering protocol, the sampleBufferRenderer should be used to enqueue sample buffers. sampleBufferRenderer allows the client to safely enqueue sample buffers from a background thread. NOTE: Do not use AVSampleBufferDisplayLayer's AVQueuedSampleBufferRendering functions when using sampleBufferRenderer.
         #[method_id(@__retain_semantics Other sampleBufferRenderer)]
         pub unsafe fn sampleBufferRenderer(&self) -> Retained<AVSampleBufferVideoRenderer>;
     }

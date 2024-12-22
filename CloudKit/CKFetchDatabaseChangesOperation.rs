@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchdatabasechangesoperation?language=objc)
+    /// This operation will fetch changes to record zones within a database
+    ///
+    ///
+    /// If a change anchor from a previous
+    /// `CKFetchDatabaseChangesOperation`is passed in, only the zones that have changed since that anchor will be returned.
+    /// This per-database
+    /// `serverChangeToken`is not to be confused with the per-recordZone
+    /// `serverChangeToken`from
+    /// `CKFetchRecordZoneChangesOperation.`If this is your first fetch or if you wish to re-fetch all zones, pass nil for the change token.
+    /// Change token are opaque tokens and clients should not infer any behavior based on their content.
+    /// `CKFetchDatabaseChangesOperation`is supported in a
+    /// `privateCloudDatabase`and
+    /// `sharedCloudDatabase`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchdatabasechangesoperation?language=objc)
     #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
@@ -36,6 +50,7 @@ extern_methods!(
         pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
 
         #[cfg(feature = "CKServerChangeToken")]
+        /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
         #[method(setPreviousServerChangeToken:)]
         pub unsafe fn setPreviousServerChangeToken(
             &self,
@@ -45,22 +60,40 @@ extern_methods!(
         #[method(resultsLimit)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
+        /// Setter for [`resultsLimit`][Self::resultsLimit].
         #[method(setResultsLimit:)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
+        /// When set to YES, this operation will send repeated requests to the server until all record zone changes have been fetched.
+        ///
+        /// `changeTokenUpdatedBlock`will be invoked periodically, to give clients an updated change token so that already-fetched record zone changes don't need to be re-fetched on a subsequent operation.
+        /// When set to NO, it is the responsibility of the caller to issue subsequent fetch-changes operations when moreComing is YES in a
+        /// `fetchDatabaseChangesCompletionBlock`invocation.
+        /// `fetchAllChanges`is
+        /// `YES`by default
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
+        /// Blocks assigned to this operation may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(fetchAllChanges)]
         pub unsafe fn fetchAllChanges(&self) -> bool;
 
+        /// Setter for [`fetchAllChanges`][Self::fetchAllChanges].
         #[method(setFetchAllChanges:)]
         pub unsafe fn setFetchAllChanges(&self, fetch_all_changes: bool);
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordZoneWithIDChangedBlock)]
         pub unsafe fn recordZoneWithIDChangedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordZoneID>)>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
+        /// Setter for [`recordZoneWithIDChangedBlock`][Self::recordZoneWithIDChangedBlock].
         #[method(setRecordZoneWithIDChangedBlock:)]
         pub unsafe fn setRecordZoneWithIDChangedBlock(
             &self,
@@ -70,12 +103,17 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordZoneWithIDWasDeletedBlock)]
         pub unsafe fn recordZoneWithIDWasDeletedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordZoneID>)>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
+        /// Setter for [`recordZoneWithIDWasDeletedBlock`][Self::recordZoneWithIDWasDeletedBlock].
         #[method(setRecordZoneWithIDWasDeletedBlock:)]
         pub unsafe fn setRecordZoneWithIDWasDeletedBlock(
             &self,
@@ -85,12 +123,22 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
+        /// If this block is set it will be called instead of
+        /// `recordZoneWithIDWasDeletedBlock`if the user deleted this zone via the iCloud storage UI.
+        ///
+        ///
+        /// This is an indication that the user wanted all data deleted, so local cached data should be wiped and not re-uploaded to the server.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordZoneWithIDWasPurgedBlock)]
         pub unsafe fn recordZoneWithIDWasPurgedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordZoneID>)>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
+        /// Setter for [`recordZoneWithIDWasPurgedBlock`][Self::recordZoneWithIDWasPurgedBlock].
         #[method(setRecordZoneWithIDWasPurgedBlock:)]
         pub unsafe fn setRecordZoneWithIDWasPurgedBlock(
             &self,
@@ -100,12 +148,22 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
+        /// If this block is set it will be called instead of
+        /// `recordZoneWithIDWasDeletedBlock`if the user chose to reset all encrypted data for their account.
+        ///
+        ///
+        /// This is an indication that the user had to reset encrypted data during account recovery, so local cached data should be re-uploaded to the server to minimize data loss.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock)]
         pub unsafe fn recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordZoneID>)>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
+        /// Setter for [`recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock`][Self::recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock].
         #[method(setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:)]
         pub unsafe fn setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
             &self,
@@ -115,12 +173,17 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(changeTokenUpdatedBlock)]
         pub unsafe fn changeTokenUpdatedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKServerChangeToken>)>;
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
+        /// Setter for [`changeTokenUpdatedBlock`][Self::changeTokenUpdatedBlock].
         #[method(setChangeTokenUpdatedBlock:)]
         pub unsafe fn setChangeTokenUpdatedBlock(
             &self,
@@ -130,12 +193,28 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
+        /// This block is called when the operation completes.
+        ///
+        ///
+        /// Clients are responsible for saving the change token at the end of the operation and passing it in to the next call to
+        /// `CKFetchDatabaseChangesOperation.`If the server returns a
+        /// `CKErrorChangeTokenExpired`error, the
+        /// `previousServerChangeToken`value was too old and the client should toss its local cache and re-fetch the changes in this record zone starting with a nil
+        /// `previousServerChangeToken.`If
+        /// `moreComing`is true then the server wasn't able to return all the changes in this response. Another
+        /// `CKFetchDatabaseChangesOperation`operation should be run with the
+        /// `previousServerChangeToken`token from this operation.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(fetchDatabaseChangesCompletionBlock)]
         pub unsafe fn fetchDatabaseChangesCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut CKServerChangeToken, Bool, *mut NSError)>;
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
+        /// Setter for [`fetchDatabaseChangesCompletionBlock`][Self::fetchDatabaseChangesCompletionBlock].
         #[method(setFetchDatabaseChangesCompletionBlock:)]
         pub unsafe fn setFetchDatabaseChangesCompletionBlock(
             &self,

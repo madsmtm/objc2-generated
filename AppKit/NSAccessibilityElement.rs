@@ -43,6 +43,7 @@ extern_methods!(
         pub unsafe fn accessibilityFrameInParentSpace(&self) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`accessibilityFrameInParentSpace`][Self::accessibilityFrameInParentSpace].
         #[method(setAccessibilityFrameInParentSpace:)]
         pub unsafe fn setAccessibilityFrameInParentSpace(
             &self,

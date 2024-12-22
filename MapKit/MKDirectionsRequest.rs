@@ -43,6 +43,7 @@ extern_methods!(
         pub unsafe fn source(&self) -> Option<Retained<MKMapItem>>;
 
         #[cfg(feature = "MKMapItem")]
+        /// Setter for [`source`][Self::source].
         #[method(setSource:)]
         pub unsafe fn setSource(&self, source: Option<&MKMapItem>);
 
@@ -51,6 +52,7 @@ extern_methods!(
         pub unsafe fn destination(&self) -> Option<Retained<MKMapItem>>;
 
         #[cfg(feature = "MKMapItem")]
+        /// Setter for [`destination`][Self::destination].
         #[method(setDestination:)]
         pub unsafe fn setDestination(&self, destination: Option<&MKMapItem>);
     }
@@ -75,36 +77,42 @@ extern_methods!(
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;
 
         #[cfg(feature = "MKDirectionsTypes")]
+        /// Setter for [`transportType`][Self::transportType].
         #[method(setTransportType:)]
         pub unsafe fn setTransportType(&self, transport_type: MKDirectionsTransportType);
 
         #[method(requestsAlternateRoutes)]
         pub unsafe fn requestsAlternateRoutes(&self) -> bool;
 
+        /// Setter for [`requestsAlternateRoutes`][Self::requestsAlternateRoutes].
         #[method(setRequestsAlternateRoutes:)]
         pub unsafe fn setRequestsAlternateRoutes(&self, requests_alternate_routes: bool);
 
         #[method_id(@__retain_semantics Other departureDate)]
         pub unsafe fn departureDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Setter for [`departureDate`][Self::departureDate].
         #[method(setDepartureDate:)]
         pub unsafe fn setDepartureDate(&self, departure_date: Option<&NSDate>);
 
         #[method_id(@__retain_semantics Other arrivalDate)]
         pub unsafe fn arrivalDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Setter for [`arrivalDate`][Self::arrivalDate].
         #[method(setArrivalDate:)]
         pub unsafe fn setArrivalDate(&self, arrival_date: Option<&NSDate>);
 
         #[method(tollPreference)]
         pub unsafe fn tollPreference(&self) -> MKDirectionsRoutePreference;
 
+        /// Setter for [`tollPreference`][Self::tollPreference].
         #[method(setTollPreference:)]
         pub unsafe fn setTollPreference(&self, toll_preference: MKDirectionsRoutePreference);
 
         #[method(highwayPreference)]
         pub unsafe fn highwayPreference(&self) -> MKDirectionsRoutePreference;
 
+        /// Setter for [`highwayPreference`][Self::highwayPreference].
         #[method(setHighwayPreference:)]
         pub unsafe fn setHighwayPreference(&self, highway_preference: MKDirectionsRoutePreference);
     }

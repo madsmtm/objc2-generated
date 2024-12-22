@@ -130,6 +130,7 @@ extern_methods!(
         #[method(suspended)]
         pub unsafe fn suspended(&self) -> bool;
 
+        /// Setter for [`suspended`][Self::suspended].
         #[method(setSuspended:)]
         pub unsafe fn setSuspended(&self, suspended: bool);
 

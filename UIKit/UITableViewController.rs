@@ -99,12 +99,14 @@ extern_methods!(
         pub unsafe fn tableView(&self) -> Option<Retained<UITableView>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UITableView", feature = "UIView"))]
+        /// Setter for [`tableView`][Self::tableView].
         #[method(setTableView:)]
         pub unsafe fn setTableView(&self, table_view: Option<&UITableView>);
 
         #[method(clearsSelectionOnViewWillAppear)]
         pub unsafe fn clearsSelectionOnViewWillAppear(&self) -> bool;
 
+        /// Setter for [`clearsSelectionOnViewWillAppear`][Self::clearsSelectionOnViewWillAppear].
         #[method(setClearsSelectionOnViewWillAppear:)]
         pub unsafe fn setClearsSelectionOnViewWillAppear(
             &self,
@@ -124,6 +126,7 @@ extern_methods!(
             feature = "UIRefreshControl",
             feature = "UIView"
         ))]
+        /// Setter for [`refreshControl`][Self::refreshControl].
         #[method(setRefreshControl:)]
         pub unsafe fn setRefreshControl(&self, refresh_control: Option<&UIRefreshControl>);
     }

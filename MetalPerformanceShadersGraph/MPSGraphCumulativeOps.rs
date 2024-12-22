@@ -11,6 +11,15 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative sum of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axis: The tensor dimension where you compute the cumulative operation
+        /// - exclusive: If true, perform the exclusive cumulative operation, and the first element will be equal to zero
+        /// - reverse: If true, reverse the direction of the cumulative operation along the specified axis
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeSumWithTensor:axis:exclusive:reverse:name:)]
         pub unsafe fn cumulativeSumWithTensor_axis_exclusive_reverse_name(
             &self,
@@ -22,6 +31,15 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative sum of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axisTensor: The tensor dimension where you compute the cumulative operation
+        /// - exclusive: If true, perform the exclusive cumulative operation, and the first element will be equal to zero
+        /// - reverse: If true, reverse the direction of the cumulative operation along the specified axis
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeSumWithTensor:axisTensor:exclusive:reverse:name:)]
         pub unsafe fn cumulativeSumWithTensor_axisTensor_exclusive_reverse_name(
             &self,
@@ -33,6 +51,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative sum of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axis: The tensor dimension where you compute the cumulative operation
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeSumWithTensor:axis:name:)]
         pub unsafe fn cumulativeSumWithTensor_axis_name(
             &self,
@@ -42,6 +67,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative sum of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axisTensor: The tensor dimension where you compute the cumulative operation
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeSumWithTensor:axisTensor:name:)]
         pub unsafe fn cumulativeSumWithTensor_axisTensor_name(
             &self,
@@ -51,6 +83,15 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative product of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axis: The tensor dimension where you compute the cumulative operation
+        /// - exclusive: If true, perform the exclusive cumulative operation, and the first element will be equal to one
+        /// - reverse: If true, reverse the direction of the cumulative operation along the specified axis
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeProductWithTensor:axis:exclusive:reverse:name:)]
         pub unsafe fn cumulativeProductWithTensor_axis_exclusive_reverse_name(
             &self,
@@ -62,6 +103,15 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative product of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axisTensor: The tensor dimension where you compute the cumulative operation
+        /// - exclusive: If true, perform the exclusive cumulative operation, and the first element will be equal to one
+        /// - reverse: If true, reverse the direction of the cumulative operation along the specified axis
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeProductWithTensor:axisTensor:exclusive:reverse:name:)]
         pub unsafe fn cumulativeProductWithTensor_axisTensor_exclusive_reverse_name(
             &self,
@@ -73,6 +123,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative product of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axis: The tensor dimension where you compute the cumulative operation
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeProductWithTensor:axis:name:)]
         pub unsafe fn cumulativeProductWithTensor_axis_name(
             &self,
@@ -82,6 +139,15 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative product of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axisTensor: The tensor dimension where you compute the cumulative operation
+        /// - exclusive: If true, perform the exclusive cumulative operation, and the first element will be equal to one
+        /// - reverse: If true, reverse the direction of the cumulative operation along the specified axis
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeProductWithTensor:axisTensor:name:)]
         pub unsafe fn cumulativeProductWithTensor_axisTensor_name(
             &self,
@@ -91,6 +157,15 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative minimum of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axis: The tensor dimension where you compute the cumulative operation
+        /// - exclusive: If true, perform the exclusive cumulative operation, and the first element will be equal to the largest value of the tensor data type
+        /// - reverse: If true, reverse the direction of the cumulative operation along the specified axis
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeMinimumWithTensor:axis:exclusive:reverse:name:)]
         pub unsafe fn cumulativeMinimumWithTensor_axis_exclusive_reverse_name(
             &self,
@@ -102,6 +177,15 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative minimum of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axisTensor: The tensor dimension where you compute the cumulative operation
+        /// - exclusive: If true, perform the exclusive cumulative operation, and the first element will be equal to the largest value of the tensor data type
+        /// - reverse: If true, reverse the direction of the cumulative operation along the specified axis
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeMinimumWithTensor:axisTensor:exclusive:reverse:name:)]
         pub unsafe fn cumulativeMinimumWithTensor_axisTensor_exclusive_reverse_name(
             &self,
@@ -113,6 +197,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative minimum of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axis: The tensor dimension where you compute the cumulative operation
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeMinimumWithTensor:axis:name:)]
         pub unsafe fn cumulativeMinimumWithTensor_axis_name(
             &self,
@@ -122,6 +213,15 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative minimum of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axisTensor: The tensor dimension where you compute the cumulative operation
+        /// - exclusive: If true, perform the exclusive cumulative operation, and the first element will be equal to the largest value of the tensor data type
+        /// - reverse: If true, reverse the direction of the cumulative operation along the specified axis
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeMinimumWithTensor:axisTensor:name:)]
         pub unsafe fn cumulativeMinimumWithTensor_axisTensor_name(
             &self,
@@ -131,6 +231,15 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative maximum of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axis: The tensor dimension where you compute the cumulative operation
+        /// - exclusive: If true, perform the exclusive cumulative operation, and the first element will be equal to the lowest value of the tensor data type
+        /// - reverse: If true, reverse the direction of the cumulative operation along the specified axis
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeMaximumWithTensor:axis:exclusive:reverse:name:)]
         pub unsafe fn cumulativeMaximumWithTensor_axis_exclusive_reverse_name(
             &self,
@@ -142,6 +251,15 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative maximum of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axisTensor: The tensor dimension where you compute the cumulative operation
+        /// - exclusive: If true, perform the exclusive cumulative operation, and the first element will be equal to the lowest value of the tensor data type
+        /// - reverse: If true, reverse the direction of the cumulative operation along the specified axis
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeMaximumWithTensor:axisTensor:exclusive:reverse:name:)]
         pub unsafe fn cumulativeMaximumWithTensor_axisTensor_exclusive_reverse_name(
             &self,
@@ -153,6 +271,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative maximum of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axis: The tensor dimension where you compute the cumulative operation
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeMaximumWithTensor:axis:name:)]
         pub unsafe fn cumulativeMaximumWithTensor_axis_name(
             &self,
@@ -162,6 +287,13 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Computes the cumulative maximum of the input tensor along the specified axis.
+        ///
+        /// - Parameters:
+        /// - tensor: The input tensor
+        /// - axisTensor: The tensor dimension where you compute the cumulative operation
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other cumulativeMaximumWithTensor:axisTensor:name:)]
         pub unsafe fn cumulativeMaximumWithTensor_axisTensor_name(
             &self,

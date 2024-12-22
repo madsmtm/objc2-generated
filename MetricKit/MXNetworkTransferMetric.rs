@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxnetworktransfermetric?language=objc)
+    /// An MXMetric subclass that encapsulates network transfer metrics
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxnetworktransfermetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]
@@ -26,21 +28,37 @@ unsafe impl NSSecureCoding for MXNetworkTransferMetric {}
 extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXNetworkTransferMetric {
+        /// Cumulative amount of data uploaded over WiFi.
+        ///
+        /// Dimensioned as NSUnitInformationStorage.
         #[method_id(@__retain_semantics Other cumulativeWifiUpload)]
         pub unsafe fn cumulativeWifiUpload(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
 
+        /// Cumulative amount of data downloaded over WiFi.
+        ///
+        /// Dimensioned as NSUnitInformationStorage.
         #[method_id(@__retain_semantics Other cumulativeWifiDownload)]
         pub unsafe fn cumulativeWifiDownload(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
 
+        /// Cumulative amount of data uploaded over cellular networks.
+        ///
+        /// This data is radio access technology agnostic.
+        ///
+        /// Dimensioned as NSUnitInformationStorage.
         #[method_id(@__retain_semantics Other cumulativeCellularUpload)]
         pub unsafe fn cumulativeCellularUpload(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
 
+        /// Cumulative amount of data downloaded over cellular networks.
+        ///
+        /// This data is radio access technology agnostic.
+        ///
+        /// Dimensioned as NSUnitInformationStorage.
         #[method_id(@__retain_semantics Other cumulativeCellularDownload)]
         pub unsafe fn cumulativeCellularDownload(
             &self,

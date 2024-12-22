@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcscatterlayer?language=objc)
+    /// A scatter layer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcscatterlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -20,16 +22,26 @@ unsafe impl NSObjectProtocol for MLCScatterLayer {}
 extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCScatterLayer {
+        /// The dimension along which to index
         #[deprecated]
         #[method(dimension)]
         pub unsafe fn dimension(&self) -> NSUInteger;
 
         #[cfg(feature = "MLCTypes")]
+        /// The reduction type applied for all values in source tensor that are scattered to a specific location in the result tensor.
+        /// Must be: MLCReductionTypeNone or MLCReductionTypeSum.
         #[deprecated]
         #[method(reductionType)]
         pub unsafe fn reductionType(&self) -> MLCReductionType;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a scatter layer
+        ///
+        /// Parameter `dimension`: The dimension along which to index
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Returns: A new scatter layer
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDimension:reductionType:)]
         pub unsafe fn layerWithDimension_reductionType(

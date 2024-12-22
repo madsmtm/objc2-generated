@@ -40,6 +40,16 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Constructs a download object to represent the download of a asset located inside of the provided
+        /// `request.`
+        /// Parameter `identifier`: A unique identifier that is used to track the download across the app and extension.
+        ///
+        /// Parameter `request`: The request used to perform the download. The URL provided inside of the request must be a https scheme.
+        ///
+        /// Parameter `fileSize`: The size of the file to download. This field must be accurate in order to show the user accurate progress during app installation.
+        /// If the size does not match the file being downloaded, then the download will fail.
+        ///
+        /// Parameter `applicationGroupIdentifier`: The identifier of the application group that should used to store the finished download.
         #[method_id(@__retain_semantics Init initWithIdentifier:request:fileSize:applicationGroupIdentifier:)]
         pub unsafe fn initWithIdentifier_request_fileSize_applicationGroupIdentifier(
             this: Allocated<Self>,
@@ -49,6 +59,25 @@ extern_methods!(
             application_group_identifier: &NSString,
         ) -> Retained<Self>;
 
+        /// Constructs a download object to represent the download of a asset located inside of the provided
+        /// `request.`
+        /// Parameter `identifier`: A unique identifier that is used to track the download across the app and extension.
+        ///
+        /// Parameter `request`: The request used to perform the download. The URL provided inside of the request must be a https scheme.
+        ///
+        /// Parameter `essential`: Whether the download is essential. See
+        /// `BADownload.isEssential.`Default is false.
+        ///
+        /// Parameter `fileSize`: The size of the file to download. This field must be accurate in order to show the user accurate progress during app installation.
+        /// If the size does not match the file being downloaded, then the download will fail.
+        ///
+        /// Parameter `applicationGroupIdentifier`: The identifier of the application group that should used to store the finished download.
+        ///
+        /// Parameter `priority`: A priority between
+        /// `BADownloaderPriorityMin`-
+        /// `BADownloaderPriorityMax`which is used to order the downloads for this process.
+        /// It is recommended to use
+        /// `BADownloaderPriorityDefault`if download priority does not matter.
         #[method_id(@__retain_semantics Init initWithIdentifier:request:essential:fileSize:applicationGroupIdentifier:priority:)]
         pub unsafe fn initWithIdentifier_request_essential_fileSize_applicationGroupIdentifier_priority(
             this: Allocated<Self>,
@@ -60,6 +89,13 @@ extern_methods!(
             priority: BADownloaderPriority,
         ) -> Retained<Self>;
 
+        /// Constructs a download object to represent the download of a asset located inside of the provided
+        /// `request.`
+        /// Parameter `identifier`: A unique identifier that is used to track the download across the app and extension.
+        ///
+        /// Parameter `request`: The request used to perform the download. The URL provided inside of the request must be a https scheme.
+        ///
+        /// Parameter `applicationGroupIdentifier`: The identifier of the application group that should used to store the finished download.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithIdentifier:request:applicationGroupIdentifier:)]
         pub unsafe fn initWithIdentifier_request_applicationGroupIdentifier(
@@ -69,6 +105,19 @@ extern_methods!(
             application_group_identifier: &NSString,
         ) -> Retained<Self>;
 
+        /// Constructs a download object to represent the download of a asset located inside of the provided
+        /// `request.`
+        /// Parameter `identifier`: A unique identifier that is used to track the download across the app and extension.
+        ///
+        /// Parameter `request`: The request used to perform the download. The URL provided inside of the request must be a https scheme.
+        ///
+        /// Parameter `applicationGroupIdentifier`: The identifier of the application group that should used to store the finished download.
+        ///
+        /// Parameter `priority`: A priority between
+        /// `BADownloaderPriorityMin`-
+        /// `BADownloaderPriorityMax`which is used to order the downloads for this process.
+        /// It is recommended to use
+        /// `BADownloaderPriorityDefault`if download priority does not matter.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithIdentifier:request:applicationGroupIdentifier:priority:)]
         pub unsafe fn initWithIdentifier_request_applicationGroupIdentifier_priority(

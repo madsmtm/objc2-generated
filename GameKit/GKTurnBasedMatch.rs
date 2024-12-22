@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchstatus?language=objc)
+/// Constants that describe the state of the overall match
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,7 +33,9 @@ unsafe impl RefEncode for GKTurnBasedMatchStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipantstatus?language=objc)
+/// Constants that describe the state of individual participants in the match
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipantstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -59,7 +63,9 @@ unsafe impl RefEncode for GKTurnBasedParticipantStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchoutcome?language=objc)
+/// Constants that describe the game result for a given participant who has reached the done state.  The developer is free to use these constants or add additional ones
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchoutcome?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -98,7 +104,13 @@ unsafe impl RefEncode for GKTurnBasedMatchOutcome {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant?language=objc)
+    /// GKTurnBasedMatch represents an ongoing turn-based game among the matched group of participants
+    /// Existing matches can be shown and new matches created using GKTurnBasedMatchmakerViewController
+    /// A list of existing matches can be retrieved using +loadMatchesWithCompletionHandler:
+    ///
+    /// By default turn based events will badge your app.  To opt out of this add GKGameCenterBadgingDisabled  with a boolean value of YES to your info plist
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKTurnBasedParticipant;
@@ -121,6 +133,7 @@ extern_methods!(
         #[method(matchOutcome)]
         pub unsafe fn matchOutcome(&self) -> GKTurnBasedMatchOutcome;
 
+        /// Setter for [`matchOutcome`][Self::matchOutcome].
         #[method(setMatchOutcome:)]
         pub unsafe fn setMatchOutcome(&self, match_outcome: GKTurnBasedMatchOutcome);
 
@@ -143,6 +156,7 @@ extern_methods!(
 extern_methods!(
     /// Obsoleted
     unsafe impl GKTurnBasedParticipant {
+        /// * This property is obsolete. **
         #[deprecated]
         #[method_id(@__retain_semantics Other playerID)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
@@ -153,6 +167,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener?language=objc)
     pub unsafe trait GKTurnBasedEventListener {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// If Game Center initiates a match the developer should create a GKTurnBasedMatch from playersToInvite and present a GKTurnbasedMatchmakerViewController.
         #[optional]
         #[method(player:didRequestMatchWithOtherPlayers:)]
         unsafe fn player_didRequestMatchWithOtherPlayers(
@@ -162,6 +177,13 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// called when it becomes this player's turn.  It also gets called under the following conditions:
+        /// the player's turn has a timeout and it is about to expire.
+        /// the player accepts an invite from another player.
+        /// when the game is running it will additionally recieve turn events for the following:
+        /// turn was passed to another player
+        /// another player saved the match data
+        /// Because of this the app needs to be prepared to handle this even while the player is taking a turn in an existing match.  The boolean indicates whether this event launched or brought to forground the app.
         #[optional]
         #[method(player:receivedTurnEventForMatch:didBecomeActive:)]
         unsafe fn player_receivedTurnEventForMatch_didBecomeActive(
@@ -172,11 +194,13 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// called when the match has ended.
         #[optional]
         #[method(player:matchEnded:)]
         unsafe fn player_matchEnded(&self, player: &GKPlayer, r#match: &GKTurnBasedMatch);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// this is called when a player receives an exchange request from another player.
         #[optional]
         #[method(player:receivedExchangeRequest:forMatch:)]
         unsafe fn player_receivedExchangeRequest_forMatch(
@@ -187,6 +211,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// this is called when an exchange is canceled by the sender.
         #[optional]
         #[method(player:receivedExchangeCancellation:forMatch:)]
         unsafe fn player_receivedExchangeCancellation_forMatch(
@@ -197,6 +222,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// called when all players either respond or timeout responding to this request.  This is sent to both the turn holder and the initiator of the exchange
         #[optional]
         #[method(player:receivedExchangeReplies:forCompletedExchange:forMatch:)]
         unsafe fn player_receivedExchangeReplies_forCompletedExchange_forMatch(
@@ -208,11 +234,13 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// Called when a player chooses to quit a match and that player has the current turn.  The developer should call participantQuitInTurnWithOutcome:nextParticipants:turnTimeout:matchData:completionHandler: on the match passing in appropriate values.  They can also update matchOutcome for other players as appropriate.
         #[optional]
         #[method(player:wantsToQuitMatch:)]
         unsafe fn player_wantsToQuitMatch(&self, player: &GKPlayer, r#match: &GKTurnBasedMatch);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// Deprecated
         #[deprecated]
         #[optional]
         #[method(player:didRequestMatchWithPlayers:)]
@@ -275,6 +303,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other message)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`message`][Self::message].
         #[method(setMessage:)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
 
@@ -682,6 +711,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<NSObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSObject>);

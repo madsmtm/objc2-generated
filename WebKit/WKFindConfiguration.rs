@@ -28,18 +28,21 @@ extern_methods!(
         #[method(backwards)]
         pub unsafe fn backwards(&self) -> bool;
 
+        /// Setter for [`backwards`][Self::backwards].
         #[method(setBackwards:)]
         pub unsafe fn setBackwards(&self, backwards: bool);
 
         #[method(caseSensitive)]
         pub unsafe fn caseSensitive(&self) -> bool;
 
+        /// Setter for [`caseSensitive`][Self::caseSensitive].
         #[method(setCaseSensitive:)]
         pub unsafe fn setCaseSensitive(&self, case_sensitive: bool);
 
         #[method(wraps)]
         pub unsafe fn wraps(&self) -> bool;
 
+        /// Setter for [`wraps`][Self::wraps].
         #[method(setWraps:)]
         pub unsafe fn setWraps(&self, wraps: bool);
     }

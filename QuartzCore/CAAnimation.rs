@@ -28,7 +28,9 @@ pub type CATransitionType = NSString;
 pub type CATransitionSubtype = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimation?language=objc)
+    /// The base animation class. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAAnimation;
@@ -68,12 +70,14 @@ extern_methods!(
         pub unsafe fn timingFunction(&self) -> Option<Retained<CAMediaTimingFunction>>;
 
         #[cfg(feature = "CAMediaTimingFunction")]
+        /// Setter for [`timingFunction`][Self::timingFunction].
         #[method(setTimingFunction:)]
         pub unsafe fn setTimingFunction(&self, timing_function: Option<&CAMediaTimingFunction>);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn CAAnimationDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -83,6 +87,7 @@ extern_methods!(
         #[method(isRemovedOnCompletion)]
         pub unsafe fn isRemovedOnCompletion(&self) -> bool;
 
+        /// Setter for [`isRemovedOnCompletion`][Self::isRemovedOnCompletion].
         #[method(setRemovedOnCompletion:)]
         pub unsafe fn setRemovedOnCompletion(&self, removed_on_completion: bool);
 
@@ -91,6 +96,7 @@ extern_methods!(
         pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
 
         #[cfg(feature = "CAFrameRateRange")]
+        /// Setter for [`preferredFrameRateRange`][Self::preferredFrameRateRange].
         #[method(setPreferredFrameRateRange:)]
         pub unsafe fn setPreferredFrameRateRange(
             &self,
@@ -126,7 +132,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/capropertyanimation?language=objc)
+    /// Subclass for property-based animations. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/capropertyanimation?language=objc)
     #[unsafe(super(CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAPropertyAnimation;
@@ -158,18 +166,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other keyPath)]
         pub unsafe fn keyPath(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`keyPath`][Self::keyPath].
         #[method(setKeyPath:)]
         pub unsafe fn setKeyPath(&self, key_path: Option<&NSString>);
 
         #[method(isAdditive)]
         pub unsafe fn isAdditive(&self) -> bool;
 
+        /// Setter for [`isAdditive`][Self::isAdditive].
         #[method(setAdditive:)]
         pub unsafe fn setAdditive(&self, additive: bool);
 
         #[method(isCumulative)]
         pub unsafe fn isCumulative(&self) -> bool;
 
+        /// Setter for [`isCumulative`][Self::isCumulative].
         #[method(setCumulative:)]
         pub unsafe fn setCumulative(&self, cumulative: bool);
 
@@ -178,6 +189,7 @@ extern_methods!(
         pub unsafe fn valueFunction(&self) -> Option<Retained<CAValueFunction>>;
 
         #[cfg(feature = "CAValueFunction")]
+        /// Setter for [`valueFunction`][Self::valueFunction].
         #[method(setValueFunction:)]
         pub unsafe fn setValueFunction(&self, value_function: Option<&CAValueFunction>);
     }
@@ -203,7 +215,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cabasicanimation?language=objc)
+    /// Subclass for basic (single-keyframe) animations. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cabasicanimation?language=objc)
     #[unsafe(super(CAPropertyAnimation, CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CABasicAnimation;
@@ -232,18 +246,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other fromValue)]
         pub unsafe fn fromValue(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`fromValue`][Self::fromValue].
         #[method(setFromValue:)]
         pub unsafe fn setFromValue(&self, from_value: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other toValue)]
         pub unsafe fn toValue(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`toValue`][Self::toValue].
         #[method(setToValue:)]
         pub unsafe fn setToValue(&self, to_value: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other byValue)]
         pub unsafe fn byValue(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`byValue`][Self::byValue].
         #[method(setByValue:)]
         pub unsafe fn setByValue(&self, by_value: Option<&AnyObject>);
     }
@@ -277,7 +294,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation?language=objc)
+    /// General keyframe animation class. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation?language=objc)
     #[unsafe(super(CAPropertyAnimation, CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAKeyframeAnimation;
@@ -306,6 +325,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other values)]
         pub unsafe fn values(&self) -> Option<Retained<NSArray>>;
 
+        /// Setter for [`values`][Self::values].
         #[method(setValues:)]
         pub unsafe fn setValues(&self, values: Option<&NSArray>);
 
@@ -314,12 +334,14 @@ extern_methods!(
         pub unsafe fn path(&self) -> CGPathRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`path`][Self::path].
         #[method(setPath:)]
         pub unsafe fn setPath(&self, path: CGPathRef);
 
         #[method_id(@__retain_semantics Other keyTimes)]
         pub unsafe fn keyTimes(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// Setter for [`keyTimes`][Self::keyTimes].
         #[method(setKeyTimes:)]
         pub unsafe fn setKeyTimes(&self, key_times: Option<&NSArray<NSNumber>>);
 
@@ -328,6 +350,7 @@ extern_methods!(
         pub unsafe fn timingFunctions(&self) -> Option<Retained<NSArray<CAMediaTimingFunction>>>;
 
         #[cfg(feature = "CAMediaTimingFunction")]
+        /// Setter for [`timingFunctions`][Self::timingFunctions].
         #[method(setTimingFunctions:)]
         pub unsafe fn setTimingFunctions(
             &self,
@@ -337,30 +360,35 @@ extern_methods!(
         #[method_id(@__retain_semantics Other calculationMode)]
         pub unsafe fn calculationMode(&self) -> Retained<CAAnimationCalculationMode>;
 
+        /// Setter for [`calculationMode`][Self::calculationMode].
         #[method(setCalculationMode:)]
         pub unsafe fn setCalculationMode(&self, calculation_mode: &CAAnimationCalculationMode);
 
         #[method_id(@__retain_semantics Other tensionValues)]
         pub unsafe fn tensionValues(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// Setter for [`tensionValues`][Self::tensionValues].
         #[method(setTensionValues:)]
         pub unsafe fn setTensionValues(&self, tension_values: Option<&NSArray<NSNumber>>);
 
         #[method_id(@__retain_semantics Other continuityValues)]
         pub unsafe fn continuityValues(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// Setter for [`continuityValues`][Self::continuityValues].
         #[method(setContinuityValues:)]
         pub unsafe fn setContinuityValues(&self, continuity_values: Option<&NSArray<NSNumber>>);
 
         #[method_id(@__retain_semantics Other biasValues)]
         pub unsafe fn biasValues(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
+        /// Setter for [`biasValues`][Self::biasValues].
         #[method(setBiasValues:)]
         pub unsafe fn setBiasValues(&self, bias_values: Option<&NSArray<NSNumber>>);
 
         #[method_id(@__retain_semantics Other rotationMode)]
         pub unsafe fn rotationMode(&self) -> Option<Retained<CAAnimationRotationMode>>;
 
+        /// Setter for [`rotationMode`][Self::rotationMode].
         #[method(setRotationMode:)]
         pub unsafe fn setRotationMode(&self, rotation_mode: Option<&CAAnimationRotationMode>);
     }
@@ -429,7 +457,9 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caspringanimation?language=objc)
+    /// Subclass for mass-spring animations.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caspringanimation?language=objc)
     #[unsafe(super(CABasicAnimation, CAPropertyAnimation, CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CASpringAnimation;
@@ -460,6 +490,7 @@ extern_methods!(
         pub unsafe fn mass(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`mass`][Self::mass].
         #[method(setMass:)]
         pub unsafe fn setMass(&self, mass: CGFloat);
 
@@ -468,6 +499,7 @@ extern_methods!(
         pub unsafe fn stiffness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`stiffness`][Self::stiffness].
         #[method(setStiffness:)]
         pub unsafe fn setStiffness(&self, stiffness: CGFloat);
 
@@ -476,6 +508,7 @@ extern_methods!(
         pub unsafe fn damping(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`damping`][Self::damping].
         #[method(setDamping:)]
         pub unsafe fn setDamping(&self, damping: CGFloat);
 
@@ -484,12 +517,14 @@ extern_methods!(
         pub unsafe fn initialVelocity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`initialVelocity`][Self::initialVelocity].
         #[method(setInitialVelocity:)]
         pub unsafe fn setInitialVelocity(&self, initial_velocity: CGFloat);
 
         #[method(allowsOverdamping)]
         pub unsafe fn allowsOverdamping(&self) -> bool;
 
+        /// Setter for [`allowsOverdamping`][Self::allowsOverdamping].
         #[method(setAllowsOverdamping:)]
         pub unsafe fn setAllowsOverdamping(&self, allows_overdamping: bool);
 
@@ -543,7 +578,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransition?language=objc)
+    /// Transition animation subclass. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransition?language=objc)
     #[unsafe(super(CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CATransition;
@@ -572,30 +609,35 @@ extern_methods!(
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<CATransitionType>;
 
+        /// Setter for [`type`][Self::type].
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: &CATransitionType);
 
         #[method_id(@__retain_semantics Other subtype)]
         pub unsafe fn subtype(&self) -> Option<Retained<CATransitionSubtype>>;
 
+        /// Setter for [`subtype`][Self::subtype].
         #[method(setSubtype:)]
         pub unsafe fn setSubtype(&self, subtype: Option<&CATransitionSubtype>);
 
         #[method(startProgress)]
         pub unsafe fn startProgress(&self) -> c_float;
 
+        /// Setter for [`startProgress`][Self::startProgress].
         #[method(setStartProgress:)]
         pub unsafe fn setStartProgress(&self, start_progress: c_float);
 
         #[method(endProgress)]
         pub unsafe fn endProgress(&self) -> c_float;
 
+        /// Setter for [`endProgress`][Self::endProgress].
         #[method(setEndProgress:)]
         pub unsafe fn setEndProgress(&self, end_progress: c_float);
 
         #[method_id(@__retain_semantics Other filter)]
         pub unsafe fn filter(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`filter`][Self::filter].
         #[method(setFilter:)]
         pub unsafe fn setFilter(&self, filter: Option<&AnyObject>);
     }
@@ -661,7 +703,9 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationgroup?language=objc)
+    /// Animation subclass for grouped animations. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationgroup?language=objc)
     #[unsafe(super(CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAAnimationGroup;
@@ -690,6 +734,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other animations)]
         pub unsafe fn animations(&self) -> Option<Retained<NSArray<CAAnimation>>>;
 
+        /// Setter for [`animations`][Self::animations].
         #[method(setAnimations:)]
         pub unsafe fn setAnimations(&self, animations: Option<&NSArray<CAAnimation>>);
     }

@@ -9,16 +9,37 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimevalue?language=objc)
+/// Numerator of rational CMTime.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimevalue?language=objc)
 pub type CMTimeValue = i64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimescale?language=objc)
+/// Denominator of rational CMTime.
+///
+/// Timescales must be positive.
+/// Note: kCMTimeMaxTimescale is NOT a good choice of timescale for movie files.
+/// (Recommended timescales for movie files range from 600 to 90000.)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimescale?language=objc)
 pub type CMTimeScale = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeepoch?language=objc)
+/// Epoch (eg, loop number) to which a CMTime refers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeepoch?language=objc)
 pub type CMTimeEpoch = i64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeflags?language=objc)
+/// Flag bits for a CMTime.
+///
+/// Allows simple clearing (eg. with calloc or memset) for initialization
+/// of arrays of CMTime structs to "invalid". This flag must be set, even
+/// if other flags are set as well.
+///
+///
+///
+///
+/// "Implied value" flag (other struct fields are ignored).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -44,13 +65,23 @@ unsafe impl RefEncode for CMTimeFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtime?language=objc)
+/// Rational time value represented as int64/int32.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtime?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMTime {
+    /// The value of the CMTime. value/timescale = seconds
     pub value: CMTimeValue,
+    /// The timescale of the CMTime. value/timescale = seconds.
     pub timescale: CMTimeScale,
+    /// The flags, eg. kCMTimeFlags_Valid, kCMTimeFlags_PositiveInfinity, etc.
     pub flags: CMTimeFlags,
+    /// Differentiates between equal timestamps that are actually different because
+    /// of looping, multi-item sequencing, etc.
+    /// Will be used during comparison: greater epochs happen after lesser ones.
+    /// Additions/subtraction is only possible within a single epoch,
+    /// however, since epoch length may be unknown/variable
     pub epoch: CMTimeEpoch,
 }
 
@@ -98,22 +129,62 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// Make a valid CMTime with value and timescale.  Epoch is implied to be 0.
+    ///
+    /// Returns: The resulting CMTime.
     pub fn CMTimeMake(value: i64, timescale: i32) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Make a valid CMTime with value, scale and epoch.
+    ///
+    /// Returns: The resulting CMTime.
     pub fn CMTimeMakeWithEpoch(value: i64, timescale: i32, epoch: i64) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Make a CMTime from a Float64 number of seconds, and a preferred timescale.
+    ///
+    /// The epoch of the result will be zero.  If preferredTimescale is
+    /// <
+    /// = 0, the result
+    /// will be an invalid CMTime.  If the preferred timescale will cause an overflow, the
+    /// timescale will be halved repeatedly until the overflow goes away, or the timescale
+    /// is 1.  If it still overflows at that point, the result will be +/- infinity.  The
+    /// kCMTimeFlags_HasBeenRounded flag will be set if the result, when converted back to
+    /// seconds, is not exactly equal to the original seconds value.
+    ///
+    /// Returns: The resulting CMTime.
     pub fn CMTimeMakeWithSeconds(seconds: f64, preferred_timescale: i32) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Converts a CMTime to seconds.
+    ///
+    /// If the CMTime is invalid or indefinite, NAN is returned.  If the CMTime is infinite, +/- __inf()
+    /// is returned.  If the CMTime is numeric, epoch is ignored, and time.value / time.timescale is
+    /// returned.  The division is done in Float64, so the fraction is not lost in the returned result.
+    ///
+    /// Returns: The resulting Float64 number of seconds.
     pub fn CMTimeGetSeconds(time: CMTime) -> f64;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeroundingmethod?language=objc)
+/// Rounding method to use when computing time.value during timescale conversions.
+///
+/// away from 0 if abs(fraction) is >= 0.5.
+///
+///
+///
+///
+/// from larger to smaller scale (ie. from more precision to
+/// less precision), but use
+/// kCMTimeRoundingMethod_RoundAwayFromZero if converting
+/// from smaller to larger scale (ie. from less precision to
+/// more precision). Also, never round a negative number down
+/// to 0; always return the smallest magnitude negative
+/// CMTime in this case (-1/newTimescale).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeroundingmethod?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -140,6 +211,13 @@ unsafe impl RefEncode for CMTimeRoundingMethod {
 }
 
 extern "C-unwind" {
+    /// Returns a new CMTime containing the source CMTime converted to a new timescale (rounding as requested).
+    ///
+    /// If the value needs to be rounded, the kCMTimeFlags_HasBeenRounded flag will be set.
+    /// See definition of CMTimeRoundingMethod for a discussion of the various rounding methods available. If
+    /// the source time is non-numeric (ie. infinite, indefinite, invalid), the result will be similarly non-numeric.
+    ///
+    /// Returns: The converted result CMTime.
     pub fn CMTimeConvertScale(
         time: CMTime,
         new_timescale: i32,
@@ -148,80 +226,295 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the sum of two CMTimes.
+    ///
+    /// If the operands both have the same timescale, the timescale of the result will be the same as
+    /// the operands' timescale.  If the operands have different timescales, the timescale of the result
+    /// will be the least common multiple of the operands' timescales.  If that LCM timescale is
+    /// greater than kCMTimeMaxTimescale, the result timescale will be kCMTimeMaxTimescale,
+    /// and default rounding will be applied when converting the result to this timescale.
+    ///
+    /// If the result value overflows, the result timescale will be repeatedly halved until the result
+    /// value no longer overflows.  Again, default rounding will be applied when converting the
+    /// result to this timescale.  If the result value still overflows when timescale == 1, then the
+    /// result will be either positive or negative infinity, depending on the direction of the
+    /// overflow.
+    ///
+    /// If any rounding occurs for any reason, the result's kCMTimeFlags_HasBeenRounded flag will be
+    /// set.  This flag will also be set if either of the operands has kCMTimeFlags_HasBeenRounded set.
+    ///
+    /// If either of the operands is invalid, the result will be invalid.
+    ///
+    /// If the operands are valid, but just one operand is infinite, the result will be similarly
+    /// infinite. If the operands are valid, and both are infinite, the results will be as follows:
+    /// <ul>
+    /// +infinity + +infinity == +infinity
+    /// <li>
+    /// -infinity + -infinity == -infinity
+    /// <li>
+    /// +infinity + -infinity == invalid
+    /// <li>
+    /// -infinity + +infinity == invalid
+    /// </ul>
+    /// If the operands are valid, not infinite, and either or both is indefinite, the result
+    /// will be indefinite.
+    ///
+    /// If the two operands are numeric (ie. valid, not infinite, not indefinite), but have
+    /// different nonzero epochs, the result will be invalid.  If they have the same nonzero
+    /// epoch, the result will have epoch zero (a duration).  Times in different epochs
+    /// cannot be added or subtracted, because epoch length is unknown.  Times in epoch zero
+    /// are considered to be durations and can be added to times in other epochs.
+    /// Times in different epochs can be compared, however, because numerically greater
+    /// epochs always occur after numerically lesser epochs.
+    ///
+    /// Returns: The sum of the two CMTimes (lhs + rhs).
     pub fn CMTimeAdd(lhs: CMTime, rhs: CMTime) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Returns the difference of two CMTimes.
+    ///
+    /// If the operands both have the same timescale, the timescale of the result will be the same as
+    /// the operands' timescale.  If the operands have different timescales, the timescale of the result
+    /// will be the least common multiple of the operands' timescales.  If that LCM timescale is
+    /// greater than kCMTimeMaxTimescale, the result timescale will be kCMTimeMaxTimescale,
+    /// and default rounding will be applied when converting the result to this timescale.
+    ///
+    /// If the result value overflows, the result timescale will be repeatedly halved until the result
+    /// value no longer overflows.  Again, default rounding will be applied when converting the
+    /// result to this timescale.  If the result value still overflows when timescale == 1, then the
+    /// result will be either positive or negative infinity, depending on the direction of the
+    /// overflow.
+    ///
+    /// If any rounding occurs for any reason, the result's kCMTimeFlags_HasBeenRounded flag will be
+    /// set.  This flag will also be set if either of the operands has kCMTimeFlags_HasBeenRounded set.
+    ///
+    /// If either of the operands is invalid, the result will be invalid.
+    ///
+    /// If the operands are valid, but just one operand is infinite, the result will be similarly
+    /// infinite. If the operands are valid, and both are infinite, the results will be as follows:
+    /// <ul>
+    /// +infinity - +infinity == invalid
+    /// <li>
+    /// -infinity - -infinity == invalid
+    /// <li>
+    /// +infinity - -infinity == +infinity
+    /// <li>
+    /// -infinity - +infinity == -infinity
+    /// </ul>
+    /// If the operands are valid, not infinite, and either or both is indefinite, the result
+    /// will be indefinite.
+    ///
+    /// If the two operands are numeric (ie. valid, not infinite, not indefinite), but have
+    /// different nonzero epochs, the result will be invalid.  If they have the same nonzero
+    /// epoch, the result will have epoch zero (a duration).  Times in different epochs
+    /// cannot be added or subtracted, because epoch length is unknown.  Times in epoch zero
+    /// are considered to be durations and can be subtracted from times in other epochs.
+    /// Times in different epochs can be compared, however, because numerically greater
+    /// epochs always occur after numerically lesser epochs.
+    ///
+    /// Returns: The difference of the two CMTimes (lhs - rhs).
     pub fn CMTimeSubtract(lhs: CMTime, rhs: CMTime) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Returns the product of a CMTime and a 32-bit integer.
+    ///
+    /// The result will have the same timescale as the CMTime operand. If the result value overflows,
+    /// the result timescale will be repeatedly halved until the result value no longer overflows.
+    /// Again, default rounding will be applied when converting the result to this timescale.  If the
+    /// result value still overflows when timescale == 1, then the result will be either positive or
+    /// negative infinity, depending on the direction of the overflow.
+    ///
+    /// If any rounding occurs for any reason, the result's kCMTimeFlags_HasBeenRounded flag will be
+    /// set.  This flag will also be set if the CMTime operand has kCMTimeFlags_HasBeenRounded set.
+    ///
+    /// If the CMTime operand is invalid, the result will be invalid.
+    ///
+    /// If the CMTime operand is valid, but infinite, the result will be infinite, and of an appropriate sign, given
+    /// the signs of both operands.
+    ///
+    /// If the CMTime operand is valid, but indefinite, the result will be indefinite.
+    ///
+    ///
+    /// Returns: The product of the CMTime and the 32-bit integer.
     pub fn CMTimeMultiply(time: CMTime, multiplier: i32) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Returns the product of a CMTime and a 64-bit float.
+    ///
+    /// The result will initially have the same timescale as the CMTime operand.
+    /// If the result timescale is less than 65536, it will be repeatedly doubled until it is at least 65536.
+    /// If the result value overflows, the result timescale will be repeatedly halved until the
+    /// result value no longer overflows.
+    /// Again, default rounding will be applied when converting the result to this timescale.  If the
+    /// result value still overflows when timescale == 1, then the result will be either positive or
+    /// negative infinity, depending on the direction of the overflow.
+    ///
+    /// If any rounding occurs for any reason, the result's kCMTimeFlags_HasBeenRounded flag will be
+    /// set.  This flag will also be set if the CMTime operand has kCMTimeFlags_HasBeenRounded set.
+    ///
+    /// If the CMTime operand is invalid, the result will be invalid.
+    ///
+    /// If the CMTime operand is valid, but infinite, the result will be infinite, and of an appropriate sign, given
+    /// the signs of both operands.
+    ///
+    /// If the CMTime operand is valid, but indefinite, the result will be indefinite.
+    ///
+    ///
+    /// Returns: The product of the CMTime and the 64-bit float.
     pub fn CMTimeMultiplyByFloat64(time: CMTime, multiplier: f64) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Returns the result of multiplying a CMTime by an integer, then dividing by another integer.
+    ///
+    /// The exact rational value will be preserved, if possible without overflow.  If an overflow
+    /// would occur, a new timescale will be chosen so as to minimize the rounding error.
+    /// Default rounding will be applied when converting the result to this timescale.  If the
+    /// result value still overflows when timescale == 1, then the result will be either positive
+    /// or negative infinity, depending on the direction of the overflow.
+    ///
+    /// If any rounding occurs for any reason, the result's kCMTimeFlags_HasBeenRounded flag will be
+    /// set.  This flag will also be set if the CMTime operand has kCMTimeFlags_HasBeenRounded set.
+    ///
+    /// If the denominator, and either the time or the numerator, are zero, the result will be
+    /// kCMTimeInvalid.  If only the denominator is zero, the result will be either kCMTimePositiveInfinity
+    /// or kCMTimeNegativeInfinity, depending on the signs of the other arguments.
+    ///
+    /// If time is invalid, the result will be invalid. If time is infinite, the result will be
+    /// similarly infinite. If time is indefinite, the result will be indefinite.
+    ///
+    ///
+    /// Returns: (time * multiplier) / divisor
     pub fn CMTimeMultiplyByRatio(time: CMTime, multiplier: i32, divisor: i32) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Returns the numerical relationship (-1 = less than, 1 = greater than, 0 = equal) of two CMTimes.
+    ///
+    /// If the two CMTimes are numeric (ie. not invalid, infinite, or indefinite), and have
+    /// different epochs, it is considered that times in numerically larger epochs are always
+    /// greater than times in numerically smaller epochs.
+    ///
+    /// Since this routine will be used to sort lists by time, it needs to give all values
+    /// (even invalid and indefinite ones) a strict ordering to guarantee that sort algorithms
+    /// terminate safely. The order chosen is somewhat arbitrary:
+    ///
+    /// -infinity
+    /// <
+    /// all finite values
+    /// <
+    /// indefinite
+    /// <
+    /// +infinity
+    /// <
+    /// invalid
+    ///
+    /// Invalid CMTimes are considered to be equal to other invalid CMTimes, and greater than
+    /// any other CMTime. Positive infinity is considered to be less than any invalid CMTime,
+    /// equal to itself, and greater than any other CMTime. An indefinite CMTime is considered
+    /// to be less than any invalid CMTime, less than positive infinity, equal to itself,
+    /// and greater than any other CMTime.  Negative infinity is considered to be equal to itself,
+    /// and less than any other CMTime.
+    ///
+    /// -1 is returned if time1 is less than time2. 0 is returned if they
+    /// are equal. 1 is returned if time1 is greater than time2.
+    ///
+    /// Returns: The numerical relationship of the two CMTimes (-1 = less than, 1 = greater than, 0 = equal).
     pub fn CMTimeCompare(time1: CMTime, time2: CMTime) -> i32;
 }
 
 extern "C-unwind" {
+    /// Returns the lesser of two CMTimes (as defined by CMTimeCompare).
+    ///
+    /// Returns: The lesser of the two CMTimes.
     pub fn CMTimeMinimum(time1: CMTime, time2: CMTime) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Returns the greater of two CMTimes (as defined by CMTimeCompare).
+    ///
+    /// Returns: The greater of the two CMTimes.
     pub fn CMTimeMaximum(time1: CMTime, time2: CMTime) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Returns the absolute value of a CMTime.
+    ///
+    /// Returns: Same as the argument time, with sign inverted if negative.
     pub fn CMTimeAbsoluteValue(time: CMTime) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Returns a CFDictionary version of a CMTime.
+    ///
+    /// This is useful when putting CMTimes in CF container types.
+    ///
+    /// Returns: A CFDictionary version of the CMTime.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTimeCopyAsDictionary(time: CMTime, allocator: CFAllocatorRef) -> CFDictionaryRef;
 }
 
 extern "C-unwind" {
+    /// Reconstitutes a CMTime struct from a CFDictionary previously created by CMTimeCopyAsDictionary.
+    ///
+    /// This is useful when getting CMTimes from CF container types.  If the CFDictionary does not
+    /// have the requisite keyed values, an invalid time is returned.
+    ///
+    /// Returns: The created CMTime.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTimeMakeFromDictionary(dictionary_representation: CFDictionaryRef) -> CMTime;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimevaluekey?language=objc)
+    /// CFDictionary key for value field of CMTime (CFNumber containing int64_t)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimevaluekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeValueKey: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimescalekey?language=objc)
+    /// CFDictionary key for timescale field of CMTime (CFNumber containing int32_t)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimescalekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeScaleKey: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimeepochkey?language=objc)
+    /// CFDictionary key for epoch field of CMTime (CFNumber containing int64_t)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimeepochkey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeEpochKey: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimeflagskey?language=objc)
+    /// CFDictionary key for flags field of CMTime (CFNumber containing uint32_t)
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimeflagskey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeFlagsKey: CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Creates a CFString with a description of a CMTime (just like CFCopyDescription).
+    ///
+    /// This is used from within CFShow on an object that contains CMTime fields. It is
+    /// also useful from other client debugging code.  The caller owns the returned
+    /// CFString, and is responsible for releasing it.
+    ///
+    /// Returns: The created CFString description.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTimeCopyDescription(allocator: CFAllocatorRef, time: CMTime) -> CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Prints a description of the CMTime (just like CFShow).
+    ///
+    /// This is most useful from within gdb.
     pub fn CMTimeShow(time: CMTime);
 }

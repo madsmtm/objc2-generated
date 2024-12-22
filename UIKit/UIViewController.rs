@@ -169,6 +169,7 @@ extern_methods!(
         pub fn view(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIView")]
+        /// Setter for [`view`][Self::view].
         #[method(setView:)]
         pub fn setView(&self, view: Option<&UIView>);
 
@@ -296,18 +297,40 @@ extern_methods!(
             identifier: Option<&NSString>,
         ) -> Option<Retained<UIStoryboardSegue>>;
 
+        /// Called when the view is about to made visible, before it is added to the hierarchy.
+        /// Because the view is not yet in the hierarchy at the time this method is called, it
+        /// is too early in the appearance transition for many usages. Prefer -viewIsAppearing:
+        /// instead of this method when possible. Only use this method when its exact timing
+        /// before the appearance transition starts running is desired, such as to set up an
+        /// alongside animation with a transition coordinator, or as a counterpart for paired
+        /// code in a viewWillDisappear/viewDidDisappear callback that does not rely on the
+        /// view or view controller's trait collection or the view hierarchy.
         #[method(viewWillAppear:)]
         pub unsafe fn viewWillAppear(&self, animated: bool);
 
+        /// Called when the view is becoming visible at the beginning of the appearance transition,
+        /// after it has been added to the hierarchy and been laid out by its superview. This method
+        /// is very similar to -viewWillAppear: and is always called shortly afterwards (so changes
+        /// made in either callback will be visible to the user at the same time), but unlike
+        /// -viewWillAppear:, at the time when -viewIsAppearing: is called all of the following are
+        /// valid for the view controller and its own view:
+        /// - View controller and view's trait collection
+        /// - View's superview chain and window
+        /// - View's geometry (e.g. frame/bounds, safe area insets, layout margins)
+        /// Choose this method instead of -viewWillAppear: by default, as it is a direct replacement
+        /// that provides equivalent or superior behavior in nearly all cases.
         #[method(viewIsAppearing:)]
         pub unsafe fn viewIsAppearing(&self, animated: bool);
 
+        /// Called after the view has fully transitioned to visible, when any transition animations have completed.
         #[method(viewDidAppear:)]
         pub unsafe fn viewDidAppear(&self, animated: bool);
 
+        /// Called when the view is about to be dismissed, covered, or otherwise hidden.
         #[method(viewWillDisappear:)]
         pub unsafe fn viewWillDisappear(&self, animated: bool);
 
+        /// Called after the view has fully been dismissed, covered, or otherwise hidden, when any transition animations have completed.
         #[method(viewDidDisappear:)]
         pub unsafe fn viewDidDisappear(&self, animated: bool);
 
@@ -320,6 +343,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
@@ -342,12 +366,14 @@ extern_methods!(
         #[method(definesPresentationContext)]
         pub unsafe fn definesPresentationContext(&self) -> bool;
 
+        /// Setter for [`definesPresentationContext`][Self::definesPresentationContext].
         #[method(setDefinesPresentationContext:)]
         pub unsafe fn setDefinesPresentationContext(&self, defines_presentation_context: bool);
 
         #[method(providesPresentationContextTransitionStyle)]
         pub unsafe fn providesPresentationContextTransitionStyle(&self) -> bool;
 
+        /// Setter for [`providesPresentationContextTransitionStyle`][Self::providesPresentationContextTransitionStyle].
         #[method(setProvidesPresentationContextTransitionStyle:)]
         pub unsafe fn setProvidesPresentationContextTransitionStyle(
             &self,
@@ -357,18 +383,23 @@ extern_methods!(
         #[method(restoresFocusAfterTransition)]
         pub unsafe fn restoresFocusAfterTransition(&self) -> bool;
 
+        /// Setter for [`restoresFocusAfterTransition`][Self::restoresFocusAfterTransition].
         #[method(setRestoresFocusAfterTransition:)]
         pub unsafe fn setRestoresFocusAfterTransition(&self, restores_focus_after_transition: bool);
 
+        /// The identifier of the focus group that this view controller belongs to. If this is nil, the view controller inherits the focus group of its parent focus environment.
         #[method_id(@__retain_semantics Other focusGroupIdentifier)]
         pub unsafe fn focusGroupIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`focusGroupIdentifier`][Self::focusGroupIdentifier].
         #[method(setFocusGroupIdentifier:)]
         pub unsafe fn setFocusGroupIdentifier(&self, focus_group_identifier: Option<&NSString>);
 
+        /// The base name for tracking user interactions as activities hosted by this view controller.
         #[method_id(@__retain_semantics Other interactionActivityTrackingBaseName)]
         pub unsafe fn interactionActivityTrackingBaseName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`interactionActivityTrackingBaseName`][Self::interactionActivityTrackingBaseName].
         #[method(setInteractionActivityTrackingBaseName:)]
         pub unsafe fn setInteractionActivityTrackingBaseName(
             &self,
@@ -419,6 +450,7 @@ extern_methods!(
         #[method(modalTransitionStyle)]
         pub unsafe fn modalTransitionStyle(&self) -> UIModalTransitionStyle;
 
+        /// Setter for [`modalTransitionStyle`][Self::modalTransitionStyle].
         #[method(setModalTransitionStyle:)]
         pub unsafe fn setModalTransitionStyle(
             &self,
@@ -426,10 +458,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIViewControllerTransition")]
+        /// Preferred system provided transition to use when displaying this
+        /// view controller. Note that this only indicates a preference.
+        /// The provided transition may be ignored if not supported by the
+        /// current context. For example, `UINavigationController` supports
+        /// the .zoom transition, but not the .coverVertical transition.
         #[method_id(@__retain_semantics Other preferredTransition)]
         pub unsafe fn preferredTransition(&self) -> Option<Retained<UIViewControllerTransition>>;
 
         #[cfg(feature = "UIViewControllerTransition")]
+        /// Setter for [`preferredTransition`][Self::preferredTransition].
         #[method(setPreferredTransition:)]
         pub unsafe fn setPreferredTransition(
             &self,
@@ -439,6 +477,7 @@ extern_methods!(
         #[method(modalPresentationStyle)]
         pub unsafe fn modalPresentationStyle(&self) -> UIModalPresentationStyle;
 
+        /// Setter for [`modalPresentationStyle`][Self::modalPresentationStyle].
         #[method(setModalPresentationStyle:)]
         pub unsafe fn setModalPresentationStyle(
             &self,
@@ -448,6 +487,7 @@ extern_methods!(
         #[method(modalPresentationCapturesStatusBarAppearance)]
         pub unsafe fn modalPresentationCapturesStatusBarAppearance(&self) -> bool;
 
+        /// Setter for [`modalPresentationCapturesStatusBarAppearance`][Self::modalPresentationCapturesStatusBarAppearance].
         #[method(setModalPresentationCapturesStatusBarAppearance:)]
         pub unsafe fn setModalPresentationCapturesStatusBarAppearance(
             &self,
@@ -461,6 +501,7 @@ extern_methods!(
         #[method(wantsFullScreenLayout)]
         pub unsafe fn wantsFullScreenLayout(&self) -> bool;
 
+        /// Setter for [`wantsFullScreenLayout`][Self::wantsFullScreenLayout].
         #[deprecated]
         #[method(setWantsFullScreenLayout:)]
         pub unsafe fn setWantsFullScreenLayout(&self, wants_full_screen_layout: bool);
@@ -470,12 +511,14 @@ extern_methods!(
         pub unsafe fn edgesForExtendedLayout(&self) -> UIRectEdge;
 
         #[cfg(feature = "UIGeometry")]
+        /// Setter for [`edgesForExtendedLayout`][Self::edgesForExtendedLayout].
         #[method(setEdgesForExtendedLayout:)]
         pub unsafe fn setEdgesForExtendedLayout(&self, edges_for_extended_layout: UIRectEdge);
 
         #[method(extendedLayoutIncludesOpaqueBars)]
         pub unsafe fn extendedLayoutIncludesOpaqueBars(&self) -> bool;
 
+        /// Setter for [`extendedLayoutIncludesOpaqueBars`][Self::extendedLayoutIncludesOpaqueBars].
         #[method(setExtendedLayoutIncludesOpaqueBars:)]
         pub unsafe fn setExtendedLayoutIncludesOpaqueBars(
             &self,
@@ -486,6 +529,7 @@ extern_methods!(
         #[method(automaticallyAdjustsScrollViewInsets)]
         pub unsafe fn automaticallyAdjustsScrollViewInsets(&self) -> bool;
 
+        /// Setter for [`automaticallyAdjustsScrollViewInsets`][Self::automaticallyAdjustsScrollViewInsets].
         #[deprecated = "Use UIScrollView's contentInsetAdjustmentBehavior instead"]
         #[method(setAutomaticallyAdjustsScrollViewInsets:)]
         pub unsafe fn setAutomaticallyAdjustsScrollViewInsets(
@@ -494,6 +538,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIGeometry", feature = "UIScrollView", feature = "UIView"))]
+        /// Aggregate values (e.g., NSDirectionalRectEdgeAll) are accepted in the `edge` parameter; NSDirectionalRectEdgeLeading and Trailing are ignored on iOS 15.0
         #[method(setContentScrollView:forEdge:)]
         pub unsafe fn setContentScrollView_forEdge(
             &self,
@@ -502,6 +547,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIGeometry", feature = "UIScrollView", feature = "UIView"))]
+        /// Pass only a single edge (e.g., NSDirectionalRectEdgeTop) in the `edge` parameter. Raises an exception when passed an aggregate edge (e.g., NSDirectionalRectEdgeAll)
         #[method_id(@__retain_semantics Other contentScrollViewForEdge:)]
         pub unsafe fn contentScrollViewForEdge(
             &self,
@@ -513,6 +559,7 @@ extern_methods!(
         pub unsafe fn preferredContentSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredContentSize`][Self::preferredContentSize].
         #[method(setPreferredContentSize:)]
         pub unsafe fn setPreferredContentSize(&self, preferred_content_size: CGSize);
 
@@ -566,6 +613,7 @@ extern_methods!(
         pub unsafe fn overrideUserInterfaceStyle(&self) -> UIUserInterfaceStyle;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`overrideUserInterfaceStyle`][Self::overrideUserInterfaceStyle].
         #[method(setOverrideUserInterfaceStyle:)]
         pub unsafe fn setOverrideUserInterfaceStyle(
             &self,
@@ -615,6 +663,8 @@ extern_methods!(
         pub unsafe fn preferredInterfaceOrientationForPresentation(&self)
             -> UIInterfaceOrientation;
 
+        /// Notifies the view controller that a change occurred that affects supported interface orientations or the preferred interface orientation for presentation.
+        /// By default, this will animate any changes to orientation. To perform a non-animated update, call within `[UIView performWithoutAnimation:]`.
         #[method(setNeedsUpdateOfSupportedInterfaceOrientations)]
         pub unsafe fn setNeedsUpdateOfSupportedInterfaceOrientations(&self);
 
@@ -694,6 +744,7 @@ extern_methods!(
         #[method(isEditing)]
         pub unsafe fn isEditing(&self) -> bool;
 
+        /// Setter for [`isEditing`][Self::isEditing].
         #[method(setEditing:)]
         pub unsafe fn setEditing(&self, editing: bool);
 
@@ -822,6 +873,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other restorationIdentifier)]
         pub unsafe fn restorationIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`restorationIdentifier`][Self::restorationIdentifier].
         #[method(setRestorationIdentifier:)]
         pub unsafe fn setRestorationIdentifier(&self, restoration_identifier: Option<&NSString>);
 
@@ -830,6 +882,7 @@ extern_methods!(
         pub unsafe fn restorationClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "UIStateRestoration")]
+        /// Setter for [`restorationClass`][Self::restorationClass].
         #[method(setRestorationClass:)]
         pub unsafe fn setRestorationClass(&self, restoration_class: Option<&AnyClass>);
 
@@ -868,6 +921,7 @@ extern_methods!(
 
         #[cfg(feature = "UIViewControllerTransitioning")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`transitioningDelegate`][Self::transitioningDelegate].
         #[method(setTransitioningDelegate:)]
         pub unsafe fn setTransitioningDelegate(
             &self,
@@ -897,6 +951,7 @@ extern_methods!(
         pub unsafe fn additionalSafeAreaInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`additionalSafeAreaInsets`][Self::additionalSafeAreaInsets].
         #[method(setAdditionalSafeAreaInsets:)]
         pub unsafe fn setAdditionalSafeAreaInsets(&self, additional_safe_area_insets: UIEdgeInsets);
 
@@ -907,6 +962,7 @@ extern_methods!(
         #[method(viewRespectsSystemMinimumLayoutMargins)]
         pub unsafe fn viewRespectsSystemMinimumLayoutMargins(&self) -> bool;
 
+        /// Setter for [`viewRespectsSystemMinimumLayoutMargins`][Self::viewRespectsSystemMinimumLayoutMargins].
         #[method(setViewRespectsSystemMinimumLayoutMargins:)]
         pub unsafe fn setViewRespectsSystemMinimumLayoutMargins(
             &self,
@@ -947,6 +1003,9 @@ extern_methods!(
     /// UIPerformsActions
     #[cfg(feature = "UIResponder")]
     unsafe impl UIViewController {
+        /// Determines whether the receiver continues to respond to actions while it is presenting a view controller modally.
+        ///
+        /// Defaults to YES. You can change the default return value by providing a value for UIViewControllerPerformsActionsWhilePresentingModally in your Info.plist file.
         #[method(performsActionsWhilePresentingModally)]
         pub unsafe fn performsActionsWhilePresentingModally(&self) -> bool;
     }
@@ -999,6 +1058,7 @@ extern_methods!(
         #[method(isModalInPresentation)]
         pub unsafe fn isModalInPresentation(&self) -> bool;
 
+        /// Setter for [`isModalInPresentation`][Self::isModalInPresentation].
         #[method(setModalInPresentation:)]
         pub unsafe fn setModalInPresentation(&self, modal_in_presentation: bool);
     }
@@ -1031,6 +1091,7 @@ extern_protocol!(
         unsafe fn sourceRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`sourceRect`][Self::sourceRect].
         #[deprecated = "UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction."]
         #[method(setSourceRect:)]
         unsafe fn setSourceRect(&self, source_rect: CGRect);
@@ -1144,12 +1205,16 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIViewController {
         #[cfg(feature = "UIContentConfiguration")]
+        /// Setting a content unavailable configuration replaces the existing content unavailable view of the view controller with a new content unavailable view instance from the configuration,
+        /// or directly applies the configuration to the existing content unavailable view if the configuration is compatible with the existing content unavailable view type.
+        /// The default value is nil.
         #[method_id(@__retain_semantics Other contentUnavailableConfiguration)]
         pub unsafe fn contentUnavailableConfiguration(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIContentConfiguration>>>;
 
         #[cfg(feature = "UIContentConfiguration")]
+        /// Setter for [`contentUnavailableConfiguration`][Self::contentUnavailableConfiguration].
         #[method(setContentUnavailableConfiguration:)]
         pub unsafe fn setContentUnavailableConfiguration(
             &self,
@@ -1157,15 +1222,23 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIContentUnavailableConfigurationState")]
+        /// Returns the current content unavailable configuration state for the view.
+        /// To add your own custom state(s), override the getter and call super to obtain an instance with the
+        /// system properties set, then set your own custom states as desired.
         #[method_id(@__retain_semantics Other contentUnavailableConfigurationState)]
         pub unsafe fn contentUnavailableConfigurationState(
             &self,
         ) -> Retained<UIContentUnavailableConfigurationState>;
 
+        /// Requests the view update its content unavailable configuration for its current state. This method is called automatically
+        /// when the view's `contentUnavailableConfigurationState` may have changed, as well as in other circumstances where an
+        /// update may be required. Multiple requests may be coalesced into a single update at the appropriate time.
         #[method(setNeedsUpdateContentUnavailableConfiguration)]
         pub unsafe fn setNeedsUpdateContentUnavailableConfiguration(&self);
 
         #[cfg(feature = "UIContentUnavailableConfigurationState")]
+        /// Subclasses should override this method and update the content unavailable's configuration using the state provided.
+        /// This method should not be called directly, use `setNeedsUpdateContentUnavailableConfiguration` to request an update.
         #[method(updateContentUnavailableConfigurationUsingState:)]
         pub unsafe fn updateContentUnavailableConfigurationUsingState(
             &self,
@@ -1192,6 +1265,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other traitOverrides)]
         pub unsafe fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
 
+        /// Forces an immediate trait update for this view controller and its view, including any view
+        /// controllers and views in this subtree. Any trait change callbacks are sent synchronously.
         #[method(updateTraitsIfNeeded)]
         pub unsafe fn updateTraitsIfNeeded(&self);
     }

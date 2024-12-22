@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcconcatenationlayer?language=objc)
+    /// A concatenation layer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcconcatenationlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -20,14 +22,25 @@ unsafe impl NSObjectProtocol for MLCConcatenationLayer {}
 extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCConcatenationLayer {
+        /// The dimension (or axis) along which to concatenate tensors
+        ///
+        /// The default value is 1 (which typically represents features channels)
         #[deprecated]
         #[method(dimension)]
         pub unsafe fn dimension(&self) -> NSUInteger;
 
+        /// Create a concatenation layer
+        ///
+        /// Returns: A new concatenation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 
+        /// Create a concatenation layer
+        ///
+        /// Parameter `dimension`: The concatenation dimension
+        ///
+        /// Returns: A new concatenation layer
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDimension:)]
         pub unsafe fn layerWithDimension(dimension: NSUInteger) -> Retained<Self>;

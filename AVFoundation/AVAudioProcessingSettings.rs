@@ -5,12 +5,39 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm?language=objc)
+/// The type of a time pitch algorithm.
+///
+/// On macOS and iOS, the default algorithm for playback for applications linked on or after iOS 15.0 or macOS 12.0 is is AVAudioTimePitchAlgorithmTimeDomain. For iOS versions prior to 15.0 the default value is AVAudioTimePitchAlgorithmLowQualityZeroLatency. For macOS versions prior to 12.0 the default value is AVAudioTimePitchAlgorithmSpectral.
+/// The default for export
+/// &
+/// other offline processing is AVAudioTimePitchAlgorithmSpectral.
+///
+/// For scaled audio edits, i.e. when the timeMapping of an AVAssetTrackSegment is between timeRanges of unequal duration, it is important to choose an algorithm that supports the full range of edit rates present in the source media.  AVAudioTimePitchAlgorithmSpectral is often the best choice due to the highly inclusive range of rates it supports, assuming that it is desirable to maintain a constant pitch regardless of the edit rate.  If it is instead desirable to allow the pitch to vary with the edit rate, AVAudioTimePitchAlgorithmVarispeed is the best choice.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm?language=objc)
 // NS_TYPED_ENUM
 pub type AVAudioTimePitchAlgorithm = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithmlowqualityzerolatency?language=objc)
+    /// Values for time pitch algorithm
+    ///
+    ///
+    /// Low quality, very inexpensive. Suitable for brief fast-forward/rewind effects, low quality voice.
+    /// Rate snapped to {0.5, 0.666667, 0.8, 1.0, 1.25, 1.5, 2.0}.
+    ///
+    ///
+    /// Modest quality, less expensive. Suitable for voice.
+    /// Variable rate from 1/32 to 32.
+    ///
+    ///
+    /// Highest quality, most computationally expensive. Suitable for music.
+    /// Variable rate from 1/32 to 32.
+    ///
+    ///
+    /// High quality, no pitch correction. Pitch varies with rate.
+    /// Variable rate from 1/32 to 32.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithmlowqualityzerolatency?language=objc)
     pub static AVAudioTimePitchAlgorithmLowQualityZeroLatency:
         Option<&'static AVAudioTimePitchAlgorithm>;
 }
@@ -30,7 +57,18 @@ extern "C" {
     pub static AVAudioTimePitchAlgorithmVarispeed: Option<&'static AVAudioTimePitchAlgorithm>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiospatializationformats?language=objc)
+/// These constants can be used to specify values for allowedAudioSpatializationFormats.
+///
+///
+/// Indicates that no audio spatialization is allowed.
+///
+/// Indicates that only mono and stereo formats may be used for audio spatialization.
+///
+/// Indicates that only multichannel layouts may be used for audio spatialization.
+///
+/// Indicates that mono, stereo and multichannel layouts may be used for audio spatialization.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiospatializationformats?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

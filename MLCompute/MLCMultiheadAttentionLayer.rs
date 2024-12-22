@@ -7,7 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer?language=objc)
+    /// A multi-head attention layer
+    ///
+    /// A multi-head "Scaled Dot-Product Attention" layer which attends to one or more entries in the input key-value pairs
+    /// N=Batch, S=source length, L=target length, E = model(embedding) dimension, K = Key dimension, V = value
+    /// dimension H = headCount. The sources to this layer are of shapes: Query:(N,L,E), Key:(N,S,K), Value:(N,S,V),
+    /// KeyMask:(N,S), AttentionMask:(1,L,S) or (NxH,L,S). KeyMask and AttentionMask are optional and either, both
+    /// or none of them can be passed. KeyMask is of Boolean type and AttentionMask can be of Float or Boolean type.
+    /// Output is of shape:(N,L,E).
+    /// For details refer to: https://pytorch.org/docs/stable/nn.html#multiheadattention
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -22,36 +32,51 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCMultiheadAttentionLayer {
         #[cfg(feature = "MLCMultiheadAttentionDescriptor")]
+        /// The multi-head attention descriptor
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MLCMultiheadAttentionDescriptor>;
 
         #[cfg(feature = "MLCTensor")]
+        /// The weights of query, key, value and output projections
         #[deprecated]
         #[method_id(@__retain_semantics Other weights)]
         pub unsafe fn weights(&self) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// The biases of query, key, value and output projections
         #[deprecated]
         #[method_id(@__retain_semantics Other biases)]
         pub unsafe fn biases(&self) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// The biases added to key and value
         #[deprecated]
         #[method_id(@__retain_semantics Other attentionBiases)]
         pub unsafe fn attentionBiases(&self) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensorParameter")]
+        /// The weights tensor parameters used for optimizer update
         #[deprecated]
         #[method_id(@__retain_semantics Other weightsParameters)]
         pub unsafe fn weightsParameters(&self) -> Retained<NSArray<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
+        /// The biases tensor parameters used for optimizer update
         #[deprecated]
         #[method_id(@__retain_semantics Other biasesParameters)]
         pub unsafe fn biasesParameters(&self) -> Option<Retained<NSArray<MLCTensorParameter>>>;
 
         #[cfg(all(feature = "MLCMultiheadAttentionDescriptor", feature = "MLCTensor"))]
+        /// Create a multi-head attention layer
+        ///
+        /// Parameter `weights`: weights corresponding to query, key, value and output projections for all heads
+        ///
+        /// Parameter `biases`: Optional, biases corresponding to query, key, value and output projections for all heads
+        ///
+        /// Parameter `attentionBiases`: Optional, An array of biases added to the key and value respectively
+        ///
+        /// Returns: A new MultiheadAttention layer
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDescriptor:weights:biases:attentionBiases:)]
         pub unsafe fn layerWithDescriptor_weights_biases_attentionBiases(

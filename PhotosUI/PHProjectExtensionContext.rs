@@ -11,7 +11,10 @@ use objc2_photos::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectextensioncontext?language=objc)
+    /// When a Photos project extension is initialized, it is handed a PHProjectExtensionContext object.
+    /// This object provides the extension access to the underlying project as well as the photo library from which assets can be fetched.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectextensioncontext?language=objc)
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectExtensionContext;
@@ -33,10 +36,28 @@ extern_methods!(
 
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
+        /// Invokes the Photos Editor for the given asset.
+        ///
+        /// Parameter `asset`: The asset to edit.
+        ///
+        /// Note: The extension should observe library changes to get notified when assets are changed/edited.
+        ///
+        /// See: PHPhotoLibraryChangeObserver
         #[method(showEditorForAsset:)]
         pub unsafe fn showEditorForAsset(&self, asset: &PHAsset);
 
         #[cfg(all(feature = "PHProjectInfo", feature = "block2"))]
+        /// Creates an updated PHProjectInfo from the given projectInfo and the current assets in the PHProject.
+        /// If the existingProjectInfo is not nil the extension sections will be update to reflect any deletions from the
+        /// photo library and a new section is appended for any assets in the project which weren't referenced in existingProjectInfo.
+        ///
+        /// Parameter `existingProjectInfo`: PHProjectInfo to update.
+        /// If existingProjectInfo is nil a new PHProjectInfo will be created from all assets in the PHProject.
+        ///
+        /// Parameter `completion`: Completion block that is called with the update result.
+        /// updatedProjectInfo is the updated project info, if the update was cancelled it might be nil.
+        ///
+        /// Returns: NSProgress which can be observed, if it's canceled the original project info is returned.
         #[method_id(@__retain_semantics Other updatedProjectInfoFromProjectInfo:completion:)]
         pub unsafe fn updatedProjectInfoFromProjectInfo_completion(
             &self,

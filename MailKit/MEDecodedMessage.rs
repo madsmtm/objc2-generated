@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/medecodedmessage?language=objc)
+    /// Contains information about a decoded message
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/medecodedmessage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEDecodedMessage;
@@ -21,17 +23,24 @@ unsafe impl NSSecureCoding for MEDecodedMessage {}
 
 extern_methods!(
     unsafe impl MEDecodedMessage {
+        /// The decoded MIME data for the message
+        /// The decoded data should not be encrypted or contain any signatures that were decoded. The
+        /// `rawData`here should only contain MIME parts that a standard email parser can decode without needing to decrypt. All information on the encryption and signature status should be defined in
+        /// `securityInformation.`If the message is unable to be decrypted this should be left nil and an error message will be displayed to the user.
         #[method_id(@__retain_semantics Other rawData)]
         pub unsafe fn rawData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "MEMessageSecurityInformation")]
+        /// The security information for whether or not the message was signed, encrypted, or had an errors in decoding.
         #[method_id(@__retain_semantics Other securityInformation)]
         pub unsafe fn securityInformation(&self) -> Retained<MEMessageSecurityInformation>;
 
+        /// The context for the decoded message. This will be passed back to the extension when Mail loads the extension's custom view controller for the message.
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "MEDecodedMessageBanner")]
+        /// Suggestion information used to populate a suggestion banner at the top of the message view. Clicking on the action associated with the suggestion banner will present the extension's view controller for the provided message context.
         #[method_id(@__retain_semantics Other banner)]
         pub unsafe fn banner(&self) -> Option<Retained<MEDecodedMessageBanner>>;
 

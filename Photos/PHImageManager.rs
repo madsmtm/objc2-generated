@@ -105,18 +105,21 @@ extern_methods!(
         #[method(version)]
         pub unsafe fn version(&self) -> PHImageRequestOptionsVersion;
 
+        /// Setter for [`version`][Self::version].
         #[method(setVersion:)]
         pub unsafe fn setVersion(&self, version: PHImageRequestOptionsVersion);
 
         #[method(deliveryMode)]
         pub unsafe fn deliveryMode(&self) -> PHImageRequestOptionsDeliveryMode;
 
+        /// Setter for [`deliveryMode`][Self::deliveryMode].
         #[method(setDeliveryMode:)]
         pub unsafe fn setDeliveryMode(&self, delivery_mode: PHImageRequestOptionsDeliveryMode);
 
         #[method(resizeMode)]
         pub unsafe fn resizeMode(&self) -> PHImageRequestOptionsResizeMode;
 
+        /// Setter for [`resizeMode`][Self::resizeMode].
         #[method(setResizeMode:)]
         pub unsafe fn setResizeMode(&self, resize_mode: PHImageRequestOptionsResizeMode);
 
@@ -125,18 +128,21 @@ extern_methods!(
         pub unsafe fn normalizedCropRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`normalizedCropRect`][Self::normalizedCropRect].
         #[method(setNormalizedCropRect:)]
         pub unsafe fn setNormalizedCropRect(&self, normalized_crop_rect: CGRect);
 
         #[method(isNetworkAccessAllowed)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
 
+        /// Setter for [`isNetworkAccessAllowed`][Self::isNetworkAccessAllowed].
         #[method(setNetworkAccessAllowed:)]
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
         #[method(isSynchronous)]
         pub unsafe fn isSynchronous(&self) -> bool;
 
+        /// Setter for [`isSynchronous`][Self::isSynchronous].
         #[method(setSynchronous:)]
         pub unsafe fn setSynchronous(&self, synchronous: bool);
 
@@ -145,12 +151,14 @@ extern_methods!(
         pub unsafe fn progressHandler(&self) -> PHAssetImageProgressHandler;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`progressHandler`][Self::progressHandler].
         #[method(setProgressHandler:)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetImageProgressHandler);
 
         #[method(allowSecondaryDegradedImage)]
         pub unsafe fn allowSecondaryDegradedImage(&self) -> bool;
 
+        /// Setter for [`allowSecondaryDegradedImage`][Self::allowSecondaryDegradedImage].
         #[method(setAllowSecondaryDegradedImage:)]
         pub unsafe fn setAllowSecondaryDegradedImage(&self, allow_secondary_degraded_image: bool);
     }
@@ -187,18 +195,21 @@ extern_methods!(
         #[method(version)]
         pub unsafe fn version(&self) -> PHImageRequestOptionsVersion;
 
+        /// Setter for [`version`][Self::version].
         #[method(setVersion:)]
         pub unsafe fn setVersion(&self, version: PHImageRequestOptionsVersion);
 
         #[method(deliveryMode)]
         pub unsafe fn deliveryMode(&self) -> PHImageRequestOptionsDeliveryMode;
 
+        /// Setter for [`deliveryMode`][Self::deliveryMode].
         #[method(setDeliveryMode:)]
         pub unsafe fn setDeliveryMode(&self, delivery_mode: PHImageRequestOptionsDeliveryMode);
 
         #[method(isNetworkAccessAllowed)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
 
+        /// Setter for [`isNetworkAccessAllowed`][Self::isNetworkAccessAllowed].
         #[method(setNetworkAccessAllowed:)]
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
@@ -207,6 +218,7 @@ extern_methods!(
         pub unsafe fn progressHandler(&self) -> PHAssetImageProgressHandler;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`progressHandler`][Self::progressHandler].
         #[method(setProgressHandler:)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetImageProgressHandler);
     }
@@ -292,18 +304,21 @@ extern_methods!(
         #[method(isNetworkAccessAllowed)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
 
+        /// Setter for [`isNetworkAccessAllowed`][Self::isNetworkAccessAllowed].
         #[method(setNetworkAccessAllowed:)]
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
         #[method(version)]
         pub unsafe fn version(&self) -> PHVideoRequestOptionsVersion;
 
+        /// Setter for [`version`][Self::version].
         #[method(setVersion:)]
         pub unsafe fn setVersion(&self, version: PHVideoRequestOptionsVersion);
 
         #[method(deliveryMode)]
         pub unsafe fn deliveryMode(&self) -> PHVideoRequestOptionsDeliveryMode;
 
+        /// Setter for [`deliveryMode`][Self::deliveryMode].
         #[method(setDeliveryMode:)]
         pub unsafe fn setDeliveryMode(&self, delivery_mode: PHVideoRequestOptionsDeliveryMode);
 
@@ -312,6 +327,7 @@ extern_methods!(
         pub unsafe fn progressHandler(&self) -> PHAssetVideoProgressHandler;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`progressHandler`][Self::progressHandler].
         #[method(setProgressHandler:)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetVideoProgressHandler);
     }
@@ -409,6 +425,7 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// Requests a live photo representation of the asset. With PHImageRequestOptionsDeliveryModeOpportunistic (or if no options are specified), the resultHandler block may be called more than once (the first call may occur before the method returns). The PHImageResultIsDegradedKey key in the result handler's info parameter indicates when a temporary low-quality live photo is provided.
         #[method(requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:)]
         pub unsafe fn requestLivePhotoForAsset_targetSize_contentMode_options_resultHandler(
             &self,
@@ -491,6 +508,7 @@ extern_methods!(
         #[method(allowsCachingHighQualityImages)]
         pub unsafe fn allowsCachingHighQualityImages(&self) -> bool;
 
+        /// Setter for [`allowsCachingHighQualityImages`][Self::allowsCachingHighQualityImages].
         #[method(setAllowsCachingHighQualityImages:)]
         pub unsafe fn setAllowsCachingHighQualityImages(
             &self,

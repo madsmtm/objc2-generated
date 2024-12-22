@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer?language=objc)
+    /// A batch normalizaion layer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -21,49 +23,75 @@ unsafe impl NSObjectProtocol for MLCBatchNormalizationLayer {}
 extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCBatchNormalizationLayer {
+        /// The number of feature channels
         #[deprecated]
         #[method(featureChannelCount)]
         pub unsafe fn featureChannelCount(&self) -> NSUInteger;
 
         #[cfg(feature = "MLCTensor")]
+        /// The mean tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other mean)]
         pub unsafe fn mean(&self) -> Retained<MLCTensor>;
 
         #[cfg(feature = "MLCTensor")]
+        /// The variance tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other variance)]
         pub unsafe fn variance(&self) -> Retained<MLCTensor>;
 
         #[cfg(feature = "MLCTensor")]
+        /// The beta tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other beta)]
         pub unsafe fn beta(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// The gamma tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other gamma)]
         pub unsafe fn gamma(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensorParameter")]
+        /// The beta tensor parameter used for optimizer update
         #[deprecated]
         #[method_id(@__retain_semantics Other betaParameter)]
         pub unsafe fn betaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
+        /// The gamma tensor parameter used for optimizer update
         #[deprecated]
         #[method_id(@__retain_semantics Other gammaParameter)]
         pub unsafe fn gammaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
+        /// A value used for numerical stability
         #[deprecated]
         #[method(varianceEpsilon)]
         pub unsafe fn varianceEpsilon(&self) -> c_float;
 
+        /// The value used for the running mean and variance computation
+        ///
+        /// The default is 0.99f.
         #[deprecated]
         #[method(momentum)]
         pub unsafe fn momentum(&self) -> c_float;
 
         #[cfg(feature = "MLCTensor")]
+        /// Create a batch normalization layer
+        ///
+        /// Parameter `featureChannelCount`: The number of feature channels
+        ///
+        /// Parameter `mean`: The mean tensor
+        ///
+        /// Parameter `variance`: The variance tensor
+        ///
+        /// Parameter `beta`: The beta tensor
+        ///
+        /// Parameter `gamma`: The gamma tensor
+        ///
+        /// Parameter `varianceEpsilon`: The  epslion value
+        ///
+        /// Returns: A new batch normalization layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithFeatureChannelCount:mean:variance:beta:gamma:varianceEpsilon:)]
         pub unsafe fn layerWithFeatureChannelCount_mean_variance_beta_gamma_varianceEpsilon(
@@ -76,6 +104,23 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// Create a batch normalization layer
+        ///
+        /// Parameter `featureChannelCount`: The number of feature channels
+        ///
+        /// Parameter `mean`: The mean tensor
+        ///
+        /// Parameter `variance`: The variance tensor
+        ///
+        /// Parameter `beta`: The beta tensor
+        ///
+        /// Parameter `gamma`: The gamma tensor
+        ///
+        /// Parameter `varianceEpsilon`: The  epslion value
+        ///
+        /// Parameter `momentum`: The  momentum value for the running mean and variance computation
+        ///
+        /// Returns: A new batch normalization layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithFeatureChannelCount:mean:variance:beta:gamma:varianceEpsilon:momentum:)]
         pub unsafe fn layerWithFeatureChannelCount_mean_variance_beta_gamma_varianceEpsilon_momentum(

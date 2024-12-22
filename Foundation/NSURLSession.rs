@@ -58,6 +58,7 @@ extern_methods!(
         pub unsafe fn sessionDescription(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`sessionDescription`][Self::sessionDescription].
         #[method(setSessionDescription:)]
         pub unsafe fn setSessionDescription(&self, session_description: Option<&NSString>);
 
@@ -129,6 +130,14 @@ extern_methods!(
         ) -> Retained<NSURLSessionUploadTask>;
 
         #[cfg(feature = "NSData")]
+        /// Creates an upload task from a resume data blob. Requires the server to support the latest resumable uploads
+        /// Internet-Draft from the HTTP Working Group, found at
+        /// https://datatracker.ietf.org/doc/draft-ietf-httpbis-resumable-upload/
+        /// If resuming from an upload file, the file must still exist and be unmodified. If the upload cannot be successfully
+        /// resumed, URLSession:task:didCompleteWithError: will be called.
+        ///
+        /// - Parameter resumeData: Resume data blob from an incomplete upload, such as data returned by the cancelByProducingResumeData: method.
+        /// - Returns: A new session upload task, or nil if the resumeData is invalid.
         #[method_id(@__retain_semantics Other uploadTaskWithResumeData:)]
         pub unsafe fn uploadTaskWithResumeData(
             &self,
@@ -285,6 +294,12 @@ extern_methods!(
             feature = "NSURLResponse",
             feature = "block2"
         ))]
+        /// Creates a URLSessionUploadTask from a resume data blob. If resuming from an upload
+        /// file, the file must still exist and be unmodified.
+        ///
+        /// - Parameter resumeData: Resume data blob from an incomplete upload, such as data returned by the cancelByProducingResumeData: method.
+        /// - Parameter completionHandler: The completion handler to call when the load request is complete.
+        /// - Returns: A new session upload task, or nil if the resumeData is invalid.
         #[method_id(@__retain_semantics Other uploadTaskWithResumeData:completionHandler:)]
         pub unsafe fn uploadTaskWithResumeData_completionHandler(
             &self,
@@ -413,6 +428,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSURLSessionTaskDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -428,12 +444,14 @@ extern_methods!(
         pub unsafe fn earliestBeginDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
+        /// Setter for [`earliestBeginDate`][Self::earliestBeginDate].
         #[method(setEarliestBeginDate:)]
         pub unsafe fn setEarliestBeginDate(&self, earliest_begin_date: Option<&NSDate>);
 
         #[method(countOfBytesClientExpectsToSend)]
         pub unsafe fn countOfBytesClientExpectsToSend(&self) -> i64;
 
+        /// Setter for [`countOfBytesClientExpectsToSend`][Self::countOfBytesClientExpectsToSend].
         #[method(setCountOfBytesClientExpectsToSend:)]
         pub unsafe fn setCountOfBytesClientExpectsToSend(
             &self,
@@ -443,6 +461,7 @@ extern_methods!(
         #[method(countOfBytesClientExpectsToReceive)]
         pub unsafe fn countOfBytesClientExpectsToReceive(&self) -> i64;
 
+        /// Setter for [`countOfBytesClientExpectsToReceive`][Self::countOfBytesClientExpectsToReceive].
         #[method(setCountOfBytesClientExpectsToReceive:)]
         pub unsafe fn setCountOfBytesClientExpectsToReceive(
             &self,
@@ -466,6 +485,7 @@ extern_methods!(
         pub unsafe fn taskDescription(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`taskDescription`][Self::taskDescription].
         #[method(setTaskDescription:)]
         pub unsafe fn setTaskDescription(&self, task_description: Option<&NSString>);
 
@@ -488,12 +508,14 @@ extern_methods!(
         #[method(priority)]
         pub unsafe fn priority(&self) -> c_float;
 
+        /// Setter for [`priority`][Self::priority].
         #[method(setPriority:)]
         pub unsafe fn setPriority(&self, priority: c_float);
 
         #[method(prefersIncrementalDelivery)]
         pub unsafe fn prefersIncrementalDelivery(&self) -> bool;
 
+        /// Setter for [`prefersIncrementalDelivery`][Self::prefersIncrementalDelivery].
         #[method(setPrefersIncrementalDelivery:)]
         pub unsafe fn setPrefersIncrementalDelivery(&self, prefers_incremental_delivery: bool);
 
@@ -593,6 +615,12 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "NSData", feature = "block2"))]
+        /// Cancels an upload and calls the completion handler with resume data for later use.
+        /// resumeData will be nil if the server does not support the latest resumable uploads
+        /// Internet-Draft from the HTTP Working Group, found at
+        /// https://datatracker.ietf.org/doc/draft-ietf-httpbis-resumable-upload/
+        ///
+        /// - Parameter completionHandler: The completion handler to call when the upload has been successfully canceled.
         #[method(cancelByProducingResumeData:)]
         pub unsafe fn cancelByProducingResumeData(
             &self,
@@ -890,6 +918,7 @@ extern_methods!(
         #[method(maximumMessageSize)]
         pub unsafe fn maximumMessageSize(&self) -> NSInteger;
 
+        /// Setter for [`maximumMessageSize`][Self::maximumMessageSize].
         #[method(setMaximumMessageSize:)]
         pub unsafe fn setMaximumMessageSize(&self, maximum_message_size: NSInteger);
 
@@ -908,7 +937,27 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionmultipathservicetype?language=objc)
+/// The NSURLSessionMultipathServiceType enum defines constants that
+/// can be used to specify the multipath service type to associate an NSURLSession.  The
+/// multipath service type determines whether multipath TCP should be attempted and the conditions
+/// for creating and switching between subflows.  Using these service types requires the appropriate entitlement.  Any connection attempt will fail if the process does not have the required entitlement.
+/// A primary interface is a generally less expensive interface in terms of both cost and power (such as WiFi or ethernet).  A secondary interface is more expensive (such as 3G or LTE).
+///
+///
+/// This is the default value.  No entitlement is required to set this value.
+///
+///
+/// when the primary subflow is not performing adequately.   Requires the com.apple.developer.networking.multipath entitlement.
+///
+///
+/// primary subflow is not performing adequately (packet loss, high round trip times, bandwidth issues).  The secondary
+/// subflow will be created more aggressively than with NSURLSessionMultipathServiceTypeHandover.  Requires the com.apple.developer.networking.multipath entitlement.
+///
+///
+/// used for better bandwidth.  This mode is only available for experimentation on devices configured for development use.
+/// It can be enabled in the Developer section of the Settings app.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionmultipathservicetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -976,6 +1025,7 @@ extern_methods!(
         pub unsafe fn requestCachePolicy(&self) -> NSURLRequestCachePolicy;
 
         #[cfg(feature = "NSURLRequest")]
+        /// Setter for [`requestCachePolicy`][Self::requestCachePolicy].
         #[method(setRequestCachePolicy:)]
         pub unsafe fn setRequestCachePolicy(&self, request_cache_policy: NSURLRequestCachePolicy);
 
@@ -984,6 +1034,7 @@ extern_methods!(
         pub unsafe fn timeoutIntervalForRequest(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
+        /// Setter for [`timeoutIntervalForRequest`][Self::timeoutIntervalForRequest].
         #[method(setTimeoutIntervalForRequest:)]
         pub unsafe fn setTimeoutIntervalForRequest(
             &self,
@@ -995,6 +1046,7 @@ extern_methods!(
         pub unsafe fn timeoutIntervalForResource(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
+        /// Setter for [`timeoutIntervalForResource`][Self::timeoutIntervalForResource].
         #[method(setTimeoutIntervalForResource:)]
         pub unsafe fn setTimeoutIntervalForResource(
             &self,
@@ -1006,6 +1058,7 @@ extern_methods!(
         pub unsafe fn networkServiceType(&self) -> NSURLRequestNetworkServiceType;
 
         #[cfg(feature = "NSURLRequest")]
+        /// Setter for [`networkServiceType`][Self::networkServiceType].
         #[method(setNetworkServiceType:)]
         pub unsafe fn setNetworkServiceType(
             &self,
@@ -1015,18 +1068,21 @@ extern_methods!(
         #[method(allowsCellularAccess)]
         pub unsafe fn allowsCellularAccess(&self) -> bool;
 
+        /// Setter for [`allowsCellularAccess`][Self::allowsCellularAccess].
         #[method(setAllowsCellularAccess:)]
         pub unsafe fn setAllowsCellularAccess(&self, allows_cellular_access: bool);
 
         #[method(allowsExpensiveNetworkAccess)]
         pub unsafe fn allowsExpensiveNetworkAccess(&self) -> bool;
 
+        /// Setter for [`allowsExpensiveNetworkAccess`][Self::allowsExpensiveNetworkAccess].
         #[method(setAllowsExpensiveNetworkAccess:)]
         pub unsafe fn setAllowsExpensiveNetworkAccess(&self, allows_expensive_network_access: bool);
 
         #[method(allowsConstrainedNetworkAccess)]
         pub unsafe fn allowsConstrainedNetworkAccess(&self) -> bool;
 
+        /// Setter for [`allowsConstrainedNetworkAccess`][Self::allowsConstrainedNetworkAccess].
         #[method(setAllowsConstrainedNetworkAccess:)]
         pub unsafe fn setAllowsConstrainedNetworkAccess(
             &self,
@@ -1036,18 +1092,21 @@ extern_methods!(
         #[method(requiresDNSSECValidation)]
         pub unsafe fn requiresDNSSECValidation(&self) -> bool;
 
+        /// Setter for [`requiresDNSSECValidation`][Self::requiresDNSSECValidation].
         #[method(setRequiresDNSSECValidation:)]
         pub unsafe fn setRequiresDNSSECValidation(&self, requires_dnssec_validation: bool);
 
         #[method(waitsForConnectivity)]
         pub unsafe fn waitsForConnectivity(&self) -> bool;
 
+        /// Setter for [`waitsForConnectivity`][Self::waitsForConnectivity].
         #[method(setWaitsForConnectivity:)]
         pub unsafe fn setWaitsForConnectivity(&self, waits_for_connectivity: bool);
 
         #[method(isDiscretionary)]
         pub unsafe fn isDiscretionary(&self) -> bool;
 
+        /// Setter for [`isDiscretionary`][Self::isDiscretionary].
         #[method(setDiscretionary:)]
         pub unsafe fn setDiscretionary(&self, discretionary: bool);
 
@@ -1056,6 +1115,7 @@ extern_methods!(
         pub unsafe fn sharedContainerIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`sharedContainerIdentifier`][Self::sharedContainerIdentifier].
         #[method(setSharedContainerIdentifier:)]
         pub unsafe fn setSharedContainerIdentifier(
             &self,
@@ -1065,6 +1125,7 @@ extern_methods!(
         #[method(sessionSendsLaunchEvents)]
         pub unsafe fn sessionSendsLaunchEvents(&self) -> bool;
 
+        /// Setter for [`sessionSendsLaunchEvents`][Self::sessionSendsLaunchEvents].
         #[method(setSessionSendsLaunchEvents:)]
         pub unsafe fn setSessionSendsLaunchEvents(&self, session_sends_launch_events: bool);
 
@@ -1073,6 +1134,7 @@ extern_methods!(
         pub unsafe fn connectionProxyDictionary(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
+        /// Setter for [`connectionProxyDictionary`][Self::connectionProxyDictionary].
         #[method(setConnectionProxyDictionary:)]
         pub unsafe fn setConnectionProxyDictionary(
             &self,
@@ -1082,12 +1144,14 @@ extern_methods!(
         #[method(HTTPShouldUsePipelining)]
         pub unsafe fn HTTPShouldUsePipelining(&self) -> bool;
 
+        /// Setter for [`HTTPShouldUsePipelining`][Self::HTTPShouldUsePipelining].
         #[method(setHTTPShouldUsePipelining:)]
         pub unsafe fn setHTTPShouldUsePipelining(&self, http_should_use_pipelining: bool);
 
         #[method(HTTPShouldSetCookies)]
         pub unsafe fn HTTPShouldSetCookies(&self) -> bool;
 
+        /// Setter for [`HTTPShouldSetCookies`][Self::HTTPShouldSetCookies].
         #[method(setHTTPShouldSetCookies:)]
         pub unsafe fn setHTTPShouldSetCookies(&self, http_should_set_cookies: bool);
 
@@ -1096,6 +1160,7 @@ extern_methods!(
         pub unsafe fn HTTPCookieAcceptPolicy(&self) -> NSHTTPCookieAcceptPolicy;
 
         #[cfg(feature = "NSHTTPCookieStorage")]
+        /// Setter for [`HTTPCookieAcceptPolicy`][Self::HTTPCookieAcceptPolicy].
         #[method(setHTTPCookieAcceptPolicy:)]
         pub unsafe fn setHTTPCookieAcceptPolicy(
             &self,
@@ -1107,6 +1172,7 @@ extern_methods!(
         pub unsafe fn HTTPAdditionalHeaders(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
+        /// Setter for [`HTTPAdditionalHeaders`][Self::HTTPAdditionalHeaders].
         #[method(setHTTPAdditionalHeaders:)]
         pub unsafe fn setHTTPAdditionalHeaders(
             &self,
@@ -1116,6 +1182,7 @@ extern_methods!(
         #[method(HTTPMaximumConnectionsPerHost)]
         pub unsafe fn HTTPMaximumConnectionsPerHost(&self) -> NSInteger;
 
+        /// Setter for [`HTTPMaximumConnectionsPerHost`][Self::HTTPMaximumConnectionsPerHost].
         #[method(setHTTPMaximumConnectionsPerHost:)]
         pub unsafe fn setHTTPMaximumConnectionsPerHost(
             &self,
@@ -1127,6 +1194,7 @@ extern_methods!(
         pub unsafe fn HTTPCookieStorage(&self) -> Option<Retained<NSHTTPCookieStorage>>;
 
         #[cfg(feature = "NSHTTPCookieStorage")]
+        /// Setter for [`HTTPCookieStorage`][Self::HTTPCookieStorage].
         #[method(setHTTPCookieStorage:)]
         pub unsafe fn setHTTPCookieStorage(
             &self,
@@ -1138,6 +1206,7 @@ extern_methods!(
         pub unsafe fn URLCredentialStorage(&self) -> Option<Retained<NSURLCredentialStorage>>;
 
         #[cfg(feature = "NSURLCredentialStorage")]
+        /// Setter for [`URLCredentialStorage`][Self::URLCredentialStorage].
         #[method(setURLCredentialStorage:)]
         pub unsafe fn setURLCredentialStorage(
             &self,
@@ -1149,12 +1218,14 @@ extern_methods!(
         pub unsafe fn URLCache(&self) -> Option<Retained<NSURLCache>>;
 
         #[cfg(feature = "NSURLCache")]
+        /// Setter for [`URLCache`][Self::URLCache].
         #[method(setURLCache:)]
         pub unsafe fn setURLCache(&self, url_cache: Option<&NSURLCache>);
 
         #[method(shouldUseExtendedBackgroundIdleMode)]
         pub unsafe fn shouldUseExtendedBackgroundIdleMode(&self) -> bool;
 
+        /// Setter for [`shouldUseExtendedBackgroundIdleMode`][Self::shouldUseExtendedBackgroundIdleMode].
         #[method(setShouldUseExtendedBackgroundIdleMode:)]
         pub unsafe fn setShouldUseExtendedBackgroundIdleMode(
             &self,
@@ -1166,12 +1237,14 @@ extern_methods!(
         pub unsafe fn protocolClasses(&self) -> Option<Retained<NSArray<AnyClass>>>;
 
         #[cfg(feature = "NSArray")]
+        /// Setter for [`protocolClasses`][Self::protocolClasses].
         #[method(setProtocolClasses:)]
         pub unsafe fn setProtocolClasses(&self, protocol_classes: Option<&NSArray<AnyClass>>);
 
         #[method(multipathServiceType)]
         pub unsafe fn multipathServiceType(&self) -> NSURLSessionMultipathServiceType;
 
+        /// Setter for [`multipathServiceType`][Self::multipathServiceType].
         #[method(setMultipathServiceType:)]
         pub unsafe fn setMultipathServiceType(
             &self,
@@ -1355,6 +1428,13 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSStream", feature = "block2"))]
+        /// Tells the delegate if a task requires a new body stream starting from the given offset. This may be
+        /// necessary when resuming a failed upload task.
+        ///
+        /// - Parameter session: The session containing the task that needs a new body stream from the given offset.
+        /// - Parameter task: The task that needs a new body stream.
+        /// - Parameter offset: The starting offset required for the body stream.
+        /// - Parameter completionHandler: A completion handler that your delegate method should call with the new body stream.
         #[optional]
         #[method(URLSession:task:needNewBodyStreamFromOffset:completionHandler:)]
         unsafe fn URLSession_task_needNewBodyStreamFromOffset_completionHandler(
@@ -1580,7 +1660,9 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionuploadtaskresumedata?language=objc)
+    /// Key in the userInfo dictionary of an NSError received during a failed upload.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionuploadtaskresumedata?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLSessionUploadTaskResumeData: &'static NSString;
 }

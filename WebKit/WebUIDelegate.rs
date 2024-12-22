@@ -108,7 +108,9 @@ pub const WebMenuItemPDFNextPage: c_uint = 31;
 #[deprecated]
 pub const WebMenuItemPDFPreviousPage: c_uint = 32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragdestinationaction?language=objc)
+/// Actions that the destination of a drag can perform.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragdestinationaction?language=objc)
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
@@ -142,7 +144,9 @@ unsafe impl RefEncode for WebDragDestinationAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragsourceaction?language=objc)
+/// Actions that the source of a drag can perform.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragsourceaction?language=objc)
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
@@ -180,16 +184,26 @@ unsafe impl RefEncode for WebDragSourceAction {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webopenpanelresultlistener?language=objc)
+    /// This protocol is used to call back with the results of
+    /// the file open panel requested by runOpenPanelForFileButtonWithResultListener:
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webopenpanelresultlistener?language=objc)
     #[deprecated]
     pub unsafe trait WebOpenPanelResultListener: NSObjectProtocol {
+        /// Call this method to return a filename from the file open panel.
+        ///
+        /// Parameter `fileName`: the path of the selected file
         #[deprecated]
         #[method(chooseFilename:)]
         unsafe fn chooseFilename(&self, file_name: Option<&NSString>);
 
+        /// Call this method to return an array of filenames from the file open panel.
+        ///
+        /// Parameter `fileNames`: an array of paths of selected files
         #[method(chooseFilenames:)]
         unsafe fn chooseFilenames(&self, file_names: Option<&NSArray>);
 
+        /// Call this method to indicate that the file open panel was cancelled.
         #[deprecated]
         #[method(cancel)]
         unsafe fn cancel(&self);
@@ -199,11 +213,26 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webuidelegate?language=objc)
+    /// A class that implements WebUIDelegate provides
+    /// window-related methods that may be used by Javascript, plugins and
+    /// other aspects of web pages. These methods are used to open new
+    /// windows and control aspects of existing windows.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webuidelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebUIDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Create a new window and begin to load the specified request.
+        ///
+        /// The newly created window is hidden, and the window operations delegate on the
+        /// new WebViews will get a webViewShow: call.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `request`: The request to load.
+        ///
+        /// Returns: The WebView for the new window.
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:createWebViewWithRequest:)]
@@ -216,6 +245,13 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Show the window that contains the top level view of the WebView,
+        /// ordering it frontmost.
+        ///
+        /// This will only be called just after createWindowWithRequest:
+        /// is used to create a new window.
         #[deprecated]
         #[optional]
         #[method(webViewShow:)]
@@ -223,6 +259,16 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Create a new window and begin to load the specified request.
+        ///
+        /// The newly created window is hidden, and the window operations delegate on the
+        /// new WebViews will get a webViewShow: call.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `request`: The request to load.
+        ///
+        /// Returns: The WebView for the new window.
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:createWebViewModalDialogWithRequest:)]
@@ -235,6 +281,13 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Show the window that contains the top level view of the WebView,
+        /// ordering it frontmost. The window should be run modal in the application.
+        ///
+        /// This will only be called just after createWebViewModalDialogWithRequest:
+        /// is used to create a new window.
         #[deprecated]
         #[optional]
         #[method(webViewRunModal:)]
@@ -242,6 +295,14 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Close the current window.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Clients showing multiple views in one window may
+        /// choose to close only the one corresponding to this
+        /// WebView. Other clients may choose to ignore this method
+        /// entirely.
         #[deprecated]
         #[optional]
         #[method(webViewClose:)]
@@ -249,6 +310,12 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Focus the current window (i.e. makeKeyAndOrderFront:).
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Clients showing multiple views in one window may want to
+        /// also do something to focus the one corresponding to this WebView.
         #[deprecated]
         #[optional]
         #[method(webViewFocus:)]
@@ -256,6 +323,12 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Unfocus the current window.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Clients showing multiple views in one window may want to
+        /// also do something to unfocus the one corresponding to this WebView.
         #[deprecated]
         #[optional]
         #[method(webViewUnfocus:)]
@@ -263,6 +336,15 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Get the first responder for this window.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// This method should return the focused control in the
+        /// WebView's view, if any. If the view is out of the window
+        /// hierarchy, this might return something than calling firstResponder
+        /// on the real NSWindow would. It's OK to return either nil or the
+        /// real first responder if some control not in the window has focus.
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webViewFirstResponder:)]
@@ -274,6 +356,17 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Set the first responder for this window.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `responder`: The responder to make first (will always be a view)
+        ///
+        /// responder will always be a view that is in the view
+        /// subhierarchy of the top-level web view for this WebView. If the
+        /// WebView's top level view is currently out of the view
+        /// hierarchy, it may be desirable to save the first responder
+        /// elsewhere, or possibly ignore this call.
         #[deprecated]
         #[optional]
         #[method(webView:makeFirstResponder:)]
@@ -285,6 +378,11 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Set the window's status display, if any, to the specified string.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `text`: The status text to set
         #[deprecated]
         #[optional]
         #[method(webView:setStatusText:)]
@@ -292,6 +390,11 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Get the currently displayed status text.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Returns: The status text
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webViewStatusText:)]
@@ -299,6 +402,17 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Determine whether the window's toolbars are currently visible
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// This method should return YES if the window has any
+        /// toolbars that are currently on, besides the status bar. If the app
+        /// has more than one toolbar per window, for example a regular
+        /// command toolbar and a favorites bar, it should return YES from
+        /// this method if at least one is on.
+        ///
+        /// Returns: YES if at least one toolbar is visible, otherwise NO.
         #[deprecated]
         #[optional]
         #[method(webViewAreToolbarsVisible:)]
@@ -306,6 +420,15 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Set whether the window's toolbars are currently visible.
+        ///
+        /// Parameter `visible`: New value for toolbar visibility
+        ///
+        /// Setting this to YES should turn on all toolbars
+        /// (except for a possible status bar). Setting it to NO should turn
+        /// off all toolbars (with the same exception).
         #[deprecated]
         #[optional]
         #[method(webView:setToolbarsVisible:)]
@@ -313,6 +436,11 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Determine whether the status bar is visible.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Returns: YES if the status bar is visible, otherwise NO.
         #[deprecated]
         #[optional]
         #[method(webViewIsStatusBarVisible:)]
@@ -320,6 +448,12 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Set whether the status bar is currently visible.
+        ///
+        /// Parameter `visible`: The new visibility value
+        ///
+        /// Setting this to YES should show the status bar,
+        /// setting it to NO should hide it.
         #[deprecated]
         #[optional]
         #[method(webView:setStatusBarVisible:)]
@@ -327,6 +461,15 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Determine whether the window is resizable or not.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Returns: YES if resizable, NO if not.
+        ///
+        /// If there are multiple views in the same window, they
+        /// have have their own separate resize controls and this may need to
+        /// be handled specially.
         #[deprecated]
         #[optional]
         #[method(webViewIsResizable:)]
@@ -334,6 +477,15 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Set the window to resizable or not
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `resizable`: YES if the window should be made resizable, NO if not.
+        ///
+        /// If there are multiple views in the same window, they
+        /// have have their own separate resize controls and this may need to
+        /// be handled specially.
         #[deprecated]
         #[optional]
         #[method(webView:setResizable:)]
@@ -345,6 +497,15 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
+        /// Set the window's frame rect
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `frame`: The new window frame size
+        ///
+        /// Even though a caller could set the frame directly using the NSWindow,
+        /// this method is provided so implementors of this protocol can do special
+        /// things on programmatic move/resize, like avoiding autosaving of the size.
         #[deprecated]
         #[optional]
         #[method(webView:setFrame:)]
@@ -356,6 +517,9 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Return the window's frame rect
         #[deprecated]
         #[optional]
         #[method(webViewFrame:)]
@@ -363,6 +527,17 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Display a JavaScript alert panel.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `message`: The message to display.
+        ///
+        /// Parameter `frame`: The WebFrame whose JavaScript initiated this call.
+        ///
+        /// Clients should visually indicate that this panel comes
+        /// from JavaScript initiated by the specified frame. The panel should have
+        /// a single OK button.
         #[deprecated]
         #[optional]
         #[method(webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:)]
@@ -375,6 +550,19 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Display a JavaScript confirm panel.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `message`: The message to display.
+        ///
+        /// Parameter `frame`: The WebFrame whose JavaScript initiated this call.
+        ///
+        /// Returns: YES if the user hit OK, NO if the user chose Cancel.
+        ///
+        /// Clients should visually indicate that this panel comes
+        /// from JavaScript initiated by the specified frame. The panel should have
+        /// two buttons, e.g. "OK" and "Cancel".
         #[deprecated]
         #[optional]
         #[method(webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:)]
@@ -387,6 +575,21 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Display a JavaScript text input panel.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `prompt`: The message to display.
+        ///
+        /// Parameter `defaultText`: The initial text for the text entry area.
+        ///
+        /// Parameter `frame`: The WebFrame whose JavaScript initiated this call.
+        ///
+        /// Returns: The typed text if the user hit OK, otherwise nil.
+        ///
+        /// Clients should visually indicate that this panel comes
+        /// from JavaScript initiated by the specified frame. The panel should have
+        /// two buttons, e.g. "OK" and "Cancel", and an area to type text.
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:)]
@@ -400,6 +603,19 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Display a confirm panel by an "before unload" event handler.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `message`: The message to display.
+        ///
+        /// Parameter `frame`: The WebFrame whose JavaScript initiated this call.
+        ///
+        /// Returns: YES if the user hit OK, NO if the user chose Cancel.
+        ///
+        /// Clients should include a message in addition to the one
+        /// supplied by the web page that indicates. The panel should have
+        /// two buttons, e.g. "OK" and "Cancel".
         #[deprecated]
         #[optional]
         #[method(webView:runBeforeUnloadConfirmPanelWithMessage:initiatedByFrame:)]
@@ -412,6 +628,14 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Display a file open panel for a file input control.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `resultListener`: The object to call back with the results.
+        ///
+        /// This method is passed a callback object instead of giving a return
+        /// value so that it can be handled with a sheet.
         #[deprecated]
         #[optional]
         #[method(webView:runOpenPanelForFileButtonWithResultListener:)]
@@ -423,6 +647,16 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Display a file open panel for a file input control that may allow multiple files to be selected.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `resultListener`: The object to call back with the results.
+        ///
+        /// Parameter `allowMultipleFiles`: YES if the open panel should allow myltiple files to be selected, NO if not.
+        ///
+        /// This method is passed a callback object instead of giving a return
+        /// value so that it can be handled with a sheet.
         #[optional]
         #[method(webView:runOpenPanelForFileButtonWithResultListener:allowMultipleFiles:)]
         unsafe fn webView_runOpenPanelForFileButtonWithResultListener_allowMultipleFiles(
@@ -434,6 +668,14 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Update the window's feedback for mousing over links to reflect a new item the mouse is over
+        /// or new modifier flags.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `elementInformation`: Dictionary that describes the element that the mouse is over, or nil.
+        ///
+        /// Parameter `modifierFlags`: The modifier flags as in NSEvent.
         #[deprecated]
         #[optional]
         #[method(webView:mouseDidMoveOverElement:modifierFlags:)]
@@ -446,6 +688,15 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Returns the menu items to display in an element's contextual menu.
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method.
+        ///
+        /// Parameter `element`: A dictionary representation of the clicked element.
+        ///
+        /// Parameter `defaultMenuItems`: An array of default NSMenuItems to include in all contextual menus.
+        ///
+        /// Returns: An array of NSMenuItems to include in the contextual menu.
         #[deprecated]
         #[optional]
         #[method_id(@__retain_semantics Other webView:contextMenuItemsForElement:defaultMenuItems:)]
@@ -458,6 +709,17 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Controls UI validation
+        ///
+        /// Parameter `webView`: The WebView sending the delegate method
+        ///
+        /// Parameter `item`: The user interface item being validated
+        ///
+        /// Parameter `defaultValidation`: Whether or not the WebView thinks the item is valid
+        ///
+        /// This method allows the UI delegate to control WebView's validation of user interface items.
+        /// See WebView.h to see the methods to that WebView can currently validate. See NSUserInterfaceValidations and
+        /// NSValidatedUserInterfaceItem for information about UI validation.
         #[deprecated]
         #[optional]
         #[method(webView:validateUserInterfaceItem:defaultValidation:)]
@@ -470,6 +732,18 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Controls actions
+        ///
+        /// Parameter `webView`: The WebView sending the delegate method
+        ///
+        /// Parameter `action`: The action being sent
+        ///
+        /// Parameter `sender`: The sender of the action
+        ///
+        /// This method allows the UI delegate to control WebView's behavior when an action is being sent.
+        /// For example, if the action is copy:, the delegate can return YES to allow WebView to perform its default
+        /// copy behavior or return NO and perform copy: in some other way. See WebView.h to see the actions that
+        /// WebView can perform.
         #[deprecated]
         #[optional]
         #[method(webView:shouldPerformAction:fromSender:)]
@@ -482,6 +756,15 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Controls behavior when dragging to a WebView
+        ///
+        /// Parameter `webView`: The WebView sending the delegate method
+        ///
+        /// Parameter `draggingInfo`: The dragging info of the drag
+        ///
+        /// This method is called periodically as something is dragged over a WebView. The UI delegate can return a mask
+        /// indicating which drag destination actions can occur, WebDragDestinationActionAny to allow any kind of action or
+        /// WebDragDestinationActionNone to not accept the drag.
         #[deprecated]
         #[optional]
         #[method(webView:dragDestinationActionMaskForDraggingInfo:)]
@@ -493,6 +776,16 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Informs that WebView will perform a drag destination action
+        ///
+        /// Parameter `webView`: The WebView sending the delegate method
+        ///
+        /// Parameter `action`: The drag destination action
+        ///
+        /// Parameter `draggingInfo`: The dragging info of the drag
+        ///
+        /// This method is called after the last call to webView:dragDestinationActionMaskForDraggingInfo: after something is dropped on a WebView.
+        /// This method informs the UI delegate of the drag destination action that WebView will perform.
         #[deprecated]
         #[optional]
         #[method(webView:willPerformDragDestinationAction:forDraggingInfo:)]
@@ -509,6 +802,14 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
+        /// Controls behavior when dragging from a WebView
+        ///
+        /// Parameter `webView`: The WebView sending the delegate method
+        ///
+        /// Parameter `point`: The point where the drag started in the coordinates of the WebView
+        ///
+        /// This method is called after the user has begun a drag from a WebView. The UI delegate can return a mask indicating
+        /// which drag source actions can occur, WebDragSourceActionAny to allow any kind of action or WebDragSourceActionNone to not begin a drag.
         #[deprecated]
         #[optional]
         #[method(webView:dragSourceActionMaskForPoint:)]
@@ -524,6 +825,19 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
+        /// Informs that a drag a has begun from a WebView
+        ///
+        /// Parameter `webView`: The WebView sending the delegate method
+        ///
+        /// Parameter `action`: The drag source action
+        ///
+        /// Parameter `point`: The point where the drag started in the coordinates of the WebView
+        ///
+        /// Parameter `pasteboard`: The drag pasteboard
+        ///
+        /// This method is called after webView:dragSourceActionMaskForPoint: is called after the user has begun a drag from a WebView.
+        /// This method informs the UI delegate of the drag source action that will be performed and gives the delegate an opportunity to modify
+        /// the contents of the dragging pasteboard.
         #[deprecated]
         #[optional]
         #[method(webView:willPerformDragSourceAction:fromPoint:withPasteboard:)]
@@ -541,6 +855,19 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Informs that a WebFrameView needs to be printed
+        ///
+        /// Parameter `sender`: The WebView sending the delegate method
+        ///
+        /// Parameter `frameView`: The WebFrameView needing to be printed
+        ///
+        /// This method is called when a script or user requests the page to be printed.
+        /// In this method the delegate can prepare the WebFrameView to be printed. Some content that WebKit
+        /// displays can be printed directly by the WebFrameView, other content will need to be handled by
+        /// the delegate. To determine if the WebFrameView can handle printing the delegate should check
+        /// WebFrameView's documentViewShouldHandlePrint, if YES then the delegate can call printDocumentView
+        /// on the WebFrameView. Otherwise the delegate will need to request a NSPrintOperation from
+        /// the WebFrameView's printOperationWithPrintInfo to handle the printing.
         #[deprecated]
         #[optional]
         #[method(webView:printFrameView:)]
@@ -552,6 +879,13 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Parameter `sender`: The WebView sending the delegate method
+        ///
+        /// Reserve a height for the printed page header.
+        ///
+        /// Returns: The height to reserve for the printed page header, return 0.0 to not reserve any space for a header.
+        ///
+        /// The height returned will be used to calculate the rect passed to webView:drawHeaderInRect:.
         #[deprecated]
         #[optional]
         #[method(webViewHeaderHeight:)]
@@ -559,6 +893,13 @@ extern_protocol!(
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Parameter `sender`: The WebView sending the delegate method
+        ///
+        /// Reserve a height for the printed page footer.
+        ///
+        /// Returns: The height to reserve for the printed page footer, return 0.0 to not reserve any space for a footer.
+        ///
+        /// The height returned will be used to calculate the rect passed to webView:drawFooterInRect:.
         #[deprecated]
         #[optional]
         #[method(webViewFooterHeight:)]
@@ -570,6 +911,11 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
+        /// Parameter `sender`: The WebView sending the delegate method
+        ///
+        /// Parameter `rect`: The NSRect reserved for the header of the page
+        ///
+        /// The delegate should draw a header for the sender in the supplied rect.
         #[deprecated]
         #[optional]
         #[method(webView:drawHeaderInRect:)]
@@ -581,6 +927,11 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
+        /// Parameter `sender`: The WebView sending the delegate method
+        ///
+        /// Parameter `rect`: The NSRect reserved for the footer of the page
+        ///
+        /// The delegate should draw a footer for the sender in the supplied rect.
         #[deprecated]
         #[optional]
         #[method(webView:drawFooterInRect:)]

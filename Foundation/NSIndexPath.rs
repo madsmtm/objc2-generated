@@ -63,6 +63,13 @@ extern_methods!(
         pub unsafe fn length(&self) -> NSUInteger;
 
         #[cfg(feature = "NSRange")]
+        /// Copies the indexes stored in this index path from the positions specified by positionRange into indexes.
+        ///
+        /// Parameter `indexes`: Buffer of at least as many NSUIntegers as specified by the length of positionRange. On return, this memory will hold the index path's indexes.
+        ///
+        /// Parameter `positionRange`: A range of valid positions within this index path.  If the location plus the length of positionRange is greater than the length of this index path, this method raises an NSRangeException.
+        ///
+        /// It is the developer’s responsibility to allocate the memory for the C array.
         #[method(getIndexes:range:)]
         pub unsafe fn getIndexes_range(
             &self,
@@ -90,6 +97,7 @@ extern_methods!(
 extern_methods!(
     /// NSDeprecated
     unsafe impl NSIndexPath {
+        /// This method is unsafe because it could potentially cause buffer overruns. You should use -getIndexes:range: instead.
         #[deprecated]
         #[method(getIndexes:)]
         pub unsafe fn getIndexes(&self, indexes: NonNull<NSUInteger>);

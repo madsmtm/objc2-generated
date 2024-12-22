@@ -6,10 +6,30 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdeviceinstrumentid?language=objc)
+/// type for instrument identifiers
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdeviceinstrumentid?language=objc)
 pub type MusicDeviceInstrumentID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestdnoteparams?language=objc)
+/// convenience struct for specifying a note and velocity
+///
+///
+/// This struct is the common usage for MusicDeviceStartNote, as most synths that implement this functionality
+/// will only allow for the specification of a note number and velocity when starting a new note.
+///
+///
+/// Should be set to 2
+///
+/// The pitch of the new note, typically specified using a MIDI note number (and a fractional pitch) within the
+/// range of 0
+/// <
+/// 128. So 60 is middle C, 60.5 is middle C + 50 cents.
+///
+/// The velocity of the new note - this can be a fractional value - specified as MIDI (within the range of 0
+/// <
+/// 128)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestdnoteparams?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MusicDeviceStdNoteParams {
@@ -29,7 +49,18 @@ unsafe impl RefEncode for MusicDeviceStdNoteParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/noteparamscontrolvalue?language=objc)
+/// used to describe a control and value
+///
+///
+/// This struct is used to describe a parameterID (a control in MIDI terminology, though it is not limited to
+/// MIDI CC specifications) and the value of this parameter.
+///
+///
+/// The parameter ID
+///
+/// The value of that parameter
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/noteparamscontrolvalue?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -54,7 +85,29 @@ unsafe impl RefEncode for NoteParamsControlValue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicenoteparams?language=objc)
+/// Used to hold the value of the inParams parameter for the MusicDeviceStartNote function.
+///
+///
+/// The generic version of this structure describes an arg count (which is the number of mControls values
+/// + 1 for mPitch and 1 for mVelocity). So, argCount should at least be two. See MusicDeviceStdNoteParams
+/// for the common use case, as many audio unit instruments will not respond to control values provided
+/// in the start note function
+///
+///
+/// The number of controls + 2 (for mPitch and mVelocity)
+///
+/// The pitch of the new note, typically specified using a MIDI note number (and a fractional pitch) within the
+/// range of 0
+/// <
+/// 128. So 60 is middle C, 60.5 is middle C + 50 cents.
+///
+/// The velocity of the new note - this can be a fractional value - specified as MIDI (within the range of 0
+/// <
+/// 128)
+///
+/// A variable length array with the number of elements: argCount - 2.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicenoteparams?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -88,17 +141,57 @@ pub const kMusicNoteEvent_UseGroupInstrument: c_uint = 0xFFFFFFFF;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicnoteevent_unused?language=objc)
 pub const kMusicNoteEvent_Unused: c_uint = 0xFFFFFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicegroupid?language=objc)
+/// The type used to specify which group (channel number in MIDI) is used with a given command (new note,
+/// control or parameter value change)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicegroupid?language=objc)
 pub type MusicDeviceGroupID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/noteinstanceid?language=objc)
+/// The type used to hold an unique identifier returned by MusicDeviceStartNote that is used to then address
+/// that note (typically to turn the note off). An ID must be used for notes, because notes can be specified
+/// by fractional pitches, and so using the MIDI note number is not sufficient to identify the note to turn
+/// it off (or to apply polyphonic after touch).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/noteinstanceid?language=objc)
 pub type NoteInstanceID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicecomponent?language=objc)
+/// The unique type of a MusicDevice audio unit (which is an AudioComponentInstance)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicecomponent?language=objc)
 #[cfg(feature = "AudioComponent")]
 pub type MusicDeviceComponent = AudioComponentInstance;
 
 extern "C-unwind" {
+    /// Used to sent MIDI channel messages to an audio unit
+    ///
+    ///
+    /// This is the API used to send MIDI channel messages to an audio unit. The status and data parameters
+    /// are used exactly as described by the MIDI specification, including the combination of channel and
+    /// command in the status byte. All events sent via MusicDeviceMIDIEventList will be delivered to the
+    /// audio unit in the MIDI protocol returned by kAudioUnitProperty_AudioUnitMIDIProtocol.
+    ///
+    ///
+    /// Parameter `inUnit`: The audio unit
+    ///
+    /// Parameter `inStatus`: The MIDI status byte
+    ///
+    /// Parameter `inData1`: The first MIDI data byte (value is in the range 0
+    /// <
+    /// 128)
+    ///
+    /// Parameter `inData2`: The second MIDI data byte (value is in the range 0
+    /// <
+    /// 128). If the MIDI status byte only has one
+    /// data byte, this should be set to zero.
+    ///
+    /// Parameter `inOffsetSampleFrame`: If you are scheduling the MIDI Event from the audio unit's render thread, then you can supply a
+    /// sample offset that the audio unit may apply when applying that event in its next audio unit render.
+    /// This allows you to schedule to the sample, the time when a MIDI command is applied and is particularly
+    /// important when starting new notes. If you are not scheduling in the audio unit's render thread,
+    /// then you should set this value to 0
+    ///
+    ///
+    /// Returns: noErr, or an audio unit error code
     #[cfg(feature = "AudioComponent")]
     pub fn MusicDeviceMIDIEvent(
         in_unit: MusicDeviceComponent,
@@ -110,6 +203,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// used to send any non-channel MIDI event to an audio unit
+    ///
+    ///
+    /// This is used to send any non-channel MIDI event to an audio unit. In practise this is a System Exclusive
+    /// (SysEx) MIDI message
+    ///
+    ///
+    /// Parameter `inUnit`: The audio unit
+    ///
+    /// Parameter `inData`: The complete MIDI SysEx message including the F0 and F7 start and termination bytes
+    ///
+    /// Parameter `inLength`: The size, in bytes, of the data
+    ///
+    ///
+    /// Returns: noErr, or an audio unit error code
     #[cfg(feature = "AudioComponent")]
     pub fn MusicDeviceSysEx(
         in_unit: MusicDeviceComponent,
@@ -119,6 +227,44 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// used to start a note
+    ///
+    ///
+    /// This function is used to start a note.  The caller must provide a NoteInstanceID to receive a
+    /// token that is then used to stop the note. The MusicDeviceStopNote call should be used to stop
+    /// notes started with this API. The token can also be used to address individual notes on the
+    /// kAudioUnitScope_Note if the audio unit supports it. The instrumentID is no longer used and the
+    /// kMusicNoteEvent_Unused constant should be specified (this takes the current patch for the
+    /// specifed group as the sound to use for the note).
+    ///
+    /// The Audio unit must provide an unique ID for the note instance ID. This ID must be non-zero and not
+    /// 0xFFFFFFFF (any other UInt32 value is valid).
+    ///
+    /// Not all Music Device audio units implement the semantics of this API (though it is strongly recommended
+    /// that they do). A host application shoudl query the kMusicDeviceProperty_SupportsStartStopNote to
+    /// check that this is supported.
+    ///
+    ///
+    /// Parameter `inUnit`: The audio unit
+    ///
+    /// Parameter `inInstrument`: The instrumentID is no longer used and the kMusicNoteEvent_Unused constant should be specified (this takes
+    /// the current patch for the specifed group as the sound to use for the note)
+    ///
+    /// Parameter `inGroupID`: The group ID that this note will be attached too. As with MIDI, all notes sounding on a groupID can be
+    /// controlled through the various parameters (such as pitch bend, etc) that can be specified on the Group
+    /// Scope
+    ///
+    /// Parameter `outNoteInstanceID`: A pointer to receive the token that is used to identify the note. This parameter must be specified
+    ///
+    /// Parameter `inOffsetSampleFrame`: If you are scheduling the MIDI Event from the audio unit's render thread, then you can supply a sample offset
+    /// that the audio unit may apply when starting the note in its next audio unit render. This allows you to
+    /// schedule to the sample and is particularly important when starting new notes. If you are not scheduling
+    /// in the audio unit's render thread, then you should set this value to 0
+    ///
+    /// Parameter `inParams`: The parameters to be used when starting the note - pitch and velocity must be specified
+    ///
+    ///
+    /// Returns: noErr, or an audio unit error code
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn MusicDeviceStartNote(
         in_unit: MusicDeviceComponent,
@@ -131,6 +277,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// used to stop notes started with the MusicDeviceStartNote call
+    ///
+    ///
+    /// This call is used to stop notes that have been started with the MusicDeviceStartNote call; both the group ID
+    /// that the note was started on and the noteInstanceID should be specified.
+    ///
+    ///
+    /// Parameter `inUnit`: The audio unit
+    ///
+    /// Parameter `inGroupID`: the group ID
+    ///
+    /// Parameter `inNoteInstanceID`: the note instance ID
+    ///
+    /// Parameter `inOffsetSampleFrame`: the sample offset within the next buffer rendered that the note should be turned off at
+    ///
+    ///
+    /// Returns: noErr, or an audio unit error code
     #[cfg(feature = "AudioComponent")]
     pub fn MusicDeviceStopNote(
         in_unit: MusicDeviceComponent,
@@ -157,15 +320,48 @@ pub const kMusicDeviceStopNoteSelect: c_uint = 0x0106;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicemidieventlistselect?language=objc)
 pub const kMusicDeviceMIDIEventListSelect: c_uint = 0x0107;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicemidieventproc?language=objc)
+/// This proc can be exported through the FastDispatch property or is used as the prototype for
+/// an audio component dispatch for this selector.
+///
+/// The arguments are the same as are provided to the corresponding API call
+///
+///
+/// Parameter `self`: For a component manager component, this is the component instance storage pointer
+///
+///
+/// Returns: noErr, or an audio unit error code
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicemidieventproc?language=objc)
 pub type MusicDeviceMIDIEventProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, u32, u32) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicesysexproc?language=objc)
+/// This proc can be exported through the FastDispatch property or is used as the prototype for
+/// an audio component dispatch for this selector.
+///
+/// The arguments are the same as are provided to the corresponding API call
+///
+///
+/// Parameter `self`: For a component manager component, this is the component instance storage pointer
+///
+///
+/// Returns: noErr, or an audio unit error code
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicesysexproc?language=objc)
 pub type MusicDeviceSysExProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<u8>, u32) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestartnoteproc?language=objc)
+/// This proc can be exported through the FastDispatch property or is used as the prototype for
+/// an audio component dispatch for this selector.
+///
+/// The arguments are the same as are provided to the corresponding API call
+///
+///
+/// Parameter `self`: For a component manager component, this is the component instance storage pointer
+///
+///
+/// Returns: noErr, or an audio unit error code
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestartnoteproc?language=objc)
 #[cfg(feature = "AUComponent")]
 pub type MusicDeviceStartNoteProc = Option<
     unsafe extern "C-unwind" fn(
@@ -178,7 +374,18 @@ pub type MusicDeviceStartNoteProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestopnoteproc?language=objc)
+/// This proc can be exported through the FastDispatch property or is used as the prototype for
+/// an audio component dispatch for this selector.
+///
+/// The arguments are the same as are provided to the corresponding API call
+///
+///
+/// Parameter `self`: For a component manager component, this is the component instance storage pointer
+///
+///
+/// Returns: noErr, or an audio unit error code
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestopnoteproc?language=objc)
 pub type MusicDeviceStopNoteProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,

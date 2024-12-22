@@ -55,6 +55,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other initialValues)]
         pub unsafe fn initialValues(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// Setter for [`initialValues`][Self::initialValues].
         #[method(setInitialValues:)]
         pub unsafe fn setInitialValues(
             &self,
@@ -64,6 +65,7 @@ extern_methods!(
         #[method(appliesImmediately)]
         pub unsafe fn appliesImmediately(&self) -> bool;
 
+        /// Setter for [`appliesImmediately`][Self::appliesImmediately].
         #[method(setAppliesImmediately:)]
         pub unsafe fn setAppliesImmediately(&self, applies_immediately: bool);
 

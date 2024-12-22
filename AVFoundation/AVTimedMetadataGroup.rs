@@ -10,7 +10,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatagroup?language=objc)
+    /// AVMetadataGroup is the common superclass for AVTimedMetadataGroup and AVDateRangeMetadataGroup; each represents a collection of metadata items associated with a segment of a timeline. AVTimedMetadataGroup is typically used with content that defines an independent timeline, while AVDateRangeMetadataGroup is typically used with content that's associated with a specific range of dates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatagroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataGroup;
@@ -49,7 +51,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup?language=objc)
+    /// AVTimedMetadataGroup is used to represent a collection of metadata items that are valid for use during a specific range of time. For example, AVTimedMetadataGroups are used to represent chapters, optionally containing metadata items for chapter titles and chapter images.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup?language=objc)
     #[unsafe(super(AVMetadataGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVTimedMetadataGroup;
@@ -72,6 +76,13 @@ unsafe impl NSObjectProtocol for AVTimedMetadataGroup {}
 extern_methods!(
     unsafe impl AVTimedMetadataGroup {
         #[cfg(all(feature = "AVMetadataItem", feature = "objc2-core-media"))]
+        /// Initializes an instance of AVTimedMetadataGroup with a collection of metadata items.
+        ///
+        /// Parameter `items`: An NSArray of AVMetadataItems.
+        ///
+        /// Parameter `timeRange`: The timeRange of the collection of AVMetadataItems.
+        ///
+        /// Returns: An instance of AVTimedMetadataGroup.
         #[method_id(@__retain_semantics Init initWithItems:timeRange:)]
         pub unsafe fn initWithItems_timeRange(
             this: Allocated<Self>,
@@ -80,6 +91,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Initializes an instance of AVTimedMetadataGroup with a sample buffer.
+        ///
+        /// Parameter `sampleBuffer`: A CMSampleBuffer with media type kCMMediaType_Metadata.
+        ///
+        /// Returns: An instance of AVTimedMetadataGroup.
         #[method_id(@__retain_semantics Init initWithSampleBuffer:)]
         pub unsafe fn initWithSampleBuffer(
             this: Allocated<Self>,
@@ -111,13 +127,22 @@ extern_methods!(
     /// AVTimedMetadataGroupSerializationSupport
     unsafe impl AVTimedMetadataGroup {
         #[cfg(feature = "objc2-core-media")]
+        /// Creates a format description based on the receiver's items.
+        ///
+        /// Returns: An instance of CMMetadataFormatDescription sufficient to describe the contents of all the items referenced by the receiver.
+        ///
+        /// The returned format description is suitable for use as the format hint parameter when creating an instance of AVAssetWriterInput.
+        ///
+        /// Each item referenced by the receiver must carry a non-nil value for its dataType property.  An exception will be thrown if any item does not have a data type.
         #[method(copyFormatDescription)]
         pub unsafe fn copyFormatDescription(&self) -> CMMetadataFormatDescriptionRef;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutabletimedmetadatagroup?language=objc)
+    /// AVMutableTimedMetadataGroup is used to represent a mutable collection of metadata items that are valid for use during a specific range of time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutabletimedmetadatagroup?language=objc)
     #[unsafe(super(AVTimedMetadataGroup, AVMetadataGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableTimedMetadataGroup;
@@ -144,6 +169,7 @@ extern_methods!(
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`timeRange`][Self::timeRange].
         #[method(setTimeRange:)]
         pub unsafe fn setTimeRange(&self, time_range: CMTimeRange);
 
@@ -152,6 +178,7 @@ extern_methods!(
         pub unsafe fn items(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
+        /// Setter for [`items`][Self::items].
         #[method(setItems:)]
         pub unsafe fn setItems(&self, items: &NSArray<AVMetadataItem>);
     }
@@ -161,6 +188,13 @@ extern_methods!(
     /// Methods declared on superclass `AVTimedMetadataGroup`
     unsafe impl AVMutableTimedMetadataGroup {
         #[cfg(all(feature = "AVMetadataItem", feature = "objc2-core-media"))]
+        /// Initializes an instance of AVTimedMetadataGroup with a collection of metadata items.
+        ///
+        /// Parameter `items`: An NSArray of AVMetadataItems.
+        ///
+        /// Parameter `timeRange`: The timeRange of the collection of AVMetadataItems.
+        ///
+        /// Returns: An instance of AVTimedMetadataGroup.
         #[method_id(@__retain_semantics Init initWithItems:timeRange:)]
         pub unsafe fn initWithItems_timeRange(
             this: Allocated<Self>,
@@ -169,6 +203,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Initializes an instance of AVTimedMetadataGroup with a sample buffer.
+        ///
+        /// Parameter `sampleBuffer`: A CMSampleBuffer with media type kCMMediaType_Metadata.
+        ///
+        /// Returns: An instance of AVTimedMetadataGroup.
         #[method_id(@__retain_semantics Init initWithSampleBuffer:)]
         pub unsafe fn initWithSampleBuffer(
             this: Allocated<Self>,
@@ -189,7 +228,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup?language=objc)
+    /// AVDateRangeMetadataGroup is used to represent a collection of metadata items that are valid for use within a specific range of dates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup?language=objc)
     #[unsafe(super(AVMetadataGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVDateRangeMetadataGroup;
@@ -212,6 +253,15 @@ unsafe impl NSObjectProtocol for AVDateRangeMetadataGroup {}
 extern_methods!(
     unsafe impl AVDateRangeMetadataGroup {
         #[cfg(feature = "AVMetadataItem")]
+        /// Initializes an instance of AVDateRangeMetadataGroup with a collection of metadata items.
+        ///
+        /// Parameter `items`: An NSArray of AVMetadataItems.
+        ///
+        /// Parameter `startDate`: The start date of the collection of AVMetadataItems.
+        ///
+        /// Parameter `endDate`: The end date of the collection of AVMetadataItems. If the receiver is intended to represent information about an instantaneous event, the value of endDate should be equal to the value of startDate. A value of nil for endDate indicates that the endDate is indefinite.
+        ///
+        /// Returns: An instance of AVDateRangeMetadataGroup.
         #[method_id(@__retain_semantics Init initWithItems:startDate:endDate:)]
         pub unsafe fn initWithItems_startDate_endDate(
             this: Allocated<Self>,
@@ -244,7 +294,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutabledaterangemetadatagroup?language=objc)
+    /// AVMutableDateRangeMetadataGroup is used to represent a mutable collection of metadata items that are valid for use within a specific range of dates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutabledaterangemetadatagroup?language=objc)
     #[unsafe(super(AVDateRangeMetadataGroup, AVMetadataGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableDateRangeMetadataGroup;
@@ -269,12 +321,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
+        /// Setter for [`startDate`][Self::startDate].
         #[method(setStartDate:)]
         pub unsafe fn setStartDate(&self, start_date: &NSDate);
 
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Setter for [`endDate`][Self::endDate].
         #[method(setEndDate:)]
         pub unsafe fn setEndDate(&self, end_date: Option<&NSDate>);
 
@@ -283,6 +337,7 @@ extern_methods!(
         pub unsafe fn items(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
+        /// Setter for [`items`][Self::items].
         #[method(setItems:)]
         pub unsafe fn setItems(&self, items: &NSArray<AVMetadataItem>);
     }
@@ -292,6 +347,15 @@ extern_methods!(
     /// Methods declared on superclass `AVDateRangeMetadataGroup`
     unsafe impl AVMutableDateRangeMetadataGroup {
         #[cfg(feature = "AVMetadataItem")]
+        /// Initializes an instance of AVDateRangeMetadataGroup with a collection of metadata items.
+        ///
+        /// Parameter `items`: An NSArray of AVMetadataItems.
+        ///
+        /// Parameter `startDate`: The start date of the collection of AVMetadataItems.
+        ///
+        /// Parameter `endDate`: The end date of the collection of AVMetadataItems. If the receiver is intended to represent information about an instantaneous event, the value of endDate should be equal to the value of startDate. A value of nil for endDate indicates that the endDate is indefinite.
+        ///
+        /// Returns: An instance of AVDateRangeMetadataGroup.
         #[method_id(@__retain_semantics Init initWithItems:startDate:endDate:)]
         pub unsafe fn initWithItems_startDate_endDate(
             this: Allocated<Self>,

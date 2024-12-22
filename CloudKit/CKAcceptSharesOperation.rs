@@ -36,6 +36,7 @@ extern_methods!(
         pub unsafe fn shareMetadatas(&self) -> Option<Retained<NSArray<CKShareMetadata>>>;
 
         #[cfg(feature = "CKShareMetadata")]
+        /// Setter for [`shareMetadatas`][Self::shareMetadatas].
         #[method(setShareMetadatas:)]
         pub unsafe fn setShareMetadatas(&self, share_metadatas: Option<&NSArray<CKShareMetadata>>);
 
@@ -45,6 +46,14 @@ extern_methods!(
             feature = "CKShareMetadata",
             feature = "block2"
         ))]
+        /// Called once for each share metadata that the server processed
+        ///
+        ///
+        /// If error is nil then the share was successfully accepted.
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perShareCompletionBlock)]
         pub unsafe fn perShareCompletionBlock(
             &self,
@@ -56,6 +65,7 @@ extern_methods!(
             feature = "CKShareMetadata",
             feature = "block2"
         ))]
+        /// Setter for [`perShareCompletionBlock`][Self::perShareCompletionBlock].
         #[method(setPerShareCompletionBlock:)]
         pub unsafe fn setPerShareCompletionBlock(
             &self,
@@ -65,12 +75,31 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// This block is called when the operation completes.
+        ///
+        ///
+        /// The
+        ///
+        /// ```text
+        ///  -[NSOperation completionBlock]
+        /// ```
+        ///
+        /// will also be called if both are set.
+        /// If the error is
+        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of shareURLs to errors keyed off of
+        /// `CKPartialErrorsByItemIDKey.`These errors are repeats of those sent back in previous
+        /// `perShareCompletionBlock`invocations
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(acceptSharesCompletionBlock)]
         pub unsafe fn acceptSharesCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut NSError)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`acceptSharesCompletionBlock`][Self::acceptSharesCompletionBlock].
         #[method(setAcceptSharesCompletionBlock:)]
         pub unsafe fn setAcceptSharesCompletionBlock(
             &self,

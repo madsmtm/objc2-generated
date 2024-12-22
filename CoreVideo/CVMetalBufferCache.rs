@@ -27,6 +27,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new Buffer Cache.
+    ///
+    /// Parameter `allocator`: The CFAllocatorRef to use for allocating the cache.  May be NULL.
+    ///
+    /// Parameter `cacheAttributes`: A CFDictionaryRef containing the attributes of the cache itself. May be NULL.
+    ///
+    /// Parameter `metalDevice`: The Metal device for which the buffer objects will be created.
+    ///
+    /// Parameter `cacheOut`: The newly created buffer cache will be placed here
+    ///
+    /// Returns: Returns kCVReturnSuccess on success
     #[cfg(all(
         feature = "CVReturn",
         feature = "objc2",
@@ -43,6 +54,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CVMetalBuffer object from an existing CVImageBuffer
+    ///
+    /// Parameter `allocator`: The CFAllocatorRef to use for allocating the CVMetalBuffer object. May be NULL.
+    ///
+    /// Parameter `bufferCache`: The buffer cache object that will manage the buffer.
+    ///
+    /// Parameter `buffer`: The CVImageBuffer that you want to create a CVMetalBuffer from.
+    ///
+    /// Parameter `bufferOut`: The newly created buffer object will be placed here.
+    ///
+    /// Returns: Returns kCVReturnSuccess on success
+    ///
+    /// Creates or returns a cached CVMetalBuffer object mapped to the CVImageBuffer.
+    /// This creates a live binding between the CVImageBuffer and underlying CVMetalBuffer buffer object.
+    ///
+    /// IMPORTANT NOTE: Clients should retain CVMetalBuffer objects until they are done using the images in them.
+    /// Retaining a CVMetalBuffer is your way to indicate that you're still using the image in the buffer, and that it should not be recycled yet.
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",
@@ -59,6 +87,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Performs internal housekeeping/recycling operations
+    ///
+    /// This call must be made periodically to give the buffer cache a chance to do internal housekeeping operations.
+    ///
+    /// Parameter `bufferCache`: The buffer cache object to flush
+    ///
+    /// Parameter `options`: Currently unused, set to 0.
     #[cfg(feature = "CVBase")]
     pub fn CVMetalBufferCacheFlush(buffer_cache: CVMetalBufferCacheRef, options: CVOptionFlags);
 }

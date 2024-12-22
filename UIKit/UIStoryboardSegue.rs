@@ -61,6 +61,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other destinationViewController)]
         pub unsafe fn destinationViewController(&self) -> Retained<UIViewController>;
 
+        /// Subclasses can override this method to augment or replace the effect of this segue. For example, to animate alongside the effect of a Modal Presentation segue, an override of this method can call super, then send -animateAlongsideTransition:completion: to the transitionCoordinator of the destinationViewController.
+        /// The segue runtime will call +[UIView setAnimationsAreEnabled:] prior to invoking this method, based on the value of the Animates checkbox in the Properties Inspector for the segue.
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method(perform)]
         pub unsafe fn perform(&self);
@@ -76,7 +78,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistoryboardunwindseguesource?language=objc)
+    /// Encapsulates the source of a prospective unwind segue.
+    /// You do not create instances of this class directly. Instead, UIKit creates an instance of this class and sends -allowedChildViewControllersForUnwindingFromSource: to each ancestor of the sourceViewController until it finds a view controller which returns YES from -canPerformUnwindSegueAction:fromViewController:sender:.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uistoryboardunwindseguesource?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

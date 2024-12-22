@@ -13,7 +13,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contactsui/cncontactpicker?language=objc)
+    /// CNContactPicker is a popover-based contact picker for choosing a contact or a contact's value, such as a phone number or email address.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contactsui/cncontactpicker?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactPicker;
@@ -23,13 +25,18 @@ unsafe impl NSObjectProtocol for CNContactPicker {}
 
 extern_methods!(
     unsafe impl CNContactPicker {
+        /// The CNContact keys to display when a contact is expanded.
+        ///
+        /// If no keys are provided, the picker will select contacts instead of values.
         #[method_id(@__retain_semantics Other displayedKeys)]
         pub unsafe fn displayedKeys(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`displayedKeys`][Self::displayedKeys].
         #[method(setDisplayedKeys:)]
         pub unsafe fn setDisplayedKeys(&self, displayed_keys: &NSArray<NSString>);
 
         #[cfg(feature = "CNContactPickerDelegate")]
+        /// The picker delegate to be notified when the user chooses a contact or value.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
@@ -37,6 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "CNContactPickerDelegate")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -45,6 +53,7 @@ extern_methods!(
 
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
         #[cfg(target_os = "macos")]
+        /// Shows the picker popover relative to a positioning rect for a view with a preferred edge. See NSPopover for more information.
         #[method(showRelativeToRect:ofView:preferredEdge:)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(
             &self,
@@ -53,6 +62,7 @@ extern_methods!(
             preferred_edge: NSRectEdge,
         );
 
+        /// Closes the popover.
         #[method(close)]
         pub unsafe fn close(&self);
     }

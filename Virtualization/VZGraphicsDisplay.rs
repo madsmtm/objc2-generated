@@ -10,7 +10,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgraphicsdisplay?language=objc)
+    /// Class representing a graphics display in a virtual machine.
+    ///
+    /// VZGraphicsDisplay should not be instantiated directly.
+    ///
+    /// Graphics displays are first configured on a VZGraphicsDeviceConfiguration subclass.
+    /// When a VZVirtualMachine is created from the configuration, the displays
+    /// are available through the VZGraphicsDevice's `displays` property.
+    ///
+    ///
+    /// See: VZMacGraphicsDisplayConfiguration
+    ///
+    /// See: VZVirtioGraphicsScanoutConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgraphicsdisplay?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZGraphicsDisplay;
@@ -27,10 +40,23 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The size of the display, in pixels.
         #[method(sizeInPixels)]
         pub unsafe fn sizeInPixels(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Resize this display.
+        ///
+        /// Parameter `sizeInPixels`: New display width and height in pixels.
+        ///
+        /// Parameter `error`: If not nil, assigned with an error describing why the new size is not valid.
+        ///
+        /// Returns: YES if the resize is successful, NO otherwise.
+        ///
+        /// If successful, the new size will be passed to the guest but the guest may or may
+        /// not respond to the new size. The guest not using the size does not return an error.
+        ///
+        /// Reconfiguration triggers a display state change which can be tracked by VZGraphicsDisplayObservers.
         #[method(reconfigureWithSizeInPixels:error:_)]
         pub unsafe fn reconfigureWithSizeInPixels_error(
             &self,
@@ -38,15 +64,36 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "VZGraphicsDisplayConfiguration")]
+        /// Reconfigure this display.
+        ///
+        /// Parameter `configuration`: New display configuration.
+        ///
+        /// Parameter `error`: If not nil, assigned with an error describing why the new configuration is not valid.
+        ///
+        /// Returns: YES if the reconfiguration is successful, NO otherwise.
+        ///
+        /// The type of the configuration must match the corresponding type that caused this display to be created.
+        ///
+        /// If successful, the new configuration will be passed to the guest but the guest may or may
+        /// not respond to parts of the configuration. The guest not using the new configuration does not
+        /// return an error.
+        ///
+        /// Reconfiguration triggers a display state change which can be tracked by VZGraphicsDisplayObservers.
         #[method(reconfigureWithConfiguration:error:_)]
         pub unsafe fn reconfigureWithConfiguration_error(
             &self,
             configuration: &VZGraphicsDisplayConfiguration,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Add an observer.
+        ///
+        /// Parameter `observer`: The new observer to be notified of display state changes.
         #[method(addObserver:)]
         pub unsafe fn addObserver(&self, observer: &ProtocolObject<dyn VZGraphicsDisplayObserver>);
 
+        /// Remove an observer.
+        ///
+        /// Parameter `observer`: The observer to be removed.
         #[method(removeObserver:)]
         pub unsafe fn removeObserver(
             &self,
@@ -56,12 +103,26 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgraphicsdisplayobserver?language=objc)
+    /// VZGraphicsDisplayObserver observes a VZGraphicsDisplay for state changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgraphicsdisplayobserver?language=objc)
     pub unsafe trait VZGraphicsDisplayObserver: NSObjectProtocol {
+        /// A reconfiguration operation has begun.
+        ///
+        /// A configuration change, such as a resize, has been issued and new frames are expected with a new size or configuration.
+        /// This method will be invoked on the virtual machine's queue.
+        ///
+        /// Parameter `display`: The display whose state is changing.
         #[optional]
         #[method(displayDidBeginReconfiguration:)]
         unsafe fn displayDidBeginReconfiguration(&self, display: &VZGraphicsDisplay);
 
+        /// A reconfiguration operation has ended.
+        ///
+        /// Frame updates have arrived at the most recently requested display size and configuration.
+        /// This method will be invoked on the virtual machine's queue.
+        ///
+        /// Parameter `display`: The display whose state is changing.
         #[optional]
         #[method(displayDidEndReconfiguration:)]
         unsafe fn displayDidEndReconfiguration(&self, display: &VZGraphicsDisplay);

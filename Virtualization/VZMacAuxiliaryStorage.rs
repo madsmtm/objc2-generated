@@ -6,13 +6,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorageinitializationoptions?language=objc)
+/// Options when creating a new auxiliary storage.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorageinitializationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct VZMacAuxiliaryStorageInitializationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl VZMacAuxiliaryStorageInitializationOptions: NSUInteger {
+/// Overwrite an existing auxiliary storage.
         const VZMacAuxiliaryStorageInitializationOptionAllowOverwrite = 1<<0;
     }
 }
@@ -26,7 +29,41 @@ unsafe impl RefEncode for VZMacAuxiliaryStorageInitializationOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorage?language=objc)
+    /// Mac auxiliary storage.
+    ///
+    /// The Mac auxiliary storage contains data used by the boot loader and the guest operating system. It is necessary to boot a macOS guest OS.
+    ///
+    /// When creating a new virtual machine from scratch, VZMacOSInstaller can use a default initialized auxiliary storage.
+    /// Use -[VZMacAuxiliaryStorage initCreatingStorageAtURL:hardwareModel:options:error:] to create an empty auxiliary storage.
+    ///
+    /// The hardware model used when creating the new auxiliary storage depends on the restore image that will be used for installation.
+    /// From the restore image, use VZMacOSRestoreImage.mostFeaturefulSupportedConfiguration to get a supported configuration.
+    /// A configuration has a VZMacHardwareModel associated with it.
+    ///
+    /// After initializing the new auxiliary storage, set it on VZMacPlatformConfiguration.auxiliaryStorage to use it.
+    /// The hardware model in VZMacPlatformConfiguration.hardwareModel must be identical to the one used to create the empty
+    /// auxiliary storage. The behavior is undefined otherwise.
+    ///
+    /// When installing macOS, the VZMacOSInstaller lays out data on the auxiliary storage.
+    /// After installation, the macOS guest uses the auxiliary storage for every subsequent boot.
+    ///
+    /// When moving or doing a backup of a virtual machine, the file containing the auxiliary storage must also be moved
+    /// or copied along with the main disk image.
+    ///
+    /// To boot a virtual machine that has already been installed with VZMacOSInstaller, use -[VZMacAuxiliaryStorage initWithContentsOfURL:]
+    /// to set up the auxiliary storage from the existing file used at installation.
+    /// When using an existing file, the hardware model of the VZMacPlatformConfiguration must match the hardware model used when
+    /// the file was created.
+    ///
+    /// See also: VZMacPlatformConfiguration
+    ///
+    /// See also: VZMacOSRestoreImage
+    ///
+    /// See also: VZMacOSConfigurationRequirements
+    ///
+    /// See also: VZMacOSInstaller
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMacAuxiliaryStorage;
@@ -42,10 +79,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initialize the auxiliary storage from the URL of an existing file.
+        ///
+        /// Parameter `URL`: The URL of the auxiliary storage on the local file system.
+        ///
+        /// To create a new auxiliary storage, use -[VZMacAuxiliaryStorage initCreatingStorageAtURL:hardwareModel:options:error].
         #[method_id(@__retain_semantics Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "VZMacHardwareModel")]
+        /// Write an initialized VZMacAuxiliaryStorage to a URL on a file system.
+        ///
+        /// Parameter `URL`: The URL to write the auxiliary storage to on the local file system.
+        ///
+        /// Parameter `hardwareModel`: The hardware model to use. The auxiliary storage can be laid out differently for different hardware models.
+        ///
+        /// Parameter `options`: Initialization options.
+        ///
+        /// Parameter `error`: If not nil, used to report errors if creation fails.
+        ///
+        /// Returns: A newly initialized VZMacAuxiliaryStorage on success. If an error was encountered returns
+        /// `nil,`and
+        /// `error`contains the error.
         #[method_id(@__retain_semantics Init initCreatingStorageAtURL:hardwareModel:options:error:_)]
         pub unsafe fn initCreatingStorageAtURL_hardwareModel_options_error(
             this: Allocated<Self>,
@@ -54,6 +109,7 @@ extern_methods!(
             options: VZMacAuxiliaryStorageInitializationOptions,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// The URL of the auxiliary storage on the local file system.
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
     }

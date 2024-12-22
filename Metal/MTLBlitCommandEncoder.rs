@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitoption?language=objc)
+/// Controls the blit operation
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -34,10 +36,19 @@ unsafe impl RefEncode for MTLBlitOption {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitcommandencoder?language=objc)
+    /// A command encoder that performs basic copies and blits between buffers and textures.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitcommandencoder?language=objc)
     #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLBlitCommandEncoder: MTLCommandEncoder {
         #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
+        /// Flush any copy of this resource from the device's caches, and invalidate any CPU caches if needed.
+        ///
+        /// Parameter `resource`: The resource to page off.
+        ///
+        /// When the device writes to a resource with a storage mode of MTLResourceStorageModeManaged, those writes may be cached (for example, in VRAM or on chip renderer cache),
+        /// making any CPU access (either MTLBuffer.contents or -[MTLTexture getBytes:...] and -[MTLTexture replaceRegion:]) produce undefined results.  To allow the CPU to see what the device
+        /// has written, a CommandBuffer containing this synchronization must be executed.  After completion of the CommandBuffer, the CPU can access the contents of the resource safely.
         #[method(synchronizeResource:)]
         fn synchronizeResource(&self, resource: &ProtocolObject<dyn MTLResource>);
 
@@ -46,6 +57,15 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTexture"
         ))]
+        /// Flush any copy of this image from the device's caches, and invalidate CPU caches if needed.
+        ///
+        /// Parameter `texture`: The texture to page off.
+        ///
+        /// Parameter `slice`: The slice of the texture to page off.
+        ///
+        /// Parameter `level`: The mipmap level of the texture to flush.
+        ///
+        /// See the discussion of -synchronizeResource.   -synchronizeTexture:slice:mipmapLevel performs the same role, except it may flush only a subset of the texture storage, rather than the entire texture.
         #[method(synchronizeTexture:slice:level:)]
         unsafe fn synchronizeTexture_slice_level(
             &self,
@@ -60,6 +80,7 @@ extern_protocol!(
             feature = "MTLTexture",
             feature = "MTLTypes"
         ))]
+        /// Copy a rectangle of pixels between textures.
         #[method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
             &self,
@@ -81,6 +102,7 @@ extern_protocol!(
             feature = "MTLTexture",
             feature = "MTLTypes"
         ))]
+        /// Copy an image from a buffer into a texture.
         #[method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
             &self,
@@ -102,6 +124,7 @@ extern_protocol!(
             feature = "MTLTexture",
             feature = "MTLTypes"
         ))]
+        /// Copy an image from a buffer into a texture.
         #[method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options(
             &self,
@@ -124,6 +147,7 @@ extern_protocol!(
             feature = "MTLTexture",
             feature = "MTLTypes"
         ))]
+        /// Copy an image from a texture into a buffer.
         #[method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage(
             &self,
@@ -145,6 +169,7 @@ extern_protocol!(
             feature = "MTLTexture",
             feature = "MTLTypes"
         ))]
+        /// Copy an image from a texture into a buffer.
         #[method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options(
             &self,
@@ -165,6 +190,7 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTexture"
         ))]
+        /// Generate mipmaps for a texture from the base level up to the max level.
         #[method(generateMipmapsForTexture:)]
         fn generateMipmapsForTexture(&self, texture: &ProtocolObject<dyn MTLTexture>);
 
@@ -173,6 +199,7 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// Fill a buffer with a fixed value in each byte.
         #[method(fillBuffer:range:value:)]
         fn fillBuffer_range_value(
             &self,
@@ -186,6 +213,16 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTexture"
         ))]
+        /// Copy whole surfaces between textures.
+        ///
+        /// Convenience function to copy sliceCount * levelCount whole surfaces between textures
+        /// The source and destination pixel format must be identical.
+        /// The source and destination sample count must be identical.
+        /// The sourceLevel mip in sourceTexture must have the same dimension as the destinationLevel mip in destinationTexture.
+        /// The sourceTexture must have at least sourceLevel + levelCount mips
+        /// The destinationTexture must have at least destinationLevel + levelCount mips
+        /// The sourceTexture must have at least sourceSlice + sliceCount array slices
+        /// The destinationTexture must have at least destinationSlice + sliceCount array slices
         #[method(copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount(
             &self,
@@ -204,6 +241,17 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTexture"
         ))]
+        /// Copy as many whole surfaces as possible between textures.
+        ///
+        /// Convenience function that calls copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:
+        /// The source and destination pixel format must be identical.
+        /// The source and destination sample count must be identical.
+        /// Either:
+        /// - sourceTexture must have a mip M with identical dimensions as the first mip of destinationTexture: sourceLevel = M, destinationLevel = 0
+        /// - destinationTexture must have a mip M with identical dimensions as the first mip of sourceTexture: sourceLevel = 0, destinationLevel = M
+        /// Computes: levelCount = min(sourceTexture.mipmapLevelCount - sourceLevel, destinationTexture.mipmapLevelCount - destinationLevel)
+        /// sliceCount = min(sourceTexture.arrayLength, destinationTexture.arrayLength)
+        /// Then invokes the method above using the computed parameters.
         #[method(copyFromTexture:toTexture:)]
         unsafe fn copyFromTexture_toTexture(
             &self,
@@ -216,6 +264,7 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// Basic memory copy between buffers.
         #[method(copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:)]
         unsafe fn copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size(
             &self,
@@ -227,10 +276,18 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLFence")]
+        /// Update the fence to capture all GPU work so far enqueued by this encoder.
+        ///
+        /// The fence is updated at kernel submission to maintain global order and prevent deadlock.
+        /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
         #[method(updateFence:)]
         fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
         #[cfg(feature = "MTLFence")]
+        /// Prevent further GPU work until the fence is reached.
+        ///
+        /// The fence is evaluated at kernel submission to maintain global order and prevent deadlock.
+        /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
         #[method(waitForFence:)]
         fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
@@ -241,6 +298,7 @@ extern_protocol!(
             feature = "MTLTexture",
             feature = "MTLTypes"
         ))]
+        /// Copies tile access counters within specified region into provided buffer
         #[optional]
         #[method(getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:)]
         unsafe fn getTextureAccessCounters_region_mipLevel_slice_resetCounters_countersBuffer_countersBufferOffset(
@@ -260,6 +318,7 @@ extern_protocol!(
             feature = "MTLTexture",
             feature = "MTLTypes"
         ))]
+        /// Resets tile access counters within specified region
         #[optional]
         #[method(resetTextureAccessCounters:region:mipLevel:slice:)]
         unsafe fn resetTextureAccessCounters_region_mipLevel_slice(
@@ -275,6 +334,7 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTexture"
         ))]
+        /// Optimizes the texture data to ensure the best possible performance when accessing content on the GPU at the expense of CPU-access performance.
         #[method(optimizeContentsForGPUAccess:)]
         fn optimizeContentsForGPUAccess(&self, texture: &ProtocolObject<dyn MTLTexture>);
 
@@ -283,6 +343,7 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTexture"
         ))]
+        /// Optimizes a subset of the texture data to ensure the best possible performance when accessing content on the GPU at the expense of CPU-access performance.
         #[method(optimizeContentsForGPUAccess:slice:level:)]
         unsafe fn optimizeContentsForGPUAccess_slice_level(
             &self,
@@ -296,6 +357,7 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTexture"
         ))]
+        /// Optimizes the texture data to ensure the best possible performance when accessing content on the CPU at the expense of GPU-access performance.
         #[method(optimizeContentsForCPUAccess:)]
         unsafe fn optimizeContentsForCPUAccess(&self, texture: &ProtocolObject<dyn MTLTexture>);
 
@@ -304,6 +366,7 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTexture"
         ))]
+        /// Optimizes a subset of the texture data to ensure the best possible performance when accessing content on the CPU at the expense of GPU-access performance.
         #[method(optimizeContentsForCPUAccess:slice:level:)]
         unsafe fn optimizeContentsForCPUAccess_slice_level(
             &self,
@@ -317,6 +380,7 @@ extern_protocol!(
             feature = "MTLIndirectCommandBuffer",
             feature = "MTLResource"
         ))]
+        /// reset commands in a indirect command buffer using the GPU
         #[method(resetCommandsInBuffer:withRange:)]
         unsafe fn resetCommandsInBuffer_withRange(
             &self,
@@ -329,6 +393,7 @@ extern_protocol!(
             feature = "MTLIndirectCommandBuffer",
             feature = "MTLResource"
         ))]
+        /// copy a region of a buffer into a destination buffer starting at destinationIndex using the GPU
         #[method(copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:)]
         unsafe fn copyIndirectCommandBuffer_sourceRange_destination_destinationIndex(
             &self,
@@ -343,6 +408,7 @@ extern_protocol!(
             feature = "MTLIndirectCommandBuffer",
             feature = "MTLResource"
         ))]
+        /// Optimizes a subset of the texture data to ensure the best possible performance when accessing content on the CPU at the expense of GPU-access performance.
         #[method(optimizeIndirectCommandBuffer:withRange:)]
         unsafe fn optimizeIndirectCommandBuffer_withRange(
             &self,
@@ -351,6 +417,24 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLCounters")]
+        /// Sample hardware counters at this point in the blit encoder and
+        /// store the counter sample into the sample buffer at the specified index.
+        ///
+        /// Parameter `sampleBuffer`: The sample buffer to sample into
+        ///
+        /// Parameter `sampleIndex`: The index into the counter buffer to write the sample.
+        ///
+        /// Parameter `barrier`: Insert a barrier before taking the sample.  Passing
+        /// YES will ensure that all work encoded before this operation in the encoder is
+        /// complete but does not isolate the work with respect to other encoders.  Passing
+        /// NO will allow the sample to be taken concurrently with other operations in this
+        /// encoder.
+        /// In general, passing YES will lead to more repeatable counter results but
+        /// may negatively impact performance.  Passing NO will generally be higher performance
+        /// but counter results may not be repeatable.
+        ///
+        /// On devices where MTLCounterSamplingPointAtBlitBoundary is unsupported,
+        /// this method is not available and will generate an error if called.
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
@@ -365,6 +449,19 @@ extern_protocol!(
             feature = "MTLCounters",
             feature = "MTLResource"
         ))]
+        /// Parameter `sampleBuffer`: The sample buffer to resolve.
+        ///
+        /// Parameter `range`: The range of indices to resolve.
+        ///
+        /// Parameter `destinationBuffer`: The buffer to resolve values into.
+        ///
+        /// Parameter `destinationOffset`: The offset to begin writing values out to.  This must be a multiple of
+        /// the minimum constant buffer alignment.
+        ///
+        /// Resolve the counters from the raw buffer to a processed buffer.
+        ///
+        /// Samples that encountered an error during resolve will be set to
+        /// MTLCounterErrorValue.
         #[method(resolveCounters:inRange:destinationBuffer:destinationOffset:)]
         unsafe fn resolveCounters_inRange_destinationBuffer_destinationOffset(
             &self,

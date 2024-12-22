@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration?language=objc)
+    /// Base class for a network adapter configuration.
+    ///
+    /// VZNetworkDeviceConfiguration should not be instantiated directly.
+    /// One of its subclasses like VZVirtioNetworkDeviceConfiguration should be used instead.
+    ///
+    ///
+    /// See: VZVirtioNetworkDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZNetworkDeviceConfiguration;
@@ -31,18 +39,28 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZMACAddress")]
+        /// The media access control address of the device. The default is a random, locally administered, unicast address.
         #[method_id(@__retain_semantics Other MACAddress)]
         pub unsafe fn MACAddress(&self) -> Retained<VZMACAddress>;
 
         #[cfg(feature = "VZMACAddress")]
+        /// Setter for [`MACAddress`][Self::MACAddress].
         #[method(setMACAddress:)]
         pub unsafe fn setMACAddress(&self, mac_address: &VZMACAddress);
 
         #[cfg(feature = "VZNetworkDeviceAttachment")]
+        /// Network device attachment. Defines how the virtual device interfaces with the host system. The default is nil.
+        ///
+        /// See: VZBridgedNetworkDeviceAttachment
+        ///
+        /// See: VZFileHandleNetworkDeviceAttachment
+        ///
+        /// See: VZNATNetworkDeviceAttachment
         #[method_id(@__retain_semantics Other attachment)]
         pub unsafe fn attachment(&self) -> Option<Retained<VZNetworkDeviceAttachment>>;
 
         #[cfg(feature = "VZNetworkDeviceAttachment")]
+        /// Setter for [`attachment`][Self::attachment].
         #[method(setAttachment:)]
         pub unsafe fn setAttachment(&self, attachment: Option<&VZNetworkDeviceAttachment>);
     }

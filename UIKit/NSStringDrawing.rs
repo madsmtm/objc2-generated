@@ -25,6 +25,7 @@ extern_methods!(
         pub unsafe fn minimumScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumScaleFactor`][Self::minimumScaleFactor].
         #[method(setMinimumScaleFactor:)]
         pub unsafe fn setMinimumScaleFactor(&self, minimum_scale_factor: CGFloat);
 
@@ -177,6 +178,7 @@ extern_category!(
 
 extern_methods!(
     /// NSStringDrawingContextDeprecated
+    /// ********************** Deprecated ***********************
     unsafe impl NSStringDrawingContext {
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
@@ -184,6 +186,7 @@ extern_methods!(
         pub unsafe fn minimumTrackingAdjustment(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumTrackingAdjustment`][Self::minimumTrackingAdjustment].
         #[deprecated]
         #[method(setMinimumTrackingAdjustment:)]
         pub unsafe fn setMinimumTrackingAdjustment(&self, minimum_tracking_adjustment: CGFloat);

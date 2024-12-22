@@ -59,6 +59,7 @@ extern_methods!(
         #[method(visibilityPriority)]
         pub unsafe fn visibilityPriority(&self) -> NSTouchBarItemPriority;
 
+        /// Setter for [`visibilityPriority`][Self::visibilityPriority].
         #[method(setVisibilityPriority:)]
         pub unsafe fn setVisibilityPriority(&self, visibility_priority: NSTouchBarItemPriority);
 

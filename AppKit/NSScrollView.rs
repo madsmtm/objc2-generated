@@ -156,6 +156,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other documentView)]
         pub unsafe fn documentView(&self) -> Option<Retained<NSView>>;
 
+        /// Setter for [`documentView`][Self::documentView].
         #[method(setDocumentView:)]
         pub unsafe fn setDocumentView(&self, document_view: Option<&NSView>);
 
@@ -164,6 +165,7 @@ extern_methods!(
         pub unsafe fn contentView(&self) -> Retained<NSClipView>;
 
         #[cfg(feature = "NSClipView")]
+        /// Setter for [`contentView`][Self::contentView].
         #[method(setContentView:)]
         pub unsafe fn setContentView(&self, content_view: &NSClipView);
 
@@ -172,12 +174,14 @@ extern_methods!(
         pub unsafe fn documentCursor(&self) -> Option<Retained<NSCursor>>;
 
         #[cfg(feature = "NSCursor")]
+        /// Setter for [`documentCursor`][Self::documentCursor].
         #[method(setDocumentCursor:)]
         pub unsafe fn setDocumentCursor(&self, document_cursor: Option<&NSCursor>);
 
         #[method(borderType)]
         pub unsafe fn borderType(&self) -> NSBorderType;
 
+        /// Setter for [`borderType`][Self::borderType].
         #[method(setBorderType:)]
         pub unsafe fn setBorderType(&self, border_type: NSBorderType);
 
@@ -186,24 +190,28 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
+        /// Setter for [`drawsBackground`][Self::drawsBackground].
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[method(hasVerticalScroller)]
         pub unsafe fn hasVerticalScroller(&self) -> bool;
 
+        /// Setter for [`hasVerticalScroller`][Self::hasVerticalScroller].
         #[method(setHasVerticalScroller:)]
         pub unsafe fn setHasVerticalScroller(&self, has_vertical_scroller: bool);
 
         #[method(hasHorizontalScroller)]
         pub unsafe fn hasHorizontalScroller(&self) -> bool;
 
+        /// Setter for [`hasHorizontalScroller`][Self::hasHorizontalScroller].
         #[method(setHasHorizontalScroller:)]
         pub unsafe fn setHasHorizontalScroller(&self, has_horizontal_scroller: bool);
 
@@ -212,6 +220,7 @@ extern_methods!(
         pub unsafe fn verticalScroller(&self) -> Option<Retained<NSScroller>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSScroller"))]
+        /// Setter for [`verticalScroller`][Self::verticalScroller].
         #[method(setVerticalScroller:)]
         pub unsafe fn setVerticalScroller(&self, vertical_scroller: Option<&NSScroller>);
 
@@ -220,12 +229,14 @@ extern_methods!(
         pub unsafe fn horizontalScroller(&self) -> Option<Retained<NSScroller>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSScroller"))]
+        /// Setter for [`horizontalScroller`][Self::horizontalScroller].
         #[method(setHorizontalScroller:)]
         pub unsafe fn setHorizontalScroller(&self, horizontal_scroller: Option<&NSScroller>);
 
         #[method(autohidesScrollers)]
         pub unsafe fn autohidesScrollers(&self) -> bool;
 
+        /// Setter for [`autohidesScrollers`][Self::autohidesScrollers].
         #[method(setAutohidesScrollers:)]
         pub unsafe fn setAutohidesScrollers(&self, autohides_scrollers: bool);
 
@@ -234,6 +245,7 @@ extern_methods!(
         pub unsafe fn horizontalLineScroll(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`horizontalLineScroll`][Self::horizontalLineScroll].
         #[method(setHorizontalLineScroll:)]
         pub unsafe fn setHorizontalLineScroll(&self, horizontal_line_scroll: CGFloat);
 
@@ -242,6 +254,7 @@ extern_methods!(
         pub unsafe fn verticalLineScroll(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`verticalLineScroll`][Self::verticalLineScroll].
         #[method(setVerticalLineScroll:)]
         pub unsafe fn setVerticalLineScroll(&self, vertical_line_scroll: CGFloat);
 
@@ -250,6 +263,7 @@ extern_methods!(
         pub unsafe fn lineScroll(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`lineScroll`][Self::lineScroll].
         #[method(setLineScroll:)]
         pub unsafe fn setLineScroll(&self, line_scroll: CGFloat);
 
@@ -258,6 +272,7 @@ extern_methods!(
         pub unsafe fn horizontalPageScroll(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`horizontalPageScroll`][Self::horizontalPageScroll].
         #[method(setHorizontalPageScroll:)]
         pub unsafe fn setHorizontalPageScroll(&self, horizontal_page_scroll: CGFloat);
 
@@ -266,6 +281,7 @@ extern_methods!(
         pub unsafe fn verticalPageScroll(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`verticalPageScroll`][Self::verticalPageScroll].
         #[method(setVerticalPageScroll:)]
         pub unsafe fn setVerticalPageScroll(&self, vertical_page_scroll: CGFloat);
 
@@ -274,12 +290,14 @@ extern_methods!(
         pub unsafe fn pageScroll(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`pageScroll`][Self::pageScroll].
         #[method(setPageScroll:)]
         pub unsafe fn setPageScroll(&self, page_scroll: CGFloat);
 
         #[method(scrollsDynamically)]
         pub unsafe fn scrollsDynamically(&self) -> bool;
 
+        /// Setter for [`scrollsDynamically`][Self::scrollsDynamically].
         #[method(setScrollsDynamically:)]
         pub unsafe fn setScrollsDynamically(&self, scrolls_dynamically: bool);
 
@@ -299,6 +317,7 @@ extern_methods!(
         pub unsafe fn scrollerStyle(&self) -> NSScrollerStyle;
 
         #[cfg(feature = "NSScroller")]
+        /// Setter for [`scrollerStyle`][Self::scrollerStyle].
         #[method(setScrollerStyle:)]
         pub unsafe fn setScrollerStyle(&self, scroller_style: NSScrollerStyle);
 
@@ -307,6 +326,7 @@ extern_methods!(
         pub unsafe fn scrollerKnobStyle(&self) -> NSScrollerKnobStyle;
 
         #[cfg(feature = "NSScroller")]
+        /// Setter for [`scrollerKnobStyle`][Self::scrollerKnobStyle].
         #[method(setScrollerKnobStyle:)]
         pub unsafe fn setScrollerKnobStyle(&self, scroller_knob_style: NSScrollerKnobStyle);
 
@@ -316,6 +336,7 @@ extern_methods!(
         #[method(horizontalScrollElasticity)]
         pub unsafe fn horizontalScrollElasticity(&self) -> NSScrollElasticity;
 
+        /// Setter for [`horizontalScrollElasticity`][Self::horizontalScrollElasticity].
         #[method(setHorizontalScrollElasticity:)]
         pub unsafe fn setHorizontalScrollElasticity(
             &self,
@@ -325,6 +346,7 @@ extern_methods!(
         #[method(verticalScrollElasticity)]
         pub unsafe fn verticalScrollElasticity(&self) -> NSScrollElasticity;
 
+        /// Setter for [`verticalScrollElasticity`][Self::verticalScrollElasticity].
         #[method(setVerticalScrollElasticity:)]
         pub unsafe fn setVerticalScrollElasticity(
             &self,
@@ -334,12 +356,14 @@ extern_methods!(
         #[method(usesPredominantAxisScrolling)]
         pub unsafe fn usesPredominantAxisScrolling(&self) -> bool;
 
+        /// Setter for [`usesPredominantAxisScrolling`][Self::usesPredominantAxisScrolling].
         #[method(setUsesPredominantAxisScrolling:)]
         pub unsafe fn setUsesPredominantAxisScrolling(&self, uses_predominant_axis_scrolling: bool);
 
         #[method(allowsMagnification)]
         pub unsafe fn allowsMagnification(&self) -> bool;
 
+        /// Setter for [`allowsMagnification`][Self::allowsMagnification].
         #[method(setAllowsMagnification:)]
         pub unsafe fn setAllowsMagnification(&self, allows_magnification: bool);
 
@@ -348,6 +372,7 @@ extern_methods!(
         pub unsafe fn magnification(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`magnification`][Self::magnification].
         #[method(setMagnification:)]
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
 
@@ -356,6 +381,7 @@ extern_methods!(
         pub unsafe fn maxMagnification(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maxMagnification`][Self::maxMagnification].
         #[method(setMaxMagnification:)]
         pub unsafe fn setMaxMagnification(&self, max_magnification: CGFloat);
 
@@ -364,6 +390,7 @@ extern_methods!(
         pub unsafe fn minMagnification(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minMagnification`][Self::minMagnification].
         #[method(setMinMagnification:)]
         pub unsafe fn setMinMagnification(&self, min_magnification: CGFloat);
 
@@ -386,6 +413,7 @@ extern_methods!(
         #[method(automaticallyAdjustsContentInsets)]
         pub unsafe fn automaticallyAdjustsContentInsets(&self) -> bool;
 
+        /// Setter for [`automaticallyAdjustsContentInsets`][Self::automaticallyAdjustsContentInsets].
         #[method(setAutomaticallyAdjustsContentInsets:)]
         pub unsafe fn setAutomaticallyAdjustsContentInsets(
             &self,
@@ -397,6 +425,7 @@ extern_methods!(
         pub unsafe fn contentInsets(&self) -> NSEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentInsets`][Self::contentInsets].
         #[method(setContentInsets:)]
         pub unsafe fn setContentInsets(&self, content_insets: NSEdgeInsets);
 
@@ -405,6 +434,7 @@ extern_methods!(
         pub unsafe fn scrollerInsets(&self) -> NSEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`scrollerInsets`][Self::scrollerInsets].
         #[method(setScrollerInsets:)]
         pub unsafe fn setScrollerInsets(&self, scroller_insets: NSEdgeInsets);
     }
@@ -460,24 +490,28 @@ extern_methods!(
         #[method(rulerViewClass)]
         pub unsafe fn rulerViewClass(mtm: MainThreadMarker) -> Option<&'static AnyClass>;
 
+        /// Setter for [`rulerViewClass`][Self::rulerViewClass].
         #[method(setRulerViewClass:)]
         pub unsafe fn setRulerViewClass(ruler_view_class: Option<&AnyClass>, mtm: MainThreadMarker);
 
         #[method(rulersVisible)]
         pub unsafe fn rulersVisible(&self) -> bool;
 
+        /// Setter for [`rulersVisible`][Self::rulersVisible].
         #[method(setRulersVisible:)]
         pub unsafe fn setRulersVisible(&self, rulers_visible: bool);
 
         #[method(hasHorizontalRuler)]
         pub unsafe fn hasHorizontalRuler(&self) -> bool;
 
+        /// Setter for [`hasHorizontalRuler`][Self::hasHorizontalRuler].
         #[method(setHasHorizontalRuler:)]
         pub unsafe fn setHasHorizontalRuler(&self, has_horizontal_ruler: bool);
 
         #[method(hasVerticalRuler)]
         pub unsafe fn hasVerticalRuler(&self) -> bool;
 
+        /// Setter for [`hasVerticalRuler`][Self::hasVerticalRuler].
         #[method(setHasVerticalRuler:)]
         pub unsafe fn setHasVerticalRuler(&self, has_vertical_ruler: bool);
 
@@ -486,6 +520,7 @@ extern_methods!(
         pub unsafe fn horizontalRulerView(&self) -> Option<Retained<NSRulerView>>;
 
         #[cfg(feature = "NSRulerView")]
+        /// Setter for [`horizontalRulerView`][Self::horizontalRulerView].
         #[method(setHorizontalRulerView:)]
         pub unsafe fn setHorizontalRulerView(&self, horizontal_ruler_view: Option<&NSRulerView>);
 
@@ -494,6 +529,7 @@ extern_methods!(
         pub unsafe fn verticalRulerView(&self) -> Option<Retained<NSRulerView>>;
 
         #[cfg(feature = "NSRulerView")]
+        /// Setter for [`verticalRulerView`][Self::verticalRulerView].
         #[method(setVerticalRulerView:)]
         pub unsafe fn setVerticalRulerView(&self, vertical_ruler_view: Option<&NSRulerView>);
     }
@@ -528,6 +564,7 @@ extern_methods!(
         #[method(findBarPosition)]
         pub unsafe fn findBarPosition(&self) -> NSScrollViewFindBarPosition;
 
+        /// Setter for [`findBarPosition`][Self::findBarPosition].
         #[method(setFindBarPosition:)]
         pub unsafe fn setFindBarPosition(&self, find_bar_position: NSScrollViewFindBarPosition);
     }

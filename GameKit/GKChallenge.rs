@@ -50,6 +50,7 @@ unsafe impl NSSecureCoding for GKChallenge {}
 extern_methods!(
     unsafe impl GKChallenge {
         #[cfg(feature = "block2")]
+        /// Query challenges for the current game issued to the local player -- equivalent GKChallenge objects are not guaranteed to be pointer equivalent across calls, but equal GKChallenge objects will have equal hashes
         #[method(loadReceivedChallengesWithCompletionHandler:)]
         pub unsafe fn loadReceivedChallengesWithCompletionHandler(
             completion_handler: Option<
@@ -57,26 +58,33 @@ extern_methods!(
             >,
         );
 
+        /// Any GKChallenge object to be declined must be in a state of GKChallengeStatePending in order to be successfully cancelled
         #[method(decline)]
         pub unsafe fn decline(&self);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// The GKPlayer who issued the challenge
         #[method_id(@__retain_semantics Other issuingPlayer)]
         pub unsafe fn issuingPlayer(&self) -> Option<Retained<GKPlayer>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// The GKPlayer who has received the challenge
         #[method_id(@__retain_semantics Other receivingPlayer)]
         pub unsafe fn receivingPlayer(&self) -> Option<Retained<GKPlayer>>;
 
+        /// Current state of the challenge
         #[method(state)]
         pub unsafe fn state(&self) -> GKChallengeState;
 
+        /// Date the challenge was issued
         #[method_id(@__retain_semantics Other issueDate)]
         pub unsafe fn issueDate(&self) -> Retained<NSDate>;
 
+        /// Date the challenge was completed or aborted
         #[method_id(@__retain_semantics Other completionDate)]
         pub unsafe fn completionDate(&self) -> Option<Retained<NSDate>>;
 
+        /// The message sent to receivers of this challenge
         #[method_id(@__retain_semantics Other message)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
     }
@@ -96,10 +104,12 @@ extern_methods!(
 extern_methods!(
     /// Obsoleted
     unsafe impl GKChallenge {
+        /// * This property is obsolete. **
         #[deprecated]
         #[method_id(@__retain_semantics Other issuingPlayerID)]
         pub unsafe fn issuingPlayerID(&self) -> Option<Retained<NSString>>;
 
+        /// * This property is obsolete. **
         #[deprecated]
         #[method_id(@__retain_semantics Other receivingPlayerID)]
         pub unsafe fn receivingPlayerID(&self) -> Option<Retained<NSString>>;
@@ -122,11 +132,13 @@ unsafe impl NSSecureCoding for GKScoreChallenge {}
 extern_methods!(
     unsafe impl GKScoreChallenge {
         #[cfg(feature = "GKScore")]
+        /// The score to meet to satisfy this challenge
         #[deprecated]
         #[method_id(@__retain_semantics Other score)]
         pub unsafe fn score(&self) -> Option<Retained<GKScore>>;
 
         #[cfg(feature = "GKLeaderboardEntry")]
+        /// The leaderboard entry to meet to satisfy this challenge
         #[method_id(@__retain_semantics Other leaderboardEntry)]
         pub unsafe fn leaderboardEntry(&self) -> Option<Retained<GKLeaderboardEntry>>;
     }
@@ -159,6 +171,7 @@ unsafe impl NSSecureCoding for GKAchievementChallenge {}
 extern_methods!(
     unsafe impl GKAchievementChallenge {
         #[cfg(feature = "GKAchievement")]
+        /// The achievement to achieve to satisfy this challenge
         #[method_id(@__retain_semantics Other achievement)]
         pub unsafe fn achievement(&self) -> Option<Retained<GKAchievement>>;
     }
@@ -177,9 +190,11 @@ extern_methods!(
 
 extern_methods!(
     /// GKChallenge
+    /// Use the following category methods to issue GKScoreChallenges and GKAchievementChallenges to an array of playerIDs. Players may not issue challenges to themselves nor to non-friends. Please see the GameKit reference documentation for further details on these methods.
     #[cfg(feature = "GKScore")]
     unsafe impl GKScore {
         #[cfg(feature = "block2")]
+        /// Use this alternative to reportScores:withCompletionHandler: to allow only certain specific challenges to be completed. Pass nil to avoid completing any challenges.
         #[deprecated]
         #[method(reportScores:withEligibleChallenges:withCompletionHandler:)]
         pub unsafe fn reportScores_withEligibleChallenges_withCompletionHandler(
@@ -203,6 +218,7 @@ extern_methods!(
     #[cfg(feature = "GKAchievement")]
     unsafe impl GKAchievement {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
+        /// Given a list of players, return a subset of that list containing only players that are eligible to receive a challenge for the achievement.
         #[method(selectChallengeablePlayers:withCompletionHandler:)]
         pub unsafe fn selectChallengeablePlayers_withCompletionHandler(
             &self,
@@ -213,6 +229,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Use this alternative to reportAchievements:withCompletionHandler: to allow only certain specific challenges to be completed. Pass nil to avoid completing any challenges.
         #[method(reportAchievements:withEligibleChallenges:withCompletionHandler:)]
         pub unsafe fn reportAchievements_withEligibleChallenges_withCompletionHandler(
             achievements: &NSArray<GKAchievement>,
@@ -226,6 +243,7 @@ extern_methods!(
     /// GKChallengeObsoleted
     #[cfg(feature = "GKScore")]
     unsafe impl GKScore {
+        /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(issueChallengeToPlayers:message:)]
         pub unsafe fn issueChallengeToPlayers_message(
@@ -240,6 +258,7 @@ extern_methods!(
     /// GKChallengeObsoleted
     #[cfg(feature = "GKAchievement")]
     unsafe impl GKAchievement {
+        /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(issueChallengeToPlayers:message:)]
         pub unsafe fn issueChallengeToPlayers_message(
@@ -249,6 +268,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(selectChallengeablePlayerIDs:withCompletionHandler:)]
         pub unsafe fn selectChallengeablePlayerIDs_withCompletionHandler(

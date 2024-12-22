@@ -14,8 +14,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSRNNSequenceDirection(pub NSUInteger);
 impl MPSRNNSequenceDirection {
+    /// The input sequence is processed from index zero to array length minus one
     #[doc(alias = "MPSRNNSequenceDirectionForward")]
     pub const Forward: Self = Self(0);
+    /// The input sequence is processed from index array length minus one to zero
     #[doc(alias = "MPSRNNSequenceDirectionBackward")]
     pub const Backward: Self = Self(1);
 }
@@ -34,10 +36,13 @@ unsafe impl RefEncode for MPSRNNSequenceDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSRNNBidirectionalCombineMode(pub NSUInteger);
 impl MPSRNNBidirectionalCombineMode {
+    /// The two sequences are kept separate
     #[doc(alias = "MPSRNNBidirectionalCombineModeNone")]
     pub const None: Self = Self(0);
+    /// The two sequences are summed together to form a single output
     #[doc(alias = "MPSRNNBidirectionalCombineModeAdd")]
     pub const Add: Self = Self(1);
+    /// The two sequences are concatenated together along the feature channels to form a single output
     #[doc(alias = "MPSRNNBidirectionalCombineModeConcatenate")]
     pub const Concatenate: Self = Self(2);
 }
@@ -51,7 +56,11 @@ unsafe impl RefEncode for MPSRNNBidirectionalCombineMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSRNNDescriptor specifies a Recursive neural network block/layer descriptor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSRNNDescriptor;
@@ -61,36 +70,68 @@ unsafe impl NSObjectProtocol for MPSRNNDescriptor {}
 
 extern_methods!(
     unsafe impl MPSRNNDescriptor {
+        /// The number of feature channels per pixel in the input image or number of rows in the input matrix.
         #[method(inputFeatureChannels)]
         pub unsafe fn inputFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`inputFeatureChannels`][Self::inputFeatureChannels].
         #[method(setInputFeatureChannels:)]
         pub unsafe fn setInputFeatureChannels(&self, input_feature_channels: NSUInteger);
 
+        /// The number of feature channels per pixel in the destination image or number of rows in the destination matrix.
         #[method(outputFeatureChannels)]
         pub unsafe fn outputFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`outputFeatureChannels`][Self::outputFeatureChannels].
         #[method(setOutputFeatureChannels:)]
         pub unsafe fn setOutputFeatureChannels(&self, output_feature_channels: NSUInteger);
 
+        /// if YES then use identity transformation for all weights (W, Wr, Wi, Wf, Wo, Wc) affecting input x_j in this layer,
+        /// even if said weights are specified as nil.
+        /// For example 'W_ij * x_j' is replaced by 'x_j' in formulae defined in
+        /// MPSRNNSingleGateDescriptor.Defaults to NO.
         #[method(useLayerInputUnitTransformMode)]
         pub unsafe fn useLayerInputUnitTransformMode(&self) -> bool;
 
+        /// Setter for [`useLayerInputUnitTransformMode`][Self::useLayerInputUnitTransformMode].
         #[method(setUseLayerInputUnitTransformMode:)]
         pub unsafe fn setUseLayerInputUnitTransformMode(
             &self,
             use_layer_input_unit_transform_mode: bool,
         );
 
+        /// If YES, then
+        /// MPSRNNMatrixInferenceLayeruses 32-bit floating point numbers internally for weights when
+        /// computing matrix transformations. If NO, then 16-bit, half precision floating point numbers are used.
+        /// Currently
+        /// MPSRNNImageInferenceLayerignores this property and the convolution operations always
+        /// convert FP32 weights into FP16 for better performance.
+        /// Defaults to NO.
         #[method(useFloat32Weights)]
         pub unsafe fn useFloat32Weights(&self) -> bool;
 
+        /// Setter for [`useFloat32Weights`][Self::useFloat32Weights].
         #[method(setUseFloat32Weights:)]
         pub unsafe fn setUseFloat32Weights(&self, use_float32_weights: bool);
 
+        /// When the layer specified with this descriptor is used to process a sequence of inputs
+        /// by calling
+        ///
+        /// See: encodeBidirectionalSequenceToCommandBuffer then this parameter defines
+        /// in which direction the sequence is processed. The operation of the layer is:
+        /// (yt, ht, ct) = f(xt,ht-1,ct-1) for MPSRNNSequenceDirectionForward
+        /// and
+        /// (yt, ht, ct) = f(xt,ht+1,ct+1) for MPSRNNSequenceDirectionBackward, where
+        /// xt is the output of the previous layer that encodes in the same direction as this layer,
+        /// (or the input image or matrix if this is the first layer in stack with this direction).
+        ///
+        /// See: MPSRNNImageInferenceLayer and
+        ///
+        /// See: MPSRNNMatrixInferenceLayer.
         #[method(layerSequenceDirection)]
         pub unsafe fn layerSequenceDirection(&self) -> MPSRNNSequenceDirection;
 
+        /// Setter for [`layerSequenceDirection`][Self::layerSequenceDirection].
         #[method(setLayerSequenceDirection:)]
         pub unsafe fn setLayerSequenceDirection(
             &self,
@@ -111,7 +152,38 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSRNNSingleGateDescriptor specifies a simple recurrent block/layer descriptor.
+    /// The RNN layer initialized with a MPSRNNSingleGateDescriptor transforms the input data (image or matrix),
+    /// and previous output with a set of filters, each producing one feature map in the new output data.
+    /// The user may provide the RNN unit a single input or a sequence of inputs.
+    ///
+    /// Description of operation:
+    ///
+    /// Let x_j be the input data (at time index t of sequence,
+    /// j index containing quadruplet: batch index, x,y and feature index (x=y=0 for matrices)).
+    /// Let h0_j be the recurrent input (previous output) data from previous time step (at time index t-1 of sequence).
+    /// Let h1_i be the output data produced at this time step.
+    ///
+    /// Let W_ij, U_ij be the weights for input and recurrent input data respectively
+    /// Let b_i be a bias term
+    ///
+    /// Let gi(x) be a neuron activation function
+    ///
+    /// Then the new output image h1_i data is computed as follows:
+    ///
+    /// h1_i = gi( W_ij * x_j + U_ij * h0_j  + b_i )
+    ///
+    /// The '*' stands for convolution (see
+    /// MPSRNNImageInferenceLayer)or matrix-vector/matrix multiplication
+    /// (see
+    /// MPSRNNMatrixInferenceLayer).Summation is over index j (except for the batch index), but there is no summation over
+    /// repeated index i - the output index.
+    /// Note that for validity all intermediate images have to be of same size and the U matrix has to be square
+    /// (ie. outputFeatureChannels == inputFeatureChannels in those). Also the bias terms are scalars wrt. spatial dimensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor?language=objc)
     #[unsafe(super(MPSRNNDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSRNNSingleGateDescriptor;
@@ -122,12 +194,15 @@ unsafe impl NSObjectProtocol for MPSRNNSingleGateDescriptor {}
 extern_methods!(
     unsafe impl MPSRNNSingleGateDescriptor {
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'W_ij', bias 'b_i' and neuron 'gi' from the simple RNN layer formula.
+        /// If nil then assumed zero weights, bias and no neuron (identity mapping). Defaults to nil.
         #[method_id(@__retain_semantics Other inputWeights)]
         pub unsafe fn inputWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`inputWeights`][Self::inputWeights].
         #[method(setInputWeights:)]
         pub unsafe fn setInputWeights(
             &self,
@@ -135,18 +210,28 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'U_ij' from the simple RNN layer formula.
+        /// If nil then assumed zero weights. Defaults to nil.
         #[method_id(@__retain_semantics Other recurrentWeights)]
         pub unsafe fn recurrentWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`recurrentWeights`][Self::recurrentWeights].
         #[method(setRecurrentWeights:)]
         pub unsafe fn setRecurrentWeights(
             &self,
             recurrent_weights: Option<&ProtocolObject<dyn MPSCNNConvolutionDataSource>>,
         );
 
+        /// Creates a MPSRNNSingleGateDescriptor
+        ///
+        /// Parameter `inputFeatureChannels`: The number of feature channels in the input image/matrix. Must be >= 1.
+        ///
+        /// Parameter `outputFeatureChannels`: The number of feature channels in the output image/matrix. Must be >= 1.
+        ///
+        /// Returns: A valid MPSRNNSingleGateDescriptor object or nil, if failure.
         #[method_id(@__retain_semantics Other createRNNSingleGateDescriptorWithInputFeatureChannels:outputFeatureChannels:)]
         pub unsafe fn createRNNSingleGateDescriptorWithInputFeatureChannels_outputFeatureChannels(
             input_feature_channels: NSUInteger,
@@ -167,7 +252,55 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsgrudescriptor?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSGRUDescriptor specifies a GRU (Gated Recurrent Unit) block/layer descriptor.
+    /// The RNN layer initialized with a MPSGRUDescriptor transforms the input data (image or matrix),
+    /// and previous output with a set of filters, each producing one feature map in
+    /// the output data according to the Gated unit formulae detailed below.
+    /// The user may provide the GRU unit a single input or a sequence of inputs. The layer also supports
+    /// p-norm gating (Detailed in: https://arxiv.org/abs/1608.03639 ).
+    ///
+    /// Description of operation:
+    ///
+    /// Let x_j be the input data (at time index t of sequence,
+    /// j index containing quadruplet: batch index, x,y and feature index (x=y=0 for matrices)).
+    /// Let h0_j be the recurrent input (previous output) data from previous time step (at time index t-1 of sequence).
+    /// Let h_i be the proposed new output.
+    /// Let h1_i be the output data produced at this time step.
+    ///
+    /// Let Wz_ij, Uz_ij, be the input gate weights for input and recurrent input data respectively
+    /// Let bi_i be the bias for the input gate
+    ///
+    /// Let Wr_ij, Ur_ij be the recurrent gate weights for input and recurrent input data respectively
+    /// Let br_i be the bias for the recurrent gate
+    ///
+    /// Let Wh_ij, Uh_ij, Vh_ij, be the output gate weights for input, recurrent gate and input gate respectively
+    /// Let bh_i be the bias for the output gate
+    ///
+    /// Let gz(x), gr(x), gh(x) be the neuron activation function for the input, recurrent and output gates
+    /// Let p > 0 be a scalar variable (typicall p >= 1.0) that defines the p-norm gating norm value.
+    ///
+    /// Then the output of the Gated Recurrent Unit layer is computed as follows:
+    ///
+    /// z_i = gz(  Wz_ij * x_j  +  Uz_ij * h0_j  +  bz_i  )
+    /// r_i = gr(  Wr_ij * x_j  +  Ur_ij * h0_j  +  br_i  )
+    /// c_i =      Uh_ij * (r_j h0_j)  +  Vh_ij * (z_j h0_j)
+    /// h_i = gh(  Wh_ij * x_j  + c_i + bh_i  )
+    ///
+    /// h1_i = ( 1 - z_i ^ p)^(1/p) h_i + z_i h0_i
+    ///
+    /// The '*' stands for convolution (see
+    /// MPSRNNImageInferenceLayer)or matrix-vector/matrix multiplication
+    /// (see
+    /// MPSRNNMatrixInferenceLayer).Summation is over index j (except for the batch index), but there is no summation over
+    /// repeated index i - the output index.
+    /// Note that for validity all intermediate images have to be of same size and all U and V matrices have to be square
+    /// (ie. outputFeatureChannels == inputFeatureChannels in those). Also the bias terms are scalars wrt. spatial dimensions.
+    /// The conventional GRU block is achieved by setting Vh = 0 (nil) and the so-called Minimal Gated Unit is achieved with Uh = 0.
+    /// (The Minimal Gated Unit is detailed in: https://arxiv.org/abs/1603.09420 and there they call z_i the value of the forget gate).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsgrudescriptor?language=objc)
     #[unsafe(super(MPSRNNDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSGRUDescriptor;
@@ -178,12 +311,15 @@ unsafe impl NSObjectProtocol for MPSGRUDescriptor {}
 extern_methods!(
     unsafe impl MPSGRUDescriptor {
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Wz_ij', bias 'bz_i' and neuron 'gz' from the GRU formula.
+        /// If nil then assumed zero weights, bias and no neuron (identity mapping). Defaults to nil.
         #[method_id(@__retain_semantics Other inputGateInputWeights)]
         pub unsafe fn inputGateInputWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`inputGateInputWeights`][Self::inputGateInputWeights].
         #[method(setInputGateInputWeights:)]
         pub unsafe fn setInputGateInputWeights(
             &self,
@@ -191,12 +327,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Uz_ij' from the GRU formula.
+        /// If nil then assumed zero weights. Defaults to nil.
         #[method_id(@__retain_semantics Other inputGateRecurrentWeights)]
         pub unsafe fn inputGateRecurrentWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`inputGateRecurrentWeights`][Self::inputGateRecurrentWeights].
         #[method(setInputGateRecurrentWeights:)]
         pub unsafe fn setInputGateRecurrentWeights(
             &self,
@@ -204,12 +343,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Wr_ij', bias 'br_i' and neuron 'gr' from the GRU formula.
+        /// If nil then assumed zero weights, bias and no neuron (identity mapping).Defaults to nil.
         #[method_id(@__retain_semantics Other recurrentGateInputWeights)]
         pub unsafe fn recurrentGateInputWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`recurrentGateInputWeights`][Self::recurrentGateInputWeights].
         #[method(setRecurrentGateInputWeights:)]
         pub unsafe fn setRecurrentGateInputWeights(
             &self,
@@ -217,12 +359,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Ur_ij' from the GRU formula.
+        /// If nil then assumed zero weights.Defaults to nil.
         #[method_id(@__retain_semantics Other recurrentGateRecurrentWeights)]
         pub unsafe fn recurrentGateRecurrentWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`recurrentGateRecurrentWeights`][Self::recurrentGateRecurrentWeights].
         #[method(setRecurrentGateRecurrentWeights:)]
         pub unsafe fn setRecurrentGateRecurrentWeights(
             &self,
@@ -232,12 +377,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Wh_ij', bias 'bh_i' and neuron 'gh' from the GRU formula.
+        /// If nil then assumed zero weights, bias and no neuron (identity mapping).Defaults to nil.
         #[method_id(@__retain_semantics Other outputGateInputWeights)]
         pub unsafe fn outputGateInputWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`outputGateInputWeights`][Self::outputGateInputWeights].
         #[method(setOutputGateInputWeights:)]
         pub unsafe fn setOutputGateInputWeights(
             &self,
@@ -245,12 +393,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Uh_ij' from the GRU formula.
+        /// If nil then assumed zero weights. Defaults to nil.
         #[method_id(@__retain_semantics Other outputGateRecurrentWeights)]
         pub unsafe fn outputGateRecurrentWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`outputGateRecurrentWeights`][Self::outputGateRecurrentWeights].
         #[method(setOutputGateRecurrentWeights:)]
         pub unsafe fn setOutputGateRecurrentWeights(
             &self,
@@ -258,12 +409,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Vh_ij' - can be used to implement the "Minimally Gated Unit".
+        /// If nil then assumed zero weights. Defaults to nil.
         #[method_id(@__retain_semantics Other outputGateInputGateWeights)]
         pub unsafe fn outputGateInputGateWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`outputGateInputGateWeights`][Self::outputGateInputGateWeights].
         #[method(setOutputGateInputGateWeights:)]
         pub unsafe fn setOutputGateInputGateWeights(
             &self,
@@ -272,18 +426,31 @@ extern_methods!(
             >,
         );
 
+        /// The p-norm gating norm value as specified by the GRU formulae. Defaults to 1.0f.
         #[method(gatePnormValue)]
         pub unsafe fn gatePnormValue(&self) -> c_float;
 
+        /// Setter for [`gatePnormValue`][Self::gatePnormValue].
         #[method(setGatePnormValue:)]
         pub unsafe fn setGatePnormValue(&self, gate_pnorm_value: c_float);
 
+        /// If YES then the GRU-block output formula is changed to:
+        /// h1_i = ( 1 - z_i ^ p)^(1/p) h0_i + z_i h_i.
+        /// Defaults to NO.
         #[method(flipOutputGates)]
         pub unsafe fn flipOutputGates(&self) -> bool;
 
+        /// Setter for [`flipOutputGates`][Self::flipOutputGates].
         #[method(setFlipOutputGates:)]
         pub unsafe fn setFlipOutputGates(&self, flip_output_gates: bool);
 
+        /// Creates a GRU descriptor.
+        ///
+        /// Parameter `inputFeatureChannels`: The number of feature channels in the input image/matrix. Must be >= 1.
+        ///
+        /// Parameter `outputFeatureChannels`: The number of feature channels in the output image/matrix. Must be >= 1.
+        ///
+        /// Returns: A valid MPSGRUDescriptor object or nil, if failure.
         #[method_id(@__retain_semantics Other createGRUDescriptorWithInputFeatureChannels:outputFeatureChannels:)]
         pub unsafe fn createGRUDescriptorWithInputFeatureChannels_outputFeatureChannels(
             input_feature_channels: NSUInteger,
@@ -304,7 +471,59 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSLSTMDescriptor specifies a LSTM block/layer descriptor.
+    /// The RNN layer initialized with a MPSLSTMDescriptor transforms the input data (image or matrix),
+    /// the memory cell data and previous output with a set of filters, each producing one feature map in
+    /// the output data and memory cell, according to the LSTM formulae detailed below.
+    /// The user may provide the LSTM unit a single input or a sequence of inputs.
+    ///
+    /// Description of operation:
+    ///
+    /// Let x_j be the input data (at time index t of sequence,
+    /// j index containing quadruplet: batch index, x,y and feature index (x=y=0 for matrices)).
+    /// Let h0_j be the recurrent input (previous output) data from previous time step (at time index t-1 of sequence).
+    /// Let h1_i be the output data produced at this time step.
+    /// Let c0_j be the previous memory cell data (at time index t-1 of sequence).
+    /// Let c1_i be the new memory cell data (at time index t-1 of sequence).
+    ///
+    /// Let Wi_ij, Ui_ij, Vi_ij, be the input gate weights for input, recurrent input and memory cell (peephole) data respectively
+    /// Let bi_i be the bias for the input gate
+    ///
+    /// Let Wf_ij, Uf_ij, Vf_ij, be the forget gate weights for input, recurrent input and memory cell data respectively
+    /// Let bf_i be the bias for the forget gate
+    ///
+    /// Let Wo_ij, Uo_ij, Vo_ij, be the output gate weights for input, recurrent input and memory cell data respectively
+    /// Let bo_i be the bias for the output gate
+    ///
+    /// Let Wc_ij, Uc_ij, Vc_ij, be the memory cell gate weights for input, recurrent input and memory cell data respectively
+    /// Let bc_i be the bias for the memory cell gate
+    ///
+    /// Let gi(x), gf(x), go(x), gc(x) be neuron activation function for the input, forget, output gate and memory cell gate
+    /// Let gh(x) be the activation function applied to result memory cell data
+    ///
+    /// Then the new memory cell data c1_j and output image h1_i are computed as follows:
+    ///
+    /// I_i = gi(  Wi_ij * x_j  +  Ui_ij * h0_j  +  Vi_ij * c0_j  + bi_i  )
+    /// F_i = gf(  Wf_ij * x_j  +  Uf_ij * h0_j  +  Vf_ij * c0_j  + bf_i  )
+    /// C_i = gc(  Wc_ij * x_j  +  Uc_ij * h0_j  +  Vc_ij * c0_j  + bc_i  )
+    ///
+    /// c1_i = F_i c0_i  +  I_i C_i
+    ///
+    /// O_i = go(  Wo_ij * x_j  +  Uo_ij * h0_j  +  Vo_ij * c1_j  + bo_i  )
+    ///
+    /// h1_i = O_i gh( c1_i )
+    ///
+    /// The '*' stands for convolution (see
+    /// MPSRNNImageInferenceLayer)or matrix-vector/matrix multiplication
+    /// (see
+    /// MPSRNNMatrixInferenceLayer).Summation is over index j (except for the batch index), but there is no summation over
+    /// repeated index i - the output index.
+    /// Note that for validity all intermediate images have to be of same size and all U and V matrices have to be square
+    /// (ie. outputFeatureChannels == inputFeatureChannels in those). Also the bias terms are scalars wrt. spatial dimensions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor?language=objc)
     #[unsafe(super(MPSRNNDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSLSTMDescriptor;
@@ -314,19 +533,27 @@ unsafe impl NSObjectProtocol for MPSLSTMDescriptor {}
 
 extern_methods!(
     unsafe impl MPSLSTMDescriptor {
+        /// If YES, then the 'peephole' weight matrices will be diagonal matrices represented as
+        /// vectors of length the number of features in memory cells, that will be multiplied pointwise
+        /// with the peephole matrix or image in order to achieve the diagonal (nonmixing) update.
+        /// Defaults to NO.
         #[method(memoryWeightsAreDiagonal)]
         pub unsafe fn memoryWeightsAreDiagonal(&self) -> bool;
 
+        /// Setter for [`memoryWeightsAreDiagonal`][Self::memoryWeightsAreDiagonal].
         #[method(setMemoryWeightsAreDiagonal:)]
         pub unsafe fn setMemoryWeightsAreDiagonal(&self, memory_weights_are_diagonal: bool);
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Wi_ij', bias 'bi_i' and neuron 'gi' from the LSTM formula.
+        /// If nil then assumed zero weights, bias and no neuron (identity mapping). Defaults to nil.
         #[method_id(@__retain_semantics Other inputGateInputWeights)]
         pub unsafe fn inputGateInputWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`inputGateInputWeights`][Self::inputGateInputWeights].
         #[method(setInputGateInputWeights:)]
         pub unsafe fn setInputGateInputWeights(
             &self,
@@ -334,12 +561,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Ui_ij' from the LSTM formula.
+        /// If nil then assumed zero weights. Defaults to nil.
         #[method_id(@__retain_semantics Other inputGateRecurrentWeights)]
         pub unsafe fn inputGateRecurrentWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`inputGateRecurrentWeights`][Self::inputGateRecurrentWeights].
         #[method(setInputGateRecurrentWeights:)]
         pub unsafe fn setInputGateRecurrentWeights(
             &self,
@@ -347,12 +577,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Vi_ij' - the 'peephole' weights - from the LSTM formula.
+        /// if YES == memoryWeightsAreDiagonal, then the number of weights used is the number of features
+        /// in the memory cell image/matrix.
+        /// If nil then assumed zero weights. Defaults to nil.
         #[method_id(@__retain_semantics Other inputGateMemoryWeights)]
         pub unsafe fn inputGateMemoryWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`inputGateMemoryWeights`][Self::inputGateMemoryWeights].
         #[method(setInputGateMemoryWeights:)]
         pub unsafe fn setInputGateMemoryWeights(
             &self,
@@ -360,12 +595,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Wf_ij', bias 'bf_i' and neuron 'gf' from the LSTM formula.
+        /// If nil then assumed zero weights, bias and no neuron (identity mapping).Defaults to nil.
         #[method_id(@__retain_semantics Other forgetGateInputWeights)]
         pub unsafe fn forgetGateInputWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`forgetGateInputWeights`][Self::forgetGateInputWeights].
         #[method(setForgetGateInputWeights:)]
         pub unsafe fn setForgetGateInputWeights(
             &self,
@@ -373,12 +611,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Uf_ij' from the LSTM formula.
+        /// If nil then assumed zero weights. Defaults to nil.
         #[method_id(@__retain_semantics Other forgetGateRecurrentWeights)]
         pub unsafe fn forgetGateRecurrentWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`forgetGateRecurrentWeights`][Self::forgetGateRecurrentWeights].
         #[method(setForgetGateRecurrentWeights:)]
         pub unsafe fn setForgetGateRecurrentWeights(
             &self,
@@ -386,12 +627,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Vf_ij' - the 'peephole' weights - from the LSTM formula.
+        /// if YES == memoryWeightsAreDiagonal, then the number of weights used is the number of features
+        /// in the memory cell image/matrix.
+        /// If nil then assumed zero weights. Defaults to nil.
         #[method_id(@__retain_semantics Other forgetGateMemoryWeights)]
         pub unsafe fn forgetGateMemoryWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`forgetGateMemoryWeights`][Self::forgetGateMemoryWeights].
         #[method(setForgetGateMemoryWeights:)]
         pub unsafe fn setForgetGateMemoryWeights(
             &self,
@@ -399,12 +645,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Wo_ij', bias 'bo_i' and neuron 'go' from the LSTM formula.
+        /// If nil then assumed zero weights, bias and no neuron (identity mapping). Defaults to nil.
         #[method_id(@__retain_semantics Other outputGateInputWeights)]
         pub unsafe fn outputGateInputWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`outputGateInputWeights`][Self::outputGateInputWeights].
         #[method(setOutputGateInputWeights:)]
         pub unsafe fn setOutputGateInputWeights(
             &self,
@@ -412,12 +661,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Uo_ij' from the LSTM formula.
+        /// If nil then assumed zero weights. Defaults to nil.
         #[method_id(@__retain_semantics Other outputGateRecurrentWeights)]
         pub unsafe fn outputGateRecurrentWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`outputGateRecurrentWeights`][Self::outputGateRecurrentWeights].
         #[method(setOutputGateRecurrentWeights:)]
         pub unsafe fn setOutputGateRecurrentWeights(
             &self,
@@ -425,12 +677,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Vo_ij' - the 'peephole' weights - from the LSTM.
+        /// if YES == memoryWeightsAreDiagonal, then the number of weights used is the number of features
+        /// in the memory cell image/matrix.
+        /// If nil then assumed zero weights. Defaults to nil.
         #[method_id(@__retain_semantics Other outputGateMemoryWeights)]
         pub unsafe fn outputGateMemoryWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`outputGateMemoryWeights`][Self::outputGateMemoryWeights].
         #[method(setOutputGateMemoryWeights:)]
         pub unsafe fn setOutputGateMemoryWeights(
             &self,
@@ -438,12 +695,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Wc_ij', bias 'bc_i' and neuron 'gc' from the LSTM formula.
+        /// If nil then assumed zero weights, bias and no neuron (identity mapping). Defaults to nil.
         #[method_id(@__retain_semantics Other cellGateInputWeights)]
         pub unsafe fn cellGateInputWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`cellGateInputWeights`][Self::cellGateInputWeights].
         #[method(setCellGateInputWeights:)]
         pub unsafe fn setCellGateInputWeights(
             &self,
@@ -451,12 +711,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Uc_ij' from the LSTM formula.
+        /// If nil then assumed zero weights. Defaults to nil.
         #[method_id(@__retain_semantics Other cellGateRecurrentWeights)]
         pub unsafe fn cellGateRecurrentWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`cellGateRecurrentWeights`][Self::cellGateRecurrentWeights].
         #[method(setCellGateRecurrentWeights:)]
         pub unsafe fn setCellGateRecurrentWeights(
             &self,
@@ -464,12 +727,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Contains weights 'Vc_ij' - the 'peephole' weights - from the LSTM formula.
+        /// if YES == memoryWeightsAreDiagonal, then the number of weights used is the number of features
+        /// in the memory cell image/matrix.
+        /// If nil then assumed zero weights. Defaults to nil.
         #[method_id(@__retain_semantics Other cellGateMemoryWeights)]
         pub unsafe fn cellGateMemoryWeights(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSCNNConvolutionDataSource>>>;
 
         #[cfg(feature = "MPSCNNConvolution")]
+        /// Setter for [`cellGateMemoryWeights`][Self::cellGateMemoryWeights].
         #[method(setCellGateMemoryWeights:)]
         pub unsafe fn setCellGateMemoryWeights(
             &self,
@@ -477,34 +745,50 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Neuron type definition for 'gh', see
+        /// MPSCNNNeuronType.Defaults to MPSCNNNeuronTypeTanH.
         #[method(cellToOutputNeuronType)]
         pub unsafe fn cellToOutputNeuronType(&self) -> MPSCNNNeuronType;
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Setter for [`cellToOutputNeuronType`][Self::cellToOutputNeuronType].
         #[method(setCellToOutputNeuronType:)]
         pub unsafe fn setCellToOutputNeuronType(
             &self,
             cell_to_output_neuron_type: MPSCNNNeuronType,
         );
 
+        /// Neuron parameter A for 'gh'. Defaults to 1.0f.
         #[method(cellToOutputNeuronParamA)]
         pub unsafe fn cellToOutputNeuronParamA(&self) -> c_float;
 
+        /// Setter for [`cellToOutputNeuronParamA`][Self::cellToOutputNeuronParamA].
         #[method(setCellToOutputNeuronParamA:)]
         pub unsafe fn setCellToOutputNeuronParamA(&self, cell_to_output_neuron_param_a: c_float);
 
+        /// Neuron parameter B for 'gh'. Defaults to 1.0f.
         #[method(cellToOutputNeuronParamB)]
         pub unsafe fn cellToOutputNeuronParamB(&self) -> c_float;
 
+        /// Setter for [`cellToOutputNeuronParamB`][Self::cellToOutputNeuronParamB].
         #[method(setCellToOutputNeuronParamB:)]
         pub unsafe fn setCellToOutputNeuronParamB(&self, cell_to_output_neuron_param_b: c_float);
 
+        /// Neuron parameter C for 'gh'. Defaults to 1.0f.
         #[method(cellToOutputNeuronParamC)]
         pub unsafe fn cellToOutputNeuronParamC(&self) -> c_float;
 
+        /// Setter for [`cellToOutputNeuronParamC`][Self::cellToOutputNeuronParamC].
         #[method(setCellToOutputNeuronParamC:)]
         pub unsafe fn setCellToOutputNeuronParamC(&self, cell_to_output_neuron_param_c: c_float);
 
+        /// Creates a LSTM descriptor.
+        ///
+        /// Parameter `inputFeatureChannels`: The number of feature channels in the input image/matrix. Must be >= 1.
+        ///
+        /// Parameter `outputFeatureChannels`: The number of feature channels in the output image/matrix. Must be >= 1.
+        ///
+        /// Returns: A valid MPSNNLSTMDescriptor object or nil, if failure.
         #[method_id(@__retain_semantics Other createLSTMDescriptorWithInputFeatureChannels:outputFeatureChannels:)]
         pub unsafe fn createLSTMDescriptorWithInputFeatureChannels_outputFeatureChannels(
             input_feature_channels: NSUInteger,
@@ -525,7 +809,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnrecurrentimagestate?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// This class holds all the data that is passed from one sequence iteration of the image-based RNN layer (stack) to the next.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnrecurrentimagestate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSState")]
@@ -539,6 +827,13 @@ extern_methods!(
     #[cfg(feature = "MPSState")]
     unsafe impl MPSRNNRecurrentImageState {
         #[cfg(feature = "MPSImage")]
+        /// Access the stored recurrent image data.
+        ///
+        /// Parameter `layerIndex`: Index of the layer whose to get - belongs to { 0, 1,...,
+        ///
+        /// See: numberOfLayers - 1 }
+        ///
+        /// Returns: For valid layerIndex the recurrent output image data, otherwise nil.
         #[method_id(@__retain_semantics Other getRecurrentOutputImageForLayerIndex:)]
         pub unsafe fn getRecurrentOutputImageForLayerIndex(
             &self,
@@ -546,6 +841,13 @@ extern_methods!(
         ) -> Option<Retained<MPSImage>>;
 
         #[cfg(feature = "MPSImage")]
+        /// Access the stored memory cell image data (if present).
+        ///
+        /// Parameter `layerIndex`: Index of the layer whose to get - belongs to { 0, 1,...,
+        ///
+        /// See: numberOfLayers - 1 }
+        ///
+        /// Returns: For valid layerIndex the memory cell image data, otherwise nil.
         #[method_id(@__retain_semantics Other getMemoryCellImageForLayerIndex:)]
         pub unsafe fn getMemoryCellImageForLayerIndex(
             &self,
@@ -558,18 +860,31 @@ extern_methods!(
     /// Methods declared on superclass `MPSState`
     #[cfg(feature = "MPSState")]
     unsafe impl MPSRNNRecurrentImageState {
+        /// Create a MPSState holding a temporary MTLBuffer
+        ///
+        /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
+        ///
+        /// Parameter `bufferSize`: The size of the buffer in bytes
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:bufferSize:)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             buffer_size: usize,
         ) -> Retained<Self>;
 
+        /// Create a MPSState holding a temporary MTLTexture
+        ///
+        /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
+        ///
+        /// Parameter `descriptor`: A descriptor for the new temporary texture
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:textureDescriptor:)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor: &MTLTextureDescriptor,
         ) -> Retained<Self>;
 
+        /// Create a new autoreleased temporary state object without underlying resource
+        ///
+        /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -589,6 +904,9 @@ extern_methods!(
             descriptor: &MTLTextureDescriptor,
         ) -> Retained<Self>;
 
+        /// Create a MPSState with a non-temporary MTLResource
+        ///
+        /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
         #[method_id(@__retain_semantics Init initWithResource:)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
@@ -598,6 +916,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
+        /// Initialize a non-temporary state to hold a number of textures and buffers
+        ///
+        /// The allocation of each resource will be deferred  until it is needed.
+        /// This occurs when -resource or -resourceAtIndex: is called.
+        ///
+        /// Parameter `resourceList`: The list of resources to create.
         #[method_id(@__retain_semantics Init initWithDevice:resourceList:)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
@@ -605,12 +929,21 @@ extern_methods!(
             resource_list: &MPSStateResourceList,
         ) -> Retained<Self>;
 
+        /// Initialize a temporary state to hold a number of textures and buffers
+        ///
+        /// The textures occur first in sequence
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:resourceList:)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             resource_list: &MPSStateResourceList,
         ) -> Retained<Self>;
 
+        /// Create a state object with a list of MTLResources
+        ///
+        /// Because MPS prefers deferred allocation of resources
+        /// your application should use -initWithTextures:bufferSizes:bufferCount:
+        /// whenever possible. This method is useful for cases when the
+        /// MTLResources must be initialized by the CPU.
         #[method_id(@__retain_semantics Init initWithResources:)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
@@ -629,7 +962,27 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnimageinferencelayer?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSRNNImageInferenceLayer specifies a recurrent neural network layer for inference on MPSImages.
+    /// Currently two types of recurrent layers are supported: ones that operate with convolutions on
+    /// images:
+    /// MPSRNNImageInferenceLayerand one that operates on matrices:
+    /// MPSRNNMatrixInferenceLayer.The former can be often used to implement the latter by using 1x1-images, but due to
+    /// image size restrictions and performance, it is advisable to use
+    /// MPSRNNMatrixInferenceLayerfor
+    /// linear recurrent layers.
+    /// A MPSRNNImageInferenceLayer is initialized using a
+    /// MPSRNNLayerDescriptor,which further specifies the
+    /// recurrent network layer, or an array of
+    /// MPSRNNLayerDescriptors,which specifies a stack
+    /// of recurrent layers, that can operate in parallel a subset of the inputs in a sequence of inputs and
+    /// recurrent outputs. Note that currently stacks with bidirectionally traversing encode functions do not support starting
+    /// from a previous set of recurrent states, but this can be achieved quite easily by defining two separate
+    /// unidirectional stacks of layers, and running the same input sequence on them separately (one forwards and one backwards)
+    /// and ultimately combining the two result sequences as desired with auxiliary functions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnimageinferencelayer?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -656,36 +1009,63 @@ unsafe impl NSSecureCoding for MPSRNNImageInferenceLayer {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSRNNImageInferenceLayer {
+        /// The number of feature channels per pixel in the input image.
         #[method(inputFeatureChannels)]
         pub unsafe fn inputFeatureChannels(&self) -> NSUInteger;
 
+        /// The number of feature channels per pixel in the output image.
         #[method(outputFeatureChannels)]
         pub unsafe fn outputFeatureChannels(&self) -> NSUInteger;
 
+        /// Number of layers in the filter-stack. This will be one when using initWithDevice:rnnDescriptor to initialize
+        /// this filter and the number of entries in the array 'rnnDescriptors' when initializing this filter with
+        /// initWithDevice:rnnDescriptors.
         #[method(numberOfLayers)]
         pub unsafe fn numberOfLayers(&self) -> NSUInteger;
 
+        /// How output states from
+        /// encodeSequenceToCommandBufferare constructed.
+        /// Defaults to NO. For reference
+        ///
+        /// See: MPSState.
         #[method(recurrentOutputIsTemporary)]
         pub unsafe fn recurrentOutputIsTemporary(&self) -> bool;
 
+        /// Setter for [`recurrentOutputIsTemporary`][Self::recurrentOutputIsTemporary].
         #[method(setRecurrentOutputIsTemporary:)]
         pub unsafe fn setRecurrentOutputIsTemporary(&self, recurrent_output_is_temporary: bool);
 
+        /// If YES then calls to
+        /// encodeSequenceToCommandBufferreturn every recurrent state
+        /// in the array: recurrentOutputStates.
+        /// Defaults to NO.
         #[method(storeAllIntermediateStates)]
         pub unsafe fn storeAllIntermediateStates(&self) -> bool;
 
+        /// Setter for [`storeAllIntermediateStates`][Self::storeAllIntermediateStates].
         #[method(setStoreAllIntermediateStates:)]
         pub unsafe fn setStoreAllIntermediateStates(&self, store_all_intermediate_states: bool);
 
+        /// Defines how to combine the output-results, when encoding bidirectional layers using
+        /// encodeBidirectionalSequenceToCommandBuffer.Defaults to
+        /// MPSRNNBidirectionalCombineModeNone.
         #[method(bidirectionalCombineMode)]
         pub unsafe fn bidirectionalCombineMode(&self) -> MPSRNNBidirectionalCombineMode;
 
+        /// Setter for [`bidirectionalCombineMode`][Self::bidirectionalCombineMode].
         #[method(setBidirectionalCombineMode:)]
         pub unsafe fn setBidirectionalCombineMode(
             &self,
             bidirectional_combine_mode: MPSRNNBidirectionalCombineMode,
         );
 
+        /// Initializes a convolutional RNN kernel
+        ///
+        /// Parameter `device`: The MTLDevice on which this MPSRNNImageLayer filter will be used
+        ///
+        /// Parameter `rnnDescriptor`: The descriptor that defines the RNN layer
+        ///
+        /// Returns: A valid MPSRNNImageInferenceLayer object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:rnnDescriptor:)]
         pub unsafe fn initWithDevice_rnnDescriptor(
             this: Allocated<Self>,
@@ -693,6 +1073,15 @@ extern_methods!(
             rnn_descriptor: &MPSRNNDescriptor,
         ) -> Retained<Self>;
 
+        /// Initializes a kernel that implements a stack of convolutional RNN layers
+        ///
+        /// Parameter `device`: The MTLDevice on which this MPSRNNImageLayer filter will be used
+        ///
+        /// Parameter `rnnDescriptors`: An array of RNN descriptors that defines a stack of RNN layers, starting at index zero.
+        /// The number of layers in stack is the number of entries in the array.
+        /// All entries in the array must be valid MPSRNNDescriptors.
+        ///
+        /// Returns: A valid MPSRNNImageInferenceLayer object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:rnnDescriptors:)]
         pub unsafe fn initWithDevice_rnnDescriptors(
             this: Allocated<Self>,
@@ -707,6 +1096,66 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
+        /// Encode an MPSRNNImageInferenceLayer kernel (stack) for a sequence of inputs into a command buffer.
+        /// Note that when encoding using this function the
+        ///
+        /// See: layerSequenceDirection is ignored and the layer stack operates as
+        /// if all layers were forward feeding layers. In order to run bidirectional sequences
+        /// use
+        /// encodeBidirectionalSequenceToCommandBuffer:sourceSequence:or alternatively run two layer stacks and combine
+        /// results at the end using utility functions.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceImages`: An array of valid MPSImage objects containing the sequence of source images.
+        ///
+        /// Parameter `destinationImages`: An array valid MPSImages to be overwritten by result image sequence. destinationImages may not alias sourceImages.
+        ///
+        /// Parameter `recurrentInputState`: An optional state containing the output images and memory cells (for LSTMs)
+        /// of the layer obtained from the previous input images in a sequence of inputs.
+        /// Has to be the output of a previous call to this function or nil (assumed zero).
+        /// Note: can be one of the states returned in
+        /// recurrentOutputStates.
+        /// Parameter `recurrentOutputStates`: An optional array that will contain the recurrent output states. If nil then
+        /// the recurrent output state is discarded.
+        /// If
+        /// storeAllIntermediateStatesis YES, then all intermediate states of the sequence
+        /// are returned in the array, the first one corresponding to the first input in the sequence,
+        /// otherwise only the last recurrent output state is returned.
+        /// If recurrentOutputIsTemporary is YES and then all returned recurrent states
+        /// will be temporary.
+        ///
+        /// See: MPSState:isTemporary.
+        /// Example: In order to get a new state one can do the following:
+        ///
+        /// ```text
+        ///                                                       MPSRNNRecurrentImageState* recurrent0 = nil;
+        ///                                                       [filter encodeToCommandBuffer: cmdBuf
+        ///                                                                         sourceImage: source0
+        ///                                                                    destinationImage: destination0
+        ///                                                                 recurrentInputState: nil
+        ///                                                                recurrentOutputState: &recurrent0];
+        /// ```
+        ///
+        /// Then use it for the next input in sequence:
+        ///
+        /// ```text
+        ///                                                       [filter encodeToCommandBuffer: cmdBuf
+        ///                                                                         sourceImage: source1
+        ///                                                                    destinationImage: destination1
+        ///                                                                 recurrentInputState: recurrent0
+        ///                                                                recurrentOutputState: &recurrent0];
+        /// ```
+        ///
+        /// And discard recurrent output of the third input:
+        ///
+        /// ```text
+        ///                                                       [filter encodeToCommandBuffer: cmdBuf
+        ///                                                                         sourceImage: source2
+        ///                                                                    destinationImage: destination2
+        ///                                                                 recurrentInputState: recurrent0
+        ///                                                                recurrentOutputState: nil];
+        /// ```
         #[method(encodeSequenceToCommandBuffer:sourceImages:destinationImages:recurrentInputState:recurrentOutputStates:)]
         pub unsafe fn encodeSequenceToCommandBuffer_sourceImages_destinationImages_recurrentInputState_recurrentOutputStates(
             &self,
@@ -718,6 +1167,31 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSImage")]
+        /// Encode an MPSRNNImageInferenceLayer kernel stack for an input image sequences into a command buffer bidirectionally.
+        /// The operation proceeds as follows: The first source image x0 is passed through all forward traversing layers in the stack,
+        /// ie. those that were initialized with MPSRNNSequenceDirectionForward, recurrent input is assumed zero.
+        /// This produces forward output yf0 and recurrent states hf00, hf01, hf02, ... hf0n, one for each forward layer.
+        /// Then x1 is passed to forward layers together with recurrent state hf00, hf01, ..., hf0n, which produces yf1, and hf10,...
+        /// This procedure is iterated until the last image in the input sequence x_(N-1), which produces forward output yf(N-1).
+        /// The backwards layers iterate the same sequence backwards, starting from input x_(N-1) (recurrent state zero),
+        /// that produces yb(N-1) and recurrent output hb(N-1)0, hf(N-1)1, ... hb(N-1)m, one for each backwards traversing layer.
+        /// Then the backwards layers handle input x_(N-2) using recurrent state hb(N-1)0, ..., et cetera, until the
+        /// first image of the sequence is computed, producing output yb0. The result of the operation is either pair of sequences
+        /// ({yf0, yf1, ... , yf(N-1)},  {yb0, yb1, ... , yb(N-1)}) or a combined sequence, {(yf0 + yb0), ... , (yf(N-1) + yb(N-1)) },
+        /// where '+' stands either for sum, or concatenation along feature channels, as specified by
+        /// bidirectionalCombineMode.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceSequence`: An array of valid MPSImage objects containing the source image sequence (x0, x1, ... x_n-1).
+        ///
+        /// Parameter `destinationForwardImages`: An array of valid MPSImages to be overwritten by result from forward input images. If bidirectionalCombineMode
+        /// is either MPSRNNBidirectionalCombineModeAdd or MPSRNNBidirectionalCombineModeConcatenate, then will
+        /// contain the combined results. destinationForwardImage may not alias with any of the source images.
+        ///
+        /// Parameter `destinationBackwardImages`: If bidirectionalCombineMode is MPSRNNBidirectionalCombineModeNone, then must be a valid MPSImage
+        /// that will be  overwritten by result from backward input image. Otherwise this parameter is ignored
+        /// and can be nil. destinationBackwardImages may not alias to any of the source images.
         #[method(encodeBidirectionalSequenceToCommandBuffer:sourceSequence:destinationForwardImages:destinationBackwardImages:)]
         pub unsafe fn encodeBidirectionalSequenceToCommandBuffer_sourceSequence_destinationForwardImages_destinationBackwardImages(
             &self,
@@ -727,6 +1201,15 @@ extern_methods!(
             destination_backward_images: Option<&NSArray<MPSImage>>,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSRNNImageInferenceLayer
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSRNNImageInferenceLayer
+        ///
+        /// Returns: A new MPSRNNImageInferenceLayer object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -734,6 +1217,18 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Make a copy of this kernel for a new device -
+        ///
+        /// See: MPSKernel
+        ///
+        /// Parameter `zone`: The NSZone in which to allocate the object
+        ///
+        /// Parameter `device`: The device for the new MPSKernel. If nil, then use
+        /// self.device.
+        ///
+        /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -747,6 +1242,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSRNNImageInferenceLayer {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -768,7 +1271,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnrecurrentmatrixstate?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// This class holds all the data that is passed from one sequence iteration of the matrix-based RNN layer to the next.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnrecurrentmatrixstate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSState")]
@@ -782,6 +1289,13 @@ extern_methods!(
     #[cfg(feature = "MPSState")]
     unsafe impl MPSRNNRecurrentMatrixState {
         #[cfg(feature = "MPSMatrix")]
+        /// Access the stored recurrent matrix data.
+        ///
+        /// Parameter `layerIndex`: Index of the layer whose to get - belongs to { 0, 1,...,
+        ///
+        /// See: numberOfLayers - 1 }
+        ///
+        /// Returns: For valid layerIndex the recurrent output matrix data, otherwise nil.
         #[method_id(@__retain_semantics Other getRecurrentOutputMatrixForLayerIndex:)]
         pub unsafe fn getRecurrentOutputMatrixForLayerIndex(
             &self,
@@ -789,6 +1303,13 @@ extern_methods!(
         ) -> Option<Retained<MPSMatrix>>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Access the stored memory cell matrix data (if present).
+        ///
+        /// Parameter `layerIndex`: Index of the layer whose to get - belongs to { 0, 1,...,
+        ///
+        /// See: numberOfLayers - 1 }
+        ///
+        /// Returns: For valid layerIndex the memory cell image matrix, otherwise nil.
         #[method_id(@__retain_semantics Other getMemoryCellMatrixForLayerIndex:)]
         pub unsafe fn getMemoryCellMatrixForLayerIndex(
             &self,
@@ -801,18 +1322,31 @@ extern_methods!(
     /// Methods declared on superclass `MPSState`
     #[cfg(feature = "MPSState")]
     unsafe impl MPSRNNRecurrentMatrixState {
+        /// Create a MPSState holding a temporary MTLBuffer
+        ///
+        /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
+        ///
+        /// Parameter `bufferSize`: The size of the buffer in bytes
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:bufferSize:)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             buffer_size: usize,
         ) -> Retained<Self>;
 
+        /// Create a MPSState holding a temporary MTLTexture
+        ///
+        /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
+        ///
+        /// Parameter `descriptor`: A descriptor for the new temporary texture
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:textureDescriptor:)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor: &MTLTextureDescriptor,
         ) -> Retained<Self>;
 
+        /// Create a new autoreleased temporary state object without underlying resource
+        ///
+        /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -832,6 +1366,9 @@ extern_methods!(
             descriptor: &MTLTextureDescriptor,
         ) -> Retained<Self>;
 
+        /// Create a MPSState with a non-temporary MTLResource
+        ///
+        /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
         #[method_id(@__retain_semantics Init initWithResource:)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
@@ -841,6 +1378,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
+        /// Initialize a non-temporary state to hold a number of textures and buffers
+        ///
+        /// The allocation of each resource will be deferred  until it is needed.
+        /// This occurs when -resource or -resourceAtIndex: is called.
+        ///
+        /// Parameter `resourceList`: The list of resources to create.
         #[method_id(@__retain_semantics Init initWithDevice:resourceList:)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
@@ -848,12 +1391,21 @@ extern_methods!(
             resource_list: &MPSStateResourceList,
         ) -> Retained<Self>;
 
+        /// Initialize a temporary state to hold a number of textures and buffers
+        ///
+        /// The textures occur first in sequence
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:resourceList:)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             resource_list: &MPSStateResourceList,
         ) -> Retained<Self>;
 
+        /// Create a state object with a list of MTLResources
+        ///
+        /// Because MPS prefers deferred allocation of resources
+        /// your application should use -initWithTextures:bufferSizes:bufferCount:
+        /// whenever possible. This method is useful for cases when the
+        /// MTLResources must be initialized by the CPU.
         #[method_id(@__retain_semantics Init initWithResources:)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
@@ -872,7 +1424,57 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSRNNMatrixInferenceLayer specifies a recurrent neural network layer for inference on MPSMatrices.
+    /// Currently two types of recurrent layers are supported: ones that operate with convolutions on
+    /// images:
+    /// MPSRNNImageInferenceLayerand one that operates on matrices:
+    /// MPSRNNMatrixInferenceLayer.The former can be often used to implement the latter by using 1x1-matrices, but due to
+    /// image size restrictions and performance, it is advisable to use
+    /// MPSRNNMatrixInferenceLayerfor
+    /// linear recurrent layers.
+    /// A MPSRNNMatrixInferenceLayer is initialized using a
+    /// MPSRNNLayerDescriptor,which further specifies the
+    /// recurrent network layer, or an array of
+    /// MPSRNNLayerDescriptors,which specifies a stack
+    /// of recurrent layers, that can operate in parallel a subset of the inputs in a sequence of inputs and
+    /// recurrent outputs. Note that currently stacks with bidirectionally traversing encode functions do not support starting
+    /// from a previous set of recurrent states, but this can be achieved quite easily by defining two separate
+    /// unidirectional stacks of layers, and running the same input sequence on them separately (one forwards and one backwards)
+    /// and ultimately combining the two result sequences as desired with auxiliary functions.
+    /// The input and output vectors in encode calls are stored as rows of the input and output matrices and
+    /// MPSRNNMatrixInferenceLayer supports matrices with decreasing number of rows: The row-indices identify the different
+    /// sequences that may be of different lengths - for example if we have three sequences:
+    /// ( x1, x2, x3 ), ( y1, y2, y3, y4 ) and ( z1, z2 )
+    /// of vectors xi, yi and zi, then these can be inserted together as a batch to the sequence encoding kernel by
+    /// using the matrices:
+    ///
+    /// ```text
+    ///                            ( y1 )        ( y2 )        ( y3 )        ( y4 )
+    ///                       m1 = ( x1 ),  m2 = ( x2 ),  m3 = ( x3 ),  m4 =
+    ///                            ( z1 )        ( z2 )
+    /// ```
+    ///
+    /// If a recurrent output state is requested then it will contain the state corresponding to last inputs to each
+    /// sequence and if all the intermediate states are requested (see storeAllIntermediateStates),
+    /// then the shorter sequences will be propagated by copying the state of the previous output if the
+    /// input vector is not present in the sequence - in the example above the output states would be:
+    ///
+    /// ```text
+    ///                            ( s_y1 )        ( s_y2 )        ( s_y3 )        ( s_y4 )
+    ///                       s1 = ( s_x1 ),  s2 = ( s_x2 ),  s3 = ( s_x3 ),  s4 = ( s_x3 )
+    ///                            ( s_z1 )        ( s_z2 )        ( s_z2 )        ( s_z2 )
+    /// ```
+    ///
+    /// The mathematical operation described in the linear transformations of
+    /// MPSRNNSingleGateDescriptorMPSLSTMDescriptorand
+    /// MPSGRUDescriptorare y^T = W x^T
+    /// <
+    /// => y = x W^T, where x is the matrix containing
+    /// the input vectors as rows, y is the matrix containing the output vectors as rows and W is the weight matrix.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -899,36 +1501,63 @@ unsafe impl NSSecureCoding for MPSRNNMatrixInferenceLayer {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSRNNMatrixInferenceLayer {
+        /// The number of feature channels input vector/matrix.
         #[method(inputFeatureChannels)]
         pub unsafe fn inputFeatureChannels(&self) -> NSUInteger;
 
+        /// The number of feature channels in the output vector/matrix.
         #[method(outputFeatureChannels)]
         pub unsafe fn outputFeatureChannels(&self) -> NSUInteger;
 
+        /// Number of layers in the filter-stack. This will be one when using initWithDevice:rnnDescriptor to initialize
+        /// this filter and the number of entries in the array 'rnnDescriptors' when initializing this filter with
+        /// initWithDevice:rnnDescriptors.
         #[method(numberOfLayers)]
         pub unsafe fn numberOfLayers(&self) -> NSUInteger;
 
+        /// How output states from
+        /// encodeSequenceToCommandBufferare constructed.
+        /// Defaults to NO. For reference
+        ///
+        /// See: MPSState.
         #[method(recurrentOutputIsTemporary)]
         pub unsafe fn recurrentOutputIsTemporary(&self) -> bool;
 
+        /// Setter for [`recurrentOutputIsTemporary`][Self::recurrentOutputIsTemporary].
         #[method(setRecurrentOutputIsTemporary:)]
         pub unsafe fn setRecurrentOutputIsTemporary(&self, recurrent_output_is_temporary: bool);
 
+        /// If YES then calls to
+        /// encodeSequenceToCommandBufferreturn every recurrent state
+        /// in the array: recurrentOutputStates.
+        /// Defaults to NO.
         #[method(storeAllIntermediateStates)]
         pub unsafe fn storeAllIntermediateStates(&self) -> bool;
 
+        /// Setter for [`storeAllIntermediateStates`][Self::storeAllIntermediateStates].
         #[method(setStoreAllIntermediateStates:)]
         pub unsafe fn setStoreAllIntermediateStates(&self, store_all_intermediate_states: bool);
 
+        /// Defines how to combine the output-results, when encoding bidirectional layers using
+        /// encodeBidirectionalSequenceToCommandBuffer.Defaults to
+        /// MPSRNNBidirectionalCombineModeNone.
         #[method(bidirectionalCombineMode)]
         pub unsafe fn bidirectionalCombineMode(&self) -> MPSRNNBidirectionalCombineMode;
 
+        /// Setter for [`bidirectionalCombineMode`][Self::bidirectionalCombineMode].
         #[method(setBidirectionalCombineMode:)]
         pub unsafe fn setBidirectionalCombineMode(
             &self,
             bidirectional_combine_mode: MPSRNNBidirectionalCombineMode,
         );
 
+        /// Initializes a linear (fully connected) RNN kernel
+        ///
+        /// Parameter `device`: The MTLDevice on which this MPSRNNMatrixLayer filter will be used
+        ///
+        /// Parameter `rnnDescriptor`: The descriptor that defines the RNN layer
+        ///
+        /// Returns: A valid MPSRNNMatrixInferenceLayer object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:rnnDescriptor:)]
         pub unsafe fn initWithDevice_rnnDescriptor(
             this: Allocated<Self>,
@@ -936,6 +1565,15 @@ extern_methods!(
             rnn_descriptor: &MPSRNNDescriptor,
         ) -> Retained<Self>;
 
+        /// Initializes a kernel that implements a stack of linear (fully connected) RNN layers
+        ///
+        /// Parameter `device`: The MTLDevice on which this MPSRNNMatrixLayer filter will be used
+        ///
+        /// Parameter `rnnDescriptors`: An array of RNN descriptors that defines a stack of RNN layers, starting at index zero.
+        /// The number of layers in stack is the number of entries in the array.
+        /// All entries in the array must be valid MPSRNNDescriptors.
+        ///
+        /// Returns: A valid MPSRNNMatrixInferenceLayer object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:rnnDescriptors:)]
         pub unsafe fn initWithDevice_rnnDescriptors(
             this: Allocated<Self>,
@@ -950,6 +1588,73 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MPSMatrix", feature = "MPSState"))]
+        /// Encode an MPSRNNMatrixInferenceLayer kernel (stack) for a sequence of inputs into a command buffer.
+        /// Note that when encoding using this function the
+        ///
+        /// See: layerSequenceDirection is ignored and the layer stack operates as
+        /// if all layers were forward feeding layers. In order to run bidirectional sequences
+        /// use
+        /// encodeBidirectionalSequenceToCommandBuffer:sourceSequence:or alternatively run two layer stacks and combine
+        /// results at the end using utility functions.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceMatrices`: An array of valid MPSMatrix objects containing the sequence of source matrices.
+        ///
+        /// Parameter `sourceOffsets`: An array of byte-offsets into the sourceMatrices, if nil zeros are assumed and
+        /// if not nil must contain offset for every matrix in sourceMatrices.
+        ///
+        /// Parameter `destinationMatrices`: An array valid MPSMatrices to be overwritten by result matrix sequence.
+        /// destinationMatrices may not alias sourceMatrices.
+        ///
+        /// Parameter `destinationOffsets`: An array of byte-offsets into the destinationMatrices, if nil zeros are assumed and
+        /// if not nil must contain offset for every matrix in destinationMatrices.
+        ///
+        /// Parameter `recurrentInputState`: An optional state containing the output matrices and memory cells (for LSTMs)
+        /// of the layer obtained from the previous input matrices in a sequence of inputs.
+        /// Has to be the output of a previous call to this function or nil (assumed zero).
+        /// Note: can be one of the states returned in
+        /// intermediateRecurrentStates.
+        /// Parameter `recurrentOutputStates`: An optional array that will contain the recurrent output states. If nil then
+        /// the recurrent output state is discarded.
+        /// If
+        /// storeAllIntermediateStatesis YES, then all intermediate states of the sequence
+        /// are returned in the array, the first one corresponding to the first input in the sequence,
+        /// otherwise only the last recurrent output state is returned.
+        /// If recurrentOutputIsTemporary is YES and then all returned recurrent states
+        /// will be temporary.
+        ///
+        /// See: MPSState:isTemporary.
+        /// Example: In order to get a new state one can do the following:
+        ///
+        /// ```text
+        ///                                                       MPSRNNRecurrentMatrixState* recurrent0 = nil;
+        ///                                                       [filter encodeToCommandBuffer: cmdBuf
+        ///                                                                        sourceMatrix: source0
+        ///                                                                   destinationMatrix: destination0
+        ///                                                                 recurrentInputState: nil
+        ///                                                                recurrentOutputState: &recurrent0];
+        /// ```
+        ///
+        /// Then use it for the next input in sequence:
+        ///
+        /// ```text
+        ///                                                       [filter encodeToCommandBuffer: cmdBuf
+        ///                                                                        sourceMatrix: source1
+        ///                                                                   destinationMatrix: destination1
+        ///                                                                 recurrentInputState: recurrent0
+        ///                                                                recurrentOutputState: &recurrent0];
+        /// ```
+        ///
+        /// And discard recurrent output of the third input:
+        ///
+        /// ```text
+        ///                                                       [filter encodeToCommandBuffer: cmdBuf
+        ///                                                                        sourceMatrix: source2
+        ///                                                                   destinationMatrix: destination2
+        ///                                                                 recurrentInputState: recurrent0
+        ///                                                                recurrentOutputState: nil];
+        /// ```
         #[method(encodeSequenceToCommandBuffer:sourceMatrices:sourceOffsets:destinationMatrices:destinationOffsets:recurrentInputState:recurrentOutputStates:)]
         pub unsafe fn encodeSequenceToCommandBuffer_sourceMatrices_sourceOffsets_destinationMatrices_destinationOffsets_recurrentInputState_recurrentOutputStates(
             &self,
@@ -974,6 +1679,31 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode an MPSRNNMatrixInferenceLayer kernel stack for an input matrix sequences into a command buffer bidirectionally.
+        /// The operation proceeds as follows: The first source matrix x0 is passed through all forward traversing layers in the stack,
+        /// ie. those that were initialized with MPSRNNSequenceDirectionForward, recurrent input is assumed zero.
+        /// This produces forward output yf0 and recurrent states hf00, hf01, hf02, ... hf0n, one for each forward layer in the stack.
+        /// Then x1 is passed to forward layers together with recurrent state hf00, hf01, ..., hf0n, which produces yf1, and hf10,...
+        /// This procedure is iterated until the last matrix in the input sequence x_(N-1), which produces forward output yf(N-1).
+        /// The backwards layers iterate the same sequence backwards, starting from input x_(N-1) (recurrent state zero),
+        /// that produces yb(N-1) and recurrent output hb(N-1)0, hf(N-1)1, ... hb(N-1)m, one for each backwards traversing layer.
+        /// Then the backwards layers handle input x_(N-2) using recurrent state hb(N-1)0, ..., et cetera, until the
+        /// first matrix of the sequence is computed, producing output yb0. The result of the operation is either pair of sequences
+        /// ({yf0, yf1, ... , yf(N-1)},  {yb0, yb1, ... , yb(N-1)}) or a combined sequence, {(yf0 + yb0), ... , (yf(N-1) + yb(N-1)) },
+        /// where '+' stands either for sum, or concatenation along feature channels, as specified by
+        /// bidirectionalCombineMode.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceSequence`: An array of valid MPSMatrix objects containing the source matrix sequence (x0, x1, ... x_n-1).
+        ///
+        /// Parameter `destinationForwardMatrices`: An array of valid MPSMatrices to be overwritten by result from forward input matrices. If bidirectionalCombineMode
+        /// is either MPSRNNBidirectionalCombineModeAdd or MPSRNNBidirectionalCombineModeConcatenate, then will
+        /// contain the combined results. destinationForwardMatrix may not alias with any of the source matrices.
+        ///
+        /// Parameter `destinationBackwardMatrices`: If bidirectionalCombineMode is MPSRNNBidirectionalCombineModeNone, then must be an array of valid MPSMatrices
+        /// that will be overwritten by result from backward input matrices. Otherwise this parameter is ignored
+        /// and can be nil. destinationBackwardMatrices may not alias to any of the source matrices.
         #[method(encodeBidirectionalSequenceToCommandBuffer:sourceSequence:destinationForwardMatrices:destinationBackwardMatrices:)]
         pub unsafe fn encodeBidirectionalSequenceToCommandBuffer_sourceSequence_destinationForwardMatrices_destinationBackwardMatrices(
             &self,
@@ -983,6 +1713,15 @@ extern_methods!(
             destination_backward_matrices: Option<&NSArray<MPSMatrix>>,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSRNNMatrixInferenceLayer
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSRNNMatrixInferenceLayer
+        ///
+        /// Returns: A new MPSRNNMatrixInferenceLayer object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -990,6 +1729,18 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Make a copy of this kernel for a new device -
+        ///
+        /// See: MPSKernel
+        ///
+        /// Parameter `zone`: The NSZone in which to allocate the object
+        ///
+        /// Parameter `device`: The device for the new MPSKernel. If nil, then use
+        /// self.device.
+        ///
+        /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -1003,6 +1754,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSRNNMatrixInferenceLayer {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1024,7 +1783,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// This class holds the data that is passed from the forward pass needed in the backward pass.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSState")]
@@ -1043,18 +1806,31 @@ extern_methods!(
     /// Methods declared on superclass `MPSState`
     #[cfg(feature = "MPSState")]
     unsafe impl MPSRNNMatrixTrainingState {
+        /// Create a MPSState holding a temporary MTLBuffer
+        ///
+        /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
+        ///
+        /// Parameter `bufferSize`: The size of the buffer in bytes
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:bufferSize:)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             buffer_size: usize,
         ) -> Retained<Self>;
 
+        /// Create a MPSState holding a temporary MTLTexture
+        ///
+        /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
+        ///
+        /// Parameter `descriptor`: A descriptor for the new temporary texture
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:textureDescriptor:)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor: &MTLTextureDescriptor,
         ) -> Retained<Self>;
 
+        /// Create a new autoreleased temporary state object without underlying resource
+        ///
+        /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1074,6 +1850,9 @@ extern_methods!(
             descriptor: &MTLTextureDescriptor,
         ) -> Retained<Self>;
 
+        /// Create a MPSState with a non-temporary MTLResource
+        ///
+        /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
         #[method_id(@__retain_semantics Init initWithResource:)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
@@ -1083,6 +1862,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
+        /// Initialize a non-temporary state to hold a number of textures and buffers
+        ///
+        /// The allocation of each resource will be deferred  until it is needed.
+        /// This occurs when -resource or -resourceAtIndex: is called.
+        ///
+        /// Parameter `resourceList`: The list of resources to create.
         #[method_id(@__retain_semantics Init initWithDevice:resourceList:)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
@@ -1090,12 +1875,21 @@ extern_methods!(
             resource_list: &MPSStateResourceList,
         ) -> Retained<Self>;
 
+        /// Initialize a temporary state to hold a number of textures and buffers
+        ///
+        /// The textures occur first in sequence
         #[method_id(@__retain_semantics Other temporaryStateWithCommandBuffer:resourceList:)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             resource_list: &MPSStateResourceList,
         ) -> Retained<Self>;
 
+        /// Create a state object with a list of MTLResources
+        ///
+        /// Because MPS prefers deferred allocation of resources
+        /// your application should use -initWithTextures:bufferSizes:bufferCount:
+        /// whenever possible. This method is useful for cases when the
+        /// MTLResources must be initialized by the CPU.
         #[method_id(@__retain_semantics Init initWithResources:)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
@@ -1190,7 +1984,43 @@ unsafe impl RefEncode for MPSRNNMatrixId {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// The MPSRNNMatrixTrainingLayer specifies a recurrent neural network layer for training on MPSMatrices.
+    ///
+    /// A MPSRNNMatrixTrainingLayer is initialized using a
+    /// MPSRNNLayerDescriptor,which further specifies the
+    /// recurrent network layer.
+    /// The input and output vectors in encode calls are stored as rows of the input and output matrices and
+    /// MPSRNNMatrixTrainingLayer supports matrices with decreasing number of rows: The row-indices identify the different
+    /// sequences that may be of different lengths - for example if we have three sequences:
+    /// ( x1, x2, x3 ), ( y1, y2, y3, y4 ) and ( z1, z2 )
+    /// of vectors xi, yi and zi, then these can be inserted together as a batch to the sequence encoding kernel by
+    /// using the matrices:
+    ///
+    /// ```text
+    ///                            ( y1 )        ( y2 )        ( y3 )        ( y4 )
+    ///                       m1 = ( x1 ),  m2 = ( x2 ),  m3 = ( x3 ),  m4 =
+    ///                            ( z1 )        ( z2 )
+    /// ```
+    ///
+    /// The gradient computation pass is then achieved by passing the corresponding gradient sequence from the
+    /// previous layer ( dx1, dx2, dx3 ), ( dy1, dy2, dy3, dy4 ) and ( dz1, dz2 ) as matrices
+    ///
+    /// ```text
+    ///                             ( dy1 )         ( dy2 )         ( dy3 )         ( dy4 )
+    ///                       dm1 = ( dx1 ),  dm2 = ( dx2 ),  dm3 = ( dx3 ),  dm4 =
+    ///                             ( dz1 )         ( dz2 )
+    /// ```
+    ///
+    /// The mathematical operation described in the linear transformations of
+    /// MPSRNNSingleGateDescriptorMPSLSTMDescriptorand
+    /// MPSGRUDescriptorare y^T = W x^T
+    /// <
+    /// => y = x W^T, where x is the matrix containing
+    /// the input vectors as rows, y is the matrix containing the output vectors as rows and W is the weight matrix.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -1217,37 +2047,78 @@ unsafe impl NSSecureCoding for MPSRNNMatrixTrainingLayer {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSRNNMatrixTrainingLayer {
+        /// The number of feature channels input vector/matrix.
         #[method(inputFeatureChannels)]
         pub unsafe fn inputFeatureChannels(&self) -> NSUInteger;
 
+        /// The number of feature channels in the output vector/matrix.
         #[method(outputFeatureChannels)]
         pub unsafe fn outputFeatureChannels(&self) -> NSUInteger;
 
+        /// If YES then calls to functions
+        /// encodeForwardSequenceToCommandBufferand
+        /// encodeGradientSequenceToCommandBufferreturn every recurrent state
+        /// in the array: recurrentOutputStates.
+        /// Defaults to NO.
         #[method(storeAllIntermediateStates)]
         pub unsafe fn storeAllIntermediateStates(&self) -> bool;
 
+        /// Setter for [`storeAllIntermediateStates`][Self::storeAllIntermediateStates].
         #[method(setStoreAllIntermediateStates:)]
         pub unsafe fn setStoreAllIntermediateStates(&self, store_all_intermediate_states: bool);
 
+        /// How recurrent output states from
+        /// encodeForwardSequenceToCommandBufferand encodeGradientSequenceToCommandBuffer are constructed.
+        /// Defaults to NO. For reference
+        ///
+        /// See: MPSState.
         #[method(recurrentOutputIsTemporary)]
         pub unsafe fn recurrentOutputIsTemporary(&self) -> bool;
 
+        /// Setter for [`recurrentOutputIsTemporary`][Self::recurrentOutputIsTemporary].
         #[method(setRecurrentOutputIsTemporary:)]
         pub unsafe fn setRecurrentOutputIsTemporary(&self, recurrent_output_is_temporary: bool);
 
+        /// How training output states from
+        /// encodeForwardSequenceToCommandBufferare constructed.
+        /// Defaults to NO. For reference
+        ///
+        /// See: MPSState.
         #[method(trainingStateIsTemporary)]
         pub unsafe fn trainingStateIsTemporary(&self) -> bool;
 
+        /// Setter for [`trainingStateIsTemporary`][Self::trainingStateIsTemporary].
         #[method(setTrainingStateIsTemporary:)]
         pub unsafe fn setTrainingStateIsTemporary(&self, training_state_is_temporary: bool);
 
+        /// If yes then the computed weight gradients are accumulated on top of existing values in
+        /// calls to the gradient computation functions: encodeGradientSequenceToCommandBuffer.
+        /// Defaults to NO.
         #[method(accumulateWeightGradients)]
         pub unsafe fn accumulateWeightGradients(&self) -> bool;
 
+        /// Setter for [`accumulateWeightGradients`][Self::accumulateWeightGradients].
         #[method(setAccumulateWeightGradients:)]
         pub unsafe fn setAccumulateWeightGradients(&self, accumulate_weight_gradients: bool);
 
         #[cfg(feature = "MPSMatrix")]
+        /// Initializes a linear (fully connected) RNN kernel for training
+        ///
+        /// Parameter `device`: The MTLDevice on which this MPSRNNMatrixLayer filter will be used
+        ///
+        /// Parameter `rnnDescriptor`: The descriptor that defines the RNN layer
+        ///
+        /// Parameter `trainableWeights`: An array where to store the weights of the layer as MPSMatrices.
+        /// NOTE: The exact layout and number of matrices may vary between
+        /// platforms and therefore you should not save out these weights directly,
+        /// but instead use the function encodeCopyWeightsToCommandBuffer to identify
+        /// the weights and biases for serialization.
+        /// Typically you should pass here an initialized but empty NSMutableArray and
+        /// when this function returns the array will have been populated with the
+        /// weight matrices needed in the encode-calls, by using initial values from
+        /// the datasources in rnnDescriptor.
+        ///
+        /// Returns: A valid MPSRNNMatrixTrainingLayer object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:rnnDescriptor:trainableWeights:)]
         pub unsafe fn initWithDevice_rnnDescriptor_trainableWeights(
             this: Allocated<Self>,
@@ -1257,6 +2128,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MPSCoreTypes", feature = "MPSMatrix"))]
+        /// Initializes a set of matrices that can be used in training for weight and bias gradient outputs in
+        ///
+        /// See: encodeBackwardSequenceToCommandBuffer. Can be also used to easily create auxiliary matrices for example
+        /// for ADAM and other advanced optimization schemes. The layout and number of matrices is the same as for the outputs of
+        ///
+        /// See: initWithDevice, but the data type may differ. NOTE: These matrices cannot be used as weight matrices in the
+        /// forward and backward encode calls, but matrices from initWithDevice() or createWeightMatrices() should be used instead.
+        ///
+        /// Parameter `matricesOut`: An array where the newly created matrices will be stored, will be initialized to zero.
+        ///
+        /// Parameter `dataType`: Datatype for the entries - currently MPSDataTypeFloat32 and MPSDataTypeFloat16 are supported.
         #[method(createWeightGradientMatrices:dataType:)]
         pub unsafe fn createWeightGradientMatrices_dataType(
             &self,
@@ -1265,6 +2147,16 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSCoreTypes", feature = "MPSMatrix"))]
+        /// As
+        /// createWeightGradientMatrices,but the matrices will be temporary with readCount = 1, which means that they
+        /// become invalid after the first encode call that reads them. Note also that as the matrices are temporary, their
+        /// storage mode will be private which means that you can only access the data using a kernel on the GPU.
+        ///
+        /// Parameter `matricesOut`: An array where the newly created matrices will be stored, will be initialized to zero.
+        ///
+        /// Parameter `dataType`: Datatype for the entries - currently MPSDataTypeFloat32 and MPSDataTypeFloat16 are supported.
+        ///
+        /// Parameter `commandBuffer`: The command buffer that the temporary matrices will live on.
         #[method(createTemporaryWeightGradientMatrices:dataType:commandBuffer:)]
         pub unsafe fn createTemporaryWeightGradientMatrices_dataType_commandBuffer(
             &self,
@@ -1274,6 +2166,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSMatrix")]
+        /// Initializes a set of matrices that can be used in training for weight and bias matrices in
+        /// the forward and backward passes. The layout, datatype and number of matrices is the same as for the outputs of
+        ///
+        /// See: initWithDevice.
+        ///
+        /// Parameter `matricesOut`: An array where the newly created matrices will be stored, will be initialized to zero.
         #[method(createWeightMatrices:)]
         pub unsafe fn createWeightMatrices(&self, matrices_out: &NSMutableArray<MPSMatrix>);
 
@@ -1284,6 +2182,29 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a copy kernel that copies one matrix from the trainable weight set to a matrix with standard layout,
+        /// where the column index is the input feature channel index (in forward direction) and row index is the output
+        /// feature channel index.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `weights`: An array weights from
+        ///
+        /// See: initWithDevice or
+        ///
+        /// See: createWeightMatrices.
+        ///
+        /// Parameter `matrixId`: Which matrix to copy - has to be a valid Id based on inputs defined in
+        /// the rnnDescriptor of
+        ///
+        /// See: initWithDevice.
+        ///
+        /// Parameter `matrix`: The destination or source matrix that is used in the copy.
+        ///
+        /// Parameter `copyFromWeightsToMatrix`: If YES then the copy direction is from the set of trainable 'weights' to 'matrix',
+        /// otherwise the copy is done from 'matrix' to 'weights'.
+        ///
+        /// Parameter `matrixOffset`: A (valid) offset into matrix to be applied to the copy operation.
         #[method(encodeCopyWeightsToCommandBuffer:weights:matrixId:matrix:copyFromWeightsToMatrix:matrixOffset:)]
         pub unsafe fn encodeCopyWeightsToCommandBuffer_weights_matrixId_matrix_copyFromWeightsToMatrix_matrixOffset(
             &self,
@@ -1296,6 +2217,40 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSMatrix", feature = "MPSState"))]
+        /// Encode an MPSRNNMatrixTrainingLayer forward pass kernel for a sequence of inputs into a command buffer.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceMatrices`: An array of valid MPSMatrix objects containing the sequence of source matrices.
+        ///
+        /// Parameter `sourceOffsets`: An array of byte-offsets into the sourceMatrices, if nil zeros are assumed and
+        /// if not nil must contain offset for every matrix in sourceMatrices.
+        ///
+        /// Parameter `destinationMatrices`: An array valid MPSMatrices to be overwritten by result matrix sequence.
+        /// destinationMatrices may not alias sourceMatrices.
+        ///
+        /// Parameter `destinationOffsets`: An array of byte-offsets into the destinationMatrices, if nil zeros are assumed and
+        /// if not nil must contain offset for every matrix in destinationMatrices.
+        ///
+        /// Parameter `trainingStates`: An array containing the training states to be passed to the gradient computation
+        /// encode function.
+        ///
+        /// Parameter `recurrentInputState`: An optional state containing the output matrices and memory cells (for LSTMs)
+        /// of the layer obtained from the previous input matrices in a sequence of inputs.
+        /// Has to be the output of a previous call to this function or nil (assumed zero).
+        ///
+        /// Parameter `recurrentOutputStates`: An array that will be appended with the recurrent output states. May not be nil.
+        /// If recurrentOutputIsTemporary is YES and then all returned recurrent states
+        /// will be temporary.
+        ///
+        /// See: MPSState:isTemporary.
+        ///
+        /// Parameter `weights`: An array of valid MPSMatrix objects containing the weights, should be the array
+        /// that was produced either by
+        ///
+        /// See: initWithDevice or
+        ///
+        /// See: createWeightMatrices.
         #[method(encodeForwardSequenceToCommandBuffer:sourceMatrices:sourceOffsets:destinationMatrices:destinationOffsets:trainingStates:recurrentInputState:recurrentOutputStates:weights:)]
         pub unsafe fn encodeForwardSequenceToCommandBuffer_sourceMatrices_sourceOffsets_destinationMatrices_destinationOffsets_trainingStates_recurrentInputState_recurrentOutputStates_weights(
             &self,
@@ -1311,6 +2266,24 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSMatrix", feature = "MPSState"))]
+        /// Encode an MPSRNNMatrixTrainingLayer forward pass kernel for a sequence of inputs into a command buffer.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `sourceMatrices`: An array of valid MPSMatrix objects containing the sequence of source matrices.
+        ///
+        /// Parameter `destinationMatrices`: An array valid MPSMatrices to be overwritten by result matrix sequence.
+        /// destinationMatrices may not alias sourceMatrices.
+        ///
+        /// Parameter `trainingStates`: An array containing the training states to be passed to the gradient computation
+        /// encode function.
+        ///
+        /// Parameter `weights`: An array of valid MPSMatrix objects containing the weights, should be the array
+        /// that was produced either by
+        ///
+        /// See: initWithDevice or
+        ///
+        /// See: createWeightMatrices.
         #[method(encodeForwardSequenceToCommandBuffer:sourceMatrices:destinationMatrices:trainingStates:weights:)]
         pub unsafe fn encodeForwardSequenceToCommandBuffer_sourceMatrices_destinationMatrices_trainingStates_weights(
             &self,
@@ -1322,6 +2295,57 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSMatrix", feature = "MPSState"))]
+        /// Encode an MPSRNNMatrixTrainingLayer gradient pass kernel for a sequence of input gradients into a command buffer.
+        /// NOTE: The time sequence indexing follows the array indexing in the inputs: sourceGradients[0] has to contain the
+        /// gradients corresponding to the first matrix in the forward pass corresponding to the current subsequence, which is
+        /// typically sourceMatrices[0].
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `forwardSources`: An array of MPSMatrix objects containing the sequence of source matrices of the forward pass.
+        ///
+        /// Parameter `forwardSourceOffsets`: An array of byte-offsets into the forwardSources, if nil zeros are assumed and
+        /// if not nil must contain offset for every matrix in forwardSources.
+        ///
+        /// Parameter `sourceGradients`: An array of valid MPSMatrix objects containing the sequence of source gradient matrices.
+        ///
+        /// Parameter `sourceGradientOffsets`: An array of byte-offsets into the sourceGradients, if nil zeros are assumed and
+        /// if not nil must contain offset for every matrix in sourceGradients.
+        ///
+        /// Parameter `destinationGradients`: An array valid MPSMatrix objects that will receive the backpropagated gradients, may be
+        /// nil if not needed (for example first layer in graph).
+        ///
+        /// Parameter `destinationOffsets`: An array of byte-offsets into the destinationGradients, if nil zeros are assumed and
+        /// if not nil must contain offset for every matrix in destinationGradients.
+        ///
+        /// Parameter `weightGradients`: An array of valid MPSMatrix objects that will receive the gradient wrt. weights and
+        /// biases of the layer - should be the array that was produced either
+        /// by
+        ///
+        /// See: initWithDevice or
+        ///
+        /// See: createWeightMatrices. May be nil in which case
+        /// the gradients for the weights are not computed.
+        ///
+        /// Parameter `trainingStates`: An array containing the training states from the forward pass - the array must contain
+        /// the states corresponding to the input gradients is sourceGradients.
+        ///
+        /// Parameter `recurrentInputState`: An optional state containing the output matrices and memory cells (for LSTMs)
+        /// of the layer obtained from the previous input gradients in a sequence of inputs.
+        /// Has to be the output of a previous call to this function or nil (assumed zero).
+        ///
+        /// Parameter `recurrentOutputStates`: An array that will be appended with the recurrent output states. Can be nil.
+        /// If recurrentOutputIsTemporary is YES and then all returned recurrent states
+        /// will be temporary.
+        ///
+        /// See: MPSState:isTemporary.
+        ///
+        /// Parameter `weights`: An array of valid MPSMatrix objects containing the weights, should be the array
+        /// that was produced either by
+        ///
+        /// See: initWithDevice or
+        ///
+        /// See: createWeightMatrices.
         #[method(encodeGradientSequenceToCommandBuffer:forwardSources:forwardSourceOffsets:sourceGradients:sourceGradientOffsets:destinationGradients:destinationOffsets:weightGradients:trainingStates:recurrentInputState:recurrentOutputStates:weights:)]
         pub unsafe fn encodeGradientSequenceToCommandBuffer_forwardSources_forwardSourceOffsets_sourceGradients_sourceGradientOffsets_destinationGradients_destinationOffsets_weightGradients_trainingStates_recurrentInputState_recurrentOutputStates_weights(
             &self,
@@ -1340,6 +2364,40 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSMatrix", feature = "MPSState"))]
+        /// Encode an MPSRNNMatrixTrainingLayer gradient pass kernel for a sequence of input gradients into a command buffer.
+        /// NOTE: The time sequence indexing follows the array indexing in the inputs: sourceGradients[0] has to contain the
+        /// gradients corresponding to the first matrix in the forward pass corresponding to the current subsequence, which is
+        /// typically sourceMatrices[0].
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
+        ///
+        /// Parameter `forwardSources`: An array of MPSMatrix objects containing the sequence of source matrices of the forward pass.
+        ///
+        /// Parameter `sourceGradients`: An array of MPSMatrix objects containing the sequence of source gradient matrices.
+        ///
+        /// Parameter `destinationGradients`: An array valid MPSMatrix objects that will receive the backpropagated gradients, may be
+        /// nil if not needed (for example first layer in graph).
+        ///
+        /// Parameter `weightGradients`: An array valid MPSMatrix objects that will receive the gradient wrt. weights and
+        /// biases of the layer - should be the array that was produced either
+        /// by
+        ///
+        /// See: initWithDevice or
+        ///
+        /// See: createWeightMatrices. May be nil in which case
+        /// the gradients for the weights are not computed.
+        /// NOTE: The weight gradients are accumulated on top of existing values so
+        ///
+        ///
+        /// Parameter `trainingStates`: An array containing the training states from the forward pass - the array must contain
+        /// the states corresponding to the input gradients is sourceGradients.
+        ///
+        /// Parameter `weights`: An array of valid MPSMatrix objects containing the weights, should be the array
+        /// that was produced either by
+        ///
+        /// See: initWithDevice or
+        ///
+        /// See: createWeightMatrices.
         #[method(encodeGradientSequenceToCommandBuffer:forwardSources:sourceGradients:destinationGradients:weightGradients:trainingStates:weights:)]
         pub unsafe fn encodeGradientSequenceToCommandBuffer_forwardSources_sourceGradients_destinationGradients_weightGradients_trainingStates_weights(
             &self,
@@ -1352,6 +2410,15 @@ extern_methods!(
             weights: &NSArray<MPSMatrix>,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSRNNMatrixTrainingLayer
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSRNNMatrixTrainingLayer
+        ///
+        /// Returns: A new MPSRNNMatrixTrainingLayer object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1359,6 +2426,18 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Make a copy of this kernel for a new device -
+        ///
+        /// See: MPSKernel
+        ///
+        /// Parameter `zone`: The NSZone in which to allocate the object
+        ///
+        /// Parameter `device`: The device for the new MPSKernel. If nil, then use
+        /// self.device.
+        ///
+        /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -1372,6 +2451,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSRNNMatrixTrainingLayer {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

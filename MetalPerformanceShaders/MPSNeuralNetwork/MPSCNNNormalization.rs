@@ -9,7 +9,20 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the spatial normalization filter.
+    /// The spatial normalization for a feature channel applies the filter over local regions which extend
+    /// spatially, but are in separate feature channels (i.e., they have shape 1 x kernelWidth x kernelHeight).
+    /// For each feature channel, the function computes the sum of squares of X inside each rectangle, N2(i,j).
+    /// It then divides each element of X as follows:
+    /// Y(i,j) = X(i,j) / (delta + alpha/(kw*kh) * N2(i,j))^beta,
+    /// where kw and kh are the kernelWidth and the kernelHeight.
+    /// It is the end-users responsibility to ensure that the combination of the
+    /// parameters delta and alpha does not result in a situation where the denominator
+    /// becomes zero - in such situations the resulting pixel-value is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -36,24 +49,41 @@ unsafe impl NSSecureCoding for MPSCNNSpatialNormalization {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNSpatialNormalization {
+        /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
+        /// The value of beta.  Default is 5.0
         #[method(beta)]
         pub unsafe fn beta(&self) -> c_float;
 
+        /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
+        /// The value of delta.  Default is 1.0
         #[method(delta)]
         pub unsafe fn delta(&self) -> c_float;
 
+        /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
+        /// Initialize a spatial normalization filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `kernelWidth`: The width of the kernel
+        ///
+        /// Parameter `kernelHeight`: The height of the kernel
+        ///
+        /// Returns: A valid MPSCNNSpatialNormalization object or nil, if failure.
+        ///
+        /// NOTE:  For now, kernelWidth must be equal to kernelHeight
         #[method_id(@__retain_semantics Init initWithDevice:kernelWidth:kernelHeight:)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -62,6 +92,19 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -81,6 +124,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNSpatialNormalization {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -102,7 +153,31 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalizationgradient?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the spatial normalization gradient filter.
+    /// The spatial normalization for a feature channel applies the filter over local regions which extend
+    /// spatially, but are in separate feature channels (i.e., they have shape 1 x kernelWidth x kernelHeight).
+    /// For each feature channel, the function computes the sum of squares of X inside each rectangle, N2(i,j).
+    /// It then divides each element of X as follows:
+    /// Y(i,j) = X(i,j) / (delta + alpha/(kw*kh) * N2(i,j))^beta,
+    /// where kw and kh are the kernelWidth and the kernelHeight.
+    /// It is the end-users responsibility to ensure that the combination of the
+    /// parameters delta and alpha does not result in a situation where the denominator
+    /// becomes zero - in such situations the resulting pixel-value is undefined.
+    ///
+    /// T(i,j) = (delta + alpha/(kw*kh) * N2(i,j))
+    /// N      = kw * kh
+    ///
+    /// OutputGradient:
+    /// dZ/dX(i,j) =  T(i,j)^(-beta) * ( dZ/dY(i,j) - (2*alpha*beta*X(i,j)/T(i,j)) * (sum_{l,k in L(i),K(j)} dZ/dY(l,k)*X(l,k)) )
+    /// N is the kernel size. The window R(k) itself is defined as:
+    /// L(i) = [i-floor((kw-1)/2), i+floor(kw/2]
+    /// K(j) = [j-floor((kh-1)/2), j+floor(kh/2]
+    ///
+    /// For correct gradient computation all parameters must be the same as the original normalization filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalizationgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -129,24 +204,41 @@ unsafe impl NSSecureCoding for MPSCNNSpatialNormalizationGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNSpatialNormalizationGradient {
+        /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
+        /// The value of beta.  Default is 5.0
         #[method(beta)]
         pub unsafe fn beta(&self) -> c_float;
 
+        /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
+        /// The value of delta.  Default is 1.0
         #[method(delta)]
         pub unsafe fn delta(&self) -> c_float;
 
+        /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
+        /// Initialize a spatial normalization filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `kernelWidth`: The width of the kernel
+        ///
+        /// Parameter `kernelHeight`: The height of the kernel
+        ///
+        /// Returns: A valid MPSCNNSpatialNormalization object or nil, if failure.
+        ///
+        /// NOTE:  For now, kernelWidth must be equal to kernelHeight
         #[method_id(@__retain_semantics Init initWithDevice:kernelWidth:kernelHeight:)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -155,6 +247,19 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -168,6 +273,13 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNSpatialNormalizationGradient {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: A pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -180,6 +292,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNSpatialNormalizationGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -201,7 +321,33 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalization?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the local contrast normalization filter.
+    /// The local contrast normalization is quite similar to spatial normalization
+    /// (see
+    /// MPSCNNSpatialNormalization)in that it applies the filter over local regions which extend
+    /// spatially, but are in separate feature channels (i.e., they have shape 1 x kernelWidth x kernelHeight),
+    /// but instead of dividing by the local "energy" of the feature, the denominator uses the local variance
+    /// of the feature - effectively the mean value of the feature is subtracted from the signal.
+    /// For each feature channel, the function computes the variance VAR(i,j) and
+    /// mean M(i,j) of X(i,j) inside each rectangle around the spatial point (i,j).
+    ///
+    /// Then the result is computed for each element of X as follows:
+    ///
+    /// Y(i,j) = pm + ps * ( X(i,j) - p0 * M(i,j)) / (delta + alpha * VAR(i,j))^beta,
+    ///
+    /// where kw and kh are the kernelWidth and the kernelHeight and pm, ps and p0 are parameters that
+    /// can be used to offset and scale the result in various ways. For example setting
+    /// pm=0, ps=1, p0=1, delta=0, alpha=1.0 and beta=0.5 scales input data so that the result has
+    /// unit variance and zero mean, provided that input variance is positive.
+    /// It is the end-users responsibility to ensure that the combination of the
+    /// parameters delta and alpha does not result in a situation where the denominator
+    /// becomes zero - in such situations the resulting pixel-value is undefined. A good way to guard
+    /// against tiny variances is to regulate the expression with a small value for delta, for example
+    /// delta = 1/1024 = 0.0009765625.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalization?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -228,42 +374,71 @@ unsafe impl NSSecureCoding for MPSCNNLocalContrastNormalization {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNLocalContrastNormalization {
+        /// The value of alpha.  Default is 0.0
+        ///
+        /// The default value 0.0 is not recommended and is
+        /// preserved for backwards compatibility. With alpha 0,
+        /// it performs a local mean subtraction. The
+        /// MPSCNNLocalContrastNormalizationNode used with
+        /// the MPSNNGraph uses 1.0 as a default.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
+        /// The value of beta.  Default is 0.5
         #[method(beta)]
         pub unsafe fn beta(&self) -> c_float;
 
+        /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
+        /// The value of delta.  Default is 1/1024
         #[method(delta)]
         pub unsafe fn delta(&self) -> c_float;
 
+        /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
+        /// The value of p0.  Default is 1.0
         #[method(p0)]
         pub unsafe fn p0(&self) -> c_float;
 
+        /// Setter for [`p0`][Self::p0].
         #[method(setP0:)]
         pub unsafe fn setP0(&self, p0: c_float);
 
+        /// The value of pm.  Default is 0.0
         #[method(pm)]
         pub unsafe fn pm(&self) -> c_float;
 
+        /// Setter for [`pm`][Self::pm].
         #[method(setPm:)]
         pub unsafe fn setPm(&self, pm: c_float);
 
+        /// The value of ps.  Default is 1.0
         #[method(ps)]
         pub unsafe fn ps(&self) -> c_float;
 
+        /// Setter for [`ps`][Self::ps].
         #[method(setPs:)]
         pub unsafe fn setPs(&self, ps: c_float);
 
+        /// Initialize a local contrast normalization filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `kernelWidth`: The width of the kernel
+        ///
+        /// Parameter `kernelHeight`: The height of the kernel
+        ///
+        /// Returns: A valid MPSCNNLocalContrastNormalization object or nil, if failure.
+        ///
+        /// NOTE:  For now, kernelWidth must be equal to kernelHeight
         #[method_id(@__retain_semantics Init initWithDevice:kernelWidth:kernelHeight:)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -272,6 +447,19 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -291,6 +479,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNLocalContrastNormalization {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -312,7 +508,44 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalizationgradient?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the local contrast normalization gradient filter.
+    /// The local contrast normalization is quite similar to spatial normalization
+    /// (see
+    /// MPSCNNSpatialNormalization)in that it applies the filter over local regions which extend
+    /// spatially, but are in separate feature channels (i.e., they have shape 1 x kernelWidth x kernelHeight),
+    /// but instead of dividing by the local "energy" of the feature, the denominator uses the local variance
+    /// of the feature - effectively the mean value of the feature is subtracted from the signal.
+    /// For each feature channel, the function computes the variance VAR(i,j) and
+    /// mean M(i,j) of X(i,j) inside each rectangle around the spatial point (i,j).
+    ///
+    /// Then the result is computed for each element of X as follows:
+    ///
+    /// Y(i,j) = pm + ps * ( X(i,j) - p0 * M(i,j)) / (delta + alpha * VAR(i,j))^beta,
+    ///
+    /// where kw and kh are the kernelWidth and the kernelHeight and pm, ps and p0 are parameters that
+    /// can be used to offset and scale the result in various ways. For example setting
+    /// pm=0, ps=1, p0=1, delta=0, alpha=1.0 and beta=0.5 scales input data so that the result has
+    /// unit variance and zero mean, provided that input variance is positive.
+    /// It is the end-users responsibility to ensure that the combination of the
+    /// parameters delta and alpha does not result in a situation where the denominator
+    /// becomes zero - in such situations the resulting pixel-value is undefined. A good way to guard
+    /// against tiny variances is to regulate the expression with a small value for delta, for example
+    /// delta = 1/1024 = 0.0009765625.
+    ///
+    /// T(i,j) = (delta + alpha * VAR(i,j))
+    /// N      = kw * kh
+    ///
+    /// OutputGradient:
+    /// dZ/dX(i,j) =  ps * T(i,j)^(-beta) * ( dZ/dY(i,j) - (sum_{l,k in L(i),K(j)} dZ/dY(l,k) * (((p0/N) + (2*alpha*beta/N)*(X(k,l)-1)*(X(i,j)-M(i,j)*p0)/T(i,j)))) )
+    /// N is the kernel size. The window L(i) and K(j) itself is defined as:
+    /// L(i) = [i-floor((kw-1)/2), i+floor(kw/2]
+    /// K(j) = [j-floor((kh-1)/2), j+floor(kh/2]
+    ///
+    /// For correct gradient computation all parameters must be the same as the original normalization filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalizationgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -339,42 +572,71 @@ unsafe impl NSSecureCoding for MPSCNNLocalContrastNormalizationGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNLocalContrastNormalizationGradient {
+        /// The value of alpha.  Default is 0.0
+        ///
+        /// The default value 0.0 is not recommended and is
+        /// preserved for backwards compatibility. With alpha 0,
+        /// it performs a local mean subtraction. The
+        /// MPSCNNLocalContrastNormalizationNode used with
+        /// the MPSNNGraph uses 1.0 as a default.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
+        /// The value of beta.  Default is 0.5
         #[method(beta)]
         pub unsafe fn beta(&self) -> c_float;
 
+        /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
+        /// The value of delta.  Default is 1/1024
         #[method(delta)]
         pub unsafe fn delta(&self) -> c_float;
 
+        /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
+        /// The value of p0.  Default is 1.0
         #[method(p0)]
         pub unsafe fn p0(&self) -> c_float;
 
+        /// Setter for [`p0`][Self::p0].
         #[method(setP0:)]
         pub unsafe fn setP0(&self, p0: c_float);
 
+        /// The value of pm.  Default is 0.0
         #[method(pm)]
         pub unsafe fn pm(&self) -> c_float;
 
+        /// Setter for [`pm`][Self::pm].
         #[method(setPm:)]
         pub unsafe fn setPm(&self, pm: c_float);
 
+        /// The value of ps.  Default is 1.0
         #[method(ps)]
         pub unsafe fn ps(&self) -> c_float;
 
+        /// Setter for [`ps`][Self::ps].
         #[method(setPs:)]
         pub unsafe fn setPs(&self, ps: c_float);
 
+        /// Initialize a local contrast normalization filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `kernelWidth`: The width of the kernel
+        ///
+        /// Parameter `kernelHeight`: The height of the kernel
+        ///
+        /// Returns: A valid MPSCNNLocalContrastNormalization object or nil, if failure.
+        ///
+        /// NOTE:  For now, kernelWidth must be equal to kernelHeight
         #[method_id(@__retain_semantics Init initWithDevice:kernelWidth:kernelHeight:)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -383,6 +645,19 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -396,6 +671,13 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNLocalContrastNormalizationGradient {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: A pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -408,6 +690,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNLocalContrastNormalizationGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -429,7 +719,25 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalization?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the normalization filter across feature channels.
+    /// This normalization filter applies the filter to a local region across nearby feature channels,
+    /// but with no spatial extent (i.e., they have shape kernelSize x 1 x 1).
+    /// The normalized output is given by:
+    /// Y(i,j,k) = X(i,j,k) / L(i,j,k)^beta,
+    /// where the normalizing factor is:
+    /// L(i,j,k) = delta + alpha/N * (sum_{q in Q(k)} X(i,j,q)^2, where
+    /// N is the kernel size. The window Q(k) itself is defined as:
+    /// Q(k) = [max(0, k-floor(N/2)), min(D-1, k+floor((N-1)/2)], where
+    ///
+    /// k is the feature channel index (running from 0 to D-1) and
+    /// D is the number of feature channels, and alpha, beta and delta are paremeters.
+    /// It is the end-users responsibility to ensure that the combination of the
+    /// parameters delta and alpha does not result in a situation where the denominator
+    /// becomes zero - in such situations the resulting pixel-value is undefined.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalization?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -456,27 +764,41 @@ unsafe impl NSSecureCoding for MPSCNNCrossChannelNormalization {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNCrossChannelNormalization {
+        /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
+        /// The value of beta.  Default is 5.0
         #[method(beta)]
         pub unsafe fn beta(&self) -> c_float;
 
+        /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
+        /// The value of delta.  Default is 1.0
         #[method(delta)]
         pub unsafe fn delta(&self) -> c_float;
 
+        /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
+        /// The size of the square filter window.  Default is 5
         #[method(kernelSize)]
         pub unsafe fn kernelSize(&self) -> NSUInteger;
 
+        /// Initialize a local response normalization filter in a channel
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `kernelSize`: The kernel filter size in each dimension.
+        ///
+        /// Returns: A valid MPSCNNCrossChannelNormalization object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:kernelSize:)]
         pub unsafe fn initWithDevice_kernelSize(
             this: Allocated<Self>,
@@ -484,6 +806,19 @@ extern_methods!(
             kernel_size: NSUInteger,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -503,6 +838,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNCrossChannelNormalization {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -524,7 +867,32 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradient?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// Specifies the normalization gradient filter across feature channels.
+    /// This normalization filter applies the filter to a local region across nearby feature channels,
+    /// but with no spatial extent (i.e., they have shape kernelSize x 1 x 1).
+    /// The normalized output is given by:
+    /// Y(i,j,k) = X(i,j,k) / L(i,j,k)^beta,
+    /// where the normalizing factor is:
+    /// L(i,j,k) = delta + alpha/N * (sum_{q in Q(k)} X(i,j,q)^2, where
+    /// N is the kernel size. The window Q(k) itself is defined as:
+    /// Q(k) = [max(0, k-floor(N/2)), min(D-1, k+floor((N-1)/2)], where
+    ///
+    /// k is the feature channel index (running from 0 to D-1) and
+    /// D is the number of feature channels, and alpha, beta and delta are paremeters.
+    /// It is the end-users responsibility to ensure that the combination of the
+    /// parameters delta and alpha does not result in a situation where the denominator
+    /// becomes zero - in such situations the resulting pixel-value is undefined.
+    ///
+    /// OutputGradient:
+    /// dZ/dX(i,j,k) = dZ/dY(i,j,k) * (L(i,j,k)^-beta) - 2 * alpha * beta * X(i,j,k) * ( sum_{r in R(k)} dZ/dY(i,j,r) * X(i,j,r) * (L(i,j,r) ^ (-beta-1)) )
+    /// N is the kernel size. The window L(i) and K(j) itself is defined as:
+    /// R(k) = [max(0, k-floor((N-1)/2)), min(D-1, k+floor(N/2)]
+    ///
+    /// For correct gradient computation all parameters must be the same as the original normalization filter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
@@ -551,27 +919,41 @@ unsafe impl NSSecureCoding for MPSCNNCrossChannelNormalizationGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNCrossChannelNormalizationGradient {
+        /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
+        /// The value of beta.  Default is 5.0
         #[method(beta)]
         pub unsafe fn beta(&self) -> c_float;
 
+        /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
+        /// The value of delta.  Default is 1.0
         #[method(delta)]
         pub unsafe fn delta(&self) -> c_float;
 
+        /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
+        /// The size of the square filter window.  Default is 5
         #[method(kernelSize)]
         pub unsafe fn kernelSize(&self) -> NSUInteger;
 
+        /// Initialize a cross channel normalization gradient filter
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `kernelSize`: The kernel filter size in each dimension.
+        ///
+        /// Returns: A valid MPSCNNCrossChannelNormalization object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:kernelSize:)]
         pub unsafe fn initWithDevice_kernelSize(
             this: Allocated<Self>,
@@ -579,6 +961,19 @@ extern_methods!(
             kernel_size: NSUInteger,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -592,6 +987,13 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNCrossChannelNormalizationGradient {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: A pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -604,6 +1006,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
     unsafe impl MPSCNNCrossChannelNormalizationGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

@@ -28,6 +28,15 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKSourceQuery {
         #[cfg(all(feature = "HKObjectType", feature = "HKSource", feature = "block2"))]
+        /// Returns a query that will retrieve HKSources that have saved samples of the given type matching the
+        /// given predicate.
+        ///
+        ///
+        /// Parameter `sampleType`: The type of sample.
+        ///
+        /// Parameter `objectPredicate`: The predicate which samples must match.
+        ///
+        /// Parameter `completionHandler`: The block to be called when the query has finished executing.
         #[method_id(@__retain_semantics Init initWithSampleType:samplePredicate:completionHandler:)]
         pub unsafe fn initWithSampleType_samplePredicate_completionHandler(
             this: Allocated<Self>,

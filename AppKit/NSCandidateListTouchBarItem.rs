@@ -41,6 +41,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`client`][Self::client].
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&NSView>);
 
@@ -50,6 +51,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -59,12 +61,14 @@ extern_methods!(
         #[method(isCollapsed)]
         pub unsafe fn isCollapsed(&self) -> bool;
 
+        /// Setter for [`isCollapsed`][Self::isCollapsed].
         #[method(setCollapsed:)]
         pub unsafe fn setCollapsed(&self, collapsed: bool);
 
         #[method(allowsCollapsing)]
         pub unsafe fn allowsCollapsing(&self) -> bool;
 
+        /// Setter for [`allowsCollapsing`][Self::allowsCollapsing].
         #[method(setAllowsCollapsing:)]
         pub unsafe fn setAllowsCollapsing(&self, allows_collapsing: bool);
 
@@ -77,6 +81,7 @@ extern_methods!(
         #[method(allowsTextInputContextCandidates)]
         pub unsafe fn allowsTextInputContextCandidates(&self) -> bool;
 
+        /// Setter for [`allowsTextInputContextCandidates`][Self::allowsTextInputContextCandidates].
         #[method(setAllowsTextInputContextCandidates:)]
         pub unsafe fn setAllowsTextInputContextCandidates(
             &self,
@@ -92,6 +97,7 @@ extern_methods!(
         >;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`attributedStringForCandidate`][Self::attributedStringForCandidate].
         #[method(setAttributedStringForCandidate:)]
         pub unsafe fn setAttributedStringForCandidate(
             &self,
@@ -116,6 +122,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
+        /// Setter for [`customizationLabel`][Self::customizationLabel].
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }

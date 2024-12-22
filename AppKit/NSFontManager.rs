@@ -219,12 +219,14 @@ extern_methods!(
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method(action)]
         pub unsafe fn action(&self) -> Sel;
 
+        /// Setter for [`action`][Self::action].
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Sel);
 
@@ -232,6 +234,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "NSFontManager doesn't have any delegate method. This property should not be used."]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
@@ -317,6 +320,7 @@ extern_methods!(
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
     }

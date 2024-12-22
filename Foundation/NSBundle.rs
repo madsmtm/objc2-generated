@@ -416,6 +416,7 @@ extern_methods!(
         #[method(loadingPriority)]
         pub unsafe fn loadingPriority(&self) -> c_double;
 
+        /// Setter for [`loadingPriority`][Self::loadingPriority].
         #[method(setLoadingPriority:)]
         pub unsafe fn setLoadingPriority(&self, loading_priority: c_double);
 

@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenereplaceplacement?language=objc)
+    /// Background the scene of the provided scene session and replace it with the
+    /// activated scene. Closing the activated scene will result in the replaced
+    /// scene reappearing. The activated scene will be center aligned with the
+    /// replaced scene. There is no impact on the sizing of either scene.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenereplaceplacement?language=objc)
     #[unsafe(super(UIWindowScenePlacement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowScenePlacement")]
@@ -30,6 +35,8 @@ extern_methods!(
     #[cfg(feature = "UIWindowScenePlacement")]
     unsafe impl UIWindowSceneReplacePlacement {
         #[cfg(feature = "UISceneSession")]
+        /// Creates the placement that targets the given `sceneSession`
+        /// - Parameter sceneSession: The scene session of the window scene to replace.
         #[deprecated = "UIWindowSceneReplacePlacement has been replaced with UIWindowScenePushPlacement"]
         #[method_id(@__retain_semantics Other placementToReplaceSceneSession:)]
         pub unsafe fn placementToReplaceSceneSession(

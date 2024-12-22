@@ -29,6 +29,10 @@ extern_protocol!(
         #[method(presentationStyle)]
         unsafe fn presentationStyle(&self) -> UIModalPresentationStyle;
 
+        /// initiallyInteractive indicates whether the transition was initiated as an interactive transition.
+        /// It never changes during the course of a transition.
+        /// It can only be YES if isAnimated is YES.
+        /// If it is NO, then isInteractive can only be YES if isInterruptible is YES
         #[method(initiallyInteractive)]
         unsafe fn initiallyInteractive(&self) -> bool;
 

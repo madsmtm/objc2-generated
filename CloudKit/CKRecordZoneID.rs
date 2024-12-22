@@ -27,6 +27,7 @@ unsafe impl NSSecureCoding for CKRecordZoneID {}
 
 extern_methods!(
     unsafe impl CKRecordZoneID {
+        /// Zone names must be 255 characters or less. Most UTF-8 characters are valid.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 

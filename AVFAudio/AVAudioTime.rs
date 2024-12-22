@@ -10,7 +10,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiotime?language=objc)
+    /// Represent a moment in time.
+    ///
+    /// AVAudioTime is used in AVAudioEngine to represent time. Instances are immutable.
+    ///
+    /// A single moment in time may be represented in two different ways:
+    /// 1. mach_absolute_time(), the system's basic clock. Commonly referred to as "host time."
+    /// 2. audio samples at a particular sample rate
+    ///
+    /// A single AVAudioTime instance may contain either or both representations; it might
+    /// represent only a sample time, only a host time, or both.
+    ///
+    /// Rationale for using host time:
+    /// [a] internally we are using AudioTimeStamp, which uses host time, and it seems silly to divide
+    /// [b] it is consistent with a standard system timing service
+    /// [c] we do provide conveniences to convert between host ticks and seconds (host time divided by
+    /// frequency) so client code wanting to do what should be straightforward time computations can at
+    /// least not be cluttered by ugly multiplications and divisions by the host clock frequency.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiotime?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioTime;
@@ -77,35 +95,67 @@ extern_methods!(
             sample_rate: c_double,
         ) -> Retained<Self>;
 
+        /// Convert seconds to host time.
         #[method(hostTimeForSeconds:)]
         pub unsafe fn hostTimeForSeconds(seconds: NSTimeInterval) -> u64;
 
+        /// Convert host time to seconds.
         #[method(secondsForHostTime:)]
         pub unsafe fn secondsForHostTime(host_time: u64) -> NSTimeInterval;
 
+        /// Converts between host and sample time.
+        ///
+        /// Parameter `anchorTime`: An AVAudioTime with a more complete AudioTimeStamp than that of the receiver (self).
+        ///
+        /// Returns: the extrapolated time
+        ///
+        /// If anchorTime is an AVAudioTime where both host time and sample time are valid,
+        /// and self is another timestamp where only one of the two is valid, this method
+        /// returns a new AVAudioTime copied from self and where any additional valid fields provided by
+        /// the anchor are also valid.
+        ///
+        /// Note that the anchorTime must have both host and sample time valid, and self must have
+        /// sample rate and at least one of host or sample time valid. Otherwise this method returns nil.
+        ///
+        /// <pre>
+        /// // time0 has a valid audio sample representation, but no host time representation.
+        /// AVAudioTime *time0 = [AVAudioTime timeWithSampleTime: 0.0 atRate: 44100.0];
+        /// // anchor has a valid host time representation and sample time representation.
+        /// AVAudioTime *anchor = [player playerTimeForNodeTime: player.lastRenderTime];
+        /// // fill in valid host time representation
+        /// AVAudioTime *fullTime0 = [time0 extrapolateTimeFromAnchor: anchor];
+        /// </pre>
         #[method_id(@__retain_semantics Other extrapolateTimeFromAnchor:)]
         pub unsafe fn extrapolateTimeFromAnchor(
             &self,
             anchor_time: &AVAudioTime,
         ) -> Option<Retained<AVAudioTime>>;
 
+        /// Whether the hostTime property is valid.
         #[method(isHostTimeValid)]
         pub unsafe fn isHostTimeValid(&self) -> bool;
 
+        /// The host time.
         #[method(hostTime)]
         pub unsafe fn hostTime(&self) -> u64;
 
+        /// Whether the sampleTime and sampleRate properties are valid.
         #[method(isSampleTimeValid)]
         pub unsafe fn isSampleTimeValid(&self) -> bool;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// The time as a number of audio samples, as tracked by the current audio device.
         #[method(sampleTime)]
         pub unsafe fn sampleTime(&self) -> AVAudioFramePosition;
 
+        /// The sample rate at which sampleTime is being expressed.
         #[method(sampleRate)]
         pub unsafe fn sampleRate(&self) -> c_double;
 
         #[cfg(feature = "objc2-core-audio-types")]
+        /// The time expressed as an AudioTimeStamp structure.
+        ///
+        /// This may be useful for compatibility with lower-level CoreAudio and AudioToolbox API's.
         #[method(audioTimeStamp)]
         pub unsafe fn audioTimeStamp(&self) -> AudioTimeStamp;
     }

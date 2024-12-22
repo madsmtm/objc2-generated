@@ -15,6 +15,7 @@ extern_category!(
         unsafe fn icon(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`icon`][Self::icon].
         #[method(setIcon:)]
         unsafe fn setIcon(&self, icon: Option<&NSImage>);
     }

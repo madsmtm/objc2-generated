@@ -92,6 +92,7 @@ extern_methods!(
         pub unsafe fn requestTimeout(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
+        /// Setter for [`requestTimeout`][Self::requestTimeout].
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(setRequestTimeout:)]
         pub unsafe fn setRequestTimeout(&self, request_timeout: NSTimeInterval);
@@ -102,6 +103,7 @@ extern_methods!(
         pub unsafe fn replyTimeout(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
+        /// Setter for [`replyTimeout`][Self::replyTimeout].
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(setReplyTimeout:)]
         pub unsafe fn setReplyTimeout(&self, reply_timeout: NSTimeInterval);
@@ -110,6 +112,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rootObject)]
         pub unsafe fn rootObject(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`rootObject`][Self::rootObject].
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(setRootObject:)]
         pub unsafe fn setRootObject(&self, root_object: Option<&AnyObject>);
@@ -119,6 +122,7 @@ extern_methods!(
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn NSConnectionDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -130,6 +134,7 @@ extern_methods!(
         #[method(independentConversationQueueing)]
         pub unsafe fn independentConversationQueueing(&self) -> bool;
 
+        /// Setter for [`independentConversationQueueing`][Self::independentConversationQueueing].
         #[deprecated = "Use NSXPCConnection instead"]
         #[method(setIndependentConversationQueueing:)]
         pub unsafe fn setIndependentConversationQueueing(

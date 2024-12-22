@@ -50,6 +50,7 @@ extern_methods!(
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "objc2-core-location")]
+        /// Setter for [`coordinate`][Self::coordinate].
         #[method(setCoordinate:)]
         pub unsafe fn setCoordinate(&self, coordinate: CLLocationCoordinate2D);
     }

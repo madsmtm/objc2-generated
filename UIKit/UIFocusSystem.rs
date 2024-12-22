@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussystem?language=objc)
+    /// UIFocusSystem instances manage focus state within a part of the user interface. They are in charge of tracking the current focused item, as well as processing focus updates.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussystem?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -20,6 +22,7 @@ unsafe impl NSObjectProtocol for UIFocusSystem {}
 extern_methods!(
     unsafe impl UIFocusSystem {
         #[cfg(feature = "UIFocus")]
+        /// The currently focused item in this focus system.
         #[method_id(@__retain_semantics Other focusedItem)]
         pub unsafe fn focusedItem(&self) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
 
@@ -36,16 +39,20 @@ extern_methods!(
         ) -> Option<Retained<UIFocusSystem>>;
 
         #[cfg(feature = "UIFocus")]
+        /// Requests a focus update to the specified environment. If accepted, the focus update will happen
+        /// in the next run loop cycle.
         #[method(requestFocusUpdateToEnvironment:)]
         pub unsafe fn requestFocusUpdateToEnvironment(
             &self,
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
         );
 
+        /// Forces any pending focus update to be committed immediately.
         #[method(updateFocusIfNeeded)]
         pub unsafe fn updateFocusIfNeeded(&self);
 
         #[cfg(feature = "UIFocus")]
+        /// Returns true if `environment` is an ancestor of `otherEnvironment`, or false if otherwise.
         #[method(environment:containsEnvironment:)]
         pub unsafe fn environment_containsEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
@@ -58,6 +65,7 @@ extern_methods!(
     /// Sound
     unsafe impl UIFocusSystem {
         #[cfg(feature = "UIFocus")]
+        /// Registers a sound file for a given identifier.
         #[method(registerURL:forSoundIdentifier:)]
         pub unsafe fn registerURL_forSoundIdentifier(
             sound_file_url: &NSURL,
@@ -75,6 +83,7 @@ extern_methods!(
         feature = "UIWindowScene"
     ))]
     unsafe impl UIWindowScene {
+        /// Returns the focus system that is responsible for this scene or nil if this scene does not support focus.
         #[method_id(@__retain_semantics Other focusSystem)]
         pub unsafe fn focusSystem(&self) -> Option<Retained<UIFocusSystem>>;
     }

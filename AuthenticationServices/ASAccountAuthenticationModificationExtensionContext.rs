@@ -19,6 +19,15 @@ unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationExtensionCon
 extern_methods!(
     unsafe impl ASAccountAuthenticationModificationExtensionContext {
         #[cfg(all(feature = "ASAuthorizationAppleIDCredential", feature = "block2"))]
+        /// Retrieves a Sign in with Apple credential from the system.
+        ///
+        /// Parameter `state`: Can be specified to enhance security. State is returned in the ASAuthorizationAppleIDCredential.
+        ///
+        /// Parameter `nonce`: Can be specified to enhance security. The returned identityToken on the ASAuthorizationAppleIDCredential can be exchanged with the server for the nonce.
+        ///
+        /// Calling this method will cause the system Sign in with Apple upgrade sheet
+        /// to appear. If extension UI is showing when this method is called, the extension UI will be
+        /// dismissed before the sheet is presented.
         #[method(getSignInWithAppleUpgradeAuthorizationWithState:nonce:completionHandler:)]
         pub unsafe fn getSignInWithAppleUpgradeAuthorizationWithState_nonce_completionHandler(
             &self,
@@ -29,6 +38,13 @@ extern_methods!(
             >,
         );
 
+        /// Confirms successful completion of a Sign in with Apple upgrade.
+        ///
+        /// Parameter `userInfo`: For upgrades invoked within the extension's containing app, any
+        /// information the extension wants to pass back to the app.
+        ///
+        /// Once a Sign in with Apple upgrade is completed, the system will delete
+        /// the password-based credential from the Keychain, if it is saved there.
         #[method(completeUpgradeToSignInWithAppleWithUserInfo:)]
         pub unsafe fn completeUpgradeToSignInWithAppleWithUserInfo(
             &self,
@@ -36,6 +52,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "ASPasswordCredential")]
+        /// Confirms successful completion of a strong password upgrade.
+        ///
+        /// Parameter `updatedCredential`: contains the account username and new password.
+        ///
+        /// Parameter `userInfo`: For upgrades invoked within the extension's containing app, any
+        /// information the extension wants to pass back to the app.
         #[method(completeChangePasswordRequestWithUpdatedCredential:userInfo:)]
         pub unsafe fn completeChangePasswordRequestWithUpdatedCredential_userInfo(
             &self,
@@ -43,6 +65,7 @@ extern_methods!(
             user_info: Option<&NSDictionary>,
         );
 
+        /// Used to either ask for user interaction in a request or to fail a request.
         #[method(cancelRequestWithError:)]
         pub unsafe fn cancelRequestWithError(&self, error: &NSError);
     }

@@ -49,6 +49,7 @@ extern_methods!(
         pub unsafe fn executableURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
+        /// Setter for [`executableURL`][Self::executableURL].
         #[method(setExecutableURL:)]
         pub unsafe fn setExecutableURL(&self, executable_url: Option<&NSURL>);
 
@@ -57,6 +58,7 @@ extern_methods!(
         pub unsafe fn arguments(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
+        /// Setter for [`arguments`][Self::arguments].
         #[method(setArguments:)]
         pub unsafe fn setArguments(&self, arguments: Option<&NSArray<NSString>>);
 
@@ -65,6 +67,7 @@ extern_methods!(
         pub unsafe fn environment(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Setter for [`environment`][Self::environment].
         #[method(setEnvironment:)]
         pub unsafe fn setEnvironment(&self, environment: Option<&NSDictionary<NSString, NSString>>);
 
@@ -73,6 +76,7 @@ extern_methods!(
         pub unsafe fn currentDirectoryURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
+        /// Setter for [`currentDirectoryURL`][Self::currentDirectoryURL].
         #[method(setCurrentDirectoryURL:)]
         pub unsafe fn setCurrentDirectoryURL(&self, current_directory_url: Option<&NSURL>);
 
@@ -81,24 +85,28 @@ extern_methods!(
         pub unsafe fn launchRequirementData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSData")]
+        /// Setter for [`launchRequirementData`][Self::launchRequirementData].
         #[method(setLaunchRequirementData:)]
         pub unsafe fn setLaunchRequirementData(&self, launch_requirement_data: Option<&NSData>);
 
         #[method_id(@__retain_semantics Other standardInput)]
         pub unsafe fn standardInput(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`standardInput`][Self::standardInput].
         #[method(setStandardInput:)]
         pub unsafe fn setStandardInput(&self, standard_input: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other standardOutput)]
         pub unsafe fn standardOutput(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`standardOutput`][Self::standardOutput].
         #[method(setStandardOutput:)]
         pub unsafe fn setStandardOutput(&self, standard_output: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other standardError)]
         pub unsafe fn standardError(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`standardError`][Self::standardError].
         #[method(setStandardError:)]
         pub unsafe fn setStandardError(&self, standard_error: Option<&AnyObject>);
 
@@ -135,6 +143,7 @@ extern_methods!(
         pub unsafe fn terminationHandler(&self) -> *mut block2::Block<dyn Fn(NonNull<NSTask>)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`terminationHandler`][Self::terminationHandler].
         #[method(setTerminationHandler:)]
         pub unsafe fn setTerminationHandler(
             &self,
@@ -146,6 +155,7 @@ extern_methods!(
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
         #[cfg(feature = "NSObjCRuntime")]
+        /// Setter for [`qualityOfService`][Self::qualityOfService].
         #[method(setQualityOfService:)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
     }
@@ -191,6 +201,7 @@ extern_methods!(
         pub unsafe fn launchPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`launchPath`][Self::launchPath].
         #[deprecated]
         #[method(setLaunchPath:)]
         pub unsafe fn setLaunchPath(&self, launch_path: Option<&NSString>);
@@ -201,6 +212,7 @@ extern_methods!(
         pub unsafe fn currentDirectoryPath(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`currentDirectoryPath`][Self::currentDirectoryPath].
         #[deprecated]
         #[method(setCurrentDirectoryPath:)]
         pub unsafe fn setCurrentDirectoryPath(&self, current_directory_path: &NSString);

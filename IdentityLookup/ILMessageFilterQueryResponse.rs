@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilterqueryresponse?language=objc)
+    /// A response to an ILMessageFilterQueryRequest.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilterqueryresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILMessageFilterQueryResponse;
@@ -23,18 +25,22 @@ unsafe impl NSSecureCoding for ILMessageFilterQueryResponse {}
 extern_methods!(
     unsafe impl ILMessageFilterQueryResponse {
         #[cfg(feature = "ILMessageFilterAction")]
+        /// Action to take for the received message.
         #[method(action)]
         pub unsafe fn action(&self) -> ILMessageFilterAction;
 
         #[cfg(feature = "ILMessageFilterAction")]
+        /// Setter for [`action`][Self::action].
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: ILMessageFilterAction);
 
         #[cfg(feature = "ILMessageFilterAction")]
+        /// SubAction to take for the received message.
         #[method(subAction)]
         pub unsafe fn subAction(&self) -> ILMessageFilterSubAction;
 
         #[cfg(feature = "ILMessageFilterAction")]
+        /// Setter for [`subAction`][Self::subAction].
         #[method(setSubAction:)]
         pub unsafe fn setSubAction(&self, sub_action: ILMessageFilterSubAction);
     }

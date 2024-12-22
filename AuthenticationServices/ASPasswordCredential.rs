@@ -30,6 +30,11 @@ unsafe impl NSSecureCoding for ASPasswordCredential {}
 
 extern_methods!(
     unsafe impl ASPasswordCredential {
+        /// Initializes an ASPasswordCredential object.
+        ///
+        /// Parameter `user`: the user.
+        ///
+        /// Parameter `password`: the password.
         #[method_id(@__retain_semantics Init initWithUser:password:)]
         pub unsafe fn initWithUser_password(
             this: Allocated<Self>,
@@ -37,15 +42,26 @@ extern_methods!(
             password: &NSString,
         ) -> Retained<Self>;
 
+        /// Creates and initializes a new ASPasswordCredential object.
+        ///
+        /// Parameter `user`: the user.
+        ///
+        /// Parameter `password`: the password.
         #[method_id(@__retain_semantics Other credentialWithUser:password:)]
         pub unsafe fn credentialWithUser_password(
             user: &NSString,
             password: &NSString,
         ) -> Retained<Self>;
 
+        /// The user name of this credential.
+        ///
+        /// Returns: The user string.
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Retained<NSString>;
 
+        /// The password of this credential.
+        ///
+        /// Returns: The password string.
         #[method_id(@__retain_semantics Other password)]
         pub unsafe fn password(&self) -> Retained<NSString>;
     }

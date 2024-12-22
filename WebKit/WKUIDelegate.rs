@@ -54,7 +54,9 @@ unsafe impl RefEncode for WKMediaCaptureType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdialogresult?language=objc)
+/// Constants returned by showLockdownModeFirstUseMessage to indicate how WebKit should treat first use.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdialogresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -77,7 +79,10 @@ unsafe impl RefEncode for WKDialogResult {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuidelegate?language=objc)
+    /// A class conforming to the WKUIDelegate protocol provides methods for
+    /// presenting native UI on behalf of a webpage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuidelegate?language=objc)
     pub unsafe trait WKUIDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "WKNavigationAction",
@@ -87,6 +92,23 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Creates a new web view.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `configuration`: The configuration to use when creating the new web
+        /// view. This configuration is a copy of webView.configuration.
+        ///
+        /// Parameter `navigationAction`: The navigation action causing the new web view to
+        /// be created.
+        ///
+        /// Parameter `windowFeatures`: Window features requested by the webpage.
+        ///
+        /// Returns: A new web view or nil.
+        ///
+        /// The web view returned must be created with the specified configuration. WebKit will load the request in the returned web view.
+        ///
+        /// If you do not implement this method, the web view will cancel the navigation.
         #[optional]
         #[method_id(@__retain_semantics Other webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:)]
         unsafe fn webView_createWebViewWithConfiguration_forNavigationAction_windowFeatures(
@@ -99,6 +121,12 @@ extern_protocol!(
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Notifies your app that the DOM window object's close() method completed successfully.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Your app should remove the web view from the view hierarchy and update
+        /// the UI as needed, such as by closing the containing browser tab or window.
         #[optional]
         #[method(webViewDidClose:)]
         unsafe fn webViewDidClose(&self, web_view: &WKWebView);
@@ -110,6 +138,24 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Displays a JavaScript alert panel.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `message`: The message to display.
+        ///
+        /// Parameter `frame`: Information about the frame whose JavaScript initiated this
+        /// call.
+        ///
+        /// Parameter `completionHandler`: The completion handler to call after the alert
+        /// panel has been dismissed.
+        ///
+        /// For user security, your app should call attention to the fact
+        /// that a specific website controls the content in this panel. A simple forumla
+        /// for identifying the controlling website is frame.request.URL.host.
+        /// The panel should have a single OK button.
+        ///
+        /// If you do not implement this method, the web view will behave as if the user selected the OK button.
         #[optional]
         #[method(webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:completionHandler:)]
         unsafe fn webView_runJavaScriptAlertPanelWithMessage_initiatedByFrame_completionHandler(
@@ -127,6 +173,24 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Displays a JavaScript confirm panel.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `message`: The message to display.
+        ///
+        /// Parameter `frame`: Information about the frame whose JavaScript initiated this call.
+        ///
+        /// Parameter `completionHandler`: The completion handler to call after the confirm
+        /// panel has been dismissed. Pass YES if the user chose OK, NO if the user
+        /// chose Cancel.
+        ///
+        /// For user security, your app should call attention to the fact
+        /// that a specific website controls the content in this panel. A simple forumla
+        /// for identifying the controlling website is frame.request.URL.host.
+        /// The panel should have two buttons, such as OK and Cancel.
+        ///
+        /// If you do not implement this method, the web view will behave as if the user selected the Cancel button.
         #[optional]
         #[method(webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:completionHandler:)]
         unsafe fn webView_runJavaScriptConfirmPanelWithMessage_initiatedByFrame_completionHandler(
@@ -144,6 +208,27 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Displays a JavaScript text input panel.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `prompt`: The prompt to display.
+        ///
+        /// Parameter `defaultText`: The initial text to display in the text entry field.
+        ///
+        /// Parameter `frame`: Information about the frame whose JavaScript initiated this call.
+        ///
+        /// Parameter `completionHandler`: The completion handler to call after the text
+        /// input panel has been dismissed. Pass the entered text if the user chose
+        /// OK, otherwise nil.
+        ///
+        /// For user security, your app should call attention to the fact
+        /// that a specific website controls the content in this panel. A simple forumla
+        /// for identifying the controlling website is frame.request.URL.host.
+        /// The panel should have two buttons, such as OK and Cancel, and a field in
+        /// which to enter text.
+        ///
+        /// If you do not implement this method, the web view will behave as if the user selected the Cancel button.
         #[optional]
         #[method(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:completionHandler:)]
         unsafe fn webView_runJavaScriptTextInputPanelWithPrompt_defaultText_initiatedByFrame_completionHandler(
@@ -163,6 +248,19 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// A delegate to request permission for microphone audio and camera video access.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `origin`: The origin of the page.
+        ///
+        /// Parameter `frame`: Information about the frame whose JavaScript initiated this call.
+        ///
+        /// Parameter `type`: The type of capture (camera, microphone).
+        ///
+        /// Parameter `decisionHandler`: The completion handler to call once the decision is made
+        ///
+        /// If not implemented, the result is the same as calling the decisionHandler with WKPermissionDecisionPrompt.
         #[optional]
         #[method(webView:requestMediaCapturePermissionForOrigin:initiatedByFrame:type:decisionHandler:)]
         unsafe fn webView_requestMediaCapturePermissionForOrigin_initiatedByFrame_type_decisionHandler(
@@ -182,6 +280,13 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Allows your app to determine whether or not the given security origin should have access to the device's orientation and motion.
+        ///
+        /// Parameter `securityOrigin`: The security origin which requested access to the device's orientation and motion.
+        ///
+        /// Parameter `frame`: The frame that initiated the request.
+        ///
+        /// Parameter `decisionHandler`: The decision handler to call once the app has made its decision.
         #[optional]
         #[method(webView:requestDeviceOrientationAndMotionPermissionForOrigin:initiatedByFrame:decisionHandler:)]
         unsafe fn webView_requestDeviceOrientationAndMotionPermissionForOrigin_initiatedByFrame_decisionHandler(
@@ -200,6 +305,17 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Displays a file upload panel.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `parameters`: Parameters describing the file upload control.
+        ///
+        /// Parameter `frame`: Information about the frame whose file upload control initiated this call.
+        ///
+        /// Parameter `completionHandler`: The completion handler to call after open panel has been dismissed. Pass the selected URLs if the user chose OK, otherwise nil.
+        ///
+        /// If you do not implement this method, the web view will behave as if the user selected the Cancel button.
         #[optional]
         #[method(webView:runOpenPanelWithParameters:initiatedByFrame:completionHandler:)]
         unsafe fn webView_runOpenPanelWithParameters_initiatedByFrame_completionHandler(

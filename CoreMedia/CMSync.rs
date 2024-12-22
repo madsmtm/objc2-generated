@@ -7,10 +7,37 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclockref?language=objc)
+/// A timing source object.
+///
+/// A clock represents a source of time information: generally, a piece of hardware that measures the passage of time.
+/// One example of a clock is the host time clock, accessible via CMClockGetHostTimeClock().
+/// It measures time using the CPU system clock, which on Mac OS X is mach_absolute_time().
+/// Every audio device can also be considered a clock since the audio samples that it outputs or inputs each have a
+/// defined duration (eg, 1/48000 of a second for 48 kHz audio).
+///
+/// CMClocks are read-only: they cannot be stopped or started, and the current time cannot be set.
+/// A CMClock has one primary function, CMClockGetTime, which tells what time it is now.
+/// Additionally, the CMSync infrastructure monitors relative drift between CMClocks.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclockref?language=objc)
 pub type CMClockRef = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimebaseref?language=objc)
+/// Models a timeline under application control.
+///
+/// A timebase represents a timeline that clients can control by setting the rate and time.
+/// Each timebase has either a source clock or a source timebase (previously referred to as a master clock or master timebase).
+/// The rate of the timebase is expressed relative to its source.
+/// When a timebase has rate 0.0, its time is fixed and does not change as its source's time changes.
+/// When a timebase has rate 1.0, its time increases one second as its source's time increases by one second.
+/// When a timebase has rate 2.0, its time increases two seconds as its source's time increases by one second.
+/// When a timebase has rate -1.0, its time decreases one second as its source's time increases by one second.
+///
+/// If a timebase has a source timebase, the source timebase's rate is a factor in determining the timebase's effective rate.
+/// In fact, a timebase's effective rate is defined as the product of its rate, its source timebase's rate,
+/// its source timebase's source timebase's rate, and so on up to the ultimate source clock.  This is the rate at which
+/// the timebase's time changes relative to the ultimate source clock.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimebaseref?language=objc)
 pub type CMTimebaseRef = *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclockortimebaseref?language=objc)
@@ -47,30 +74,51 @@ pub const kCMSyncError_AllocationFailed: OSStatus = -12754;
 pub const kCMSyncError_RateMustBeNonZero: OSStatus = -12755;
 
 extern "C-unwind" {
+    /// Returns the CFTypeID for CMClock.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMClockGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
+    /// Returns a reference to the singleton clock logically identified with host time.
+    ///
+    /// On Mac OS X, the host time clock uses mach_absolute_time but returns a value
+    /// with a large integer timescale (eg, nanoseconds).
     pub fn CMClockGetHostTimeClock() -> CMClockRef;
 }
 
 extern "C-unwind" {
+    /// Converts a host time from CMTime to the host time's native units.
+    ///
+    /// This function performs a scale conversion, not a clock conversion.
+    /// It can be more accurate than CMTimeConvertScale because the system units may
+    /// have a non-integer timescale.
+    /// On Mac OS X, this function converts to the units of mach_absolute_time.
     #[cfg(feature = "CMTime")]
     pub fn CMClockConvertHostTimeToSystemUnits(host_time: CMTime) -> u64;
 }
 
 extern "C-unwind" {
+    /// Converts a host time from native units to CMTime.
+    ///
+    /// The returned value will have a large integer timescale (eg, nanoseconds).
+    /// This function handles situations where host time's native units use a
+    /// non-integer timescale.
+    /// On Mac OS X, this function converts from the units of mach_absolute_time.
     #[cfg(feature = "CMTime")]
     pub fn CMClockMakeHostTimeFromSystemUnits(host_time: u64) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Retrieves the current time from a clock.
     #[cfg(feature = "CMTime")]
     pub fn CMClockGetTime(clock: CMClockRef) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Retrieves the current time from a clock and also the matching time from the clock's reference clock.
+    ///
+    /// To make practical use of this, you may need to know what the clock's reference clock is.
     #[cfg(feature = "CMTime")]
     pub fn CMClockGetAnchorTime(
         clock: CMClockRef,
@@ -80,14 +128,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Indicates whether it is possible for two clocks to drift relative to each other.
     pub fn CMClockMightDrift(clock: CMClockRef, other_clock: CMClockRef) -> Boolean;
 }
 
 extern "C-unwind" {
+    /// Makes the clock stop functioning.
+    ///
+    /// After invalidation, the clock will return errors from all APIs.
+    /// This should only be called by the "owner" of the clock, who knows (for example) that some piece of hardware
+    /// has gone away, and the clock will no longer work (and might even crash).
     pub fn CMClockInvalidate(clock: CMClockRef);
 }
 
 extern "C-unwind" {
+    /// Returns the CFTypeID for CMTimebase.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTimebaseGetTypeID() -> CFTypeID;
 }
@@ -146,22 +201,38 @@ extern "C-unwind" {
 // TODO: pub fn CMTimebaseCopyUltimateSourceClock(timebase: CMTimebaseRef,) -> CMClockRef;
 
 extern "C-unwind" {
+    /// Returns the immediate source timebase of a timebase.
+    ///
+    /// Returns NULL if the timebase actually has a source clock instead of a source timebase.
+    /// Please use CMTimebaseCopySourceTimebase instead.
     #[deprecated]
     pub fn CMTimebaseGetMasterTimebase(timebase: CMTimebaseRef) -> CMTimebaseRef;
 }
 
 extern "C-unwind" {
+    /// Returns the immediate source clock of a timebase.
+    ///
+    /// Returns NULL if the timebase actually has a source timebase instead of a source clock.
+    /// Please use CMTimebaseCopySourceClock instead.
     #[deprecated]
     pub fn CMTimebaseGetMasterClock(timebase: CMTimebaseRef) -> CMClockRef;
 }
 
 extern "C-unwind" {
+    /// Returns the immediate source (either timebase or clock) of a timebase.
+    ///
+    /// Only returns NULL if there was an error (such as timebase == NULL).
+    /// Example of use: time = CMSyncGetTime(CMTimebaseGetMaster(timebase));
+    /// Please use CMTimebaseCopySource instead.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn CMTimebaseGetMaster(timebase: CMTimebaseRef) -> CMClockOrTimebaseRef;
 }
 
 extern "C-unwind" {
+    /// Returns the source clock that is the source of all of a timebase's source timebases.
+    ///
+    /// Please use CMTimebaseCopyUltimateSourceClock instead.
     #[deprecated]
     pub fn CMTimebaseGetUltimateMasterClock(timebase: CMTimebaseRef) -> CMClockRef;
 }
@@ -187,11 +258,13 @@ extern "C-unwind" {
 // TODO: pub fn CMTimebaseSetSourceTimebase(timebase: CMTimebaseRef,new_source_timebase: CMTimebaseRef,) -> OSStatus;
 
 extern "C-unwind" {
+    /// Retrieves the current time from a timebase.
     #[cfg(feature = "CMTime")]
     pub fn CMTimebaseGetTime(timebase: CMTimebaseRef) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Retrieves the current time from a timebase in the specified timescale.
     #[cfg(feature = "CMTime")]
     pub fn CMTimebaseGetTimeWithTimeScale(
         timebase: CMTimebaseRef,
@@ -201,11 +274,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the current time of a timebase.
     #[cfg(feature = "CMTime")]
     pub fn CMTimebaseSetTime(timebase: CMTimebaseRef, time: CMTime) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Sets the time of a timebase at a particular source time.
+    ///
+    /// CMTimebaseGetTime's results will be interpolated from that anchor time.
+    /// CMTimebaseSetTime(timebase, time) is equivalent to calling
+    /// CMClockOrTimebaseRef source = CMTimebaseCopySource(timebase);
+    /// CMTimebaseSetAnchorTime(timebase, time, CMSyncGetTime(source));
+    /// CFRelease(source).
     #[cfg(feature = "CMTime")]
     pub fn CMTimebaseSetAnchorTime(
         timebase: CMTimebaseRef,
@@ -215,10 +296,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retrieves the current rate of a timebase.
+    ///
+    /// This is the rate relative to its immediate source clock or timebase.
+    /// For example, if a timebase is running at twice the rate of its source, its rate is 2.0.
     pub fn CMTimebaseGetRate(timebase: CMTimebaseRef) -> f64;
 }
 
 extern "C-unwind" {
+    /// Retrieves the current time and rate of a timebase.
+    ///
+    /// You can use this function to take a consistent snapshot of the two values,
+    /// avoiding possible inconsistencies due to external changes between retrieval of time and rate.
     #[cfg(feature = "CMTime")]
     pub fn CMTimebaseGetTimeAndRate(
         timebase: CMTimebaseRef,
@@ -228,10 +317,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the rate of a timebase.
     pub fn CMTimebaseSetRate(timebase: CMTimebaseRef, rate: f64) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Sets the time of a timebase at a particular source time, and changes the rate at exactly that time.
+    ///
+    /// CMTimebaseGetTime's results will be interpolated from that anchor time as though the timebase
+    /// has been running at the requested rate since that time.
+    /// CMTimebaseSetRate(timebase, rate) is approximately equivalent to calling
+    /// CMClockOrTimebaseRef source = CMTimebaseCopySource(timebase);
+    /// CMTimebaseSetRateAndAnchorTime(timebase, rate, CMTimebaseGetTime(timebase), CMSyncGetTime(source)),
+    /// CFRelease(source);
+    /// except that CMTimebaseSetRate will not generate a TimeJumped notification, and
+    /// CMTimebaseSetRateAndAnchorTime will.
     #[cfg(feature = "CMTime")]
     pub fn CMTimebaseSetRateAndAnchorTime(
         timebase: CMTimebaseRef,
@@ -242,10 +342,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the effective rate of a timebase (which combines its rate with the rates of all its source timebases).
+    ///
+    /// Calling CMTimebaseGetEffectiveRate(timebase) is equivalent to calling
+    /// CMClockRef clock = CMTimebaseCopyUltimateSourceClock(timebase);
+    /// CMSyncGetRelativeRate(timebase, clock).
+    /// CFRelease(clock);
     pub fn CMTimebaseGetEffectiveRate(timebase: CMTimebaseRef) -> f64;
 }
 
 extern "C-unwind" {
+    /// Adds the timer to the list of timers managed by the timebase.
+    ///
+    /// The timer must be a repeating run loop timer (with a very long interval at
+    /// least as long as kCMTimebaseVeryLongCFTimeInterval), attached to a runloop.
+    /// The timebase will retain the timer, and will maintain its "NextFireDate"
+    /// according to the CMTime set using CMTimebaseSetTimerNextFireTime.
+    /// Until the first call to CMTimebaseSetTimerNextFireTime, the "NextFireDate"
+    /// will be set far, far in the future. The runloop that timer is attached to must be
+    /// passed in and the timebase will retain that runloop. The retained runloop will be
+    /// used to call CFRunLoopWakeUp() any time the timebase modifies the timer's fire date.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTimebaseAddTimer(
         timebase: CMTimebaseRef,
@@ -255,11 +371,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes the timer from the list of timers managed by the timebase.
+    ///
+    /// The timebase will no longer maintain the timer's "NextFireDate".
+    /// If the timer is invalidated, the timebase will eventually remove it
+    /// from its list and release it even if this function is not called.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTimebaseRemoveTimer(timebase: CMTimebaseRef, timer: CFRunLoopTimerRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Sets the CMTime on the timebase's timeline at which the timer should next be fired.
+    ///
+    /// The timer must be on the list of timers managed by the timebase.
+    /// The timebase will continue to update the timer's "NextFireDate" according to time jumps
+    /// and effective rate changes.
+    /// If fireTime is not numeric, or if the timebase is not moving, the "NextFireDate"
+    /// will be set to a date far, far in the future.
+    /// <BR
+    /// >
+    /// IMPORTANT NOTE: Due to the way that CFRunLoopTimers are implemented, if a timer passes
+    /// through a state in which it is due to fire, it may fire even if its rescheduled before
+    /// the runloop runs again.  Clients should take care to avoid temporarily scheduling timers
+    /// in the past.  For example, set the timebase's rate or time before you set the timer's
+    /// next fire time, if you are doing both at once.  (If setting the timebase's rate or time
+    /// might put the timer's fire time in the past, you may need to set the fire time to
+    /// kCMTimeInvalid across the timebase change.)
     #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
     pub fn CMTimebaseSetTimerNextFireTime(
         timebase: CMTimebaseRef,
@@ -270,6 +407,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the timer to fire immediately once, overriding any previous CMTimebaseSetTimerNextFireTime call.
+    ///
+    /// The timer must be on the list of timers managed by the timebase.
+    /// This is equivalent to calling
+    /// CFRunLoopTimerSetNextFireDate( timer, CFAbsoluteTimeGetCurrent() );
+    /// except that the timebase gets to know that it shouldn't interfere.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTimebaseSetTimerToFireImmediately(
         timebase: CMTimebaseRef,
@@ -278,6 +421,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Queries the relative rate of one timebase or clock relative to another timebase or clock.
+    ///
+    /// If both have a common source, this calculation is performed purely based on the rates in the common tree
+    /// rooted in that source.
+    /// If they have different source clocks (or are both clocks), this calculation takes into account the measured
+    /// drift between the two clocks, using host time as a pivot.
+    /// The rate of a moving timebase relative to a stopped timebase is a NaN.
+    /// Calling CMTimebaseGetEffectiveRate(timebase) is equivalent to calling
+    /// CMClockRef clock = CMTimebaseCopyUltimateSourceClock(timebase);
+    /// CMSyncGetRelativeRate(timebase, clock).
+    /// CFRelease(clock);
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMSyncGetRelativeRate(
         of_clock_or_timebase: CMClockOrTimebaseRef,
@@ -286,6 +440,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Queries the relative rate of one timebase or clock relative to another timebase or clock and the times of each timebase or clock at which the relative rate went into effect.
+    ///
+    /// If both have a common source, this calculation is performed purely based on the rates in the common tree
+    /// rooted in that source.
+    /// If they have different source clocks (or are both clocks), this calculation takes into account the measured
+    /// drift between the two clocks, using host time as a pivot.
+    /// The rate of a moving timebase relative to a stopped timebase is a NaN.
     #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
     pub fn CMSyncGetRelativeRateAndAnchorTime(
         of_clock_or_timebase: CMClockOrTimebaseRef,
@@ -297,6 +458,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a time from one timebase or clock to another timebase or clock.
+    ///
+    /// If both have a common source, this calculation is performed purely based on the mathematical rates and offsets
+    /// in the common tree rooted in that source.
+    /// If they have different source clocks (or are both clocks), this calculation also compensates
+    /// for measured drift between the clocks.
+    /// To convert to or from host time, pass CMClockGetHostTimeClock() as the appropriate argument.
     #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
     pub fn CMSyncConvertTime(
         time: CMTime,
@@ -306,6 +474,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Reports whether it is possible for one timebase/clock to drift relative to the other.
+    ///
+    /// A timebase can drift relative to another if their ultimate source clocks that can drift relative
+    /// to each other.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMSyncMightDrift(
         clock_or_timebase1: CMClockOrTimebaseRef,
@@ -314,11 +486,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// A helper function to get time from a clock or timebase.
+    ///
+    /// CMSyncGetTime simply calls either CMClockGetTime or CMTimebaseGetTime, as appropriate.
+    /// It comes in handy for things like:
+    /// CMClockOrTimebaseRef source = CMTimebaseCopySource(timebase);
+    /// CMSyncGetTime(source);
+    /// CFRelease(source);
     #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
     pub fn CMSyncGetTime(clock_or_timebase: CMClockOrTimebaseRef) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Requests that the timebase wait until it is not posting any notifications.
     pub fn CMTimebaseNotificationBarrier(timebase: CMTimebaseRef) -> OSStatus;
 }
 

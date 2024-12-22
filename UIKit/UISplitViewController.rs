@@ -260,6 +260,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UISplitViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -269,12 +270,14 @@ extern_methods!(
         #[method(showsSecondaryOnlyButton)]
         pub unsafe fn showsSecondaryOnlyButton(&self) -> bool;
 
+        /// Setter for [`showsSecondaryOnlyButton`][Self::showsSecondaryOnlyButton].
         #[method(setShowsSecondaryOnlyButton:)]
         pub unsafe fn setShowsSecondaryOnlyButton(&self, shows_secondary_only_button: bool);
 
         #[method(preferredSplitBehavior)]
         pub unsafe fn preferredSplitBehavior(&self) -> UISplitViewControllerSplitBehavior;
 
+        /// Setter for [`preferredSplitBehavior`][Self::preferredSplitBehavior].
         #[method(setPreferredSplitBehavior:)]
         pub unsafe fn setPreferredSplitBehavior(
             &self,
@@ -306,12 +309,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other viewControllers)]
         pub unsafe fn viewControllers(&self) -> Retained<NSArray<UIViewController>>;
 
+        /// Setter for [`viewControllers`][Self::viewControllers].
         #[method(setViewControllers:)]
         pub unsafe fn setViewControllers(&self, view_controllers: &NSArray<UIViewController>);
 
         #[method(presentsWithGesture)]
         pub unsafe fn presentsWithGesture(&self) -> bool;
 
+        /// Setter for [`presentsWithGesture`][Self::presentsWithGesture].
         #[method(setPresentsWithGesture:)]
         pub unsafe fn setPresentsWithGesture(&self, presents_with_gesture: bool);
 
@@ -321,6 +326,7 @@ extern_methods!(
         #[method(preferredDisplayMode)]
         pub unsafe fn preferredDisplayMode(&self) -> UISplitViewControllerDisplayMode;
 
+        /// Setter for [`preferredDisplayMode`][Self::preferredDisplayMode].
         #[method(setPreferredDisplayMode:)]
         pub unsafe fn setPreferredDisplayMode(
             &self,
@@ -339,6 +345,7 @@ extern_methods!(
             &self,
         ) -> UISplitViewControllerDisplayModeButtonVisibility;
 
+        /// Setter for [`displayModeButtonVisibility`][Self::displayModeButtonVisibility].
         #[method(setDisplayModeButtonVisibility:)]
         pub unsafe fn setDisplayModeButtonVisibility(
             &self,
@@ -350,6 +357,7 @@ extern_methods!(
         pub unsafe fn preferredPrimaryColumnWidthFraction(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredPrimaryColumnWidthFraction`][Self::preferredPrimaryColumnWidthFraction].
         #[method(setPreferredPrimaryColumnWidthFraction:)]
         pub unsafe fn setPreferredPrimaryColumnWidthFraction(
             &self,
@@ -361,6 +369,7 @@ extern_methods!(
         pub unsafe fn preferredPrimaryColumnWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredPrimaryColumnWidth`][Self::preferredPrimaryColumnWidth].
         #[method(setPreferredPrimaryColumnWidth:)]
         pub unsafe fn setPreferredPrimaryColumnWidth(
             &self,
@@ -372,6 +381,7 @@ extern_methods!(
         pub unsafe fn minimumPrimaryColumnWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumPrimaryColumnWidth`][Self::minimumPrimaryColumnWidth].
         #[method(setMinimumPrimaryColumnWidth:)]
         pub unsafe fn setMinimumPrimaryColumnWidth(&self, minimum_primary_column_width: CGFloat);
 
@@ -380,6 +390,7 @@ extern_methods!(
         pub unsafe fn maximumPrimaryColumnWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumPrimaryColumnWidth`][Self::maximumPrimaryColumnWidth].
         #[method(setMaximumPrimaryColumnWidth:)]
         pub unsafe fn setMaximumPrimaryColumnWidth(&self, maximum_primary_column_width: CGFloat);
 
@@ -392,6 +403,7 @@ extern_methods!(
         pub unsafe fn preferredSupplementaryColumnWidthFraction(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredSupplementaryColumnWidthFraction`][Self::preferredSupplementaryColumnWidthFraction].
         #[method(setPreferredSupplementaryColumnWidthFraction:)]
         pub unsafe fn setPreferredSupplementaryColumnWidthFraction(
             &self,
@@ -403,6 +415,7 @@ extern_methods!(
         pub unsafe fn preferredSupplementaryColumnWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredSupplementaryColumnWidth`][Self::preferredSupplementaryColumnWidth].
         #[method(setPreferredSupplementaryColumnWidth:)]
         pub unsafe fn setPreferredSupplementaryColumnWidth(
             &self,
@@ -414,6 +427,7 @@ extern_methods!(
         pub unsafe fn minimumSupplementaryColumnWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumSupplementaryColumnWidth`][Self::minimumSupplementaryColumnWidth].
         #[method(setMinimumSupplementaryColumnWidth:)]
         pub unsafe fn setMinimumSupplementaryColumnWidth(
             &self,
@@ -425,6 +439,7 @@ extern_methods!(
         pub unsafe fn maximumSupplementaryColumnWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumSupplementaryColumnWidth`][Self::maximumSupplementaryColumnWidth].
         #[method(setMaximumSupplementaryColumnWidth:)]
         pub unsafe fn setMaximumSupplementaryColumnWidth(
             &self,
@@ -438,6 +453,7 @@ extern_methods!(
         #[method(primaryEdge)]
         pub unsafe fn primaryEdge(&self) -> UISplitViewControllerPrimaryEdge;
 
+        /// Setter for [`primaryEdge`][Self::primaryEdge].
         #[method(setPrimaryEdge:)]
         pub unsafe fn setPrimaryEdge(&self, primary_edge: UISplitViewControllerPrimaryEdge);
 
@@ -458,6 +474,7 @@ extern_methods!(
         #[method(primaryBackgroundStyle)]
         pub unsafe fn primaryBackgroundStyle(&self) -> UISplitViewControllerBackgroundStyle;
 
+        /// Setter for [`primaryBackgroundStyle`][Self::primaryBackgroundStyle].
         #[method(setPrimaryBackgroundStyle:)]
         pub unsafe fn setPrimaryBackgroundStyle(
             &self,

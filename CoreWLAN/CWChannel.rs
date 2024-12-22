@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannel?language=objc)
+    /// Represents an IEEE 802.11 channel.
+    ///
+    ///
+    /// The CWChannel class is used by both CWInterface and CWNetwork as a representation of an IEEE 802.11 Wi-Fi channel.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWChannel;
@@ -27,17 +32,30 @@ unsafe impl NSSecureCoding for CWChannel {}
 
 extern_methods!(
     unsafe impl CWChannel {
+        /// The channel number represented as an integer value.
         #[method(channelNumber)]
         pub unsafe fn channelNumber(&self) -> NSInteger;
 
         #[cfg(feature = "CoreWLANTypes")]
+        /// The channel width as indicated by the CWChannelWidth type.
         #[method(channelWidth)]
         pub unsafe fn channelWidth(&self) -> CWChannelWidth;
 
         #[cfg(feature = "CoreWLANTypes")]
+        /// The channel band as indicated by the CWChannelBand type.
         #[method(channelBand)]
         pub unsafe fn channelBand(&self) -> CWChannelBand;
 
+        /// Parameter `channel`: The CWChannel with which to compare the receiver.
+        ///
+        ///
+        /// Returns: YES if the objects are equal, otherwise NO.
+        ///
+        ///
+        /// Determine CWChannel equality.
+        ///
+        ///
+        /// CWChannel objects are considered equal if all their corresponding properties are equal.
         #[method(isEqualToChannel:)]
         pub unsafe fn isEqualToChannel(&self, channel: &CWChannel) -> bool;
     }

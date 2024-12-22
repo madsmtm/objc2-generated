@@ -7,7 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenepushplacement?language=objc)
+    /// Background the scene of the provided scene session and present the
+    /// activated scene in its place.
+    ///
+    /// The provided scene session will be backgrounded. The activated scene will
+    /// be center aligned with the backgrounded scene. Closing the activated window
+    /// will result in the backgrounded scene reappearing.
+    ///
+    /// Targeting a scene session that is currently pushed will result in an error
+    /// being delivered to the `errorHandler` of
+    /// ``-[UIApplication activateSceneSessionForRequest: errorHandler:]``.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenepushplacement?language=objc)
     #[unsafe(super(UIWindowScenePlacement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowScenePlacement")]
@@ -29,6 +40,8 @@ extern_methods!(
     #[cfg(feature = "UIWindowScenePlacement")]
     unsafe impl UIWindowScenePushPlacement {
         #[cfg(feature = "UISceneSession")]
+        /// Creates the placement that will target the given `sceneSession`.
+        /// - Parameter targetSceneSession: The scene session of the window scene that will be backgrounded.
         #[method_id(@__retain_semantics Other placementTargetingSceneSession:)]
         pub unsafe fn placementTargetingSceneSession(
             target_scene_session: &UISceneSession,

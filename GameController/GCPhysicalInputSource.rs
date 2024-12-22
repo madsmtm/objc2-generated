@@ -6,7 +6,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsourcedirection?language=objc)
+/// One or more directions associated with a
+/// `GCPhysicalInputSource.`
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsourcedirection?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -35,18 +38,55 @@ unsafe impl RefEncode for GCPhysicalInputSourceDirection {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsource?language=objc)
+    /// A description of the actual physical input element that a user interacts
+    /// with to manipulate the the value of an input that is exposed to the app.
+    ///
+    /// By querying the source of an element's input that is returned from
+    /// `GCDevicePhysicalInput`or
+    /// `GCDevicePhysicalInputState,`an app
+    /// can see through element remappings applied by the user in the system
+    /// game controller settings.  For example, assuming the user has
+    /// swapped the A and B buttons in the system game controller settings...
+    ///
+    /// YES == [physicalInput.buttons[GCInputButtonA].pressedInput.source.elementAliases contains:GCInputButtonB]
+    /// YES == [physicalInput.buttons[GCInputButtonB].pressedInput.source.elementAliases contains:GCInputButtonA]
+    ///
+    /// Examining an input's source is discouraged, but may be necessary depending
+    /// on how your game's input handling code is implemented.  If possible, prefer
+    /// to load and display the
+    /// `sfSymbolsName`and
+    /// `localizedName`from the
+    /// `GCPhysicalInputElement`in any in-game U.I.
+    ///
+    /// // Use these anywhere you need to instruct the user to press the 'A'
+    /// // button in your game UI.  The symbol name and localized string
+    /// // returned will reflect the element that GCInputButtonA has been
+    /// // remapped to (Button B in the above case).
+    /// physicalInput.buttons[GCInputButtonA].localizedName
+    /// physicalInput.buttons[GCInputButtonA].sfSymbolsName
+    ///
+    ///
+    /// Note: Objects conforming to
+    /// `GCPhysicalInputSource`protocol are vended by the
+    /// GameController framework.  You should not conform to this protocol in your
+    /// own types.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsource?language=objc)
     pub unsafe trait GCPhysicalInputSource: NSObjectProtocol {
         #[cfg(feature = "GCInputNames")]
+        /// The set of aliases for the element that the user interacts with.
         #[method_id(@__retain_semantics Other elementAliases)]
         unsafe fn elementAliases(&self) -> Retained<NSSet<NSString>>;
 
+        /// The localized name of the element that the user interacts with.
         #[method_id(@__retain_semantics Other elementLocalizedName)]
         unsafe fn elementLocalizedName(&self) -> Option<Retained<NSString>>;
 
+        /// The SF Symbol of the element that the user interacts with.
         #[method_id(@__retain_semantics Other sfSymbolsName)]
         unsafe fn sfSymbolsName(&self) -> Option<Retained<NSString>>;
 
+        /// One or more directions associated with the source.
         #[method(direction)]
         unsafe fn direction(&self) -> GCPhysicalInputSourceDirection;
     }

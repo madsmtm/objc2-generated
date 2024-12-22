@@ -38,6 +38,13 @@ extern_methods!(
             feature = "ASAuthorizationPublicKeyCredentialConstants",
             feature = "ASPasskeyCredentialIdentity"
         ))]
+        /// Initializes an instance of ASPasskeyCredentialRequest.
+        ///
+        /// Parameter `credentialIdentity`: credential identity to used for this request.
+        ///
+        /// Parameter `clientDataHash`: the client data to be signed for this assertion request.
+        ///
+        /// Parameter `userVerificationPreference`: user verification preference setting of this assertion request.
         #[method_id(@__retain_semantics Init initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
         pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms(
             this: Allocated<Self>,
@@ -52,6 +59,17 @@ extern_methods!(
             feature = "ASPasskeyAssertionCredentialExtensionInput",
             feature = "ASPasskeyCredentialIdentity"
         ))]
+        /// Initializes an instance of ASPasskeyCredentialRequest.
+        ///
+        /// Parameter `credentialIdentity`: credential identity to used for this request.
+        ///
+        /// Parameter `clientDataHash`: the client data to be signed for this assertion request.
+        ///
+        /// Parameter `userVerificationPreference`: user verification preference setting of this assertion request.
+        ///
+        /// Parameter `supportedAlgorithms`: the set of support algorithms for the credential's key.
+        ///
+        /// Parameter `assertionExtensionInput`: input for any requested passkey extensions.
         #[method_id(@__retain_semantics Init initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:assertionExtensionInput:)]
         pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms_assertionExtensionInput(
             this: Allocated<Self>,
@@ -67,6 +85,17 @@ extern_methods!(
             feature = "ASPasskeyCredentialIdentity",
             feature = "ASPasskeyRegistrationCredentialExtensionInput"
         ))]
+        /// Initializes an instance of ASPasskeyCredentialRequest.
+        ///
+        /// Parameter `credentialIdentity`: credential identity to used for this request.
+        ///
+        /// Parameter `clientDataHash`: the client data to be signed for this assertion request.
+        ///
+        /// Parameter `userVerificationPreference`: user verification preference setting of this assertion request.
+        ///
+        /// Parameter `supportedAlgorithms`: the set of support algorithms for the credential's key.
+        ///
+        /// Parameter `registrationExtensionInput`: input for any requested passkey extensions.
         #[method_id(@__retain_semantics Init initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:registrationExtensionInput:)]
         pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms_registrationExtensionInput(
             this: Allocated<Self>,
@@ -81,6 +110,13 @@ extern_methods!(
             feature = "ASAuthorizationPublicKeyCredentialConstants",
             feature = "ASPasskeyCredentialIdentity"
         ))]
+        /// Creates and initializes an instance of ASPasskeyCredentialRequest.
+        ///
+        /// Parameter `credentialIdentity`: credential identity to used for this request.
+        ///
+        /// Parameter `clientDataHash`: the client data to be signed for this assertion request.
+        ///
+        /// Parameter `userVerificationPreference`: user verification preference setting of this assertion request.
         #[method_id(@__retain_semantics Other requestWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
         pub unsafe fn requestWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms(
             credential_identity: &ASPasskeyCredentialIdentity,
@@ -89,22 +125,27 @@ extern_methods!(
             supported_algorithms: &NSArray<NSNumber>,
         ) -> Retained<Self>;
 
+        /// Hash of client data for credential provider to sign as part of the assertion/registration operation.
         #[method_id(@__retain_semantics Other clientDataHash)]
         pub unsafe fn clientDataHash(&self) -> Retained<NSData>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
+        /// A preference for whether the authenticator should attempt to verify that
+        /// it is being used by its owner, such as through a PIN or biometrics.
         #[method_id(@__retain_semantics Other userVerificationPreference)]
         pub unsafe fn userVerificationPreference(
             &self,
         ) -> Retained<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
+        /// Setter for [`userVerificationPreference`][Self::userVerificationPreference].
         #[method(setUserVerificationPreference:)]
         pub unsafe fn setUserVerificationPreference(
             &self,
             user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
         );
 
+        /// A list of signing algorithms supported by the relying party. Will be empty for assertion requests.
         #[method_id(@__retain_semantics Other supportedAlgorithms)]
         pub unsafe fn supportedAlgorithms(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -115,12 +156,14 @@ extern_methods!(
         ) -> Option<Retained<NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>>>;
 
         #[cfg(feature = "ASPasskeyAssertionCredentialExtensionInput")]
+        /// Inputs for WebAuthn extensions used for passkey assertion. Will be nil for registration requests.
         #[method_id(@__retain_semantics Other assertionExtensionInput)]
         pub unsafe fn assertionExtensionInput(
             &self,
         ) -> Option<Retained<ASPasskeyAssertionCredentialExtensionInput>>;
 
         #[cfg(feature = "ASPasskeyRegistrationCredentialExtensionInput")]
+        /// Inputs for WebAuthn extensions used for passkey registration. Will be nil for assertion requests.
         #[method_id(@__retain_semantics Other registrationExtensionInput)]
         pub unsafe fn registrationExtensionInput(
             &self,

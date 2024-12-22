@@ -7,7 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzpointingdeviceconfiguration?language=objc)
+    /// Base class for a pointing device configuration.
+    ///
+    /// VZPointingDeviceConfiguration should not be instantiated directly.
+    /// One of its subclasses like VZUSBScreenCoordinatePointingDeviceConfiguration or VZMacTrackpadConfiguration should be used instead.
+    ///
+    ///
+    /// See: VZUSBScreenCoordinatePointingDeviceConfiguration
+    ///
+    /// See: VZMacTrackpadConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzpointingdeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZPointingDeviceConfiguration;

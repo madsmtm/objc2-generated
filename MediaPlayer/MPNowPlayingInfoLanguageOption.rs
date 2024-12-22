@@ -77,7 +77,9 @@ unsafe impl RefEncode for MPNowPlayingInfoLanguageOptionType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoption?language=objc)
+    /// Represents a single language option option.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoption?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPNowPlayingInfoLanguageOption;
@@ -97,24 +99,39 @@ extern_methods!(
             identifier: &NSString,
         ) -> Retained<Self>;
 
+        /// Represents a special case that is used to
+        /// represent the best legible language option based on system preferences.
+        /// See AVPlayerItem-selectMediaOptionAutomaticallyInMediaSelectionGroup
         #[method(isAutomaticLegibleLanguageOption)]
         pub unsafe fn isAutomaticLegibleLanguageOption(&self) -> bool;
 
+        /// Represents a special case that is used to
+        /// represent the best audible language option based on system preferences.
+        /// See AVPlayerItem-selectMediaOptionAutomaticallyInMediaSelectionGroup
         #[method(isAutomaticAudibleLanguageOption)]
         pub unsafe fn isAutomaticAudibleLanguageOption(&self) -> bool;
 
+        /// The type of language option.
         #[method(languageOptionType)]
         pub unsafe fn languageOptionType(&self) -> MPNowPlayingInfoLanguageOptionType;
 
+        /// The IETF BCP 47 language tag.
+        /// A nil languageTag reprsents that this option should be disabled.
+        /// A languageTag with the value of MPLangaugeOptionAutoLangaugeTag represents
+        /// that the best langauge based on the system preferences should be used.
         #[method_id(@__retain_semantics Other languageTag)]
         pub unsafe fn languageTag(&self) -> Option<Retained<NSString>>;
 
+        /// Characteristics describing the content of the language options.
+        /// See the LanguageOptionCharacteristics for the most commonly used values.
         #[method_id(@__retain_semantics Other languageOptionCharacteristics)]
         pub unsafe fn languageOptionCharacteristics(&self) -> Option<Retained<NSArray<NSString>>>;
 
+        /// A user presentable display name for this option.
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
+        /// A unique identifier representing this option.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
     }
@@ -150,14 +167,17 @@ extern_methods!(
             allow_empty_selection: bool,
         ) -> Retained<Self>;
 
+        /// The available language options within this group.
         #[method_id(@__retain_semantics Other languageOptions)]
         pub unsafe fn languageOptions(&self) -> Retained<NSArray<MPNowPlayingInfoLanguageOption>>;
 
+        /// The default language option, if any, within this group.
         #[method_id(@__retain_semantics Other defaultLanguageOption)]
         pub unsafe fn defaultLanguageOption(
             &self,
         ) -> Option<Retained<MPNowPlayingInfoLanguageOption>>;
 
+        /// Indicates whether a selection in this group is required at all times.
         #[method(allowEmptySelection)]
         pub unsafe fn allowEmptySelection(&self) -> bool;
     }

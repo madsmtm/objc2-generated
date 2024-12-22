@@ -7,56 +7,196 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerrordomain?language=objc)
+    /// Error domain corresponding to the CWErr type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerrordomain?language=objc)
     pub static CWErrorDomain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwpowerdidchangenotification?language=objc)
+    /// Posted when the power state of the Wi-Fi interface changes.
+    ///
+    ///
+    /// The
+    /// <i>
+    /// object
+    /// </i>
+    /// for this notification is the corresponding Wi-Fi interface name.
+    /// This notification does not contain a
+    /// <i>
+    /// userInfo
+    /// </i>
+    /// dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwpowerdidchangenotification?language=objc)
     pub static CWPowerDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwssiddidchangenotification?language=objc)
+    /// Posted when the SSID of the Wi-Fi interface changes.
+    ///
+    ///
+    /// The
+    /// <i>
+    /// object
+    /// </i>
+    /// for this notification is the corresponding Wi-Fi interface name.
+    /// This notification does not contain a
+    /// <i>
+    /// userInfo
+    /// </i>
+    /// dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwssiddidchangenotification?language=objc)
     pub static CWSSIDDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwbssiddidchangenotification?language=objc)
+    /// Posted when the BSSID of the Wi-Fi interface changes.
+    ///
+    ///
+    /// The
+    /// <i>
+    /// object
+    /// </i>
+    /// for this notification is the corresponding Wi-Fi interface name.
+    /// This notification does not contain a
+    /// <i>
+    /// userInfo
+    /// </i>
+    /// dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwbssiddidchangenotification?language=objc)
     pub static CWBSSIDDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkdidchangenotification?language=objc)
+    /// Posted when the link of the Wi-Fi interface changes.
+    ///
+    ///
+    /// The
+    /// <i>
+    /// object
+    /// </i>
+    /// for this notification is the corresponding Wi-Fi interface name.
+    /// This notification does not contain a
+    /// <i>
+    /// userInfo
+    /// </i>
+    /// dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkdidchangenotification?language=objc)
     pub static CWLinkDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwmodedidchangenotification?language=objc)
+    /// Posted when the operating mode of the Wi-Fi interface changes.
+    ///
+    ///
+    /// The
+    /// <i>
+    /// object
+    /// </i>
+    /// for this notification is the corresponding Wi-Fi interface name.
+    /// This notification does not contain a
+    /// <i>
+    /// userInfo
+    /// </i>
+    /// dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwmodedidchangenotification?language=objc)
     pub static CWModeDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwcountrycodedidchangenotification?language=objc)
+    /// Posted when the adopted country code of the Wi-Fi interface changes.
+    ///
+    ///
+    /// The
+    /// <i>
+    /// object
+    /// </i>
+    /// for this notification is the corresponding Wi-Fi interface name.
+    /// This notification does not contain a
+    /// <i>
+    /// userInfo
+    /// </i>
+    /// dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwcountrycodedidchangenotification?language=objc)
     pub static CWCountryCodeDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwscancachedidupdatenotification?language=objc)
+    /// Posted when the scan cache of the Wi-Fi interface is updated with new scan results.
+    ///
+    ///
+    /// The
+    /// <i>
+    /// object
+    /// </i>
+    /// for this notification is the corresponding Wi-Fi interface name.
+    /// This notification does not contain a
+    /// <i>
+    /// userInfo
+    /// </i>
+    /// dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwscancachedidupdatenotification?language=objc)
     pub static CWScanCacheDidUpdateNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkqualitydidchangenotification?language=objc)
+    /// Posted when the link quality of the current Wi-Fi association changes.
+    ///
+    ///
+    /// The
+    /// <i>
+    /// object
+    /// </i>
+    /// for this notification is the corresponding Wi-Fi interface name.
+    /// This notification does not contain a
+    /// <i>
+    /// userInfo
+    /// </i>
+    /// dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkqualitydidchangenotification?language=objc)
     pub static CWLinkQualityDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkqualitynotificationrssikey?language=objc)
+    /// NSNumber containing the current RSSI value for the Wi-Fi interface.
+    ///
+    ///
+    /// Found in the
+    /// <i>
+    /// userInfo
+    /// </i>
+    /// dictionary for the
+    /// <i>
+    /// CWLinkQualityChangedNotification
+    /// </i>
+    /// .
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkqualitynotificationrssikey?language=objc)
     pub static CWLinkQualityNotificationRSSIKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkqualitynotificationtransmitratekey?language=objc)
+    /// NSNumber containing the current transmit rate for the Wi-Fi interface.
+    ///
+    ///
+    /// Found in the
+    /// <i>
+    /// userInfo
+    /// </i>
+    /// dictionary for the
+    /// <i>
+    /// CWLinkQualityChangedNotification
+    /// </i>
+    /// .
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkqualitynotificationtransmitratekey?language=objc)
     pub static CWLinkQualityNotificationTransmitRateKey: &'static NSString;
 }

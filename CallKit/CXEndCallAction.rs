@@ -35,6 +35,7 @@ unsafe impl NSSecureCoding for CXEndCallAction {}
 extern_methods!(
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXEndCallAction {
+        /// Normally, providers can just call -[CXAction fulfill] to indicate action fulfillment. Use this method to note a specific date that the call ended.
         #[method(fulfillWithDateEnded:)]
         pub unsafe fn fulfillWithDateEnded(&self, date_ended: &NSDate);
     }

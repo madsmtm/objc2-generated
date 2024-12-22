@@ -51,54 +51,75 @@ unsafe impl RefEncode for NSButtonType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSBezelStyle(pub NSUInteger);
 impl NSBezelStyle {
+    /// The appearance of this bezel style is automatically determined based on the button's contents and position within the window. This bezel style is the default for all button initializers.
     #[doc(alias = "NSBezelStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// The standard system push button style.
     #[doc(alias = "NSBezelStylePush")]
     pub const Push: Self = Self(1);
+    /// A flexible-height variant of NSBezelStylePush.
     #[doc(alias = "NSBezelStyleFlexiblePush")]
     pub const FlexiblePush: Self = Self(2);
+    /// An unbezeled button with a disclosure triangle.
     #[doc(alias = "NSBezelStyleDisclosure")]
     pub const Disclosure: Self = Self(5);
+    /// A button with a circular bezel suitable for a small icon or single character.
     #[doc(alias = "NSBezelStyleCircular")]
     pub const Circular: Self = Self(7);
+    /// A circular button with a question mark providing the standard Help button appearance.
     #[doc(alias = "NSBezelStyleHelpButton")]
     pub const HelpButton: Self = Self(9);
+    /// A button with squared edges and flexible height.
     #[doc(alias = "NSBezelStyleSmallSquare")]
     pub const SmallSquare: Self = Self(10);
+    /// A button style that is appropriate for use in a toolbar item.
     #[doc(alias = "NSBezelStyleToolbar")]
     pub const Toolbar: Self = Self(11);
+    /// A bezel style that is suitable for accessory and scope bars. This style is typically used for buttons that perform an action or for pop-up buttons.
     #[doc(alias = "NSBezelStyleAccessoryBarAction")]
     pub const AccessoryBarAction: Self = Self(12);
+    /// A bezel style that is suitable for accessory and scope bars. This style is typically used for buttons with togglable state.
     #[doc(alias = "NSBezelStyleAccessoryBar")]
     pub const AccessoryBar: Self = Self(13);
+    /// A bezeled variant of NSBezelStyleDisclosure.
     #[doc(alias = "NSBezelStylePushDisclosure")]
     pub const PushDisclosure: Self = Self(14);
+    /// A bezel style that is typically used in table rows to display information about the row, such as a count.
     #[doc(alias = "NSBezelStyleBadge")]
     pub const Badge: Self = Self(15);
+    /// A bezel style that is typically used in table rows to display information about the row, such as a count.
     #[deprecated]
     #[doc(alias = "NSBezelStyleShadowlessSquare")]
     pub const ShadowlessSquare: Self = Self(6);
+    /// A bezel style that is typically used in table rows to display information about the row, such as a count.
     #[deprecated]
     #[doc(alias = "NSBezelStyleTexturedSquare")]
     pub const TexturedSquare: Self = Self(8);
+    /// A bezel style that is typically used in table rows to display information about the row, such as a count.
     #[deprecated]
     #[doc(alias = "NSBezelStyleRounded")]
     pub const Rounded: Self = Self(NSBezelStyle::Push.0);
+    /// A bezel style that is typically used in table rows to display information about the row, such as a count.
     #[deprecated]
     #[doc(alias = "NSBezelStyleRegularSquare")]
     pub const RegularSquare: Self = Self(NSBezelStyle::FlexiblePush.0);
+    /// A bezel style that is typically used in table rows to display information about the row, such as a count.
     #[deprecated]
     #[doc(alias = "NSBezelStyleTexturedRounded")]
     pub const TexturedRounded: Self = Self(NSBezelStyle::Toolbar.0);
+    /// A bezel style that is typically used in table rows to display information about the row, such as a count.
     #[deprecated]
     #[doc(alias = "NSBezelStyleRoundRect")]
     pub const RoundRect: Self = Self(NSBezelStyle::AccessoryBarAction.0);
+    /// A bezel style that is typically used in table rows to display information about the row, such as a count.
     #[deprecated]
     #[doc(alias = "NSBezelStyleRecessed")]
     pub const Recessed: Self = Self(NSBezelStyle::AccessoryBar.0);
+    /// A bezel style that is typically used in table rows to display information about the row, such as a count.
     #[deprecated]
     #[doc(alias = "NSBezelStyleRoundedDisclosure")]
     pub const RoundedDisclosure: Self = Self(NSBezelStyle::PushDisclosure.0);
+    /// A bezel style that is typically used in table rows to display information about the row, such as a count.
     #[deprecated]
     #[doc(alias = "NSBezelStyleInline")]
     pub const Inline: Self = Self(NSBezelStyle::Badge.0);
@@ -174,6 +195,7 @@ extern_methods!(
         #[method(bezelStyle)]
         pub unsafe fn bezelStyle(&self) -> NSBezelStyle;
 
+        /// Setter for [`bezelStyle`][Self::bezelStyle].
         #[method(setBezelStyle:)]
         pub unsafe fn setBezelStyle(&self, bezel_style: NSBezelStyle);
 
@@ -183,36 +205,42 @@ extern_methods!(
         #[method(highlightsBy)]
         pub unsafe fn highlightsBy(&self) -> NSCellStyleMask;
 
+        /// Setter for [`highlightsBy`][Self::highlightsBy].
         #[method(setHighlightsBy:)]
         pub unsafe fn setHighlightsBy(&self, highlights_by: NSCellStyleMask);
 
         #[method(showsStateBy)]
         pub unsafe fn showsStateBy(&self) -> NSCellStyleMask;
 
+        /// Setter for [`showsStateBy`][Self::showsStateBy].
         #[method(setShowsStateBy:)]
         pub unsafe fn setShowsStateBy(&self, shows_state_by: NSCellStyleMask);
 
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Retained<NSAttributedString>;
 
+        /// Setter for [`attributedTitle`][Self::attributedTitle].
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
 
         #[method_id(@__retain_semantics Other alternateTitle)]
         pub unsafe fn alternateTitle(&self) -> Retained<NSString>;
 
+        /// Setter for [`alternateTitle`][Self::alternateTitle].
         #[method(setAlternateTitle:)]
         pub unsafe fn setAlternateTitle(&self, alternate_title: &NSString);
 
         #[method_id(@__retain_semantics Other attributedAlternateTitle)]
         pub unsafe fn attributedAlternateTitle(&self) -> Retained<NSAttributedString>;
 
+        /// Setter for [`attributedAlternateTitle`][Self::attributedAlternateTitle].
         #[method(setAttributedAlternateTitle:)]
         pub unsafe fn setAttributedAlternateTitle(
             &self,
@@ -224,24 +252,28 @@ extern_methods!(
         pub unsafe fn alternateImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`alternateImage`][Self::alternateImage].
         #[method(setAlternateImage:)]
         pub unsafe fn setAlternateImage(&self, alternate_image: Option<&NSImage>);
 
         #[method(imagePosition)]
         pub unsafe fn imagePosition(&self) -> NSCellImagePosition;
 
+        /// Setter for [`imagePosition`][Self::imagePosition].
         #[method(setImagePosition:)]
         pub unsafe fn setImagePosition(&self, image_position: NSCellImagePosition);
 
         #[method(imageScaling)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
+        /// Setter for [`imageScaling`][Self::imageScaling].
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
         #[method_id(@__retain_semantics Other keyEquivalent)]
         pub unsafe fn keyEquivalent(&self) -> Retained<NSString>;
 
+        /// Setter for [`keyEquivalent`][Self::keyEquivalent].
         #[method(setKeyEquivalent:)]
         pub unsafe fn setKeyEquivalent(&self, key_equivalent: &NSString);
 
@@ -250,6 +282,7 @@ extern_methods!(
         pub unsafe fn keyEquivalentModifierMask(&self) -> NSEventModifierFlags;
 
         #[cfg(feature = "NSEvent")]
+        /// Setter for [`keyEquivalentModifierMask`][Self::keyEquivalentModifierMask].
         #[method(setKeyEquivalentModifierMask:)]
         pub unsafe fn setKeyEquivalentModifierMask(
             &self,
@@ -259,6 +292,7 @@ extern_methods!(
         #[method(isTransparent)]
         pub unsafe fn isTransparent(&self) -> bool;
 
+        /// Setter for [`isTransparent`][Self::isTransparent].
         #[method(setTransparent:)]
         pub unsafe fn setTransparent(&self, transparent: bool);
 
@@ -268,12 +302,14 @@ extern_methods!(
         #[method(imageDimsWhenDisabled)]
         pub unsafe fn imageDimsWhenDisabled(&self) -> bool;
 
+        /// Setter for [`imageDimsWhenDisabled`][Self::imageDimsWhenDisabled].
         #[method(setImageDimsWhenDisabled:)]
         pub unsafe fn setImageDimsWhenDisabled(&self, image_dims_when_disabled: bool);
 
         #[method(showsBorderOnlyWhileMouseInside)]
         pub unsafe fn showsBorderOnlyWhileMouseInside(&self) -> bool;
 
+        /// Setter for [`showsBorderOnlyWhileMouseInside`][Self::showsBorderOnlyWhileMouseInside].
         #[method(setShowsBorderOnlyWhileMouseInside:)]
         pub unsafe fn setShowsBorderOnlyWhileMouseInside(
             &self,
@@ -285,6 +321,7 @@ extern_methods!(
         pub unsafe fn sound(&self) -> Option<Retained<NSSound>>;
 
         #[cfg(feature = "NSSound")]
+        /// Setter for [`sound`][Self::sound].
         #[method(setSound:)]
         pub unsafe fn setSound(&self, sound: Option<&NSSound>);
 
@@ -293,6 +330,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
@@ -489,6 +527,7 @@ extern_methods!(
         #[method(gradientType)]
         pub unsafe fn gradientType(&self) -> NSGradientType;
 
+        /// Setter for [`gradientType`][Self::gradientType].
         #[deprecated = "The gradientType property is unused, and setting it has no effect."]
         #[method(setGradientType:)]
         pub unsafe fn setGradientType(&self, gradient_type: NSGradientType);
@@ -522,6 +561,7 @@ extern_methods!(
         pub unsafe fn keyEquivalentFont(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "NSFont")]
+        /// Setter for [`keyEquivalentFont`][Self::keyEquivalentFont].
         #[deprecated = "The keyEquivalentFont property is no longer used. It always returns the NSButtonCell's font, and setting it has no effect."]
         #[method(setKeyEquivalentFont:)]
         pub unsafe fn setKeyEquivalentFont(&self, key_equivalent_font: Option<&NSFont>);

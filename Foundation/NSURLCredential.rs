@@ -5,7 +5,15 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialpersistence?language=objc)
+/// Constants defining how long a credential will be kept around
+///
+///
+///
+///
+/// Note: Whereas in Mac OS X any application can access any credential provided the user gives permission, on iOS an application can
+/// access only its own credentials.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialpersistence?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -30,7 +38,9 @@ unsafe impl RefEncode for NSURLCredentialPersistence {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredential?language=objc)
+    /// This class is an immutable object representing an authentication credential.  The actual type of the credential is determined by the constructor called in the categories declared below.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredential?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLCredential;
@@ -58,6 +68,9 @@ unsafe impl NSSecureCoding for NSURLCredential {}
 
 extern_methods!(
     unsafe impl NSURLCredential {
+        /// Determine whether this credential is or should be stored persistently
+        ///
+        /// Returns: A value indicating whether this credential is stored permanently, per session or not at all.
         #[method(persistence)]
         pub unsafe fn persistence(&self) -> NSURLCredentialPersistence;
     }
@@ -76,8 +89,18 @@ extern_methods!(
 
 extern_methods!(
     /// NSInternetPassword
+    /// This category defines the methods available to an NSURLCredential created to represent an internet password credential.  These are most commonly used for resources that require a username and password combination.
     unsafe impl NSURLCredential {
         #[cfg(feature = "NSString")]
+        /// Initialize a NSURLCredential with a user and password
+        ///
+        /// Parameter `user`: the username
+        ///
+        /// Parameter `password`: the password
+        ///
+        /// Parameter `persistence`: enum that says to store per session, permanently or not at all
+        ///
+        /// Returns: The initialized NSURLCredential
         #[method_id(@__retain_semantics Init initWithUser:password:persistence:)]
         pub unsafe fn initWithUser_password_persistence(
             this: Allocated<Self>,
@@ -87,6 +110,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
+        /// Create a new NSURLCredential with a user and password
+        ///
+        /// Parameter `user`: the username
+        ///
+        /// Parameter `password`: the password
+        ///
+        /// Parameter `persistence`: enum that says to store per session, permanently or not at all
+        ///
+        /// Returns: The new autoreleased NSURLCredential
         #[method_id(@__retain_semantics Other credentialWithUser:password:persistence:)]
         pub unsafe fn credentialWithUser_password_persistence(
             user: &NSString,
@@ -95,13 +127,31 @@ extern_methods!(
         ) -> Retained<NSURLCredential>;
 
         #[cfg(feature = "NSString")]
+        /// Get the username
+        ///
+        /// Returns: The user string
         #[method_id(@__retain_semantics Other user)]
         pub unsafe fn user(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Get the password
+        ///
+        /// Returns: The password string
+        ///
+        /// This method might actually attempt to retrieve the
+        /// password from an external store, possible resulting in prompting,
+        /// so do not call it unless needed.
         #[method_id(@__retain_semantics Other password)]
         pub unsafe fn password(&self) -> Option<Retained<NSString>>;
 
+        /// Find out if this credential has a password, without trying to get it
+        ///
+        /// Returns: YES if this credential has a password, otherwise NO
+        ///
+        /// If this credential's password is actually kept in an
+        /// external store, the password method may return nil even if this
+        /// method returns YES, since getting the password may fail, or the
+        /// user may refuse access.
         #[method(hasPassword)]
         pub unsafe fn hasPassword(&self) -> bool;
     }
@@ -109,8 +159,12 @@ extern_methods!(
 
 extern_methods!(
     /// NSClientCertificate
+    /// This category defines the methods available to an NSURLCredential created to represent a client certificate credential.  Client certificates are commonly stored on the users computer in the keychain and must be presented to the server during a handshake.
     unsafe impl NSURLCredential {
         #[cfg(feature = "NSArray")]
+        /// Returns an NSArray of SecCertificateRef objects representing the client certificate for this credential, if this credential was created with an identity and certificate.
+        ///
+        /// Returns: an NSArray of SecCertificateRef or NULL if this is a username/password credential
         #[method_id(@__retain_semantics Other certificates)]
         pub unsafe fn certificates(&self) -> Retained<NSArray>;
     }

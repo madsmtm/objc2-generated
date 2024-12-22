@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstorereviewcontroller?language=objc)
+    /// Controller class to request a review from the current user
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skstorereviewcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use AppStore.requestReview(in:)"]
@@ -22,6 +24,13 @@ unsafe impl NSObjectProtocol for SKStoreReviewController {}
 
 extern_methods!(
     unsafe impl SKStoreReviewController {
+        /// Request StoreKit to ask the user for an app review. Uses the keyWindow's UIWindowScene which may or may not be the scene a user is interacting with.
+        ///
+        /// This may or may not show any UI.
+        ///
+        /// Given this may not successfully present an alert to the user, it is not appropriate for use
+        /// from a button or any other user action. For presenting a write review form, a deep link is
+        /// available to the App Store by appending the query params "action=write-review" to a product URL.
         #[deprecated = "Use AppStore.requestReview(in:)"]
         #[method(requestReview)]
         pub unsafe fn requestReview();

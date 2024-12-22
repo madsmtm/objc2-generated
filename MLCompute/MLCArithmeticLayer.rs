@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcarithmeticlayer?language=objc)
+    /// An arithmetic layer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcarithmeticlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -21,11 +23,17 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCArithmeticLayer {
         #[cfg(feature = "MLCTypes")]
+        /// The arithmetic operation.
         #[deprecated]
         #[method(operation)]
         pub unsafe fn operation(&self) -> MLCArithmeticOperation;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create an arithmetic layer
+        ///
+        /// Parameter `operation`: The arithmetic operation
+        ///
+        /// Returns: A new arithmetic layer
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithOperation:)]
         pub unsafe fn layerWithOperation(operation: MLCArithmeticOperation) -> Retained<Self>;

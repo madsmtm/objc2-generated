@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzconsoleportconfiguration?language=objc)
+    /// Base class for a console port configuration.
+    ///
+    /// VZConsolePortConfiguration should not be instantiated directly.
+    /// One of its subclasses like VZVirtioConsolePortConfiguration should be used instead.
+    ///
+    ///
+    /// See: VZVirtioConsolePortConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzconsoleportconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZConsolePortConfiguration;
@@ -31,10 +39,18 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZSerialPortAttachment")]
+        /// Console port attachment. Defines how the virtual machine's console port interfaces with the host system. Default is nil.
+        ///
+        /// See: VZFileHandleSerialPortAttachment
+        ///
+        /// See: VZFileSerialPortAttachment
+        ///
+        /// See: VZSpiceAgentPortAttachment
         #[method_id(@__retain_semantics Other attachment)]
         pub unsafe fn attachment(&self) -> Option<Retained<VZSerialPortAttachment>>;
 
         #[cfg(feature = "VZSerialPortAttachment")]
+        /// Setter for [`attachment`][Self::attachment].
         #[method(setAttachment:)]
         pub unsafe fn setAttachment(&self, attachment: Option<&VZSerialPortAttachment>);
     }

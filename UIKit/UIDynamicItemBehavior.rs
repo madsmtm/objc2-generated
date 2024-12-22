@@ -44,6 +44,7 @@ extern_methods!(
         pub unsafe fn elasticity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`elasticity`][Self::elasticity].
         #[method(setElasticity:)]
         pub unsafe fn setElasticity(&self, elasticity: CGFloat);
 
@@ -52,6 +53,7 @@ extern_methods!(
         pub unsafe fn friction(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`friction`][Self::friction].
         #[method(setFriction:)]
         pub unsafe fn setFriction(&self, friction: CGFloat);
 
@@ -60,6 +62,7 @@ extern_methods!(
         pub unsafe fn density(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`density`][Self::density].
         #[method(setDensity:)]
         pub unsafe fn setDensity(&self, density: CGFloat);
 
@@ -68,6 +71,7 @@ extern_methods!(
         pub unsafe fn resistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`resistance`][Self::resistance].
         #[method(setResistance:)]
         pub unsafe fn setResistance(&self, resistance: CGFloat);
 
@@ -76,26 +80,36 @@ extern_methods!(
         pub unsafe fn angularResistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`angularResistance`][Self::angularResistance].
         #[method(setAngularResistance:)]
         pub unsafe fn setAngularResistance(&self, angular_resistance: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Specifies the charge associated with the item behavior. Charge determines the degree to which a dynamic item is affected by
+        /// electric and magnetic fields. Note that this is a unitless quantity, it is up to the developer to
+        /// set charge and field strength appropriately. Defaults to 0.0
         #[method(charge)]
         pub unsafe fn charge(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`charge`][Self::charge].
         #[method(setCharge:)]
         pub unsafe fn setCharge(&self, charge: CGFloat);
 
+        /// If an item is anchored, it can participate in collisions, but will not exhibit
+        /// any dynamic response. i.e. The item will behave more like a collision boundary.
+        /// The default is NO
         #[method(isAnchored)]
         pub unsafe fn isAnchored(&self) -> bool;
 
+        /// Setter for [`isAnchored`][Self::isAnchored].
         #[method(setAnchored:)]
         pub unsafe fn setAnchored(&self, anchored: bool);
 
         #[method(allowsRotation)]
         pub unsafe fn allowsRotation(&self) -> bool;
 
+        /// Setter for [`allowsRotation`][Self::allowsRotation].
         #[method(setAllowsRotation:)]
         pub unsafe fn setAllowsRotation(&self, allows_rotation: bool);
 

@@ -27,12 +27,15 @@ unsafe impl NSObjectProtocol for UIZoomTransitionOptions {}
 extern_methods!(
     unsafe impl UIZoomTransitionOptions {
         #[cfg(feature = "block2")]
+        /// Called when an interactive dismissal of this transition begins.
+        /// Return value indicates whether the interaction should begin for the given context.
         #[method(interactiveDismissShouldBegin)]
         pub unsafe fn interactiveDismissShouldBegin(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<UIZoomTransitionInteractionContext>) -> Bool>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`interactiveDismissShouldBegin`][Self::interactiveDismissShouldBegin].
         #[method(setInteractiveDismissShouldBegin:)]
         pub unsafe fn setInteractiveDismissShouldBegin(
             &self,
@@ -42,12 +45,15 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// Return a frame in the zoomed view controller's view to which to align the source view.
+        /// Return `CGRectNull` to indicate no preference.
         #[method(alignmentRectProvider)]
         pub unsafe fn alignmentRectProvider(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<UIZoomTransitionAlignmentRectContext>) -> CGRect>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// Setter for [`alignmentRectProvider`][Self::alignmentRectProvider].
         #[method(setAlignmentRectProvider:)]
         pub unsafe fn setAlignmentRectProvider(
             &self,
@@ -57,14 +63,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIColor")]
+        /// Dimming color to apply to the content behind the zoomed in view. Set to nil to use the default.
         #[method_id(@__retain_semantics Other dimmingColor)]
         pub unsafe fn dimmingColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`dimmingColor`][Self::dimmingColor].
         #[method(setDimmingColor:)]
         pub unsafe fn setDimmingColor(&self, dimming_color: Option<&UIColor>);
 
         #[cfg(all(feature = "UIBlurEffect", feature = "UIVisualEffect"))]
+        /// Visual effect to apply to the content behind the zoomed in view. Defaults to nil.
         #[method_id(@__retain_semantics Other dimmingVisualEffect)]
         pub unsafe fn dimmingVisualEffect(
             &self,
@@ -72,6 +81,7 @@ extern_methods!(
         ) -> Option<Retained<UIBlurEffect>>;
 
         #[cfg(all(feature = "UIBlurEffect", feature = "UIVisualEffect"))]
+        /// Setter for [`dimmingVisualEffect`][Self::dimmingVisualEffect].
         #[method(setDimmingVisualEffect:)]
         pub unsafe fn setDimmingVisualEffect(&self, dimming_visual_effect: Option<&UIBlurEffect>);
     }
@@ -100,13 +110,16 @@ unsafe impl NSObjectProtocol for UIZoomTransitionInteractionContext {}
 extern_methods!(
     unsafe impl UIZoomTransitionInteractionContext {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Location of the interaction in the displayed view controller's view's coordinate space.
         #[method(location)]
         pub unsafe fn location(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The interaction's velocity.
         #[method(velocity)]
         pub unsafe fn velocity(&self) -> CGVector;
 
+        /// Whether the interaction would begin under the current conditions by default.
         #[method(willBegin)]
         pub unsafe fn willBegin(&self) -> bool;
     }
@@ -135,10 +148,12 @@ unsafe impl NSObjectProtocol for UIZoomTransitionAlignmentRectContext {}
 extern_methods!(
     unsafe impl UIZoomTransitionAlignmentRectContext {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// The transition's source view.
         #[method_id(@__retain_semantics Other sourceView)]
         pub unsafe fn sourceView(&self, mtm: MainThreadMarker) -> Retained<UIView>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
+        /// The zoomed view controller.
         #[method_id(@__retain_semantics Other zoomedViewController)]
         pub unsafe fn zoomedViewController(
             &self,

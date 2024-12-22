@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkhealthstore?language=objc)
+    /// The HKHealthStore class provides an interface for accessing and storing the user's health data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkhealthstore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKHealthStore;
@@ -22,13 +24,25 @@ unsafe impl NSObjectProtocol for HKHealthStore {}
 
 extern_methods!(
     unsafe impl HKHealthStore {
+        /// Returns YES if HealthKit is supported on the device.
+        ///
+        /// HealthKit is not supported on all iOS devices.  Using HKHealthStore APIs on devices which are not
+        /// supported will result in errors with the HKErrorHealthDataUnavailable code.  Call isHealthDataAvailable
+        /// before attempting to use other parts of the framework.
         #[method(isHealthDataAvailable)]
         pub unsafe fn isHealthDataAvailable() -> bool;
 
+        /// Returns YES if the Health Records feature is available.
+        ///
+        /// The Health Records feature is not available in all regions but may be present in unsupported regions
+        /// if accounts have already been configured. This can change as accounts are modified during device
+        /// restore or synchronization.
+        /// Call supportsHealthRecords before attempting to request authorization for any clinical types.
         #[method(supportsHealthRecords)]
         pub unsafe fn supportsHealthRecords(&self) -> bool;
 
         #[cfg(all(feature = "HKDefines", feature = "HKObjectType"))]
+        /// Returns the application's authorization status for the given object type.
         #[method(authorizationStatusForType:)]
         pub unsafe fn authorizationStatusForType(
             &self,
@@ -36,6 +50,21 @@ extern_methods!(
         ) -> HKAuthorizationStatus;
 
         #[cfg(all(feature = "HKObjectType", feature = "block2"))]
+        /// Prompts the user to authorize the application for reading and saving objects of the given types.
+        ///
+        /// Before attempting to execute queries or save objects, the application should first request authorization
+        /// from the user to read and share every type of object for which the application may require access.
+        ///
+        /// The request is performed asynchronously and its completion will be executed on an arbitrary background
+        /// queue after the user has responded.  If the user has already chosen whether to grant the application
+        /// access to all of the types provided, then the completion will be called without prompting the user.
+        /// The success parameter of the completion indicates whether prompting the user, if necessary, completed
+        /// successfully and was not cancelled by the user.  It does NOT indicate whether the application was
+        /// granted authorization.
+        ///
+        /// To customize the messages displayed on the authorization sheet, set the following keys in your app's
+        /// Info.plist file. Set the NSHealthShareUsageDescription key to customize the message for reading data.
+        /// Set the NSHealthUpdateUsageDescription key to customize the message for writing data.
         #[method(requestAuthorizationToShareTypes:readTypes:completion:)]
         pub unsafe fn requestAuthorizationToShareTypes_readTypes_completion(
             &self,
@@ -45,6 +74,18 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKObjectType", feature = "block2"))]
+        /// For types that support per object authorization (like vision prescriptions), prompts the user to select
+        /// the objects for which they want to grant your app access.
+        ///
+        /// Before attempting to execute queries, the application should first request authorization from the user
+        /// to read objects for which the application may require access.
+        ///
+        /// The request is performed asynchronously, and its completion will be executed on an arbitrary background
+        /// queue after the user has responded. The user will always be prompted to provide access to objects
+        /// regardless of whether access had been previously provided. The user can choose to toggle each object's
+        /// access with each prompt. The success parameter of the completion indicates whether prompting the user
+        /// completed successfully and was not cancelled. It does NOT indicate whether the application was granted
+        /// authorization.
         #[method(requestPerObjectReadAuthorizationForType:predicate:completion:)]
         pub unsafe fn requestPerObjectReadAuthorizationForType_predicate_completion(
             &self,
@@ -54,6 +95,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKDefines", feature = "HKObjectType", feature = "block2"))]
+        /// Determines whether requesting authorization for the given types is necessary.
+        ///
+        /// Applications may call this method to determine whether the user would be prompted for authorization if
+        /// the same collections of types are passed to requestAuthorizationToShareTypes:readTypes:completion:.
+        /// This determination is performed asynchronously and its completion will be executed on an arbitrary
+        /// background queue.
         #[method(getRequestStatusForAuthorizationToShareTypes:readTypes:completion:)]
         pub unsafe fn getRequestStatusForAuthorizationToShareTypes_readTypes_completion(
             &self,
@@ -63,16 +110,44 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Prompts the user to authorize the application for reading and saving objects.
+        ///
+        /// When an app extension calls requestAuthorizationToShareTypes:readTypes:completion:, the parent application
+        /// is responsible for calling this method to prompt the user to authorize the app and its extensions for the
+        /// types that the extension requested access to.
+        ///
+        /// The request is performed asynchronously and its completion will be executed on an arbitrary background
+        /// queue after the user has responded.  The success parameter of the completion indicates whether prompting
+        /// the user, if necessary, completed successfully and was not cancelled by the user.  It does NOT indicate
+        /// whether the application was granted authorization.
         #[method(handleAuthorizationForExtensionWithCompletion:)]
         pub unsafe fn handleAuthorizationForExtensionWithCompletion(
             &self,
             completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
 
+        /// Samples prior to the earliestPermittedSampleDate cannot be saved or queried.
+        ///
+        /// On some platforms, only samples with end dates newer than the value returned by earliestPermittedSampleDate
+        /// may be saved or retrieved.
         #[method_id(@__retain_semantics Other earliestPermittedSampleDate)]
         pub unsafe fn earliestPermittedSampleDate(&self) -> Retained<NSDate>;
 
         #[cfg(all(feature = "HKObject", feature = "block2"))]
+        /// Saves an HKObject.
+        ///
+        /// After an object is saved, on subsequent retrievals the sourceRevision property of the object will be set
+        /// to the HKSourceRevision representing the version of the application that saved it.
+        ///
+        /// If the object has an HKObjectType property, then in order to save an object successfully the application
+        /// must first request authorization to share objects with that type.  Saving an object with the same unique
+        /// identifier as another object that has already been saved will fail.  When the application attempts to
+        /// save multiple objects, if any single object cannot be saved then none of the objects will be saved.
+        /// The operation will fail if the objects array contains samples with endDates that are older than the date
+        /// returned by earliestPermittedSampleDate.
+        ///
+        /// This operation is performed asynchronously and the completion will be executed on an arbitrary
+        /// background queue.
         #[method(saveObject:withCompletion:)]
         pub unsafe fn saveObject_withCompletion(
             &self,
@@ -81,6 +156,9 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKObject", feature = "block2"))]
+        /// Saves an array of HKObjects.
+        ///
+        /// See discussion of saveObject:withCompletion:.
         #[method(saveObjects:withCompletion:)]
         pub unsafe fn saveObjects_withCompletion(
             &self,
@@ -89,6 +167,9 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKObject", feature = "block2"))]
+        /// Deletes a single HKObject from the HealthKit database.
+        ///
+        /// See deleteObjects:withCompletion:.
         #[method(deleteObject:withCompletion:)]
         pub unsafe fn deleteObject_withCompletion(
             &self,
@@ -97,6 +178,10 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKObject", feature = "block2"))]
+        /// Deletes multiple HKObjects from the HealthKit database.
+        ///
+        /// An application may only delete objects that it previously saved.  This operation is performed
+        /// asynchronously and the completion will be executed on an arbitrary background queue.
         #[method(deleteObjects:withCompletion:)]
         pub unsafe fn deleteObjects_withCompletion(
             &self,
@@ -105,6 +190,10 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKObjectType", feature = "block2"))]
+        /// Deletes all objects matching the given predicate from the HealthKit database.
+        ///
+        /// An application may only delete objects that it previously saved.  This operation is performed
+        /// asynchronously and the completion will be executed on an arbitrary background queue.
         #[method(deleteObjectsOfType:predicate:withCompletion:)]
         pub unsafe fn deleteObjectsOfType_predicate_withCompletion(
             &self,
@@ -114,14 +203,36 @@ extern_methods!(
         );
 
         #[cfg(feature = "HKQuery")]
+        /// Begins executing the given query.
+        ///
+        /// After executing a query, the completion, update, and/or results handlers of that query will be invoked
+        /// asynchronously on an arbitrary background queue as results become available.  Errors that prevent a
+        /// query from executing will be delivered to one of the query's handlers.  Which handler the error will be
+        /// delivered to is defined by the HKQuery subclass.
+        ///
+        /// Each HKQuery instance may only be executed once and calling this method with a currently executing query
+        /// or one that was previously executed will result in an exception.
+        ///
+        /// If a query would retrieve objects with an HKObjectType property, then the application must request
+        /// authorization to access objects of that type before executing the query.
         #[method(executeQuery:)]
         pub unsafe fn executeQuery(&self, query: &HKQuery);
 
         #[cfg(feature = "HKQuery")]
+        /// Stops a query that is executing from continuing to run.
+        ///
+        /// Calling this method will prevent the handlers of the query from being invoked in the future.  If the
+        /// query is already stopped, this method does nothing.
         #[method(stopQuery:)]
         pub unsafe fn stopQuery(&self, query: &HKQuery);
 
         #[cfg(all(feature = "HKQuantity", feature = "block2"))]
+        /// For the time period specified, this method calculates the resting and active energy parts of the total
+        /// energy provided.
+        ///
+        /// This method uses the user's metrics like age, biological sex, body mass and height to determine
+        /// their basal metabolic rate. If the application does not have authorization to access these characteristics
+        /// or if the user has not entered their data then this method uses builtin default values.
         #[deprecated = "No longer supported"]
         #[method(splitTotalEnergy:startDate:endDate:resultsHandler:)]
         pub unsafe fn splitTotalEnergy_startDate_endDate_resultsHandler(
@@ -136,36 +247,60 @@ extern_methods!(
         #[method_id(@__retain_semantics Other dateOfBirthWithError:_)]
         pub unsafe fn dateOfBirthWithError(&self) -> Result<Retained<NSDate>, Retained<NSError>>;
 
+        /// Returns the user's date of birth in the Gregorian calendar.
+        ///
+        /// Before calling this method, the application should request authorization to access objects with the
+        /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierDateOfBirth.
         #[method_id(@__retain_semantics Other dateOfBirthComponentsWithError:_)]
         pub unsafe fn dateOfBirthComponentsWithError(
             &self,
         ) -> Result<Retained<NSDateComponents>, Retained<NSError>>;
 
         #[cfg(feature = "HKCharacteristicObjects")]
+        /// Returns an object encapsulating the user's biological sex.
+        ///
+        /// Before calling this method, the application should request authorization to access objects with the
+        /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierBiologicalSex.
         #[method_id(@__retain_semantics Other biologicalSexWithError:_)]
         pub unsafe fn biologicalSexWithError(
             &self,
         ) -> Result<Retained<HKBiologicalSexObject>, Retained<NSError>>;
 
         #[cfg(feature = "HKCharacteristicObjects")]
+        /// Returns an object encapsulating the user's blood type.
+        ///
+        /// Before calling this method, the application should request authorization to access objects with the
+        /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierBloodType.
         #[method_id(@__retain_semantics Other bloodTypeWithError:_)]
         pub unsafe fn bloodTypeWithError(
             &self,
         ) -> Result<Retained<HKBloodTypeObject>, Retained<NSError>>;
 
         #[cfg(feature = "HKCharacteristicObjects")]
+        /// Returns an object encapsulating the user's Fitzpatrick skin type.
+        ///
+        /// Before calling this method, the application should request authorization to access objects with the
+        /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierFitzpatrickSkinType.
         #[method_id(@__retain_semantics Other fitzpatrickSkinTypeWithError:_)]
         pub unsafe fn fitzpatrickSkinTypeWithError(
             &self,
         ) -> Result<Retained<HKFitzpatrickSkinTypeObject>, Retained<NSError>>;
 
         #[cfg(feature = "HKCharacteristicObjects")]
+        /// Returns an object encapsulating the user's wheelchair use.
+        ///
+        /// Before calling this method, the application should request authorization to access objects with the
+        /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierWheelchairUse.
         #[method_id(@__retain_semantics Other wheelchairUseWithError:_)]
         pub unsafe fn wheelchairUseWithError(
             &self,
         ) -> Result<Retained<HKWheelchairUseObject>, Retained<NSError>>;
 
         #[cfg(feature = "HKCharacteristicObjects")]
+        /// Returns an object encapsulating the user's activity move mode
+        ///
+        /// Before calling this method, the application should request authorization to access objects with the
+        /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierActivityMoveMode.
         #[method_id(@__retain_semantics Other activityMoveModeWithError:_)]
         pub unsafe fn activityMoveModeWithError(
             &self,
@@ -188,12 +323,20 @@ extern_methods!(
     /// HKWorkout
     unsafe impl HKHealthStore {
         #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
+        /// Called when a session has started mirroring.
+        ///
+        /// This property should always be assigned a value promptly after your app is launched,
+        /// to ensure it is always observing for incoming mirrored workout sessions.
+        /// If your app is not active when a mirrored session starts, it will be launched in the background and given a one-time
+        /// permission to start a Live Activity from the background.
+        /// The assigned block will be executed on an arbitrary background queue.
         #[method(workoutSessionMirroringStartHandler)]
         pub unsafe fn workoutSessionMirroringStartHandler(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<HKWorkoutSession>)>;
 
         #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
+        /// Setter for [`workoutSessionMirroringStartHandler`][Self::workoutSessionMirroringStartHandler].
         #[method(setWorkoutSessionMirroringStartHandler:)]
         pub unsafe fn setWorkoutSessionMirroringStartHandler(
             &self,
@@ -208,6 +351,13 @@ extern_methods!(
             feature = "HKWorkout",
             feature = "block2"
         ))]
+        /// Associates samples with a given workout.
+        ///
+        /// This will associate the given samples with the given workout. These samples will then be returned by a
+        /// query that contains this workout as a predicate. If a sample is added that is not saved yet, then it will
+        /// be saved for you. Note that the sample will be saved without an HKDevice.
+        ///
+        /// The workout provided must be one that has already been saved to HealthKit.
         #[deprecated = "Use HKWorkoutBuilder"]
         #[method(addSamples:toWorkout:completion:)]
         pub unsafe fn addSamples_toWorkout_completion(
@@ -218,26 +368,51 @@ extern_methods!(
         );
 
         #[cfg(feature = "HKWorkoutSession")]
+        /// Starts the given workout session.
+        ///
+        /// This method will asynchronously begin a workout session. The methods on the session's delegate will be
+        /// called when the session has successfully started or fails to start.
         #[deprecated = "Use HKWorkoutSession's start method"]
         #[method(startWorkoutSession:)]
         pub unsafe fn startWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
         #[cfg(feature = "HKWorkoutSession")]
+        /// Ends the given workout session.
+        ///
+        /// This method will end the given session if it is currently running. The state of the workout session will
+        /// transition to HKWorkoutSessionStateEnded. Once a workout session is ended, it cannot be reused to start
+        /// a new workout session.
         #[deprecated = "Use HKWorkoutSession's end method"]
         #[method(endWorkoutSession:)]
         pub unsafe fn endWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
         #[cfg(feature = "HKWorkoutSession")]
+        /// Pauses the given workout session.
+        ///
+        /// This method will pause the given session if it is currently running. The state of the workout session
+        /// will transition to HKWorkoutSessionStatePaused. An HKWorkoutEventTypePause will be generated and
+        /// delivered to the workout session's delegate.
         #[deprecated = "Use HKWorkoutSession's pause method"]
         #[method(pauseWorkoutSession:)]
         pub unsafe fn pauseWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
         #[cfg(feature = "HKWorkoutSession")]
+        /// Resumes the given workout session.
+        ///
+        /// This method will resume the given session if it is currently paused. The state of the workout session
+        /// will transition to HKWorkoutSessionStateRunning. An HKWorkoutEventTypeResume will be generated and
+        /// delivered to the workout session's delegate.
         #[deprecated = "Use HKWorkoutSession's resume method"]
         #[method(resumeWorkoutSession:)]
         pub unsafe fn resumeWorkoutSession(&self, workout_session: &HKWorkoutSession);
 
         #[cfg(all(feature = "HKWorkoutConfiguration", feature = "block2"))]
+        /// Launches or wakes up the WatchKit app on the watch
+        ///
+        /// This method will launch the WatchKit app corresponding to the calling iOS application on the currently
+        /// active Apple Watch. After launching, the handleWorkoutConfiguration: method on the WKExtensionDelegate
+        /// protocol will be called with the HKWorkoutConfiguration as a parameter. The receiving Watch app can use
+        /// this configuration object to create an HKWorkoutSession and start it with -startWorkoutSession:.
         #[method(startWatchAppWithWorkoutConfiguration:completion:)]
         pub unsafe fn startWatchAppWithWorkoutConfiguration_completion(
             &self,
@@ -246,6 +421,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKWorkoutSession", feature = "block2"))]
+        /// Recovers an active workout session after a client crash. If no session is available to be re-attached,
+        /// nil will be returned. If an error occurs, session will be nil and error will be set appropriately.
         #[method(recoverActiveWorkoutSessionWithCompletion:)]
         pub unsafe fn recoverActiveWorkoutSessionWithCompletion(
             &self,
@@ -258,6 +435,13 @@ extern_methods!(
     /// HKBackgroundDelivery
     unsafe impl HKHealthStore {
         #[cfg(all(feature = "HKDefines", feature = "HKObjectType", feature = "block2"))]
+        /// This method enables activation of your app when data of the type is recorded at the cadence specified.
+        ///
+        /// When an app has subscribed to a certain data type it will get activated at the cadence that is specified
+        /// with the frequency parameter. The app is still responsible for creating an HKObserverQuery to know which
+        /// data types have been updated and the corresponding fetch queries. Note that certain data types (such as
+        /// HKQuantityTypeIdentifierStepCount) have a minimum frequency of HKUpdateFrequencyHourly. This is enforced
+        /// transparently to the caller.
         #[method(enableBackgroundDeliveryForType:frequency:withCompletion:)]
         pub unsafe fn enableBackgroundDeliveryForType_frequency_withCompletion(
             &self,
@@ -284,7 +468,14 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkuserpreferencesdidchangenotification?language=objc)
+    /// A notification posted every time the user updates their preferred units.
+    ///
+    /// Each HKHealthStore posts a HKUserPreferencesDidChangeNotification notification when the preferred unit
+    /// for a HKQuantityType is changed by the user. To guarantee your listener will only receive a single
+    /// notification when this occurs, it is necessary to provide an HKHealthStore instance for the object
+    /// parameter of NSNotificationCenter's addObserver methods.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkuserpreferencesdidchangenotification?language=objc)
     pub static HKUserPreferencesDidChangeNotification: &'static NSString;
 }
 
@@ -292,6 +483,18 @@ extern_methods!(
     /// HKUserPreferences
     unsafe impl HKHealthStore {
         #[cfg(all(feature = "HKObjectType", feature = "HKUnit", feature = "block2"))]
+        /// Calls the completion with the preferred HKUnits for a given set of HKQuantityTypes.
+        ///
+        /// A preferred unit is either the unit that the user has chosen in Health for displaying samples of the
+        /// given quantity type or the default unit for that type in the current locale of the device. To access the
+        /// user's preferences it is necessary to request read or share authorization for the set of HKQuantityTypes
+        /// provided. If neither read nor share authorization has been granted to the app, then the default unit for
+        /// the locale is provided.
+        ///
+        /// An error will be returned when preferred units are inaccessible because protected health data is
+        /// unavailable or authorization status is not determined for one or more of the provided types.
+        ///
+        /// The returned dictionary will map HKQuantityType to HKUnit.
         #[method(preferredUnitsForQuantityTypes:completion:)]
         pub unsafe fn preferredUnitsForQuantityTypes_completion(
             &self,
@@ -307,6 +510,10 @@ extern_methods!(
     /// HKRecalibrateEstimates
     unsafe impl HKHealthStore {
         #[cfg(all(feature = "HKObjectType", feature = "block2"))]
+        /// Recalibrates the prediction algorithm used for this sample type.
+        ///
+        /// Check -[HKSampleType allowsRecalibrationForEstimates] to see if a given sample type is supported. Calling this method results in first-party
+        /// estimation algorithms to recalibrate what data is used when generating values for HKSamples of this sampleType.
         #[method(recalibrateEstimatesForSampleType:atDate:completion:)]
         pub unsafe fn recalibrateEstimatesForSampleType_atDate_completion(
             &self,
@@ -327,6 +534,16 @@ extern_methods!(
             feature = "HKWorkoutActivity",
             feature = "block2"
         ))]
+        /// Relates a workout effort sample with a workout
+        ///
+        ///
+        /// Parameter `sample`: The workout effort sample
+        ///
+        /// Parameter `workout`: The HKWorkout to relate the sample to
+        ///
+        /// Parameter `activity`: The HKWorkoutActivity on the HKWorkout
+        ///
+        /// Parameter `completion`: The block to be called when the sample has been related
         #[method(relateWorkoutEffortSample:withWorkout:activity:completion:)]
         pub unsafe fn relateWorkoutEffortSample_withWorkout_activity_completion(
             &self,
@@ -343,6 +560,16 @@ extern_methods!(
             feature = "HKWorkoutActivity",
             feature = "block2"
         ))]
+        /// Unrelates a workout effort sample from a workout
+        ///
+        ///
+        /// Parameter `sample`: The workout effort sample
+        ///
+        /// Parameter `workout`: The HKWorkout to unrelate the sample from
+        ///
+        /// Parameter `activity`: The HKWorkoutActivity on the HKWorkout
+        ///
+        /// Parameter `completion`: The block to be called when the sample has been unrelated
         #[method(unrelateWorkoutEffortSample:fromWorkout:activity:completion:)]
         pub unsafe fn unrelateWorkoutEffortSample_fromWorkout_activity_completion(
             &self,

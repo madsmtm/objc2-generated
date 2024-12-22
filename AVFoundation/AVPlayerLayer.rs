@@ -44,37 +44,64 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVPlayerLayer {
         #[cfg(feature = "AVPlayer")]
+        /// Returns an instance of AVPlayerLayer to display the visual output of the specified AVPlayer.
+        ///
+        /// Returns: An instance of AVPlayerLayer.
         #[method_id(@__retain_semantics Other playerLayerWithPlayer:)]
         pub unsafe fn playerLayerWithPlayer(player: Option<&AVPlayer>) -> Retained<AVPlayerLayer>;
 
         #[cfg(feature = "AVPlayer")]
+        /// Indicates the instance of AVPlayer for which the AVPlayerLayer displays visual output
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self, mtm: MainThreadMarker) -> Option<Retained<AVPlayer>>;
 
         #[cfg(feature = "AVPlayer")]
+        /// Setter for [`player`][Self::player].
         #[method(setPlayer:)]
         pub unsafe fn setPlayer(&self, player: Option<&AVPlayer>);
 
         #[cfg(feature = "AVAnimation")]
+        /// A string defining how the video is displayed within an AVPlayerLayer bounds rect.
+        ///
+        /// Options are AVLayerVideoGravityResizeAspect, AVLayerVideoGravityResizeAspectFill
+        /// and AVLayerVideoGravityResize. AVLayerVideoGravityResizeAspect is default.
+        /// See
+        /// <AVFoundation
+        /// /AVAnimation.h> for a description of these options.
         #[method_id(@__retain_semantics Other videoGravity)]
         pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "AVAnimation")]
+        /// Setter for [`videoGravity`][Self::videoGravity].
         #[method(setVideoGravity:)]
         pub unsafe fn setVideoGravity(&self, video_gravity: &AVLayerVideoGravity);
 
+        /// Boolean indicating that the first video frame has been made ready for display for the current item of the associated AVPlayer.
+        ///
+        /// Use this property as an indicator of when best to show or animate-in an AVPlayerLayer into view.
+        /// An AVPlayerLayer may be displayed, or made visible, while this property is NO, however the layer will not have any user-visible content until the value becomes YES. Note that if an animation is added to an AVPlayerLayer before it becomes readyForDisplay the video image displayed inside might not animate with the receiver.
+        /// This property remains NO for an AVPlayer currentItem whose AVAsset contains no enabled video tracks.
+        /// This property is key-value observable.
         #[method(isReadyForDisplay)]
         pub unsafe fn isReadyForDisplay(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The current size and position of the video image as displayed within the receiver's bounds.
         #[method(videoRect)]
         pub unsafe fn videoRect(&self) -> CGRect;
 
+        /// The client requirements for the visual output displayed in AVPlayerLayer during playback.
+        ///
+        /// Pixel buffer attribute keys are defined in
+        /// <CoreVideo
+        /// /CVPixelBuffer.h>
+        /// This property is key-value observable.
         #[method_id(@__retain_semantics Other pixelBufferAttributes)]
         pub unsafe fn pixelBufferAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// Setter for [`pixelBufferAttributes`][Self::pixelBufferAttributes].
         #[method(setPixelBufferAttributes:)]
         pub unsafe fn setPixelBufferAttributes(
             &self,
@@ -82,6 +109,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-video")]
+        /// Returns a retained reference to the pixel buffer currently displayed in this AVPlayerLayer. This will return NULL if the displayed pixel buffer is protected, no image is currently being displayed, if the current player's rate is non-zero or if the image is unavailable.
+        ///
+        /// This will only return the current image while the media is paused, otherwise this will return nil. Clients must release the pixel buffer after use.
+        ///
+        /// Do not write to the returned CVPixelBuffer's attachments or pixel data.
         #[method(copyDisplayedPixelBuffer)]
         pub unsafe fn copyDisplayedPixelBuffer(&self) -> CVPixelBufferRef;
     }
@@ -92,6 +124,7 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVPlayerLayer {
+        /// Layer creation and initialization. *
         #[method_id(@__retain_semantics Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 

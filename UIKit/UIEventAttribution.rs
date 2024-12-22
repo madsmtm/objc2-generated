@@ -24,21 +24,52 @@ unsafe impl NSObjectProtocol for UIEventAttribution {}
 
 extern_methods!(
     unsafe impl UIEventAttribution {
+        /// An identifier that is associated with the source of the attribution. For example, you may choose to use this as a campaign identifier to measure the effectiveness of different advertisement campaigns.
+        ///
+        /// This field corresponds to `source_id` in the subsequent attribution report.
         #[method(sourceIdentifier)]
         pub unsafe fn sourceIdentifier(&self) -> u8;
 
+        /// The destination URL of an attribution. For example, the link opened when an advertisement is tapped.
+        ///
+        /// This field corresponds to `attributed_on_site` in the subsequent attribution report.
         #[method_id(@__retain_semantics Other destinationURL)]
         pub unsafe fn destinationURL(&self) -> Retained<NSURL>;
 
+        /// The URL to which the attribution report will be sent. You do not provide this field at creation time. Instead, you must define the URL
+        /// as a string in your app's Info.plist under the `NSAdvertisingAttributionReportEndpoint` key.
+        ///
+        /// This field corresponds to `source_site` in the subsequent attribution report.
         #[method_id(@__retain_semantics Other reportEndpoint)]
         pub unsafe fn reportEndpoint(&self) -> Option<Retained<NSURL>>;
 
+        /// A high-level description of the source of the attribution. For example, this could be a description of the content of an advertisement a user taps on.
+        ///
+        /// The system may truncate this field if it is too long.
         #[method_id(@__retain_semantics Other sourceDescription)]
         pub unsafe fn sourceDescription(&self) -> Retained<NSString>;
 
+        /// The name of the party that purchased the content to be attributed. For example, this could be the name of the party that purchased the placement of an advertisement.
+        ///
+        /// The system may truncate this field if it is too long.
         #[method_id(@__retain_semantics Other purchaser)]
         pub unsafe fn purchaser(&self) -> Retained<NSString>;
 
+        /// Create a `UIEventAttribution` object.
+        ///
+        ///
+        /// Parameter `sourceIdentifier`: An identifier associated with the attribution.
+        ///
+        /// Parameter `destinationURL`: The destination URL of the attribution.
+        ///
+        /// Parameter `sourceDescription`: A high-level description of the content to be attributed. Pass in an empty string if no description is available.
+        ///
+        /// Parameter `purchaser`: The name of the party that purchased the content to be attributed. Pass in an empty string if no name is available.
+        ///
+        ///
+        /// Returns: An instance of `UIEventAttribution` with the specified values for each field.
+        ///
+        /// The `sourceDescription` and `purchaser` fields may be truncated by the system if they are too long.
         #[method_id(@__retain_semantics Init initWithSourceIdentifier:destinationURL:sourceDescription:purchaser:)]
         pub unsafe fn initWithSourceIdentifier_destinationURL_sourceDescription_purchaser(
             this: Allocated<Self>,

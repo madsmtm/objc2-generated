@@ -6,7 +6,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessmentrisk?language=objc)
+/// Anxiety risk level determined by GAD-7 assessment.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessmentrisk?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -30,7 +32,9 @@ unsafe impl RefEncode for HKGAD7AssessmentRisk {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessmentanswer?language=objc)
+/// Answer to question on GAD-7 assessment.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessmentanswer?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -55,15 +59,19 @@ unsafe impl RefEncode for HKGAD7AssessmentAnswer {
 }
 
 extern "C-unwind" {
+    /// Returns the lower bound of the score range for the given GAD-7 risk classification.
     pub fn HKMinimumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger;
 }
 
 extern "C-unwind" {
+    /// Returns the upper bound of the score range for the given GAD-7 risk classification.
     pub fn HKMaximumScoreForGAD7AssessmentRisk(risk: HKGAD7AssessmentRisk) -> NSInteger;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessment?language=objc)
+    /// Represents the result of a GAD-7 assessment. Learn more about Pfizer's GAD-7 at https://support.apple.com/en-us/105070
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessment?language=objc)
     #[unsafe(super(HKScoredAssessment, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -132,18 +140,22 @@ extern_methods!(
         feature = "HKScoredAssessment"
     ))]
     unsafe impl HKGAD7Assessment {
+        /// Answers on the GAD-7 assessment. There are exactly 7 answers, one for each multiple choice question. Each answer is of type `HKGAD7AssessmentAnswer`.
         #[method_id(@__retain_semantics Other answers)]
         pub unsafe fn answers(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// The risk determined by the score on a GAD-7 assessment.
         #[method(risk)]
         pub unsafe fn risk(&self) -> HKGAD7AssessmentRisk;
 
+        /// Creates a new GAD-7 sample. There must be exactly 7 elements in answers, each answer must be of type `HKGAD7AssessmentAnswer`.
         #[method_id(@__retain_semantics Other assessmentWithDate:answers:)]
         pub unsafe fn assessmentWithDate_answers(
             date: &NSDate,
             answers: &NSArray<NSNumber>,
         ) -> Retained<Self>;
 
+        /// Creates a new GAD-7 sample. There must be exactly 7 elements in answers, each answer must be of type `HKGAD7AssessmentAnswer`.
         #[method_id(@__retain_semantics Other assessmentWithDate:answers:metadata:)]
         pub unsafe fn assessmentWithDate_answers_metadata(
             date: &NSDate,

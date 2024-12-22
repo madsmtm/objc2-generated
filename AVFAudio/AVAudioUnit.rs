@@ -11,7 +11,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounit?language=objc)
+    /// An AVAudioNode implemented by an audio unit.
+    ///
+    /// An AVAudioUnit is an AVAudioNode implemented by an audio unit. Depending on the type of
+    /// the audio unit, audio is processed either in real-time or non real-time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounit?language=objc)
     #[unsafe(super(AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]
@@ -26,6 +31,22 @@ extern_methods!(
     unsafe impl AVAudioUnit {
         #[cfg(all(feature = "block2", feature = "objc2-audio-toolbox"))]
         #[cfg(not(target_os = "watchos"))]
+        /// Asynchronously create an instance of an audio unit component, wrapped in an AVAudioUnit.
+        ///
+        /// Parameter `audioComponentDescription`: The component to instantiate.
+        ///
+        /// Parameter `options`: Instantiation options.
+        ///
+        /// Parameter `completionHandler`: Called in an arbitrary thread/queue context when instantiation is complete. The client
+        /// should retain the provided AVAudioUnit.
+        ///
+        /// Components whose flags include kAudioComponentFlag_RequiresAsyncInstantiation must be
+        /// instantiated asynchronously, via this method if they are to be used with AVAudioEngine.
+        /// See the discussion of this flag in AudioToolbox/AudioComponent.h.
+        ///
+        /// The returned AVAudioUnit instance normally will be of a subclass (AVAudioUnitEffect,
+        /// AVAudioUnitGenerator, AVAudioUnitMIDIInstrument, or AVAudioUnitTimeEffect), selected
+        /// according to the component's type.
         #[method(instantiateWithComponentDescription:options:completionHandler:)]
         pub unsafe fn instantiateWithComponentDescription_options_completionHandler(
             audio_component_description: AudioComponentDescription,
@@ -33,6 +54,13 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(*mut AVAudioUnit, *mut NSError)>,
         );
 
+        /// Load an audio unit preset.
+        ///
+        /// Parameter `url`: NSURL of the .aupreset file.
+        ///
+        /// Parameter `outError`: A pointer to a NSError object
+        ///
+        /// If the .aupreset file cannot be successfully loaded, an error is returned.
         #[method(loadAudioUnitPresetAtURL:error:_)]
         pub unsafe fn loadAudioUnitPresetAtURL_error(
             &self,
@@ -41,25 +69,46 @@ extern_methods!(
 
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// AudioComponentDescription of the underlying audio unit.
         #[method(audioComponentDescription)]
         pub unsafe fn audioComponentDescription(&self) -> AudioComponentDescription;
 
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// Reference to the underlying audio unit.
+        ///
+        /// A reference to the underlying audio unit is provided so that parameters that are not
+        /// exposed by AVAudioUnit subclasses can be modified using the AudioUnit C API.
+        ///
+        /// No operations that may conflict with state maintained by the engine should be performed
+        /// directly on the audio unit. These include changing initialization state, stream formats,
+        /// channel layouts or connections to other audio units.
         #[method(audioUnit)]
         pub unsafe fn audioUnit(&self) -> AudioUnit;
 
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
+        /// An AUAudioUnit wrapping or underlying the implementation's AudioUnit.
+        ///
+        /// This provides an AUAudioUnit which either wraps or underlies the implementation's
+        /// AudioUnit, depending on how that audio unit is packaged. Applications can interact with this
+        /// AUAudioUnit to control custom properties, select presets, change parameters, etc.
+        ///
+        /// As with the audioUnit property, no operations that may conflict with state maintained by the
+        /// engine should be performed directly on the audio unit. These include changing initialization
+        /// state, stream formats, channel layouts or connections to other audio units.
         #[method_id(@__retain_semantics Other AUAudioUnit)]
         pub unsafe fn AUAudioUnit(&self) -> Retained<AUAudioUnit>;
 
+        /// Name of the audio unit.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Manufacturer name of the audio unit.
         #[method_id(@__retain_semantics Other manufacturerName)]
         pub unsafe fn manufacturerName(&self) -> Retained<NSString>;
 
+        /// Version number of the audio unit.
         #[method(version)]
         pub unsafe fn version(&self) -> NSUInteger;
     }

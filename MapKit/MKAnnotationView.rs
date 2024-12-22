@@ -167,12 +167,14 @@ extern_methods!(
         pub unsafe fn annotation(&self) -> Option<Retained<ProtocolObject<dyn MKAnnotation>>>;
 
         #[cfg(feature = "MKAnnotation")]
+        /// Setter for [`annotation`][Self::annotation].
         #[method(setAnnotation:)]
         pub unsafe fn setAnnotation(&self, annotation: Option<&ProtocolObject<dyn MKAnnotation>>);
 
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
@@ -181,6 +183,7 @@ extern_methods!(
         pub unsafe fn centerOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`centerOffset`][Self::centerOffset].
         #[method(setCenterOffset:)]
         pub unsafe fn setCenterOffset(&self, center_offset: CGPoint);
 
@@ -189,6 +192,7 @@ extern_methods!(
         pub unsafe fn accessoryOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`accessoryOffset`][Self::accessoryOffset].
         #[method(setAccessoryOffset:)]
         pub unsafe fn setAccessoryOffset(&self, accessory_offset: CGPoint);
 
@@ -197,6 +201,7 @@ extern_methods!(
         pub unsafe fn calloutOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`calloutOffset`][Self::calloutOffset].
         #[method(setCalloutOffset:)]
         pub unsafe fn setCalloutOffset(&self, callout_offset: CGPoint);
 
@@ -205,6 +210,7 @@ extern_methods!(
         pub unsafe fn leftCalloutOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`leftCalloutOffset`][Self::leftCalloutOffset].
         #[method(setLeftCalloutOffset:)]
         pub unsafe fn setLeftCalloutOffset(&self, left_callout_offset: CGPoint);
 
@@ -213,24 +219,28 @@ extern_methods!(
         pub unsafe fn rightCalloutOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`rightCalloutOffset`][Self::rightCalloutOffset].
         #[method(setRightCalloutOffset:)]
         pub unsafe fn setRightCalloutOffset(&self, right_callout_offset: CGPoint);
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method(isHighlighted)]
         pub unsafe fn isHighlighted(&self) -> bool;
 
+        /// Setter for [`isHighlighted`][Self::isHighlighted].
         #[method(setHighlighted:)]
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
         #[method(isSelected)]
         pub unsafe fn isSelected(&self) -> bool;
 
+        /// Setter for [`isSelected`][Self::isSelected].
         #[method(setSelected:)]
         pub unsafe fn setSelected(&self, selected: bool);
 
@@ -240,12 +250,14 @@ extern_methods!(
         #[method(canShowCallout)]
         pub unsafe fn canShowCallout(&self) -> bool;
 
+        /// Setter for [`canShowCallout`][Self::canShowCallout].
         #[method(setCanShowCallout:)]
         pub unsafe fn setCanShowCallout(&self, can_show_callout: bool);
 
         #[method_id(@__retain_semantics Other leftCalloutAccessoryView)]
         pub unsafe fn leftCalloutAccessoryView(&self) -> Option<Retained<NSView>>;
 
+        /// Setter for [`leftCalloutAccessoryView`][Self::leftCalloutAccessoryView].
         #[method(setLeftCalloutAccessoryView:)]
         pub unsafe fn setLeftCalloutAccessoryView(
             &self,
@@ -255,6 +267,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rightCalloutAccessoryView)]
         pub unsafe fn rightCalloutAccessoryView(&self) -> Option<Retained<NSView>>;
 
+        /// Setter for [`rightCalloutAccessoryView`][Self::rightCalloutAccessoryView].
         #[method(setRightCalloutAccessoryView:)]
         pub unsafe fn setRightCalloutAccessoryView(
             &self,
@@ -264,6 +277,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other detailCalloutAccessoryView)]
         pub unsafe fn detailCalloutAccessoryView(&self) -> Option<Retained<NSView>>;
 
+        /// Setter for [`detailCalloutAccessoryView`][Self::detailCalloutAccessoryView].
         #[method(setDetailCalloutAccessoryView:)]
         pub unsafe fn setDetailCalloutAccessoryView(
             &self,
@@ -273,12 +287,14 @@ extern_methods!(
         #[method(isDraggable)]
         pub unsafe fn isDraggable(&self) -> bool;
 
+        /// Setter for [`isDraggable`][Self::isDraggable].
         #[method(setDraggable:)]
         pub unsafe fn setDraggable(&self, draggable: bool);
 
         #[method(dragState)]
         pub unsafe fn dragState(&self) -> MKAnnotationViewDragState;
 
+        /// Setter for [`dragState`][Self::dragState].
         #[method(setDragState:)]
         pub unsafe fn setDragState(&self, drag_state: MKAnnotationViewDragState);
 
@@ -292,6 +308,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clusteringIdentifier)]
         pub unsafe fn clusteringIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`clusteringIdentifier`][Self::clusteringIdentifier].
         #[method(setClusteringIdentifier:)]
         pub unsafe fn setClusteringIdentifier(&self, clustering_identifier: Option<&NSString>);
 
@@ -301,24 +318,28 @@ extern_methods!(
         #[method(displayPriority)]
         pub unsafe fn displayPriority(&self) -> MKFeatureDisplayPriority;
 
+        /// Setter for [`displayPriority`][Self::displayPriority].
         #[method(setDisplayPriority:)]
         pub unsafe fn setDisplayPriority(&self, display_priority: MKFeatureDisplayPriority);
 
         #[method(zPriority)]
         pub unsafe fn zPriority(&self) -> MKAnnotationViewZPriority;
 
+        /// Setter for [`zPriority`][Self::zPriority].
         #[method(setZPriority:)]
         pub unsafe fn setZPriority(&self, z_priority: MKAnnotationViewZPriority);
 
         #[method(selectedZPriority)]
         pub unsafe fn selectedZPriority(&self) -> MKAnnotationViewZPriority;
 
+        /// Setter for [`selectedZPriority`][Self::selectedZPriority].
         #[method(setSelectedZPriority:)]
         pub unsafe fn setSelectedZPriority(&self, selected_z_priority: MKAnnotationViewZPriority);
 
         #[method(collisionMode)]
         pub unsafe fn collisionMode(&self) -> MKAnnotationViewCollisionMode;
 
+        /// Setter for [`collisionMode`][Self::collisionMode].
         #[method(setCollisionMode:)]
         pub unsafe fn setCollisionMode(&self, collision_mode: MKAnnotationViewCollisionMode);
     }

@@ -23,6 +23,7 @@ extern_category!(
             -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
+        /// Setter for [`scriptingProperties`][Self::scriptingProperties].
         #[method(setScriptingProperties:)]
         unsafe fn setScriptingProperties(
             &self,

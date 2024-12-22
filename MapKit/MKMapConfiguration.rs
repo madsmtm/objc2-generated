@@ -57,6 +57,7 @@ extern_methods!(
         #[method(elevationStyle)]
         pub unsafe fn elevationStyle(&self) -> MKMapElevationStyle;
 
+        /// Setter for [`elevationStyle`][Self::elevationStyle].
         #[method(setElevationStyle:)]
         pub unsafe fn setElevationStyle(&self, elevation_style: MKMapElevationStyle);
     }

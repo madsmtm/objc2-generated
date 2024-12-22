@@ -8,7 +8,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmenttype?language=objc)
+/// Indicates the type of segment.
+///
+///
+/// Indicates that the segment is a initialization segment.
+///
+/// Indicates that the segment is a separable segment.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -29,7 +36,13 @@ unsafe impl RefEncode for AVAssetSegmentType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmentreport?language=objc)
+    /// This class provides information on a segment data.
+    ///
+    /// Clients may get an instance of AVAssetSegmentReport through the -assetWriter:didOutputSegmentData:segmentType:segmentReport: delegate method, which is defined in AVAssetWriter.h.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmentreport?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetSegmentReport;
@@ -49,16 +62,22 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// A segment type of the segment data.
         #[method(segmentType)]
         pub unsafe fn segmentType(&self) -> AVAssetSegmentType;
 
+        /// Provides an array of AVAssetSegmentTrackReport in the segment data.
         #[method_id(@__retain_semantics Other trackReports)]
         pub unsafe fn trackReports(&self) -> Retained<NSArray<AVAssetSegmentTrackReport>>;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmenttrackreport?language=objc)
+    /// This class is vended by AVAssetSegmentReport. It will provide information on a track in a segment data.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmenttrackreport?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetSegmentTrackReport;
@@ -79,21 +98,26 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the persistent unique identifier for this track.
         #[method(trackID)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// Indicates the media type for this track. Media types are declared in AVMediaFormat.h.
         #[method_id(@__retain_semantics Other mediaType)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the earliest presentation timestamp (PTS) for this track. The value is kCMTimeInvalid if there is no information available.
         #[method(earliestPresentationTimeStamp)]
         pub unsafe fn earliestPresentationTimeStamp(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the duration for this track. The value is kCMTimeInvalid if there is no information available.
         #[method(duration)]
         pub unsafe fn duration(&self) -> CMTime;
 
+        /// Provides information on the first video sample in this track. The value is nil if this track is not video track or no information available.
         #[method_id(@__retain_semantics Other firstVideoSampleInformation)]
         pub unsafe fn firstVideoSampleInformation(
             &self,
@@ -102,7 +126,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmentreportsampleinformation?language=objc)
+    /// This class is vended by AVAssetSegmentTrackReport. It will provide information on a sample in a track.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmentreportsampleinformation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetSegmentReportSampleInformation;
@@ -123,15 +151,21 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The presentation timestamp (PTS) of the sample.
+        ///
+        /// This timestamp may be different from the earliestPresentationTimeStamp if the video is encoded using frame reordering.
         #[method(presentationTimeStamp)]
         pub unsafe fn presentationTimeStamp(&self) -> CMTime;
 
+        /// The offset of the sample in the segment.
         #[method(offset)]
         pub unsafe fn offset(&self) -> NSInteger;
 
+        /// The length of the sample.
         #[method(length)]
         pub unsafe fn length(&self) -> NSInteger;
 
+        /// Indicates whether the sample is a sync sample.
         #[method(isSyncSample)]
         pub unsafe fn isSyncSample(&self) -> bool;
     }

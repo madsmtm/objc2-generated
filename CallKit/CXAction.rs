@@ -28,9 +28,11 @@ unsafe impl NSSecureCoding for CXAction {}
 
 extern_methods!(
     unsafe impl CXAction {
+        /// Unique ID
         #[method_id(@__retain_semantics Other UUID)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
+        /// Whether all actions are either fulfilled or failed
         #[method(isComplete)]
         pub unsafe fn isComplete(&self) -> bool;
 
@@ -46,9 +48,11 @@ extern_methods!(
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// Report successful execution of the receiver.
         #[method(fulfill)]
         pub unsafe fn fulfill(&self);
 
+        /// Report failed execution of the receiver.
         #[method(fail)]
         pub unsafe fn fail(&self);
     }

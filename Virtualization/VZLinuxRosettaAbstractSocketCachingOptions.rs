@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaabstractsocketcachingoptions?language=objc)
+    /// Caching options for an Abstract Socket.
+    ///
+    /// This object configures Rosetta to communicate with the Rosetta daemon using an Abstract Socket.
+    ///
+    /// See: VZLinuxRosettaCachingOptions
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaabstractsocketcachingoptions?language=objc)
     #[unsafe(super(VZLinuxRosettaCachingOptions, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZLinuxRosettaCachingOptions")]
@@ -20,15 +26,27 @@ unsafe impl NSObjectProtocol for VZLinuxRosettaAbstractSocketCachingOptions {}
 extern_methods!(
     #[cfg(feature = "VZLinuxRosettaCachingOptions")]
     unsafe impl VZLinuxRosettaAbstractSocketCachingOptions {
+        /// Initialize options to be set on a VZLinuxRosettaDirectoryShare.
+        ///
+        /// Parameter `name`: The name of the Abstract Socket to be used to communicate with the Rosetta translation daemon. This cannot exceed maximumNameLength UTF-8 bytes long.
+        ///
+        /// Parameter `error`: If not nil, assigned with the error if the initialization failed.
+        ///
+        /// Rosetta can be optionally configured to use cached translations from the Rosetta translation daemon communicating through an Abstract Socket.
+        /// If name exceeds maximumNameLength UTF-8 bytes, nil is returned and the error is set.
         #[method_id(@__retain_semantics Init initWithName:error:_)]
         pub unsafe fn initWithName_error(
             this: Allocated<Self>,
             name: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// Name set by initWithName.
+        ///
+        /// This is the name of the Abstract Socket to be used by Rosetta.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// The maximum allowed length of name, as defined by the sockaddr_un structure in Linux.
         #[method(maximumNameLength)]
         pub unsafe fn maximumNameLength() -> NSUInteger;
     }

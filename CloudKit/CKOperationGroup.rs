@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgrouptransfersize?language=objc)
+/// Valid values for expectedSendSize and expectedReceiveSize
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgrouptransfersize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -40,7 +42,21 @@ unsafe impl RefEncode for CKOperationGroupTransferSize {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup?language=objc)
+    /// A mechanism for your app to group several operations at the granularity of a user action.
+    ///
+    ///
+    /// For example, when building a Calendar application, these things might warrant being their own operation groups:
+    /// - an initial fetch of data from the server, consisting of many queries, fetchChanges, and fetch operations
+    /// - doing an incremental fetch of data in response to a push notification
+    /// - saving several records due to a user saving a calendar event
+    ///
+    /// You associate
+    /// `CKOperationGroup`s with
+    /// `CKOperation`s by setting the
+    /// `CKOperation.group`property.  Create a new
+    /// `CKOperationGroup`instance for each distinct user action.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKOperationGroup;
@@ -60,41 +76,90 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
+        /// This is an identifier unique to this
+        /// `CKOperationGroup`
+        ///
+        /// This value is chosen by the system, and will be unique to this instance of a
+        /// `CKOperationGroup.`This identifier will be sent to Apple's servers, and can be used to identify any server-side logging associated with this operation group.
         #[method_id(@__retain_semantics Other operationGroupID)]
         pub unsafe fn operationGroupID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "CKOperation")]
+        /// This is the default configuration applied to operations in this operation group.
+        ///
+        ///
+        /// If an operation associated with this operation group has its own configuration, then any explicitly-set properties in that operation's configuration will override these default configuration values.  See the example in CKOperation.h
         #[method_id(@__retain_semantics Other defaultConfiguration)]
         pub unsafe fn defaultConfiguration(&self) -> Retained<CKOperationConfiguration>;
 
         #[cfg(feature = "CKOperation")]
+        /// Setter for [`defaultConfiguration`][Self::defaultConfiguration].
         #[method(setDefaultConfiguration:)]
         pub unsafe fn setDefaultConfiguration(
             &self,
             default_configuration: Option<&CKOperationConfiguration>,
         );
 
+        /// Describes the user action attributed to the operation group.
+        ///
+        ///
+        /// `name`should describe the type of work being done.  Some examples:
+        /// "Initial Fetch"
+        /// "Incremental Fetch"
+        /// "Saving User-Entered Record"
+        /// This string will be sent to Apple servers to provide aggregate reporting for
+        /// `CKOperationGroup`s and therefore must not include personally identifying data.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
+        /// Describes an application-specific "number of elements" associated with the operation group.
+        ///
+        ///
+        /// `quantity`is intended to show the app-specific count of items contained within the operation group.  It is your job to assign meaning to this value.  For example, if an app created an operation group to save 3 calendar events the user had created, the app might want to set this to "3".  This value is not shown to your users, it's meant to aid your development and debugging.  This value will be reported in the CloudKit Dashboard's log entries for all operations associated with this operation group.
         #[method(quantity)]
         pub unsafe fn quantity(&self) -> NSUInteger;
 
+        /// Setter for [`quantity`][Self::quantity].
         #[method(setQuantity:)]
         pub unsafe fn setQuantity(&self, quantity: NSUInteger);
 
+        /// Estimated size of traffic being uploaded to the CloudKit Server
+        ///
+        ///
+        /// Inform the system how much data you plan on transferring.  Obviously, these won't be exact.  Be as accurate as possible, but even an order-of-magnitude estimate is better than no value.  The system will consult these values when scheduling discretionary network requests (see the description of
+        /// `CKOperationConfiguration.qualityOfService).`Overestimating your workload means that an operation group issuing discretionary network requests may be delayed until network conditions are good.
+        /// Underestimating your workload may cause the system to oversaturate a constrained connection, leading to network failures.
+        /// You may update after the
+        /// `CKOperationGroup`is created.  If it is increased, then subsequent
+        /// `CKOperation`s associated with this operation group may be delayed until network conditions are good.
+        /// Defaults to
+        /// `CKOperationGroupTransferSizeUnknown`
         #[method(expectedSendSize)]
         pub unsafe fn expectedSendSize(&self) -> CKOperationGroupTransferSize;
 
+        /// Setter for [`expectedSendSize`][Self::expectedSendSize].
         #[method(setExpectedSendSize:)]
         pub unsafe fn setExpectedSendSize(&self, expected_send_size: CKOperationGroupTransferSize);
 
+        /// Estimated size of traffic being downloaded from the CloudKit Server
+        ///
+        ///
+        /// Inform the system how much data you plan on transferring.  Obviously, these won't be exact.  Be as accurate as possible, but even an order-of-magnitude estimate is better than no value.  The system will consult these values when scheduling discretionary network requests (see the description of
+        /// `CKOperationConfiguration.qualityOfService).`Overestimating your workload means that an operation group issuing discretionary network requests may be delayed until network conditions are good.
+        /// Underestimating your workload may cause the system to oversaturate a constrained connection, leading to network failures.
+        /// You may update after the
+        /// `CKOperationGroup`is created.  If it is increased, then subsequent
+        /// `CKOperation`s associated with this operation group may be delayed until network conditions are good.
+        /// Defaults to
+        /// `CKOperationGroupTransferSizeUnknown`
         #[method(expectedReceiveSize)]
         pub unsafe fn expectedReceiveSize(&self) -> CKOperationGroupTransferSize;
 
+        /// Setter for [`expectedReceiveSize`][Self::expectedReceiveSize].
         #[method(setExpectedReceiveSize:)]
         pub unsafe fn setExpectedReceiveSize(
             &self,

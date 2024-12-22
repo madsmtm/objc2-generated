@@ -11,7 +11,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webframe?language=objc)
+    /// Every web page is represented by at least one WebFrame.  A WebFrame
+    /// has a WebFrameView and a WebDataSource.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webframe?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -28,6 +31,18 @@ extern_methods!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// The designated initializer of WebFrame.
+        ///
+        /// WebFrames are normally created for you by the WebView.  You should
+        /// not need to invoke this method directly.
+        ///
+        /// Parameter `name`: The name of the frame.
+        ///
+        /// Parameter `view`: The WebFrameView for the frame.
+        ///
+        /// Parameter `webView`: The WebView that manages the frame.
+        ///
+        /// Returns: Returns an initialized WebFrame.
         #[deprecated]
         #[method_id(@__retain_semantics Init initWithName:webFrameView:webView:)]
         pub unsafe fn initWithName_webFrameView_webView(
@@ -37,18 +52,21 @@ extern_methods!(
             web_view: Option<&WebView>,
         ) -> Option<Retained<Self>>;
 
+        /// The frame name.
         #[deprecated]
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// The WebView for the document that includes this frame.
         #[deprecated]
         #[method_id(@__retain_semantics Other webView)]
         pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Retained<WebView>>;
 
         #[cfg(all(feature = "WebFrameView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// The WebFrameView for this frame.
         #[deprecated]
         #[method_id(@__retain_semantics Other frameView)]
         pub unsafe fn frameView(&self, mtm: MainThreadMarker) -> Option<Retained<WebFrameView>>;
@@ -59,6 +77,8 @@ extern_methods!(
             feature = "DOMObject",
             feature = "WebScriptObject"
         ))]
+        /// The DOM document of the frame.
+        /// Returns nil if the frame does not contain a DOM document such as a standalone image.
         #[deprecated]
         #[method_id(@__retain_semantics Other DOMDocument)]
         pub unsafe fn DOMDocument(&self) -> Option<Retained<DOMDocument>>;
@@ -70,14 +90,25 @@ extern_methods!(
             feature = "DOMObject",
             feature = "WebScriptObject"
         ))]
+        /// The frame element of the frame.
+        /// The class of the result is either DOMHTMLFrameElement, DOMHTMLIFrameElement or DOMHTMLObjectElement.
+        /// Returns nil if the frame is the main frame since there is no frame element for the frame in this case.
         #[deprecated]
         #[method_id(@__retain_semantics Other frameElement)]
         pub unsafe fn frameElement(&self) -> Option<Retained<DOMHTMLElement>>;
 
+        /// Parameter `request`: The web request to load.
         #[deprecated]
         #[method(loadRequest:)]
         pub unsafe fn loadRequest(&self, request: Option<&NSURLRequest>);
 
+        /// Parameter `data`: The data to use for the main page of the document.
+        ///
+        /// Parameter `MIMEType`: The MIME type of the data.
+        ///
+        /// Parameter `encodingName`: The encoding of the data.
+        ///
+        /// Parameter `URL`: The base URL to apply to relative URLs within the document.
         #[deprecated]
         #[method(loadData:MIMEType:textEncodingName:baseURL:)]
         pub unsafe fn loadData_MIMEType_textEncodingName_baseURL(
@@ -88,10 +119,27 @@ extern_methods!(
             url: Option<&NSURL>,
         );
 
+        /// Parameter `string`: The string to use for the main page of the document.
+        ///
+        /// Parameter `URL`: The base URL to apply to relative URLs within the document.
         #[deprecated]
         #[method(loadHTMLString:baseURL:)]
         pub unsafe fn loadHTMLString_baseURL(&self, string: Option<&NSString>, url: Option<&NSURL>);
 
+        /// Loads a page to display as a substitute for a URL that could not be reached.
+        ///
+        /// This allows clients to display page-loading errors in the webview itself.
+        /// This is typically called while processing the WebFrameLoadDelegate method
+        /// -webView:didFailProvisionalLoadWithError:forFrame: or one of the WebPolicyDelegate methods
+        /// -webView:decidePolicyForMIMEType:request:frame:decisionListener: or
+        /// -webView:unableToImplementPolicyWithError:frame:. If it is called from within one of those
+        /// three delegate methods then the back/forward list will be maintained appropriately.
+        ///
+        /// Parameter `string`: The string to use for the main page of the document.
+        ///
+        /// Parameter `baseURL`: The baseURL to apply to relative URLs within the document.
+        ///
+        /// Parameter `unreachableURL`: The URL for which this page will serve as alternate content.
         #[deprecated]
         #[method(loadAlternateHTMLString:baseURL:forUnreachableURL:)]
         pub unsafe fn loadAlternateHTMLString_baseURL_forUnreachableURL(
@@ -102,45 +150,76 @@ extern_methods!(
         );
 
         #[cfg(feature = "WebArchive")]
+        /// Causes WebFrame to load a WebArchive.
+        ///
+        /// Parameter `archive`: The archive to be loaded.
         #[deprecated]
         #[method(loadArchive:)]
         pub unsafe fn loadArchive(&self, archive: Option<&WebArchive>);
 
         #[cfg(feature = "WebDataSource")]
+        /// The datasource for this frame.
+        ///
+        /// Returns the committed data source.  Will return nil if the
+        /// provisional data source hasn't yet been loaded.
         #[deprecated]
         #[method_id(@__retain_semantics Other dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Retained<WebDataSource>>;
 
         #[cfg(feature = "WebDataSource")]
+        /// The provisional datasource of this frame.
+        ///
+        /// Will return the provisional data source.  The provisional data source will
+        /// be nil if no data source has been set on the frame, or the data source
+        /// has successfully transitioned to the committed data source.
         #[deprecated]
         #[method_id(@__retain_semantics Other provisionalDataSource)]
         pub unsafe fn provisionalDataSource(&self) -> Option<Retained<WebDataSource>>;
 
+        /// Stop any pending loads on the frame's data source,
+        /// and its children.
         #[deprecated]
         #[method(stopLoading)]
         pub unsafe fn stopLoading(&self);
 
+        /// Performs HTTP/1.1 end-to-end revalidation using cache-validating conditionals if possible.
         #[deprecated]
         #[method(reload)]
         pub unsafe fn reload(&self);
 
+        /// Performs HTTP/1.1 end-to-end reload.
         #[deprecated]
         #[method(reloadFromOrigin)]
         pub unsafe fn reloadFromOrigin(&self);
 
+        /// This method returns a frame with the given name. findFrameNamed returns self
+        /// for _self and _current, the parent frame for _parent and the main frame for _top.
+        /// findFrameNamed returns self for _parent and _top if the receiver is the mainFrame.
+        /// findFrameNamed first searches from the current frame to all descending frames then the
+        /// rest of the frames in the WebView. If still not found, findFrameNamed searches the
+        /// frames of the other WebViews.
+        ///
+        /// Parameter `name`: The name of the frame to find.
+        ///
+        /// Returns: The frame matching the provided name. nil if the frame is not found.
         #[deprecated]
         #[method_id(@__retain_semantics Other findFrameNamed:)]
         pub unsafe fn findFrameNamed(&self, name: Option<&NSString>) -> Option<Retained<WebFrame>>;
 
+        /// The frame containing this frame, or nil if this is a top level frame.
         #[deprecated]
         #[method_id(@__retain_semantics Other parentFrame)]
         pub unsafe fn parentFrame(&self) -> Option<Retained<WebFrame>>;
 
+        /// An array of WebFrame.
+        ///
+        /// The frames in the array are associated with a frame set or iframe.
         #[deprecated]
         #[method_id(@__retain_semantics Other childFrames)]
         pub unsafe fn childFrames(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "WebScriptObject")]
+        /// The WebScriptObject representing the frame's JavaScript window object.
         #[deprecated]
         #[method_id(@__retain_semantics Other windowObject)]
         pub unsafe fn windowObject(&self) -> Option<Retained<WebScriptObject>>;

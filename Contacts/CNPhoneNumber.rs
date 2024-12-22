@@ -7,7 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnphonenumber?language=objc)
+    /// An immutable value object representing a phone number.
+    ///
+    ///
+    /// CNPhoneNumber is thread safe.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnphonenumber?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNPhoneNumber;
@@ -27,6 +32,7 @@ unsafe impl NSSecureCoding for CNPhoneNumber {}
 
 extern_methods!(
     unsafe impl CNPhoneNumber {
+        /// These will return nil if the stringValue is nil.
         #[method_id(@__retain_semantics Other phoneNumberWithStringValue:)]
         pub unsafe fn phoneNumberWithStringValue(string_value: &NSString)
             -> Option<Retained<Self>>;

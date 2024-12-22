@@ -6,10 +6,34 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvoptionflags?language=objc)
+/// Flags to be used for the display and render call back functions.
+///
+/// ***Values to be defined***
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvoptionflags?language=objc)
 pub type CVOptionFlags = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetime?language=objc)
+/// A structure for holding a SMPTE time.
+/// Field: subframes
+/// The number of subframes in the full message.
+/// Field: subframeDivisor
+/// The number of subframes per frame (typically 80).
+/// Field: counter
+/// The total number of messages received.
+/// Field: type
+/// The kind of SMPTE time using the SMPTE time type constants.
+/// Field: flags
+/// A set of flags that indicate the SMPTE state.
+/// Field: hours
+/// The number of hours in the full message.
+/// Field: minutes
+/// The number of minutes in the full message.
+/// Field: seconds
+/// The number of seconds in the full message.
+/// Field: frames
+/// The number of frames in the full message.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetime?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CVSMPTETime {
@@ -47,7 +71,25 @@ unsafe impl RefEncode for CVSMPTETime {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype?language=objc)
+/// Constants that describe the type of SMPTE time.
+///
+/// 24 Frame
+///
+/// 25 Frame
+///
+/// 30 Drop Frame
+///
+/// 30 Frame
+///
+/// 29.97 Frame
+///
+/// 29.97 Drop Frame
+///
+/// 60 Frame
+///
+/// 59.94 Frame
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -73,7 +115,13 @@ unsafe impl RefEncode for CVSMPTETimeType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimeflags?language=objc)
+/// Flags that describe the SMPTE time state.
+///
+/// The full time is valid.
+///
+/// Time is running.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -136,7 +184,32 @@ unsafe impl RefEncode for CVTime {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestamp?language=objc)
+/// CoreVideo uses a CVTimeStamp structure to store video display time stamps.
+///
+/// This structure is purposely very similar to AudioTimeStamp defined in the CoreAudio framework.
+/// Most of the CVTimeStamp struct should be fairly self-explanatory. However, it is probably worth pointing out that unlike the audio time stamps, floats are not used to represent the video equivalent of sample times. This was done partly to avoid precision issues, and partly because QuickTime still uses integers for time values and time scales. In the actual implementation it has turned out to be very convenient to use integers, and we can represent framerates like NTSC (30000/1001 fps) exactly. The mHostTime structure field uses the same Mach absolute time base that is used in CoreAudio, so that clients of the CoreVideo API can synchronize between the two subsystems.
+/// Field: version The current CVTimeStamp is version 0.
+/// Field: videoTimeScale The scale (in units per second) of the videoTime and videoPeriod values
+/// Field: videoTime This represents the start of a frame (or field for interlaced)
+/// Field: hostTime Host root timebase time
+/// Field: rateScalar This is the current rate of the device as measured by the timestamps, divided by the nominal rate
+/// Field: videoRefreshPeriod This is the nominal update period of the current output device
+/// Field: smpteTime SMPTE time representation of the time stamp.
+/// Field: flags Possible values are:
+/// kCVTimeStampVideoTimeValid
+/// kCVTimeStampHostTimeValid
+/// kCVTimeStampSMPTETimeValid
+/// kCVTimeStampVideoPeriodValid
+/// kCVTimeStampRateScalarValid
+/// There are flags for each field to make it easier to detect interlaced vs progressive output
+/// kCVTimeStampTopField
+/// kCVTimeStampBottomField
+/// Some commonly used combinations of timestamp flags
+/// kCVTimeStampVideoHostTimeValid
+/// kCVTimeStampIsInterlaced
+/// Field: reserved Reserved. Do not use.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestamp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CVTimeStamp {

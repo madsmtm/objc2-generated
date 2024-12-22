@@ -10,25 +10,49 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontsymbolictrait?language=objc)
+    /// kCTFontSymbolicTrait
+    ///
+    /// Dictionary key to access the symbolic traits value.
+    ///
+    /// Use this key to access the symbolic traits value from the font traits dictionary. The value is returned as a CFNumberRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontsymbolictrait?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontSymbolicTrait: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontweighttrait?language=objc)
+    /// kCTFontWeightTrait
+    ///
+    /// Dictionary key to access the weight trait value.
+    ///
+    /// Use this key to access the normalized weight trait from the font traits dictionary. The value returned is a CFNumberRef representing a float value between -1.0 and 1.0 for normalized weight. The value of 0.0 corresponds to the regular or medium font weight.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontweighttrait?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontWeightTrait: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontwidthtrait?language=objc)
+    /// kCTFontWidthTrait
+    ///
+    /// Dictionary key to access the width (condense/expand) trait value.
+    ///
+    /// Use this key to access the normalized proportion trait from the font traits dictionary. This value corresponds to the relative inter-glyph spacing for a given font. The value returned is a CFNumberRef representing a float between -1.0 and 1.0. The value of 0.0 corresponds to regular glyph spacing while negative values represent condensed glyph spacing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontwidthtrait?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontWidthTrait: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontslanttrait?language=objc)
+    /// kCTFontSlantTrait
+    ///
+    /// Dictionary key to access the slant trait value.
+    ///
+    /// Use this key to access the normalized slant angle from the font traits dictionary. The value returned is a CFNumberRef representing a float value between -1.0 and 1.0 for normalized slant angle. The value or 0.0 corresponds to 0 degree clockwise rotation from the vertical and 1.0 corresponds to 30 degrees clockwise rotation.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontslanttrait?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontSlantTrait: CFStringRef;
 }
@@ -36,7 +60,11 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontclassmaskshift?language=objc)
 pub const kCTFontClassMaskShift: c_uint = 28;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits?language=objc)
+/// Symbolic representation of stylistic font attributes.
+///
+/// CTFontSymbolicTraits symbolically describes stylistic aspects of a font. The top 4 bits is used to describe appearance of the font while the lower 28 bits for typeface. The font appearance information represented by the upper 4 bits can be used for stylistic font matching.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -76,7 +104,11 @@ unsafe impl RefEncode for CTFontSymbolicTraits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass?language=objc)
+/// Stylistic class values.
+///
+/// CTFontStylisticClass classifies certain stylistic qualities of the font. These values correspond closely to the font class values in the OpenType 'OS/2' table. The class values are bundled in the upper four bits of the CTFontSymbolicTraits and can be obtained via the kCTFontTraitClassMask.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

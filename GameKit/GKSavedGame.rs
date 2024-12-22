@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksavedgame?language=objc)
+    /// Class representing a saved game for the local player, or a version of a saved game when in conflict
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksavedgame?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKSavedGame;
@@ -34,6 +36,7 @@ extern_methods!(
         pub unsafe fn modificationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "block2")]
+        /// Asynchronously load the data for this saved game. The completion handler is called with loaded data or an error.
         #[method(loadDataWithCompletionHandler:)]
         pub unsafe fn loadDataWithCompletionHandler(
             &self,
@@ -62,6 +65,8 @@ extern_methods!(
     ))]
     unsafe impl GKLocalPlayer {
         #[cfg(feature = "block2")]
+        /// Asynchronously fetch saved games. The handler is called with an array of GKSavedGame objects or an error.
+        /// If there is more than one saved game with the same name then a conflict exists. The application should determine the correct data to use and call resolveConflictingSavedGames:withData:completionHandler:. This may require data merging or asking the user.
         #[method(fetchSavedGamesWithCompletionHandler:)]
         pub unsafe fn fetchSavedGamesWithCompletionHandler(
             &self,
@@ -69,6 +74,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Asynchronously save game data. If a saved game with that name already exists it is overwritten, otherwise a new one is created. The completion handler is called with the new / modified GKSavedGame or an error.
+        /// If the saved game was in conflict then the overwritten version will be the one with the same deviceName if present, otherwise the most recent overall.
         #[method(saveGameData:withName:completionHandler:)]
         pub unsafe fn saveGameData_withName_completionHandler(
             &self,
@@ -78,6 +85,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Asynchronously delete saved games with the given name. The completion handler will indicate whether or not the deletion was successful.
         #[method(deleteSavedGamesWithName:completionHandler:)]
         pub unsafe fn deleteSavedGamesWithName_completionHandler(
             &self,
@@ -86,6 +94,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Asynchronously resolve a saved game conflict. This deletes all versions included in conflictingSavedGames and creates a new version with the given data. The completion handler is called with the newly created save and all other remaining versions or an error.
         #[method(resolveConflictingSavedGames:withData:completionHandler:)]
         pub unsafe fn resolveConflictingSavedGames_withData_completionHandler(
             &self,

@@ -14,7 +14,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstate?language=objc)
+/// Normal or default state of the picker.
+///
+/// Highlighted state of the picker. The picker has this state when a mouse-down event occurs inside the button. It loses this highlight when a mouse-up event occurs.
+///
+/// Active state of the picker. The picker has this state when AirPlay is active.
+///
+/// Highlighted state of the active picker. The picker has this state when it is highlighted and AirPlay is active.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -38,7 +46,13 @@ unsafe impl RefEncode for AVRoutePickerViewButtonState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstyle?language=objc)
+/// A system style for the route picker button.
+///
+/// A plain style for the route picker button, which has the same appearance as the system style without the blurred background view.
+///
+/// A custom style for the route picker button, which allows customizing the background view and focused appearance.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -105,12 +119,14 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVRoutePickerView {
+        /// The route picker view's delegate.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVRoutePickerViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -118,19 +134,31 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// The player for which to perform routing operations.
         #[method_id(@__retain_semantics Other player)]
         pub unsafe fn player(&self) -> Option<Retained<AVPlayer>>;
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// Setter for [`player`][Self::player].
         #[method(setPlayer:)]
         pub unsafe fn setPlayer(&self, player: Option<&AVPlayer>);
 
+        /// Parameter `state`: The state for which to get the picker button color.
+        ///
+        /// Returns the color of the picker button for a given state.
         #[method_id(@__retain_semantics Other routePickerButtonColorForState:)]
         pub unsafe fn routePickerButtonColorForState(
             &self,
             state: AVRoutePickerViewButtonState,
         ) -> Retained<NSColor>;
 
+        /// Parameter `color`: The color the button should have for a given state.
+        ///
+        /// Parameter `state`: The state for which to set the color of the button image.
+        ///
+        /// Sets the color of the picker button for a given state.
+        ///
+        /// If set to nil, the default color will be used for the given state.
         #[method(setRoutePickerButtonColor:forState:)]
         pub unsafe fn setRoutePickerButtonColor_forState(
             &self,
@@ -138,30 +166,38 @@ extern_methods!(
             state: AVRoutePickerViewButtonState,
         );
 
+        /// Whether or not the picker button has a border. Default is YES.
         #[method(isRoutePickerButtonBordered)]
         pub unsafe fn isRoutePickerButtonBordered(&self) -> bool;
 
+        /// Setter for [`isRoutePickerButtonBordered`][Self::isRoutePickerButtonBordered].
         #[method(setRoutePickerButtonBordered:)]
         pub unsafe fn setRoutePickerButtonBordered(&self, route_picker_button_bordered: bool);
 
+        /// The view's tint color when AirPlay is active.
         #[method_id(@__retain_semantics Other activeTintColor)]
         pub unsafe fn activeTintColor(&self) -> Option<Retained<NSColor>>;
 
+        /// Setter for [`activeTintColor`][Self::activeTintColor].
         #[method(setActiveTintColor:)]
         pub unsafe fn setActiveTintColor(&self, active_tint_color: Option<&NSColor>);
 
+        /// The route picker button style.
         #[method(routePickerButtonStyle)]
         pub unsafe fn routePickerButtonStyle(&self) -> AVRoutePickerViewButtonStyle;
 
+        /// Setter for [`routePickerButtonStyle`][Self::routePickerButtonStyle].
         #[method(setRoutePickerButtonStyle:)]
         pub unsafe fn setRoutePickerButtonStyle(
             &self,
             route_picker_button_style: AVRoutePickerViewButtonStyle,
         );
 
+        /// Whether or not the route picker should sort video capable output devices to the top of the list. Setting this to YES will cause the route picker view to show a videocentric icon.
         #[method(prioritizesVideoDevices)]
         pub unsafe fn prioritizesVideoDevices(&self) -> bool;
 
+        /// Setter for [`prioritizesVideoDevices`][Self::prioritizesVideoDevices].
         #[method(setPrioritizesVideoDevices:)]
         pub unsafe fn setPrioritizesVideoDevices(&self, prioritizes_video_devices: bool);
     }
@@ -205,10 +241,13 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewdelegate?language=objc)
+    /// Defines an interface for delegates of AVRoutePickerView.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewdelegate?language=objc)
     pub unsafe trait AVRoutePickerViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Informs the delegate that the route picker view will start presenting routes to the user.
         #[optional]
         #[method(routePickerViewWillBeginPresentingRoutes:)]
         unsafe fn routePickerViewWillBeginPresentingRoutes(
@@ -218,6 +257,7 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Informs the delegate that the route picker view finished presenting routes to the user.
         #[optional]
         #[method(routePickerViewDidEndPresentingRoutes:)]
         unsafe fn routePickerViewDidEndPresentingRoutes(

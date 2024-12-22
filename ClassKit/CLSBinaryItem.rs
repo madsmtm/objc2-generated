@@ -32,7 +32,9 @@ unsafe impl RefEncode for CLSBinaryValueType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryitem?language=objc)
+    /// CLSBinaryItem represents user generated information that is true or false, pass or fail, yes or no.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryitem?language=objc)
     #[unsafe(super(CLSActivityItem, CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
@@ -51,15 +53,27 @@ unsafe impl NSSecureCoding for CLSBinaryItem {}
 extern_methods!(
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     unsafe impl CLSBinaryItem {
+        /// True or false value.
         #[method(value)]
         pub unsafe fn value(&self) -> bool;
 
+        /// Setter for [`value`][Self::value].
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: bool);
 
+        /// Value type of this CLSBinaryItem.
+        ///
+        /// The type that best describes this CLSBinaryItem value.
         #[method(valueType)]
         pub unsafe fn valueType(&self) -> CLSBinaryValueType;
 
+        /// Create an item that represents a binary value
+        ///
+        /// Parameter `title`: Title of the CLSBinaryItem.
+        ///
+        /// Parameter `identifier`: An identifier that is unique within its owning activity.
+        ///
+        /// Parameter `valueType`: The type of binary value. Ex. pass or fail.
         #[method_id(@__retain_semantics Init initWithIdentifier:title:type:)]
         pub unsafe fn initWithIdentifier_title_type(
             this: Allocated<Self>,

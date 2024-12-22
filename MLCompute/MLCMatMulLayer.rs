@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcmatmullayer?language=objc)
+    /// A batched matrix multiplication layer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcmatmullayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -21,11 +23,17 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCMatMulLayer {
         #[cfg(feature = "MLCMatMulDescriptor")]
+        /// The matrix multiplication descriptor
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MLCMatMulDescriptor>;
 
         #[cfg(feature = "MLCMatMulDescriptor")]
+        /// Create a matrix multiply layer
+        ///
+        /// Parameter `descriptor`: A matrix multiply descriptor
+        ///
+        /// Returns: A new layer for matrix multiplication.
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDescriptor:)]
         pub unsafe fn layerWithDescriptor(

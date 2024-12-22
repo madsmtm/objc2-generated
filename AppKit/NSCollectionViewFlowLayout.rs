@@ -60,6 +60,7 @@ extern_methods!(
         #[method(invalidateFlowLayoutDelegateMetrics)]
         pub unsafe fn invalidateFlowLayoutDelegateMetrics(&self) -> bool;
 
+        /// Setter for [`invalidateFlowLayoutDelegateMetrics`][Self::invalidateFlowLayoutDelegateMetrics].
         #[method(setInvalidateFlowLayoutDelegateMetrics:)]
         pub unsafe fn setInvalidateFlowLayoutDelegateMetrics(
             &self,
@@ -69,6 +70,7 @@ extern_methods!(
         #[method(invalidateFlowLayoutAttributes)]
         pub unsafe fn invalidateFlowLayoutAttributes(&self) -> bool;
 
+        /// Setter for [`invalidateFlowLayoutAttributes`][Self::invalidateFlowLayoutAttributes].
         #[method(setInvalidateFlowLayoutAttributes:)]
         pub unsafe fn setInvalidateFlowLayoutAttributes(
             &self,
@@ -212,6 +214,7 @@ extern_methods!(
         pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumLineSpacing`][Self::minimumLineSpacing].
         #[method(setMinimumLineSpacing:)]
         pub unsafe fn setMinimumLineSpacing(&self, minimum_line_spacing: CGFloat);
 
@@ -220,6 +223,7 @@ extern_methods!(
         pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumInteritemSpacing`][Self::minimumInteritemSpacing].
         #[method(setMinimumInteritemSpacing:)]
         pub unsafe fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
 
@@ -228,6 +232,7 @@ extern_methods!(
         pub unsafe fn itemSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`itemSize`][Self::itemSize].
         #[method(setItemSize:)]
         pub unsafe fn setItemSize(&self, item_size: NSSize);
 
@@ -236,12 +241,14 @@ extern_methods!(
         pub unsafe fn estimatedItemSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`estimatedItemSize`][Self::estimatedItemSize].
         #[method(setEstimatedItemSize:)]
         pub unsafe fn setEstimatedItemSize(&self, estimated_item_size: NSSize);
 
         #[method(scrollDirection)]
         pub unsafe fn scrollDirection(&self) -> NSCollectionViewScrollDirection;
 
+        /// Setter for [`scrollDirection`][Self::scrollDirection].
         #[method(setScrollDirection:)]
         pub unsafe fn setScrollDirection(&self, scroll_direction: NSCollectionViewScrollDirection);
 
@@ -250,6 +257,7 @@ extern_methods!(
         pub unsafe fn headerReferenceSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`headerReferenceSize`][Self::headerReferenceSize].
         #[method(setHeaderReferenceSize:)]
         pub unsafe fn setHeaderReferenceSize(&self, header_reference_size: NSSize);
 
@@ -258,6 +266,7 @@ extern_methods!(
         pub unsafe fn footerReferenceSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`footerReferenceSize`][Self::footerReferenceSize].
         #[method(setFooterReferenceSize:)]
         pub unsafe fn setFooterReferenceSize(&self, footer_reference_size: NSSize);
 
@@ -266,12 +275,14 @@ extern_methods!(
         pub unsafe fn sectionInset(&self) -> NSEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`sectionInset`][Self::sectionInset].
         #[method(setSectionInset:)]
         pub unsafe fn setSectionInset(&self, section_inset: NSEdgeInsets);
 
         #[method(sectionHeadersPinToVisibleBounds)]
         pub unsafe fn sectionHeadersPinToVisibleBounds(&self) -> bool;
 
+        /// Setter for [`sectionHeadersPinToVisibleBounds`][Self::sectionHeadersPinToVisibleBounds].
         #[method(setSectionHeadersPinToVisibleBounds:)]
         pub unsafe fn setSectionHeadersPinToVisibleBounds(
             &self,
@@ -281,6 +292,7 @@ extern_methods!(
         #[method(sectionFootersPinToVisibleBounds)]
         pub unsafe fn sectionFootersPinToVisibleBounds(&self) -> bool;
 
+        /// Setter for [`sectionFootersPinToVisibleBounds`][Self::sectionFootersPinToVisibleBounds].
         #[method(setSectionFootersPinToVisibleBounds:)]
         pub unsafe fn setSectionFootersPinToVisibleBounds(
             &self,

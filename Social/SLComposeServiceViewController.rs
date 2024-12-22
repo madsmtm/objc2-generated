@@ -63,6 +63,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other placeholder)]
         pub unsafe fn placeholder(&self) -> Retained<NSString>;
 
+        /// Setter for [`placeholder`][Self::placeholder].
         #[method(setPlaceholder:)]
         pub unsafe fn setPlaceholder(&self, placeholder: Option<&NSString>);
 
@@ -84,6 +85,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other charactersRemaining)]
         pub unsafe fn charactersRemaining(&self) -> Option<Retained<NSNumber>>;
 
+        /// Setter for [`charactersRemaining`][Self::charactersRemaining].
         #[method(setCharactersRemaining:)]
         pub unsafe fn setCharactersRemaining(&self, characters_remaining: Option<&NSNumber>);
     }

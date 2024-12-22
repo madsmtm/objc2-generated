@@ -7,6 +7,11 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// Standard GetTypeID function support for CF-based objects
+    ///
+    /// Returns the typeID for the ODContext object
+    ///
+    /// Returns: a valid CFTypeID for the ODContext object
     #[cfg(feature = "objc2-core-foundation")]
     pub fn ODContextGetTypeID() -> CFTypeID;
 }

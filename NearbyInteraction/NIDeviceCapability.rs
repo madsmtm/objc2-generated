@@ -7,15 +7,19 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidevicecapability?language=objc)
     pub unsafe trait NIDeviceCapability {
+        /// Whether or not this device is capable of participating in a nearby interaction session with precise ranging
         #[method(supportsPreciseDistanceMeasurement)]
         unsafe fn supportsPreciseDistanceMeasurement(&self) -> bool;
 
+        /// Whether or not this device is capable of participating in a nearby interaction session with instantaneous direction
         #[method(supportsDirectionMeasurement)]
         unsafe fn supportsDirectionMeasurement(&self) -> bool;
 
+        /// Whether or not this device is capable of participating in a nearby interaction session with camera assistance
         #[method(supportsCameraAssistance)]
         unsafe fn supportsCameraAssistance(&self) -> bool;
 
+        /// Whether or not this device is capable of extended distance measurement capabilities
         #[method(supportsExtendedDistanceMeasurement)]
         unsafe fn supportsExtendedDistanceMeasurement(&self) -> bool;
     }

@@ -11,47 +11,65 @@ use crate::*;
 pub type HKClinicalTypeIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifierallergyrecord?language=objc)
+    /// A type identifier for records of allergies or intolerances.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifierallergyrecord?language=objc)
     pub static HKClinicalTypeIdentifierAllergyRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifierclinicalnoterecord?language=objc)
+    /// A type identifier for records that represent clinical notes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifierclinicalnoterecord?language=objc)
     pub static HKClinicalTypeIdentifierClinicalNoteRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifierconditionrecord?language=objc)
+    /// A type identifier for records of a condition, problem, or diagnosis.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifierconditionrecord?language=objc)
     pub static HKClinicalTypeIdentifierConditionRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifierimmunizationrecord?language=objc)
+    /// A type identifier for records of vaccine administration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifierimmunizationrecord?language=objc)
     pub static HKClinicalTypeIdentifierImmunizationRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifierlabresultrecord?language=objc)
+    /// A type identifier for records of lab results.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifierlabresultrecord?language=objc)
     pub static HKClinicalTypeIdentifierLabResultRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifiermedicationrecord?language=objc)
+    /// A type identifier for records of medication prescription, intake, or administration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifiermedicationrecord?language=objc)
     pub static HKClinicalTypeIdentifierMedicationRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifierprocedurerecord?language=objc)
+    /// A type identifier for records of clinical procedures.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifierprocedurerecord?language=objc)
     pub static HKClinicalTypeIdentifierProcedureRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifiervitalsignrecord?language=objc)
+    /// A type identifier for records of vital signs.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifiervitalsignrecord?language=objc)
     pub static HKClinicalTypeIdentifierVitalSignRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifiercoveragerecord?language=objc)
+    /// A type identifier for records containing information about the user’s insurance coverage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifiercoveragerecord?language=objc)
     pub static HKClinicalTypeIdentifierCoverageRecord: &'static HKClinicalTypeIdentifier;
 }
 
@@ -67,7 +85,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltype?language=objc)
+    /// A type that identifies samples that contain clinical record data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKObjectType")]

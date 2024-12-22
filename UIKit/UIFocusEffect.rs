@@ -29,6 +29,7 @@ unsafe impl NSObjectProtocol for UIFocusEffect {}
 
 extern_methods!(
     unsafe impl UIFocusEffect {
+        /// Creates a default system effect using metrics inferred from the focus item.
         #[method_id(@__retain_semantics Other effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
@@ -46,10 +47,13 @@ extern_methods!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIFocusHaloEffectPosition(pub NSInteger);
 impl UIFocusHaloEffectPosition {
+    /// Automatically detects the best position depending on the the focus item and its containing view hierarchy.
     #[doc(alias = "UIFocusHaloEffectPositionAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Draws the halo around the given shape.
     #[doc(alias = "UIFocusHaloEffectPositionOutside")]
     pub const Outside: Self = Self(1);
+    /// Draws the halo inside the given shape.
     #[doc(alias = "UIFocusHaloEffectPositionInside")]
     pub const Inside: Self = Self(2);
 }
@@ -80,11 +84,13 @@ unsafe impl NSObjectProtocol for UIFocusHaloEffect {}
 extern_methods!(
     unsafe impl UIFocusHaloEffect {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Creates a rectangular halo.
         #[method_id(@__retain_semantics Other effectWithRect:)]
         pub unsafe fn effectWithRect(rect: CGRect) -> Retained<Self>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
+        /// Creates a rounded rect halo using the specified corner radius and corner curve.
         #[method_id(@__retain_semantics Other effectWithRoundedRect:cornerRadius:curve:)]
         pub unsafe fn effectWithRoundedRect_cornerRadius_curve(
             rect: CGRect,
@@ -93,30 +99,45 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIBezierPath")]
+        /// Creates a halo with the given bezier path.
         #[method_id(@__retain_semantics Other effectWithPath:)]
         pub unsafe fn effectWithPath(bezier_path: &UIBezierPath) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// Container view in which to place the effect. When not set, the container is determined automatically
+        /// from the focus item that provided this effect and the
+        /// `referenceView`(if present).
         #[method_id(@__retain_semantics Other containerView)]
         pub unsafe fn containerView(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`containerView`][Self::containerView].
         #[method(setContainerView:)]
         pub unsafe fn setContainerView(&self, container_view: Option<&UIView>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// When set, the halo is placed above this view. If a
+        /// `containerView`is also set, the
+        /// `referenceView`must be a descendant
+        /// of the
+        /// `containerView.`The system will ensure that the halo is in the container but visually above the
+        /// `referenceView.`
         #[method_id(@__retain_semantics Other referenceView)]
         pub unsafe fn referenceView(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`referenceView`][Self::referenceView].
         #[method(setReferenceView:)]
         pub unsafe fn setReferenceView(&self, reference_view: Option<&UIView>);
 
+        /// Position of the halo relative to the specified shape. Defaults to
+        /// `UIFocusHaloEffectPositionAutomatic.`
         #[method(position)]
         pub unsafe fn position(&self) -> UIFocusHaloEffectPosition;
 
+        /// Setter for [`position`][Self::position].
         #[method(setPosition:)]
         pub unsafe fn setPosition(&self, position: UIFocusHaloEffectPosition);
     }
@@ -125,6 +146,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UIFocusEffect`
     unsafe impl UIFocusHaloEffect {
+        /// Creates a default system effect using metrics inferred from the focus item.
         #[method_id(@__retain_semantics Other effect)]
         pub unsafe fn effect() -> Retained<Self>;
 

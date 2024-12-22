@@ -7,7 +7,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrenceend?language=objc)
+    /// Class which represents when a recurrence should end.
+    ///
+    /// EKRecurrenceEnd is an attribute of EKRecurrenceRule that defines how long
+    /// the recurrence is scheduled to repeat. The recurrence can be defined either
+    /// with an NSUInteger that indicates the total number times it repeats, or with
+    /// an NSDate, after which it no longer repeats. An event which is set to never
+    /// end should have its EKRecurrenceEnd set to nil.
+    ///
+    /// If the end of the pattern is defines with an NSDate, the client must pass a
+    /// valid NSDate, nil cannot be passed. If the end of the pattern is defined as
+    /// terms of a number of occurrences, the occurrenceCount passed to the initializer
+    /// must be positive, it cannot be 0. If the client attempts to initialize a
+    /// EKRecurrenceEnd with a nil NSDate or OccurrenceCount of 0, an exception is raised.
+    ///
+    /// A EKRecurrenceEnd initialized with an end date will return 0 for occurrenceCount.
+    /// One initialized with a number of occurrences will return nil for its endDate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrenceend?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKRecurrenceEnd;
@@ -27,17 +44,21 @@ unsafe impl NSSecureCoding for EKRecurrenceEnd {}
 
 extern_methods!(
     unsafe impl EKRecurrenceEnd {
+        /// Creates an autoreleased recurrence end with a specific end date.
         #[method_id(@__retain_semantics Other recurrenceEndWithEndDate:)]
         pub unsafe fn recurrenceEndWithEndDate(end_date: &NSDate) -> Retained<Self>;
 
+        /// Creates an autoreleased recurrence end with a maximum occurrence count.
         #[method_id(@__retain_semantics Other recurrenceEndWithOccurrenceCount:)]
         pub unsafe fn recurrenceEndWithOccurrenceCount(
             occurrence_count: NSUInteger,
         ) -> Retained<Self>;
 
+        /// The end date of this recurrence, or nil if it's count-based.
         #[method_id(@__retain_semantics Other endDate)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
+        /// The maximum occurrence count, or 0 if it's date-based.
         #[method(occurrenceCount)]
         pub unsafe fn occurrenceCount(&self) -> NSUInteger;
     }

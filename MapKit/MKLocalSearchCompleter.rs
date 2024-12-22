@@ -72,6 +72,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other queryFragment)]
         pub unsafe fn queryFragment(&self) -> Retained<NSString>;
 
+        /// Setter for [`queryFragment`][Self::queryFragment].
         #[method(setQueryFragment:)]
         pub unsafe fn setQueryFragment(&self, query_fragment: &NSString);
 
@@ -80,6 +81,7 @@ extern_methods!(
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
+        /// Setter for [`region`][Self::region].
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
@@ -88,6 +90,7 @@ extern_methods!(
         pub unsafe fn regionPriority(&self) -> MKLocalSearchRegionPriority;
 
         #[cfg(feature = "MKTypes")]
+        /// Setter for [`regionPriority`][Self::regionPriority].
         #[method(setRegionPriority:)]
         pub unsafe fn setRegionPriority(&self, region_priority: MKLocalSearchRegionPriority);
 
@@ -95,6 +98,7 @@ extern_methods!(
         #[method(filterType)]
         pub unsafe fn filterType(&self) -> MKSearchCompletionFilterType;
 
+        /// Setter for [`filterType`][Self::filterType].
         #[deprecated = "Use resultTypes"]
         #[method(setFilterType:)]
         pub unsafe fn setFilterType(&self, filter_type: MKSearchCompletionFilterType);
@@ -102,6 +106,7 @@ extern_methods!(
         #[method(resultTypes)]
         pub unsafe fn resultTypes(&self) -> MKLocalSearchCompleterResultType;
 
+        /// Setter for [`resultTypes`][Self::resultTypes].
         #[method(setResultTypes:)]
         pub unsafe fn setResultTypes(&self, result_types: MKLocalSearchCompleterResultType);
 
@@ -110,6 +115,7 @@ extern_methods!(
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
+        /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
@@ -121,6 +127,7 @@ extern_methods!(
         pub unsafe fn addressFilter(&self) -> Option<Retained<MKAddressFilter>>;
 
         #[cfg(feature = "MKAddressFilter")]
+        /// Setter for [`addressFilter`][Self::addressFilter].
         #[method(setAddressFilter:)]
         pub unsafe fn setAddressFilter(&self, address_filter: Option<&MKAddressFilter>);
 
@@ -130,6 +137,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn MKLocalSearchCompleterDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,

@@ -7,7 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlsequence?language=objc)
+    /// An immutable container holding an ordered collection of feature values
+    /// of the same type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlsequence?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLSequence;
@@ -22,19 +25,23 @@ unsafe impl NSSecureCoding for MLSequence {}
 extern_methods!(
     unsafe impl MLSequence {
         #[cfg(feature = "MLFeatureType")]
+        /// Type of values held
         #[method(type)]
         pub unsafe fn r#type(&self) -> MLFeatureType;
 
         #[cfg(feature = "MLFeatureType")]
+        /// Empty sequence of a sepcific type
         #[method_id(@__retain_semantics Other emptySequenceWithType:)]
         pub unsafe fn emptySequenceWithType(r#type: MLFeatureType) -> Retained<Self>;
 
+        /// String sequences, property will be empty array if type is MLFeatureTypeString
         #[method_id(@__retain_semantics Other sequenceWithStringArray:)]
         pub unsafe fn sequenceWithStringArray(string_values: &NSArray<NSString>) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Other stringValues)]
         pub unsafe fn stringValues(&self) -> Retained<NSArray<NSString>>;
 
+        /// int64 sequence, propery will be empty array if type is MLFeatureTypeInt64
         #[method_id(@__retain_semantics Other sequenceWithInt64Array:)]
         pub unsafe fn sequenceWithInt64Array(int64_values: &NSArray<NSNumber>) -> Retained<Self>;
 

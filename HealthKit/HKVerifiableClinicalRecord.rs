@@ -11,13 +11,17 @@ use crate::*;
 pub type HKVerifiableClinicalRecordSourceType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetypesmarthealthcard?language=objc)
+    /// Represents a SMART Health Card source type for a verifiable record.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetypesmarthealthcard?language=objc)
     pub static HKVerifiableClinicalRecordSourceTypeSMARTHealthCard:
         &'static HKVerifiableClinicalRecordSourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetypeeudigitalcovidcertificate?language=objc)
+    /// Represents a EU Digital COVID Certificate source type for a verifiable record.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetypeeudigitalcovidcertificate?language=objc)
     pub static HKVerifiableClinicalRecordSourceTypeEUDigitalCOVIDCertificate:
         &'static HKVerifiableClinicalRecordSourceType;
 }
@@ -27,31 +31,41 @@ extern "C" {
 pub type HKVerifiableClinicalRecordCredentialType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtypecovid19?language=objc)
+    /// Represents the COVID-19 credential type for a verifiable record.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtypecovid19?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeCOVID19:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtypeimmunization?language=objc)
+    /// Represents the immunization credential type for a verifiable record.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtypeimmunization?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeImmunization:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtypelaboratory?language=objc)
+    /// Represents the laboratory credential type for a verifiable record.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtypelaboratory?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeLaboratory:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtyperecovery?language=objc)
+    /// Represents the recovery credential type for a verifiable record.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtyperecovery?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeRecovery:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord?language=objc)
+    /// An NSObject that represents a verifiable clinical record.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -76,34 +90,45 @@ unsafe impl NSSecureCoding for HKVerifiableClinicalRecord {}
 extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKVerifiableClinicalRecord {
+        /// The types present in this record.
         #[method_id(@__retain_semantics Other recordTypes)]
         pub unsafe fn recordTypes(&self) -> Retained<NSArray<NSString>>;
 
+        /// The identifier for the issuer of this record.
         #[method_id(@__retain_semantics Other issuerIdentifier)]
         pub unsafe fn issuerIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HKVerifiableClinicalRecordSubject")]
+        /// The subject of this record.
         #[method_id(@__retain_semantics Other subject)]
         pub unsafe fn subject(&self) -> Retained<HKVerifiableClinicalRecordSubject>;
 
+        /// The date this record was issued.
         #[method_id(@__retain_semantics Other issuedDate)]
         pub unsafe fn issuedDate(&self) -> Retained<NSDate>;
 
+        /// A date most relevant to this record, like when a vaccine was
+        /// administered or a test was performed.
         #[method_id(@__retain_semantics Other relevantDate)]
         pub unsafe fn relevantDate(&self) -> Retained<NSDate>;
 
+        /// The date this record expires.
         #[method_id(@__retain_semantics Other expirationDate)]
         pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
 
+        /// A list of display names for each item contained in this record.
         #[method_id(@__retain_semantics Other itemNames)]
         pub unsafe fn itemNames(&self) -> Retained<NSArray<NSString>>;
 
+        /// The type of the source leading to this verifiable record.
         #[method_id(@__retain_semantics Other sourceType)]
         pub unsafe fn sourceType(&self) -> Option<Retained<HKVerifiableClinicalRecordSourceType>>;
 
+        /// The record's data representation, determined by source type.
         #[method_id(@__retain_semantics Other dataRepresentation)]
         pub unsafe fn dataRepresentation(&self) -> Retained<NSData>;
 
+        /// The record's entirety as JSON Web Signature (JWS) data.
         #[deprecated]
         #[method_id(@__retain_semantics Other JWSRepresentation)]
         pub unsafe fn JWSRepresentation(&self) -> Retained<NSData>;

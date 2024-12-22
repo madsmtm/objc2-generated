@@ -7,7 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webresource?language=objc)
+    /// A WebResource represents a fully downloaded URL.
+    /// It includes the data of the resource as well as the metadata associated with the resource.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webresource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WebResource;
@@ -25,6 +28,19 @@ unsafe impl NSObjectProtocol for WebResource {}
 
 extern_methods!(
     unsafe impl WebResource {
+        /// The initializer for WebResource.
+        ///
+        /// Parameter `data`: The data of the resource.
+        ///
+        /// Parameter `URL`: The URL of the resource.
+        ///
+        /// Parameter `MIMEType`: The MIME type of the resource.
+        ///
+        /// Parameter `textEncodingName`: The text encoding name of the resource (can be nil).
+        ///
+        /// Parameter `frameName`: The frame name of the resource if the resource represents the contents of an entire HTML frame (can be nil).
+        ///
+        /// Returns: An initialized WebResource.
         #[method_id(@__retain_semantics Init initWithData:URL:MIMEType:textEncodingName:frameName:)]
         pub unsafe fn initWithData_URL_MIMEType_textEncodingName_frameName(
             this: Allocated<Self>,
@@ -35,18 +51,23 @@ extern_methods!(
             frame_name: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
+        /// The data of the resource.
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
+        /// The URL of the resource.
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
+        /// The MIME type of the resource.
         #[method_id(@__retain_semantics Other MIMEType)]
         pub unsafe fn MIMEType(&self) -> Retained<NSString>;
 
+        /// The text encoding name of the resource (can be nil).
         #[method_id(@__retain_semantics Other textEncodingName)]
         pub unsafe fn textEncodingName(&self) -> Retained<NSString>;
 
+        /// The frame name of the resource if the resource represents the contents of an entire HTML frame (can be nil).
         #[method_id(@__retain_semantics Other frameName)]
         pub unsafe fn frameName(&self) -> Retained<NSString>;
     }

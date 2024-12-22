@@ -10,7 +10,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitcollection?language=objc)
+    /// A trait collection encapsulates the system traits of an interface's environment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitcollection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitCollection;
@@ -197,12 +199,14 @@ extern_methods!(
         pub unsafe fn toolbarItemPresentationSize(&self) -> UINSToolbarItemPresentationSize;
 
         #[cfg(feature = "UIInterface")]
+        /// Construct a new trait collection with the given image content dynamic range.
         #[method_id(@__retain_semantics Other traitCollectionWithImageDynamicRange:)]
         pub unsafe fn traitCollectionWithImageDynamicRange(
             image_dynamic_range: UIImageDynamicRange,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIInterface")]
+        /// The imageDynamicRange determines how HDR images will render in the given trait environment. SDR images are unaffected.
         #[method(imageDynamicRange)]
         pub unsafe fn imageDynamicRange(&self) -> UIImageDynamicRange;
 
@@ -215,22 +219,26 @@ extern_methods!(
         pub unsafe fn typesettingLanguage(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UISceneDefinitions")]
+        /// Construct a new trait collection with the given scene capture state.
         #[method_id(@__retain_semantics Other traitCollectionWithSceneCaptureState:)]
         pub unsafe fn traitCollectionWithSceneCaptureState(
             scene_capture_state: UISceneCaptureState,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UISceneDefinitions")]
+        /// Scene capture state represents whether a scene is currently being mirrored or recorded.
         #[method(sceneCaptureState)]
         pub unsafe fn sceneCaptureState(&self) -> UISceneCaptureState;
 
         #[cfg(feature = "UITraitListEnvironment")]
+        /// Construct a new trait collection with the given `listEnvironment`.
         #[method_id(@__retain_semantics Other traitCollectionWithListEnvironment:)]
         pub unsafe fn traitCollectionWithListEnvironment(
             list_environment: UIListEnvironment,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITraitListEnvironment")]
+        /// The list environment represents whether a given trait collection is from a view in a UITableView or a UICollectionView list section.
         #[method(listEnvironment)]
         pub unsafe fn listEnvironment(&self) -> UIListEnvironment;
     }
@@ -283,6 +291,7 @@ extern_protocol!(
         unsafe fn userInterfaceIdiom(&self) -> UIUserInterfaceIdiom;
 
         #[cfg(feature = "UIDevice")]
+        /// Setter for [`userInterfaceIdiom`][Self::userInterfaceIdiom].
         #[method(setUserInterfaceIdiom:)]
         unsafe fn setUserInterfaceIdiom(&self, user_interface_idiom: UIUserInterfaceIdiom);
 
@@ -291,6 +300,7 @@ extern_protocol!(
         unsafe fn userInterfaceStyle(&self) -> UIUserInterfaceStyle;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`userInterfaceStyle`][Self::userInterfaceStyle].
         #[method(setUserInterfaceStyle:)]
         unsafe fn setUserInterfaceStyle(&self, user_interface_style: UIUserInterfaceStyle);
 
@@ -299,6 +309,7 @@ extern_protocol!(
         unsafe fn layoutDirection(&self) -> UITraitEnvironmentLayoutDirection;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`layoutDirection`][Self::layoutDirection].
         #[method(setLayoutDirection:)]
         unsafe fn setLayoutDirection(&self, layout_direction: UITraitEnvironmentLayoutDirection);
 
@@ -307,6 +318,7 @@ extern_protocol!(
         unsafe fn displayScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`displayScale`][Self::displayScale].
         #[method(setDisplayScale:)]
         unsafe fn setDisplayScale(&self, display_scale: CGFloat);
 
@@ -315,6 +327,7 @@ extern_protocol!(
         unsafe fn horizontalSizeClass(&self) -> UIUserInterfaceSizeClass;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`horizontalSizeClass`][Self::horizontalSizeClass].
         #[method(setHorizontalSizeClass:)]
         unsafe fn setHorizontalSizeClass(&self, horizontal_size_class: UIUserInterfaceSizeClass);
 
@@ -323,6 +336,7 @@ extern_protocol!(
         unsafe fn verticalSizeClass(&self) -> UIUserInterfaceSizeClass;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`verticalSizeClass`][Self::verticalSizeClass].
         #[method(setVerticalSizeClass:)]
         unsafe fn setVerticalSizeClass(&self, vertical_size_class: UIUserInterfaceSizeClass);
 
@@ -331,6 +345,7 @@ extern_protocol!(
         unsafe fn forceTouchCapability(&self) -> UIForceTouchCapability;
 
         #[cfg(feature = "UITouch")]
+        /// Setter for [`forceTouchCapability`][Self::forceTouchCapability].
         #[method(setForceTouchCapability:)]
         unsafe fn setForceTouchCapability(&self, force_touch_capability: UIForceTouchCapability);
 
@@ -339,6 +354,7 @@ extern_protocol!(
         unsafe fn preferredContentSizeCategory(&self) -> Retained<UIContentSizeCategory>;
 
         #[cfg(feature = "UIContentSizeCategory")]
+        /// Setter for [`preferredContentSizeCategory`][Self::preferredContentSizeCategory].
         #[method(setPreferredContentSizeCategory:)]
         unsafe fn setPreferredContentSizeCategory(
             &self,
@@ -350,6 +366,7 @@ extern_protocol!(
         unsafe fn displayGamut(&self) -> UIDisplayGamut;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`displayGamut`][Self::displayGamut].
         #[method(setDisplayGamut:)]
         unsafe fn setDisplayGamut(&self, display_gamut: UIDisplayGamut);
 
@@ -358,6 +375,7 @@ extern_protocol!(
         unsafe fn accessibilityContrast(&self) -> UIAccessibilityContrast;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`accessibilityContrast`][Self::accessibilityContrast].
         #[method(setAccessibilityContrast:)]
         unsafe fn setAccessibilityContrast(&self, accessibility_contrast: UIAccessibilityContrast);
 
@@ -366,6 +384,7 @@ extern_protocol!(
         unsafe fn userInterfaceLevel(&self) -> UIUserInterfaceLevel;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`userInterfaceLevel`][Self::userInterfaceLevel].
         #[method(setUserInterfaceLevel:)]
         unsafe fn setUserInterfaceLevel(&self, user_interface_level: UIUserInterfaceLevel);
 
@@ -374,6 +393,7 @@ extern_protocol!(
         unsafe fn legibilityWeight(&self) -> UILegibilityWeight;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`legibilityWeight`][Self::legibilityWeight].
         #[method(setLegibilityWeight:)]
         unsafe fn setLegibilityWeight(&self, legibility_weight: UILegibilityWeight);
 
@@ -382,6 +402,7 @@ extern_protocol!(
         unsafe fn activeAppearance(&self) -> UIUserInterfaceActiveAppearance;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`activeAppearance`][Self::activeAppearance].
         #[method(setActiveAppearance:)]
         unsafe fn setActiveAppearance(&self, active_appearance: UIUserInterfaceActiveAppearance);
 
@@ -390,6 +411,7 @@ extern_protocol!(
         unsafe fn toolbarItemPresentationSize(&self) -> UINSToolbarItemPresentationSize;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`toolbarItemPresentationSize`][Self::toolbarItemPresentationSize].
         #[method(setToolbarItemPresentationSize:)]
         unsafe fn setToolbarItemPresentationSize(
             &self,
@@ -401,6 +423,7 @@ extern_protocol!(
         unsafe fn imageDynamicRange(&self) -> UIImageDynamicRange;
 
         #[cfg(feature = "UIInterface")]
+        /// Setter for [`imageDynamicRange`][Self::imageDynamicRange].
         #[method(setImageDynamicRange:)]
         unsafe fn setImageDynamicRange(&self, image_dynamic_range: UIImageDynamicRange);
 
@@ -409,12 +432,14 @@ extern_protocol!(
         unsafe fn sceneCaptureState(&self) -> UISceneCaptureState;
 
         #[cfg(feature = "UISceneDefinitions")]
+        /// Setter for [`sceneCaptureState`][Self::sceneCaptureState].
         #[method(setSceneCaptureState:)]
         unsafe fn setSceneCaptureState(&self, scene_capture_state: UISceneCaptureState);
 
         #[method_id(@__retain_semantics Other typesettingLanguage)]
         unsafe fn typesettingLanguage(&self) -> Retained<NSString>;
 
+        /// Setter for [`typesettingLanguage`][Self::typesettingLanguage].
         #[method(setTypesettingLanguage:)]
         unsafe fn setTypesettingLanguage(&self, typesetting_language: &NSString);
 
@@ -423,6 +448,7 @@ extern_protocol!(
         unsafe fn listEnvironment(&self) -> UIListEnvironment;
 
         #[cfg(feature = "UITraitListEnvironment")]
+        /// Setter for [`listEnvironment`][Self::listEnvironment].
         #[method(setListEnvironment:)]
         unsafe fn setListEnvironment(&self, list_environment: UIListEnvironment);
     }
@@ -513,11 +539,14 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitenvironment?language=objc)
+    /// Trait environments expose a trait collection that describes their environment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitenvironment?language=objc)
     pub unsafe trait UITraitEnvironment: NSObjectProtocol + MainThreadOnly {
         #[method_id(@__retain_semantics Other traitCollection)]
         fn traitCollection(&self) -> Retained<UITraitCollection>;
 
+        /// To be overridden as needed to provide custom behavior when the environment's traits change.
         #[deprecated = "Use the trait change registration APIs declared in the UITraitChangeObservable protocol"]
         #[method(traitCollectionDidChange:)]
         unsafe fn traitCollectionDidChange(
@@ -579,6 +608,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other currentTraitCollection)]
         pub unsafe fn currentTraitCollection() -> Retained<UITraitCollection>;
 
+        /// Setter for [`currentTraitCollection`][Self::currentTraitCollection].
         #[method(setCurrentTraitCollection:)]
         pub unsafe fn setCurrentTraitCollection(current_trait_collection: &UITraitCollection);
 

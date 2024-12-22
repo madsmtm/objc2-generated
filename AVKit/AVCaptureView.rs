@@ -14,7 +14,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle?language=objc)
+/// The inline controls pane for media recording is associated with the view.
+///
+/// The floating controls pane for media recordings is associated with the view.
+///
+/// The inline controls pane for selection capture devices is associated with the view.
+///
+/// The default controls pane is associated with the view.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -39,7 +47,9 @@ unsafe impl RefEncode for AVCaptureViewControlsStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureview?language=objc)
+    /// AVCaptureView is a subclass of NSView that can be used to display standard user interface controls for capturing media data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -84,10 +94,22 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl AVCaptureView {
         #[cfg(feature = "objc2-av-foundation")]
+        /// A capture session represented by this view.
+        ///
+        /// Modifying the capture session will impact its visual representation in the view. The default value is a session configured for movie file recordings of audio and video media data. Use -setSession:showVideoPreview:showAudioPreview: to change the value of this property.
         #[method_id(@__retain_semantics Other session)]
         pub unsafe fn session(&self) -> Option<Retained<AVCaptureSession>>;
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// Sets the session represented by this view.
+        ///
+        /// Parameter `session`: The session to be represented.
+        ///
+        /// Parameter `showVideoPreview`: Whether or not video preview should be shown. If YES, capture inputs for video media data will be added, removed, or modified depending on device availability and user selection.
+        ///
+        /// Parameter `showAudioPreview`: Whether or not audio preview should be shown. If YES, capture inputs for audio media data will be added, removed, or modified depending on device availability and user selection.
+        ///
+        /// The view must either show audio preview or video preview or both. Furthermore, the view may modify the capture session, for example, to access media data for preview or when the user select a new capture source. Only the default session is started and stopped automatically. The provided session must be manually started and stopped.
         #[method(setSession:showVideoPreview:showAudioPreview:)]
         pub unsafe fn setSession_showVideoPreview_showAudioPreview(
             &self,
@@ -97,32 +119,45 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// A capture file output used to record media data.
+        ///
+        /// The value of this property is the first instance of AVCaptureFileOutput contained in the session's outputs array or nil if no such instance is found. In the latter case the capture view's start recording button will be disabled. However, the controls for choosing input sources may still be enabled.
         #[method_id(@__retain_semantics Other fileOutput)]
         pub unsafe fn fileOutput(&self) -> Option<Retained<AVCaptureFileOutput>>;
 
+        /// The capture view's delegate.
+        ///
+        /// The start recording button will be disabled if the delegate is not set.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn AVCaptureViewDelegate>>,
         );
 
+        /// The style of the capture controls pane associated with the view.
         #[method(controlsStyle)]
         pub unsafe fn controlsStyle(&self) -> AVCaptureViewControlsStyle;
 
+        /// Setter for [`controlsStyle`][Self::controlsStyle].
         #[method(setControlsStyle:)]
         pub unsafe fn setControlsStyle(&self, controls_style: AVCaptureViewControlsStyle);
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// A string defining how the video is displayed within the views bounds rect.
+        ///
+        /// Options are AVLayerVideoGravityResize, AVLayerVideoGravityResizeAspect and AVLayerVideoGravityResizeAspectFill. AVLayerVideoGravityResizeAspect is default.
         #[method_id(@__retain_semantics Other videoGravity)]
         pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "objc2-av-foundation")]
+        /// Setter for [`videoGravity`][Self::videoGravity].
         #[method(setVideoGravity:)]
         pub unsafe fn setVideoGravity(&self, video_gravity: &AVLayerVideoGravity);
     }
@@ -166,10 +201,15 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewdelegate?language=objc)
+    /// Defines an interface for delegates of AVCaptureView.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewdelegate?language=objc)
     pub unsafe trait AVCaptureViewDelegate: NSObjectProtocol {
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-av-foundation"))]
         #[cfg(target_os = "macos")]
+        /// Informs the delegate that a new media recording should be started.
+        ///
+        /// If captureFileOutput is an instance of AVCaptureMovieFileOutput this can be achieved by calling startRecordingToOutputFileURL:recordingDelegate: on the captureFileOutput.
         #[method(captureView:startRecordingToFileOutput:)]
         unsafe fn captureView_startRecordingToFileOutput(
             &self,

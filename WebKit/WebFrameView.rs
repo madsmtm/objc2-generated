@@ -59,27 +59,37 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl WebFrameView {
         #[cfg(feature = "WebFrame")]
+        /// The WebFrame associated with this WebFrameView
         #[deprecated]
         #[method_id(@__retain_semantics Other webFrame)]
         pub unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
 
         #[cfg(feature = "WebDocument")]
+        /// The WebFrameView's document subview
+        ///
+        /// The subview that renders the WebFrameView's contents
         #[deprecated]
         #[method_id(@__retain_semantics Other documentView)]
         pub unsafe fn documentView(&self) -> Option<Retained<NSView>>;
 
+        /// Whether the WebFrameView allows its document to be scrolled
         #[deprecated]
         #[method(allowsScrolling)]
         pub unsafe fn allowsScrolling(&self) -> bool;
 
+        /// Setter for [`allowsScrolling`][Self::allowsScrolling].
         #[deprecated]
         #[method(setAllowsScrolling:)]
         pub unsafe fn setAllowsScrolling(&self, allows_scrolling: bool);
 
+        /// Whether this frame can print headers and footers
         #[deprecated]
         #[method(canPrintHeadersAndFooters)]
         pub unsafe fn canPrintHeadersAndFooters(&self) -> bool;
 
+        /// Creates a print operation set up to print this frame
+        ///
+        /// Returns: A newly created print operation object
         #[deprecated]
         #[method_id(@__retain_semantics Other printOperationWithPrintInfo:)]
         pub unsafe fn printOperationWithPrintInfo(
@@ -87,10 +97,16 @@ extern_methods!(
             print_info: Option<&NSPrintInfo>,
         ) -> Option<Retained<NSPrintOperation>>;
 
+        /// Called by the host application before it initializes and runs a print operation.
+        ///
+        /// If NO is returned, the host application will abort its print operation and call -printDocumentView on the
+        /// WebFrameView.  The document view is then expected to run its own print operation.  If YES is returned, the host
+        /// application's print operation will continue as normal.
         #[deprecated]
         #[method(documentViewShouldHandlePrint)]
         pub unsafe fn documentViewShouldHandlePrint(&self) -> bool;
 
+        /// Called by the host application when the WebFrameView returns YES from -documentViewShouldHandlePrint.
         #[deprecated]
         #[method(printDocumentView)]
         pub unsafe fn printDocumentView(&self);

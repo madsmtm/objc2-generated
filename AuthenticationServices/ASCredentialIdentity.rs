@@ -8,21 +8,36 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentity?language=objc)
+    /// An ASCredentialIdentity is used to describe an identity that can use a service upon successful authentication.
+    /// Use this class to save entries into ASCredentialIdentityStore.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentity?language=objc)
     pub unsafe trait ASCredentialIdentity: NSObjectProtocol {
         #[cfg(feature = "ASCredentialServiceIdentifier")]
+        /// Get the service identifier.
         #[method_id(@__retain_semantics Other serviceIdentifier)]
         unsafe fn serviceIdentifier(&self) -> Retained<ASCredentialServiceIdentifier>;
 
+        /// Get the user.
         #[method_id(@__retain_semantics Other user)]
         unsafe fn user(&self) -> Retained<NSString>;
 
+        /// Get the record identifier.
+        ///
+        /// You can utilize the record identifier to uniquely identify the credential identity in your local database.
         #[method_id(@__retain_semantics Other recordIdentifier)]
         unsafe fn recordIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Get or set the rank of the credential identity object.
+        ///
+        /// The system may utilize the rank to decide which credential identity precedes the other
+        /// if two identities have the same service identifier. A credential identity with a larger rank value
+        /// precedes one with a smaller value if both credential identities have the same service identifier.
+        /// The default value of this property is 0.
         #[method(rank)]
         unsafe fn rank(&self) -> NSInteger;
 
+        /// Setter for [`rank`][Self::rank].
         #[method(setRank:)]
         unsafe fn setRank(&self, rank: NSInteger);
     }

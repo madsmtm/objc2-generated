@@ -104,18 +104,21 @@ extern_methods!(
         #[method(value)]
         pub unsafe fn value(&self) -> c_float;
 
+        /// Setter for [`value`][Self::value].
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: c_float);
 
         #[method(minimumValue)]
         pub unsafe fn minimumValue(&self) -> c_float;
 
+        /// Setter for [`minimumValue`][Self::minimumValue].
         #[method(setMinimumValue:)]
         pub unsafe fn setMinimumValue(&self, minimum_value: c_float);
 
         #[method(maximumValue)]
         pub unsafe fn maximumValue(&self) -> c_float;
 
+        /// Setter for [`maximumValue`][Self::maximumValue].
         #[method(setMaximumValue:)]
         pub unsafe fn setMaximumValue(&self, maximum_value: c_float);
 
@@ -124,6 +127,7 @@ extern_methods!(
         pub unsafe fn minimumValueImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`minimumValueImage`][Self::minimumValueImage].
         #[method(setMinimumValueImage:)]
         pub unsafe fn setMinimumValueImage(&self, minimum_value_image: Option<&UIImage>);
 
@@ -132,12 +136,14 @@ extern_methods!(
         pub unsafe fn maximumValueImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`maximumValueImage`][Self::maximumValueImage].
         #[method(setMaximumValueImage:)]
         pub unsafe fn setMaximumValueImage(&self, maximum_value_image: Option<&UIImage>);
 
         #[method(isContinuous)]
         pub unsafe fn isContinuous(&self) -> bool;
 
+        /// Setter for [`isContinuous`][Self::isContinuous].
         #[method(setContinuous:)]
         pub unsafe fn setContinuous(&self, continuous: bool);
 
@@ -146,6 +152,7 @@ extern_methods!(
         pub unsafe fn minimumTrackTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`minimumTrackTintColor`][Self::minimumTrackTintColor].
         #[method(setMinimumTrackTintColor:)]
         pub unsafe fn setMinimumTrackTintColor(&self, minimum_track_tint_color: Option<&UIColor>);
 
@@ -154,6 +161,7 @@ extern_methods!(
         pub unsafe fn maximumTrackTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`maximumTrackTintColor`][Self::maximumTrackTintColor].
         #[method(setMaximumTrackTintColor:)]
         pub unsafe fn setMaximumTrackTintColor(&self, maximum_track_tint_color: Option<&UIColor>);
 
@@ -162,6 +170,7 @@ extern_methods!(
         pub unsafe fn thumbTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`thumbTintColor`][Self::thumbTintColor].
         #[method(setThumbTintColor:)]
         pub unsafe fn setThumbTintColor(&self, thumb_tint_color: Option<&UIColor>);
 
@@ -261,6 +270,7 @@ extern_methods!(
             feature = "UIMenuElement",
             feature = "objc2-core-foundation"
         ))]
+        /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
         #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,

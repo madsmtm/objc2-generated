@@ -15,7 +15,23 @@ pub type AudioCodec = AudioComponentInstance;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecpropertyid?language=objc)
 pub type AudioCodecPropertyID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecmagiccookieinfo?language=objc)
+/// Structure holding the
+/// <em>
+/// magic cookie
+/// </em>
+/// information.
+///
+///
+/// Passed as input to AudioCodecGetProperty for kAudioCodecPropertyFormatList.
+/// The first four + sizeof(void *) bytes of the buffer pointed at by outPropertyData
+/// will contain this struct.
+///
+///
+/// The size of the magic cookie
+///
+/// Generic const pointer to magic cookie
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecmagiccookieinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioCodecMagicCookieInfo {
@@ -206,7 +222,15 @@ pub const kDynamicRangeCompressionProfile_LimitedPlaybackRange: u32 = 3;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kdynamicrangecompressionprofile_generalcompression?language=objc)
 pub const kDynamicRangeCompressionProfile_GeneralCompression: u32 = 6;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecprimeinfo?language=objc)
+/// Specifies the number of leading and trailing empty frames
+/// which have to be inserted.
+///
+///
+/// An unsigned integer specifying the number of leading empty frames
+///
+/// An unsigned integer specifying the number of trailing empty frames
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecprimeinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioCodecPrimeInfo {
@@ -223,7 +247,21 @@ unsafe impl RefEncode for AudioCodecPrimeInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosettingsflags?language=objc)
+/// Constants to be used with kAudioSettings_Hint
+/// in the kAudioCodecPropertySettings property dictionary.
+/// Indicates any special characteristics of each parameter within the dictionary,
+///
+///
+/// If set, then the parameter is an expert parameter.
+///
+/// If set, then the parameter should not be displayed.
+///
+/// If set, then changing this parameter may affect the values of other parameters.
+/// If not set, then this parameter can be set without affecting the values of other parameters.
+///
+/// If set, then this is only a user interface element and not reflected in the codec's bit stream.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosettingsflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -299,6 +337,22 @@ pub const kAudioCodecNotEnoughBufferSpaceError: OSStatus = 0x21627566;
 pub const kAudioCodecBadDataError: OSStatus = 0x62616461;
 
 extern "C-unwind" {
+    /// Retrieve information about the given property. The outSize argument
+    /// will return the size in bytes of the current value of the property.
+    /// The outWritable argument will return whether or not the property
+    /// in question can be changed.
+    ///
+    ///
+    /// Parameter `inCodec`: An AudioCodec instance
+    ///
+    /// Parameter `inPropertyID`: Property ID whose value should be read
+    ///
+    /// Parameter `outSize`: Size in bytes of the property
+    ///
+    /// Parameter `outWritable`: Flag indicating wether the underlying property can be modified or not
+    ///
+    ///
+    /// Returns: The OSStatus value
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecGetPropertyInfo(
         in_codec: AudioCodec,
@@ -309,6 +363,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retrieve the indicated property data. On input, ioDataSize has the size
+    /// of the data pointed to by outPropertyData. On output, ioDataSize will contain
+    /// the amount written.
+    ///
+    ///
+    /// Parameter `inCodec`: An AudioCodec instance
+    ///
+    /// Parameter `inPropertyID`: Property ID whose value should be read
+    ///
+    /// Parameter `ioPropertyDataSize`: Size in bytes of the property data
+    ///
+    /// Parameter `outPropertyData`: Pointer to the property data buffer
+    ///
+    ///
+    /// Returns: The OSStatus value
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecGetProperty(
         in_codec: AudioCodec,
@@ -319,6 +388,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Set the indicated property data.
+    ///
+    ///
+    /// Parameter `inCodec`: An AudioCodec instance
+    ///
+    /// Parameter `inPropertyID`: Property ID whose value should be changed
+    ///
+    /// Parameter `inPropertyDataSize`: Size in bytes of the property data
+    ///
+    /// Parameter `inPropertyData`: Pointer to the property data buffer
+    ///
+    ///
+    /// Returns: The OSStatus value
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecSetProperty(
         in_codec: AudioCodec,
@@ -329,6 +411,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// This call will allocate any buffers needed and otherwise set the codec
+    /// up to perform the indicated translation. If an argument is NULL, any
+    /// previously set properties will be used for preparing the codec for work.
+    /// Note that this routine will also validate the format information as useable.
+    ///
+    ///
+    /// Parameter `inCodec`: An AudioCodec instance
+    ///
+    /// Parameter `inInputFormat`: Pointer to an input format structure
+    ///
+    /// Parameter `inOutputFormat`: Pointer to an output format structure
+    ///
+    /// Parameter `inMagicCookie`: Pointer to the magic cookie
+    ///
+    /// Parameter `inMagicCookieByteSize`: Size in bytes of the magic cookie
+    ///
+    ///
+    /// Returns: The OSStatus value
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioCodecInitialize(
         in_codec: AudioCodec,
@@ -340,11 +440,45 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// This call will move the codec from the initialized state back to the
+    /// uninitialized state. The codec will release any resources it allocated
+    /// or claimed in AudioCodecInitialize.
+    ///
+    ///
+    /// Parameter `inCodec`: An AudioCodec instance
+    ///
+    ///
+    /// Returns: The OSStatus value
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecUninitialize(in_codec: AudioCodec) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Append as much of the given data in inInputData to the codec's input buffer as possible
+    /// and return in ioInputDataByteSize the amount of data used.
+    ///
+    /// The inPacketDescription argument is an array of AudioStreamPacketDescription
+    /// structs that describes the packet layout. The number of elements in this array
+    /// is indicated on input by ioNumberPackets. On return, this number indicates the number
+    /// of packets consumed.
+    ///
+    /// Note also in this case that it is an error to supply less than a full packet
+    /// of data at a time.
+    ///
+    ///
+    /// Parameter `inCodec`: An AudioCodec instance
+    ///
+    /// Parameter `inInputData`: A const pointer to the input data
+    ///
+    /// Parameter `ioInputDataByteSize`: The size in bytes of the input data in inInputData on input,
+    /// the number of bytes consumed on output
+    ///
+    /// Parameter `ioNumberPackets`: The number of packets
+    ///
+    /// Parameter `inPacketDescription`: The packet description pointer
+    ///
+    ///
+    /// Returns: The OSStatus value
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioCodecAppendInputData(
         in_codec: AudioCodec,
@@ -356,6 +490,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Produce as many output packets as requested and the amount of input data
+    /// allows for. The outStatus argument returns information about the codec's
+    /// status to allow for proper data management. See the constants above for
+    /// the possible values that can be returned.
+    ///
+    /// The outPacketDescription argument is an array of AudioStreamPacketDescription
+    /// structs that describes the packet layout returned in outOutputData. This
+    /// argument is optional. Pass NULL if this information is not to be returned.
+    /// Note that this information is only provided when the output format isn't
+    /// linear PCM.
+    ///
+    /// Note that decoders will always only produce linear PCM data in multiples of
+    /// the number frames in a packet of the encoded format (as returned by
+    /// kAudioCodecPropertyPacketFrameSize). Encoders will consume this many frames
+    /// of linear PCM data to produce a packet of their format.
+    ///
+    ///
+    /// Parameter `inCodec`: The AudioCodec instance
+    ///
+    /// Parameter `outOutputData`: Pointer to the output data buffer
+    ///
+    /// Parameter `ioOutputDataByteSize`: A pointer to the size
+    ///
+    /// Parameter `ioNumberPackets`: number of input/output packets
+    ///
+    /// Returns: The OSStatus value
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
     pub fn AudioCodecProduceOutputPackets(
         in_codec: AudioCodec,
@@ -390,6 +550,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Flushes all the data in the codec and clears the input buffer. Note that
+    /// the formats, and magic cookie will be retained so they won't need to be
+    /// set up again to decode the same data.
+    ///
+    ///
+    /// Parameter `inCodec`: The audio codec descriptor
+    ///
+    ///
+    /// Returns: the OSStatus value
     #[cfg(feature = "AudioComponent")]
     pub fn AudioCodecReset(in_codec: AudioCodec) -> OSStatus;
 }
@@ -553,7 +722,9 @@ pub const kAudioCodecOutputPrecedenceBitRate: u32 = 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocodecoutputprecedencesamplerate?language=objc)
 pub const kAudioCodecOutputPrecedenceSampleRate: u32 = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/magiccookieinfo?language=objc)
+/// renamed to AudioCodecMagicCookieInfo
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/magiccookieinfo?language=objc)
 pub type MagicCookieInfo = AudioCodecMagicCookieInfo;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/khintbasic?language=objc)

@@ -8,13 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageactionhandler?language=objc)
+    /// Methods in this protocol can be used by a mail app extension to perform actions on messages as they are downloaded.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageactionhandler?language=objc)
     pub unsafe trait MEMessageActionHandler: NSObjectProtocol {
         #[cfg(all(
             feature = "MEMessage",
             feature = "MEMessageActionDecision",
             feature = "block2"
         ))]
+        /// This is invoked when a message is downloaded. The action set in the completion handler will be performed on the message. Depending on if the full body of the
+        /// message has been downloaded the
+        /// `MEMessage`provided might have the full body data. If the full body is not present the
+        /// `decision`property can be set to
+        /// `MEMessageActionDecision.invokeAgainWithBody`and this method will be invoked again once the full body is available.
+        ///
+        /// Parameter `message`: - The message for which the action will be performed. Might or might not contain the full message body data.
         #[method(decideActionForMessage:completionHandler:)]
         unsafe fn decideActionForMessage_completionHandler(
             &self,
@@ -22,6 +31,10 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn(*mut MEMessageActionDecision)>,
         );
 
+        /// Provide additional headers that the extension requires to perform an action. Mail will fetch these additional headers before invoking
+        /// `-[MEMessageActionHandler``decideActionForMessage:completionHandler:].`For example, extensions can return the headers that were set in
+        /// `-[MEComposeSessionHandler``additionalHeadersForSession:]`
+        /// Returns: An array of header keys. Mail will normalize the headers to lower case before fetching them from the mail server.
         #[optional]
         #[method_id(@__retain_semantics Other requiredHeaders)]
         unsafe fn requiredHeaders(&self) -> Retained<NSArray<NSString>>;

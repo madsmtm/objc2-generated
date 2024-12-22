@@ -155,6 +155,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UIWebViewDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UIWebViewDelegate>>);
@@ -224,6 +225,7 @@ extern_methods!(
         #[method(scalesPageToFit)]
         pub unsafe fn scalesPageToFit(&self) -> bool;
 
+        /// Setter for [`scalesPageToFit`][Self::scalesPageToFit].
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method(setScalesPageToFit:)]
         pub unsafe fn setScalesPageToFit(&self, scales_page_to_fit: bool);
@@ -232,6 +234,7 @@ extern_methods!(
         #[method(detectsPhoneNumbers)]
         pub unsafe fn detectsPhoneNumbers(&self) -> bool;
 
+        /// Setter for [`detectsPhoneNumbers`][Self::detectsPhoneNumbers].
         #[deprecated]
         #[method(setDetectsPhoneNumbers:)]
         pub unsafe fn setDetectsPhoneNumbers(&self, detects_phone_numbers: bool);
@@ -241,18 +244,21 @@ extern_methods!(
         pub unsafe fn dataDetectorTypes(&self) -> UIDataDetectorTypes;
 
         #[cfg(feature = "UIDataDetectors")]
+        /// Setter for [`dataDetectorTypes`][Self::dataDetectorTypes].
         #[method(setDataDetectorTypes:)]
         pub unsafe fn setDataDetectorTypes(&self, data_detector_types: UIDataDetectorTypes);
 
         #[method(allowsInlineMediaPlayback)]
         pub unsafe fn allowsInlineMediaPlayback(&self) -> bool;
 
+        /// Setter for [`allowsInlineMediaPlayback`][Self::allowsInlineMediaPlayback].
         #[method(setAllowsInlineMediaPlayback:)]
         pub unsafe fn setAllowsInlineMediaPlayback(&self, allows_inline_media_playback: bool);
 
         #[method(mediaPlaybackRequiresUserAction)]
         pub unsafe fn mediaPlaybackRequiresUserAction(&self) -> bool;
 
+        /// Setter for [`mediaPlaybackRequiresUserAction`][Self::mediaPlaybackRequiresUserAction].
         #[method(setMediaPlaybackRequiresUserAction:)]
         pub unsafe fn setMediaPlaybackRequiresUserAction(
             &self,
@@ -262,12 +268,14 @@ extern_methods!(
         #[method(mediaPlaybackAllowsAirPlay)]
         pub unsafe fn mediaPlaybackAllowsAirPlay(&self) -> bool;
 
+        /// Setter for [`mediaPlaybackAllowsAirPlay`][Self::mediaPlaybackAllowsAirPlay].
         #[method(setMediaPlaybackAllowsAirPlay:)]
         pub unsafe fn setMediaPlaybackAllowsAirPlay(&self, media_playback_allows_air_play: bool);
 
         #[method(suppressesIncrementalRendering)]
         pub unsafe fn suppressesIncrementalRendering(&self) -> bool;
 
+        /// Setter for [`suppressesIncrementalRendering`][Self::suppressesIncrementalRendering].
         #[method(setSuppressesIncrementalRendering:)]
         pub unsafe fn setSuppressesIncrementalRendering(
             &self,
@@ -277,6 +285,7 @@ extern_methods!(
         #[method(keyboardDisplayRequiresUserAction)]
         pub unsafe fn keyboardDisplayRequiresUserAction(&self) -> bool;
 
+        /// Setter for [`keyboardDisplayRequiresUserAction`][Self::keyboardDisplayRequiresUserAction].
         #[method(setKeyboardDisplayRequiresUserAction:)]
         pub unsafe fn setKeyboardDisplayRequiresUserAction(
             &self,
@@ -286,12 +295,14 @@ extern_methods!(
         #[method(paginationMode)]
         pub unsafe fn paginationMode(&self) -> UIWebPaginationMode;
 
+        /// Setter for [`paginationMode`][Self::paginationMode].
         #[method(setPaginationMode:)]
         pub unsafe fn setPaginationMode(&self, pagination_mode: UIWebPaginationMode);
 
         #[method(paginationBreakingMode)]
         pub unsafe fn paginationBreakingMode(&self) -> UIWebPaginationBreakingMode;
 
+        /// Setter for [`paginationBreakingMode`][Self::paginationBreakingMode].
         #[method(setPaginationBreakingMode:)]
         pub unsafe fn setPaginationBreakingMode(
             &self,
@@ -303,6 +314,7 @@ extern_methods!(
         pub unsafe fn pageLength(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`pageLength`][Self::pageLength].
         #[method(setPageLength:)]
         pub unsafe fn setPageLength(&self, page_length: CGFloat);
 
@@ -311,6 +323,7 @@ extern_methods!(
         pub unsafe fn gapBetweenPages(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`gapBetweenPages`][Self::gapBetweenPages].
         #[method(setGapBetweenPages:)]
         pub unsafe fn setGapBetweenPages(&self, gap_between_pages: CGFloat);
 
@@ -320,6 +333,7 @@ extern_methods!(
         #[method(allowsPictureInPictureMediaPlayback)]
         pub unsafe fn allowsPictureInPictureMediaPlayback(&self) -> bool;
 
+        /// Setter for [`allowsPictureInPictureMediaPlayback`][Self::allowsPictureInPictureMediaPlayback].
         #[method(setAllowsPictureInPictureMediaPlayback:)]
         pub unsafe fn setAllowsPictureInPictureMediaPlayback(
             &self,
@@ -329,6 +343,7 @@ extern_methods!(
         #[method(allowsLinkPreview)]
         pub unsafe fn allowsLinkPreview(&self) -> bool;
 
+        /// Setter for [`allowsLinkPreview`][Self::allowsLinkPreview].
         #[method(setAllowsLinkPreview:)]
         pub unsafe fn setAllowsLinkPreview(&self, allows_link_preview: bool);
     }

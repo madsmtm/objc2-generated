@@ -298,42 +298,49 @@ extern_methods!(
         #[method(promptsUserIfNeeded)]
         pub unsafe fn promptsUserIfNeeded(&self) -> bool;
 
+        /// Setter for [`promptsUserIfNeeded`][Self::promptsUserIfNeeded].
         #[method(setPromptsUserIfNeeded:)]
         pub unsafe fn setPromptsUserIfNeeded(&self, prompts_user_if_needed: bool);
 
         #[method(addsToRecentItems)]
         pub unsafe fn addsToRecentItems(&self) -> bool;
 
+        /// Setter for [`addsToRecentItems`][Self::addsToRecentItems].
         #[method(setAddsToRecentItems:)]
         pub unsafe fn setAddsToRecentItems(&self, adds_to_recent_items: bool);
 
         #[method(activates)]
         pub unsafe fn activates(&self) -> bool;
 
+        /// Setter for [`activates`][Self::activates].
         #[method(setActivates:)]
         pub unsafe fn setActivates(&self, activates: bool);
 
         #[method(hides)]
         pub unsafe fn hides(&self) -> bool;
 
+        /// Setter for [`hides`][Self::hides].
         #[method(setHides:)]
         pub unsafe fn setHides(&self, hides: bool);
 
         #[method(hidesOthers)]
         pub unsafe fn hidesOthers(&self) -> bool;
 
+        /// Setter for [`hidesOthers`][Self::hidesOthers].
         #[method(setHidesOthers:)]
         pub unsafe fn setHidesOthers(&self, hides_others: bool);
 
         #[method(isForPrinting)]
         pub unsafe fn isForPrinting(&self) -> bool;
 
+        /// Setter for [`isForPrinting`][Self::isForPrinting].
         #[method(setForPrinting:)]
         pub unsafe fn setForPrinting(&self, for_printing: bool);
 
         #[method(createsNewApplicationInstance)]
         pub unsafe fn createsNewApplicationInstance(&self) -> bool;
 
+        /// Setter for [`createsNewApplicationInstance`][Self::createsNewApplicationInstance].
         #[method(setCreatesNewApplicationInstance:)]
         pub unsafe fn setCreatesNewApplicationInstance(
             &self,
@@ -343,6 +350,7 @@ extern_methods!(
         #[method(allowsRunningApplicationSubstitution)]
         pub unsafe fn allowsRunningApplicationSubstitution(&self) -> bool;
 
+        /// Setter for [`allowsRunningApplicationSubstitution`][Self::allowsRunningApplicationSubstitution].
         #[method(setAllowsRunningApplicationSubstitution:)]
         pub unsafe fn setAllowsRunningApplicationSubstitution(
             &self,
@@ -352,24 +360,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Other arguments)]
         pub unsafe fn arguments(&self) -> Retained<NSArray<NSString>>;
 
+        /// Setter for [`arguments`][Self::arguments].
         #[method(setArguments:)]
         pub unsafe fn setArguments(&self, arguments: &NSArray<NSString>);
 
         #[method_id(@__retain_semantics Other environment)]
         pub unsafe fn environment(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
+        /// Setter for [`environment`][Self::environment].
         #[method(setEnvironment:)]
         pub unsafe fn setEnvironment(&self, environment: &NSDictionary<NSString, NSString>);
 
         #[method_id(@__retain_semantics Other appleEvent)]
         pub unsafe fn appleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
+        /// Setter for [`appleEvent`][Self::appleEvent].
         #[method(setAppleEvent:)]
         pub unsafe fn setAppleEvent(&self, apple_event: Option<&NSAppleEventDescriptor>);
 
         #[method(requiresUniversalLinks)]
         pub unsafe fn requiresUniversalLinks(&self) -> bool;
 
+        /// Setter for [`requiresUniversalLinks`][Self::requiresUniversalLinks].
         #[method(setRequiresUniversalLinks:)]
         pub unsafe fn setRequiresUniversalLinks(&self, requires_universal_links: bool);
     }

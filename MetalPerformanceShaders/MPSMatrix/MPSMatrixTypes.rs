@@ -9,7 +9,11 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixunarykernel?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// A MPSMatrixUnaryKernel consumes one MPSMatrix and produces one MPSMatrix.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixunarykernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -36,27 +40,49 @@ unsafe impl NSSecureCoding for MPSMatrixUnaryKernel {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSMatrixUnaryKernel {
+        /// The origin, relative to [0, 0] in the source matrix, at which to
+        /// start reading values.  This property is modifiable and defaults to
+        /// [0, 0] at initialization time.  If a different origin is desired then
+        /// this should be modified prior to encoding the kernel.  The z value
+        /// must be 0.
         #[method(sourceMatrixOrigin)]
         pub unsafe fn sourceMatrixOrigin(&self) -> MTLOrigin;
 
+        /// Setter for [`sourceMatrixOrigin`][Self::sourceMatrixOrigin].
         #[method(setSourceMatrixOrigin:)]
         pub unsafe fn setSourceMatrixOrigin(&self, source_matrix_origin: MTLOrigin);
 
+        /// The origin, relative to [0, 0] in the result matrix, at which to
+        /// start writing results.  This property is modifiable and defaults
+        /// to [0, 0] at initialization time.  If a different origin is desired
+        /// then this should be modified prior to encoding the kernel.  The z
+        /// value must be 0.
         #[method(resultMatrixOrigin)]
         pub unsafe fn resultMatrixOrigin(&self) -> MTLOrigin;
 
+        /// Setter for [`resultMatrixOrigin`][Self::resultMatrixOrigin].
         #[method(setResultMatrixOrigin:)]
         pub unsafe fn setResultMatrixOrigin(&self, result_matrix_origin: MTLOrigin);
 
+        /// The index of the first matrix in the batch.  This property is
+        /// modifiable and defaults to 0 at initialization time.  If
+        /// batch processing should begin at a different matrix this value
+        /// should be modified prior to encoding the kernel.
         #[method(batchStart)]
         pub unsafe fn batchStart(&self) -> NSUInteger;
 
+        /// Setter for [`batchStart`][Self::batchStart].
         #[method(setBatchStart:)]
         pub unsafe fn setBatchStart(&self, batch_start: NSUInteger);
 
+        /// The number of matrices in the batch to process.  This property
+        /// is modifiable and by default allows all matrices available at
+        /// encoding time to be processed.  If a single matrix should be
+        /// processed set this value to 1.
         #[method(batchSize)]
         pub unsafe fn batchSize(&self) -> NSUInteger;
 
+        /// Setter for [`batchSize`][Self::batchSize].
         #[method(setBatchSize:)]
         pub unsafe fn setBatchSize(&self, batch_size: NSUInteger);
     }
@@ -66,18 +92,46 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSMatrixUnaryKernel {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: a pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -100,7 +154,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixbinarykernel?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    /// A MPSMatrixBinaryKernel consumes two MPSMatrix objects and produces
+    /// one MPSMatrix object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixbinarykernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -127,36 +186,64 @@ unsafe impl NSSecureCoding for MPSMatrixBinaryKernel {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSMatrixBinaryKernel {
+        /// The origin, relative to [0, 0] in the primary source matrix, at which to
+        /// start reading values.  This property is modifiable and defaults to
+        /// [0, 0] at initialization time.  If a different origin is desired then
+        /// this should be modified prior to encoding the kernel.  The z value
+        /// must be 0.
         #[method(primarySourceMatrixOrigin)]
         pub unsafe fn primarySourceMatrixOrigin(&self) -> MTLOrigin;
 
+        /// Setter for [`primarySourceMatrixOrigin`][Self::primarySourceMatrixOrigin].
         #[method(setPrimarySourceMatrixOrigin:)]
         pub unsafe fn setPrimarySourceMatrixOrigin(&self, primary_source_matrix_origin: MTLOrigin);
 
+        /// The origin, relative to [0, 0] in the secondary source matrix, at which to
+        /// start reading values.  This property is modifiable and defaults to
+        /// [0, 0] at initialization time.  If a different origin is desired then
+        /// this should be modified prior to encoding the kernel.  The z value
+        /// must be 0.
         #[method(secondarySourceMatrixOrigin)]
         pub unsafe fn secondarySourceMatrixOrigin(&self) -> MTLOrigin;
 
+        /// Setter for [`secondarySourceMatrixOrigin`][Self::secondarySourceMatrixOrigin].
         #[method(setSecondarySourceMatrixOrigin:)]
         pub unsafe fn setSecondarySourceMatrixOrigin(
             &self,
             secondary_source_matrix_origin: MTLOrigin,
         );
 
+        /// The origin, relative to [0, 0] in the result matrix, at which to
+        /// start writing results.  This property is modifiable and defaults
+        /// to [0, 0] at initialization time.  If a different origin is desired
+        /// then this should be modified prior to encoding the kernel.  The z
+        /// value must be 0.
         #[method(resultMatrixOrigin)]
         pub unsafe fn resultMatrixOrigin(&self) -> MTLOrigin;
 
+        /// Setter for [`resultMatrixOrigin`][Self::resultMatrixOrigin].
         #[method(setResultMatrixOrigin:)]
         pub unsafe fn setResultMatrixOrigin(&self, result_matrix_origin: MTLOrigin);
 
+        /// The index of the first matrix in the batch.  This property is
+        /// modifiable and defaults to 0 at initialization time.  If
+        /// batch processing should begin at a different matrix this value
+        /// should be modified prior to encoding the kernel.
         #[method(batchStart)]
         pub unsafe fn batchStart(&self) -> NSUInteger;
 
+        /// Setter for [`batchStart`][Self::batchStart].
         #[method(setBatchStart:)]
         pub unsafe fn setBatchStart(&self, batch_start: NSUInteger);
 
+        /// The number of matrices in the batch to process.  This property
+        /// is modifiable and by default allows all matrices available at
+        /// encoding time to be processed.  If a single matrix should be
+        /// processed set this value to 1.
         #[method(batchSize)]
         pub unsafe fn batchSize(&self) -> NSUInteger;
 
+        /// Setter for [`batchSize`][Self::batchSize].
         #[method(setBatchSize:)]
         pub unsafe fn setBatchSize(&self, batch_size: NSUInteger);
     }
@@ -166,18 +253,46 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSMatrixBinaryKernel {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: a pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,

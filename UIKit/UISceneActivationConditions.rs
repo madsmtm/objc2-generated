@@ -37,6 +37,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSPredicate>;
 
+        /// Setter for [`canActivateForTargetContentIdentifierPredicate`][Self::canActivateForTargetContentIdentifierPredicate].
         #[method(setCanActivateForTargetContentIdentifierPredicate:)]
         pub unsafe fn setCanActivateForTargetContentIdentifierPredicate(
             &self,
@@ -48,6 +49,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSPredicate>;
 
+        /// Setter for [`prefersToActivateForTargetContentIdentifierPredicate`][Self::prefersToActivateForTargetContentIdentifierPredicate].
         #[method(setPrefersToActivateForTargetContentIdentifierPredicate:)]
         pub unsafe fn setPrefersToActivateForTargetContentIdentifierPredicate(
             &self,
@@ -71,6 +73,7 @@ extern_category!(
         #[method_id(@__retain_semantics Other targetContentIdentifier)]
         unsafe fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].
         #[method(setTargetContentIdentifier:)]
         unsafe fn setTargetContentIdentifier(&self, target_content_identifier: Option<&NSString>);
     }

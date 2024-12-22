@@ -100,23 +100,35 @@ unsafe impl NSUserInterfaceItemIdentification for NSTextInsertionIndicator {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTextInsertionIndicator {
+        /// Sets-returns the indicator's display mode.
         #[method(displayMode)]
         pub unsafe fn displayMode(&self) -> NSTextInsertionIndicatorDisplayMode;
 
+        /// Setter for [`displayMode`][Self::displayMode].
         #[method(setDisplayMode:)]
         pub unsafe fn setDisplayMode(&self, display_mode: NSTextInsertionIndicatorDisplayMode);
 
         #[cfg(feature = "NSColor")]
+        /// The color of the indicator.
+        ///
+        /// Defaults to NSColor.textInsertionPointColor.
+        ///
+        /// Note: If set to
+        /// `nil,`uses NSColor.textInsertionPointColor.
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: Option<&NSColor>);
 
+        /// Options for the NSTextInsertionIndicatorDisplayModeAutomatic display mode.
+        /// Defaults to NSTextInsertionIndicatorAutomaticModeOptionsShowEffectsView.
         #[method(automaticModeOptions)]
         pub unsafe fn automaticModeOptions(&self) -> NSTextInsertionIndicatorAutomaticModeOptions;
 
+        /// Setter for [`automaticModeOptions`][Self::automaticModeOptions].
         #[method(setAutomaticModeOptions:)]
         pub unsafe fn setAutomaticModeOptions(
             &self,
@@ -124,10 +136,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Sets-returns a block that inserts a view into the view hierarchy.
+        ///
+        /// During dictation the NSTextInsertionIndicator displays a glow effect by inserting a view below the text view. If an application needs to insert the view in a different way, the application can specify a block of code that will be called when the glow effect needs to be displayed.
         #[method(effectsViewInserter)]
         pub unsafe fn effectsViewInserter(&self) -> *mut block2::Block<dyn Fn(NonNull<NSView>)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`effectsViewInserter`][Self::effectsViewInserter].
         #[method(setEffectsViewInserter:)]
         pub unsafe fn setEffectsViewInserter(
             &self,

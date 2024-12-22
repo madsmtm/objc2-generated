@@ -47,30 +47,38 @@ unsafe impl UIInteraction for UIBandSelectionInteraction {}
 
 extern_methods!(
     unsafe impl UIBandSelectionInteraction {
+        /// Indicates whether the interaction is enabled. Defaults to YES.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        /// The interaction's current state.
         #[method(state)]
         pub unsafe fn state(&self) -> UIBandSelectionInteractionState;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The current selection rect. Returns CGRectNull when the interaction is inactive.
         #[method(selectionRect)]
         pub unsafe fn selectionRect(&self) -> CGRect;
 
         #[cfg(feature = "UICommand")]
+        /// Modifier keys held at the beginning of the interaction.
         #[method(initialModifierFlags)]
         pub unsafe fn initialModifierFlags(&self) -> UIKeyModifierFlags;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// Called when the interaction is about to begin.
+        /// Return a boolean indicating whether the interaction should begin at the given location.
         #[method(shouldBeginHandler)]
         pub unsafe fn shouldBeginHandler(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<UIBandSelectionInteraction>, CGPoint) -> Bool>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// Setter for [`shouldBeginHandler`][Self::shouldBeginHandler].
         #[method(setShouldBeginHandler:)]
         pub unsafe fn setShouldBeginHandler(
             &self,
@@ -80,6 +88,10 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Creates a UIBandSelectionInteraction with the given selection handler.
+        ///
+        ///
+        /// Parameter `selectionHandler`: Called when the interaction's state and/or selection rect change.
         #[method_id(@__retain_semantics Init initWithSelectionHandler:)]
         pub unsafe fn initWithSelectionHandler(
             this: Allocated<Self>,

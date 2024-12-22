@@ -31,6 +31,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTextContentManager")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`textContentManager`][Self::textContentManager].
         #[method(setTextContentManager:)]
         pub unsafe fn setTextContentManager(
             &self,
@@ -42,6 +43,7 @@ extern_methods!(
         pub unsafe fn elementRange(&self) -> Option<Retained<NSTextRange>>;
 
         #[cfg(feature = "NSTextRange")]
+        /// Setter for [`elementRange`][Self::elementRange].
         #[method(setElementRange:)]
         pub unsafe fn setElementRange(&self, element_range: Option<&NSTextRange>);
 

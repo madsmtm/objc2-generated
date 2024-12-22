@@ -12,6 +12,7 @@ use crate::*;
 extern_category!(
     /// Category "NSAccessibility" on [`NSObject`].
     #[doc(alias = "NSAccessibility")]
+    /// * Accessibility Informal Protocol **
     pub unsafe trait NSObjectNSAccessibility {
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
@@ -230,6 +231,7 @@ extern "C-unwind" {
     );
 }
 
+/// * Ignored UIElements Utilities **
 #[inline]
 pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredAncestor(
     element: &AnyObject,
@@ -279,6 +281,7 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildrenForOnlyChild(
 }
 
 extern "C-unwind" {
+    /// * Posting Notifications **
     #[cfg(feature = "NSAccessibilityConstants")]
     pub fn NSAccessibilityPostNotification(
         element: &AnyObject,

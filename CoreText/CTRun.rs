@@ -14,7 +14,26 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunref?language=objc)
 pub type CTRunRef = *const c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunstatus?language=objc)
+/// A bitfield passed back by CTRunGetStatus that is used to
+/// indicate the disposition of the run.
+///
+///
+/// The run has no special attributes.
+///
+///
+/// When set, the run is right to left.
+///
+///
+/// When set, the run has been reordered in some way such that
+/// the string indices associated with the glyphs are no longer
+/// strictly increasing (for left to right runs) or decreasing
+/// (for right to left runs).
+///
+///
+/// When set, the run requires a specific text matrix to be set
+/// in the current CG context for proper drawing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunstatus?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -39,70 +58,283 @@ unsafe impl RefEncode for CTRunStatus {
 }
 
 extern "C-unwind" {
+    /// Returns the CFType of the run object
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
+    /// Gets the glyph count for the run.
+    ///
+    ///
+    /// Parameter `run`: The run whose glyph count you wish to access.
+    ///
+    ///
+    /// Returns: The number of glyphs that the run contains. It is totally
+    /// possible that this function could return a value of zero,
+    /// indicating that there are no glyphs in this run.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetGlyphCount(run: CTRunRef) -> CFIndex;
 }
 
 extern "C-unwind" {
+    /// Returns the attribute dictionary that was used to create the
+    /// glyph run.
+    ///
+    ///
+    /// This dictionary returned is either the same exact one that was
+    /// set as an attribute dictionary on the original attributed string
+    /// or a dictionary that has been manufactured by the layout engine.
+    /// Attribute dictionaries can be manufactured in the case of font
+    /// substitution or if they are missing critical attributes.
+    ///
+    ///
+    /// Parameter `run`: The run whose attributes you wish to access.
+    ///
+    ///
+    /// Returns: The attribute dictionary.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetAttributes(run: CTRunRef) -> CFDictionaryRef;
 }
 
 extern "C-unwind" {
+    /// Returns the run's status.
+    ///
+    ///
+    /// In addition to attributes, runs also have status that can be
+    /// used to expedite certain operations. Knowing the direction and
+    /// ordering of a run's glyphs can aid in string index analysis,
+    /// whereas knowing whether the positions reference the identity
+    /// text matrix can avoid expensive comparisons. Note that this
+    /// status is provided as a convenience, since this information is
+    /// not strictly necessary but can certainly be helpful.
+    ///
+    ///
+    /// Parameter `run`: The run whose status you wish to access.
+    ///
+    ///
+    /// Returns: The run's status.
     pub fn CTRunGetStatus(run: CTRunRef) -> CTRunStatus;
 }
 
 extern "C-unwind" {
+    /// Returns a direct pointer for the glyph array stored in the run.
+    ///
+    ///
+    /// The glyph array will have a length equal to the value returned by
+    /// CTRunGetGlyphCount. The caller should be prepared for this
+    /// function to return NULL even if there are glyphs in the stream.
+    /// Should this function return NULL, the caller will need to
+    /// allocate their own buffer and call CTRunGetGlyphs to fetch the
+    /// glyphs.
+    ///
+    ///
+    /// Parameter `run`: The run whose glyphs you wish to access.
+    ///
+    ///
+    /// Returns: A valid pointer to an array of CGGlyph structures or NULL.
     #[cfg(feature = "objc2-core-graphics")]
     pub fn CTRunGetGlyphsPtr(run: CTRunRef) -> *const CGGlyph;
 }
 
 extern "C-unwind" {
+    /// Copies a range of glyphs into user-provided buffer.
+    ///
+    ///
+    /// Parameter `run`: The run whose glyphs you wish to copy.
+    ///
+    ///
+    /// Parameter `range`: The range of glyphs to be copied, with the entire range having a
+    /// location of 0 and a length of CTRunGetGlyphCount. If the length
+    /// of the range is set to 0, then the operation will continue from
+    /// the range's start index to the end of the run.
+    ///
+    ///
+    /// Parameter `buffer`: The buffer where the glyphs will be copied to. The buffer must be
+    /// allocated to at least the value specified by the range's length.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
     pub fn CTRunGetGlyphs(run: CTRunRef, range: CFRange, buffer: NonNull<CGGlyph>);
 }
 
 extern "C-unwind" {
+    /// Returns a direct pointer for the glyph position array stored in
+    /// the run.
+    ///
+    ///
+    /// The glyph positions in a run are relative to the origin of the
+    /// line containing the run. The position array will have a length
+    /// equal to the value returned by CTRunGetGlyphCount. The caller
+    /// should be prepared for this function to return NULL even if there
+    /// are glyphs in the stream. Should this function return NULL, the
+    /// caller will need to allocate their own buffer and call
+    /// CTRunGetPositions to fetch the positions.
+    ///
+    ///
+    /// Parameter `run`: The run whose positions you wish to access.
+    ///
+    ///
+    /// Returns: A valid pointer to an array of CGPoint structures or NULL.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetPositionsPtr(run: CTRunRef) -> *const CGPoint;
 }
 
 extern "C-unwind" {
+    /// Copies a range of glyph positions into a user-provided buffer.
+    ///
+    ///
+    /// The glyph positions in a run are relative to the origin of the
+    /// line containing the run.
+    ///
+    ///
+    /// Parameter `run`: The run whose positions you wish to copy.
+    ///
+    ///
+    /// Parameter `range`: The range of glyph positions to be copied, with the entire range
+    /// having a location of 0 and a length of CTRunGetGlyphCount. If the
+    /// length of the range is set to 0, then the operation will continue
+    /// from the range's start index to the end of the run.
+    ///
+    ///
+    /// Parameter `buffer`: The buffer where the glyph positions will be copied to. The buffer
+    /// must be allocated to at least the value specified by the range's
+    /// length.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetPositions(run: CTRunRef, range: CFRange, buffer: NonNull<CGPoint>);
 }
 
 extern "C-unwind" {
+    /// Returns a direct pointer for the glyph advance array stored in
+    /// the run.
+    ///
+    ///
+    /// The advance array will have a length equal to the value returned
+    /// by CTRunGetGlyphCount. The caller should be prepared for this
+    /// function to return NULL even if there are glyphs in the stream.
+    /// Should this function return NULL, the caller will need to
+    /// allocate their own buffer and call CTRunGetAdvances to fetch the
+    /// advances. Note that advances alone are not sufficient for correctly
+    /// positioning glyphs in a line, as a run may have a non-identity
+    /// matrix or the initial glyph in a line may have a non-zero origin;
+    /// callers should consider using positions instead.
+    ///
+    ///
+    /// Parameter `run`: The run whose advances you wish to access.
+    ///
+    ///
+    /// Returns: A valid pointer to an array of CGSize structures or NULL.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetAdvancesPtr(run: CTRunRef) -> *const CGSize;
 }
 
 extern "C-unwind" {
+    /// Copies a range of glyph advances into a user-provided buffer.
+    ///
+    ///
+    /// Parameter `run`: The run whose advances you wish to copy.
+    ///
+    ///
+    /// Parameter `range`: The range of glyph advances to be copied, with the entire range
+    /// having a location of 0 and a length of CTRunGetGlyphCount. If the
+    /// length of the range is set to 0, then the operation will continue
+    /// from the range's start index to the end of the run.
+    ///
+    ///
+    /// Parameter `buffer`: The buffer where the glyph advances will be copied to. The buffer
+    /// must be allocated to at least the value specified by the range's
+    /// length.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetAdvances(run: CTRunRef, range: CFRange, buffer: NonNull<CGSize>);
 }
 
 extern "C-unwind" {
+    /// Returns a direct pointer for the string indices stored in the run.
+    ///
+    ///
+    /// The indices are the character indices that originally spawned the
+    /// glyphs that make up the run. They can be used to map the glyphs in
+    /// the run back to the characters in the backing store. The string
+    /// indices array will have a length equal to the value returned by
+    /// CTRunGetGlyphCount. The caller should be prepared for this
+    /// function to return NULL even if there are glyphs in the stream.
+    /// Should this function return NULL, the caller will need to allocate
+    /// their own buffer and call CTRunGetStringIndices to fetch the
+    /// indices.
+    ///
+    ///
+    /// Parameter `run`: The run whose string indices you wish to access.
+    ///
+    ///
+    /// Returns: A valid pointer to an array of CFIndex structures or NULL.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetStringIndicesPtr(run: CTRunRef) -> *const CFIndex;
 }
 
 extern "C-unwind" {
+    /// Copies a range of string indices into a user-provided buffer.
+    ///
+    ///
+    /// The indices are the character indices that originally spawned the
+    /// glyphs that make up the run. They can be used to map the glyphs
+    /// in the run back to the characters in the backing store.
+    ///
+    ///
+    /// Parameter `run`: The run whose string indices you wish to copy.
+    ///
+    ///
+    /// Parameter `range`: The range of string indices to be copied, with the entire range
+    /// having a location of 0 and a length of CTRunGetGlyphCount. If the
+    /// length of the range is set to 0, then the operation will continue
+    /// from the range's start index to the end of the run.
+    ///
+    ///
+    /// Parameter `buffer`: The buffer where the string indices will be copied to. The buffer
+    /// must be allocated to at least the value specified by the range's
+    /// length.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetStringIndices(run: CTRunRef, range: CFRange, buffer: NonNull<CFIndex>);
 }
 
 extern "C-unwind" {
+    /// Gets the range of characters that originally spawned the glyphs
+    /// in the run.
+    ///
+    ///
+    /// Parameter `run`: The run whose string range you wish to access.
+    ///
+    ///
+    /// Returns: Returns the range of characters that originally spawned the
+    /// glyphs. If run is invalid, this will return an empty range.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetStringRange(run: CTRunRef) -> CFRange;
 }
 
 extern "C-unwind" {
+    /// Gets the typographic bounds of the run.
+    ///
+    ///
+    /// Parameter `run`: The run that you want to calculate the typographic bounds for.
+    ///
+    ///
+    /// Parameter `range`: The range of glyphs to be measured, with the entire range having
+    /// a location of 0 and a length of CTRunGetGlyphCount. If the length
+    /// of the range is set to 0, then the operation will continue from
+    /// the range's start index to the end of the run.
+    ///
+    ///
+    /// Parameter `ascent`: Upon return, this parameter will contain the ascent of the run.
+    /// This may be set to NULL if not needed.
+    ///
+    ///
+    /// Parameter `descent`: Upon return, this parameter will contain the descent of the run.
+    /// This may be set to NULL if not needed.
+    ///
+    ///
+    /// Parameter `leading`: Upon return, this parameter will contain the leading of the run.
+    /// This may be set to NULL if not needed.
+    ///
+    ///
+    /// Returns: The typographic width of the run. If run or range is
+    /// invalid, then this function will always return zero.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetTypographicBounds(
         run: CTRunRef,
@@ -114,16 +346,95 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Calculates the image bounds for a glyph range.
+    ///
+    ///
+    /// The image bounds for a run is the union of all non-empty glyph
+    /// bounding rects, each positioned as it would be if drawn using
+    /// CTRunDraw using the current context (for clients linked against
+    /// macOS High Sierra or iOS 11 and later) or the text position of
+    /// the supplied context (for all others). Note that the result is
+    /// ideal and does not account for raster coverage due to rendering.
+    /// This function is purely a convenience for using glyphs as an
+    /// image and should not be used for typographic purposes.
+    ///
+    ///
+    /// Parameter `run`: The run that you want to calculate the image bounds for.
+    ///
+    ///
+    /// Parameter `context`: The context which the image bounds will be calculated for or NULL,
+    /// in which case the bounds are relative to CGPointZero.
+    ///
+    ///
+    /// Parameter `range`: The range of glyphs to be measured, with the entire range having
+    /// a location of 0 and a length of CTRunGetGlyphCount. If the length
+    /// of the range is set to 0, then the operation will continue from
+    /// the range's start index to the end of the run.
+    ///
+    ///
+    /// Returns: A rect that tightly encloses the paths of the run's glyphs. The
+    /// rect origin will match the drawn position of the requested range;
+    /// that is, it will be translated by the supplied context's text
+    /// position and the positions of the individual glyphs. If the run
+    /// or range is invalid, CGRectNull will be returned.
+    ///
+    ///
+    /// See also: CTRunGetTypographicBounds
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
     pub fn CTRunGetImageBounds(run: CTRunRef, context: CGContextRef, range: CFRange) -> CGRect;
 }
 
 extern "C-unwind" {
+    /// Returns the text matrix needed to draw this run.
+    ///
+    ///
+    /// To properly draw the glyphs in a run, the fields 'tx' and 'ty' of
+    /// the CGAffineTransform returned by this function should be set to
+    /// the current text position.
+    ///
+    ///
+    /// Parameter `run`: The run object from which to get the text matrix.
+    ///
+    ///
+    /// Returns: A CGAffineTransform.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetTextMatrix(run: CTRunRef) -> CGAffineTransform;
 }
 
 extern "C-unwind" {
+    /// Copies a range of base advances and/or origins into user-provided
+    /// buffers.
+    ///
+    ///
+    /// A run's base advances and origins determine the positions of its
+    /// glyphs but require additional processing before being used for
+    /// drawing. Similar to the advances returned by CTRunGetAdvances,
+    /// base advances are the displacement from the origin of a glyph
+    /// to the origin of the next glyph, except base advances do not
+    /// include any positioning the font layout tables may have done
+    /// relative to another glyph (such as a mark relative to its base).
+    /// The actual position of the current glyph is determined by the
+    /// displacement of its origin from the starting position, and the
+    /// position of the next glyph by the displacement of the current
+    /// glyph's base advance from the starting position.
+    ///
+    ///
+    /// Parameter `runRef`: The run whose base advances and/or origins you wish to copy.
+    ///
+    ///
+    /// Parameter `range`: The range of values to be copied. If the length of the
+    /// range is set to 0, then the copy operation will continue from the
+    /// range's start index to the end of the run.
+    ///
+    ///
+    /// Parameter `advancesBuffer`: The buffer where the base advances will be copied to, or NULL.
+    /// If not NULL, the buffer must allow for at least as many elements
+    /// as specified by the range's length.
+    ///
+    ///
+    /// Parameter `originsBuffer`: The buffer where the origins will be copied to, or NULL. If not
+    /// NULL, the buffer must allow for at least as many elements as
+    /// specified by the range's length.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetBaseAdvancesAndOrigins(
         run_ref: CTRunRef,
@@ -134,6 +445,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Draws a complete run or part of one.
+    ///
+    ///
+    /// This is a convenience call, since the run could also be drawn by
+    /// accessing its glyphs, positions, and text matrix. Unlike when
+    /// drawing the entire line containing the run with CTLineDraw, the
+    /// run's underline (if any) will not be drawn, since the underline's
+    /// appearance may depend on other runs in the line. This call may
+    /// leave the graphics context in any state and does not flush the
+    /// context after drawing. This call also expects a text matrix with
+    /// `y` values increasing from bottom to top; a flipped text matrix
+    /// may result in misplaced diacritics.
+    ///
+    ///
+    /// Parameter `run`: The run that you want to draw.
+    ///
+    ///
+    /// Parameter `context`: The context to draw the run to.
+    ///
+    ///
+    /// Parameter `range`: The range of glyphs to be drawn, with the entire range having a
+    /// location of 0 and a length of CTRunGetGlyphCount. If the length
+    /// of the range is set to 0, then the operation will continue from
+    /// the range's start index to the end of the run.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
     pub fn CTRunDraw(run: CTRunRef, context: CGContextRef, range: CFRange);
 }

@@ -256,6 +256,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<NSFileHandle>)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`readabilityHandler`][Self::readabilityHandler].
         #[method(setReadabilityHandler:)]
         pub unsafe fn setReadabilityHandler(
             &self,
@@ -269,6 +270,7 @@ extern_methods!(
         ) -> *mut block2::Block<dyn Fn(NonNull<NSFileHandle>)>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`writeabilityHandler`][Self::writeabilityHandler].
         #[method(setWriteabilityHandler:)]
         pub unsafe fn setWriteabilityHandler(
             &self,

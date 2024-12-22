@@ -33,6 +33,7 @@ extern_methods!(
         #[method(performsFirstActionWithFullSwipe)]
         pub unsafe fn performsFirstActionWithFullSwipe(&self) -> bool;
 
+        /// Setter for [`performsFirstActionWithFullSwipe`][Self::performsFirstActionWithFullSwipe].
         #[method(setPerformsFirstActionWithFullSwipe:)]
         pub unsafe fn setPerformsFirstActionWithFullSwipe(
             &self,

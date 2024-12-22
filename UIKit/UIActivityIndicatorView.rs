@@ -118,6 +118,7 @@ extern_methods!(
         #[method(activityIndicatorViewStyle)]
         pub unsafe fn activityIndicatorViewStyle(&self) -> UIActivityIndicatorViewStyle;
 
+        /// Setter for [`activityIndicatorViewStyle`][Self::activityIndicatorViewStyle].
         #[method(setActivityIndicatorViewStyle:)]
         pub unsafe fn setActivityIndicatorViewStyle(
             &self,
@@ -127,6 +128,7 @@ extern_methods!(
         #[method(hidesWhenStopped)]
         pub unsafe fn hidesWhenStopped(&self) -> bool;
 
+        /// Setter for [`hidesWhenStopped`][Self::hidesWhenStopped].
         #[method(setHidesWhenStopped:)]
         pub unsafe fn setHidesWhenStopped(&self, hides_when_stopped: bool);
 
@@ -135,6 +137,7 @@ extern_methods!(
         pub unsafe fn color(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: Option<&UIColor>);
 

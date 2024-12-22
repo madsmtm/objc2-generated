@@ -11,6 +11,14 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraph", feature = "MPSGraphCore"))]
     unsafe impl MPSGraph {
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates an operation which invokes another executable.
+        ///
+        /// - Parameters:
+        /// - symbolName: The unique identifier used to find the executable in the ``MPSGraphCompilationDescriptor.callables`` directory.
+        /// - inputTensors: The tensors which are passed as inputs to the executable being invoked.
+        /// - outputTypes: The expected return types of the executable being invoked.
+        /// - name: name of operation.
+        /// - Returns: An array of valid ``MPSGraphTensor`` objects representing the return tensors of the invoked executable.
         #[method_id(@__retain_semantics Other callSymbolName:inputTensors:outputTypes:name:)]
         pub unsafe fn callSymbolName_inputTensors_outputTypes_name(
             &self,

@@ -9,7 +9,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype?language=objc)
+/// The type of action triggering a navigation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -38,7 +40,9 @@ unsafe impl RefEncode for WKNavigationType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationaction?language=objc)
+    /// A WKNavigationAction object contains information about an action that may cause a navigation, used for making policy decisions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationaction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -50,23 +54,31 @@ unsafe impl NSObjectProtocol for WKNavigationAction {}
 extern_methods!(
     unsafe impl WKNavigationAction {
         #[cfg(feature = "WKFrameInfo")]
+        /// The target frame, or nil if this is a new window navigation.
         #[method_id(@__retain_semantics Other targetFrame)]
         pub unsafe fn targetFrame(&self) -> Option<Retained<WKFrameInfo>>;
 
+        /// The type of action that triggered the navigation.
+        ///
+        /// The value is one of the constants of the enumerated type WKNavigationType.
         #[method(navigationType)]
         pub unsafe fn navigationType(&self) -> WKNavigationType;
 
+        /// The navigation's request.
         #[method_id(@__retain_semantics Other request)]
         pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
+        /// A value indicating whether the web content used a download attribute to indicate that this should be downloaded.
         #[method(shouldPerformDownload)]
         pub unsafe fn shouldPerformDownload(&self) -> bool;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// The modifier keys that were in effect when the navigation was requested.
         #[method(modifierFlags)]
         pub unsafe fn modifierFlags(&self) -> NSEventModifierFlags;
 
+        /// The number of the mouse button causing the navigation to be requested.
         #[method(buttonNumber)]
         pub unsafe fn buttonNumber(&self) -> NSInteger;
     }

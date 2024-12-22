@@ -212,7 +212,42 @@ unsafe impl RefEncode for MTLDataType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype?language=objc)
+/// The type of a resource binding.
+///
+///
+/// This binding represents a buffer.
+///
+///
+/// This binding represents threadgroup memory.
+///
+///
+/// This binding represents a texture.
+///
+///
+/// This binding represents a sampler.
+///
+///
+/// This binding represents an image block data.
+///
+///
+/// This binding represents an image block.
+///
+///
+/// This binding represents a visible function table object.
+///
+///
+/// This binding represents a primitive acceleration structure object.
+///
+///
+/// This binding represents an instance acceleration structure object.
+///
+///
+/// This binding represents an intersection function table object.
+///
+///
+/// This binding represents an object payload.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -250,7 +285,21 @@ unsafe impl RefEncode for MTLBindingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype?language=objc)
+/// The type for an input to a MTLRenderPipelineState or a MTLComputePipelineState
+///
+///
+/// This input is a MTLBuffer
+///
+///
+/// This input is a pointer to the threadgroup memory.
+///
+///
+/// This input is a MTLTexture.
+///
+///
+/// This input is a sampler.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -560,7 +609,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargument?language=objc)
+    /// MTLArgument
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargument?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

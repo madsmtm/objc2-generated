@@ -63,7 +63,11 @@ unsafe impl RefEncode for AVEdgeWidths {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositionrendercontext?language=objc)
+    /// The context in which custom compositors render pixel buffers.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositionrendercontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoCompositionRenderContext;
@@ -103,6 +107,9 @@ extern_methods!(
         pub unsafe fn videoComposition(&self) -> Retained<AVVideoComposition>;
 
         #[cfg(feature = "objc2-core-video")]
+        /// Vends a CVPixelBuffer to use for rendering
+        ///
+        /// The buffer will have its kCVImageBufferCleanApertureKey and kCVImageBufferPixelAspectRatioKey attachments set to match the current composition processor properties.
         #[method(newPixelBuffer)]
         pub unsafe fn newPixelBuffer(&self) -> CVPixelBufferRef;
     }
@@ -135,10 +142,12 @@ unsafe impl NSObjectProtocol for AVVideoCompositionRenderHint {}
 extern_methods!(
     unsafe impl AVVideoCompositionRenderHint {
         #[cfg(feature = "objc2-core-media")]
+        /// The start time of the upcoming composition requests.
         #[method(startCompositionTime)]
         pub unsafe fn startCompositionTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The end time of the upcoming composition requests.
         #[method(endCompositionTime)]
         pub unsafe fn endCompositionTime(&self) -> CMTime;
     }
@@ -156,7 +165,15 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositing?language=objc)
+    /// Defines properties and methods for custom video compositors
+    ///
+    /// For each AVFoundation object of class AVPlayerItem, AVAssetExportSession, AVAssetImageGenerator, or AVAssetReaderVideoCompositionOutput that has a non-nil value for its videoComposition property, when the value of the customVideoCompositorClass property of the AVVideoComposition is not Nil, AVFoundation creates and uses an instance of that custom video compositor class to process the instructions contained in the AVVideoComposition. The custom video compositor instance will be created when you invoke -setVideoComposition: with an instance of AVVideoComposition that's associated with a different custom video compositor class than the object was previously using.
+    ///
+    /// When creating instances of custom video compositors, AVFoundation initializes them by calling -init and then makes them available to you for further set-up or communication, if any is needed, as the value of the customVideoCompositor property of the object on which -setVideoComposition: was invoked.
+    ///
+    /// Custom video compositor instances will then be retained by the AVFoundation object for as long as the value of its videoComposition property indicates that an instance of the same custom video compositor class should be used, even if the value is changed from one instance of AVVideoComposition to another instance that's associated with the same custom video compositor class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositing?language=objc)
     pub unsafe trait AVVideoCompositing: NSObjectProtocol {
         #[method_id(@__retain_semantics Other sourcePixelBufferAttributes)]
         unsafe fn sourcePixelBufferAttributes(
@@ -168,23 +185,59 @@ extern_protocol!(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
+        /// Called to notify the custom compositor that a composition will switch to a different render context
+        ///
+        /// Parameter `newRenderContext`: The render context that will be handling the video composition from this point
+        ///
+        /// Instances of classes implementing the AVVideoComposting protocol can implement this method to be notified when
+        /// the AVVideoCompositionRenderContext instance handing a video composition changes. AVVideoCompositionRenderContext instances
+        /// being immutable, such a change will occur every time there is a change in the video composition parameters.
         #[method(renderContextChanged:)]
         unsafe fn renderContextChanged(&self, new_render_context: &AVVideoCompositionRenderContext);
 
+        /// Directs a custom video compositor object to create a new pixel buffer composed asynchronously from a collection of sources.
+        ///
+        /// Parameter `asyncVideoCompositionRequest`: An instance of AVAsynchronousVideoCompositionRequest that provides context for the requested composition.
+        ///
+        /// The custom compositor is expected to invoke, either subsequently or immediately, either:
+        /// -[AVAsynchronousVideoCompositionRequest finishWithComposedVideoFrame:] or
+        /// -[AVAsynchronousVideoCompositionRequest finishWithError:]. If you intend to finish rendering the frame after your
+        /// handling of this message returns, you must retain the instance of AVAsynchronousVideoCompositionRequest until after composition is finished.
+        /// Note that if the custom compositor's implementation of -startVideoCompositionRequest: returns without finishing the composition immediately,
+        /// it may be invoked again with another composition request before the prior request is finished; therefore in such cases the custom compositor should
+        /// be prepared to manage multiple composition requests.
+        ///
+        /// If the rendered frame is exactly the same as one of the source frames, with no letterboxing, pillboxing or cropping needed,
+        /// then the appropriate source pixel buffer may be returned (after CFRetain has been called on it).
         #[method(startVideoCompositionRequest:)]
         unsafe fn startVideoCompositionRequest(
             &self,
             async_video_composition_request: &AVAsynchronousVideoCompositionRequest,
         );
 
+        /// Directs a custom video compositor object to cancel or finish all pending video composition requests
+        ///
+        /// When receiving this message, a custom video compositor must block until it has either cancelled all pending frame requests,
+        /// and called the finishCancelledRequest callback for each of them, or, if cancellation is not possible, finished processing of all the frames
+        /// and called the finishWithComposedVideoFrame: callback for each of them.
         #[optional]
         #[method(cancelAllPendingVideoCompositionRequests)]
         unsafe fn cancelAllPendingVideoCompositionRequests(&self);
 
+        /// Indicates that clients can handle frames that contains wide color properties.
+        ///
+        ///
+        /// Controls whether the client will receive frames that contain wide color information. Care should be taken to avoid clamping.
         #[optional]
         #[method(supportsWideColorSourceFrames)]
         unsafe fn supportsWideColorSourceFrames(&self) -> bool;
 
+        /// Indicates that the client's video compositor can handle frames that contain high dynamic range (HDR) properties.
+        ///
+        ///
+        /// Controls whether the client will receive frames that contain HDR information.
+        /// If this field is omitted or set to NO, the framework will convert HDR frames to standard dynamic range (SDR) with BT.709 transfer function before sending to the client.
+        /// If this field is set to YES, the value of supportsWideColorSourceFrames will be ignored and assumed to be YES.
         #[optional]
         #[method(supportsHDRSourceFrames)]
         unsafe fn supportsHDRSourceFrames(&self) -> bool;
@@ -193,10 +246,34 @@ extern_protocol!(
         #[method(canConformColorOfSourceFrames)]
         unsafe fn canConformColorOfSourceFrames(&self) -> bool;
 
+        /// Informs a custom video compositor about upcoming rendering requests.
+        ///
+        /// Parameter `renderHint`: Information about the upcoming composition requests.
+        ///
+        /// In the method the compositor can load composition resources such as overlay images which will be needed in the anticipated rendering time range.
+        ///
+        /// Unlike -startVideoCompositionRequest, which is invoked only when the frame compositing is necessary, the framework typically calls this method every frame duration. It allows the custom compositor to load and unload a composition resource such as overlay images at an appropriate timing.
+        ///
+        /// In forward playback, renderHint's startCompositionTime is less than endCompositionTime. In reverse playback, its endCompositionTime is less than startCompositionTime. For seeking, startCompositionTime == endCompositionTime, which means the upcoming composition request time range is unknown and the compositor shouldn’t preload time associated composition resources eagerly.
+        ///
+        /// The method is guaranteed to be called before -startVideoCompositionRequest: for a given composition time.
+        ///
+        /// The method is synchronous. The implementation should return quickly because otherwise the playback would stall and cause frame drops.
         #[optional]
         #[method(anticipateRenderingUsingHint:)]
         unsafe fn anticipateRenderingUsingHint(&self, render_hint: &AVVideoCompositionRenderHint);
 
+        /// Tell a custom video compositor to perform any work in prerolling phase.
+        ///
+        /// Parameter `renderHint`: Information about the upcoming composition requests.
+        ///
+        /// The framework may perform prerolling to load media data to prime the render pipelines for smoother playback. This method is called in the prerolling phase so that the compositor can load composition resources such as overlay images which will be needed as soon as the playback starts.
+        ///
+        /// Not all rendering scenarios use prerolling. For example, the method won't be called while seeking.
+        ///
+        /// If called, the method is guaranteed to be invoked before the first -startVideoCompositionRequest: call.
+        ///
+        /// The method is synchronous. The prerolling won't finish until the method returns.
         #[optional]
         #[method(prerollForRenderingUsingHint:)]
         unsafe fn prerollForRenderingUsingHint(&self, render_hint: &AVVideoCompositionRenderHint);
@@ -241,6 +318,9 @@ extern_methods!(
         ) -> Retained<ProtocolObject<dyn AVVideoCompositionInstructionProtocol>>;
 
         #[cfg(all(feature = "objc2-core-media", feature = "objc2-core-video"))]
+        /// Returns the source CVPixelBufferRef for the given track ID
+        ///
+        /// Parameter `trackID`: The track ID for the requested source frame
         #[method(sourceFrameByTrackID:)]
         pub unsafe fn sourceFrameByTrackID(
             &self,
@@ -248,6 +328,9 @@ extern_methods!(
         ) -> CVPixelBufferRef;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Returns the source CMSampleBufferRef for the given track ID
+        ///
+        /// Parameter `trackID`: The track ID for the requested source sample buffer
         #[method(sourceSampleBufferByTrackID:)]
         pub unsafe fn sourceSampleBufferByTrackID(
             &self,
@@ -255,6 +338,9 @@ extern_methods!(
         ) -> CMSampleBufferRef;
 
         #[cfg(all(feature = "AVTimedMetadataGroup", feature = "objc2-core-media"))]
+        /// Returns the source AVTimedMetadataGroup * for the given track ID
+        ///
+        /// Parameter `trackID`: The track ID for the requested source timed metadata group.
         #[method_id(@__retain_semantics Other sourceTimedMetadataByTrackID:)]
         pub unsafe fn sourceTimedMetadataByTrackID(
             &self,
@@ -262,6 +348,9 @@ extern_methods!(
         ) -> Option<Retained<AVTimedMetadataGroup>>;
 
         #[cfg(feature = "objc2-core-video")]
+        /// The method that the custom compositor calls when composition succeeds.
+        ///
+        /// Parameter `composedVideoFrame`: The video frame to finish with.
         #[method(finishWithComposedVideoFrame:)]
         pub unsafe fn finishWithComposedVideoFrame(&self, composed_video_frame: CVPixelBufferRef);
 
@@ -340,7 +429,9 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositioninstructionprotocol?language=objc)
+    /// The AVVideoCompositionInstruction protocol is implemented by objects to represent operations to be performed by a compositor.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositioninstructionprotocol?language=objc)
     pub unsafe trait AVVideoCompositionInstructionProtocol: NSObjectProtocol {
         #[cfg(feature = "objc2-core-media")]
         #[method(timeRange)]

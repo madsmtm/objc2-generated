@@ -10,7 +10,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest?language=objc)
+    /// A request that detects trajectories of shapes (even small ones) that follow a parabolic path in a sequence of images.
+    ///
+    ///
+    /// This request detects objects moving and (once their path follows the constraint of a parabola), a VNTrajectoryObservation will be returned with the detected points and the equation describing the parabola.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest?language=objc)
     #[unsafe(super(VNStatefulRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
@@ -40,6 +45,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Create a new request that will detect the trajectory of a shape in motion.
+        ///
+        ///
+        /// Parameter `frameAnalysisSpacing`: The reciprocal of the maximum rate at which buffers will be processed. The request will not process buffers that fall within the frameAnalysisSpacing after it has performed the analysis. The analysis is not done by wall time but by analysis of the time stamps of the samplebuffers being processed. This property is for instance useful to throttle the processing on slower devices. If this is set to kCMTimeZero then no frames get skipped in the analysis.
+        ///
+        /// Parameter `trajectoryLength`: The number of points required to analyze a parabola that indicates a trajectory. Must be at least 5.
+        ///
+        /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
         #[method_id(@__retain_semantics Init initWithFrameAnalysisSpacing:trajectoryLength:completionHandler:)]
         pub unsafe fn initWithFrameAnalysisSpacing_trajectoryLength_completionHandler(
             this: Allocated<Self>,
@@ -48,12 +61,15 @@ extern_methods!(
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
+        /// The number of points required to analyze a parabola that indicates a trajectory.
         #[method(trajectoryLength)]
         pub unsafe fn trajectoryLength(&self) -> NSInteger;
 
+        /// Specifies the minimum radius of the bounding circle of the object to be tracked. This can be used to filter out noise and small objects. The default is 0.0, which means no filtering is applied. Changing the property from frame to frame can produce eratic trajectories as objects will either disappear or be added to the tracking base on this filtering. The value is specified in normalized coordinates.
         #[method(objectMinimumNormalizedRadius)]
         pub unsafe fn objectMinimumNormalizedRadius(&self) -> c_float;
 
+        /// Setter for [`objectMinimumNormalizedRadius`][Self::objectMinimumNormalizedRadius].
         #[method(setObjectMinimumNormalizedRadius:)]
         pub unsafe fn setObjectMinimumNormalizedRadius(
             &self,
@@ -64,13 +80,16 @@ extern_methods!(
         #[method(minimumObjectSize)]
         pub unsafe fn minimumObjectSize(&self) -> c_float;
 
+        /// Setter for [`minimumObjectSize`][Self::minimumObjectSize].
         #[deprecated]
         #[method(setMinimumObjectSize:)]
         pub unsafe fn setMinimumObjectSize(&self, minimum_object_size: c_float);
 
+        /// Specifies the maximum radius of the bounding circle of the object to be tracked. This can be used to filter out unwanted trajectories from larger objects moving through the scene. The default is 1.0, which means no filtering is applied. Changing the maximum from frame to frame can produce eratic trajectories as objects will either disappear or be added to the tracking base on this filtering. The size is specified in normalized coordinates.
         #[method(objectMaximumNormalizedRadius)]
         pub unsafe fn objectMaximumNormalizedRadius(&self) -> c_float;
 
+        /// Setter for [`objectMaximumNormalizedRadius`][Self::objectMaximumNormalizedRadius].
         #[method(setObjectMaximumNormalizedRadius:)]
         pub unsafe fn setObjectMaximumNormalizedRadius(
             &self,
@@ -81,19 +100,23 @@ extern_methods!(
         #[method(maximumObjectSize)]
         pub unsafe fn maximumObjectSize(&self) -> c_float;
 
+        /// Setter for [`maximumObjectSize`][Self::maximumObjectSize].
         #[deprecated]
         #[method(setMaximumObjectSize:)]
         pub unsafe fn setMaximumObjectSize(&self, maximum_object_size: c_float);
 
         #[cfg(feature = "objc2-core-media")]
+        /// Specifies the desired target frame time for processing trajectory detection. This can be used for real-time processing of frames, which requires execution with a specific amount of time. The target frame time is evaluated from frame-to-frame. If processing takes longer than this target frame time for the currect frame, it will attempt to reduce the amount of time taken by reducing the accuracy (down to a set minimum) for the next frame. If a frame takes less time than this target, then accuracy of the next frame will be increased (up to a set maximum). The default value is kCMTimeIndefinite, meaning accuracy stays at the predefined maximum.
         #[method(targetFrameTime)]
         pub unsafe fn targetFrameTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`targetFrameTime`][Self::targetFrameTime].
         #[method(setTargetFrameTime:)]
         pub unsafe fn setTargetFrameTime(&self, target_frame_time: CMTime);
 
         #[cfg(feature = "VNObservation")]
+        /// Provides VNTrajectoryObservation results.
         #[method_id(@__retain_semantics Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNTrajectoryObservation>>>;
     }

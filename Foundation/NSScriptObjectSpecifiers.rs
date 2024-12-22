@@ -132,12 +132,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other childSpecifier)]
         pub unsafe fn childSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
+        /// Setter for [`childSpecifier`][Self::childSpecifier].
         #[method(setChildSpecifier:)]
         pub unsafe fn setChildSpecifier(&self, child_specifier: Option<&NSScriptObjectSpecifier>);
 
         #[method_id(@__retain_semantics Other containerSpecifier)]
         pub unsafe fn containerSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
+        /// Setter for [`containerSpecifier`][Self::containerSpecifier].
         #[method(setContainerSpecifier:)]
         pub unsafe fn setContainerSpecifier(
             &self,
@@ -147,6 +149,7 @@ extern_methods!(
         #[method(containerIsObjectBeingTested)]
         pub unsafe fn containerIsObjectBeingTested(&self) -> bool;
 
+        /// Setter for [`containerIsObjectBeingTested`][Self::containerIsObjectBeingTested].
         #[method(setContainerIsObjectBeingTested:)]
         pub unsafe fn setContainerIsObjectBeingTested(
             &self,
@@ -156,6 +159,7 @@ extern_methods!(
         #[method(containerIsRangeContainerObject)]
         pub unsafe fn containerIsRangeContainerObject(&self) -> bool;
 
+        /// Setter for [`containerIsRangeContainerObject`][Self::containerIsRangeContainerObject].
         #[method(setContainerIsRangeContainerObject:)]
         pub unsafe fn setContainerIsRangeContainerObject(
             &self,
@@ -167,6 +171,7 @@ extern_methods!(
         pub unsafe fn key(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`key`][Self::key].
         #[method(setKey:)]
         pub unsafe fn setKey(&self, key: &NSString);
 
@@ -177,6 +182,7 @@ extern_methods!(
         ) -> Option<Retained<NSScriptClassDescription>>;
 
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
+        /// Setter for [`containerClassDescription`][Self::containerClassDescription].
         #[method(setContainerClassDescription:)]
         pub unsafe fn setContainerClassDescription(
             &self,
@@ -206,6 +212,7 @@ extern_methods!(
         #[method(evaluationErrorNumber)]
         pub unsafe fn evaluationErrorNumber(&self) -> NSInteger;
 
+        /// Setter for [`evaluationErrorNumber`][Self::evaluationErrorNumber].
         #[method(setEvaluationErrorNumber:)]
         pub unsafe fn setEvaluationErrorNumber(&self, evaluation_error_number: NSInteger);
 
@@ -278,6 +285,7 @@ extern_methods!(
         #[method(index)]
         pub unsafe fn index(&self) -> NSInteger;
 
+        /// Setter for [`index`][Self::index].
         #[method(setIndex:)]
         pub unsafe fn setIndex(&self, index: NSInteger);
     }
@@ -427,6 +435,7 @@ extern_methods!(
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
     }
@@ -688,12 +697,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other startSpecifier)]
         pub unsafe fn startSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
+        /// Setter for [`startSpecifier`][Self::startSpecifier].
         #[method(setStartSpecifier:)]
         pub unsafe fn setStartSpecifier(&self, start_specifier: Option<&NSScriptObjectSpecifier>);
 
         #[method_id(@__retain_semantics Other endSpecifier)]
         pub unsafe fn endSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
+        /// Setter for [`endSpecifier`][Self::endSpecifier].
         #[method(setEndSpecifier:)]
         pub unsafe fn setEndSpecifier(&self, end_specifier: Option<&NSScriptObjectSpecifier>);
     }
@@ -775,12 +786,14 @@ extern_methods!(
         #[method(relativePosition)]
         pub unsafe fn relativePosition(&self) -> NSRelativePosition;
 
+        /// Setter for [`relativePosition`][Self::relativePosition].
         #[method(setRelativePosition:)]
         pub unsafe fn setRelativePosition(&self, relative_position: NSRelativePosition);
 
         #[method_id(@__retain_semantics Other baseSpecifier)]
         pub unsafe fn baseSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
+        /// Setter for [`baseSpecifier`][Self::baseSpecifier].
         #[method(setBaseSpecifier:)]
         pub unsafe fn setBaseSpecifier(&self, base_specifier: Option<&NSScriptObjectSpecifier>);
     }
@@ -861,6 +874,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other uniqueID)]
         pub unsafe fn uniqueID(&self) -> Retained<AnyObject>;
 
+        /// Setter for [`uniqueID`][Self::uniqueID].
         #[method(setUniqueID:)]
         pub unsafe fn setUniqueID(&self, unique_id: &AnyObject);
     }
@@ -944,12 +958,14 @@ extern_methods!(
         pub unsafe fn test(&self) -> Retained<NSScriptWhoseTest>;
 
         #[cfg(feature = "NSScriptWhoseTests")]
+        /// Setter for [`test`][Self::test].
         #[method(setTest:)]
         pub unsafe fn setTest(&self, test: &NSScriptWhoseTest);
 
         #[method(startSubelementIdentifier)]
         pub unsafe fn startSubelementIdentifier(&self) -> NSWhoseSubelementIdentifier;
 
+        /// Setter for [`startSubelementIdentifier`][Self::startSubelementIdentifier].
         #[method(setStartSubelementIdentifier:)]
         pub unsafe fn setStartSubelementIdentifier(
             &self,
@@ -959,12 +975,14 @@ extern_methods!(
         #[method(startSubelementIndex)]
         pub unsafe fn startSubelementIndex(&self) -> NSInteger;
 
+        /// Setter for [`startSubelementIndex`][Self::startSubelementIndex].
         #[method(setStartSubelementIndex:)]
         pub unsafe fn setStartSubelementIndex(&self, start_subelement_index: NSInteger);
 
         #[method(endSubelementIdentifier)]
         pub unsafe fn endSubelementIdentifier(&self) -> NSWhoseSubelementIdentifier;
 
+        /// Setter for [`endSubelementIdentifier`][Self::endSubelementIdentifier].
         #[method(setEndSubelementIdentifier:)]
         pub unsafe fn setEndSubelementIdentifier(
             &self,
@@ -974,6 +992,7 @@ extern_methods!(
         #[method(endSubelementIndex)]
         pub unsafe fn endSubelementIndex(&self) -> NSInteger;
 
+        /// Setter for [`endSubelementIndex`][Self::endSubelementIndex].
         #[method(setEndSubelementIndex:)]
         pub unsafe fn setEndSubelementIndex(&self, end_subelement_index: NSInteger);
     }

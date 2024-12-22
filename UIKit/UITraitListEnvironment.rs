@@ -5,24 +5,35 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment?language=objc)
+/// Specifies a list appearance that encompasses both UICollectionView
+/// &
+/// UITableView lists.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIListEnvironment(pub NSInteger);
 impl UIListEnvironment {
+    /// Indicates the absence of any information about whether or not the trait collection is from a view in a list environment.
     #[doc(alias = "UIListEnvironmentUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// There is no containing list.
     #[doc(alias = "UIListEnvironmentNone")]
     pub const None: Self = Self(1);
+    /// Contained within a plain-style list.
     #[doc(alias = "UIListEnvironmentPlain")]
     pub const Plain: Self = Self(2);
+    /// Contained within a grouped-style list.
     #[doc(alias = "UIListEnvironmentGrouped")]
     pub const Grouped: Self = Self(3);
+    /// Contained within a inset-grouped-style list.
     #[doc(alias = "UIListEnvironmentInsetGrouped")]
     pub const InsetGrouped: Self = Self(4);
+    /// Contained within a sidebar-style list.
     #[doc(alias = "UIListEnvironmentSidebar")]
     pub const Sidebar: Self = Self(5);
+    /// Contained within a sidebar-plain-style list.
     #[doc(alias = "UIListEnvironmentSidebarPlain")]
     pub const SidebarPlain: Self = Self(6);
 }
@@ -36,7 +47,10 @@ unsafe impl RefEncode for UIListEnvironment {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlistenvironment?language=objc)
+    /// A trait that specifies the UIListEnvironment, if any, that a view is in. It is set on views inside UITableViews and list sections in UICollectionViews.
+    /// Defaults to UIListEnvironmentUnspecified.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlistenvironment?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

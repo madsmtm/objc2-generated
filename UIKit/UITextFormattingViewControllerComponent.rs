@@ -6,7 +6,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollercomponentkey?language=objc)
+/// Predefined text formatting view controller components.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollercomponentkey?language=objc)
 // NS_TYPED_ENUM
 pub type UITextFormattingViewControllerComponentKey = NSString;
 
@@ -88,7 +90,9 @@ extern "C" {
         &'static UITextFormattingViewControllerComponentKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollercomponentsize?language=objc)
+/// Sizes of text formatting view controller components.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollercomponentsize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -117,7 +121,9 @@ unsafe impl RefEncode for UITextFormattingViewControllerComponentSize {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollercomponent?language=objc)
+    /// Defines text formatting view component.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollercomponent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerComponent;
@@ -137,12 +143,19 @@ unsafe impl NSSecureCoding for UITextFormattingViewControllerComponent {}
 
 extern_methods!(
     unsafe impl UITextFormattingViewControllerComponent {
+        /// Unique key that identifies text formatting view component.
         #[method_id(@__retain_semantics Other componentKey)]
         pub unsafe fn componentKey(&self) -> Retained<UITextFormattingViewControllerComponentKey>;
 
+        /// Specifies preferred size of the component in text formatting view.
         #[method(preferredSize)]
         pub unsafe fn preferredSize(&self) -> UITextFormattingViewControllerComponentSize;
 
+        /// Creates a text formatting view component configuration with component key and preferred size.
+        ///
+        /// - Parameters:
+        /// - componentKey: Component key.
+        /// - preferredSize: Preferred size of component in text formatting view.
         #[method_id(@__retain_semantics Init initWithComponentKey:preferredSize:)]
         pub unsafe fn initWithComponentKey_preferredSize(
             this: Allocated<Self>,
@@ -159,7 +172,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollercomponentgroup?language=objc)
+    /// Defines grouping of text formatting components in view.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollercomponentgroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerComponentGroup;
@@ -179,11 +194,14 @@ unsafe impl NSSecureCoding for UITextFormattingViewControllerComponentGroup {}
 
 extern_methods!(
     unsafe impl UITextFormattingViewControllerComponentGroup {
+        /// Components in group.
         #[method_id(@__retain_semantics Other components)]
         pub unsafe fn components(
             &self,
         ) -> Retained<NSArray<UITextFormattingViewControllerComponent>>;
 
+        /// Creates a group of components.
+        /// - Parameter components: Components to be included in the group.
         #[method_id(@__retain_semantics Init initWithComponents:)]
         pub unsafe fn initWithComponents(
             this: Allocated<Self>,

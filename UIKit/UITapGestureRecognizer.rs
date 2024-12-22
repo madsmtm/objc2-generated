@@ -25,12 +25,14 @@ extern_methods!(
         #[method(numberOfTapsRequired)]
         pub fn numberOfTapsRequired(&self) -> NSUInteger;
 
+        /// Setter for [`numberOfTapsRequired`][Self::numberOfTapsRequired].
         #[method(setNumberOfTapsRequired:)]
         pub fn setNumberOfTapsRequired(&self, number_of_taps_required: NSUInteger);
 
         #[method(numberOfTouchesRequired)]
         pub fn numberOfTouchesRequired(&self) -> NSUInteger;
 
+        /// Setter for [`numberOfTouchesRequired`][Self::numberOfTouchesRequired].
         #[method(setNumberOfTouchesRequired:)]
         pub fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSUInteger);
 
@@ -39,6 +41,7 @@ extern_methods!(
         pub fn buttonMaskRequired(&self) -> UIEventButtonMask;
 
         #[cfg(feature = "UIEvent")]
+        /// Setter for [`buttonMaskRequired`][Self::buttonMaskRequired].
         #[method(setButtonMaskRequired:)]
         pub fn setButtonMaskRequired(&self, button_mask_required: UIEventButtonMask);
     }

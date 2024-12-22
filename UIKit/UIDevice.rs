@@ -110,6 +110,7 @@ extern_methods!(
         #[method(isBatteryMonitoringEnabled)]
         pub unsafe fn isBatteryMonitoringEnabled(&self) -> bool;
 
+        /// Setter for [`isBatteryMonitoringEnabled`][Self::isBatteryMonitoringEnabled].
         #[method(setBatteryMonitoringEnabled:)]
         pub unsafe fn setBatteryMonitoringEnabled(&self, battery_monitoring_enabled: bool);
 
@@ -122,6 +123,7 @@ extern_methods!(
         #[method(isProximityMonitoringEnabled)]
         pub unsafe fn isProximityMonitoringEnabled(&self) -> bool;
 
+        /// Setter for [`isProximityMonitoringEnabled`][Self::isProximityMonitoringEnabled].
         #[method(setProximityMonitoringEnabled:)]
         pub unsafe fn setProximityMonitoringEnabled(&self, proximity_monitoring_enabled: bool);
 

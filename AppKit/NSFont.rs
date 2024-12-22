@@ -13,7 +13,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontidentitymatrix?language=objc)
+    /// ******* Font Matrix ********
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontidentitymatrix?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontIdentityMatrix: NonNull<CGFloat>;
 }
@@ -40,6 +42,7 @@ unsafe impl NSSecureCoding for NSFont {}
 extern_methods!(
     unsafe impl NSFont {
         #[cfg(feature = "objc2-core-foundation")]
+        /// ******* Factory ********
         #[method_id(@__retain_semantics Other fontWithName:size:)]
         pub unsafe fn fontWithName_size(
             font_name: &NSString,
@@ -68,6 +71,7 @@ extern_methods!(
         ) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// ******* Meta Font ********
         #[method_id(@__retain_semantics Other userFontOfSize:)]
         pub unsafe fn userFontOfSize(font_size: CGFloat) -> Option<Retained<NSFont>>;
 
@@ -170,6 +174,7 @@ extern_methods!(
         #[method(systemFontSizeForControlSize:)]
         pub unsafe fn systemFontSizeForControlSize(control_size: NSControlSize) -> CGFloat;
 
+        /// ******* Core font attribute ********
         #[method_id(@__retain_semantics Other fontName)]
         pub unsafe fn fontName(&self) -> Retained<NSString>;
 
@@ -194,6 +199,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textTransform)]
         pub unsafe fn textTransform(&self) -> Retained<NSAffineTransform>;
 
+        /// ******* Glyph coverage ********
         #[method(numberOfGlyphs)]
         pub unsafe fn numberOfGlyphs(&self) -> NSUInteger;
 
@@ -248,6 +254,9 @@ extern_methods!(
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
+        /// ******* Glyph metrics ********
+        ///
+        /// ******* Glyph metrics ********
         #[method(boundingRectForCGGlyph:)]
         pub unsafe fn boundingRectForCGGlyph(&self, glyph: CGGlyph) -> NSRect;
 
@@ -276,6 +285,7 @@ extern_methods!(
             glyph_count: NSUInteger,
         );
 
+        /// ******* NSGraphicsContext-related ********
         #[method(set)]
         pub unsafe fn set(&self);
 
@@ -283,6 +293,7 @@ extern_methods!(
         #[method(setInContext:)]
         pub unsafe fn setInContext(&self, graphics_context: &NSGraphicsContext);
 
+        /// ******* Vertical mode ********
         #[method_id(@__retain_semantics Other verticalFont)]
         pub unsafe fn verticalFont(&self) -> Retained<NSFont>;
 
@@ -303,7 +314,9 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsantialiasthresholdchangednotification?language=objc)
+    /// ******* Notifications ********
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsantialiasthresholdchangednotification?language=objc)
     pub static NSAntialiasThresholdChangedNotification: &'static NSNotificationName;
 }
 
@@ -312,7 +325,9 @@ extern "C" {
     pub static NSFontSetChangedNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyph?language=objc)
+/// ******* Deprecated API ********
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyph?language=objc)
 pub type NSGlyph = c_uint;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolglyph?language=objc)
@@ -320,7 +335,9 @@ pub const NSControlGlyph: c_uint = 0x00FFFFFF;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnullglyph?language=objc)
 pub const NSNullGlyph: c_uint = 0x0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontrenderingmode?language=objc)
+/// ******* Screen Font Rendering Mode ********
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontrenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -410,6 +427,7 @@ extern_methods!(
             length: NSUInteger,
         );
 
+        /// ******* Rendering mode ********
         #[method_id(@__retain_semantics Other printerFont)]
         pub unsafe fn printerFont(&self) -> Retained<NSFont>;
 

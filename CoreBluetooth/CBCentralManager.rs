@@ -9,7 +9,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate?language=objc)
+/// Represents the current state of a CBCentralManager.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate?language=objc)
 // NS_ENUM
 #[deprecated = "Use CBManagerState instead"]
 #[repr(transparent)]
@@ -50,7 +52,9 @@ unsafe impl RefEncode for CBCentralManagerState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectionevent?language=objc)
+/// Represents the connection state of a peer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectionevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -70,7 +74,9 @@ unsafe impl RefEncode for CBConnectionEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerfeature?language=objc)
+/// The set of device specific features.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerfeature?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -91,7 +97,13 @@ unsafe impl RefEncode for CBCentralManagerFeature {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager?language=objc)
+    /// Entry point to the central role. Commands should only be issued when its state is
+    /// <code>
+    /// CBCentralManagerStatePoweredOn
+    /// </code>
+    /// .
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager?language=objc)
     #[unsafe(super(CBManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBManager")]
@@ -104,21 +116,28 @@ unsafe impl NSObjectProtocol for CBCentralManager {}
 extern_methods!(
     #[cfg(feature = "CBManager")]
     unsafe impl CBCentralManager {
+        /// The delegate object that will receive central events.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CBCentralManagerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn CBCentralManagerDelegate>>,
         );
 
+        /// Whether or not the central is currently scanning.
         #[method(isScanning)]
         pub unsafe fn isScanning(&self) -> bool;
 
+        /// Parameter `features`: One or more features you would like to check if supported.
+        ///
+        ///
+        /// Returns a boolean value representing the support for the provided features.
         #[method(supportsFeatures:)]
         pub unsafe fn supportsFeatures(features: CBCentralManagerFeature) -> bool;
 
@@ -126,6 +145,29 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CBPeer", feature = "CBPeripheral"))]
+        /// Parameter `identifiers`: A list of
+        /// <code>
+        /// NSUUID
+        /// </code>
+        /// objects.
+        ///
+        ///
+        /// Attempts to retrieve the
+        /// <code>
+        /// CBPeripheral
+        /// </code>
+        /// object(s) with the corresponding
+        /// <i>
+        /// identifiers
+        /// </i>
+        /// .
+        ///
+        ///
+        /// Returns: A list of
+        /// <code>
+        /// CBPeripheral
+        /// </code>
+        /// objects.
         #[method_id(@__retain_semantics Other retrievePeripheralsWithIdentifiers:)]
         pub unsafe fn retrievePeripheralsWithIdentifiers(
             &self,
@@ -133,6 +175,22 @@ extern_methods!(
         ) -> Retained<NSArray<CBPeripheral>>;
 
         #[cfg(all(feature = "CBPeer", feature = "CBPeripheral", feature = "CBUUID"))]
+        /// Retrieves all peripherals that are connected to the system and implement any of the services listed in
+        /// <i>
+        /// serviceUUIDs
+        /// </i>
+        /// .
+        /// Note that this set can include peripherals which were connected by other applications, which will need to be connected locally
+        /// via {
+        ///
+        /// ```text
+        ///  connectPeripheral:options:} before they can be used.
+        ///
+        ///     @return        A list of <code>CBPeripheral</code> objects.
+        ///
+        ///  
+        ///
+        /// ```
         #[method_id(@__retain_semantics Other retrieveConnectedPeripheralsWithServices:)]
         pub unsafe fn retrieveConnectedPeripheralsWithServices(
             &self,
@@ -140,6 +198,58 @@ extern_methods!(
         ) -> Retained<NSArray<CBPeripheral>>;
 
         #[cfg(feature = "CBUUID")]
+        /// Parameter `serviceUUIDs`: A list of
+        /// <code>
+        /// CBUUID
+        /// </code>
+        /// objects representing the service(s) to scan for.
+        ///
+        /// Parameter `options`: An optional dictionary specifying options for the scan.
+        ///
+        ///
+        /// Starts scanning for peripherals that are advertising any of the services listed in
+        /// <i>
+        /// serviceUUIDs
+        /// </i>
+        /// . Although strongly discouraged,
+        /// if
+        /// <i>
+        /// serviceUUIDs
+        /// </i>
+        /// is
+        /// <i>
+        /// nil
+        /// </i>
+        /// all discovered peripherals will be returned. If the central is already scanning with different
+        /// <i>
+        /// serviceUUIDs
+        /// </i>
+        /// or
+        /// <i>
+        /// options
+        /// </i>
+        /// , the provided parameters will replace them.
+        /// Applications that have specified the
+        /// <code>
+        /// bluetooth-central
+        /// </code>
+        /// background mode are allowed to scan while backgrounded, with two
+        /// caveats: the scan must specify one or more service types in
+        /// <i>
+        /// serviceUUIDs
+        /// </i>
+        /// , and the
+        /// <code>
+        /// CBCentralManagerScanOptionAllowDuplicatesKey
+        /// </code>
+        /// scan option will be ignored.
+        ///
+        ///
+        /// See: centralManager:didDiscoverPeripheral:advertisementData:RSSI:
+        ///
+        /// See also: CBCentralManagerScanOptionAllowDuplicatesKey
+        ///
+        /// See also: CBCentralManagerScanOptionSolicitedServiceUUIDsKey
         #[method(scanForPeripheralsWithServices:options:)]
         pub unsafe fn scanForPeripheralsWithServices_options(
             &self,
@@ -147,10 +257,43 @@ extern_methods!(
             options: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
+        /// Stops scanning for peripherals.
         #[method(stopScan)]
         pub unsafe fn stopScan(&self);
 
         #[cfg(all(feature = "CBPeer", feature = "CBPeripheral"))]
+        /// Parameter `peripheral`: The
+        /// <code>
+        /// CBPeripheral
+        /// </code>
+        /// to be connected.
+        ///
+        /// Parameter `options`: An optional dictionary specifying connection behavior options.
+        ///
+        ///
+        /// Initiates a connection to
+        /// <i>
+        /// peripheral
+        /// </i>
+        /// . Connection attempts never time out and, depending on the outcome, will result
+        /// in a call to either {
+        ///
+        /// ```text
+        ///  centralManager:didConnectPeripheral:} or {@link centralManager:didFailToConnectPeripheral:error:}.
+        ///                       Pending attempts are cancelled automatically upon deallocation of <i>peripheral</i>, and explicitly via {@link cancelPeripheralConnection}.
+        ///
+        ///   @see                centralManager:didConnectPeripheral:
+        ///   @see                centralManager:didFailToConnectPeripheral:error:
+        ///   @seealso            CBConnectPeripheralOptionNotifyOnConnectionKey
+        ///   @seealso            CBConnectPeripheralOptionNotifyOnDisconnectionKey
+        ///   @seealso            CBConnectPeripheralOptionNotifyOnNotificationKey
+        ///   @seealso            CBConnectPeripheralOptionEnableTransportBridgingKey
+        ///     @seealso            CBConnectPeripheralOptionRequiresANCS
+        ///   @seealso            CBConnectPeripheralOptionEnableAutoReconnect
+        ///
+        ///  
+        ///
+        /// ```
         #[method(connectPeripheral:options:)]
         pub unsafe fn connectPeripheral_options(
             &self,
@@ -159,10 +302,48 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CBPeer", feature = "CBPeripheral"))]
+        /// Parameter `peripheral`: A
+        /// <code>
+        /// CBPeripheral
+        /// </code>
+        /// .
+        ///
+        ///
+        /// Cancels an active or pending connection to
+        /// <i>
+        /// peripheral
+        /// </i>
+        /// . Note that this is non-blocking, and any
+        /// <code>
+        /// CBPeripheral
+        /// </code>
+        /// commands that are still pending to
+        /// <i>
+        /// peripheral
+        /// </i>
+        /// may or may not complete.
+        ///
+        ///
+        /// See: centralManager:didDisconnectPeripheral:error:
         #[method(cancelPeripheralConnection:)]
         pub unsafe fn cancelPeripheralConnection(&self, peripheral: &CBPeripheral);
 
         #[cfg(feature = "CBCentralManagerConstants")]
+        /// Parameter `options`: A dictionary specifying connection event options.
+        ///
+        ///
+        /// Calls {
+        ///
+        /// ```text
+        ///  centralManager:connectionEventDidOccur:forPeripheral:} when a connection event occurs matching any of the given options.
+        ///                       Passing nil in the option parameter clears any prior registered matching options.
+        ///
+        ///   @see                centralManager:connectionEventDidOccur:forPeripheral:
+        ///   @seealso            CBConnectionEventMatchingOptionServiceUUIDs
+        ///   @seealso            CBConnectionEventMatchingOptionPeripheralUUIDs
+        ///  
+        ///
+        /// ```
         #[method(registerForConnectionEventsWithOptions:)]
         pub unsafe fn registerForConnectionEventsWithOptions(
             &self,
@@ -181,13 +362,67 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerdelegate?language=objc)
+    /// The delegate of a {
+    ///
+    /// ```text
+    ///  CBCentralManager} object must adopt the <code>CBCentralManagerDelegate</code> protocol. The
+    ///               single required method indicates the availability of the central manager, while the optional methods allow for the discovery and
+    ///               connection of peripherals.
+    ///
+    ///  
+    ///
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerdelegate?language=objc)
     pub unsafe trait CBCentralManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "CBManager")]
+        /// Parameter `central`: The central manager whose state has changed.
+        ///
+        ///
+        /// Invoked whenever the central manager's state has been updated. Commands should only be issued when the state is
+        /// <code>
+        /// CBCentralManagerStatePoweredOn
+        /// </code>
+        /// . A state below
+        /// <code>
+        /// CBCentralManagerStatePoweredOn
+        /// </code>
+        /// implies that scanning has stopped and any connected peripherals have been disconnected. If the state moves below
+        /// <code>
+        /// CBCentralManagerStatePoweredOff
+        /// </code>
+        /// , all
+        /// <code>
+        /// CBPeripheral
+        /// </code>
+        /// objects obtained from this central
+        /// manager become invalid and must be retrieved or discovered again.
+        ///
+        ///
+        /// See: state
         #[method(centralManagerDidUpdateState:)]
         unsafe fn centralManagerDidUpdateState(&self, central: &CBCentralManager);
 
         #[cfg(feature = "CBManager")]
+        /// Parameter `central`: The central manager providing this information.
+        ///
+        /// Parameter `dict`: A dictionary containing information about
+        /// <i>
+        /// central
+        /// </i>
+        /// that was preserved by the system at the time the app was terminated.
+        ///
+        ///
+        /// For apps that opt-in to state preservation and restoration, this is the first method invoked when your app is relaunched into
+        /// the background to complete some Bluetooth-related task. Use this method to synchronize your app's state with the state of the
+        /// Bluetooth system.
+        ///
+        ///
+        /// See also: CBCentralManagerRestoredStatePeripheralsKey;
+        ///
+        /// See also: CBCentralManagerRestoredStateScanServicesKey;
+        ///
+        /// See also: CBCentralManagerRestoredStateScanOptionsKey;
         #[optional]
         #[method(centralManager:willRestoreState:)]
         unsafe fn centralManager_willRestoreState(
@@ -197,6 +432,52 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBManager", feature = "CBPeer", feature = "CBPeripheral"))]
+        /// Parameter `central`: The central manager providing this update.
+        ///
+        /// Parameter `peripheral`: A
+        /// <code>
+        /// CBPeripheral
+        /// </code>
+        /// object.
+        ///
+        /// Parameter `advertisementData`: A dictionary containing any advertisement and scan response data.
+        ///
+        /// Parameter `RSSI`: The current RSSI of
+        /// <i>
+        /// peripheral
+        /// </i>
+        /// , in dBm. A value of
+        /// <code>
+        /// 127
+        /// </code>
+        /// is reserved and indicates the RSSI
+        /// was not available.
+        ///
+        ///
+        /// This method is invoked while scanning, upon the discovery of
+        /// <i>
+        /// peripheral
+        /// </i>
+        /// by
+        /// <i>
+        /// central
+        /// </i>
+        /// . A discovered peripheral must
+        /// be retained in order to use it; otherwise, it is assumed to not be of interest and will be cleaned up by the central manager. For
+        /// a list of
+        /// <i>
+        /// advertisementData
+        /// </i>
+        /// keys, see {
+        ///
+        /// ```text
+        ///  CBAdvertisementDataLocalNameKey} and other similar constants.
+        ///
+        ///   @seealso                    CBAdvertisementData.h
+        ///
+        ///  
+        ///
+        /// ```
         #[optional]
         #[method(centralManager:didDiscoverPeripheral:advertisementData:RSSI:)]
         unsafe fn centralManager_didDiscoverPeripheral_advertisementData_RSSI(
@@ -208,6 +489,23 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBManager", feature = "CBPeer", feature = "CBPeripheral"))]
+        /// Parameter `central`: The central manager providing this information.
+        ///
+        /// Parameter `peripheral`: The
+        /// <code>
+        /// CBPeripheral
+        /// </code>
+        /// that has connected.
+        ///
+        ///
+        /// This method is invoked when a connection initiated by {
+        ///
+        /// ```text
+        ///  connectPeripheral:options:} has succeeded.
+        ///
+        ///  
+        ///
+        /// ```
         #[optional]
         #[method(centralManager:didConnectPeripheral:)]
         unsafe fn centralManager_didConnectPeripheral(
@@ -217,6 +515,26 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBManager", feature = "CBPeer", feature = "CBPeripheral"))]
+        /// Parameter `central`: The central manager providing this information.
+        ///
+        /// Parameter `peripheral`: The
+        /// <code>
+        /// CBPeripheral
+        /// </code>
+        /// that has failed to connect.
+        ///
+        /// Parameter `error`: The cause of the failure.
+        ///
+        ///
+        /// This method is invoked when a connection initiated by {
+        ///
+        /// ```text
+        ///  connectPeripheral:options:} has failed to complete. As connection attempts do not
+        ///                       timeout, the failure of a connection is atypical and usually indicative of a transient issue.
+        ///
+        ///  
+        ///
+        /// ```
         #[optional]
         #[method(centralManager:didFailToConnectPeripheral:error:)]
         unsafe fn centralManager_didFailToConnectPeripheral_error(
@@ -227,6 +545,27 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBManager", feature = "CBPeer", feature = "CBPeripheral"))]
+        /// Parameter `central`: The central manager providing this information.
+        ///
+        /// Parameter `peripheral`: The
+        /// <code>
+        /// CBPeripheral
+        /// </code>
+        /// that has disconnected.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method is invoked upon the disconnection of a peripheral that was connected by {
+        ///
+        /// ```text
+        ///  connectPeripheral:options:}. If the disconnection
+        ///                       was not initiated by {@link cancelPeripheralConnection}, the cause will be detailed in the <i>error</i> parameter. Once this method has been
+        ///                       called, no more methods will be invoked on <i>peripheral</i>'s <code>CBPeripheralDelegate</code>.
+        ///
+        ///  
+        ///
+        /// ```
         #[optional]
         #[method(centralManager:didDisconnectPeripheral:error:)]
         unsafe fn centralManager_didDisconnectPeripheral_error(
@@ -242,6 +581,34 @@ extern_protocol!(
             feature = "CBPeripheral",
             feature = "objc2-core-foundation"
         ))]
+        /// Parameter `central`: The central manager providing this information.
+        ///
+        /// Parameter `peripheral`: The
+        /// <code>
+        /// CBPeripheral
+        /// </code>
+        /// that has disconnected.
+        ///
+        /// Parameter `timestamp`: Timestamp of the disconnection, it can be now or a few seconds ago.
+        ///
+        /// Parameter `isReconnecting`: If reconnect was triggered upon disconnection.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method is invoked upon the disconnection of a peripheral that was connected by {
+        ///
+        /// ```text
+        ///  connectPeripheral:options:}. If perihperal is
+        ///                       connected with connect option {@link CBConnectPeripheralOptionEnableAutoReconnect}, once this method has been called, the system
+        ///                       will automatically invoke connect to the peripheral. And if connection is established with the peripheral afterwards,
+        ///                       {@link centralManager:didConnectPeripheral:} can be invoked. If perihperal is connected without option
+        ///                       CBConnectPeripheralOptionEnableAutoReconnect, once this method has been called, no more methods will be invoked on
+        ///                        <i>peripheral</i>'s <code>CBPeripheralDelegate</code> .
+        ///
+        ///  
+        ///
+        /// ```
         #[optional]
         #[method(centralManager:didDisconnectPeripheral:timestamp:isReconnecting:error:)]
         unsafe fn centralManager_didDisconnectPeripheral_timestamp_isReconnecting_error(
@@ -254,6 +621,29 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBManager", feature = "CBPeer", feature = "CBPeripheral"))]
+        /// Parameter `central`: The central manager providing this information.
+        ///
+        /// Parameter `event`: The
+        /// <code>
+        /// CBConnectionEvent
+        /// </code>
+        /// that has occurred.
+        ///
+        /// Parameter `peripheral`: The
+        /// <code>
+        /// CBPeripheral
+        /// </code>
+        /// that caused the event.
+        ///
+        ///
+        /// This method is invoked upon the connection or disconnection of a peripheral that matches any of the options provided in {
+        ///
+        /// ```text
+        ///  registerForConnectionEventsWithOptions:}.
+        ///
+        ///  
+        ///
+        /// ```
         #[optional]
         #[method(centralManager:connectionEventDidOccur:forPeripheral:)]
         unsafe fn centralManager_connectionEventDidOccur_forPeripheral(
@@ -264,6 +654,23 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBManager", feature = "CBPeer", feature = "CBPeripheral"))]
+        /// Parameter `central`: The central manager providing this information.
+        ///
+        /// Parameter `peripheral`: The
+        /// <code>
+        /// CBPeripheral
+        /// </code>
+        /// that caused the event.
+        ///
+        ///
+        /// This method is invoked when the authorization status changes for a peripheral connected with {
+        ///
+        /// ```text
+        ///  connectPeripheral:} option {@link CBConnectPeripheralOptionRequiresANCS}.
+        ///
+        ///  
+        ///
+        /// ```
         #[optional]
         #[method(centralManager:didUpdateANCSAuthorizationForPeripheral:)]
         unsafe fn centralManager_didUpdateANCSAuthorizationForPeripheral(

@@ -10,15 +10,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetriceventstreampublisher?language=objc)
+    /// This protocol needs to be implemented by interfaces intending to publish metric events to the event stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetriceventstreampublisher?language=objc)
     pub unsafe trait AVMetricEventStreamPublisher {}
 
     unsafe impl ProtocolType for dyn AVMetricEventStreamPublisher {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetriceventstreamsubscriber?language=objc)
+    /// This protocol needs to be implemented by the subscriber delegate to receive subscribed metric events.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetriceventstreamsubscriber?language=objc)
     pub unsafe trait AVMetricEventStreamSubscriber {
+        /// Delegate callback to receive metric events.
+        ///
+        /// Parameter `event`: The metric event.
+        ///
+        /// Parameter `publisher`: The publisher which generated the current event.
         #[method(publisher:didReceiveEvent:)]
         unsafe fn publisher_didReceiveEvent(
             &self,
@@ -31,7 +40,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetriceventstream?language=objc)
+    /// AVMetricEventStream allows clients to add publishers and then subscribe to specific metric event classes from those publishers. Publishers are AVFoundation instances implementing AVMetricEventStreamPublisher. The interface allows clients to receive metric events via a subscriber delegate which implements AVMetricEventStreamSubscriber.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetriceventstream?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricEventStream;
@@ -47,28 +58,41 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Returns an autoreleased instance.
         #[method_id(@__retain_semantics Other eventStream)]
         pub unsafe fn eventStream() -> Retained<Self>;
 
+        /// The publisher should be an AVFoundation instance conforming to AVMetricEventStreamPublisher.
         #[method(addPublisher:)]
         pub unsafe fn addPublisher(
             &self,
             publisher: &ProtocolObject<dyn AVMetricEventStreamPublisher>,
         ) -> bool;
 
+        /// Subscribe to a specific metric event class.
+        ///
+        /// Parameter `metricEventClass`: Type of metric event class to subscribe to.
         #[method(subscribeToMetricEvent:)]
         pub unsafe fn subscribeToMetricEvent(&self, metric_event_class: &AnyClass);
 
+        /// Subscribe to set of metric event classes.
+        ///
+        /// Parameter `metricEventClasses`: Set of metric event classes to subscribe to.
         #[method(subscribeToMetricEvents:)]
         pub unsafe fn subscribeToMetricEvents(&self, metric_event_classes: &NSArray<AnyClass>);
 
+        /// Subscribe to all metric event classes.
         #[method(subscribeToAllMetricEvents)]
         pub unsafe fn subscribeToAllMetricEvents(&self);
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricevent?language=objc)
+    /// An abstract base class representing metric events.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricEvent;
@@ -92,20 +116,27 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Returns the date when the event occurred.
         #[method_id(@__retain_semantics Other date)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Returns the time in the media timeline when the event occured.
         #[method(mediaTime)]
         pub unsafe fn mediaTime(&self) -> CMTime;
 
+        /// A GUID that identifies the media session. If not available, value is nil.
         #[method_id(@__retain_semantics Other sessionID)]
         pub unsafe fn sessionID(&self) -> Option<Retained<NSString>>;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricerrorevent?language=objc)
+    /// Represents a metric event when an error occurred.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricerrorevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricErrorEvent;
@@ -129,16 +160,22 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Returns whether the error was recoverable.
         #[method(didRecover)]
         pub unsafe fn didRecover(&self) -> bool;
 
+        /// Returns the error encountered.
         #[method_id(@__retain_semantics Other error)]
         pub unsafe fn error(&self) -> Retained<NSError>;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricmediaresourcerequestevent?language=objc)
+    /// Represents a metric event associated with media resource requests.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricmediaresourcerequestevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricMediaResourceRequestEvent;
@@ -162,33 +199,43 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Returns the URL of the resource request. If no value is available, returns nil.
         #[method_id(@__retain_semantics Other url)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
+        /// The IP address of the server. If not available, the value is nil.
         #[method_id(@__retain_semantics Other serverAddress)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
+        /// Returns the start time of the resource request.
         #[method_id(@__retain_semantics Other requestStartTime)]
         pub unsafe fn requestStartTime(&self) -> Retained<NSDate>;
 
+        /// Returns the end time of the resource request.
         #[method_id(@__retain_semantics Other requestEndTime)]
         pub unsafe fn requestEndTime(&self) -> Retained<NSDate>;
 
+        /// Returns the start time of the resource request response.
         #[method_id(@__retain_semantics Other responseStartTime)]
         pub unsafe fn responseStartTime(&self) -> Retained<NSDate>;
 
+        /// Returns the end time of the resource request response.
         #[method_id(@__retain_semantics Other responseEndTime)]
         pub unsafe fn responseEndTime(&self) -> Retained<NSDate>;
 
+        /// Returns the byte range downloaded for the resource request. If not available, the range start and end will be 0.
         #[method(byteRange)]
         pub unsafe fn byteRange(&self) -> NSRange;
 
+        /// Returns true if the resource was read from the cache.
         #[method(wasReadFromCache)]
         pub unsafe fn wasReadFromCache(&self) -> bool;
 
+        /// Returns the error event, if any, encountered during the resource request. If no value is present, returns nil.
         #[method_id(@__retain_semantics Other errorEvent)]
         pub unsafe fn errorEvent(&self) -> Option<Retained<AVMetricErrorEvent>>;
 
+        /// Returns the NSURLSessionTaskMetrics associated with the resource request. If no value is present, returns nil
         #[method_id(@__retain_semantics Other networkTransactionMetrics)]
         pub unsafe fn networkTransactionMetrics(&self)
             -> Option<Retained<NSURLSessionTaskMetrics>>;
@@ -196,7 +243,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetrichlsplaylistrequestevent?language=objc)
+    /// Represents a metric event associated with a HLS playlist resource request.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetrichlsplaylistrequestevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricHLSPlaylistRequestEvent;
@@ -220,16 +271,20 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Returns the URL of the playlist. If no value is available, returns nil.
         #[method_id(@__retain_semantics Other url)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
+        /// Returns true if the playlist request is for a multivariant playlist.
         #[method(isMultivariantPlaylist)]
         pub unsafe fn isMultivariantPlaylist(&self) -> bool;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// Returns the media type.  If the value cannot be determined, returns AVMediaTypeMuxed.
         #[method_id(@__retain_semantics Other mediaType)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
+        /// Returns the media resource request event which was used to satisfy the playlist.
         #[method_id(@__retain_semantics Other mediaResourceRequestEvent)]
         pub unsafe fn mediaResourceRequestEvent(
             &self,
@@ -238,7 +293,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetrichlsmediasegmentrequestevent?language=objc)
+    /// Represents a metric event associated with a HLS media segment resource request.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetrichlsmediasegmentrequestevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricHLSMediaSegmentRequestEvent;
@@ -262,22 +321,28 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Returns the URL of the media segment. If no value is available, returns nil.
         #[method_id(@__retain_semantics Other url)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
+        /// Returns true if the media segment request is for a map segment.
         #[method(isMapSegment)]
         pub unsafe fn isMapSegment(&self) -> bool;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// Returns the media type.  If the value cannot be determined, returns AVMediaTypeMuxed.
         #[method_id(@__retain_semantics Other mediaType)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
+        /// Returns the byte range for the media segment. If not available, the range start and end will be 0.
         #[method(byteRange)]
         pub unsafe fn byteRange(&self) -> NSRange;
 
+        /// Returns the URL of the index file in which this segment was declared. If not available, returns nil.
         #[method_id(@__retain_semantics Other indexFileURL)]
         pub unsafe fn indexFileURL(&self) -> Retained<NSURL>;
 
+        /// Returns the media resource request event which was used to satisfy the media segment.
         #[method_id(@__retain_semantics Other mediaResourceRequestEvent)]
         pub unsafe fn mediaResourceRequestEvent(
             &self,
@@ -286,7 +351,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetriccontentkeyrequestevent?language=objc)
+    /// Represents a metric event associated with a HLS content key resource request.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetriccontentkeyrequestevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricContentKeyRequestEvent;
@@ -311,16 +380,20 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVContentKeySession")]
+        /// Returns the content key specifier for the request.
         #[method_id(@__retain_semantics Other contentKeySpecifier)]
         pub unsafe fn contentKeySpecifier(&self) -> Retained<AVContentKeySpecifier>;
 
         #[cfg(feature = "AVMediaFormat")]
+        /// Returns the media type.  If the value cannot be determined, returns AVMediaTypeMuxed.
         #[method_id(@__retain_semantics Other mediaType)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
+        /// Returns whether the content key resource request was initiated by the client.
         #[method(isClientInitiated)]
         pub unsafe fn isClientInitiated(&self) -> bool;
 
+        /// Returns the media resource request event which was used to satisfy the content key.
         #[method_id(@__retain_semantics Other mediaResourceRequestEvent)]
         pub unsafe fn mediaResourceRequestEvent(
             &self,
@@ -329,7 +402,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemlikelytokeepupevent?language=objc)
+    /// Represents a metric event when playback was likely to play through without stalling.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemlikelytokeepupevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemLikelyToKeepUpEvent;
@@ -354,19 +431,28 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAssetVariant")]
+        /// Returns the variant selected at the time likely to keep up is achieved. If no value is present, returns nil.
         #[method_id(@__retain_semantics Other variant)]
         pub unsafe fn variant(&self) -> Option<Retained<AVAssetVariant>>;
 
+        /// Returns the total time taken to reach likely to keep up.
         #[method(timeTaken)]
         pub unsafe fn timeTaken(&self) -> NSTimeInterval;
 
+        /// This property provides a collection of time ranges for which the player has the media data readily available. The ranges provided might be discontinuous.
+        ///
+        /// Returns an NSArray of NSValues containing CMTimeRanges.
         #[method_id(@__retain_semantics Other loadedTimeRanges)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeriteminitiallikelytokeepupevent?language=objc)
+    /// Represents a metric event when playback was first likely to play through without stalling.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeriteminitiallikelytokeepupevent?language=objc)
     #[unsafe(super(AVMetricPlayerItemLikelyToKeepUpEvent, AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemInitialLikelyToKeepUpEvent;
@@ -390,16 +476,19 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Returns the playlist request events required to reach likely to keep up.
         #[method_id(@__retain_semantics Other playlistRequestEvents)]
         pub unsafe fn playlistRequestEvents(
             &self,
         ) -> Retained<NSArray<AVMetricHLSPlaylistRequestEvent>>;
 
+        /// Returns the media segment request events required to reach likely to keep up.
         #[method_id(@__retain_semantics Other mediaSegmentRequestEvents)]
         pub unsafe fn mediaSegmentRequestEvents(
             &self,
         ) -> Retained<NSArray<AVMetricHLSMediaSegmentRequestEvent>>;
 
+        /// Returns the content key request required to reach likely to keep up.
         #[method_id(@__retain_semantics Other contentKeyRequestEvents)]
         pub unsafe fn contentKeyRequestEvents(
             &self,
@@ -408,7 +497,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemratechangeevent?language=objc)
+    /// Represents a metric event when playback rate change occurred.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemratechangeevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemRateChangeEvent;
@@ -432,20 +525,27 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Returns the playback rate after the rate change event.
         #[method(rate)]
         pub unsafe fn rate(&self) -> c_double;
 
+        /// Returns the playback rate before the rate change event.
         #[method(previousRate)]
         pub unsafe fn previousRate(&self) -> c_double;
 
         #[cfg(feature = "AVAssetVariant")]
+        /// Returns the variant being played at the time of rate change. If no value is present, returns nil.
         #[method_id(@__retain_semantics Other variant)]
         pub unsafe fn variant(&self) -> Option<Retained<AVAssetVariant>>;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemstallevent?language=objc)
+    /// Represents a metric event when playback stalled.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemstallevent?language=objc)
     #[unsafe(super(AVMetricPlayerItemRateChangeEvent, AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemStallEvent;
@@ -472,7 +572,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemseekevent?language=objc)
+    /// Represents a metric event when playback seeked.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemseekevent?language=objc)
     #[unsafe(super(AVMetricPlayerItemRateChangeEvent, AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemSeekEvent;
@@ -499,7 +603,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemseekdidcompleteevent?language=objc)
+    /// Represents a metric event when playback seek completed.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemseekdidcompleteevent?language=objc)
     #[unsafe(super(AVMetricPlayerItemRateChangeEvent, AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemSeekDidCompleteEvent;
@@ -523,13 +631,18 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Returns whether the seek was performed within the available buffer.
         #[method(didSeekInBuffer)]
         pub unsafe fn didSeekInBuffer(&self) -> bool;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemvariantswitchevent?language=objc)
+    /// Represents a metric event when variant switch was completed.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemvariantswitchevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemVariantSwitchEvent;
@@ -554,23 +667,33 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAssetVariant")]
+        /// Returns the variant before the switch. If no value is available, returns nil
         #[method_id(@__retain_semantics Other fromVariant)]
         pub unsafe fn fromVariant(&self) -> Option<Retained<AVAssetVariant>>;
 
         #[cfg(feature = "AVAssetVariant")]
+        /// Returns the variant after the switch.
         #[method_id(@__retain_semantics Other toVariant)]
         pub unsafe fn toVariant(&self) -> Retained<AVAssetVariant>;
 
+        /// This property provides a collection of time ranges for which the player has the media data readily available. The ranges provided might be discontinuous.
+        ///
+        /// Returns an NSArray of NSValues containing CMTimeRanges.
         #[method_id(@__retain_semantics Other loadedTimeRanges)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
 
+        /// Returns if the switch did succeed.
         #[method(didSucceed)]
         pub unsafe fn didSucceed(&self) -> bool;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemvariantswitchstartevent?language=objc)
+    /// Represents a metric event when variant switch was attempted.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemvariantswitchstartevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemVariantSwitchStartEvent;
@@ -595,20 +718,29 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAssetVariant")]
+        /// Returns the variant from which the switch is attempted. If no value is available, returns nil
         #[method_id(@__retain_semantics Other fromVariant)]
         pub unsafe fn fromVariant(&self) -> Option<Retained<AVAssetVariant>>;
 
         #[cfg(feature = "AVAssetVariant")]
+        /// Returns the variant to which the switch is attempted.
         #[method_id(@__retain_semantics Other toVariant)]
         pub unsafe fn toVariant(&self) -> Retained<AVAssetVariant>;
 
+        /// This property provides a collection of time ranges for which the player has the media data readily available. The ranges provided might be discontinuous.
+        ///
+        /// Returns an NSArray of NSValues containing CMTimeRanges.
         #[method_id(@__retain_semantics Other loadedTimeRanges)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemplaybacksummaryevent?language=objc)
+    /// Represents a summary metric event with aggregated metrics for the entire playback session.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemplaybacksummaryevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemPlaybackSummaryEvent;
@@ -632,33 +764,43 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Returns the error event if any. If no value is available, returns nil.
         #[method_id(@__retain_semantics Other errorEvent)]
         pub unsafe fn errorEvent(&self) -> Option<Retained<AVMetricErrorEvent>>;
 
+        /// Returns the total count of recoverable errors encountered during playback. If no errors were encountered, returns 0.
         #[method(recoverableErrorCount)]
         pub unsafe fn recoverableErrorCount(&self) -> NSInteger;
 
+        /// Returns the total count of stalls encountered during playback. If no stalls were encountered, returns 0.
         #[method(stallCount)]
         pub unsafe fn stallCount(&self) -> NSInteger;
 
+        /// Returns the total count of variant switch encountered during playback.
         #[method(variantSwitchCount)]
         pub unsafe fn variantSwitchCount(&self) -> NSInteger;
 
+        /// Returns the total duration of playback in seconds.
         #[method(playbackDuration)]
         pub unsafe fn playbackDuration(&self) -> NSInteger;
 
+        /// Returns the total number of media requests performed by the player.
         #[method(mediaResourceRequestCount)]
         pub unsafe fn mediaResourceRequestCount(&self) -> NSInteger;
 
+        /// Returns the total time spent recovering from a stall event.
         #[method(timeSpentRecoveringFromStall)]
         pub unsafe fn timeSpentRecoveringFromStall(&self) -> NSTimeInterval;
 
+        /// Returns the total time spent in initial startup of playback.
         #[method(timeSpentInInitialStartup)]
         pub unsafe fn timeSpentInInitialStartup(&self) -> NSTimeInterval;
 
+        /// Returns the playtime weighted average bitrate played in bits / second.
         #[method(timeWeightedAverageBitrate)]
         pub unsafe fn timeWeightedAverageBitrate(&self) -> NSInteger;
 
+        /// Returns the playtime weighted peak bitrate played in bits / second.
         #[method(timeWeightedPeakBitrate)]
         pub unsafe fn timeWeightedPeakBitrate(&self) -> NSInteger;
     }

@@ -4,23 +4,31 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilteraction?language=objc)
+/// Describes an action to take in response to a received message.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilteraction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ILMessageFilterAction(pub NSInteger);
 impl ILMessageFilterAction {
+    /// Insufficient information to determine an action to take. In a query response, has the effect of allowing the message to be shown normally.
     #[doc(alias = "ILMessageFilterActionNone")]
     pub const None: Self = Self(0);
+    /// Allow the message to be shown normally.
     #[doc(alias = "ILMessageFilterActionAllow")]
     pub const Allow: Self = Self(1);
+    /// Prevent the message from being shown normally, filtered as Junk message.
     #[doc(alias = "ILMessageFilterActionJunk")]
     pub const Junk: Self = Self(2);
+    /// Prevent the message from being shown normally, filtered as Junk message.
     #[deprecated]
     #[doc(alias = "ILMessageFilterActionFilter")]
     pub const Filter: Self = Self(ILMessageFilterAction::Junk.0);
+    /// Prevent the message from being shown normally, filtered as Promotional message.
     #[doc(alias = "ILMessageFilterActionPromotion")]
     pub const Promotion: Self = Self(3);
+    /// Prevent the message from being shown normally, filtered as Transactional message.
     #[doc(alias = "ILMessageFilterActionTransaction")]
     pub const Transaction: Self = Self(4);
 }
@@ -39,30 +47,43 @@ unsafe impl RefEncode for ILMessageFilterAction {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ILMessageFilterSubAction(pub NSInteger);
 impl ILMessageFilterSubAction {
+    /// Insufficient information to determine an action to take. In a query response, has the effect of allowing the message to be shown normally.
     #[doc(alias = "ILMessageFilterSubActionNone")]
     pub const None: Self = Self(0);
+    /// Prevent the message from being shown normally, filtered as Other message.
     #[doc(alias = "ILMessageFilterSubActionTransactionalOthers")]
     pub const TransactionalOthers: Self = Self(10000);
+    /// Prevent the message from being shown normally, filtered as Finance message.
     #[doc(alias = "ILMessageFilterSubActionTransactionalFinance")]
     pub const TransactionalFinance: Self = Self(10001);
+    /// Prevent the message from being shown normally, filtered as Orders (eCommerce) message.
     #[doc(alias = "ILMessageFilterSubActionTransactionalOrders")]
     pub const TransactionalOrders: Self = Self(10002);
+    /// Prevent the message from being shown normally, filtered as Reminder message.
     #[doc(alias = "ILMessageFilterSubActionTransactionalReminders")]
     pub const TransactionalReminders: Self = Self(10003);
+    /// Prevent the message from being shown normally, filtered as Health message.
     #[doc(alias = "ILMessageFilterSubActionTransactionalHealth")]
     pub const TransactionalHealth: Self = Self(10004);
+    /// Prevent the message from being shown normally, filtered as Weather message.
     #[doc(alias = "ILMessageFilterSubActionTransactionalWeather")]
     pub const TransactionalWeather: Self = Self(10005);
+    /// Prevent the message from being shown normally, filtered as Carrier message.
     #[doc(alias = "ILMessageFilterSubActionTransactionalCarrier")]
     pub const TransactionalCarrier: Self = Self(10006);
+    /// Prevent the message from being shown normally, filtered as Rewards message.
     #[doc(alias = "ILMessageFilterSubActionTransactionalRewards")]
     pub const TransactionalRewards: Self = Self(10007);
+    /// Prevent the message from being shown normally, filtered as Government message.
     #[doc(alias = "ILMessageFilterSubActionTransactionalPublicServices")]
     pub const TransactionalPublicServices: Self = Self(10008);
+    /// Prevent the message from being shown normally, filtered as Others message.
     #[doc(alias = "ILMessageFilterSubActionPromotionalOthers")]
     pub const PromotionalOthers: Self = Self(20000);
+    /// Prevent the message from being shown normally, filtered as Offers message.
     #[doc(alias = "ILMessageFilterSubActionPromotionalOffers")]
     pub const PromotionalOffers: Self = Self(20001);
+    /// Prevent the message from being shown normally, filtered as Coupons message.
     #[doc(alias = "ILMessageFilterSubActionPromotionalCoupons")]
     pub const PromotionalCoupons: Self = Self(20002);
 }

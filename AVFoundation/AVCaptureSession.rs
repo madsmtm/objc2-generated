@@ -15,31 +15,71 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionruntimeerrornotification?language=objc)
+    /// Posted when an unexpected error occurs while an AVCaptureSession instance is running.
+    ///
+    ///
+    /// The notification object is the AVCaptureSession instance that encountered a runtime error. The userInfo dictionary contains an NSError for the key AVCaptureSessionErrorKey.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionruntimeerrornotification?language=objc)
     pub static AVCaptureSessionRuntimeErrorNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionerrorkey?language=objc)
+    /// The key used to provide an NSError describing the failure condition in an AVCaptureSessionRuntimeErrorNotification.
+    ///
+    ///
+    /// AVCaptureSessionErrorKey may be found in the userInfo dictionary provided with an AVCaptureSessionRuntimeErrorNotification. The NSError associated with the notification gives greater detail on the nature of the error, and in some cases recovery suggestions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionerrorkey?language=objc)
     pub static AVCaptureSessionErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessiondidstartrunningnotification?language=objc)
+    /// Posted when an instance of AVCaptureSession successfully starts running.
+    ///
+    ///
+    /// Clients may observe the AVCaptureSessionDidStartRunningNotification to know when an instance of AVCaptureSession starts running.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessiondidstartrunningnotification?language=objc)
     pub static AVCaptureSessionDidStartRunningNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessiondidstoprunningnotification?language=objc)
+    /// Posted when an instance of AVCaptureSession stops running.
+    ///
+    ///
+    /// Clients may observe the AVCaptureSessionDidStopRunningNotification to know when an instance of AVCaptureSession stops running. An AVCaptureSession instance may stop running automatically due to external system conditions, such as the device going to sleep, or being locked by a user.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessiondidstoprunningnotification?language=objc)
     pub static AVCaptureSessionDidStopRunningNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionwasinterruptednotification?language=objc)
+    /// Posted when an instance of AVCaptureSession becomes interrupted.
+    ///
+    ///
+    /// Clients may observe the AVCaptureSessionWasInterruptedNotification to know when an instance of AVCaptureSession has been interrupted, for example, by an incoming phone call, or alarm, or another application taking control of needed hardware resources. When appropriate, the AVCaptureSession instance will stop running automatically in response to an interruption.
+    ///
+    /// Beginning in iOS 9.0, the AVCaptureSessionWasInterruptedNotification userInfo dictionary contains an AVCaptureSessionInterruptionReasonKey indicating the reason for the interruption.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionwasinterruptednotification?language=objc)
     pub static AVCaptureSessionWasInterruptedNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionreason?language=objc)
+/// Constants indicating interruption reason. One of these is returned with the AVCaptureSessionWasInterruptedNotification (see AVCaptureSessionInterruptionReasonKey).
+///
+///
+/// An interruption caused by the app being sent to the background while using a camera. Camera usage is prohibited while in the background. Beginning in iOS 9.0, AVCaptureSession no longer produces an AVCaptureSessionRuntimeErrorNotification if you attempt to start running a camera while in the background. Instead, it sends an AVCaptureSessionWasInterruptedNotification with AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground. Provided you don't explicitly call [session stopRunning], your -startRunning request is preserved, and when your app comes back to foreground, you receive AVCaptureSessionInterruptionEndedNotification and your session starts running.
+///
+/// An interruption caused by the audio hardware temporarily being made unavailable, for instance, for a phone call, or alarm.
+///
+/// An interruption caused by the video device temporarily being made unavailable, for instance, when stolen away by another AVCaptureSession.
+///
+/// An interruption caused when the app is running in a multi-app layout, causing resource contention and degraded recording quality of service. Given your present AVCaptureSession configuration, the session may only be run if your app occupies the full screen.
+///
+/// An interruption caused by the video device temporarily being made unavailable due to system pressure, such as thermal duress. See AVCaptureDevice's AVCaptureSystemPressure category for more information.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -68,21 +108,47 @@ unsafe impl RefEncode for AVCaptureSessionInterruptionReason {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionreasonkey?language=objc)
+    /// The key used to provide an NSNumber describing the interruption reason in an AVCaptureSessionWasInterruptedNotification.
+    ///
+    ///
+    /// AVCaptureSessionInterruptionReasonKey may be found in the userInfo dictionary provided with an AVCaptureSessionWasInterruptedNotification. The NSNumber associated with the notification tells you why the interruption occurred.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionreasonkey?language=objc)
     pub static AVCaptureSessionInterruptionReasonKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionsystempressurestatekey?language=objc)
+    /// The key used to provide an AVCaptureSystemPressureState indicating the system pressure level and contributing factors that caused the interruption.
+    ///
+    ///
+    /// This key is only present when the AVCaptureSessionInterruptionReasonKey equals AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableDueToSystemPressure.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionsystempressurestatekey?language=objc)
     pub static AVCaptureSessionInterruptionSystemPressureStateKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionendednotification?language=objc)
+    /// Posted when an instance of AVCaptureSession ceases to be interrupted.
+    ///
+    ///
+    /// Clients may observe the AVCaptureSessionInterruptionEndedNotification to know when an instance of AVCaptureSession ceases to be interrupted, for example, when a phone call ends, and hardware resources needed to run the session are again available. When appropriate, the AVCaptureSession instance that was previously stopped in response to an interruption will automatically restart once the interruption ends.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionendednotification?language=objc)
     pub static AVCaptureSessionInterruptionEndedNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation?language=objc)
+/// Constants indicating video orientation, for use with AVCaptureVideoPreviewLayer (see AVCaptureVideoPreviewLayer.h) and AVCaptureConnection (see below).
+///
+///
+/// Indicates that video should be oriented vertically, home button on the bottom.
+///
+/// Indicates that video should be oriented vertically, home button on the top.
+///
+/// Indicates that video should be oriented horizontally, home button on the right.
+///
+/// Indicates that video should be oriented horizontally, home button on the left.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation?language=objc)
 // NS_ENUM
 #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
 #[repr(transparent)]
@@ -112,7 +178,12 @@ unsafe impl RefEncode for AVCaptureVideoOrientation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession?language=objc)
+    /// AVCaptureSession is the central hub of the AVFoundation capture classes.
+    ///
+    ///
+    /// To perform a real-time capture, a client may instantiate AVCaptureSession and add appropriate AVCaptureInputs, such as AVCaptureDeviceInput, and outputs, such as AVCaptureMovieFileOutput. [AVCaptureSession startRunning] starts the flow of data from the inputs to the outputs, and [AVCaptureSession stopRunning] stops the flow. A client may set the sessionPreset property to customize the quality level or bitrate of the output.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSession;
@@ -123,168 +194,421 @@ unsafe impl NSObjectProtocol for AVCaptureSession {}
 extern_methods!(
     unsafe impl AVCaptureSession {
         #[cfg(feature = "AVCaptureSessionPreset")]
+        /// Returns whether the receiver can be configured with the given preset.
+        ///
+        ///
+        /// Parameter `preset`: An AVCaptureSession preset.
+        ///
+        /// Returns: YES if the receiver can be set to the given preset, NO otherwise.
+        ///
+        ///
+        /// An AVCaptureSession instance can be associated with a preset that configures its inputs and outputs to fulfill common use cases. This method can be used to determine if the receiver supports the desired preset given its current input and output configuration. The receiver's sessionPreset property may only be set to a certain preset if this method returns YES for that preset.
         #[method(canSetSessionPreset:)]
         pub unsafe fn canSetSessionPreset(&self, preset: &AVCaptureSessionPreset) -> bool;
 
         #[cfg(feature = "AVCaptureSessionPreset")]
+        /// Indicates the session preset currently in use by the receiver.
+        ///
+        ///
+        /// The value of this property is an AVCaptureSessionPreset indicating the current session preset in use by the receiver. The sessionPreset property may be set while the receiver is running.
         #[method_id(@__retain_semantics Other sessionPreset)]
         pub unsafe fn sessionPreset(&self) -> Retained<AVCaptureSessionPreset>;
 
         #[cfg(feature = "AVCaptureSessionPreset")]
+        /// Setter for [`sessionPreset`][Self::sessionPreset].
         #[method(setSessionPreset:)]
         pub unsafe fn setSessionPreset(&self, session_preset: &AVCaptureSessionPreset);
 
         #[cfg(feature = "AVCaptureInput")]
+        /// An NSArray of AVCaptureInputs currently added to the receiver.
+        ///
+        ///
+        /// The value of this property is an NSArray of AVCaptureInputs currently added to the receiver. Clients can add AVCaptureInputs to a session by calling -addInput:.
         #[method_id(@__retain_semantics Other inputs)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<AVCaptureInput>>;
 
         #[cfg(feature = "AVCaptureInput")]
+        /// Returns whether the proposed input can be added to the receiver.
+        ///
+        ///
+        /// Parameter `input`: An AVCaptureInput instance.
+        ///
+        /// Returns: YES if the proposed input can be added to the receiver, NO otherwise.
+        ///
+        ///
+        /// An AVCaptureInput instance can only be added to a session using -addInput: if -canAddInput: returns YES, otherwise an NSInvalidArgumentException is thrown.
         #[method(canAddInput:)]
         pub unsafe fn canAddInput(&self, input: &AVCaptureInput) -> bool;
 
         #[cfg(feature = "AVCaptureInput")]
+        /// Adds an AVCaptureInput to the session.
+        ///
+        ///
+        /// Parameter `input`: An AVCaptureInput instance.
+        ///
+        ///
+        /// An AVCaptureInput instance can only be added to a session using -addInput: if -canAddInput: returns YES, otherwise an NSInvalidArgumentException is thrown. -addInput: may be called while the session is running.
         #[method(addInput:)]
         pub unsafe fn addInput(&self, input: &AVCaptureInput);
 
         #[cfg(feature = "AVCaptureInput")]
+        /// Removes an AVCaptureInput from the session.
+        ///
+        ///
+        /// Parameter `input`: An AVCaptureInput instance.
+        ///
+        ///
+        /// -removeInput: may be called while the session is running.
         #[method(removeInput:)]
         pub unsafe fn removeInput(&self, input: &AVCaptureInput);
 
         #[cfg(feature = "AVCaptureOutputBase")]
+        /// An NSArray of AVCaptureOutputs currently added to the receiver.
+        ///
+        ///
+        /// The value of this property is an NSArray of AVCaptureOutputs currently added to the receiver. Clients can add AVCaptureOutputs to a session by calling -addOutput:.
         #[method_id(@__retain_semantics Other outputs)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<AVCaptureOutput>>;
 
         #[cfg(feature = "AVCaptureOutputBase")]
+        /// Returns whether the proposed output can be added to the receiver.
+        ///
+        ///
+        /// Parameter `output`: An AVCaptureOutput instance.
+        ///
+        /// Returns: YES if the proposed output can be added to the receiver, NO otherwise.
+        ///
+        ///
+        /// An AVCaptureOutput instance can only be added to a session using -addOutput: if -canAddOutput: returns YES, otherwise an NSInvalidArgumentException is thrown.
+        ///
+        /// On iOS and Mac Catalyst, some limitations to adding combinations of different types of outputs apply:
+        /// - A maximum of one output of each type may be added. For applications linked on or after iOS 16.0, this restriction no longer applies to AVCaptureVideoDataOutputs. When adding more than one AVCaptureVideoDataOutput, AVCaptureSession.hardwareCost must be taken into account.
+        /// - A session cannot contain both an AVCaptureStillImageOutput and an AVCapturePhotoOutput at the same time.
+        /// - Prior to iOS 16.0, an AVCaptureVideoDataOutput and an AVCaptureMovieFileOutput may be added to the same session, but only one may have its connection active. When both have their connections enabled, the AVCaptureMovieFileOutput "wins" and the AVCaptureVideoDataOutput's connection becomes inactive. For applications linked on or after iOS 16.0, this restriction has been lifted. When adding multiple AVCaptureVideoDataOutputs or a combination of AVCaptureVideoDataOutputs and an AVCaptureMovieFileOutput, AVCaptureSession.hardwareCost must be taken into account.
+        /// - Similarly, prior to iOS 16.0, an AVCaptureAudioDataOutput and an AVCaptureMovieFileOutput may be added to the same session, but only one may have its connection active. When both have their connections enabled, the AVCaptureMovieFileOutput "wins" and the AVCaptureAudioDataOutput's connection becomes inactive. For applications linked on or after iOS 16.0, this restriction has been lifted.
         #[method(canAddOutput:)]
         pub unsafe fn canAddOutput(&self, output: &AVCaptureOutput) -> bool;
 
         #[cfg(feature = "AVCaptureOutputBase")]
+        /// Adds an AVCaptureOutput to the session.
+        ///
+        ///
+        /// Parameter `output`: An AVCaptureOutput instance.
+        ///
+        ///
+        /// An AVCaptureOutput instance can only be added to a session using -addOutput: if -canAddOutput: returns YES, otherwise an NSInvalidArgumentException is thrown. -addOutput: may be called while the session is running.
         #[method(addOutput:)]
         pub unsafe fn addOutput(&self, output: &AVCaptureOutput);
 
         #[cfg(feature = "AVCaptureOutputBase")]
+        /// Removes an AVCaptureOutput from the session.
+        ///
+        ///
+        /// Parameter `output`: An AVCaptureOutput instance.
+        ///
+        ///
+        /// -removeOutput: may be called while the session is running.
         #[method(removeOutput:)]
         pub unsafe fn removeOutput(&self, output: &AVCaptureOutput);
 
         #[cfg(feature = "AVCaptureInput")]
+        /// Adds an AVCaptureInput to the session without forming any connections.
+        ///
+        ///
+        /// Parameter `input`: An AVCaptureInput instance.
+        ///
+        ///
+        /// An AVCaptureInput instance can only be added to a session using -addInputWithNoConnections: if -canAddInput: returns YES, otherwise an NSInvalidArgumentException is thrown. -addInputWithNoConnections: may be called while the session is running. The -addInput: method is the preferred method for adding an input to an AVCaptureSession. -addInputWithNoConnections: may be called if you need fine-grained control over which inputs are connected to which outputs.
         #[method(addInputWithNoConnections:)]
         pub unsafe fn addInputWithNoConnections(&self, input: &AVCaptureInput);
 
         #[cfg(feature = "AVCaptureOutputBase")]
+        /// Adds an AVCaptureOutput to the session without forming any connections.
+        ///
+        ///
+        /// Parameter `output`: An AVCaptureOutput instance.
+        ///
+        ///
+        /// An AVCaptureOutput instance can only be added to a session using -addOutputWithNoConnections: if -canAddOutput: returns YES, otherwise an NSInvalidArgumentException is thrown. -addOutputWithNoConnections: may be called while the session is running. The -addOutput: method is the preferred method for adding an output to an AVCaptureSession. -addOutputWithNoConnections: may be called if you need fine-grained control over which inputs are connected to which outputs.
         #[method(addOutputWithNoConnections:)]
         pub unsafe fn addOutputWithNoConnections(&self, output: &AVCaptureOutput);
 
+        /// An NSArray of AVCaptureConnections currently added to the receiver.
+        ///
+        ///
+        /// The value of this property is an NSArray of AVCaptureConnections currently added to the receiver. Connections are formed implicitly by the receiver when a client calls -addInput: or -addOutput:. Connections are formed explicitly when a client calls -addConnection:.
         #[method_id(@__retain_semantics Other connections)]
         pub unsafe fn connections(&self) -> Retained<NSArray<AVCaptureConnection>>;
 
+        /// Returns whether the proposed connection can be added to the receiver.
+        ///
+        ///
+        /// Parameter `connection`: An AVCaptureConnection instance.
+        ///
+        ///
+        /// An AVCaptureConnection instance can only be added to a session using -addConnection: if -canAddConnection: returns YES, otherwise an NSInvalidArgumentException is thrown. When using -addInput: or -addOutput:, connections are formed automatically between all compatible inputs and outputs. Manually adding connections is only necessary when adding an input or output with no connections.
         #[method(canAddConnection:)]
         pub unsafe fn canAddConnection(&self, connection: &AVCaptureConnection) -> bool;
 
+        /// Adds an AVCaptureConnection to the session.
+        ///
+        ///
+        /// Parameter `connection`: An AVCaptureConnection instance.
+        ///
+        ///
+        /// An AVCaptureConnection instance can only be added to a session using -addConnection: if canAddConnection: returns YES, otherwise an NSInvalidArgumentException is thrown. When using -addInput: or -addOutput:, connections are formed automatically between all compatible inputs and outputs. Manually adding connections is only necessary when adding an input or output with no connections. -addConnection: may be called while the session is running.
         #[method(addConnection:)]
         pub unsafe fn addConnection(&self, connection: &AVCaptureConnection);
 
+        /// Removes an AVCaptureConnection from the session.
+        ///
+        ///
+        /// Parameter `connection`: An AVCaptureConnection instance.
+        ///
+        ///
+        /// -removeConnection: may be called while the session is running.
         #[method(removeConnection:)]
         pub unsafe fn removeConnection(&self, connection: &AVCaptureConnection);
 
+        /// Indicates whether session controls are supported on this platform.
+        ///
+        ///
+        /// `AVCaptureControl`s are only supported on platforms with necessary hardware.
         #[method(supportsControls)]
         pub unsafe fn supportsControls(&self) -> bool;
 
+        /// Specifies the maximum number of controls that can be added to a session.
         #[method(maxControlsCount)]
         pub unsafe fn maxControlsCount(&self) -> NSInteger;
 
+        /// The receiver's controls delegate.
+        ///
+        ///
+        /// The value of this property is an object conforming to the `AVCaptureSessionControlsDelegate` protocol that receives events about the session's controls. The delegate is set using the `-setControlsDelegate:queue:` method.
+        ///
+        /// A controls delegate must be specified for controls to become active.
         #[method_id(@__retain_semantics Other controlsDelegate)]
         pub unsafe fn controlsDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureSessionControlsDelegate>>>;
 
         #[cfg(feature = "AVCaptureControl")]
+        /// An `NSArray` of `AVCaptureControl`s currently added to the session.
+        ///
+        ///
+        /// The value of this property is an `NSArray` of `AVCaptureControl`s currently added to the session. Clients can add `AVCaptureControl`s to a session by calling `-addControl:`.
         #[method_id(@__retain_semantics Other controls)]
         pub unsafe fn controls(&self) -> Retained<NSArray<AVCaptureControl>>;
 
         #[cfg(feature = "AVCaptureControl")]
+        /// Returns whether the proposed control can be added to the session.
+        ///
+        ///
+        /// Parameter `control`: An `AVCaptureControl` instance.
+        ///
+        /// Returns: `YES` if the proposed control can be added to the session, `NO` otherwise.
+        ///
+        ///
+        /// An `AVCaptureControl` instance can only be added to a session using `-addControl:` if `-canAddControl:` returns `YES`. For example, some platforms do not support controls. Instances of `AVCaptureSlider`, `AVCaptureToggle` and `AVCaptureIndexPicker` must have an action and an action queue set before being added to a session.
         #[method(canAddControl:)]
         pub unsafe fn canAddControl(&self, control: &AVCaptureControl) -> bool;
 
         #[cfg(feature = "AVCaptureControl")]
+        /// Adds an `AVCaptureControl` instance to the session.
+        ///
+        ///
+        /// Parameter `control`: An `AVCaptureControl` instance.
+        ///
+        ///
+        /// An `AVCaptureControl` instance can only be added to a session using `-addControl:` if `-canAddControl:` returns `YES`, otherwise an `NSInvalidArgumentException` is thrown. `-addControl:` may be called while the session is running.
+        ///
+        /// For an `AVCaptureControl` instance to become active, an `AVCaptureSessionControlsDelegate` must be set on the session.
         #[method(addControl:)]
         pub unsafe fn addControl(&self, control: &AVCaptureControl);
 
         #[cfg(feature = "AVCaptureControl")]
+        /// Removes an `AVCaptureControl` instance from the session.
+        ///
+        ///
+        /// Parameter `control`: An `AVCaptureControl` instance.
+        ///
+        ///
+        /// `-removeControl:` may be called while the session is running.
         #[method(removeControl:)]
         pub unsafe fn removeControl(&self, control: &AVCaptureControl);
 
+        /// When paired with commitConfiguration, allows a client to batch multiple configuration operations on a running session into atomic updates.
+        ///
+        ///
+        /// -beginConfiguration / -commitConfiguration are AVCaptureSession's mechanism for batching multiple configuration operations on a running session into atomic updates. After calling [session beginConfiguration], clients may add or remove outputs, alter the sessionPreset, or configure individual AVCaptureInput or Output properties. All changes will be pended until the client calls [session commitConfiguration], at which time they will be applied together. -beginConfiguration / -commitConfiguration pairs may be nested, and will only be applied when the outermost commit is invoked. If you've called -beginConfiguration, you must call -commitConfiguration before invoking -startRunning or -stopRunning, otherwise an NSGenericException is thrown.
         #[method(beginConfiguration)]
         pub unsafe fn beginConfiguration(&self);
 
+        /// When preceded by beginConfiguration, allows a client to batch multiple configuration operations on a running session into atomic updates.
+        ///
+        ///
+        /// -beginConfiguration / -commitConfiguration are AVCaptureSession's mechanism for batching multiple configuration operations on a running session into atomic updates. After calling [session beginConfiguration], clients may add or remove outputs, alter the sessionPreset, or configure individual AVCaptureInput or Output properties. All changes will be pended until the client calls [session commitConfiguration], at which time they will be applied together. -beginConfiguration / -commitConfiguration pairs may be nested, and will only be applied when the outermost commit is invoked. If you've called -beginConfiguration, you must call -commitConfiguration before invoking -startRunning or -stopRunning, otherwise an NSGenericException is thrown.
         #[method(commitConfiguration)]
         pub unsafe fn commitConfiguration(&self);
 
+        /// Indicates whether the session is currently running.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver is running. Clients can key value observe the value of this property to be notified when the session automatically starts or stops running.
         #[method(isRunning)]
         pub unsafe fn isRunning(&self) -> bool;
 
+        /// Indicates whether the session is being interrupted.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver is currently being interrupted, such as by a phone call or alarm. Clients can key value observe the value of this property to be notified when the session ceases to be interrupted and again has access to needed hardware resources.
         #[method(isInterrupted)]
         pub unsafe fn isInterrupted(&self) -> bool;
 
+        /// Returns whether the session can be configured to use the camera while multitasking.
+        ///
+        ///
+        /// This property can be used to determine whether multitaskingCameraAccessEnabled may be set to YES. When this property changes from YES to NO, multitaskingCameraAccessEnabled also reverts to NO.
+        ///
+        /// Prior to iOS 18, this property returns YES on iPads that support Stage Manager with an extended display. In applications linked on or after iOS 18, this property returns YES for video conferencing applications (apps that use "voip" as one of their UIBackgroundModes).
+        ///
+        /// This property also returns YES for iOS applications that have the com.apple.developer.avfoundation.multitasking-camera-access entitlement.
+        ///
+        /// This property returns YES on Apple TV.
+        ///
+        /// This property is key-value observable.
         #[method(isMultitaskingCameraAccessSupported)]
         pub unsafe fn isMultitaskingCameraAccessSupported(&self) -> bool;
 
+        /// Indicates whether the session is configured to use the camera while multitasking.
+        ///
+        ///
+        /// The default value is NO. This property may only be set if -isMultitaskingCameraAccessSupported returns YES. This property must be set before the session starts running.
+        ///
+        /// AVCaptureSessions that are configured to use the camera while multitasking will not be interrupted with AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps.
+        ///
+        /// For applications that have the com.apple.developer.avfoundation.multitasking-camera-access entitlement, this property defaults to YES if -isMultitaskingCameraAccessSupported returns YES.
+        ///
+        /// To learn about best practices for using the camera while multitasking, refer to the Accessing the Camera While Multitasking article on developer.apple.com. See https://developer.apple.com/documentation/avkit/accessing_the_camera_while_multitasking
+        /// .
+        ///
+        /// This property is key-value observable.
         #[method(isMultitaskingCameraAccessEnabled)]
         pub unsafe fn isMultitaskingCameraAccessEnabled(&self) -> bool;
 
+        /// Setter for [`isMultitaskingCameraAccessEnabled`][Self::isMultitaskingCameraAccessEnabled].
         #[method(setMultitaskingCameraAccessEnabled:)]
         pub unsafe fn setMultitaskingCameraAccessEnabled(
             &self,
             multitasking_camera_access_enabled: bool,
         );
 
+        /// Indicates whether the receiver will use the application's AVAudioSession for recording.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver is currently using the application's AVAudioSession (see AVAudioSession.h). Prior to iOS 7, AVCaptureSession uses its own audio session, which can lead to unwanted interruptions when interacting with the application's audio session. In applications linked on or after iOS 7, AVCaptureSession shares the application's audio session, allowing for simultaneous play back and recording without unwanted interruptions. Clients desiring the pre-iOS 7 behavior may opt out by setting usesApplicationAudioSession to NO. The default value is YES.
         #[method(usesApplicationAudioSession)]
         pub unsafe fn usesApplicationAudioSession(&self) -> bool;
 
+        /// Setter for [`usesApplicationAudioSession`][Self::usesApplicationAudioSession].
         #[method(setUsesApplicationAudioSession:)]
         pub unsafe fn setUsesApplicationAudioSession(&self, uses_application_audio_session: bool);
 
+        /// Indicates whether the receiver should configure the application's audio session for recording.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver should configure the application's audio session when needed for optimal recording. When set to YES, the receiver ensures the application's audio session is set to the PlayAndRecord category, and picks an appropriate microphone and polar pattern to match the video camera being used. When set to NO, and -usesApplicationAudioSession is set to YES, the receiver will use the application's audio session, but will not change any of its properties. If the session is not set up correctly for input, audio recording may fail. The default value is YES.
         #[method(automaticallyConfiguresApplicationAudioSession)]
         pub unsafe fn automaticallyConfiguresApplicationAudioSession(&self) -> bool;
 
+        /// Setter for [`automaticallyConfiguresApplicationAudioSession`][Self::automaticallyConfiguresApplicationAudioSession].
         #[method(setAutomaticallyConfiguresApplicationAudioSession:)]
         pub unsafe fn setAutomaticallyConfiguresApplicationAudioSession(
             &self,
             automatically_configures_application_audio_session: bool,
         );
 
+        /// Indicates whether the receiver should configure the application's audio session to mix with others.
+        ///
+        ///
+        /// The value of this property is a BOOL indicating whether the receiver should configure the application's audio session to mix with, instead of interrupting, any ongoing audio sessions. It has no effect when usesApplicationAudioSession is set to NO. It also has no effect on Live Photo movie complement capture (where music is always mixed with). The default value is NO.
         #[method(configuresApplicationAudioSessionToMixWithOthers)]
         pub unsafe fn configuresApplicationAudioSessionToMixWithOthers(&self) -> bool;
 
+        /// Setter for [`configuresApplicationAudioSessionToMixWithOthers`][Self::configuresApplicationAudioSessionToMixWithOthers].
         #[method(setConfiguresApplicationAudioSessionToMixWithOthers:)]
         pub unsafe fn setConfiguresApplicationAudioSessionToMixWithOthers(
             &self,
             configures_application_audio_session_to_mix_with_others: bool,
         );
 
+        /// Indicates whether the receiver automatically configures its video device's activeFormat and activeColorSpace properties, preferring wide color for photos.
+        ///
+        ///
+        /// The default value is YES. By default, the receiver automatically adjusts its source video AVCaptureDevice's activeFormat and activeColorSpace properties based on the supportedColorSpaces of the device's formats and the current AVCaptureSession topology. Wide color spaces are preferred over sRGB if an AVCapturePhotoOutput is present in the session. If you wish to set AVCaptureDevice's activeColorSpace manually, and prevent the AVCaptureSession from undoing your work, you must set automaticallyConfiguresCaptureDeviceForWideColor to NO. If the receiver's sessionPreset is set to AVCaptureSessionPresetInputPriority, the session will not alter the capture device's activeFormat, but might still alter its activeColorSpace.
         #[method(automaticallyConfiguresCaptureDeviceForWideColor)]
         pub unsafe fn automaticallyConfiguresCaptureDeviceForWideColor(&self) -> bool;
 
+        /// Setter for [`automaticallyConfiguresCaptureDeviceForWideColor`][Self::automaticallyConfiguresCaptureDeviceForWideColor].
         #[method(setAutomaticallyConfiguresCaptureDeviceForWideColor:)]
         pub unsafe fn setAutomaticallyConfiguresCaptureDeviceForWideColor(
             &self,
             automatically_configures_capture_device_for_wide_color: bool,
         );
 
+        /// Starts an AVCaptureSession instance running.
+        ///
+        ///
+        /// Clients invoke -startRunning to start the flow of data from inputs to outputs connected to the AVCaptureSession instance. This call blocks until the session object has completely started up or failed. A failure to start running is reported through the AVCaptureSessionRuntimeErrorNotification mechanism. If you've called -beginConfiguration, you must call -commitConfiguration before invoking -startRunning, otherwise an NSGenericException is thrown.
         #[method(startRunning)]
         pub unsafe fn startRunning(&self);
 
+        /// Stops an AVCaptureSession instance that is currently running.
+        ///
+        ///
+        /// Clients invoke -stopRunning to stop the flow of data from inputs to outputs connected to the AVCaptureSession instance. This call blocks until the session object has completely stopped. -stopRunning may not be called while the session is being configured. If you've called -beginConfiguration, you must call -commitConfiguration before invoking -stopRunning, otherwise an NSGenericException is thrown.
         #[method(stopRunning)]
         pub unsafe fn stopRunning(&self);
 
         #[cfg(feature = "objc2-core-media")]
+        /// Provides the clock being used for synchronization.
+        ///
+        /// synchronizationClock is readonly. Use synchronizationClock to synchronize AVCaptureOutput data with external data sources (e.g motion samples). All capture output sample buffer timestamps are on the synchronizationClock timebase.
+        ///
+        /// For example, if you want to reverse synchronize the output timestamps to the original timestamps, you can do the following: In captureOutput:didOutputSampleBuffer:fromConnection:
+        ///
+        /// AVCaptureInputPort *port = [[connection inputPorts] objectAtIndex:0];
+        /// CMClockRef originalClock = [port clock];
+        ///
+        /// CMTime syncedPTS = CMSampleBufferGetPresentationTime( sampleBuffer );
+        /// CMTime originalPTS = CMSyncConvertTime( syncedPTS, [session synchronizationClock], originalClock );
+        ///
+        /// This property is key-value observable.
         #[method(synchronizationClock)]
         pub unsafe fn synchronizationClock(&self) -> CMClockRef;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Provides the clock being used for synchronization.
+        ///
+        /// Deprecated. Please use synchronizationClock instead.
         #[deprecated]
         #[method(masterClock)]
         pub unsafe fn masterClock(&self) -> CMClockRef;
 
+        /// Indicates the percentage of the session's available hardware budget currently in use.
+        ///
+        ///
+        /// The value of this property is a float from 0.0 => 1.0 indicating how much of the session's available hardware is in use as a percentage, given the currently connected inputs and outputs and the features for which you've opted in. When your hardwareCost is greater than 1.0, the capture session cannot run your desired configuration due to hardware constraints, so you receive an AVCaptureSessionRuntimeErrorNotification when attempting to start it running. Default value is 0.
+        ///
+        /// Contributors to hardwareCost include:
+        /// - Whether the source device's active format uses the full sensor (4:3) or a crop (16:9). Cropped formats require lower hardware bandwidth, and therefore lower the cost.
+        /// - The max frame rate supported by the source device's active format. The higher the max frame rate, the higher the cost.
+        /// - Whether the source device's active format is binned or not. Binned formats require substantially less hardware bandwidth, and therefore result in a lower cost.
+        /// - The number of sources configured to deliver streaming disparity / depth via AVCaptureDepthDataOutput. The higher the number of cameras configured to produce depth, the higher the cost.
+        /// For AVCaptureMultiCamSessions, all of the source devices' active formats contribute to hardwareCost.
+        /// In order to reduce hardwareCost, consider picking a sensor-cropped activeFormat, or a binned format. You may also use AVCaptureDeviceInput's videoMinFrameDurationOverride property to artificially limit the max frame rate (which is the reciprocal of the min frame duration) of a source device to a lower value. By doing so, you only pay the hardware cost for the max frame rate you intend to use.
+        ///
+        /// AVCaptureMultiCamSessions always computes this hardwareCost. AVCaptureSessions only computes a non-zero hardwareCost when multiple AVCaptureVideoDataOutputs or an AVCaptureMovieFileOutput and one or more AVCaptureVideoDataOutputs are added to the session.
         #[method(hardwareCost)]
         pub unsafe fn hardwareCost(&self) -> c_float;
     }
@@ -302,17 +626,47 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioncontrolsdelegate?language=objc)
+    /// Defines an interface for delegates of `AVCaptureSession` to receive events about the session's controls.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioncontrolsdelegate?language=objc)
     pub unsafe trait AVCaptureSessionControlsDelegate: NSObjectProtocol {
+        /// Called when the controls of an `AVCaptureSession` instance become active and are available for interaction.
+        ///
+        ///
+        /// Parameter `session`: The `AVCaptureSession` instance whose controls are active.
+        ///
+        ///
+        /// Delegates receive this message when the controls of an `AVCaptureSession` instance become active and are available for interaction.
         #[method(sessionControlsDidBecomeActive:)]
         unsafe fn sessionControlsDidBecomeActive(&self, session: &AVCaptureSession);
 
+        /// Called when the controls of an `AVCaptureSession` instance will enter a fullscreen appearance.
+        ///
+        ///
+        /// Parameter `session`: The `AVCaptureSession` instance whose controls will enter a fullscreen appearance.
+        ///
+        ///
+        /// When the controls enter a fullscreen appearance, applications are encouraged to hide portions of their user interface including zoom or exposure sliders and shutter buttons. Few on-screen elements should be visible so users can focus on the controls they are interacting with and view the camera preview unobstructed.
         #[method(sessionControlsWillEnterFullscreenAppearance:)]
         unsafe fn sessionControlsWillEnterFullscreenAppearance(&self, session: &AVCaptureSession);
 
+        /// Called when the controls of an `AVCaptureSession` instance will exit a fullscreen appearance.
+        ///
+        ///
+        /// Parameter `session`: The `AVCaptureSession` instance whose controls will exit a fullscreen appearance.
+        ///
+        ///
+        /// Delegates receive this message when the controls of an `AVCaptureSession` instance should resume showing portions of their user interface that were hidden in response to receiving `-sessionControlsWillEnterFullscreenAppearance:`. This message is sent before `sessionControlsDidBecomeInactive:`.
         #[method(sessionControlsWillExitFullscreenAppearance:)]
         unsafe fn sessionControlsWillExitFullscreenAppearance(&self, session: &AVCaptureSession);
 
+        /// Called when the controls of an `AVCaptureSession` instance become inactive and are no longer available for interaction.
+        ///
+        ///
+        /// Parameter `session`: The `AVCaptureSession` instance whose controls are inactive.
+        ///
+        ///
+        /// Delegates receive this message when the controls of an `AVCaptureSession` instance become inactive and are no longer available for interaction.
         #[method(sessionControlsDidBecomeInactive:)]
         unsafe fn sessionControlsDidBecomeInactive(&self, session: &AVCaptureSession);
     }
@@ -321,7 +675,14 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession?language=objc)
+    /// A subclass of AVCaptureSession which supports simultaneous capture from multiple inputs of the same media type.
+    ///
+    ///
+    /// AVCaptureMultiCamSession's sessionPreset is always AVCaptureSessionPresetInputPriority and may not be set to any other value. Each input's device.activeFormat must be set manually to achieve the desired quality of service.
+    ///
+    /// AVCaptureMultiCamSession supports dynamic enabling and disabling of individual camera inputs without interrupting preview. In order to stop an individual camera input, set the enabled property on all of its connections or connected ports to NO. When the last active connection or port is disabled, the source camera stops streaming to save power and bandwidth. Other inputs streaming data through the session are unaffected.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession?language=objc)
     #[unsafe(super(AVCaptureSession, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureMultiCamSession;
@@ -331,12 +692,31 @@ unsafe impl NSObjectProtocol for AVCaptureMultiCamSession {}
 
 extern_methods!(
     unsafe impl AVCaptureMultiCamSession {
+        /// Indicates whether multicam session is supported on this platform.
+        ///
+        ///
+        /// AVCaptureMultiCamSession is intended to be used with multiple cameras and is only supported on platforms with sufficient hardware bandwidth, system memory, and thermal performance. For single-camera use cases, AVCaptureSession should be used instead.
         #[method(isMultiCamSupported)]
         pub unsafe fn isMultiCamSupported() -> bool;
 
+        /// Indicates the percentage of the session's available hardware budget currently in use.
+        ///
+        ///
+        /// The value of this property is a float from 0.0 => 1.0 indicating how much of the session's available hardware is in use as a percentage, given the currently connected inputs and outputs and the features for which you've opted in. When your hardwareCost is greater than 1.0, the capture session cannot run your desired configuration due to hardware constraints, so you receive an AVCaptureSessionRuntimeErrorNotification when attempting to start it running. Default value is 0.
+        ///
+        /// Contributors to hardwareCost include:
+        /// - Whether the source devices' active formats use the full sensor (4:3) or a crop (16:9). Cropped formats require lower hardware bandwidth, and therefore lower the cost.
+        /// - The max frame rate supported by the source devices' active formats. The higher the max frame rate, the higher the cost.
+        /// - Whether the source devices' active formats are binned or not. Binned formats require substantially less hardware bandwidth, and therefore result in a lower cost.
+        /// - The number of sources configured to deliver streaming disparity / depth via AVCaptureDepthDataOutput. The higher the number of cameras configured to produce depth, the higher the cost.
+        /// In order to reduce hardwareCost, consider picking a sensor-cropped activeFormat, or a binned format. You may also use AVCaptureDeviceInput's videoMinFrameDurationOverride property to artificially limit the max frame rate (which is the reciprocal of the min frame duration) of a source device to a lower value. By doing so, you only pay the hardware cost for the max frame rate you intend to use.
         #[method(hardwareCost)]
         pub unsafe fn hardwareCost(&self) -> c_float;
 
+        /// Indicates the system pressure cost of your current configuration.
+        ///
+        ///
+        /// The value of this property is a float whose nominal range is 0.0 => 1.0 indicating the system pressure cost of your current configuration. When your systemPressureCost is greater than 1.0, the capture session cannot run sustainably. It may be able to run for a brief period before needing to stop due to high system pressure. While running in an unsustainable configuration, you may monitor the session's systemPressureState and reduce pressure by reducing the frame rate, throttling your use of the GPU, etc. When the session reaches critical system pressure state, it must temporarily shut down, and you receive an AVCaptureSessionWasInterruptedNotification indicating the reason your session needed to stop. When system pressure alleviates, the session interruption ends.
         #[method(systemPressureCost)]
         pub unsafe fn systemPressureCost(&self) -> c_float;
     }
@@ -353,7 +733,18 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideofieldmode?language=objc)
+/// Constants indicating video field mode, for use with AVCaptureConnection's videoFieldMode property (see below).
+///
+///
+/// Indicates that both top and bottom video fields in interlaced content should be passed thru.
+///
+/// Indicates that only the top video field in interlaced content should be passed thru.
+///
+/// Indicates that the bottom video field only in interlaced content should be passed thru.
+///
+/// Indicates that top and bottom video fields in interlaced content should be deinterlaced.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideofieldmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -378,7 +769,16 @@ unsafe impl RefEncode for AVVideoFieldMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureconnection?language=objc)
+    /// AVCaptureConnection represents a connection between an AVCaptureInputPort or ports, and an AVCaptureOutput or AVCaptureVideoPreviewLayer present in an AVCaptureSession.
+    ///
+    ///
+    /// AVCaptureInputs have one or more AVCaptureInputPorts. AVCaptureOutputs can accept data from one or more sources (example - an AVCaptureMovieFileOutput accepts both video and audio data). AVCaptureVideoPreviewLayers can accept data from one AVCaptureInputPort whose mediaType is AVMediaTypeVideo. When an input or output is added to a session, or a video preview layer is associated with a session, the session greedily forms connections between all the compatible AVCaptureInputs' ports and AVCaptureOutputs or AVCaptureVideoPreviewLayers. Iterating through an output's connections or a video preview layer's sole connection, a client may enable or disable the flow of data from a given input to a given output or preview layer.
+    ///
+    /// Connections involving audio expose an array of AVCaptureAudioChannel objects, which can be used for monitoring levels.
+    ///
+    /// Connections involving video expose video specific properties, such as videoMirrored and videoRotationAngle.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureconnection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureConnection;
@@ -395,6 +795,17 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "AVCaptureInput", feature = "AVCaptureOutputBase"))]
+        /// Returns an AVCaptureConnection instance describing a connection between the specified inputPorts and the specified output.
+        ///
+        ///
+        /// Parameter `ports`: An array of AVCaptureInputPort objects associated with AVCaptureInput objects.
+        ///
+        /// Parameter `output`: An AVCaptureOutput object.
+        ///
+        /// Returns: An AVCaptureConnection instance joining the specified inputPorts to the specified output port.
+        ///
+        ///
+        /// This method returns an instance of AVCaptureConnection that may be subsequently added to an AVCaptureSession instance using AVCaptureSession's -addConnection: method. When using -addInput: or -addOutput:, connections are formed between all compatible inputs and outputs automatically. You do not need to manually create and add connections to the session unless you use the primitive -addInputWithNoConnections: or -addOutputWithNoConnections: methods.
         #[method_id(@__retain_semantics Other connectionWithInputPorts:output:)]
         pub unsafe fn connectionWithInputPorts_output(
             ports: &NSArray<AVCaptureInputPort>,
@@ -407,6 +818,17 @@ extern_methods!(
             feature = "objc2-quartz-core"
         ))]
         #[cfg(not(target_os = "watchos"))]
+        /// Returns an AVCaptureConnection instance describing a connection between the specified inputPort and the specified AVCaptureVideoPreviewLayer instance.
+        ///
+        ///
+        /// Parameter `port`: An AVCaptureInputPort object associated with an AVCaptureInput object.
+        ///
+        /// Parameter `layer`: An AVCaptureVideoPreviewLayer object.
+        ///
+        /// Returns: An AVCaptureConnection instance joining the specified inputPort to the specified video preview layer.
+        ///
+        ///
+        /// This method returns an instance of AVCaptureConnection that may be subsequently added to an AVCaptureSession instance using AVCaptureSession's -addConnection: method. When using AVCaptureVideoPreviewLayer's -initWithSession: or -setSession:, a connection is formed between the first compatible input port and the video preview layer automatically. You do not need to manually create and add connections to the session unless you use AVCaptureVideoPreviewLayer's primitive -initWithSessionWithNoConnection: or -setSessionWithNoConnection: methods.
         #[method_id(@__retain_semantics Other connectionWithInputPort:videoPreviewLayer:)]
         pub unsafe fn connectionWithInputPort_videoPreviewLayer(
             port: &AVCaptureInputPort,
@@ -414,6 +836,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "AVCaptureInput", feature = "AVCaptureOutputBase"))]
+        /// Returns an AVCaptureConnection instance describing a connection between the specified inputPorts and the specified output.
+        ///
+        ///
+        /// Parameter `ports`: An array of AVCaptureInputPort objects associated with AVCaptureInput objects.
+        ///
+        /// Parameter `output`: An AVCaptureOutput object.
+        ///
+        /// Returns: An AVCaptureConnection instance joining the specified inputPorts to the specified output port.
+        ///
+        ///
+        /// This method returns an instance of AVCaptureConnection that may be subsequently added to an AVCaptureSession instance using AVCaptureSession's -addConnection: method. When using -addInput: or -addOutput:, connections are formed between all compatible inputs and outputs automatically. You do not need to manually create and add connections to the session unless you use the primitive -addInputWithNoConnections: or -addOutputWithNoConnections: methods.
         #[method_id(@__retain_semantics Init initWithInputPorts:output:)]
         pub unsafe fn initWithInputPorts_output(
             this: Allocated<Self>,
@@ -427,6 +860,18 @@ extern_methods!(
             feature = "objc2-quartz-core"
         ))]
         #[cfg(not(target_os = "watchos"))]
+        /// Returns an AVCaptureConnection instance describing a connection between the specified inputPort
+        /// and the specified AVCaptureVideoPreviewLayer instance.
+        ///
+        ///
+        /// Parameter `port`: An AVCaptureInputPort object associated with an AVCaptureInput object.
+        ///
+        /// Parameter `layer`: An AVCaptureVideoPreviewLayer object.
+        ///
+        /// Returns: An AVCaptureConnection instance joining the specified inputPort to the specified video preview layer.
+        ///
+        ///
+        /// This method returns an instance of AVCaptureConnection that may be subsequently added to an AVCaptureSession instance using AVCaptureSession's -addConnection: method. When using AVCaptureVideoPreviewLayer's -initWithSession: or -setSession:, a connection is formed between the first compatible input port and the video preview layer automatically. You do not need to manually create and add connections to the session unless you use AVCaptureVideoPreviewLayer's primitive -initWithSessionWithNoConnection: or -setSessionWithNoConnection: methods.
         #[method_id(@__retain_semantics Init initWithInputPort:videoPreviewLayer:)]
         pub unsafe fn initWithInputPort_videoPreviewLayer(
             this: Allocated<Self>,
@@ -435,42 +880,88 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVCaptureInput")]
+        /// An array of AVCaptureInputPort instances providing data through this connection.
+        ///
+        ///
+        /// An AVCaptureConnection may involve one or more AVCaptureInputPorts producing data to the connection's AVCaptureOutput. This property is read-only. An AVCaptureConnection's inputPorts remain static for the life of the object.
         #[method_id(@__retain_semantics Other inputPorts)]
         pub unsafe fn inputPorts(&self) -> Retained<NSArray<AVCaptureInputPort>>;
 
         #[cfg(feature = "AVCaptureOutputBase")]
+        /// The AVCaptureOutput instance consuming data from this connection's inputPorts.
+        ///
+        ///
+        /// An AVCaptureConnection may involve one or more AVCaptureInputPorts producing data to the connection's AVCaptureOutput. This property is read-only. An AVCaptureConnection's output remains static for the life of the object. Note that a connection can either be to an output or a video preview layer, but never to both.
         #[method_id(@__retain_semantics Other output)]
         pub unsafe fn output(&self) -> Option<Retained<AVCaptureOutput>>;
 
         #[cfg(all(feature = "AVCaptureVideoPreviewLayer", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
+        /// The AVCaptureVideoPreviewLayer instance consuming data from this connection's inputPort.
+        ///
+        ///
+        /// An AVCaptureConnection may involve one AVCaptureInputPort producing data to an AVCaptureVideoPreviewLayer object. This property is read-only. An AVCaptureConnection's videoPreviewLayer remains static for the life of the object. Note that a connection can either be to an output or a video preview layer, but never to both.
         #[method_id(@__retain_semantics Other videoPreviewLayer)]
         pub unsafe fn videoPreviewLayer(&self) -> Option<Retained<AVCaptureVideoPreviewLayer>>;
 
+        /// Indicates whether the connection's output should consume data.
+        ///
+        ///
+        /// The value of this property is a BOOL that determines whether the receiver's output should consume data from its connected inputPorts when a session is running. Clients can set this property to stop the flow of data to a given output during capture. The default value is YES.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
+        /// Indicates whether the receiver's output is currently capable of consuming data through this connection.
+        ///
+        ///
+        /// The value of this property is a BOOL that determines whether the receiver's output can consume data provided through this connection. This property is read-only. Clients may key-value observe this property to know when a session's configuration forces a connection to become inactive. The default value is YES.
+        ///
+        /// Prior to iOS 11, the audio connection feeding an AVCaptureAudioDataOutput is made inactive when using AVCaptureSessionPresetPhoto or the equivalent photo format using -[AVCaptureDevice activeFormat]. On iOS 11 and later, the audio connection feeding AVCaptureAudioDataOutput is active for all presets and device formats.
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
+        /// An array of AVCaptureAudioChannel objects representing individual channels of audio data flowing through the connection.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving audio. In such connections, the audioChannels array contains one AVCaptureAudioChannel object for each channel of audio data flowing through this connection.
         #[method_id(@__retain_semantics Other audioChannels)]
         pub unsafe fn audioChannels(&self) -> Retained<NSArray<AVCaptureAudioChannel>>;
 
+        /// Indicates whether the connection supports setting the videoMirrored property.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. In such connections, the videoMirrored property may only be set if
+        /// -isVideoMirroringSupported returns YES.
         #[method(isVideoMirroringSupported)]
         pub unsafe fn isVideoMirroringSupported(&self) -> bool;
 
+        /// Indicates whether the video flowing through the connection should be mirrored about its vertical axis.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. if -isVideoMirroringSupported returns YES, videoMirrored may be set to flip the video about its vertical axis and produce a mirror-image effect. This property may not be set unless -isVideoMirroringSupported returns YES, otherwise a NSInvalidArgumentException is thrown. This property may not be set if -automaticallyAdjustsVideoMirroring returns YES, otherwise an NSInvalidArgumentException is thrown.
         #[method(isVideoMirrored)]
         pub unsafe fn isVideoMirrored(&self) -> bool;
 
+        /// Setter for [`isVideoMirrored`][Self::isVideoMirrored].
         #[method(setVideoMirrored:)]
         pub unsafe fn setVideoMirrored(&self, video_mirrored: bool);
 
+        /// Specifies whether or not the value of
+        /// "
+        /// videoMirrored" can change based on configuration of the session.
+        ///
+        ///
+        /// For some session configurations, video data flowing through the connection will be mirrored by default. When the value of this property is YES, the value of
+        /// "
+        /// videoMirrored" may change depending on the configuration of the session, for example after switching to a different AVCaptureDeviceInput. The default value is YES.
         #[method(automaticallyAdjustsVideoMirroring)]
         pub unsafe fn automaticallyAdjustsVideoMirroring(&self) -> bool;
 
+        /// Setter for [`automaticallyAdjustsVideoMirroring`][Self::automaticallyAdjustsVideoMirroring].
         #[method(setAutomaticallyAdjustsVideoMirroring:)]
         pub unsafe fn setAutomaticallyAdjustsVideoMirroring(
             &self,
@@ -478,83 +969,160 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Returns whether the connection supports the given rotation angle in degrees.
+        ///
+        ///
+        /// Parameter `videoRotationAngle`: A video rotation angle to be checked.
+        ///
+        /// Returns: YES if the connection supports the given video rotation angle, NO otherwise.
+        ///
+        ///
+        /// The connection's videoRotationAngle property can only be set to a certain angle if this method returns YES for that angle. Only rotation angles of 0, 90, 180 and 270 are supported.
         #[method(isVideoRotationAngleSupported:)]
         pub unsafe fn isVideoRotationAngleSupported(&self, video_rotation_angle: CGFloat) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates whether the video flowing through the connection should be rotated with a given angle in degrees.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video or depth. -setVideoRotationAngle: throws an NSInvalidArgumentException if set to an unsupported value (see -isVideoRotationAngleSupported:). Note that setting videoRotationAngle does not necessarily result in physical rotation of video buffers. For instance, a video connection to an AVCaptureMovieFileOutput handles orientation using a Quicktime track matrix. In the AVCapturePhotoOutput, orientation is handled using Exif tags. And the AVCaptureVideoPreviewLayer applies transforms to its contents to perform rotations. However, the AVCaptureVideoDataOutput and AVCaptureDepthDataOutput do output physically rotated video buffers. Setting a video rotation angle for an output that does physically rotate buffers requires a lengthy configuration of the capture render pipeline and should be done before calling -[AVCaptureSession startRunning].
+        ///
+        /// Starting with the Spring 2024 iPad line, the default value of videoRotationAngle is 180 degrees for video data on Front Camera as compared to 0 degrees on previous devices. So clients using AVCaptureVideoDataOutput and AVCaptureDepthDataOutput should set videoRotationAngle to 0 to avoid the physical buffer rotation described above. And clients rotating video data by themselves must account for the default value of videoRotationAngle when applying angles (videoRotationAngleForHorizonLevelPreview, videoRotationAngleForHorizonLevelCapture) from AVCaptureDeviceRotationCoordinator. Note that this change in default value is currently limited to these iPads, however it is recommended that clients rotating video data themselves incorporate the default rotation value into their workflows for all devices.
         #[method(videoRotationAngle)]
         pub unsafe fn videoRotationAngle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`videoRotationAngle`][Self::videoRotationAngle].
         #[method(setVideoRotationAngle:)]
         pub unsafe fn setVideoRotationAngle(&self, video_rotation_angle: CGFloat);
 
+        /// Indicates whether the connection supports setting the videoOrientation property.
+        ///
+        ///
+        /// This property is deprecated. Use -isVideoRotationAngleSupported: instead.
         #[deprecated = "Use -isVideoRotationAngleSupported: instead"]
         #[method(isVideoOrientationSupported)]
         pub unsafe fn isVideoOrientationSupported(&self) -> bool;
 
+        /// Indicates whether the video flowing through the connection should be rotated to a given orientation.
+        ///
+        ///
+        /// This property is deprecated. Use -videoRotationAngle instead. This property may only be set if -isVideoOrientationSupported returns YES, otherwise an NSInvalidArgumentException is thrown.
         #[deprecated = "Use -videoRotationAngle instead"]
         #[method(videoOrientation)]
         pub unsafe fn videoOrientation(&self) -> AVCaptureVideoOrientation;
 
+        /// Setter for [`videoOrientation`][Self::videoOrientation].
         #[deprecated = "Use -videoRotationAngle instead"]
         #[method(setVideoOrientation:)]
         pub unsafe fn setVideoOrientation(&self, video_orientation: AVCaptureVideoOrientation);
 
+        /// Indicates whether the connection supports setting the videoFieldMode property.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. In such connections, the videoFieldMode property may only be set if -isVideoFieldModeSupported returns YES.
         #[method(isVideoFieldModeSupported)]
         pub unsafe fn isVideoFieldModeSupported(&self) -> bool;
 
+        /// Indicates how interlaced video flowing through the connection should be treated.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. If -isVideoFieldModeSupported returns YES, videoFieldMode may be set to affect interlaced video content flowing through the connection.
         #[method(videoFieldMode)]
         pub unsafe fn videoFieldMode(&self) -> AVVideoFieldMode;
 
+        /// Setter for [`videoFieldMode`][Self::videoFieldMode].
         #[method(setVideoFieldMode:)]
         pub unsafe fn setVideoFieldMode(&self, video_field_mode: AVVideoFieldMode);
 
+        /// Indicates whether the connection supports setting the videoMinFrameDuration property.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. In such connections, the videoMinFrameDuration property may only be set if -isVideoMinFrameDurationSupported returns YES.
+        ///
+        /// This property is deprecated on iOS, where min and max frame rate adjustments are applied exclusively at the AVCaptureDevice using the activeVideoMinFrameDuration and activeVideoMaxFrameDuration properties. On macOS, frame rate adjustments are supported both at the AVCaptureDevice and at AVCaptureConnection, enabling connections to output different frame rates.
         #[deprecated = "Use AVCaptureDevice's activeFormat.videoSupportedFrameRateRanges instead."]
         #[method(isVideoMinFrameDurationSupported)]
         pub unsafe fn isVideoMinFrameDurationSupported(&self) -> bool;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the minimum time interval at which the receiver should output consecutive video frames.
+        ///
+        ///
+        /// The value of this property is a CMTime specifying the minimum duration of each video frame output by the receiver, placing a lower bound on the amount of time that should separate consecutive frames. This is equivalent to the reciprocal of the maximum frame rate. A value of kCMTimeZero or kCMTimeInvalid indicates an unlimited maximum frame rate. The default value is kCMTimeInvalid.
+        ///
+        /// This property is deprecated on iOS, where min and max frame rate adjustments are applied exclusively at the AVCaptureDevice using the activeVideoMinFrameDuration and activeVideoMaxFrameDuration properties. On macOS, frame rate adjustments are supported both at the AVCaptureDevice and at AVCaptureConnection, enabling connections to output different frame rates.
         #[deprecated = "Use AVCaptureDevice's activeVideoMinFrameDuration instead."]
         #[method(videoMinFrameDuration)]
         pub unsafe fn videoMinFrameDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`videoMinFrameDuration`][Self::videoMinFrameDuration].
         #[deprecated = "Use AVCaptureDevice's activeVideoMinFrameDuration instead."]
         #[method(setVideoMinFrameDuration:)]
         pub unsafe fn setVideoMinFrameDuration(&self, video_min_frame_duration: CMTime);
 
+        /// Indicates whether the connection supports setting the videoMaxFrameDuration property.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. In such connections, the videoMaxFrameDuration property may only be set if -isVideoMaxFrameDurationSupported returns YES.
+        ///
+        /// This property is deprecated on iOS, where min and max frame rate adjustments are applied exclusively at the AVCaptureDevice using the activeVideoMinFrameDuration and activeVideoMaxFrameDuration properties. On macOS, frame rate adjustments are supported both at the AVCaptureDevice and at AVCaptureConnection, enabling connections to output different frame rates.
         #[deprecated = "Use AVCaptureDevice's activeFormat.videoSupportedFrameRateRanges instead."]
         #[method(isVideoMaxFrameDurationSupported)]
         pub unsafe fn isVideoMaxFrameDurationSupported(&self) -> bool;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the maximum time interval at which the receiver should output consecutive video frames.
+        ///
+        ///
+        /// The value of this property is a CMTime specifying the maximum duration of each video frame output by the receiver, placing an upper bound on the amount of time that should separate consecutive frames. This is equivalent to the reciprocal of the minimum frame rate. A value of kCMTimeZero or kCMTimeInvalid indicates an unlimited minimum frame rate. The default value is kCMTimeInvalid.
+        ///
+        /// This property is deprecated on iOS, where min and max frame rate adjustments are applied exclusively at the AVCaptureDevice using the activeVideoMinFrameDuration and activeVideoMaxFrameDuration properties. On macOS, frame rate adjustments are supported both at the AVCaptureDevice and at AVCaptureConnection, enabling connections to output different frame rates.
         #[deprecated = "Use AVCaptureDevice's activeVideoMaxFrameDuration instead."]
         #[method(videoMaxFrameDuration)]
         pub unsafe fn videoMaxFrameDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`videoMaxFrameDuration`][Self::videoMaxFrameDuration].
         #[deprecated = "Use AVCaptureDevice's activeVideoMaxFrameDuration instead."]
         #[method(setVideoMaxFrameDuration:)]
         pub unsafe fn setVideoMaxFrameDuration(&self, video_max_frame_duration: CMTime);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates the maximum video scale and crop factor supported by the receiver.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. In such connections, the videoMaxScaleAndCropFactor property specifies the maximum CGFloat value that may be used when setting the videoScaleAndCropFactor property.
         #[method(videoMaxScaleAndCropFactor)]
         pub unsafe fn videoMaxScaleAndCropFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Indicates the current video scale and crop factor in use by the receiver.
+        ///
+        ///
+        /// This property only applies to AVCaptureStillImageOutput connections. In such connections, the videoScaleAndCropFactor property may be set to a value in the range of 1.0 to videoMaxScaleAndCropFactor. At a factor of 1.0, the image is its original size. At a factor greater than 1.0, the image is scaled by the factor and center-cropped to its original dimensions. This factor is applied in addition to any magnification from AVCaptureDevice's videoZoomFactor property.
+        ///
+        ///
+        /// See: -[AVCaptureDevice videoZoomFactor]
         #[method(videoScaleAndCropFactor)]
         pub unsafe fn videoScaleAndCropFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`videoScaleAndCropFactor`][Self::videoScaleAndCropFactor].
         #[method(setVideoScaleAndCropFactor:)]
         pub unsafe fn setVideoScaleAndCropFactor(&self, video_scale_and_crop_factor: CGFloat);
 
         #[cfg(feature = "AVCaptureDevice")]
+        /// Indicates the stabilization mode to apply to video flowing through the receiver when it is supported.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. On devices where the video stabilization feature is supported, only a subset of available source formats may be available for stabilization. By setting the preferredVideoStabilizationMode property to a value other than AVCaptureVideoStabilizationModeOff, video flowing through the receiver is stabilized when the mode is available. Enabling video stabilization introduces additional latency into the video capture pipeline and may consume more system memory depending on the stabilization mode and format. If the preferred stabilization mode isn't available, the activeVideoStabilizationMode will be set to AVCaptureVideoStabilizationModeOff. Clients may key-value observe the activeVideoStabilizationMode property to know which stabilization mode is in use or when it is off. The default value is AVCaptureVideoStabilizationModeOff. When setting this property to AVCaptureVideoStabilizationModeAuto, an appropriate stabilization mode will be chosen based on the format and frame rate. For apps linked before iOS 6.0, the default value is AVCaptureVideoStabilizationModeStandard for a video connection attached to an AVCaptureMovieFileOutput instance. For apps linked on or after iOS 6.0, the default value is always AVCaptureVideoStabilizationModeOff. Setting a video stabilization mode using this property may change the value of enablesVideoStabilizationWhenAvailable.
         #[method(preferredVideoStabilizationMode)]
         pub unsafe fn preferredVideoStabilizationMode(&self) -> AVCaptureVideoStabilizationMode;
 
         #[cfg(feature = "AVCaptureDevice")]
+        /// Setter for [`preferredVideoStabilizationMode`][Self::preferredVideoStabilizationMode].
         #[method(setPreferredVideoStabilizationMode:)]
         pub unsafe fn setPreferredVideoStabilizationMode(
             &self,
@@ -562,20 +1130,37 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVCaptureDevice")]
+        /// Indicates the stabilization mode currently being applied to video flowing through the receiver.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. On devices where the video stabilization feature is supported, only a subset of available source formats may be stabilized. The activeVideoStabilizationMode property returns a value other than AVCaptureVideoStabilizationModeOff if video stabilization is currently in use. This property never returns AVCaptureVideoStabilizationModeAuto. This property is key-value observable.
         #[method(activeVideoStabilizationMode)]
         pub unsafe fn activeVideoStabilizationMode(&self) -> AVCaptureVideoStabilizationMode;
 
+        /// Indicates whether the connection supports video stabilization.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. In such connections, the -enablesVideoStabilizationWhenAvailable property may only be set if -supportsVideoStabilization returns YES. This property returns YES if the connection's input device has one or more formats that support video stabilization and the connection's output supports video stabilization. See [AVCaptureDeviceFormat isVideoStabilizationModeSupported:] to check which video stabilization modes are supported by the active device format.
         #[method(isVideoStabilizationSupported)]
         pub unsafe fn isVideoStabilizationSupported(&self) -> bool;
 
+        /// Indicates whether stabilization is currently being applied to video flowing through the receiver.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. On devices where the video stabilization feature is supported, only a subset of available source formats and resolutions may be available for stabilization. The videoStabilizationEnabled property returns YES if video stabilization is currently in use. This property is key-value observable. This property is deprecated. Use activeVideoStabilizationMode instead.
         #[deprecated = "Use activeVideoStabilizationMode instead."]
         #[method(isVideoStabilizationEnabled)]
         pub unsafe fn isVideoStabilizationEnabled(&self) -> bool;
 
+        /// Indicates whether stabilization should be applied to video flowing through the receiver when the feature is available.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. On devices where the video stabilization feature is supported, only a subset of available source formats and resolutions may be available for stabilization. By setting the enablesVideoStabilizationWhenAvailable property to YES, video flowing through the receiver is stabilized when available. Enabling video stabilization may introduce additional latency into the video capture pipeline. Clients may key-value observe the videoStabilizationEnabled property to know when stabilization is in use or not. The default value is NO. For apps linked before iOS 6.0, the default value is YES for a video connection attached to an AVCaptureMovieFileOutput instance. For apps linked on or after iOS 6.0, the default value is always NO. This property is deprecated. Use preferredVideoStabilizationMode instead.
         #[deprecated = "Use preferredVideoStabilizationMode instead."]
         #[method(enablesVideoStabilizationWhenAvailable)]
         pub unsafe fn enablesVideoStabilizationWhenAvailable(&self) -> bool;
 
+        /// Setter for [`enablesVideoStabilizationWhenAvailable`][Self::enablesVideoStabilizationWhenAvailable].
         #[deprecated = "Use preferredVideoStabilizationMode instead."]
         #[method(setEnablesVideoStabilizationWhenAvailable:)]
         pub unsafe fn setEnablesVideoStabilizationWhenAvailable(
@@ -583,12 +1168,21 @@ extern_methods!(
             enables_video_stabilization_when_available: bool,
         );
 
+        /// Indicates whether the connection supports camera intrinsic matrix delivery.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. For such connections, the cameraIntrinsicMatrixDeliveryEnabled property may only be set to YES if -isCameraIntrinsicMatrixDeliverySupported returns YES. This property returns YES if both the connection's input device format and the connection's output support camera intrinsic matrix delivery. Only the AVCaptureVideoDataOutput's connection supports this property. Note that if video stabilization is enabled (preferredVideoStabilizationMode is set to something other than AVCaptureVideoStabilizationModeOff), camera intrinsic matrix delivery is not supported. Starting in iOS 14.3, camera intrinsics are delivered with video buffers on which geometric distortion correction is applied.
         #[method(isCameraIntrinsicMatrixDeliverySupported)]
         pub unsafe fn isCameraIntrinsicMatrixDeliverySupported(&self) -> bool;
 
+        /// Indicates whether camera intrinsic matrix delivery should be enabled.
+        ///
+        ///
+        /// This property is only applicable to AVCaptureConnection instances involving video. Refer to property cameraIntrinsicMatrixDeliverySupported before setting this property. When this property is set to YES, the receiver's output will add the kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix sample buffer attachment to all vended sample buffers. This property must be set before the session starts running.
         #[method(isCameraIntrinsicMatrixDeliveryEnabled)]
         pub unsafe fn isCameraIntrinsicMatrixDeliveryEnabled(&self) -> bool;
 
+        /// Setter for [`isCameraIntrinsicMatrixDeliveryEnabled`][Self::isCameraIntrinsicMatrixDeliveryEnabled].
         #[method(setCameraIntrinsicMatrixDeliveryEnabled:)]
         pub unsafe fn setCameraIntrinsicMatrixDeliveryEnabled(
             &self,
@@ -598,7 +1192,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel?language=objc)
+    /// AVCaptureAudioChannel represents a single channel of audio flowing through an AVCaptureSession.
+    ///
+    ///
+    /// An AVCaptureConnection from an input producing audio to an output receiving audio exposes an array of AVCaptureAudioChannel objects, one for each channel of audio available. Iterating through these audio channel objects, a client may poll for audio levels. Instances of AVCaptureAudioChannel cannot be created directly.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureAudioChannel;
@@ -614,21 +1213,39 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// A measurement of the instantaneous average power level of the audio flowing through the receiver.
+        ///
+        ///
+        /// A client may poll an AVCaptureAudioChannel object for its current averagePowerLevel to get its instantaneous average power level in decibels. This property is not key-value observable.
         #[method(averagePowerLevel)]
         pub unsafe fn averagePowerLevel(&self) -> c_float;
 
+        /// A measurement of the peak/hold level of the audio flowing through the receiver.
+        ///
+        ///
+        /// A client may poll an AVCaptureAudioChannel object for its current peakHoldLevel to get its most recent peak hold level in decibels. This property is not key-value observable.
         #[method(peakHoldLevel)]
         pub unsafe fn peakHoldLevel(&self) -> c_float;
 
+        /// A property indicating the current volume (gain) of the receiver.
+        ///
+        ///
+        /// The volume property indicates the current volume or gain of the receiver as a floating point value between 0.0 -> 1.0. If you desire to boost the gain in software, you may specify a a value greater than 1.0.
         #[method(volume)]
         pub unsafe fn volume(&self) -> c_float;
 
+        /// Setter for [`volume`][Self::volume].
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
+        /// A property indicating whether the receiver is currently enabled for data capture.
+        ///
+        ///
+        /// By default, all AVCaptureAudioChannel objects exposed by a connection are enabled. You may set enabled to NO to stop the flow of data for a particular AVCaptureAudioChannel.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
     }

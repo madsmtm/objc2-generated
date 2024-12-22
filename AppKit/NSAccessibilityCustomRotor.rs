@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotorsearchdirection?language=objc)
+/// Direction to search for an NSAccessibilityCustomRotorItemResult.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotorsearchdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,7 +29,11 @@ unsafe impl RefEncode for NSAccessibilityCustomRotorSearchDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotortype?language=objc)
+/// Use NSAccessibilityCustomRotorType when providing results for the
+/// following types. This allows assistive technologies to assign keyboard
+/// commands and gestures for these common search types.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -88,7 +94,10 @@ unsafe impl RefEncode for NSAccessibilityCustomRotorType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor?language=objc)
+    /// NSAccessibilityCustomRotors allow assistive technologies, like
+    /// VoiceOver, to search applications for content related to the given label.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotor;
@@ -98,6 +107,9 @@ unsafe impl NSObjectProtocol for NSAccessibilityCustomRotor {}
 
 extern_methods!(
     unsafe impl NSAccessibilityCustomRotor {
+        /// Convenience initializer that uses
+        /// NSAccessibilityCustomRotorTypeCustom as the default rotor type. Use this
+        /// initializer for custom rotors that are not one of the common types.
         #[method_id(@__retain_semantics Init initWithLabel:itemSearchDelegate:)]
         pub unsafe fn initWithLabel_itemSearchDelegate(
             this: Allocated<Self>,
@@ -105,6 +117,8 @@ extern_methods!(
             item_search_delegate: &ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>,
         ) -> Retained<Self>;
 
+        /// Convenience initializer for custom rotors that use a common type
+        /// such as links, headings, etc. A default label will be provided.
         #[method_id(@__retain_semantics Init initWithRotorType:itemSearchDelegate:)]
         pub unsafe fn initWithRotorType_itemSearchDelegate(
             this: Allocated<Self>,
@@ -112,24 +126,39 @@ extern_methods!(
             item_search_delegate: &ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>,
         ) -> Retained<Self>;
 
+        /// The rotor type to provide results for.
+        ///
+        /// The default type is NSAccessibilityCustomRotorTypeCustom, unless
+        /// the rotor type was specified in the initializer.
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSAccessibilityCustomRotorType;
 
+        /// Setter for [`type`][Self::type].
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: NSAccessibilityCustomRotorType);
 
+        /// The localized label assistive technologies will use to describe
+        /// the custom rotor.
+        ///
+        /// The label is only used when the rotor type is
+        /// NSAccessibilityCustomRotorTypeCustom since a default is provided
+        /// for all other types.
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
+        /// The itemSearchDelegate will be asked to find the next item result
+        /// after performing a search with the given search parameters.
         #[method_id(@__retain_semantics Other itemSearchDelegate)]
         pub unsafe fn itemSearchDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`itemSearchDelegate`][Self::itemSearchDelegate].
         #[method(setItemSearchDelegate:)]
         pub unsafe fn setItemSearchDelegate(
             &self,
@@ -139,6 +168,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSAccessibilityProtocols")]
+        /// Provide an item load delegate if the rotor vends item results that
+        /// do not have a backing UI element yet. The loader will be asked to load an
+        /// element via the accessibilityElementWithToken protocol method when the
+        /// item result is selected by an assistive client. Applications can use the
+        /// item result's token to determine which item to return.
         #[method_id(@__retain_semantics Other itemLoadingDelegate)]
         pub unsafe fn itemLoadingDelegate(
             &self,
@@ -146,6 +180,7 @@ extern_methods!(
 
         #[cfg(feature = "NSAccessibilityProtocols")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`itemLoadingDelegate`][Self::itemLoadingDelegate].
         #[method(setItemLoadingDelegate:)]
         pub unsafe fn setItemLoadingDelegate(
             &self,
@@ -166,7 +201,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotorsearchparameters?language=objc)
+    /// NSAccessibilityCustomRotorSearchParameters is a container for
+    /// search parameters. It should be examined to determine the next matching
+    /// NSAccessibilityCustomRotorItemResult.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotorsearchparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotorSearchParameters;
@@ -176,27 +215,39 @@ unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorSearchParameters {}
 
 extern_methods!(
     unsafe impl NSAccessibilityCustomRotorSearchParameters {
+        /// The currentItem determines where the search will start from. If
+        /// it is nil, the search should begin from, and include, the first or last
+        /// item, depending on which search direction is used (e.g. search direction
+        /// next will return the first item and previous will return the last item).
         #[method_id(@__retain_semantics Other currentItem)]
         pub unsafe fn currentItem(&self) -> Option<Retained<NSAccessibilityCustomRotorItemResult>>;
 
+        /// Setter for [`currentItem`][Self::currentItem].
         #[method(setCurrentItem:)]
         pub unsafe fn setCurrentItem(
             &self,
             current_item: Option<&NSAccessibilityCustomRotorItemResult>,
         );
 
+        /// Either NSAccessibilityCustomRotorSearchDirectionPrevious or
+        /// NSAccessibilityCustomRotorSearchDirectionNext.
         #[method(searchDirection)]
         pub unsafe fn searchDirection(&self) -> NSAccessibilityCustomRotorSearchDirection;
 
+        /// Setter for [`searchDirection`][Self::searchDirection].
         #[method(setSearchDirection:)]
         pub unsafe fn setSearchDirection(
             &self,
             search_direction: NSAccessibilityCustomRotorSearchDirection,
         );
 
+        /// A string of text to filter the results against. This is used to get
+        /// type-ahead results. For example, given a list of primary colors and filter
+        /// text "Re", color item "Red" would be returned as a result.
         #[method_id(@__retain_semantics Other filterString)]
         pub unsafe fn filterString(&self) -> Retained<NSString>;
 
+        /// Setter for [`filterString`][Self::filterString].
         #[method(setFilterString:)]
         pub unsafe fn setFilterString(&self, filter_string: &NSString);
     }
@@ -214,7 +265,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotoritemresult?language=objc)
+    /// NSAccessibilityCustomRotorItemResults are the objects returned
+    /// to assistive technologies that match a search parameter criteria.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotoritemresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotorItemResult;
@@ -231,6 +285,8 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSAccessibilityProtocols")]
+        /// Creates an item result with a given target element. Assistive
+        /// technologies may try to set accessibility focus on the element.
         #[method_id(@__retain_semantics Init initWithTargetElement:)]
         pub unsafe fn initWithTargetElement(
             this: Allocated<Self>,
@@ -238,6 +294,9 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
+        /// Creates an item result with a given item load token and custom label.
+        /// Use this initializer if the application has not yet loaded the element
+        /// backing the item result.
         #[method_id(@__retain_semantics Init initWithItemLoadingToken:customLabel:)]
         pub unsafe fn initWithItemLoadingToken_customLabel(
             this: Allocated<Self>,
@@ -246,24 +305,40 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSAccessibilityProtocols")]
+        /// A target element references an element that will be messaged for
+        /// other accessibility properties. If it is not nil, assistive technologies
+        /// may try to set accessibility focus on it.
         #[method_id(@__retain_semantics Other targetElement)]
         pub unsafe fn targetElement(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSAccessibilityElementProtocol>>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
+        /// Provide an item load token if the application has not yet
+        /// loaded the element backing the item result. Application can use the token
+        /// to determine which item to return.
         #[method_id(@__retain_semantics Other itemLoadingToken)]
         pub unsafe fn itemLoadingToken(&self) -> Option<Retained<NSAccessibilityLoadingToken>>;
 
+        /// For text-based elements such as an NSTextView, this is an NSRange
+        /// that specifies the area of interest. If the target range has NSNotFound
+        /// for the location, the search should begin from the first or last character
+        /// of the text element, depending on the search direction.
         #[method(targetRange)]
         pub unsafe fn targetRange(&self) -> NSRange;
 
+        /// Setter for [`targetRange`][Self::targetRange].
         #[method(setTargetRange:)]
         pub unsafe fn setTargetRange(&self, target_range: NSRange);
 
+        /// A localized label that can be used instead of the default item
+        /// label to describe the item result.
+        ///
+        /// Required if using the loader-based initializer. Optional otherwise.
         #[method_id(@__retain_semantics Other customLabel)]
         pub unsafe fn customLabel(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`customLabel`][Self::customLabel].
         #[method(setCustomLabel:)]
         pub unsafe fn setCustomLabel(&self, custom_label: Option<&NSString>);
     }
@@ -272,6 +347,8 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotoritemsearchdelegate?language=objc)
     pub unsafe trait NSAccessibilityCustomRotorItemSearchDelegate: NSObjectProtocol {
+        /// Returns the found NSAccessibilityCustomRotorItemResult after
+        /// performing a search with the given search parameters.
         #[method_id(@__retain_semantics Other rotor:resultForSearchParameters:)]
         unsafe fn rotor_resultForSearchParameters(
             &self,

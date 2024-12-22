@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmultipledirectoryshare?language=objc)
+    /// Directory share for multiple directories.
+    ///
+    /// This directory share exposes multiple directories from the host file system to the guest.
+    ///
+    /// See: VZDirectorySharingDeviceConfiguration
+    ///
+    /// See: VZSharedDirectory
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmultipledirectoryshare?language=objc)
     #[unsafe(super(VZDirectoryShare, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZDirectoryShare")]
@@ -20,10 +28,18 @@ unsafe impl NSObjectProtocol for VZMultipleDirectoryShare {}
 extern_methods!(
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZMultipleDirectoryShare {
+        /// Initialize the directory share with an empty set of directories.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZSharedDirectory")]
+        /// Initialize the directory share with a set of directories on the host.
+        ///
+        /// Parameter `directories`: Directories on the host to expose to the guest by name.
+        ///
+        /// The dictionary string keys will be the name for the directory. The keys must be valid names or an exception will be raised.
+        ///
+        /// See: +[VZMultipleDirectoryShare validateName:error:]
         #[method_id(@__retain_semantics Init initWithDirectories:)]
         pub unsafe fn initWithDirectories(
             this: Allocated<Self>,
@@ -31,12 +47,33 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "VZSharedDirectory")]
+        /// The directories on the host to expose to the guest.
+        ///
+        /// The dictionary string keys will be the name for the directory. The keys must be valid names or an exception will be raised.
+        ///
+        /// See: +[VZMultipleDirectoryShare validateName:error:]
         #[method_id(@__retain_semantics Other directories)]
         pub unsafe fn directories(&self) -> Retained<NSDictionary<NSString, VZSharedDirectory>>;
 
+        /// Check if a name is a valid directory name.
+        ///
+        /// Parameter `name`: The name to validate.
+        ///
+        /// Parameter `error`: If not nil, assigned with an error describing why the name is not valid.
+        ///
+        /// The name must not be empty, have characters unsafe for file systems, be longer than NAME_MAX, or other restrictions.
+        ///
+        /// See: +[VZMultipleDirectoryShare canonicalizedNameFromName:]
         #[method(validateName:error:_)]
         pub unsafe fn validateName_error(name: &NSString) -> Result<(), Retained<NSError>>;
 
+        /// Canonicalize a string to be a valid directory name.
+        ///
+        /// Parameter `name`: The name to canonicalize.
+        ///
+        /// This returns nil when it cannot produce a valid name. When not nil, the result is a valid directory name.
+        ///
+        /// See: +[VZMultipleDirectoryShare validateName:error:]
         #[method_id(@__retain_semantics Other canonicalizedNameFromName:)]
         pub unsafe fn canonicalizedNameFromName(name: &NSString) -> Option<Retained<NSString>>;
     }

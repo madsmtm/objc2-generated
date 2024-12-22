@@ -13,7 +13,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframeprocessingblock?language=objc)
+/// A block callback for processing frames of a live photo, including the still image
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframeprocessingblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
 pub type PHLivePhotoFrameProcessingBlock = *mut block2::Block<
     dyn Fn(NonNull<ProtocolObject<dyn PHLivePhotoFrame>>, NonNull<*mut NSError>) -> *mut CIImage,
@@ -35,6 +37,8 @@ unsafe impl NSObjectProtocol for PHLivePhotoEditingContext {}
 extern_methods!(
     unsafe impl PHLivePhotoEditingContext {
         #[cfg(feature = "PHContentEditingInput")]
+        /// Initializer from the specified live photo input
+        /// Return nil if the specified input is not for a live photo
         #[method_id(@__retain_semantics Init initWithLivePhotoEditingInput:)]
         pub unsafe fn initWithLivePhotoEditingInput(
             this: Allocated<Self>,
@@ -45,28 +49,38 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
+        /// The original full-size image from the input live photo
         #[method_id(@__retain_semantics Other fullSizeImage)]
         pub unsafe fn fullSizeImage(&self) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The duration of the live photo
         #[method(duration)]
         pub unsafe fn duration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The time of the still image within the live photo
         #[method(photoTime)]
         pub unsafe fn photoTime(&self) -> CMTime;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
+        /// A block that can be set to process each frame of the live photo
+        /// Note that the context uses a copy of the processor block during processing
         #[method(frameProcessor)]
         pub unsafe fn frameProcessor(&self) -> PHLivePhotoFrameProcessingBlock;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
+        /// Setter for [`frameProcessor`][Self::frameProcessor].
         #[method(setFrameProcessor:)]
         pub unsafe fn setFrameProcessor(&self, frame_processor: PHLivePhotoFrameProcessingBlock);
 
+        /// Specify the audio volume of the edited live photo
+        /// Must be between 0.0 and 1.0
+        /// Default to 1.0
         #[method(audioVolume)]
         pub unsafe fn audioVolume(&self) -> c_float;
 
+        /// Setter for [`audioVolume`][Self::audioVolume].
         #[method(setAudioVolume:)]
         pub unsafe fn setAudioVolume(&self, audio_volume: c_float);
 
@@ -75,6 +89,8 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// Asynchronously generate a new live photo suitable for playback in a PHLivePhotoView of the specified target size
+        /// The options dictionary can contain additional options, see below
         #[method(prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:)]
         pub unsafe fn prepareLivePhotoForPlaybackWithTargetSize_options_completionHandler(
             &self,
@@ -84,6 +100,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "PHContentEditingOutput", feature = "block2"))]
+        /// Asynchronously process and save the edited live photo to the specified content editing output
+        /// Options dictionary should be nil, reserved for future expansion
         #[method(saveLivePhotoToOutput:options:completionHandler:)]
         pub unsafe fn saveLivePhotoToOutput_options_completionHandler(
             &self,
@@ -92,6 +110,9 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
 
+        /// Cancel the current asynchronous operation
+        /// This is implicitly called whenever prepare or save is called
+        /// A canceled operation will call its completion handler with an appropriate error code
         #[method(cancel)]
         pub unsafe fn cancel(&self);
     }
@@ -105,14 +126,18 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframetype?language=objc)
+/// The type of frame in the Live Photo
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHLivePhotoFrameType(pub NSInteger);
 impl PHLivePhotoFrameType {
+    /// Indicates the still image
     #[doc(alias = "PHLivePhotoFrameTypePhoto")]
     pub const Photo: Self = Self(0);
+    /// Indicates a video frame
     #[doc(alias = "PHLivePhotoFrameTypeVideo")]
     pub const Video: Self = Self(1);
 }
@@ -126,20 +151,26 @@ unsafe impl RefEncode for PHLivePhotoFrameType {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframe?language=objc)
+    /// Protocol that describes a single frame of a live photo
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframe?language=objc)
     pub unsafe trait PHLivePhotoFrame {
         #[cfg(feature = "objc2-core-image")]
+        /// Input image for the frame
         #[method_id(@__retain_semantics Other image)]
         unsafe fn image(&self) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The time of the frame relative to the beginning of the live photo
         #[method(time)]
         unsafe fn time(&self) -> CMTime;
 
+        /// The type of frame
         #[method(type)]
         unsafe fn r#type(&self) -> PHLivePhotoFrameType;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The scale of the frame relative to the full-size image
         #[method(renderScale)]
         unsafe fn renderScale(&self) -> CGFloat;
     }
@@ -148,16 +179,25 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoshouldrenderatplaybacktime?language=objc)
+    /// Indicates whether processing should happen at playback time
+    /// If set to NO (the default) the live photo will always be rendered before playback
+    /// If set to YES, the editing context might still choose to render first for performance reasons
+    /// This option is ignored by the saveLivePhotoToOutput method
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoshouldrenderatplaybacktime?language=objc)
     pub static PHLivePhotoShouldRenderAtPlaybackTime: &'static PHLivePhotoEditingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrordomain?language=objc)
+    /// The error domain for all Live Photo Editing errors (Deprecated).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrordomain?language=objc)
     pub static PHLivePhotoEditingErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrorcode?language=objc)
+/// Error code for Live Photo Editing errors (Deprecated)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

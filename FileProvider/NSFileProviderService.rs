@@ -10,14 +10,30 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderservicesource?language=objc)
     pub unsafe trait NSFileProviderServiceSource {
+        /// The service name that uniquely identifies the service (using reverse domain
+        /// name notation for you service name is recommended).
         #[method_id(@__retain_semantics Other serviceName)]
         unsafe fn serviceName(&self) -> Retained<NSFileProviderServiceName>;
 
+        /// Return an endpoint object to allow the client application to connect to the
+        /// file provider.
+        /// The endpoint is retrieved from an anonymous
+        /// `NSXPCListener`that the file
+        /// provider creates. The file provider is in charge of accepting incoming
+        /// `NSXPCConnection's`via
+        /// `-[NSXPCListenerDelegate`listener:shouldAcceptNewConnection:],
+        /// and setting up properties on the new connection, like its exported object and
+        /// interfaces (that both the file provider and the client application have agreed
+        /// on).
         #[method_id(@__retain_semantics Other makeListenerEndpointAndReturnError:_)]
         unsafe fn makeListenerEndpointAndReturnError(
             &self,
         ) -> Result<Retained<NSXPCListenerEndpoint>, Retained<NSError>>;
 
+        /// Indicates whether access to the service is restricted.
+        ///
+        /// A restricted service can only be accessed by processes that can manage the domain the service is attached to. It is only accessible
+        /// through `-[NSFileProviderManager getServiceWithName:itemIdentifier:completionHandler:]`
         #[optional]
         #[method(isRestricted)]
         unsafe fn isRestricted(&self) -> bool;
@@ -28,6 +44,11 @@ extern_protocol!(
 
 extern_methods!(
     /// NSFileProviderService
+    /// A file provider can override the method in this category to return service
+    /// sources that provide custom communication channels to client applications.
+    /// The service sources must be tied to the item identified by
+    /// `itemIdentifier.`Client applications can retrieve the list of supported services by calling
+    /// `-[NSFileManager`getFileProviderServicesForItemAtURL:] for a specific item URL.
     #[cfg(feature = "Extension")]
     unsafe impl NSFileProviderExtension {
         #[cfg(feature = "NSFileProviderItem")]
@@ -47,6 +68,7 @@ extern_methods!(
     #[cfg(feature = "Extension")]
     unsafe impl NSFileProviderManager {
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
+        /// Retrieve the service with the specified named for the specified item.
         #[method(getServiceWithName:itemIdentifier:completionHandler:)]
         pub unsafe fn getServiceWithName_itemIdentifier_completionHandler(
             &self,

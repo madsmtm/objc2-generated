@@ -10,7 +10,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationactionpolicy?language=objc)
+/// The policy to pass back to the decision handler from the
+/// webView:decidePolicyForNavigationAction:decisionHandler: method.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationactionpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,7 +35,9 @@ unsafe impl RefEncode for WKNavigationActionPolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationresponsepolicy?language=objc)
+/// The policy to pass back to the decision handler from the webView:decidePolicyForNavigationResponse:decisionHandler: method.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationresponsepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -55,7 +60,11 @@ unsafe impl RefEncode for WKNavigationResponsePolicy {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationdelegate?language=objc)
+    /// A class conforming to the WKNavigationDelegate protocol can provide
+    /// methods for tracking progress for main frame navigations and for deciding
+    /// policy for main frame and subframe navigations.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationdelegate?language=objc)
     pub unsafe trait WKNavigationDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "WKNavigationAction",
@@ -64,6 +73,17 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Decides whether to allow or cancel a navigation.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `navigationAction`: Descriptive information about the action
+        /// triggering the navigation request.
+        ///
+        /// Parameter `decisionHandler`: The decision handler to call to allow or cancel the
+        /// navigation. The argument is one of the constants of the enumerated type WKNavigationActionPolicy.
+        ///
+        /// If you do not implement this method, the web view will load the request or, if appropriate, forward it to another application.
         #[optional]
         #[method(webView:decidePolicyForNavigationAction:decisionHandler:)]
         unsafe fn webView_decidePolicyForNavigationAction_decisionHandler(
@@ -81,6 +101,22 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Decides whether to allow or cancel a navigation.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `navigationAction`: Descriptive information about the action
+        /// triggering the navigation request.
+        ///
+        /// Parameter `preferences`: The default set of webpage preferences. This may be
+        /// changed by setting defaultWebpagePreferences on WKWebViewConfiguration.
+        ///
+        /// Parameter `decisionHandler`: The policy decision handler to call to allow or cancel
+        /// the navigation. The arguments are one of the constants of the enumerated type
+        /// WKNavigationActionPolicy, as well as an instance of WKWebpagePreferences.
+        ///
+        /// If you implement this method,
+        /// -webView:decidePolicyForNavigationAction:decisionHandler: will not be called.
         #[optional]
         #[method(webView:decidePolicyForNavigationAction:preferences:decisionHandler:)]
         unsafe fn webView_decidePolicyForNavigationAction_preferences_decisionHandler(
@@ -100,6 +136,18 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Decides whether to allow or cancel a navigation after its
+        /// response is known.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `navigationResponse`: Descriptive information about the navigation
+        /// response.
+        ///
+        /// Parameter `decisionHandler`: The decision handler to call to allow or cancel the
+        /// navigation. The argument is one of the constants of the enumerated type WKNavigationResponsePolicy.
+        ///
+        /// If you do not implement this method, the web view will allow the response, if the web view can show it.
         #[optional]
         #[method(webView:decidePolicyForNavigationResponse:decisionHandler:)]
         unsafe fn webView_decidePolicyForNavigationResponse_decisionHandler(
@@ -115,6 +163,11 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Invoked when a main frame navigation starts.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `navigation`: The navigation.
         #[optional]
         #[method(webView:didStartProvisionalNavigation:)]
         unsafe fn webView_didStartProvisionalNavigation(
@@ -129,6 +182,12 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Invoked when a server redirect is received for the main
+        /// frame.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `navigation`: The navigation.
         #[optional]
         #[method(webView:didReceiveServerRedirectForProvisionalNavigation:)]
         unsafe fn webView_didReceiveServerRedirectForProvisionalNavigation(
@@ -143,6 +202,14 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Invoked when an error occurs while starting to load data for
+        /// the main frame.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `navigation`: The navigation.
+        ///
+        /// Parameter `error`: The error that occurred.
         #[optional]
         #[method(webView:didFailProvisionalNavigation:withError:)]
         unsafe fn webView_didFailProvisionalNavigation_withError(
@@ -158,6 +225,11 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Invoked when content starts arriving for the main frame.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `navigation`: The navigation.
         #[optional]
         #[method(webView:didCommitNavigation:)]
         unsafe fn webView_didCommitNavigation(
@@ -172,6 +244,11 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Invoked when a main frame navigation completes.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `navigation`: The navigation.
         #[optional]
         #[method(webView:didFinishNavigation:)]
         unsafe fn webView_didFinishNavigation(
@@ -186,6 +263,14 @@ extern_protocol!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
+        /// Invoked when an error occurs during a committed main frame
+        /// navigation.
+        ///
+        /// Parameter `webView`: The web view invoking the delegate method.
+        ///
+        /// Parameter `navigation`: The navigation.
+        ///
+        /// Parameter `error`: The error that occurred.
         #[optional]
         #[method(webView:didFailNavigation:withError:)]
         unsafe fn webView_didFailNavigation_withError(
@@ -197,6 +282,19 @@ extern_protocol!(
 
         #[cfg(all(feature = "WKWebView", feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Invoked when the web view needs to respond to an authentication challenge.
+        ///
+        /// Parameter `webView`: The web view that received the authentication challenge.
+        ///
+        /// Parameter `challenge`: The authentication challenge.
+        ///
+        /// Parameter `completionHandler`: The completion handler you must invoke to respond to the challenge. The
+        /// disposition argument is one of the constants of the enumerated type
+        /// NSURLSessionAuthChallengeDisposition. When disposition is NSURLSessionAuthChallengeUseCredential,
+        /// the credential argument is the credential to use, or nil to indicate continuing without a
+        /// credential.
+        ///
+        /// If you do not implement this method, the web view will respond to the authentication challenge with the NSURLSessionAuthChallengeRejectProtectionSpace disposition.
         #[optional]
         #[method(webView:didReceiveAuthenticationChallenge:completionHandler:)]
         unsafe fn webView_didReceiveAuthenticationChallenge_completionHandler(
@@ -210,12 +308,22 @@ extern_protocol!(
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Invoked when the web view's web content process is terminated.
+        ///
+        /// Parameter `webView`: The web view whose underlying web content process was terminated.
         #[optional]
         #[method(webViewWebContentProcessDidTerminate:)]
         unsafe fn webViewWebContentProcessDidTerminate(&self, web_view: &WKWebView);
 
         #[cfg(all(feature = "WKWebView", feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Invoked when the web view is establishing a network connection using a deprecated version of TLS.
+        ///
+        /// Parameter `webView`: The web view initiating the connection.
+        ///
+        /// Parameter `challenge`: The authentication challenge.
+        ///
+        /// Parameter `decisionHandler`: The decision handler you must invoke to respond to indicate whether or not to continue with the connection establishment.
         #[optional]
         #[method(webView:authenticationChallenge:shouldAllowDeprecatedTLS:)]
         unsafe fn webView_authenticationChallenge_shouldAllowDeprecatedTLS(

@@ -17,14 +17,19 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SFSpeechErrorCode(pub NSInteger);
 impl SFSpeechErrorCode {
+    /// Error may include `NSUnderlyingErrorKey` in `userInfo`.
     #[doc(alias = "SFSpeechErrorCodeInternalServiceError")]
     pub const InternalServiceError: Self = Self(1);
+    /// Failed to read audio file
     #[doc(alias = "SFSpeechErrorCodeAudioReadFailed")]
     pub const AudioReadFailed: Self = Self(2);
+    /// Templates were malformed
     #[doc(alias = "SFSpeechErrorCodeUndefinedTemplateClassName")]
     pub const UndefinedTemplateClassName: Self = Self(7);
+    /// A custom language model file was malformed
     #[doc(alias = "SFSpeechErrorCodeMalformedSupplementalModel")]
     pub const MalformedSupplementalModel: Self = Self(8);
+    /// Operation timed out
     #[doc(alias = "SFSpeechErrorCodeTimeout")]
     pub const Timeout: Self = Self(10);
 }

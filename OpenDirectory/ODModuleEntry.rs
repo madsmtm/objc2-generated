@@ -23,6 +23,7 @@ extern_methods!(
         pub unsafe fn mappings(&self) -> Option<Retained<ODMappings>>;
 
         #[cfg(feature = "ODMappings")]
+        /// Setter for [`mappings`][Self::mappings].
         #[method(setMappings:)]
         pub unsafe fn setMappings(&self, mappings: Option<&ODMappings>);
 
@@ -32,27 +33,38 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other xpcServiceName)]
         pub unsafe fn xpcServiceName(&self) -> Retained<NSString>;
 
+        /// Setter for [`xpcServiceName`][Self::xpcServiceName].
         #[method(setXpcServiceName:)]
         pub unsafe fn setXpcServiceName(&self, xpc_service_name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other uuidString)]
         pub unsafe fn uuidString(&self) -> Retained<NSString>;
 
+        /// Setter for [`uuidString`][Self::uuidString].
         #[method(setUuidString:)]
         pub unsafe fn setUuidString(&self, uuid_string: Option<&NSString>);
 
+        /// Creates a new module entry with a given name and service.
+        ///
+        ///
+        /// Creates a new module entry with a given name and service.
         #[method_id(@__retain_semantics Other moduleEntryWithName:xpcServiceName:)]
         pub unsafe fn moduleEntryWithName_xpcServiceName(
             name: Option<&NSString>,
             xpc_service_name: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
+        /// Assigns a particular option for this module.
+        ///
+        ///
+        /// Options are dictated by the module and can be queried via [module supportedOptions].
         #[method(setOption:value:)]
         pub unsafe fn setOption_value(
             &self,
@@ -60,6 +72,10 @@ extern_methods!(
             value: Option<&AnyObject>,
         );
 
+        /// Fetches the current setting for the requested option.
+        ///
+        ///
+        /// Fetches the current setting for the requested option.
         #[method_id(@__retain_semantics Other option:)]
         pub unsafe fn option(&self, option_name: Option<&NSString>) -> Option<Retained<AnyObject>>;
     }

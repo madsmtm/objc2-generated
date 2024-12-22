@@ -11,30 +11,42 @@ extern "C" {
     pub static NIErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierrorcode?language=objc)
+/// Error codes for nearby interaction session failures.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NIErrorCode(pub NSInteger);
 impl NIErrorCode {
+    /// The platform does not support this operation
     #[doc(alias = "NIErrorCodeUnsupportedPlatform")]
     pub const UnsupportedPlatform: Self = Self(-5889);
+    /// Configuration is unsupported
     #[doc(alias = "NIErrorCodeInvalidConfiguration")]
     pub const InvalidConfiguration: Self = Self(-5888);
+    /// The session has failed and cannot be restarted
     #[doc(alias = "NIErrorCodeSessionFailed")]
     pub const SessionFailed: Self = Self(-5887);
+    /// The session has been active for over the allowed period
     #[doc(alias = "NIErrorCodeResourceUsageTimeout")]
     pub const ResourceUsageTimeout: Self = Self(-5886);
+    /// The maximum number of active sessions was exceeded
     #[doc(alias = "NIErrorCodeActiveSessionsLimitExceeded")]
     pub const ActiveSessionsLimitExceeded: Self = Self(-5885);
+    /// The user did not authorize the session
     #[doc(alias = "NIErrorCodeUserDidNotAllow")]
     pub const UserDidNotAllow: Self = Self(-5884);
+    /// ARSession Configuration provided is not compatible or the platform does not support camera assistance.
     #[doc(alias = "NIErrorCodeInvalidARConfiguration")]
     pub const InvalidARConfiguration: Self = Self(-5883);
+    /// A Nearby Accessory session has been associated with a peer device (such as a Bluetooth peer) that is not available
     #[doc(alias = "NIErrorCodeAccessoryPeerDeviceUnavailable")]
     pub const AccessoryPeerDeviceUnavailable: Self = Self(-5882);
+    /// The NINearbyPeerConfiguration provided is not compatible with the capabilities of the peer device
     #[doc(alias = "NIErrorCodeIncompatiblePeerDevice")]
     pub const IncompatiblePeerDevice: Self = Self(-5881);
+    /// The maximum number of active extended distance measurement sessions was exceeded
     #[doc(alias = "NIErrorCodeActiveExtendedDistanceSessionsLimitExceeded")]
     pub const ActiveExtendedDistanceSessionsLimitExceeded: Self = Self(-5880);
 }

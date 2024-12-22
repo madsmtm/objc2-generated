@@ -79,6 +79,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIPickerViewDataSource>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`dataSource`][Self::dataSource].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
@@ -90,6 +91,7 @@ extern_methods!(
             -> Option<Retained<ProtocolObject<dyn UIPickerViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -100,6 +102,7 @@ extern_methods!(
         #[method(showsSelectionIndicator)]
         pub unsafe fn showsSelectionIndicator(&self) -> bool;
 
+        /// Setter for [`showsSelectionIndicator`][Self::showsSelectionIndicator].
         #[deprecated = "This property has no effect on iOS 7 and later."]
         #[method(setShowsSelectionIndicator:)]
         pub unsafe fn setShowsSelectionIndicator(&self, shows_selection_indicator: bool);

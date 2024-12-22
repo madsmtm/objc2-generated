@@ -38,24 +38,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other phoneNumber)]
         pub unsafe fn phoneNumber(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`phoneNumber`][Self::phoneNumber].
         #[method(setPhoneNumber:)]
         pub unsafe fn setPhoneNumber(&self, phone_number: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other url)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`url`][Self::url].
         #[method(setUrl:)]
         pub unsafe fn setUrl(&self, url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other timeZone)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
+        /// Setter for [`timeZone`][Self::timeZone].
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
@@ -65,6 +69,7 @@ extern_methods!(
             -> Option<Retained<MKPointOfInterestCategory>>;
 
         #[cfg(feature = "MKPointOfInterestCategory")]
+        /// Setter for [`pointOfInterestCategory`][Self::pointOfInterestCategory].
         #[method(setPointOfInterestCategory:)]
         pub unsafe fn setPointOfInterestCategory(
             &self,

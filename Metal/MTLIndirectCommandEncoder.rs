@@ -47,6 +47,9 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// sets vertex buffer at specified index with provided offset and stride.
+        /// only call this when the buffer-index is part of the vertexDescriptor and
+        /// has set its stride to `MTLBufferLayoutStrideDynamic`
         #[method(setVertexBuffer:offset:attributeStride:atIndex:)]
         unsafe fn setVertexBuffer_offset_attributeStride_atIndex(
             &self,
@@ -221,6 +224,9 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// sets kernel buffer at specified index with provided offset and stride.
+        /// only call this when the buffer-index is part of the stageInputDescriptor
+        /// and has set its stride to `MTLBufferLayoutStrideDynamic`
         #[method(setKernelBuffer:offset:attributeStride:atIndex:)]
         unsafe fn setKernelBuffer_offset_attributeStride_atIndex(
             &self,

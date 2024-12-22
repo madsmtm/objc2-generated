@@ -8,13 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avroutedetectormultipleroutesdetecteddidchangenotification?language=objc)
+    /// Posted when the value of multipleRoutesDetected changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avroutedetectormultipleroutesdetecteddidchangenotification?language=objc)
     pub static AVRouteDetectorMultipleRoutesDetectedDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avroutedetector?language=objc)
+    /// AVRouteDetector detects the presence of media playback routes.
+    ///
+    /// If route detection is enabled (it is disabled by default), AVRouteDetector reports whether or not multiple playback routes have been detected. If this is the case, AVKit's AVRoutePickerView can be used to allow users to pick from the set of available routes.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avroutedetector?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVRouteDetector;
@@ -24,18 +32,29 @@ unsafe impl NSObjectProtocol for AVRouteDetector {}
 
 extern_methods!(
     unsafe impl AVRouteDetector {
+        /// Whether or not route detection is enabled. The default value is NO.
+        ///
+        /// Route detection significantly increases power consumption and must be turned off when it's no longer needed.
         #[method(isRouteDetectionEnabled)]
         pub unsafe fn isRouteDetectionEnabled(&self) -> bool;
 
+        /// Setter for [`isRouteDetectionEnabled`][Self::isRouteDetectionEnabled].
         #[method(setRouteDetectionEnabled:)]
         pub unsafe fn setRouteDetectionEnabled(&self, route_detection_enabled: bool);
 
+        /// This property is YES if, in addition to the local playback route, at least one more playback route has been detected.
+        ///
+        /// If multiple route have been detected, AVKit's AVRoutePickerView can be used to allow users to pick from the set of available routes. When the values of this property changes AVRouteDetectorMultipleRoutesDetectedDidChangeNotification is posted.
         #[method(multipleRoutesDetected)]
         pub unsafe fn multipleRoutesDetected(&self) -> bool;
 
+        /// Whether or not route detection will include custom routes. The default value is NO.
+        ///
+        /// Only set this to YES if also using AVCustomRoutingController.
         #[method(detectsCustomRoutes)]
         pub unsafe fn detectsCustomRoutes(&self) -> bool;
 
+        /// Setter for [`detectsCustomRoutes`][Self::detectsCustomRoutes].
         #[method(setDetectsCustomRoutes:)]
         pub unsafe fn setDetectsCustomRoutes(&self, detects_custom_routes: bool);
     }

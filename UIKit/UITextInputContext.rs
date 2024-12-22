@@ -20,18 +20,21 @@ extern_methods!(
         #[method(isPencilInputExpected)]
         pub unsafe fn isPencilInputExpected(&self) -> bool;
 
+        /// Setter for [`isPencilInputExpected`][Self::isPencilInputExpected].
         #[method(setPencilInputExpected:)]
         pub unsafe fn setPencilInputExpected(&self, pencil_input_expected: bool);
 
         #[method(isDictationInputExpected)]
         pub unsafe fn isDictationInputExpected(&self) -> bool;
 
+        /// Setter for [`isDictationInputExpected`][Self::isDictationInputExpected].
         #[method(setDictationInputExpected:)]
         pub unsafe fn setDictationInputExpected(&self, dictation_input_expected: bool);
 
         #[method(isHardwareKeyboardInputExpected)]
         pub unsafe fn isHardwareKeyboardInputExpected(&self) -> bool;
 
+        /// Setter for [`isHardwareKeyboardInputExpected`][Self::isHardwareKeyboardInputExpected].
         #[method(setHardwareKeyboardInputExpected:)]
         pub unsafe fn setHardwareKeyboardInputExpected(
             &self,

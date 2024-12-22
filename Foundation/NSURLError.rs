@@ -12,31 +12,46 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorfailingurlerrorkey?language=objc)
+    /// The NSError userInfo dictionary key used to store and retrieve the URL which caused a load to fail.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorfailingurlerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLErrorFailingURLErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorfailingurlstringerrorkey?language=objc)
+    /// The NSError userInfo dictionary key used to store and retrieve the NSString object for the URL which caused a load to fail.
+    ///
+    /// This constant supersedes NSErrorFailingURLStringKey, which was deprecated in Mac OS X 10.6.  Both constants refer to the same value for backward-compatibility, but this symbol name has a better prefix.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorfailingurlstringerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLErrorFailingURLStringErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nserrorfailingurlstringkey?language=objc)
+    /// The NSError userInfo dictionary key used to store and retrieve the NSString object for the URL which caused a load to fail.
+    ///
+    /// This constant is deprecated in Mac OS X 10.6, and is superseded by NSURLErrorFailingURLStringErrorKey.  Both constants refer to the same value for backward-compatibility, but the new symbol name has a better prefix.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nserrorfailingurlstringkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSErrorFailingURLStringKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorfailingurlpeertrusterrorkey?language=objc)
+    /// The NSError userInfo dictionary key used to store and retrieve the SecTrustRef object representing the state of a failed SSL handshake.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorfailingurlpeertrusterrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLErrorFailingURLPeerTrustErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorbackgroundtaskcancelledreasonkey?language=objc)
+    /// The NSError userInfo dictionary key used to store and retrieve the NSNumber corresponding to the reason why a background
+    /// NSURLSessionTask was cancelled
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorbackgroundtaskcancelledreasonkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLErrorBackgroundTaskCancelledReasonKey: &'static NSString;
 }
@@ -49,12 +64,18 @@ pub const NSURLErrorCancelledReasonBackgroundUpdatesDisabled: NSInteger = 1;
 pub const NSURLErrorCancelledReasonInsufficientSystemResources: NSInteger = 2;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereasonkey?language=objc)
+    /// The NSErrorUserInfoKey used to store and retrieve the NSNumber object corresponding to the reason why the network is unavailable when the task failed due to unsatisfiable network constraints.  See the NSURLErrorNetworkUnavailableReason enum for details.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereasonkey?language=objc)
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSURLErrorNetworkUnavailableReasonKey: &'static NSErrorUserInfoKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereason?language=objc)
+/// Constants used by NSError to indicate that a URLSessionTask failed because of unsatisfiable network constraints.
+///
+/// For example if the URLSessionConfiguration property allowsExpensiveNetworkAccess was set to NO and the only interfaces available were marked as expensive then the task would fail with a NSURLErrorNotConnectedToInternet error and the userInfo dictionary would contain the value NSURLErrorNetworkUnavailableReasonExpensive for the key NSURLErrorNetworkUnavailableReason.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

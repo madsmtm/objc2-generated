@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcplatform?language=objc)
+    /// Utility class to set MLCompute global properties
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcplatform?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -19,10 +21,12 @@ unsafe impl NSObjectProtocol for MLCPlatform {}
 
 extern_methods!(
     unsafe impl MLCPlatform {
+        /// sets the RNG seed. The seed should be of type long int.
         #[deprecated]
         #[method(setRNGSeedTo:)]
         pub unsafe fn setRNGSeedTo(seed: &NSNumber);
 
+        /// gets the RNG seed value. If the value is not set it would return nil
         #[deprecated]
         #[method_id(@__retain_semantics Other getRNGseed)]
         pub unsafe fn getRNGseed() -> Option<Retained<NSNumber>>;

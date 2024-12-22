@@ -14,30 +14,50 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordnamezonewideshare?language=objc)
+    /// A zone-wide CKShare always uses the record name
+    /// `CKRecordNameZoneWideShare.`You can use this to fetch the
+    /// `CKShare`record for the zone with a
+    /// `CKFetchRecordsOperation.`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordnamezonewideshare?language=objc)
     pub static CKRecordNameZoneWideShare: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharetitlekey?language=objc)
+    /// Value is a string.  Example for a recipe sharing app: "Pot Roast"
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharetitlekey?language=objc)
     #[cfg(feature = "CKRecord")]
     pub static CKShareTitleKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharethumbnailimagedatakey?language=objc)
+    /// Value is a data blob suitable to pass into
+    ///
+    /// ```text
+    ///  -[NSImage imageWithData:] or -[UIImage imageWithData:]
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharethumbnailimagedatakey?language=objc)
     #[cfg(feature = "CKRecord")]
     pub static CKShareThumbnailImageDataKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharetypekey?language=objc)
+    /// Value is a string representing a UTI.  Example for a recipe sharing app: "com.mycompany.recipe"
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharetypekey?language=objc)
     #[cfg(feature = "CKRecord")]
     pub static CKShareTypeKey: &'static CKRecordFieldKey;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare?language=objc)
+    /// Like CKRecords, CKShares can store arbitrary key-value pairs.  They are modified and fetched in the same manner.
+    /// A share, its root record, and its root record's children records will only appear in a participant's CKFetchRecordChangesOperation's results after the share has been accepted by that participant.
+    /// Clients have access to the share (and optionally the root record) before accepting a share, via the CKShareMetadata object.  Note that in order to access a root record before accepting a share, you must run a CKFetchShareMetadataOperation requesting the root record.
+    /// A CKShare will appear in a CKFetchRecordChangesOperation's results set whenever the participant list is updated.  For that reason, you shouldn't place heavy key-value pairs in it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare?language=objc)
     #[unsafe(super(CKRecord, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CKRecord")]
@@ -64,6 +84,7 @@ unsafe impl NSSecureCoding for CKShare {}
 extern_methods!(
     #[cfg(feature = "CKRecord")]
     unsafe impl CKShare {
+        /// When saving a newly created CKShare, you must save the share and its rootRecord in the same CKModifyRecordsOperation batch.
         #[method_id(@__retain_semantics Init initWithRootRecord:)]
         pub unsafe fn initWithRootRecord(
             this: Allocated<Self>,
@@ -79,6 +100,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
+        /// Creates a zone-wide
+        /// `CKShare.`A zone-wide
+        /// `CKShare`can only exist in a zone with sharing capability
+        /// `CKRecordZoneCapabilityZoneWideSharing.`Only one such share can exist in a zone at a time.
+        ///
+        /// All records in this zone will appear in a participant's
+        /// `CKFetchRecordZoneChangesOperation`results in the shared database after the
+        /// share has been accepted by the participant.
+        ///
+        /// Since these shares do not have an associated root record,
+        /// `shouldFetchRootRecord`and
+        /// `rootRecordDesiredKeys`are always ignored when
+        /// running a
+        /// `CKFetchShareMetadataOperation`on a zone-wide share URL. Additionally,
+        /// `rootRecordID`on the resulting
+        /// `CKShareMetadata`is
+        /// always absent.
         #[method_id(@__retain_semantics Init initWithRecordZoneID:)]
         pub unsafe fn initWithRecordZoneID(
             this: Allocated<Self>,
@@ -89,21 +127,44 @@ extern_methods!(
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "CKShareParticipant")]
+        /// Defines what permission a user has when not explicitly added to the share.
+        ///
+        ///
+        /// Shares with
+        /// `publicPermission`more permissive than
+        /// `CKShareParticipantPermissionNone`can be joined by any user with access to the share's shareURL.
+        /// By default, public permission is
+        /// `CKShareParticipantPermissionNone.`Changing the public permission to
+        /// `CKShareParticipantPermissionReadOnly`or
+        /// `CKShareParticipantPermissionReadWrite`will result in all pending participants being removed.  Already-accepted participants will remain on the share.
+        /// Changing the public permission to
+        /// `CKShareParticipantPermissionNone`will result in all participants being removed from the share.  You may subsequently choose to call
+        /// `addParticipant:`before saving the share, those participants will be added to the share.
         #[method(publicPermission)]
         pub unsafe fn publicPermission(&self) -> CKShareParticipantPermission;
 
         #[cfg(feature = "CKShareParticipant")]
+        /// Setter for [`publicPermission`][Self::publicPermission].
         #[method(setPublicPermission:)]
         pub unsafe fn setPublicPermission(&self, public_permission: CKShareParticipantPermission);
 
+        /// A URL that can be used to invite participants to this share.
+        ///
+        ///
+        /// Only available after share record has been saved to the server.  This url is stable, and is tied to the rootRecord.  That is, if you share a rootRecord, delete the share, and re-share the same rootRecord via a newly created share, that newly created share's url will be identical to the prior share's url
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "CKShareParticipant")]
+        /// All participants on the share that the current user has permissions to see.
+        ///
+        ///
+        /// At the minimum that will include the owner and the current user.
         #[method_id(@__retain_semantics Other participants)]
         pub unsafe fn participants(&self) -> Retained<NSArray<CKShareParticipant>>;
 
         #[cfg(feature = "CKShareParticipant")]
+        /// Convenience methods for fetching special users from the participant array
         #[method_id(@__retain_semantics Other owner)]
         pub unsafe fn owner(&self) -> Retained<CKShareParticipant>;
 
@@ -112,13 +173,21 @@ extern_methods!(
         pub unsafe fn currentUserParticipant(&self) -> Option<Retained<CKShareParticipant>>;
 
         #[cfg(feature = "CKShareParticipant")]
+        /// If a participant with a matching userIdentity already exists, then that existing participant's properties will be updated; no new participant will be added.
+        /// A `CKShareParticipant` instance that has already been added to one `CKShare` cannot be added to another, unless it is removed from the first `CKShare` through `removeParticipant`.
+        /// In order to modify the list of participants, a share must have publicPermission set to
+        /// `CKShareParticipantPermissionNone.`That is, you cannot mix-and-match private users and public users in the same share.
+        ///
+        /// See: CKShareParticipantRole
         #[method(addParticipant:)]
         pub unsafe fn addParticipant(&self, participant: &CKShareParticipant);
 
         #[cfg(feature = "CKShareParticipant")]
+        /// It's not allowed to call `removeParticipant` on a `CKShare` with a `CKShareParticipant` that has never been added to that share through `addParticipant`.
         #[method(removeParticipant:)]
         pub unsafe fn removeParticipant(&self, participant: &CKShareParticipant);
 
+        /// These superclass-provided initializers are not allowed for CKShare
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 

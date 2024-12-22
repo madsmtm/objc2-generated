@@ -4,14 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlreshapefrequencyhint?language=objc)
+/// The anticipated frequency of changing input shapes
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlreshapefrequencyhint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLReshapeFrequencyHint(pub NSInteger);
 impl MLReshapeFrequencyHint {
+    /// The input shape is expected to change frequently on each prediction sent to this loaded model instance. Core ML will try to minimize the latency associated with shape changes and avoid expensive shape-specific optimizations prior to prediction computation. While prediction computation may be slower for each specific shape, switching between shapes should be faster.
+    /// This is the default.
     #[doc(alias = "MLReshapeFrequencyHintFrequent")]
     pub const Frequent: Self = Self(0);
+    /// The input shape is expected to be stable and many/all predictions sent to this loaded model instance would use the same input shapes repeatedly. On the shape change, Core ML re-optimizes the internal engine for the new shape if possible. The re-optimization takes some time, but the subsequent predictions for the shape should run faster.
     #[doc(alias = "MLReshapeFrequencyHintInfrequent")]
     pub const Infrequent: Self = Self(1);
 }

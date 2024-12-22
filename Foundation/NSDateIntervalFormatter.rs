@@ -63,6 +63,7 @@ extern_methods!(
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
+        /// Setter for [`locale`][Self::locale].
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
@@ -71,6 +72,7 @@ extern_methods!(
         pub unsafe fn calendar(&self) -> Retained<NSCalendar>;
 
         #[cfg(feature = "NSCalendar")]
+        /// Setter for [`calendar`][Self::calendar].
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
@@ -79,6 +81,7 @@ extern_methods!(
         pub unsafe fn timeZone(&self) -> Retained<NSTimeZone>;
 
         #[cfg(feature = "NSTimeZone")]
+        /// Setter for [`timeZone`][Self::timeZone].
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
@@ -87,18 +90,21 @@ extern_methods!(
         pub unsafe fn dateTemplate(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`dateTemplate`][Self::dateTemplate].
         #[method(setDateTemplate:)]
         pub unsafe fn setDateTemplate(&self, date_template: Option<&NSString>);
 
         #[method(dateStyle)]
         pub unsafe fn dateStyle(&self) -> NSDateIntervalFormatterStyle;
 
+        /// Setter for [`dateStyle`][Self::dateStyle].
         #[method(setDateStyle:)]
         pub unsafe fn setDateStyle(&self, date_style: NSDateIntervalFormatterStyle);
 
         #[method(timeStyle)]
         pub unsafe fn timeStyle(&self) -> NSDateIntervalFormatterStyle;
 
+        /// Setter for [`timeStyle`][Self::timeStyle].
         #[method(setTimeStyle:)]
         pub unsafe fn setTimeStyle(&self, time_style: NSDateIntervalFormatterStyle);
 

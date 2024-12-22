@@ -71,12 +71,16 @@ unsafe impl RefEncode for NSSegmentStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSegmentDistribution(pub NSInteger);
 impl NSSegmentDistribution {
+    /// Dynamically sized segments will be sized to fit their contents, any remaining space will be left blank. This style is equivalent to the way segments were distributed on older systems.
     #[doc(alias = "NSSegmentDistributionFit")]
     pub const Fit: Self = Self(0);
+    /// Dynamically sized segments will be sized to fill the available space, with extra space being distributed equally among them. Default value.
     #[doc(alias = "NSSegmentDistributionFill")]
     pub const Fill: Self = Self(1);
+    /// Dynamically sized segments will be sized to fill the available space, and kept the same size as each other.
     #[doc(alias = "NSSegmentDistributionFillEqually")]
     pub const FillEqually: Self = Self(2);
+    /// Dynamically sized segments will be sized to fill the available space, and kept proportional to their fitting size.
     #[doc(alias = "NSSegmentDistributionFillProportionally")]
     pub const FillProportionally: Self = Self(3);
 }
@@ -165,12 +169,14 @@ extern_methods!(
         #[method(segmentCount)]
         pub unsafe fn segmentCount(&self) -> NSInteger;
 
+        /// Setter for [`segmentCount`][Self::segmentCount].
         #[method(setSegmentCount:)]
         pub unsafe fn setSegmentCount(&self, segment_count: NSInteger);
 
         #[method(selectedSegment)]
         pub unsafe fn selectedSegment(&self) -> NSInteger;
 
+        /// Setter for [`selectedSegment`][Self::selectedSegment].
         #[method(setSelectedSegment:)]
         pub unsafe fn setSelectedSegment(&self, selected_segment: NSInteger);
 
@@ -256,18 +262,21 @@ extern_methods!(
         #[method(segmentStyle)]
         pub unsafe fn segmentStyle(&self) -> NSSegmentStyle;
 
+        /// Setter for [`segmentStyle`][Self::segmentStyle].
         #[method(setSegmentStyle:)]
         pub unsafe fn setSegmentStyle(&self, segment_style: NSSegmentStyle);
 
         #[method(isSpringLoaded)]
         pub unsafe fn isSpringLoaded(&self) -> bool;
 
+        /// Setter for [`isSpringLoaded`][Self::isSpringLoaded].
         #[method(setSpringLoaded:)]
         pub unsafe fn setSpringLoaded(&self, spring_loaded: bool);
 
         #[method(trackingMode)]
         pub unsafe fn trackingMode(&self) -> NSSegmentSwitchTracking;
 
+        /// Setter for [`trackingMode`][Self::trackingMode].
         #[method(setTrackingMode:)]
         pub unsafe fn setTrackingMode(&self, tracking_mode: NSSegmentSwitchTracking);
 
@@ -279,6 +288,7 @@ extern_methods!(
         pub unsafe fn selectedSegmentBezelColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`selectedSegmentBezelColor`][Self::selectedSegmentBezelColor].
         #[method(setSelectedSegmentBezelColor:)]
         pub unsafe fn setSelectedSegmentBezelColor(
             &self,
@@ -303,6 +313,7 @@ extern_methods!(
         #[method(segmentDistribution)]
         pub unsafe fn segmentDistribution(&self) -> NSSegmentDistribution;
 
+        /// Setter for [`segmentDistribution`][Self::segmentDistribution].
         #[method(setSegmentDistribution:)]
         pub unsafe fn setSegmentDistribution(&self, segment_distribution: NSSegmentDistribution);
 
@@ -369,6 +380,17 @@ extern_methods!(
     /// NSSegmentedControlConvenience
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
+        /// Creates a standard segmented control containing one segment for each of the provided labels.
+        ///
+        /// Parameter `labels`: An array of localized label strings to use for the control's segments.
+        ///
+        /// Parameter `trackingMode`: The selection mode for the control. The NSSegmentSwitchTracking enum describes the possible values and their effects.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized segmented control.
         #[method_id(@__retain_semantics Other segmentedControlWithLabels:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithLabels_trackingMode_target_action(
             labels: &NSArray<NSString>,
@@ -379,6 +401,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
+        /// Creates a standard segmented control containing one segment for each of the provided images. To ensure accessibility for this control, set the accessibilityDescription property on each of the provided images.
+        ///
+        /// Parameter `images`: An array of image objects to use for the control's segments.
+        ///
+        /// Parameter `trackingMode`: The selection mode for the control. The NSSegmentSwitchTracking enum describes the possible values and their effects.
+        ///
+        /// Parameter `target`: The target object that receives action messages from the control.
+        ///
+        /// Parameter `action`: The action message sent by the control.
+        ///
+        /// Returns: An initialized segmented control.
         #[method_id(@__retain_semantics Other segmentedControlWithImages:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithImages_trackingMode_target_action(
             images: &NSArray<NSImage>,

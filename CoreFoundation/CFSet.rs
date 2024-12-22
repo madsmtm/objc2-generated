@@ -6,29 +6,87 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetretaincallback?language=objc)
+/// Type of the callback function used by CFSets for retaining values.
+///
+/// Parameter `allocator`: The allocator of the CFSet.
+///
+/// Parameter `value`: The value to retain.
+///
+/// Returns: The value to store in the set, which is usually the value
+/// parameter passed to this callback, but may be a different
+/// value if a different value should be stored in the set.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetretaincallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFSetRetainCallBack =
     Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *const c_void) -> *const c_void>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetreleasecallback?language=objc)
+/// Type of the callback function used by CFSets for releasing a retain on values.
+///
+/// Parameter `allocator`: The allocator of the CFSet.
+///
+/// Parameter `value`: The value to release.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetreleasecallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFSetReleaseCallBack = Option<unsafe extern "C-unwind" fn(CFAllocatorRef, *const c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcopydescriptioncallback?language=objc)
+/// Type of the callback function used by CFSets for describing values.
+///
+/// Parameter `value`: The value to describe.
+///
+/// Returns: A description of the specified value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFSetCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> CFStringRef>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetequalcallback?language=objc)
+/// Type of the callback function used by CFSets for comparing values.
+///
+/// Parameter `value1`: The first value to compare.
+///
+/// Parameter `value2`: The second value to compare.
+///
+/// Returns: True if the values are equal, otherwise false.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetequalcallback?language=objc)
 pub type CFSetEqualCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsethashcallback?language=objc)
+/// Type of the callback function used by CFSets for hashing values.
+///
+/// Parameter `value`: The value to hash.
+///
+/// Returns: The hash of the value.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsethashcallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFSetHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks?language=objc)
+/// Structure containing the callbacks of a CFSet.
+/// Field: version The version number of the structure type being passed
+/// in as a parameter to the CFSet creation functions. This
+/// structure is version 0.
+/// Field: retain The callback used to add a retain for the set on
+/// values as they are put into the set. This callback returns
+/// the value to store in the set, which is usually the value
+/// parameter passed to this callback, but may be a different
+/// value if a different value should be stored in the set.
+/// The set's allocator is passed as the first argument.
+/// Field: release The callback used to remove a retain previously added
+/// for the set from values as they are removed from the
+/// set. The set's allocator is passed as the first
+/// argument.
+/// Field: copyDescription The callback used to create a descriptive
+/// string representation of each value in the set. This is
+/// used by the CFCopyDescription() function.
+/// Field: equal The callback used to compare values in the set for
+/// equality for some operations.
+/// Field: hash The callback used to compare values in the set for
+/// uniqueness for some operations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks?language=objc)
 #[cfg(feature = "CFBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -62,32 +120,100 @@ unsafe impl RefEncode for CFSetCallBacks {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftypesetcallbacks?language=objc)
+    /// Predefined CFSetCallBacks structure containing a set of callbacks
+    /// appropriate for use when the values in a CFSet are all CFTypes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftypesetcallbacks?language=objc)
     #[cfg(feature = "CFBase")]
     pub static kCFTypeSetCallBacks: CFSetCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcopystringsetcallbacks?language=objc)
+    /// Predefined CFSetCallBacks structure containing a set of callbacks
+    /// appropriate for use when the values in a CFSet should be copies
+    /// of a CFString.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcopystringsetcallbacks?language=objc)
     #[cfg(feature = "CFBase")]
     pub static kCFCopyStringSetCallBacks: CFSetCallBacks;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetapplierfunction?language=objc)
+/// Type of the callback function used by the apply functions of
+/// CFSets.
+///
+/// Parameter `value`: The current value from the set.
+///
+/// Parameter `context`: The user-defined context parameter given to the apply
+/// function.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetapplierfunction?language=objc)
 pub type CFSetApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetref?language=objc)
+/// This is the type of a reference to immutable CFSets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetref?language=objc)
 pub type CFSetRef = *const c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablesetref?language=objc)
+/// This is the type of a reference to mutable CFSets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablesetref?language=objc)
 pub type CFMutableSetRef = *mut c_void;
 
 extern "C-unwind" {
+    /// Returns the type identifier of all CFSet instances.
     #[cfg(feature = "CFBase")]
     pub fn CFSetGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
+    /// Creates a new immutable set with the given values.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate
+    /// memory for the set and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `values`: A C array of the pointer-sized values to be in the
+    /// set.  This C array is not changed or freed by this function.
+    /// If this parameter is not a valid pointer to a C array of at
+    /// least numValues pointers, the behavior is undefined.
+    ///
+    /// Parameter `numValues`: The number of values to copy from the values C
+    /// array into the CFSet. This number will be the count of the
+    /// set.  If this parameter is zero, negative, or greater than
+    /// the number of values actually in the values C array, the
+    /// behavior is undefined.
+    ///
+    /// Parameter `callBacks`: A C pointer to a CFSetCallBacks structure
+    /// initialized with the callbacks for the set to use on each
+    /// value in the set. A copy of the contents of the
+    /// callbacks structure is made, so that a pointer to a
+    /// structure on the stack can be passed in, or can be reused
+    /// for multiple set creations. If the version field of this
+    /// callbacks structure is not one of the defined ones for
+    /// CFSet, the behavior is undefined. The retain field may be
+    /// NULL, in which case the CFSet will do nothing to add a
+    /// retain to the contained values for the set. The release
+    /// field may be NULL, in which case the CFSet will do nothing
+    /// to remove the set's retain (if any) on the values when the
+    /// set is destroyed. If the copyDescription field is NULL,
+    /// the set will create a simple description for the value. If
+    /// the equal field is NULL, the set will use pointer equality
+    /// to test for equality of values. The hash field may be NULL,
+    /// in which case the CFSet will determine uniqueness by pointer
+    /// equality. This callbacks parameter
+    /// itself may be NULL, which is treated as if a valid structure
+    /// of version 0 with all fields NULL had been passed in.
+    /// Otherwise, if any of the fields are not valid pointers to
+    /// functions of the correct type, or this parameter is not a
+    /// valid pointer to a  CFSetCallBacks callbacks structure,
+    /// the behavior is undefined. If any of the values put into the
+    /// set is not one understood by one of the callback functions
+    /// the behavior when that callback function is used is
+    /// undefined.
+    ///
+    /// Returns: A reference to the new immutable CFSet.
     #[cfg(feature = "CFBase")]
     pub fn CFSetCreate(
         allocator: CFAllocatorRef,
@@ -98,11 +224,73 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new immutable set with the values from the given set.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate
+    /// memory for the set and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `theSet`: The set which is to be copied. The values from the
+    /// set are copied as pointers into the new set (that is,
+    /// the values themselves are copied, not that which the values
+    /// point to, if anything). However, the values are also
+    /// retained by the new set. The count of the new set will
+    /// be the same as the copied set. The new set uses the same
+    /// callbacks as the set to be copied. If this parameter is
+    /// not a valid CFSet, the behavior is undefined.
+    ///
+    /// Returns: A reference to the new immutable CFSet.
     #[cfg(feature = "CFBase")]
     pub fn CFSetCreateCopy(allocator: CFAllocatorRef, the_set: CFSetRef) -> CFSetRef;
 }
 
 extern "C-unwind" {
+    /// Creates a new empty mutable set.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate
+    /// memory for the set and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `capacity`: A hint about the number of values that will be held
+    /// by the CFSet. Pass 0 for no hint. The implementation may
+    /// ignore this hint, or may use it to optimize various
+    /// operations. A set's actual capacity is only limited by
+    /// address space and available memory constraints). If this
+    /// parameter is negative, the behavior is undefined.
+    ///
+    /// Parameter `callBacks`: A C pointer to a CFSetCallBacks structure
+    /// initialized with the callbacks for the set to use on each
+    /// value in the set. A copy of the contents of the
+    /// callbacks structure is made, so that a pointer to a
+    /// structure on the stack can be passed in, or can be reused
+    /// for multiple set creations. If the version field of this
+    /// callbacks structure is not one of the defined ones for
+    /// CFSet, the behavior is undefined. The retain field may be
+    /// NULL, in which case the CFSet will do nothing to add a
+    /// retain to the contained values for the set. The release
+    /// field may be NULL, in which case the CFSet will do nothing
+    /// to remove the set's retain (if any) on the values when the
+    /// set is destroyed. If the copyDescription field is NULL,
+    /// the set will create a simple description for the value. If
+    /// the equal field is NULL, the set will use pointer equality
+    /// to test for equality of values. The hash field may be NULL,
+    /// in which case the CFSet will determine uniqueness by pointer
+    /// equality. This callbacks parameter
+    /// itself may be NULL, which is treated as if a valid structure
+    /// of version 0 with all fields NULL had been passed in.
+    /// Otherwise, if any of the fields are not valid pointers to
+    /// functions of the correct type, or this parameter is not a
+    /// valid pointer to a  CFSetCallBacks callbacks structure,
+    /// the behavior is undefined. If any of the values put into the
+    /// set is not one understood by one of the callback functions
+    /// the behavior when that callback function is used is
+    /// undefined.
+    ///
+    /// Returns: A reference to the new mutable CFSet.
     #[cfg(feature = "CFBase")]
     pub fn CFSetCreateMutable(
         allocator: CFAllocatorRef,
@@ -112,6 +300,34 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new immutable set with the values from the given set.
+    ///
+    /// Parameter `allocator`: The CFAllocator which should be used to allocate
+    /// memory for the set and its storage for values. This
+    /// parameter may be NULL in which case the current default
+    /// CFAllocator is used. If this reference is not a valid
+    /// CFAllocator, the behavior is undefined.
+    ///
+    /// Parameter `capacity`: A hint about the number of values that will be held
+    /// by the CFSet. Pass 0 for no hint. The implementation may
+    /// ignore this hint, or may use it to optimize various
+    /// operations. A set's actual capacity is only limited by
+    /// address space and available memory constraints).
+    /// This parameter must be greater than or equal
+    /// to the count of the set which is to be copied, or the
+    /// behavior is undefined. If this parameter is negative, the
+    /// behavior is undefined.
+    ///
+    /// Parameter `theSet`: The set which is to be copied. The values from the
+    /// set are copied as pointers into the new set (that is,
+    /// the values themselves are copied, not that which the values
+    /// point to, if anything). However, the values are also
+    /// retained by the new set. The count of the new set will
+    /// be the same as the copied set. The new set uses the same
+    /// callbacks as the set to be copied. If this parameter is
+    /// not a valid CFSet, the behavior is undefined.
+    ///
+    /// Returns: A reference to the new mutable CFSet.
     #[cfg(feature = "CFBase")]
     pub fn CFSetCreateMutableCopy(
         allocator: CFAllocatorRef,
@@ -121,24 +337,92 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the number of values currently in the set.
+    ///
+    /// Parameter `theSet`: The set to be queried. If this parameter is not a valid
+    /// CFSet, the behavior is undefined.
+    ///
+    /// Returns: The number of values in the set.
     #[cfg(feature = "CFBase")]
     pub fn CFSetGetCount(the_set: CFSetRef) -> CFIndex;
 }
 
 extern "C-unwind" {
+    /// Counts the number of times the given value occurs in the set. Since
+    /// sets by definition contain only one instance of a value, this function
+    /// is synonymous to CFSetContainsValue.
+    ///
+    /// Parameter `theSet`: The set to be searched. If this parameter is not a
+    /// valid CFSet, the behavior is undefined.
+    ///
+    /// Parameter `value`: The value for which to find matches in the set. The
+    /// equal() callback provided when the set was created is
+    /// used to compare. If the equal() callback was NULL, pointer
+    /// equality (in C, ==) is used. If value, or any of the values
+    /// in the set, are not understood by the equal() callback,
+    /// the behavior is undefined.
+    ///
+    /// Returns: The number of times the given value occurs in the set.
     #[cfg(feature = "CFBase")]
     pub fn CFSetGetCountOfValue(the_set: CFSetRef, value: *const c_void) -> CFIndex;
 }
 
 extern "C-unwind" {
+    /// Reports whether or not the value is in the set.
+    ///
+    /// Parameter `theSet`: The set to be searched. If this parameter is not a
+    /// valid CFSet, the behavior is undefined.
+    ///
+    /// Parameter `value`: The value for which to find matches in the set. The
+    /// equal() callback provided when the set was created is
+    /// used to compare. If the equal() callback was NULL, pointer
+    /// equality (in C, ==) is used. If value, or any of the values
+    /// in the set, are not understood by the equal() callback,
+    /// the behavior is undefined.
+    ///
+    /// Returns: true, if the value is in the set, otherwise false.
     pub fn CFSetContainsValue(the_set: CFSetRef, value: *const c_void) -> Boolean;
 }
 
 extern "C-unwind" {
+    /// Retrieves a value in the set which hashes the same as the specified value.
+    ///
+    /// Parameter `theSet`: The set to be queried. If this parameter is not a
+    /// valid CFSet, the behavior is undefined.
+    ///
+    /// Parameter `value`: The value to retrieve. The equal() callback provided when
+    /// the set was created is used to compare. If the equal() callback
+    /// was NULL, pointer equality (in C, ==) is used. If a value, or
+    /// any of the values in the set, are not understood by the equal()
+    /// callback, the behavior is undefined.
+    ///
+    /// Returns: The value in the set with the given hash.
     pub fn CFSetGetValue(the_set: CFSetRef, value: *const c_void) -> *const c_void;
 }
 
 extern "C-unwind" {
+    /// Retrieves a value in the set which hashes the same as the specified value,
+    /// if present.
+    ///
+    /// Parameter `theSet`: The set to be queried. If this parameter is not a
+    /// valid CFSet, the behavior is undefined.
+    ///
+    /// Parameter `candidate`: This value is hashed and compared with values in the
+    /// set to determine which value to retrieve. The equal() callback provided when
+    /// the set was created is used to compare. If the equal() callback
+    /// was NULL, pointer equality (in C, ==) is used. If a value, or
+    /// any of the values in the set, are not understood by the equal()
+    /// callback, the behavior is undefined.
+    ///
+    /// Parameter `value`: A pointer to memory which should be filled with the
+    /// pointer-sized value if a matching value is found. If no
+    /// match is found, the contents of the storage pointed to by
+    /// this parameter are undefined. This parameter may be NULL,
+    /// in which case the value from the dictionary is not returned
+    /// (but the return value of this function still indicates
+    /// whether or not the value was present).
+    ///
+    /// Returns: True if the value was present in the set, otherwise false.
     pub fn CFSetGetValueIfPresent(
         the_set: CFSetRef,
         candidate: *const c_void,
@@ -147,10 +431,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Fills the buffer with values from the set.
+    ///
+    /// Parameter `theSet`: The set to be queried. If this parameter is not a
+    /// valid CFSet, the behavior is undefined.
+    ///
+    /// Parameter `values`: A C array of pointer-sized values to be filled with
+    /// values from the set. The values in the C array are ordered
+    /// in the same order in which they appear in the set. If this
+    /// parameter is not a valid pointer to a C array of at least
+    /// CFSetGetCount() pointers, the behavior is undefined.
     pub fn CFSetGetValues(the_set: CFSetRef, values: *mut *const c_void);
 }
 
 extern "C-unwind" {
+    /// Calls a function once for each value in the set.
+    ///
+    /// Parameter `theSet`: The set to be operated upon. If this parameter is not
+    /// a valid CFSet, the behavior is undefined.
+    ///
+    /// Parameter `applier`: The callback function to call once for each value in
+    /// the given set. If this parameter is not a
+    /// pointer to a function of the correct prototype, the behavior
+    /// is undefined. If there are values in the set which the
+    /// applier function does not expect or cannot properly apply
+    /// to, the behavior is undefined.
+    ///
+    /// Parameter `context`: A pointer-sized user-defined value, which is passed
+    /// as the second parameter to the applier function, but is
+    /// otherwise unused by this function. If the context is not
+    /// what is expected by the applier function, the behavior is
+    /// undefined.
     pub fn CFSetApplyFunction(
         the_set: CFSetRef,
         applier: CFSetApplierFunction,
@@ -159,21 +470,79 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds the value to the set if it is not already present.
+    ///
+    /// Parameter `theSet`: The set to which the value is to be added. If this
+    /// parameter is not a valid mutable CFSet, the behavior is
+    /// undefined.
+    ///
+    /// Parameter `value`: The value to add to the set. The value is retained by
+    /// the set using the retain callback provided when the set
+    /// was created. If the value is not of the sort expected by the
+    /// retain callback, the behavior is undefined. The count of the
+    /// set is increased by one.
     pub fn CFSetAddValue(the_set: CFMutableSetRef, value: *const c_void);
 }
 
 extern "C-unwind" {
+    /// Replaces the value in the set if it is present.
+    ///
+    /// Parameter `theSet`: The set to which the value is to be replaced. If this
+    /// parameter is not a valid mutable CFSet, the behavior is
+    /// undefined.
+    ///
+    /// Parameter `value`: The value to replace in the set. The equal() callback provided when
+    /// the set was created is used to compare. If the equal() callback
+    /// was NULL, pointer equality (in C, ==) is used. If a value, or
+    /// any of the values in the set, are not understood by the equal()
+    /// callback, the behavior is undefined. The value is retained by
+    /// the set using the retain callback provided when the set
+    /// was created. If the value is not of the sort expected by the
+    /// retain callback, the behavior is undefined. The count of the
+    /// set is increased by one.
     pub fn CFSetReplaceValue(the_set: CFMutableSetRef, value: *const c_void);
 }
 
 extern "C-unwind" {
+    /// Replaces the value in the set if it is present, or adds the value to
+    /// the set if it is absent.
+    ///
+    /// Parameter `theSet`: The set to which the value is to be replaced. If this
+    /// parameter is not a valid mutable CFSet, the behavior is
+    /// undefined.
+    ///
+    /// Parameter `value`: The value to set in the CFSet. The equal() callback provided when
+    /// the set was created is used to compare. If the equal() callback
+    /// was NULL, pointer equality (in C, ==) is used. If a value, or
+    /// any of the values in the set, are not understood by the equal()
+    /// callback, the behavior is undefined. The value is retained by
+    /// the set using the retain callback provided when the set
+    /// was created. If the value is not of the sort expected by the
+    /// retain callback, the behavior is undefined. The count of the
+    /// set is increased by one.
     pub fn CFSetSetValue(the_set: CFMutableSetRef, value: *const c_void);
 }
 
 extern "C-unwind" {
+    /// Removes the specified value from the set.
+    ///
+    /// Parameter `theSet`: The set from which the value is to be removed.
+    /// If this parameter is not a valid mutable CFSet,
+    /// the behavior is undefined.
+    ///
+    /// Parameter `value`: The value to remove. The equal() callback provided when
+    /// the set was created is used to compare. If the equal() callback
+    /// was NULL, pointer equality (in C, ==) is used. If a value, or
+    /// any of the values in the set, are not understood by the equal()
+    /// callback, the behavior is undefined.
     pub fn CFSetRemoveValue(the_set: CFMutableSetRef, value: *const c_void);
 }
 
 extern "C-unwind" {
+    /// Removes all the values from the set, making it empty.
+    ///
+    /// Parameter `theSet`: The set from which all of the values are to be
+    /// removed. If this parameter is not a valid mutable CFSet,
+    /// the behavior is undefined.
     pub fn CFSetRemoveAllValues(the_set: CFMutableSetRef);
 }

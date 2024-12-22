@@ -12,9 +12,12 @@ extern_category!(
     /// Category "MPAdditions" on [`AVPlayerItem`].
     #[doc(alias = "MPAdditions")]
     pub unsafe trait AVPlayerItemMPAdditions {
+        /// The current now playing info for the player item.
+        /// Setting the info to nil will clear it.
         #[method_id(@__retain_semantics Other nowPlayingInfo)]
         unsafe fn nowPlayingInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
+        /// Setter for [`nowPlayingInfo`][Self::nowPlayingInfo].
         #[method(setNowPlayingInfo:)]
         unsafe fn setNowPlayingInfo(
             &self,

@@ -6,7 +6,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserscriptinjectiontime?language=objc)
+/// when a user script should be injected into a webpage.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserscriptinjectiontime?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,7 +29,15 @@ unsafe impl RefEncode for WKUserScriptInjectionTime {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserscript?language=objc)
+    /// A
+    ///
+    /// ```text
+    ///  WKUserScript
+    /// ```
+    ///
+    /// object represents a script that can be injected into webpages.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserscript?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -53,6 +63,21 @@ extern_methods!(
         #[method(isForMainFrameOnly)]
         pub unsafe fn isForMainFrameOnly(&self) -> bool;
 
+        /// Returns an initialized user script that can be added to a
+        ///
+        /// ```text
+        ///  WKUserContentController
+        /// ```
+        ///
+        /// .
+        ///
+        /// Parameter `source`: The script source.
+        ///
+        /// Parameter `injectionTime`: When the script should be injected.
+        ///
+        /// Parameter `forMainFrameOnly`: Whether the script should be injected into all frames or just the main frame.
+        ///
+        /// Calling this method is the same as calling `initWithSource:injectionTime:forMainFrameOnly:inContentWorld:` with a `contentWorld` value of `WKContentWorld.pageWorld`
         #[method_id(@__retain_semantics Init initWithSource:injectionTime:forMainFrameOnly:)]
         pub unsafe fn initWithSource_injectionTime_forMainFrameOnly(
             this: Allocated<Self>,
@@ -62,6 +87,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "WKContentWorld")]
+        /// Returns an initialized user script that can be added to a
+        ///
+        /// ```text
+        ///  WKUserContentController
+        /// ```
+        ///
+        /// .
+        ///
+        /// Parameter `source`: The script source.
+        ///
+        /// Parameter `injectionTime`: When the script should be injected.
+        ///
+        /// Parameter `forMainFrameOnly`: Whether the script should be injected into all frames or just the main frame.
+        ///
+        /// Parameter `contentWorld`: The WKContentWorld in which to inject the script.
         #[method_id(@__retain_semantics Init initWithSource:injectionTime:forMainFrameOnly:inContentWorld:)]
         pub unsafe fn initWithSource_injectionTime_forMainFrameOnly_inContentWorld(
             this: Allocated<Self>,

@@ -9,7 +9,24 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter?language=objc)
+    /// Perform Guided Filter to produce a coefficients image
+    /// The filter is broken into two stages:
+    /// - Regression
+    /// - Reconstruction
+    ///
+    /// The regression stage learns a 4-channel "coefficient" texture (typically at a very low resolution),
+    /// and represents the per-pixel linear regression of the source texture to the guidance texture.
+    ///
+    /// The reconstruction stage upsamples the coefficeints to the same size as the final output and
+    /// then at each pixel computes the inner product to produce the output.
+    ///
+    /// The filter is broken into two stages to allow coefficients to be filtered (such as for example - temporally filtering for video to prevent flicker).
+    ///
+    /// There is also support for an optional weight texture that can be used to discard values in the source data.
+    ///
+    /// Guided Filter is described at https://arxiv.org/pdf/1505.00996.pdf.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -36,27 +53,51 @@ unsafe impl NSSecureCoding for MPSImageGuidedFilter {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSImageGuidedFilter {
+        /// The local window size
+        ///
+        /// The local window size.
         #[method(kernelDiameter)]
         pub unsafe fn kernelDiameter(&self) -> NSUInteger;
 
+        /// The regularization parameter
+        ///
+        /// The parameter used when computing the linear coefficients a and b.
         #[method(epsilon)]
         pub unsafe fn epsilon(&self) -> c_float;
 
+        /// Setter for [`epsilon`][Self::epsilon].
         #[method(setEpsilon:)]
         pub unsafe fn setEpsilon(&self, epsilon: c_float);
 
+        /// The scale parameter
+        ///
+        /// The parameter used to scale the result of the reconstruction operation.
+        /// The default value is 1.0f.
         #[method(reconstructScale)]
         pub unsafe fn reconstructScale(&self) -> c_float;
 
+        /// Setter for [`reconstructScale`][Self::reconstructScale].
         #[method(setReconstructScale:)]
         pub unsafe fn setReconstructScale(&self, reconstruct_scale: c_float);
 
+        /// The offset parameter
+        ///
+        /// The offset parameter added to the result of the scaled reconstructed value.
+        /// The default value is 0.0f.
         #[method(reconstructOffset)]
         pub unsafe fn reconstructOffset(&self) -> c_float;
 
+        /// Setter for [`reconstructOffset`][Self::reconstructOffset].
         #[method(setReconstructOffset:)]
         pub unsafe fn setReconstructOffset(&self, reconstruct_offset: c_float);
 
+        /// Specifies information to apply the guided filter regression.
+        ///
+        /// Parameter `device`: The device the filter will run on
+        ///
+        /// Parameter `kernelDiameter`: The local window size
+        ///
+        /// Returns: A valid MPSImageGuidedFilterRegression object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:kernelDiameter:)]
         pub unsafe fn initWithDevice_kernelDiameter(
             this: Allocated<Self>,
@@ -70,6 +111,19 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -77,6 +131,26 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Perform Guided Filter Regression (correlation) to produce a coefficients texture
+        ///
+        /// The filter will not begin to execute until after the command buffer has been enqueued and committed.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer.
+        ///
+        /// Parameter `sourceTexture`: Input source texture to be filtered (typically a mask).  This should be a single channel image.
+        ///
+        /// Parameter `guidanceTexture`: Input guidance texture.  This should be a color (RGB) image.
+        ///
+        /// Parameter `weightsTexture`: Optional input confidence texture.  This should also a single channel image.
+        ///
+        /// Parameter `destinationCoefficientsTexture`: Output texture with four coefficients that minimize the mean squared error between
+        /// the source and an affine function of guidance R, G, B.
+        /// Note: The destinationCoefficientsTexture computes the linear cofficients "a" and "b".  The "a" coefficient is
+        /// stored in the RGB channels of destinationCoefficientsTexture and the "b" coefficient in the alpha chnanel.
+        ///
+        /// Set the MPSKernelOptionsAllowReducedPrecision in the "options" property for this kernel to peform the
+        /// computations using half-precision arithmetic.  This can potentially improve performance and/or power usage.
         #[method(encodeRegressionToCommandBuffer:sourceTexture:guidanceTexture:weightsTexture:destinationCoefficientsTexture:)]
         pub unsafe fn encodeRegressionToCommandBuffer_sourceTexture_guidanceTexture_weightsTexture_destinationCoefficientsTexture(
             &self,
@@ -87,6 +161,20 @@ extern_methods!(
             destination_coefficients_texture: &ProtocolObject<dyn MTLTexture>,
         );
 
+        /// Perform Guided Filter Reconstruction (inference) to produce the filtered output
+        ///
+        /// The filter will not begin to execute until after the command buffer has been enqueued and committed.
+        ///
+        /// Parameter sourceGuidanceTexture Input guidance pixel buffer.  This should be a color (RGB) image.
+        /// Parameter coefficientsTexture   Input coefficients texture generated generated by a previous encodeRegressionToCommandBuffer
+        ///
+        /// Parameter `destinationTexture`: Output texture
+        ///
+        /// Note: The coefficients are upsampled at the reconstruction of the filtered data.
+        /// Reconstruct(guidance RGB) = a.r * R + a.g * G + a.b * B + b, where a and b
+        /// are the coefficients learnt using encodeRegressionToCommandBuffer.
+        ///
+        /// Final reconstructed value = value * reconstructScale + reconstructOffset
         #[method(encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTexture:destinationTexture:)]
         pub unsafe fn encodeReconstructionToCommandBuffer_guidanceTexture_coefficientsTexture_destinationTexture(
             &self,
@@ -96,6 +184,28 @@ extern_methods!(
             destination_texture: &ProtocolObject<dyn MTLTexture>,
         );
 
+        /// Perform per-channel (non-color correlated) Guided Filter Regression (correlation) to produce a coefficients texture
+        ///
+        /// The filter will not begin to execute until after the command buffer has been enqueued and committed.
+        /// This encode call differs from the one above in that the correlations are not computed across channels
+        /// and therefore this filter computes two coefficient textures: ai and bi.
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer.
+        ///
+        /// Parameter `sourceTexture`: Input source texture to be filtered.
+        ///
+        /// Parameter `guidanceTexture`: Input guidance texture.  This should be a color (RGB) image.
+        ///
+        /// Parameter `weightsTexture`: Optional input confidence texture.  This should be a single channel image.
+        ///
+        /// Parameter `destinationCoefficientsTextureA`: Output texture with four coefficients A that minimize the mean squared error between
+        /// the source channels and an affine function of guidance channels.
+        ///
+        /// Parameter `destinationCoefficientsTextureB`: Output texture with four coefficients B that minimize the mean squared error between
+        /// the source channels and an affine function of guidance channels.
+        ///
+        /// Set the MPSKernelOptionsAllowReducedPrecision in the "options" property for this kernel to peform the
+        /// computations using half-precision arithmetic.  This can potentially improve performance and/or power usage.
         #[method(encodeRegressionToCommandBuffer:sourceTexture:guidanceTexture:weightsTexture:destinationCoefficientsTextureA:destinationCoefficientsTextureB:)]
         pub unsafe fn encodeRegressionToCommandBuffer_sourceTexture_guidanceTexture_weightsTexture_destinationCoefficientsTextureA_destinationCoefficientsTextureB(
             &self,
@@ -107,6 +217,20 @@ extern_methods!(
             destination_coefficients_texture_b: &ProtocolObject<dyn MTLTexture>,
         );
 
+        /// Perform Guided Filter Reconstruction (inference) to produce the filtered output
+        ///
+        /// The filter will not begin to execute until after the command buffer has been enqueued and committed.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer.
+        ///
+        /// Parameter `guidanceTexture`: Input guidance pixel buffer.
+        ///
+        /// Parameter `coefficientsTextureA`: Input coefficients A texture generated generated by a previous encodeRegressionToCommandBuffer.
+        ///
+        /// Parameter `coefficientsTextureB`: Input coefficients B texture generated generated by a previous encodeRegressionToCommandBuffer.
+        ///
+        /// Parameter `destinationTexture`: Output texture
         #[method(encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTextureA:coefficientsTextureB:destinationTexture:)]
         pub unsafe fn encodeReconstructionToCommandBuffer_guidanceTexture_coefficientsTextureA_coefficientsTextureB_destinationTexture(
             &self,
@@ -123,6 +247,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSImageGuidedFilter {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationrequest?language=objc)
+    /// A request to classify a communication.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILClassificationRequest;

@@ -55,6 +55,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSMutableDictionary<NSString, AnyObject>>>;
 
+        /// Setter for [`parameters`][Self::parameters].
         #[method(setParameters:)]
         pub unsafe fn setParameters(
             &self,

@@ -78,6 +78,7 @@ extern_methods!(
             ) -> NSUInteger,
         >;
 
+        /// Setter for [`hashFunction`][Self::hashFunction].
         #[method(setHashFunction:)]
         pub unsafe fn setHashFunction(
             &self,
@@ -100,6 +101,7 @@ extern_methods!(
             ) -> Bool,
         >;
 
+        /// Setter for [`isEqualFunction`][Self::isEqualFunction].
         #[method(setIsEqualFunction:)]
         pub unsafe fn setIsEqualFunction(
             &self,
@@ -117,6 +119,7 @@ extern_methods!(
             &self,
         ) -> Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> NSUInteger>;
 
+        /// Setter for [`sizeFunction`][Self::sizeFunction].
         #[method(setSizeFunction:)]
         pub unsafe fn setSizeFunction(
             &self,
@@ -130,6 +133,7 @@ extern_methods!(
         ) -> Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> *mut NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`descriptionFunction`][Self::descriptionFunction].
         #[method(setDescriptionFunction:)]
         pub unsafe fn setDescriptionFunction(
             &self,
@@ -148,6 +152,7 @@ extern_methods!(
             ),
         >;
 
+        /// Setter for [`relinquishFunction`][Self::relinquishFunction].
         #[method(setRelinquishFunction:)]
         pub unsafe fn setRelinquishFunction(
             &self,
@@ -170,6 +175,7 @@ extern_methods!(
             ) -> NonNull<c_void>,
         >;
 
+        /// Setter for [`acquireFunction`][Self::acquireFunction].
         #[method(setAcquireFunction:)]
         pub unsafe fn setAcquireFunction(
             &self,
@@ -186,6 +192,7 @@ extern_methods!(
         #[method(usesStrongWriteBarrier)]
         pub unsafe fn usesStrongWriteBarrier(&self) -> bool;
 
+        /// Setter for [`usesStrongWriteBarrier`][Self::usesStrongWriteBarrier].
         #[deprecated = "Garbage collection no longer supported"]
         #[method(setUsesStrongWriteBarrier:)]
         pub unsafe fn setUsesStrongWriteBarrier(&self, uses_strong_write_barrier: bool);
@@ -194,6 +201,7 @@ extern_methods!(
         #[method(usesWeakReadAndWriteBarriers)]
         pub unsafe fn usesWeakReadAndWriteBarriers(&self) -> bool;
 
+        /// Setter for [`usesWeakReadAndWriteBarriers`][Self::usesWeakReadAndWriteBarriers].
         #[deprecated = "Garbage collection no longer supported"]
         #[method(setUsesWeakReadAndWriteBarriers:)]
         pub unsafe fn setUsesWeakReadAndWriteBarriers(

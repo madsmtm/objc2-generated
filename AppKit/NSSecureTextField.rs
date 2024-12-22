@@ -263,6 +263,7 @@ extern_methods!(
         #[method(echosBullets)]
         pub unsafe fn echosBullets(&self) -> bool;
 
+        /// Setter for [`echosBullets`][Self::echosBullets].
         #[method(setEchosBullets:)]
         pub unsafe fn setEchosBullets(&self, echos_bullets: bool);
     }

@@ -85,6 +85,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSPageControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -97,18 +98,21 @@ extern_methods!(
         #[method(transitionStyle)]
         pub unsafe fn transitionStyle(&self) -> NSPageControllerTransitionStyle;
 
+        /// Setter for [`transitionStyle`][Self::transitionStyle].
         #[method(setTransitionStyle:)]
         pub unsafe fn setTransitionStyle(&self, transition_style: NSPageControllerTransitionStyle);
 
         #[method_id(@__retain_semantics Other arrangedObjects)]
         pub unsafe fn arrangedObjects(&self) -> Retained<NSArray>;
 
+        /// Setter for [`arrangedObjects`][Self::arrangedObjects].
         #[method(setArrangedObjects:)]
         pub unsafe fn setArrangedObjects(&self, arranged_objects: &NSArray);
 
         #[method(selectedIndex)]
         pub unsafe fn selectedIndex(&self) -> NSInteger;
 
+        /// Setter for [`selectedIndex`][Self::selectedIndex].
         #[method(setSelectedIndex:)]
         pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 

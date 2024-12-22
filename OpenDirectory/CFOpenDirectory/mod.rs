@@ -1332,23 +1332,37 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odcontextref?language=objc)
+/// Opaque reference for the ODContext object
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odcontextref?language=objc)
 pub type ODContextRef = *const c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnoderef?language=objc)
+/// Opaque reference for the ODNode object
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnoderef?language=objc)
 pub type ODNodeRef = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odqueryref?language=objc)
+/// Opaque reference for the ODQuery object
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odqueryref?language=objc)
 pub type ODQueryRef = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordref?language=objc)
+/// Opaque reference for the ODRecord object
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordref?language=objc)
 pub type ODRecordRef = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionref?language=objc)
+/// Opaque reference for ODSession object
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionref?language=objc)
 pub type ODSessionRef = *mut c_void;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/koderrordomainframework?language=objc)
+    /// the error domain for OpenDirectory.framework details
+    ///
+    /// the error domain for OpenDirectory.framework details
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/koderrordomainframework?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kODErrorDomainFramework: CFStringRef;
 }

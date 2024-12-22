@@ -139,6 +139,7 @@ extern_methods!(
         pub unsafe fn scrollDirection(&self) -> NSCollectionViewScrollDirection;
 
         #[cfg(feature = "NSCollectionViewFlowLayout")]
+        /// Setter for [`scrollDirection`][Self::scrollDirection].
         #[method(setScrollDirection:)]
         pub unsafe fn setScrollDirection(&self, scroll_direction: NSCollectionViewScrollDirection);
 
@@ -147,6 +148,7 @@ extern_methods!(
         pub unsafe fn interSectionSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`interSectionSpacing`][Self::interSectionSpacing].
         #[method(setInterSectionSpacing:)]
         pub unsafe fn setInterSectionSpacing(&self, inter_section_spacing: CGFloat);
 
@@ -155,6 +157,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSArray<NSCollectionLayoutBoundarySupplementaryItem>>;
 
+        /// Setter for [`boundarySupplementaryItems`][Self::boundarySupplementaryItems].
         #[method(setBoundarySupplementaryItems:)]
         pub unsafe fn setBoundarySupplementaryItems(
             &self,
@@ -239,6 +242,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSCollectionViewCompositionalLayoutConfiguration>;
 
+        /// Setter for [`configuration`][Self::configuration].
         #[method(setConfiguration:)]
         pub unsafe fn setConfiguration(
             &self,
@@ -319,6 +323,7 @@ extern_methods!(
         pub unsafe fn contentInsets(&self) -> NSDirectionalEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentInsets`][Self::contentInsets].
         #[method(setContentInsets:)]
         pub unsafe fn setContentInsets(&self, content_insets: NSDirectionalEdgeInsets);
 
@@ -327,6 +332,7 @@ extern_methods!(
         pub unsafe fn interGroupSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`interGroupSpacing`][Self::interGroupSpacing].
         #[method(setInterGroupSpacing:)]
         pub unsafe fn setInterGroupSpacing(&self, inter_group_spacing: CGFloat);
 
@@ -335,6 +341,7 @@ extern_methods!(
             &self,
         ) -> NSCollectionLayoutSectionOrthogonalScrollingBehavior;
 
+        /// Setter for [`orthogonalScrollingBehavior`][Self::orthogonalScrollingBehavior].
         #[method(setOrthogonalScrollingBehavior:)]
         pub unsafe fn setOrthogonalScrollingBehavior(
             &self,
@@ -346,6 +353,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSArray<NSCollectionLayoutBoundarySupplementaryItem>>;
 
+        /// Setter for [`boundarySupplementaryItems`][Self::boundarySupplementaryItems].
         #[method(setBoundarySupplementaryItems:)]
         pub unsafe fn setBoundarySupplementaryItems(
             &self,
@@ -355,6 +363,7 @@ extern_methods!(
         #[method(supplementariesFollowContentInsets)]
         pub unsafe fn supplementariesFollowContentInsets(&self) -> bool;
 
+        /// Setter for [`supplementariesFollowContentInsets`][Self::supplementariesFollowContentInsets].
         #[method(setSupplementariesFollowContentInsets:)]
         pub unsafe fn setSupplementariesFollowContentInsets(
             &self,
@@ -368,6 +377,7 @@ extern_methods!(
         ) -> NSCollectionLayoutSectionVisibleItemsInvalidationHandler;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        /// Setter for [`visibleItemsInvalidationHandler`][Self::visibleItemsInvalidationHandler].
         #[method(setVisibleItemsInvalidationHandler:)]
         pub unsafe fn setVisibleItemsInvalidationHandler(
             &self,
@@ -378,6 +388,7 @@ extern_methods!(
         pub unsafe fn decorationItems(&self)
             -> Retained<NSArray<NSCollectionLayoutDecorationItem>>;
 
+        /// Setter for [`decorationItems`][Self::decorationItems].
         #[method(setDecorationItems:)]
         pub unsafe fn setDecorationItems(
             &self,
@@ -424,12 +435,14 @@ extern_methods!(
         pub unsafe fn contentInsets(&self) -> NSDirectionalEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentInsets`][Self::contentInsets].
         #[method(setContentInsets:)]
         pub unsafe fn setContentInsets(&self, content_insets: NSDirectionalEdgeInsets);
 
         #[method_id(@__retain_semantics Other edgeSpacing)]
         pub unsafe fn edgeSpacing(&self) -> Option<Retained<NSCollectionLayoutEdgeSpacing>>;
 
+        /// Setter for [`edgeSpacing`][Self::edgeSpacing].
         #[method(setEdgeSpacing:)]
         pub unsafe fn setEdgeSpacing(&self, edge_spacing: Option<&NSCollectionLayoutEdgeSpacing>);
 
@@ -557,6 +570,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSArray<NSCollectionLayoutSupplementaryItem>>;
 
+        /// Setter for [`supplementaryItems`][Self::supplementaryItems].
         #[method(setSupplementaryItems:)]
         pub unsafe fn setSupplementaryItems(
             &self,
@@ -566,6 +580,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other interItemSpacing)]
         pub unsafe fn interItemSpacing(&self) -> Option<Retained<NSCollectionLayoutSpacing>>;
 
+        /// Setter for [`interItemSpacing`][Self::interItemSpacing].
         #[method(setInterItemSpacing:)]
         pub unsafe fn setInterItemSpacing(
             &self,
@@ -838,6 +853,7 @@ extern_methods!(
         #[method(zIndex)]
         pub unsafe fn zIndex(&self) -> NSInteger;
 
+        /// Setter for [`zIndex`][Self::zIndex].
         #[method(setZIndex:)]
         pub unsafe fn setZIndex(&self, z_index: NSInteger);
 
@@ -908,12 +924,14 @@ extern_methods!(
         #[method(extendsBoundary)]
         pub unsafe fn extendsBoundary(&self) -> bool;
 
+        /// Setter for [`extendsBoundary`][Self::extendsBoundary].
         #[method(setExtendsBoundary:)]
         pub unsafe fn setExtendsBoundary(&self, extends_boundary: bool);
 
         #[method(pinToVisibleBounds)]
         pub unsafe fn pinToVisibleBounds(&self) -> bool;
 
+        /// Setter for [`pinToVisibleBounds`][Self::pinToVisibleBounds].
         #[method(setPinToVisibleBounds:)]
         pub unsafe fn setPinToVisibleBounds(&self, pin_to_visible_bounds: bool);
 
@@ -992,6 +1010,7 @@ extern_methods!(
         #[method(zIndex)]
         pub unsafe fn zIndex(&self) -> NSInteger;
 
+        /// Setter for [`zIndex`][Self::zIndex].
         #[method(setZIndex:)]
         pub unsafe fn setZIndex(&self, z_index: NSInteger);
 
@@ -1120,18 +1139,21 @@ extern_protocol!(
         unsafe fn alpha(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         unsafe fn setAlpha(&self, alpha: CGFloat);
 
         #[method(zIndex)]
         unsafe fn zIndex(&self) -> NSInteger;
 
+        /// Setter for [`zIndex`][Self::zIndex].
         #[method(setZIndex:)]
         unsafe fn setZIndex(&self, z_index: NSInteger);
 
         #[method(isHidden)]
         unsafe fn isHidden(&self) -> bool;
 
+        /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
         unsafe fn setHidden(&self, hidden: bool);
 
@@ -1140,6 +1162,7 @@ extern_protocol!(
         unsafe fn center(&self) -> NSPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: NSPoint);
 

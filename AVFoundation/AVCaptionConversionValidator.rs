@@ -9,7 +9,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidatorstatus?language=objc)
+/// These constants are returned by the AVCaptionConversionValidator status property to indicate the progress of a validation operation.
+///
+///
+/// Indicates that the validation operation has not yet been initiated.
+///
+/// Indicates that the validation operation is currently in progress.
+///
+/// Indicates that the validation operation has been completed.
+///
+/// Indicates that the validation operation was stopped prior to completion.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidatorstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -34,7 +45,9 @@ unsafe impl RefEncode for AVCaptionConversionValidatorStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidator?language=objc)
+    /// Performs a validation of captions for a conversion operation and warns about problems that are encountered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionConversionValidator;
@@ -55,6 +68,17 @@ extern_methods!(
             feature = "AVCaptionSettings",
             feature = "objc2-core-media"
         ))]
+        /// Returns an instance of AVCaptionConversionValidator that can validate an array of captions for a specific conversion operation and warn about problems that are encountered.
+        ///
+        /// Parameter `captions`: The array of captions to be validated.
+        ///
+        /// Parameter `timeRange`: The timeRange of the media timeline into which the specified captions must be integrated. See the timeRange property for further details.
+        ///
+        /// Parameter `conversionSettings`: Describes the conversion operation for which the captions are to be validated.
+        ///
+        /// Returns: A new instance of AVCaptionConversionValidator configured to perform the specified validation.
+        ///
+        /// This method throws an exception if the conversion setting's AVCaptionMediaTypeKey is not equal to AVMediaTypeClosedCaption, or if its AVCaptionMediaSubTypeKey is not equal to kCMClosedCaptionFormatType_CEA608.
         #[method_id(@__retain_semantics Other captionConversionValidatorWithCaptions:timeRange:conversionSettings:)]
         pub unsafe fn captionConversionValidatorWithCaptions_timeRange_conversionSettings(
             captions: &NSArray<AVCaption>,
@@ -67,6 +91,15 @@ extern_methods!(
             feature = "AVCaptionSettings",
             feature = "objc2-core-media"
         ))]
+        /// Returns an instance of AVCaptionConversionValidator that can validate an array of captions for a specific conversion operation and warn about problems that are encountered.
+        ///
+        /// Parameter `captions`: The array of captions for which the validation is requested.
+        ///
+        /// Parameter `timeRange`: The timeRange of the media timeline into which the specified captions must be integrated. See the timeRange property for further details.
+        ///
+        /// Parameter `conversionSettings`: Describes the conversion operation for which the captions are to be validated.
+        ///
+        /// Returns: A new instance of AVCaptionConversionValidator configured to perform the specified validation.
         #[method_id(@__retain_semantics Init initWithCaptions:timeRange:conversionSettings:)]
         pub unsafe fn initWithCaptions_timeRange_conversionSettings(
             this: Allocated<Self>,
@@ -75,44 +108,68 @@ extern_methods!(
             conversion_settings: &NSDictionary<AVCaptionSettingsKey, AnyObject>,
         ) -> Retained<Self>;
 
+        /// Indicates the status of the validation.
         #[method(status)]
         pub unsafe fn status(&self) -> AVCaptionConversionValidatorStatus;
 
         #[cfg(feature = "AVCaption")]
+        /// The array of captions to be validated for the specified conversion operation.
         #[method_id(@__retain_semantics Other captions)]
         pub unsafe fn captions(&self) -> Retained<NSArray<AVCaption>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The timeRange of the media timeline into which the specified captions must be integrated.
+        ///
+        /// The start of this timeRange may be less than the start of the timeRange of the initial caption in the captions array, if the captions are to appear only after the start of accompanying video or audio. If no definite duration for the media timeline is known, the timeRange can have a duration of kCMTimePositiveInfinity. However, in order to perform a comprehensive validation of a conversion to closed captions, setting the duration of the timeRange to the duration of accompanying video media is recommended.
         #[method(timeRange)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "block2")]
+        /// Initiates the specified validation and changes the value of status to AVCaptionConversionValidatorStatusValidating.
+        ///
+        /// Parameter `handler`: Specifies a block to be executed in order to warn you of a specific problem.
+        ///
+        /// It is an error to invoke this method when the value of status is greater than AVCaptionConversionValidatorStatusUnknown.
+        /// If you wish to stop a validation operation in progress before it has been completed, send the message stopValidating to the receiver.
+        /// When the validation is complete and all warnings have been reported, the block will be executed once with a value of nil for its warning parameter. When this occurs, the value of status will have been changed to AVCaptionConversionValidatorStatusCompleted.
         #[method(validateCaptionConversionWithWarningHandler:)]
         pub unsafe fn validateCaptionConversionWithWarningHandler(
             &self,
             handler: &block2::Block<dyn Fn(*mut AVCaptionConversionWarning)>,
         );
 
+        /// Stops validation and changes the value of status to AVCaptionConversionValidatorStatusStopped.
+        ///
+        /// You can call this method at any time, even within your warning handler.
         #[method(stopValidating)]
         pub unsafe fn stopValidating(&self);
 
+        /// Provides the collection of warnings for problems that have been encountered. While the value of status is AVCaptionConversionValidatorStatusValidating, the count of warnings may increase.
         #[method_id(@__retain_semantics Other warnings)]
         pub unsafe fn warnings(&self) -> Retained<NSArray<AVCaptionConversionWarning>>;
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionwarningtype?language=objc)
+/// The type of a caption conversion warning.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionwarningtype?language=objc)
 // NS_TYPED_ENUM
 pub type AVCaptionConversionWarningType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionwarningtypeexcessmediadata?language=objc)
+    /// Indicates that one or more captions in the validator's captions array exceed the capacity for media data of the media type and subtype specified by the conversion settings.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionwarningtypeexcessmediadata?language=objc)
     pub static AVCaptionConversionWarningTypeExcessMediaData:
         &'static AVCaptionConversionWarningType;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionwarning?language=objc)
+    /// Reports a specific problem encountered during the validation of a caption conversion.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionwarning?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionConversionWarning;
@@ -132,29 +189,44 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Indicates the type of warning provided by the receiver.
         #[method_id(@__retain_semantics Other warningType)]
         pub unsafe fn warningType(&self) -> Retained<AVCaptionConversionWarningType>;
 
+        /// Indicates the range of captions in the validator's captions array for which the specified warning has been issued.
+        ///
+        /// Only captions with the same start time and duration will be referenced. If captions with different start times and durations exhibit similar problems, a separate instance of AVCaptionConversionWarning will be used to indicate each problematic case. If the referenced captions have multiple problems, a separate instance of AVCaptionConversionWarning will be issued to indicate each problem.
         #[method(rangeOfCaptions)]
         pub unsafe fn rangeOfCaptions(&self) -> NSRange;
 
+        /// Indicates an adjustment to the indicated captions that can be applied in order to correct the problem.
+        ///
+        /// If the value of adjustment is not nil and the conversion operation is performed without correcting the problem, the adjustment will be applied during conversion. If the value of adjustment is nil and the conversion operation is performed without correcting the problem, the indicated captions will be omitted from the output media data.
         #[method_id(@__retain_semantics Other adjustment)]
         pub unsafe fn adjustment(&self) -> Option<Retained<AVCaptionConversionAdjustment>>;
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionadjustmenttype?language=objc)
+/// The type of a caption conversion adjustment.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionadjustmenttype?language=objc)
 // NS_TYPED_ENUM
 pub type AVCaptionConversionAdjustmentType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionadjustmenttypetimerange?language=objc)
+    /// Indicates a timing adjustment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionadjustmenttypetimerange?language=objc)
     pub static AVCaptionConversionAdjustmentTypeTimeRange:
         &'static AVCaptionConversionAdjustmentType;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionadjustment?language=objc)
+    /// Describes an adjustment that can be performed in order to correct a problem encountered during the validation of a caption conversion.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionadjustment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionConversionAdjustment;
@@ -174,13 +246,18 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Indicates the type of adjustment described by the receiver.
         #[method_id(@__retain_semantics Other adjustmentType)]
         pub unsafe fn adjustmentType(&self) -> Retained<AVCaptionConversionAdjustmentType>;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversiontimerangeadjustment?language=objc)
+    /// Describes an adjustment to the timeRange of one or more captions.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversiontimerangeadjustment?language=objc)
     #[unsafe(super(AVCaptionConversionAdjustment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionConversionTimeRangeAdjustment;
@@ -201,10 +278,16 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the amount by which the timeRange.start of the captions must be adjusted in order to correct a problem.
+        ///
+        /// The value may any numeric value, positive, negative, or zero.
         #[method(startTimeOffset)]
         pub unsafe fn startTimeOffset(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Indicates the amount by which the timeRange.duration of the captions must be adjusted in order to correct a problem.
+        ///
+        /// The value may any numeric value, positive, negative, or zero.
         #[method(durationOffset)]
         pub unsafe fn durationOffset(&self) -> CMTime;
     }

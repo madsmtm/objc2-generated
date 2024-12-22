@@ -10,7 +10,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput?language=objc)
+    /// AVCaptureMetadataOutput is a concrete subclass of AVCaptureOutput that can be used to process metadata objects from an attached connection.
+    ///
+    ///
+    /// Instances of AVCaptureMetadataOutput emit arrays of AVMetadataObject instances (see AVMetadataObject.h), such as detected faces. Applications can access the metadata objects with the captureOutput:didOutputMetadataObjects:fromConnection: delegate method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput?language=objc)
     #[unsafe(super(AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]
@@ -29,22 +34,35 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// The receiver's delegate.
+        ///
+        ///
+        /// The value of this property is an object conforming to the AVCaptureMetadataOutputObjectsDelegate protocol that will receive metadata objects after they are captured. The delegate is set using the setMetadataObjectsDelegate:queue: method.
         #[method_id(@__retain_semantics Other metadataObjectsDelegate)]
         pub unsafe fn metadataObjectsDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureMetadataOutputObjectsDelegate>>>;
 
         #[cfg(feature = "AVMetadataObject")]
+        /// Indicates the receiver's supported metadata object types.
+        ///
+        ///
+        /// The value of this property is an NSArray of NSStrings corresponding to AVMetadataObjectType strings defined in AVMetadataObject.h -- one for each metadata object type supported by the receiver. Available metadata object types are dependent on the capabilities of the AVCaptureInputPort to which this receiver's AVCaptureConnection is connected. Clients may specify the types of objects they would like to process by calling setMetadataObjectTypes:. This property is key-value observable.
         #[method_id(@__retain_semantics Other availableMetadataObjectTypes)]
         pub unsafe fn availableMetadataObjectTypes(
             &self,
         ) -> Retained<NSArray<AVMetadataObjectType>>;
 
         #[cfg(feature = "AVMetadataObject")]
+        /// Specifies the types of metadata objects that the receiver should present to the client.
+        ///
+        ///
+        /// AVCaptureMetadataOutput may detect and emit multiple metadata object types. For apps linked before iOS 7.0, the receiver defaults to capturing face metadata objects if supported (see -availableMetadataObjectTypes). For apps linked on or after iOS 7.0, the receiver captures no metadata objects by default. -setMetadataObjectTypes: throws an NSInvalidArgumentException if any elements in the array are not present in the -availableMetadataObjectTypes array.
         #[method_id(@__retain_semantics Other metadataObjectTypes)]
         pub unsafe fn metadataObjectTypes(&self) -> Retained<NSArray<AVMetadataObjectType>>;
 
         #[cfg(feature = "AVMetadataObject")]
+        /// Setter for [`metadataObjectTypes`][Self::metadataObjectTypes].
         #[method(setMetadataObjectTypes:)]
         pub unsafe fn setMetadataObjectTypes(
             &self,
@@ -52,23 +70,45 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Specifies a rectangle of interest for limiting the search area for visual metadata.
+        ///
+        ///
+        /// The value of this property is a CGRect that determines the receiver's rectangle of interest for each frame of video. The rectangle's origin is top left and is relative to the coordinate space of the device providing the metadata. Specifying a rectOfInterest may improve detection performance for certain types of metadata. The default value of this property is the value CGRectMake(0, 0, 1, 1). Metadata objects whose bounds do not intersect with the rectOfInterest will not be returned.
+        ///
+        /// As of iOS 13, this property can be set without requiring a lengthy rebuild of the session in which video preview is disrupted.
         #[method(rectOfInterest)]
         pub unsafe fn rectOfInterest(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`rectOfInterest`][Self::rectOfInterest].
         #[method(setRectOfInterest:)]
         pub unsafe fn setRectOfInterest(&self, rect_of_interest: CGRect);
     }
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutputobjectsdelegate?language=objc)
+    /// Defines an interface for delegates of AVCaptureMetadataOutput to receive emitted objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutputobjectsdelegate?language=objc)
     pub unsafe trait AVCaptureMetadataOutputObjectsDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AVCaptureOutputBase",
             feature = "AVCaptureSession",
             feature = "AVMetadataObject"
         ))]
+        /// Called whenever an AVCaptureMetadataOutput instance emits new objects through a connection.
+        ///
+        ///
+        /// Parameter `output`: The AVCaptureMetadataOutput instance that emitted the objects.
+        ///
+        /// Parameter `metadataObjects`: An array of AVMetadataObject subclasses (see AVMetadataObject.h).
+        ///
+        /// Parameter `connection`: The AVCaptureConnection through which the objects were emitted.
+        ///
+        ///
+        /// Delegates receive this message whenever the output captures and emits new objects, as specified by its metadataObjectTypes property. Delegates can use the provided objects in conjunction with other APIs for further processing. This method will be called on the dispatch queue specified by the output's metadataObjectsCallbackQueue property. This method may be called frequently, so it must be efficient to prevent capture performance problems, including dropped metadata objects.
+        ///
+        /// Clients that need to reference metadata objects outside of the scope of this method must retain them and then release them when they are finished with them.
         #[optional]
         #[method(captureOutput:didOutputMetadataObjects:fromConnection:)]
         unsafe fn captureOutput_didOutputMetadataObjects_fromConnection(

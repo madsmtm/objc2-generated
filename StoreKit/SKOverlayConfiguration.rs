@@ -47,7 +47,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlayappconfiguration?language=objc)
+    /// An overlay configuration that can be used to show any app from the App Store.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlayappconfiguration?language=objc)
     #[unsafe(super(SKOverlayConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayAppConfiguration;
@@ -63,6 +65,11 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Creates a new app overlay configuration that will show an app from the App Store.
+        ///
+        /// Parameter `appIdentifier`: the app identifier of the app to show.
+        ///
+        /// Parameter `position`: the desired position of the overlay.
         #[method_id(@__retain_semantics Init initWithAppIdentifier:position:)]
         pub unsafe fn initWithAppIdentifier_position(
             this: Allocated<Self>,
@@ -70,48 +77,62 @@ extern_methods!(
             position: SKOverlayPosition,
         ) -> Retained<Self>;
 
+        /// The identifier of the app that will be shown.
         #[method_id(@__retain_semantics Other appIdentifier)]
         pub unsafe fn appIdentifier(&self) -> Retained<NSString>;
 
+        /// Setter for [`appIdentifier`][Self::appIdentifier].
         #[method(setAppIdentifier:)]
         pub unsafe fn setAppIdentifier(&self, app_identifier: &NSString);
 
+        /// A token representing an App Analytics campaign.
         #[method_id(@__retain_semantics Other campaignToken)]
         pub unsafe fn campaignToken(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`campaignToken`][Self::campaignToken].
         #[method(setCampaignToken:)]
         pub unsafe fn setCampaignToken(&self, campaign_token: Option<&NSString>);
 
+        /// The provider token for the developer that created the app being presented.
         #[method_id(@__retain_semantics Other providerToken)]
         pub unsafe fn providerToken(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`providerToken`][Self::providerToken].
         #[method(setProviderToken:)]
         pub unsafe fn setProviderToken(&self, provider_token: Option<&NSString>);
 
+        /// An optional identifier for an app's custom product page.
         #[method_id(@__retain_semantics Other customProductPageIdentifier)]
         pub unsafe fn customProductPageIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`customProductPageIdentifier`][Self::customProductPageIdentifier].
         #[method(setCustomProductPageIdentifier:)]
         pub unsafe fn setCustomProductPageIdentifier(
             &self,
             custom_product_page_identifier: Option<&NSString>,
         );
 
+        /// An optional extra parameter for specifying the version of your app that will be shown to the user.
         #[method_id(@__retain_semantics Other latestReleaseID)]
         pub unsafe fn latestReleaseID(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`latestReleaseID`][Self::latestReleaseID].
         #[method(setLatestReleaseID:)]
         pub unsafe fn setLatestReleaseID(&self, latest_release_id: Option<&NSString>);
 
+        /// The position an overlay will show at on screen.
         #[method(position)]
         pub unsafe fn position(&self) -> SKOverlayPosition;
 
+        /// Setter for [`position`][Self::position].
         #[method(setPosition:)]
         pub unsafe fn setPosition(&self, position: SKOverlayPosition);
 
+        /// Allows the user to interactively dismiss an overlay.
         #[method(userDismissible)]
         pub unsafe fn userDismissible(&self) -> bool;
 
+        /// Setter for [`userDismissible`][Self::userDismissible].
         #[method(setUserDismissible:)]
         pub unsafe fn setUserDismissible(&self, user_dismissible: bool);
 
@@ -129,7 +150,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlayappclipconfiguration?language=objc)
+    /// An overlay configuration that can be used to show an app clip's full app.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlayappclipconfiguration?language=objc)
     #[unsafe(super(SKOverlayConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayAppClipConfiguration;
@@ -145,42 +168,55 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Creates a new app overlay configuration that will show an app clip's full app.
+        ///
+        /// Parameter `position`: the desired position of the overlay.
         #[method_id(@__retain_semantics Init initWithPosition:)]
         pub unsafe fn initWithPosition(
             this: Allocated<Self>,
             position: SKOverlayPosition,
         ) -> Retained<Self>;
 
+        /// A token representing an App Analytics campaign.
         #[method_id(@__retain_semantics Other campaignToken)]
         pub unsafe fn campaignToken(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`campaignToken`][Self::campaignToken].
         #[method(setCampaignToken:)]
         pub unsafe fn setCampaignToken(&self, campaign_token: Option<&NSString>);
 
+        /// The provider token for the developer that created the app being presented.
         #[method_id(@__retain_semantics Other providerToken)]
         pub unsafe fn providerToken(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`providerToken`][Self::providerToken].
         #[method(setProviderToken:)]
         pub unsafe fn setProviderToken(&self, provider_token: Option<&NSString>);
 
+        /// An optional identifier for a parent app's custom product page.
         #[method_id(@__retain_semantics Other customProductPageIdentifier)]
         pub unsafe fn customProductPageIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`customProductPageIdentifier`][Self::customProductPageIdentifier].
         #[method(setCustomProductPageIdentifier:)]
         pub unsafe fn setCustomProductPageIdentifier(
             &self,
             custom_product_page_identifier: Option<&NSString>,
         );
 
+        /// An optional extra parameter for specifying the version of your app that will be shown to the user.
         #[method_id(@__retain_semantics Other latestReleaseID)]
         pub unsafe fn latestReleaseID(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`latestReleaseID`][Self::latestReleaseID].
         #[method(setLatestReleaseID:)]
         pub unsafe fn setLatestReleaseID(&self, latest_release_id: Option<&NSString>);
 
+        /// The position an overlay will show at on screen.
         #[method(position)]
         pub unsafe fn position(&self) -> SKOverlayPosition;
 
+        /// Setter for [`position`][Self::position].
         #[method(setPosition:)]
         pub unsafe fn setPosition(&self, position: SKOverlayPosition);
 

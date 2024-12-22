@@ -51,16 +51,32 @@ pub const kCMSampleBufferError_DataCanceled: OSStatus = -16751;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferflag_audiobufferlist_assure16bytealignment?language=objc)
 pub const kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment: u32 = 1 << 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferref?language=objc)
+/// A reference to a CMSampleBuffer, a CF object containing zero or more compressed (or uncompressed)
+/// samples of a particular media type (audio, video, muxed, etc).
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferref?language=objc)
 pub type CMSampleBufferRef = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsampletiminginfo?language=objc)
+/// Collection of timing info for a sample in a CMSampleBuffer. A single CMSampleTimingInfo struct can
+/// describe every individual sample in a CMSampleBuffer, if the samples all have the same duration and
+/// are in presentation order with no gaps.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsampletiminginfo?language=objc)
 #[cfg(feature = "CMTime")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMSampleTimingInfo {
+    /// The duration of the sample. If a single struct applies to
+    /// each of the samples, they all will have this duration.
     pub duration: CMTime,
+    /// The time at which the sample will be presented. If a single
+    /// struct applies to each of the samples, this is the presentationTime of the
+    /// first sample. The presentationTime of subsequent samples will be derived by
+    /// repeatedly adding the sample duration.
     pub presentationTimeStamp: CMTime,
+    /// The time at which the sample will be decoded. If the samples
+    /// are in presentation order (eg. audio samples, or video samples from a codec
+    /// that doesn't support out-of-order samples), this can be set to kCMTimeInvalid.
     pub decodeTimeStamp: CMTime,
 }
 
@@ -83,16 +99,149 @@ extern "C" {
     pub static kCMTimingInfoInvalid: CMSampleTimingInfo;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffermakedatareadycallback?language=objc)
+/// Client callback called by CMSampleBufferMakeDataReady (client provides it when calling CMSampleBufferCreate).
+///
+/// This callback must make the data ready (e.g. force a scheduled read to finish). If this callback
+/// succeeds and returns 0, the CMSampleBuffer will then be marked as "data ready".
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffermakedatareadycallback?language=objc)
 pub type CMSampleBufferMakeDataReadyCallback =
     Option<unsafe extern "C-unwind" fn(CMSampleBufferRef, *mut c_void) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffermakedatareadyhandler?language=objc)
+/// Client block called by CMSampleBufferMakeDataReady (client provides it when calling CMSampleBufferCreateWithMakeDataReadyHandler).
+///
+/// This block must make the data ready (e.g. force a scheduled read to finish). If this block
+/// succeeds and returns 0, the CMSampleBuffer will then be marked as "data ready".
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffermakedatareadyhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMSampleBufferMakeDataReadyHandler =
     *mut block2::Block<dyn Fn(CMSampleBufferRef) -> OSStatus>;
 
 extern "C-unwind" {
+    /// Creates a CMSampleBuffer.
+    ///
+    /// Array parameters (sampleSizeArray, sampleTimingArray) should have only one element if that same
+    /// element applies to all samples. All parameters are copied; on return, the caller can release them,
+    /// free them, reuse them or whatever.  On return, the caller owns the returned CMSampleBuffer, and
+    /// must release it when done with it.
+    ///
+    /// Example of usage for in-display-order video frames:
+    /// <ul>
+    /// dataBuffer: contains 7 Motion JPEG frames
+    /// <li>
+    /// dataFormatDescription: describes Motion JPEG video
+    /// <li>
+    /// numSamples: 7
+    /// <li>
+    /// numSampleTimingEntries: 1
+    /// <li>
+    /// sampleTimingArray: one entry = {duration = 1001/30000, presentationTimeStamp = 0/30000, decodeTimeStamp = invalid }
+    /// <li>
+    /// numSampleSizeEntries: 7
+    /// <li>
+    /// sampleSizeArray: {105840, 104456, 103464, 116460, 100412, 94808, 120400}
+    /// </ul>
+    /// Example of usage for out-of-display-order video frames:
+    /// <ul>
+    /// dataBuffer: contains 6 H.264 frames in decode order (P2,B0,B1,I5,B3,B4)
+    /// <li>
+    /// dataFormatDescription: describes H.264 video
+    /// <li>
+    /// numSamples: 6
+    /// <li>
+    /// numSampleTimingEntries: 6
+    /// <li>
+    /// sampleTimingArray: 6 entries = {
+    /// <ul>
+    /// {duration = 1001/30000, presentationTimeStamp = 12012/30000, decodeTimeStamp = 10010/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 10010/30000, decodeTimeStamp = 11011/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 11011/30000, decodeTimeStamp = 12012/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 15015/30000, decodeTimeStamp = 13013/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 13013/30000, decodeTimeStamp = 14014/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 14014/30000, decodeTimeStamp = 15015/30000}}
+    /// </ul>
+    /// <li>
+    /// numSampleSizeEntries: 6
+    /// <li>
+    /// sampleSizeArray: {10580, 1234, 1364, 75660, 1012, 988}
+    /// </ul>
+    /// Example of usage for compressed audio:
+    /// <ul>
+    /// dataBuffer: contains 24 compressed AAC packets
+    /// <li>
+    /// dataFormatDescription: describes 44.1kHz AAC audio
+    /// <li>
+    /// numSamples: 24
+    /// <li>
+    /// numSampleTimingEntries: 1
+    /// <li>
+    /// sampleTimingArray: one entry = {
+    /// <ul>
+    /// {duration = 1024/44100, presentationTimeStamp = 0/44100, decodeTimeStamp = invalid }}
+    /// </ul>
+    /// <li>
+    /// numSampleSizeEntries: 24
+    /// <li>
+    /// sampleSizeArray:
+    /// <ul>
+    /// {191, 183, 208, 213, 202, 206, 209, 206, 204, 192, 202, 277,
+    /// <li>
+    /// 282, 240, 209, 194, 193, 197, 196, 198, 168, 199, 171, 194}
+    /// </ul>
+    /// </ul>
+    /// Example of usage for uncompressed interleaved audio:
+    /// <ul>
+    /// dataBuffer: contains 24000 uncompressed interleaved stereo frames, each containing 2 Float32s =
+    /// <ul>
+    /// {{L,R},
+    /// <li>
+    /// {L,R},
+    /// <li>
+    /// {L,R}, ...}
+    /// </ul>
+    /// <li>
+    /// dataFormatDescription: describes 48kHz Float32 interleaved audio
+    /// <li>
+    /// numSamples: 24000
+    /// <li>
+    /// numSampleTimingEntries: 1
+    /// <li>
+    /// sampleTimingArray: one entry = {
+    /// <ul>
+    /// {duration = 1/48000, presentationTimeStamp = 0/48000, decodeTimeStamp = invalid }}
+    /// </ul>
+    /// <li>
+    /// numSampleSizeEntries: 1
+    /// <li>
+    /// sampleSizeArray: {8}
+    /// </ul>
+    /// Example of usage for uncompressed non-interleaved audio:
+    /// <ul>
+    /// dataBuffer: contains 24000 uncompressed non-interleaved stereo frames, each containing 2 (non-contiguous) Float32s =
+    /// <ul>
+    /// {{L,L,L,L,L,...},
+    /// <li>
+    /// {R,R,R,R,R,...}}
+    /// </ul>
+    /// <li>
+    /// dataFormatDescription: describes 48kHz Float32 non-interleaved audio
+    /// <li>
+    /// numSamples: 24000
+    /// <li>
+    /// numSampleTimingEntries: 1
+    /// <li>
+    /// sampleTimingArray: one entry = {duration = 1/48000, presentationTimeStamp = 0/48000, decodeTimeStamp = invalid }
+    /// <li>
+    /// numSampleSizeEntries: 0
+    /// <li>
+    /// sampleSizeArray: NULL (because the samples are not contiguous)
+    /// </ul>
     #[cfg(all(
         feature = "CMBase",
         feature = "CMBlockBuffer",
@@ -117,6 +266,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CMSampleBuffer.
+    ///
+    /// See CMSampleBufferCreate; this variant allows for passing a block to make the data ready.
     #[cfg(all(
         feature = "CMBase",
         feature = "CMBlockBuffer",
@@ -141,6 +293,131 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CMSampleBuffer.
+    ///
+    /// Array parameters (sampleSizeArray, sampleTimingArray) should have only one element if that same
+    /// element applies to all samples. All parameters are copied; on return, the caller can release them,
+    /// free them, reuse them or whatever.  On return, the caller owns the returned CMSampleBuffer, and
+    /// must release it when done with it.
+    /// CMSampleBufferCreateReady is identical to CMSampleBufferCreate except that dataReady is always true,
+    /// and so no makeDataReadyCallback or refcon needs to be passed.
+    ///
+    /// Example of usage for in-display-order video frames:
+    /// <ul>
+    /// dataBuffer: contains 7 Motion JPEG frames
+    /// <li>
+    /// dataFormatDescription: describes Motion JPEG video
+    /// <li>
+    /// numSamples: 7
+    /// <li>
+    /// numSampleTimingEntries: 1
+    /// <li>
+    /// sampleTimingArray: one entry = {duration = 1001/30000, presentationTimeStamp = 0/30000, decodeTimeStamp = invalid }
+    /// <li>
+    /// numSampleSizeEntries: 7
+    /// <li>
+    /// sampleSizeArray: {105840, 104456, 103464, 116460, 100412, 94808, 120400}
+    /// </ul>
+    /// Example of usage for out-of-display-order video frames:
+    /// <ul>
+    /// dataBuffer: contains 6 H.264 frames in decode order (P2,B0,B1,I5,B3,B4)
+    /// <li>
+    /// dataFormatDescription: describes H.264 video
+    /// <li>
+    /// numSamples: 6
+    /// <li>
+    /// numSampleTimingEntries: 6
+    /// <li>
+    /// sampleTimingArray: 6 entries = {
+    /// <ul>
+    /// {duration = 1001/30000, presentationTimeStamp = 12012/30000, decodeTimeStamp = 10010/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 10010/30000, decodeTimeStamp = 11011/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 11011/30000, decodeTimeStamp = 12012/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 15015/30000, decodeTimeStamp = 13013/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 13013/30000, decodeTimeStamp = 14014/30000},
+    /// <li>
+    /// {duration = 1001/30000, presentationTimeStamp = 14014/30000, decodeTimeStamp = 15015/30000}}
+    /// </ul>
+    /// <li>
+    /// numSampleSizeEntries: 6
+    /// <li>
+    /// sampleSizeArray: {10580, 1234, 1364, 75660, 1012, 988}
+    /// </ul>
+    /// Example of usage for compressed audio:
+    /// <ul>
+    /// dataBuffer: contains 24 compressed AAC packets
+    /// <li>
+    /// dataFormatDescription: describes 44.1kHz AAC audio
+    /// <li>
+    /// numSamples: 24
+    /// <li>
+    /// numSampleTimingEntries: 1
+    /// <li>
+    /// sampleTimingArray: one entry = {
+    /// <ul>
+    /// {duration = 1024/44100, presentationTimeStamp = 0/44100, decodeTimeStamp = invalid }}
+    /// </ul>
+    /// <li>
+    /// numSampleSizeEntries: 24
+    /// <li>
+    /// sampleSizeArray:
+    /// <ul>
+    /// {191, 183, 208, 213, 202, 206, 209, 206, 204, 192, 202, 277,
+    /// <li>
+    /// 282, 240, 209, 194, 193, 197, 196, 198, 168, 199, 171, 194}
+    /// </ul>
+    /// </ul>
+    /// Example of usage for uncompressed interleaved audio:
+    /// <ul>
+    /// dataBuffer: contains 24000 uncompressed interleaved stereo frames, each containing 2 Float32s =
+    /// <ul>
+    /// {{L,R},
+    /// <li>
+    /// {L,R},
+    /// <li>
+    /// {L,R}, ...}
+    /// </ul>
+    /// <li>
+    /// dataFormatDescription: describes 48kHz Float32 interleaved audio
+    /// <li>
+    /// numSamples: 24000
+    /// <li>
+    /// numSampleTimingEntries: 1
+    /// <li>
+    /// sampleTimingArray: one entry = {
+    /// <ul>
+    /// {duration = 1/48000, presentationTimeStamp = 0/48000, decodeTimeStamp = invalid }}
+    /// </ul>
+    /// <li>
+    /// numSampleSizeEntries: 1
+    /// <li>
+    /// sampleSizeArray: {8}
+    /// </ul>
+    /// Example of usage for uncompressed non-interleaved audio:
+    /// <ul>
+    /// dataBuffer: contains 24000 uncompressed non-interleaved stereo frames, each containing 2 (non-contiguous) Float32s =
+    /// <ul>
+    /// {{L,L,L,L,L,...},
+    /// <li>
+    /// {R,R,R,R,R,...}}
+    /// </ul>
+    /// <li>
+    /// dataFormatDescription: describes 48kHz Float32 non-interleaved audio
+    /// <li>
+    /// numSamples: 24000
+    /// <li>
+    /// numSampleTimingEntries: 1
+    /// <li>
+    /// sampleTimingArray: one entry = {duration = 1/48000, presentationTimeStamp = 0/48000, decodeTimeStamp = invalid }
+    /// <li>
+    /// numSampleSizeEntries: 0
+    /// <li>
+    /// sampleSizeArray: NULL (because the samples are not contiguous)
+    /// </ul>
     #[cfg(all(
         feature = "CMBase",
         feature = "CMBlockBuffer",
@@ -162,6 +439,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an CMSampleBuffer containing audio given packetDescriptions instead of sizing and timing info
+    ///
+    /// Provides an optimization over CMSampleBufferCreate() when the caller already has packetDescriptions for
+    /// the audio data. This routine will use the packetDescriptions to create the sizing and timing arrays required
+    /// to make the sample buffer if necessary.
     #[cfg(all(
         feature = "CMBase",
         feature = "CMBlockBuffer",
@@ -185,6 +467,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an CMSampleBuffer containing audio given packetDescriptions instead of sizing and timing info
+    ///
+    /// See CMAudioSampleBufferCreateWithPacketDescriptions; this variant allows for passing a block to make the data ready.
     #[cfg(all(
         feature = "CMBase",
         feature = "CMBlockBuffer",
@@ -208,6 +493,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an CMSampleBuffer containing audio given packetDescriptions instead of sizing and timing info
+    ///
+    /// Provides an optimization over CMSampleBufferCreate() when the caller already has packetDescriptions for
+    /// the audio data. This routine will use the packetDescriptions to create the sizing and timing arrays required
+    /// to make the sample buffer if necessary.
+    /// CMAudioSampleBufferCreateReadyWithPacketDescriptions is identical to CMAudioSampleBufferCreateWithPacketDescriptions
+    /// except that dataReady is always true, and so no makeDataReadyCallback or refcon needs to be passed.
     #[cfg(all(
         feature = "CMBase",
         feature = "CMBlockBuffer",
@@ -228,6 +520,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CMSampleBuffer that contains a CVImageBuffer instead of a CMBlockBuffer.
+    ///
+    /// Unlike a CMBlockBuffer which can reference many samples, a CVImageBuffer is defined to
+    /// reference only one sample;  therefore this routine has fewer parameters then
+    /// CMSampleBufferCreate.
+    ///
+    /// Sample timing information, which is a vector for CMSampleBufferCreate,
+    /// consists of only one value for this routine.
+    ///
+    /// The concept of sample size does not apply to CVImageBuffers.  As such, CMSampleBufferGetSampleSizeArray
+    /// will return kCMSampleBufferError_BufferHasNoSampleSizes, and CMSampleBufferGetSampleSize
+    /// will return 0.
+    ///
+    /// Because CVImageBuffers hold visual data, the format description provided is a
+    /// CMVideoFormatDescription.  The format description must be consistent with the attributes
+    /// and formatting information attached to the CVImageBuffer. The width, height, and codecType must
+    /// match (for CVPixelBuffers the codec type is given by CVPixelBufferGetPixelFormatType(pixelBuffer);
+    /// for other CVImageBuffers, the codecType must be 0). The format description extensions must
+    /// match the image buffer attachments for all the keys in the list returned by
+    /// CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers (if absent in either they
+    /// must be absent in both).
     #[cfg(all(
         feature = "CMFormatDescription",
         feature = "CMTime",
@@ -247,6 +560,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CMSampleBuffer that contains a CVImageBuffer instead of a CMBlockBuffer.
+    ///
+    /// See CMSampleBufferCreateForImageBuffer; this variant allows for passing a block to make the data ready.
     #[cfg(all(
         feature = "CMFormatDescription",
         feature = "CMTime",
@@ -266,6 +582,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CMSampleBuffer that contains a CVImageBuffer instead of a CMBlockBuffer.
+    ///
+    /// Unlike a CMBlockBuffer which can reference many samples, a CVImageBuffer is defined to
+    /// reference only one sample;  therefore this routine has fewer parameters then
+    /// CMSampleBufferCreate.
+    ///
+    /// Sample timing information, which is a vector for CMSampleBufferCreate,
+    /// consists of only one value for this routine.
+    ///
+    /// The concept of sample size does not apply to CVImageBuffers.  As such, CMSampleBufferGetSampleSizeArray
+    /// will return kCMSampleBufferError_BufferHasNoSampleSizes, and CMSampleBufferGetSampleSize
+    /// will return 0.
+    ///
+    /// Because CVImageBuffers hold visual data, the format description provided is a
+    /// CMVideoFormatDescription.  The format description must be consistent with the attributes
+    /// and formatting information attached to the CVImageBuffer. The width, height, and codecType must
+    /// match (for CVPixelBuffers the codec type is given by CVPixelBufferGetPixelFormatType(pixelBuffer);
+    /// for other CVImageBuffers, the codecType must be 0). The format description extensions must
+    /// match the image buffer attachments for all the keys in the list returned by
+    /// CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers (if absent in either they
+    /// must be absent in both).
+    ///
+    /// CMSampleBufferCreateReadyWithImageBuffer is identical to CMSampleBufferCreateForImageBuffer except that
+    /// dataReady is always true, and so no makeDataReadyCallback or refcon needs to be passed.
     #[cfg(all(
         feature = "CMFormatDescription",
         feature = "CMTime",
@@ -282,6 +622,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a copy of a CMSampleBuffer.
+    ///
+    /// The copy is shallow: scalar properties (sizes and timing) are copied directly,
+    /// the data buffer and format description are retained, and
+    /// the propogatable attachments are retained by the copy's dictionary.
+    /// If sbuf's data is not ready, the copy will be set to track its readiness.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMSampleBufferCreateCopy(
         allocator: CFAllocatorRef,
@@ -291,6 +637,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CMSampleBuffer with new timing information from another sample buffer.
+    ///
+    /// This emulates CMSampleBufferCreateCopy, but changes the timing.
+    /// Array parameters (sampleTimingArray) should have only one element if that same
+    /// element applies to all samples. All parameters are copied; on return, the caller can release them,
+    /// free them, reuse them or whatever.  Any outputPresentationTimestamp that has been set on the original Buffer
+    /// will not be copied because it is no longer relevant.    On return, the caller owns the returned
+    /// CMSampleBuffer, and must release it when done with it.
     #[cfg(all(
         feature = "CMBase",
         feature = "CMTime",
@@ -306,6 +660,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CMSampleBuffer containing a range of samples from an existing CMSampleBuffer.
+    ///
+    /// Samples containing non-interleaved audio are currently not supported.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMSampleBufferCopySampleBufferForRange(
         allocator: CFAllocatorRef,
@@ -316,11 +673,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the CFTypeID of CMSampleBuffer objects.
+    ///
+    /// You can check if a CFTypeRef object is actually a CMSampleBuffer by comparing CFGetTypeID(object) with CMSampleBufferGetTypeID().
+    ///
+    /// Returns: CFTypeID of CMSampleBuffer objects.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMSampleBufferGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
+    /// Associates a CMSampleBuffer with its CMBlockBuffer of media data.
+    ///
+    /// If successful, this operation retains the dataBuffer thereafter, so the caller can release the dataBuffer
+    /// after calling this API, if it has no further need to reference it. This is a write-once operation; it will fail if
+    /// the CMSampleBuffer already has a dataBuffer. This API allows a CMSampleBuffer to exist, with timing and format
+    /// information, before the associated data shows up. Example of usage: Some media services may have access to sample
+    /// size, timing, and format information before the data is read.  Such services may create CMSampleBuffers with that
+    /// information and insert them into queues early, and use this API to attach the CMBlockBuffers later, when the data
+    /// becomes ready.
     #[cfg(feature = "CMBlockBuffer")]
     pub fn CMSampleBufferSetDataBuffer(
         sbuf: CMSampleBufferRef,
@@ -329,16 +700,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a CMSampleBuffer's CMBlockBuffer of media data.
+    ///
+    /// The caller does not own the returned dataBuffer, and must retain it explicitly if the caller needs to maintain a reference to it.
+    ///
+    /// Returns: CMBlockBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CMBlockBuffer, if the
+    /// CMSampleBuffer contains a CVImageBuffer, or if there is some other error.
     #[cfg(feature = "CMBlockBuffer")]
     pub fn CMSampleBufferGetDataBuffer(sbuf: CMSampleBufferRef) -> CMBlockBufferRef;
 }
 
 extern "C-unwind" {
+    /// Returns a CMSampleBuffer's CVImageBuffer of media data.
+    ///
+    /// The caller does not own the returned dataBuffer, and must retain it explicitly if the caller needs to maintain a reference to it.
+    ///
+    /// Returns: CVImageBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CVImageBuffer, if the
+    /// CMSampleBuffer contains a CMBlockBuffer, or if there is some other error.
     #[cfg(feature = "objc2-core-video")]
     pub fn CMSampleBufferGetImageBuffer(sbuf: CMSampleBufferRef) -> CVImageBufferRef;
 }
 
 extern "C-unwind" {
+    /// Creates a CMBlockBuffer containing a copy of the data from the AudioBufferList,
+    /// and sets that as the CMSampleBuffer's data buffer. The resulting buffer(s) in the
+    /// sample buffer will be 16-byte-aligned if
+    /// kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment is passed in.
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn CMSampleBufferSetDataBufferFromAudioBufferList(
         sbuf: CMSampleBufferRef,
@@ -350,6 +737,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an AudioBufferList containing the data from the CMSampleBuffer,
+    /// and a CMBlockBuffer which references (and manages the lifetime of) the
+    /// data in that AudioBufferList.  The data may or may not be copied,
+    /// depending on the contiguity and 16-byte alignment of the CMSampleBuffer's
+    /// data. The buffers placed in the AudioBufferList are guaranteed to be contiguous.
+    /// The buffers in the AudioBufferList will be 16-byte-aligned if
+    /// kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment is passed in.
     #[cfg(all(
         feature = "CMBlockBuffer",
         feature = "objc2-core-audio-types",
@@ -368,6 +762,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an array of AudioStreamPacketDescriptions for the
+    /// variable bytes per packet or variable frames per packet
+    /// audio data in the provided CMSampleBuffer.  Constant bitrate,
+    /// constant frames-per-packet audio yields a return value of noErr
+    /// and no packet descriptions.  This API is specific to audio format
+    /// sample buffers, and will return kCMSampleBufferError_InvalidMediaTypeForOperation
+    /// if called with a non-audio sample buffer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMSampleBufferGetAudioStreamPacketDescriptions(
         sbuf: CMSampleBufferRef,
@@ -378,6 +779,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a pointer to (and size of) a constant array of
+    /// AudioStreamPacketDescriptions for the variable bytes per
+    /// packet or variable frames per packet audio data in the
+    /// provided CMSampleBuffer.  The pointer will remain valid
+    /// as long as the sbuf continues to be retained.
+    /// Constant bitrate, constant frames-per-packet audio yields a
+    /// return value of noErr and no packet descriptions.  This API is
+    /// specific to audio format sample buffers, and will return
+    /// kCMSampleBufferError_InvalidMediaTypeForOperation if called
+    /// with a non-audio sample buffer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMSampleBufferGetAudioStreamPacketDescriptionsPtr(
         sbuf: CMSampleBufferRef,
@@ -387,6 +798,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies PCM audio data from the given CMSampleBuffer into
+    /// a pre-populated AudioBufferList. The AudioBufferList must
+    /// contain the same number of channels and its data buffers
+    /// must be sized to hold the specified number of frames.
+    /// This API is    specific to audio format sample buffers, and
+    /// will return kCMSampleBufferError_InvalidMediaTypeForOperation
+    /// if called with a non-audio sample buffer. It will return an
+    /// error if the CMSampleBuffer does not contain PCM audio data
+    /// or if its dataBuffer is not ready.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMSampleBufferCopyPCMDataIntoAudioBufferList(
         sbuf: CMSampleBufferRef,
@@ -397,18 +817,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Marks a CMSampleBuffer's data as "ready".
+    ///
+    /// There is no way to undo this operation.  The only way to get an "unready"
+    /// CMSampleBuffer is to call CMSampleBufferCreate with the dataReady parameter
+    /// set to false. Example of usage: in a read completion routine.
     pub fn CMSampleBufferSetDataReady(sbuf: CMSampleBufferRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Returns whether or not a CMSampleBuffer's data is ready.
+    ///
+    /// Returns: Whether or not the CMSampleBuffer's data is ready.  True is returned for special marker buffers, even
+    /// though they have no data. False is returned if there is an error.
     pub fn CMSampleBufferDataIsReady(sbuf: CMSampleBufferRef) -> Boolean;
 }
 
 extern "C-unwind" {
+    /// Marks a CMSampleBuffer's data as "failed", to indicate that the data will not become ready.
     pub fn CMSampleBufferSetDataFailed(sbuf: CMSampleBufferRef, status: OSStatus) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Returns whether or not a CMSampleBuffer's data loading request has failed.
     pub fn CMSampleBufferHasDataFailed(
         sbuf: CMSampleBufferRef,
         status_out: *mut OSStatus,
@@ -416,10 +847,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Makes a CMSampleBuffer's data ready, by calling the client's CMSampleBufferMakeDataReadyCallback.
+    ///
+    /// The CMSampleBufferMakeDataReadyCallback is passed in by the client during creation. It must return
+    /// 0 if successful, and in that case, CMSampleBufferMakeDataReady will set the data readiness of
+    /// the CMSampleBuffer to true. Example of usage: when it is time to actually use the data. Example of
+    /// callback routine: a routine to force a scheduled read to complete.  If the CMSampleBuffer is not
+    /// ready, and there is no CMSampleBufferMakeDataReadyCallback to call, kCMSampleBufferError_BufferNotReady
+    /// will be returned. Similarly, if the CMSampleBuffer is not ready, and the CMSampleBufferMakeDataReadyCallback
+    /// fails and returns an error, kCMSampleBufferError_BufferNotReady will be returned.
     pub fn CMSampleBufferMakeDataReady(sbuf: CMSampleBufferRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Associates a CMSampleBuffer's data readiness with another CMSampleBuffer's data readiness.
+    ///
+    /// After calling this API, if CMSampleBufferDataIsReady(sbuf) is called, it will return sbufToTrack's data
+    /// readiness. If CMSampleBufferMakeDataReady(sbuf) is called, it will do it by making sbufToTrack ready.
+    /// Example of use: This allows bursting a multi-sample CMSampleBuffer into single-sample CMSampleBuffers
+    /// before the data is ready. The single-sample CMSampleBuffers will all track the multi-sample
+    /// CMSampleBuffer's data readiness.
     pub fn CMSampleBufferTrackDataReadiness(
         sbuf: CMSampleBufferRef,
         sample_buffer_to_track: CMSampleBufferRef,
@@ -427,14 +874,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Makes the sample buffer invalid, calling any installed invalidation callback.
+    ///
+    /// An invalid sample buffer cannot be used -- all accessors will return kCMSampleBufferError_Invalidated.
+    /// It is not a good idea to do this to a sample buffer that another module may be accessing concurrently.
+    /// Example of use: the invalidation callback could cancel pending I/O.
     pub fn CMSampleBufferInvalidate(sbuf: CMSampleBufferRef) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferinvalidatecallback?language=objc)
+/// Client callback called by CMSampleBufferInvalidate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferinvalidatecallback?language=objc)
 pub type CMSampleBufferInvalidateCallback =
     Option<unsafe extern "C-unwind" fn(CMSampleBufferRef, u64)>;
 
 extern "C-unwind" {
+    /// Sets the sample buffer's invalidation callback, which is called during CMSampleBufferInvalidate.
+    ///
+    /// A sample buffer can only have one invalidation callback.
+    /// The invalidation callback is NOT called during ordinary sample buffer finalization.
     pub fn CMSampleBufferSetInvalidateCallback(
         sbuf: CMSampleBufferRef,
         invalidate_callback: CMSampleBufferInvalidateCallback,
@@ -442,11 +900,17 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferinvalidatehandler?language=objc)
+/// Client callback called by CMSampleBufferInvalidate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferinvalidatehandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMSampleBufferInvalidateHandler = *mut block2::Block<dyn Fn(CMSampleBufferRef)>;
 
 extern "C-unwind" {
+    /// Sets the sample buffer's invalidation handler block, which is called during CMSampleBufferInvalidate.
+    ///
+    /// A sample buffer can only have one invalidation callback.
+    /// The invalidation callback is NOT called during ordinary sample buffer finalization.
     #[cfg(feature = "block2")]
     pub fn CMSampleBufferSetInvalidateHandler(
         sbuf: CMSampleBufferRef,
@@ -455,17 +919,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Queries whether a sample buffer is still valid.
+    ///
+    /// Returns false if sbuf is NULL or CMSampleBufferInvalidate(sbuf) was called, true otherwise.
+    /// Does not perform any kind of exhaustive validation of the sample buffer.
     pub fn CMSampleBufferIsValid(sbuf: CMSampleBufferRef) -> Boolean;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebuffernotification_databecameready?language=objc)
+    /// Posted on a CMSampleBuffer by CMSampleBufferSetDataReady when the buffer becomes ready.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebuffernotification_databecameready?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferNotification_DataBecameReady: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebuffernotification_datafailed?language=objc)
+    /// Posted on a CMSampleBuffer by CMSampleBufferSetDataFailed to report that the buffer will never become ready.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebuffernotification_datafailed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferNotification_DataFailed: CFStringRef;
 }
@@ -477,7 +949,17 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconduitnotification_inhibitoutputuntil?language=objc)
+    /// Posted on a conduit of CMSampleBuffers (eg, a CMBufferQueue) to announce a coming discontinuity and specify a tag value that will be attached to the first CMSampleBuffer following the discontinuity.
+    ///
+    /// The first CMSampleBuffer following the discontinuity should have
+    /// a kCMSampleBufferAttachmentKey_ResumeOutput attachment with value containing
+    /// the same CFNumber as this notification's payload's
+    /// kCMSampleBufferConduitNotificationParameter_ResumeTag.
+    /// The consumer should discard output data until it receives this CMSampleBuffer.
+    /// If multiple kCMSampleBufferConduitNotification_InhibitOutputUntil notifications are
+    /// received, the last one indicates the tag to trigger resuming.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconduitnotification_inhibitoutputuntil?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferConduitNotification_InhibitOutputUntil: CFStringRef;
 }
@@ -489,13 +971,17 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconduitnotification_resetoutput?language=objc)
+    /// Posted on a conduit of CMSampleBuffers (eg, a CMBufferQueue) to request invalidation of pending output data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconduitnotification_resetoutput?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferConduitNotification_ResetOutput: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconduitnotification_upcomingoutputptsrangechanged?language=objc)
+    /// Posted on a conduit of video CMSampleBuffers (eg, a CMBufferQueue) to report information about the range of upcoming CMSampleBuffer output presentation timestamps.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconduitnotification_upcomingoutputptsrangechanged?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferConduitNotification_UpcomingOutputPTSRangeChanged: CFStringRef;
 }
@@ -520,42 +1006,107 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconsumernotification_bufferconsumed?language=objc)
+    /// Posted when a CMSampleBuffer that has kCMSampleBufferAttachmentKey_PostNotificationWhenConsumed is consumed.
+    ///
+    /// After an object consumes a CMSampleBuffer that has a kCMSampleBufferAttachmentKey_PostNotificationWhenConsumed
+    /// attachment, it should post kCMSampleBufferConsumerNotification_BufferConsumed
+    /// with itself as the notifyingObject and the attachment value as the payload.
+    /// Such an attachment value must be a CFDictionary but the contents are client-defined.
+    ///
+    /// Note that a NULL refcon cannot be attached to a CMSampleBuffer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconsumernotification_bufferconsumed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferConsumerNotification_BufferConsumed: CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Returns the number of media samples in a CMSampleBuffer.
+    ///
+    /// Returns: The number of media samples in the CMSampleBuffer. 0 is returned if there is an error.
     #[cfg(all(feature = "CMBase", feature = "objc2-core-foundation"))]
     pub fn CMSampleBufferGetNumSamples(sbuf: CMSampleBufferRef) -> CMItemCount;
 }
 
 extern "C-unwind" {
+    /// Returns the total duration of a CMSampleBuffer.
+    ///
+    /// If the buffer contains out-of-presentation-order samples, any gaps in the presentation timeline are not represented in the returned duration.
+    /// The returned duration is simply the sum of all the individual sample durations.
+    ///
+    /// Returns: The duration of the CMSampleBuffer. kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
     pub fn CMSampleBufferGetDuration(sbuf: CMSampleBufferRef) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Returns the numerically earliest presentation timestamp of all the samples in a CMSampleBuffer.
+    ///
+    /// For in-presentation-order samples, this is the presentation timestamp of the first sample.
+    /// For out-of-presentation-order samples, this is the presentation timestamp of the sample that
+    /// will be presented first, which is not necessarily the first sample in the buffer.
+    ///
+    /// Returns: Numerically earliest sample presentation timestamp in the CMSampleBuffer.  kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
     pub fn CMSampleBufferGetPresentationTimeStamp(sbuf: CMSampleBufferRef) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Returns the numerically earliest decode timestamp of all the samples in a CMSampleBuffer.
+    ///
+    /// The returned decode timestamp is always the decode timestamp of the first sample in the buffer,
+    /// since even out-of-presentation-order samples are expected to be in decode order in the buffer.
+    ///
+    /// Returns: Numerically earliest sample decode timestamp in the CMSampleBuffer.  kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
     pub fn CMSampleBufferGetDecodeTimeStamp(sbuf: CMSampleBufferRef) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Returns the output duration of a CMSampleBuffer.
+    ///
+    /// The OutputDuration is the duration minus any trimmed duration, all divided by the SpeedMultiplier:
+    /// (Duration - TrimDurationAtStart - TrimDurationAtEnd) / SpeedMultiplier
+    ///
+    /// Returns: The output duration of the CMSampleBuffer. kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
     pub fn CMSampleBufferGetOutputDuration(sbuf: CMSampleBufferRef) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Returns the output presentation timestamp of the CMSampleBuffer.
+    ///
+    /// The output presentation timestamp is the time at which the decoded, trimmed, stretched
+    /// and possibly reversed samples should commence being presented.
+    /// If CMSampleBufferSetOutputPresentationTimeStamp has been called to explicitly set the output PTS,
+    /// CMSampleBufferGetOutputPresentationTimeStamp returns it.
+    /// If not, CMSampleBufferGetOutputPresentationTimeStamp calculates its result as
+    /// (PresentationTimeStamp + TrimDurationAtStart)
+    /// unless kCMSampleBufferAttachmentKey_Reverse is kCFBooleanTrue, in which case it calculates the result as
+    /// (PresentationTimeStamp + Duration - TrimDurationAtEnd).
+    /// These are generally correct for un-stretched, un-shifted playback.
+    /// For general forward playback in a scaled edit, the OutputPresentationTimeStamp should be set to:
+    /// ((PresentationTimeStamp + TrimDurationAtStart - EditStartMediaTime) / EditSpeedMultiplier) + EditStartTrackTime.
+    /// For general reversed playback:
+    /// ((PresentationTimeStamp + Duration - TrimDurationAtEnd - EditStartMediaTime) / EditSpeedMultiplier) + EditStartTrackTime.
+    ///
+    /// Returns: kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
     pub fn CMSampleBufferGetOutputPresentationTimeStamp(sbuf: CMSampleBufferRef) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Sets an output presentation timestamp to be used in place of a calculated value.
+    ///
+    /// The output presentation timestamp is the time at which the decoded, trimmed, stretched
+    /// and possibly reversed samples should commence being presented.
+    /// By default, this is calculated by CMSampleBufferGetOutputPresentationTimeStamp.
+    /// Call CMSampleBufferSetOutputPresentationTimeStamp to explicitly set the value for
+    /// CMSampleBufferGetOutputPresentationTimeStamp to return.
+    /// For general forward playback in a scaled edit, the OutputPresentationTimeStamp should be set to:
+    /// ((PresentationTimeStamp + TrimDurationAtStart - EditStartMediaTime) / EditSpeedMultiplier) + EditStartTrackTime.
+    /// For general reversed playback:
+    /// ((PresentationTimeStamp + Duration - TrimDurationAtEnd - EditStartMediaTime) / EditSpeedMultiplier) + EditStartTrackTime.
     #[cfg(feature = "CMTime")]
     pub fn CMSampleBufferSetOutputPresentationTimeStamp(
         sbuf: CMSampleBufferRef,
@@ -564,11 +1115,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the output decode timestamp of the CMSampleBuffer.
+    ///
+    /// For consistency with CMSampleBufferGetOutputPresentationTimeStamp, this is calculated as:
+    /// OutputPresentationTimeStamp + ((DecodeTimeStamp - PresentationTimeStamp) / SpeedMultiplier).
+    ///
+    /// Returns: CMInvalidTime is returned if there is an error.
     #[cfg(feature = "CMTime")]
     pub fn CMSampleBufferGetOutputDecodeTimeStamp(sbuf: CMSampleBufferRef) -> CMTime;
 }
 
 extern "C-unwind" {
+    /// Returns an array of CMSampleTimingInfo structs, one for each sample in a CMSampleBuffer.
+    ///
+    /// If only one CMSampleTimingInfo struct is returned, it applies to all samples in the buffer.
+    /// See documentation of CMSampleTimingInfo for details of how a single CMSampleTimingInfo struct can apply to multiple samples.
+    /// The timingArrayOut must be allocated by the caller, and the number of entries allocated must be passed in timingArrayEntries.
+    /// If timingArrayOut is NULL, timingArrayEntriesNeededOut will return the required number of entries.  Similarly,
+    /// if timingArrayEntries is too small, kCMSampleBufferError_ArrayTooSmall will be returned, and timingArrayEntriesNeededOut
+    /// will return the required number of entries. In either case, the caller can then make an appropriately-sized timingArrayOut and call again.
+    /// For example, the caller might pass the address of a CMSampleTimingInfo struct on the stack (as timingArrayOut), and 1 (as
+    /// timingArrayEntries). If all samples are describable with a single CMSampleTimingInfo struct (or there is only one sample
+    /// in the CMSampleBuffer), this call will succeed. If not, it will fail, and will return the number of entries required in
+    /// timingArrayEntriesNeededOut. Only in this case will the caller actually need to allocate an array.
+    ///
+    /// If there is no timingInfo in this CMSampleBuffer, kCMSampleBufferError_BufferHasNoSampleTimingInfo will be returned, and
+    /// timingArrayEntriesNeededOut will be set to 0.
     #[cfg(all(
         feature = "CMBase",
         feature = "CMTime",
@@ -583,6 +1155,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns an array of output CMSampleTimingInfo structs, one for each sample in a CMSampleBuffer.
+    ///
+    /// If only one CMSampleTimingInfo struct is returned, it applies to all samples in the buffer.
+    /// See documentation of CMSampleTimingInfo for details of how a single CMSampleTimingInfo struct can apply to multiple samples.
+    /// The timingArrayOut must be allocated by the caller, and the number of entries allocated must be passed in timingArrayEntries.
+    /// If timingArrayOut is NULL, timingArrayEntriesNeededOut will return the required number of entries.  Similarly,
+    /// if timingArrayEntries is too small, kCMSampleBufferError_ArrayTooSmall will be returned, and timingArrayEntriesNeededOut
+    /// will return the required number of entries. In either case, the caller can then make an appropriately-sized timingArrayOut and call again.
+    /// For example, the caller might pass the address of a CMSampleTimingInfo struct on the stack (as timingArrayOut), and 1 (as
+    /// timingArrayEntries). If all samples are describable with a single CMSampleTimingInfo struct (or there is only one sample
+    /// in the CMSampleBuffer), this call will succeed. If not, it will fail, and will return the number of entries required in
+    /// timingArrayEntriesNeededOut. Only in this case will the caller actually need to allocate an array.
+    ///
+    /// If there is no timingInfo in this CMSampleBuffer, kCMSampleBufferError_BufferHasNoSampleTimingInfo will be returned,
+    /// and *timingArrayEntriesNeededOut will be set to 0.
     #[cfg(all(
         feature = "CMBase",
         feature = "CMTime",
@@ -597,6 +1184,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a CMSampleTimingInfo struct describing a specified sample in a CMSampleBuffer.
+    ///
+    /// A sample-specific CMSampleTimingInfo struct will be returned (ie. with a sample-specific
+    /// presentationTimeStamp and decodeTimeStamp), even if a single CMSampleTimingInfo struct was used
+    /// during creation to describe all the samples in the buffer. The timingInfo struct must be
+    /// allocated by the caller.  If the sample index is not in the range 0 .. numSamples-1,
+    /// kCMSampleBufferError_SampleIndexOutOfRange will be returned.  If there is no timingInfo
+    /// in this CMSampleBuffer, kCMSampleBufferError_BufferHasNoSampleTimingInfo will be returned.
     #[cfg(all(
         feature = "CMBase",
         feature = "CMTime",
@@ -610,6 +1205,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns an array of sample sizes, one for each sample in a CMSampleBuffer.
+    ///
+    /// If only one size entry is returned, all samples in the buffer are of this size.
+    /// The sizeArrayOut must be allocated by the caller, and the number of entries allocated must be passed in sizeArrayEntries.
+    /// If sizeArrayOut is NULL, sizeArrayEntriesNeededOut will return the required number of entries.  Similarly, if sizeArrayEntries
+    /// is too small, kCMSampleBufferError_ArrayTooSmall will be returned, and sizeArrayEntriesNeededOut will return the required number of entries.
+    /// The caller can then make an appropriately-sized sizeArrayOut and call again. For example, the caller might pass the address
+    /// of a size_t variable on the stack (as sizeArrayOut), and 1 (as sizeArrayEntries). If all samples are the same size (or there
+    /// is only one sample in the CMSampleBuffer), this call would succeed. If not, it will fail, and will return the number of
+    /// entries required in sizeArrayEntriesNeededOut. Only in this case (multiple samples of different sizes) will the caller
+    /// need to allocate an array.  0 entries will be returned if the samples in the buffer are non-contiguous (eg. non-interleaved
+    /// audio, where the channel values for a single sample are scattered through the buffer).
+    ///
+    /// If there are no sample sizes in this CMSampleBuffer, kCMSampleBufferError_BufferHasNoSampleSizes will be returned,
+    /// and *sizeArrayEntriesNeededOut will be set to 0.  This will be true, for example,
+    /// if the samples in the buffer are non-contiguous (eg. non-interleaved audio, where
+    /// the channel values for a single sample are scattered through the buffer), or if
+    /// this CMSampleBuffer contains a CVImageBuffer.
     #[cfg(all(feature = "CMBase", feature = "objc2-core-foundation"))]
     pub fn CMSampleBufferGetSampleSizeArray(
         sbuf: CMSampleBufferRef,
@@ -620,21 +1233,52 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the size in bytes of a specified sample in a CMSampleBuffer.
+    ///
+    /// Returns: Size in bytes of the specified sample in the CMSampleBuffer.
+    /// If the sample index is not in the range 0 .. numSamples-1,
+    /// a size of 0 will be returned.  If there are no sample sizes
+    /// in this CMSampleBuffer, a size of 0 will be returned.  This will be true, for example,
+    /// if the samples in the buffer are non-contiguous (eg. non-interleaved audio, where
+    /// the channel values for a single sample are scattered through the buffer),
+    /// or if this CMSampleBuffer contains a CVImageBuffer.
     #[cfg(all(feature = "CMBase", feature = "objc2-core-foundation"))]
     pub fn CMSampleBufferGetSampleSize(sbuf: CMSampleBufferRef, sample_index: CMItemIndex)
         -> usize;
 }
 
 extern "C-unwind" {
+    /// Returns the total size in bytes of sample data in a CMSampleBuffer.
+    ///
+    /// Returns: Total size in bytes of sample data in the CMSampleBuffer.
+    /// If there are no sample sizes in this CMSampleBuffer, a size of 0 will be returned.
     pub fn CMSampleBufferGetTotalSampleSize(sbuf: CMSampleBufferRef) -> usize;
 }
 
 extern "C-unwind" {
+    /// Returns the format description of the samples in a CMSampleBuffer.
+    ///
+    /// On return, the caller does not own the returned formatDesc, and must retain it explicitly if the caller needs to maintain a reference to it.
+    ///
+    /// Returns: The format description of the samples in the CMSampleBuffer.  NULL is returned if there is an error.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMSampleBufferGetFormatDescription(sbuf: CMSampleBufferRef) -> CMFormatDescriptionRef;
 }
 
 extern "C-unwind" {
+    /// Returns a reference to a CMSampleBuffer's immutable array of mutable sample attachments dictionaries (one dictionary
+    /// per sample in the CMSampleBuffer).
+    ///
+    /// Attachments can then be added/removed directly by the caller, using CF APIs. On return, the caller does not
+    /// own the returned array of attachments dictionaries, and must retain it if the caller needs to maintain a
+    /// reference to it. If there are no sample attachments yet, and createIfNecessary is true, a new CFArray containing N empty
+    /// CFMutableDictionaries is returned (where N is the number of samples in the CMSampleBuffer), so that
+    /// attachments can be added directly by the caller. If there are no sample attachments yet, and createIfNecessary is
+    /// false, NULL is returned.  Once the CFArray has been created, subsequent calls will return it, even if there are still
+    /// no sample attachments in the array.
+    ///
+    /// Returns: A reference to the CMSampleBuffer's immutable array of mutable sample attachments dictionaries (one dictionary per sample
+    /// in the CMSampleBuffer). NULL is returned if there is an error.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMSampleBufferGetSampleAttachmentsArray(
         sbuf: CMSampleBufferRef,
@@ -715,7 +1359,13 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_hevctemporallevelinfo?language=objc)
+    /// Indicates a video frame's level within a hierarchical frame dependency structure.
+    ///
+    /// When present, the temporal level attachments among a group of video frames provide information about where inter-frame dependencies may and may not exist.
+    /// The temporal level attachment, if present, is a positive CFNumber, and indicates that this video frame does not depend on any video frame with a greater temporal level.
+    /// The attachment may be absent if no such information is available.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_hevctemporallevelinfo?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleAttachmentKey_HEVCTemporalLevelInfo: CFStringRef;
 }
@@ -787,180 +1437,369 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_transitionid?language=objc)
+    /// Marks a transition from one source of buffers (eg. song) to another
+    ///
+    /// For example, during gapless playback of a list of songs, this attachment marks the first buffer from the next song.
+    /// If this attachment is on a buffer containing no samples, the first following buffer that contains samples is the
+    /// buffer that contains the first samples from the next song.  The value of this attachment is a CFTypeRef.  This
+    /// transition identifier should be unique within a playlist, so each transition in a playlist is uniquely
+    /// identifiable.  A CFNumberRef counter that increments with each transition is a simple example.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_transitionid?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_TransitionID: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_trimdurationatstart?language=objc)
+    /// The duration that should be removed at the beginning of the sample buffer, after decoding.
+    ///
+    /// If this attachment is not present, the trim duration is zero (nothing removed).
+    /// This is a CMTime in CFDictionary format as made by CMTimeCopyAsDictionary;
+    /// use CMTimeMakeFromDictionary to convert to CMTime.
+    /// In cases where all the output after decoding the sample buffer is to be discarded
+    /// (eg, the samples are only being decoded to prime the decoder) the usual convention
+    /// is to set kCMSampleBufferAttachmentKey_TrimDurationAtStart to the whole duration
+    /// and not to set a kCMSampleBufferAttachmentKey_TrimDurationAtEnd attachment.
+    /// Note that setting or removing kCMSampleBufferAttachmentKey_TrimDurationAtStart from
+    /// a sample buffer will not adjust an explicitly-set OutputPresentationTimeStamp.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_trimdurationatstart?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_TrimDurationAtStart: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_trimdurationatend?language=objc)
+    /// The duration that should be removed at the end of the sample buffer, after decoding.
+    ///
+    /// If this attachment is not present, the trim duration is zero (nothing removed).
+    /// This is a CMTime in CFDictionary format as made by CMTimeCopyAsDictionary;
+    /// use CMTimeMakeFromDictionary to convert to CMTime.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_trimdurationatend?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_TrimDurationAtEnd: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_speedmultiplier?language=objc)
+    /// The factor by which the sample buffer's presentation should be accelerated (eg, in a scaled edit).
+    ///
+    /// For normal playback the speed multiplier would be 1.0 (which is used if this attachment is not present);
+    /// for double-speed playback the speed multiplier would be 2.0, which would halve the output duration.
+    /// Speed-multiplication factors take effect after trimming; see CMSampleBufferGetOutputDuration.
+    /// Note that this attachment principally provides information about the duration-stretching effect:
+    /// by default, it should be implemented by rate conversion, but other attachments may specify richer
+    /// stretching operations -- for example, scaling without pitch shift, or pitch shift without changing duration.
+    /// Sequences of speed-multiplied sample buffers should have explicit OutputPresentationTimeStamp attachments
+    /// to clarify when each should be output.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_speedmultiplier?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_SpeedMultiplier: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_reverse?language=objc)
+    /// Indicates that the decoded contents of the sample buffer should be reversed.
+    /// If this attachment is not present, the sample buffer should be played forwards as usual.
+    /// Reversal occurs after trimming and speed multipliers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_reverse?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_Reverse: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_filldiscontinuitieswithsilence?language=objc)
+    /// Fill the difference between discontiguous sample buffers with silence.
+    ///
+    /// If a sample buffer enters a buffer queue and the presentation time stamp between the
+    /// previous buffer and the buffer with this attachment are discontiguous, handle the
+    /// discontinuity by generating silence for the time difference.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_filldiscontinuitieswithsilence?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_FillDiscontinuitiesWithSilence: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_emptymedia?language=objc)
+    /// Marks an intentionally empty interval in the sequence of samples.
+    ///
+    /// The sample buffer's output presentation timestamp indicates when the empty interval begins.
+    /// Marker sample buffers with this attachment are used to announce the arrival of empty edits.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_emptymedia?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_EmptyMedia: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_permanentemptymedia?language=objc)
+    /// Marks the end of the sequence of samples.
+    ///
+    /// Marker sample buffers with this attachment in addition to kCMSampleBufferAttachmentKey_EmptyMedia
+    /// are used to indicate that no further samples are expected.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_permanentemptymedia?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_PermanentEmptyMedia: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_displayemptymediaimmediately?language=objc)
+    /// Tells that the empty marker should be dequeued immediately regardless of its timestamp.
+    ///
+    /// Marker sample buffers with this attachment in addition to kCMSampleBufferAttachmentKey_EmptyMedia
+    /// are used to tell that the empty sample buffer should be dequeued immediately regardless of its timestamp.
+    /// This attachment should only be used with sample buffers with the kCMSampleBufferAttachmentKey_EmptyMedia
+    /// attachment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_displayemptymediaimmediately?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_DisplayEmptyMediaImmediately: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_endsprevioussampleduration?language=objc)
+    /// Indicates that sample buffer's decode timestamp may be used to define the previous sample buffer's duration.
+    ///
+    /// Marker sample buffers with this attachment may be used in situations where sample buffers are transmitted
+    /// before their duration is known. In such situations, normally the recipient may use each sample buffer's timestamp
+    /// to calculate the duration of the previous sample buffer. The marker sample buffer with this attachment is sent
+    /// to provide the timestamp for calculating the final sample buffer's duration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_endsprevioussampleduration?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_EndsPreviousSampleDuration: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_samplereferenceurl?language=objc)
+    /// Indicates the URL where the sample data is.
+    ///
+    /// This key is only used for CMSampleBuffers representing sample references.
+    /// Such CMSampleBuffers:
+    /// - have dataBuffer == NULL and imageBuffer == NULL
+    /// - have dataReady == true and no makeDataReadyCallback
+    /// - have a non-NULL formatDescription
+    /// - have numSamples > 0
+    /// - have numSampleTimingEntries > 0 and numSampleSizeEntries > 0
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_samplereferenceurl?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_SampleReferenceURL: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_samplereferencebyteoffset?language=objc)
+    /// Indicates the byte offset at which the sample data begins.
+    ///
+    /// This key is only used for CMSampleBuffers representing sample references.
+    /// Such CMSampleBuffers:
+    /// - have dataBuffer == NULL and imageBuffer == NULL
+    /// - have dataReady == true and no makeDataReadyCallback
+    /// - have a non-NULL formatDescription
+    /// - have numSamples > 0
+    /// - have numSampleTimingEntries > 0 and numSampleSizeEntries > 0
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_samplereferencebyteoffset?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_SampleReferenceByteOffset: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_gradualdecoderrefresh?language=objc)
+    /// Indicates the decoder refresh count.
+    ///
+    /// Sample buffers with this attachment may be used to identify the audio decoder refresh count.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_gradualdecoderrefresh?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_GradualDecoderRefresh: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_droppedframereason?language=objc)
+    /// Indicates the reason the current video frame was dropped.
+    ///
+    /// Sample buffers with this attachment contain no image or data buffer.  They mark a dropped video
+    /// frame.  This attachment identifies the reason for the droppage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_droppedframereason?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_DroppedFrameReason: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferdroppedframereason_framewaslate?language=objc)
+    /// The frame was dropped because it was late
+    ///
+    /// The value of kCMSampleBufferAttachmentKey_DroppedFrameReason if a video capture client has indicated
+    /// that late video frames should be dropped and the current frame is late.  This condition is typically
+    /// caused by the client's processing taking too long.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferdroppedframereason_framewaslate?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferDroppedFrameReason_FrameWasLate: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferdroppedframereason_outofbuffers?language=objc)
+    /// The frame was dropped because the module providing frames is out of buffers
+    ///
+    /// The value of kCMSampleBufferAttachmentKey_DroppedFrameReason if the module providing sample buffers
+    /// has run out of source buffers.  This condition is typically caused by the client holding onto
+    /// buffers for too long and can be alleviated by returning buffers to the provider.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferdroppedframereason_outofbuffers?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferDroppedFrameReason_OutOfBuffers: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferdroppedframereason_discontinuity?language=objc)
+    /// An unknown number of frames were dropped
+    ///
+    /// The value of kCMSampleBufferAttachmentKey_DroppedFrameReason if the module providing sample buffers
+    /// has experienced a discontinuity, and an unknown number of frames have been lost.  This condition is
+    /// typically caused by the system being too busy.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferdroppedframereason_discontinuity?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferDroppedFrameReason_Discontinuity: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_droppedframereasoninfo?language=objc)
+    /// Indicates additional information regarding the dropped video frame.
+    ///
+    /// Sample buffers with this attachment contain no image or data buffer.  They mark a dropped video
+    /// frame. If present, this attachment provides additional information about the kCMSampleBufferAttachmentKey_DroppedFrameReason.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_droppedframereasoninfo?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_DroppedFrameReasonInfo: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferdroppedframereasoninfo_cameramodeswitch?language=objc)
+    /// A discontinuity was caused by a camera mode switch.
+    ///
+    /// The value of kCMSampleBufferAttachmentKey_DroppedFrameReasonInfo if the module providing sample buffers
+    /// has experienced a discontinuity due to a camera mode switch. Short discontinuities of this type can occur when the
+    /// session is configured for still image capture on some devices.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferdroppedframereasoninfo_cameramodeswitch?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferDroppedFrameReasonInfo_CameraModeSwitch: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_stillimagelensstabilizationinfo?language=objc)
+    /// Indicates information about the lens stabilization applied to the current still image buffer.
+    ///
+    /// Sample buffers that have been captured with a lens stabilization module may have an attachment of
+    /// kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo which has information about the stabilization status
+    /// during the capture.  This key will not be present in CMSampleBuffers coming from cameras without a lens stabilization module.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_stillimagelensstabilizationinfo?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferlensstabilizationinfo_active?language=objc)
+    /// The lens stabilization module was active for the duration this buffer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferlensstabilizationinfo_active?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferLensStabilizationInfo_Active: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferlensstabilizationinfo_outofrange?language=objc)
+    /// The motion of the device or duration of the capture was outside of what the stabilization mechanism could support.
+    ///
+    /// The value of kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo if the module stabilizing the lens was unable to
+    /// compensate for the movement.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferlensstabilizationinfo_outofrange?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferLensStabilizationInfo_OutOfRange: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferlensstabilizationinfo_unavailable?language=objc)
+    /// The lens stabilization module was unavailable for use.
+    ///
+    /// The value of kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo if the lens stabilization module is unavailable
+    /// to compensate for the motion of the device.  The module may be available at a later time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferlensstabilizationinfo_unavailable?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferLensStabilizationInfo_Unavailable: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferlensstabilizationinfo_off?language=objc)
+    /// The lens stabilization module was not used during this capture.
+    ///
+    /// The value of kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo if the lens stabilization module was not used for this capture.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferlensstabilizationinfo_off?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferLensStabilizationInfo_Off: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_cameraintrinsicmatrix?language=objc)
+    /// Indicates the 3x3 camera intrinsic matrix applied to the current sample buffer.
+    ///
+    /// Camera intrinsic matrix is a CFData containing a matrix_float3x3, which is column-major. It has the following contents:
+    /// fx    0    ox
+    /// 0    fy    oy
+    /// 0    0    1
+    /// fx and fy are the focal length in pixels. For square pixels, they will have the same value.
+    /// ox and oy are the coordinates of the principal point. The origin is the upper left of the frame.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_cameraintrinsicmatrix?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_forcekeyframe?language=objc)
+    /// Indicates that the current or next video sample buffer should be forced to be encoded as a key frame.
+    ///
+    /// A value of kCFBooleanTrue for kCMSampleBufferAttachmentKey_ForceKeyFrame indicates that the current or next video sample buffer processed in the stream should be forced to be encoded as a key frame.
+    /// If this attachment is present and kCFBooleanTrue on a sample buffer with a video frame, that video frame will be forced to become a key frame.  If the sample buffer for which this is present and kCFBooleanTrue does not have a valid video frame, the next sample buffer processed that contains a valid video frame will be encoded as a key frame.
+    ///
+    /// Usual care should be taken when setting attachments on sample buffers whose orgins and destinations are ambiguous.  For example, CMSetAttachment() is not thread-safe, and CMSampleBuffers may be used in multiple sample buffer streams in a given system.  This can lead to crashes during concurrent access and/or unexpected behavior on alternate sample buffer streams.  Therefore, unless the orgin and destination of a sample buffer is known, the general recommended practice is to synthesize an empty sample buffer with this attachment alone and insert it into the sample buffer stream ahead of the concrete sample buffer rather than setting this attachment on the concrete sample buffer itself.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_forcekeyframe?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleBufferAttachmentKey_ForceKeyFrame: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_cryptorsubsampleauxiliarydata?language=objc)
+    /// Describes the ranges of protected and unprotected data within a protected CMSampleBuffer
+    ///
+    /// The attachment is CFData containing one or more "BytesOfClearData"/"BytesOfProtectedData" pairs as appears in the 'senc' box (see ISO/IEC 23001-7 section 7.2.2). The "BytesOfClearData” and the "BytesOfProtectedData” fields are 32-bit integers. Both are native endian in the CFData. This attachment is not present if the CMSampleBuffer contains unprotected content.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_cryptorsubsampleauxiliarydata?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleAttachmentKey_CryptorSubsampleAuxiliaryData: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_hdr10plusperframedata?language=objc)
+    /// HDR10+ per frame metadata
+    ///
+    /// The attachment is CFData containing HDR10+ metadata within an User Data Registered ITU-T T-35 SEI message (see ISO/IEC 23008-2-2020 section D.3.6) as little endian in the CFData. This attachment will override any HDR10+ metadata stored within the compressed data. The data shall start with the field itu_t_t35_country_code with the value 0xb5.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_hdr10plusperframedata?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleAttachmentKey_HDR10PlusPerFrameData: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_postdecodeprocessingmetadata?language=objc)
+    /// Represents the sequence and frame level metadata for post decode processing.
+    ///
+    /// This attachment is used to pass sequence and frame level metadata from a format reader to a decoder or RAW processor. It should be a CFDictionary that conforms to CFPropertyList.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_postdecodeprocessingmetadata?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSampleAttachmentKey_PostDecodeProcessingMetadata: CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Calls a function for every individual sample in a sample buffer.
+    ///
+    /// Temporary sample buffers will be created for individual samples,
+    /// referring to the sample data and containing its timing, size and attachments.
+    /// The callback function may retain these sample buffers if desired.
+    /// If the callback function returns an error, iteration will stop immediately
+    /// and the error will be returned.
+    /// If there are no sample sizes in the provided sample buffer, kCMSampleBufferError_CannotSubdivide will be returned.
+    /// This will happen, for example, if the samples in the buffer are non-contiguous (eg. non-interleaved audio, where
+    /// the channel values for a single sample are scattered through the buffer).
     #[cfg(all(feature = "CMBase", feature = "objc2-core-foundation"))]
     pub fn CMSampleBufferCallForEachSample(
         sbuf: CMSampleBufferRef,
@@ -974,6 +1813,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Calls a block for every individual sample in a sample buffer.
+    ///
+    /// Temporary sample buffers will be created for individual samples,
+    /// referring to the sample data and containing its timing, size and attachments.
+    /// The block may retain these sample buffers if desired.
+    /// If the block returns an error, iteration will stop immediately
+    /// and the error will be returned.
+    /// If there are no sample sizes in the provided sample buffer, kCMSampleBufferError_CannotSubdivide will be returned.
+    /// This will happen, for example, if the samples in the buffer are non-contiguous (eg. non-interleaved audio, where
+    /// the channel values for a single sample are scattered through the buffer).
     #[cfg(all(
         feature = "CMBase",
         feature = "block2",

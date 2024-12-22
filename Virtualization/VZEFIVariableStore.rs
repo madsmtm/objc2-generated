@@ -6,7 +6,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefivariablestoreinitializationoptions?language=objc)
+/// Options when creating a new EFI variable store.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefivariablestoreinitializationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,7 +28,13 @@ unsafe impl RefEncode for VZEFIVariableStoreInitializationOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefivariablestore?language=objc)
+    /// EFI variable store
+    ///
+    /// The EFI variable store contains NVRAM variables exposed by the EFI ROM.
+    ///
+    /// See also: VZEFIBootLoader
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefivariablestore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZEFIVariableStore;
@@ -42,9 +50,25 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Initialize the variable store from the URL of an existing file.
+        ///
+        /// Parameter `URL`: The URL of the variable store on the local file system.
+        ///
+        /// To create a new variable store, use -[VZEFIVariableStore initCreatingVariableStoreAtURL:options:error].
         #[method_id(@__retain_semantics Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
+        /// Write an initialized VZEFIVariableStore to a URL on a file system.
+        ///
+        /// Parameter `URL`: The URL to write the variable store to on the local file system.
+        ///
+        /// Parameter `options`: Initialization options.
+        ///
+        /// Parameter `error`: If not nil, used to report errors if creation fails.
+        ///
+        /// Returns: A newly initialized VZEFIVariableStore on success. If an error was encountered returns
+        /// `nil,`and
+        /// `error`contains the error.
         #[method_id(@__retain_semantics Init initCreatingVariableStoreAtURL:options:error:_)]
         pub unsafe fn initCreatingVariableStoreAtURL_options_error(
             this: Allocated<Self>,
@@ -52,6 +76,7 @@ extern_methods!(
             options: VZEFIVariableStoreInitializationOptions,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// The URL of the variable store on the local file system.
         #[method_id(@__retain_semantics Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
     }

@@ -10,14 +10,19 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct LABiometryType(pub NSInteger);
 impl LABiometryType {
+    /// The device does not support biometry.
     #[doc(alias = "LABiometryTypeNone")]
     pub const None: Self = Self(0);
+    /// The device does not support biometry.
     #[deprecated]
     pub const LABiometryNone: Self = Self(LABiometryType::None.0);
+    /// The device supports Touch ID.
     #[doc(alias = "LABiometryTypeTouchID")]
     pub const TouchID: Self = Self(1);
+    /// The device supports Face ID.
     #[doc(alias = "LABiometryTypeFaceID")]
     pub const FaceID: Self = Self(2);
+    /// The device supports Optic ID
     #[doc(alias = "LABiometryTypeOpticID")]
     pub const OpticID: Self = Self(4);
 }

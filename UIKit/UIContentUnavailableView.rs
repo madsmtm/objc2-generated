@@ -101,16 +101,20 @@ extern_methods!(
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UIContentUnavailableConfiguration")]
+        /// The content unavailable configuration.
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Retained<UIContentUnavailableConfiguration>;
 
         #[cfg(feature = "UIContentUnavailableConfiguration")]
+        /// Setter for [`configuration`][Self::configuration].
         #[method(setConfiguration:)]
         pub unsafe fn setConfiguration(&self, configuration: &UIContentUnavailableConfiguration);
 
+        /// Whether the content can scroll. Default is NO.
         #[method(isScrollEnabled)]
         pub unsafe fn isScrollEnabled(&self) -> bool;
 
+        /// Setter for [`isScrollEnabled`][Self::isScrollEnabled].
         #[method(setScrollEnabled:)]
         pub unsafe fn setScrollEnabled(&self, scroll_enabled: bool);
     }

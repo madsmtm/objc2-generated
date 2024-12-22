@@ -95,6 +95,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn MKLookAroundViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -106,18 +107,21 @@ extern_methods!(
         pub unsafe fn scene(&self) -> Option<Retained<MKLookAroundScene>>;
 
         #[cfg(feature = "MKLookAroundScene")]
+        /// Setter for [`scene`][Self::scene].
         #[method(setScene:)]
         pub unsafe fn setScene(&self, scene: Option<&MKLookAroundScene>);
 
         #[method(isNavigationEnabled)]
         pub unsafe fn isNavigationEnabled(&self) -> bool;
 
+        /// Setter for [`isNavigationEnabled`][Self::isNavigationEnabled].
         #[method(setNavigationEnabled:)]
         pub unsafe fn setNavigationEnabled(&self, navigation_enabled: bool);
 
         #[method(showsRoadLabels)]
         pub unsafe fn showsRoadLabels(&self) -> bool;
 
+        /// Setter for [`showsRoadLabels`][Self::showsRoadLabels].
         #[method(setShowsRoadLabels:)]
         pub unsafe fn setShowsRoadLabels(&self, shows_road_labels: bool);
 
@@ -126,6 +130,7 @@ extern_methods!(
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
+        /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
         #[method(setPointOfInterestFilter:)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
@@ -135,6 +140,7 @@ extern_methods!(
         #[method(badgePosition)]
         pub unsafe fn badgePosition(&self) -> MKLookAroundBadgePosition;
 
+        /// Setter for [`badgePosition`][Self::badgePosition].
         #[method(setBadgePosition:)]
         pub unsafe fn setBadgePosition(&self, badge_position: MKLookAroundBadgePosition);
     }

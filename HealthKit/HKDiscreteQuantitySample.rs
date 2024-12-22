@@ -7,7 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample?language=objc)
+    /// An HKQuantitySample subclass representing a quantity measurement with
+    /// discrete aggregation style.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample?language=objc)
     #[unsafe(super(HKQuantitySample, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -61,21 +64,26 @@ extern_methods!(
     ))]
     unsafe impl HKDiscreteQuantitySample {
         #[cfg(feature = "HKQuantity")]
+        /// The minimum of the receiver's quantities
         #[method_id(@__retain_semantics Other minimumQuantity)]
         pub unsafe fn minimumQuantity(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The average of the receiver's quantities
         #[method_id(@__retain_semantics Other averageQuantity)]
         pub unsafe fn averageQuantity(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The maximum of the receiver's quantities
         #[method_id(@__retain_semantics Other maximumQuantity)]
         pub unsafe fn maximumQuantity(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The receiver's quantity with most recent date interval
         #[method_id(@__retain_semantics Other mostRecentQuantity)]
         pub unsafe fn mostRecentQuantity(&self) -> Retained<HKQuantity>;
 
+        /// The date interval for the receiver's most recent quantity
         #[method_id(@__retain_semantics Other mostRecentQuantityDateInterval)]
         pub unsafe fn mostRecentQuantityDateInterval(&self) -> Retained<NSDateInterval>;
     }
@@ -90,6 +98,10 @@ extern_methods!(
     ))]
     unsafe impl HKDiscreteQuantitySample {
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
+        /// Creates a new HKQuantitySample with the given type, quantity, start date, and end date.
+        ///
+        /// The quantity must have a unit that is compatible with the given quantity type.
+        /// See -[HKQuantityType isCompatibleWithUnit:].
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate(
             quantity_type: &HKQuantityType,
@@ -99,6 +111,10 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKQuantity"))]
+        /// Creates a new HKQuantitySample with the given type, quantity, start date, end date, and metadata.
+        ///
+        /// The quantity must have a unit that is compatible with the given quantity type.
+        /// See -[HKQuantityType isCompatibleWithUnit:].
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:metadata:)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate_metadata(
             quantity_type: &HKQuantityType,
@@ -109,6 +125,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "HKDevice", feature = "HKObjectType", feature = "HKQuantity"))]
+        /// Creates a new HKQuantitySample with the given type, quantity, start date, end date, and metadata.
+        ///
+        /// Parameter `quantityType`: The type of the sample.
+        ///
+        /// Parameter `startDate`: The start date of the sample.
+        ///
+        /// Parameter `endDate`: The end date of the sample.
+        ///
+        /// Parameter `device`: The HKDevice that generated the sample (optional).
+        ///
+        /// Parameter `metadata`: Metadata for the sample (optional).
+        ///
+        /// The quantity must have a unit that is compatible with the given quantity type.
+        /// See -[HKQuantityType isCompatibleWithUnit:].
         #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:device:metadata:)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate_device_metadata(
             quantity_type: &HKQuantityType,

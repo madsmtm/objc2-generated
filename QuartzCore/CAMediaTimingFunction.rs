@@ -60,7 +60,9 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcamediatimingfunctionlinear?language=objc)
+    /// Timing function names. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcamediatimingfunctionlinear?language=objc)
     pub static kCAMediaTimingFunctionLinear: &'static CAMediaTimingFunctionName;
 }
 

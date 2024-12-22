@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat?language=objc)
+/// specifies how the vertex attribute data is laid out in memory.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -157,7 +159,11 @@ unsafe impl RefEncode for MTLVertexStepFunction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbufferlayoutstridedynamic?language=objc)
+/// when a MTLVertexBufferLayoutDescriptor has its stride set to this value,
+/// the stride will be dynamic and must be set explicitly when binding a buffer
+/// to a render command encoder.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbufferlayoutstridedynamic?language=objc)
 pub static MTLBufferLayoutStrideDynamic: NSUInteger = NSUIntegerMax as _;
 
 extern_class!(
@@ -180,18 +186,21 @@ extern_methods!(
         #[method(stride)]
         pub fn stride(&self) -> NSUInteger;
 
+        /// Setter for [`stride`][Self::stride].
         #[method(setStride:)]
         pub unsafe fn setStride(&self, stride: NSUInteger);
 
         #[method(stepFunction)]
         pub fn stepFunction(&self) -> MTLVertexStepFunction;
 
+        /// Setter for [`stepFunction`][Self::stepFunction].
         #[method(setStepFunction:)]
         pub unsafe fn setStepFunction(&self, step_function: MTLVertexStepFunction);
 
         #[method(stepRate)]
         pub fn stepRate(&self) -> NSUInteger;
 
+        /// Setter for [`stepRate`][Self::stepRate].
         #[method(setStepRate:)]
         pub unsafe fn setStepRate(&self, step_rate: NSUInteger);
     }
@@ -272,18 +281,21 @@ extern_methods!(
         #[method(format)]
         pub fn format(&self) -> MTLVertexFormat;
 
+        /// Setter for [`format`][Self::format].
         #[method(setFormat:)]
         pub fn setFormat(&self, format: MTLVertexFormat);
 
         #[method(offset)]
         pub fn offset(&self) -> NSUInteger;
 
+        /// Setter for [`offset`][Self::offset].
         #[method(setOffset:)]
         pub unsafe fn setOffset(&self, offset: NSUInteger);
 
         #[method(bufferIndex)]
         pub fn bufferIndex(&self) -> NSUInteger;
 
+        /// Setter for [`bufferIndex`][Self::bufferIndex].
         #[method(setBufferIndex:)]
         pub unsafe fn setBufferIndex(&self, buffer_index: NSUInteger);
     }

@@ -4,18 +4,24 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationaction?language=objc)
+/// Describes various classification actions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ILClassificationAction(pub NSInteger);
 impl ILClassificationAction {
+    /// Indicate that no action is requested.
     #[doc(alias = "ILClassificationActionNone")]
     pub const None: Self = Self(0);
+    /// Report communication(s) as not junk.
     #[doc(alias = "ILClassificationActionReportNotJunk")]
     pub const ReportNotJunk: Self = Self(1);
+    /// Report communication(s) as junk.
     #[doc(alias = "ILClassificationActionReportJunk")]
     pub const ReportJunk: Self = Self(2);
+    /// Report communication(s) as junk and block the sender.
     #[doc(alias = "ILClassificationActionReportJunkAndBlockSender")]
     pub const ReportJunkAndBlockSender: Self = Self(3);
 }

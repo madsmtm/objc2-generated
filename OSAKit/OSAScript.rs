@@ -232,6 +232,7 @@ extern_methods!(
         pub unsafe fn language(&self) -> Retained<OSALanguage>;
 
         #[cfg(feature = "OSALanguage")]
+        /// Setter for [`language`][Self::language].
         #[method(setLanguage:)]
         pub unsafe fn setLanguage(&self, language: &OSALanguage);
 
@@ -240,6 +241,7 @@ extern_methods!(
         pub unsafe fn languageInstance(&self) -> Retained<OSALanguageInstance>;
 
         #[cfg(feature = "OSALanguageInstance")]
+        /// Setter for [`languageInstance`][Self::languageInstance].
         #[method(setLanguageInstance:)]
         pub unsafe fn setLanguageInstance(&self, language_instance: &OSALanguageInstance);
 

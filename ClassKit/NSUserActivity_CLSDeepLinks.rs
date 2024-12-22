@@ -9,9 +9,16 @@ extern_category!(
     /// Category "CLSDeepLinks" on [`NSUserActivity`].
     #[doc(alias = "CLSDeepLinks")]
     pub unsafe trait NSUserActivityCLSDeepLinks {
+        /// Returns whether the user activity is a ClassKit deep link.
         #[method(isClassKitDeepLink)]
         unsafe fn isClassKitDeepLink(&self) -> bool;
 
+        /// Returns the context identifier path you should deep link to.
+        ///
+        /// For example for the context identifier path
+        /// `@["swift-programming-book",``"chapter1"],`your app should direct the user to
+        /// _chapter1_in
+        /// _swift-programming-book._
         #[method_id(@__retain_semantics Other contextIdentifierPath)]
         unsafe fn contextIdentifierPath(&self) -> Option<Retained<NSArray<NSString>>>;
     }

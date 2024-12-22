@@ -7,7 +7,9 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecacheref?language=objc)
+/// CoreVideo OpenGL Texture Cache
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecacheref?language=objc)
 pub type CVOpenGLTextureCacheRef = *mut c_void;
 
 extern "C" {
@@ -41,6 +43,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retains a CVOpenGLTextureCache object
+    ///
+    /// Equivalent to CFRetain, but NULL safe
+    ///
+    /// Parameter `buffer`: A CVOpenGLTextureCache object that you want to retain.
+    ///
+    /// Returns: A CVOpenGLTextureCache object that is the same as the passed in buffer.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLTextureCacheRetain(
         texture_cache: CVOpenGLTextureCacheRef,
@@ -48,6 +57,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a CVOpenGLTexture object from an existing CVImageBuffer
+    ///
+    /// Parameter `allocator`: The CFAllocatorRef to use for allocating the CVOpenGLTexture object.  May be NULL.
+    ///
+    /// Parameter `textureCache`: The texture cache object that will manage the texture
+    ///
+    /// Parameter `sourceImage`: The CVImageBuffer that you want to create a CVOpenGLTexture from.
+    ///
+    /// Parameter `attributes`: For Future use only! - The desired buffer attributes for the CVOpenGLTexture.
+    ///
+    /// Parameter `textureOut`: The newly created texture object will be placed here.
+    ///
+    /// Returns: Returns kCVReturnSuccess on success
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",
@@ -66,6 +88,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Performs internal housekeeping/recycling operations
+    ///
+    /// This call must be made periodically to give the texture cache a chance to make OpenGL calls
+    /// on the OpenGL context used to create it in order to do housekeeping operations.
+    ///
+    /// Parameter `textureCache`: The texture cache object to flush
+    ///
+    /// Parameter `options`: Currently unused, set to 0.
+    ///
+    /// Returns: Returns kCVReturnSuccess on success
     #[cfg(feature = "CVBase")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLTextureCacheFlush(

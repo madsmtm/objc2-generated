@@ -44,6 +44,7 @@ extern_methods!(
         pub unsafe fn shadowOffset(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`shadowOffset`][Self::shadowOffset].
         #[method(setShadowOffset:)]
         pub unsafe fn setShadowOffset(&self, shadow_offset: CGSize);
 
@@ -52,12 +53,14 @@ extern_methods!(
         pub unsafe fn shadowBlurRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`shadowBlurRadius`][Self::shadowBlurRadius].
         #[method(setShadowBlurRadius:)]
         pub unsafe fn setShadowBlurRadius(&self, shadow_blur_radius: CGFloat);
 
         #[method_id(@__retain_semantics Other shadowColor)]
         pub unsafe fn shadowColor(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`shadowColor`][Self::shadowColor].
         #[method(setShadowColor:)]
         pub unsafe fn setShadowColor(&self, shadow_color: Option<&AnyObject>);
     }

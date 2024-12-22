@@ -44,6 +44,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// * Immutable string creation functions **
     #[cfg(feature = "CFBase")]
     pub fn CFStringCreateWithPascalString(
         alloc: CFAllocatorRef,
@@ -163,6 +164,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// * Basic accessors for the contents **
     #[cfg(feature = "CFBase")]
     pub fn CFStringGetLength(the_string: CFStringRef) -> CFIndex;
 }
@@ -274,6 +276,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// * FileSystem path conversion functions **
     #[cfg(feature = "CFBase")]
     pub fn CFStringGetFileSystemRepresentation(
         string: CFStringRef,
@@ -410,6 +413,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the range of the composed character sequence at the specified index.
+    ///
+    /// Parameter `theString`: The CFString which is to be searched.  If this
+    /// parameter is not a valid CFString, the behavior is
+    /// undefined.
+    ///
+    /// Parameter `theIndex`: The index of the character contained in the
+    /// composed character sequence.  If the index is
+    /// outside the index space of the string (0 to N-1 inclusive,
+    /// where N is the length of the string), the behavior is
+    /// undefined.
+    ///
+    /// Returns: The range of the composed character sequence.
     #[cfg(feature = "CFBase")]
     pub fn CFStringGetRangeOfComposedCharactersAtIndex(
         the_string: CFStringRef,
@@ -418,6 +434,38 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Query the range of the first character contained in the specified character set.
+    ///
+    /// Parameter `theString`: The CFString which is to be searched.  If this
+    /// parameter is not a valid CFString, the behavior is
+    /// undefined.
+    ///
+    /// Parameter `theSet`: The CFCharacterSet against which the membership
+    /// of characters is checked.  If this parameter is not a valid
+    /// CFCharacterSet, the behavior is undefined.
+    ///
+    /// Parameter `rangeToSearch`: The range of characters within the string to search. If
+    /// the range location or end point (defined by the location
+    /// plus length minus 1) are outside the index space of the
+    /// string (0 to N-1 inclusive, where N is the length of the
+    /// string), the behavior is undefined. If the range length is
+    /// negative, the behavior is undefined. The range may be empty
+    /// (length 0), in which case no search is performed.
+    ///
+    /// Parameter `searchOptions`: The bitwise-or'ed option flags to control
+    /// the search behavior.  The supported options are
+    /// kCFCompareBackwards andkCFCompareAnchored.
+    /// If other option flags are specified, the behavior
+    /// is undefined.
+    ///
+    /// Parameter `result`: The pointer to a CFRange supplied by the caller in
+    /// which the search result is stored.  Note that the length
+    /// of this range can be more than 1, if for instance the
+    /// result is a composed character. If a pointer to an invalid
+    /// memory is specified, the behavior is undefined.
+    ///
+    /// Returns: true, if at least a character which is a member of the character
+    /// set is found and result is filled, otherwise, false.
     #[cfg(all(feature = "CFBase", feature = "CFCharacterSet"))]
     pub fn CFStringFindCharacterFromSet(
         the_string: CFStringRef,
@@ -451,6 +499,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retrieve the first potential hyphenation location found before the specified location.
+    ///
+    /// Parameter `string`: The CFString which is to be hyphenated.  If this
+    /// parameter is not a valid CFString, the behavior is
+    /// undefined.
+    ///
+    /// Parameter `location`: An index in the string.  If a valid hyphen index is returned, it
+    /// will be before this index.
+    ///
+    /// Parameter `limitRange`: The range of characters within the string to search. If
+    /// the range location or end point (defined by the location
+    /// plus length minus 1) are outside the index space of the
+    /// string (0 to N-1 inclusive, where N is the length of the
+    /// string), the behavior is undefined. If the range length is
+    /// negative, the behavior is undefined. The range may be empty
+    /// (length 0), in which case no hyphen location is generated.
+    ///
+    /// Parameter `options`: Reserved for future use.
+    ///
+    /// Parameter `locale`: Specifies which language's hyphenation conventions to use.
+    /// This must be a valid locale.  Hyphenation data is not available
+    /// for all locales.  You can use CFStringIsHyphenationAvailableForLocale
+    /// to test for availability of hyphenation data.
+    ///
+    /// Parameter `character`: The suggested hyphen character to insert.  Pass NULL if you
+    /// do not need this information.
+    ///
+    /// Returns: an index in the string where it is appropriate to insert a hyphen, if
+    /// one exists; else kCFNotFound
     #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
     pub fn CFStringGetHyphenationLocationBeforeIndex(
         string: CFStringRef,
@@ -468,6 +545,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// * Exploding and joining strings with a separator string **
     #[cfg(all(feature = "CFArray", feature = "CFBase"))]
     pub fn CFStringCreateByCombiningStrings(
         alloc: CFAllocatorRef,
@@ -486,6 +564,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// * Parsing non-localized numbers from strings **
     #[cfg(feature = "CFBase")]
     pub fn CFStringGetIntValue(str: CFStringRef) -> i32;
 }
@@ -496,6 +575,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// * MutableString functions **
     #[cfg(feature = "CFBase")]
     pub fn CFStringAppend(the_string: CFMutableStringRef, appended_string: CFStringRef);
 }
@@ -607,7 +687,11 @@ extern "C-unwind" {
     pub fn CFStringCapitalize(the_string: CFMutableStringRef, locale: CFLocaleRef);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalizationform?language=objc)
+/// This is the type of Unicode normalization forms as described in
+/// Unicode Technical Report #15. To normalize for use with file
+/// system calls, use CFStringGetFileSystemRepresentation().
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalizationform?language=objc)
 // NS_ENUM
 #[cfg(feature = "CFBase")]
 #[repr(transparent)]
@@ -632,11 +716,44 @@ unsafe impl RefEncode for CFStringNormalizationForm {
 }
 
 extern "C-unwind" {
+    /// Normalizes the string into the specified form as described in
+    /// Unicode Technical Report #15.
+    ///
+    /// Parameter `theString`: The string which is to be normalized.  If this
+    /// parameter is not a valid mutable CFString, the behavior is
+    /// undefined.
+    ///
+    /// Parameter `theForm`: The form into which the string is to be normalized.
+    /// If this parameter is not a valid CFStringNormalizationForm value,
+    /// the behavior is undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFStringNormalize(the_string: CFMutableStringRef, the_form: CFStringNormalizationForm);
 }
 
 extern "C-unwind" {
+    /// Folds the string into the form specified by the flags.
+    /// Character foldings are operations that convert any of a set of characters
+    /// sharing similar semantics into a single representative from that set.
+    /// This function can be used to preprocess strings that are to be compared,
+    /// searched, or indexed.
+    /// Note that folding does not include normalization, so it is necessary
+    /// to use CFStringNormalize in addition to CFStringFold in order to obtain
+    /// the effect of kCFCompareNonliteral.
+    ///
+    /// Parameter `theString`: The string which is to be folded.  If this parameter is not
+    /// a valid mutable CFString, the behavior is undefined.
+    ///
+    /// Parameter `theFlags`: The equivalency flags which describes the character folding form.
+    /// Only those flags containing the word "insensitive" are recognized here; other flags are ignored.
+    /// Folding with kCFCompareCaseInsensitive removes case distinctions in accordance with the mapping
+    /// specified by ftp://ftp.unicode.org/Public/UNIDATA/CaseFolding.txt.  Folding with
+    /// kCFCompareDiacriticInsensitive removes distinctions of accents and other diacritics.  Folding
+    /// with kCFCompareWidthInsensitive removes character width distinctions by mapping characters in
+    /// the range U+FF00-U+FFEF to their ordinary equivalents.
+    ///
+    /// Parameter `theLocale`: The locale tailoring the character folding behavior. If NULL,
+    /// it's considered to be the system locale returned from CFLocaleGetSystem().
+    /// If non-NULL and not a valid CFLocale object, the behavior is undefined.
     #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
     pub fn CFStringFold(
         the_string: CFMutableStringRef,
@@ -752,6 +869,7 @@ extern "C" {
 }
 
 extern "C-unwind" {
+    /// * General encoding related functionality **
     pub fn CFStringIsEncodingAvailable(encoding: CFStringEncoding) -> Boolean;
 }
 

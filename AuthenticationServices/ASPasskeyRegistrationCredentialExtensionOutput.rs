@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredentialextensionoutput?language=objc)
+    /// This class encapsulates output for various WebAuthn extensions used during passkey registration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredentialextensionoutput?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPasskeyRegistrationCredentialExtensionOutput;
@@ -35,6 +37,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput")]
+        /// Output for `largeBlob` operation during passkey registration.
         #[method_id(@__retain_semantics Other largeBlobRegistrationOutput)]
         pub unsafe fn largeBlobRegistrationOutput(
             &self,

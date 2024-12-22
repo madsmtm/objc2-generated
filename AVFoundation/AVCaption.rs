@@ -13,7 +13,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionunitstype?language=objc)
+/// Geometry unit.
+///
+/// Some geometric objects are positioned or sized with different kinds of dimensions differeing in unit. In some cases, an object might allow multiple kinds of dimensions varrying by units. AVCaptionUnitsType is an enumeration of kinds of units that are used across caption formats.
+///
+/// The units has not been specified. The dimension can be seen as invalid.
+///
+/// The integer value is a number of cells.
+///
+/// The floating-point value number value is [0 .. 100] correspondng to 0% to 100%, typically relative to the enclosing rectangle.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionunitstype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -35,7 +45,11 @@ unsafe impl RefEncode for AVCaptionUnitsType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiondimension?language=objc)
+/// The length with a unit or coordinate on a 2D geometric axis
+/// Field: value The value of the coordinate or length.
+/// Field: units The units of the coordinate (e.g., cells, points)
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiondimension?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -57,7 +71,11 @@ unsafe impl RefEncode for AVCaptionDimension {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionpoint?language=objc)
+/// A two dimensional point made of x and y AVCaptionDimension coordinates
+/// Field: x An AVCaptionDimension holding the x coordinate of the point
+/// Field: y An AVCaptionDimension holding the y coordinate of the point
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionpoint?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -82,7 +100,11 @@ unsafe impl RefEncode for AVCaptionPoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionsize?language=objc)
+/// A two dimensional size made of width and height AVCaptionDimensions
+/// Field: width An AVCaptionDimension holding the width
+/// Field: height An AVCaptionDimension holding the height
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionsize?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -108,16 +130,19 @@ unsafe impl RefEncode for AVCaptionSize {
 }
 
 extern "C-unwind" {
+    /// Makes an AVCaptionDimension from a value and units.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AVCaptionDimensionMake(value: CGFloat, units: AVCaptionUnitsType) -> AVCaptionDimension;
 }
 
 extern "C-unwind" {
+    /// Makes an AVCaptionPoint from x and y coordinate AVCaptionDimensions.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AVCaptionPointMake(x: AVCaptionDimension, y: AVCaptionDimension) -> AVCaptionPoint;
 }
 
 extern "C-unwind" {
+    /// Makes an AVCaptionSize from width and height AVCaptionDimensions.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AVCaptionSizeMake(
         width: AVCaptionDimension,
@@ -125,7 +150,23 @@ extern "C-unwind" {
     ) -> AVCaptionSize;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregiondisplayalignment?language=objc)
+/// Choices for region display alignment
+///
+///
+/// Whenever a caption line is inserted into a region, it's placed relative to the existing lines and the direction to which the line is placed is called the block progression direction of the region. For example, English caption's block progression direction is top-to-bottom, while Japanese vertical caption uses right-to-left.
+///
+/// The value describes how the caption lines should positioned in a region in terms of the block progression direction.
+///
+///
+/// Align lines in earlier position in the block progression direction, or align to the top for English captions, for example.
+///
+///
+/// Align lines in center position in the block progression direction. iTT doesn't support this.
+///
+///
+/// Align lines in later position in the block progression direction, or align to the left for Japanese vertical captions, for example.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregiondisplayalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -147,7 +188,9 @@ unsafe impl RefEncode for AVCaptionRegionDisplayAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregionwritingmode?language=objc)
+/// Choices for region writing mode
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregionwritingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -167,7 +210,9 @@ unsafe impl RefEncode for AVCaptionRegionWritingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregionscroll?language=objc)
+/// Scrolling effect for a region
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregionscroll?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -188,7 +233,11 @@ unsafe impl RefEncode for AVCaptionRegionScroll {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion?language=objc)
+    /// An instance of AVCaptionRegion represents a region where a caption is placed.
+    ///
+    /// Currently, there is just four predefined region instances. The interface doesn't support configuration of region settings.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionRegion;
@@ -214,47 +263,93 @@ unsafe impl NSSecureCoding for AVCaptionRegion {}
 
 extern_methods!(
     unsafe impl AVCaptionRegion {
+        /// The top region for iTT format
+        ///
+        /// This region can be used in iTT format and it occupies the top 15% of the display area. The region uses LRTB, a line progresses left to right and the block extends from top to bottom. Each line is stacked with top justified.
         #[method_id(@__retain_semantics Other appleITTTopRegion)]
         pub unsafe fn appleITTTopRegion() -> Retained<AVCaptionRegion>;
 
+        /// The bottom region for iTT format
+        ///
+        /// This region can be used in iTT format and it occupies the bottom 15% of the display area. The region uses LRTB, a line progresses left to right and the block extends from top to bottom. Each line is stacked with bottom justified.
         #[method_id(@__retain_semantics Other appleITTBottomRegion)]
         pub unsafe fn appleITTBottomRegion() -> Retained<AVCaptionRegion>;
 
+        /// The  left region for iTT format
+        ///
+        /// This region can be used in iTT format and it occupies the left 15% of the display area. The region uses TBRL, a line progresses top to bottom and the block extends from right to left. Each line is stacked with right justified.
         #[method_id(@__retain_semantics Other appleITTLeftRegion)]
         pub unsafe fn appleITTLeftRegion() -> Retained<AVCaptionRegion>;
 
+        /// The right region for iTT format
+        ///
+        /// This region can be used in iTT format and it occupies the right 15% of the display area. The region uses TBRL, a line progresses top to bottom and the block extends from right to left. Each line is stacked with right justified.
         #[method_id(@__retain_semantics Other appleITTRightRegion)]
         pub unsafe fn appleITTRightRegion() -> Retained<AVCaptionRegion>;
 
+        /// The bottom region for SubRip Text (SRT) format
+        ///
+        /// This region can be used in SRT format and it occupies the entire video display area. The region uses LRTB, a line progresses left to right and the block extends from top to bottom. Each line is stacked with bottom justified.
         #[method_id(@__retain_semantics Other subRipTextBottomRegion)]
         pub unsafe fn subRipTextBottomRegion() -> Retained<AVCaptionRegion>;
 
+        /// Identifier for the region
+        ///
+        /// When regionIdentifier is nil, two regions with the same position and endPosition are considered to be same, that is
+        /// captions referring these regions belong to the same region when serialized to a format like TTML.  In addition, the
+        /// AVCaptionRegion cannot be mutably copied.
+        ///
+        /// When regionIdentifier is not nil, two regions are same if and only if the region identifier is equal. It is a
+        /// client's responsibility to ensure these AVCaptionRegion objects have the same properties.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The position of the top-left of the region, potentially with unspecified fields.
+        ///
+        /// It returns an AVCaptionPoint potentially with unspecified x and/or y fields. Unspecified dimensions indicate the region doesn't have positioning information for that dimension.
         #[method(origin)]
         pub unsafe fn origin(&self) -> AVCaptionPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The width and height of the region, potentally with unspecified fields.
+        ///
+        /// It returns an AVCaptionSize potentially with unspecified width and/or height.
+        /// CEA608 closed captions support limits the size.height property’s value to 1 cell except when the AVCaptionRegionScroll is AVCaptionRegionScrollRollUp.
+        /// If the AVCaptionRegionScroll is AVCaptionRegionScrollRollUp, the size.height property’s value must be 2, 3 or 4 cells.
+        /// It returns an AVCaptionSize with unspecifed width and height when the region doesn't have width or height information.
         #[method(size)]
         pub unsafe fn size(&self) -> AVCaptionSize;
 
+        /// Scroll mode for the region
+        ///
+        /// See AVCaptionRegionScrollXXX enum for possible values.
         #[method(scroll)]
         pub unsafe fn scroll(&self) -> AVCaptionRegionScroll;
 
+        /// Alignment of lines for the region
         #[method(displayAlignment)]
         pub unsafe fn displayAlignment(&self) -> AVCaptionRegionDisplayAlignment;
 
+        /// The block and inline progression direction of the region.
         #[method(writingMode)]
         pub unsafe fn writingMode(&self) -> AVCaptionRegionWritingMode;
 
+        /// NSCoding protocol method override
+        ///
+        /// This method throws an exception if the caption region's size has different units for width and height, or if the units are unrecognizeable.
         #[method(encodeWithCoder:)]
         pub unsafe fn encodeWithCoder(&self, encoder: &NSCoder);
 
+        /// NSObject protocol method override
+        ///
+        /// This method throws an exception if the caption region's size has different units for width and height, or if the units are unrecognizeable.
         #[method(isEqual:)]
         pub unsafe fn isEqual(&self, object: &AnyObject) -> bool;
 
+        /// NSMutableCopying protocol method override
+        ///
+        /// This method throws an exception if the caption region contains an identifier.
         #[method_id(@__retain_semantics MutableCopy mutableCopyWithZone:)]
         pub unsafe fn mutableCopyWithZone(&self, zone: *mut NSZone) -> Retained<AnyObject>;
     }
@@ -272,7 +367,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablecaptionregion?language=objc)
+    /// Mutable subclass of AVCaptionRegion.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablecaptionregion?language=objc)
     #[unsafe(super(AVCaptionRegion, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableCaptionRegion;
@@ -298,9 +395,11 @@ unsafe impl NSSecureCoding for AVMutableCaptionRegion {}
 
 extern_methods!(
     unsafe impl AVMutableCaptionRegion {
+        /// Create a region object without any properties.
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Create a region object with the identifier.
         #[method_id(@__retain_semantics Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
@@ -308,39 +407,49 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The position of the top-left of the region.
         #[method(origin)]
         pub unsafe fn origin(&self) -> AVCaptionPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`origin`][Self::origin].
         #[method(setOrigin:)]
         pub unsafe fn setOrigin(&self, origin: AVCaptionPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The width and height of the region, potentally with unspecified fields.
         #[method(size)]
         pub unsafe fn size(&self) -> AVCaptionSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: AVCaptionSize);
 
+        /// Region scroll mode.
         #[method(scroll)]
         pub unsafe fn scroll(&self) -> AVCaptionRegionScroll;
 
+        /// Setter for [`scroll`][Self::scroll].
         #[method(setScroll:)]
         pub unsafe fn setScroll(&self, scroll: AVCaptionRegionScroll);
 
+        /// Alignment of lines in the region.
         #[method(displayAlignment)]
         pub unsafe fn displayAlignment(&self) -> AVCaptionRegionDisplayAlignment;
 
+        /// Setter for [`displayAlignment`][Self::displayAlignment].
         #[method(setDisplayAlignment:)]
         pub unsafe fn setDisplayAlignment(
             &self,
             display_alignment: AVCaptionRegionDisplayAlignment,
         );
 
+        /// The block and inline progression direction of the region.
         #[method(writingMode)]
         pub unsafe fn writingMode(&self) -> AVCaptionRegionWritingMode;
 
+        /// Setter for [`writingMode`][Self::writingMode].
         #[method(setWritingMode:)]
         pub unsafe fn setWritingMode(&self, writing_mode: AVCaptionRegionWritingMode);
     }
@@ -354,7 +463,9 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionanimation?language=objc)
+/// Animation effect for a caption
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -375,7 +486,11 @@ unsafe impl RefEncode for AVCaptionAnimation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption?language=objc)
+    /// An instance of AVCaption represents a unit of text that is active at a particular time range.
+    ///
+    /// A caption contains one meaningful sentence, paragraph, or otherwise known as a caption cue. Within the active time range, it may perform animation (e.g. Karaoke), rolling-up, changes the visibility, or any other dynamic styling.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaption;
@@ -408,6 +523,13 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Initializes an instance of AVCaption with the given text and time range.
+        ///
+        /// Parameter `text`: The text for the new caption object. See text property for the available character sets and other restrictions.
+        ///
+        /// Parameter `timeRange`: The time range for the new caption object.
+        ///
+        /// Returns: An instance of AVCaption that carries the given text and time range.
         #[method_id(@__retain_semantics Init initWithText:timeRange:)]
         pub unsafe fn initWithText_timeRange(
             this: Allocated<Self>,
@@ -415,17 +537,52 @@ extern_methods!(
             time_range: CMTimeRange,
         ) -> Retained<Self>;
 
+        /// The text content of the caption.
+        ///
+        /// The text may contain any of the line breaking character sequences (LF, CR, or CF+LF) and separating the lines in the presentation.
+        ///
+        /// The Apple iTT format supports all Unicode code points allowed in a XML document. Any XML special characters such as '
+        /// &
+        /// ' are converted to a corresponding character reference syntax when written to the destination file.
+        ///
+        /// CEA608 closed captions support the following Unicode characters.
+        /// Range: U+0020 - U+005F
+        /// Range: U+0061 - U+007E
+        /// Range: U+00A1 - U+00A5
+        /// Characters: U+00A9, U+00AB, U+00AE, U+00B0, U+00BB, U+00BD, U+00BF
+        /// Range: U+00C0-U+00C5
+        /// Range: U+00C7-U+00CF
+        /// Range: U+00D1-U+00D6
+        /// Range: U+00D8-U+00DC
+        /// Range: U+00DF-U+00E5
+        /// Range: U+00E7-U+00EF
+        /// Range: U+00F1-U+00FC
+        /// Range: U+2018-U+2019
+        /// Range: U+2018-U+201D
+        /// Character: U+2022
+        /// Range: U+2120-U+2122
+        /// Characters: U+2501, U+2503, U+250F, U+2513, U+2517, U+251B, U+2588, U+266A
+        ///
+        /// CEA608 closed captions don't support the line breaking character sequences (LF, CR, or CF+LF).
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// The time range during which the caption should be presented.
+        ///
+        /// Apple iTT format doesn't allow two captions to have overlapped time range except when the two captions are associated with different regions.
+        ///
+        /// CEA608 closed caption time ranges can't start with zero, because the decoder needs some transmission time.
+        /// CEA608 closed caption time ranges should be aligned with the video frame rate because this is how often the commands are delivered.
         #[method(timeRange)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablecaption?language=objc)
+    /// Mutable subclass of AVCaption.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablecaption?language=objc)
     #[unsafe(super(AVCaption, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableCaption;
@@ -451,17 +608,23 @@ unsafe impl NSSecureCoding for AVMutableCaption {}
 
 extern_methods!(
     unsafe impl AVMutableCaption {
+        /// The text content of the caption.
+        ///
+        /// All styling information is cleared on setting this property.
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
+        /// Setter for [`text`][Self::text].
         #[method(setText:)]
         pub unsafe fn setText(&self, text: &NSString);
 
         #[cfg(feature = "objc2-core-media")]
+        /// The time range during which the caption should be presented.
         #[method(timeRange)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`timeRange`][Self::timeRange].
         #[method(setTimeRange:)]
         pub unsafe fn setTimeRange(&self, time_range: CMTimeRange);
     }
@@ -477,6 +640,13 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Initializes an instance of AVCaption with the given text and time range.
+        ///
+        /// Parameter `text`: The text for the new caption object. See text property for the available character sets and other restrictions.
+        ///
+        /// Parameter `timeRange`: The time range for the new caption object.
+        ///
+        /// Returns: An instance of AVCaption that carries the given text and time range.
         #[method_id(@__retain_semantics Init initWithText:timeRange:)]
         pub unsafe fn initWithText_timeRange(
             this: Allocated<Self>,
@@ -486,7 +656,9 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionfontweight?language=objc)
+/// Choices for font weight.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionfontweight?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -508,7 +680,9 @@ unsafe impl RefEncode for AVCaptionFontWeight {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionfontstyle?language=objc)
+/// Choices for character style.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionfontstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -530,7 +704,9 @@ unsafe impl RefEncode for AVCaptionFontStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiondecoration?language=objc)
+/// Choices for character decoration .
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiondecoration?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -556,7 +732,32 @@ unsafe impl RefEncode for AVCaptionDecoration {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiontextcombine?language=objc)
+/// Choices for text combine.
+///
+///
+/// Text combine is a special rendering policy to combine multiple characters into one unit and present it in upright position in a vertical text flow in order to accomplish so-called "Tate-Chu-Yoko" layout, or horizontal-in-vertical layout.
+///
+/// For example, it can be used to render "2017" horizontally in a vertical text.
+///
+///
+/// Don't combine text upright. It is the same as not specifying the style.
+///
+///
+/// Combine all the characters.
+///
+///
+/// Make one digit upright.
+///
+///
+/// Combine two consecutive digits
+///
+///
+/// Combine three consecutive digits
+///
+///
+/// Combine four consecutive digits
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiontextcombine?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -584,7 +785,19 @@ unsafe impl RefEncode for AVCaptionTextCombine {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiontextalignment?language=objc)
+/// Alignment of a caption within the containing region.
+///
+/// Aligned to the start of inline progression direction; e.g. left in left-to-right writing mode and right in right-to-left writing mode.
+///
+/// Aligned to the end of inline progression direction; e.g. right in left-to-right writing mode and right in right-to-left writing mode.
+///
+/// Aligned at center in inline progression direction.
+///
+/// Aligned to left in horizontal writing mode or top in vertical writing mode.
+///
+/// Aligned to right in horizontal writing mode or bottom in vertical writing mode.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiontextalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -614,6 +827,19 @@ extern_methods!(
     /// Styling
     unsafe impl AVCaption {
         #[cfg(feature = "objc2-core-graphics")]
+        /// The color of the character(s).
+        ///
+        /// A value of NULL means that the color is not specified. The caller must release the returned object via CGColorRelease. The range parameter receives UTF-16 code unit index range the style is effective. The range will indicate where the current style returned (including NULL) will be active and allows discovery of the next change in the style.
+        ///
+        /// CEA608 closed captions support the following 8 colors with 1.0 alpha value.
+        /// White    (RGB:1.0, 1.0, 1.0)
+        /// Red        (RGB:1.0, 0.0, 0.0)
+        /// Blue    (RGB:0.0, 0.0, 1.0)
+        /// Green    (RGB:0.0, 1.0, 0.0)
+        /// Yellow    (RGB:1.0, 1.0, 0.0)
+        /// Cyan    (RGB:0.0, 1.0, 1.0)
+        /// Magenta    (RGB:1.0, 0.0, 1.0)
+        /// Black    (RGB:0.0, 0.0, 0.0)
         #[method(textColorAtIndex:range:)]
         pub unsafe fn textColorAtIndex_range(
             &self,
@@ -622,6 +848,21 @@ extern_methods!(
         ) -> CGColorRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// The background color of the character(s).
+        ///
+        /// A value of NULL means that the color is not specified. The caller must release the returned object via CGColorRelease. The range parameter receives UTF-16 code unit index range the style is effective. After returning from the call, the range will indicate where the current style returned (including NULL) will be active and allows discovery of the next change in the style.
+        ///
+        /// iTT format ignores this property.
+        ///
+        /// CEA608 closed captions support the following 8 colors with 1.0, 0.5 and 0.0 alpha values.
+        /// White    (RGB:1.0, 1.0, 1.0)
+        /// Red        (RGB:1.0, 0.0, 0.0)
+        /// Blue    (RGB:0.0, 0.0, 1.0)
+        /// Green    (RGB:0.0, 1.0, 0.0)
+        /// Yellow    (RGB:1.0, 1.0, 0.0)
+        /// Cyan    (RGB:0.0, 1.0, 1.0)
+        /// Magenta    (RGB:1.0, 0.0, 1.0)
+        /// Black    (RGB:0.0, 0.0, 0.0)
         #[method(backgroundColorAtIndex:range:)]
         pub unsafe fn backgroundColorAtIndex_range(
             &self,
@@ -629,6 +870,13 @@ extern_methods!(
             out_range: *mut NSRange,
         ) -> CGColorRef;
 
+        /// Indicates the font weight of the character(s).
+        ///
+        /// The range parameter receives UTF-16 code unit index range the style is effective. After returning from the call, the range will indicate where the current style returned will be active and allows discovery of the next change in the style.
+        ///
+        /// CEA608 closed captions ignore this property.
+        ///
+        /// A visible distinction between AVCaptionFontWeightNormal and AVCaptionFontWeightBold may not exist if the font used has only one weight. This can be more common with CJK fonts where individual fonts can be quite large in terms of storage. Nevertheless, AVCaption still carries the font weight semantics so if the same AVCaption is applied to a different font having multiple weights, the distinction will become visible.
         #[method(fontWeightAtIndex:range:)]
         pub unsafe fn fontWeightAtIndex_range(
             &self,
@@ -636,6 +884,11 @@ extern_methods!(
             out_range: *mut NSRange,
         ) -> AVCaptionFontWeight;
 
+        /// Indicates the font style of the character(s).
+        ///
+        /// The range parameter receives UTF-16 code unit index range the style is effective. After returning from the call, the range will indicate where the current style returned will be active and allows discovery of the next change in the style.
+        ///
+        /// Some writing systems may not have italic glyphs for characters and so fonts with italic forms are not available. For example, Japanese fonts do not typically have italic forms for most characters although there may be special cases for Latin characters. Nevertheless, AVCaption still carries the font style semantics even though there may be no visible rendering distinction between using AVCaptionFontStyleNormal and AVCaptionFontStyleItalic with that language.
         #[method(fontStyleAtIndex:range:)]
         pub unsafe fn fontStyleAtIndex_range(
             &self,
@@ -643,6 +896,11 @@ extern_methods!(
             out_range: *mut NSRange,
         ) -> AVCaptionFontStyle;
 
+        /// Character decoration
+        ///
+        /// The value of OR-ed value of AVCaptionDecoration as NSInteger. The range parameter receives UTF-16 code unit index range the style is effective. After returning from the call, the range will indicate where the current style returned will be active and allows discovery of the next change in the style.
+        ///
+        /// CEA608 closed captions support only AVCaptionDecorationNone and AVCaptionDecorationUnderline.
         #[method(decorationAtIndex:range:)]
         pub unsafe fn decorationAtIndex_range(
             &self,
@@ -650,6 +908,11 @@ extern_methods!(
             out_range: *mut NSRange,
         ) -> AVCaptionDecoration;
 
+        /// Text combine (Tate-Chu-Yoko)
+        ///
+        /// The style is effective only in a vertical text region.
+        ///
+        /// When specified, the renderer combines all the characters in the style range so that their glyph areas consume the nominal bounding box of a single em square of the surrounding vertical text.
         #[method(textCombineAtIndex:range:)]
         pub unsafe fn textCombineAtIndex_range(
             &self,
@@ -657,6 +920,13 @@ extern_methods!(
             out_range: *mut NSRange,
         ) -> AVCaptionTextCombine;
 
+        /// Get Ruby associated with the characters.
+        ///
+        /// The range parameter receives UTF-16 code unit index range where the ruby text is applied. After returning from the call, the range will indicate where the current style returned (including NULL) will be active and allows discovery of the next change in the style.
+        ///
+        /// It returns nil when the text doesn't have a ruby at the position.
+        ///
+        /// CEA608 closed captions ignore this property.
         #[method_id(@__retain_semantics Other rubyAtIndex:range:)]
         pub unsafe fn rubyAtIndex_range(
             &self,
@@ -669,9 +939,15 @@ extern_methods!(
 extern_methods!(
     /// Region
     unsafe impl AVCaption {
+        /// The region where the caption is placed.
+        ///
+        /// It can be nil when the underlying caption format doesn't support or use regions.
         #[method_id(@__retain_semantics Other region)]
         pub unsafe fn region(&self) -> Option<Retained<AVCaptionRegion>>;
 
+        /// The text alignment within the containing region.
+        ///
+        /// This property throws an exception if a value is set which is not a valid AVCaptionTextAlignment.
         #[method(textAlignment)]
         pub unsafe fn textAlignment(&self) -> AVCaptionTextAlignment;
     }
@@ -689,13 +965,22 @@ extern_methods!(
     /// Styling
     unsafe impl AVMutableCaption {
         #[cfg(feature = "objc2-core-graphics")]
+        /// Set text color for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(setTextColor:inRange:)]
         pub unsafe fn setTextColor_inRange(&self, color: CGColorRef, range: NSRange);
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Set background color for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(setBackgroundColor:inRange:)]
         pub unsafe fn setBackgroundColor_inRange(&self, color: CGColorRef, range: NSRange);
 
+        /// Set font weight for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(setFontWeight:inRange:)]
         pub unsafe fn setFontWeight_inRange(
             &self,
@@ -703,12 +988,21 @@ extern_methods!(
             range: NSRange,
         );
 
+        /// Set font style for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(setFontStyle:inRange:)]
         pub unsafe fn setFontStyle_inRange(&self, font_style: AVCaptionFontStyle, range: NSRange);
 
+        /// Set text decoration for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(setDecoration:inRange:)]
         pub unsafe fn setDecoration_inRange(&self, decoration: AVCaptionDecoration, range: NSRange);
 
+        /// Set text combine for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(setTextCombine:inRange:)]
         pub unsafe fn setTextCombine_inRange(
             &self,
@@ -716,27 +1010,51 @@ extern_methods!(
             range: NSRange,
         );
 
+        /// Set ruby text  for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(setRuby:inRange:)]
         pub unsafe fn setRuby_inRange(&self, ruby: &AVCaptionRuby, range: NSRange);
 
+        /// Remove text color for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(removeTextColorInRange:)]
         pub unsafe fn removeTextColorInRange(&self, range: NSRange);
 
+        /// Remove background color for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(removeBackgroundColorInRange:)]
         pub unsafe fn removeBackgroundColorInRange(&self, range: NSRange);
 
+        /// Remove font weight for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(removeFontWeightInRange:)]
         pub unsafe fn removeFontWeightInRange(&self, range: NSRange);
 
+        /// Remove font style for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(removeFontStyleInRange:)]
         pub unsafe fn removeFontStyleInRange(&self, range: NSRange);
 
+        /// Remove text decoration for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(removeDecorationInRange:)]
         pub unsafe fn removeDecorationInRange(&self, range: NSRange);
 
+        /// Remove text combine for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(removeTextCombineInRange:)]
         pub unsafe fn removeTextCombineInRange(&self, range: NSRange);
 
+        /// Remove ruby text  for the range.
+        ///
+        /// The range parameter uses UTF-16 code unit index range.
         #[method(removeRubyInRange:)]
         pub unsafe fn removeRubyInRange(&self, range: NSRange);
     }
@@ -745,15 +1063,22 @@ extern_methods!(
 extern_methods!(
     /// Region
     unsafe impl AVMutableCaption {
+        /// The region where the caption is placed.
+        ///
+        /// It can be nil when the underlying caption format doesn't support or use regions.
+        /// This property throws an exception if region has unrecognizeable units.
         #[method_id(@__retain_semantics Other region)]
         pub unsafe fn region(&self) -> Retained<AVCaptionRegion>;
 
+        /// Setter for [`region`][Self::region].
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, region: &AVCaptionRegion);
 
+        /// The text alignemnt within the containing region.
         #[method(textAlignment)]
         pub unsafe fn textAlignment(&self) -> AVCaptionTextAlignment;
 
+        /// Setter for [`textAlignment`][Self::textAlignment].
         #[method(setTextAlignment:)]
         pub unsafe fn setTextAlignment(&self, text_alignment: AVCaptionTextAlignment);
     }
@@ -765,12 +1090,19 @@ extern_methods!(
         #[method(animation)]
         pub unsafe fn animation(&self) -> AVCaptionAnimation;
 
+        /// Setter for [`animation`][Self::animation].
         #[method(setAnimation:)]
         pub unsafe fn setAnimation(&self, animation: AVCaptionAnimation);
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyposition?language=objc)
+/// Choices for Ruby position
+///
+/// Display Ruby text above horizontal text or right of vertical text in a right to left block progression.
+///
+/// Display Ruby text below horizontal text or left of vertical text in a right to left block progression.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -790,7 +1122,33 @@ unsafe impl RefEncode for AVCaptionRubyPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyalignment?language=objc)
+/// Choices for Ruby alignment
+///
+///
+/// Given a ruby text rendering area denoted as [...], each spacing policy works as follows.
+///
+/// Start          [Ruby Text         ]
+///
+/// Center         [     Ruby Text    ]
+///
+/// SpaceBetween   [R u b y  T e x t]
+/// <
+/// - 'R' and 't' are aligned with start end end edges, spaces between each Ruby text character is equal.
+///
+/// SpaceAround    [ R u b y  T e x t ]
+/// <
+/// - Spaces around each Ruby text character is equal
+///
+///
+/// Align Ruby base and text at left edge of horizontal text in a left to right inline progression, or at top of the vertical text in a top to bottom inline progression.
+///
+/// Align Ruby text at the center of Ruby base.
+///
+/// Align Ruby text so that the spaces between the Ruby text characters are equal. This is the default.
+///
+/// Align Ruby text so that the spaces around each Ruby text character are equal.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -815,7 +1173,9 @@ unsafe impl RefEncode for AVCaptionRubyAlignment {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionruby?language=objc)
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionruby?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionRuby;
@@ -856,12 +1216,15 @@ extern_methods!(
             alignment: AVCaptionRubyAlignment,
         ) -> Retained<Self>;
 
+        /// The ruby text
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
+        /// The position of ruby text with respect to the ruby base.
         #[method(position)]
         pub unsafe fn position(&self) -> AVCaptionRubyPosition;
 
+        /// The alignment of ruby text.
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> AVCaptionRubyAlignment;
     }

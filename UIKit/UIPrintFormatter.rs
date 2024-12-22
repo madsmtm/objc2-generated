@@ -39,6 +39,7 @@ extern_methods!(
         pub unsafe fn maximumContentHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumContentHeight`][Self::maximumContentHeight].
         #[method(setMaximumContentHeight:)]
         pub unsafe fn setMaximumContentHeight(&self, maximum_content_height: CGFloat);
 
@@ -47,6 +48,7 @@ extern_methods!(
         pub unsafe fn maximumContentWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumContentWidth`][Self::maximumContentWidth].
         #[method(setMaximumContentWidth:)]
         pub unsafe fn setMaximumContentWidth(&self, maximum_content_width: CGFloat);
 
@@ -56,6 +58,7 @@ extern_methods!(
         pub unsafe fn contentInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`contentInsets`][Self::contentInsets].
         #[deprecated]
         #[method(setContentInsets:)]
         pub unsafe fn setContentInsets(&self, content_insets: UIEdgeInsets);
@@ -65,12 +68,14 @@ extern_methods!(
         pub unsafe fn perPageContentInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`perPageContentInsets`][Self::perPageContentInsets].
         #[method(setPerPageContentInsets:)]
         pub unsafe fn setPerPageContentInsets(&self, per_page_content_insets: UIEdgeInsets);
 
         #[method(startPage)]
         pub unsafe fn startPage(&self) -> NSInteger;
 
+        /// Setter for [`startPage`][Self::startPage].
         #[method(setStartPage:)]
         pub unsafe fn setStartPage(&self, start_page: NSInteger);
 
@@ -131,12 +136,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`text`][Self::text].
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other attributedText)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
+        /// Setter for [`attributedText`][Self::attributedText].
         #[method(setAttributedText:)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
@@ -145,6 +152,7 @@ extern_methods!(
         pub unsafe fn font(&self) -> Option<Retained<UIFont>>;
 
         #[cfg(feature = "UIFont")]
+        /// Setter for [`font`][Self::font].
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&UIFont>);
 
@@ -153,6 +161,7 @@ extern_methods!(
         pub unsafe fn color(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: Option<&UIColor>);
 
@@ -161,6 +170,7 @@ extern_methods!(
         pub unsafe fn textAlignment(&self) -> NSTextAlignment;
 
         #[cfg(feature = "NSText")]
+        /// Setter for [`textAlignment`][Self::textAlignment].
         #[method(setTextAlignment:)]
         pub unsafe fn setTextAlignment(&self, text_alignment: NSTextAlignment);
     }
@@ -204,6 +214,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other markupText)]
         pub unsafe fn markupText(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`markupText`][Self::markupText].
         #[method(setMarkupText:)]
         pub unsafe fn setMarkupText(&self, markup_text: Option<&NSString>);
     }

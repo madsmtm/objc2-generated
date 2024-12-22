@@ -19,6 +19,7 @@ unsafe impl NSObjectProtocol for UIFeedbackGenerator {}
 extern_methods!(
     unsafe impl UIFeedbackGenerator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
+        /// initalize the generator with a view to attach it to the provided view as an interaction.
         #[method_id(@__retain_semantics Other feedbackGeneratorForView:)]
         pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 
@@ -26,6 +27,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// informs self that it will likely receive events soon, so that it can ensure minimal latency for any feedback generated
+        /// safe to call more than once before the generator receives an event, if events are still imminently possible
         #[method(prepare)]
         pub unsafe fn prepare(&self);
     }

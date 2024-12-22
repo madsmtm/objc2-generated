@@ -6,7 +6,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode?language=objc)
+/// A set of low level key codes that can be used to access keyboard buttons
+///
+///
+///
+/// See: GCKeyboardInput.h
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type GCKeyCode = CFIndex;

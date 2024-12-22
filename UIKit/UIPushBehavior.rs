@@ -81,6 +81,7 @@ extern_methods!(
         #[method(active)]
         pub unsafe fn active(&self) -> bool;
 
+        /// Setter for [`active`][Self::active].
         #[method(setActive:)]
         pub unsafe fn setActive(&self, active: bool);
 
@@ -89,6 +90,7 @@ extern_methods!(
         pub unsafe fn angle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
         pub unsafe fn setAngle(&self, angle: CGFloat);
 
@@ -97,6 +99,7 @@ extern_methods!(
         pub unsafe fn magnitude(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`magnitude`][Self::magnitude].
         #[method(setMagnitude:)]
         pub unsafe fn setMagnitude(&self, magnitude: CGFloat);
 
@@ -105,6 +108,7 @@ extern_methods!(
         pub unsafe fn pushDirection(&self) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`pushDirection`][Self::pushDirection].
         #[method(setPushDirection:)]
         pub unsafe fn setPushDirection(&self, push_direction: CGVector);
 

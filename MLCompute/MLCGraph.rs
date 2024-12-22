@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgraph?language=objc)
+    /// A graph of layers that can be used to build a training or inference graph
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgraph?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -19,24 +21,40 @@ unsafe impl NSObjectProtocol for MLCGraph {}
 extern_methods!(
     unsafe impl MLCGraph {
         #[cfg(feature = "MLCDevice")]
+        /// The device to be used when compiling and executing a graph
         #[deprecated]
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Option<Retained<MLCDevice>>;
 
         #[cfg(feature = "MLCLayer")]
+        /// Layers in the graph
         #[deprecated]
         #[method_id(@__retain_semantics Other layers)]
         pub unsafe fn layers(&self) -> Retained<NSArray<MLCLayer>>;
 
+        /// Creates a new graph.
+        ///
+        /// Returns: A new graph.
         #[deprecated]
         #[method_id(@__retain_semantics Other graph)]
         pub unsafe fn graph() -> Retained<Self>;
 
+        /// A DOT representation of the graph.
+        ///
+        /// For more info on the DOT language, refer to https://en.wikipedia.org/wiki/DOT_(graph_description_language).
+        /// Edges that have a dashed lines are those that have stop gradients, while those with solid lines don't.
         #[deprecated]
         #[method_id(@__retain_semantics Other summarizedDOTDescription)]
         pub unsafe fn summarizedDOTDescription(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
+        /// Add a layer to the graph
+        ///
+        /// Parameter `layer`: The layer
+        ///
+        /// Parameter `source`: The source tensor
+        ///
+        /// Returns: A result tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other nodeWithLayer:source:)]
         pub unsafe fn nodeWithLayer_source(
@@ -46,6 +64,15 @@ extern_methods!(
         ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
+        /// Add a layer to the graph
+        ///
+        /// Parameter `layer`: The layer
+        ///
+        /// Parameter `sources`: A list of source tensors
+        ///
+        /// For variable length sequences of LSTMs/RNNs layers, create an MLCTensor of sortedSequenceLengths and pass it as the last index (i.e. index 2 or 4) of sources. This tensor must of be type MLCDataTypeInt32.
+        ///
+        /// Returns: A result tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other nodeWithLayer:sources:)]
         pub unsafe fn nodeWithLayer_sources(
@@ -55,6 +82,17 @@ extern_methods!(
         ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
+        /// Add a layer to the graph
+        ///
+        /// Parameter `layer`: The layer
+        ///
+        /// Parameter `sources`: A list of source tensors
+        ///
+        /// Parameter `disableUpdate`: A flag to indicate if optimizer update should be disabled for this layer
+        ///
+        /// For variable length sequences of LSTMs/RNNs layers, create an MLCTensor of sortedSequenceLengths and pass it as the last index (i.e. index 2 or 4) of sources. This tensor must of be type MLCDataTypeInt32.
+        ///
+        /// Returns: A result tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other nodeWithLayer:sources:disableUpdate:)]
         pub unsafe fn nodeWithLayer_sources_disableUpdate(
@@ -65,6 +103,15 @@ extern_methods!(
         ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
+        /// Add a loss layer to the graph
+        ///
+        /// Parameter `layer`: The loss layer
+        ///
+        /// Parameter `lossLabels`: The loss labels tensor
+        ///
+        /// For variable length sequences of LSTMs/RNNs layers, create an MLCTensor of sortedSequenceLengths and pass it as the last index (i.e. index 2 or 4) of sources. This tensor must of be type MLCDataTypeInt32.
+        ///
+        /// Returns: A result tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other nodeWithLayer:sources:lossLabels:)]
         pub unsafe fn nodeWithLayer_sources_lossLabels(
@@ -75,6 +122,15 @@ extern_methods!(
         ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add a split layer to the graph
+        ///
+        /// Parameter `source`: The source tensor
+        ///
+        /// Parameter `splitCount`: The number of splits
+        ///
+        /// Parameter `dimension`: The dimension to split the source tensor
+        ///
+        /// Returns: A result tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other splitWithSource:splitCount:dimension:)]
         pub unsafe fn splitWithSource_splitCount_dimension(
@@ -85,6 +141,15 @@ extern_methods!(
         ) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add a split layer to the graph
+        ///
+        /// Parameter `source`: The source tensor
+        ///
+        /// Parameter `splitSectionLengths`: The lengths of each split section
+        ///
+        /// Parameter `dimension`: The dimension to split the source tensor
+        ///
+        /// Returns: A result tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other splitWithSource:splitSectionLengths:dimension:)]
         pub unsafe fn splitWithSource_splitSectionLengths_dimension(
@@ -95,6 +160,13 @@ extern_methods!(
         ) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add a concat layer to the graph
+        ///
+        /// Parameter `sources`: The source tensors to concatenate
+        ///
+        /// Parameter `dimension`: The concatenation dimension
+        ///
+        /// Returns: A result tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other concatenateWithSources:dimension:)]
         pub unsafe fn concatenateWithSources_dimension(
@@ -104,6 +176,13 @@ extern_methods!(
         ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add a reshape layer to the graph
+        ///
+        /// Parameter `shape`: An array representing the shape of result tensor
+        ///
+        /// Parameter `source`: The source tensor
+        ///
+        /// Returns: A result tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other reshapeWithShape:source:)]
         pub unsafe fn reshapeWithShape_source(
@@ -113,6 +192,16 @@ extern_methods!(
         ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add a transpose layer to the graph
+        ///
+        /// Parameter `dimensions`: NSArray
+        /// <NSNumber
+        /// *> representing the desired ordering of dimensions
+        /// The dimensions array specifies the input axis source for each output axis, such that the
+        /// K'th element in the dimensions array specifies the input axis source for the K'th axis in the
+        /// output.  The batch dimension which is typically axis 0 cannot be transposed.
+        ///
+        /// Returns: A result tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other transposeWithDimensions:source:)]
         pub unsafe fn transposeWithDimensions_source(
@@ -122,6 +211,13 @@ extern_methods!(
         ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add a select layer to the graph
+        ///
+        /// Parameter `sources`: The source tensors
+        ///
+        /// Parameter `condition`: The condition mask
+        ///
+        /// Returns: A result tensor
         #[method_id(@__retain_semantics Other selectWithSources:condition:)]
         pub unsafe fn selectWithSources_condition(
             &self,
@@ -130,6 +226,20 @@ extern_methods!(
         ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
+        /// Add a scatter layer to the graph
+        ///
+        /// Parameter `dimension`: The dimension along which to index
+        ///
+        /// Parameter `source`: The updates to use with scattering with index positions specified in indices to result tensor
+        ///
+        /// Parameter `indices`: The index of elements to scatter
+        ///
+        /// Parameter `copyFrom`: The source tensor whose data is  to be first copied to the result tensor
+        ///
+        /// Parameter `reductionType`: The reduction type applied for all values in source tensor that are scattered to a specific location in the result tensor.
+        /// Must be: MLCReductionTypeNone or MLCReductionTypeSum.
+        ///
+        /// Returns: A result tensor
         #[method_id(@__retain_semantics Other scatterWithDimension:source:indices:copyFrom:reductionType:)]
         pub unsafe fn scatterWithDimension_source_indices_copyFrom_reductionType(
             &self,
@@ -141,6 +251,15 @@ extern_methods!(
         ) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add a gather layer to the graph
+        ///
+        /// Parameter `dimension`: The dimension along which to index
+        ///
+        /// Parameter `source`: The source tensor
+        ///
+        /// Parameter `indices`: The index of elements to gather
+        ///
+        /// Returns: A result tensor
         #[method_id(@__retain_semantics Other gatherWithDimension:source:indices:)]
         pub unsafe fn gatherWithDimension_source_indices(
             &self,
@@ -154,6 +273,29 @@ extern_methods!(
             feature = "MLCTensor",
             feature = "MLCTensorData"
         ))]
+        /// Associates data with input tensors. If the device is GPU, also copies the data to the device memory.
+        /// Returns true if the data is successfully associated with input tensors.
+        ///
+        /// This function should be used if you execute the forward, gradient and optimizer updates independently.
+        /// Before the forward pass is executed, the inputs should be written to device memory.  Similarly, before the
+        /// gradient pass is executed, the inputs (typically the initial gradient tensor) should be written to device
+        /// memory.  The caller must guarantee the lifetime of the underlying memory of each value of
+        /// `inputsData`for the entirety of each corresponding input tensor's lifetime.
+        ///
+        /// Parameter `inputsData`: The input data to use to write to device memory
+        ///
+        /// Parameter `inputTensors`: The list of tensors to perform writes on
+        ///
+        /// Parameter `device`: The device
+        ///
+        /// Parameter `batchSize`: The batch size.  This should be set to the actual batch size that may be used when we execute
+        /// the graph and can be a value less than or equal to the batch size specified in the tensor.
+        /// If set to 0, we use batch size specified in the tensor.
+        ///
+        /// Parameter `synchronous`: Whether to execute the copy to the device synchronously.  For performance, asynchronous
+        /// execution is recommended.
+        ///
+        /// Returns: A Boolean value indicating whether the data is successfully associated with the tensor.
         #[deprecated]
         #[method(bindAndWriteData:forInputs:toDevice:batchSize:synchronous:)]
         pub unsafe fn bindAndWriteData_forInputs_toDevice_batchSize_synchronous(
@@ -170,6 +312,25 @@ extern_methods!(
             feature = "MLCTensor",
             feature = "MLCTensorData"
         ))]
+        /// Associates data with input tensors. If the device is GPU, also copies the data to the device memory.
+        /// Returns true if the data is successfully associated with input tensors.
+        ///
+        /// This function should be used if you execute the forward, gradient and optimizer updates independently.
+        /// Before the forward pass is executed, the inputs should be written to device memory.  Similarly, before the
+        /// gradient pass is executed, the inputs (typically the initial gradient tensor) should be written to device
+        /// memory.  The caller must guarantee the lifetime of the underlying memory of each value of
+        /// `inputsData`for the entirety of each corresponding input tensor's lifetime.
+        ///
+        /// Parameter `inputsData`: The input data to use to write to device memory
+        ///
+        /// Parameter `inputTensors`: The list of tensors to perform writes on
+        ///
+        /// Parameter `device`: The device
+        ///
+        /// Parameter `synchronous`: Whether to execute the copy to the device synchronously.  For performance, asynchronous
+        /// execution is recommended.
+        ///
+        /// Returns: A Boolean value indicating whether the data is successfully associated with the tensor.
         #[deprecated]
         #[method(bindAndWriteData:forInputs:toDevice:synchronous:)]
         pub unsafe fn bindAndWriteData_forInputs_toDevice_synchronous(
@@ -181,6 +342,11 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
+        /// Get the source tensors for a layer in the training graph
+        ///
+        /// Parameter `layer`: A layer in the training graph
+        ///
+        /// Returns: A list of tensors
         #[deprecated]
         #[method_id(@__retain_semantics Other sourceTensorsForLayer:)]
         pub unsafe fn sourceTensorsForLayer(
@@ -189,6 +355,11 @@ extern_methods!(
         ) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
+        /// Get the result tensors for a layer in the training graph
+        ///
+        /// Parameter `layer`: A layer in the training graph
+        ///
+        /// Returns: A list of tensors
         #[deprecated]
         #[method_id(@__retain_semantics Other resultTensorsForLayer:)]
         pub unsafe fn resultTensorsForLayer(

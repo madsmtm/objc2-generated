@@ -5,11 +5,21 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraypackedorigindirection?language=objc)
+/// Represents a 3D ray with an origin and a direction
+///
+///
+/// This type is available from the Metal Shading Language by including the
+/// MetalPerformanceShaders/MetalPerformanceShaders.h header.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraypackedorigindirection?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSRayPackedOriginDirection {
+    /// Ray origin. The intersection test will be skipped if the origin contains NaNs
+    /// or infinities.
     pub origin: MPSPackedFloat3,
+    /// Ray direction. Does not need to be normalized. The intersection test will be
+    /// skipped if the direction has length zero or contains NaNs or infinities.
     pub direction: MPSPackedFloat3,
 }
 
@@ -24,13 +34,30 @@ unsafe impl RefEncode for MPSRayPackedOriginDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrayoriginmindistancedirectionmaxdistance?language=objc)
+/// Represents a 3D ray with an origin, a direction, and an intersection
+/// distance range from the origin
+///
+///
+/// This type is available from the Metal Shading Language by including the
+/// MetalPerformanceShaders/MetalPerformanceShaders.h header.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrayoriginmindistancedirectionmaxdistance?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSRayOriginMinDistanceDirectionMaxDistance {
+    /// Ray origin. The intersection test will be skipped if the origin contains NaNs
+    /// or infinities.
     pub origin: MPSPackedFloat3,
+    /// Minimum intersection distance from the origin along the ray direction. The
+    /// intersection test will be skipped if the minimum distance is equal to positive
+    /// infinity or NaN.
     pub minDistance: c_float,
+    /// Ray direction. Does not need to be normalized. The intersection test will be
+    /// skipped if the direction has length zero or contains NaNs or infinities.
     pub direction: MPSPackedFloat3,
+    /// Maximum intersection distance from the origin along the ray direction. May be
+    /// infinite. The intersection test will be skipped if the maximum distance is less than
+    /// zero, NaN, or less than the minimum intersection distance.
     pub maxDistance: c_float,
 }
 
@@ -50,13 +77,28 @@ unsafe impl RefEncode for MPSRayOriginMinDistanceDirectionMaxDistance {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrayoriginmaskdirectionmaxdistance?language=objc)
+/// Represents a 3D ray with an origin, a direction, and a mask to filter out intersections
+///
+///
+/// This type is available from the Metal Shading Language by including the
+/// MetalPerformanceShaders/MetalPerformanceShaders.h header.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrayoriginmaskdirectionmaxdistance?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSRayOriginMaskDirectionMaxDistance {
+    /// Ray origin. The intersection test will be skipped if the origin contains NaNs
+    /// or infinities.
     pub origin: MPSPackedFloat3,
+    /// Ray mask which is bitwise AND-ed with instance and primitive masks to filter out
+    /// intersections. The intersection test will be skipped if the mask is zero.
     pub mask: c_uint,
+    /// Ray direction. Does not need to be normalized. The intersection test will be
+    /// skipped if the direction has length zero or contains NaNs or infinities.
     pub direction: MPSPackedFloat3,
+    /// Maximum intersection distance from the origin along the ray direction. May be
+    /// infinite. The intersection test will be skipped if the maximum distance is less than
+    /// zero or NaN.
     pub maxDistance: c_float,
 }
 
@@ -76,10 +118,21 @@ unsafe impl RefEncode for MPSRayOriginMaskDirectionMaxDistance {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistance?language=objc)
+/// Returned intersection result which contains the distance from the ray origin to the
+/// intersection point
+///
+///
+/// This type is available from the Metal Shading Language by including the
+/// MetalPerformanceShaders/MetalPerformanceShaders.h header.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistance?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSIntersectionDistance {
+    /// Distance from the ray origin to the intersection point along the ray direction
+    /// vector such that intersection = ray.origin + ray.direction * distance. Is negative if
+    /// there is no intersection. If the intersection type is MPSIntersectionTypeAny, is
+    /// a positive value for a hit or a negative value for a miss.
     pub distance: c_float,
 }
 
@@ -91,11 +144,24 @@ unsafe impl RefEncode for MPSIntersectionDistance {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindex?language=objc)
+/// Intersection result which contains the distance from the ray origin to the
+/// intersection point and the index of the intersected primitive
+///
+///
+/// This type is available from the Metal Shading Language by including the
+/// MetalPerformanceShaders/MetalPerformanceShaders.h header.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindex?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSIntersectionDistancePrimitiveIndex {
+    /// Distance from the ray origin to the intersection point along the ray direction
+    /// vector such that intersection = ray.origin + ray.direction * distance. Is negative if
+    /// there is no intersection. If the intersection type is MPSIntersectionTypeAny, is
+    /// a positive value for a hit or a negative value for a miss.
     pub distance: c_float,
+    /// Index of the intersected primitive. Undefined if the ray does not intersect
+    /// a primitive or if the intersection type is MPSIntersectionTypeAny.
     pub primitiveIndex: c_uint,
 }
 
@@ -107,12 +173,28 @@ unsafe impl RefEncode for MPSIntersectionDistancePrimitiveIndex {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindexbufferindex?language=objc)
+/// Intersection result which contains the distance from the ray origin to the
+/// intersection point, the index of the intersected primitive, and the polygon buffer
+/// index of the intersected primitive.
+///
+///
+/// This type is available from the Metal Shading Language by including the
+/// MetalPerformanceShaders/MetalPerformanceShaders.h header.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindexbufferindex?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSIntersectionDistancePrimitiveIndexBufferIndex {
+    /// Distance from the ray origin to the intersection point along the ray direction
+    /// vector such that intersection = ray.origin + ray.direction * distance. Is negative if
+    /// there is no intersection. If the intersection type is MPSIntersectionTypeAny, is
+    /// a positive value for a hit or a negative value for a miss.
     pub distance: c_float,
+    /// Index of the intersected primitive. Undefined if the ray does not intersect
+    /// a primitive or if the intersection type is MPSIntersectionTypeAny.
     pub primitiveIndex: c_uint,
+    /// Buffer index of the intersected primitive. Undefined if the ray does not
+    /// intersect a primitive or if the intersection type is MPSIntersectionTypeAny.
     pub bufferIndex: c_uint,
 }
 
@@ -127,12 +209,28 @@ unsafe impl RefEncode for MPSIntersectionDistancePrimitiveIndexBufferIndex {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindexinstanceindex?language=objc)
+/// Intersection result which contains the distance from the ray origin to the intersection
+/// point, the index of the intersected primitive, and the index of the intersected instance.
+///
+///
+/// This type is available from the Metal Shading Language by including the
+/// MetalPerformanceShaders/MetalPerformanceShaders.h header.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindexinstanceindex?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSIntersectionDistancePrimitiveIndexInstanceIndex {
+    /// Distance from the ray origin to the intersection point along the ray direction
+    /// vector such that intersection = ray.origin + ray.direction * distance. Is negative if
+    /// there is no intersection. If the intersection type is MPSIntersectionTypeAny, is
+    /// a positive value for a hit or a negative value for a miss.
     pub distance: c_float,
+    /// Index of the intersected primitive. Undefined if the ray does not intersect
+    /// a primitive or if the intersection type is MPSIntersectionTypeAny.
     pub primitiveIndex: c_uint,
+    /// Index of the intersected instance. Undefined if the ray does not intersect a
+    /// primitive, if the acceleration structure is not an instance acceleration structure,
+    /// or if the intersection type is MPSIntersectionTypeAny.
     pub instanceIndex: c_uint,
 }
 
@@ -147,13 +245,32 @@ unsafe impl RefEncode for MPSIntersectionDistancePrimitiveIndexInstanceIndex {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindexbufferindexinstanceindex?language=objc)
+/// Intersection result which contains the distance from the ray origin to the intersection
+/// point, the index of the intersected primitive, the polygon buffer index of the intersected
+/// primitive, and the index of the intersected instance.
+///
+///
+/// This type is available from the Metal Shading Language by including the
+/// MetalPerformanceShaders/MetalPerformanceShaders.h header.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindexbufferindexinstanceindex?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndex {
+    /// Distance from the ray origin to the intersection point along the ray direction
+    /// vector such that intersection = ray.origin + ray.direction * distance. Is negative if
+    /// there is no intersection. If the intersection type is MPSIntersectionTypeAny, is
+    /// a positive value for a hit or a negative value for a miss.
     pub distance: c_float,
+    /// Index of the intersected primitive. Undefined if the ray does not intersect
+    /// a primitive or if the intersection type is MPSIntersectionTypeAny.
     pub primitiveIndex: c_uint,
+    /// Buffer index of the intersected primitive. Undefined if the ray does not
+    /// intersect a primitive or if the intersection type is MPSIntersectionTypeAny.
     pub bufferIndex: c_uint,
+    /// Index of the intersected instance. Undefined if the ray does not intersect a
+    /// primitive, if the acceleration structure is not an instance acceleration structure,
+    /// or if the intersection type is MPSIntersectionTypeAny.
     pub instanceIndex: c_uint,
 }
 

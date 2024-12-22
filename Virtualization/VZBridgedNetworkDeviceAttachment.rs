@@ -6,7 +6,23 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzbridgednetworkdeviceattachment?language=objc)
+    /// Network device attachment bridging a host physical interface with a virtual network device.
+    ///
+    /// A bridged network allows the virtual machine to use the same physical interface as the host. Both host and virtual machine
+    /// send and receive packets on the same physical interface but have distinct network layers.
+    ///
+    /// The bridge network device attachment is used with a VZNetworkDeviceConfiguration to define a virtual network device.
+    ///
+    /// Using a VZBridgedNetworkDeviceAttachment requires the app to have the "com.apple.vm.networking" entitlement.
+    ///
+    ///
+    /// See: VZBridgedNetworkInterface
+    ///
+    /// See: VZNetworkDeviceConfiguration
+    ///
+    /// See: VZVirtioNetworkDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzbridgednetworkdeviceattachment?language=objc)
     #[unsafe(super(VZNetworkDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZNetworkDeviceAttachment")]
@@ -20,6 +36,9 @@ extern_methods!(
     #[cfg(feature = "VZNetworkDeviceAttachment")]
     unsafe impl VZBridgedNetworkDeviceAttachment {
         #[cfg(feature = "VZBridgedNetworkInterface")]
+        /// Initialize a VZBridgedNetworkDeviceAttachment with a host network interface.
+        ///
+        /// Parameter `interface`: Host network interface controller.
         #[method_id(@__retain_semantics Init initWithInterface:)]
         pub unsafe fn initWithInterface(
             this: Allocated<Self>,
@@ -27,6 +46,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "VZBridgedNetworkInterface")]
+        /// Network interface of this device attachment.
         #[method_id(@__retain_semantics Other interface)]
         pub unsafe fn interface(&self) -> Retained<VZBridgedNetworkInterface>;
     }

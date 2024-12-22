@@ -33,6 +33,7 @@ unsafe impl UIConfigurationState for UIViewConfigurationState {}
 extern_methods!(
     unsafe impl UIViewConfigurationState {
         #[cfg(feature = "UITraitCollection")]
+        /// Returns a new instance with the specified trait collection.
         #[method_id(@__retain_semantics Init initWithTraitCollection:)]
         pub unsafe fn initWithTraitCollection(
             this: Allocated<Self>,
@@ -56,36 +57,42 @@ extern_methods!(
         pub unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITraitCollection")]
+        /// Setter for [`traitCollection`][Self::traitCollection].
         #[method(setTraitCollection:)]
         pub unsafe fn setTraitCollection(&self, trait_collection: &UITraitCollection);
 
         #[method(isDisabled)]
         pub unsafe fn isDisabled(&self) -> bool;
 
+        /// Setter for [`isDisabled`][Self::isDisabled].
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[method(isHighlighted)]
         pub unsafe fn isHighlighted(&self) -> bool;
 
+        /// Setter for [`isHighlighted`][Self::isHighlighted].
         #[method(setHighlighted:)]
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
         #[method(isSelected)]
         pub unsafe fn isSelected(&self) -> bool;
 
+        /// Setter for [`isSelected`][Self::isSelected].
         #[method(setSelected:)]
         pub unsafe fn setSelected(&self, selected: bool);
 
         #[method(isFocused)]
         pub unsafe fn isFocused(&self) -> bool;
 
+        /// Setter for [`isFocused`][Self::isFocused].
         #[method(setFocused:)]
         pub unsafe fn setFocused(&self, focused: bool);
 
         #[method(isPinned)]
         pub unsafe fn isPinned(&self) -> bool;
 
+        /// Setter for [`isPinned`][Self::isPinned].
         #[method(setPinned:)]
         pub unsafe fn setPinned(&self, pinned: bool);
     }

@@ -33,6 +33,8 @@ extern "C" {
     pub static AXAnimatedImagesEnabledDidChangeNotification: &'static NSNotificationName;
 }
 
+/// Returns whether Assistive Access is running.
+/// The value does not change during a process's lifetime, so it is not necessary to observe changes.
 #[inline]
 pub unsafe extern "C-unwind" fn AXAssistiveAccessEnabled() -> bool {
     extern "C-unwind" {

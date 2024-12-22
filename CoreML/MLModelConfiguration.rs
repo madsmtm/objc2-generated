@@ -35,7 +35,9 @@ unsafe impl RefEncode for MLComputeUnits {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelconfiguration?language=objc)
+    /// An object to hold options for loading a model.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelConfiguration;
@@ -55,23 +57,36 @@ unsafe impl NSSecureCoding for MLModelConfiguration {}
 
 extern_methods!(
     unsafe impl MLModelConfiguration {
+        /// A human readable name of a MLModel instance for display purposes.
+        ///
+        /// Use this property to set a name of a model instance so that runtime analysis tools (e.g. Instruments and os_log)
+        /// can display that name in the user interface.
+        ///
+        /// CoreML framework doesn't parse nor filter the text. It is the client's responsibility to use appropriate text,
+        /// which may involve localization and privacy considerations.
+        ///
+        /// When the property is nil, CoreML framework provides a default.
         #[method_id(@__retain_semantics Other modelDisplayName)]
         pub unsafe fn modelDisplayName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`modelDisplayName`][Self::modelDisplayName].
         #[method(setModelDisplayName:)]
         pub unsafe fn setModelDisplayName(&self, model_display_name: Option<&NSString>);
 
         #[method(computeUnits)]
         pub unsafe fn computeUnits(&self) -> MLComputeUnits;
 
+        /// Setter for [`computeUnits`][Self::computeUnits].
         #[method(setComputeUnits:)]
         pub unsafe fn setComputeUnits(&self, compute_units: MLComputeUnits);
 
         #[cfg(feature = "MLOptimizationHints")]
+        /// A group of hints for CoreML to optimize
         #[method_id(@__retain_semantics Other optimizationHints)]
         pub unsafe fn optimizationHints(&self) -> Retained<MLOptimizationHints>;
 
         #[cfg(feature = "MLOptimizationHints")]
+        /// Setter for [`optimizationHints`][Self::optimizationHints].
         #[method(setOptimizationHints:)]
         pub unsafe fn setOptimizationHints(&self, optimization_hints: &MLOptimizationHints);
     }
@@ -90,10 +105,13 @@ extern_methods!(
 
 extern_methods!(
     /// MLGPUConfigurationOptions
+    /// Allows app to specify  GPU configuration options
     unsafe impl MLModelConfiguration {
+        /// Set to YES to allow low precision accumulation on GPU when available. Defaults to NO
         #[method(allowLowPrecisionAccumulationOnGPU)]
         pub unsafe fn allowLowPrecisionAccumulationOnGPU(&self) -> bool;
 
+        /// Setter for [`allowLowPrecisionAccumulationOnGPU`][Self::allowLowPrecisionAccumulationOnGPU].
         #[method(setAllowLowPrecisionAccumulationOnGPU:)]
         pub unsafe fn setAllowLowPrecisionAccumulationOnGPU(
             &self,
@@ -102,6 +120,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
+        /// Set to specify a preferred Metal device. Defaults to nil which indicates automatic selection
         #[method_id(@__retain_semantics Other preferredMetalDevice)]
         pub unsafe fn preferredMetalDevice(
             &self,
@@ -109,6 +128,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
+        /// Setter for [`preferredMetalDevice`][Self::preferredMetalDevice].
         #[method(setPreferredMetalDevice:)]
         pub unsafe fn setPreferredMetalDevice(
             &self,
@@ -119,6 +139,7 @@ extern_methods!(
 
 extern_methods!(
     /// MLModelParameterAdditions
+    /// Allows app to set model or update parameters as a dictionary.
     unsafe impl MLModelConfiguration {
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
         #[method_id(@__retain_semantics Other parameters)]
@@ -127,6 +148,7 @@ extern_methods!(
         ) -> Option<Retained<NSDictionary<MLParameterKey, AnyObject>>>;
 
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
+        /// Setter for [`parameters`][Self::parameters].
         #[method(setParameters:)]
         pub unsafe fn setParameters(
             &self,
@@ -138,9 +160,20 @@ extern_methods!(
 extern_methods!(
     /// MultiFunctions
     unsafe impl MLModelConfiguration {
+        /// Function name that `MLModel` will use.
+        ///
+        /// Some model types (e.g. ML Program) supports multiple functions in a model asset, where each `MLModel` instance is associated with a particular function.
+        ///
+        /// Use `MLModelAsset` to get the list of available functions. Use `nil` to use a default function.
+        ///
+        /// ```swift
+        /// let configuration = MLModelConfiguration()
+        /// configuration.functionName = "my_function"
+        /// ```
         #[method_id(@__retain_semantics Other functionName)]
         pub unsafe fn functionName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`functionName`][Self::functionName].
         #[method(setFunctionName:)]
         pub unsafe fn setFunctionName(&self, function_name: Option<&NSString>);
     }

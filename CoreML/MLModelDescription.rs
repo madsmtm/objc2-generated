@@ -7,7 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodeldescription?language=objc)
+    /// A description of a model containing input, output, and state feature descriptions, optionally outputted features
+    /// with special meaning and metadata.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodeldescription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelDescription;
@@ -22,33 +25,48 @@ unsafe impl NSSecureCoding for MLModelDescription {}
 extern_methods!(
     unsafe impl MLModelDescription {
         #[cfg(feature = "MLFeatureDescription")]
+        /// Description of the inputs to the model
         #[method_id(@__retain_semantics Other inputDescriptionsByName)]
         pub unsafe fn inputDescriptionsByName(
             &self,
         ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
 
         #[cfg(feature = "MLFeatureDescription")]
+        /// Description of the outputs from the model
         #[method_id(@__retain_semantics Other outputDescriptionsByName)]
         pub unsafe fn outputDescriptionsByName(
             &self,
         ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
 
         #[cfg(feature = "MLFeatureDescription")]
+        /// Description of the state features.
         #[method_id(@__retain_semantics Other stateDescriptionsByName)]
         pub unsafe fn stateDescriptionsByName(
             &self,
         ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
 
+        /// Name of the primary target / predicted output feature in the output descriptions
         #[method_id(@__retain_semantics Other predictedFeatureName)]
         pub unsafe fn predictedFeatureName(&self) -> Option<Retained<NSString>>;
 
+        /// Key for all predicted probabilities stored as a MLFeatureTypeDictionary in the output descriptions
         #[method_id(@__retain_semantics Other predictedProbabilitiesName)]
         pub unsafe fn predictedProbabilitiesName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MLModelMetadataKeys")]
+        /// Optional metadata describing the model
         #[method_id(@__retain_semantics Other metadata)]
         pub unsafe fn metadata(&self) -> Retained<NSDictionary<MLModelMetadataKey, AnyObject>>;
 
+        /// Array to map a class index to the corresponding label, which is either Number or String.
+        ///
+        /// The property is populated from the classLabels entry specified in the model's protobuf message. When the model is a pipeline, which contains one or more sub models, the property value is calculated as follows.
+        ///
+        /// 1. If the pipeline model's proto message specifies predictedFeatureName parameter, use classLabels property value of the sub model with the output feature with the name.
+        ///
+        /// 2. Otherwise, if the pipeline model has only one sub model with non-nil classLabels property, use the property value.
+        ///
+        /// 3. Otherwise, the property is nil.
         #[method_id(@__retain_semantics Other classLabels)]
         pub unsafe fn classLabels(&self) -> Option<Retained<NSArray<AnyObject>>>;
     }
@@ -67,6 +85,7 @@ extern_methods!(
 
 extern_methods!(
     /// MLUpdateAdditions
+    /// Additions to model descriptions related to model update API.
     unsafe impl MLModelDescription {
         #[method(isUpdatable)]
         pub unsafe fn isUpdatable(&self) -> bool;
@@ -81,6 +100,7 @@ extern_methods!(
 
 extern_methods!(
     /// MLParameters
+    /// Additions to model descriptions related to model parameters
     unsafe impl MLModelDescription {
         #[cfg(all(
             feature = "MLKey",

@@ -6,7 +6,21 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzsocketdevice?language=objc)
+    /// Base class representing a socket device in a virtual machine.
+    ///
+    /// VZSocketDevice should not be instantiated directly.
+    ///
+    /// Socket devices are first configured on the VZVirtualMachineConfiguration through a subclass of VZSocketDeviceConfiguration.
+    /// When a VZVirtualMachine is created from the configuration, the socket devices are available through the VZVirtualMachine.socketDevices property.
+    ///
+    /// The real type of VZSocketDevice corresponds to the type used by the configuration.
+    /// For example, a VZVirtioSocketDeviceConfiguration leads to a device of type VZVirtioSocketDevice.
+    ///
+    /// See: VZVirtioSocketDevice
+    ///
+    /// See: VZVirtioSocketDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzsocketdevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZSocketDevice;

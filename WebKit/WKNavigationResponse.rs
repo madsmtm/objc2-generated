@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationresponse?language=objc)
+    /// Contains information about a navigation response, used for making policy decisions.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -18,12 +20,17 @@ unsafe impl NSObjectProtocol for WKNavigationResponse {}
 
 extern_methods!(
     unsafe impl WKNavigationResponse {
+        /// A Boolean value indicating whether the frame being navigated is the main frame.
         #[method(isForMainFrame)]
         pub unsafe fn isForMainFrame(&self) -> bool;
 
+        /// The frame's response.
         #[method_id(@__retain_semantics Other response)]
         pub unsafe fn response(&self) -> Retained<NSURLResponse>;
 
+        /// A Boolean value indicating whether WebKit can display the response's MIME type natively.
+        ///
+        /// Allowing a navigation response with a MIME type that can't be shown will cause the navigation to fail.
         #[method(canShowMIMEType)]
         pub unsafe fn canShowMIMEType(&self) -> bool;
     }

@@ -11,13 +11,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/nsreadaccessurldocumentoption?language=objc)
+    /// Indicates which local files WebKit can access when loading content.
+    ///
+    /// If NSReadAccessURLDocumentOption references a single file, only that file may be
+    /// loaded by WebKit. If NSReadAccessURLDocumentOption references a directory, files inside that
+    /// directory may be loaded by WebKit.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/nsreadaccessurldocumentoption?language=objc)
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     pub static NSReadAccessURLDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/nsattributedstringcompletionhandler?language=objc)
+/// Type definition for the completion handler block used to get asynchronous attributed strings.
+///
+/// The completion handler block is passed the attributed string result along with any
+/// document-level attributes, like NSBackgroundColorDocumentAttribute, or an error. An implementation
+/// of this block type must expect to be called asynchronously when passed to HTML loading methods.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/nsattributedstringcompletionhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
 pub type NSAttributedStringCompletionHandler = *mut block2::Block<
@@ -30,9 +42,28 @@ pub type NSAttributedStringCompletionHandler = *mut block2::Block<
 
 extern_category!(
     /// Category on [`NSAttributedString`].
+    /// Extension of
+    ///
+    /// ```text
+    ///  //apple_ref/occ/NSAttributedString NSAttributedString
+    /// ```
+    ///
+    /// to
+    /// create attributed strings from HTML content using WebKit.
     pub unsafe trait NSAttributedStringWebKitAdditions {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Loads an HTML URL request and converts the contents into an attributed string.
+        ///
+        /// Parameter `request`: The request specifying the URL to load.
+        ///
+        /// Parameter `options`: Document attributes for interpreting the document contents.
+        /// NSTextSizeMultiplierDocumentOption and NSTimeoutDocumentOption are supported option keys.
+        ///
+        /// Parameter `completionHandler`: A block to invoke when the operation completes or fails.
+        ///
+        /// The completionHandler is passed the attributed string result along with any
+        /// document-level attributes, or an error.
         #[method(loadFromHTMLWithRequest:options:completionHandler:)]
         unsafe fn loadFromHTMLWithRequest_options_completionHandler(
             request: &NSURLRequest,
@@ -42,6 +73,20 @@ extern_category!(
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Converts a local HTML file into an attributed string.
+        ///
+        /// Parameter `fileURL`: The file URL to load.
+        ///
+        /// Parameter `options`: Document attributes for interpreting the document contents.
+        /// NSTextSizeMultiplierDocumentOption, NSTimeoutDocumentOption and NSReadAccessURLDocumentOption
+        /// are supported option keys.
+        ///
+        /// Parameter `completionHandler`: A block to invoke when the operation completes or fails.
+        ///
+        /// The completionHandler is passed the attributed string result along with any
+        /// document-level attributes, or an error. If NSReadAccessURLDocumentOption references a single file,
+        /// only that file may be loaded by WebKit. If NSReadAccessURLDocumentOption references a directory,
+        /// files inside that directory may be loaded by WebKit.
         #[method(loadFromHTMLWithFileURL:options:completionHandler:)]
         unsafe fn loadFromHTMLWithFileURL_options_completionHandler(
             file_url: &NSURL,
@@ -51,6 +96,19 @@ extern_category!(
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Converts an HTML string into an attributed string.
+        ///
+        /// Parameter `string`: The HTML string to use as the contents.
+        ///
+        /// Parameter `options`: Document attributes for interpreting the document contents.
+        /// NSTextSizeMultiplierDocumentOption, NSTimeoutDocumentOption and NSBaseURLDocumentOption
+        /// are supported option keys.
+        ///
+        /// Parameter `completionHandler`: A block to invoke when the operation completes or fails.
+        ///
+        /// The completionHandler is passed the attributed string result along with any
+        /// document-level attributes, or an error. NSBaseURLDocumentOption is used to resolve relative URLs
+        /// within the document.
         #[method(loadFromHTMLWithString:options:completionHandler:)]
         unsafe fn loadFromHTMLWithString_options_completionHandler(
             string: &NSString,
@@ -60,6 +118,19 @@ extern_category!(
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Converts HTML data into an attributed string.
+        ///
+        /// Parameter `data`: The HTML data to use as the contents.
+        ///
+        /// Parameter `options`: Document attributes for interpreting the document contents.
+        /// NSTextSizeMultiplierDocumentOption, NSTimeoutDocumentOption, NSTextEncodingNameDocumentOption,
+        /// and NSCharacterEncodingDocumentOption are supported option keys.
+        ///
+        /// Parameter `completionHandler`: A block to invoke when the operation completes or fails.
+        ///
+        /// The completionHandler is passed the attributed string result along with any
+        /// document-level attributes, or an error. If neither NSTextEncodingNameDocumentOption nor
+        /// NSCharacterEncodingDocumentOption is supplied, a best-guess encoding is used.
         #[method(loadFromHTMLWithData:options:completionHandler:)]
         unsafe fn loadFromHTMLWithData_options_completionHandler(
             data: &NSData,

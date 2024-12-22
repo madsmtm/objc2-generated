@@ -169,6 +169,7 @@ extern_methods!(
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
+        /// Initializes the segmented control with the given items. Items may be NSStrings, UIImages, or (as of iOS 14.0) UIActions. When constructing from a UIAction segments will prefer images over titles when both are provided. The segmented control is automatically sized to fit content.
         #[method_id(@__retain_semantics Init initWithItems:)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
@@ -180,6 +181,7 @@ extern_methods!(
             feature = "UIMenuElement",
             feature = "objc2-core-foundation"
         ))]
+        /// Initializes the segmented control with the given frame and segments constructed from the given UIActions. Segments will prefer images over titles when both are provided. Selecting a segment calls UIAction.actionHandler as well as handlers for the ValueChanged and PrimaryActionTriggered control events.
         #[method_id(@__retain_semantics Init initWithFrame:actions:)]
         pub unsafe fn initWithFrame_actions(
             this: Allocated<Self>,
@@ -188,6 +190,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// Insert a segment with the given action at the given index. Segments will prefer images over titles when both are provided. When the segment is selected UIAction.actionHandler is called. If a segment already exists with the action's identifier that segment will either be updated (if the index is the same) or it will be removed (if different).
         #[method(insertSegmentWithAction:atIndex:animated:)]
         pub unsafe fn insertSegmentWithAction_atIndex_animated(
             &self,
@@ -197,10 +200,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// Reconfigures the given segment with this action. Segments will prefer images over titles when both are provided. When the segment is selected UIAction.actionHandler is called. UIAction.identifier must either match the action of the existing segment at this index, or be unique within all actions associated with the segmented control, or this method will assert.
         #[method(setAction:forSegmentAtIndex:)]
         pub unsafe fn setAction_forSegmentAtIndex(&self, action: &UIAction, segment: NSUInteger);
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
+        /// Fetch the action for the given segment, if one has been assigned to that segment
         #[method_id(@__retain_semantics Other actionForSegmentAtIndex:)]
         pub unsafe fn actionForSegmentAtIndex(
             &self,
@@ -208,6 +213,7 @@ extern_methods!(
         ) -> Option<Retained<UIAction>>;
 
         #[cfg(feature = "UIAction")]
+        /// Returns the index of the segment associated with the given actionIdentifier, or NSNotFound if the identifier could not be found.
         #[method(segmentIndexForActionIdentifier:)]
         pub unsafe fn segmentIndexForActionIdentifier(
             &self,
@@ -218,6 +224,7 @@ extern_methods!(
         #[method(segmentedControlStyle)]
         pub unsafe fn segmentedControlStyle(&self) -> UISegmentedControlStyle;
 
+        /// Setter for [`segmentedControlStyle`][Self::segmentedControlStyle].
         #[deprecated = "The segmentedControlStyle property no longer has any effect"]
         #[method(setSegmentedControlStyle:)]
         pub unsafe fn setSegmentedControlStyle(
@@ -228,6 +235,7 @@ extern_methods!(
         #[method(isMomentary)]
         pub unsafe fn isMomentary(&self) -> bool;
 
+        /// Setter for [`isMomentary`][Self::isMomentary].
         #[method(setMomentary:)]
         pub unsafe fn setMomentary(&self, momentary: bool);
 
@@ -237,6 +245,7 @@ extern_methods!(
         #[method(apportionsSegmentWidthsByContent)]
         pub unsafe fn apportionsSegmentWidthsByContent(&self) -> bool;
 
+        /// Setter for [`apportionsSegmentWidthsByContent`][Self::apportionsSegmentWidthsByContent].
         #[method(setApportionsSegmentWidthsByContent:)]
         pub unsafe fn setApportionsSegmentWidthsByContent(
             &self,
@@ -323,6 +332,7 @@ extern_methods!(
         #[method(selectedSegmentIndex)]
         pub unsafe fn selectedSegmentIndex(&self) -> NSInteger;
 
+        /// Setter for [`selectedSegmentIndex`][Self::selectedSegmentIndex].
         #[method(setSelectedSegmentIndex:)]
         pub unsafe fn setSelectedSegmentIndex(&self, selected_segment_index: NSInteger);
 
@@ -331,6 +341,7 @@ extern_methods!(
         pub unsafe fn selectedSegmentTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`selectedSegmentTintColor`][Self::selectedSegmentTintColor].
         #[method(setSelectedSegmentTintColor:)]
         pub unsafe fn setSelectedSegmentTintColor(
             &self,
@@ -422,6 +433,7 @@ extern_methods!(
             feature = "UIMenuElement",
             feature = "objc2-core-foundation"
         ))]
+        /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
         #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,

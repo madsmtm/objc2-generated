@@ -35,6 +35,13 @@ extern_methods!(
         pub unsafe fn asset(&self) -> Option<Retained<AVAsset>>;
 
         #[cfg(feature = "AVMediaSelectionGroup")]
+        /// Indicates the media selection option that's currently selected from the specified group. May be nil.
+        ///
+        /// Parameter `mediaSelectionGroup`: A media selection group obtained from the receiver's asset.
+        ///
+        /// Returns: An instance of AVMediaSelectionOption that describes the currently selection option in the group.
+        ///
+        /// If the value of the property allowsEmptySelection of the AVMediaSelectionGroup is YES, the currently selected option in the group may be nil.
         #[method_id(@__retain_semantics Other selectedMediaOptionInMediaSelectionGroup:)]
         pub unsafe fn selectedMediaOptionInMediaSelectionGroup(
             &self,
@@ -42,6 +49,13 @@ extern_methods!(
         ) -> Option<Retained<AVMediaSelectionOption>>;
 
         #[cfg(feature = "AVMediaSelectionGroup")]
+        /// Indicates that specified media selection group is subject to automatic media selection.
+        ///
+        /// Parameter `mediaSelectionGroup`: A media selection group obtained from the receiver's asset.
+        ///
+        /// Returns: YES if the group is subject to automatic media selection.
+        ///
+        /// Automatic application of media selection criteria is suspended in any group in which a specific selection has been made via an invocation of -selectMediaOption:inMediaSelectionGroup:.
         #[method(mediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup:)]
         pub unsafe fn mediaSelectionCriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup(
             &self,
@@ -85,6 +99,14 @@ unsafe impl NSObjectProtocol for AVMutableMediaSelection {}
 extern_methods!(
     unsafe impl AVMutableMediaSelection {
         #[cfg(feature = "AVMediaSelectionGroup")]
+        /// Selects the media option described by the specified instance of AVMediaSelectionOption in the specified AVMediaSelectionGroup and deselects all other options in that group.
+        ///
+        /// Parameter `mediaSelectionOption`: The option to select.
+        ///
+        /// Parameter `mediaSelectionGroup`: The media selection group, obtained from the receiver's asset, that contains the specified option.
+        ///
+        /// If the specified media selection option isn't a member of the specified media selection group, no change in presentation state will result.
+        /// If the value of the property allowsEmptySelection of the AVMediaSelectionGroup is YES, you can pass nil for mediaSelectionOption to deselect all media selection options in the group.
         #[method(selectMediaOption:inMediaSelectionGroup:)]
         pub unsafe fn selectMediaOption_inMediaSelectionGroup(
             &self,

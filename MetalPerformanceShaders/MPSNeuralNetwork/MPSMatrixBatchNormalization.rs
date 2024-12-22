@@ -9,7 +9,26 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixbatchnormalization?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// Applies a batch normalization to a matrix.
+    ///
+    ///
+    /// A MPSMatrixBatchNormalization object computes the batch normalization
+    /// of a collection of feature vectors stored in an MPSMatrix.
+    ///
+    /// Feature vectors are stored in a row of the supplied input matrix and the
+    /// normalization is performed along columns:
+    ///
+    /// y[i,j] = gamma[j] * (x[i,j] - mean(x[:,j])) / (variance(x[:,j]) + epsilon) + beta[j]
+    ///
+    /// where gamma and beta are supplied weight and bias factors and epsilon is a small value added
+    /// to the variance.
+    ///
+    /// Optionally a neuron activation function may be applied to the result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixbatchnormalization?language=objc)
     #[unsafe(super(MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -36,37 +55,82 @@ unsafe impl NSSecureCoding for MPSMatrixBatchNormalization {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixBatchNormalization {
+        /// The number of input vectors which make up the input array.  This
+        /// is equivalent to the number of rows to consider from the primary
+        /// source matrix.
+        /// This property is modifiable and defaults to NSUIntegerMax.  At encode
+        /// time the larger of this property or the available number of inputs is
+        /// used.  The value of NSUIntegerMax thus indicates that all available input
+        /// rows (beginning at sourceMatrixOrigin.x) should be considered.
         #[method(sourceNumberOfFeatureVectors)]
         pub unsafe fn sourceNumberOfFeatureVectors(&self) -> NSUInteger;
 
+        /// Setter for [`sourceNumberOfFeatureVectors`][Self::sourceNumberOfFeatureVectors].
         #[method(setSourceNumberOfFeatureVectors:)]
         pub unsafe fn setSourceNumberOfFeatureVectors(
             &self,
             source_number_of_feature_vectors: NSUInteger,
         );
 
+        /// The input size to to use in the operation.  This is equivalent to the
+        /// number of columns in the primary (input array) source matrix to consider
+        /// and the number of channels to produce for the output matrix.
+        /// This property is modifiable and defaults to NSUIntegerMax.  At encode
+        /// time the larger of this property or the available input size is used.
+        /// The value of NSUIntegerMax thus indicates that all available columns in
+        /// the input array (beginning at sourceMatrixOrigin.y) should be considered.
+        /// Defines also the number of output feature channels.
+        /// Note: The value used in the operation will be
+        /// MIN(inputMatrix.columns - sourceMatrixOrigin.y, sourceInputFeatureChannels)
         #[method(sourceInputFeatureChannels)]
         pub unsafe fn sourceInputFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`sourceInputFeatureChannels`][Self::sourceInputFeatureChannels].
         #[method(setSourceInputFeatureChannels:)]
         pub unsafe fn setSourceInputFeatureChannels(
             &self,
             source_input_feature_channels: NSUInteger,
         );
 
+        /// A small value to add to the variance when normalizing the inputs.  Defaults
+        /// to FLT_MIN upon initialization.
         #[method(epsilon)]
         pub unsafe fn epsilon(&self) -> c_float;
 
+        /// Setter for [`epsilon`][Self::epsilon].
         #[method(setEpsilon:)]
         pub unsafe fn setEpsilon(&self, epsilon: c_float);
 
+        /// If YES the batch statistics will be computed prior to performing the normalization.
+        /// Otherwise the provided statistics will be used.  Defaults to NO at initialization
+        /// time.
         #[method(computeStatistics)]
         pub unsafe fn computeStatistics(&self) -> bool;
 
+        /// Setter for [`computeStatistics`][Self::computeStatistics].
         #[method(setComputeStatistics:)]
         pub unsafe fn setComputeStatistics(&self, compute_statistics: bool);
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Specifies a neuron activation function to be used.
+        ///
+        ///
+        /// This method can be used to add a neuron activation funtion of given type with
+        /// associated scalar parameters A, B, and C that are shared across all output values.
+        /// Note that this method can only be used to specify neurons which are specified by three (or fewer)
+        /// parameters shared across all output values (or channels, in CNN nomenclature). It is an error to call
+        /// this method for neuron activation functions like MPSCNNNeuronTypePReLU,
+        /// which require per-channel parameter values.  An MPSMatrixNeuron kernel is initialized
+        /// with a default neuron function of MPSCNNNeuronTypeNone.
+        ///
+        ///
+        /// Parameter `neuronType`: Type of neuron activation function. For full list see MPSCNNNeuronType.h
+        ///
+        /// Parameter `parameterA`: parameterA of neuron activation that is shared across all output values.
+        ///
+        /// Parameter `parameterB`: parameterB of neuron activation that is shared across all output values.
+        ///
+        /// Parameter `parameterC`: parameterC of neuron activation that is shared across all output values.
         #[method(setNeuronType:parameterA:parameterB:parameterC:)]
         pub unsafe fn setNeuronType_parameterA_parameterB_parameterC(
             &self,
@@ -77,15 +141,19 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronType)]
         pub unsafe fn neuronType(&self) -> MPSCNNNeuronType;
 
+        /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronParameterA)]
         pub unsafe fn neuronParameterA(&self) -> c_float;
 
+        /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronParameterB)]
         pub unsafe fn neuronParameterB(&self) -> c_float;
 
+        /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronParameterC)]
         pub unsafe fn neuronParameterC(&self) -> c_float;
 
@@ -96,6 +164,47 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a MPSMatrixBatchNormalization object to a command buffer.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        ///
+        /// Parameter `inputMatrix`: A valid MPSMatrix object which specifies the input array.
+        ///
+        ///
+        /// Parameter `meanVector`: A valid MPSVector object containing batch mean values to be used
+        /// to normalize the inputs if computeStatistics is NO.  If
+        /// computeStatistics is YES the resulting batch mean values
+        /// will be returned in this array.
+        ///
+        ///
+        /// Parameter `varianceVector`: A valid MPSVector object containing batch variance values to be used
+        /// to normalize the inputs if computeStatistics is NO.  If
+        /// computeStatistics is YES the resulting batch variance values
+        /// will be returned in this array.
+        ///
+        ///
+        /// Parameter `gammaVector`: A valid MPSVector object which specifies the gamma terms, or
+        /// a null object to indicate that no scaling is to be applied.
+        ///
+        ///
+        /// Parameter `betaVector`: A valid MPSVector object which specifies the beta terms, or
+        /// a null object to indicate that no values are to be added.
+        ///
+        ///
+        /// Parameter `resultMatrix`: A valid MPSMatrix object which specifies the output array.
+        ///
+        ///
+        /// Encodes the operation to the specified command buffer.  resultMatrix
+        /// must be large enough to hold a
+        /// MIN(sourceNumberOfFeatureVectors, inputMatrix.rows - sourceMatrixOrigin.x)
+        /// x
+        /// MIN(inputMatrix.columns - sourceMatrixOrigin.y, sourceInputFeatureChannels) array.
+        ///
+        /// Let numChannels = MIN(inputMatrix.columns - sourceMatrixOrigin.y, sourceInputFeatureChannels)
+        ///
+        /// The gamma, beta, mean, and variance vectors must contain at least numChannels elements.
         #[method(encodeToCommandBuffer:inputMatrix:meanVector:varianceVector:gammaVector:betaVector:resultMatrix:)]
         pub unsafe fn encodeToCommandBuffer_inputMatrix_meanVector_varianceVector_gammaVector_betaVector_resultMatrix(
             &self,
@@ -108,6 +217,15 @@ extern_methods!(
             result_matrix: &MPSMatrix,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSMatrixBatchNormalization object.
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSMatrixBatchNormalization object.
+        ///
+        /// Returns: A new MPSMatrixBatchNormalization object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -115,6 +233,18 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Make a copy of this kernel for a new device -
+        ///
+        /// See: MPSKernel
+        ///
+        /// Parameter `zone`: The NSZone in which to allocate the object
+        ///
+        /// Parameter `device`: The device for the new MPSKernel. If nil, then use
+        /// self.device.
+        ///
+        /// Returns: A pointer to a copy of this MPSKernel. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -128,6 +258,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixBatchNormalization {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -149,7 +287,19 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixbatchnormalizationgradient?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// A kernel to compute the gradient of the batch normalization operation.
+    ///
+    ///
+    /// A MPSMatrixBatchNormalizationGradient object computes the results of backpropagating
+    /// the gradients of a loss function with respect to the outputs of an
+    /// MPSMatrixBatchNormalization object.  The corresponding properties and data used by
+    /// the MPSMatrixBatchNormalizationGradient object should correspond to those used by
+    /// the forward MPSMatrixBatchNormalization object for which the gradient is being computed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixbatchnormalizationgradient?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -176,31 +326,56 @@ unsafe impl NSSecureCoding for MPSMatrixBatchNormalizationGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixBatchNormalizationGradient {
+        /// The number of input vectors which make up the input array.
         #[method(sourceNumberOfFeatureVectors)]
         pub unsafe fn sourceNumberOfFeatureVectors(&self) -> NSUInteger;
 
+        /// Setter for [`sourceNumberOfFeatureVectors`][Self::sourceNumberOfFeatureVectors].
         #[method(setSourceNumberOfFeatureVectors:)]
         pub unsafe fn setSourceNumberOfFeatureVectors(
             &self,
             source_number_of_feature_vectors: NSUInteger,
         );
 
+        /// The number of feature channels in the input vectors.
         #[method(sourceInputFeatureChannels)]
         pub unsafe fn sourceInputFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`sourceInputFeatureChannels`][Self::sourceInputFeatureChannels].
         #[method(setSourceInputFeatureChannels:)]
         pub unsafe fn setSourceInputFeatureChannels(
             &self,
             source_input_feature_channels: NSUInteger,
         );
 
+        /// A small term added to the variance when normalizing the input.
         #[method(epsilon)]
         pub unsafe fn epsilon(&self) -> c_float;
 
+        /// Setter for [`epsilon`][Self::epsilon].
         #[method(setEpsilon:)]
         pub unsafe fn setEpsilon(&self, epsilon: c_float);
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Specifies a neuron activation function to be used.
+        ///
+        ///
+        /// This method can be used to add a neuron activation funtion of given type with
+        /// associated scalar parameters A, B, and C that are shared across all output values.
+        /// Note that this method can only be used to specify neurons which are specified by three (or fewer)
+        /// parameters shared across all output values (or channels, in CNN nomenclature). It is an error to call
+        /// this method for neuron activation functions like MPSCNNNeuronTypePReLU,
+        /// which require per-channel parameter values. An MPSMatrixBatchNormalizationGradient kernel is initialized
+        /// with a default neuron function of MPSCNNNeuronTypeNone.
+        ///
+        ///
+        /// Parameter `neuronType`: Type of neuron activation function. For full list see MPSCNNNeuronType.h
+        ///
+        /// Parameter `parameterA`: parameterA of neuron activation that is shared across all output values.
+        ///
+        /// Parameter `parameterB`: parameterB of neuron activation that is shared across all output values.
+        ///
+        /// Parameter `parameterC`: parameterC of neuron activation that is shared across all output values.
         #[method(setNeuronType:parameterA:parameterB:parameterC:)]
         pub unsafe fn setNeuronType_parameterA_parameterB_parameterC(
             &self,
@@ -211,15 +386,19 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronType)]
         pub unsafe fn neuronType(&self) -> MPSCNNNeuronType;
 
+        /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronParameterA)]
         pub unsafe fn neuronParameterA(&self) -> c_float;
 
+        /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronParameterB)]
         pub unsafe fn neuronParameterB(&self) -> c_float;
 
+        /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronParameterC)]
         pub unsafe fn neuronParameterC(&self) -> c_float;
 
@@ -230,6 +409,49 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a MPSMatrixBatchNormalizationGradient object to a command buffer and compute
+        /// its gradient with respect to its input data.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The commandBuffer on which to encode the operation.
+        ///
+        ///
+        /// Parameter `gradientMatrix`: A matrix whose values represent the gradient of a
+        /// loss function with respect to the results of a forward
+        /// MPSMatrixBatchNormalization operation.
+        ///
+        ///
+        /// Parameter `inputMatrix`: A matrix containing the inputs to a forward MPSMatrixBatchNormalization
+        /// operation for which the gradient values are to be computed.
+        ///
+        ///
+        /// Parameter `meanVector`: A vector containing the batch mean values.  Should contain either the specified
+        /// values used to compute the forward result, or the computed values resulting from
+        /// the forward kernel execution.
+        ///
+        ///
+        /// Parameter `varianceVector`: A vector containing the batch variance values.  Should contain either the specified
+        /// values used to compute the forward result, or the computed values resulting from
+        /// the forward kernel execution.
+        ///
+        ///
+        /// Parameter `gammaVector`: A vector containing the gamma terms.  Should be the same values as used
+        /// when computing the forward result.
+        ///
+        ///
+        /// Parameter `betaVector`: A vector containing the beta terms.  Should be the same values as used when
+        /// computing the forward result.
+        ///
+        ///
+        /// Parameter `resultGradientForDataMatrix`: The matrix containing the resulting gradient values.
+        ///
+        ///
+        /// Parameter `resultGradientForGammaVector`: If non-NULL the vector containing gradients for the gamma
+        /// terms.
+        ///
+        ///
+        /// Parameter `resultGradientForBetaVector`: If non-NULL the vector containing gradients for the beta
+        /// terms.
         #[method(encodeToCommandBuffer:gradientMatrix:inputMatrix:meanVector:varianceVector:gammaVector:betaVector:resultGradientForDataMatrix:resultGradientForGammaVector:resultGradientForBetaVector:)]
         pub unsafe fn encodeToCommandBuffer_gradientMatrix_inputMatrix_meanVector_varianceVector_gammaVector_betaVector_resultGradientForDataMatrix_resultGradientForGammaVector_resultGradientForBetaVector(
             &self,
@@ -245,6 +467,15 @@ extern_methods!(
             result_gradient_for_beta_vector: Option<&MPSVector>,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSMatrixBatchNormalizationGradient
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSMatrixBatchNormalizationGradient object.
+        ///
+        /// Returns: A new MPSMatrixBatchNormalizationGradient object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -252,6 +483,18 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Make a copy of this kernel for a new device -
+        ///
+        /// See: MPSKernel
+        ///
+        /// Parameter `zone`: The NSZone in which to allocate the object
+        ///
+        /// Parameter `device`: The device for the new MPSKernel. If nil, then use
+        /// self.device.
+        ///
+        /// Returns: A pointer to a copy of this MPSKernel. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -265,6 +508,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixBatchNormalizationGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

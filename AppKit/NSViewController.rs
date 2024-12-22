@@ -86,12 +86,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other representedObject)]
         pub unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`representedObject`][Self::representedObject].
         #[method(setRepresentedObject:)]
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
 
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
@@ -100,6 +102,7 @@ extern_methods!(
         pub unsafe fn view(&self) -> Retained<NSView>;
 
         #[cfg(feature = "NSView")]
+        /// Setter for [`view`][Self::view].
         #[method(setView:)]
         pub unsafe fn setView(&self, view: &NSView);
 
@@ -150,6 +153,7 @@ extern_methods!(
         pub unsafe fn preferredContentSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredContentSize`][Self::preferredContentSize].
         #[method(setPreferredContentSize:)]
         pub unsafe fn setPreferredContentSize(&self, preferred_content_size: NSSize);
 
@@ -272,6 +276,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other childViewControllers)]
         pub unsafe fn childViewControllers(&self) -> Retained<NSArray<NSViewController>>;
 
+        /// Setter for [`childViewControllers`][Self::childViewControllers].
         #[method(setChildViewControllers:)]
         pub unsafe fn setChildViewControllers(
             &self,
@@ -353,6 +358,7 @@ extern_methods!(
         pub unsafe fn sourceItemView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
+        /// Setter for [`sourceItemView`][Self::sourceItemView].
         #[method(setSourceItemView:)]
         pub unsafe fn setSourceItemView(&self, source_item_view: Option<&NSView>);
 
@@ -361,6 +367,7 @@ extern_methods!(
         pub unsafe fn preferredScreenOrigin(&self) -> NSPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredScreenOrigin`][Self::preferredScreenOrigin].
         #[method(setPreferredScreenOrigin:)]
         pub unsafe fn setPreferredScreenOrigin(&self, preferred_screen_origin: NSPoint);
 

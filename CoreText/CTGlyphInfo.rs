@@ -15,11 +15,33 @@ use crate::*;
 pub type CTGlyphInfoRef = *const c_void;
 
 extern "C-unwind" {
+    /// Returns the CFType of the glyph info object
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTGlyphInfoGetTypeID() -> CFTypeID;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection?language=objc)
+/// These constants specify character collections.
+///
+///
+/// Indicates that the character identifier is equal to the CGGlyph
+/// glyph index.
+///
+///
+/// Indicates the Adobe-CNS1 mapping.
+///
+///
+/// Indicates the Adobe-GB1 mapping.
+///
+///
+/// Indicates the Adobe-Japan1 mapping.
+///
+///
+/// Indicates the Adobe-Japan2 mapping.
+///
+///
+/// Indicates the Adobe-Korea1 mapping.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -62,6 +84,24 @@ unsafe impl RefEncode for CTCharacterCollection {
 }
 
 extern "C-unwind" {
+    /// Creates an immutable glyph info object.
+    ///
+    ///
+    /// This function creates an immutable glyph info object for a glyph
+    /// name such as "copyright" and a specified font.
+    ///
+    ///
+    /// Parameter `glyphName`: The name of the glyph.
+    ///
+    ///
+    /// Parameter `font`: The font to be associated with the returned CTGlyphInfo object.
+    ///
+    ///
+    /// Parameter `baseString`: The part of the string the returned object is intended
+    /// to override.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTGlyphInfo object.
     #[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
     pub fn CTGlyphInfoCreateWithGlyphName(
         glyph_name: CFStringRef,
@@ -71,6 +111,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an immutable glyph info object.
+    ///
+    ///
+    /// This function creates an immutable glyph info object for a glyph
+    /// index and a specified font.
+    ///
+    ///
+    /// Parameter `glyph`: The glyph identifier.
+    ///
+    ///
+    /// Parameter `font`: The font to be associated with the returned CTGlyphInfo object.
+    ///
+    ///
+    /// Parameter `baseString`: The part of the string the returned object is intended
+    /// to override.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTGlyphInfo object.
     #[cfg(all(
         feature = "CTFont",
         feature = "objc2-core-foundation",
@@ -84,6 +142,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an immutable glyph info object.
+    ///
+    ///
+    /// This function creates an immutable glyph info object for a
+    /// character identifier and a character collection.
+    ///
+    ///
+    /// Parameter `cid`: A character identifier.
+    ///
+    ///
+    /// Parameter `collection`: A character collection identifier.
+    ///
+    ///
+    /// Parameter `baseString`: The part of the string the returned object is intended
+    /// to override.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTGlyphInfo object.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
     pub fn CTGlyphInfoCreateWithCharacterIdentifier(
         cid: CGFontIndex,
@@ -93,20 +169,67 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the glyph name for a glyph info, if applicable.
+    ///
+    ///
+    /// This function will return the glyph name.
+    ///
+    ///
+    /// Parameter `glyphInfo`: The glyph info for which you would like the glyph name.
+    ///
+    ///
+    /// Returns: If the glyph info object was created with a glyph name, it will
+    /// be returned. Otherwise, this function will return NULL.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTGlyphInfoGetGlyphName(glyph_info: CTGlyphInfoRef) -> CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Gets the glyph for a glyph info, if applicable.
+    ///
+    ///
+    /// This function will return the glyph.
+    ///
+    ///
+    /// Parameter `glyphInfo`: The glyph info from which you would like the glyph.
+    ///
+    ///
+    /// Returns: If the glyph info object was created with a font, it will be
+    /// returned. Otherwise, this function will return 0.
     #[cfg(feature = "objc2-core-graphics")]
     pub fn CTGlyphInfoGetGlyph(glyph_info: CTGlyphInfoRef) -> CGGlyph;
 }
 
 extern "C-unwind" {
+    /// Gets the character identifier for a glyph info.
+    ///
+    ///
+    /// This function will return the character identifier.
+    ///
+    ///
+    /// Parameter `glyphInfo`: The glyph info for which you would like the character identifier.
+    ///
+    ///
+    /// Returns: If the glyph info object was created with a character identifier,
+    /// it will be returned. Otherwise, this function will return 0.
     #[cfg(feature = "objc2-core-graphics")]
     pub fn CTGlyphInfoGetCharacterIdentifier(glyph_info: CTGlyphInfoRef) -> CGFontIndex;
 }
 
 extern "C-unwind" {
+    /// Gets the character collection for a glyph info.
+    ///
+    ///
+    /// This function will return the character collection. If the glyph
+    /// info object was created with a glyph name or a glyph index, its
+    /// character collection will be
+    /// kCTIdentityMappingCharacterCollection.
+    ///
+    ///
+    /// Parameter `glyphInfo`: The glyph info for which you would like the character collection.
+    ///
+    ///
+    /// Returns: This function will return the character collection of the given
+    /// glyph info.
     pub fn CTGlyphInfoGetCharacterCollection(glyph_info: CTGlyphInfoRef) -> CTCharacterCollection;
 }

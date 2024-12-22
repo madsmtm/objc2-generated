@@ -32,6 +32,7 @@ unsafe impl NSSecureCoding for HKUnit {}
 
 extern_methods!(
     unsafe impl HKUnit {
+        /// Returns a unique string representation for the unit that could be used with +unitFromString:
         #[method_id(@__retain_semantics Other unitString)]
         pub unsafe fn unitString(&self) -> Retained<NSString>;
 

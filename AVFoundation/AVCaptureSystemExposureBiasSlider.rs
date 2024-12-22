@@ -7,7 +7,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystemexposurebiasslider?language=objc)
+    /// The system's recommended continuous exposure bias control for `-[AVCaptureDevice exposureTargetBias]`.
+    ///
+    ///
+    /// `AVCaptureSystemExposureBiasSlider` uses the range specified by `systemRecommendedExposureBiasRange` on the `activeFormat` from the `AVCaptureDevice` specified during initialization. As the device's `activeFormat` changes, the slider updates its range with the new format's `systemRecommendedExposureBiasRange`.
+    ///
+    /// Controls may be added to an `AVCaptureSession` using `-[AVCaptureSession addControl:]`.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystemexposurebiasslider?language=objc)
     #[unsafe(super(AVCaptureControl, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureControl")]
@@ -21,6 +28,13 @@ extern_methods!(
     #[cfg(feature = "AVCaptureControl")]
     unsafe impl AVCaptureSystemExposureBiasSlider {
         #[cfg(feature = "AVCaptureDevice")]
+        /// Initializes an `AVCaptureSystemExposureBiasSlider` for controlling `device`.
+        ///
+        ///
+        /// Parameter `device`: The device to control.
+        ///
+        ///
+        /// `AVCaptureSystemExposureBiasSlider` may only be initialized with `AVCaptureDevice` instances that support setting `exposureTargetBias`, otherwise an `NSInvalidArgumentException` is thrown.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -28,6 +42,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "AVCaptureDevice", feature = "block2"))]
+        /// Initializes an `AVCaptureSystemExposureBiasSlider` for controlling `device` with a `
+        /// MainThreadOnly` `action` for handling `exposureTargetBias` changes.
+        ///
+        ///
+        /// Parameter `device`: The device to control.
+        ///
+        /// Parameter `action`: An action called on `
+        /// MainThreadOnly` to handle `exposureTargetBias` changes by `AVCaptureSystemExposureBiasSlider`.
+        ///
+        ///
+        /// `action` is **only** called when `exposureTargetBias` is changed by this control. Clients should not change `exposureTargetBias` on the device when `action` is called.
+        ///
+        /// If you need to react to other sources of `exposureTargetBias` changes, you will still need to use key-value observation.
+        ///
+        /// `AVCaptureSystemExposureBiasSlider` may only be initialized with `AVCaptureDevice` instances that support setting `exposureTargetBias`, otherwise an `NSInvalidArgumentException` is thrown.
         #[method_id(@__retain_semantics Init initWithDevice:action:)]
         pub unsafe fn initWithDevice_action(
             this: Allocated<Self>,

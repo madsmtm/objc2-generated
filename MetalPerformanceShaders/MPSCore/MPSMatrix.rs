@@ -9,7 +9,14 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdescriptor?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    ///
+    /// A MPSMatrixDescriptor describes the sizes, strides, and data type of a
+    /// an array of 2-dimensional matrices.  All storage is assumed to be in
+    /// "matrix-major".  See the description for MPSMatrix for further details.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSMatrixDescriptor;
@@ -19,39 +26,72 @@ unsafe impl NSObjectProtocol for MPSMatrixDescriptor {}
 
 extern_methods!(
     unsafe impl MPSMatrixDescriptor {
+        /// The number of rows in a matrix.
         #[method(rows)]
         pub unsafe fn rows(&self) -> NSUInteger;
 
+        /// Setter for [`rows`][Self::rows].
         #[method(setRows:)]
         pub unsafe fn setRows(&self, rows: NSUInteger);
 
+        /// The number of columns in a matrix.
         #[method(columns)]
         pub unsafe fn columns(&self) -> NSUInteger;
 
+        /// Setter for [`columns`][Self::columns].
         #[method(setColumns:)]
         pub unsafe fn setColumns(&self, columns: NSUInteger);
 
+        /// The number of matrices.
         #[method(matrices)]
         pub unsafe fn matrices(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The type of the data which makes up the values of the matrix.
         #[method(dataType)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`dataType`][Self::dataType].
         #[method(setDataType:)]
         pub unsafe fn setDataType(&self, data_type: MPSDataType);
 
+        /// The stride, in bytes, between corresponding elements of
+        /// consecutive rows.  Must be a multiple of the element size.
         #[method(rowBytes)]
         pub unsafe fn rowBytes(&self) -> NSUInteger;
 
+        /// Setter for [`rowBytes`][Self::rowBytes].
         #[method(setRowBytes:)]
         pub unsafe fn setRowBytes(&self, row_bytes: NSUInteger);
 
+        /// The stride, in bytes, between corresponding elements of
+        /// consecutive matrices.  Must be a multiple of rowBytes.
         #[method(matrixBytes)]
         pub unsafe fn matrixBytes(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Create a MPSMatrixDescriptor with the specified dimensions and data type.
+        ///
+        ///
+        /// Parameter `rows`: The number of rows of the matrix.
+        ///
+        ///
+        /// Parameter `columns`: The number of columns of the matrix.
+        ///
+        ///
+        /// Parameter `rowBytes`: The number of bytes between starting elements of consecutive
+        /// rows.  Must be a multiple of the element size.
+        ///
+        ///
+        /// Parameter `dataType`: The type of the data to be stored in the matrix.
+        ///
+        ///
+        /// For performance considerations the optimal row stride may not necessarily be equal
+        /// to the number of columns in the matrix.  The MPSMatrix class provides a method which
+        /// may be used to determine this value, see the rowBytesForColumns API in the MPSMatrix
+        /// class.
+        /// The number of matrices described is initialized to 1.
         #[deprecated]
         #[method_id(@__retain_semantics Other matrixDescriptorWithDimensions:columns:rowBytes:dataType:)]
         pub unsafe fn matrixDescriptorWithDimensions_columns_rowBytes_dataType(
@@ -71,6 +111,33 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Create a MPSMatrixDescriptor with the specified dimensions and data type.
+        ///
+        ///
+        /// Parameter `rows`: The number of rows of a single matrix.
+        ///
+        ///
+        /// Parameter `columns`: The number of columns of a single matrix.
+        ///
+        ///
+        /// Parameter `matrices`: The number of matrices in the MPSMatrix object.
+        ///
+        ///
+        /// Parameter `rowBytes`: The number of bytes between starting elements of consecutive
+        /// rows.  Must be a multiple of the element size.
+        ///
+        ///
+        /// Parameter `matrixBytes`: The number of bytes between starting elements of consecutive
+        /// matrices.  Must be a multiple of rowBytes.
+        ///
+        ///
+        /// Parameter `dataType`: The type of the data to be stored in the matrix.
+        ///
+        ///
+        /// For performance considerations the optimal row stride may not necessarily be equal
+        /// to the number of columns in the matrix.  The MPSMatrix class provides a method which
+        /// may be used to determine this value, see the rowBytesForColumns API in the MPSMatrix
+        /// class.
         #[method_id(@__retain_semantics Other matrixDescriptorWithRows:columns:matrices:rowBytes:matrixBytes:dataType:)]
         pub unsafe fn matrixDescriptorWithRows_columns_matrices_rowBytes_matrixBytes_dataType(
             rows: NSUInteger,
@@ -82,6 +149,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Return the recommended row stride, in bytes, for a given number of
+        /// columns.
+        ///
+        ///
+        /// Parameter `columns`: The number of columns in the matrix for which the recommended
+        /// row stride, in bytes, is to be determined.
+        ///
+        ///
+        /// Parameter `dataType`: The type of matrix data values.
+        ///
+        ///
+        /// To achieve best performance the optimal stride between rows of a matrix is not
+        /// necessarily equivalent to the number of columns.  This method returns the row stride, in
+        /// bytes, which gives best performance for a given number of columns.  Using this row stride
+        /// to construct your array is recommended, but not required (provided that the stride
+        /// used is still large enough to allocate a full row of data).
         #[deprecated]
         #[method(rowBytesFromColumns:dataType:)]
         pub unsafe fn rowBytesFromColumns_dataType(
@@ -110,7 +193,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsvectordescriptor?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    ///
+    /// A MPSVectorDescriptor describes the length and data type of a
+    /// an array of 1-dimensional vectors.  All vectors are stored as
+    /// contiguous arrays of data.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsvectordescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSVectorDescriptor;
@@ -120,27 +210,45 @@ unsafe impl NSObjectProtocol for MPSVectorDescriptor {}
 
 extern_methods!(
     unsafe impl MPSVectorDescriptor {
+        /// The number of elements in the vector.
         #[method(length)]
         pub unsafe fn length(&self) -> NSUInteger;
 
+        /// Setter for [`length`][Self::length].
         #[method(setLength:)]
         pub unsafe fn setLength(&self, length: NSUInteger);
 
+        /// The number of vectors.
         #[method(vectors)]
         pub unsafe fn vectors(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The type of the data which makes up the values of the vector.
         #[method(dataType)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Setter for [`dataType`][Self::dataType].
         #[method(setDataType:)]
         pub unsafe fn setDataType(&self, data_type: MPSDataType);
 
+        /// The stride, in bytes, between corresponding elements of
+        /// consecutive vectors.  Must be a multiple of the element size
         #[method(vectorBytes)]
         pub unsafe fn vectorBytes(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Create a MPSVectorDescriptor with the specified length and data type.
+        ///
+        ///
+        /// Parameter `length`: The number of elements in a single vector.
+        ///
+        ///
+        /// Parameter `dataType`: The type of the data to be stored in the vector.
+        ///
+        ///
+        /// Use this function for creating a descriptor of a MPSVector object
+        /// containing a single vector.
         #[method_id(@__retain_semantics Other vectorDescriptorWithLength:dataType:)]
         pub unsafe fn vectorDescriptorWithLength_dataType(
             length: NSUInteger,
@@ -148,6 +256,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Create a MPSVectorDescriptor with the specified length and data type.
+        ///
+        ///
+        /// Parameter `length`: The number of elements in a single vector.
+        ///
+        ///
+        /// Parameter `vectors`: The number of vectors in the MPSVector object.
+        ///
+        ///
+        /// Parameter `vectorBytes`: The number of bytes between starting elements of consecutive
+        /// vectors.
+        ///
+        ///
+        /// Parameter `dataType`: The type of the data to be stored in the vector.
+        ///
+        ///
+        /// For performance considerations the optimal stride between vectors may not necessarily be equal
+        /// to the vector length.  The MPSVectorDescriptor class provides a method which
+        /// may be used to determine this value, see the vectorBytesForLength API.
         #[method_id(@__retain_semantics Other vectorDescriptorWithLength:vectors:vectorBytes:dataType:)]
         pub unsafe fn vectorDescriptorWithLength_vectors_vectorBytes_dataType(
             length: NSUInteger,
@@ -157,6 +284,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// Return the recommended stride, in bytes, to be used for an array
+        /// of vectors of a given length.
+        ///
+        ///
+        /// Parameter `length`: The number of elements in a single vector.
+        ///
+        ///
+        /// Parameter `dataType`: The type of vector data values.
+        ///
+        ///
+        /// To achieve best performance the optimal stride between vectors within an array of
+        /// vectors is not necessarily equivalent to the number of elements per vector.  This method
+        /// returns the stride, in bytes, which gives best performance for a given vector length.
+        /// Using this stride to construct your array is recommended, but not required (provided that
+        /// the stride used is still large enough to allocate a full vector of data).
         #[method(vectorBytesForLength:dataType:)]
         pub unsafe fn vectorBytesForLength_dataType(
             length: NSUInteger,
@@ -177,7 +319,25 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    ///
+    /// A MPSMatrix object describes a set of 2-dimensional arrays of data and provides storage
+    /// for its values.  MPSMatrix objects serve as inputs and outputs of MPSMatrixKernel
+    /// objects.
+    ///
+    /// Implementation note:
+    /// A MPSMatrix object maintains its internal storage using a MTLBuffer object and thus
+    /// the same rules for maintaining coherency of a MTLBuffer's data between CPU memory and GPU
+    /// memory apply to a MPSMatrix.  An MPSMatrix object's data refers to an array of matrices.
+    /// Data is assumed to be ordered by matrix first, followed by row, followed by column.
+    ///
+    /// For example, index [i,j] of the k'th matrix of an MPSMatrix is located at byte offset:
+    /// k * matrixBytes + i * rowBytes + j * sizeof(dataType)
+    ///
+    /// Where matrixBytes is a multiple of rowBytes at least equal to rows * rowBytes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSMatrix;
@@ -187,34 +347,67 @@ unsafe impl NSObjectProtocol for MPSMatrix {}
 
 extern_methods!(
     unsafe impl MPSMatrix {
+        /// The device on which the MPSMatrix will be used.
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
+        /// The number of rows in a matrix in the MPSMatrix.
         #[method(rows)]
         pub unsafe fn rows(&self) -> NSUInteger;
 
+        /// The number of columns in a matrix in the MPSMatrix.
         #[method(columns)]
         pub unsafe fn columns(&self) -> NSUInteger;
 
+        /// The number of matrices in the MPSMatrix.
         #[method(matrices)]
         pub unsafe fn matrices(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The type of the MPSMatrix data.
         #[method(dataType)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
+        /// The stride, in bytes, between corresponding elements of
+        /// consecutive rows.
         #[method(rowBytes)]
         pub unsafe fn rowBytes(&self) -> NSUInteger;
 
+        /// The stride, in bytes, between corresponding elements of
+        /// consecutive matrices.
         #[method(matrixBytes)]
         pub unsafe fn matrixBytes(&self) -> NSUInteger;
 
+        /// Byte-offset to the buffer where the matrix data begins - see
+        /// initWithBuffer:offset: descriptor: .
         #[method(offset)]
         pub unsafe fn offset(&self) -> NSUInteger;
 
+        /// An MTLBuffer to store the data.
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
+        /// Initialize a MPSMatrix object with a MTLBuffer.
+        ///
+        ///
+        /// Parameter `buffer`: The MTLBuffer object which contains the data to use for the
+        /// MPSMatrix. May not be NULL.
+        ///
+        ///
+        /// Parameter `descriptor`: The MPSMatrixDescriptor. May not be NULL.
+        ///
+        ///
+        /// Returns: A valid MPSMatrix object or nil, if failure.
+        ///
+        ///
+        /// This function returns a MPSMatrix object which uses the supplied MTLBuffer.  The
+        /// dimensions and stride of the matrix are specified by the MPSMatrixDescriptor object.
+        ///
+        /// The provided MTLBuffer must have enough storage to hold
+        ///
+        /// (descriptor.matrices-1) * descriptor.matrixBytes +
+        /// (descriptor.rows-1) * descriptor.rowBytes +
+        /// descriptor.columns * (element size) bytes.
         #[method_id(@__retain_semantics Init initWithBuffer:descriptor:)]
         pub unsafe fn initWithBuffer_descriptor(
             this: Allocated<Self>,
@@ -222,6 +415,17 @@ extern_methods!(
             descriptor: &MPSMatrixDescriptor,
         ) -> Retained<Self>;
 
+        /// Initialize a MPSMatrix object with a MTLBuffer at a given offset.
+        ///
+        ///
+        /// Parameter `buffer`: The MTLBuffer object which contains the data to use for the
+        /// MPSMatrix.  May not be NULL.
+        ///
+        ///
+        /// Parameter `offset`: The offset, in bytes, into the buffer at which the data begins.
+        ///
+        ///
+        /// Parameter `descriptor`: The MPSMatrixDescriptor describing the shape of the matrix.
         #[method_id(@__retain_semantics Init initWithBuffer:offset:descriptor:)]
         pub unsafe fn initWithBuffer_offset_descriptor(
             this: Allocated<Self>,
@@ -230,6 +434,19 @@ extern_methods!(
             descriptor: &MPSMatrixDescriptor,
         ) -> Retained<Self>;
 
+        /// Initialize a MPSMatrix object with a descriptor. Allocate the buffer.
+        ///
+        /// Parameter `device`: The device with which it will be used
+        ///
+        /// Parameter `descriptor`: The shape and style of the matrix
+        ///
+        /// Returns: A valid MPSMatrix object or nil
+        ///
+        /// The matrix object will be created, but the storage to hold the
+        /// matrix data will only be allocated when it is needed, typically
+        /// when the data property is invoked.  In conjunction
+        /// with -resourceSize, this will allow you to estimate storage needs
+        /// without actually creating the backing store for the matrix.
         #[method_id(@__retain_semantics Init initWithDevice:descriptor:)]
         pub unsafe fn initWithDevice_descriptor(
             this: Allocated<Self>,
@@ -240,12 +457,41 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Flush the underlying MTLBuffer from the device's caches, and invalidate any CPU caches if needed.
+        ///
+        /// This will call [id
+        /// <MTLBlitEncoder
+        /// > synchronizeResource: ] on the matrix's MTLBuffer, if any.
+        /// This is necessary for all MTLStorageModeManaged resources. For other resources, including temporary
+        /// resources (these are all MTLStorageModePrivate), and buffers that have not yet been allocated, nothing is done.
+        /// It is more efficient to use this method than to attempt to do this yourself with the data property.
+        ///
+        /// Parameter `commandBuffer`: The commandbuffer on which to synchronize
         #[method(synchronizeOnCommandBuffer:)]
         pub unsafe fn synchronizeOnCommandBuffer(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
         );
 
+        /// Get the number of bytes used to allocate underyling MTLResources
+        ///
+        /// This is the size of the backing store of underlying MTLResources.
+        /// It does not include all storage used by the object, for example
+        /// the storage used to hold the MPSMatrix instantiation and MTLBuffer
+        /// is not included. It only measures the size of the allocation used
+        /// to hold the matrix data in the buffer. This value is subject to
+        /// change between different devices and operating systems.
+        ///
+        /// Except when -initWithBuffer:descriptor: is used, most MPSMatrixes are allocated
+        /// without a backing store. The backing store is allocated lazily when
+        /// it is needed, typically when the .texture property is called.
+        /// Consequently, in most cases, it should be inexpensive to make
+        /// a MPSImage to see how much memory it will need, and release it
+        /// if it is too large.
+        ///
+        /// This method may fail in certain circumstances, such as when the
+        /// MPSImage is created with -initWithTexture:featureChannels:. In
+        /// such cases, 0 will be returned.
         #[method(resourceSize)]
         pub unsafe fn resourceSize(&self) -> NSUInteger;
     }
@@ -260,7 +506,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsvector?language=objc)
+    /// Dependencies: This depends on Metal.framework
+    ///
+    ///
+    /// A MPSVector object describes a 1-dimensional array of data and provides storage
+    /// for its values.  Some MPSMatrixKernel objects operate on MPSVector objects
+    /// for convenience.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsvector?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSVector;
@@ -270,28 +523,58 @@ unsafe impl NSObjectProtocol for MPSVector {}
 
 extern_methods!(
     unsafe impl MPSVector {
+        /// The device on which the MPSVector will be used.
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
+        /// The number of elements in the vector.
         #[method(length)]
         pub unsafe fn length(&self) -> NSUInteger;
 
+        /// The number of vectors in the MPSVector.
         #[method(vectors)]
         pub unsafe fn vectors(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
+        /// The type of the MPSVector data.
         #[method(dataType)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
+        /// The stride, in bytes, between corresponding elements of
+        /// consecutive vectors.
         #[method(vectorBytes)]
         pub unsafe fn vectorBytes(&self) -> NSUInteger;
 
+        /// Byte-offset to the buffer where the vector data begins - see
+        /// initWithBuffer:offset: descriptor: .
         #[method(offset)]
         pub unsafe fn offset(&self) -> NSUInteger;
 
+        /// An MTLBuffer to store the data.
         #[method_id(@__retain_semantics Other data)]
         pub unsafe fn data(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
+        /// Initialize a MPSVector object with a MTLBuffer.
+        ///
+        ///
+        /// Parameter `buffer`: The MTLBuffer object which contains the data to use for the
+        /// MPSVector. May not be NULL.
+        ///
+        ///
+        /// Parameter `descriptor`: The MPSVectorDescriptor. May not be NULL.
+        ///
+        ///
+        /// Returns: A valid MPSVector object or nil, if failure.
+        ///
+        ///
+        /// This function returns a MPSVector object which uses the supplied MTLBuffer.  The
+        /// length, number of vectors, and stride between vectors are specified by the
+        /// MPSVectorDescriptor object.
+        ///
+        /// The provided MTLBuffer must have enough storage to hold
+        ///
+        /// (descriptor.vectors-1) * descriptor.vectorBytes +
+        /// descriptor.length * (element size) bytes.
         #[method_id(@__retain_semantics Init initWithBuffer:descriptor:)]
         pub unsafe fn initWithBuffer_descriptor(
             this: Allocated<Self>,
@@ -299,6 +582,16 @@ extern_methods!(
             descriptor: &MPSVectorDescriptor,
         ) -> Retained<Self>;
 
+        /// Initialize a MPSVector object with a MTLBuffer and an offset.
+        ///
+        ///
+        /// Parameter `buffer`: The MTLBuffer containing the data.
+        ///
+        ///
+        /// Parameter `offset`: The offset, in bytes, into the buffer at which data begins.
+        ///
+        ///
+        /// Parameter `descriptor`: The MPSVectorDescriptor.
         #[method_id(@__retain_semantics Init initWithBuffer:offset:descriptor:)]
         pub unsafe fn initWithBuffer_offset_descriptor(
             this: Allocated<Self>,
@@ -307,6 +600,19 @@ extern_methods!(
             descriptor: &MPSVectorDescriptor,
         ) -> Retained<Self>;
 
+        /// Initialize a lazily backed MPSVector object with a descriptor
+        ///
+        /// Parameter `device`: The device with which it will be used
+        ///
+        /// Parameter `descriptor`: The shape and style of the matrix
+        ///
+        /// Returns: A valid MPSVector object or nil
+        ///
+        /// The vector object will be created, but the storage to hold the
+        /// vector data will only be allocated when it is needed, typically
+        /// when the data property is invoked.  In conjunction
+        /// with -resourceSize, this will allow you to estimate storage needs
+        /// without actually creating the backing store for the vector.
         #[method_id(@__retain_semantics Init initWithDevice:descriptor:)]
         pub unsafe fn initWithDevice_descriptor(
             this: Allocated<Self>,
@@ -317,12 +623,41 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Flush the underlying MTLBuffer from the device's caches, and invalidate any CPU caches if needed.
+        ///
+        /// This will call [id
+        /// <MTLBlitEncoder
+        /// > synchronizeResource: ] on the vector's MTLBuffer, if any.
+        /// This is necessary for all MTLStorageModeManaged resources. For other resources, including temporary
+        /// resources (these are all MTLStorageModePrivate), and buffers that have not yet been allocated, nothing is done.
+        /// It is more efficient to use this method than to attempt to do this yourself with the data property.
+        ///
+        /// Parameter `commandBuffer`: The commandbuffer on which to synchronize
         #[method(synchronizeOnCommandBuffer:)]
         pub unsafe fn synchronizeOnCommandBuffer(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
         );
 
+        /// Get the number of bytes used to allocate underyling MTLResources
+        ///
+        /// This is the size of the backing store of underlying MTLResources.
+        /// It does not include all storage used by the object, for example
+        /// the storage used to hold the MPSVector instantiation and MTLBuffer
+        /// is not included. It only measures the size of the allocation used
+        /// to hold the vector data in the buffer. This value is subject to
+        /// change between different devices and operating systems.
+        ///
+        /// Except when -initWithBuffer:descriptor: is used, most MPSVectors are allocated
+        /// without a backing store. The backing store is allocated lazily when
+        /// it is needed, typically when the .texture property is called.
+        /// Consequently, in most cases, it should be inexpensive to make
+        /// a MPSMatrix to see how much memory it will need, and release it
+        /// if it is too large.
+        ///
+        /// This method may fail in certain circumstances, such as when the
+        /// MPSMatrix is created with -initWithBuffer:descriptor:. In
+        /// such cases, 0 will be returned.
         #[method(resourceSize)]
         pub unsafe fn resourceSize(&self) -> NSUInteger;
     }
@@ -337,7 +672,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporarymatrix?language=objc)
+    /// A MPSMatrix allocated on GPU private memory.
+    ///
+    /// It may alias one or more other MPSTemporaryMatrices. Undesired data destruction
+    /// due to aliasing is avoided using the readCount property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporarymatrix?language=objc)
     #[unsafe(super(MPSMatrix, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSTemporaryMatrix;
@@ -347,18 +687,42 @@ unsafe impl NSObjectProtocol for MPSTemporaryMatrix {}
 
 extern_methods!(
     unsafe impl MPSTemporaryMatrix {
+        /// Initialize a MPSTemporaryMatrix for use on a MTLCommandBuffer
+        ///
+        /// Parameter `commandBuffer`: The MTLCommandBuffer on which the MPSTemporaryMatrix will be exclusively used
+        ///
+        /// Parameter `matrixDescriptor`: A valid MPSMatrixDescriptor describing the MPSMatrix format to create
+        ///
+        /// Returns: A valid MPSTemporaryMatrix.  The object is not managed by a NSAutoreleasePool. The object will be
+        /// released when the command buffer is committed. The underlying buffer will become invalid before
+        /// this time due to the action of the readCount property.  Please read and understand the use of
+        /// the readCount property before using this object.
         #[method_id(@__retain_semantics Other temporaryMatrixWithCommandBuffer:matrixDescriptor:)]
         pub unsafe fn temporaryMatrixWithCommandBuffer_matrixDescriptor(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             matrix_descriptor: &MPSMatrixDescriptor,
         ) -> Retained<Self>;
 
+        /// Help MPS decide which allocations to make ahead of time
+        ///
+        /// The buffer cache that underlies the MPSTemporaryMatrix can automatically allocate new storage as
+        /// needed as you create new temporary matrices.  However, sometimes a more global view of what you
+        /// plan to make is useful for maximizing memory reuse to get the most efficient operation.
+        /// This class method hints to the cache what the list of matrices will be.
+        ///
+        /// It is never necessary to call this method. It is purely a performance and memory optimization.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer on which the MPSTemporaryMatrix will be used
+        ///
+        /// Parameter `descriptorList`: A NSArray of MPSMatrixDescriptor, indicating matrices that will be created
         #[method(prefetchStorageWithCommandBuffer:matrixDescriptorList:)]
         pub unsafe fn prefetchStorageWithCommandBuffer_matrixDescriptorList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor_list: &NSArray<MPSMatrixDescriptor>,
         );
 
+        /// *** unavailable
         #[method_id(@__retain_semantics Init initWithBuffer:descriptor:)]
         pub unsafe fn initWithBuffer_descriptor(
             this: Allocated<Self>,
@@ -366,9 +730,36 @@ extern_methods!(
             descriptor: &MPSMatrixDescriptor,
         ) -> Retained<Self>;
 
+        /// The number of times a temporary matrix may be read by a MPSMatrix... kernel
+        /// before its contents become undefined.
+        ///
+        ///
+        /// MPSTemporaryMatrices must release their underlying buffers for reuse
+        /// immediately after last use. So as to facilitate *prompt* convenient
+        /// memory recycling, each time a MPSTemporaryMatrix is read by a
+        /// MPSMatrix... -encode... method, its readCount is automatically
+        /// decremented. When the readCount reaches 0, the underlying buffer is
+        /// automatically made available for reuse to MPS for its own needs and for
+        /// other MPSTemporaryMatrices prior to return from the -encode.. function.
+        /// The contents of the buffer become undefined at this time.
+        ///
+        /// By default, the readCount is initialized to 1, indicating a matrix that
+        /// may be overwritten any number of times, but read only once.
+        ///
+        /// You may change the readCount as desired to allow MPSMatrixKernels to read
+        /// the MPSTemporaryMatrix additional times. However, it is an error to change
+        /// the readCount once it is zero. It is an error to read or write to a
+        /// MPSTemporaryMatrix with a zero readCount. You may set the readCount to 0
+        /// yourself to cause the underlying buffer to be returned to MPS. Writing
+        /// to a MPSTemporaryMatrix does not adjust the readCount.
+        ///
+        /// The Metal API Validation layer will assert if a MPSTemporaryMatrix is
+        /// deallocated with non-zero readCount to help identify cases when resources
+        /// are not returned promptly.
         #[method(readCount)]
         pub unsafe fn readCount(&self) -> NSUInteger;
 
+        /// Setter for [`readCount`][Self::readCount].
         #[method(setReadCount:)]
         pub unsafe fn setReadCount(&self, read_count: NSUInteger);
     }
@@ -377,6 +768,17 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSMatrix`
     unsafe impl MPSTemporaryMatrix {
+        /// Initialize a MPSMatrix object with a MTLBuffer at a given offset.
+        ///
+        ///
+        /// Parameter `buffer`: The MTLBuffer object which contains the data to use for the
+        /// MPSMatrix.  May not be NULL.
+        ///
+        ///
+        /// Parameter `offset`: The offset, in bytes, into the buffer at which the data begins.
+        ///
+        ///
+        /// Parameter `descriptor`: The MPSMatrixDescriptor describing the shape of the matrix.
         #[method_id(@__retain_semantics Init initWithBuffer:offset:descriptor:)]
         pub unsafe fn initWithBuffer_offset_descriptor(
             this: Allocated<Self>,
@@ -385,6 +787,19 @@ extern_methods!(
             descriptor: &MPSMatrixDescriptor,
         ) -> Retained<Self>;
 
+        /// Initialize a MPSMatrix object with a descriptor. Allocate the buffer.
+        ///
+        /// Parameter `device`: The device with which it will be used
+        ///
+        /// Parameter `descriptor`: The shape and style of the matrix
+        ///
+        /// Returns: A valid MPSMatrix object or nil
+        ///
+        /// The matrix object will be created, but the storage to hold the
+        /// matrix data will only be allocated when it is needed, typically
+        /// when the data property is invoked.  In conjunction
+        /// with -resourceSize, this will allow you to estimate storage needs
+        /// without actually creating the backing store for the matrix.
         #[method_id(@__retain_semantics Init initWithDevice:descriptor:)]
         pub unsafe fn initWithDevice_descriptor(
             this: Allocated<Self>,
@@ -406,7 +821,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryvector?language=objc)
+    /// A MPSVector allocated on GPU private memory.
+    ///
+    /// It may alias one or more other MPSTemporaryVector objects. Undesired data destruction
+    /// due to aliasing is avoided using the readCount property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryvector?language=objc)
     #[unsafe(super(MPSVector, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSTemporaryVector;
@@ -416,18 +836,42 @@ unsafe impl NSObjectProtocol for MPSTemporaryVector {}
 
 extern_methods!(
     unsafe impl MPSTemporaryVector {
+        /// Initialize a MPSTemporaryVector for use on a MTLCommandBuffer
+        ///
+        /// Parameter `commandBuffer`: The MTLCommandBuffer on which the MPSTemporaryMatrix will be exclusively used
+        ///
+        /// Parameter `descriptor`: A valid MPSVectorDescriptor describing the MPSVector format to create
+        ///
+        /// Returns: A valid MPSTemporaryVector.  The object is not managed by a NSAutoreleasePool. The object will be
+        /// released when the command buffer is committed. The underlying buffer will become invalid before
+        /// this time due to the action of the readCount property.  Please read and understand the use of
+        /// the readCount property before using this object.
         #[method_id(@__retain_semantics Other temporaryVectorWithCommandBuffer:descriptor:)]
         pub unsafe fn temporaryVectorWithCommandBuffer_descriptor(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor: &MPSVectorDescriptor,
         ) -> Retained<Self>;
 
+        /// Help MPS decide which allocations to make ahead of time
+        ///
+        /// The buffer cache that underlies the MPSTemporaryVector can automatically allocate new storage as
+        /// needed as you create new temporary vectors.  However, sometimes a more global view of what you
+        /// plan to make is useful for maximizing memory reuse to get the most efficient operation.
+        /// This class method hints to the cache what the list of matrices will be.
+        ///
+        /// It is never necessary to call this method. It is purely a performance and memory optimization.
+        ///
+        ///
+        /// Parameter `commandBuffer`: The command buffer on which the MPSTemporaryVector will be used
+        ///
+        /// Parameter `descriptorList`: A NSArray of MPSVectorDescriptor objects, indicating vectors that will be created
         #[method(prefetchStorageWithCommandBuffer:descriptorList:)]
         pub unsafe fn prefetchStorageWithCommandBuffer_descriptorList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor_list: &NSArray<MPSVectorDescriptor>,
         );
 
+        /// *** unavailable
         #[method_id(@__retain_semantics Init initWithBuffer:descriptor:)]
         pub unsafe fn initWithBuffer_descriptor(
             this: Allocated<Self>,
@@ -435,9 +879,36 @@ extern_methods!(
             descriptor: &MPSVectorDescriptor,
         ) -> Retained<Self>;
 
+        /// The number of times a temporary vector may be read by a MPSMatrix... kernel
+        /// before its contents become undefined.
+        ///
+        ///
+        /// MPSTemporaryVector objects must release their underlying buffers for reuse
+        /// immediately after last use. So as to facilitate *prompt* convenient
+        /// memory recycling, each time a MPSTemporaryVector is read by a
+        /// MPSMatrix... -encode... method, its readCount is automatically
+        /// decremented. When the readCount reaches 0, the underlying buffer is
+        /// automatically made available for reuse to MPS for its own needs and for
+        /// other MPSTemporaryVector objects prior to return from the -encode.. function.
+        /// The contents of the buffer become undefined at this time.
+        ///
+        /// By default, the readCount is initialized to 1, indicating a matrix that
+        /// may be overwritten any number of times, but read only once.
+        ///
+        /// You may change the readCount as desired to allow MPSMatrix kernels to read
+        /// the MPSTemporaryVector additional times. However, it is an error to change
+        /// the readCount once it is zero. It is an error to read or write to a
+        /// MPSTemporaryVector with a zero readCount. You may set the readCount to 0
+        /// yourself to cause the underlying buffer to be returned to MPS. Writing
+        /// to a MPSTemporaryVector does not adjust the readCount.
+        ///
+        /// The Metal API Validation layer will assert if a MPSTemporaryVector is
+        /// deallocated with non-zero readCount to help identify cases when resources
+        /// are not returned promptly.
         #[method(readCount)]
         pub unsafe fn readCount(&self) -> NSUInteger;
 
+        /// Setter for [`readCount`][Self::readCount].
         #[method(setReadCount:)]
         pub unsafe fn setReadCount(&self, read_count: NSUInteger);
     }
@@ -446,6 +917,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSVector`
     unsafe impl MPSTemporaryVector {
+        /// Initialize a MPSVector object with a MTLBuffer and an offset.
+        ///
+        ///
+        /// Parameter `buffer`: The MTLBuffer containing the data.
+        ///
+        ///
+        /// Parameter `offset`: The offset, in bytes, into the buffer at which data begins.
+        ///
+        ///
+        /// Parameter `descriptor`: The MPSVectorDescriptor.
         #[method_id(@__retain_semantics Init initWithBuffer:offset:descriptor:)]
         pub unsafe fn initWithBuffer_offset_descriptor(
             this: Allocated<Self>,
@@ -454,6 +935,19 @@ extern_methods!(
             descriptor: &MPSVectorDescriptor,
         ) -> Retained<Self>;
 
+        /// Initialize a lazily backed MPSVector object with a descriptor
+        ///
+        /// Parameter `device`: The device with which it will be used
+        ///
+        /// Parameter `descriptor`: The shape and style of the matrix
+        ///
+        /// Returns: A valid MPSVector object or nil
+        ///
+        /// The vector object will be created, but the storage to hold the
+        /// vector data will only be allocated when it is needed, typically
+        /// when the data property is invoked.  In conjunction
+        /// with -resourceSize, this will allow you to estimate storage needs
+        /// without actually creating the backing store for the vector.
         #[method_id(@__retain_semantics Init initWithDevice:descriptor:)]
         pub unsafe fn initWithDevice_descriptor(
             this: Allocated<Self>,

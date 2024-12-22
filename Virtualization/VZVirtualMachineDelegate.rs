@@ -8,14 +8,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachinedelegate?language=objc)
+    /// A class conforming to the VZVirtualMachineDelegate protocol can provide methods for tracking the virtual machine state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachinedelegate?language=objc)
     pub unsafe trait VZVirtualMachineDelegate: NSObjectProtocol {
         #[cfg(feature = "VZVirtualMachine")]
+        /// Invoked when a guest has stopped the virtual machine.
+        ///
+        /// Parameter `virtualMachine`: The virtual machine invoking the delegate method.
         #[optional]
         #[method(guestDidStopVirtualMachine:)]
         unsafe fn guestDidStopVirtualMachine(&self, virtual_machine: &VZVirtualMachine);
 
         #[cfg(feature = "VZVirtualMachine")]
+        /// Invoked when a virtual machine is stopped due to an error.
+        ///
+        /// Parameter `virtualMachine`: The virtual machine invoking the delegate method.
+        ///
+        /// Parameter `error`: The error.
         #[optional]
         #[method(virtualMachine:didStopWithError:)]
         unsafe fn virtualMachine_didStopWithError(
@@ -25,6 +35,18 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "VZNetworkDevice", feature = "VZVirtualMachine"))]
+        /// Invoked when a virtual machine's network attachment has been disconnected.
+        ///
+        /// This method is invoked every time that the network interface fails to start, resulting in the network attachment being disconnected. This can happen
+        /// in many situations such as initial boot, device reset, reboot, etc. Therefore, this method may be invoked several times during a virtual machine's life cycle.
+        ///
+        /// The VZNetworkDevice.attachment property will be nil after the method is invoked.
+        ///
+        /// Parameter `virtualMachine`: The virtual machine invoking the delegate method.
+        ///
+        /// Parameter `networkDevice`: The network device whose attachment was disconnected.
+        ///
+        /// Parameter `error`: The error.
         #[optional]
         #[method(virtualMachine:networkDevice:attachmentWasDisconnectedWithError:)]
         unsafe fn virtualMachine_networkDevice_attachmentWasDisconnectedWithError(

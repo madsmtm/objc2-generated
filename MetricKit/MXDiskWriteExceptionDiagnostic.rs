@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdiskwriteexceptiondiagnostic?language=objc)
+    /// An MXDiagnostic subclass that encapsulates disk write exception reports.
+    ///
+    /// Disk write exceptions occur when your application writes data excessively to disk.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdiskwriteexceptiondiagnostic?language=objc)
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]
@@ -27,9 +31,13 @@ extern_methods!(
     #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXDiskWriteExceptionDiagnostic {
         #[cfg(feature = "MXCallStackTree")]
+        /// The application call stack tree associated with the excessive disk writes.
         #[method_id(@__retain_semantics Other callStackTree)]
         pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
 
+        /// Total disk writes caused in the scope of this disk write exception.
+        ///
+        /// Dimensioned as NSUnitInformationStorage.
         #[method_id(@__retain_semantics Other totalWritesCaused)]
         pub unsafe fn totalWritesCaused(&self)
             -> Retained<NSMeasurement<NSUnitInformationStorage>>;

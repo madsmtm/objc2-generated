@@ -14,10 +14,13 @@ use crate::*;
 pub struct CKSharingParticipantAccessOption(pub NSUInteger);
 bitflags::bitflags! {
     impl CKSharingParticipantAccessOption: NSUInteger {
+/// If specified, the system sharing UI will allow the user to share publicly i.e. anyone with the link has access.
         #[doc(alias = "CKSharingParticipantAccessOptionAnyoneWithLink")]
         const AnyoneWithLink = 1<<0;
+/// If specified, the system sharing UI will allow the user to share privately to specified recipients.
         #[doc(alias = "CKSharingParticipantAccessOptionSpecifiedRecipientsOnly")]
         const SpecifiedRecipientsOnly = 1<<1;
+/// Allow the user to configure the share with either access option.
         #[doc(alias = "CKSharingParticipantAccessOptionAny")]
         const Any = CKSharingParticipantAccessOption::AnyoneWithLink.0|CKSharingParticipantAccessOption::SpecifiedRecipientsOnly.0;
     }
@@ -38,10 +41,13 @@ unsafe impl RefEncode for CKSharingParticipantAccessOption {
 pub struct CKSharingParticipantPermissionOption(pub NSUInteger);
 bitflags::bitflags! {
     impl CKSharingParticipantPermissionOption: NSUInteger {
+/// If specified, the system sharing UI will allow the user to grant participants read-only permissions.
         #[doc(alias = "CKSharingParticipantPermissionOptionReadOnly")]
         const ReadOnly = 1<<0;
+/// If specified, the system sharing UI will allow the user to grant participants read/write permissions.
         #[doc(alias = "CKSharingParticipantPermissionOptionReadWrite")]
         const ReadWrite = 1<<1;
+/// Allow the user to configure added share participants with either permission option.
         #[doc(alias = "CKSharingParticipantPermissionOptionAny")]
         const Any = CKSharingParticipantPermissionOption::ReadOnly.0|CKSharingParticipantPermissionOption::ReadWrite.0;
     }
@@ -88,6 +94,7 @@ extern_methods!(
             &self,
         ) -> CKSharingParticipantPermissionOption;
 
+        /// Setter for [`allowedParticipantPermissionOptions`][Self::allowedParticipantPermissionOptions].
         #[method(setAllowedParticipantPermissionOptions:)]
         pub unsafe fn setAllowedParticipantPermissionOptions(
             &self,
@@ -97,12 +104,18 @@ extern_methods!(
         #[method(allowedParticipantAccessOptions)]
         pub unsafe fn allowedParticipantAccessOptions(&self) -> CKSharingParticipantAccessOption;
 
+        /// Setter for [`allowedParticipantAccessOptions`][Self::allowedParticipantAccessOptions].
         #[method(setAllowedParticipantAccessOptions:)]
         pub unsafe fn setAllowedParticipantAccessOptions(
             &self,
             allowed_participant_access_options: CKSharingParticipantAccessOption,
         );
 
+        /// Standard allowed options are most permissive i.e.
+        /// `allowedParticipantPermissionOptions`=
+        /// `CKSharingParticipantPermissionOptionAny`and
+        /// `allowedParticipantAccessOptions`=
+        /// `CKSharingParticipantAccessOptionAny`
         #[method_id(@__retain_semantics Other standardOptions)]
         pub unsafe fn standardOptions() -> Retained<CKAllowedSharingOptions>;
     }

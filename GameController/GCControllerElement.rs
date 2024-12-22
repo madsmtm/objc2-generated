@@ -7,16 +7,39 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcsystemgesturestate?language=objc)
+/// Elements on a GCDevice can be used for system gestures. The system gesture state represents how input is handled in the app
+/// for a controller element that is bound to a system gesture.
+///
+///
+/// the control of the app. If a user presses the Options button, the system gesture recognizer will run by default. If a long press is detected,
+/// input will not be forwarded to your app (your application won't see the Options button was pressed at all). If a long press is not detected,
+/// input will be forwared to your app, with a delay.
+///
+/// If you do not want any delay in receiving input for this element, you have two options
+/// - Set the preferred state of the element to GCSystemGestureStateAlwaysReceive. The system gesture recognize will run
+/// concurrently with input being sent to your app. This removes input delay, but can lead to system gestures being triggered
+/// simulatenously with in-app actions.
+/// - Set the preferred state of the element to GCSystemGestureStateDisabled. This will disable the system gesture recognizer - your app
+/// will receive full control of the input for this element.
+///
+///
+/// See: GCControllerElement.boundToSystemGesture
+///
+/// See: GCControllerElement.preferredSystemGestureState
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcsystemgesturestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GCSystemGestureState(pub NSInteger);
 impl GCSystemGestureState {
+    /// System gesture recognizers will run before input is sent to app, this is the default state
     #[doc(alias = "GCSystemGestureStateEnabled")]
     pub const Enabled: Self = Self(0);
+    /// Input is sent to app and processed by system gesture recognizers simultaneously
     #[doc(alias = "GCSystemGestureStateAlwaysReceive")]
     pub const AlwaysReceive: Self = Self(1);
+    /// System gesture recognizers will not run at all. Input is passed directly to app
     #[doc(alias = "GCSystemGestureStateDisabled")]
     pub const Disabled: Self = Self(2);
 }
@@ -30,7 +53,9 @@ unsafe impl RefEncode for GCSystemGestureState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement?language=objc)
+    /// Every controller element knows which collection it belongs to and whether its input value is analog or digital.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCControllerElement;
@@ -40,48 +65,91 @@ unsafe impl NSObjectProtocol for GCControllerElement {}
 
 extern_methods!(
     unsafe impl GCControllerElement {
+        /// Each element can be part of a wider collection of inputs that map to a single logical element. A directional pad (dpad)
+        /// is a logical collection of two axis inputs and thus each axis belongs to the same collection element - the dpad.
         #[method_id(@__retain_semantics Other collection)]
         pub unsafe fn collection(&self) -> Option<Retained<GCControllerElement>>;
 
+        /// Check if the element can support more than just digital values, such as decimal ranges between 0 and 1.
+        /// Defaults to YES for most elements.
         #[method(isAnalog)]
         pub unsafe fn isAnalog(&self) -> bool;
 
+        /// Check if the element is bound to a system gesture.
+        /// Defaults to NO for most elements.
+        ///
+        ///
+        /// See: preferredSystemGestureState
+        ///
+        /// See: GCSystemGestureState
         #[method(isBoundToSystemGesture)]
         pub unsafe fn isBoundToSystemGesture(&self) -> bool;
 
+        /// The preferred system gesture state for this element.
+        /// Defaults to GCSystemGestureStateEnabled for most elements
+        ///
+        ///
+        /// Note: This is merely the preferred system gesture state - it is not guaranteed to be respected by the system.
+        ///
+        /// Note: It is highly recommended to leave this set to the default value, however there may be situations (for example, game
+        /// streaming apps) where it is preferrable to disable system gestures.
+        ///
+        /// See: boundToSystemGesture
         #[method(preferredSystemGestureState)]
         pub unsafe fn preferredSystemGestureState(&self) -> GCSystemGestureState;
 
+        /// Setter for [`preferredSystemGestureState`][Self::preferredSystemGestureState].
         #[method(setPreferredSystemGestureState:)]
         pub unsafe fn setPreferredSystemGestureState(
             &self,
             preferred_system_gesture_state: GCSystemGestureState,
         );
 
+        /// The element's SF Symbols name, taking input remapping into account.
+        ///
+        ///
+        /// Note: In almost all instances, you should use this over unmappedSfSymbolsName in your UI.
         #[method_id(@__retain_semantics Other sfSymbolsName)]
         pub unsafe fn sfSymbolsName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`sfSymbolsName`][Self::sfSymbolsName].
         #[method(setSfSymbolsName:)]
         pub unsafe fn setSfSymbolsName(&self, sf_symbols_name: Option<&NSString>);
 
+        /// The element's localized name, taking input remapping into account.
+        ///
+        ///
+        /// Note: In almost all instances, you should use this over unmappedLocalizedName in your UI.
         #[method_id(@__retain_semantics Other localizedName)]
         pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`localizedName`][Self::localizedName].
         #[method(setLocalizedName:)]
         pub unsafe fn setLocalizedName(&self, localized_name: Option<&NSString>);
 
+        /// The element's SF Symbols name, not taking any input remapping into account.
+        ///
+        ///
+        /// Note: Use this in your games own remapping UI, or when you need to prompt a user that a given button has no mapping (sfSymbolsName is nil).
         #[method_id(@__retain_semantics Other unmappedSfSymbolsName)]
         pub unsafe fn unmappedSfSymbolsName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`unmappedSfSymbolsName`][Self::unmappedSfSymbolsName].
         #[method(setUnmappedSfSymbolsName:)]
         pub unsafe fn setUnmappedSfSymbolsName(&self, unmapped_sf_symbols_name: Option<&NSString>);
 
+        /// The element's localized name, not taking any input remapping into account.
+        ///
+        ///
+        /// Note: Use this in your games own remapping UI, or when you need to prompt a user that a given button has no mapping (localizedName is nil).
         #[method_id(@__retain_semantics Other unmappedLocalizedName)]
         pub unsafe fn unmappedLocalizedName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`unmappedLocalizedName`][Self::unmappedLocalizedName].
         #[method(setUnmappedLocalizedName:)]
         pub unsafe fn setUnmappedLocalizedName(&self, unmapped_localized_name: Option<&NSString>);
 
+        /// A set of aliases that can be used to access this element with keyed subscript notation.
         #[method_id(@__retain_semantics Other aliases)]
         pub unsafe fn aliases(&self) -> Retained<NSSet<NSString>>;
     }

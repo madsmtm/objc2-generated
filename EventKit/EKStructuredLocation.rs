@@ -43,6 +43,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
@@ -51,12 +52,14 @@ extern_methods!(
         pub unsafe fn geoLocation(&self) -> Option<Retained<CLLocation>>;
 
         #[cfg(feature = "objc2-core-location")]
+        /// Setter for [`geoLocation`][Self::geoLocation].
         #[method(setGeoLocation:)]
         pub unsafe fn setGeoLocation(&self, geo_location: Option<&CLLocation>);
 
         #[method(radius)]
         pub unsafe fn radius(&self) -> c_double;
 
+        /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
         pub unsafe fn setRadius(&self, radius: c_double);
     }

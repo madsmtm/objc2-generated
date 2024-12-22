@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbiologicalsexobject?language=objc)
+    /// A wrapper object for HKBiologicalSex enumeration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbiologicalsexobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKBiologicalSexObject;
@@ -49,7 +51,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtypeobject?language=objc)
+    /// A wrapper object for HKBloodType enumeration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtypeobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKBloodTypeObject;
@@ -91,7 +95,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintypeobject?language=objc)
+    /// A wrapper object for HKFitzpatrickSkinType enumeration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintypeobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKFitzpatrickSkinTypeObject;
@@ -133,7 +139,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwheelchairuseobject?language=objc)
+    /// A wrapper object for HKWheelchairUse enumeration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwheelchairuseobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWheelchairUseObject;
@@ -175,7 +183,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitymovemodeobject?language=objc)
+    /// A wrapper object for HKActivityMoveMode enumeration.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitymovemodeobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKActivityMoveModeObject;

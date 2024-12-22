@@ -8,13 +8,17 @@ use objc2_metal_performance_shaders::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizemode?language=objc)
+/// The resize mode to use for resizing.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphResizeMode(pub NSUInteger);
 impl MPSGraphResizeMode {
+    /// Samples the nearest neighbor to the pixel coordinate.
     pub const MPSGraphResizeNearest: Self = Self(0);
+    /// Samples the 4 neighbors to the pixel coordinate and uses bilinear interpolation.
     pub const MPSGraphResizeBilinear: Self = Self(1);
 }
 
@@ -26,22 +30,30 @@ unsafe impl RefEncode for MPSGraphResizeMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizenearestroundingmode?language=objc)
+/// The rounding mode to use when using nearest resize mode.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizenearestroundingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSGraphResizeNearestRoundingMode(pub NSUInteger);
 impl MPSGraphResizeNearestRoundingMode {
+    /// Rounds values to the nearest integer value, with 0.5f offset rounding toward +inf.
     #[doc(alias = "MPSGraphResizeNearestRoundingModeRoundPreferCeil")]
     pub const RoundPreferCeil: Self = Self(0);
+    /// Rounds values to the nearest integer value, with 0.5f rounding toward -inf.
     #[doc(alias = "MPSGraphResizeNearestRoundingModeRoundPreferFloor")]
     pub const RoundPreferFloor: Self = Self(1);
+    /// Rounds values toward +inf.
     #[doc(alias = "MPSGraphResizeNearestRoundingModeCeil")]
     pub const Ceil: Self = Self(2);
+    /// Rounds values toward -inf.
     #[doc(alias = "MPSGraphResizeNearestRoundingModeFloor")]
     pub const Floor: Self = Self(3);
+    /// Rounds values to the nearest integer value, with 0.5f rounding toward the closest even value.
     #[doc(alias = "MPSGraphResizeNearestRoundingModeRoundToEven")]
     pub const RoundToEven: Self = Self(4);
+    /// Rounds values to the nearest integer value, with 0.5f rounding toward the closest odd value.
     #[doc(alias = "MPSGraphResizeNearestRoundingModeRoundToOdd")]
     pub const RoundToOdd: Self = Self(5);
 }
@@ -62,6 +74,37 @@ extern_methods!(
             feature = "MPSGraphTensor",
             feature = "objc2-metal-performance-shaders"
         ))]
+        /// Creates a Resize operation and returns the result tensor.
+        ///
+        /// Resamples input images to given size. Result images will be distorted if size is of different aspect ratio.
+        /// Resize supports the following modes:
+        /// Nearest Neighbor - values are interpolated using the closest neighbor pixel
+        /// Bilinear - values are computed using bilinear interpolation of 4 neighboring pixels
+        /// Destination indices are computed using direct index scaling by default, with no offset added.
+        /// If the centerResult parameter is true, the destination indices will be scaled and shifted to be centered
+        /// on the input image.
+        /// If the alignCorners parameter is true, the corners of the result images will match the input images.
+        /// Scaling will be modified to a factor of (size - 1) / (inputSize - 1). When alignCorners is true, the
+        /// centerResult parameter does nothing.
+        /// In order to achieve the same behavior as OpenCV's resize and TensorFlowV2's resize,
+        /// ```md
+        /// centerResult = YES;
+        /// alginCorners = NO;
+        /// ```
+        /// To achieve the same behavior as TensorFlowV1 resize
+        /// ```md
+        /// centerResult = NO;
+        /// ```
+        ///
+        /// - Parameters:
+        /// - imagesTensor: Tensor containing input images.
+        /// - size: A 2-element shape as [newHeight, newWidth]
+        /// - mode: The resampling mode to use. If nearest sampling is specifed, RoundPreferCeil mode will be used.
+        /// - centerResult: Controls if the result image is centered on the input image. When NO, the result will have the top left corner aligned
+        /// - alignCorners: When YES, the result image will have the same value as the input image in the corners
+        /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeTensor:size:mode:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeTensor_size_mode_centerResult_alignCorners_layout_name(
             &self,
@@ -75,6 +118,37 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize operation and returns the result tensor.
+        ///
+        /// Resamples input images to given size. Result images will be distorted if size is of different aspect ratio.
+        /// Resize supports the following modes:
+        /// Nearest Neighbor - values are interpolated using the closest neighbor pixel
+        /// Bilinear - values are computed using bilinear interpolation of 4 neighboring pixels
+        /// Destination indices are computed using direct index scaling by default, with no offset added.
+        /// If the centerResult parameter is true, the destination indices will be scaled and shifted to be centered
+        /// on the input image.
+        /// If the alignCorners parameter is true, the corners of the result images will match the input images.
+        /// Scaling will be modified to a factor of (size - 1) / (inputSize - 1). When alignCorners is true, the
+        /// centerResult parameter does nothing.
+        /// In order to achieve the same behavior as OpenCV's resize and TensorFlowV2's resize,
+        /// ```md
+        /// centerResult = YES;
+        /// alginCorners = NO;
+        /// ```
+        /// To achieve the same behavior as TensorFlowV1 resize
+        /// ```md
+        /// centerResult = NO;
+        /// ```
+        ///
+        /// - Parameters:
+        /// - imagesTensor: Tensor containing input images.
+        /// - size: 1D Int32 or Int64 tensor. A 2-element shape as [newHeight, newWidth]
+        /// - mode: The resampling mode to use. If nearest sampling is specifed, RoundPreferCeil mode will be used.
+        /// - centerResult: Controls if the result image is centered on the input image. When NO, the result will have the top left corner aligned
+        /// - alignCorners: When YES, the result image will have the same value as the input image in the corners
+        /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeTensor:sizeTensor:mode:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeTensor_sizeTensor_mode_centerResult_alignCorners_layout_name(
             &self,
@@ -88,6 +162,36 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize operation and returns the result tensor.
+        ///
+        /// Resamples input images to given size. Result images will be distorted if size is of different aspect ratio.
+        /// Resize supports the following modes:
+        /// Nearest Neighbor - values are interpolated using the closest neighbor pixel
+        /// Bilinear - values are computed using bilinear interpolation of 4 neighboring pixels
+        /// Destination indices are computed using direct index scaling by default, with no offset added.
+        /// If the centerResult parameter is true, the destination indices will be scaled and shifted to be centered
+        /// on the input image.
+        /// If the alignCorners parameter is true, the corners of the result images will match the input images.
+        /// Scaling will be modified to a factor of (size - 1) / (inputSize - 1). When alignCorners is true, the
+        /// centerResult parameter does nothing.
+        /// In order to achieve the same behavior as OpenCV's resize and TensorFlowV2's resize,
+        /// ```md
+        /// centerResult = YES;
+        /// alginCorners = NO;
+        /// ```
+        /// To achieve the same behavior as TensorFlowV1 resize
+        /// ```md
+        /// centerResult = NO;
+        /// ```
+        ///
+        /// - Parameters:
+        /// - imagesTensor: Tensor containing input images.
+        /// - size: The target size of the result tensor. 1D Int32 or Int64 tensor of size equal to rank of input.
+        /// - mode: The resampling mode to use. If nearest sampling is specifed, RoundPreferCeil mode will be used.
+        /// - centerResult: Controls if the result image is centered on the input image. When NO, the result will have the top left corner aligned
+        /// - alignCorners: When YES, the result image will have the same value as the input image in the corners
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeTensor:sizeTensor:mode:centerResult:alignCorners:name:)]
         pub unsafe fn resizeTensor_sizeTensor_mode_centerResult_alignCorners_name(
             &self,
@@ -100,6 +204,38 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Resamples input images to given size using nearest neighbor sampling.
+        ///
+        /// This API allows for the rounding mode to be specified.
+        /// Resamples input images to given size. Result images will be distorted if size is of different aspect ratio.
+        /// Resize supports the following modes:
+        /// Nearest Neighbor - values are interpolated using the closest neighbor pixel
+        /// Bilinear - values are computed using bilinear interpolation of 4 neighboring pixels
+        /// Destination indices are computed using direct index scaling by default, with no offset added.
+        /// If the centerResult parameter is true, the destination indices will be scaled and shifted to be centered
+        /// on the input image.
+        /// If the alignCorners parameter is true, the corners of the result images will match the input images.
+        /// Scaling will be modified to a factor of (size - 1) / (inputSize - 1). When alignCorners is true, the
+        /// centerResult parameter does nothing.
+        /// In order to achieve the same behavior as OpenCV's resize and TensorFlowV2's resize,
+        /// ```md
+        /// centerResult = YES;
+        /// alginCorners = NO;
+        /// ```
+        /// To achieve the same behavior as TensorFlowV1 resize
+        /// ```md
+        /// centerResult = NO;
+        /// ```
+        ///
+        /// - Parameters:
+        /// - imagesTensor: Tensor containing input images.
+        /// - size: 1D Int32 or Int64 tensor. A 2-element shape as [newHeight, newWidth]
+        /// - nearestRoundingMode: The rounding mode to use when using nearest resampling. Default is roundPreferCeil.
+        /// - centerResult: Controls if the result image is centered on the input image. When NO, the result will have the top left corner aligned
+        /// - alignCorners: When YES, the result image will have the same value as the input image in the corners
+        /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeNearestWithTensor:sizeTensor:nearestRoundingMode:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeNearestWithTensor_sizeTensor_nearestRoundingMode_centerResult_alignCorners_layout_name(
             &self,
@@ -113,6 +249,34 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize operation and returns the result tensor.
+        ///
+        /// Resamples input images to given size using nearest neighbor sampling. Result images will be distorted if
+        /// size is of different aspect ratio.
+        /// Destination indices are computed using direct index scaling by default, with no offset added.
+        /// If the centerResult parameter is true, the destination indices will be scaled and shifted to be centered
+        /// on the input image.
+        /// If the alignCorners parameter is true, the corners of the result images will match the input images.
+        /// Scaling will be modified to a factor of (size - 1) / (inputSize - 1). When alignCorners is true, the
+        /// centerResult parameter does nothing.
+        /// In order to achieve the same behavior as OpenCV's resize and TensorFlowV2's resize,
+        /// ```md
+        /// centerResult = YES;
+        /// alginCorners = NO;
+        /// ```
+        /// To achieve the same behavior as TensorFlowV1 resize
+        /// ```md
+        /// centerResult = NO;
+        /// ```
+        ///
+        /// - Parameters:
+        /// - imagesTensor: Tensor containing input images.
+        /// - size: The target size of the result tensor. 1D Int32 or Int64 tensor of size equal to rank of input.
+        /// - nearestRoundingMode: The rounding mode to use when using nearest resampling. Default is roundPreferCeil.
+        /// - centerResult: Controls if the result image is centered on the input image. When NO, the result will have the top left corner aligned
+        /// - alignCorners: When YES, the result image will have the same value as the input image in the corners
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeNearestWithTensor:sizeTensor:nearestRoundingMode:centerResult:alignCorners:name:)]
         pub unsafe fn resizeNearestWithTensor_sizeTensor_nearestRoundingMode_centerResult_alignCorners_name(
             &self,
@@ -125,6 +289,34 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Resamples input images to given size using bilinear sampling.
+        ///
+        /// Resamples input images to given size using nearest neighbor sampling. Result images will be distorted if
+        /// size is of different aspect ratio.
+        /// Destination indices are computed using direct index scaling by default, with no offset added.
+        /// If the centerResult parameter is true, the destination indices will be scaled and shifted to be centered
+        /// on the input image.
+        /// If the alignCorners parameter is true, the corners of the result images will match the input images.
+        /// Scaling will be modified to a factor of (size - 1) / (inputSize - 1). When alignCorners is true, the
+        /// centerResult parameter does nothing.
+        /// In order to achieve the same behavior as OpenCV's resize and TensorFlowV2's resize,
+        /// ```md
+        /// centerResult = YES;
+        /// alginCorners = NO;
+        /// ```
+        /// To achieve the same behavior as TensorFlowV1 resize
+        /// ```md
+        /// centerResult = NO;
+        /// ```
+        ///
+        /// - Parameters:
+        /// - imagesTensor: Tensor containing input images.
+        /// - size: 1D Int32 or Int64 tensor. A 2-element shape as [newHeight, newWidth]
+        /// - centerResult: Controls if the result image is centered on the input image. When NO, the result will have the top left corner aligned
+        /// - alignCorners: When YES, the result image will have the same value as the input image in the corners
+        /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeBilinearWithTensor:sizeTensor:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeBilinearWithTensor_sizeTensor_centerResult_alignCorners_layout_name(
             &self,
@@ -137,6 +329,33 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize operation and returns the result tensor.
+        ///
+        /// Resamples input images to given size using bilinear sampling. Result images will be distorted if
+        /// size is of different aspect ratio.
+        /// Destination indices are computed using direct index scaling by default, with no offset added.
+        /// If the centerResult parameter is true, the destination indices will be scaled and shifted to be centered
+        /// on the input image.
+        /// If the alignCorners parameter is true, the corners of the result images will match the input images.
+        /// Scaling will be modified to a factor of (size - 1) / (inputSize - 1). When alignCorners is true, the
+        /// centerResult parameter does nothing.
+        /// In order to achieve the same behavior as OpenCV's resize and TensorFlowV2's resize,
+        /// ```md
+        /// centerResult = YES;
+        /// alginCorners = NO;
+        /// ```
+        /// To achieve the same behavior as TensorFlowV1 resize
+        /// ```md
+        /// centerResult = NO;
+        /// ```
+        ///
+        /// - Parameters:
+        /// - imagesTensor: Tensor containing input images.
+        /// - size: The target size of the result tensor. 1D Int32 or Int64 tensor of size equal to rank of input.
+        /// - centerResult: Controls if the result image is centered on the input image. When NO, the result will have the top left corner aligned
+        /// - alignCorners: When YES, the result image will have the same value as the input image in the corners
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeBilinearWithTensor:sizeTensor:centerResult:alignCorners:name:)]
         pub unsafe fn resizeBilinearWithTensor_sizeTensor_centerResult_alignCorners_name(
             &self,
@@ -148,6 +367,22 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Resamples input images to given size using the provided scale and offset.
+        /// Destination indices are computed using
+        /// ```md
+        /// dst_indices = (src_indicesscale) + offset
+        /// ```
+        /// For most use cases passing the scale and offset directly is unnecessary, and it is
+        /// preferable to use the API specifying centerResult and alignCorners.
+        ///
+        /// - Parameters:
+        /// - imagesTensor: Tensor containing input images.
+        /// - size: 1D Int32 or Int64 tensor. A 2-element shape as [newHeight, newWidth]
+        /// - scaleOffset: 1D float tensor. A 4-element shape as [scaleY, scaleX, offsetY, offsetX]
+        /// - mode: The resampling mode to use. If nearest sampling is specifed, RoundPreferCeil mode will be used.
+        /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeTensor:sizeTensor:scaleOffsetTensor:mode:layout:name:)]
         pub unsafe fn resizeTensor_sizeTensor_scaleOffsetTensor_mode_layout_name(
             &self,
@@ -160,6 +395,24 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize operation and returns the result tensor.
+        ///
+        /// Resamples input images to given size using the provided scale and offset.
+        /// Destination indices are computed using
+        /// ```md
+        /// dst_indices = (src_indices * scale) + offset
+        /// ```
+        /// For most use cases passing the scale and offset directly is unnecessary, and it is
+        /// preferable to use the API specifying centerResult and alignCorners.
+        ///
+        /// - Parameters:
+        /// - imagesTensor: Tensor containing input images.
+        /// - size: The target size of the result tensor.  1D Int32 or Int64 tensor of size equal to rank of input.
+        /// - scale: 1D float tensor of size equal to rank of input.
+        /// - offset: 1D float tensor of size equal to rank of input.
+        /// - mode: The resampling mode to use. If nearest sampling is specifed, RoundPreferCeil mode will be used.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeTensor:sizeTensor:scaleTensor:offsetTensor:mode:name:)]
         pub unsafe fn resizeTensor_sizeTensor_scaleTensor_offsetTensor_mode_name(
             &self,
@@ -172,6 +425,17 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Resamples input images to given size using the provided scale and offset and nearest neighbor sampling
+        /// See above discussion for more details.
+        ///
+        /// - Parameters:
+        /// - imagesTensor: Tensor containing input images.
+        /// - size: 1D Int32 or Int64 tensor. A 2-element shape as [newHeight, newWidth]
+        /// - scaleOffset: 1D float tensor. A 4-element shape as [scaleY, scaleX, offsetY, offsetX]
+        /// - nearestRoundingMode: The rounding mode to use when using nearest resampling.
+        /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeNearestWithTensor:sizeTensor:scaleOffsetTensor:nearestRoundingMode:layout:name:)]
         pub unsafe fn resizeNearestWithTensor_sizeTensor_scaleOffsetTensor_nearestRoundingMode_layout_name(
             &self,
@@ -184,6 +448,24 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize operation and returns the result tensor.
+        ///
+        /// Resamples input images to given size using the provided scale and offset and nearest neighbor sampling.
+        /// Destination indices are computed using
+        /// ```md
+        /// dst_indices = (src_indices * scale) + offset
+        /// ```
+        /// For most use cases passing the scale and offset directly is unnecessary, and it is
+        /// preferable to use the API specifying centerResult and alignCorners.
+        ///
+        /// - Parameters:
+        /// - imagesTensor: Tensor containing input images.
+        /// - size: The target size of the result tensor.  1D Int32 or Int64 tensor of size equal to rank of input.
+        /// - scale: 1D float tensor of size equal to rank of input.
+        /// - offset: 1D float tensor of size equal to rank of input.
+        /// - nearestRoundingMode: The rounding mode to use when using nearest resampling. Default is roundPreferCeil.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeNearestWithTensor:sizeTensor:scaleTensor:offsetTensor:nearestRoundingMode:name:)]
         pub unsafe fn resizeNearestWithTensor_sizeTensor_scaleTensor_offsetTensor_nearestRoundingMode_name(
             &self,
@@ -196,6 +478,17 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Resamples input images to given size using the provided scale and offset and bilinear sampling
+        /// See above discussion for more details.
+        ///
+        /// - Parameters:
+        /// - imagesTensor: Tensor containing input images.
+        /// - size: 1D Int32 or Int64 tensor. A 2-element shape as [newHeight, newWidth]
+        /// - scaleOffset: 1D float tensor. A 4-element shape as [scaleY, scaleX, offsetY, offsetX]
+        /// - nearestRoundingMode: The rounding mode to use when using nearest resampling.
+        /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeBilinearWithTensor:sizeTensor:scaleOffsetTensor:layout:name:)]
         pub unsafe fn resizeBilinearWithTensor_sizeTensor_scaleOffsetTensor_layout_name(
             &self,
@@ -207,6 +500,23 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize operation and returns the result tensor.
+        ///
+        /// Resamples input images to given size using the provided scale and offset and bilinear sampling.
+        /// Destination indices are computed using
+        /// ```md
+        /// dst_indices = (src_indices * scale) + offset
+        /// ```
+        /// For most use cases passing the scale and offset directly is unnecessary, and it is
+        /// preferable to use the API specifying centerResult and alignCorners.
+        ///
+        /// - Parameters:
+        /// - imagesTensor: Tensor containing input images.
+        /// - size: The target size of the result tensor.  1D Int32 or Int64 tensor of size equal to rank of input.
+        /// - scale: 1D float tensor of size equal to rank of input.
+        /// - offset: 1D float tensor of size equal to rank of input.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeBilinearWithTensor:sizeTensor:scaleTensor:offsetTensor:name:)]
         pub unsafe fn resizeBilinearWithTensor_sizeTensor_scaleTensor_offsetTensor_name(
             &self,
@@ -218,6 +528,20 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize gradient operation and returns the result tensor.
+        ///
+        /// Computes the gradient for the forward pass Resize op with identical parameters.
+        /// See discussion of resizeTensor for more in depth description of resize paramters.
+        ///
+        /// - Parameters:
+        /// - gradient: Incoming gradient tensor
+        /// - input: Forward pass input tensor
+        /// - mode: The resampling mode to use. If nearest sampling is specifed, RoundPreferCeil mode will be used.
+        /// - centerResult: Controls if the result image is centered on the input image. When NO, the result will have the top left corner aligned
+        /// - alignCorners: When YES, the result image will have the same value as the input image in the corners
+        /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeWithGradientTensor:input:mode:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeWithGradientTensor_input_mode_centerResult_alignCorners_layout_name(
             &self,
@@ -231,6 +555,20 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize gradient operation and returns the result tensor.
+        ///
+        /// Computes the gradient for the forward pass Resize op with identical parameters.
+        /// See discussion of resizeTensor for more in depth description of resize paramters.
+        ///
+        /// - Parameters:
+        /// - gradient: Incoming gradient tensor
+        /// - input: Forward pass input tensor
+        /// - nearestRoundingMode: The rounding mode to use when using nearest resampling.
+        /// - centerResult: Controls if the result image is centered on the input image. When NO, the result will have the top left corner aligned
+        /// - alignCorners: When YES, the result image will have the same value as the input image in the corners
+        /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeNearestWithGradientTensor:input:nearestRoundingMode:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeNearestWithGradientTensor_input_nearestRoundingMode_centerResult_alignCorners_layout_name(
             &self,
@@ -244,6 +582,19 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize gradient operation and returns the result tensor.
+        ///
+        /// Computes the gradient for the forward pass Resize op with identical parameters.
+        /// See discussion of resizeTensor for more in depth description of resize paramters.
+        ///
+        /// - Parameters:
+        /// - gradient: Incoming gradient tensor
+        /// - input: Forward pass input tensor
+        /// - centerResult: Controls if the result image is centered on the input image. When NO, the result will have the top left corner aligned
+        /// - alignCorners: When YES, the result image will have the same value as the input image in the corners
+        /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeBilinearWithGradientTensor:input:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeBilinearWithGradientTensor_input_centerResult_alignCorners_layout_name(
             &self,
@@ -256,6 +607,19 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize gradient operation and returns the result tensor.
+        ///
+        /// Computes the gradient for the forward pass Resize op with identical parameters.
+        /// See discussion of resizeTensor for more in depth description of resize paramters.
+        ///
+        /// - Parameters:
+        /// - gradient: Incoming gradient tensor
+        /// - input: Forward pass input tensor
+        /// - scaleOffset: 1D float tensor. A 4-element shape as [scaleY, scaleX, offsetY, offsetX]
+        /// - mode: The resampling mode to use. If nearest sampling is specifed, RoundPreferCeil mode will be used.
+        /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeWithGradientTensor:input:scaleOffsetTensor:mode:layout:name:)]
         pub unsafe fn resizeWithGradientTensor_input_scaleOffsetTensor_mode_layout_name(
             &self,
@@ -268,6 +632,19 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize gradient operation and returns the result tensor.
+        ///
+        /// Computes the gradient for the forward pass Resize op with identical parameters.
+        /// See discussion of resizeTensor for more in depth description of resize paramters.
+        ///
+        /// - Parameters:
+        /// - gradient: Incoming gradient tensor
+        /// - input: Forward pass input tensor
+        /// - scale: 1D float tensor of size equal to rank of input.
+        /// - offset: 1D float tensor of size equal to rank of input.
+        /// - mode: The resampling mode to use. If nearest sampling is specifed, RoundPreferCeil mode will be used.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeWithGradientTensor:input:scaleTensor:offsetTensor:mode:name:)]
         pub unsafe fn resizeWithGradientTensor_input_scaleTensor_offsetTensor_mode_name(
             &self,
@@ -280,6 +657,19 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize gradient operation and returns the result tensor.
+        ///
+        /// Computes the gradient for the forward pass Resize op with identical parameters.
+        /// See discussion of resizeTensor for more in depth description of resize paramters.
+        ///
+        /// - Parameters:
+        /// - gradient: Incoming gradient tensor
+        /// - input: Forward pass input tensor
+        /// - scaleOffset: 1D float tensor. A 4-element shape as [scaleY, scaleX, offsetY, offsetX]
+        /// - nearestRoundingMode: The rounding mode to use when using nearest resampling.
+        /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeNearestWithGradientTensor:input:scaleOffsetTensor:nearestRoundingMode:layout:name:)]
         pub unsafe fn resizeNearestWithGradientTensor_input_scaleOffsetTensor_nearestRoundingMode_layout_name(
             &self,
@@ -292,6 +682,19 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize gradient operation and returns the result tensor.
+        ///
+        /// Computes the gradient for the forward pass Resize op with nearest neighbor sampling and identical parameters.
+        /// See discussion of resizeTensor for more in depth description of resize paramters.
+        ///
+        /// - Parameters:
+        /// - gradient: Incoming gradient tensor
+        /// - input: Forward pass input tensor
+        /// - scale: 1D float tensor of size equal to rank of input.
+        /// - offset: 1D float tensor of size equal to rank of input.
+        /// - nearestRoundingMode: The rounding mode to use when using nearest resampling. Default is roundPreferCeil.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeNearestWithGradientTensor:input:scaleTensor:offsetTensor:nearestRoundingMode:name:)]
         pub unsafe fn resizeNearestWithGradientTensor_input_scaleTensor_offsetTensor_nearestRoundingMode_name(
             &self,
@@ -304,6 +707,18 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize gradient operation and returns the result tensor.
+        ///
+        /// Computes the gradient for the forward pass Resize op with bilinear sampling and identical parameters.
+        /// See discussion of resizeTensor for more in depth description of resize paramters.
+        ///
+        /// - Parameters:
+        /// - gradient: Incoming gradient tensor
+        /// - input: Forward pass input tensor
+        /// - scaleOffset: 1D float tensor. A 4-element shape as [scaleY, scaleX, offsetY, offsetX]
+        /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeBilinearWithGradientTensor:input:scaleOffsetTensor:layout:name:)]
         pub unsafe fn resizeBilinearWithGradientTensor_input_scaleOffsetTensor_layout_name(
             &self,
@@ -315,6 +730,17 @@ extern_methods!(
         ) -> Retained<MPSGraphTensor>;
 
         #[cfg(feature = "MPSGraphTensor")]
+        /// Creates a Resize gradient operation and returns the result tensor.
+        ///
+        /// Computes the gradient for the forward pass Resize op with bilinear sampling and identical parameters.
+        ///
+        /// - Parameters:
+        /// - gradient: Incoming gradient tensor
+        /// - input: Forward pass input tensor
+        /// - scale: 1D float tensor of size equal to rank of input.
+        /// - offset: 1D float tensor of size equal to rank of input.
+        /// - name: The name for the operation.
+        /// - Returns: A valid MPSGraphTensor object
         #[method_id(@__retain_semantics Other resizeBilinearWithGradientTensor:input:scaleTensor:offsetTensor:name:)]
         pub unsafe fn resizeBilinearWithGradientTensor_input_scaleTensor_offsetTensor_name(
             &self,

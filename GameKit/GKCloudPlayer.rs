@@ -23,6 +23,7 @@ extern_methods!(
     #[cfg(feature = "GKBasePlayer")]
     unsafe impl GKCloudPlayer {
         #[cfg(feature = "block2")]
+        /// Retrieve a player instance representing the active iCloud account for a given iCloud container. Returns nil and an error if the user is not signed in to iCloud or the container is invalid.
         #[deprecated]
         #[method(getCurrentSignedInPlayerForContainer:completionHandler:)]
         pub unsafe fn getCurrentSignedInPlayerForContainer_completionHandler(

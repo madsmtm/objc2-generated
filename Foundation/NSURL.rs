@@ -1115,6 +1115,14 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Initializes an `NSURL` with a URL string and the option to add (or skip) IDNA- and percent-encoding of invalid characters.
+        /// If `encodingInvalidCharacters` is false, and the URL string is invalid according to RFC 3986, `nil` is returned.
+        /// If `encodingInvalidCharacters` is true, `NSURL` will try to encode the string to create a valid URL.
+        /// If the URL string is still invalid after encoding, `nil` is returned.
+        ///
+        /// - Parameter URLString: The URL string.
+        /// - Parameter encodingInvalidCharacters: True if `NSURL` should try to encode an invalid URL string, false otherwise.
+        /// - Returns: An `NSURL` instance for a valid URL, or `nil` if the URL is invalid.
         #[method_id(@__retain_semantics Init initWithString:encodingInvalidCharacters:)]
         pub unsafe fn initWithString_encodingInvalidCharacters(
             this: Allocated<Self>,
@@ -1123,6 +1131,14 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Initializes and returns a newly created `NSURL` with a URL string and the option to add (or skip) IDNA- and percent-encoding of invalid characters.
+        /// If `encodingInvalidCharacters` is false, and the URL string is invalid according to RFC 3986, `nil` is returned.
+        /// If `encodingInvalidCharacters` is true, `NSURL` will try to encode the string to create a valid URL.
+        /// If the URL string is still invalid after encoding, `nil` is returned.
+        ///
+        /// - Parameter URLString: The URL string.
+        /// - Parameter encodingInvalidCharacters: True if `NSURL` should try to encode an invalid URL string, false otherwise.
+        /// - Returns: An `NSURL` instance for a valid URL, or `nil` if the URL is invalid.
         #[method_id(@__retain_semantics Other URLWithString:encodingInvalidCharacters:)]
         pub unsafe fn URLWithString_encodingInvalidCharacters(
             url_string: &NSString,
@@ -1539,6 +1555,14 @@ extern_methods!(
         pub unsafe fn componentsWithString(url_string: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Initializes an `NSURLComponents` with a URL string and the option to add (or skip) IDNA- and percent-encoding of invalid characters.
+        /// If `encodingInvalidCharacters` is false, and the URL string is invalid according to RFC 3986, `nil` is returned.
+        /// If `encodingInvalidCharacters` is true, `NSURLComponents` will try to encode the string to create a valid URL.
+        /// If the URL string is still invalid after encoding, `nil` is returned.
+        ///
+        /// - Parameter URLString: The URL string.
+        /// - Parameter encodingInvalidCharacters: True if `NSURLComponents` should try to encode an invalid URL string, false otherwise.
+        /// - Returns: An `NSURLComponents` instance for a valid URL, or `nil` if the URL is invalid.
         #[method_id(@__retain_semantics Init initWithString:encodingInvalidCharacters:)]
         pub unsafe fn initWithString_encodingInvalidCharacters(
             this: Allocated<Self>,
@@ -1547,6 +1571,14 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
+        /// Initializes and returns a newly created `NSURLComponents` with a URL string and the option to add (or skip) IDNA- and percent-encoding of invalid characters.
+        /// If `encodingInvalidCharacters` is false, and the URL string is invalid according to RFC 3986, `nil` is returned.
+        /// If `encodingInvalidCharacters` is true, `NSURLComponents` will try to encode the string to create a valid URL.
+        /// If the URL string is still invalid after encoding, nil is returned.
+        ///
+        /// - Parameter URLString: The URL string.
+        /// - Parameter encodingInvalidCharacters: True if `NSURLComponents` should try to encode an invalid URL string, false otherwise.
+        /// - Returns: An `NSURLComponents` instance for a valid URL, or `nil` if the URL is invalid.
         #[method_id(@__retain_semantics Other componentsWithString:encodingInvalidCharacters:)]
         pub unsafe fn componentsWithString_encodingInvalidCharacters(
             url_string: &NSString,
@@ -1568,6 +1600,7 @@ extern_methods!(
         pub unsafe fn scheme(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`scheme`][Self::scheme].
         #[method(setScheme:)]
         pub unsafe fn setScheme(&self, scheme: Option<&NSString>);
 
@@ -1576,6 +1609,7 @@ extern_methods!(
         pub unsafe fn user(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`user`][Self::user].
         #[method(setUser:)]
         pub unsafe fn setUser(&self, user: Option<&NSString>);
 
@@ -1584,6 +1618,7 @@ extern_methods!(
         pub unsafe fn password(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`password`][Self::password].
         #[method(setPassword:)]
         pub unsafe fn setPassword(&self, password: Option<&NSString>);
 
@@ -1592,6 +1627,7 @@ extern_methods!(
         pub unsafe fn host(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`host`][Self::host].
         #[method(setHost:)]
         pub unsafe fn setHost(&self, host: Option<&NSString>);
 
@@ -1600,6 +1636,7 @@ extern_methods!(
         pub unsafe fn port(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
+        /// Setter for [`port`][Self::port].
         #[method(setPort:)]
         pub unsafe fn setPort(&self, port: Option<&NSNumber>);
 
@@ -1608,6 +1645,7 @@ extern_methods!(
         pub unsafe fn path(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`path`][Self::path].
         #[method(setPath:)]
         pub unsafe fn setPath(&self, path: Option<&NSString>);
 
@@ -1616,6 +1654,7 @@ extern_methods!(
         pub unsafe fn query(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`query`][Self::query].
         #[method(setQuery:)]
         pub unsafe fn setQuery(&self, query: Option<&NSString>);
 
@@ -1624,6 +1663,7 @@ extern_methods!(
         pub unsafe fn fragment(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`fragment`][Self::fragment].
         #[method(setFragment:)]
         pub unsafe fn setFragment(&self, fragment: Option<&NSString>);
 
@@ -1632,6 +1672,7 @@ extern_methods!(
         pub unsafe fn percentEncodedUser(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`percentEncodedUser`][Self::percentEncodedUser].
         #[method(setPercentEncodedUser:)]
         pub unsafe fn setPercentEncodedUser(&self, percent_encoded_user: Option<&NSString>);
 
@@ -1640,6 +1681,7 @@ extern_methods!(
         pub unsafe fn percentEncodedPassword(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`percentEncodedPassword`][Self::percentEncodedPassword].
         #[method(setPercentEncodedPassword:)]
         pub unsafe fn setPercentEncodedPassword(&self, percent_encoded_password: Option<&NSString>);
 
@@ -1649,6 +1691,7 @@ extern_methods!(
         pub unsafe fn percentEncodedHost(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`percentEncodedHost`][Self::percentEncodedHost].
         #[deprecated = "Use encodedHost instead"]
         #[method(setPercentEncodedHost:)]
         pub unsafe fn setPercentEncodedHost(&self, percent_encoded_host: Option<&NSString>);
@@ -1658,6 +1701,7 @@ extern_methods!(
         pub unsafe fn percentEncodedPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`percentEncodedPath`][Self::percentEncodedPath].
         #[method(setPercentEncodedPath:)]
         pub unsafe fn setPercentEncodedPath(&self, percent_encoded_path: Option<&NSString>);
 
@@ -1666,6 +1710,7 @@ extern_methods!(
         pub unsafe fn percentEncodedQuery(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`percentEncodedQuery`][Self::percentEncodedQuery].
         #[method(setPercentEncodedQuery:)]
         pub unsafe fn setPercentEncodedQuery(&self, percent_encoded_query: Option<&NSString>);
 
@@ -1674,6 +1719,7 @@ extern_methods!(
         pub unsafe fn percentEncodedFragment(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`percentEncodedFragment`][Self::percentEncodedFragment].
         #[method(setPercentEncodedFragment:)]
         pub unsafe fn setPercentEncodedFragment(&self, percent_encoded_fragment: Option<&NSString>);
 
@@ -1682,6 +1728,7 @@ extern_methods!(
         pub unsafe fn encodedHost(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`encodedHost`][Self::encodedHost].
         #[method(setEncodedHost:)]
         pub unsafe fn setEncodedHost(&self, encoded_host: Option<&NSString>);
 
@@ -1722,6 +1769,7 @@ extern_methods!(
         pub unsafe fn queryItems(&self) -> Option<Retained<NSArray<NSURLQueryItem>>>;
 
         #[cfg(feature = "NSArray")]
+        /// Setter for [`queryItems`][Self::queryItems].
         #[method(setQueryItems:)]
         pub unsafe fn setQueryItems(&self, query_items: Option<&NSArray<NSURLQueryItem>>);
 
@@ -1730,6 +1778,7 @@ extern_methods!(
         pub unsafe fn percentEncodedQueryItems(&self) -> Option<Retained<NSArray<NSURLQueryItem>>>;
 
         #[cfg(feature = "NSArray")]
+        /// Setter for [`percentEncodedQueryItems`][Self::percentEncodedQueryItems].
         #[method(setPercentEncodedQueryItems:)]
         pub unsafe fn setPercentEncodedQueryItems(
             &self,

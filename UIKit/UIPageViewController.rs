@@ -171,6 +171,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIPageViewControllerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -183,6 +184,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn UIPageViewControllerDataSource>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`dataSource`][Self::dataSource].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
@@ -201,6 +203,7 @@ extern_methods!(
         #[method(isDoubleSided)]
         pub unsafe fn isDoubleSided(&self) -> bool;
 
+        /// Setter for [`isDoubleSided`][Self::isDoubleSided].
         #[method(setDoubleSided:)]
         pub unsafe fn setDoubleSided(&self, double_sided: bool);
 

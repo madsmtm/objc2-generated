@@ -109,12 +109,14 @@ extern_methods!(
         pub unsafe fn selectedImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`selectedImage`][Self::selectedImage].
         #[method(setSelectedImage:)]
         pub unsafe fn setSelectedImage(&self, selected_image: Option<&UIImage>);
 
         #[method_id(@__retain_semantics Other badgeValue)]
         pub unsafe fn badgeValue(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`badgeValue`][Self::badgeValue].
         #[method(setBadgeValue:)]
         pub unsafe fn setBadgeValue(&self, badge_value: Option<&NSString>);
 
@@ -142,18 +144,22 @@ extern_methods!(
         pub unsafe fn titlePositionAdjustment(&self) -> UIOffset;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`titlePositionAdjustment`][Self::titlePositionAdjustment].
         #[method(setTitlePositionAdjustment:)]
         pub unsafe fn setTitlePositionAdjustment(&self, title_position_adjustment: UIOffset);
 
         #[cfg(feature = "UIColor")]
+        /// If this item displays a badge, this color will be used for the badge's background. If set to nil, the default background color will be used instead.
         #[method_id(@__retain_semantics Other badgeColor)]
         pub unsafe fn badgeColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`badgeColor`][Self::badgeColor].
         #[method(setBadgeColor:)]
         pub unsafe fn setBadgeColor(&self, badge_color: Option<&UIColor>);
 
         #[cfg(feature = "UIControl")]
+        /// Provide text attributes to use to draw the badge text for the given singular control state (Normal, Disabled, Focused, Selected, or Highlighted). Default values will be supplied for keys that are not provided by this dictionary. See NSAttributedString.h for details on what keys are available.
         #[method(setBadgeTextAttributes:forState:)]
         pub unsafe fn setBadgeTextAttributes_forState(
             &self,
@@ -162,6 +168,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIControl")]
+        /// Returns attributes previously set via -setBadgeTextAttributes:forState:.
         #[method_id(@__retain_semantics Other badgeTextAttributesForState:)]
         pub unsafe fn badgeTextAttributesForState(
             &self,
@@ -169,10 +176,12 @@ extern_methods!(
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
+        /// When set and this item is selected, overrides the hosting tab bar's standardAppearance.
         #[method_id(@__retain_semantics Other standardAppearance)]
         pub unsafe fn standardAppearance(&self) -> Option<Retained<UITabBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
+        /// Setter for [`standardAppearance`][Self::standardAppearance].
         #[method(setStandardAppearance:)]
         pub unsafe fn setStandardAppearance(
             &self,
@@ -180,10 +189,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
+        /// When set and this item is selected, overrides the hosting tab bar's scrollEdgeAppearance.
         #[method_id(@__retain_semantics Other scrollEdgeAppearance)]
         pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UITabBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
+        /// Setter for [`scrollEdgeAppearance`][Self::scrollEdgeAppearance].
         #[method(setScrollEdgeAppearance:)]
         pub unsafe fn setScrollEdgeAppearance(
             &self,

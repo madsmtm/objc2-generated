@@ -25,6 +25,7 @@ unsafe impl NSSecureCoding for PHCloudIdentifier {}
 
 extern_methods!(
     unsafe impl PHCloudIdentifier {
+        /// DEPRECATED: If there is a failure to determine the global identifier for a local identifier, the notFoundIdentifier is provided in that array slot.
         #[deprecated]
         #[method_id(@__retain_semantics Other notFoundIdentifier)]
         pub unsafe fn notFoundIdentifier() -> Retained<PHCloudIdentifier>;
@@ -32,6 +33,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other stringValue)]
         pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
+        /// For use in serialization
         #[method_id(@__retain_semantics Init initWithStringValue:)]
         pub unsafe fn initWithStringValue(
             this: Allocated<Self>,
@@ -52,7 +54,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcloudidentifiermapping?language=objc)
+    /// Contains the cloud identifier result from looking up a local identifier via
+    /// `cloudIdentifierMappingsForLocalIdentifiers,`or an
+    /// `error`indicating why the lookup failed
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phcloudidentifiermapping?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHCloudIdentifierMapping;
@@ -69,6 +75,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cloudIdentifier)]
         pub unsafe fn cloudIdentifier(&self) -> Option<Retained<PHCloudIdentifier>>;
 
+        /// The cloud identifier of the resource found for this local identifier
         #[method_id(@__retain_semantics Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
@@ -86,7 +93,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlocalidentifiermapping?language=objc)
+    /// Contains the local identifier result from looking up a cloud identifier via
+    /// `localIdentifierMappingsForCloudIdentifiers,`or an
+    /// `error`indicating why the lookup failed
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlocalidentifiermapping?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHLocalIdentifierMapping;
@@ -103,6 +114,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localIdentifier)]
         pub unsafe fn localIdentifier(&self) -> Option<Retained<NSString>>;
 
+        /// The
+        /// `NSString`representing the local identifier of the resource found for this cloud identifier, or nil if the match was not found.
         #[method_id(@__retain_semantics Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
@@ -133,18 +146,31 @@ extern_methods!(
     /// CloudIdentifiers
     #[cfg(feature = "PHPhotoLibrary")]
     unsafe impl PHPhotoLibrary {
+        /// Returns a dictionary that maps each cloud identifier from the provided array to a PLLocalIdentifierMapping result containing the local identifier found for that cloud identifier.
+        ///
+        /// This method can be very expensive so they should be used sparingly for batch lookup of all needed identifiers. Clients should work in terms of local identifiers and call these methods only once after loading from and before saving to persistent storage.  If the attempt to lookup a local identifier for a given cloud identifier fails, the error parameter will indicate the reason.
+        ///
+        /// Parameter `cloudIdentifiers`: The array of
+        /// `PHCloudIdentifier`instances whose local identifiers are to being requested.
         #[method_id(@__retain_semantics Other localIdentifierMappingsForCloudIdentifiers:)]
         pub unsafe fn localIdentifierMappingsForCloudIdentifiers(
             &self,
             cloud_identifiers: &NSArray<PHCloudIdentifier>,
         ) -> Retained<NSDictionary<PHCloudIdentifier, PHLocalIdentifierMapping>>;
 
+        /// Returns a dictionary that maps each local identifier from the provided array to a PLCloudIdentifierMapping result containing the cloud identifier found for that local identifier
+        ///
+        /// This method can be very expensive so they should be used sparingly for batch lookup of all needed identifiers. Clients should work in terms of local identifiers and call these methods only once after loading from and before saving to persistent storage.  If the attempt to lookup a cloud identifier for a given local identifier fails, the error parameter will indicate the reason.
+        ///
+        /// Parameter `localIdentifiers`: The array of
+        /// `NSString`instances whose cloud identifiers are to being requested.
         #[method_id(@__retain_semantics Other cloudIdentifierMappingsForLocalIdentifiers:)]
         pub unsafe fn cloudIdentifierMappingsForLocalIdentifiers(
             &self,
             local_identifiers: &NSArray<NSString>,
         ) -> Retained<NSDictionary<NSString, PHCloudIdentifierMapping>>;
 
+        /// DEPRECATED: These two methods can be very expensive so they should be used sparingly for batch lookup of all needed identifiers. Clients should work in terms of local identifiers and call these methods only once after loading from and before saving to persistent storage.
         #[deprecated]
         #[method_id(@__retain_semantics Other localIdentifiersForCloudIdentifiers:)]
         pub unsafe fn localIdentifiersForCloudIdentifiers(
@@ -162,6 +188,8 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlocalidentifiernotfound?language=objc)
+    /// DEPRECATED: If the local object cannot be resolved from a global identifier, PHLocalIdentifierNotFound is provided in that array slot.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlocalidentifiernotfound?language=objc)
     pub static PHLocalIdentifierNotFound: &'static NSString;
 }

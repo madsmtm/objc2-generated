@@ -119,6 +119,7 @@ extern_methods!(
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn NSNetServiceDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -129,6 +130,7 @@ extern_methods!(
         #[method(includesPeerToPeer)]
         pub unsafe fn includesPeerToPeer(&self) -> bool;
 
+        /// Setter for [`includesPeerToPeer`][Self::includesPeerToPeer].
         #[method(setIncludesPeerToPeer:)]
         pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 
@@ -247,6 +249,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSNetServiceBrowserDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
@@ -257,6 +260,7 @@ extern_methods!(
         #[method(includesPeerToPeer)]
         pub unsafe fn includesPeerToPeer(&self) -> bool;
 
+        /// Setter for [`includesPeerToPeer`][Self::includesPeerToPeer].
         #[method(setIncludesPeerToPeer:)]
         pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 

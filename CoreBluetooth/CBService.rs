@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbservice?language=objc)
+    /// Represents a peripheral's service or a service's included service.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbservice?language=objc)
     #[unsafe(super(CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
@@ -22,16 +24,20 @@ extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBService {
         #[cfg(all(feature = "CBPeer", feature = "CBPeripheral"))]
+        /// A back-pointer to the peripheral this service belongs to.
         #[method_id(@__retain_semantics Other peripheral)]
         pub unsafe fn peripheral(&self) -> Option<Retained<CBPeripheral>>;
 
+        /// The type of the service (primary or secondary).
         #[method(isPrimary)]
         pub unsafe fn isPrimary(&self) -> bool;
 
+        /// A list of included CBServices that have so far been discovered in this service.
         #[method_id(@__retain_semantics Other includedServices)]
         pub unsafe fn includedServices(&self) -> Option<Retained<NSArray<CBService>>>;
 
         #[cfg(feature = "CBCharacteristic")]
+        /// A list of CBCharacteristics that have so far been discovered in this service.
         #[method_id(@__retain_semantics Other characteristics)]
         pub unsafe fn characteristics(&self) -> Option<Retained<NSArray<CBCharacteristic>>>;
     }
@@ -56,7 +62,20 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmutableservice?language=objc)
+    /// Used to create a local service or included service, which can be added to the local database via
+    /// <code>
+    /// CBPeripheralManager
+    /// </code>
+    /// .
+    /// Once a service is published, it is cached and can no longer be changed. This class adds write access to all properties in the
+    ///
+    /// ```text
+    ///  CBService
+    /// ```
+    ///
+    /// class.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmutableservice?language=objc)
     #[unsafe(super(CBService, CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
@@ -72,6 +91,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other includedServices)]
         pub unsafe fn includedServices(&self) -> Option<Retained<NSArray<CBService>>>;
 
+        /// Setter for [`includedServices`][Self::includedServices].
         #[method(setIncludedServices:)]
         pub unsafe fn setIncludedServices(&self, included_services: Option<&NSArray<CBService>>);
 
@@ -80,6 +100,7 @@ extern_methods!(
         pub unsafe fn characteristics(&self) -> Option<Retained<NSArray<CBCharacteristic>>>;
 
         #[cfg(feature = "CBCharacteristic")]
+        /// Setter for [`characteristics`][Self::characteristics].
         #[method(setCharacteristics:)]
         pub unsafe fn setCharacteristics(
             &self,
@@ -87,6 +108,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "CBUUID")]
+        /// Parameter `UUID`: The Bluetooth UUID of the service.
+        ///
+        /// Parameter `isPrimary`: The type of the service (primary or secondary).
+        ///
+        ///
+        /// Returns a service, initialized with a service type and UUID.
         #[method_id(@__retain_semantics Init initWithType:primary:)]
         pub unsafe fn initWithType_primary(
             this: Allocated<Self>,

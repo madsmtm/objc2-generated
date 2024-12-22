@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilterextensioncontext?language=objc)
+    /// Represents a MessageFilter extension request's context.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilterextensioncontext?language=objc)
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILMessageFilterExtensionContext;
@@ -19,6 +21,14 @@ unsafe impl NSObjectProtocol for ILMessageFilterExtensionContext {}
 extern_methods!(
     unsafe impl ILMessageFilterExtensionContext {
         #[cfg(all(feature = "ILNetworkResponse", feature = "block2"))]
+        /// Defer the current query request to the app extension's associated network service and receive a network response asynchronously.
+        ///
+        /// This causes the system to perform an HTTPS network request to a URL specified in the app extension's Info.plist, and the response
+        /// to that HTTPS request (or an error) is returned asynchronously. See documentation for details regarding how this HTTPS request
+        /// is formatted, restrictions on the URL, etc.
+        ///
+        ///
+        /// Parameter `completion`: Completion block containing either the network response to the HTTPS request or an error.
         #[method(deferQueryRequestToNetworkWithCompletion:)]
         pub unsafe fn deferQueryRequestToNetworkWithCompletion(
             &self,

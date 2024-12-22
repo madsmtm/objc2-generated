@@ -91,6 +91,7 @@ extern_methods!(
             >,
         >;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -102,12 +103,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other videoPath)]
         pub unsafe fn videoPath(&self) -> Retained<NSString>;
 
+        /// Setter for [`videoPath`][Self::videoPath].
         #[method(setVideoPath:)]
         pub unsafe fn setVideoPath(&self, video_path: &NSString);
 
         #[method(videoMaximumDuration)]
         pub unsafe fn videoMaximumDuration(&self) -> NSTimeInterval;
 
+        /// Setter for [`videoMaximumDuration`][Self::videoMaximumDuration].
         #[method(setVideoMaximumDuration:)]
         pub unsafe fn setVideoMaximumDuration(&self, video_maximum_duration: NSTimeInterval);
 
@@ -116,6 +119,7 @@ extern_methods!(
         pub unsafe fn videoQuality(&self) -> UIImagePickerControllerQualityType;
 
         #[cfg(feature = "UIImagePickerController")]
+        /// Setter for [`videoQuality`][Self::videoQuality].
         #[method(setVideoQuality:)]
         pub unsafe fn setVideoQuality(&self, video_quality: UIImagePickerControllerQualityType);
     }

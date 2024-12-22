@@ -39,6 +39,7 @@ extern_protocol!(
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
 
@@ -51,14 +52,19 @@ extern_protocol!(
         unsafe fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`transform`][Self::transform].
         #[method(setTransform:)]
         unsafe fn setTransform(&self, transform: CGAffineTransform);
 
+        /// The collision type represents how the dynamics system will evaluate collisions with
+        /// respect to the dynamic item. defaults to UIDynamicItemCollisionBoundsTypeRectangle
         #[optional]
         #[method(collisionBoundsType)]
         unsafe fn collisionBoundsType(&self) -> UIDynamicItemCollisionBoundsType;
 
         #[cfg(feature = "UIBezierPath")]
+        /// The path must represent a convex polygon with counter clockwise winding and no self intersection.
+        /// The point (0,0) in the path corresponds to the dynamic item's center.
         #[optional]
         #[method_id(@__retain_semantics Other collisionBoundingPath)]
         unsafe fn collisionBoundingPath(&self) -> Retained<UIBezierPath>;
@@ -129,6 +135,7 @@ extern_methods!(
         pub unsafe fn action(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`action`][Self::action].
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<&block2::Block<dyn Fn()>>);
 

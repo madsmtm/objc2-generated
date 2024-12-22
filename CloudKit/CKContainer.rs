@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcurrentuserdefaultname?language=objc)
+    /// Stand-in for the current user's ID; most often used in RecordZoneID->ownerName
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcurrentuserdefaultname?language=objc)
     pub static CKCurrentUserDefaultName: &'static NSString;
 }
 
@@ -18,7 +20,14 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer?language=objc)
+    /// A CKContainer, and its CKDatabases, are the main entry points into the CloudKit framework.
+    ///
+    ///
+    /// Several methods in CloudKit accept completion handlers to indicate when they're completed.
+    /// All CKOperation subclasses include progress and completion blocks to report significant events in their lifecycles.
+    /// Each of these handlers and blocks is invoked on a non-main serial queue.  The receiver is responsible for handling the message on a different queue or thread if it is required.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKContainer;
@@ -38,9 +47,25 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Convenience method that uses the calling process' "iCloud.\(application-identifier)" as the container identifier
+        ///
+        ///
+        /// application-identifier is the calling process'
+        /// `application-identifier`entitlement on iOS / tvOS / watchOS.
+        /// application-identifier is the calling process'
+        /// `com.apple.application-identifier`entitlement on macOS.
+        /// On all OSes, if an
+        /// `com.apple.developer.associated-application-identifier`entitlement is present, its value will be preferred over the
+        /// `application-identifier`variants.
         #[method_id(@__retain_semantics Other defaultContainer)]
         pub unsafe fn defaultContainer() -> Retained<CKContainer>;
 
+        /// Obtain a CKContainer for the given containerIdentifier
+        ///
+        ///
+        /// If the application is in production mode (aka,
+        /// `com.apple.developer.icloud-container-environment`is set to Production in your entitlements plist, and you have no override in
+        /// `com.apple.developer.icloud-container-development-container-identifiers),`then the production environment is used.
         #[method_id(@__retain_semantics Other containerWithIdentifier:)]
         pub unsafe fn containerWithIdentifier(
             container_identifier: &NSString,
@@ -57,6 +82,20 @@ extern_methods!(
 
 extern_methods!(
     /// Database
+    /// Database properties:
+    /// Records in a public database
+    /// - By default are world readable, owner writable.
+    /// - Can be locked down by Roles, a process done in the Developer Portal, a web interface.  Roles are not present in the client API.
+    /// - Are visible to the application developer via the Developer Portal.
+    /// - Do not contribute to the owner's iCloud account storage quota.
+    /// Records in a private database
+    /// - By default are only owner readable and owner writable.
+    /// - Are not visible to the application developer via the Developer Portal.
+    /// - Are counted towards the owner's iCloud account storage quota.
+    /// Records in a shared database
+    /// - Are available to share participants based on the permissions of the enclosing CKShare
+    /// - Are not visible to the application developer via the Developer Portal.
+    /// - Are counted towards the originating owner's iCloud account storage quota.
     unsafe impl CKContainer {
         #[cfg(feature = "CKDatabase")]
         #[method_id(@__retain_semantics Other privateCloudDatabase)]
@@ -71,6 +110,10 @@ extern_methods!(
         pub unsafe fn sharedCloudDatabase(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKDatabase")]
+        /// Convenience methods
+        ///
+        ///
+        /// Returns: a database that's pointer-equal to one of the above properties
         #[method_id(@__retain_semantics Other databaseWithDatabaseScope:)]
         pub unsafe fn databaseWithDatabaseScope(
             &self,
@@ -79,7 +122,9 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus?language=objc)
+/// credentials in Settings app.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -106,7 +151,13 @@ unsafe impl RefEncode for CKAccountStatus {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountchangednotification?language=objc)
+    /// This local notification is posted when there has been any change to the logged in iCloud account.
+    ///
+    ///
+    /// On receipt, an updated account status should be obtained by calling
+    /// `accountStatusWithCompletionHandler:`
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountchangednotification?language=objc)
     pub static CKAccountChangedNotification: &'static NSString;
 }
 
@@ -129,6 +180,7 @@ extern_methods!(
 pub struct CKApplicationPermissions(pub NSUInteger);
 bitflags::bitflags! {
     impl CKApplicationPermissions: NSUInteger {
+/// Allows the user's record in CloudKit to be discoverable via the user's email address
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         const CKApplicationPermissionUserDiscoverability = 1<<0;
     }
@@ -203,6 +255,11 @@ extern_methods!(
     /// UserRecords
     unsafe impl CKContainer {
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
+        /// If there is no iCloud account configured, or if access is restricted, a
+        /// `CKErrorNotAuthenticated`error will be returned.
+        ///
+        /// This work is treated as having
+        /// `NSQualityOfServiceUserInitiated`quality of service.
         #[method(fetchUserRecordIDWithCompletionHandler:)]
         pub unsafe fn fetchUserRecordIDWithCompletionHandler(
             &self,
@@ -210,6 +267,11 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
+        /// Fetches all user identities that match an entry in the user's contacts database.
+        ///
+        ///
+        /// `CKDiscoverAllUserIdentitiesOperation`is the more configurable,
+        /// `CKOperation`-based alternative to this methods
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverAllIdentitiesWithCompletionHandler:)]
         pub unsafe fn discoverAllIdentitiesWithCompletionHandler(
@@ -218,6 +280,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
+        /// Fetches the user identity that corresponds to the given email address.
+        ///
+        ///
+        /// Only users who have opted-in to user discoverability will have their identities returned by this method.  If a user with the inputted email exists in iCloud, but has not opted-in to user discoverability, this method completes with a nil
+        /// `userInfo.``CKDiscoverUserIdentitiesOperation`is the more configurable,
+        /// `CKOperation`-based alternative to this method
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverUserIdentityWithEmailAddress:completionHandler:)]
         pub unsafe fn discoverUserIdentityWithEmailAddress_completionHandler(
@@ -227,6 +295,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
+        /// Fetches the user identity that corresponds to the given phone number.
+        ///
+        ///
+        /// Only users who have opted-in to user discoverability will have their identities returned by this method.  If a user with the inputted phone number exists in iCloud, but has not opted-in to user discoverability, this method completes with a nil
+        /// `userInfo.``CKDiscoverUserIdentitiesOperation`is the more configurable,
+        /// `CKOperation`-based alternative to this method
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverUserIdentityWithPhoneNumber:completionHandler:)]
         pub unsafe fn discoverUserIdentityWithPhoneNumber_completionHandler(
@@ -236,6 +310,12 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKRecordID", feature = "CKUserIdentity", feature = "block2"))]
+        /// Fetches the user identity that corresponds to the given user record id.
+        ///
+        ///
+        /// Only users who have opted-in to user discoverability will have their identities returned by this method.  If a user has not opted-in to user discoverability, this method completes with a nil
+        /// `userInfo.``CKDiscoverUserIdentitiesOperation`is the more configurable,
+        /// `CKOperation`-based alternative to this method
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverUserIdentityWithUserRecordID:completionHandler:)]
         pub unsafe fn discoverUserIdentityWithUserRecordID_completionHandler(
@@ -250,6 +330,11 @@ extern_methods!(
     /// Sharing
     unsafe impl CKContainer {
         #[cfg(all(feature = "CKShareParticipant", feature = "block2"))]
+        /// Fetches share participants matching the provided info.
+        ///
+        ///
+        /// `CKFetchShareParticipantsOperation`is the more configurable,
+        /// `CKOperation`-based alternative to these methods.
         #[method(fetchShareParticipantWithEmailAddress:completionHandler:)]
         pub unsafe fn fetchShareParticipantWithEmailAddress_completionHandler(
             &self,
@@ -304,6 +389,10 @@ extern_methods!(
     /// CKLongLivedOperations
     unsafe impl CKContainer {
         #[cfg(all(feature = "CKOperation", feature = "block2"))]
+        /// Long lived CKOperations returned by this call must be started on an operation queue.
+        /// Remember to set the callback blocks before starting the operation.
+        /// If an operation has already completed against the server, and is subsequently resumed, that operation will replay all of its callbacks from the start of the operation, but the request will not be re-sent to the server.
+        /// If a long lived operation is cancelled or finishes completely it is no longer returned by these calls.
         #[method(fetchAllLongLivedOperationIDsWithCompletionHandler:)]
         pub unsafe fn fetchAllLongLivedOperationIDsWithCompletionHandler(
             &self,

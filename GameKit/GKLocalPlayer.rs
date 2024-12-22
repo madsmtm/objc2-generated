@@ -24,25 +24,36 @@ unsafe impl NSObjectProtocol for GKLocalPlayer {}
 extern_methods!(
     #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
+        /// Obtain the primary GKLocalPlayer object.
+        /// The player is only available for offline play until logged in.
+        /// A temporary player is created if no account is set up.
         #[method_id(@__retain_semantics Other local)]
         pub unsafe fn local() -> Retained<GKLocalPlayer>;
 
         #[method_id(@__retain_semantics Other localPlayer)]
         pub unsafe fn localPlayer() -> Retained<GKLocalPlayer>;
 
+        /// Authentication state
         #[method(isAuthenticated)]
         pub unsafe fn isAuthenticated(&self) -> bool;
 
+        /// Indicates if a player is under age
         #[method(isUnderage)]
         pub unsafe fn isUnderage(&self) -> bool;
 
+        /// A Boolean value that declares whether or not multiplayer gaming is restricted on this device.
         #[method(isMultiplayerGamingRestricted)]
         pub unsafe fn isMultiplayerGamingRestricted(&self) -> bool;
 
+        /// A Boolean value that declares whether personalized communication is restricted on this device. If it is restricted, the player will not be able to read or write personalized messages on game invites, challenges, or enable voice communication in multiplayer games.  Note: this value will always be true when isUnderage is true.
         #[method(isPersonalizedCommunicationRestricted)]
         pub unsafe fn isPersonalizedCommunicationRestricted(&self) -> bool;
 
         #[cfg(feature = "block2")]
+        /// Asynchronously load the recent players list as an array of GKPlayer.  A recent player is someone that you have played a game with or is a legacy game center friend.  Calls completionHandler when finished. Error will be nil on success.
+        /// Possible reasons for error:
+        /// 1. Communications problem
+        /// 2. Unauthenticated player
         #[method(loadRecentPlayersWithCompletionHandler:)]
         pub unsafe fn loadRecentPlayersWithCompletionHandler(
             &self,
@@ -52,6 +63,10 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Asynchronously load the challengable friends list as an array of GKPlayer.  A challengable player is a friend player with friend level FL1 and FL2.  Calls completionHandler when finished. Error will be nil on success.
+        /// Possible reasons for error:
+        /// 1. Communications problem
+        /// 2. Unauthenticated player
         #[method(loadChallengableFriendsWithCompletionHandler:)]
         pub unsafe fn loadChallengableFriendsWithCompletionHandler(
             &self,
@@ -61,6 +76,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Set the default leaderboard for the current game
+        /// Possible reasons for error:
+        /// 1. Communications problem
+        /// 2. Unauthenticated player
+        /// 3. Leaderboard not present
         #[method(setDefaultLeaderboardIdentifier:completionHandler:)]
         pub unsafe fn setDefaultLeaderboardIdentifier_completionHandler(
             &self,
@@ -69,6 +89,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Load the default leaderboard identifier for the local player
+        /// Possible reasons for error:
+        /// 1. Communications problem
+        /// 2. Unauthenticated player
+        /// 3. Leaderboard not present
         #[method(loadDefaultLeaderboardIdentifierWithCompletionHandler:)]
         pub unsafe fn loadDefaultLeaderboardIdentifierWithCompletionHandler(
             &self,
@@ -76,6 +101,10 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Generates a signature allowing 3rd party server to authenticate the GKLocalPlayer
+        /// Possible reasons for error:
+        /// 1. Communications problem
+        /// 2. Unauthenticated player
         #[method(fetchItemsForIdentityVerificationSignature:)]
         pub unsafe fn fetchItemsForIdentityVerificationSignature(
             &self,
@@ -141,6 +170,7 @@ extern_methods!(
             feature = "GKSavedGameListener",
             feature = "GKTurnBasedMatch"
         ))]
+        /// A single listener may be registered once. Registering multiple times results in undefined behavior. The registered listener will receive callbacks for any selector it responds to.
         #[method(registerListener:)]
         pub unsafe fn registerListener(&self, listener: &ProtocolObject<dyn GKLocalPlayerListener>);
 
@@ -162,7 +192,9 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerauthenticationdidchangenotificationname?language=objc)
+    /// Notification will be posted whenever authentication status changes.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerauthenticationdidchangenotificationname?language=objc)
     pub static GKPlayerAuthenticationDidChangeNotificationName: &'static NSNotificationName;
 }
 
@@ -206,6 +238,10 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Generates a signature allowing 3rd party server to authenticate the GKLocalPlayer
+        /// Possible reasons for error:
+        /// 1. Communications problem
+        /// 2. Unauthenticated player
         #[deprecated]
         #[method(generateIdentityVerificationSignatureWithCompletionHandler:)]
         pub unsafe fn generateIdentityVerificationSignatureWithCompletionHandler(
@@ -222,6 +258,7 @@ extern_methods!(
     #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
         #[cfg(feature = "block2")]
+        /// This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(loadFriendsWithCompletionHandler:)]
         pub unsafe fn loadFriendsWithCompletionHandler(
@@ -231,6 +268,7 @@ extern_methods!(
             >,
         );
 
+        /// This property is obsolete. **
         #[deprecated]
         #[method_id(@__retain_semantics Other friends)]
         pub unsafe fn friends(&self) -> Option<Retained<NSArray<NSString>>>;
@@ -303,6 +341,7 @@ extern_methods!(
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Setter for [`authenticateHandler`][Self::authenticateHandler].
         #[method(setAuthenticateHandler:)]
         pub unsafe fn setAuthenticateHandler(
             &self,
@@ -311,11 +350,21 @@ extern_methods!(
             >,
         );
 
+        /// observable property that becomes true when the friend request view controller is displayed.  It becomes false when it is dismissed
         #[method(isPresentingFriendRequestViewController)]
         pub unsafe fn isPresentingFriendRequestViewController(&self) -> bool;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// presentFriendRequestCreatorFromWindow:
+        ///
+        /// Discussion:
+        /// MacOS only. When invoked, if no error is encountered, the caller application is backgrounded and the 'Messages' application is launched/foregrounded, with a formatted friend request message.
+        /// If an error occurs, controls are returned to the caller application, with an error describing the error.
+        ///
+        /// Possible reasons for error:
+        /// - The local player user account is not allowed to add friends
+        /// - The device is not allowing outgoing traffic at the time of the operation
         #[method(presentFriendRequestCreatorFromWindow:error:_)]
         pub unsafe fn presentFriendRequestCreatorFromWindow_error(
             &self,

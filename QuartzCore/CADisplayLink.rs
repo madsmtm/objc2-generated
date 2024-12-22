@@ -10,7 +10,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cadisplaylink?language=objc)
+    /// Class representing a timer bound to the display vsync. *
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cadisplaylink?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CADisplayLink;
@@ -50,6 +52,7 @@ extern_methods!(
         #[method(isPaused)]
         pub unsafe fn isPaused(&self) -> bool;
 
+        /// Setter for [`isPaused`][Self::isPaused].
         #[method(setPaused:)]
         pub unsafe fn setPaused(&self, paused: bool);
 
@@ -57,6 +60,7 @@ extern_methods!(
         #[method(frameInterval)]
         pub unsafe fn frameInterval(&self) -> NSInteger;
 
+        /// Setter for [`frameInterval`][Self::frameInterval].
         #[deprecated = "preferredFramesPerSecond"]
         #[method(setFrameInterval:)]
         pub unsafe fn setFrameInterval(&self, frame_interval: NSInteger);
@@ -65,6 +69,7 @@ extern_methods!(
         #[method(preferredFramesPerSecond)]
         pub unsafe fn preferredFramesPerSecond(&self) -> NSInteger;
 
+        /// Setter for [`preferredFramesPerSecond`][Self::preferredFramesPerSecond].
         #[deprecated]
         #[method(setPreferredFramesPerSecond:)]
         pub unsafe fn setPreferredFramesPerSecond(&self, preferred_frames_per_second: NSInteger);
@@ -74,6 +79,7 @@ extern_methods!(
         pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
 
         #[cfg(feature = "CAFrameRateRange")]
+        /// Setter for [`preferredFrameRateRange`][Self::preferredFrameRateRange].
         #[method(setPreferredFrameRateRange:)]
         pub unsafe fn setPreferredFrameRateRange(
             &self,

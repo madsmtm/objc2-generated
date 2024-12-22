@@ -14,7 +14,16 @@ extern "C" {
     pub static ASWebAuthenticationSessionErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrorcode?language=objc)
+/// Error code of the NSError object passed in by ASWebAuthenticationSessionCompletionHandler.
+///
+/// alert asking for permission to log in to this app, or by dismissing the view controller for loading the
+/// authentication webpage.
+///
+/// was not found when -start was called. Ensure this property was not nil when -start was called.
+///
+/// was not elligible to show the authentication UI. For iOS, validate that the UIWindow is in a foreground scene.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -42,7 +51,28 @@ pub type ASWebAuthenticationSessionCompletionHandler =
     *mut block2::Block<dyn Fn(*mut NSURL, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession?language=objc)
+    /// An ASWebAuthenticationSession object can be used to authenticate a user with a web service, even if the web service is run
+    /// by a third party. ASWebAuthenticationSession puts the user in control of whether they want to use their existing logged-in
+    /// session from Safari. The app provides a URL that points to the authentication webpage. The page will be loaded in a secure
+    /// view controller. From the webpage, the user can authenticate herself and grant access to the app.
+    /// On completion, the service will send a callback URL with an authentication token, and this URL will be passed to the app by
+    /// ASWebAuthenticationSessionCompletionHandler.
+    ///
+    /// The callback URL usually has a custom URL scheme. For the app to receive the callback URL, it needs to either register the
+    /// custom URL scheme in its Info.plist, or set the scheme to callbackURLScheme argument in the initializer.
+    ///
+    /// If the user has already logged into the web service in Safari or other apps via ASWebAuthenticationSession, it is possible to
+    /// share the existing login information. An alert will be presented to get the user's consent for sharing their existing login
+    /// information. If the user cancels the alert, the session will be canceled, and the completion handler will be called with
+    /// the error code ASWebAuthenticationSessionErrorCodeCanceledLogin.
+    ///
+    /// If the user taps Cancel when showing the login webpage for the web service, the session will be canceled, and the completion
+    /// handler will be called with the error code ASWebAuthenticationSessionErrorCodeCanceledLogin.
+    ///
+    /// The app can cancel the session by calling -[ASWebAuthenticationSession cancel]. This will also dismiss the view controller that
+    /// is showing the web service's login page.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASWebAuthenticationSession;
@@ -53,6 +83,13 @@ unsafe impl NSObjectProtocol for ASWebAuthenticationSession {}
 extern_methods!(
     unsafe impl ASWebAuthenticationSession {
         #[cfg(feature = "block2")]
+        /// Returns an ASWebAuthenticationSession object.
+        ///
+        /// Parameter `URL`: the initial URL pointing to the authentication webpage. Only supports URLs with http:// or https:// schemes.
+        ///
+        /// Parameter `callbackURLScheme`: the custom URL scheme that the app expects in the callback URL.
+        ///
+        /// Parameter `completionHandler`: the completion handler which is called when the session is completed successfully or canceled by user.
         #[deprecated = "Use initWithURL:callback:completionHandler: instead"]
         #[method_id(@__retain_semantics Init initWithURL:callbackURLScheme:completionHandler:)]
         pub unsafe fn initWithURL_callbackURLScheme_completionHandler(
@@ -71,6 +108,9 @@ extern_methods!(
             completion_handler: ASWebAuthenticationSessionCompletionHandler,
         ) -> Retained<Self>;
 
+        /// Provides context to target where in an application's UI the authorization view should be shown. A provider
+        /// must be set prior to calling -start, otherwise the authorization view cannot be displayed. If deploying to iOS prior to
+        /// 13.0, the desired window is inferred by the application's key window.
         #[method_id(@__retain_semantics Other presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
@@ -78,6 +118,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn ASWebAuthenticationPresentationContextProviding>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`presentationContextProvider`][Self::presentationContextProvider].
         #[method(setPresentationContextProvider:)]
         pub unsafe fn setPresentationContextProvider(
             &self,
@@ -86,32 +127,50 @@ extern_methods!(
             >,
         );
 
+        /// Indicates whether this session should ask the browser for an ephemeral session.
+        ///
+        /// Ephemeral web browser sessions do not not share cookies or other browsing data with a user's normal browser session.
+        /// This value is NO by default. Setting this property after calling -[ASWebAuthenticationSession start] has no effect.
         #[method(prefersEphemeralWebBrowserSession)]
         pub unsafe fn prefersEphemeralWebBrowserSession(&self) -> bool;
 
+        /// Setter for [`prefersEphemeralWebBrowserSession`][Self::prefersEphemeralWebBrowserSession].
         #[method(setPrefersEphemeralWebBrowserSession:)]
         pub unsafe fn setPrefersEphemeralWebBrowserSession(
             &self,
             prefers_ephemeral_web_browser_session: bool,
         );
 
+        /// Any additional header fields to be set when loading the initial URL.
+        /// All header field names must start with the "X-" prefix.
         #[method_id(@__retain_semantics Other additionalHeaderFields)]
         pub unsafe fn additionalHeaderFields(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
+        /// Setter for [`additionalHeaderFields`][Self::additionalHeaderFields].
         #[method(setAdditionalHeaderFields:)]
         pub unsafe fn setAdditionalHeaderFields(
             &self,
             additional_header_fields: Option<&NSDictionary<NSString, NSString>>,
         );
 
+        /// Returns whether the session can be successfully started. This property returns the same value as calling -start,
+        /// but without the side effect of actually starting the session.
         #[method(canStart)]
         pub unsafe fn canStart(&self) -> bool;
 
+        /// Starts the ASWebAuthenticationSession instance after it is instantiated.
+        ///
+        /// start can only be called once for an ASWebAuthenticationSession instance. This also means calling start on a
+        /// canceled session will fail.
+        ///
+        /// Returns: Returns YES if the session starts successfully.
         #[method(start)]
         pub unsafe fn start(&self) -> bool;
 
+        /// Cancel an ASWebAuthenticationSession. If the view controller is already presented to load the webpage for
+        /// authentication, it will be dismissed. Calling cancel on an already canceled session will have no effect.
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 
@@ -124,12 +183,20 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationpresentationcontextproviding?language=objc)
+    /// Provides context to target where in an application's UI the authorization view should be shown.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationpresentationcontextproviding?language=objc)
     pub unsafe trait ASWebAuthenticationPresentationContextProviding:
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "ASFoundation")]
         #[cfg(target_os = "macos")]
+        /// Return the ASPresentationAnchor in the closest proximity to where a user interacted with your app to trigger
+        /// authentication. If starting an ASWebAuthenticationSession on first launch, use the application's main window.
+        ///
+        /// Parameter `session`: The session requesting a presentation anchor.
+        ///
+        /// Returns: The ASPresentationAnchor most closely associated with the UI used to trigger authentication.
         #[method_id(@__retain_semantics Other presentationAnchorForWebAuthenticationSession:)]
         unsafe fn presentationAnchorForWebAuthenticationSession(
             &self,

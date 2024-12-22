@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdevice?language=objc)
+    /// Virtio File System Device
+    ///
+    /// This is a device that exposes host resources to the guest as a file system mount.
+    /// The directory share defines which host resources are exposed to the guest.
+    ///
+    /// This device is created through instantiating a VZVirtioFileSystemDeviceConfiguration in a VZVirtualMachineConfiguration and is available in the
+    /// VZVirtualMachine.directorySharingDevices property.
+    ///
+    /// See: VZVirtioFileSystemDeviceConfiguration
+    ///
+    /// See: VZSingleDirectoryShare
+    ///
+    /// See: VZMultipleDirectoryShare
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdevice?language=objc)
     #[unsafe(super(VZDirectorySharingDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZDirectorySharingDevice")]
@@ -21,14 +35,25 @@ unsafe impl NSObjectProtocol for VZVirtioFileSystemDevice {}
 extern_methods!(
     #[cfg(feature = "VZDirectorySharingDevice")]
     unsafe impl VZVirtioFileSystemDevice {
+        /// The tag is a string identifying the device.
+        ///
+        /// The tag is presented as a label in the guest identifying this device for mounting.
         #[method_id(@__retain_semantics Other tag)]
         pub unsafe fn tag(&self) -> Retained<NSString>;
 
         #[cfg(feature = "VZDirectoryShare")]
+        /// Directory share. Defines how host resources are exposed to the guest virtual machine.
+        ///
+        /// Setting this property to VZLinuxRosettaDirectoryShare is not supported and will cause an exception to be raised.
+        ///
+        /// See: VZSingleDirectoryShare
+        ///
+        /// See: VZMultipleDirectoryShare
         #[method_id(@__retain_semantics Other share)]
         pub unsafe fn share(&self) -> Option<Retained<VZDirectoryShare>>;
 
         #[cfg(feature = "VZDirectoryShare")]
+        /// Setter for [`share`][Self::share].
         #[method(setShare:)]
         pub unsafe fn setShare(&self, share: Option<&VZDirectoryShare>);
     }

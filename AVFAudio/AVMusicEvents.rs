@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusicevent?language=objc)
+    /// The base class for all events associated with an AVMusicTrack.
+    ///
+    /// This class is provided to allow enumeration of the heterogenous events contained within an AVMusicTrack.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusicevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMusicEvent;
@@ -32,7 +36,20 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidinoteevent?language=objc)
+    /// The event class representing MIDI note-on/off messages.
+    ///
+    /// Parameter `channel`: The MIDI channel for the note.  Range: 0-15.
+    ///
+    /// Parameter `key`: The MIDI key number for the note.  Range: 0-127.
+    ///
+    /// Parameter `velocity`: The MIDI velocity for the note.  Range: 0-127 (see discussion).
+    ///
+    /// Parameter `duration`: The duration of this note event in AVMusicTimeStamp beats.  Range: Any non-negative number.
+    ///
+    /// The AVAudioSequencer will automatically send a MIDI note-off after the note duration has passed.
+    /// To send an explicit note-off event, create an AVMIDINoteEvent with its velocity set to zero.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidinoteevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDINoteEvent;
@@ -43,6 +60,15 @@ unsafe impl NSObjectProtocol for AVMIDINoteEvent {}
 extern_methods!(
     unsafe impl AVMIDINoteEvent {
         #[cfg(feature = "AVAudioTypes")]
+        /// Initialize the event with a MIDI channel, key number, velocity and duration.
+        ///
+        /// Parameter `channel`: The MIDI channel.  Range: 0-15.
+        ///
+        /// Parameter `key`: The MIDI key number.  Range: 0-127.
+        ///
+        /// Parameter `velocity`: The MIDI velocity.  Range: 0-127 with zero indicating a note-off event.
+        ///
+        /// Parameter `duration`: The duration in beats for this note.  Range: Any non-negative number.
         #[method_id(@__retain_semantics Init initWithChannel:key:velocity:duration:)]
         pub unsafe fn initWithChannel_key_velocity_duration(
             this: Allocated<Self>,
@@ -52,29 +78,37 @@ extern_methods!(
             duration: AVMusicTimeStamp,
         ) -> Retained<Self>;
 
+        /// The MIDI channel for the event.  Range: 0-15.
         #[method(channel)]
         pub unsafe fn channel(&self) -> u32;
 
+        /// Setter for [`channel`][Self::channel].
         #[method(setChannel:)]
         pub unsafe fn setChannel(&self, channel: u32);
 
+        /// The MIDI key number for the event.  Range: 0-127.
         #[method(key)]
         pub unsafe fn key(&self) -> u32;
 
+        /// Setter for [`key`][Self::key].
         #[method(setKey:)]
         pub unsafe fn setKey(&self, key: u32);
 
+        /// The MIDI velocity for the event.  Range: 0-127.
         #[method(velocity)]
         pub unsafe fn velocity(&self) -> u32;
 
+        /// Setter for [`velocity`][Self::velocity].
         #[method(setVelocity:)]
         pub unsafe fn setVelocity(&self, velocity: u32);
 
         #[cfg(feature = "AVAudioTypes")]
+        /// The duration of the event in AVMusicTimeStamp beats.  Range: Any non-negative number.
         #[method(duration)]
         pub unsafe fn duration(&self) -> AVMusicTimeStamp;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Setter for [`duration`][Self::duration].
         #[method(setDuration:)]
         pub unsafe fn setDuration(&self, duration: AVMusicTimeStamp);
     }
@@ -92,7 +126,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidichannelevent?language=objc)
+    /// The event base class for all MIDI messages which operate on a single MIDI channel.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidichannelevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIChannelEvent;
@@ -102,9 +138,11 @@ unsafe impl NSObjectProtocol for AVMIDIChannelEvent {}
 
 extern_methods!(
     unsafe impl AVMIDIChannelEvent {
+        /// The MIDI channel for the event.  Range: 0-15.
         #[method(channel)]
         pub unsafe fn channel(&self) -> u32;
 
+        /// Setter for [`channel`][Self::channel].
         #[method(setChannel:)]
         pub unsafe fn setChannel(&self, channel: u32);
     }
@@ -121,7 +159,9 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangemessagetype?language=objc)
+/// Types of MIDI control change events.  See the General MIDI Specification for details.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangemessagetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -208,7 +248,9 @@ unsafe impl RefEncode for AVMIDIControlChangeMessageType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent?language=objc)
+    /// The event class representing MIDI control change messages.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent?language=objc)
     #[unsafe(super(AVMIDIChannelEvent, AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIControlChangeEvent;
@@ -218,6 +260,13 @@ unsafe impl NSObjectProtocol for AVMIDIControlChangeEvent {}
 
 extern_methods!(
     unsafe impl AVMIDIControlChangeEvent {
+        /// Initialize the event with a channel, a control change type, and a control value.
+        ///
+        /// Parameter `channel`: The MIDI channel for the control change.  Range: 0-15.
+        ///
+        /// Parameter `messageType`: The AVMIDIControlChangeMessageType indicating which MIDI control change message to send.
+        ///
+        /// Parameter `value`: The value for this control change.  Range: Depends on the type (see the General MIDI specification).
         #[method_id(@__retain_semantics Init initWithChannel:messageType:value:)]
         pub unsafe fn initWithChannel_messageType_value(
             this: Allocated<Self>,
@@ -226,9 +275,11 @@ extern_methods!(
             value: u32,
         ) -> Retained<Self>;
 
+        /// The type of control change message, specified as an AVMIDIControlChangeMessageType.
         #[method(messageType)]
         pub unsafe fn messageType(&self) -> AVMIDIControlChangeMessageType;
 
+        /// The value of the control change event.  The range of this value depends on the type (see the General MIDI specification).
         #[method(value)]
         pub unsafe fn value(&self) -> u32;
     }
@@ -246,7 +297,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidipolypressureevent?language=objc)
+    /// The event class representing MIDI "poly" or "key" pressure messages.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidipolypressureevent?language=objc)
     #[unsafe(super(AVMIDIChannelEvent, AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIPolyPressureEvent;
@@ -256,6 +309,13 @@ unsafe impl NSObjectProtocol for AVMIDIPolyPressureEvent {}
 
 extern_methods!(
     unsafe impl AVMIDIPolyPressureEvent {
+        /// Initialize the event with a channel, a MIDI key number, and a key pressure value.
+        ///
+        /// Parameter `channel`: The MIDI channel for the message.  Range: 0-15.
+        ///
+        /// Parameter `key`: The MIDI key number to which the pressure should be applied.
+        ///
+        /// Parameter `pressure`: The poly pressure value.
         #[method_id(@__retain_semantics Init initWithChannel:key:pressure:)]
         pub unsafe fn initWithChannel_key_pressure(
             this: Allocated<Self>,
@@ -264,15 +324,19 @@ extern_methods!(
             pressure: u32,
         ) -> Retained<Self>;
 
+        /// The MIDI key number.
         #[method(key)]
         pub unsafe fn key(&self) -> u32;
 
+        /// Setter for [`key`][Self::key].
         #[method(setKey:)]
         pub unsafe fn setKey(&self, key: u32);
 
+        /// The poly pressure value for the requested key.
         #[method(pressure)]
         pub unsafe fn pressure(&self) -> u32;
 
+        /// Setter for [`pressure`][Self::pressure].
         #[method(setPressure:)]
         pub unsafe fn setPressure(&self, pressure: u32);
     }
@@ -290,7 +354,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidiprogramchangeevent?language=objc)
+    /// The event class representing MIDI program or patch change messages.
+    ///
+    /// The effect of these messages will depend on the containing AVMusicTrack's destinationAudioUnit.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidiprogramchangeevent?language=objc)
     #[unsafe(super(AVMIDIChannelEvent, AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIProgramChangeEvent;
@@ -300,6 +368,14 @@ unsafe impl NSObjectProtocol for AVMIDIProgramChangeEvent {}
 
 extern_methods!(
     unsafe impl AVMIDIProgramChangeEvent {
+        /// Initialize the event with a channel and a program number.
+        ///
+        /// Parameter `channel`: The MIDI channel for the message.  Range: 0-15.
+        ///
+        /// Parameter `programNumber`: The program number to be sent.  Range: 0-127.
+        ///
+        /// Per the General MIDI specification, the actual instrument that is chosen will depend on optional
+        /// AVMIDIControlChangeMessageTypeBankSelect events sent prior to this program change.
         #[method_id(@__retain_semantics Init initWithChannel:programNumber:)]
         pub unsafe fn initWithChannel_programNumber(
             this: Allocated<Self>,
@@ -307,9 +383,11 @@ extern_methods!(
             program_number: u32,
         ) -> Retained<Self>;
 
+        /// The MIDI program number.  Range: 0-127.
         #[method(programNumber)]
         pub unsafe fn programNumber(&self) -> u32;
 
+        /// Setter for [`programNumber`][Self::programNumber].
         #[method(setProgramNumber:)]
         pub unsafe fn setProgramNumber(&self, program_number: u32);
     }
@@ -327,7 +405,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidichannelpressureevent?language=objc)
+    /// The event class representing MIDI channel pressure messages.
+    ///
+    /// The effect of these messages will depend on the containing AVMusicTrack's destinationAudioUnit
+    /// and the capabilities of the destination's currently-loaded instrument.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidichannelpressureevent?language=objc)
     #[unsafe(super(AVMIDIChannelEvent, AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIChannelPressureEvent;
@@ -337,6 +420,11 @@ unsafe impl NSObjectProtocol for AVMIDIChannelPressureEvent {}
 
 extern_methods!(
     unsafe impl AVMIDIChannelPressureEvent {
+        /// Initialize the event with a channel and a pressure value.
+        ///
+        /// Parameter `channel`: The MIDI channel for the message.  Range: 0-15.
+        ///
+        /// Parameter `pressure`: The MIDI channel pressure.  Range: 0-127.
         #[method_id(@__retain_semantics Init initWithChannel:pressure:)]
         pub unsafe fn initWithChannel_pressure(
             this: Allocated<Self>,
@@ -344,9 +432,11 @@ extern_methods!(
             pressure: u32,
         ) -> Retained<Self>;
 
+        /// The MIDI channel pressure.
         #[method(pressure)]
         pub unsafe fn pressure(&self) -> u32;
 
+        /// Setter for [`pressure`][Self::pressure].
         #[method(setPressure:)]
         pub unsafe fn setPressure(&self, pressure: u32);
     }
@@ -364,7 +454,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidipitchbendevent?language=objc)
+    /// The event class representing MIDI pitch bend messages.
+    ///
+    /// The effect of these messages will depend on the AVMusicTrack's destinationAudioUnit
+    /// and the capabilities of the destination's currently-loaded instrument.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidipitchbendevent?language=objc)
     #[unsafe(super(AVMIDIChannelEvent, AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIPitchBendEvent;
@@ -374,6 +469,11 @@ unsafe impl NSObjectProtocol for AVMIDIPitchBendEvent {}
 
 extern_methods!(
     unsafe impl AVMIDIPitchBendEvent {
+        /// Initialize the event with a channel and a pitch bend value.
+        ///
+        /// Parameter `channel`: The MIDI channel for the message.  Range: 0-15.
+        ///
+        /// Parameter `value`: The pitch bend value.  Range: 0-16383 (midpoint 8192).
         #[method_id(@__retain_semantics Init initWithChannel:value:)]
         pub unsafe fn initWithChannel_value(
             this: Allocated<Self>,
@@ -381,9 +481,11 @@ extern_methods!(
             value: u32,
         ) -> Retained<Self>;
 
+        /// The value of the pitch bend event.  Range: 0-16383 (midpoint 8192).
         #[method(value)]
         pub unsafe fn value(&self) -> u32;
 
+        /// Setter for [`value`][Self::value].
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: u32);
     }
@@ -401,7 +503,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidisysexevent?language=objc)
+    /// The event class representing MIDI system exclusive messages.
+    ///
+    /// The size and contents of an AVMIDISysexEvent cannot be modified once created.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidisysexevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDISysexEvent;
@@ -411,9 +517,13 @@ unsafe impl NSObjectProtocol for AVMIDISysexEvent {}
 
 extern_methods!(
     unsafe impl AVMIDISysexEvent {
+        /// Initialize the event with an NSData.
+        ///
+        /// Parameter `data`: An NSData object containing the raw contents of the system exclusive event.
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
+        /// The size of the raw data associated with this system exclusive event.
         #[method(sizeInBytes)]
         pub unsafe fn sizeInBytes(&self) -> u32;
     }
@@ -430,7 +540,9 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaeventtype?language=objc)
+/// Constants which indicate which type of MIDI Meta-Event to create.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaeventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -479,7 +591,16 @@ unsafe impl RefEncode for AVMIDIMetaEventType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent?language=objc)
+    /// The event class representing MIDI Meta-Event messages.
+    ///
+    /// The size and contents of an AVMIDIMetaEvent cannot be modified once created.
+    ///
+    /// Events with AVMIDIMetaEventType AVMIDIMetaEventTypeTempo, AVMIDIMetaEventTypeSmpteOffset,
+    /// or AVMIDIMetaEventTypeTimeSignature can only be added to a sequence's tempo track.
+    ///
+    /// The class does not verify that the content matches the MIDI specification.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIMetaEvent;
@@ -489,6 +610,11 @@ unsafe impl NSObjectProtocol for AVMIDIMetaEvent {}
 
 extern_methods!(
     unsafe impl AVMIDIMetaEvent {
+        /// Initialize the event with a MIDI Meta-Event type and an NSData.
+        ///
+        /// Parameter `type`: A AVMIDIMetaEventType indicating which type of Meta-Event.
+        ///
+        /// Parameter `data`: An NSData object containing the raw contents of the Meta-Event.
         #[method_id(@__retain_semantics Init initWithType:data:)]
         pub unsafe fn initWithType_data(
             this: Allocated<Self>,
@@ -496,6 +622,7 @@ extern_methods!(
             data: &NSData,
         ) -> Retained<Self>;
 
+        /// The type of Meta-Event, specified as an AVMIDIMetaEventType.
         #[method(type)]
         pub unsafe fn r#type(&self) -> AVMIDIMetaEventType;
     }
@@ -513,7 +640,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusicuserevent?language=objc)
+    /// The event class representing custom user messages.
+    ///
+    /// When a scheduled AVMusicUserEvent is reached during playback of a AVMusicTrack, the track's
+    /// user callback block will be called if it has been set.  The event's NSData will be provided as
+    /// an argument to that block.
+    /// The size and contents of an AVMusicUserEvent cannot be modified once created.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusicuserevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMusicUserEvent;
@@ -523,9 +657,13 @@ unsafe impl NSObjectProtocol for AVMusicUserEvent {}
 
 extern_methods!(
     unsafe impl AVMusicUserEvent {
+        /// Initialize the event with an NSData.
+        ///
+        /// Parameter `data`: An NSData object containing the contents to be returned via the AVMusicTrack's user callback.
         #[method_id(@__retain_semantics Init initWithData:)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
+        /// The size of the data associated with this user event.
         #[method(sizeInBytes)]
         pub unsafe fn sizeInBytes(&self) -> u32;
     }
@@ -543,12 +681,23 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avextendednoteoneventdefaultinstrument?language=objc)
+    /// A constant representing the default instrument ID to use for an AVExtendedNoteOnEvent.  This indicates to the
+    /// system to use the instrument currently loaded on the channel referenced by the groupID.  This is the only
+    /// supported value at this time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avextendednoteoneventdefaultinstrument?language=objc)
     pub static AVExtendedNoteOnEventDefaultInstrument: u32;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avextendednoteonevent?language=objc)
+    /// The event class representing a custom extension of a MIDI note-on.
+    ///
+    /// Using an AVExtendedNoteOnEvent allows an application to trigger a specialized note-on event on one of several
+    /// Apple audio units which support it.  The floating point note and velocity numbers allow optional fractional control
+    /// of the note's run-time properties which are modulated by those inputs.  In addition, it supports the possibility
+    /// of an audio unit with more than the standard 16 MIDI channels.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avextendednoteonevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVExtendedNoteOnEvent;
@@ -559,6 +708,17 @@ unsafe impl NSObjectProtocol for AVExtendedNoteOnEvent {}
 extern_methods!(
     unsafe impl AVExtendedNoteOnEvent {
         #[cfg(feature = "AVAudioTypes")]
+        /// Initialize the event with a midi note, velocity, instrument and group ID, and a duration.
+        ///
+        /// Parameter `midiNote`: The MIDI velocity represented as a floating point.  Range: Destination-dependent, usually 0.0 - 127.0.
+        ///
+        /// Parameter `velocity`: The MIDI velocity represented as a floating point.  Range: Destination-dependent, usually 0.0 - 127.0.
+        ///
+        /// Parameter `groupID`: An index indicating the AudioUnitElement within the Group Scope which should handle this event (see AudioUnitElement).
+        /// This normally maps to a channel within the audio unit.
+        /// Range: normally between 0 and 15, but may be higher if the AVMusicTrack's destinationAudioUnit supports more channels.
+        ///
+        /// Parameter `duration`: The duration of this event in AVMusicTimeStamp beats.  Range:  Any nonnegative number.
         #[method_id(@__retain_semantics Init initWithMIDINote:velocity:groupID:duration:)]
         pub unsafe fn initWithMIDINote_velocity_groupID_duration(
             this: Allocated<Self>,
@@ -569,6 +729,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Initialize the event with a midi note, velocity, instrument and group ID, and a duration.
+        ///
+        /// This initializer is identical to initWithMIDINote:velocity:groupID:duration with the addition of
+        /// an instrumentID parameter which will allow for the possibility of an externally-created custom instrument.
+        /// If this initializer is used, instrumentID should be set to AVExtendedNoteOnEventDefaultInstrument for now.
         #[method_id(@__retain_semantics Init initWithMIDINote:velocity:instrumentID:groupID:duration:)]
         pub unsafe fn initWithMIDINote_velocity_instrumentID_groupID_duration(
             this: Allocated<Self>,
@@ -579,35 +744,51 @@ extern_methods!(
             duration: AVMusicTimeStamp,
         ) -> Retained<Self>;
 
+        /// The MIDI note number represented as a floating point.  If the instrument within the AVMusicTrack's
+        /// destinationAudioUnit supports fractional values, this may be used to generate arbitrary
+        /// macro- and micro-tunings.  Range: Destination-dependent, usually 0.0 - 127.0.
         #[method(midiNote)]
         pub unsafe fn midiNote(&self) -> c_float;
 
+        /// Setter for [`midiNote`][Self::midiNote].
         #[method(setMidiNote:)]
         pub unsafe fn setMidiNote(&self, midi_note: c_float);
 
+        /// The MIDI velocity represented as a floating point.  If the instrument within the AVMusicTrack's
+        /// destinationAudioUnit supports fractional values, this may be used to generate very precise changes
+        /// in gain, etc.  Range: Destination-dependent, usually 0.0 - 127.0.
         #[method(velocity)]
         pub unsafe fn velocity(&self) -> c_float;
 
+        /// Setter for [`velocity`][Self::velocity].
         #[method(setVelocity:)]
         pub unsafe fn setVelocity(&self, velocity: c_float);
 
+        /// This should be set to AVExtendedNoteOnEventDefaultInstrument.
         #[method(instrumentID)]
         pub unsafe fn instrumentID(&self) -> u32;
 
+        /// Setter for [`instrumentID`][Self::instrumentID].
         #[method(setInstrumentID:)]
         pub unsafe fn setInstrumentID(&self, instrument_id: u32);
 
+        /// This represents the audio unit channel (i.e., Group Scope) which should handle this event.
+        /// Range: normally between 0 and 15, but may be higher if the AVMusicTrack's destinationAudioUnit
+        /// supports more channels.
         #[method(groupID)]
         pub unsafe fn groupID(&self) -> u32;
 
+        /// Setter for [`groupID`][Self::groupID].
         #[method(setGroupID:)]
         pub unsafe fn setGroupID(&self, group_id: u32);
 
         #[cfg(feature = "AVAudioTypes")]
+        /// The duration of this event in AVMusicTimeStamp beats.  Range:  Any nonnegative number.
         #[method(duration)]
         pub unsafe fn duration(&self) -> AVMusicTimeStamp;
 
         #[cfg(feature = "AVAudioTypes")]
+        /// Setter for [`duration`][Self::duration].
         #[method(setDuration:)]
         pub unsafe fn setDuration(&self, duration: AVMusicTimeStamp);
     }
@@ -625,7 +806,17 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avparameterevent?language=objc)
+    /// The event class representing a parameter set/change event on the AVMusicTrack's destinationAudioUnit.
+    ///
+    /// AVParameterEvents make it possible to schedule and/or automate parameter changes on the audio unit
+    /// that has been configured as the destination for the AVMusicTrack containing this event.
+    ///
+    /// When the track is played as part of a sequence, the destination audio unit will receive set-parameter
+    /// messages whose values change smoothly along a linear ramp between each event's beat location.
+    ///
+    /// If an AVParameterEvent is added to an empty, non-automation track, the track becomes an automation track.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avparameterevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVParameterEvent;
@@ -635,6 +826,15 @@ unsafe impl NSObjectProtocol for AVParameterEvent {}
 
 extern_methods!(
     unsafe impl AVParameterEvent {
+        /// Initialize the event with the parameter ID, scope, element, and value for the parameter to be set.
+        ///
+        /// Parameter `parameterID`: The ID of the parameter (see AudioUnitParameterID).
+        ///
+        /// Parameter `scope`: The audio unit scope for the parameter (see AudioUnitScope).
+        ///
+        /// Parameter `element`: The element index within the scope (see AudioUnitElement).
+        ///
+        /// Parameter `value`: The value of the parameter to be set.  Range:  Dependent on parameter.
         #[method_id(@__retain_semantics Init initWithParameterID:scope:element:value:)]
         pub unsafe fn initWithParameterID_scope_element_value(
             this: Allocated<Self>,
@@ -644,27 +844,35 @@ extern_methods!(
             value: c_float,
         ) -> Retained<Self>;
 
+        /// The ID of the parameter (see AudioUnitParameterID).
         #[method(parameterID)]
         pub unsafe fn parameterID(&self) -> u32;
 
+        /// Setter for [`parameterID`][Self::parameterID].
         #[method(setParameterID:)]
         pub unsafe fn setParameterID(&self, parameter_id: u32);
 
+        /// The audio unit scope for the parameter (see AudioUnitScope).
         #[method(scope)]
         pub unsafe fn scope(&self) -> u32;
 
+        /// Setter for [`scope`][Self::scope].
         #[method(setScope:)]
         pub unsafe fn setScope(&self, scope: u32);
 
+        /// The element index within the scope (see AudioUnitElement).
         #[method(element)]
         pub unsafe fn element(&self) -> u32;
 
+        /// Setter for [`element`][Self::element].
         #[method(setElement:)]
         pub unsafe fn setElement(&self, element: u32);
 
+        /// The value of the parameter to be set.  Range:  Dependent on parameter.
         #[method(value)]
         pub unsafe fn value(&self) -> c_float;
 
+        /// Setter for [`value`][Self::value].
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: c_float);
     }
@@ -682,7 +890,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaupresetevent?language=objc)
+    /// The event class representing a preset load and change on the AVMusicTrack's destinationAudioUnit.
+    ///
+    /// AVAUPresetEvents make it possible to schedule and/or automate preset changes on the audio unit
+    /// that has been configured as the destination for the AVMusicTrack containing this event.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaupresetevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAUPresetEvent;
@@ -692,6 +905,17 @@ unsafe impl NSObjectProtocol for AVAUPresetEvent {}
 
 extern_methods!(
     unsafe impl AVAUPresetEvent {
+        /// Initialize the event with the scope, element, and dictionary for the preset.
+        ///
+        /// Parameter `scope`: The audio unit scope for the parameter (see AudioUnitScope).  This should always be set to Global.
+        ///
+        /// Parameter `element`: The element index within the scope (see AudioUnitElement).  This should usually be set to 0.
+        ///
+        /// Parameter `presetDictionary`: An NSDictionary containing the preset.  The audio unit will expect this to be a dictionary
+        /// structured as an appropriate audio unit preset.
+        ///
+        /// The dictionary passed to this initializer will be copied and is not editable once the event is
+        /// created.
         #[method_id(@__retain_semantics Init initWithScope:element:dictionary:)]
         pub unsafe fn initWithScope_element_dictionary(
             this: Allocated<Self>,
@@ -700,18 +924,23 @@ extern_methods!(
             preset_dictionary: &NSDictionary,
         ) -> Retained<Self>;
 
+        /// The audio unit scope for the parameter (see AudioUnitScope).  This should always be set to Global.
         #[method(scope)]
         pub unsafe fn scope(&self) -> u32;
 
+        /// Setter for [`scope`][Self::scope].
         #[method(setScope:)]
         pub unsafe fn setScope(&self, scope: u32);
 
+        /// The element index within the scope (see AudioUnitElement).  This should usually be set to 0.
         #[method(element)]
         pub unsafe fn element(&self) -> u32;
 
+        /// Setter for [`element`][Self::element].
         #[method(setElement:)]
         pub unsafe fn setElement(&self, element: u32);
 
+        /// An NSDictionary containing the preset.
         #[method_id(@__retain_semantics Other presetDictionary)]
         pub unsafe fn presetDictionary(&self) -> Retained<NSDictionary>;
     }
@@ -729,7 +958,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avextendedtempoevent?language=objc)
+    /// The event class representing a tempo change to a specific beats-per-minute value.
+    ///
+    /// This event provides a way to specify a tempo change that is less cumbersome than using
+    /// tempo meta-events.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avextendedtempoevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVExtendedTempoEvent;
@@ -739,12 +973,18 @@ unsafe impl NSObjectProtocol for AVExtendedTempoEvent {}
 
 extern_methods!(
     unsafe impl AVExtendedTempoEvent {
+        /// Initialize the event tempo.
+        ///
+        /// Parameter `tempo`: The new tempo in beats-per-minute.  Range:  Any positive value.
+        /// The new tempo will begin at the timestamp for this event.
         #[method_id(@__retain_semantics Init initWithTempo:)]
         pub unsafe fn initWithTempo(this: Allocated<Self>, tempo: c_double) -> Retained<Self>;
 
+        /// The new tempo in beats-per-minute.  Range:  Any positive value.
         #[method(tempo)]
         pub unsafe fn tempo(&self) -> c_double;
 
+        /// Setter for [`tempo`][Self::tempo].
         #[method(setTempo:)]
         pub unsafe fn setTempo(&self, tempo: c_double);
     }

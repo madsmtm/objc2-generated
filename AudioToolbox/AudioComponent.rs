@@ -8,7 +8,32 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentflags?language=objc)
+/// Flags found in AudioComponentDescription.componentFlags.
+///
+///
+/// When this bit in AudioComponentDescription's componentFlags is set, AudioComponentFindNext
+/// will only return this component when performing a specific, non-wildcard search for the
+/// component, i.e. with non-zero values of componentType, componentSubType, and
+/// componentManufacturer. This can be useful when privately registering a component.
+///
+///
+/// An AudioComponent sets this bit in its componentFlags to indicate to the system that the
+/// AudioComponent is safe to open in a sandboxed process.
+///
+///
+/// The system sets this flag automatically when registering components which implement a version 3
+/// Audio Unit.
+///
+///
+/// The system sets this flag automatically when registering components which require asynchronous
+/// instantiation via AudioComponentInstantiate (v3 audio units with views).
+///
+///
+/// The system sets this flag automatically when registering components which can be loaded into
+/// the current process. This is always true for V2 audio units; it depends on the packaging
+/// in the case of a V3 audio unit.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,7 +56,30 @@ unsafe impl RefEncode for AudioComponentFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentinstantiationoptions?language=objc)
+/// Options controlling component instantiation.
+///
+/// Most component instances are loaded into the calling process.
+///
+/// A version 3 audio unit, however, can be loaded into a separate extension service process,
+/// and this is the default behavior for these components. To be able to load one in-process
+/// requires that the developer package the audio unit in a bundle separate from the application
+/// extension, since an extension's main binary cannot be dynamically loaded into another
+/// process.
+///
+/// A macOS host may request in-process loading of such audio units using
+/// kAudioComponentInstantiation_LoadInProcess.
+///
+/// kAudioComponentFlag_IsV3AudioUnit specifies whether an audio unit is implemented using API
+/// version 3.
+///
+/// These options are just requests to the implementation. It may fail and fall back to the
+/// default.
+///
+/// Attempt to load the component into a separate extension process.
+///
+/// Attempt to load the component into the current process. Only available on macOS.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentinstantiationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -80,17 +128,57 @@ unsafe impl RefEncode for AudioComponentDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponent?language=objc)
+/// The type used to represent a class of particular audio components
+///
+/// An audio component is usually found through a search and is then uniquely
+/// identified by the triple of an audio component's type, subtype and
+/// manufacturer.
+///
+/// It can have properties associated with it (such as a name, a version).
+///
+/// It is then used as a factory (like a class in an object-oriented programming
+/// language) from which to create instances. The instances are used to do the
+/// actual work.
+///
+/// For example: the AudioComponentDescription 'aufx'/'dely'/'appl' describes the
+/// delay audio unit effect from Apple, Inc. You can find this component by
+/// searching explicitly for the audio component that matches this pattern (this is
+/// an unique identifier - there is only one match to this triple ID). Then once
+/// found, instances of the Apple delay effect audio unit can be created from its
+/// audio component and used to apply that effect to an audio signal. A single
+/// component can create any number of component instances.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponent?language=objc)
 pub type AudioComponent = *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentinstance?language=objc)
 pub type AudioComponentInstance = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentmethod?language=objc)
+/// Generic prototype for an audio plugin method.
+///
+/// Every audio plugin will implement a collection of methods that match a particular
+/// selector. For example, the AudioUnitInitialize API call is implemented by a
+/// plugin implementing the kAudioUnitInitializeSelect selector. Any function implementing
+/// an audio plugin selector conforms to the basic pattern where the first argument
+/// is a pointer to the plugin instance structure, has 0 or more specific arguments,
+/// and returns an OSStatus.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentmethod?language=objc)
 pub type AudioComponentMethod =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, ...) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentplugininterface?language=objc)
+/// A structure used to represent an audio plugin's routines
+///
+/// the function used to open (or create) an audio plugin instance
+///
+/// the function used to close (or dispose) an audio plugin instance
+///
+/// this is used to return a function pointer for a given selector,
+/// or NULL if that selector is not implemented
+///
+/// must be NULL
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentplugininterface?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioComponentPlugInInterface {
@@ -108,7 +196,18 @@ unsafe impl RefEncode for AudioComponentPlugInInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentfactoryfunction?language=objc)
+/// A function that creates AudioComponentInstances.
+///
+/// Authors of AudioComponents may register them from bundles as described
+/// above in the discussion of this header file, or dynamically within a single
+/// process, using AudioComponentRegister.
+///
+///
+/// Parameter `inDesc`: The AudioComponentDescription specifying the component to be instantiated.
+///
+/// Returns: A pointer to a AudioComponentPlugInInterface structure.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentfactoryfunction?language=objc)
 pub type AudioComponentFactoryFunction = Option<
     unsafe extern "C-unwind" fn(
         NonNull<AudioComponentDescription>,
@@ -116,6 +215,25 @@ pub type AudioComponentFactoryFunction = Option<
 >;
 
 extern "C-unwind" {
+    /// Finds an audio component.
+    ///
+    /// This function is used to find an audio component that is the closest match
+    /// to the provided values. Note that the list of available components may change
+    /// dynamically in situations involving inter-app audio on iOS, or version 3
+    /// audio unit extensions. See kAudioComponentRegistrationsChangedNotification.
+    ///
+    ///
+    /// Parameter `inComponent`: If NULL, then the search starts from the beginning until an audio
+    /// component is found that matches the description provided by inDesc.
+    /// If non-NULL, then the search starts (continues) from the previously
+    /// found audio component specified by inComponent, and will return the next
+    /// found audio component.
+    ///
+    /// Parameter `inDesc`: The type, subtype and manufacturer fields are used to specify the audio
+    /// component to search for. A value of 0 (zero) for any of these fields is
+    /// a wildcard, so the first match found is returned.
+    ///
+    /// Returns: An audio component that matches the search parameters, or NULL if none found.
     pub fn AudioComponentFindNext(
         in_component: AudioComponent,
         in_desc: NonNull<AudioComponentDescription>,
@@ -123,10 +241,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Counts audio components.
+    ///
+    /// Returns the number of AudioComponents that match the specified
+    /// AudioComponentDescription.
+    ///
+    /// Parameter `inDesc`: The type, subtype and manufacturer fields are used to specify the audio
+    /// components to count A value of 0 (zero) for any of these fields is a
+    /// wildcard, so will match any value for this field
+    ///
+    /// Returns: a UInt32. 0 (zero) means no audio components were found that matched the
+    /// search parameters.
     pub fn AudioComponentCount(in_desc: NonNull<AudioComponentDescription>) -> u32;
 }
 
 extern "C-unwind" {
+    /// Retrieves the name of an audio component.
+    ///
+    /// the name of an audio component
+    ///
+    /// Parameter `inComponent`: the audio component (must not be NULL)
+    ///
+    /// Parameter `outName`: a CFString that is the name of the audio component. This string should
+    /// be released by the caller.
+    ///
+    /// Returns: an OSStatus result code.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentCopyName(
         in_component: AudioComponent,
@@ -135,6 +274,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retrieve an audio component's description.
+    ///
+    /// This will return the fully specified audio component description for the
+    /// provided audio component.
+    ///
+    /// Parameter `inComponent`: the audio component (must not be NULL)
+    ///
+    /// Parameter `outDesc`: the audio component description for the specified audio component
+    ///
+    /// Returns: an OSStatus result code.
     pub fn AudioComponentGetDescription(
         in_component: AudioComponent,
         out_desc: NonNull<AudioComponentDescription>,
@@ -142,6 +291,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retrieve an audio component's version.
+    ///
+    /// Parameter `inComponent`: the audio component (must not be NULL)
+    ///
+    /// Parameter `outVersion`: the audio component's version in the form of 0xMMMMmmDD (Major, Minor, Dot)
+    ///
+    /// Returns: an OSStatus result code.
     pub fn AudioComponentGetVersion(
         in_component: AudioComponent,
         out_version: NonNull<u32>,
@@ -149,6 +305,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an audio component instance.
+    ///
+    /// This function creates an instance of a given audio component. The audio
+    /// component instance is the object that does all of the work, whereas the
+    /// audio component is the way an application finds and then creates this object
+    /// to do this work. For example, an audio unit is a type of audio component
+    /// instance, so to use an audio unit, one finds its audio component, and then
+    /// creates a new instance of that component. This instance is then used to
+    /// perform the audio tasks for which it was designed (process, mix, synthesise,
+    /// etc.).
+    ///
+    /// Parameter `inComponent`: the audio component (must not be NULL)
+    ///
+    /// Parameter `outInstance`: the audio component instance
+    ///
+    /// Returns: an OSStatus result code.
     pub fn AudioComponentInstanceNew(
         in_component: AudioComponent,
         out_instance: NonNull<AudioComponentInstance>,
@@ -156,6 +328,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an audio component instance, asynchronously.
+    ///
+    /// This is an asynchronous version of AudioComponentInstanceNew(). It must be
+    /// used to instantiate any component with kAudioComponentFlag_RequiresAsyncInstantiation
+    /// set in its component flags. It may be used for other components as well.
+    ///
+    /// Note: Do not block the main thread while waiting for the completion handler
+    /// to be called; this can deadlock.
+    ///
+    /// Parameter `inComponent`: the audio component
+    ///
+    /// Parameter `inOptions`: see AudioComponentInstantiationOptions
+    ///
+    /// Parameter `inCompletionHandler`: called in an arbitrary thread context when instantiation is complete.
     #[cfg(feature = "block2")]
     pub fn AudioComponentInstantiate(
         in_component: AudioComponent,
@@ -165,16 +351,44 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Disposes of an audio component instance.
+    ///
+    /// This function will dispose the audio component instance that was created
+    /// with the New call. It will deallocate any resources that the instance was using.
+    ///
+    /// Parameter `inInstance`: the audio component instance to dispose (must not be NULL)
+    ///
+    /// Returns: an OSStatus result code.
     pub fn AudioComponentInstanceDispose(in_instance: AudioComponentInstance) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Retrieve the audio component from its instance
+    ///
+    /// Allows the application at any time to retrieve the audio component that is
+    /// the factory object of a given instance (i.e., the audio component that was
+    /// used to create the instance in the first place). This allows the application
+    /// to retrieve general information about a particular audio component (its
+    /// name, version, etc) when one just has an audio component instance to work
+    /// with
+    ///
+    /// Parameter `inInstance`: the audio component instance (must not be NULL, and instance must be valid - that is, not disposed)
+    ///
+    /// Returns: a valid audio component or NULL if no component was found.
     pub fn AudioComponentInstanceGetComponent(
         in_instance: AudioComponentInstance,
     ) -> AudioComponent;
 }
 
 extern "C-unwind" {
+    /// Determines if an audio component instance implements a particular component
+    /// API call as signified by the specified selector identifier token.
+    ///
+    /// Parameter `inInstance`: the audio component instance
+    ///
+    /// Parameter `inSelectorID`: a number to signify the audio component API (component selector) as appropriate for the instance's component type.
+    ///
+    /// Returns: a boolean
     pub fn AudioComponentInstanceCanDo(
         in_instance: AudioComponentInstance,
         in_selector_id: i16,
@@ -182,6 +396,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Dynamically registers an AudioComponent within the current process
+    ///
+    /// AudioComponents are registered either when found in appropriate bundles in the filesystem,
+    /// or via this call. AudioComponents registered via this call are available only within
+    /// the current process.
+    ///
+    ///
+    /// Parameter `inDesc`: The AudioComponentDescription that describes the AudioComponent. Note that
+    /// the registrar needs to be sure to set the flag kAudioComponentFlag_SandboxSafe
+    /// in the componentFlags field of the AudioComponentDescription to indicate that
+    /// the AudioComponent can be loaded directly into a sandboxed process.
+    ///
+    /// Parameter `inName`: the AudioComponent's name
+    ///
+    /// Parameter `inVersion`: the AudioComponent's version
+    ///
+    /// Parameter `inFactory`: an AudioComponentFactoryFunction which will create instances of your
+    /// AudioComponent
+    ///
+    /// Returns: an AudioComponent object
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentRegister(
         in_desc: NonNull<AudioComponentDescription>,
@@ -192,6 +426,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Fetches the basic configuration info about a given AudioComponent
+    ///
+    /// Currently, only AudioUnits can supply this information.
+    ///
+    /// Parameter `inComponent`: The AudioComponent whose info is being fetched.
+    ///
+    /// Parameter `outConfigurationInfo`: On exit, this is CFDictionaryRef that contains information describing the
+    /// capabilities of the AudioComponent. The specific information depends on the
+    /// type of AudioComponent. The keys for the dictionary are defined in
+    /// AudioUnitProperties.h (or other headers as appropriate for the component type).
+    ///
+    /// Returns: An OSStatus indicating success or failure.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentCopyConfigurationInfo(
         in_component: AudioComponent,
@@ -199,7 +445,19 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentvalidationresult?language=objc)
+/// Constants for describing the result of validating an AudioComponent
+///
+/// The AudioComponent passed validation.
+///
+/// The AudioComponent failed validation.
+///
+/// The validation operation timed out before completing.
+///
+/// The AudioComponent failed validation during open operation as it is not authorized.
+///
+/// The AudioComponent failed validation during initialization as it is not authorized.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentvalidationresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -231,6 +489,41 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Tests a specified AudioComponent for API and behavioral conformance
+    /// asynchronously, returning detailed validation results.
+    ///
+    /// Currently, only AudioUnits can can be validated. The `inCompletionHandler` callback
+    /// has two parameters, an `AudioComponentValidationResult` with result of the validation,
+    /// and a `CFDictionaryRef` which contains the details of this result.
+    /// This dictionary may contain the following entries:
+    /// "Output"
+    /// An array of strings, with the same content as if the AU was validated on auval.
+    /// "Result"
+    /// An `AudioComponentValidationResult` with the result of the validation
+    /// process. The same as what's in the `AudioComponentValidationResult`
+    /// in the `inCompletionHandler` and what `AudioComponentValidate`
+    /// currently returns.
+    /// "Tests"
+    /// An array in which each value is a dictionary and may contain:
+    /// "Name"
+    /// A descriptive name of the test.
+    /// "Result"
+    /// An `AudioComponentValidationResult` with the result of the
+    /// specific test.
+    /// "Output"
+    /// An array of strings with output generated by the test.
+    /// "WasCached"
+    /// `YES` if the returned result was cached from previous runs.
+    ///
+    /// Parameter `inComponent`: The AudioComponent to validate.
+    ///
+    /// Parameter `inValidationParameters`: A CFDictionaryRef that contains parameters for the validation operation.
+    /// Passing NULL for this argument tells the system to use the default
+    /// parameters.
+    ///
+    /// Parameter `inCompletionHandler`: Completion callback. See discussion section.
+    ///
+    /// Returns: an OSStatus result code.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioComponentValidateWithResults(
         in_component: AudioComponent,

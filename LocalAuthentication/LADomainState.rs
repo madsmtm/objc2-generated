@@ -18,9 +18,21 @@ unsafe impl NSObjectProtocol for LADomainStateBiometry {}
 extern_methods!(
     unsafe impl LADomainStateBiometry {
         #[cfg(feature = "LABiometryType")]
+        /// Indicates biometry type available on the device.
         #[method(biometryType)]
         pub unsafe fn biometryType(&self) -> LABiometryType;
 
+        /// Contains state hash data for the available biometry type. Returns `nil` if no biometry entities are enrolled.
+        ///
+        ///
+        /// If biometric database was modified (fingers, faces were removed or added), `stateHash`
+        /// data will change. Nature of such database changes cannot be determined
+        /// but comparing data of `stateHash` after different evaluatePolicy calls
+        /// will reveal the fact database was changed between the calls.
+        ///
+        ///
+        /// Warning: Please note that the value returned by this property can change exceptionally between major OS versions even if
+        /// the state of biometry has not changed.
         #[method_id(@__retain_semantics Other stateHash)]
         pub unsafe fn stateHash(&self) -> Option<Retained<NSData>>;
 
@@ -43,13 +55,43 @@ unsafe impl NSObjectProtocol for LADomainStateCompanion {}
 
 extern_methods!(
     unsafe impl LADomainStateCompanion {
+        /// Indicates types of companions paired with the device.
+        /// The elements are NSNumber-wrapped instances of
+        /// ``LACompanionType`.`
         #[method_id(@__retain_semantics Other availableCompanionTypes)]
         pub unsafe fn availableCompanionTypes(&self) -> Retained<NSSet<NSNumber>>;
 
+        /// Contains combined state hash data for all available companion types. . Returns `nil` if no companion devices are paired.
+        ///
+        ///
+        /// As long as database of paired companion devices doesn't change,
+        /// `stateHash` stays the same for the same set of `availableCompanions`.
+        ///
+        /// If database of paired companion devices was modified, `stateHash`
+        /// data will change. Nature of such database changes cannot be determined
+        /// but comparing data of `stateHash` after different policy evaluation
+        /// will reveal the fact database was changed between calls.
+        ///
+        /// If you are interested in a state hash for a specific companion type
+        /// you can use `stateHashForCompanionType` method.
+        ///
+        ///
+        /// Warning: Please note that the value returned by this property can change exceptionally between major OS versions even if
+        /// the list of paired companions has not changed.
         #[method_id(@__retain_semantics Other stateHash)]
         pub unsafe fn stateHash(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "LACompanionType")]
+        /// Returns state hash data for the given companion type.
+        ///
+        ///
+        /// If database of paired devices of the given type was modified state hash
+        /// data will change. Nature of such database changes cannot be determined
+        /// but comparing data of state hash after different policy evaluation
+        /// will reveal the fact database was changed between calls.
+        ///
+        ///
+        /// Parameter `companionType`: The companion type for which state hash data should be returned.
         #[method_id(@__retain_semantics Other stateHashForCompanionType:)]
         pub unsafe fn stateHashForCompanionType(
             &self,
@@ -75,12 +117,19 @@ unsafe impl NSObjectProtocol for LADomainState {}
 
 extern_methods!(
     unsafe impl LADomainState {
+        /// Contains biometric domain state.
         #[method_id(@__retain_semantics Other biometry)]
         pub unsafe fn biometry(&self) -> Retained<LADomainStateBiometry>;
 
+        /// Contains companion domain state.
         #[method_id(@__retain_semantics Other companion)]
         pub unsafe fn companion(&self) -> Retained<LADomainStateCompanion>;
 
+        /// Contains combined state hash data for biometry and companion state hashes.
+        ///
+        ///
+        /// Warning: Please note that the value returned by this property can change exceptionally between major OS versions even if
+        /// the list of paired companions has not changed.
         #[method_id(@__retain_semantics Other stateHash)]
         pub unsafe fn stateHash(&self) -> Option<Retained<NSData>>;
 

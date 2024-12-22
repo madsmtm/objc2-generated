@@ -27,10 +27,12 @@ unsafe impl NSObjectProtocol for HKVerifiableClinicalRecordQuery {}
 extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKVerifiableClinicalRecordQuery {
+        /// The record types that need to be present on desired records.
         #[method_id(@__retain_semantics Other recordTypes)]
         pub unsafe fn recordTypes(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "HKVerifiableClinicalRecord")]
+        /// The source type(s) of the records.
         #[method_id(@__retain_semantics Other sourceTypes)]
         pub unsafe fn sourceTypes(&self)
             -> Retained<NSArray<HKVerifiableClinicalRecordSourceType>>;
@@ -47,6 +49,14 @@ extern_methods!(
             feature = "HKVerifiableClinicalRecord",
             feature = "block2"
         ))]
+        /// Returns an one-time query that will ask for access to verifiable clinical records that match the query.
+        ///
+        ///
+        /// Parameter `recordTypes`: The record types that need to be present on a verifiable clinical record.
+        ///
+        /// Parameter `predicate`: The predicate which records should match.
+        ///
+        /// Parameter `resultsHandler`: The block to invoke with the verifiable clinical records from the query.
         #[method_id(@__retain_semantics Init initWithRecordTypes:predicate:resultsHandler:)]
         pub unsafe fn initWithRecordTypes_predicate_resultsHandler(
             this: Allocated<Self>,
@@ -67,6 +77,16 @@ extern_methods!(
             feature = "HKVerifiableClinicalRecord",
             feature = "block2"
         ))]
+        /// Returns a one-time query that will ask for access to and return verifiable clinical records that match the query.
+        ///
+        ///
+        /// Parameter `recordTypes`: The record types that need to be present on a verifiable clinical record.
+        ///
+        /// Parameter `sourceTypes`: The source type(s) of the records.
+        ///
+        /// Parameter `predicate`: The predicate which records should match.
+        ///
+        /// Parameter `resultsHandler`: The block to invoke with the verifiable clinical records from the query.
         #[method_id(@__retain_semantics Init initWithRecordTypes:sourceTypes:predicate:resultsHandler:)]
         pub unsafe fn initWithRecordTypes_sourceTypes_predicate_resultsHandler(
             this: Allocated<Self>,

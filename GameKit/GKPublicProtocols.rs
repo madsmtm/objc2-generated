@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessiondelegate?language=objc)
+    /// Callbacks to the GKSession delegate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessiondelegate?language=objc)
     #[deprecated]
     pub unsafe trait GKSessionDelegate: NSObjectProtocol {
         #[cfg(all(feature = "GKPublicConstants", feature = "GKSession"))]
@@ -23,6 +25,10 @@ extern_protocol!(
         );
 
         #[cfg(feature = "GKSession")]
+        /// Indicates a connection request was received from another peer.
+        ///
+        /// Accept by calling -acceptConnectionFromPeer:
+        /// Deny by calling -denyConnectionFromPeer:
         #[deprecated]
         #[optional]
         #[method(session:didReceiveConnectionRequestFromPeer:)]
@@ -33,6 +39,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "GKSession")]
+        /// Indicates a connection error occurred with a peer, which includes connection request failures, or disconnects due to timeouts.
         #[deprecated]
         #[optional]
         #[method(session:connectionWithPeerFailed:withError:)]
@@ -44,6 +51,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "GKSession")]
+        /// Indicates an error occurred with the session such as failing to make available.
         #[deprecated]
         #[optional]
         #[method(session:didFailWithError:)]
@@ -58,6 +66,7 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait GKVoiceChatClient: NSObjectProtocol {
         #[cfg(feature = "GKVoiceChatService")]
+        /// this channel will only be used to setup voice chat, and not to send audio data. The only requirement is that messages are sent and received within a few (1-2) seconds time.
         #[deprecated]
         #[method(voiceChatService:sendData:toParticipantID:)]
         unsafe fn voiceChatService_sendData_toParticipantID(
@@ -67,11 +76,14 @@ extern_protocol!(
             participant_id: &NSString,
         );
 
+        /// must be sent within some reasonble period of time and should accept at least 512 bytes.
         #[deprecated]
         #[method_id(@__retain_semantics Other participantID)]
         unsafe fn participantID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "GKVoiceChatService")]
+        /// should be sent immediately with no delay on a UDP peer-to-peer connection.
+        /// If this method is implemented, then the Voice Chat Service will not attempt to set up a peer-to-peer connection. And will rely on this one.  To transmit audio.
         #[deprecated]
         #[optional]
         #[method(voiceChatService:sendRealTimeData:toParticipantID:)]

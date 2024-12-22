@@ -29,6 +29,7 @@ extern_methods!(
         pub fn rotation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`rotation`][Self::rotation].
         #[method(setRotation:)]
         pub unsafe fn setRotation(&self, rotation: CGFloat);
 

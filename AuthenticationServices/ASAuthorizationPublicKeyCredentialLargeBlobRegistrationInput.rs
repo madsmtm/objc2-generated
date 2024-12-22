@@ -54,6 +54,7 @@ extern_methods!(
             &self,
         ) -> ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirement;
 
+        /// Setter for [`supportRequirement`][Self::supportRequirement].
         #[method(setSupportRequirement:)]
         pub unsafe fn setSupportRequirement(
             &self,

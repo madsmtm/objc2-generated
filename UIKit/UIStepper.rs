@@ -104,42 +104,49 @@ extern_methods!(
         #[method(isContinuous)]
         pub unsafe fn isContinuous(&self) -> bool;
 
+        /// Setter for [`isContinuous`][Self::isContinuous].
         #[method(setContinuous:)]
         pub unsafe fn setContinuous(&self, continuous: bool);
 
         #[method(autorepeat)]
         pub unsafe fn autorepeat(&self) -> bool;
 
+        /// Setter for [`autorepeat`][Self::autorepeat].
         #[method(setAutorepeat:)]
         pub unsafe fn setAutorepeat(&self, autorepeat: bool);
 
         #[method(wraps)]
         pub unsafe fn wraps(&self) -> bool;
 
+        /// Setter for [`wraps`][Self::wraps].
         #[method(setWraps:)]
         pub unsafe fn setWraps(&self, wraps: bool);
 
         #[method(value)]
         pub unsafe fn value(&self) -> c_double;
 
+        /// Setter for [`value`][Self::value].
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: c_double);
 
         #[method(minimumValue)]
         pub unsafe fn minimumValue(&self) -> c_double;
 
+        /// Setter for [`minimumValue`][Self::minimumValue].
         #[method(setMinimumValue:)]
         pub unsafe fn setMinimumValue(&self, minimum_value: c_double);
 
         #[method(maximumValue)]
         pub unsafe fn maximumValue(&self) -> c_double;
 
+        /// Setter for [`maximumValue`][Self::maximumValue].
         #[method(setMaximumValue:)]
         pub unsafe fn setMaximumValue(&self, maximum_value: c_double);
 
         #[method(stepValue)]
         pub unsafe fn stepValue(&self) -> c_double;
 
+        /// Setter for [`stepValue`][Self::stepValue].
         #[method(setStepValue:)]
         pub unsafe fn setStepValue(&self, step_value: c_double);
 
@@ -218,6 +225,7 @@ extern_methods!(
             feature = "UIMenuElement",
             feature = "objc2-core-foundation"
         ))]
+        /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
         #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,

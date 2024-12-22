@@ -110,6 +110,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`text`][Self::text].
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
@@ -118,6 +119,7 @@ extern_methods!(
         pub unsafe fn font(&self) -> Option<Retained<UIFont>>;
 
         #[cfg(feature = "UIFont")]
+        /// Setter for [`font`][Self::font].
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&UIFont>);
 
@@ -126,12 +128,14 @@ extern_methods!(
         pub unsafe fn textColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`textColor`][Self::textColor].
         #[method(setTextColor:)]
         pub unsafe fn setTextColor(&self, text_color: Option<&UIColor>);
 
         #[method(preferredVibrancy)]
         pub unsafe fn preferredVibrancy(&self) -> UILabelVibrancy;
 
+        /// Setter for [`preferredVibrancy`][Self::preferredVibrancy].
         #[method(setPreferredVibrancy:)]
         pub unsafe fn setPreferredVibrancy(&self, preferred_vibrancy: UILabelVibrancy);
 
@@ -140,6 +144,7 @@ extern_methods!(
         pub unsafe fn shadowColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`shadowColor`][Self::shadowColor].
         #[method(setShadowColor:)]
         pub unsafe fn setShadowColor(&self, shadow_color: Option<&UIColor>);
 
@@ -148,6 +153,7 @@ extern_methods!(
         pub unsafe fn shadowOffset(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`shadowOffset`][Self::shadowOffset].
         #[method(setShadowOffset:)]
         pub unsafe fn setShadowOffset(&self, shadow_offset: CGSize);
 
@@ -156,6 +162,7 @@ extern_methods!(
         pub unsafe fn textAlignment(&self) -> NSTextAlignment;
 
         #[cfg(feature = "NSText")]
+        /// Setter for [`textAlignment`][Self::textAlignment].
         #[method(setTextAlignment:)]
         pub unsafe fn setTextAlignment(&self, text_alignment: NSTextAlignment);
 
@@ -164,12 +171,14 @@ extern_methods!(
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
         #[cfg(feature = "NSParagraphStyle")]
+        /// Setter for [`lineBreakMode`][Self::lineBreakMode].
         #[method(setLineBreakMode:)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
         #[method_id(@__retain_semantics Other attributedText)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
+        /// Setter for [`attributedText`][Self::attributedText].
         #[method(setAttributedText:)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
@@ -178,36 +187,42 @@ extern_methods!(
         pub unsafe fn highlightedTextColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`highlightedTextColor`][Self::highlightedTextColor].
         #[method(setHighlightedTextColor:)]
         pub unsafe fn setHighlightedTextColor(&self, highlighted_text_color: Option<&UIColor>);
 
         #[method(isHighlighted)]
         pub unsafe fn isHighlighted(&self) -> bool;
 
+        /// Setter for [`isHighlighted`][Self::isHighlighted].
         #[method(setHighlighted:)]
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
         #[method(isUserInteractionEnabled)]
         pub unsafe fn isUserInteractionEnabled(&self) -> bool;
 
+        /// Setter for [`isUserInteractionEnabled`][Self::isUserInteractionEnabled].
         #[method(setUserInteractionEnabled:)]
         pub unsafe fn setUserInteractionEnabled(&self, user_interaction_enabled: bool);
 
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method(numberOfLines)]
         pub unsafe fn numberOfLines(&self) -> NSInteger;
 
+        /// Setter for [`numberOfLines`][Self::numberOfLines].
         #[method(setNumberOfLines:)]
         pub unsafe fn setNumberOfLines(&self, number_of_lines: NSInteger);
 
         #[method(adjustsFontSizeToFitWidth)]
         pub unsafe fn adjustsFontSizeToFitWidth(&self) -> bool;
 
+        /// Setter for [`adjustsFontSizeToFitWidth`][Self::adjustsFontSizeToFitWidth].
         #[method(setAdjustsFontSizeToFitWidth:)]
         pub unsafe fn setAdjustsFontSizeToFitWidth(&self, adjusts_font_size_to_fit_width: bool);
 
@@ -216,6 +231,7 @@ extern_methods!(
         pub unsafe fn baselineAdjustment(&self) -> UIBaselineAdjustment;
 
         #[cfg(feature = "UIStringDrawing")]
+        /// Setter for [`baselineAdjustment`][Self::baselineAdjustment].
         #[method(setBaselineAdjustment:)]
         pub unsafe fn setBaselineAdjustment(&self, baseline_adjustment: UIBaselineAdjustment);
 
@@ -224,12 +240,14 @@ extern_methods!(
         pub unsafe fn minimumScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumScaleFactor`][Self::minimumScaleFactor].
         #[method(setMinimumScaleFactor:)]
         pub unsafe fn setMinimumScaleFactor(&self, minimum_scale_factor: CGFloat);
 
         #[method(allowsDefaultTighteningForTruncation)]
         pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
 
+        /// Setter for [`allowsDefaultTighteningForTruncation`][Self::allowsDefaultTighteningForTruncation].
         #[method(setAllowsDefaultTighteningForTruncation:)]
         pub unsafe fn setAllowsDefaultTighteningForTruncation(
             &self,
@@ -241,6 +259,7 @@ extern_methods!(
         pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
 
         #[cfg(feature = "NSParagraphStyle")]
+        /// Setter for [`lineBreakStrategy`][Self::lineBreakStrategy].
         #[method(setLineBreakStrategy:)]
         pub unsafe fn setLineBreakStrategy(&self, line_break_strategy: NSLineBreakStrategy);
 
@@ -261,21 +280,25 @@ extern_methods!(
         pub unsafe fn preferredMaxLayoutWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`preferredMaxLayoutWidth`][Self::preferredMaxLayoutWidth].
         #[method(setPreferredMaxLayoutWidth:)]
         pub unsafe fn setPreferredMaxLayoutWidth(&self, preferred_max_layout_width: CGFloat);
 
         #[method(enablesMarqueeWhenAncestorFocused)]
         pub unsafe fn enablesMarqueeWhenAncestorFocused(&self) -> bool;
 
+        /// Setter for [`enablesMarqueeWhenAncestorFocused`][Self::enablesMarqueeWhenAncestorFocused].
         #[method(setEnablesMarqueeWhenAncestorFocused:)]
         pub unsafe fn setEnablesMarqueeWhenAncestorFocused(
             &self,
             enables_marquee_when_ancestor_focused: bool,
         );
 
+        /// Indicates whether expansion text will be shown when the view is too small to show all the contents. Defaults to NO.
         #[method(showsExpansionTextWhenTruncated)]
         pub unsafe fn showsExpansionTextWhenTruncated(&self) -> bool;
 
+        /// Setter for [`showsExpansionTextWhenTruncated`][Self::showsExpansionTextWhenTruncated].
         #[method(setShowsExpansionTextWhenTruncated:)]
         pub unsafe fn setShowsExpansionTextWhenTruncated(
             &self,
@@ -288,6 +311,7 @@ extern_methods!(
         pub unsafe fn minimumFontSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumFontSize`][Self::minimumFontSize].
         #[deprecated]
         #[method(setMinimumFontSize:)]
         pub unsafe fn setMinimumFontSize(&self, minimum_font_size: CGFloat);
@@ -296,6 +320,7 @@ extern_methods!(
         #[method(adjustsLetterSpacingToFitWidth)]
         pub unsafe fn adjustsLetterSpacingToFitWidth(&self) -> bool;
 
+        /// Setter for [`adjustsLetterSpacingToFitWidth`][Self::adjustsLetterSpacingToFitWidth].
         #[deprecated]
         #[method(setAdjustsLetterSpacingToFitWidth:)]
         pub unsafe fn setAdjustsLetterSpacingToFitWidth(

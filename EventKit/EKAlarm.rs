@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarm?language=objc)
+    /// The EKAlarm class provides an interface for accessing and manipulating calendar event alarms.
+    ///
+    /// The EKAlarm class represents alarms on an event. An alarm can be relative (e.g. 15 mins before)
+    /// or absolute (specific time).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarm?language=objc)
     #[unsafe(super(EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "EKObject")]
@@ -29,29 +34,54 @@ unsafe impl NSObjectProtocol for EKAlarm {}
 extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKAlarm {
+        /// Creates a new autoreleased alarm with an absolute trigger time.
+        ///
+        /// Parameter `date`: The date the alarm should fire.
         #[method_id(@__retain_semantics Other alarmWithAbsoluteDate:)]
         pub unsafe fn alarmWithAbsoluteDate(date: &NSDate) -> Retained<EKAlarm>;
 
+        /// Creates a new autoreleased alarm with a relative trigger time.
+        ///
+        /// Creates a new autoreleased alarm with a relative trigger time. This offset
+        /// is added to the start date of the event.
+        ///
+        ///
+        /// Parameter `offset`: The offset from the event start that the alarm should fire.
         #[method_id(@__retain_semantics Other alarmWithRelativeOffset:)]
         pub unsafe fn alarmWithRelativeOffset(offset: NSTimeInterval) -> Retained<EKAlarm>;
 
+        /// Specifies a relative offset from an event start date to fire an alarm.
+        ///
+        /// Set this property to an appropriate negative value to establish an alarm trigger
+        /// relative to the start date/time of an event. Setting this clears any existing
+        /// date trigger.
         #[method(relativeOffset)]
         pub unsafe fn relativeOffset(&self) -> NSTimeInterval;
 
+        /// Setter for [`relativeOffset`][Self::relativeOffset].
         #[method(setRelativeOffset:)]
         pub unsafe fn setRelativeOffset(&self, relative_offset: NSTimeInterval);
 
+        /// Represents an alarm that fires at a specific date.
+        ///
+        /// Set this property to a date to establish an absolute alarm trigger. Setting this
+        /// clears any relative interval trigger.
         #[method_id(@__retain_semantics Other absoluteDate)]
         pub unsafe fn absoluteDate(&self) -> Option<Retained<NSDate>>;
 
+        /// Setter for [`absoluteDate`][Self::absoluteDate].
         #[method(setAbsoluteDate:)]
         pub unsafe fn setAbsoluteDate(&self, absolute_date: Option<&NSDate>);
 
         #[cfg(feature = "EKStructuredLocation")]
+        /// Allows you to set a structured location (a location with a potential geo-coordinate)
+        /// on an alarm. This is used in conjunction with proximity to do geofence-based
+        /// triggering of reminders.
         #[method_id(@__retain_semantics Other structuredLocation)]
         pub unsafe fn structuredLocation(&self) -> Option<Retained<EKStructuredLocation>>;
 
         #[cfg(feature = "EKStructuredLocation")]
+        /// Setter for [`structuredLocation`][Self::structuredLocation].
         #[method(setStructuredLocation:)]
         pub unsafe fn setStructuredLocation(
             &self,
@@ -59,33 +89,60 @@ extern_methods!(
         );
 
         #[cfg(feature = "EKTypes")]
+        /// Defines whether this alarm triggers via entering/exiting a geofence as defined by
+        /// structuredLocation.
         #[method(proximity)]
         pub unsafe fn proximity(&self) -> EKAlarmProximity;
 
         #[cfg(feature = "EKTypes")]
+        /// Setter for [`proximity`][Self::proximity].
         #[method(setProximity:)]
         pub unsafe fn setProximity(&self, proximity: EKAlarmProximity);
 
         #[cfg(feature = "EKTypes")]
+        /// The type of alarm, based on the action taken when triggering the alarm.
+        ///
+        /// This field is read-only; to change the type of alarm, set emailAddress for EKAlarmTypeEmail,
+        /// soundName for EKAlarmTypeAudio or url for EKAlarmTypeProcedure.
+        /// Setting all of those to nil will change it to EKAlarmTypeDisplay.
         #[method(type)]
         pub unsafe fn r#type(&self) -> EKAlarmType;
 
+        /// An email address that is the recipient of an email alarm, which is an alarm that triggers an email message.
+        ///
+        /// When you set the emailAddress property, the action property is set to EKAlarmTypeEmail,
+        /// and the soundName and url properties are set to nil.
         #[method_id(@__retain_semantics Other emailAddress)]
         pub unsafe fn emailAddress(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`emailAddress`][Self::emailAddress].
         #[method(setEmailAddress:)]
         pub unsafe fn setEmailAddress(&self, email_address: Option<&NSString>);
 
+        /// The name of the sound to play when the alarm triggers.
+        ///
+        /// The value of this property is the name of a system sound that can be used with
+        /// the soundNamed: class method to create an NSSound object. When you set the soundName property,
+        /// the action property is set to EKAlarmTypeAudio, and the emailAddress and url properties are set to nil.
         #[method_id(@__retain_semantics Other soundName)]
         pub unsafe fn soundName(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`soundName`][Self::soundName].
         #[method(setSoundName:)]
         pub unsafe fn setSoundName(&self, sound_name: Option<&NSString>);
 
+        /// The URL to open when the alarm triggers.
+        ///
+        /// When you set the url property, the action property is set to EKAlarmTypeProcedure,
+        /// and the emailAddress and soundName properties are set to nil.
+        /// Note: Starting with OS X 10.9, it is not possible to create new procedure alarms or view URLs for existing procedure alarms.
+        /// Trying to save or modify a procedure alarm will result in a save error.
+        /// Editing other aspects of events or reminders that have existing procedure alarms is allowed as long as the alarm isn't modified.
         #[deprecated]
         #[method_id(@__retain_semantics Other url)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`url`][Self::url].
         #[deprecated]
         #[method(setUrl:)]
         pub unsafe fn setUrl(&self, url: Option<&NSURL>);

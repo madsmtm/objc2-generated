@@ -261,7 +261,9 @@ extern "C" {
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSModalResponse = NSInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalresponsestop?language=objc)
+/// Also used as the default response for sheets
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalresponsestop?language=objc)
 pub static NSModalResponseStop: NSModalResponse = -1000;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalresponseabort?language=objc)
@@ -273,7 +275,10 @@ pub static NSModalResponseContinue: NSModalResponse = -1002;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsupdatewindowsrunloopordering?language=objc)
 pub const NSUpdateWindowsRunLoopOrdering: c_uint = 500000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationpresentationoptions?language=objc)
+/// Flags that comprise an application's
+/// `presentationOptions.`
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationpresentationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -281,18 +286,33 @@ pub struct NSApplicationPresentationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSApplicationPresentationOptions: NSUInteger {
         const NSApplicationPresentationDefault = 0;
+/// Dock appears when moused to.
         const NSApplicationPresentationAutoHideDock = 1<<0;
+/// Dock is entirely unavailable.
         const NSApplicationPresentationHideDock = 1<<1;
+/// Menu Bar appears when moused to.
         const NSApplicationPresentationAutoHideMenuBar = 1<<2;
+/// Menu Bar is entirely unavailable.
         const NSApplicationPresentationHideMenuBar = 1<<3;
+/// All Apple menu items are disabled.
         const NSApplicationPresentationDisableAppleMenu = 1<<4;
+/// Cmd+Tab UI is disabled.
         const NSApplicationPresentationDisableProcessSwitching = 1<<5;
+/// Cmd+Opt+Esc panel is disabled.
         const NSApplicationPresentationDisableForceQuit = 1<<6;
+/// PowerKey panel and Restart/Shut Down/Log Out disabled.
         const NSApplicationPresentationDisableSessionTermination = 1<<7;
+/// Application "Hide" menu item is disabled.
         const NSApplicationPresentationDisableHideApplication = 1<<8;
+/// Menu Bar's transparent appearance is disabled.
         const NSApplicationPresentationDisableMenuBarTransparency = 1<<9;
+/// Application is in fullscreen mode.
         const NSApplicationPresentationFullScreen = 1<<10;
+/// Fullscreen window toolbar is detached from window and hides/shows on rollover.
+/// May be used only when both
+/// `NSApplicationPresentationFullScreen`is also set.
         const NSApplicationPresentationAutoHideToolbar = 1<<11;
+/// "Shake mouse pointer to locate" is disabled for this application.
         const NSApplicationPresentationDisableCursorLocationAssistance = 1<<12;
     }
 }
@@ -312,6 +332,7 @@ unsafe impl RefEncode for NSApplicationPresentationOptions {
 pub struct NSApplicationOcclusionState(pub NSUInteger);
 bitflags::bitflags! {
     impl NSApplicationOcclusionState: NSUInteger {
+/// If set, at least part of any window owned by this application is visible. If not set, all parts of all windows owned by this application are completely occluded. The menu bar does not count as a window owned by this application, so if only the menu bar is showing then the application is considered not visible. Status items, however, have windows owned by your application. If the status item is present in the menu bar, your application will be considered visible as long as the menu bar is visible.
         #[doc(alias = "NSApplicationOcclusionStateVisible")]
         const Visible = 1<<1;
     }
@@ -332,6 +353,7 @@ unsafe impl RefEncode for NSApplicationOcclusionState {
 pub struct NSWindowListOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSWindowListOptions: NSInteger {
+/// Onscreen application windows in front to back order. By default, -[NSApp windows] is used.
         const NSWindowListOrderedFrontToBack = 1<<0;
     }
 }
@@ -344,7 +366,9 @@ unsafe impl RefEncode for NSWindowListOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalsession?language=objc)
+/// Information used by the system during modal sessions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalsession?language=objc)
 pub type NSModalSession = *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrequestuserattentiontype?language=objc)
@@ -425,6 +449,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSApplicationDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSApplicationDelegate>>);
 
@@ -464,17 +489,45 @@ extern_methods!(
         #[method(deactivate)]
         pub unsafe fn deactivate(&self);
 
+        /// Makes the receiver the active app.
+        /// - Parameter ignoreOtherApps: If `NO`, the app is activated only if no other app is currently active. If `YES`, the app activates regardless.
         #[deprecated = "This method will be deprecated in a future release. Use NSApp.activate instead."]
         #[method(activateIgnoringOtherApps:)]
         pub fn activateIgnoringOtherApps(&self, ignore_other_apps: bool);
 
+        /// Makes the receiver the active app, if possible.
+        ///
+        /// You shouldn’t assume the app will be active immediately
+        /// after sending this message. The framework also does not
+        /// guarantee that the app will be activated at all.
+        ///
+        /// For cooperative activation, the other application should
+        /// call `-yieldActivationToApplication:` or equivalent prior
+        /// to the target application invoking `-activate`.
+        ///
+        /// Invoking `-activate` on an already-active application
+        /// cancels any pending activation yields by the receiver.
         #[method(activate)]
         pub unsafe fn activate(&self);
 
         #[cfg(feature = "NSRunningApplication")]
+        /// Explicitly allows another application to make itself active.
+        ///
+        /// Calling this method will not deactivate the current app, nor
+        /// will it activate the other app. For cooperative or coordinated
+        /// activation, the other app should request to be activated at
+        /// some point in the future by calling `activate` or equivalent.
         #[method(yieldActivationToApplication:)]
         pub unsafe fn yieldActivationToApplication(&self, application: &NSRunningApplication);
 
+        /// Same as `-yieldActivationToApplication:`, but the provided
+        /// bundle identifier does not have to correspond to a currently
+        /// running application.
+        ///
+        /// This method should be used to yield activation to apps that
+        /// may not be running at the time of invoking it. If it is known
+        /// that the target application is currently running, use
+        /// `-yieldActivationToApplication:` instead.
         #[method(yieldActivationToApplicationWithBundleIdentifier:)]
         pub unsafe fn yieldActivationToApplicationWithBundleIdentifier(
             &self,
@@ -526,6 +579,7 @@ extern_methods!(
         #[method(terminate:)]
         pub unsafe fn terminate(&self, sender: Option<&AnyObject>);
 
+        /// Inform the user that this application needs attention - call this method only if your application is not already active.
         #[method(requestUserAttention:)]
         pub fn requestUserAttention(&self, request_type: NSRequestUserAttentionType) -> NSInteger;
 
@@ -533,6 +587,7 @@ extern_methods!(
         pub unsafe fn cancelUserAttentionRequest(&self, request: NSInteger);
 
         #[cfg(all(feature = "NSWindow", feature = "block2"))]
+        /// Execute a block for each of the app's windows. Set `*stop = YES` if desired, to halt the enumeration early.
         #[method(enumerateWindowsWithOptions:usingBlock:)]
         pub unsafe fn enumerateWindowsWithOptions_usingBlock(
             &self,
@@ -558,14 +613,18 @@ extern_methods!(
         pub unsafe fn mainMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
+        /// Setter for [`mainMenu`][Self::mainMenu].
         #[method(setMainMenu:)]
         pub fn setMainMenu(&self, main_menu: Option<&NSMenu>);
 
         #[cfg(feature = "NSMenu")]
+        /// Set or get the Help menu for the app.  If a non-nil menu is set as the Help menu, Spotlight for Help will be installed in it; otherwise AppKit will install Spotlight for Help into a menu of its choosing (and that menu is not returned from `-helpMenu`).  If you wish to completely suppress Spotlight for Help, you can set a menu that does not appear in the menu bar.
+        /// `NSApplication`retains its Help menu and releases it when a different menu is set.
         #[method_id(@__retain_semantics Other helpMenu)]
         pub unsafe fn helpMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
+        /// Setter for [`helpMenu`][Self::helpMenu].
         #[method(setHelpMenu:)]
         pub unsafe fn setHelpMenu(&self, help_menu: Option<&NSMenu>);
 
@@ -574,14 +633,22 @@ extern_methods!(
         pub unsafe fn applicationIconImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`applicationIconImage`][Self::applicationIconImage].
         #[method(setApplicationIconImage:)]
         pub unsafe fn setApplicationIconImage(&self, application_icon_image: Option<&NSImage>);
 
         #[cfg(feature = "NSRunningApplication")]
+        /// Returns: The activation policy of the application.
         #[method(activationPolicy)]
         pub unsafe fn activationPolicy(&self) -> NSApplicationActivationPolicy;
 
         #[cfg(feature = "NSRunningApplication")]
+        /// Attempts to modify the application's activation policy.  In OS X 10.9, any policy may be set; prior to 10.9, the activation policy may be changed to
+        /// `NSApplicationActivationPolicyProhibited`or
+        /// `NSApplicationActivationPolicyRegular,`but may not be changed to
+        /// `NSApplicationActivationPolicyAccessory.`This returns
+        /// `YES`if setting the activation policy is successful, and
+        /// `NO`if not.
         #[method(setActivationPolicy:)]
         pub fn setActivationPolicy(&self, activation_policy: NSApplicationActivationPolicy)
             -> bool;
@@ -601,24 +668,36 @@ extern_methods!(
             mtm: MainThreadMarker,
         );
 
+        /// If an application delegate returns NSTerminateLater from -applicationShouldTerminate:, -replyToApplicationShouldTerminate: must be called with YES or NO once the application decides if it can terminate.
         #[method(replyToApplicationShouldTerminate:)]
         pub unsafe fn replyToApplicationShouldTerminate(&self, should_terminate: bool);
 
+        /// If an application delegate encounters an error while handling `-application:openFiles:` or` -application:printFiles:`, `-replyToOpenOrPrint:` should be called with
+        /// `NSApplicationDelegateReplyFailure.`If the user cancels the operation,
+        /// `NSApplicationDelegateReplyCancel`should be used, and if the operation succeeds,
+        /// `NSApplicationDelegateReplySuccess`should be used .
         #[method(replyToOpenOrPrint:)]
         pub unsafe fn replyToOpenOrPrint(&self, reply: NSApplicationDelegateReply);
 
+        /// Opens the character palette.
         #[method(orderFrontCharacterPalette:)]
         pub fn orderFrontCharacterPalette(&self, sender: Option<&AnyObject>);
 
+        /// Gets or sets the
+        /// `presentationOptions`that should be in effect for the system when this application is the active application.  Only certain combinations of
+        /// `NSApplicationPresentationOptions`flags are allowed, as detailed in the AppKit Release Notes and the reference documentation for `-setPresentationOptions:`.  When given an invalid combination of option flags, `-setPresentationOptions:` raises an exception.
         #[method(presentationOptions)]
         pub fn presentationOptions(&self) -> NSApplicationPresentationOptions;
 
+        /// Setter for [`presentationOptions`][Self::presentationOptions].
         #[method(setPresentationOptions:)]
         pub fn setPresentationOptions(
             &self,
             presentation_options: NSApplicationPresentationOptions,
         );
 
+        /// Returns: The set of application presentation options that are currently in effect for the system.
+        /// These are the presentation options that have been put into effect by the currently active application.
         #[method(currentSystemPresentationOptions)]
         pub unsafe fn currentSystemPresentationOptions(&self) -> NSApplicationPresentationOptions;
 
@@ -663,6 +742,7 @@ extern_methods!(
         pub unsafe fn appearance(&self) -> Option<Retained<NSAppearance>>;
 
         #[cfg(feature = "NSAppearance")]
+        /// Setter for [`appearance`][Self::appearance].
         #[method(setAppearance:)]
         pub fn setAppearance(&self, appearance: Option<&NSAppearance>);
 
@@ -756,6 +836,7 @@ extern_methods!(
         pub unsafe fn windowsMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
+        /// Setter for [`windowsMenu`][Self::windowsMenu].
         #[method(setWindowsMenu:)]
         pub unsafe fn setWindowsMenu(&self, windows_menu: Option<&NSMenu>);
 
@@ -797,12 +878,17 @@ extern_methods!(
     /// NSFullKeyboardAccess
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
+        /// A Boolean value indicating whether keyboard navigation is enabled in System Settings > Keyboard.
+        /// - Note: The value of this property is `YES` if keyboard navigation is enabled or `NO` if it’s not. You might use this value to implement your own key loop or to implement in-control tabbing behavior similar to `NSTableView`. Because of the nature of the preference storage, you won’t be notified of changes to this property if you attempt to observe it through key-value observing; however, accessing this property is fairly inexpensive, so you can access it directly rather than caching it.
+        /// - Note: This property’s value isn’t necessarily reflective of the separate accessibility setting named “Full Keyboard Access” in System Settings > Accessibility > Keyboard.
         #[method(isFullKeyboardAccessEnabled)]
         pub unsafe fn isFullKeyboardAccessEnabled(&self) -> bool;
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationterminatereply?language=objc)
+/// Return values for `-applicationShouldTerminate:`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationterminatereply?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -821,7 +907,9 @@ unsafe impl RefEncode for NSApplicationTerminateReply {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationprintreply?language=objc)
+/// Return values for `-application:printFiles:withSettings:showPrintPanels:`.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationprintreply?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -845,6 +933,14 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdelegate?language=objc)
     pub unsafe trait NSApplicationDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSResponder")]
+        /// Allowable return values are:
+        /// `NSTerminateNow`- it is ok to proceed with termination
+        /// `NSTerminateCancel`- the application should not be terminated
+        /// `NSTerminateLater`- it may be ok to proceed with termination later.  The application must call `-replyToApplicationShouldTerminate:` with
+        /// `YES`or
+        /// `NO`once the answer is known
+        ///
+        /// Note: This return value is for delegates who need to provide document modal alerts (sheets) in order to decide whether to quit.
         #[optional]
         #[method(applicationShouldTerminate:)]
         unsafe fn applicationShouldTerminate(
@@ -853,6 +949,11 @@ extern_protocol!(
         ) -> NSApplicationTerminateReply;
 
         #[cfg(feature = "NSResponder")]
+        /// This will be called for any URLs your application is asked to open. This includes URL types (CFBundleURLTypes) defined in your Info.plist, and Document types (
+        /// `CFBundleDocumentTypes)`that have no associated
+        /// `NSDocument`class. Document URLs that have an associated
+        /// `NSDocument`class will be opened through
+        /// `NSDocumentController.`If this is implemented, `-application:openFiles:` and `-application:openFile:` will not be called.
         #[optional]
         #[method(application:openURLs:)]
         unsafe fn application_openURLs(&self, application: &NSApplication, urls: &NSArray<NSURL>);
@@ -974,11 +1075,23 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSResponder")]
+        /// Method to opt-in to secure restorable state.
+        ///
+        /// When this returns
+        /// `YES:`NSCoders that are passed into the various
+        /// `NSWindowRestoration`methods will
+        /// `requiresSecureCoding`and have a
+        /// `decodingFailurePolicy`of
+        /// `NSDecodingFailurePolicySetErrorAndReturn.`Any
+        /// `restorationClass`set on a window must explicitly conform to
+        /// `NSWindowRestoration.`This method will be called prior to any state encoding or restoration.
         #[optional]
         #[method(applicationSupportsSecureRestorableState:)]
         unsafe fn applicationSupportsSecureRestorableState(&self, app: &NSApplication) -> bool;
 
         #[cfg(feature = "NSResponder")]
+        /// Method called by `-[NSApplication encodeRestorableStateWithCoder:]` to give the delegate a chance to encode any additional state into the
+        /// `NSCoder.`If the restorable state managed by the delegate changes, you must call `-[NSApplication invalidateRestorableState]` so that it will be re-encoded. See the header `NSWindowRestoration.h` for more information.
         #[optional]
         #[method(application:willEncodeRestorableState:)]
         unsafe fn application_willEncodeRestorableState(
@@ -988,11 +1101,19 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSResponder")]
+        /// Method called by `-[NSApplication restoreStateWithCoder:]` to give the delegate a chance to restore its own state, which it may decode from the
+        /// `NSCoder.`See the header `NSWindowRestoration.h` for more information.
         #[optional]
         #[method(application:didDecodeRestorableState:)]
         unsafe fn application_didDecodeRestorableState(&self, app: &NSApplication, coder: &NSCoder);
 
         #[cfg(feature = "NSResponder")]
+        /// This will be called on the main thread as soon as the user indicates they want to continue an activity in your application. The
+        /// `NSUserActivity`object may not be available instantly, so use this as an opportunity to show the user that an activity will be continued shortly. Return
+        /// `YES`to indicate that you are doing so. Return
+        /// `NO`(or leave it unimplemented) and AppKit/UIKit will put up a default UI.
+        ///
+        /// For each `-application:willContinueUserActivityWithType:` invocation, you are guaranteed to get exactly one invocation of `-application:continueUserActivity:restorationHandler:` on success, or `-application:didFailToContinueUserActivityWithType:error:` if an error was encountered.
         #[optional]
         #[method(application:willContinueUserActivityWithType:)]
         unsafe fn application_willContinueUserActivityWithType(
@@ -1006,6 +1127,20 @@ extern_protocol!(
             feature = "NSUserActivity",
             feature = "block2"
         ))]
+        /// This will be called on the main thread after the
+        /// `NSUserActivity`object is available. Use the data you stored in the NSUserActivity object to re-create what the user was doing.
+        ///
+        ///
+        /// Returns: `YES`to indicate that the activity was handled. Return
+        /// `NO`(or leave it unimplemented) and AppKit will attempt to continue the user activity.
+        ///
+        /// You should create/fetch any restorable objects associated with the user activity, and pass them to the restorationHandler. They will then get the above `-restoreUserActivityState:` method invoked with the user activity. Invoking the
+        /// `restorationHandler`is optional. It may be copied and invoked later, but must be invoked on the main thread.
+        ///
+        /// If this user activity was created automatically by having
+        /// `NSUbiquitousDocumentUserActivityType`in a
+        /// `CFBundleDocumentTypes`entry, AppKit can automatically restore the NSUserActivity on OS X if NO is returned, or this method is unimplemented. It will do so by creating a document of the appropriate type using the URL stored in the userInfo under the
+        /// `NSUserActivityDocumentURLKey.`The document will have `-restoreUserActivity:` called on it.
         #[optional]
         #[method(application:continueUserActivity:restorationHandler:)]
         unsafe fn application_continueUserActivity_restorationHandler(
@@ -1018,6 +1153,8 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "NSResponder")]
+        /// There are instances where continuing a
+        /// `NSUserActivity`may fail. This will get called on the main thread if it does so. If it is unimplemented, AppKit will present the error.
         #[optional]
         #[method(application:didFailToContinueUserActivityWithType:error:)]
         unsafe fn application_didFailToContinueUserActivityWithType_error(
@@ -1028,6 +1165,8 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSResponder")]
+        /// This will be called on the main thread when a user activity managed by AppKit/UIKit has been updated. You should use this as a last chance to add additional data to the
+        /// `userActivity.`
         #[optional]
         #[method(application:didUpdateUserActivity:)]
         unsafe fn application_didUpdateUserActivity(
@@ -1038,6 +1177,14 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "objc2-cloud-kit"))]
         #[cfg(target_vendor = "apple")]
+        /// This will be called on the main thread after the user indicates they want to accept a CloudKit sharing invitation in your application.
+        ///
+        /// You should use the
+        /// `CKShareMetadata`object's
+        /// `shareURL`and containerIdentifier to schedule a
+        /// `CKAcceptSharesOperation,`then start using the resulting
+        /// `CKShare`and its associated record(s), which will appear in the
+        /// `CKContainer's`shared database in a zone matching that of the record's owner.
         #[optional]
         #[method(application:userDidAcceptCloudKitShareWithMetadata:)]
         unsafe fn application_userDidAcceptCloudKitShareWithMetadata(
@@ -1047,6 +1194,8 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSResponder")]
+        /// Returns: `YES`if the receiving delegate object can respond to key value coding messages for a specific keyed attribute, to-one relationship, or to-many relationship.  Return
+        /// `NO`otherwise.
         #[optional]
         #[method(application:delegateHandlesKey:)]
         unsafe fn application_delegateHandlesKey(
@@ -1056,6 +1205,11 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "NSResponder")]
+        /// This method will be called once during application launch at `-[NSApplication finishLaunching]`.
+        ///
+        ///
+        /// Returns: `NO`if the receiving delegate object wishes to opt-out of system-wide keyboard shortcut localization for all application-supplied menus. Return
+        /// `YES`by default for apps linked against 12.0 and later SDK.
         #[optional]
         #[method(applicationShouldAutomaticallyLocalizeKeyEquivalents:)]
         unsafe fn applicationShouldAutomaticallyLocalizeKeyEquivalents(
@@ -1147,6 +1301,7 @@ extern_methods!(
         pub unsafe fn servicesMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
+        /// Setter for [`servicesMenu`][Self::servicesMenu].
         #[method(setServicesMenu:)]
         pub unsafe fn setServicesMenu(&self, services_menu: Option<&NSMenu>);
 
@@ -1188,37 +1343,53 @@ extern_methods!(
         #[method_id(@__retain_semantics Other servicesProvider)]
         pub unsafe fn servicesProvider(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`servicesProvider`][Self::servicesProvider].
         #[method(setServicesProvider:)]
         pub unsafe fn setServicesProvider(&self, services_provider: Option<&AnyObject>);
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionkey?language=objc)
+/// Optional keys in `-orderFrontStandardAboutPanelWithOptions:`
+/// `optionsDictionary.`
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSAboutPanelOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptioncredits?language=objc)
+    /// NSAttributedString displayed in the info area of the panel. If not specified, contents obtained from "Credits.rtf" (.rtfd, .html) in [NSBundle mainBundle]; if not available, blank. Note that  in applications built against the 10.14 SDK or earlier, the credits are shown in light appearance even when the application is running in dark appearance, except when the credits are specified as an attributed string, or come from a file are the text is just pure black. In applications built against the 10.15 SDK or newer, credits will be shown in dark appearance, using the "adaptive color mapping" setting in NSTextView.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptioncredits?language=objc)
     pub static NSAboutPanelOptionCredits: &'static NSAboutPanelOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionapplicationname?language=objc)
+    /// NSString displayed in place of the default app name. If not specified, uses the value of CFBundleName (localizable). Fallback is [[NSProcessInfo processInfo] processName].
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionapplicationname?language=objc)
     pub static NSAboutPanelOptionApplicationName: &'static NSAboutPanelOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionapplicationicon?language=objc)
+    /// NSImage displayed in place of NSApplicationIcon. If not specified, use [NSImage imageNamed:
+    /// "
+    /// NSApplicationIcon"]; if not available, generic icon.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionapplicationicon?language=objc)
     pub static NSAboutPanelOptionApplicationIcon: &'static NSAboutPanelOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionversion?language=objc)
+    /// NSString containing the build version number of the application ("58.4", "1.2d3"); displayed as "Version 58.4" or "Version 1.0 (58.4) depending on the presence of ApplicationVersion. If not specified, obtain from the CFBundleVersion key in infoDictionary; if not specified or empty string, leave blank.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionversion?language=objc)
     pub static NSAboutPanelOptionVersion: &'static NSAboutPanelOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionapplicationversion?language=objc)
+    /// NSString displayed as the marketing version  ("1.0", "Mac OS X", "3", "WebObjects 3.5", ...), before the build version. If not specified, obtain from CFBundleShortVersionString key in infoDictionary. Prefixed with word "Version" if it looks like a number.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionapplicationversion?language=objc)
     pub static NSAboutPanelOptionApplicationVersion: &'static NSAboutPanelOptionKey;
 }
 
@@ -1251,6 +1422,13 @@ extern_methods!(
     /// NSRestorableUserInterface
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
+        /// Disable or reenable relaunching this app on login, if the app was running at the time the user logged out.  These methods increment and decrement a counter respectively; if the counter is 0 at the time the user logs out, then the app may be relaunched when the user logs back in.  The counter is initially zero, so by default apps are relaunched.
+        ///
+        /// If your app should not be relaunched because it launches via some other mechanism (e.g. launchd), then the recommended usage is to call `-[NSApp disableRelaunchOnLogin]` once, and never pair it with an -enable call.
+        ///
+        /// If your app should not be relaunched because it triggers a restart (e.g. an installer), then the recommended usage is to call `-[NSApp disableRelaunchOnLogin]` immediately before you attempt to trigger a restart, and `-[NSApp enableRelaunchOnLogin]` immediately after.  This is because the user may cancel restarting; if the user later restarts for another reason, then your app should be brought back.
+        ///
+        /// These methods are thread safe.
         #[method(disableRelaunchOnLogin)]
         pub unsafe fn disableRelaunchOnLogin(&self);
 
@@ -1259,7 +1437,10 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsremotenotificationtype?language=objc)
+/// Soft deprecated.
+/// Please use `NSApplication`'s `-registerForRemoteNotifications` along with `-requestAuthorizationWithOptions:` from the `UserNotifications.framework` to specify allowable notification types.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsremotenotificationtype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1295,9 +1476,12 @@ extern_methods!(
         #[method(unregisterForRemoteNotifications)]
         pub unsafe fn unregisterForRemoteNotifications(&self);
 
+        /// Returns: `YES`if the application is currently registered for remote notifications, taking into account any systemwide settings; doesn't relate to connectivity.
         #[method(isRegisteredForRemoteNotifications)]
         pub unsafe fn isRegisteredForRemoteNotifications(&self) -> bool;
 
+        /// The following are soft deprecated.
+        /// Please use the `-registerForRemoteNotifications` above and `-requestAuthorizationWithOptions:` from `UserNotifications.framework`.
         #[method(registerForRemoteNotificationTypes:)]
         pub unsafe fn registerForRemoteNotificationTypes(&self, types: NSRemoteNotificationType);
 
@@ -1307,9 +1491,12 @@ extern_methods!(
 );
 
 extern "C-unwind" {
+    /// An Application's startup function.
     pub fn NSApplicationMain(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int;
 }
 
+/// `NSApplicationLoad`should be called when loading a Cocoa bundle in a Carbon app in order to initialize
+/// `NSApplication`and other Cocoa objects.  Redundant calls are ignored.
 #[inline]
 pub unsafe extern "C-unwind" fn NSApplicationLoad() -> bool {
     extern "C-unwind" {
@@ -1318,6 +1505,8 @@ pub unsafe extern "C-unwind" fn NSApplicationLoad() -> bool {
     unsafe { NSApplicationLoad() }.as_bool()
 }
 
+/// `NSShowsServicesMenuItem()`always returns
+/// `YES.`
 #[inline]
 pub unsafe extern "C-unwind" fn NSShowsServicesMenuItem(item_name: &NSString) -> bool {
     extern "C-unwind" {
@@ -1326,6 +1515,7 @@ pub unsafe extern "C-unwind" fn NSShowsServicesMenuItem(item_name: &NSString) ->
     unsafe { NSShowsServicesMenuItem(item_name) }.as_bool()
 }
 
+/// `NSSetShowsServicesMenuItem()`has no effect, and always returns 0.
 #[inline]
 pub unsafe extern "C-unwind" fn NSSetShowsServicesMenuItem(
     item_name: &NSString,
@@ -1338,6 +1528,8 @@ pub unsafe extern "C-unwind" fn NSSetShowsServicesMenuItem(
 }
 
 extern "C-unwind" {
+    /// `NSUpdateDynamicServices()`causes the services information for the system to be updated.
+    /// This will only be necessary if your program adds dynamic services to the system (i.e. services not found in mach-o segments of executables).
     pub fn NSUpdateDynamicServices();
 }
 
@@ -1357,6 +1549,7 @@ pub unsafe extern "C-unwind" fn NSPerformService(
 pub type NSServiceProviderName = NSString;
 
 extern "C-unwind" {
+    /// Apps should use -setServicesProvider.
     pub fn NSRegisterServicesProvider(provider: Option<&AnyObject>, name: &NSServiceProviderName);
 }
 
@@ -1447,22 +1640,30 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationlaunchisdefaultlaunchkey?language=objc)
+    /// The following key is present in the userInfo of NSApplicationDidFinishLaunchingNotification.  Its value is an NSNumber containing a bool.  It will be NO if the app was launched to open or print a file, to perform a Service, if the app had saved state that will be restored, or if the app launch was in some other sense not a "default" launch.  Otherwise its value will be YES.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationlaunchisdefaultlaunchkey?language=objc)
     pub static NSApplicationLaunchIsDefaultLaunchKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationlaunchusernotificationkey?language=objc)
+    /// The following key is present in the userInfo of NSApplicationDidFinishLaunchingNotification. It will be present if your application was launched because a user activated a notification in the Notification Center. Its value is an NSUserNotification object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationlaunchusernotificationkey?language=objc)
     pub static NSApplicationLaunchUserNotificationKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationlaunchremotenotificationkey?language=objc)
+    /// NSApplicationLaunchRemoteNotificationKey is unimplemented.  Please use NSApplicationLaunchUserNotificationKey to get the NSUserNotification object.  The NSUserNotification object has an isRemote property to indicate whether this application was launched as a result of a remote notification
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationlaunchremotenotificationkey?language=objc)
     pub static NSApplicationLaunchRemoteNotificationKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdidchangeocclusionstatenotification?language=objc)
+    /// Upon receiving this notification, you can query the NSApplication for its occlusion state. Note that this only notifies about changes in the state of the occlusion, not when the occlusion region changes. You can use this notification to increase responsiveness and save power, by halting any expensive calculations that the user can not see.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdidchangeocclusionstatenotification?language=objc)
     pub static NSApplicationDidChangeOcclusionStateNotification: &'static NSNotificationName;
 }
 
@@ -1481,6 +1682,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
         #[cfg(feature = "NSWindow")]
+        /// `-runModalForWindow:relativeToWindow:` was deprecated in Mac OS X 10.0. Please use `-[NSWindow beginSheet:completionHandler:]` instead.
         #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]
         #[method(runModalForWindow:relativeToWindow:)]
         pub unsafe fn runModalForWindow_relativeToWindow(
@@ -1490,6 +1692,7 @@ extern_methods!(
         ) -> NSInteger;
 
         #[cfg(feature = "NSWindow")]
+        /// `-beginModalSessionForWindow:relativeToWindow:` was deprecated in Mac OS X 10.0. Please use `-[NSWindow beginSheet:completionHandler:]` instead.
         #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]
         #[method(beginModalSessionForWindow:relativeToWindow:)]
         pub unsafe fn beginModalSessionForWindow_relativeToWindow(
@@ -1498,6 +1701,8 @@ extern_methods!(
             doc_window: Option<&NSWindow>,
         ) -> NSModalSession;
 
+        /// `-application:printFiles:` was deprecated in Mac OS X 10.4.
+        /// Implement `-application:printFiles:withSettings:showPrintPanels:` in your application delegate instead.
         #[deprecated]
         #[method(application:printFiles:)]
         pub unsafe fn application_printFiles(
@@ -1507,6 +1712,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSWindow")]
+        /// `NSWindow`'s `-beginSheet:completionHandler:` and `-endSheet:returnCode:` should be used instead.  `NSApplication`'s `-beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo:` will continue to work as it previously did, leaking contextInfo and failing when there is already an existing sheet.
         #[deprecated = "Use -[NSWindow beginSheet:completionHandler:] instead"]
         #[method(beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]
         pub unsafe fn beginSheet_modalForWindow_modalDelegate_didEndSelector_contextInfo(
@@ -1538,6 +1744,7 @@ extern_methods!(
         ) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSGraphicsContext")]
+        /// This method is deprecated as of macOS 10.12. Beginning in OS X 10.11 it would always return nil. Prior to this it would return an undefined graphics context that was not generally suitable for drawing.
         #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
         #[method_id(@__retain_semantics Other context)]
         pub unsafe fn context(&self) -> Option<Retained<NSGraphicsContext>>;

@@ -8,7 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcinferencegraph?language=objc)
+    /// An inference graph created from one or more MLCGraph objects
+    /// plus additional layers added directly to the inference graph.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcinferencegraph?language=objc)
     #[unsafe(super(MLCGraph, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCGraph")]
@@ -22,6 +25,9 @@ unsafe impl NSObjectProtocol for MLCInferenceGraph {}
 extern_methods!(
     #[cfg(feature = "MLCGraph")]
     unsafe impl MLCInferenceGraph {
+        /// Returns the total size in bytes of device memory used by all intermediate tensors in the inference graph
+        ///
+        /// Returns: A NSUInteger value
         #[deprecated]
         #[method(deviceMemorySize)]
         pub unsafe fn deviceMemorySize(&self) -> NSUInteger;
@@ -34,16 +40,40 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Create an inference graph
+        ///
+        /// Parameter `graphObjects`: The layers from these graph objects will be added to the training graph
+        ///
+        /// Returns: A new inference graph object
         #[deprecated]
         #[method_id(@__retain_semantics Other graphWithGraphObjects:)]
         pub unsafe fn graphWithGraphObjects(graph_objects: &NSArray<MLCGraph>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add the list of inputs to the inference graph
+        ///
+        /// Parameter `inputs`: The inputs
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(addInputs:)]
         pub unsafe fn addInputs(&self, inputs: &NSDictionary<NSString, MLCTensor>) -> bool;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add the list of inputs to the inference graph
+        ///
+        /// Each input, loss label or label weights tensor is identified by a NSString.
+        /// When the inference graph is executed, this NSString is used to identify which data object
+        /// should be as input data for each tensor whose device memory needs to be updated
+        /// before the graph is executed.
+        ///
+        /// Parameter `inputs`: The inputs
+        ///
+        /// Parameter `lossLabels`: The loss label inputs
+        ///
+        /// Parameter `lossLabelWeights`: The loss label weights
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(addInputs:lossLabels:lossLabelWeights:)]
         pub unsafe fn addInputs_lossLabels_lossLabelWeights(
@@ -54,11 +84,23 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "MLCTensor")]
+        /// Add the list of outputs to the inference graph
+        ///
+        /// Parameter `outputs`: The outputs
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(addOutputs:)]
         pub unsafe fn addOutputs(&self, outputs: &NSDictionary<NSString, MLCTensor>) -> bool;
 
         #[cfg(all(feature = "MLCDevice", feature = "MLCTypes"))]
+        /// Compile the training graph for a device.
+        ///
+        /// Parameter `options`: The compiler options to use when compiling the training graph
+        ///
+        /// Parameter `device`: The MLCDevice object
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(compileWithOptions:device:)]
         pub unsafe fn compileWithOptions_device(
@@ -73,6 +115,19 @@ extern_methods!(
             feature = "MLCTensorData",
             feature = "MLCTypes"
         ))]
+        /// Compile the inference graph for a device.
+        ///
+        /// Specifying the list of constant tensors when we compile the graph allows MLCompute to perform additional optimizations at compile time.
+        ///
+        /// Parameter `options`: The compiler options to use when compiling the inference graph
+        ///
+        /// Parameter `device`: The MLCDevice object
+        ///
+        /// Parameter `inputTensors`: The list of input tensors that are constants
+        ///
+        /// Parameter `inputTensorsData`: The tensor data to be used with these constant input tensors
+        ///
+        /// Returns: A boolean indicating success or failure
         #[method(compileWithOptions:device:inputTensors:inputTensorsData:)]
         pub unsafe fn compileWithOptions_device_inputTensors_inputTensorsData(
             &self,
@@ -82,6 +137,14 @@ extern_methods!(
             input_tensors_data: Option<&NSDictionary<NSString, MLCTensorData>>,
         ) -> bool;
 
+        /// Link mutiple inference graphs
+        ///
+        /// This is used to link subsequent inference graphs with first inference sub-graph.
+        /// This method should be used when we have tensors shared by one or more layers in multiple sub-graphs
+        ///
+        /// Parameter `graphs`: The list of inference graphs to link
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(linkWithGraphs:)]
         pub unsafe fn linkWithGraphs(&self, graphs: &NSArray<MLCInferenceGraph>) -> bool;
@@ -92,6 +155,21 @@ extern_methods!(
             feature = "MLCTypes",
             feature = "block2"
         ))]
+        /// Execute the inference graph with given input data
+        ///
+        /// Execute the inference graph given input data.
+        /// If MLCExecutionOptionsSynchronous is specified in 'options', this method returns after the graph has been executed.
+        /// Otherwise, this method returns after the graph has been queued for execution.  The completion handler  is called after the graph has finished execution.
+        ///
+        /// Parameter `inputsData`: The data objects to use for inputs
+        ///
+        /// Parameter `batchSize`: The batch size to use.  For a graph where batch size changes between layers this value must be 0.
+        ///
+        /// Parameter `options`: The execution options
+        ///
+        /// Parameter `completionHandler`: The completion handler
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeWithInputsData:batchSize:options:completionHandler:)]
         pub unsafe fn executeWithInputsData_batchSize_options_completionHandler(
@@ -108,6 +186,23 @@ extern_methods!(
             feature = "MLCTypes",
             feature = "block2"
         ))]
+        /// Execute the inference graph with given input data
+        ///
+        /// Execute the inference graph given input data.
+        /// If MLCExecutionOptionsSynchronous is specified in 'options', this method returns after the graph has been executed.
+        /// Otherwise, this method returns after the graph has been queued for execution.  The completion handler  is called after the graph has finished execution.
+        ///
+        /// Parameter `inputsData`: The data objects to use for inputs
+        ///
+        /// Parameter `outputsData`: The data objects to use for outputs
+        ///
+        /// Parameter `batchSize`: The batch size to use.  For a graph where batch size changes between layers this value must be 0.
+        ///
+        /// Parameter `options`: The execution options
+        ///
+        /// Parameter `completionHandler`: The completion handler
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeWithInputsData:outputsData:batchSize:options:completionHandler:)]
         pub unsafe fn executeWithInputsData_outputsData_batchSize_options_completionHandler(
@@ -125,6 +220,25 @@ extern_methods!(
             feature = "MLCTypes",
             feature = "block2"
         ))]
+        /// Execute the inference graph with given input data
+        ///
+        /// Execute the inference graph given input data.
+        /// If MLCExecutionOptionsSynchronous is specified in 'options', this method returns after the graph has been executed.
+        /// Otherwise, this method returns after the graph has been queued for execution.  The completion handler  is called after the graph has finished execution.
+        ///
+        /// Parameter `inputsData`: The data objects to use for inputs
+        ///
+        /// Parameter `lossLabelsData`: The data objects to use for loss labels
+        ///
+        /// Parameter `lossLabelWeightsData`: The data objects to use for loss label weights
+        ///
+        /// Parameter `batchSize`: The batch size to use.  For a graph where batch size changes between layers this value must be 0.
+        ///
+        /// Parameter `options`: The execution options
+        ///
+        /// Parameter `completionHandler`: The completion handler
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)]
         pub unsafe fn executeWithInputsData_lossLabelsData_lossLabelWeightsData_batchSize_options_completionHandler(
@@ -143,6 +257,27 @@ extern_methods!(
             feature = "MLCTypes",
             feature = "block2"
         ))]
+        /// Execute the inference graph with given input data
+        ///
+        /// Execute the inference graph given input data.
+        /// If MLCExecutionOptionsSynchronous is specified in 'options', this method returns after the graph has been executed.
+        /// Otherwise, this method returns after the graph has been queued for execution.  The completion handler  is called after the graph has finished execution.
+        ///
+        /// Parameter `inputsData`: The data objects to use for inputs
+        ///
+        /// Parameter `lossLabelsData`: The data objects to use for loss labels
+        ///
+        /// Parameter `lossLabelWeightsData`: The data objects to use for loss label weights
+        ///
+        /// Parameter `outputsData`: The data objects to use for outputs
+        ///
+        /// Parameter `batchSize`: The batch size to use.  For a graph where batch size changes between layers this value must be 0.
+        ///
+        /// Parameter `options`: The execution options
+        ///
+        /// Parameter `completionHandler`: The completion handler
+        ///
+        /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)]
         pub unsafe fn executeWithInputsData_lossLabelsData_lossLabelWeightsData_outputsData_batchSize_options_completionHandler(
@@ -162,6 +297,9 @@ extern_methods!(
     /// Methods declared on superclass `MLCGraph`
     #[cfg(feature = "MLCGraph")]
     unsafe impl MLCInferenceGraph {
+        /// Creates a new graph.
+        ///
+        /// Returns: A new graph.
         #[deprecated]
         #[method_id(@__retain_semantics Other graph)]
         pub unsafe fn graph() -> Retained<Self>;

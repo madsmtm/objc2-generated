@@ -346,6 +346,10 @@ extern_methods!(
         pub unsafe fn inputAccessoryView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UITextInput")]
+        /// This method is for clients that wish to put buttons on the Shortcuts Bar, shown on top of the keyboard.
+        /// You may modify the returned inputAssistantItem to add to or replace the existing items on the bar.
+        /// Modifications made to the returned UITextInputAssistantItem are reflected automatically.
+        /// This method should not be overridden. Goes up the responder chain.
         #[method_id(@__retain_semantics Other inputAssistantItem)]
         pub unsafe fn inputAssistantItem(&self) -> Retained<UITextInputAssistantItem>;
 
@@ -485,6 +489,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userActivity)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
+        /// Setter for [`userActivity`][Self::userActivity].
         #[method(setUserActivity:)]
         pub unsafe fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);
 

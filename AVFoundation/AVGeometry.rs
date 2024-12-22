@@ -11,6 +11,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// Returns a scaled CGRect that maintains the aspect ratio specified by a CGSize within a bounding CGRect.
+    ///
+    /// This is useful when attempting to fit the presentationSize property of an AVPlayerItem within the bounds of another CALayer.
+    /// You would typically use the return value of this function as an AVPlayerLayer frame property value. For example:
+    /// myPlayerLayer.frame = AVMakeRectWithAspectRatioInsideRect(myPlayerItem.presentationSize, mySuperLayer.bounds);
+    ///
+    /// Parameter `aspectRatio`: The width
+    /// &
+    /// height ratio, or aspect, you wish to maintain.
+    ///
+    /// Parameter `boundingRect`: The bounding CGRect you wish to fit into.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AVMakeRectWithAspectRatioInsideRect(
         aspect_ratio: CGSize,
@@ -22,12 +33,25 @@ extern_category!(
     /// Category on [`NSValue`].
     pub unsafe trait NSValueCMVideoDimensionsExtensions {
         #[cfg(feature = "objc2-core-media")]
+        /// Creates a NSValue object encoding a CMVideoDimensions struct value.
+        ///
+        ///
+        /// Parameter `dimensions`: The CMVideoDimensions struct to encode.
+        ///
+        /// Returns: An NSValue object encoding the provided dimensions.
+        ///
+        ///
+        /// This extension simplifies converting CMVideoDimensions struct values into NSValue objects.
         #[method_id(@__retain_semantics Other valueWithCMVideoDimensions:)]
         unsafe fn valueWithCMVideoDimensions(
             dimensions: CMVideoDimensions,
         ) -> Option<Retained<NSValue>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Returns the CMVideoDimensions struct encoded by this object.
+        ///
+        ///
+        /// This property simplifies accessing the contents of AVCaptureDeviceFormat.supportedMaxPhotoDimensions which are CMVideoDimension struct values encoded in NSValue objects.
         #[method(CMVideoDimensionsValue)]
         unsafe fn CMVideoDimensionsValue(&self) -> CMVideoDimensions;
     }

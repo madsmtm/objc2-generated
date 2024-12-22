@@ -8,26 +8,68 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepaddpad?language=objc)
+    /// The primary directional input surface for the directional gamepad
+    ///
+    ///
+    /// Note: Equivalent to microgamepad.dpad
+    ///
+    ///
+    /// Note: For the 1st generation and 2nd generation Siri Remotes, this represents touching anywhere on the entire touch surface.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepaddpad?language=objc)
     pub static GCInputMicroGamepadDpad: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepadbuttona?language=objc)
+    /// The primary button for the microgamepad
+    ///
+    ///
+    /// Note: For the 1st generation and 2nd generation Siri Remotes, this represents pressing anywhere on the touch surface.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepadbuttona?language=objc)
     pub static GCInputMicroGamepadButtonA: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepadbuttonx?language=objc)
+    /// The secondary button for the microgamepad
+    ///
+    ///
+    /// Note: Equivalent to microgamepad.buttonX
+    ///
+    ///
+    /// Note: For the 1st and 2nd generation Siri Remotes, this represents pressing the play/pause button.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepadbuttonx?language=objc)
     pub static GCInputMicroGamepadButtonX: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepadbuttonmenu?language=objc)
+    /// The primary menu button for the microgamepad
+    ///
+    ///
+    /// Note: Equivalent to microgamepad.buttonMenu
+    ///
+    ///
+    /// Note: For the 1st generation Siri Remote, this represents pressing the play/pause button. For the 2nd generation Siri Remote, this represents pressing the back button.
+    ///
+    ///
+    /// Note: You should avoid polling this button every frame. tvOS will run a gesture recognizer on events before forwarding them to your application that can reduce the window
+    /// to poll button changes. Instead, register a pressedChangedHandler or a valueChangedHandler.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepadbuttonmenu?language=objc)
     pub static GCInputMicroGamepadButtonMenu: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadvaluechangedhandler?language=objc)
+/// Set this block if you want to be notified when a value on a element changed. If multiple elements have changed this block will be called
+/// for each element that changed. As elements in a collection, such as the axis in a dpad, tend to change at the same time and thus
+/// will only call this once with the collection as the element.
+///
+///
+/// Parameter `gamepad`: this gamepad that is being used to map the raw input data into logical values on controller elements such as the dpad or the buttons.
+///
+/// Parameter `element`: the element that has been modified.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadvaluechangedhandler?language=objc)
 #[cfg(all(
     feature = "GCControllerElement",
     feature = "GCPhysicalInputProfile",
@@ -59,6 +101,7 @@ extern_methods!(
         pub unsafe fn valueChangedHandler(&self) -> GCMicroGamepadValueChangedHandler;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
+        /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         #[method(setValueChangedHandler:)]
         pub unsafe fn setValueChangedHandler(
             &self,
@@ -66,38 +109,77 @@ extern_methods!(
         );
 
         #[cfg(feature = "GCMicroGamepadSnapshot")]
+        /// Polls the state vector of the controller and saves it to a snapshot. The snapshot is stored in a device independent
+        /// format that can be serialized and used at a later date. This is useful for features such as quality assurance,
+        /// save game or replay functionality among many.
+        ///
+        /// If your application is heavily multithreaded this may also be useful to guarantee atomicity of input handling as
+        /// a snapshot will not change based on user input once it is taken.
+        ///
+        ///
+        /// See: GCMicroGamepadSnapshot
         #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController capture] instead"]
         #[method_id(@__retain_semantics Other saveSnapshot)]
         pub unsafe fn saveSnapshot(&self) -> Retained<GCMicroGamepadSnapshot>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
+        /// Optionally analog in the Micro profile. All the elements of this directional input are either analog or digital.
         #[method_id(@__retain_semantics Other dpad)]
         pub unsafe fn dpad(&self) -> Retained<GCControllerDirectionPad>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
+        /// The Micro profile has two buttons that are optionally analog in the Micro profile.
+        /// Button A is the primary action button, it indicates affirmative action and should be used to advance in menus
+        /// or perform the primary action in gameplay.
         #[method_id(@__retain_semantics Other buttonA)]
         pub unsafe fn buttonA(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
+        /// Button X is the secondary action button, it indicates an alternate affirmative action and should be used to perform
+        /// a secondary action. If there is no secondary action it should be used as equivalent to buttonA.
+        ///
+        /// Unlike on other profiles there is no negative button on this profile. Instead the menu button should be
+        /// used to present menu content or to retreat in a menu flow.
+        ///
+        /// See: buttonA
         #[method_id(@__retain_semantics Other buttonX)]
         pub unsafe fn buttonX(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
+        /// Button menu is the primary menu button, and should be used to enter the main menu and pause the game.
         #[method_id(@__retain_semantics Other buttonMenu)]
         pub unsafe fn buttonMenu(&self) -> Retained<GCControllerButtonInput>;
 
+        /// The Micro profile can use the raw position values of the touchpad on the remote as D-pad values, or it can create a virtual dpad centered around the first contact point with the surface.
+        ///
+        /// If NO; a smaller sliding window is created around the initial touch point and subsequent movement is relative to that center. Movement outside the window will slide the window with it to re-center it. This is great for surfaces where there is no clear sense of a middle and drift over time is an issue.
+        ///
+        /// If YES; the absolute values are used and any drift will have to managed manually either through user traning or by a developer using the dpad.
+        ///
+        /// The default value for this property is NO, meaning a sliding window is used for the dpad.
         #[method(reportsAbsoluteDpadValues)]
         pub unsafe fn reportsAbsoluteDpadValues(&self) -> bool;
 
+        /// Setter for [`reportsAbsoluteDpadValues`][Self::reportsAbsoluteDpadValues].
         #[method(setReportsAbsoluteDpadValues:)]
         pub unsafe fn setReportsAbsoluteDpadValues(&self, reports_absolute_dpad_values: bool);
 
+        /// Allows the Micro profile to monitor the orientation of the controller, if the controller is positioned in landscape orientation, D-pad input values will be transposed 90 degrees to match the new orientation.
+        ///
+        /// The default value for this property is NO.
         #[method(allowsRotation)]
         pub unsafe fn allowsRotation(&self) -> bool;
 
+        /// Setter for [`allowsRotation`][Self::allowsRotation].
         #[method(setAllowsRotation:)]
         pub unsafe fn setAllowsRotation(&self, allows_rotation: bool);
 
+        /// Sets the state vector of the micro gamepad to a copy of the input micro gamepad's state vector.
+        ///
+        ///
+        /// Note: If the controller's snapshot flag is set to NO, this method has no effect.
+        ///
+        /// See: GCController.snapshot
         #[method(setStateFromMicroGamepad:)]
         pub unsafe fn setStateFromMicroGamepad(&self, micro_gamepad: &GCMicroGamepad);
     }

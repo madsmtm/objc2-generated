@@ -87,6 +87,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpsystemmusicplayercontroller?language=objc)
     pub unsafe trait MPSystemMusicPlayerController: NSObjectProtocol {
         #[cfg(feature = "MPMusicPlayerQueueDescriptor")]
+        /// Switches to Music to play the content provided by the queue descriptor.
         #[method(openToPlayQueueDescriptor:)]
         unsafe fn openToPlayQueueDescriptor(&self, queue_descriptor: &MPMusicPlayerQueueDescriptor);
     }
@@ -108,13 +109,16 @@ unsafe impl NSObjectProtocol for MPMusicPlayerController {}
 
 extern_methods!(
     unsafe impl MPMusicPlayerController {
+        /// Playing items with applicationMusicPlayer does not affect Music's playback state.
         #[method_id(@__retain_semantics Other applicationMusicPlayer)]
         pub unsafe fn applicationMusicPlayer() -> Retained<MPMusicPlayerController>;
 
         #[cfg(feature = "MPMusicPlayerApplicationController")]
+        /// Similar to applicationMusicPlayer, but allows direct manipulation of the queue.
         #[method_id(@__retain_semantics Other applicationQueuePlayer)]
         pub unsafe fn applicationQueuePlayer() -> Retained<MPMusicPlayerApplicationController>;
 
+        /// Playing media items with the systemMusicPlayer will replace the user's current Music state.
         #[method_id(@__retain_semantics Other systemMusicPlayer)]
         pub unsafe fn systemMusicPlayer() -> Retained<MPMusicPlayerController>;
 
@@ -130,12 +134,14 @@ extern_methods!(
         #[method(repeatMode)]
         pub unsafe fn repeatMode(&self) -> MPMusicRepeatMode;
 
+        /// Setter for [`repeatMode`][Self::repeatMode].
         #[method(setRepeatMode:)]
         pub unsafe fn setRepeatMode(&self, repeat_mode: MPMusicRepeatMode);
 
         #[method(shuffleMode)]
         pub unsafe fn shuffleMode(&self) -> MPMusicShuffleMode;
 
+        /// Setter for [`shuffleMode`][Self::shuffleMode].
         #[method(setShuffleMode:)]
         pub unsafe fn setShuffleMode(&self, shuffle_mode: MPMusicShuffleMode);
 
@@ -143,6 +149,7 @@ extern_methods!(
         #[method(volume)]
         pub unsafe fn volume(&self) -> c_float;
 
+        /// Setter for [`volume`][Self::volume].
         #[deprecated = "Use MPVolumeView for volume control."]
         #[method(setVolume:)]
         pub unsafe fn setVolume(&self, volume: c_float);
@@ -152,6 +159,7 @@ extern_methods!(
         pub unsafe fn nowPlayingItem(&self) -> Option<Retained<MPMediaItem>>;
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
+        /// Setter for [`nowPlayingItem`][Self::nowPlayingItem].
         #[method(setNowPlayingItem:)]
         pub unsafe fn setNowPlayingItem(&self, now_playing_item: Option<&MPMediaItem>);
 

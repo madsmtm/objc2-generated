@@ -96,7 +96,46 @@ unsafe impl RefEncode for NSWindowSharingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowcollectionbehavior?language=objc)
+/// You may specify at most one of
+/// `NSWindowCollectionBehaviorPrimary,``NSWindowCollectionBehaviorAuxiliary,`or
+/// `NSWindowCollectionBehaviorCanJoinAllApplications.`If unspecified, the window gets the default treatment determined by its other collection behaviors.
+///
+///
+///
+///
+///
+/// You may specify at most one of
+/// `NSWindowCollectionBehaviorManaged,``NSWindowCollectionBehaviorTransient,`or
+/// `NSWindowCollectionBehaviorStationary.`If neither is specified, the window gets the default behavior determined by its window level.
+///
+///
+///
+///
+///
+/// You may specify at most one of
+/// `NSWindowCollectionBehaviorParticipatesInCycle`or
+/// `NSWindowCollectionBehaviorIgnoresCycle.`If unspecified, the window gets the default behavior determined by its window level.
+///
+///
+///
+///
+/// You may specify at most one of
+/// `NSWindowCollectionBehaviorFullScreenPrimary,``NSWindowCollectionBehaviorFullScreenAuxiliary,`or
+/// `NSWindowCollectionBehaviorFullScreenNone.`
+///
+///
+///
+///
+/// You may specify at most one of
+/// `NSWindowCollectionBehaviorFullScreenAllowsTiling`or
+/// `NSWindowCollectionBehaviorFullScreenDisallowsTiling,`or an assertion will be raised.
+///
+/// The default behavior is to allow any window to participate in full screen tiling, as long as it meets certain requirements, such as being resizable and not a panel or sheet. Windows which are not full screen capable can still become a secondary tile in full screen. A window can explicitly allow itself to be placed into a full screen tile by including
+/// `NSWindowCollectionBehaviorFullScreenAllowsTiling.`Even if a window allows itself to be placed in a tile, it still may not be put in the tile if its
+/// `minFullScreenContentSize`is too large to fit. A window can explicitly disallow itself from being placed in a full screen tile by including
+/// `NSWindowCollectionBehaviorFullScreenDisallowsTiling.`This is useful for non-full screen capable windows to explicitly prevent themselves from being tiled. It can also be used by a full screen window to prevent any other windows from being placed in its full screen tile.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowcollectionbehavior?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -172,7 +211,9 @@ unsafe impl RefEncode for NSWindowAnimationBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindownumberlistoptions?language=objc)
+/// Options used in `+windowNumbersWithOptions:`.  If no options are specified, the returned list contains window numbers for visible windows on the active space belonging to the calling application.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindownumberlistoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -262,7 +303,9 @@ unsafe impl RefEncode for NSSelectionDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowbutton?language=objc)
+/// Standard window buttons.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowbutton?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -514,37 +557,57 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub fn setTitle(&self, title: &NSString);
 
+        /// Secondary text that may be displayed adjacent to or below the primary title depending on the configuration of the window.
+        /// A value of empty string will remove the subtitle from the window layout.
         #[method_id(@__retain_semantics Other subtitle)]
         pub unsafe fn subtitle(&self) -> Retained<NSString>;
 
+        /// Setter for [`subtitle`][Self::subtitle].
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: &NSString);
 
+        /// See the enum values for how this property works.
         #[method(titleVisibility)]
         pub unsafe fn titleVisibility(&self) -> NSWindowTitleVisibility;
 
+        /// Setter for [`titleVisibility`][Self::titleVisibility].
         #[method(setTitleVisibility:)]
         pub fn setTitleVisibility(&self, title_visibility: NSWindowTitleVisibility);
 
+        /// When
+        /// `YES,`the titlebar doesn't draw its background, allowing all buttons to show through, and "click through" to happen. In general, this is only useful when
+        /// `NSFullSizeContentViewWindowMask`is set.
         #[method(titlebarAppearsTransparent)]
         pub unsafe fn titlebarAppearsTransparent(&self) -> bool;
 
+        /// Setter for [`titlebarAppearsTransparent`][Self::titlebarAppearsTransparent].
         #[method(setTitlebarAppearsTransparent:)]
         pub fn setTitlebarAppearsTransparent(&self, titlebar_appears_transparent: bool);
 
+        /// Specifies how the titlebar area of the window should appear when the window displays an NSToolbar
         #[method(toolbarStyle)]
         pub unsafe fn toolbarStyle(&self) -> NSWindowToolbarStyle;
 
+        /// Setter for [`toolbarStyle`][Self::toolbarStyle].
         #[method(setToolbarStyle:)]
         pub unsafe fn setToolbarStyle(&self, toolbar_style: NSWindowToolbarStyle);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The
+        /// `contentLayoutRect`will return the area inside the window that is for non-obscured content. Typically, this is the same thing as the `contentView`'s frame. However, for windows with the
+        /// `NSFullSizeContentViewWindowMask`set, there needs to be a way to determine the portion that is not under the toolbar. The
+        /// `contentLayoutRect`returns the portion of the layout that is not obscured under the toolbar.
+        /// `contentLayoutRect`is in window coordinates. It is KVO compliant. */
         #[method(contentLayoutRect)]
         pub unsafe fn contentLayoutRect(&self) -> NSRect;
 
+        /// `contentLayoutGuide`is a corollary to
+        /// `contentLayoutRect.`It can be used by autolayout constraints to automatically bind to the
+        /// `contentLayoutRect.`
         #[method_id(@__retain_semantics Other contentLayoutGuide)]
         pub unsafe fn contentLayoutGuide(&self) -> Option<Retained<AnyObject>>;
 
@@ -561,6 +624,7 @@ extern_methods!(
             feature = "NSTitlebarAccessoryViewController",
             feature = "NSViewController"
         ))]
+        /// Setter for [`titlebarAccessoryViewControllers`][Self::titlebarAccessoryViewControllers].
         #[method(setTitlebarAccessoryViewControllers:)]
         pub unsafe fn setTitlebarAccessoryViewControllers(
             &self,
@@ -591,15 +655,20 @@ extern_methods!(
         #[method(removeTitlebarAccessoryViewControllerAtIndex:)]
         pub unsafe fn removeTitlebarAccessoryViewControllerAtIndex(&self, index: NSInteger);
 
+        /// If url is not nil and its path is not empty, the window will show a document icon in the titlebar.
+        /// If the url represents a filename or other resource with a known icon, that icon will be used as the document icon.  Otherwise the default document icon will be used.  The icon can be customized using `-[[NSWindow standardWindowButton:NSWindowDocumentIconButton] setImage:customImage]`.  If url is not nil and its path is not empty, the window will have a pop-up menu which can be shown via command-click on the area containing the document icon and title.  By default, this menu will display the path components of the url.  The presence and contents of this menu can be controlled by the delegate method `-[window:shouldPopUpDocumentPathMenu:]`
+        /// If the url is nil or has an empty path, the window will not show a document icon and will not have a pop-up menu available via command-click.
         #[method_id(@__retain_semantics Other representedURL)]
         pub unsafe fn representedURL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`representedURL`][Self::representedURL].
         #[method(setRepresentedURL:)]
         pub unsafe fn setRepresentedURL(&self, represented_url: Option<&NSURL>);
 
         #[method_id(@__retain_semantics Other representedFilename)]
         pub unsafe fn representedFilename(&self) -> Retained<NSString>;
 
+        /// Setter for [`representedFilename`][Self::representedFilename].
         #[method(setRepresentedFilename:)]
         pub unsafe fn setRepresentedFilename(&self, represented_filename: &NSString);
 
@@ -609,6 +678,7 @@ extern_methods!(
         #[method(isExcludedFromWindowsMenu)]
         pub unsafe fn isExcludedFromWindowsMenu(&self) -> bool;
 
+        /// Setter for [`isExcludedFromWindowsMenu`][Self::isExcludedFromWindowsMenu].
         #[method(setExcludedFromWindowsMenu:)]
         pub unsafe fn setExcludedFromWindowsMenu(&self, excluded_from_windows_menu: bool);
 
@@ -617,6 +687,7 @@ extern_methods!(
         pub fn contentView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
+        /// Setter for [`contentView`][Self::contentView].
         #[method(setContentView:)]
         pub fn setContentView(&self, content_view: Option<&NSView>);
 
@@ -624,15 +695,21 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSWindowDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSWindowDelegate>>);
 
         #[method(windowNumber)]
         pub unsafe fn windowNumber(&self) -> NSInteger;
 
+        /// Note: The styleMask can only be set on macOS 10.6 and later. Valid
+        /// `styleMask`settings have the same restrictions as the
+        /// `styleMask`passed to `-initWithContentRect:styleMask:backing:defer:`.  Some
+        /// `styleMask`changes will cause the view hierarchy to be rebuilt, since there is a different subclass for the top level view of a borderless window than for the top level view of a titled window.
         #[method(styleMask)]
         pub fn styleMask(&self) -> NSWindowStyleMask;
 
+        /// Setter for [`styleMask`][Self::styleMask].
         #[method(setStyleMask:)]
         pub fn setStyleMask(&self, style_mask: NSWindowStyleMask);
 
@@ -676,6 +753,7 @@ extern_methods!(
         pub unsafe fn cascadeTopLeftFromPoint(&self, top_left_point: NSPoint) -> NSPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The frame to use when cascading or sizing a new window based on the receiver's position or size. This may be different from `frame` when the receiver is positioned by the system.
         #[method(cascadingReferenceFrame)]
         pub unsafe fn cascadingReferenceFrame(&self) -> NSRect;
 
@@ -684,10 +762,20 @@ extern_methods!(
         pub fn frame(&self) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Subclasses can override
+        /// `animationResizeTime:`to control the total time for the frame change.
+        /// `newFrame`is the rect passed into
+        /// `setFrame:display:animate:`
         #[method(animationResizeTime:)]
         pub unsafe fn animationResizeTime(&self, new_frame: NSRect) -> NSTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// `setFrame:display:animate:`is equivalent to
+        /// `setFrame:display:`if the
+        /// `animateFlag`is NO.
+        /// If the
+        /// `animationFlag`is YES, this method will perform a smooth resize of the window, where the total time for the resize is specified by
+        /// `-animationResizeTime:`
         #[method(setFrame:display:animate:)]
         pub unsafe fn setFrame_display_animate(
             &self,
@@ -704,6 +792,7 @@ extern_methods!(
         pub unsafe fn resizeIncrements(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`resizeIncrements`][Self::resizeIncrements].
         #[method(setResizeIncrements:)]
         pub fn setResizeIncrements(&self, resize_increments: NSSize);
 
@@ -712,6 +801,7 @@ extern_methods!(
         pub unsafe fn aspectRatio(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`aspectRatio`][Self::aspectRatio].
         #[method(setAspectRatio:)]
         pub unsafe fn setAspectRatio(&self, aspect_ratio: NSSize);
 
@@ -720,6 +810,7 @@ extern_methods!(
         pub fn contentResizeIncrements(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentResizeIncrements`][Self::contentResizeIncrements].
         #[method(setContentResizeIncrements:)]
         pub fn setContentResizeIncrements(&self, content_resize_increments: NSSize);
 
@@ -728,12 +819,14 @@ extern_methods!(
         pub unsafe fn contentAspectRatio(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentAspectRatio`][Self::contentAspectRatio].
         #[method(setContentAspectRatio:)]
         pub unsafe fn setContentAspectRatio(&self, content_aspect_ratio: NSSize);
 
         #[method(viewsNeedDisplay)]
         pub unsafe fn viewsNeedDisplay(&self) -> bool;
 
+        /// Setter for [`viewsNeedDisplay`][Self::viewsNeedDisplay].
         #[method(setViewsNeedDisplay:)]
         pub unsafe fn setViewsNeedDisplay(&self, views_need_display: bool);
 
@@ -746,6 +839,7 @@ extern_methods!(
         #[method(preservesContentDuringLiveResize)]
         pub unsafe fn preservesContentDuringLiveResize(&self) -> bool;
 
+        /// Setter for [`preservesContentDuringLiveResize`][Self::preservesContentDuringLiveResize].
         #[method(setPreservesContentDuringLiveResize:)]
         pub unsafe fn setPreservesContentDuringLiveResize(
             &self,
@@ -771,6 +865,7 @@ extern_methods!(
         #[method(isReleasedWhenClosed)]
         pub unsafe fn isReleasedWhenClosed(&self) -> bool;
 
+        /// Setter for [`isReleasedWhenClosed`][Self::isReleasedWhenClosed].
         #[method(setReleasedWhenClosed:)]
         pub unsafe fn setReleasedWhenClosed(&self, released_when_closed: bool);
 
@@ -805,6 +900,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
@@ -836,24 +932,30 @@ extern_methods!(
         #[method(isMovable)]
         pub unsafe fn isMovable(&self) -> bool;
 
+        /// Setter for [`isMovable`][Self::isMovable].
         #[method(setMovable:)]
         pub fn setMovable(&self, movable: bool);
 
         #[method(isMovableByWindowBackground)]
         pub unsafe fn isMovableByWindowBackground(&self) -> bool;
 
+        /// Setter for [`isMovableByWindowBackground`][Self::isMovableByWindowBackground].
         #[method(setMovableByWindowBackground:)]
         pub fn setMovableByWindowBackground(&self, movable_by_window_background: bool);
 
         #[method(hidesOnDeactivate)]
         pub unsafe fn hidesOnDeactivate(&self) -> bool;
 
+        /// Setter for [`hidesOnDeactivate`][Self::hidesOnDeactivate].
         #[method(setHidesOnDeactivate:)]
         pub unsafe fn setHidesOnDeactivate(&self, hides_on_deactivate: bool);
 
+        /// Indicates whether a window can be hidden during `-[NSApplication hide:]`.  Default is
+        /// `YES.`
         #[method(canHide)]
         pub unsafe fn canHide(&self) -> bool;
 
+        /// Setter for [`canHide`][Self::canHide].
         #[method(setCanHide:)]
         pub unsafe fn setCanHide(&self, can_hide: bool);
 
@@ -888,12 +990,14 @@ extern_methods!(
         pub unsafe fn miniwindowImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`miniwindowImage`][Self::miniwindowImage].
         #[method(setMiniwindowImage:)]
         pub unsafe fn setMiniwindowImage(&self, miniwindow_image: Option<&NSImage>);
 
         #[method_id(@__retain_semantics Other miniwindowTitle)]
         pub unsafe fn miniwindowTitle(&self) -> Retained<NSString>;
 
+        /// Setter for [`miniwindowTitle`][Self::miniwindowTitle].
         #[method(setMiniwindowTitle:)]
         pub unsafe fn setMiniwindowTitle(&self, miniwindow_title: Option<&NSString>);
 
@@ -904,6 +1008,7 @@ extern_methods!(
         #[method(isDocumentEdited)]
         pub fn isDocumentEdited(&self) -> bool;
 
+        /// Setter for [`isDocumentEdited`][Self::isDocumentEdited].
         #[method(setDocumentEdited:)]
         pub fn setDocumentEdited(&self, document_edited: bool);
 
@@ -922,30 +1027,39 @@ extern_methods!(
         #[method(canBecomeMainWindow)]
         pub unsafe fn canBecomeMainWindow(&self) -> bool;
 
+        /// Makes the window key and main if eligible, updating NSApplication's `-keyWindow` and `-mainWindow` properties.
         #[method(makeKeyWindow)]
         pub unsafe fn makeKeyWindow(&self);
 
+        /// Makes the window main if eligible. Updates NSApplication's `-mainWindow` property.
         #[method(makeMainWindow)]
         pub unsafe fn makeMainWindow(&self);
 
+        /// Informs the window that it has become the key window. This method exists as an override point. Do not invoke directly. Instead, invoke `-makeKeyWindow`.
         #[method(becomeKeyWindow)]
         pub unsafe fn becomeKeyWindow(&self);
 
+        /// Informs the window that it has stopped being the key window. This method exists as an override point. Do not invoke directly. Windows automatically receive this message when deactivating or when another window has become key.
         #[method(resignKeyWindow)]
         pub unsafe fn resignKeyWindow(&self);
 
+        /// Informs the window that it has become the main window. This method exists as an override point. Do not invoke directly. Instead, invoke `-makeMainWindow`.
         #[method(becomeMainWindow)]
         pub unsafe fn becomeMainWindow(&self);
 
+        /// Informs the window that it has stopped being the main window. This method exists as an override point. Do not invoke directly. Windows automatically receive this message when deactivating or when another window has become main.
         #[method(resignMainWindow)]
         pub unsafe fn resignMainWindow(&self);
 
         #[method(worksWhenModal)]
         pub unsafe fn worksWhenModal(&self) -> bool;
 
+        /// Normally, application termination is prohibited when a modal window or sheet is open, without consulting the application delegate.  Some windows like the open panel or toolbar customization sheet should not prevent application termination.  `-setPreventsApplicationTerminationWhenModal:NO` on a modal window or sheet will override the default behavior and allow application termination to proceed, either through the sudden termination path if enabled, or on to the next step of consulting the application delegate.  By default, `-preventsApplicationTerminationWhenModal` returns
+        /// `YES`
         #[method(preventsApplicationTerminationWhenModal)]
         pub unsafe fn preventsApplicationTerminationWhenModal(&self) -> bool;
 
+        /// Setter for [`preventsApplicationTerminationWhenModal`][Self::preventsApplicationTerminationWhenModal].
         #[method(setPreventsApplicationTerminationWhenModal:)]
         pub unsafe fn setPreventsApplicationTerminationWhenModal(
             &self,
@@ -985,6 +1099,7 @@ extern_methods!(
         pub unsafe fn convertPointFromBacking(&self, point: NSPoint) -> NSPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Use `NSIntegralRectWithOptions()` to produce a backing store pixel aligned rectangle from the given input rectangle in window coordinates.
         #[method(backingAlignedRect:options:)]
         pub unsafe fn backingAlignedRect_options(
             &self,
@@ -993,6 +1108,8 @@ extern_methods!(
         ) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Returns the scale factor representing the number of backing store pixels corresponding to each linear unit in window space on this
+        /// `NSWindow.`This method is provided for rare cases when the explicit scale factor is needed. Please use `-convert*ToBacking:` methods whenever possible.
         #[method(backingScaleFactor)]
         pub fn backingScaleFactor(&self) -> CGFloat;
 
@@ -1016,9 +1133,15 @@ extern_methods!(
         #[method(print:)]
         pub unsafe fn print(&self, sender: Option<&AnyObject>);
 
+        /// Default is
+        /// `NO.`Set to
+        /// `YES`to allow a window to display tooltips even when the application is in the background.  Note that, enabling tooltips in an inactive application will cause the app to do work any time the mouse passes over the window.  This can degrade system performance.
+        /// Returns
+        /// `YES`if this window displays tooltips even when the application is in the background.  To configure this setting you should call `-setAllowsToolTipsWhenApplicationIsInactive:` instead of overriding `-allowsToolTipsWhenApplicationIsInactive`.
         #[method(allowsToolTipsWhenApplicationIsInactive)]
         pub unsafe fn allowsToolTipsWhenApplicationIsInactive(&self) -> bool;
 
+        /// Setter for [`allowsToolTipsWhenApplicationIsInactive`][Self::allowsToolTipsWhenApplicationIsInactive].
         #[method(setAllowsToolTipsWhenApplicationIsInactive:)]
         pub unsafe fn setAllowsToolTipsWhenApplicationIsInactive(
             &self,
@@ -1030,12 +1153,14 @@ extern_methods!(
         pub unsafe fn backingType(&self) -> NSBackingStoreType;
 
         #[cfg(feature = "NSGraphics")]
+        /// Setter for [`backingType`][Self::backingType].
         #[method(setBackingType:)]
         pub unsafe fn setBackingType(&self, backing_type: NSBackingStoreType);
 
         #[method(level)]
         pub unsafe fn level(&self) -> NSWindowLevel;
 
+        /// Setter for [`level`][Self::level].
         #[method(setLevel:)]
         pub fn setLevel(&self, level: NSWindowLevel);
 
@@ -1044,6 +1169,7 @@ extern_methods!(
         pub unsafe fn depthLimit(&self) -> NSWindowDepth;
 
         #[cfg(feature = "NSGraphics")]
+        /// Setter for [`depthLimit`][Self::depthLimit].
         #[method(setDepthLimit:)]
         pub unsafe fn setDepthLimit(&self, depth_limit: NSWindowDepth);
 
@@ -1054,6 +1180,7 @@ extern_methods!(
         pub unsafe fn hasDynamicDepthLimit(&self) -> bool;
 
         #[cfg(feature = "NSScreen")]
+        /// The screen property returns the best screen for the window. If the window only intersects one screen, it returns that screen. If it intersects more than one screen, then it resolves the tie through based on what space it is mostly on. It may return nil if there are no available screens, or it is completely off screen.
         #[method_id(@__retain_semantics Other screen)]
         pub fn screen(&self) -> Option<Retained<NSScreen>>;
 
@@ -1064,6 +1191,7 @@ extern_methods!(
         #[method(hasShadow)]
         pub fn hasShadow(&self) -> bool;
 
+        /// Setter for [`hasShadow`][Self::hasShadow].
         #[method(setHasShadow:)]
         pub fn setHasShadow(&self, has_shadow: bool);
 
@@ -1075,39 +1203,53 @@ extern_methods!(
         pub unsafe fn alphaValue(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`alphaValue`][Self::alphaValue].
         #[method(setAlphaValue:)]
         pub unsafe fn setAlphaValue(&self, alpha_value: CGFloat);
 
         #[method(isOpaque)]
         pub unsafe fn isOpaque(&self) -> bool;
 
+        /// Setter for [`isOpaque`][Self::isOpaque].
         #[method(setOpaque:)]
         pub fn setOpaque(&self, opaque: bool);
 
+        /// `-setSharingType:` specifies whether the window content can be read from another process.  The default sharing type is
+        /// `NSWindowSharingReadOnly,`which means other processes can read the window content (eg. for window capture) but cannot modify it.  If you set your window sharing type to
+        /// `NSWindowSharingNone,`so that the content cannot be captured, your window will also not be able to participate in a number of system services, so this setting should be used with caution.
         #[method(sharingType)]
         pub unsafe fn sharingType(&self) -> NSWindowSharingType;
 
+        /// Setter for [`sharingType`][Self::sharingType].
         #[method(setSharingType:)]
         pub fn setSharingType(&self, sharing_type: NSWindowSharingType);
 
+        /// Controls whether threading of view drawing should be enabled for this window.  Defaults to
+        /// `YES.`When this is set to
+        /// `YES,`AppKit's view system is allowed to perform `-drawRect:` activity for the window's views on threads other than the main thread, for views that have `canDrawConcurrently == YES`.  When this is set to
+        /// `NO,`the window's views will be drawn serially as on 10.5 and earlier, even though some of the views may have `canDrawConcurrently == YES`.
         #[method(allowsConcurrentViewDrawing)]
         pub unsafe fn allowsConcurrentViewDrawing(&self) -> bool;
 
+        /// Setter for [`allowsConcurrentViewDrawing`][Self::allowsConcurrentViewDrawing].
         #[method(setAllowsConcurrentViewDrawing:)]
         pub unsafe fn setAllowsConcurrentViewDrawing(&self, allows_concurrent_view_drawing: bool);
 
         #[method(displaysWhenScreenProfileChanges)]
         pub unsafe fn displaysWhenScreenProfileChanges(&self) -> bool;
 
+        /// Setter for [`displaysWhenScreenProfileChanges`][Self::displaysWhenScreenProfileChanges].
         #[method(setDisplaysWhenScreenProfileChanges:)]
         pub unsafe fn setDisplaysWhenScreenProfileChanges(
             &self,
             displays_when_screen_profile_changes: bool,
         );
 
+        /// This API controls whether the receiver is permitted onscreen before the user has logged in.  This property is off by default.  Alert panels and windows presented by input managers are examples of windows which should have this property set.
         #[method(canBecomeVisibleWithoutLogin)]
         pub unsafe fn canBecomeVisibleWithoutLogin(&self) -> bool;
 
+        /// Setter for [`canBecomeVisibleWithoutLogin`][Self::canBecomeVisibleWithoutLogin].
         #[method(setCanBecomeVisibleWithoutLogin:)]
         pub unsafe fn setCanBecomeVisibleWithoutLogin(
             &self,
@@ -1117,18 +1259,29 @@ extern_methods!(
         #[method(collectionBehavior)]
         pub unsafe fn collectionBehavior(&self) -> NSWindowCollectionBehavior;
 
+        /// Setter for [`collectionBehavior`][Self::collectionBehavior].
         #[method(setCollectionBehavior:)]
         pub unsafe fn setCollectionBehavior(&self, collection_behavior: NSWindowCollectionBehavior);
 
+        /// Provides for per-window control over automatic orderFront/orderOut animation behaviors added in 10.7.  Can be set to
+        /// `NSWindowAnimationBehaviorNone`to disable Appkit's automatic animations for a given window, or to one of the other non-Default
+        /// `NSWindowAnimationBehavior`values to override AppKit's automatic inference of appropriate animation behavior based on the window's apparent type.
         #[method(animationBehavior)]
         pub unsafe fn animationBehavior(&self) -> NSWindowAnimationBehavior;
 
+        /// Setter for [`animationBehavior`][Self::animationBehavior].
         #[method(setAnimationBehavior:)]
         pub unsafe fn setAnimationBehavior(&self, animation_behavior: NSWindowAnimationBehavior);
 
+        /// Returns
+        /// `YES`if this window is associated with the active space.  For visible windows, this API indicates whether the window is currently visible on the active space.  For offscreen windows, it indicates whether ordering the window onscreen would make it bring it onto the active space
         #[method(isOnActiveSpace)]
         pub unsafe fn isOnActiveSpace(&self) -> bool;
 
+        /// `-toggleFullScreen:` enters or exits for full screen. A window must have
+        /// `NSWindowCollectionBehaviorFullScreenAuxiliary`or
+        /// `NSWindowCollectionBehaviorFullScreenPrimary`included in the
+        /// `collectionBehavior`property; if it does not, this method may simply do nothing.
         #[method(toggleFullScreen:)]
         pub fn toggleFullScreen(&self, sender: Option<&AnyObject>);
 
@@ -1165,6 +1318,7 @@ extern_methods!(
         pub unsafe fn minSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minSize`][Self::minSize].
         #[method(setMinSize:)]
         pub fn setMinSize(&self, min_size: NSSize);
 
@@ -1173,6 +1327,7 @@ extern_methods!(
         pub unsafe fn maxSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maxSize`][Self::maxSize].
         #[method(setMaxSize:)]
         pub fn setMaxSize(&self, max_size: NSSize);
 
@@ -1181,6 +1336,7 @@ extern_methods!(
         pub unsafe fn contentMinSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentMinSize`][Self::contentMinSize].
         #[method(setContentMinSize:)]
         pub unsafe fn setContentMinSize(&self, content_min_size: NSSize);
 
@@ -1189,6 +1345,7 @@ extern_methods!(
         pub unsafe fn contentMaxSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentMaxSize`][Self::contentMaxSize].
         #[method(setContentMaxSize:)]
         pub unsafe fn setContentMaxSize(&self, content_max_size: NSSize);
 
@@ -1197,6 +1354,7 @@ extern_methods!(
         pub unsafe fn minFullScreenContentSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minFullScreenContentSize`][Self::minFullScreenContentSize].
         #[method(setMinFullScreenContentSize:)]
         pub unsafe fn setMinFullScreenContentSize(&self, min_full_screen_content_size: NSSize);
 
@@ -1205,6 +1363,7 @@ extern_methods!(
         pub unsafe fn maxFullScreenContentSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maxFullScreenContentSize`][Self::maxFullScreenContentSize].
         #[method(setMaxFullScreenContentSize:)]
         pub unsafe fn setMaxFullScreenContentSize(&self, max_full_screen_content_size: NSSize);
 
@@ -1220,6 +1379,7 @@ extern_methods!(
 
         #[cfg(feature = "NSWindowController")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`windowController`][Self::windowController].
         #[method(setWindowController:)]
         pub unsafe fn setWindowController(&self, window_controller: Option<&NSWindowController>);
 
@@ -1250,15 +1410,21 @@ extern_methods!(
             return_code: NSModalResponse,
         );
 
+        /// An ordered array of the sheets on the window. This consists of the presented sheets in top-to-bottom order, followed by queued sheets in the order they were queued. This does not include nested/sub-sheets.
         #[method_id(@__retain_semantics Other sheets)]
         pub unsafe fn sheets(&self) -> Retained<NSArray<NSWindow>>;
 
+        /// Returns the top-most sheet if there is one or more sheets, or nil if there is no sheet.
         #[method_id(@__retain_semantics Other attachedSheet)]
         pub unsafe fn attachedSheet(&self) -> Option<Retained<NSWindow>>;
 
         #[method(isSheet)]
         pub unsafe fn isSheet(&self) -> bool;
 
+        /// Returns the window that the sheet is directly attached to. This is based on the logical attachment of the sheet, not visual attachment.
+        /// This relationship exists starting when the sheet is begun (using
+        /// `NSApplication's``-beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo: or NSWindow's -beginSheet:completionHandler:`), and ending once it is ordered out.
+        /// Returns nil if the window is not a sheet or has no sheet parent.
         #[method_id(@__retain_semantics Other sheetParent)]
         pub unsafe fn sheetParent(&self) -> Option<Retained<NSWindow>>;
 
@@ -1292,15 +1458,18 @@ extern_methods!(
         pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`parentWindow`][Self::parentWindow].
         #[method(setParentWindow:)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
         #[cfg(feature = "NSAppearance")]
+        /// If set, the receiver will inherit the appearance of that object, as well as use KVO to observe its effectiveAppearance for changes. Typically this is used for child windows that are shown from a parent window or specific view. Defaults to NSApp.
         #[method_id(@__retain_semantics Other appearanceSource)]
         pub unsafe fn appearanceSource(&self) -> Option<Retained<NSObject>>;
 
         #[cfg(feature = "NSAppearance")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`appearanceSource`][Self::appearanceSource].
         #[method(setAppearanceSource:)]
         pub unsafe fn setAppearanceSource(&self, appearance_source: Option<&NSObject>);
 
@@ -1309,13 +1478,28 @@ extern_methods!(
         pub unsafe fn colorSpace(&self) -> Option<Retained<NSColorSpace>>;
 
         #[cfg(feature = "NSColorSpace")]
+        /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
         pub unsafe fn setColorSpace(&self, color_space: Option<&NSColorSpace>);
 
         #[cfg(feature = "NSGraphics")]
+        /// `-canRepresentDisplayGamut:` returns
+        /// `YES`if the colorSpace of the receiving window, and the
+        /// `colorSpace`of the screen containing that window, are capable of representing the given display gamut
         #[method(canRepresentDisplayGamut:)]
         pub unsafe fn canRepresentDisplayGamut(&self, display_gamut: NSDisplayGamut) -> bool;
 
+        /// `+windowNumbersWithOptions:` returns an autoreleased array of
+        /// `NSNumbers`containing windowNumbers for all visible windows satisfying options.  If no options are specified, only visible windows belonging to the calling application and on the active space are included.  If options include
+        /// `NSWindowNumberListAllApplications,`visible windows belonging to all applications are included.  If options include
+        /// `NSWindowNumberListAllSpaces,`visible windows on all spaces are included.  Windows on the active space are returned in z-order.
+        /// Examples:
+        /// To get an array of windowNumbers visible on the current space and belonging to the calling application:
+        /// `windowNumbers = [NSWindow windowNumbersWithOptions:0];`
+        /// To get an array of windowNumbers visible on any space and belonging to any application:
+        /// `windowNumbers = [NSWindow windowNumbersWithOptions:NSWindowNumberListAllApplications|NSWindowNumberListAllSpaces];`
+        /// To get an array of windowNumbers visible on any space and belonging to the calling application:
+        /// `windowNumbers = [NSWindow windowNumbersWithOptions:NSWindowNumberListAllSpaces];`
         #[method_id(@__retain_semantics Other windowNumbersWithOptions:)]
         pub unsafe fn windowNumbersWithOptions(
             options: NSWindowNumberListOptions,
@@ -1323,6 +1507,7 @@ extern_methods!(
         ) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// `+windowNumberAtPoint:belowWindowWithWindowNumber:` returns the number of the frontmost window that would be hit by a mouseDown at the screen location "point".  "windowNum" can be specified to exclude a given window along with all windows above it, and may belong to any application.  If no windows are to be excluded, specify 0 for "windowNum".  The windowNumber returned may correspond to a window in another application.
         #[method(windowNumberAtPoint:belowWindowWithWindowNumber:)]
         pub unsafe fn windowNumberAtPoint_belowWindowWithWindowNumber(
             point: NSPoint,
@@ -1333,9 +1518,13 @@ extern_methods!(
         #[method(occlusionState)]
         pub fn occlusionState(&self) -> NSWindowOcclusionState;
 
+        /// Specifies the style of separator displayed between the window's titlebar and content.
+        ///
+        /// The default value is NSTitlebarSeparatorStyleAutomatic. Changing this value will override any preference made by `NSSplitViewItem`.
         #[method(titlebarSeparatorStyle)]
         pub unsafe fn titlebarSeparatorStyle(&self) -> NSTitlebarSeparatorStyle;
 
+        /// Setter for [`titlebarSeparatorStyle`][Self::titlebarSeparatorStyle].
         #[method(setTitlebarSeparatorStyle:)]
         pub unsafe fn setTitlebarSeparatorStyle(
             &self,
@@ -1343,10 +1532,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSViewController")]
+        /// The main content view controller for the window. This provides the contentView of the window. Assigning this value will remove the existing contentView and will make the contentViewController.view the main contentView for the window. The default value is nil. The contentViewController only controls the contentView, and not the title of the window. The window title can easily be bound to the contentViewController with the following: [window bind:NSTitleBinding toObject:contentViewController withKeyPath:
+        /// "
+        /// title" options:nil]. Setting the contentViewController will cause the window to resize based on the current size of the contentViewController. Autolayout should be used to restrict the size of the window. The value of the contentViewController is encoded in the NIB. Directly assigning a contentView will clear out the contentViewController.
         #[method_id(@__retain_semantics Other contentViewController)]
         pub unsafe fn contentViewController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(feature = "NSViewController")]
+        /// Setter for [`contentViewController`][Self::contentViewController].
         #[method(setContentViewController:)]
         pub unsafe fn setContentViewController(
             &self,
@@ -1354,12 +1547,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSViewController")]
+        /// Convenience method for creating an autoreleased titled window with the given contentViewController. A basic NSWindow with the following attributes is made: titled, closable, resizable, miniaturizable. The window's title is automatically bound to the contentViewController's title. The size of the window can easily be controlled by utilizing autolayout and applying size constraints to the view (or its subviews). The window has isReleasedWhenClosed set to NO, and it must be explicitly retained to keep the window instance alive. To have it automatically be freed when it is closed, do the following: [window retain] and [window setReleasedWhenClosed:YES].
         #[method_id(@__retain_semantics Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSEvent")]
+        /// Call to start a drag (moving the window) in the Window Server process. In general, this can be done after a mouseDown event has come in and been examined by an application or view. The view may determine it wants to allow that portion of the window to start a window drag, and can hand off the work to the Window Server process by calling this method. This allows the window to participate in space switching, and other system features. Pass the original mouseDown event to the method. The method will return right away, and a mouseUp may not get sent.
         #[method(performWindowDragWithEvent:)]
         pub fn performWindowDragWithEvent(&self, event: &NSEvent);
 
@@ -1369,6 +1564,7 @@ extern_methods!(
 
         #[cfg(feature = "NSView")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`initialFirstResponder`][Self::initialFirstResponder].
         #[method(setInitialFirstResponder:)]
         pub fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 
@@ -1394,6 +1590,7 @@ extern_methods!(
         pub unsafe fn defaultButtonCell(&self) -> Option<Retained<NSButtonCell>>;
 
         #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
+        /// Setter for [`defaultButtonCell`][Self::defaultButtonCell].
         #[method(setDefaultButtonCell:)]
         pub unsafe fn setDefaultButtonCell(&self, default_button_cell: Option<&NSButtonCell>);
 
@@ -1406,6 +1603,7 @@ extern_methods!(
         #[method(autorecalculatesKeyViewLoop)]
         pub unsafe fn autorecalculatesKeyViewLoop(&self) -> bool;
 
+        /// Setter for [`autorecalculatesKeyViewLoop`][Self::autorecalculatesKeyViewLoop].
         #[method(setAutorecalculatesKeyViewLoop:)]
         pub unsafe fn setAutorecalculatesKeyViewLoop(&self, autorecalculates_key_view_loop: bool);
 
@@ -1417,6 +1615,7 @@ extern_methods!(
         pub unsafe fn toolbar(&self) -> Option<Retained<NSToolbar>>;
 
         #[cfg(feature = "NSToolbar")]
+        /// Setter for [`toolbar`][Self::toolbar].
         #[method(setToolbar:)]
         pub unsafe fn setToolbar(&self, toolbar: Option<&NSToolbar>);
 
@@ -1430,35 +1629,53 @@ extern_methods!(
         #[method(showsToolbarButton)]
         pub unsafe fn showsToolbarButton(&self) -> bool;
 
+        /// Setter for [`showsToolbarButton`][Self::showsToolbarButton].
         #[deprecated = "This property has no effect"]
         #[method(setShowsToolbarButton:)]
         pub unsafe fn setShowsToolbarButton(&self, shows_toolbar_button: bool);
 
+        /// Allows automatic window tabbing when the value is
+        /// `YES.`By default, this will be set to
+        /// `YES,`but applications can explicitly opt out of all automatic tabbing by setting it to NO, and can still adopted explicit window tabbing, if desired.
         #[method(allowsAutomaticWindowTabbing)]
         pub fn allowsAutomaticWindowTabbing(mtm: MainThreadMarker) -> bool;
 
+        /// Setter for [`allowsAutomaticWindowTabbing`][Self::allowsAutomaticWindowTabbing].
         #[method(setAllowsAutomaticWindowTabbing:)]
         pub fn setAllowsAutomaticWindowTabbing(
             allows_automatic_window_tabbing: bool,
             mtm: MainThreadMarker,
         );
 
+        /// Returns the user's tabbing preference as set in System Preferences. This value should be queried anytime a new window is made to see if the user wants to automatically show it in tabs.
         #[method(userTabbingPreference)]
         pub unsafe fn userTabbingPreference(mtm: MainThreadMarker)
             -> NSWindowUserTabbingPreference;
 
+        /// Get and set the tabbing mode for this window. This should be set before a window is shown. The default value is
+        /// `NSWindowTabbingModeAutomatic.`When the value is
+        /// `NSWindowTabbingModeAutomatic,`the system will look at the
+        /// `userTabbingPreference`and automatically tab windows together based on the tabbingIdentifier, when it is appropriate to do so.
         #[method(tabbingMode)]
         pub unsafe fn tabbingMode(&self) -> NSWindowTabbingMode;
 
+        /// Setter for [`tabbingMode`][Self::tabbingMode].
         #[method(setTabbingMode:)]
         pub fn setTabbingMode(&self, tabbing_mode: NSWindowTabbingMode);
 
+        /// Windows with the same
+        /// `tabbingIdentifier`will have the ability to be tabbed together when a window is being shown. This allows aggregation of similar windows. By default, the
+        /// `tabbingIdentifier`will be generated based on inherent window properties, such as the window class name, the delegate class name, the window controller class name, and some additional state. Windows can be explicitly made to group together by using the same
+        /// `tabbingIdentifier.`
         #[method_id(@__retain_semantics Other tabbingIdentifier)]
         pub fn tabbingIdentifier(&self) -> Retained<NSWindowTabbingIdentifier>;
 
+        /// Setter for [`tabbingIdentifier`][Self::tabbingIdentifier].
         #[method(setTabbingIdentifier:)]
         pub fn setTabbingIdentifier(&self, tabbing_identifier: &NSWindowTabbingIdentifier);
 
+        /// Actions that can be called to perform various tabbed window behaviors. UI that is hooked up to these items can be automatically validated by calling `NSWindow`'s
+        /// `validateUserInterfaceItem.`
         #[method(selectNextTab:)]
         pub fn selectNextTab(&self, sender: Option<&AnyObject>);
 
@@ -1474,13 +1691,16 @@ extern_methods!(
         #[method(toggleTabBar:)]
         pub unsafe fn toggleTabBar(&self, sender: Option<&AnyObject>);
 
+        /// Toggle the Tab Picker / Tab Overview UI which is invoked via "Show All Tabs". Performs the toggle in an animated fashion. Use `tabGroup.isOverviewVisible` to find out if it is visible or not at a given time.
         #[method(toggleTabOverview:)]
         pub unsafe fn toggleTabOverview(&self, sender: Option<&AnyObject>);
 
+        /// This is now a cover for `self.tabGroup.windows`, but will return nil if the window is not showing a tab bar.
         #[method_id(@__retain_semantics Other tabbedWindows)]
         pub unsafe fn tabbedWindows(&self) -> Option<Retained<NSArray<NSWindow>>>;
 
         #[cfg(feature = "NSGraphics")]
+        /// This is now a cover for `-[self.tabGroup addWindow:]`, which allows more precise placement.
         #[method(addTabbedWindow:ordered:)]
         pub unsafe fn addTabbedWindow_ordered(
             &self,
@@ -1489,14 +1709,24 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSWindowTab")]
+        /// Access the properties for this window when it is a tabbed window environment. See the
+        /// `NSWindowTab`header and comments for more information.
         #[method_id(@__retain_semantics Other tab)]
         pub unsafe fn tab(&self) -> Retained<NSWindowTab>;
 
         #[cfg(feature = "NSWindowTabGroup")]
+        /// Represents a tab group of windows. This
+        /// `tabGroup`is lazily created on demand.
         #[method_id(@__retain_semantics Other tabGroup)]
         pub fn tabGroup(&self) -> Option<Retained<NSWindowTabGroup>>;
 
         #[cfg(feature = "block2")]
+        /// Attempt to move window sharing (i.e. within a SharePlay session) from the receiver to another window. In response to this request, the user may choose to transfer sharing to the new window, or simply stop sharing the content.
+        ///
+        /// Parameter `window`: A window that is replacing the reciever in representing the user's current activity.
+        ///
+        /// Parameter `completionHandler`: A completion block that is called after the request finishes.
+        /// `error`In the event of a failed transfer request, a non-nil error contains details about the failure.
         #[method(transferWindowSharingToWindow:completionHandler:)]
         pub unsafe fn transferWindowSharingToWindow_completionHandler(
             &self,
@@ -1504,10 +1734,17 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
 
+        /// Indicates whether the receiver is the subject of an active SharePlay sharing session.
         #[method(hasActiveWindowSharingSession)]
         pub unsafe fn hasActiveWindowSharingSession(&self) -> bool;
 
         #[cfg(feature = "block2")]
+        /// Request sharing of window.  If there is an available ScreenCaptureKit sharing session, an alert will be presented asking the user to confirm the share
+        ///
+        /// Parameter `window`: The window to share
+        ///
+        /// Parameter `completionHandler`: A completion block that is called after the request finishes.
+        /// `error`The error will be non-nil if the request does not result in a window being shared.  The error will be NSUserCancelledError if there is no ScreenCaptureKit session, or if the user rejects the offer to share.  If sharing fails for some other reason, the error will provide the details.
         #[method(requestSharingOfWindow:completionHandler:)]
         pub unsafe fn requestSharingOfWindow_completionHandler(
             &self,
@@ -1516,6 +1753,14 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSImage", feature = "block2"))]
+        /// Request sharing of window to be provided later.  If there is an available ScreenCaptureKit sharing session, an alert will be presented asking the user to confirm the share.  The delegate will be asked to provide the window to share via windowForSharingRequestFromWindow:
+        ///
+        /// Parameter `image`: An image showing a preview of the window to share
+        ///
+        /// Parameter `title`: The title to show in a confirmation dialog
+        ///
+        /// Parameter `completionHandler`: A completion block that is called after the request finishes.
+        /// `error`The error will be non-nil if the request does not result in a window being shared.  The error will be NSUserCancelledError if there is no ScreenCaptureKit session, or if the user rejects the offer to share.  If sharing fails for some other reason, the error will provide the details.
         #[method(requestSharingOfWindowUsingPreview:title:completionHandler:)]
         pub unsafe fn requestSharingOfWindowUsingPreview_title_completionHandler(
             &self,
@@ -1525,6 +1770,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSUserInterfaceLayout")]
+        /// Retrieve the layout direction of the window titlebar: this includes the standard window buttons (close/minimize/maximize buttons) and the title for this window. In general, this will return "right to left" (RTL) if the primary system language is RTL. The layout direction may be RTL even in applications that do not have a RTL language localization. This value should be utilized if an application uses titlebarAppearsTransparent and places controls underneath the titlebar.
         #[method(windowTitlebarLayoutDirection)]
         pub unsafe fn windowTitlebarLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
     }
@@ -1553,6 +1799,9 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
         #[cfg(all(feature = "NSEvent", feature = "block2"))]
+        /// Tracks events matching the supplied mask with the supplied tracking handler until the tracking handler explicitly terminates tracking. Each event is removed from the event queue then passed to the tracking handler. If a matching event does not exist in the event queue, then the main thread blocks in the specified runloop mode until an event of the requested type is received or the timeout expires. If the timeout expires, the tracking handler is called with a nil event. A negative timeout is interpreted as 0. Use
+        /// `NSEventDurationForever`to never timeout. Tracking continues until `*stop` is set to
+        /// `YES.`Calls to `-nextEventMatchingMask:…` are allowed inside the trackingHandler block. This method returns once tracking is terminated.
         #[method(trackEventsMatchingMask:timeout:mode:handler:)]
         pub unsafe fn trackEventsMatchingMask_timeout_mode_handler(
             &self,
@@ -1599,12 +1848,14 @@ extern_methods!(
         #[method(acceptsMouseMovedEvents)]
         pub unsafe fn acceptsMouseMovedEvents(&self) -> bool;
 
+        /// Setter for [`acceptsMouseMovedEvents`][Self::acceptsMouseMovedEvents].
         #[method(setAcceptsMouseMovedEvents:)]
         pub fn setAcceptsMouseMovedEvents(&self, accepts_mouse_moved_events: bool);
 
         #[method(ignoresMouseEvents)]
         pub unsafe fn ignoresMouseEvents(&self) -> bool;
 
+        /// Setter for [`ignoresMouseEvents`][Self::ignoresMouseEvents].
         #[method(setIgnoresMouseEvents:)]
         pub fn setIgnoresMouseEvents(&self, ignores_mouse_events: bool);
 
@@ -1745,6 +1996,7 @@ extern_protocol!(
         ) -> Option<Retained<NSUndoManager>>;
 
         #[cfg(all(feature = "NSResponder", feature = "objc2-core-foundation"))]
+        /// Tells the delegate that the window is about to show a sheet, and gives the delegate a chance to customize the location of the sheet.
         #[optional]
         #[method(window:willPositionSheet:usingRect:)]
         unsafe fn window_willPositionSheet_usingRect(
@@ -1755,6 +2007,13 @@ extern_protocol!(
         ) -> NSRect;
 
         #[cfg(all(feature = "NSMenu", feature = "NSResponder"))]
+        /// If a window has a
+        /// `representedURL,`the window will by default show a path popup menu for a command-click on a rectangle containing the window document icon button and the window title.  The window delegate may implement `-window:shouldPopupDocumentPathMenu:` to override `NSWindow`'s default behavior for path popup menu.  A return of
+        /// `NO`will prevent the menu from being shown.  A return of
+        /// `YES`will cause the window to show the menu passed to this method, which by default will contain a menuItem for each path component of the
+        /// `representedURL.`If the
+        /// `representedURL`has no path components, the menu will have no menu items.  Before returning
+        /// `YES,`the window delegate may customize the menu by changing the menuItems.  menuItems may be added or deleted, and each menuItem title, action, or target may be modified.
         #[optional]
         #[method(window:shouldPopUpDocumentPathMenu:)]
         unsafe fn window_shouldPopUpDocumentPathMenu(
@@ -1769,6 +2028,12 @@ extern_protocol!(
             feature = "NSResponder",
             feature = "objc2-core-foundation"
         ))]
+        /// The window delegate may implement `-window:shouldDragDocumentWithEvent:from:withPasteboard:` to override
+        /// `NSWindow`document icon's default drag behavior.  The delegate can prohibit the drag by returning
+        /// `NO.`Before returning
+        /// `NO,`the delegate may implement its own dragging behavior using `-[NSWindow dragImage:at:offset:event:pasteboard:source:slideBack:]`.  Alternatively, the delegate can enable a drag by returning
+        /// `YES,`for example to override NSWindow's default behavior of prohibiting the drag of an edited document.  Lastly, the delegate can customize the pasteboard contents before returning
+        /// `YES.`
         #[optional]
         #[method(window:shouldDragDocumentWithEvent:from:withPasteboard:)]
         unsafe fn window_shouldDragDocumentWithEvent_from_withPasteboard(
@@ -1798,6 +2063,7 @@ extern_protocol!(
         ) -> NSApplicationPresentationOptions;
 
         #[cfg(feature = "NSResponder")]
+        /// The default animation between a window and its fullscreen representation is a crossfade.  With knowledge of the layout of a window before and after it enters fullscreen, an application can do a much better job on the animation.  The following API allows a window delegate to customize the animation by providing a custom window or windows containing layers or other effects.  In order to manage windows on spaces, we need the window delegate to provide a list of windows involved in the animation.  If an application does not do a custom animation, this method can be unimplemented or can return nil.  `-window:startCustomAnimationToEnterFullScreenWithDuration:` will be called only if `-customWindowsToEnterFullScreenForWindow:` returns non-nil.
         #[optional]
         #[method_id(@__retain_semantics Other customWindowsToEnterFullScreenForWindow:)]
         unsafe fn customWindowsToEnterFullScreenForWindow(
@@ -1806,6 +2072,7 @@ extern_protocol!(
         ) -> Option<Retained<NSArray<NSWindow>>>;
 
         #[cfg(feature = "NSResponder")]
+        /// The system has started its animation into fullscreen, including transitioning to a new space.  Start the window fullscreen animation immediately, and perform the animation with the given duration to  be in sync with the system animation.  This method is called only if `-customWindowToEnterFullScreenForWindow:` returned non-nil.
         #[optional]
         #[method(window:startCustomAnimationToEnterFullScreenWithDuration:)]
         unsafe fn window_startCustomAnimationToEnterFullScreenWithDuration(
@@ -1815,11 +2082,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSResponder")]
+        /// In some cases, the transition to enter fullscreen will fail, due to being in the midst of handling some other animation or user gesture.  We will attempt to minimize these cases, but believe there is a need for failure handling.  This method indicates that there was an error, and the application should clean up any work it may have done to prepare to enter fullscreen.  This message will be sent whether or not the delegate indicated a custom animation by returning non-nil from `-customWindowsToEnterFullScreenForWindow:`.
         #[optional]
         #[method(windowDidFailToEnterFullScreen:)]
         unsafe fn windowDidFailToEnterFullScreen(&self, window: &NSWindow);
 
         #[cfg(feature = "NSResponder")]
+        /// The window is about to exit fullscreen mode.  The following API allows a window delegate to customize the animation when the window is about to exit fullscreen.  In order to manage windows on spaces, we need the window delegate to provide a list of windows involved in the animation.  If an application does not do a custom animation, this method can be unimplemented or can return nil. `-window:startCustomAnimationToExitFullScreenWithDuration:` will be called only if `-customWindowsToExitFullScreenForWindow:` returns non-nil.
         #[optional]
         #[method_id(@__retain_semantics Other customWindowsToExitFullScreenForWindow:)]
         unsafe fn customWindowsToExitFullScreenForWindow(
@@ -1828,6 +2097,7 @@ extern_protocol!(
         ) -> Option<Retained<NSArray<NSWindow>>>;
 
         #[cfg(feature = "NSResponder")]
+        /// The system has started its animation out of fullscreen, including transitioning back to the desktop space.  Start the window animation immediately, and perform the animation with the given duration to  be in sync with the system animation.  This method is called only if `-customWindowsToExitFullScreenForWindow:` returned non-nil.
         #[optional]
         #[method(window:startCustomAnimationToExitFullScreenWithDuration:)]
         unsafe fn window_startCustomAnimationToExitFullScreenWithDuration(
@@ -1837,6 +2107,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSResponder", feature = "NSScreen"))]
+        /// `-customWindowsToEnterFullScreenForWindow:onScreen:` will be called in place of `-customWindowsToEnterFullScreenForWindow:` if both are implemented.
         #[optional]
         #[method_id(@__retain_semantics Other customWindowsToEnterFullScreenForWindow:onScreen:)]
         unsafe fn customWindowsToEnterFullScreenForWindow_onScreen(
@@ -1846,6 +2117,7 @@ extern_protocol!(
         ) -> Option<Retained<NSArray<NSWindow>>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSScreen"))]
+        /// `-window:startCustomAnimationToEnterFullScreenOnScreen:withDuration:` will be called in place of `-window:startCustomAnimationToEnterFullScreenWithDuration:` if both are implemented.
         #[optional]
         #[method(window:startCustomAnimationToEnterFullScreenOnScreen:withDuration:)]
         unsafe fn window_startCustomAnimationToEnterFullScreenOnScreen_withDuration(
@@ -1856,11 +2128,15 @@ extern_protocol!(
         );
 
         #[cfg(feature = "NSResponder")]
+        /// In some cases, the transition to exit fullscreen will fail, due to being in the midst of handling some other animation or user gesture.  We will attempt to minimize these cases, but believe there is a need for failure handling.  This method indicates that there was an error, and the application should clean up any work it may have done to prepare to exit fullscreen.  This message will be sent whether or not the delegate indicated a custom animation by returning non-nil from `-customWindowsToExitFullScreenForWindow:`.
         #[optional]
         #[method(windowDidFailToExitFullScreen:)]
         unsafe fn windowDidFailToExitFullScreen(&self, window: &NSWindow);
 
         #[cfg(all(feature = "NSResponder", feature = "objc2-core-foundation"))]
+        /// Windows entering the version browser will be resized to the size returned by this method. If either dimension of the returned size is larger than the
+        /// `maxPreferredFrameSize,`the window will also be scaled down to ensure it fits properly in the version browser. Returned sizes larger than
+        /// `maxAllowedSize`will be constrained to that size. If this method is not implemented, the version browser will use `-window:willUseStandardFrame:` to determine the resulting window frame size.
         #[optional]
         #[method(window:willResizeForVersionBrowserWithMaxPreferredSize:maxAllowedSize:)]
         unsafe fn window_willResizeForVersionBrowserWithMaxPreferredSize_maxAllowedSize(
@@ -1871,16 +2147,20 @@ extern_protocol!(
         ) -> NSSize;
 
         #[cfg(feature = "NSResponder")]
+        /// Method called by `-[NSWindow encodeRestorableStateWithCoder:]` to give the delegate a chance to encode any additional state into the NSCoder.  This state is available in the NSCoder passed to `-restoreWindowWithIdentifier:state:handler:`. See the header `NSWindowRestoration.h` for more information.
         #[optional]
         #[method(window:willEncodeRestorableState:)]
         unsafe fn window_willEncodeRestorableState(&self, window: &NSWindow, state: &NSCoder);
 
         #[cfg(feature = "NSResponder")]
+        /// Method called by `-[NSWindow restoreStateWithCoder:]` to give the delegate a chance to restore its own state, which it may decode from the
+        /// `NSCoder.`See the header `NSWindowRestoration.h` for more information.
         #[optional]
         #[method(window:didDecodeRestorableState:)]
         unsafe fn window_didDecodeRestorableState(&self, window: &NSWindow, state: &NSCoder);
 
         #[cfg(all(feature = "NSPreviewRepresentingActivityItem", feature = "NSResponder"))]
+        /// Preview representable activity items, used for sharing and collaboration.
         #[optional]
         #[method_id(@__retain_semantics Other previewRepresentableActivityItemsForWindow:)]
         unsafe fn previewRepresentableActivityItemsForWindow(
@@ -1889,6 +2169,7 @@ extern_protocol!(
         ) -> Option<Retained<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
 
         #[cfg(feature = "NSResponder")]
+        /// Method called to get the window to share once sharing is confirmed, after a request is initiated by requestSharingOfWindowUsingPreview:title:completionHandler:. Implement this on the delegate of the requesting window
         #[optional]
         #[method_id(@__retain_semantics Other windowForSharingRequestFromWindow:)]
         unsafe fn windowForSharingRequestFromWindow(
@@ -2097,7 +2378,16 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidchangebackingpropertiesnotification?language=objc)
+    /// `NSWindowDidChangeBackingPropertiesNotification`is posted on 10.7.3 and later, when a window's
+    /// `backingScaleFactor`and/or its
+    /// `colorSpace`changes.  When running on a system version where this new notification is available, applications should use it instead of
+    /// `NSWindowDidChangeScreenProfileNotification`to watch for changes to either of these backing store properties.  Many applications won't have any need to watch for this notification, but those that perform sophisticated color handling or manually manage their own caches of window-resolution-and/or/colorspace-appropriate bitmapped images will find this notification useful, as a prompt to invalidate their caches or schedule other reassessment for the new resolution and/or color space as needed.  The notification's userInfo dictionary specifies the window's previous
+    /// `backingScaleFactor`and
+    /// `colorSpace.`You can compare these with the window's new
+    /// `backingScaleFactor`and
+    /// `colorSpace`at the time of the notification, to determine which of these two properties (potentially both) changed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidchangebackingpropertiesnotification?language=objc)
     pub static NSWindowDidChangeBackingPropertiesNotification: &'static NSNotificationName;
 }
 
@@ -2112,17 +2402,24 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidchangescreenprofilenotification?language=objc)
+    /// `NSWindowDidChangeScreenProfileNotification`is posted when a window's display's color profile changes, or when the window moves to a display that has a different color profile.  When running on 10.7.3 or later, this notification is still posted for compatibility, but modern applications should instead watch for
+    /// `NSWindowDidChangeBackingPropertiesNotification,`which is posted for both color space and resolution changes, and facilitates handling both in a single update and redisplay pass.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidchangescreenprofilenotification?language=objc)
     pub static NSWindowDidChangeScreenProfileNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowwillstartliveresizenotification?language=objc)
+    /// `NSWindowWillStartLiveResizeNotification`is sent when the user starts a live resize operation via a mouseDown in the resize corner.  The notification will be sent before the window size is changed.  Note that this notification is sent once for a sequence of window resize operations
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowwillstartliveresizenotification?language=objc)
     pub static NSWindowWillStartLiveResizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidendliveresizenotification?language=objc)
+    /// `NSWindowDidEndLiveResizeNotification`is sent after the user ends a live resize operation via a mouseUp in the resize corner.  The notification will be sent after the final window size change.    Note that this notification is sent once for a sequence of window resize operations
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidendliveresizenotification?language=objc)
     pub static NSWindowDidEndLiveResizeNotification: &'static NSNotificationName;
 }
 
@@ -2167,7 +2464,10 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidchangeocclusionstatenotification?language=objc)
+    /// Upon receiving this notification, you can query the
+    /// `NSWindow`for its current occlusion state. Note that this only notifies about changes in the state of the occlusion, not when the occlusion region changes. You can use this notification to increase responsiveness and save power, by halting any expensive calculations that the user can not see.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidchangeocclusionstatenotification?language=objc)
     pub static NSWindowDidChangeOcclusionStateNotification: &'static NSNotificationName;
 }
 
@@ -2267,6 +2567,7 @@ extern_methods!(
         #[method(isAutodisplay)]
         pub unsafe fn isAutodisplay(&self) -> bool;
 
+        /// Setter for [`isAutodisplay`][Self::isAutodisplay].
         #[deprecated = "Use +[NSAnimationContext runAnimationGroup:completionHandler:] to temporarily prevent AppKit's automatic deferred display mechanism from drawing."]
         #[method(setAutodisplay:)]
         pub unsafe fn setAutodisplay(&self, autodisplay: bool);
@@ -2280,6 +2581,7 @@ extern_methods!(
         #[method(isOneShot)]
         pub unsafe fn isOneShot(&self) -> bool;
 
+        /// Setter for [`isOneShot`][Self::isOneShot].
         #[deprecated = "This property does not do anything and should not be used"]
         #[method(setOneShot:)]
         pub unsafe fn setOneShot(&self, one_shot: bool);
@@ -2288,6 +2590,7 @@ extern_methods!(
         #[method(preferredBackingLocation)]
         pub unsafe fn preferredBackingLocation(&self) -> NSWindowBackingLocation;
 
+        /// Setter for [`preferredBackingLocation`][Self::preferredBackingLocation].
         #[deprecated = "This property does not do anything and should not be used"]
         #[method(setPreferredBackingLocation:)]
         pub unsafe fn setPreferredBackingLocation(
@@ -2303,6 +2606,7 @@ extern_methods!(
         #[method(showsResizeIndicator)]
         pub unsafe fn showsResizeIndicator(&self) -> bool;
 
+        /// Setter for [`showsResizeIndicator`][Self::showsResizeIndicator].
         #[deprecated = "This property does not do anything and should not be used."]
         #[method(setShowsResizeIndicator:)]
         pub unsafe fn setShowsResizeIndicator(&self, shows_resize_indicator: bool);

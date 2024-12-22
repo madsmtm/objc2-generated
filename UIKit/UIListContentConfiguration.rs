@@ -37,34 +37,56 @@ unsafe impl UIContentConfiguration for UIListContentConfiguration {}
 
 extern_methods!(
     unsafe impl UIListContentConfiguration {
+        /// Returns the default configuration for a list cell.
+        /// From iOS 18 onwards, the configuration will automatically adopt the appropriate style for a list when updating for a
+        /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
+        /// Defaults to a cell in a plain-style list.
         #[method_id(@__retain_semantics Other cellConfiguration)]
         pub unsafe fn cellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Returns the default configuration for a list cell with subtitle text.
+        /// From iOS 18 onwards, the configuration will automatically adopt the appropriate style for a list when updating for a
+        /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
+        /// Defaults to a subtitle cell in a plain-style list.
         #[method_id(@__retain_semantics Other subtitleCellConfiguration)]
         pub unsafe fn subtitleCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Returns the default configuration for a list cell with side-by-side value text.
+        /// From iOS 18 onwards, the configuration will automatically adopt the appropriate style for a list when updating for a
+        /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
+        /// Defaults to the appearance of a value cell in a plain-style list.
         #[method_id(@__retain_semantics Other valueCellConfiguration)]
         pub unsafe fn valueCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Represents a generic header configuration that automatically adopts the style of a containing list when updating for a
+        /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
+        /// Defaults to the header configuration for a plain-style list.
         #[method_id(@__retain_semantics Other headerConfiguration)]
         pub unsafe fn headerConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Represents a generic footer configuration that automatically adopts the style of a containing list when updating for a
+        /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
+        /// Defaults to the footer configuration for a plain-style list.
         #[method_id(@__retain_semantics Other footerConfiguration)]
         pub unsafe fn footerConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Returns the default configuration for a prominent inset grouped list header.
         #[method_id(@__retain_semantics Other prominentInsetGroupedHeaderConfiguration)]
         pub unsafe fn prominentInsetGroupedHeaderConfiguration(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Returns the default configuration for an extra prominent inset grouped list header.
         #[method_id(@__retain_semantics Other extraProminentInsetGroupedHeaderConfiguration)]
         pub unsafe fn extraProminentInsetGroupedHeaderConfiguration(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Returns the default configuration for an accompanied sidebar list cell.
         #[method_id(@__retain_semantics Other accompaniedSidebarCellConfiguration)]
         pub unsafe fn accompaniedSidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Returns the default configuration for an accompanied sidebar list cell with subtitle text.
         #[method_id(@__retain_semantics Other accompaniedSidebarSubtitleCellConfiguration)]
         pub unsafe fn accompaniedSidebarSubtitleCellConfiguration(
             mtm: MainThreadMarker,
@@ -77,42 +99,54 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
+        /// The image to display.
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         #[cfg(feature = "UIListContentImageProperties")]
+        /// Additional properties to configure the image.
         #[method_id(@__retain_semantics Other imageProperties)]
         pub unsafe fn imageProperties(&self) -> Retained<UIListContentImageProperties>;
 
+        /// The primary text.
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`text`][Self::text].
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
+        /// An attributed variant of the primary text, which supersedes the `text` and some properties of the `textProperties` if set.
         #[method_id(@__retain_semantics Other attributedText)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
+        /// Setter for [`attributedText`][Self::attributedText].
         #[method(setAttributedText:)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
         #[cfg(feature = "UIListContentTextProperties")]
+        /// Additional properties to configure the primary text.
         #[method_id(@__retain_semantics Other textProperties)]
         pub unsafe fn textProperties(&self) -> Retained<UIListContentTextProperties>;
 
+        /// The secondary text.
         #[method_id(@__retain_semantics Other secondaryText)]
         pub unsafe fn secondaryText(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`secondaryText`][Self::secondaryText].
         #[method(setSecondaryText:)]
         pub unsafe fn setSecondaryText(&self, secondary_text: Option<&NSString>);
 
+        /// An attributed variant of the secondary text, which supersedes the `secondaryText` and some properties of the `secondaryTextProperties` if set.
         #[method_id(@__retain_semantics Other secondaryAttributedText)]
         pub unsafe fn secondaryAttributedText(&self) -> Option<Retained<NSAttributedString>>;
 
+        /// Setter for [`secondaryAttributedText`][Self::secondaryAttributedText].
         #[method(setSecondaryAttributedText:)]
         pub unsafe fn setSecondaryAttributedText(
             &self,
@@ -120,14 +154,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIListContentTextProperties")]
+        /// Additional properties to configure the secondary text.
         #[method_id(@__retain_semantics Other secondaryTextProperties)]
         pub unsafe fn secondaryTextProperties(&self) -> Retained<UIListContentTextProperties>;
 
         #[cfg(feature = "UIGeometry")]
+        /// Whether the content view will preserve inherited layout margins from its superview on the horizontal and/or vertical axes.
         #[method(axesPreservingSuperviewLayoutMargins)]
         pub unsafe fn axesPreservingSuperviewLayoutMargins(&self) -> UIAxis;
 
         #[cfg(feature = "UIGeometry")]
+        /// Setter for [`axesPreservingSuperviewLayoutMargins`][Self::axesPreservingSuperviewLayoutMargins].
         #[method(setAxesPreservingSuperviewLayoutMargins:)]
         pub unsafe fn setAxesPreservingSuperviewLayoutMargins(
             &self,
@@ -135,19 +172,23 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// The margins for the content to the edges of the content view. (When preserving superview layout margins on one or both axes, these are just minimum margins, as inherited margins may be larger.)
         #[method(directionalLayoutMargins)]
         pub unsafe fn directionalLayoutMargins(&self) -> NSDirectionalEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`directionalLayoutMargins`][Self::directionalLayoutMargins].
         #[method(setDirectionalLayoutMargins:)]
         pub unsafe fn setDirectionalLayoutMargins(
             &self,
             directional_layout_margins: NSDirectionalEdgeInsets,
         );
 
+        /// When YES, the text and secondary text will be positioned side-by-side if there is sufficient space. Otherwise, the text will be stacked in a vertical layout.
         #[method(prefersSideBySideTextAndSecondaryText)]
         pub unsafe fn prefersSideBySideTextAndSecondaryText(&self) -> bool;
 
+        /// Setter for [`prefersSideBySideTextAndSecondaryText`][Self::prefersSideBySideTextAndSecondaryText].
         #[method(setPrefersSideBySideTextAndSecondaryText:)]
         pub unsafe fn setPrefersSideBySideTextAndSecondaryText(
             &self,
@@ -155,18 +196,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Padding between the image and text. Only applies when there is both an image and text.
         #[method(imageToTextPadding)]
         pub unsafe fn imageToTextPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`imageToTextPadding`][Self::imageToTextPadding].
         #[method(setImageToTextPadding:)]
         pub unsafe fn setImageToTextPadding(&self, image_to_text_padding: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Horizontal (minimum) padding between the text and secondary text. Only applies when there is both text and secondary text, and they are in a side-by-side layout.
         #[method(textToSecondaryTextHorizontalPadding)]
         pub unsafe fn textToSecondaryTextHorizontalPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`textToSecondaryTextHorizontalPadding`][Self::textToSecondaryTextHorizontalPadding].
         #[method(setTextToSecondaryTextHorizontalPadding:)]
         pub unsafe fn setTextToSecondaryTextHorizontalPadding(
             &self,
@@ -174,10 +219,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Vertical padding between the text and secondary text. Only applies when there is both text and secondary text, and they are in a stacked layout.
         #[method(textToSecondaryTextVerticalPadding)]
         pub unsafe fn textToSecondaryTextVerticalPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`textToSecondaryTextVerticalPadding`][Self::textToSecondaryTextVerticalPadding].
         #[method(setTextToSecondaryTextVerticalPadding:)]
         pub unsafe fn setTextToSecondaryTextVerticalPadding(
             &self,
@@ -185,37 +232,46 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The alpha to apply to the entire content view. Defaults to 1.0.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
+        /// Returns the default configuration for a sidebar list cell.
         #[deprecated]
         #[method_id(@__retain_semantics Other sidebarCellConfiguration)]
         pub unsafe fn sidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Returns the default configuration for a sidebar list cell with subtitle text.
         #[deprecated]
         #[method_id(@__retain_semantics Other sidebarSubtitleCellConfiguration)]
         pub unsafe fn sidebarSubtitleCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Returns the default configuration for a plain list header.
         #[deprecated]
         #[method_id(@__retain_semantics Other plainHeaderConfiguration)]
         pub unsafe fn plainHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Returns the default configuration for a plain list footer.
         #[deprecated]
         #[method_id(@__retain_semantics Other plainFooterConfiguration)]
         pub unsafe fn plainFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Returns the default configuration for a grouped list header.
         #[deprecated]
         #[method_id(@__retain_semantics Other groupedHeaderConfiguration)]
         pub unsafe fn groupedHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Returns the default configuration for a grouped list footer.
         #[deprecated]
         #[method_id(@__retain_semantics Other groupedFooterConfiguration)]
         pub unsafe fn groupedFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
+        /// Returns the default configuration for a sidebar list header.
         #[deprecated]
         #[method_id(@__retain_semantics Other sidebarHeaderConfiguration)]
         pub unsafe fn sidebarHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
@@ -315,18 +371,31 @@ extern_methods!(
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Retained<UIListContentConfiguration>;
 
+        /// Setter for [`configuration`][Self::configuration].
         #[method(setConfiguration:)]
         pub unsafe fn setConfiguration(&self, configuration: &UIListContentConfiguration);
 
         #[cfg(feature = "UILayoutGuide")]
+        /// This guide reflects the positioning of the primary text rendered by this content view, if specified by the configuration.
+        ///
+        /// Returns nil if there is no primary text. If a new configuration is applied that does not contain primary text, then this layout
+        /// guide is removed from the view, and any constraints associated with it will be deactivated.
         #[method_id(@__retain_semantics Other textLayoutGuide)]
         pub unsafe fn textLayoutGuide(&self) -> Option<Retained<UILayoutGuide>>;
 
         #[cfg(feature = "UILayoutGuide")]
+        /// This guide reflects the positioning of the secondary text rendered by this content view, if specified by the configuration.
+        ///
+        /// Returns nil if there is no secondary text. If a new configuration is applied that does not contain secondary text, then this layout
+        /// guide is removed from the view, and any constraints associated with it will be deactivated.
         #[method_id(@__retain_semantics Other secondaryTextLayoutGuide)]
         pub unsafe fn secondaryTextLayoutGuide(&self) -> Option<Retained<UILayoutGuide>>;
 
         #[cfg(feature = "UILayoutGuide")]
+        /// This guide reflects the positioning of the image rendered by this content view, if specified by the configuration.
+        ///
+        /// Returns nil if there is no image. If a new configuration is applied that does contain an image, then this layout
+        /// guide is removed from the view, and any constraints associated with it will be deactivated.
         #[method_id(@__retain_semantics Other imageLayoutGuide)]
         pub unsafe fn imageLayoutGuide(&self) -> Option<Retained<UILayoutGuide>>;
     }

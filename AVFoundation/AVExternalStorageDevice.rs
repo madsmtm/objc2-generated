@@ -8,7 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice?language=objc)
+    /// An AVExternalStorageDevice represents a physical external storage device connected to the device that can be used to store captured media assets.
+    ///
+    ///
+    /// Each instance of AVExternalStorageDevice corresponds to a physical external storage device where captured media assets can be stored. Instances of AVExternalStorageDevice cannot be created directly. An array of all currently available external storage devices can be obtained using AVExternalStorageDeviceDiscoverySession.
+    ///
+    /// Instances of AVExternalStorageDevice can be used with AVCaptureFileOutput subclasses for writing media files.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVExternalStorageDevice;
@@ -24,24 +31,69 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Display name of the external storage device.
+        ///
+        ///
+        /// This property can be used for displaying the name of an external storage device in a user interface. Will return nil if we fail to extract information from external storage device.
         #[method_id(@__retain_semantics Other displayName)]
         pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
+        /// Current free size in bytes.
+        ///
+        ///
+        /// This property represents the free size available on the external storage device. Will return -1 if we fail to extract information from external storage device.
         #[method(freeSize)]
         pub unsafe fn freeSize(&self) -> NSInteger;
 
+        /// Total storage size in bytes.
+        ///
+        ///
+        /// This property represents the total storage size available on the external storage device. Will return -1 if we fail to extract information from external storage device.
         #[method(totalSize)]
         pub unsafe fn totalSize(&self) -> NSInteger;
 
+        /// Indicates whether the external storage device is connected and available to the system.
+        ///
+        ///
+        /// The property gives the current connection status of the external storage device.
         #[method(isConnected)]
         pub unsafe fn isConnected(&self) -> bool;
 
+        /// A unique identifier for external storage device.
+        ///
+        ///
+        /// This property can be used to select a specific external storage device with ImageCapture framework APIs to read media assets. Will return nil if we fail to extract information from external storage device.
+        /// For example the string value of this property will match the value from [ICDevice UUIDString].
         #[method_id(@__retain_semantics Other uuid)]
         pub unsafe fn uuid(&self) -> Option<Retained<NSUUID>>;
 
+        /// Indicates whether the external storage device is not recommended for capture use.
+        ///
+        ///
+        /// This property is used to let the client know if the external storage device is not suitable for camera capture.
         #[method(isNotRecommendedForCaptureUse)]
         pub unsafe fn isNotRecommendedForCaptureUse(&self) -> bool;
 
+        /// Next available security-scoped, DCF compliant URL array with different path extensions.
+        ///
+        ///
+        /// Parameter `extensionArray`: An array of path extensions for the next available URL requested.
+        ///
+        /// Parameter `outError`: An out parameter with error information indicating why the URL could not be provided. If this method is successful, error will be nil.
+        ///
+        /// Returns: An array of DCF compliant security-scoped URL with all the path extensions requested.
+        ///
+        ///
+        /// Configures the folder structure (create a DCIM folder if there isn't one already) on the external storage device to provide the next available unique DCF compliant security-scoped URL array with different path extensions.
+        ///
+        /// Security-scoped URL requires the use of startAccessingSecurityScopedResource, and stopAccessingSecurityScopedResource for access.
+        /// [nextAvailableURL startAccessingSecurityScopedResource];
+        /// . . .
+        /// // your code to capture image / video
+        /// . . .
+        /// [nextAvailableURL stopAccessingSecurityScopedResource];
+        ///
+        /// Use the +requestAccessWithCompletionHandler: method to request access to external storage device before getting the next available URL array else an error will be thrown.
         #[method_id(@__retain_semantics Other nextAvailableURLsWithPathExtensions:error:_)]
         pub unsafe fn nextAvailableURLsWithPathExtensions_error(
             &self,
@@ -54,17 +106,37 @@ extern_methods!(
     /// AVExternalStorageDeviceAuthorization
     unsafe impl AVExternalStorageDevice {
         #[cfg(feature = "AVCaptureDevice")]
+        /// Returns the client's authorization status for capturing onto an external storage device connected to this device.
+        ///
+        ///
+        /// This method returns the AVAuthorizationStatus of the client for capturing onto an external storage device connected to this device. If the status is AVAuthorizationStatusNotDetermined, you may use the +requestAccessWithCompletionHandler: method to request access by prompting the user.
         #[method(authorizationStatus)]
         pub unsafe fn authorizationStatus() -> AVAuthorizationStatus;
 
         #[cfg(feature = "block2")]
+        /// Requests access to capture onto an external storage device connected to this device, showing a dialog to the user if necessary.
+        ///
+        ///
+        /// Parameter `handler`: A completion handler block called with the result of requesting access to capture onto an external storage device.
+        ///
+        ///
+        /// Use this method to request access to capture onto an external storage device connected to this device.
+        ///
+        /// This call will not block while the user is being asked for access, allowing the client to continue running. Until access has been granted, trying to capture into detected external storage devices will result in an error. The user is only asked for permission the first time the client requests access, later calls use the authorization status selected by the user.
+        ///
+        /// The completion handler is called on an arbitrary dispatch queue. It is the client's responsibility to ensure that any UIKit-related updates are called on the main queue or main thread as a result.
         #[method(requestAccessWithCompletionHandler:)]
         pub unsafe fn requestAccessWithCompletionHandler(handler: &block2::Block<dyn Fn(Bool)>);
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalstoragedevicediscoverysession?language=objc)
+    /// AVExternalStorageDeviceDiscoverySession is used to monitor connection / disconnection of external storage devices to the device.
+    ///
+    ///
+    /// AVExternalStorageDeviceDiscoverySession is a singleton that lists the external storage devices connected to this device. The client is expected to key-value observe the externalStorageDevices property for changes to the external storage devices list.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalstoragedevicediscoverysession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVExternalStorageDeviceDiscoverySession;
@@ -80,12 +152,27 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// @
+        /// property sharedSession
+        ///
+        /// Returns the singleton instance of the external storage device discovery session.
+        ///
+        ///
+        /// There is only one external storage device discovery session for each host device which can be accessed using this method. Will return nil if the device doesn't support external storage devices.
         #[method_id(@__retain_semantics Other sharedSession)]
         pub unsafe fn sharedSession() -> Option<Retained<AVExternalStorageDeviceDiscoverySession>>;
 
+        /// An array of external storage devices connected to this device. Read only. Key-value observable.
+        ///
+        ///
+        /// An array of AVExternalStorageDevice objects connected to this device. The list is updated when the external storage device detected status changes.
         #[method_id(@__retain_semantics Other externalStorageDevices)]
         pub unsafe fn externalStorageDevices(&self) -> Retained<NSArray<AVExternalStorageDevice>>;
 
+        /// Whether the external storage devices are supported by this device.
+        ///
+        ///
+        /// A value of YES indicates that external storage devices are supported while NO indicates it is not.
         #[method(isSupported)]
         pub unsafe fn isSupported() -> bool;
     }

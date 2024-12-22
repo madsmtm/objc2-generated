@@ -82,18 +82,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other xmlVersion)]
         pub unsafe fn xmlVersion(&self) -> Retained<NSString>;
 
+        /// Setter for [`xmlVersion`][Self::xmlVersion].
         #[method(setXmlVersion:)]
         pub unsafe fn setXmlVersion(&self, xml_version: Option<&NSString>);
 
         #[method(xmlStandalone)]
         pub unsafe fn xmlStandalone(&self) -> bool;
 
+        /// Setter for [`xmlStandalone`][Self::xmlStandalone].
         #[method(setXmlStandalone:)]
         pub unsafe fn setXmlStandalone(&self, xml_standalone: bool);
 
         #[method_id(@__retain_semantics Other documentURI)]
         pub unsafe fn documentURI(&self) -> Retained<NSString>;
 
+        /// Setter for [`documentURI`][Self::documentURI].
         #[method(setDocumentURI:)]
         pub unsafe fn setDocumentURI(&self, document_uri: Option<&NSString>);
 
@@ -111,6 +114,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[deprecated]
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
@@ -131,6 +135,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other cookie)]
         pub unsafe fn cookie(&self) -> Retained<NSString>;
 
+        /// Setter for [`cookie`][Self::cookie].
         #[deprecated]
         #[method(setCookie:)]
         pub unsafe fn setCookie(&self, cookie: Option<&NSString>);
@@ -141,6 +146,7 @@ extern_methods!(
         pub unsafe fn body(&self) -> Option<Retained<DOMHTMLElement>>;
 
         #[cfg(all(feature = "DOMElement", feature = "DOMHTMLElement"))]
+        /// Setter for [`body`][Self::body].
         #[deprecated]
         #[method(setBody:)]
         pub unsafe fn setBody(&self, body: Option<&DOMHTMLElement>);
@@ -176,6 +182,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other charset)]
         pub unsafe fn charset(&self) -> Retained<NSString>;
 
+        /// Setter for [`charset`][Self::charset].
         #[method(setCharset:)]
         pub unsafe fn setCharset(&self, charset: Option<&NSString>);
 
@@ -194,6 +201,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selectedStylesheetSet)]
         pub unsafe fn selectedStylesheetSet(&self) -> Retained<NSString>;
 
+        /// Setter for [`selectedStylesheetSet`][Self::selectedStylesheetSet].
         #[method(setSelectedStylesheetSet:)]
         pub unsafe fn setSelectedStylesheetSet(&self, selected_stylesheet_set: Option<&NSString>);
 

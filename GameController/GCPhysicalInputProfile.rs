@@ -8,7 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile?language=objc)
+    /// A game controller profile representing physical buttons, thumbsticks, dpads, etc... on a controller.
+    ///
+    /// All controller profiles provide a base level of information about the controller they belong to.
+    ///
+    /// A profile maps the hardware notion of a controller into a logical controller. One that a developer can design for
+    /// and depend on, no matter the underlying hardware.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCPhysicalInputProfile;
@@ -19,22 +26,36 @@ unsafe impl NSObjectProtocol for GCPhysicalInputProfile {}
 extern_methods!(
     unsafe impl GCPhysicalInputProfile {
         #[cfg(feature = "GCDevice")]
+        /// A profile keeps a reference to the device that this profile is mapping input from
         #[method_id(@__retain_semantics Other device)]
         pub unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn GCDevice>>>;
 
+        /// The last time elements of this profile were updated.
         #[method(lastEventTimestamp)]
         pub unsafe fn lastEventTimestamp(&self) -> NSTimeInterval;
 
+        /// Whether the user has remapped their physical input controls for this profile at the system level.
+        ///
+        ///
+        /// On iOS and tvOS, users can remap their game controller inputs in Settings.
         #[method(hasRemappedElements)]
         pub unsafe fn hasRemappedElements(&self) -> bool;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
+        /// Set this block if you want to be notified when a value on a element changed. If multiple elements have changed this block will be called
+        /// for each element that changed.
+        ///
+        ///
+        /// Parameter `profile`: this profile that is being used to map the raw input data into logical values on controller elements such as the dpad or the buttons.
+        ///
+        /// Parameter `element`: the element that has been modified.
         #[method(valueDidChangeHandler)]
         pub unsafe fn valueDidChangeHandler(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<GCPhysicalInputProfile>, NonNull<GCControllerElement>)>;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
+        /// Setter for [`valueDidChangeHandler`][Self::valueDidChangeHandler].
         #[method(setValueDidChangeHandler:)]
         pub unsafe fn setValueDidChangeHandler(
             &self,
@@ -46,6 +67,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "GCControllerElement")]
+        /// The following properties allow for runtime lookup of any input element on a profile, when provided with a valid alias.
         #[method_id(@__retain_semantics Other elements)]
         pub unsafe fn elements(&self) -> Retained<NSDictionary<NSString, GCControllerElement>>;
 
@@ -66,6 +88,7 @@ extern_methods!(
         pub unsafe fn touchpads(&self) -> Retained<NSDictionary<NSString, GCControllerTouchpad>>;
 
         #[cfg(feature = "GCControllerElement")]
+        /// The following properties allow for dynamic querying of the input elements available on a profile.
         #[method_id(@__retain_semantics Other allElements)]
         pub unsafe fn allElements(&self) -> Retained<NSSet<GCControllerElement>>;
 
@@ -86,24 +109,71 @@ extern_methods!(
         pub unsafe fn allTouchpads(&self) -> Retained<NSSet<GCControllerTouchpad>>;
 
         #[cfg(feature = "GCControllerElement")]
+        /// Profile elements can be accessed using keyed subscript notation, with a valid alias of its inputs.
+        ///
+        ///
+        ///
+        ///
+        /// Note: Equivalent to -elements
         #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &NSString,
         ) -> Option<Retained<GCControllerElement>>;
 
+        /// Polls the state vector of the physical input input and saves it to a new and writable instance of GCPhysicalInputProfile.
+        ///
+        /// If your application is heavily multithreaded this may also be useful to guarantee atomicity of input handling as
+        /// a snapshot will not change based on user input once it is taken.
+        ///
+        ///
+        /// See: snapshot
+        ///
+        /// Returns: A new physical input profile with the duplicated state vector of the current physical input
         #[method_id(@__retain_semantics Other capture)]
         pub unsafe fn capture(&self) -> Retained<Self>;
 
+        /// Sets the state vector of the physical input profile to a copy of the passed in physical input profile's state vector.
+        ///
+        ///
+        /// Note: If the controller's snapshot flag is set to NO, this method has no effect.
+        ///
+        /// See: GCController.snapshot
         #[method(setStateFromPhysicalInput:)]
         pub unsafe fn setStateFromPhysicalInput(&self, physical_input: &GCPhysicalInputProfile);
 
+        /// Returns the primary alias of the GCControllerElement that a given physical input maps to.
+        ///
+        ///
+        /// If the user were to map a physical press of the A button of their game controller to the B button, then
+        /// -[GCPhysicalInputProfile  mappedElementAliasForPhysicalInputName: GCInputButtonA] would return GCInputButtonB.
+        /// Note that mappings can change anytime your app is backgrounded, so make sure you update any relevant visuals when
+        /// returning to foreground.
+        ///
+        ///
+        /// Parameter `inputName`: A GCInput string corresponding to the physical button you want the mapped element alias for.
+        ///
+        ///
+        /// Returns: A GCInput string corresponding to the primary alias of the GCControllerElement that a given physical button maps to, or nil if there is no mapping.
         #[method_id(@__retain_semantics Other mappedElementAliasForPhysicalInputName:)]
         pub unsafe fn mappedElementAliasForPhysicalInputName(
             &self,
             input_name: &NSString,
         ) -> Retained<NSString>;
 
+        /// Returns a set of GCInput strings corresponding to physical inputs that are mapped to a given GCControllerElement.
+        ///
+        ///
+        /// If the user mapped the physical press of the A button, the B button, and the X button to the B button, then
+        /// -[GCPhysicalInputProfile mappedPhysicalInputNamesForElementAlias: GCInputButtonB] would return  [GCInputButtonA, GCInputButtonB, GCInputButtonX].
+        /// Note that mappings can change anytime your app is backgrounded, so make sure you update any relevant visuals when
+        /// returning to foreground.
+        ///
+        ///
+        /// Parameter `elementAlias`: A GCInput string corresponding to an alias of the GCControllerElement you want the physical buttons for.
+        ///
+        ///
+        /// Returns: A set of GCInput strings corresponding to physical inputs that are mapped to a given GCControllerElement, or an empty set if there are no mappings.
         #[method_id(@__retain_semantics Other mappedPhysicalInputNamesForElementAlias:)]
         pub unsafe fn mappedPhysicalInputNamesForElementAlias(
             &self,

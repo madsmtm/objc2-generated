@@ -232,6 +232,7 @@ extern_methods!(
         pub unsafe fn queryDescriptors(&self) -> Option<Retained<NSArray<NSFontDescriptor>>>;
 
         #[cfg(feature = "NSFontDescriptor")]
+        /// Setter for [`queryDescriptors`][Self::queryDescriptors].
         #[method(setQueryDescriptors:)]
         pub unsafe fn setQueryDescriptors(
             &self,
@@ -243,6 +244,7 @@ extern_methods!(
         pub unsafe fn exclusionDescriptors(&self) -> Option<Retained<NSArray<NSFontDescriptor>>>;
 
         #[cfg(feature = "NSFontDescriptor")]
+        /// Setter for [`exclusionDescriptors`][Self::exclusionDescriptors].
         #[method(setExclusionDescriptors:)]
         pub unsafe fn setExclusionDescriptors(
             &self,

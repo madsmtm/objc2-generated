@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackrectanglerequest?language=objc)
+    /// VNTrackRectangleRequest tracks a rectangle in a sequence of images.
+    ///
+    /// The VNTrackRectangleRequest is a special tracker to track rectangular shape objects. The VNTrackRectangleRequest is initialized with a VNRectangleObservation object that contains a rectangle bounding box and four corners locations. VNRectangleObservation can be obtained by running rectangle detector  (VNDetectRectanglesRequest). The VNTrackRectangleRequest is processed using one of the [VNSequenceRequestHandler performRequests:...] methods.
+    ///
+    /// Note: The rectangular object doesn't have to look like a rectangle when projected into the plane of the image of interest. For example, it may look like trapezoid.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackrectanglerequest?language=objc)
     #[unsafe(super(VNTrackingRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
@@ -30,6 +36,10 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
     unsafe impl VNTrackRectangleRequest {
         #[cfg(feature = "VNObservation")]
+        /// Create a new rectangle tracking request with rectangle observation.
+        ///
+        ///
+        /// Parameter `observation`: Rectangle observation with bounding box and rectangle corners location info.
         #[method_id(@__retain_semantics Init initWithRectangleObservation:)]
         pub unsafe fn initWithRectangleObservation(
             this: Allocated<Self>,
@@ -37,6 +47,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNObservation", feature = "block2"))]
+        /// Create a new rectangle tracking request with rectangle observation.
+        ///
+        ///
+        /// Parameter `observation`: Rectangle observation with bounding box and rectangle corners location info.
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
         #[method_id(@__retain_semantics Init initWithRectangleObservation:completionHandler:)]
         pub unsafe fn initWithRectangleObservation_completionHandler(
             this: Allocated<Self>,

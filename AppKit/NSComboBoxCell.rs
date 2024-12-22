@@ -85,6 +85,7 @@ extern_methods!(
         #[method(hasVerticalScroller)]
         pub unsafe fn hasVerticalScroller(&self) -> bool;
 
+        /// Setter for [`hasVerticalScroller`][Self::hasVerticalScroller].
         #[method(setHasVerticalScroller:)]
         pub unsafe fn setHasVerticalScroller(&self, has_vertical_scroller: bool);
 
@@ -93,6 +94,7 @@ extern_methods!(
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`intercellSpacing`][Self::intercellSpacing].
         #[method(setIntercellSpacing:)]
         pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
 
@@ -101,18 +103,21 @@ extern_methods!(
         pub unsafe fn itemHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`itemHeight`][Self::itemHeight].
         #[method(setItemHeight:)]
         pub unsafe fn setItemHeight(&self, item_height: CGFloat);
 
         #[method(numberOfVisibleItems)]
         pub unsafe fn numberOfVisibleItems(&self) -> NSInteger;
 
+        /// Setter for [`numberOfVisibleItems`][Self::numberOfVisibleItems].
         #[method(setNumberOfVisibleItems:)]
         pub unsafe fn setNumberOfVisibleItems(&self, number_of_visible_items: NSInteger);
 
         #[method(isButtonBordered)]
         pub unsafe fn isButtonBordered(&self) -> bool;
 
+        /// Setter for [`isButtonBordered`][Self::isButtonBordered].
         #[method(setButtonBordered:)]
         pub unsafe fn setButtonBordered(&self, button_bordered: bool);
 
@@ -125,6 +130,7 @@ extern_methods!(
         #[method(usesDataSource)]
         pub unsafe fn usesDataSource(&self) -> bool;
 
+        /// Setter for [`usesDataSource`][Self::usesDataSource].
         #[method(setUsesDataSource:)]
         pub unsafe fn setUsesDataSource(&self, uses_data_source: bool);
 
@@ -149,6 +155,7 @@ extern_methods!(
         #[method(completes)]
         pub unsafe fn completes(&self) -> bool;
 
+        /// Setter for [`completes`][Self::completes].
         #[method(setCompletes:)]
         pub unsafe fn setCompletes(&self, completes: bool);
 
@@ -160,6 +167,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSComboBoxCellDataSource>>>;
 
+        /// Setter for [`dataSource`][Self::dataSource].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,

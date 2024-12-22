@@ -10,8 +10,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct LACompanionType(pub NSInteger);
 impl LACompanionType {
+    /// Paired Apple Watch
     #[doc(alias = "LACompanionTypeWatch")]
     pub const Watch: Self = Self(1);
+    /// Paired Mac
     #[doc(alias = "LACompanionTypeMac")]
     pub const Mac: Self = Self(2);
 }

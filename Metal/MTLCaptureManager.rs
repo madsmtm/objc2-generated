@@ -18,10 +18,13 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLCaptureError(pub NSInteger);
 impl MTLCaptureError {
+    /// Capturing is not supported, maybe the destination is not supported.
     #[doc(alias = "MTLCaptureErrorNotSupported")]
     pub const NotSupported: Self = Self(1);
+    /// A capture is already in progress.
     #[doc(alias = "MTLCaptureErrorAlreadyCapturing")]
     pub const AlreadyCapturing: Self = Self(2);
+    /// The MTLCaptureDescriptor contains an invalid parameters.
     #[doc(alias = "MTLCaptureErrorInvalidDescriptor")]
     pub const InvalidDescriptor: Self = Self(3);
 }
@@ -34,14 +37,18 @@ unsafe impl RefEncode for MTLCaptureError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcapturedestination?language=objc)
+/// The destination where you want the GPU trace to be captured to.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcapturedestination?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLCaptureDestination(pub NSInteger);
 impl MTLCaptureDestination {
+    /// Capture to Developer Tools (Xcode) and stop the execution after capturing.
     #[doc(alias = "MTLCaptureDestinationDeveloperTools")]
     pub const DeveloperTools: Self = Self(1);
+    /// Capture to a GPU Trace document and continue execution after capturing.
     #[doc(alias = "MTLCaptureDestinationGPUTraceDocument")]
     pub const GPUTraceDocument: Self = Self(2);
 }
@@ -71,21 +78,36 @@ unsafe impl NSObjectProtocol for MTLCaptureDescriptor {}
 
 extern_methods!(
     unsafe impl MTLCaptureDescriptor {
+        /// The object that is captured.
+        ///
+        /// Must be one of the following:
+        ///
+        /// MTLDevice captures all command queues of the device.
+        ///
+        /// MTLCommandQueue captures a single command queue.
+        ///
+        /// MTLCaptureScope captures between the next begin and end of the scope.
         #[method_id(@__retain_semantics Other captureObject)]
         pub unsafe fn captureObject(&self) -> Option<Retained<AnyObject>>;
 
+        /// Setter for [`captureObject`][Self::captureObject].
         #[method(setCaptureObject:)]
         pub unsafe fn setCaptureObject(&self, capture_object: Option<&AnyObject>);
 
+        /// The destination you want the GPU trace to be captured to.
         #[method(destination)]
         pub fn destination(&self) -> MTLCaptureDestination;
 
+        /// Setter for [`destination`][Self::destination].
         #[method(setDestination:)]
         pub fn setDestination(&self, destination: MTLCaptureDestination);
 
+        /// URL the GPU Trace document will be captured to.
+        /// Must be specified when destiation is MTLCaptureDestinationGPUTraceDocument.
         #[method_id(@__retain_semantics Other outputURL)]
         pub fn outputURL(&self) -> Option<Retained<NSURL>>;
 
+        /// Setter for [`outputURL`][Self::outputURL].
         #[method(setOutputURL:)]
         pub fn setOutputURL(&self, output_url: Option<&NSURL>);
     }
@@ -120,6 +142,11 @@ unsafe impl NSObjectProtocol for MTLCaptureManager {}
 
 extern_methods!(
     unsafe impl MTLCaptureManager {
+        /// Retrieves the shared capture manager for this process. There is only one capture manager per process.
+        /// The capture manager allows the user to create capture scopes and trigger captures from code.
+        /// When a capture has been completed, it will be displayed in Xcode and the application will be paused.
+        ///
+        /// : only MTLCommandBuffers created after starting a capture and committed before stopping it are captured.
         #[method_id(@__retain_semantics Other sharedCaptureManager)]
         pub unsafe fn sharedCaptureManager() -> Retained<MTLCaptureManager>;
 
@@ -143,6 +170,15 @@ extern_methods!(
         #[method(supportsDestination:)]
         pub fn supportsDestination(&self, destination: MTLCaptureDestination) -> bool;
 
+        /// Start capturing until stopCapture is called.
+        ///
+        /// Parameter `descriptor`: MTLCaptureDescriptor specifies the parameters.
+        ///
+        /// Parameter `error`: Optional error output to check why a capture could not be started.
+        ///
+        /// Returns: true if the capture was successfully started, otherwise false.
+        ///
+        /// Only MTLCommandBuffer​s created after starting and committed before stopping it are captured.
         #[method(startCaptureWithDescriptor:error:_)]
         pub fn startCaptureWithDescriptor_error(
             &self,
@@ -175,6 +211,7 @@ extern_methods!(
         pub fn defaultCaptureScope(&self) -> Option<Retained<ProtocolObject<dyn MTLCaptureScope>>>;
 
         #[cfg(feature = "MTLCaptureScope")]
+        /// Setter for [`defaultCaptureScope`][Self::defaultCaptureScope].
         #[method(setDefaultCaptureScope:)]
         pub fn setDefaultCaptureScope(
             &self,

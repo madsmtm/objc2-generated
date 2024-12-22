@@ -9,7 +9,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus?language=objc)
+/// MTLCommandBufferStatus reports the current stage in the lifetime of MTLCommandBuffer, as it proceeds to enqueued, committed, scheduled, and completed.
+///
+///
+/// The command buffer has not been enqueued yet.
+///
+///
+/// This command buffer is enqueued, but not committed.
+///
+///
+/// Commited to its command queue, but not yet scheduled for execution.
+///
+///
+/// All dependencies have been resolved and the command buffer has been scheduled for execution.
+///
+///
+/// The command buffer has finished executing successfully: any blocks set with -addCompletedHandler: may now be called.
+///
+///
+/// Execution of the command buffer was aborted due to an error during execution.  Check -error for more information.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -38,11 +58,45 @@ unsafe impl RefEncode for MTLCommandBufferStatus {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererrordomain?language=objc)
+    /// An error domain for NSError objects produced by MTLCommandBuffer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererrordomain?language=objc)
     pub static MTLCommandBufferErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror?language=objc)
+/// Error codes that can be found in MTLCommandBuffer.error
+///
+///
+/// An internal error that doesn't fit into the other categories. The actual low level error code is encoded in the local description.
+///
+///
+/// Execution of this command buffer took too long, execution of this command was interrupted and aborted.
+///
+///
+/// Execution of this command buffer generated an unserviceable GPU page fault. This can caused by buffer read write attribute mismatch or out of boundary access.
+///
+///
+/// Access to this device has been revoked because this client has been responsible for too many timeouts or hangs.
+///
+///
+/// This process does not have access to use this device.
+///
+///
+/// Insufficient memory was available to execute this command buffer.
+///
+///
+/// The command buffer referenced an invalid resource.  This is most commonly caused when the caller deletes a resource before executing a command buffer that refers to it.
+///
+///
+/// One or more internal resources limits reached that prevent using memoryless render pass attachments. See error string for more detail.
+///
+///
+/// The device was physically removed before the command could finish execution
+///
+///
+/// Execution of the command buffer was stopped due to Stack Overflow Exception. [MTLComputePipelineDescriptor maxCallStackDepth] setting needs to be checked.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -84,11 +138,21 @@ unsafe impl RefEncode for MTLCommandBufferError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferencoderinfoerrorkey?language=objc)
+    /// Key in the userInfo for MTLCommandBufferError NSErrors. Value is an NSArray of MTLCommandBufferEncoderInfo objects in recorded order if an appropriate MTLCommandBufferErrorOption was set, otherwise the key will not exist in the userInfo dictionary.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferencoderinfoerrorkey?language=objc)
     pub static MTLCommandBufferEncoderInfoErrorKey: &'static NSErrorUserInfoKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererroroption?language=objc)
+/// Options for controlling the error reporting for Metal command buffer objects.
+///
+///
+/// No special error reporting.
+///
+///
+/// Provide the execution status of the individual encoders within the command buffer. In the event of a command buffer error, populate the `userInfo` dictionary of the command buffer's NSError parameter, see MTLCommandBufferEncoderInfoErrorKey and MTLCommandBufferEncoderInfo. Note that enabling this error reporting option may increase CPU, GPU, and/or memory overhead on some platforms; testing for impact is suggested.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererroroption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -110,7 +174,24 @@ unsafe impl RefEncode for MTLCommandBufferErrorOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate?language=objc)
+/// The error states for a Metal command encoder after command buffer execution.
+///
+///
+/// The state of the commands associated with the encoder is unknown (the error information was likely not requested).
+///
+///
+/// The commands associated with the encoder were completed.
+///
+///
+/// The commands associated with the encoder were affected by an error, which may or may not have been caused by the commands themselves, and failed to execute in full.
+///
+///
+/// The commands associated with the encoder never started execution.
+///
+///
+/// The commands associated with the encoder caused an error.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -137,7 +218,9 @@ unsafe impl RefEncode for MTLCommandEncoderErrorState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor?language=objc)
+    /// An object that you use to configure new Metal command buffer objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCommandBufferDescriptor;
@@ -153,23 +236,29 @@ unsafe impl NSObjectProtocol for MTLCommandBufferDescriptor {}
 
 extern_methods!(
     unsafe impl MTLCommandBufferDescriptor {
+        /// If YES, the created command buffer holds strong references to objects needed for it to execute. If NO, the created command buffer does not hold strong references to objects needed for it to execute.
         #[method(retainedReferences)]
         pub unsafe fn retainedReferences(&self) -> bool;
 
+        /// Setter for [`retainedReferences`][Self::retainedReferences].
         #[method(setRetainedReferences:)]
         pub unsafe fn setRetainedReferences(&self, retained_references: bool);
 
+        /// A set of options to influence the error reporting of the created command buffer. See MTLCommandBufferErrorOption.
         #[method(errorOptions)]
         pub unsafe fn errorOptions(&self) -> MTLCommandBufferErrorOption;
 
+        /// Setter for [`errorOptions`][Self::errorOptions].
         #[method(setErrorOptions:)]
         pub unsafe fn setErrorOptions(&self, error_options: MTLCommandBufferErrorOption);
 
         #[cfg(feature = "MTLLogState")]
+        /// Contains information related to shader logging.
         #[method_id(@__retain_semantics Other logState)]
         pub unsafe fn logState(&self) -> Option<Retained<ProtocolObject<dyn MTLLogState>>>;
 
         #[cfg(feature = "MTLLogState")]
+        /// Setter for [`logState`][Self::logState].
         #[method(setLogState:)]
         pub unsafe fn setLogState(&self, log_state: Option<&ProtocolObject<dyn MTLLogState>>);
     }
@@ -187,14 +276,19 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferencoderinfo?language=objc)
+    /// Provides execution status information for a Metal command encoder.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferencoderinfo?language=objc)
     pub unsafe trait MTLCommandBufferEncoderInfo: NSObjectProtocol {
+        /// The debug label given to the associated Metal command encoder at command buffer submission.
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Retained<NSString>;
 
+        /// The debug signposts inserted into the associated Metal command encoder.
         #[method_id(@__retain_semantics Other debugSignposts)]
         unsafe fn debugSignposts(&self) -> Retained<NSArray<NSString>>;
 
+        /// The error state of the associated Metal command encoder.
         #[method(errorState)]
         unsafe fn errorState(&self) -> MTLCommandEncoderErrorState;
     }
@@ -207,7 +301,15 @@ extern_protocol!(
 pub type MTLCommandBufferHandler =
     *mut block2::Block<dyn Fn(NonNull<ProtocolObject<dyn MTLCommandBuffer>>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchtype?language=objc)
+/// MTLDispatchType Describes how a command encoder will execute dispatched work.
+///
+///
+/// Command encoder dispatches are executed in dispatched order.
+///
+///
+/// Command encoder dispatches are executed in parallel with each other.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -228,25 +330,33 @@ unsafe impl RefEncode for MTLDispatchType {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffer?language=objc)
+    /// A serial list of commands for the device to execute.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffer?language=objc)
     pub unsafe trait MTLCommandBuffer: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
+        /// The device this resource was created against.
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLCommandQueue")]
+        /// The command queue this command buffer was created from.
         #[method_id(@__retain_semantics Other commandQueue)]
         unsafe fn commandQueue(&self) -> Retained<ProtocolObject<dyn MTLCommandQueue>>;
 
+        /// If YES, this command buffer holds strong references to objects needed to execute this command buffer.
         #[method(retainedReferences)]
         unsafe fn retainedReferences(&self) -> bool;
 
+        /// The set of options configuring the error reporting of the created command buffer.
         #[method(errorOptions)]
         unsafe fn errorOptions(&self) -> MTLCommandBufferErrorOption;
 
+        /// A string to help identify this object.
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
 
@@ -259,32 +369,44 @@ extern_protocol!(
         unsafe fn kernelEndTime(&self) -> CFTimeInterval;
 
         #[cfg(feature = "MTLFunctionLog")]
+        /// Logs generated by the command buffer during execution of the GPU commands. Valid after GPU execution is completed
         #[method_id(@__retain_semantics Other logs)]
         unsafe fn logs(&self) -> Retained<ProtocolObject<dyn MTLLogContainer>>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The host time in seconds that GPU starts executing this command buffer. Returns zero if it has not started. This usually can be called in command buffer completion handler.
         #[method(GPUStartTime)]
         unsafe fn GPUStartTime(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The host time in seconds that GPU finishes executing this command buffer. Returns zero if CPU has not received completion notification. This usually can be called in command buffer completion handler.
         #[method(GPUEndTime)]
         unsafe fn GPUEndTime(&self) -> CFTimeInterval;
 
+        /// Append this command buffer to the end of its MTLCommandQueue.
         #[method(enqueue)]
         fn enqueue(&self);
 
+        /// Commit a command buffer so it can be executed as soon as possible.
         #[method(commit)]
         fn commit(&self);
 
         #[cfg(feature = "block2")]
+        /// Adds a block to be called when this command buffer has been scheduled for execution.
         #[method(addScheduledHandler:)]
         unsafe fn addScheduledHandler(&self, block: MTLCommandBufferHandler);
 
         #[cfg(feature = "MTLDrawable")]
+        /// Add a drawable present that will be invoked when this command buffer has been scheduled for execution.
+        ///
+        /// The submission thread will be lock stepped with present call been serviced by window server
         #[method(presentDrawable:)]
         fn presentDrawable(&self, drawable: &ProtocolObject<dyn MTLDrawable>);
 
         #[cfg(all(feature = "MTLDrawable", feature = "objc2-core-foundation"))]
+        /// Add a drawable present for a specific host time that will be invoked when this command buffer has been scheduled for execution.
+        ///
+        /// The submission thread will be lock stepped with present call been serviced by window server
         #[method(presentDrawable:atTime:)]
         unsafe fn presentDrawable_atTime(
             &self,
@@ -293,6 +415,14 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MTLDrawable", feature = "objc2-core-foundation"))]
+        /// Add a drawable present for a specific host time that allows previous frame to be on screen for at least duration time.
+        ///
+        /// Parameter `drawable`: The drawable to be presented
+        ///
+        /// Parameter `duration`: The minimum time that previous frame should be displayed. The time is double preceision floating point in the unit of seconds.
+        ///
+        /// The difference of this API versus presentDrawable:atTime is that this API defers calculation of the presentation time until the previous frame's actual presentation time is known, thus to be able to maintain a more consistent and stable frame time. This also provides an easy way to set frame rate.
+        /// The submission thread will be lock stepped with present call been serviced by window server
         #[method(presentDrawable:afterMinimumDuration:)]
         unsafe fn presentDrawable_afterMinimumDuration(
             &self,
@@ -300,23 +430,29 @@ extern_protocol!(
             duration: CFTimeInterval,
         );
 
+        /// Synchronously wait for this command buffer to be scheduled.
         #[method(waitUntilScheduled)]
         fn waitUntilScheduled(&self);
 
         #[cfg(feature = "block2")]
+        /// Add a block to be called when this command buffer has completed execution.
         #[method(addCompletedHandler:)]
         unsafe fn addCompletedHandler(&self, block: MTLCommandBufferHandler);
 
+        /// Synchronously wait for this command buffer to complete.
         #[method(waitUntilCompleted)]
         unsafe fn waitUntilCompleted(&self);
 
+        /// status reports the current stage in the lifetime of MTLCommandBuffer, as it proceeds to enqueued, committed, scheduled, and completed.
         #[method(status)]
         fn status(&self) -> MTLCommandBufferStatus;
 
+        /// If an error occurred during execution, the NSError may contain more details about the problem.
         #[method_id(@__retain_semantics Other error)]
         unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[cfg(all(feature = "MTLBlitCommandEncoder", feature = "MTLCommandEncoder"))]
+        /// returns a blit command encoder to encode into this command buffer.
         #[method_id(@__retain_semantics Other blitCommandEncoder)]
         fn blitCommandEncoder(&self)
             -> Option<Retained<ProtocolObject<dyn MTLBlitCommandEncoder>>>;
@@ -326,6 +462,7 @@ extern_protocol!(
             feature = "MTLRenderCommandEncoder",
             feature = "MTLRenderPass"
         ))]
+        /// returns a render command endcoder to encode into this command buffer.
         #[method_id(@__retain_semantics Other renderCommandEncoderWithDescriptor:)]
         fn renderCommandEncoderWithDescriptor(
             &self,
@@ -337,6 +474,7 @@ extern_protocol!(
             feature = "MTLComputeCommandEncoder",
             feature = "MTLComputePass"
         ))]
+        /// returns a compute command endcoder to encode into this command buffer.
         #[method_id(@__retain_semantics Other computeCommandEncoderWithDescriptor:)]
         unsafe fn computeCommandEncoderWithDescriptor(
             &self,
@@ -348,6 +486,7 @@ extern_protocol!(
             feature = "MTLBlitPass",
             feature = "MTLCommandEncoder"
         ))]
+        /// returns a blit command endcoder to encode into this command buffer.
         #[method_id(@__retain_semantics Other blitCommandEncoderWithDescriptor:)]
         unsafe fn blitCommandEncoderWithDescriptor(
             &self,
@@ -355,12 +494,16 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLBlitCommandEncoder>>>;
 
         #[cfg(all(feature = "MTLCommandEncoder", feature = "MTLComputeCommandEncoder"))]
+        /// returns a compute command encoder to encode into this command buffer.
         #[method_id(@__retain_semantics Other computeCommandEncoder)]
         fn computeCommandEncoder(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLComputeCommandEncoder>>>;
 
         #[cfg(all(feature = "MTLCommandEncoder", feature = "MTLComputeCommandEncoder"))]
+        /// returns a compute command encoder to encode into this command buffer. Optionally allow this command encoder to execute dispatches concurrently.
+        ///
+        /// On devices that do not support concurrent command encoders, this call is equivalent to computeCommandEncoder
         #[method_id(@__retain_semantics Other computeCommandEncoderWithDispatchType:)]
         fn computeCommandEncoderWithDispatchType(
             &self,
@@ -368,10 +511,16 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLComputeCommandEncoder>>>;
 
         #[cfg(feature = "MTLEvent")]
+        /// Encodes a command that pauses execution of this command buffer until the specified event reaches a given value.
+        ///
+        /// This method may only be called if there is no current command encoder on the receiver.
         #[method(encodeWaitForEvent:value:)]
         fn encodeWaitForEvent_value(&self, event: &ProtocolObject<dyn MTLEvent>, value: u64);
 
         #[cfg(feature = "MTLEvent")]
+        /// Encodes a command that signals an event with a given value.
+        ///
+        /// This method may only be called if there is no current command encoder on the receiver.
         #[method(encodeSignalEvent:value:)]
         fn encodeSignalEvent_value(&self, event: &ProtocolObject<dyn MTLEvent>, value: u64);
 
@@ -380,6 +529,7 @@ extern_protocol!(
             feature = "MTLParallelRenderCommandEncoder",
             feature = "MTLRenderPass"
         ))]
+        /// returns a parallel render pass encoder to encode into this command buffer.
         #[method_id(@__retain_semantics Other parallelRenderCommandEncoderWithDescriptor:)]
         fn parallelRenderCommandEncoderWithDescriptor(
             &self,
@@ -425,17 +575,21 @@ extern_protocol!(
             descriptor: &MTLAccelerationStructurePassDescriptor,
         ) -> Retained<ProtocolObject<dyn MTLAccelerationStructureCommandEncoder>>;
 
+        /// Push a new named string onto a stack of string labels.
         #[method(pushDebugGroup:)]
         fn pushDebugGroup(&self, string: &NSString);
 
+        /// Pop the latest named string off of the stack.
         #[method(popDebugGroup)]
         fn popDebugGroup(&self);
 
         #[cfg(feature = "MTLResidencySet")]
+        /// Marks the residency set as part of the current command buffer execution. This ensures that the residency set is resident during execution of the command buffer.
         #[method(useResidencySet:)]
         unsafe fn useResidencySet(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
 
         #[cfg(feature = "MTLResidencySet")]
+        /// Marks the residency sets as part of the current command buffer execution. This ensures that the residency sets are resident during execution of the command buffer.
         #[method(useResidencySets:count:)]
         unsafe fn useResidencySets_count(
             &self,

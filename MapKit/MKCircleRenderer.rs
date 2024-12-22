@@ -35,6 +35,7 @@ extern_methods!(
         pub unsafe fn strokeStart(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`strokeStart`][Self::strokeStart].
         #[method(setStrokeStart:)]
         pub unsafe fn setStrokeStart(&self, stroke_start: CGFloat);
 
@@ -43,6 +44,7 @@ extern_methods!(
         pub unsafe fn strokeEnd(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`strokeEnd`][Self::strokeEnd].
         #[method(setStrokeEnd:)]
         pub unsafe fn setStrokeEnd(&self, stroke_end: CGFloat);
     }

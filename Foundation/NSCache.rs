@@ -22,12 +22,14 @@ extern_methods!(
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSCacheDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSCacheDelegate>>);
 
@@ -49,18 +51,21 @@ extern_methods!(
         #[method(totalCostLimit)]
         pub unsafe fn totalCostLimit(&self) -> NSUInteger;
 
+        /// Setter for [`totalCostLimit`][Self::totalCostLimit].
         #[method(setTotalCostLimit:)]
         pub unsafe fn setTotalCostLimit(&self, total_cost_limit: NSUInteger);
 
         #[method(countLimit)]
         pub unsafe fn countLimit(&self) -> NSUInteger;
 
+        /// Setter for [`countLimit`][Self::countLimit].
         #[method(setCountLimit:)]
         pub unsafe fn setCountLimit(&self, count_limit: NSUInteger);
 
         #[method(evictsObjectsWithDiscardedContent)]
         pub unsafe fn evictsObjectsWithDiscardedContent(&self) -> bool;
 
+        /// Setter for [`evictsObjectsWithDiscardedContent`][Self::evictsObjectsWithDiscardedContent].
         #[method(setEvictsObjectsWithDiscardedContent:)]
         pub unsafe fn setEvictsObjectsWithDiscardedContent(
             &self,

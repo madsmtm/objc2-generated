@@ -97,6 +97,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
@@ -105,12 +106,14 @@ extern_methods!(
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         #[method_id(@__retain_semantics Other attributedName)]
         pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
 
+        /// Setter for [`attributedName`][Self::attributedName].
         #[method(setAttributedName:)]
         pub unsafe fn setAttributedName(&self, attributed_name: &NSAttributedString);
 
@@ -118,12 +121,14 @@ extern_methods!(
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(selector)]
         pub unsafe fn selector(&self) -> Sel;
 
+        /// Setter for [`selector`][Self::selector].
         #[method(setSelector:)]
         pub unsafe fn setSelector(&self, selector: Sel);
 
@@ -132,12 +137,14 @@ extern_methods!(
         pub unsafe fn actionHandler(&self) -> UIAccessibilityCustomActionHandler;
 
         #[cfg(feature = "block2")]
+        /// Setter for [`actionHandler`][Self::actionHandler].
         #[method(setActionHandler:)]
         pub unsafe fn setActionHandler(&self, action_handler: UIAccessibilityCustomActionHandler);
 
         #[method_id(@__retain_semantics Other category)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`category`][Self::category].
         #[method(setCategory:)]
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
     }

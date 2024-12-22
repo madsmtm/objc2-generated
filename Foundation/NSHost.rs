@@ -7,7 +7,16 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshost?language=objc)
+    /// DEPRECATION NOTICE
+    ///
+    /// If you’re using `NSHost` to resolve DNS names so that you can connect to a
+    /// service, switch to a connect-by-name API, for example, `nw_connection`.
+    ///
+    /// If you have other DNS resolution needs, switch to
+    /// <dns
+    /// _sd.h>.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshost?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]

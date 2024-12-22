@@ -6,7 +6,16 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznatnetworkdeviceattachment?language=objc)
+    /// Network device attachment using network address translation (NAT) with outside networks.
+    ///
+    /// Using the NAT attachment type, the host serves as router and performs network address translation for accesses to outside networks.
+    ///
+    ///
+    /// See: VZNetworkDeviceConfiguration
+    ///
+    /// See: VZVirtioNetworkDeviceConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznatnetworkdeviceattachment?language=objc)
     #[unsafe(super(VZNetworkDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZNetworkDeviceAttachment")]

@@ -6,7 +6,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldocumentcontentkind?language=objc)
+/// Define what type of document this is.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldocumentcontentkind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,7 +29,11 @@ unsafe impl RefEncode for NSXMLDocumentContentKind {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldocument?language=objc)
+    /// An XML Document
+    ///
+    /// Note: if the application of a method would result in more than one element in the children array, an exception is thrown. Trying to add a document, namespace, attribute, or node with a parent also throws an exception. To add a node with a parent first detach or create a copy of it.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldocument?language=objc)
     #[unsafe(super(NSXMLNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSXMLNode")]
@@ -56,6 +62,11 @@ extern_methods!(
             feature = "NSString",
             feature = "NSXMLNodeOptions"
         ))]
+        /// Returns a document created from either XML or HTML, if the HTMLTidy option is set. Parse errors are returned in
+        /// <tt>
+        /// error
+        /// </tt>
+        /// .
         #[method_id(@__retain_semantics Init initWithXMLString:options:error:_)]
         pub unsafe fn initWithXMLString_options_error(
             this: Allocated<Self>,
@@ -64,6 +75,11 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "NSXMLNodeOptions"))]
+        /// Returns a document created from the contents of an XML or HTML URL. Connection problems such as 404, parse errors are returned in
+        /// <tt>
+        /// error
+        /// </tt>
+        /// .
         #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:_)]
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Allocated<Self>,
@@ -72,6 +88,11 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSXMLNodeOptions"))]
+        /// Returns a document created from data. Parse errors are returned in
+        /// <tt>
+        /// error
+        /// </tt>
+        /// .
         #[method_id(@__retain_semantics Init initWithData:options:error:_)]
         pub unsafe fn initWithData_options_error(
             this: Allocated<Self>,
@@ -80,6 +101,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSXMLElement")]
+        /// Returns a document with a single child, the root element.
         #[method_id(@__retain_semantics Init initWithRootElement:)]
         pub unsafe fn initWithRootElement(
             this: Allocated<Self>,
@@ -90,30 +112,38 @@ extern_methods!(
         pub unsafe fn replacementClassForClass(cls: &AnyClass) -> &'static AnyClass;
 
         #[cfg(feature = "NSString")]
+        /// Sets the character encoding to an IANA type.
         #[method_id(@__retain_semantics Other characterEncoding)]
         pub unsafe fn characterEncoding(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`characterEncoding`][Self::characterEncoding].
         #[method(setCharacterEncoding:)]
         pub unsafe fn setCharacterEncoding(&self, character_encoding: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
+        /// Sets the XML version. Should be 1.0 or 1.1.
         #[method_id(@__retain_semantics Other version)]
         pub unsafe fn version(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`version`][Self::version].
         #[method(setVersion:)]
         pub unsafe fn setVersion(&self, version: Option<&NSString>);
 
+        /// Set whether this document depends on an external DTD. If this option is set the standalone declaration will appear on output.
         #[method(isStandalone)]
         pub unsafe fn isStandalone(&self) -> bool;
 
+        /// Setter for [`isStandalone`][Self::isStandalone].
         #[method(setStandalone:)]
         pub unsafe fn setStandalone(&self, standalone: bool);
 
+        /// The kind of document.
         #[method(documentContentKind)]
         pub unsafe fn documentContentKind(&self) -> NSXMLDocumentContentKind;
 
+        /// Setter for [`documentContentKind`][Self::documentContentKind].
         #[method(setDocumentContentKind:)]
         pub unsafe fn setDocumentContentKind(
             &self,
@@ -121,33 +151,41 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
+        /// Set the MIME type, eg text/xml.
         #[method_id(@__retain_semantics Other MIMEType)]
         pub unsafe fn MIMEType(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`MIMEType`][Self::MIMEType].
         #[method(setMIMEType:)]
         pub unsafe fn setMIMEType(&self, mime_type: Option<&NSString>);
 
         #[cfg(feature = "NSXMLDTD")]
+        /// Set the associated DTD. This DTD will be output with the document.
         #[method_id(@__retain_semantics Other DTD)]
         pub unsafe fn DTD(&self) -> Option<Retained<NSXMLDTD>>;
 
         #[cfg(feature = "NSXMLDTD")]
+        /// Setter for [`DTD`][Self::DTD].
         #[method(setDTD:)]
         pub unsafe fn setDTD(&self, dtd: Option<&NSXMLDTD>);
 
         #[cfg(feature = "NSXMLElement")]
+        /// Set the root element. Removes all other children including comments and processing-instructions.
         #[method(setRootElement:)]
         pub unsafe fn setRootElement(&self, root: &NSXMLElement);
 
         #[cfg(feature = "NSXMLElement")]
+        /// The root element.
         #[method_id(@__retain_semantics Other rootElement)]
         pub unsafe fn rootElement(&self) -> Option<Retained<NSXMLElement>>;
 
+        /// Inserts a child at a particular index.
         #[method(insertChild:atIndex:)]
         pub unsafe fn insertChild_atIndex(&self, child: &NSXMLNode, index: NSUInteger);
 
         #[cfg(feature = "NSArray")]
+        /// Insert several children at a particular index.
         #[method(insertChildren:atIndex:)]
         pub unsafe fn insertChildren_atIndex(
             &self,
@@ -155,24 +193,30 @@ extern_methods!(
             index: NSUInteger,
         );
 
+        /// Removes a child at a particular index.
         #[method(removeChildAtIndex:)]
         pub unsafe fn removeChildAtIndex(&self, index: NSUInteger);
 
         #[cfg(feature = "NSArray")]
+        /// Removes all existing children and replaces them with the new children. Set children to nil to simply remove all children.
         #[method(setChildren:)]
         pub unsafe fn setChildren(&self, children: Option<&NSArray<NSXMLNode>>);
 
+        /// Adds a child to the end of the existing children.
         #[method(addChild:)]
         pub unsafe fn addChild(&self, child: &NSXMLNode);
 
+        /// Replaces a child at a particular index with another child.
         #[method(replaceChildAtIndex:withNode:)]
         pub unsafe fn replaceChildAtIndex_withNode(&self, index: NSUInteger, node: &NSXMLNode);
 
         #[cfg(feature = "NSData")]
+        /// Invokes XMLDataWithOptions with NSXMLNodeOptionsNone.
         #[method_id(@__retain_semantics Other XMLData)]
         pub unsafe fn XMLData(&self) -> Retained<NSData>;
 
         #[cfg(all(feature = "NSData", feature = "NSXMLNodeOptions"))]
+        /// The representation of this node as it would appear in an XML document, encoded based on characterEncoding.
         #[method_id(@__retain_semantics Other XMLDataWithOptions:)]
         pub unsafe fn XMLDataWithOptions(&self, options: NSXMLNodeOptions) -> Retained<NSData>;
 
@@ -182,6 +226,7 @@ extern_methods!(
             feature = "NSError",
             feature = "NSString"
         ))]
+        /// Applies XSLT with arguments (NSString key/value pairs) to this document, returning a new document.
         #[method_id(@__retain_semantics Other objectByApplyingXSLT:arguments:error:_)]
         pub unsafe fn objectByApplyingXSLT_arguments_error(
             &self,
@@ -190,6 +235,7 @@ extern_methods!(
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSError", feature = "NSString"))]
+        /// Applies XSLT as expressed by a string with arguments (NSString key/value pairs) to this document, returning a new document.
         #[method_id(@__retain_semantics Other objectByApplyingXSLTString:arguments:error:_)]
         pub unsafe fn objectByApplyingXSLTString_arguments_error(
             &self,
@@ -203,6 +249,7 @@ extern_methods!(
             feature = "NSString",
             feature = "NSURL"
         ))]
+        /// Applies the XSLT at a URL with arguments (NSString key/value pairs) to this document, returning a new document. Error may contain a connection error from the URL.
         #[method_id(@__retain_semantics Other objectByApplyingXSLTAtURL:arguments:error:_)]
         pub unsafe fn objectByApplyingXSLTAtURL_arguments_error(
             &self,
@@ -220,10 +267,18 @@ extern_methods!(
     /// Methods declared on superclass `NSXMLNode`
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDocument {
+        /// Invokes
+        ///
+        /// ```text
+        ///  initWithKind:options:
+        /// ```
+        ///
+        /// with options set to NSXMLNodeOptionsNone
         #[method_id(@__retain_semantics Init initWithKind:)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
 
         #[cfg(feature = "NSXMLNodeOptions")]
+        /// Inits a node with fidelity options as description NSXMLNodeOptions.h
         #[method_id(@__retain_semantics Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,

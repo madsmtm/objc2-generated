@@ -36,6 +36,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultTarget)]
         pub unsafe fn defaultTarget(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
+        /// Setter for [`defaultTarget`][Self::defaultTarget].
         #[method(setDefaultTarget:)]
         pub unsafe fn setDefaultTarget(&self, default_target: Option<&NSAppleEventDescriptor>);
 

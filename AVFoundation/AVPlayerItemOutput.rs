@@ -25,20 +25,51 @@ unsafe impl NSObjectProtocol for AVPlayerItemOutput {}
 extern_methods!(
     unsafe impl AVPlayerItemOutput {
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
+        /// Convert a host time, expressed in seconds, to item time.
+        ///
+        /// Converts a host time value (for example a CADisplayLink timestamp, or the value returned by CACurrentMediaTime()) to the equivalent time on the item's timebase.
+        ///
+        /// Note: The Core Animation CADisplayLink timestamp property expresses the most recent, or previous, screen refresh time. You need to increment this timestamp by the CADisplayLink's duration property to find the next appropriate item time.
+        ///
+        /// Parameter `hostTimeInSeconds`: The timestamp value to convert to item time.
+        ///
+        /// Returns: The equivalent item time.
         #[method(itemTimeForHostTime:)]
         pub unsafe fn itemTimeForHostTime(&self, host_time_in_seconds: CFTimeInterval) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Convenience method to convert a Mach host time to item time.
+        ///
+        /// Converts Mach host time to the equivalent time on the item's timebase.
+        /// mach_absolute_time() returns time awake since boot in system-specific rational units that can be queried by calling mach_timebase_info().
+        ///
+        /// Parameter `machAbsoluteTime`: The Mach host time to convert to item time.
+        ///
+        /// Returns: The equivalent item time.
         #[method(itemTimeForMachAbsoluteTime:)]
         pub unsafe fn itemTimeForMachAbsoluteTime(&self, mach_absolute_time: i64) -> CMTime;
 
         #[cfg(all(feature = "objc2-core-media", feature = "objc2-core-video"))]
+        /// Convenience method to convert a CoreVideo timestamp to the equivalent time on the item's timebase.
+        ///
+        /// Note: A CVDisplayLink provides a parameter inOutputTimestamp that expresses a future screen refresh time. You can use this value directly to find the next appropriate item time.
+        /// Use `itemTimeForHostTime` if you were using this method previously to find the item time and have to switch over due to CVDisplayLink deprecation.
+        ///
+        /// Parameter `timestamp`: The CoreVideo timestamp value to convert to item time.
+        ///
+        /// Returns: The equivalent item time.
         #[method(itemTimeForCVTimeStamp:)]
         pub unsafe fn itemTimeForCVTimeStamp(&self, timestamp: CVTimeStamp) -> CMTime;
 
+        /// Indicates whether the output, when added to an AVPlayerItem, will be used in addition to normal rendering of media data by the player or instead of normal rendering.
+        ///
+        /// The default value is NO, indicating that the output will be used in addition to normal rendering. If you want to render the media data provided by the output yourself instead of allowing it to be rendered as in normally would be by AVPlayer, set suppressesPlayerRendering to YES.
+        ///
+        /// Whenever any output is added to an AVPlayerItem that has suppressesPlayerRendering set to YES, the media data supplied to the output will not be rendered by AVPlayer. Other media data associated with the item but not provided to such an output is not affected. For example, if an output of class AVPlayerItemVideoOutput with a value of YES for suppressesPlayerRendering is added to an AVPlayerItem, video media for that item will not be rendered by the AVPlayer, while audio media, subtitle media, and other kinds of media, if present, will be rendered.
         #[method(suppressesPlayerRendering)]
         pub unsafe fn suppressesPlayerRendering(&self) -> bool;
 
+        /// Setter for [`suppressesPlayerRendering`][Self::suppressesPlayerRendering].
         #[method(setSuppressesPlayerRendering:)]
         pub unsafe fn setSuppressesPlayerRendering(&self, suppresses_player_rendering: bool);
     }
@@ -66,12 +97,38 @@ unsafe impl NSObjectProtocol for AVPlayerItemVideoOutput {}
 
 extern_methods!(
     unsafe impl AVPlayerItemVideoOutput {
+        /// Returns an instance of AVPlayerItemVideoOutput, initialized with the specified pixel buffer attributes, for video image output.
+        ///
+        /// Parameter `pixelBufferAttributes`: The client requirements for output CVPixelBuffers, expressed using the constants in
+        /// <CoreVideo
+        /// /CVPixelBuffer.h>.
+        ///
+        /// Returns: An instance of AVPlayerItemVideoOutput.
         #[method_id(@__retain_semantics Init initWithPixelBufferAttributes:)]
         pub unsafe fn initWithPixelBufferAttributes(
             this: Allocated<Self>,
             pixel_buffer_attributes: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
+        /// Returns an instance of AVPlayerItemVideoOutput, initialized with the specified output settings, for video image output.
+        ///
+        /// Parameter `outputSettings`: The client requirements for output CVPixelBuffers, expressed using the constants in AVVideoSettings.h.
+        ///
+        /// For uncompressed video output, start with kCVPixelBuffer* keys in
+        /// <CoreVideo
+        /// /CVPixelBuffer.h>.
+        ///
+        /// In addition to the keys in CVPixelBuffer.h, uncompressed video settings dictionaries may also contain the following keys:
+        ///
+        /// AVVideoAllowWideColorKey
+        ///
+        ///
+        /// Returns: An instance of AVPlayerItemVideoOutput.
+        ///
+        /// This method throws an exception for any of the following reasons:
+        /// - the output settings dictionary is empty
+        /// - the settings will yield compressed output
+        /// - the settings do not honor the requirements listed above for outputSettings
         #[method_id(@__retain_semantics Init initWithOutputSettings:)]
         pub unsafe fn initWithOutputSettings(
             this: Allocated<Self>,
@@ -79,10 +136,28 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Query if any new video output is available for an item time.
+        ///
+        /// This method returns YES if there is available video output, appropriate for display, at the specified item time not marked as acquired. If you require multiple objects to acquire video output from the same AVPlayerItem, you should instantiate more than one AVPlayerItemVideoOutput and add each via addOutput:. Each AVPlayerItemVideoOutput maintains a separate record of client acquisition.
+        ///
+        /// Parameter `itemTime`: The item time to query.
+        ///
+        /// Returns: A BOOL indicating if there is newer output.
         #[method(hasNewPixelBufferForItemTime:)]
         pub unsafe fn hasNewPixelBufferForItemTime(&self, item_time: CMTime) -> bool;
 
         #[cfg(all(feature = "objc2-core-media", feature = "objc2-core-video"))]
+        /// Retrieves an image that is appropriate for display at the specified item time, and marks the image as acquired.
+        ///
+        /// The client is responsible for calling CVBufferRelease on the returned CVPixelBuffer when finished with it.
+        ///
+        /// Typically you would call this method in response to a CADisplayLink delegate invocation and if hasNewPixelBufferForItemTime: also returns YES.
+        ///
+        /// The buffer reference retrieved from copyPixelBufferForItemTime:itemTimeForDisplay: may itself be NULL. A reference to a NULL pixel buffer communicates that nothing should be displayed for the supplied item time.
+        ///
+        /// Parameter `itemTime`: A CMTime that expresses a desired item time.
+        ///
+        /// Parameter `itemTimeForDisplay`: A CMTime pointer whose value will contain the true display deadline for the copied pixel buffer. Can be NULL.
         #[method(copyPixelBufferForItemTime:itemTimeForDisplay:)]
         pub unsafe fn copyPixelBufferForItemTime_itemTimeForDisplay(
             &self,
@@ -90,12 +165,18 @@ extern_methods!(
             out_item_time_for_display: *mut CMTime,
         ) -> CVPixelBufferRef;
 
+        /// Informs the receiver that the AVPlayerItemVideoOutput client is entering a quiescent state.
+        ///
+        /// Parameter `interval`: A wall clock time interval.
+        ///
+        /// Message this method before you suspend your use of a CADisplayLink. The interval you provide will be used to message your delegate, in advance, that it should resume the display link. If the interval you provide is large, effectively requesting wakeup earlier than the AVPlayerItemVideoOutput is prepared to act, the delegate will be invoked as soon as possible. Do not use this method to force a delegate invocation for each sample.
         #[method(requestNotificationOfMediaDataChangeWithAdvanceInterval:)]
         pub unsafe fn requestNotificationOfMediaDataChangeWithAdvanceInterval(
             &self,
             interval: NSTimeInterval,
         );
 
+        /// The receiver's delegate.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
@@ -115,12 +196,20 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpulldelegate?language=objc)
+    /// Defines common delegate methods for objects participating in AVPlayerItemOutput pull sample output acquisition.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpulldelegate?language=objc)
     pub unsafe trait AVPlayerItemOutputPullDelegate: NSObjectProtocol {
+        /// A method invoked once, prior to a new sample, if the AVPlayerItemOutput sender was previously messaged requestNotificationOfMediaDataChangeWithAdvanceInterval:.
+        ///
+        /// This method is invoked once after the sender is messaged requestNotificationOfMediaDataChangeWithAdvanceInterval:.
         #[optional]
         #[method(outputMediaDataWillChange:)]
         unsafe fn outputMediaDataWillChange(&self, sender: &AVPlayerItemOutput);
 
+        /// A method invoked when the output is commencing a new sequence.
+        ///
+        /// This method is invoked after any seeking and change in playback direction. If you are maintaining any queued future samples, copied previously, you may want to discard these after receiving this message.
         #[optional]
         #[method(outputSequenceWasFlushed:)]
         unsafe fn outputSequenceWasFlushed(&self, output: &AVPlayerItemOutput);
@@ -130,7 +219,11 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutput?language=objc)
+    /// A subclass of AVPlayerItemOutput that can vend media with a legible characteristic as NSAttributedStrings.
+    ///
+    /// An instance of AVPlayerItemLegibleOutput is typically initialized using the -init method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutput?language=objc)
     #[unsafe(super(AVPlayerItemOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemLegibleOutput;
@@ -140,14 +233,21 @@ unsafe impl NSObjectProtocol for AVPlayerItemLegibleOutput {}
 
 extern_methods!(
     unsafe impl AVPlayerItemLegibleOutput {
+        /// The receiver's delegate.
+        ///
+        /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemLegibleOutputPushDelegate>>>;
 
+        /// Permits advance invocation of the associated delegate, if any.
+        ///
+        /// If it is possible, an AVPlayerItemLegibleOutput will message its delegate advanceIntervalForDelegateInvocation seconds earlier than otherwise. If the value you provide is large, effectively requesting provision of samples earlier than the AVPlayerItemLegibleOutput is prepared to act on them, the delegate will be invoked as soon as possible.
         #[method(advanceIntervalForDelegateInvocation)]
         pub unsafe fn advanceIntervalForDelegateInvocation(&self) -> NSTimeInterval;
 
+        /// Setter for [`advanceIntervalForDelegateInvocation`][Self::advanceIntervalForDelegateInvocation].
         #[method(setAdvanceIntervalForDelegateInvocation:)]
         pub unsafe fn setAdvanceIntervalForDelegateInvocation(
             &self,
@@ -170,6 +270,19 @@ extern_methods!(
 extern_methods!(
     /// AVPlayerItemLegibleOutput_NativeRepresentation
     unsafe impl AVPlayerItemLegibleOutput {
+        /// Returns an instance of AVPlayerItemLegibleOutput with filtering enabled for AVPlayerItemLegibleOutputPushDelegate's legibleOutput:didOutputAttributedStrings:nativeSampleBuffers:forItemTime:.
+        ///
+        /// Parameter `subtypes`: NSArray of NSNumber FourCC codes, e.g.
+        /// @
+        /// [ [NSNumber numberWithUnsignedInt:'tx3g'] ]
+        ///
+        /// Returns: An instance of AVPlayerItemLegibleOutput.
+        ///
+        /// Add media subtype FourCC number objects to the subtypes array to elect to receive that type as a CMSampleBuffer instead of an NSAttributedString.  Initializing an AVPlayerItemLegibleOutput using the -init method is equivalent to calling -initWithMediaSubtypesForNativeRepresentation: with an empty array, which means that all legible data, regardless of media subtype, will be delivered using NSAttributedString in a common format.
+        ///
+        /// If a media subtype for which there is no legible data in the current player item is included in the media subtypes array, no error will occur.  AVPlayerItemLegibleOutput will not vend closed caption data as CMSampleBuffers, so it is an error to include 'c608' in the media subtypes array.
+        ///
+        /// This method throws an exception if any media subtype is kCMClosedCaptionFormatType_CEA608 (native representation is not available for media subtype).
         #[method_id(@__retain_semantics Init initWithMediaSubtypesForNativeRepresentation:)]
         pub unsafe fn initWithMediaSubtypesForNativeRepresentation(
             this: Allocated<Self>,
@@ -178,18 +291,26 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputtextstylingresolution?language=objc)
+/// The type of a text styling resolution.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputtextstylingresolution?language=objc)
 // NS_TYPED_ENUM
 pub type AVPlayerItemLegibleOutputTextStylingResolution = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputtextstylingresolutiondefault?language=objc)
+    /// Specify this level of text styling resolution to receive attributed strings from an AVPlayerItemLegibleOutput that include the same level of styling information that AVFoundation would use itself to render text within an AVPlayerLayer. The text styling will accommodate user-level Media Accessibility settings.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputtextstylingresolutiondefault?language=objc)
     pub static AVPlayerItemLegibleOutputTextStylingResolutionDefault:
         &'static AVPlayerItemLegibleOutputTextStylingResolution;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputtextstylingresolutionsourceandrulesonly?language=objc)
+    /// Specify this level of text styling resolution to receive only the styling present in the source media and the styling provided via AVPlayerItem.textStyleRules.
+    ///
+    /// This level of resolution excludes styling provided by the user-level Media Accessibility settings. You would typically use it if you wish to override the styling specified in source media. If you do this, you are strongly encouraged to allow your custom styling in turn to be overriden by user preferences for text styling that are available as Media Accessibility settings.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputtextstylingresolutionsourceandrulesonly?language=objc)
     pub static AVPlayerItemLegibleOutputTextStylingResolutionSourceAndRulesOnly:
         &'static AVPlayerItemLegibleOutputTextStylingResolution;
 }
@@ -197,11 +318,15 @@ extern "C" {
 extern_methods!(
     /// AVPlayerItemLegibleOutput_TextStylingResolution
     unsafe impl AVPlayerItemLegibleOutput {
+        /// A string identifier indicating the degree of text styling to be applied to attributed strings vended by the receiver
+        ///
+        /// Valid values are AVPlayerItemLegibleOutputTextStylingResolutionDefault and AVPlayerItemLegibleOutputTextStylingResolutionSourceAndRulesOnly.  An NSInvalidArgumentException is raised if this property is set to any other value.  The default value is AVPlayerItemLegibleOutputTextStylingResolutionDefault, which indicates that attributed strings vended by the receiver will include the same level of styling information that would be used if AVFoundation were rendering the text via AVPlayerLayer.
         #[method_id(@__retain_semantics Other textStylingResolution)]
         pub unsafe fn textStylingResolution(
             &self,
         ) -> Retained<AVPlayerItemLegibleOutputTextStylingResolution>;
 
+        /// Setter for [`textStylingResolution`][Self::textStylingResolution].
         #[method(setTextStylingResolution:)]
         pub unsafe fn setTextStylingResolution(
             &self,
@@ -211,11 +336,26 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputpushdelegate?language=objc)
+    /// Extends AVPlayerItemOutputPushDelegate to provide additional methods specific to attributed string output.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemLegibleOutputPushDelegate:
         AVPlayerItemOutputPushDelegate
     {
         #[cfg(feature = "objc2-core-media")]
+        /// A delegate callback that delivers new textual samples.
+        ///
+        /// Parameter `output`: The AVPlayerItemLegibleOutput source.
+        ///
+        /// Parameter `strings`: An NSArray of NSAttributedString, each containing both the run of text and descriptive markup.
+        ///
+        /// Parameter `nativeSamples`: An NSArray of CMSampleBuffer objects, for media subtypes included in the array passed in to -initWithMediaSubtypesForNativeRepresentation:
+        ///
+        /// Parameter `itemTime`: The item time at which the strings should be presented.
+        ///
+        /// For each media subtype in the array passed in to -initWithMediaSubtypesForNativeRepresentation:, the delegate will receive sample buffers carrying data in its native format via the nativeSamples parameter, if there is media data of that subtype in the media resource.  For all other media subtypes present in the media resource, the delegate will receive attributed strings in a common format via the strings parameter.  See
+        /// <CoreMedia
+        /// /CMTextMarkup.h> for the string attributes that are used in the attributed strings.
         #[optional]
         #[method(legibleOutput:didOutputAttributedStrings:nativeSampleBuffers:forItemTime:)]
         unsafe fn legibleOutput_didOutputAttributedStrings_nativeSampleBuffers_forItemTime(
@@ -231,8 +371,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpushdelegate?language=objc)
+    /// Defines common delegate methods for objects participating in AVPlayerItemOutput push sample output acquisition.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemOutputPushDelegate: NSObjectProtocol {
+        /// A method invoked when the output is commencing a new sequence of media data.
+        ///
+        /// This method is invoked after any seeking and change in playback direction. If you are maintaining any queued future media data, received previously, you may want to discard these after receiving this message.
         #[optional]
         #[method(outputSequenceWasFlushed:)]
         unsafe fn outputSequenceWasFlushed(&self, output: &AVPlayerItemOutput);
@@ -242,7 +387,12 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadataoutput?language=objc)
+    /// A subclass of AVPlayerItemOutput that vends collections of metadata items carried in metadata tracks.
+    ///
+    ///
+    /// Setting the value of suppressesPlayerRendering on an instance of AVPlayerItemMetadataOutput has no effect.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadataoutput?language=objc)
     #[unsafe(super(AVPlayerItemOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemMetadataOutput;
@@ -252,20 +402,32 @@ unsafe impl NSObjectProtocol for AVPlayerItemMetadataOutput {}
 
 extern_methods!(
     unsafe impl AVPlayerItemMetadataOutput {
+        /// Creates an instance of AVPlayerItemMetadataOutput.
+        ///
+        /// Parameter `identifiers`: A array of metadata identifiers indicating the metadata items that the output should provide.
+        ///
+        /// See AVMetadataIdentifiers.h for publicly defined metadata identifiers. Pass nil to receive all of the timed metadata from all enabled AVPlayerItemTracks that carry timed metadata.
         #[method_id(@__retain_semantics Init initWithIdentifiers:)]
         pub unsafe fn initWithIdentifiers(
             this: Allocated<Self>,
             identifiers: Option<&NSArray<NSString>>,
         ) -> Retained<Self>;
 
+        /// The receiver's delegate.
+        ///
+        /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemMetadataOutputPushDelegate>>>;
 
+        /// Permits advance invocation of the associated delegate, if any.
+        ///
+        /// If it is possible, an AVPlayerItemMetadataOutput will message its delegate advanceIntervalForDelegateInvocation seconds earlier than otherwise. If the value you provide is large, effectively requesting provision of samples earlier than the AVPlayerItemMetadataOutput is prepared to act on them, the delegate will be invoked as soon as possible.
         #[method(advanceIntervalForDelegateInvocation)]
         pub unsafe fn advanceIntervalForDelegateInvocation(&self) -> NSTimeInterval;
 
+        /// Setter for [`advanceIntervalForDelegateInvocation`][Self::advanceIntervalForDelegateInvocation].
         #[method(setAdvanceIntervalForDelegateInvocation:)]
         pub unsafe fn setAdvanceIntervalForDelegateInvocation(
             &self,
@@ -286,11 +448,26 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadataoutputpushdelegate?language=objc)
+    /// Extends AVPlayerItemOutputPushDelegate to provide additional methods specific to metadata output.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadataoutputpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemMetadataOutputPushDelegate:
         AVPlayerItemOutputPushDelegate
     {
         #[cfg(all(feature = "AVPlayerItemTrack", feature = "AVTimedMetadataGroup"))]
+        /// A delegate callback that delivers a new collection of metadata items.
+        ///
+        /// Parameter `output`: The AVPlayerItemMetadataOutput source.
+        ///
+        /// Parameter `groups`: An NSArray of AVTimedMetadataGroups that may contain metadata items with requested identifiers, according to the format descriptions associated with the underlying tracks.
+        ///
+        /// Parameter `track`: An instance of AVPlayerItemTrack that indicates the source of the metadata items in the group.
+        ///
+        /// Each group provided in a single invocation of this method will have timing that does not overlap with any other group in the array.
+        /// Note that for some timed metadata formats carried by HTTP live streaming, the timeRange of each group must be reported as kCMTimeIndefinite, because its duration will be unknown until the next metadata group in the stream arrives. In these cases, the groups parameter will always contain a single group.
+        /// Groups are typically packaged into arrays for delivery to your delegate according to the chunking or interleaving of the underlying metadata data.
+        /// Note that if the item carries multiple metadata tracks containing metadata with the same metadata identifiers, this method can be invoked for each one separately, each with reference to the associated AVPlayerItemTrack.
+        /// Note that the associated AVPlayerItemTrack parameter can be nil which implies that the metadata describes the asset as a whole, not just a single track of the asset.
         #[optional]
         #[method(metadataOutput:didOutputTimedMetadataGroups:fromPlayerItemTrack:)]
         unsafe fn metadataOutput_didOutputTimedMetadataGroups_fromPlayerItemTrack(
@@ -305,7 +482,11 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput?language=objc)
+    /// A subclass of AVPlayerItemOutput that can vend media with a legible characteristic as rendered CVPixelBufferRefs.
+    ///
+    /// An instance of AVPlayerItemRenderedLegibleOutput is initialized using the -init method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput?language=objc)
     #[unsafe(super(AVPlayerItemOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemRenderedLegibleOutput;
@@ -322,20 +503,32 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Creates an instance of AVPlayerItemRenderedLegibleOutput.
+        ///
+        /// Parameter `videoDisplaySize`: CGSize for the video display area
+        ///
+        /// This is the only available initializer for AVPlayerItemRenderedLegibleOutput. The client can also choose to reset videoDisplaySize after initialization or during playback. Initializing and resetting videoDisplaySize with a zero height or width will result in an exception being thrown.
         #[method_id(@__retain_semantics Init initWithVideoDisplaySize:)]
         pub unsafe fn initWithVideoDisplaySize(
             this: Allocated<Self>,
             video_display_size: CGSize,
         ) -> Retained<Self>;
 
+        /// The receiver's delegate.
+        ///
+        /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemRenderedLegibleOutputPushDelegate>>>;
 
+        /// Permits advance invocation of the associated delegate, if any.
+        ///
+        /// If it is possible, an AVPlayerItemRenderedLegibleOutput will message its delegate advanceIntervalForDelegateInvocation seconds earlier than otherwise. If the value you provide is large, effectively requesting provision of samples earlier than the AVPlayerItemRenderedLegibleOutput is prepared to act on them, the delegate will be invoked as soon as possible.
         #[method(advanceIntervalForDelegateInvocation)]
         pub unsafe fn advanceIntervalForDelegateInvocation(&self) -> NSTimeInterval;
 
+        /// Setter for [`advanceIntervalForDelegateInvocation`][Self::advanceIntervalForDelegateInvocation].
         #[method(setAdvanceIntervalForDelegateInvocation:)]
         pub unsafe fn setAdvanceIntervalForDelegateInvocation(
             &self,
@@ -343,21 +536,34 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Permits rendering of pixel buffers according to the set width and height
+        ///
+        /// The client is expected to set videodisplay size during init and may also set it again during playback. The pixel buffers will be rendered according to the set width and height of display area. If this property is set during the presentation time of a vended caption image, a new caption image rendered according to new videoDisplaySize, will be vended out. Setting this property with a zero height or width will result in an exception being thrown and it is client's responsibility to handle it using appropriate catch block.
         #[method(videoDisplaySize)]
         pub unsafe fn videoDisplaySize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`videoDisplaySize`][Self::videoDisplaySize].
         #[method(setVideoDisplaySize:)]
         pub unsafe fn setVideoDisplaySize(&self, video_display_size: CGSize);
     }
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutputpushdelegate?language=objc)
+    /// Extends AVPlayerItemOutputPushDelegate to provide additional methods specific to pixel buffers output.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutputpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemRenderedLegibleOutputPushDelegate:
         AVPlayerItemOutputPushDelegate
     {
         #[cfg(all(feature = "AVRenderedCaptionImage", feature = "objc2-core-media"))]
+        /// A delegate callback that delivers new rendered caption images
+        ///
+        /// Parameter `output`: The AVPlayerItemRenderedLegibleOutput source.
+        ///
+        /// Parameter `captionImages`: An NSArray of AVRenderedCaptionImage(s), consisting of a CVPixelBufferRef and its associated position (in pixels) relative to the video frame
+        ///
+        /// Parameter `itemTime`: The item time at which the caption images should be presented.
         #[optional]
         #[method(renderedLegibleOutput:didOutputRenderedCaptionImages:forItemTime:)]
         unsafe fn renderedLegibleOutput_didOutputRenderedCaptionImages_forItemTime(

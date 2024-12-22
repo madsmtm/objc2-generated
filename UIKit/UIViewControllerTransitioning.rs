@@ -134,6 +134,10 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UIViewAnimating")]
+        /// A conforming object implements this method if the transition it creates can
+        /// be interrupted. For example, it could return an instance of a
+        /// UIViewPropertyAnimator. It is expected that this method will return the same
+        /// instance for the life of a transition.
         #[optional]
         #[method_id(@__retain_semantics Other interruptibleAnimatorForTransition:)]
         unsafe fn interruptibleAnimatorForTransition(
@@ -170,6 +174,11 @@ extern_protocol!(
         #[method(completionCurve)]
         unsafe fn completionCurve(&self) -> UIViewAnimationCurve;
 
+        /// In 10.0, if an object conforming to UIViewControllerAnimatedTransitioning is
+        /// known to be interruptible, it is possible to start it as if it was not
+        /// interactive and then interrupt the transition and interact with it. In this
+        /// case, implement this method and return NO. If an interactor does not
+        /// implement this method, YES is assumed.
         #[optional]
         #[method(wantsInteractiveStart)]
         unsafe fn wantsInteractiveStart(&self) -> bool;
@@ -248,48 +257,73 @@ unsafe impl UIViewControllerInteractiveTransitioning for UIPercentDrivenInteract
 extern_methods!(
     unsafe impl UIPercentDrivenInteractiveTransition {
         #[cfg(feature = "objc2-core-foundation")]
+        /// This is the non-interactive duration that was returned when the
+        /// animators transitionDuration: method was called when the transition started.
         #[method(duration)]
         pub unsafe fn duration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The last percentComplete value specified by updateInteractiveTransition:
         #[method(percentComplete)]
         pub unsafe fn percentComplete(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// completionSpeed defaults to 1.0 which corresponds to a completion duration of
+        /// (1 - percentComplete)*duration.  It must be greater than 0.0. The actual
+        /// completion is inversely proportional to the completionSpeed.  This can be set
+        /// before cancelInteractiveTransition or finishInteractiveTransition is called
+        /// in order to speed up or slow down the non interactive part of the
+        /// transition.
         #[method(completionSpeed)]
         pub unsafe fn completionSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`completionSpeed`][Self::completionSpeed].
         #[method(setCompletionSpeed:)]
         pub unsafe fn setCompletionSpeed(&self, completion_speed: CGFloat);
 
         #[cfg(feature = "UIView")]
+        /// When the interactive part of the transition has completed, this property can
+        /// be set to indicate a different animation curve. It defaults to UIViewAnimationCurveEaseInOut.
+        /// Note that during the interactive portion of the animation the timing curve is linear.
         #[method(completionCurve)]
         pub unsafe fn completionCurve(&self) -> UIViewAnimationCurve;
 
         #[cfg(feature = "UIView")]
+        /// Setter for [`completionCurve`][Self::completionCurve].
         #[method(setCompletionCurve:)]
         pub unsafe fn setCompletionCurve(&self, completion_curve: UIViewAnimationCurve);
 
         #[cfg(feature = "UITimingCurveProvider")]
+        /// For an interruptible animator, one can specify a different timing curve provider to use when the
+        /// transition is continued. This property is ignored if the animated transitioning object does not
+        /// vend an interruptible animator.
         #[method_id(@__retain_semantics Other timingCurve)]
         pub unsafe fn timingCurve(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITimingCurveProvider>>>;
 
         #[cfg(feature = "UITimingCurveProvider")]
+        /// Setter for [`timingCurve`][Self::timingCurve].
         #[method(setTimingCurve:)]
         pub unsafe fn setTimingCurve(
             &self,
             timing_curve: Option<&ProtocolObject<dyn UITimingCurveProvider>>,
         );
 
+        /// Set this to NO in order to start an interruptible transition non
+        /// interactively. By default this is YES, which is consistent with the behavior
+        /// before 10.0.
         #[method(wantsInteractiveStart)]
         pub unsafe fn wantsInteractiveStart(&self) -> bool;
 
+        /// Setter for [`wantsInteractiveStart`][Self::wantsInteractiveStart].
         #[method(setWantsInteractiveStart:)]
         pub unsafe fn setWantsInteractiveStart(&self, wants_interactive_start: bool);
 
+        /// Use this method to pause a running interruptible animator. This will ensure that all blocks
+        /// provided by a transition coordinator's notifyWhenInteractionChangesUsingBlock: method
+        /// are executed when a transition moves in and out of an interactive mode.
         #[method(pauseInteractiveTransition)]
         pub unsafe fn pauseInteractiveTransition(&self);
 

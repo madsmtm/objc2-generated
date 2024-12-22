@@ -101,23 +101,34 @@ unsafe impl UITraitEnvironment for UIColorWell {}
 extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIColorWell {
+        /// Title for the color picker.
+        ///
+        /// Should explain what kind of color to pick. Example values are "Stroke Color" or "Fill Color".
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
+        /// Controls whether alpha is supported or not.
+        ///
+        /// If set to `NO` users are only able to pick fully opaque colors.
         #[method(supportsAlpha)]
         pub unsafe fn supportsAlpha(&self) -> bool;
 
+        /// Setter for [`supportsAlpha`][Self::supportsAlpha].
         #[method(setSupportsAlpha:)]
         pub unsafe fn setSupportsAlpha(&self, supports_alpha: bool);
 
         #[cfg(feature = "UIColor")]
+        /// Sets the selected color on the color picker and is updated when the user changes the selection.
+        /// Does support KVO and does send `UIControlEventValueChanged`.
         #[method_id(@__retain_semantics Other selectedColor)]
         pub unsafe fn selectedColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`selectedColor`][Self::selectedColor].
         #[method(setSelectedColor:)]
         pub unsafe fn setSelectedColor(&self, selected_color: Option<&UIColor>);
     }
@@ -142,6 +153,7 @@ extern_methods!(
             feature = "UIMenuElement",
             feature = "objc2-core-foundation"
         ))]
+        /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
         #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,

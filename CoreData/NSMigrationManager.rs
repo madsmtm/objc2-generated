@@ -42,6 +42,7 @@ extern_methods!(
         #[method(usesStoreSpecificMigrationManager)]
         pub unsafe fn usesStoreSpecificMigrationManager(&self) -> bool;
 
+        /// Setter for [`usesStoreSpecificMigrationManager`][Self::usesStoreSpecificMigrationManager].
         #[method(setUsesStoreSpecificMigrationManager:)]
         pub unsafe fn setUsesStoreSpecificMigrationManager(
             &self,
@@ -120,6 +121,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
+        /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 

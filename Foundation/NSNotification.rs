@@ -12,7 +12,9 @@ use crate::*;
 pub type NSNotificationName = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification?language=objc)
+    /// **************    Notifications    ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNotification;
@@ -83,7 +85,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationcenter?language=objc)
+    /// **************    Notification Center    ***************
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationcenter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNotificationCenter;

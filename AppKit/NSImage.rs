@@ -93,12 +93,27 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageNamed:)]
         pub unsafe fn imageNamed(name: &NSImageName) -> Option<Retained<NSImage>>;
 
+        /// Creates a system symbol image with the specified name and value
+        ///
+        /// Parameter `name`: A name from the system’s SF Symbols catalog
+        ///
+        /// Parameter `description`: The image’s accessibility description. This description is used automatically by interface elements that display images. Like all accessibility descriptions, use a short localized string that does not include the name of the interface element. For instance, “delete” rather than “delete button”.
         #[method_id(@__retain_semantics Other imageWithSystemSymbolName:accessibilityDescription:)]
         pub unsafe fn imageWithSystemSymbolName_accessibilityDescription(
             name: &NSString,
             description: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
+        /// Creates a system symbol image with the specified name and value. The
+        /// `value`argument is only accommodated if the symbol supports variable rendering.
+        ///
+        /// Parameter `name`: A name from the system’s SF Symbols catalog
+        ///
+        /// Parameter `value`: The value represented by the symbol. The value should be between 0 and 1 inclusive ([0,1]).
+        ///
+        /// Parameter `description`: The image’s accessibility description. This description is used automatically by interface elements that display images. Like all accessibility descriptions, use a short localized string that does not include the name of the interface element. For instance, “delete” rather than “delete button”.
+        ///
+        /// Note: Values less than 0 or greater than 1 will be clamped to 0 and 1, respectively.
         #[method_id(@__retain_semantics Other imageWithSystemSymbolName:variableValue:accessibilityDescription:)]
         pub unsafe fn imageWithSystemSymbolName_variableValue_accessibilityDescription(
             name: &NSString,
@@ -106,12 +121,30 @@ extern_methods!(
             description: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
+        /// Creates a symbol image with the specified name and value. The
+        /// `value`argument is only accommodated if the symbol supports variable rendering.
+        ///
+        /// Parameter `name`: A name of a symbol image file in the main bundle’s catalog
+        ///
+        /// Parameter `value`: The value represented by the symbol. The value should be between 0 and 1 inclusive ([0,1]).
+        ///
+        /// Note: Values less than 0 or greater than 1 will be clamped to 0 and 1, respectively.
         #[method_id(@__retain_semantics Other imageWithSymbolName:variableValue:)]
         pub unsafe fn imageWithSymbolName_variableValue(
             name: &NSString,
             value: c_double,
         ) -> Option<Retained<Self>>;
 
+        /// Creates a symbol image with the specified name and value. The
+        /// `value`argument is only accommodated if the symbol supports variable rendering.
+        ///
+        /// Parameter `name`: A name of a symbol image file in the main bundle’s catalog
+        ///
+        /// Parameter `bundle`: The bundle containing the image file or asset catalog. Specify `nil` to search the app’s main bundle.
+        ///
+        /// Parameter `value`: The value represented by the symbol. The value should be between 0 and 1 inclusive ([0,1]).
+        ///
+        /// Note: Values less than 0 or greater than 1 will be clamped to 0 and 1, respectively.
         #[method_id(@__retain_semantics Other imageWithSymbolName:bundle:variableValue:)]
         pub unsafe fn imageWithSymbolName_bundle_variableValue(
             name: &NSString,
@@ -176,6 +209,7 @@ extern_methods!(
         pub unsafe fn size(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
 
@@ -190,30 +224,35 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[method(usesEPSOnResolutionMismatch)]
         pub unsafe fn usesEPSOnResolutionMismatch(&self) -> bool;
 
+        /// Setter for [`usesEPSOnResolutionMismatch`][Self::usesEPSOnResolutionMismatch].
         #[method(setUsesEPSOnResolutionMismatch:)]
         pub unsafe fn setUsesEPSOnResolutionMismatch(&self, uses_eps_on_resolution_mismatch: bool);
 
         #[method(prefersColorMatch)]
         pub unsafe fn prefersColorMatch(&self) -> bool;
 
+        /// Setter for [`prefersColorMatch`][Self::prefersColorMatch].
         #[method(setPrefersColorMatch:)]
         pub unsafe fn setPrefersColorMatch(&self, prefers_color_match: bool);
 
         #[method(matchesOnMultipleResolution)]
         pub unsafe fn matchesOnMultipleResolution(&self) -> bool;
 
+        /// Setter for [`matchesOnMultipleResolution`][Self::matchesOnMultipleResolution].
         #[method(setMatchesOnMultipleResolution:)]
         pub unsafe fn setMatchesOnMultipleResolution(&self, matches_on_multiple_resolution: bool);
 
         #[method(matchesOnlyOnBestFittingAxis)]
         pub unsafe fn matchesOnlyOnBestFittingAxis(&self) -> bool;
 
+        /// Setter for [`matchesOnlyOnBestFittingAxis`][Self::matchesOnlyOnBestFittingAxis].
         #[method(setMatchesOnlyOnBestFittingAxis:)]
         pub unsafe fn setMatchesOnlyOnBestFittingAxis(
             &self,
@@ -305,6 +344,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSImageDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSImageDelegate>>);
 
@@ -321,6 +361,7 @@ extern_methods!(
         #[method(cacheMode)]
         pub unsafe fn cacheMode(&self) -> NSImageCacheMode;
 
+        /// Setter for [`cacheMode`][Self::cacheMode].
         #[method(setCacheMode:)]
         pub unsafe fn setCacheMode(&self, cache_mode: NSImageCacheMode);
 
@@ -329,18 +370,21 @@ extern_methods!(
         pub unsafe fn alignmentRect(&self) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`alignmentRect`][Self::alignmentRect].
         #[method(setAlignmentRect:)]
         pub unsafe fn setAlignmentRect(&self, alignment_rect: NSRect);
 
         #[method(isTemplate)]
         pub unsafe fn isTemplate(&self) -> bool;
 
+        /// Setter for [`isTemplate`][Self::isTemplate].
         #[method(setTemplate:)]
         pub unsafe fn setTemplate(&self, template: bool);
 
         #[method_id(@__retain_semantics Other accessibilityDescription)]
         pub unsafe fn accessibilityDescription(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`accessibilityDescription`][Self::accessibilityDescription].
         #[method(setAccessibilityDescription:)]
         pub unsafe fn setAccessibilityDescription(
             &self,
@@ -418,12 +462,14 @@ extern_methods!(
         pub unsafe fn capInsets(&self) -> NSEdgeInsets;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`capInsets`][Self::capInsets].
         #[method(setCapInsets:)]
         pub unsafe fn setCapInsets(&self, cap_insets: NSEdgeInsets);
 
         #[method(resizingMode)]
         pub unsafe fn resizingMode(&self) -> NSImageResizingMode;
 
+        /// Setter for [`resizingMode`][Self::resizingMode].
         #[method(setResizingMode:)]
         pub unsafe fn setResizingMode(&self, resizing_mode: NSImageResizingMode);
 
@@ -436,9 +482,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Retained<NSImageSymbolConfiguration>;
 
+        /// Creates and returns a new image with the specified locale. If the receiver contains locale-sensitive representations, the returned image will prefer to draw using representations appropriate for the specified locale. If locale is `nil`, the returned image uses the default behavior of choosing representations appropriate for the system’s currently-configured locale.
         #[method_id(@__retain_semantics Other imageWithLocale:)]
         pub unsafe fn imageWithLocale(&self, locale: Option<&NSLocale>) -> Retained<NSImage>;
 
+        /// The image’s preferred locale for resolving representations, if one has been specified using `-imageWithLocale:`. Otherwise, `nil`.
         #[method_id(@__retain_semantics Other locale)]
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
     }
@@ -1461,27 +1509,51 @@ extern_methods!(
         #[method_id(@__retain_semantics Other configurationWithScale:)]
         pub unsafe fn configurationWithScale(scale: NSImageSymbolScale) -> Retained<Self>;
 
+        /// Create a configuration that specifies that the symbol should prefer its monochrome variant.
         #[method_id(@__retain_semantics Other configurationPreferringMonochrome)]
         pub unsafe fn configurationPreferringMonochrome() -> Retained<Self>;
 
+        /// Create a configuration that specifies that the symbol should prefer its hierarchical variant, if one exists.
+        ///
+        /// If the symbol doesn’t support hierarchical, the result will be a monochrome (templated) symbol.
         #[method_id(@__retain_semantics Other configurationPreferringHierarchical)]
         pub unsafe fn configurationPreferringHierarchical() -> Retained<Self>;
 
         #[cfg(feature = "NSColor")]
+        /// Create a color configuration with a palette derived from one color.
+        ///
+        /// A color scheme will be created based on the provided color, deriving secondary and tertiary colors by reducing the intensity of the base color. This is typically (but not only) accomplished by reducing opacity of the primary color.
+        ///
+        /// When combined with another configuration creating a palette, the last specified configuration will win, overwriting the other color configuration.
+        ///
+        /// If the symbol doesn’t have a palette-based variant, the configuration will have no effect and the result will be a monochrome (templated) symbol.
         #[method_id(@__retain_semantics Other configurationWithHierarchicalColor:)]
         pub unsafe fn configurationWithHierarchicalColor(
             hierarchical_color: &NSColor,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSColor")]
+        /// Create a color configuration by specifying a palette of colors. The colors are used sequentially per layer: the first color for the first layer, the second color for the second layer etc. This is independent of the hierarchy level of the layer.
+        ///
+        /// When combined with another configuration creating a palette, the last specified configuration will win, overwriting the other color configuration.
+        ///
+        /// If the symbol doesn’t have a palette-based variant, the configuration will have no effect and the result will be a monochrome (templated) symbol.
         #[method_id(@__retain_semantics Other configurationWithPaletteColors:)]
         pub unsafe fn configurationWithPaletteColors(
             palette_colors: &NSArray<NSColor>,
         ) -> Retained<Self>;
 
+        /// Create a configuration that specifies that the symbol should prefer its multicolor variant, if one exists.
+        ///
+        /// This configuration can be combined with one of the palette-based configurations; in that case, the symbol will use the multicolor variant if one exists, or the palette variant otherwise.
+        ///
+        /// If the symbol supports neither, the result will be a monochrome (templated) symbol.
         #[method_id(@__retain_semantics Other configurationPreferringMulticolor)]
         pub unsafe fn configurationPreferringMulticolor() -> Retained<Self>;
 
+        /// Returns a new configuration object whose values are defined by applying values from the provided configuration and the receiver.
+        ///
+        /// Values defined by both configurations will use the provided configuration’s values.
         #[method_id(@__retain_semantics Other configurationByApplyingConfiguration:)]
         pub unsafe fn configurationByApplyingConfiguration(
             &self,

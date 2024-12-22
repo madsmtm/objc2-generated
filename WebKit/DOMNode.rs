@@ -100,6 +100,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other nodeValue)]
         pub unsafe fn nodeValue(&self) -> Retained<NSString>;
 
+        /// Setter for [`nodeValue`][Self::nodeValue].
         #[deprecated]
         #[method(setNodeValue:)]
         pub unsafe fn setNodeValue(&self, node_value: Option<&NSString>);
@@ -146,6 +147,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other prefix)]
         pub unsafe fn prefix(&self) -> Retained<NSString>;
 
+        /// Setter for [`prefix`][Self::prefix].
         #[deprecated]
         #[method(setPrefix:)]
         pub unsafe fn setPrefix(&self, prefix: Option<&NSString>);
@@ -165,6 +167,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other textContent)]
         pub unsafe fn textContent(&self) -> Retained<NSString>;
 
+        /// Setter for [`textContent`][Self::textContent].
         #[method(setTextContent:)]
         pub unsafe fn setTextContent(&self, text_content: Option<&NSString>);
 

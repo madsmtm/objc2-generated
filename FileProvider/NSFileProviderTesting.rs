@@ -6,7 +6,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype?language=objc)
+/// Type of the operation
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -39,46 +41,73 @@ unsafe impl RefEncode for NSFileProviderTestingOperationType {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperation?language=objc)
+    /// An operation that can scheduled.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperation?language=objc)
     pub unsafe trait NSFileProviderTestingOperation: NSObjectProtocol {
+        /// The operation type
         #[method(type)]
         unsafe fn r#type(&self) -> NSFileProviderTestingOperationType;
 
+        /// Returns the operation as an Ingestion.
+        ///
+        /// Returns the operation if it conforms to NSFileProviderTestingIngestion, otherwise returns nil.
         #[method_id(@__retain_semantics Other asIngestion)]
         unsafe fn asIngestion(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingIngestion>>>;
 
+        /// Returns the operation as an Lookup.
+        ///
+        /// Returns the operation if it conforms to NSFileProviderTestingLookup, otherwise returns nil.
         #[method_id(@__retain_semantics Other asLookup)]
         unsafe fn asLookup(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingLookup>>>;
 
+        /// Returns the operation as an Creation.
+        ///
+        /// Returns the operation if it conforms to NSFileProviderTestingCreation, otherwise returns nil.
         #[method_id(@__retain_semantics Other asCreation)]
         unsafe fn asCreation(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingCreation>>>;
 
+        /// Returns the operation as an Modification.
+        ///
+        /// Returns the operation if it conforms to NSFileProviderTestingModification, otherwise returns nil.
         #[method_id(@__retain_semantics Other asModification)]
         unsafe fn asModification(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingModification>>>;
 
+        /// Returns the operation as an Deletion.
+        ///
+        /// Returns the operation if it conforms to NSFileProviderTestingDeletion, otherwise returns nil.
         #[method_id(@__retain_semantics Other asDeletion)]
         unsafe fn asDeletion(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingDeletion>>>;
 
+        /// Returns the operation as an ContentFetch.
+        ///
+        /// Returns the operation if it conforms to NSFileProviderTestingContentFetch, otherwise returns nil.
         #[method_id(@__retain_semantics Other asContentFetch)]
         unsafe fn asContentFetch(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingContentFetch>>>;
 
+        /// Returns the operation as an ChildrenEnumeration.
+        ///
+        /// Returns the operation if it conforms to NSFileProviderTestingChildrenEnumeration, otherwise returns nil.
         #[method_id(@__retain_semantics Other asChildrenEnumeration)]
         unsafe fn asChildrenEnumeration(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingChildrenEnumeration>>>;
 
+        /// Returns the operation as an Bounce.
+        ///
+        /// Returns the operation if it conforms to NSFileProviderTestingCollisionResolution, otherwise returns nil.
         #[method_id(@__retain_semantics Other asCollisionResolution)]
         unsafe fn asCollisionResolution(
             &self,
@@ -90,8 +119,30 @@ extern_protocol!(
 
 extern_methods!(
     /// TestingModeInteractive
+    /// Control the scheduling of operation.
+    ///
+    /// These methods are available on domain with the NSFileProviderDomainTestingModeInteractive
+    /// enabled.
+    ///
+    /// In order to manually schedule the operation, the testing harness will first call
+    /// -listAvailableTestingOperationWithError and get a list of operations that can be scheduled.
+    /// It can pick one or more operations from that list and call -runTestingOperations:error: to
+    /// schedule those operations.
+    ///
+    /// From that point, it should get the new list of available operations and iterate between listing,
+    /// picking operation, running those operation and so on.
+    ///
+    /// A process must have the com.apple.developer.fileprovider.testing-mode entitlement in order to
+    /// call the methods from this category.
     #[cfg(feature = "Extension")]
     unsafe impl NSFileProviderManager {
+        /// List the available operations.
+        ///
+        /// This lists all of the operations that are ready to be scheduled by the system. The system waits
+        /// for all the pending disk and working set updates to be known before returning.
+        ///
+        /// The operations that are returned may become invalid if the system receives new disk or working
+        /// set events, or if some operation are scheduled using -runTestingOperations:error:.
         #[method_id(@__retain_semantics Other listAvailableTestingOperationsWithError:_)]
         pub unsafe fn listAvailableTestingOperationsWithError(
             &self,
@@ -100,6 +151,10 @@ extern_methods!(
             Retained<NSError>,
         >;
 
+        /// Run a set of operations.
+        ///
+        /// Ask the system to schedule the execution of the listed operations. The system will wait until all
+        /// those operations have completed and report a per-operation error in case an operation fails.
         #[method_id(@__retain_semantics Other runTestingOperations:error:_)]
         pub unsafe fn runTestingOperations_error(
             &self,
@@ -111,14 +166,18 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationside?language=objc)
+/// Side affected by the operation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationside?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFileProviderTestingOperationSide(pub NSUInteger);
 impl NSFileProviderTestingOperationSide {
+    /// The operation reads or writes the disk.
     #[doc(alias = "NSFileProviderTestingOperationSideDisk")]
     pub const Disk: Self = Self(0);
+    /// The operation reads or writes the file provider extension.
     #[doc(alias = "NSFileProviderTestingOperationSideFileProvider")]
     pub const FileProvider: Self = Self(1);
 }
@@ -132,16 +191,25 @@ unsafe impl RefEncode for NSFileProviderTestingOperationSide {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingingestion?language=objc)
+    /// This operation causes the system to ingest a change.
+    ///
+    /// When running this operation, the system will discover a change from the disk or the provider.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingingestion?language=objc)
     pub unsafe trait NSFileProviderTestingIngestion: NSFileProviderTestingOperation {
+        /// Side of the event.
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// Identifier of the affected item.
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// The metadata of the item.
+        ///
+        /// This will be nil if the item is being deleted.
         #[method_id(@__retain_semantics Other item)]
         unsafe fn item(&self) -> Option<Retained<NSFileProviderItem>>;
     }
@@ -150,12 +218,16 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestinglookup?language=objc)
+    /// This operation causes the system to lookup an item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestinglookup?language=objc)
     pub unsafe trait NSFileProviderTestingLookup: NSFileProviderTestingOperation {
+        /// Side of the event.
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// Identifier of the affected item.
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
     }
@@ -164,16 +236,21 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingcreation?language=objc)
+    /// This operation causes the system to propagate a creation of an item from a source side to a target side.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingcreation?language=objc)
     pub unsafe trait NSFileProviderTestingCreation: NSFileProviderTestingOperation {
+        /// The target side of the operation.
         #[method(targetSide)]
         unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// The description of the item.
         #[method_id(@__retain_semantics Other sourceItem)]
         unsafe fn sourceItem(&self) -> Retained<NSFileProviderItem>;
 
         #[cfg(feature = "NSFileProviderDomain")]
+        /// The domain version at the time the creation was discovered on the source side.
         #[method_id(@__retain_semantics Other domainVersion)]
         unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
     }
@@ -182,30 +259,40 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingmodification?language=objc)
+    /// This operation causes the system to propagate a modification of an existing item from a source side to a target side.
+    ///
+    /// The modification happens if a change is identified on an item that is already known by both sides.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingmodification?language=objc)
     pub unsafe trait NSFileProviderTestingModification:
         NSFileProviderTestingOperation
     {
+        /// The target side of the operation.
         #[method(targetSide)]
         unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// The description of the item.
         #[method_id(@__retain_semantics Other sourceItem)]
         unsafe fn sourceItem(&self) -> Retained<NSFileProviderItem>;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// The identifier of the target item.
         #[method_id(@__retain_semantics Other targetItemIdentifier)]
         unsafe fn targetItemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// The version of the target item on top of which the modification is applied
         #[method_id(@__retain_semantics Other targetItemBaseVersion)]
         unsafe fn targetItemBaseVersion(&self) -> Retained<NSFileProviderItemVersion>;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// The list of updated fields.
         #[method(changedFields)]
         unsafe fn changedFields(&self) -> NSFileProviderItemFields;
 
         #[cfg(feature = "NSFileProviderDomain")]
+        /// The domain version at the time the change was discovered on the source side.
         #[method_id(@__retain_semantics Other domainVersion)]
         unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
     }
@@ -214,24 +301,33 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingdeletion?language=objc)
+    /// This operation causes the system to propagate a deletion from a source side to a target side.
+    ///
+    /// The deletion happens if an item that is known by the target side is deleted on the source side.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingdeletion?language=objc)
     pub unsafe trait NSFileProviderTestingDeletion: NSFileProviderTestingOperation {
+        /// The target side of the operation.
         #[method(targetSide)]
         unsafe fn targetSide(&self) -> NSFileProviderTestingOperationSide;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// The identifier of the source item.
         #[method_id(@__retain_semantics Other sourceItemIdentifier)]
         unsafe fn sourceItemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// The identifier of the target item.
         #[method_id(@__retain_semantics Other targetItemIdentifier)]
         unsafe fn targetItemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// The version of the target item on top of which the deletion is applied
         #[method_id(@__retain_semantics Other targetItemBaseVersion)]
         unsafe fn targetItemBaseVersion(&self) -> Retained<NSFileProviderItemVersion>;
 
         #[cfg(feature = "NSFileProviderDomain")]
+        /// The domain version at the time the change was discovered on the source side.
         #[method_id(@__retain_semantics Other domainVersion)]
         unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
     }
@@ -240,14 +336,18 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingcontentfetch?language=objc)
+    /// This operation causes the system to fetch the content of an item.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingcontentfetch?language=objc)
     pub unsafe trait NSFileProviderTestingContentFetch:
         NSFileProviderTestingOperation
     {
+        /// The side of the operation.
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// The identifier of the item.
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
     }
@@ -256,14 +356,18 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingchildrenenumeration?language=objc)
+    /// This operation causes the system to list the children of an item
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingchildrenenumeration?language=objc)
     pub unsafe trait NSFileProviderTestingChildrenEnumeration:
         NSFileProviderTestingOperation
     {
+        /// The side of the operation.
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// The identifier of the item.
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
     }
@@ -272,14 +376,24 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingcollisionresolution?language=objc)
+    /// This operation causes the system to resolve a collision by rename a colliding item.
+    ///
+    /// In case two items claim the same disk location because the have the same parent and filename,
+    /// the system will choose to rename one of those items away from that location. The renamed item will
+    /// have the same parent, but a slightly modified name (for instance "a.txt" will be renamed to "a 2.txt").
+    ///
+    /// This can for instance happen if the case sensitivity of the local filesystem and of the provider differs.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingcollisionresolution?language=objc)
     pub unsafe trait NSFileProviderTestingCollisionResolution:
         NSFileProviderTestingOperation
     {
+        /// The side of the operation.
         #[method(side)]
         unsafe fn side(&self) -> NSFileProviderTestingOperationSide;
 
         #[cfg(feature = "NSFileProviderItem")]
+        /// The state of the item.
         #[method_id(@__retain_semantics Other renamedItem)]
         unsafe fn renamedItem(&self) -> Retained<NSFileProviderItem>;
     }

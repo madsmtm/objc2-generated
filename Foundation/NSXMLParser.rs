@@ -58,6 +58,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSXMLParserDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -67,12 +68,14 @@ extern_methods!(
         #[method(shouldProcessNamespaces)]
         pub unsafe fn shouldProcessNamespaces(&self) -> bool;
 
+        /// Setter for [`shouldProcessNamespaces`][Self::shouldProcessNamespaces].
         #[method(setShouldProcessNamespaces:)]
         pub unsafe fn setShouldProcessNamespaces(&self, should_process_namespaces: bool);
 
         #[method(shouldReportNamespacePrefixes)]
         pub unsafe fn shouldReportNamespacePrefixes(&self) -> bool;
 
+        /// Setter for [`shouldReportNamespacePrefixes`][Self::shouldReportNamespacePrefixes].
         #[method(setShouldReportNamespacePrefixes:)]
         pub unsafe fn setShouldReportNamespacePrefixes(
             &self,
@@ -84,6 +87,7 @@ extern_methods!(
             &self,
         ) -> NSXMLParserExternalEntityResolvingPolicy;
 
+        /// Setter for [`externalEntityResolvingPolicy`][Self::externalEntityResolvingPolicy].
         #[method(setExternalEntityResolvingPolicy:)]
         pub unsafe fn setExternalEntityResolvingPolicy(
             &self,
@@ -95,6 +99,7 @@ extern_methods!(
         pub unsafe fn allowedExternalEntityURLs(&self) -> Option<Retained<NSSet<NSURL>>>;
 
         #[cfg(all(feature = "NSSet", feature = "NSURL"))]
+        /// Setter for [`allowedExternalEntityURLs`][Self::allowedExternalEntityURLs].
         #[method(setAllowedExternalEntityURLs:)]
         pub unsafe fn setAllowedExternalEntityURLs(
             &self,
@@ -114,6 +119,7 @@ extern_methods!(
         #[method(shouldResolveExternalEntities)]
         pub unsafe fn shouldResolveExternalEntities(&self) -> bool;
 
+        /// Setter for [`shouldResolveExternalEntities`][Self::shouldResolveExternalEntities].
         #[method(setShouldResolveExternalEntities:)]
         pub unsafe fn setShouldResolveExternalEntities(
             &self,

@@ -18,6 +18,7 @@ unsafe impl NSObjectProtocol for WKContentRuleList {}
 
 extern_methods!(
     unsafe impl WKContentRuleList {
+        /// A copy of the identifier of the content extension.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
     }

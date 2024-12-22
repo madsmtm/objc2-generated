@@ -10,8 +10,11 @@ use crate::*;
 extern_category!(
     /// Category "MPNowPlayingInfoLanguageOptionAdditions" on [`AVMediaSelectionOption`].
     #[doc(alias = "MPNowPlayingInfoLanguageOptionAdditions")]
+    /// Category for creating language options from AV types
     pub unsafe trait AVMediaSelectionOptionMPNowPlayingInfoLanguageOptionAdditions {
         #[cfg(feature = "MPNowPlayingInfoLanguageOption")]
+        /// Will create a language option from the AVMediaSelectionOption
+        /// Returns nil if the AVMediaSelectionOption does not represent an Audible or Legible selection option.
         #[method_id(@__retain_semantics Other makeNowPlayingInfoLanguageOption)]
         unsafe fn makeNowPlayingInfoLanguageOption(
             &self,
@@ -30,6 +33,9 @@ extern_category!(
     #[doc(alias = "MPNowPlayingInfoLanguageOptionAdditions")]
     pub unsafe trait AVMediaSelectionGroupMPNowPlayingInfoLanguageOptionAdditions {
         #[cfg(feature = "MPNowPlayingInfoLanguageOption")]
+        /// Will create a language option group from the AVMediaSelectionGroup
+        /// Any AVMediaSelectionOptions in the AVMediaSelectionGroup not representing
+        /// Audible or Legible selection options will be ignored.
         #[method_id(@__retain_semantics Other makeNowPlayingInfoLanguageOptionGroup)]
         unsafe fn makeNowPlayingInfoLanguageOptionGroup(
             &self,

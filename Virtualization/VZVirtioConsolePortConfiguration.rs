@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleportconfiguration?language=objc)
+    /// Virtio Console Port
+    ///
+    /// A console port is a two-way communication channel between a host VZSerialPortAttachment and a virtual machine console port. One or more console ports are attached to a Virtio console device.
+    ///
+    /// An optional name may be set for a console port. A console port may also be configured for use as the system console.
+    ///
+    /// See: VZConsolePortConfiguration
+    ///
+    /// See: VZVirtualMachineConfiguration.consoleDevices
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleportconfiguration?language=objc)
     #[unsafe(super(VZConsolePortConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZConsolePortConfiguration")]
@@ -32,15 +42,19 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The console port's name. The default behavior is to not use a name unless set.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
+        /// The console port may be marked for use as the system console. The default is false.
         #[method(isConsole)]
         pub unsafe fn isConsole(&self) -> bool;
 
+        /// Setter for [`isConsole`][Self::isConsole].
         #[method(setIsConsole:)]
         pub unsafe fn setIsConsole(&self, is_console: bool);
     }

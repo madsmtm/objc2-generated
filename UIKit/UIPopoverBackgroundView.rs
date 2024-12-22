@@ -99,6 +99,7 @@ extern_methods!(
         pub unsafe fn arrowOffset(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`arrowOffset`][Self::arrowOffset].
         #[method(setArrowOffset:)]
         pub unsafe fn setArrowOffset(&self, arrow_offset: CGFloat);
 
@@ -107,6 +108,7 @@ extern_methods!(
         pub unsafe fn arrowDirection(&self) -> UIPopoverArrowDirection;
 
         #[cfg(feature = "UIPopoverSupport")]
+        /// Setter for [`arrowDirection`][Self::arrowDirection].
         #[method(setArrowDirection:)]
         pub unsafe fn setArrowDirection(&self, arrow_direction: UIPopoverArrowDirection);
 

@@ -25,30 +25,50 @@ unsafe impl NSObjectProtocol for MTLResourceStatePassSampleBufferAttachmentDescr
 extern_methods!(
     unsafe impl MTLResourceStatePassSampleBufferAttachmentDescriptor {
         #[cfg(feature = "MTLCounters")]
+        /// The sample buffer to store samples for the resourceState-pass defined samples.
+        /// If sampleBuffer is non-nil, the sample indices will be used to store samples into
+        /// the sample buffer.  If no sample buffer is provided, no samples will be taken.
+        /// If any of the sample indices are specified as MTLCounterDontSample, no sample
+        /// will be taken for that action.
         #[method_id(@__retain_semantics Other sampleBuffer)]
         pub unsafe fn sampleBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
         #[cfg(feature = "MTLCounters")]
+        /// Setter for [`sampleBuffer`][Self::sampleBuffer].
         #[method(setSampleBuffer:)]
         pub unsafe fn setSampleBuffer(
             &self,
             sample_buffer: Option<&ProtocolObject<dyn MTLCounterSampleBuffer>>,
         );
 
+        /// The sample index to use to store the sample taken at the start of
+        /// command encoder processing.  Setting the value to MTLCounterDontSample will cause
+        /// this sample to be omitted.
+        ///
+        /// On devices where MTLCounterSamplingPointAtStageBoundary is unsupported,
+        /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a resourceState pass will fail.
         #[method(startOfEncoderSampleIndex)]
         pub unsafe fn startOfEncoderSampleIndex(&self) -> NSUInteger;
 
+        /// Setter for [`startOfEncoderSampleIndex`][Self::startOfEncoderSampleIndex].
         #[method(setStartOfEncoderSampleIndex:)]
         pub unsafe fn setStartOfEncoderSampleIndex(
             &self,
             start_of_encoder_sample_index: NSUInteger,
         );
 
+        /// The sample index to use to store the sample taken at the end of
+        /// Command encoder processing.  Setting the value to MTLCounterDontSample will cause
+        /// this sample to be omitted.
+        ///
+        /// On devices where MTLCounterSamplingPointAtStageBoundary is unsupported,
+        /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a resourceState pass will fail.
         #[method(endOfEncoderSampleIndex)]
         pub unsafe fn endOfEncoderSampleIndex(&self) -> NSUInteger;
 
+        /// Setter for [`endOfEncoderSampleIndex`][Self::endOfEncoderSampleIndex].
         #[method(setEndOfEncoderSampleIndex:)]
         pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
     }
@@ -103,7 +123,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourcestatepassdescriptor?language=objc)
+    /// MTLResourceStatePassDescriptor represents a collection of attachments to be used to create a concrete resourceState command encoder
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourcestatepassdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLResourceStatePassDescriptor;
@@ -119,9 +141,11 @@ unsafe impl NSObjectProtocol for MTLResourceStatePassDescriptor {}
 
 extern_methods!(
     unsafe impl MTLResourceStatePassDescriptor {
+        /// Create an autoreleased default frame buffer descriptor
         #[method_id(@__retain_semantics Other resourceStatePassDescriptor)]
         pub unsafe fn resourceStatePassDescriptor() -> Retained<MTLResourceStatePassDescriptor>;
 
+        /// An array of sample buffers and associated sample indices.
         #[method_id(@__retain_semantics Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,

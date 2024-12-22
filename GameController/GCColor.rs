@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccolor?language=objc)
+    /// Represents a color used by a GCDeviceLight.
+    ///
+    ///
+    /// See: GCDeviceLight
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccolor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCColor;

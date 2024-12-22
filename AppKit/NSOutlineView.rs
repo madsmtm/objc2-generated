@@ -173,6 +173,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSOutlineViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -185,6 +186,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSOutlineViewDataSource>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`dataSource`][Self::dataSource].
         #[method(setDataSource:)]
         pub unsafe fn setDataSource(
             &self,
@@ -196,6 +198,7 @@ extern_methods!(
         pub unsafe fn outlineTableColumn(&self) -> Option<Retained<NSTableColumn>>;
 
         #[cfg(feature = "NSTableColumn")]
+        /// Setter for [`outlineTableColumn`][Self::outlineTableColumn].
         #[method(setOutlineTableColumn:)]
         pub unsafe fn setOutlineTableColumn(&self, outline_table_column: Option<&NSTableColumn>);
 
@@ -269,18 +272,21 @@ extern_methods!(
         pub unsafe fn indentationPerLevel(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`indentationPerLevel`][Self::indentationPerLevel].
         #[method(setIndentationPerLevel:)]
         pub unsafe fn setIndentationPerLevel(&self, indentation_per_level: CGFloat);
 
         #[method(indentationMarkerFollowsCell)]
         pub unsafe fn indentationMarkerFollowsCell(&self) -> bool;
 
+        /// Setter for [`indentationMarkerFollowsCell`][Self::indentationMarkerFollowsCell].
         #[method(setIndentationMarkerFollowsCell:)]
         pub unsafe fn setIndentationMarkerFollowsCell(&self, indentation_marker_follows_cell: bool);
 
         #[method(autoresizesOutlineColumn)]
         pub unsafe fn autoresizesOutlineColumn(&self) -> bool;
 
+        /// Setter for [`autoresizesOutlineColumn`][Self::autoresizesOutlineColumn].
         #[method(setAutoresizesOutlineColumn:)]
         pub unsafe fn setAutoresizesOutlineColumn(&self, autoresizes_outline_column: bool);
 
@@ -297,6 +303,7 @@ extern_methods!(
         #[method(autosaveExpandedItems)]
         pub unsafe fn autosaveExpandedItems(&self) -> bool;
 
+        /// Setter for [`autosaveExpandedItems`][Self::autosaveExpandedItems].
         #[method(setAutosaveExpandedItems:)]
         pub unsafe fn setAutosaveExpandedItems(&self, autosave_expanded_items: bool);
 
@@ -347,6 +354,7 @@ extern_methods!(
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
         #[cfg(feature = "NSUserInterfaceLayout")]
+        /// Setter for [`userInterfaceLayoutDirection`][Self::userInterfaceLayoutDirection].
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
@@ -356,6 +364,7 @@ extern_methods!(
         #[method(stronglyReferencesItems)]
         pub unsafe fn stronglyReferencesItems(&self) -> bool;
 
+        /// Setter for [`stronglyReferencesItems`][Self::stronglyReferencesItems].
         #[method(setStronglyReferencesItems:)]
         pub unsafe fn setStronglyReferencesItems(&self, strongly_references_items: bool);
     }

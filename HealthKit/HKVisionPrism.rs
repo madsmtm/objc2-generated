@@ -6,7 +6,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprismbase?language=objc)
+/// Represents the prism base for rectangular coordinates
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprismbase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -32,7 +34,9 @@ unsafe impl RefEncode for HKPrismBase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisioneye?language=objc)
+/// Represents an eye
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisioneye?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -53,7 +57,10 @@ unsafe impl RefEncode for HKVisionEye {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprism?language=objc)
+    /// An object subclass representing prism vision fields used in eye glasses to correct double vision.
+    /// The prism aligns the two images so only one is seen.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprism?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKVisionPrism;
@@ -78,31 +85,45 @@ unsafe impl NSSecureCoding for HKVisionPrism {}
 extern_methods!(
     unsafe impl HKVisionPrism {
         #[cfg(feature = "HKQuantity")]
+        /// The compensation in prism diopters to correct eye misalignment [polar coordinates]
         #[method_id(@__retain_semantics Other amount)]
         pub unsafe fn amount(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The direction of the prism base [polar coordinates]
         #[method_id(@__retain_semantics Other angle)]
         pub unsafe fn angle(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The vertical component of compensation in prism diopters [rectangular coordinates]
         #[method_id(@__retain_semantics Other verticalAmount)]
         pub unsafe fn verticalAmount(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
+        /// The horizontal component of compensation in prism diopters [rectangular coordinates]
         #[method_id(@__retain_semantics Other horizontalAmount)]
         pub unsafe fn horizontalAmount(&self) -> Retained<HKQuantity>;
 
+        /// The direction of the prism base relative to the vertical axis of the lens;
+        /// base up or base down. [rectangular coordinates]
         #[method(verticalBase)]
         pub unsafe fn verticalBase(&self) -> HKPrismBase;
 
+        /// The direction of the prism base relative to the horizontal axis of the lens;
+        /// base in (toward the nose) or base out (away from the nose). [rectangular coordinates]
         #[method(horizontalBase)]
         pub unsafe fn horizontalBase(&self) -> HKPrismBase;
 
+        /// Which eye (left or right)
         #[method(eye)]
         pub unsafe fn eye(&self) -> HKVisionEye;
 
         #[cfg(feature = "HKQuantity")]
+        /// Parameter `amount`: The compensation for amount eye misalignment
+        ///
+        /// Parameter `angle`: The angle of the lens required to correct diplopia
+        ///
+        /// Parameter `eye`: The eye associated with the prism values
         #[method_id(@__retain_semantics Init initWithAmount:angle:eye:)]
         pub unsafe fn initWithAmount_angle_eye(
             this: Allocated<Self>,
@@ -112,6 +133,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "HKQuantity")]
+        /// Parameter `verticalAmount`: The vertical component of compensation in prism diopters
+        ///
+        /// Parameter `verticalBase`: The direction of the prism base relative to the vertical axis of the lens;
+        /// base up or base down.
+        ///
+        /// Parameter `horizontalAmount`: The horizontal component of compensation in prism diopters
+        ///
+        /// Parameter `horizontalBase`: The direction of the prism base relative to the horizontal axis of the lens;
+        /// base in (toward the nose) or base out (away from the nose).
+        ///
+        /// Parameter `eye`: The eye associated with the prism values
         #[method_id(@__retain_semantics Init initWithVerticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)]
         pub unsafe fn initWithVerticalAmount_verticalBase_horizontalAmount_horizontalBase_eye(
             this: Allocated<Self>,

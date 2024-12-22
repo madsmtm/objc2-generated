@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralstate?language=objc)
+/// Represents the current connection state of a CBPeripheral.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -31,7 +33,9 @@ unsafe impl RefEncode for CBPeripheralState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicwritetype?language=objc)
+/// Specifies which type of write is to be performed on a CBCharacteristic.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicwritetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -50,7 +54,9 @@ unsafe impl RefEncode for CBCharacteristicWriteType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheral?language=objc)
+    /// Represents a peripheral.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheral?language=objc)
     #[unsafe(super(CBPeer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBPeer")]
@@ -71,45 +77,120 @@ unsafe impl NSObjectProtocol for CBPeripheral {}
 extern_methods!(
     #[cfg(feature = "CBPeer")]
     unsafe impl CBPeripheral {
+        /// The delegate object that will receive peripheral events.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn CBPeripheralDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn CBPeripheralDelegate>>,
         );
 
+        /// The name of the peripheral.
         #[method_id(@__retain_semantics Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
+        /// The most recently read RSSI, in decibels.
+        ///
+        ///
+        /// ```text
+        ///  peripheral:didReadRSSI:error:} instead.
+        ///  
+        ///
+        /// ```
         #[deprecated]
         #[method_id(@__retain_semantics Other RSSI)]
         pub unsafe fn RSSI(&self) -> Option<Retained<NSNumber>>;
 
+        /// The current connection state of the peripheral.
         #[method(state)]
         pub unsafe fn state(&self) -> CBPeripheralState;
 
         #[cfg(all(feature = "CBAttribute", feature = "CBService"))]
+        /// A list of
+        /// <code>
+        /// CBService
+        /// </code>
+        /// objects that have been discovered on the peripheral.
         #[method_id(@__retain_semantics Other services)]
         pub unsafe fn services(&self) -> Option<Retained<NSArray<CBService>>>;
 
+        /// YES if the remote device has space to send a write without response. If this value is NO,
+        /// the value will be set to YES after the current writes have been flushed, and
+        /// <link
+        /// >peripheralIsReadyToSendWriteWithoutResponse:
+        /// </link
+        /// > will be called.
         #[method(canSendWriteWithoutResponse)]
         pub unsafe fn canSendWriteWithoutResponse(&self) -> bool;
 
+        /// YES if the remote device has been authorized to receive data over ANCS (Apple Notification Service Center) protocol.  If this value is NO,
+        /// the value will be set to YES after a user authorization occurs and
+        /// <link
+        /// >didUpdateANCSAuthorizationForPeripheral:
+        /// </link
+        /// > will be called.
         #[method(ancsAuthorized)]
         pub unsafe fn ancsAuthorized(&self) -> bool;
 
+        /// While connected, retrieves the current RSSI of the link.
+        ///
+        ///
+        /// See: peripheral:didReadRSSI:error:
         #[method(readRSSI)]
         pub unsafe fn readRSSI(&self);
 
         #[cfg(feature = "CBUUID")]
+        /// Parameter `serviceUUIDs`: A list of
+        /// <code>
+        /// CBUUID
+        /// </code>
+        /// objects representing the service types to be discovered. If
+        /// <i>
+        /// nil
+        /// </i>
+        /// ,
+        /// all services will be discovered.
+        ///
+        ///
+        /// Discovers available service(s) on the peripheral.
+        ///
+        ///
+        /// See: peripheral:didDiscoverServices:
         #[method(discoverServices:)]
         pub unsafe fn discoverServices(&self, service_uui_ds: Option<&NSArray<CBUUID>>);
 
         #[cfg(all(feature = "CBAttribute", feature = "CBService", feature = "CBUUID"))]
+        /// Parameter `includedServiceUUIDs`: A list of
+        /// <code>
+        /// CBUUID
+        /// </code>
+        /// objects representing the included service types to be discovered. If
+        /// <i>
+        /// nil
+        /// </i>
+        /// ,
+        /// all of
+        /// <i>
+        /// service
+        /// </i>
+        /// s included services will be discovered, which is considerably slower and not recommended.
+        ///
+        /// Parameter `service`: A GATT service.
+        ///
+        ///
+        /// Discovers the specified included service(s) of
+        /// <i>
+        /// service
+        /// </i>
+        /// .
+        ///
+        ///
+        /// See: peripheral:didDiscoverIncludedServicesForService:error:
         #[method(discoverIncludedServices:forService:)]
         pub unsafe fn discoverIncludedServices_forService(
             &self,
@@ -118,6 +199,32 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CBAttribute", feature = "CBService", feature = "CBUUID"))]
+        /// Parameter `characteristicUUIDs`: A list of
+        /// <code>
+        /// CBUUID
+        /// </code>
+        /// objects representing the characteristic types to be discovered. If
+        /// <i>
+        /// nil
+        /// </i>
+        /// ,
+        /// all characteristics of
+        /// <i>
+        /// service
+        /// </i>
+        /// will be discovered.
+        ///
+        /// Parameter `service`: A GATT service.
+        ///
+        ///
+        /// Discovers the specified characteristic(s) of
+        /// <i>
+        /// service
+        /// </i>
+        /// .
+        ///
+        ///
+        /// See: peripheral:didDiscoverCharacteristicsForService:error:
         #[method(discoverCharacteristics:forService:)]
         pub unsafe fn discoverCharacteristics_forService(
             &self,
@@ -126,9 +233,24 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CBAttribute", feature = "CBCharacteristic"))]
+        /// Parameter `characteristic`: A GATT characteristic.
+        ///
+        ///
+        /// Reads the characteristic value for
+        /// <i>
+        /// characteristic
+        /// </i>
+        /// .
+        ///
+        ///
+        /// See: peripheral:didUpdateValueForCharacteristic:error:
         #[method(readValueForCharacteristic:)]
         pub unsafe fn readValueForCharacteristic(&self, characteristic: &CBCharacteristic);
 
+        /// The maximum amount of data, in bytes, that can be sent to a characteristic in a single write type.
+        ///
+        ///
+        /// See: writeValue:forCharacteristic:type:
         #[method(maximumWriteValueLengthForType:)]
         pub unsafe fn maximumWriteValueLengthForType(
             &self,
@@ -136,6 +258,41 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[cfg(all(feature = "CBAttribute", feature = "CBCharacteristic"))]
+        /// Parameter `data`: The value to write.
+        ///
+        /// Parameter `characteristic`: The characteristic whose characteristic value will be written.
+        ///
+        /// Parameter `type`: The type of write to be executed.
+        ///
+        ///
+        /// Writes
+        /// <i>
+        /// value
+        /// </i>
+        /// to
+        /// <i>
+        /// characteristic
+        /// </i>
+        /// 's characteristic value.
+        /// If the
+        /// <code>
+        /// CBCharacteristicWriteWithResponse
+        /// </code>
+        /// type is specified, {
+        ///
+        /// ```text
+        ///  peripheral:didWriteValueForCharacteristic:error:}
+        ///                             is called with the result of the write request.
+        ///                             If the <code>CBCharacteristicWriteWithoutResponse</code> type is specified, and canSendWriteWithoutResponse is false, the delivery
+        ///                              of the data is best-effort and may not be guaranteed.
+        ///
+        ///   @see                    peripheral:didWriteValueForCharacteristic:error:
+        ///   @see                    peripheralIsReadyToSendWriteWithoutResponse:
+        ///     @see                    canSendWriteWithoutResponse
+        ///     @see                    CBCharacteristicWriteType
+        ///  
+        ///
+        /// ```
         #[method(writeValue:forCharacteristic:type:)]
         pub unsafe fn writeValue_forCharacteristic_type(
             &self,
@@ -145,6 +302,33 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CBAttribute", feature = "CBCharacteristic"))]
+        /// Parameter `enabled`: Whether or not notifications/indications should be enabled.
+        ///
+        /// Parameter `characteristic`: The characteristic containing the client characteristic configuration descriptor.
+        ///
+        ///
+        /// Enables or disables notifications/indications for the characteristic value of
+        /// <i>
+        /// characteristic
+        /// </i>
+        /// . If
+        /// <i>
+        /// characteristic
+        /// </i>
+        /// allows both, notifications will be used.
+        /// When notifications/indications are enabled, updates to the characteristic value will be received via delegate method
+        ///
+        /// ```text
+        ///  peripheral:didUpdateValueForCharacteristic:error:
+        /// ```
+        ///
+        /// . Since it is the peripheral that chooses when to send an update,
+        /// the application should be prepared to handle them as long as notifications/indications remain enabled.
+        ///
+        ///
+        /// See: peripheral:didUpdateNotificationStateForCharacteristic:error:
+        ///
+        /// See also: CBConnectPeripheralOptionNotifyOnNotificationKey
         #[method(setNotifyValue:forCharacteristic:)]
         pub unsafe fn setNotifyValue_forCharacteristic(
             &self,
@@ -153,6 +337,17 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CBAttribute", feature = "CBCharacteristic"))]
+        /// Parameter `characteristic`: A GATT characteristic.
+        ///
+        ///
+        /// Discovers the characteristic descriptor(s) of
+        /// <i>
+        /// characteristic
+        /// </i>
+        /// .
+        ///
+        ///
+        /// See: peripheral:didDiscoverDescriptorsForCharacteristic:error:
         #[method(discoverDescriptorsForCharacteristic:)]
         pub unsafe fn discoverDescriptorsForCharacteristic(
             &self,
@@ -160,14 +355,56 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CBAttribute", feature = "CBDescriptor"))]
+        /// Parameter `descriptor`: A GATT characteristic descriptor.
+        ///
+        ///
+        /// Reads the value of
+        /// <i>
+        /// descriptor
+        /// </i>
+        /// .
+        ///
+        ///
+        /// See: peripheral:didUpdateValueForDescriptor:error:
         #[method(readValueForDescriptor:)]
         pub unsafe fn readValueForDescriptor(&self, descriptor: &CBDescriptor);
 
         #[cfg(all(feature = "CBAttribute", feature = "CBDescriptor"))]
+        /// Parameter `data`: The value to write.
+        ///
+        /// Parameter `descriptor`: A GATT characteristic descriptor.
+        ///
+        ///
+        /// Writes
+        /// <i>
+        /// data
+        /// </i>
+        /// to
+        /// <i>
+        /// descriptor
+        /// </i>
+        /// 's value. Client characteristic configuration descriptors cannot be written using
+        /// this method, and should instead use
+        ///
+        /// ```text
+        ///  setNotifyValue:forCharacteristic:
+        /// ```
+        ///
+        /// .
+        ///
+        ///
+        /// See: peripheral:didWriteValueForCharacteristic:error:
         #[method(writeValue:forDescriptor:)]
         pub unsafe fn writeValue_forDescriptor(&self, data: &NSData, descriptor: &CBDescriptor);
 
         #[cfg(feature = "CBL2CAPChannel")]
+        /// Parameter `PSM`: The PSM of the channel to open
+        ///
+        ///
+        /// Attempt to open an L2CAP channel to the peripheral using the supplied PSM.
+        ///
+        ///
+        /// See: peripheral:didWriteValueForCharacteristic:error:
         #[method(openL2CAPChannel:)]
         pub unsafe fn openL2CAPChannel(&self, psm: CBL2CAPPSM);
     }
@@ -192,14 +429,58 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheraldelegate?language=objc)
+    /// Delegate for CBPeripheral.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheraldelegate?language=objc)
     pub unsafe trait CBPeripheralDelegate: NSObjectProtocol {
         #[cfg(feature = "CBPeer")]
+        /// Parameter `peripheral`: The peripheral providing this update.
+        ///
+        ///
+        /// This method is invoked when the
+        ///
+        /// ```text
+        ///  name
+        /// ```
+        ///
+        /// of
+        /// <i>
+        /// peripheral
+        /// </i>
+        /// changes.
         #[optional]
         #[method(peripheralDidUpdateName:)]
         unsafe fn peripheralDidUpdateName(&self, peripheral: &CBPeripheral);
 
         #[cfg(all(feature = "CBAttribute", feature = "CBPeer", feature = "CBService"))]
+        /// Parameter `peripheral`: The peripheral providing this update.
+        ///
+        /// Parameter `invalidatedServices`: The services that have been invalidated
+        ///
+        ///
+        /// This method is invoked when the
+        ///
+        /// ```text
+        ///  services
+        /// ```
+        ///
+        /// of
+        /// <i>
+        /// peripheral
+        /// </i>
+        /// have been changed.
+        /// At this point, the designated
+        /// <code>
+        /// CBService
+        /// </code>
+        /// objects have been invalidated.
+        /// Services can be re-discovered via
+        ///
+        /// ```text
+        ///  discoverServices:
+        /// ```
+        ///
+        /// .
         #[optional]
         #[method(peripheral:didModifyServices:)]
         unsafe fn peripheral_didModifyServices(
@@ -209,6 +490,25 @@ extern_protocol!(
         );
 
         #[cfg(feature = "CBPeer")]
+        /// Parameter `peripheral`: The peripheral providing this update.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of a
+        ///
+        /// ```text
+        ///  readRSSI:
+        /// ```
+        ///
+        /// call.
+        ///
+        ///
+        /// ```text
+        ///  peripheral:didReadRSSI:error:} instead.
+        ///  
+        ///
+        /// ```
         #[deprecated]
         #[optional]
         #[method(peripheralDidUpdateRSSI:error:)]
@@ -219,6 +519,20 @@ extern_protocol!(
         );
 
         #[cfg(feature = "CBPeer")]
+        /// Parameter `peripheral`: The peripheral providing this update.
+        ///
+        /// Parameter `RSSI`: The current RSSI of the link.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of a
+        ///
+        /// ```text
+        ///  readRSSI:
+        /// ```
+        ///
+        /// call.
         #[optional]
         #[method(peripheral:didReadRSSI:error:)]
         unsafe fn peripheral_didReadRSSI_error(
@@ -229,6 +543,28 @@ extern_protocol!(
         );
 
         #[cfg(feature = "CBPeer")]
+        /// Parameter `peripheral`: The peripheral providing this information.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of a
+        ///
+        /// ```text
+        ///  discoverServices:
+        /// ```
+        ///
+        /// call. If the service(s) were read successfully, they can be retrieved via
+        /// <i>
+        /// peripheral
+        /// </i>
+        /// 's
+        ///
+        /// ```text
+        ///  services
+        /// ```
+        ///
+        /// property.
         #[optional]
         #[method(peripheral:didDiscoverServices:)]
         unsafe fn peripheral_didDiscoverServices(
@@ -238,6 +574,33 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBAttribute", feature = "CBPeer", feature = "CBService"))]
+        /// Parameter `peripheral`: The peripheral providing this information.
+        ///
+        /// Parameter `service`: The
+        /// <code>
+        /// CBService
+        /// </code>
+        /// object containing the included services.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of a
+        ///
+        /// ```text
+        ///  discoverIncludedServices:forService:
+        /// ```
+        ///
+        /// call. If the included service(s) were read successfully,
+        /// they can be retrieved via
+        /// <i>
+        /// service
+        /// </i>
+        /// 's
+        /// <code>
+        /// includedServices
+        /// </code>
+        /// property.
         #[optional]
         #[method(peripheral:didDiscoverIncludedServicesForService:error:)]
         unsafe fn peripheral_didDiscoverIncludedServicesForService_error(
@@ -248,6 +611,33 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBAttribute", feature = "CBPeer", feature = "CBService"))]
+        /// Parameter `peripheral`: The peripheral providing this information.
+        ///
+        /// Parameter `service`: The
+        /// <code>
+        /// CBService
+        /// </code>
+        /// object containing the characteristic(s).
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of a
+        ///
+        /// ```text
+        ///  discoverCharacteristics:forService:
+        /// ```
+        ///
+        /// call. If the characteristic(s) were read successfully,
+        /// they can be retrieved via
+        /// <i>
+        /// service
+        /// </i>
+        /// 's
+        /// <code>
+        /// characteristics
+        /// </code>
+        /// property.
         #[optional]
         #[method(peripheral:didDiscoverCharacteristicsForService:error:)]
         unsafe fn peripheral_didDiscoverCharacteristicsForService_error(
@@ -262,6 +652,24 @@ extern_protocol!(
             feature = "CBCharacteristic",
             feature = "CBPeer"
         ))]
+        /// Parameter `peripheral`: The peripheral providing this information.
+        ///
+        /// Parameter `characteristic`: A
+        /// <code>
+        /// CBCharacteristic
+        /// </code>
+        /// object.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method is invoked after a
+        ///
+        /// ```text
+        ///  readValueForCharacteristic:
+        /// ```
+        ///
+        /// call, or upon receipt of a notification/indication.
         #[optional]
         #[method(peripheral:didUpdateValueForCharacteristic:error:)]
         unsafe fn peripheral_didUpdateValueForCharacteristic_error(
@@ -276,6 +684,24 @@ extern_protocol!(
             feature = "CBCharacteristic",
             feature = "CBPeer"
         ))]
+        /// Parameter `peripheral`: The peripheral providing this information.
+        ///
+        /// Parameter `characteristic`: A
+        /// <code>
+        /// CBCharacteristic
+        /// </code>
+        /// object.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of a {
+        ///
+        /// ```text
+        ///  writeValue:forCharacteristic:type:} call, when the <code>CBCharacteristicWriteWithResponse</code> type is used.
+        ///  
+        ///
+        /// ```
         #[optional]
         #[method(peripheral:didWriteValueForCharacteristic:error:)]
         unsafe fn peripheral_didWriteValueForCharacteristic_error(
@@ -290,6 +716,24 @@ extern_protocol!(
             feature = "CBCharacteristic",
             feature = "CBPeer"
         ))]
+        /// Parameter `peripheral`: The peripheral providing this information.
+        ///
+        /// Parameter `characteristic`: A
+        /// <code>
+        /// CBCharacteristic
+        /// </code>
+        /// object.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of a
+        ///
+        /// ```text
+        ///  setNotifyValue:forCharacteristic:
+        /// ```
+        ///
+        /// call.
         #[optional]
         #[method(peripheral:didUpdateNotificationStateForCharacteristic:error:)]
         unsafe fn peripheral_didUpdateNotificationStateForCharacteristic_error(
@@ -304,6 +748,33 @@ extern_protocol!(
             feature = "CBCharacteristic",
             feature = "CBPeer"
         ))]
+        /// Parameter `peripheral`: The peripheral providing this information.
+        ///
+        /// Parameter `characteristic`: A
+        /// <code>
+        /// CBCharacteristic
+        /// </code>
+        /// object.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of a
+        ///
+        /// ```text
+        ///  discoverDescriptorsForCharacteristic:
+        /// ```
+        ///
+        /// call. If the descriptors were read successfully,
+        /// they can be retrieved via
+        /// <i>
+        /// characteristic
+        /// </i>
+        /// 's
+        /// <code>
+        /// descriptors
+        /// </code>
+        /// property.
         #[optional]
         #[method(peripheral:didDiscoverDescriptorsForCharacteristic:error:)]
         unsafe fn peripheral_didDiscoverDescriptorsForCharacteristic_error(
@@ -314,6 +785,24 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBAttribute", feature = "CBDescriptor", feature = "CBPeer"))]
+        /// Parameter `peripheral`: The peripheral providing this information.
+        ///
+        /// Parameter `descriptor`: A
+        /// <code>
+        /// CBDescriptor
+        /// </code>
+        /// object.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of a
+        ///
+        /// ```text
+        ///  readValueForDescriptor:
+        /// ```
+        ///
+        /// call.
         #[optional]
         #[method(peripheral:didUpdateValueForDescriptor:error:)]
         unsafe fn peripheral_didUpdateValueForDescriptor_error(
@@ -324,6 +813,24 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "CBAttribute", feature = "CBDescriptor", feature = "CBPeer"))]
+        /// Parameter `peripheral`: The peripheral providing this information.
+        ///
+        /// Parameter `descriptor`: A
+        /// <code>
+        /// CBDescriptor
+        /// </code>
+        /// object.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of a
+        ///
+        /// ```text
+        ///  writeValue:forDescriptor:
+        /// ```
+        ///
+        /// call.
         #[optional]
         #[method(peripheral:didWriteValueForDescriptor:error:)]
         unsafe fn peripheral_didWriteValueForDescriptor_error(
@@ -334,11 +841,44 @@ extern_protocol!(
         );
 
         #[cfg(feature = "CBPeer")]
+        /// Parameter `peripheral`: The peripheral providing this update.
+        ///
+        ///
+        /// This method is invoked after a failed call to
+        ///
+        /// ```text
+        ///  writeValue:forCharacteristic:type:
+        /// ```
+        ///
+        /// , when
+        /// <i>
+        /// peripheral
+        /// </i>
+        /// is again
+        /// ready to send characteristic value updates.
         #[optional]
         #[method(peripheralIsReadyToSendWriteWithoutResponse:)]
         unsafe fn peripheralIsReadyToSendWriteWithoutResponse(&self, peripheral: &CBPeripheral);
 
         #[cfg(all(feature = "CBL2CAPChannel", feature = "CBPeer"))]
+        /// Parameter `peripheral`: The peripheral providing this information.
+        ///
+        /// Parameter `channel`: A
+        /// <code>
+        /// CBL2CAPChannel
+        /// </code>
+        /// object.
+        ///
+        /// Parameter `error`: If an error occurred, the cause of the failure.
+        ///
+        ///
+        /// This method returns the result of a
+        ///
+        /// ```text
+        ///  openL2CAPChannel: @link call.
+        ///  
+        ///
+        /// ```
         #[optional]
         #[method(peripheral:didOpenL2CAPChannel:error:)]
         unsafe fn peripheral_didOpenL2CAPChannel_error(

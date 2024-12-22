@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovidercredentialstate?language=objc)
+/// Authorization state of an Apple ID credential.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovidercredentialstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -52,10 +54,27 @@ extern_methods!(
             feature = "ASAuthorizationOpenIDRequest",
             feature = "ASAuthorizationRequest"
         ))]
+        /// This method initializes and returns an instance of
+        ///
+        /// See: ASAuthorizationAppleIDRequest to be serviced by
+        ///
+        /// See: ASAuthorizationController.
         #[method_id(@__retain_semantics Other createRequest)]
         pub unsafe fn createRequest(&self) -> Retained<ASAuthorizationAppleIDRequest>;
 
         #[cfg(feature = "block2")]
+        /// This method can be used to get the current state of an opaque user ID previously given.
+        ///
+        /// Parameter `userID`: Opaque user identifier that will be checked for state.
+        ///
+        /// Parameter `completion`: A completion block that will return one of 3 possible states
+        ///
+        /// See: ASAuthorizationAppleIDProviderCredentialState.
+        ///
+        ///
+        /// Note: If credentialState is
+        ///
+        /// See: ASAuthorizationAppleIDProviderCredentialNotFound, an error will also be passed in the completion block.
         #[method(getCredentialStateForUserID:completion:)]
         pub unsafe fn getCredentialStateForUserID_completion(
             &self,

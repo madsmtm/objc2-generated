@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbcontroller?language=objc)
+    /// Class representing a USB controller in a virtual machine.
+    ///
+    /// VZUSBController should not be instantiated directly.
+    /// USB controllers are first configured on the VZVirtualMachineConfiguration through a subclass of VZUSBControllerConfiguration.
+    /// When a VZVirtualMachine is created from the configuration, the USB controllers are available through the VZVirtualMachine.usbControllers property.
+    /// The real type of VZUSBController corresponds to the type used by the configuration.
+    /// For example, a VZXHCIControllerConfiguration leads to a device of type VZXHCIController.
+    ///
+    /// See: VZUSBControllerConfiguration
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZUSBController;
@@ -25,6 +35,23 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "VZUSBDevice", feature = "block2"))]
+        /// Attach a USB device.
+        ///
+        /// If the device is successfully attached to the controller, it will appear in the usbDevices property,
+        /// its usbController property will be set to point to the USB controller that it is attached to
+        /// and completion handler will return nil.
+        /// If the device was previously attached to this or another USB controller, attach function will fail
+        /// with the `VZErrorDeviceAlreadyAttached`. If the device cannot be initialized correctly, attach
+        /// function will fail with `VZErrorDeviceInitializationFailure`.
+        /// This method must be called on the virtual machine's queue.
+        ///
+        /// Parameter `device`: USB device to attach.
+        ///
+        /// Parameter `completionHandler`: Block called after the device has been attached or on error.
+        /// The error parameter passed to the block is nil if the attach was successful.
+        /// It will be also invoked on an virtual machine's queue.
+        ///
+        /// See: VZUSBDevice
         #[method(attachDevice:completionHandler:)]
         pub unsafe fn attachDevice_completionHandler(
             &self,
@@ -33,6 +60,21 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "VZUSBDevice", feature = "block2"))]
+        /// Detach a USB device.
+        ///
+        /// If the device is successfully detached from the controller, it will disappear from the usbDevices property,
+        /// its usbController property will be set to nil and completion handler will return nil.
+        /// If the device wasn't attached to the controller at the time of calling detach method, it will fail
+        /// with the `VZErrorDeviceNotFound` error.
+        /// This method must be called on the virtual machine's queue.
+        ///
+        /// Parameter `device`: USB device to detach.
+        ///
+        /// Parameter `completionHandler`: Block called after the device has been detached or on error.
+        /// The error parameter passed to the block is nil if the detach was successful.
+        /// It will be also invoked on an virtual machine's queue.
+        ///
+        /// See: VZUSBDevice
         #[method(detachDevice:completionHandler:)]
         pub unsafe fn detachDevice_completionHandler(
             &self,
@@ -41,6 +83,18 @@ extern_methods!(
         );
 
         #[cfg(feature = "VZUSBDevice")]
+        /// Return a list of USB devices attached to controller.
+        ///
+        /// If corresponding USB controller configuration included in VZVirtualMachineConfiguration contained  any USB devices,
+        /// those devices will appear here when virtual machine is started.
+        ///
+        /// See: VZUSBDevice
+        ///
+        /// See: VZUSBDeviceConfiguration
+        ///
+        /// See: VZUSBControllerConfiguration
+        ///
+        /// See: VZVirtualMachineConfiguration
         #[method_id(@__retain_semantics Other usbDevices)]
         pub unsafe fn usbDevices(&self) -> Retained<NSArray<ProtocolObject<dyn VZUSBDevice>>>;
     }

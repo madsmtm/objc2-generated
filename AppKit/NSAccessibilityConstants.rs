@@ -12,7 +12,9 @@ extern "C" {
     pub static NSAccessibilityErrorCodeExceptionInfo: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityattributename?language=objc)
+/// * Accessibility Constants **
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityattributename?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilityAttributeName = NSString;
 

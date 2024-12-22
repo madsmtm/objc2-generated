@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboleffectoptionsrepeatbehavior?language=objc)
+    /// The behavior of repetition to use when a symbol effect is animating.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboleffectoptionsrepeatbehavior?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolEffectOptionsRepeatBehavior;
@@ -34,28 +36,69 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Creates and returns a repeat behavior that prefers to repeat indefinitely using periodic animations.
+        /// Periodic animations play the effect at regular intervals starting and stopping each time.
+        ///
+        /// - Returns: A new behavior that prefers to repeat indefinitely using periodic animations.
         #[method_id(@__retain_semantics Other behaviorPeriodic)]
         pub unsafe fn behaviorPeriodic() -> Retained<Self>;
 
+        /// Creates and returns a repeat behavior with a preferred play count using periodic animations.
+        /// Periodic animations play the effect at regular intervals starting and stopping each time.
+        ///
+        /// - Parameter count: The preferred number of times to play the
+        /// effect. Very
+        /// large or small values may be clamped.
+        ///
+        /// - Returns: A new behavior with the preferred
+        /// play count using periodic animations.
         #[method_id(@__retain_semantics Other behaviorPeriodicWithCount:)]
         pub unsafe fn behaviorPeriodicWithCount(count: NSInteger) -> Retained<Self>;
 
+        /// Creates and returns a repeat behavior with a preferred repeat delay using periodic animations.
+        /// Periodic animations play the effect at regular intervals starting and stopping each time.
+        ///
+        /// - Parameter delay: The preferred delay between repetitions,
+        /// in seconds.
+        ///
+        /// - Returns: A new behavior that prefers to repeat indefinitely
+        /// with a specified delay using periodic animations.
         #[method_id(@__retain_semantics Other behaviorPeriodicWithDelay:)]
         pub unsafe fn behaviorPeriodicWithDelay(delay: c_double) -> Retained<Self>;
 
+        /// Creates and returns a repeat behavior with a preferred play count and delay using periodic animations.
+        /// Periodic animations play the effect at regular intervals starting and stopping each time.
+        ///
+        /// - Parameter count: The preferred number of times to play the
+        /// effect. Very
+        /// large or small values may be clamped.
+        ///
+        /// - Parameter delay: The preferred delay between repetitions,
+        /// in seconds.
+        ///
+        /// - Returns: A new behavior with the preferred
+        /// play count and delay using periodic animations.
         #[method_id(@__retain_semantics Other behaviorPeriodicWithCount:delay:)]
         pub unsafe fn behaviorPeriodicWithCount_delay(
             count: NSInteger,
             delay: c_double,
         ) -> Retained<Self>;
 
+        /// Creates and returns a repeat behavior that prefers to repeat indefinitely,
+        /// using continuous animations if available.
+        /// Continuous animations have an intro, a body that runs as long as the effect is enabled, and an outro.
+        /// If available these animations provide a smoother animation when an effect repeats indefinitely.
+        ///
+        /// - Returns: A new behavior that prefers to repeat indefinitely with continuous animations.
         #[method_id(@__retain_semantics Other behaviorContinuous)]
         pub unsafe fn behaviorContinuous() -> Retained<Self>;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboleffectoptions?language=objc)
+    /// Options configuring how symbol effects apply to symbol views.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboleffectoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolEffectOptions;
@@ -81,42 +124,83 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// The default options.
         #[method_id(@__retain_semantics Other options)]
         pub unsafe fn options() -> Retained<Self>;
 
+        /// Convenience initializer that prefers to repeat indefinitely.
         #[deprecated]
         #[method_id(@__retain_semantics Other optionsWithRepeating)]
         pub unsafe fn optionsWithRepeating_class() -> Retained<Self>;
 
+        /// Return a copy of the options that prefers to repeat indefinitely.
         #[deprecated]
         #[method_id(@__retain_semantics Other optionsWithRepeating)]
         pub unsafe fn optionsWithRepeating(&self) -> Retained<Self>;
 
+        /// Convenience initializer that prefers not to repeat.
         #[method_id(@__retain_semantics Other optionsWithNonRepeating)]
         pub unsafe fn optionsWithNonRepeating_class() -> Retained<Self>;
 
+        /// Return a copy of the options that prefers not to repeat.
         #[method_id(@__retain_semantics Other optionsWithNonRepeating)]
         pub unsafe fn optionsWithNonRepeating(&self) -> Retained<Self>;
 
+        /// Convenience initializer setting a preferred repeat count.
+        ///
+        /// - Parameter count: The preferred number of times to play the
+        /// effect. Very large or small values may be clamped.
+        ///
+        /// - Returns: A new options object with the preferred repeat count.
         #[deprecated]
         #[method_id(@__retain_semantics Other optionsWithRepeatCount:)]
         pub unsafe fn optionsWithRepeatCount_class(count: NSInteger) -> Retained<Self>;
 
+        /// Return a copy of the options setting a preferred repeat count.
+        ///
+        /// - Parameter count: The preferred number of times to play the
+        /// effect. Very large or small values may be clamped.
+        ///
+        /// - Returns: A new options object with the preferred repeat count.
         #[deprecated]
         #[method_id(@__retain_semantics Other optionsWithRepeatCount:)]
         pub unsafe fn optionsWithRepeatCount(&self, count: NSInteger) -> Retained<Self>;
 
+        /// Convenience initializer setting the preferred speed multiplier.
+        ///
+        /// - Parameter speed: the preferred speed multiplier to play the effect with.
+        /// The default multiplier is `1.0`. Very large or small values may
+        /// be clamped.
+        ///
+        /// - Returns: A new instance with the preferred speed multiplier.
         #[method_id(@__retain_semantics Other optionsWithSpeed:)]
         pub unsafe fn optionsWithSpeed_class(speed: c_double) -> Retained<Self>;
 
+        /// Return a copy of the options setting the preferred speed multiplier.
+        ///
+        /// - Parameter speed: The preferred speed multiplier to play the effect with.
+        /// The default multiplier is `1.0`. Very large or small values may
+        /// be clamped.
+        ///
+        /// - Returns: A new instance with the preferred speed multiplier.
         #[method_id(@__retain_semantics Other optionsWithSpeed:)]
         pub unsafe fn optionsWithSpeed(&self, speed: c_double) -> Retained<Self>;
 
+        /// Convenience initializer setting a preferred repeat behavior.
+        ///
+        /// - Parameter behavior: The preferred behavior when the effect is repeated.
+        ///
+        /// - Returns: A new options object with the preferred repeat behavior.
         #[method_id(@__retain_semantics Other optionsWithRepeatBehavior:)]
         pub unsafe fn optionsWithRepeatBehavior_class(
             behavior: &NSSymbolEffectOptionsRepeatBehavior,
         ) -> Retained<Self>;
 
+        /// Return a copy of the options setting a preferred repeat behavior.
+        ///
+        /// - Parameter behavior: The preferred behavior when the effect is repeated.
+        ///
+        /// - Returns: A new options object with the preferred repeat behavior.
         #[method_id(@__retain_semantics Other optionsWithRepeatBehavior:)]
         pub unsafe fn optionsWithRepeatBehavior(
             &self,
@@ -126,7 +210,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboleffect?language=objc)
+    /// An abstract base class for effects that can be applied to both NSImageViews and UIImageViews that have symbol-based images.
+    ///
+    /// Don't use this class directly, instead use any of the concrete subclasses.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboleffect?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolEffect;
@@ -155,7 +243,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolpulseeffect?language=objc)
+    /// A symbol effect that applies the Pulse animation to
+    /// symbol images.
+    ///
+    /// The Pulse animation fades the opacity of either all layers in
+    /// the symbol, or of a subset of the layers in the symbol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolpulseeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolPulseEffect;
@@ -175,12 +269,15 @@ unsafe impl NSSecureCoding for NSSymbolPulseEffect {}
 
 extern_methods!(
     unsafe impl NSSymbolPulseEffect {
+        /// The default pulse effect, determined by the system.
         #[method_id(@__retain_semantics Other effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
+        /// Returns a copy of the effect that only animates annotated pulse layers.
         #[method_id(@__retain_semantics Other effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
         #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
@@ -198,7 +295,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolbounceeffect?language=objc)
+    /// A symbol effect that applies the Bounce animation to
+    /// symbol images.
+    ///
+    /// The Bounce animation applies a transitory scaling effect to the symbol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolbounceeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolBounceEffect;
@@ -218,18 +320,23 @@ unsafe impl NSSecureCoding for NSSymbolBounceEffect {}
 
 extern_methods!(
     unsafe impl NSSymbolBounceEffect {
+        /// The default bounce effect, determined by the system.
         #[method_id(@__retain_semantics Other effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
+        /// Convenience initializer for a bounce effect that bounces up.
         #[method_id(@__retain_semantics Other bounceUpEffect)]
         pub unsafe fn bounceUpEffect() -> Retained<Self>;
 
+        /// Convenience initializer for a bounce effect that bounces down.
         #[method_id(@__retain_semantics Other bounceDownEffect)]
         pub unsafe fn bounceDownEffect() -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates incrementally, by layer.
         #[method_id(@__retain_semantics Other effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
         #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
@@ -247,7 +354,15 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolvariablecoloreffect?language=objc)
+    /// A symbol effect that applies the Variable Color
+    /// animation to symbol images.
+    ///
+    /// The Variable Color animation replaces the opacity of variable
+    /// layers in the symbol by a possibly repeating pattern that moves
+    /// up and possibly back down the variable layers. It has no effect
+    /// for non-variable color symbol images.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolvariablecoloreffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolVariableColorEffect;
@@ -267,24 +382,32 @@ unsafe impl NSSecureCoding for NSSymbolVariableColorEffect {}
 
 extern_methods!(
     unsafe impl NSSymbolVariableColorEffect {
+        /// The default variable color effect, determined by the system.
         #[method_id(@__retain_semantics Other effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
+        /// Returns a copy of the effect that activates one layer at a time. This cancels the cumulative variant.
         #[method_id(@__retain_semantics Other effectWithIterative)]
         pub unsafe fn effectWithIterative(&self) -> Retained<Self>;
 
+        /// Returns a copy of the effect that activates each layer until all layers are active. This cancels the iterative variant.
         #[method_id(@__retain_semantics Other effectWithCumulative)]
         pub unsafe fn effectWithCumulative(&self) -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates in reverse after fully executing. This cancels the nonReversing variant.
         #[method_id(@__retain_semantics Other effectWithReversing)]
         pub unsafe fn effectWithReversing(&self) -> Retained<Self>;
 
+        /// Returns a copy of the effect that only animates forwards before restarting. This cancels the reversing variant.
         #[method_id(@__retain_semantics Other effectWithNonReversing)]
         pub unsafe fn effectWithNonReversing(&self) -> Retained<Self>;
 
+        /// Returns a copy of the effect that hides layers when they are inactive.
         #[method_id(@__retain_semantics Other effectWithHideInactiveLayers)]
         pub unsafe fn effectWithHideInactiveLayers(&self) -> Retained<Self>;
 
+        /// Returns a copy of the effect that draws layers with reduced (but non-zero)
+        /// opacity when they are inactive.
         #[method_id(@__retain_semantics Other effectWithDimInactiveLayers)]
         pub unsafe fn effectWithDimInactiveLayers(&self) -> Retained<Self>;
     }
@@ -302,7 +425,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolscaleeffect?language=objc)
+    /// A symbol effect that scales symbol images.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolscaleeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolScaleEffect;
@@ -322,18 +447,23 @@ unsafe impl NSSecureCoding for NSSymbolScaleEffect {}
 
 extern_methods!(
     unsafe impl NSSymbolScaleEffect {
+        /// The default scaling effect, determined by the system.
         #[method_id(@__retain_semantics Other effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
+        /// Convenience initializer to create a scale effect with a scale up level.
         #[method_id(@__retain_semantics Other scaleUpEffect)]
         pub unsafe fn scaleUpEffect() -> Retained<Self>;
 
+        /// Convenience initializer to create a scale effect with a scale down level.
         #[method_id(@__retain_semantics Other scaleDownEffect)]
         pub unsafe fn scaleDownEffect() -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates incrementally, by layer.
         #[method_id(@__retain_semantics Other effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
         #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
@@ -351,7 +481,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolappeareffect?language=objc)
+    /// A symbol effect that applies the Appear animation to
+    /// symbol images.
+    ///
+    /// The Appear animation makes the symbol visible either as a whole,
+    /// or one motion group at a time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolappeareffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolAppearEffect;
@@ -371,18 +507,23 @@ unsafe impl NSSecureCoding for NSSymbolAppearEffect {}
 
 extern_methods!(
     unsafe impl NSSymbolAppearEffect {
+        /// The default appear effect, determined by the system.
         #[method_id(@__retain_semantics Other effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
+        /// Convenience initializer for an appear effect that appears scaling up.
         #[method_id(@__retain_semantics Other appearUpEffect)]
         pub unsafe fn appearUpEffect() -> Retained<Self>;
 
+        /// Convenience initializer for an appear effect that appears scaling down.
         #[method_id(@__retain_semantics Other appearDownEffect)]
         pub unsafe fn appearDownEffect() -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates incrementally, by layer.
         #[method_id(@__retain_semantics Other effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
         #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
@@ -400,7 +541,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboldisappeareffect?language=objc)
+    /// A symbol effect that applies the Disappear animation to
+    /// symbol images.
+    ///
+    /// The Disappear animation makes the symbol visible either as a whole,
+    /// or one motion group at a time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboldisappeareffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolDisappearEffect;
@@ -420,18 +567,23 @@ unsafe impl NSSecureCoding for NSSymbolDisappearEffect {}
 
 extern_methods!(
     unsafe impl NSSymbolDisappearEffect {
+        /// The default disappear effect, determined by the system.
         #[method_id(@__retain_semantics Other effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
+        /// Convenience initializer for a disappear effect that disappears scaling up.
         #[method_id(@__retain_semantics Other disappearUpEffect)]
         pub unsafe fn disappearUpEffect() -> Retained<Self>;
 
+        /// Convenience initializer for a disappear effect that disappears scaling down.
         #[method_id(@__retain_semantics Other disappearDownEffect)]
         pub unsafe fn disappearDownEffect() -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates incrementally, by layer.
         #[method_id(@__retain_semantics Other effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
         #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
@@ -449,7 +601,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolwiggleeffect?language=objc)
+    /// A symbol effect that applies the Wiggle animation to symbol images.
+    ///
+    /// The Wiggle animation applies a transitory translation or rotation effect
+    /// to the symbol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolwiggleeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolWiggleEffect;
@@ -469,39 +626,62 @@ unsafe impl NSSecureCoding for NSSymbolWiggleEffect {}
 
 extern_methods!(
     unsafe impl NSSymbolWiggleEffect {
+        /// The default wiggle effect, determined by the system.
         #[method_id(@__retain_semantics Other effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
+        /// Convenience initializer for a wiggle effect that
+        /// rotates back and forth, starting by rotating clockwise.
         #[method_id(@__retain_semantics Other wiggleClockwiseEffect)]
         pub unsafe fn wiggleClockwiseEffect() -> Retained<Self>;
 
+        /// Convenience initializer for a wiggle effect that
+        /// rotates back and forth, starting by rotating counter-clockwise.
         #[method_id(@__retain_semantics Other wiggleCounterClockwiseEffect)]
         pub unsafe fn wiggleCounterClockwiseEffect() -> Retained<Self>;
 
+        /// Convenience initializer for a wiggle effect that
+        /// moves back and forth horizontally, starting by moving left.
         #[method_id(@__retain_semantics Other wiggleLeftEffect)]
         pub unsafe fn wiggleLeftEffect() -> Retained<Self>;
 
+        /// Convenience initializer for a wiggle effect that
+        /// moves back and forth horizontally, starting by moving right.
         #[method_id(@__retain_semantics Other wiggleRightEffect)]
         pub unsafe fn wiggleRightEffect() -> Retained<Self>;
 
+        /// Convenience initializer for a wiggle effect that
+        /// moves back and forth vertically, starting by moving up.
         #[method_id(@__retain_semantics Other wiggleUpEffect)]
         pub unsafe fn wiggleUpEffect() -> Retained<Self>;
 
+        /// Convenience initializer for a wiggle effect that
+        /// moves back and forth vertically, starting by moving down.
         #[method_id(@__retain_semantics Other wiggleDownEffect)]
         pub unsafe fn wiggleDownEffect() -> Retained<Self>;
 
+        /// Convenience initializer for a wiggle effect that moves back and forth
+        /// horizontally based on the current locale, starting by moving forward.
         #[method_id(@__retain_semantics Other wiggleForwardEffect)]
         pub unsafe fn wiggleForwardEffect() -> Retained<Self>;
 
+        /// Convenience initializer for a wiggle effect that moves back and forth
+        /// horizontally based on the current locale, starting by moving backward.
         #[method_id(@__retain_semantics Other wiggleBackwardEffect)]
         pub unsafe fn wiggleBackwardEffect() -> Retained<Self>;
 
+        /// Convenience initializer for a wiggle effect that moves back and forth
+        /// along an axis, starting by moving toward a custom angle.
+        ///
+        /// The angle is in degrees moving clockwise from the positive x-axis.
         #[method_id(@__retain_semantics Other wiggleCustomAngleEffect:)]
         pub unsafe fn wiggleCustomAngleEffect(angle: c_double) -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates incrementally, by layer.
         #[method_id(@__retain_semantics Other effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
         #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
@@ -519,7 +699,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolrotateeffect?language=objc)
+    /// A symbol effect that applies the Rotate animation to
+    /// symbol images.
+    ///
+    /// The Rotate animation rotates parts of a symbol around a
+    /// symbol-provided anchor point.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolrotateeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolRotateEffect;
@@ -539,18 +725,23 @@ unsafe impl NSSecureCoding for NSSymbolRotateEffect {}
 
 extern_methods!(
     unsafe impl NSSymbolRotateEffect {
+        /// The default rotate effect, determined by the system.
         #[method_id(@__retain_semantics Other effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
+        /// Convenience initializer for a rotate effect that rotates clockwise.
         #[method_id(@__retain_semantics Other rotateClockwiseEffect)]
         pub unsafe fn rotateClockwiseEffect() -> Retained<Self>;
 
+        /// Convenience initializer for a rotate effect that rotates counter-clockwise.
         #[method_id(@__retain_semantics Other rotateCounterClockwiseEffect)]
         pub unsafe fn rotateCounterClockwiseEffect() -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates incrementally, by layer.
         #[method_id(@__retain_semantics Other effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
         #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
@@ -568,7 +759,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolbreatheeffect?language=objc)
+    /// A symbol effect that applies the Breathe animation to
+    /// symbol images.
+    ///
+    /// The Breathe animation smoothly scales a symbol up and down.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolbreatheeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolBreatheEffect;
@@ -588,18 +784,25 @@ unsafe impl NSSecureCoding for NSSymbolBreatheEffect {}
 
 extern_methods!(
     unsafe impl NSSymbolBreatheEffect {
+        /// The default breathe effect, determined by the system.
         #[method_id(@__retain_semantics Other effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
+        /// Convenience initializer for a breathe effect that
+        /// pulses layers as they breathe.
         #[method_id(@__retain_semantics Other breathePulseEffect)]
         pub unsafe fn breathePulseEffect() -> Retained<Self>;
 
+        /// Convenience initializer for a breathe effect that makes
+        /// the symbol breathe with no other styling.
         #[method_id(@__retain_semantics Other breathePlainEffect)]
         pub unsafe fn breathePlainEffect() -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates incrementally, by layer.
         #[method_id(@__retain_semantics Other effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
+        /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
         #[method_id(@__retain_semantics Other effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
@@ -617,7 +820,12 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolcontenttransition?language=objc)
+    /// An abstract base class for transitions that can be applied to both NSImageViews and
+    /// UIImageViews that have symbol-based images.
+    ///
+    /// Don't use this class directly, instead use any of the concrete subclasses.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolcontenttransition?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolContentTransition;
@@ -646,7 +854,13 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolmagicreplacecontenttransition?language=objc)
+    /// A symbol effect applies the MagicReplace animation to
+    /// symbol images.
+    ///
+    /// The MagicReplace effect animates common elements across
+    /// symbol images.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolmagicreplacecontenttransition?language=objc)
     #[unsafe(super(NSSymbolContentTransition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolMagicReplaceContentTransition;
@@ -680,7 +894,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolreplacecontenttransition?language=objc)
+    /// A symbol effect that animates the replacement of one symbol image
+    /// with another.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolreplacecontenttransition?language=objc)
     #[unsafe(super(NSSymbolContentTransition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolReplaceContentTransition;
@@ -700,24 +917,34 @@ unsafe impl NSSecureCoding for NSSymbolReplaceContentTransition {}
 
 extern_methods!(
     unsafe impl NSSymbolReplaceContentTransition {
+        /// The default replace transition, determined by the system.
         #[method_id(@__retain_semantics Other transition)]
         pub unsafe fn transition() -> Retained<Self>;
 
+        /// Convenience initializer for a replace content transition where the initial symbol
+        /// scales down as it is removed, and the new symbol scales up as it is added.
         #[method_id(@__retain_semantics Other replaceDownUpTransition)]
         pub unsafe fn replaceDownUpTransition() -> Retained<Self>;
 
+        /// Convenience initializer for a replace content transition where the initial symbol
+        /// scales up as it is removed, and the new symbol scales up as it is added.
         #[method_id(@__retain_semantics Other replaceUpUpTransition)]
         pub unsafe fn replaceUpUpTransition() -> Retained<Self>;
 
+        /// Convenience initializer for a replace content transition where the initial symbol
+        /// is removed with no animation, and the new symbol scales up as it is added.
         #[method_id(@__retain_semantics Other replaceOffUpTransition)]
         pub unsafe fn replaceOffUpTransition() -> Retained<Self>;
 
+        /// Returns a copy of the content transition that animates incrementally, by layer.
         #[method_id(@__retain_semantics Other transitionWithByLayer)]
         pub unsafe fn transitionWithByLayer(&self) -> Retained<Self>;
 
+        /// Returns a copy of the content transition that animates all layers of the symbol simultaneously.
         #[method_id(@__retain_semantics Other transitionWithWholeSymbol)]
         pub unsafe fn transitionWithWholeSymbol(&self) -> Retained<Self>;
 
+        /// Convenience initializer for a MagicReplace content transition with a configured Replace fallback.
         #[method_id(@__retain_semantics Other magicTransitionWithFallback:)]
         pub unsafe fn magicTransitionWithFallback(
             fallback: &NSSymbolReplaceContentTransition,
@@ -737,7 +964,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolautomaticcontenttransition?language=objc)
+    /// The default symbol transition, resolves to a particular transition in a
+    /// context-sensitive manner.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolautomaticcontenttransition?language=objc)
     #[unsafe(super(NSSymbolContentTransition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolAutomaticContentTransition;
@@ -757,6 +987,7 @@ unsafe impl NSSecureCoding for NSSymbolAutomaticContentTransition {}
 
 extern_methods!(
     unsafe impl NSSymbolAutomaticContentTransition {
+        /// The default automatic transition, determined by the system.
         #[method_id(@__retain_semantics Other transition)]
         pub unsafe fn transition() -> Retained<Self>;
     }

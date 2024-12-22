@@ -6,7 +6,23 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacgraphicsdisplay?language=objc)
+    /// Class representing a virtual Mac graphics display.
+    ///
+    /// The VZMacGraphicsDisplay is the runtime counterpart of VZMacGraphicsDisplayConfiguration.
+    ///
+    /// When a graphics device is configured with class VZMacGraphicsDisplayConfiguration,
+    /// the VZGraphicsDevice's displays are in the same order as their configuration objects and they have the type VZMacGraphicsDisplay.
+    ///
+    /// For example, if when setting up a virtual Mac, `VZMacGraphicsDeviceConfiguration.displays[0]` is a `VZMacGraphicsDisplayConfiguration`,
+    /// then after creating a virtual machine from the configuration, the `VZVirtualMachine.graphicsDevices` is a `VZMacGraphicsDevice`.
+    /// The `VZMacGraphicsDevice.displays[0]` is a `VZMacGraphicsDisplay` corresponding to the `VZMacGraphicsDeviceConfiguration` in the configuration.
+    ///
+    ///
+    /// See: VZMacGraphicsDisplayConfiguration
+    ///
+    /// See: VZGraphicsDevice
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacgraphicsdisplay?language=objc)
     #[unsafe(super(VZGraphicsDisplay, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDisplay")]
@@ -19,6 +35,7 @@ unsafe impl NSObjectProtocol for VZMacGraphicsDisplay {}
 extern_methods!(
     #[cfg(feature = "VZGraphicsDisplay")]
     unsafe impl VZMacGraphicsDisplay {
+        /// The pixel density as a number of pixels per inch.
         #[method(pixelsPerInch)]
         pub unsafe fn pixelsPerInch(&self) -> NSInteger;
     }

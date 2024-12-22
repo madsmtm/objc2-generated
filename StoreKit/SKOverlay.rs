@@ -72,20 +72,26 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "SKOverlayConfiguration")]
+        /// Creates an overlay with the provided configuration.
+        ///
+        /// Parameter `configuration`: the configuration for the overlay.
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &SKOverlayConfiguration,
         ) -> Retained<Self>;
 
+        /// A delegate for overlay events.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn SKOverlayDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SKOverlayDelegate>>);
 
         #[cfg(feature = "SKOverlayConfiguration")]
+        /// The overlay configuration.
         #[method_id(@__retain_semantics Other configuration)]
         pub unsafe fn configuration(&self) -> Retained<SKOverlayConfiguration>;
     }

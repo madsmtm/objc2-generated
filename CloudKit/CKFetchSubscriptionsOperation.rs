@@ -39,6 +39,7 @@ extern_methods!(
         pub unsafe fn subscriptionIDs(&self) -> Option<Retained<NSArray<CKSubscriptionID>>>;
 
         #[cfg(feature = "CKSubscription")]
+        /// Setter for [`subscriptionIDs`][Self::subscriptionIDs].
         #[method(setSubscriptionIDs:)]
         pub unsafe fn setSubscriptionIDs(
             &self,
@@ -46,12 +47,20 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
+        /// Called on success or failure for each subscriptionID.
+        ///
+        ///
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perSubscriptionCompletionBlock)]
         pub unsafe fn perSubscriptionCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKSubscriptionID>, *mut CKSubscription, *mut NSError)>;
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
+        /// Setter for [`perSubscriptionCompletionBlock`][Self::perSubscriptionCompletionBlock].
         #[method(setPerSubscriptionCompletionBlock:)]
         pub unsafe fn setPerSubscriptionCompletionBlock(
             &self,
@@ -63,6 +72,25 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
+        /// This block is called when the operation completes.
+        ///
+        ///
+        /// The
+        ///
+        /// ```text
+        ///  -[NSOperation completionBlock]
+        /// ```
+        ///
+        /// will also be called if both are set.
+        /// If the error is
+        /// `CKErrorPartialFailure,`the error's userInfo dictionary contains a dictionary of subscriptionID to errors keyed off of
+        /// `CKPartialErrorsByItemIDKey.``subscriptionsBySubscriptionID`and any
+        /// `CKPartialErrorsByItemIDKey`errors are repeats of the data sent back in previous
+        /// `perSubscriptionCompletionBlock`invocations
+        /// Each
+        /// `CKOperation`instance has a private serial queue. This queue is used for all callback block invocations.
+        /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
+        /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(fetchSubscriptionCompletionBlock)]
         pub unsafe fn fetchSubscriptionCompletionBlock(
             &self,
@@ -71,6 +99,7 @@ extern_methods!(
         >;
 
         #[cfg(all(feature = "CKSubscription", feature = "block2"))]
+        /// Setter for [`fetchSubscriptionCompletionBlock`][Self::fetchSubscriptionCompletionBlock].
         #[method(setFetchSubscriptionCompletionBlock:)]
         pub unsafe fn setFetchSubscriptionCompletionBlock(
             &self,

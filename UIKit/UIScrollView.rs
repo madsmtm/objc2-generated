@@ -186,6 +186,7 @@ extern_methods!(
         pub unsafe fn contentOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentOffset`][Self::contentOffset].
         #[method(setContentOffset:)]
         pub unsafe fn setContentOffset(&self, content_offset: CGPoint);
 
@@ -194,6 +195,7 @@ extern_methods!(
         pub unsafe fn contentSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentSize`][Self::contentSize].
         #[method(setContentSize:)]
         pub unsafe fn setContentSize(&self, content_size: CGSize);
 
@@ -202,6 +204,7 @@ extern_methods!(
         pub unsafe fn contentInset(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`contentInset`][Self::contentInset].
         #[method(setContentInset:)]
         pub unsafe fn setContentInset(&self, content_inset: UIEdgeInsets);
 
@@ -210,6 +213,7 @@ extern_methods!(
         pub unsafe fn contentAlignmentPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentAlignmentPoint`][Self::contentAlignmentPoint].
         #[method(setContentAlignmentPoint:)]
         pub unsafe fn setContentAlignmentPoint(&self, content_alignment_point: CGPoint);
 
@@ -225,6 +229,7 @@ extern_methods!(
             &self,
         ) -> UIScrollViewContentInsetAdjustmentBehavior;
 
+        /// Setter for [`contentInsetAdjustmentBehavior`][Self::contentInsetAdjustmentBehavior].
         #[method(setContentInsetAdjustmentBehavior:)]
         pub unsafe fn setContentInsetAdjustmentBehavior(
             &self,
@@ -234,6 +239,7 @@ extern_methods!(
         #[method(automaticallyAdjustsScrollIndicatorInsets)]
         pub unsafe fn automaticallyAdjustsScrollIndicatorInsets(&self) -> bool;
 
+        /// Setter for [`automaticallyAdjustsScrollIndicatorInsets`][Self::automaticallyAdjustsScrollIndicatorInsets].
         #[method(setAutomaticallyAdjustsScrollIndicatorInsets:)]
         pub unsafe fn setAutomaticallyAdjustsScrollIndicatorInsets(
             &self,
@@ -253,6 +259,7 @@ extern_methods!(
             -> Option<Retained<ProtocolObject<dyn UIScrollViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -262,54 +269,63 @@ extern_methods!(
         #[method(isDirectionalLockEnabled)]
         pub unsafe fn isDirectionalLockEnabled(&self) -> bool;
 
+        /// Setter for [`isDirectionalLockEnabled`][Self::isDirectionalLockEnabled].
         #[method(setDirectionalLockEnabled:)]
         pub unsafe fn setDirectionalLockEnabled(&self, directional_lock_enabled: bool);
 
         #[method(bounces)]
         pub unsafe fn bounces(&self) -> bool;
 
+        /// Setter for [`bounces`][Self::bounces].
         #[method(setBounces:)]
         pub unsafe fn setBounces(&self, bounces: bool);
 
         #[method(bouncesHorizontally)]
         pub unsafe fn bouncesHorizontally(&self) -> bool;
 
+        /// Setter for [`bouncesHorizontally`][Self::bouncesHorizontally].
         #[method(setBouncesHorizontally:)]
         pub unsafe fn setBouncesHorizontally(&self, bounces_horizontally: bool);
 
         #[method(bouncesVertically)]
         pub unsafe fn bouncesVertically(&self) -> bool;
 
+        /// Setter for [`bouncesVertically`][Self::bouncesVertically].
         #[method(setBouncesVertically:)]
         pub unsafe fn setBouncesVertically(&self, bounces_vertically: bool);
 
         #[method(alwaysBounceVertical)]
         pub unsafe fn alwaysBounceVertical(&self) -> bool;
 
+        /// Setter for [`alwaysBounceVertical`][Self::alwaysBounceVertical].
         #[method(setAlwaysBounceVertical:)]
         pub unsafe fn setAlwaysBounceVertical(&self, always_bounce_vertical: bool);
 
         #[method(alwaysBounceHorizontal)]
         pub unsafe fn alwaysBounceHorizontal(&self) -> bool;
 
+        /// Setter for [`alwaysBounceHorizontal`][Self::alwaysBounceHorizontal].
         #[method(setAlwaysBounceHorizontal:)]
         pub unsafe fn setAlwaysBounceHorizontal(&self, always_bounce_horizontal: bool);
 
         #[method(isPagingEnabled)]
         pub unsafe fn isPagingEnabled(&self) -> bool;
 
+        /// Setter for [`isPagingEnabled`][Self::isPagingEnabled].
         #[method(setPagingEnabled:)]
         pub unsafe fn setPagingEnabled(&self, paging_enabled: bool);
 
         #[method(isScrollEnabled)]
         pub unsafe fn isScrollEnabled(&self) -> bool;
 
+        /// Setter for [`isScrollEnabled`][Self::isScrollEnabled].
         #[method(setScrollEnabled:)]
         pub unsafe fn setScrollEnabled(&self, scroll_enabled: bool);
 
         #[method(transfersHorizontalScrollingToParent)]
         pub unsafe fn transfersHorizontalScrollingToParent(&self) -> bool;
 
+        /// Setter for [`transfersHorizontalScrollingToParent`][Self::transfersHorizontalScrollingToParent].
         #[method(setTransfersHorizontalScrollingToParent:)]
         pub unsafe fn setTransfersHorizontalScrollingToParent(
             &self,
@@ -319,6 +335,7 @@ extern_methods!(
         #[method(transfersVerticalScrollingToParent)]
         pub unsafe fn transfersVerticalScrollingToParent(&self) -> bool;
 
+        /// Setter for [`transfersVerticalScrollingToParent`][Self::transfersVerticalScrollingToParent].
         #[method(setTransfersVerticalScrollingToParent:)]
         pub unsafe fn setTransfersVerticalScrollingToParent(
             &self,
@@ -328,12 +345,14 @@ extern_methods!(
         #[method(showsVerticalScrollIndicator)]
         pub unsafe fn showsVerticalScrollIndicator(&self) -> bool;
 
+        /// Setter for [`showsVerticalScrollIndicator`][Self::showsVerticalScrollIndicator].
         #[method(setShowsVerticalScrollIndicator:)]
         pub unsafe fn setShowsVerticalScrollIndicator(&self, shows_vertical_scroll_indicator: bool);
 
         #[method(showsHorizontalScrollIndicator)]
         pub unsafe fn showsHorizontalScrollIndicator(&self) -> bool;
 
+        /// Setter for [`showsHorizontalScrollIndicator`][Self::showsHorizontalScrollIndicator].
         #[method(setShowsHorizontalScrollIndicator:)]
         pub unsafe fn setShowsHorizontalScrollIndicator(
             &self,
@@ -343,6 +362,7 @@ extern_methods!(
         #[method(indicatorStyle)]
         pub unsafe fn indicatorStyle(&self) -> UIScrollViewIndicatorStyle;
 
+        /// Setter for [`indicatorStyle`][Self::indicatorStyle].
         #[method(setIndicatorStyle:)]
         pub unsafe fn setIndicatorStyle(&self, indicator_style: UIScrollViewIndicatorStyle);
 
@@ -351,6 +371,7 @@ extern_methods!(
         pub unsafe fn verticalScrollIndicatorInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`verticalScrollIndicatorInsets`][Self::verticalScrollIndicatorInsets].
         #[method(setVerticalScrollIndicatorInsets:)]
         pub unsafe fn setVerticalScrollIndicatorInsets(
             &self,
@@ -362,6 +383,7 @@ extern_methods!(
         pub unsafe fn horizontalScrollIndicatorInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`horizontalScrollIndicatorInsets`][Self::horizontalScrollIndicatorInsets].
         #[method(setHorizontalScrollIndicatorInsets:)]
         pub unsafe fn setHorizontalScrollIndicatorInsets(
             &self,
@@ -373,6 +395,7 @@ extern_methods!(
         pub unsafe fn scrollIndicatorInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Setter for [`scrollIndicatorInsets`][Self::scrollIndicatorInsets].
         #[method(setScrollIndicatorInsets:)]
         pub unsafe fn setScrollIndicatorInsets(&self, scroll_indicator_insets: UIEdgeInsets);
 
@@ -381,12 +404,14 @@ extern_methods!(
         pub unsafe fn decelerationRate(&self) -> UIScrollViewDecelerationRate;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`decelerationRate`][Self::decelerationRate].
         #[method(setDecelerationRate:)]
         pub unsafe fn setDecelerationRate(&self, deceleration_rate: UIScrollViewDecelerationRate);
 
         #[method(indexDisplayMode)]
         pub unsafe fn indexDisplayMode(&self) -> UIScrollViewIndexDisplayMode;
 
+        /// Setter for [`indexDisplayMode`][Self::indexDisplayMode].
         #[method(setIndexDisplayMode:)]
         pub unsafe fn setIndexDisplayMode(&self, index_display_mode: UIScrollViewIndexDisplayMode);
 
@@ -423,12 +448,14 @@ extern_methods!(
         #[method(delaysContentTouches)]
         pub unsafe fn delaysContentTouches(&self) -> bool;
 
+        /// Setter for [`delaysContentTouches`][Self::delaysContentTouches].
         #[method(setDelaysContentTouches:)]
         pub unsafe fn setDelaysContentTouches(&self, delays_content_touches: bool);
 
         #[method(canCancelContentTouches)]
         pub unsafe fn canCancelContentTouches(&self) -> bool;
 
+        /// Setter for [`canCancelContentTouches`][Self::canCancelContentTouches].
         #[method(setCanCancelContentTouches:)]
         pub unsafe fn setCanCancelContentTouches(&self, can_cancel_content_touches: bool);
 
@@ -449,6 +476,7 @@ extern_methods!(
         pub unsafe fn minimumZoomScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumZoomScale`][Self::minimumZoomScale].
         #[method(setMinimumZoomScale:)]
         pub unsafe fn setMinimumZoomScale(&self, minimum_zoom_scale: CGFloat);
 
@@ -457,6 +485,7 @@ extern_methods!(
         pub unsafe fn maximumZoomScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maximumZoomScale`][Self::maximumZoomScale].
         #[method(setMaximumZoomScale:)]
         pub unsafe fn setMaximumZoomScale(&self, maximum_zoom_scale: CGFloat);
 
@@ -465,6 +494,7 @@ extern_methods!(
         pub unsafe fn zoomScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`zoomScale`][Self::zoomScale].
         #[method(setZoomScale:)]
         pub unsafe fn setZoomScale(&self, zoom_scale: CGFloat);
 
@@ -479,6 +509,7 @@ extern_methods!(
         #[method(bouncesZoom)]
         pub unsafe fn bouncesZoom(&self) -> bool;
 
+        /// Setter for [`bouncesZoom`][Self::bouncesZoom].
         #[method(setBouncesZoom:)]
         pub unsafe fn setBouncesZoom(&self, bounces_zoom: bool);
 
@@ -494,6 +525,7 @@ extern_methods!(
         #[method(scrollsToTop)]
         pub unsafe fn scrollsToTop(&self) -> bool;
 
+        /// Setter for [`scrollsToTop`][Self::scrollsToTop].
         #[method(setScrollsToTop:)]
         pub unsafe fn setScrollsToTop(&self, scrolls_to_top: bool);
 
@@ -516,6 +548,7 @@ extern_methods!(
         #[method(keyboardDismissMode)]
         pub unsafe fn keyboardDismissMode(&self) -> UIScrollViewKeyboardDismissMode;
 
+        /// Setter for [`keyboardDismissMode`][Self::keyboardDismissMode].
         #[method(setKeyboardDismissMode:)]
         pub unsafe fn setKeyboardDismissMode(
             &self,
@@ -527,12 +560,16 @@ extern_methods!(
         pub unsafe fn refreshControl(&self) -> Option<Retained<UIRefreshControl>>;
 
         #[cfg(all(feature = "UIControl", feature = "UIRefreshControl"))]
+        /// Setter for [`refreshControl`][Self::refreshControl].
         #[method(setRefreshControl:)]
         pub unsafe fn setRefreshControl(&self, refresh_control: Option<&UIRefreshControl>);
 
+        /// Set this to YES to make the scroll view animate its content offset in response to keys like Page Up/Down, Home/End, and the arrow keys.
+        /// The scroll view must be focused or first responder in order to receive these key events. Default is YES for apps linked after iOS 17.0.
         #[method(allowsKeyboardScrolling)]
         pub unsafe fn allowsKeyboardScrolling(&self) -> bool;
 
+        /// Setter for [`allowsKeyboardScrolling`][Self::allowsKeyboardScrolling].
         #[method(setAllowsKeyboardScrolling:)]
         pub unsafe fn setAllowsKeyboardScrolling(&self, allows_keyboard_scrolling: bool);
     }

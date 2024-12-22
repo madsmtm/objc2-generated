@@ -258,6 +258,7 @@ extern_methods!(
         pub unsafe fn suggestedName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Setter for [`suggestedName`][Self::suggestedName].
         #[method(setSuggestedName:)]
         pub unsafe fn setSuggestedName(&self, suggested_name: Option<&NSString>);
 
@@ -352,6 +353,7 @@ extern_methods!(
             feature = "NSObject",
             feature = "block2"
         ))]
+        /// Setter for [`previewImageHandler`][Self::previewImageHandler].
         #[method(setPreviewImageHandler:)]
         pub unsafe fn setPreviewImageHandler(
             &self,

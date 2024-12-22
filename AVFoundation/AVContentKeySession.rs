@@ -9,37 +9,55 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystem?language=objc)
+/// AVContentKeySystem string constants
+///
+/// Used by AVContentKeySession to determine the method of key delivery
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystem?language=objc)
 // NS_TYPED_ENUM
 pub type AVContentKeySystem = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystemfairplaystreaming?language=objc)
+    /// Used to specify FairPlay Streaming (FPS) as the method of key delivery.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystemfairplaystreaming?language=objc)
     pub static AVContentKeySystemFairPlayStreaming: &'static AVContentKeySystem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystemclearkey?language=objc)
+    /// Used to specify clear key as the method of key delivery.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystemclearkey?language=objc)
     pub static AVContentKeySystemClearKey: &'static AVContentKeySystem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystemauthorizationtoken?language=objc)
+    /// Used to specify a token that could be used to authorize playback of associated content key recipients.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystemauthorizationtoken?language=objc)
     pub static AVContentKeySystemAuthorizationToken: &'static AVContentKeySystem;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessionserverplaybackcontextoption?language=objc)
+/// Options keys used to specify additional information for generating server playback context (SPC) in
+/// -[AVContentKeySession invalidatePersistableContentKey:options:completionHandler:] and
+/// -[AVContentKeySession invalidateAllPersistableContentKeysForApp:options:completionHandler:]
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessionserverplaybackcontextoption?language=objc)
 // NS_TYPED_ENUM
 pub type AVContentKeySessionServerPlaybackContextOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessionserverplaybackcontextoptionprotocolversions?language=objc)
+    /// Specifies the versions of the content protection protocol supported by the application; as an NSArray of one or more NSNumber objects. If this option is not set, an appropriate protocol version will be selected based on sideband information such as an associated HLS playlist. If such information is not available, a protocol version of 1 is assumed
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessionserverplaybackcontextoptionprotocolversions?language=objc)
     pub static AVContentKeySessionServerPlaybackContextOptionProtocolVersions:
         &'static AVContentKeySessionServerPlaybackContextOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessionserverplaybackcontextoptionserverchallenge?language=objc)
+    /// Specifies a nonce as a 8-byte NSData object to be included in the secure server playback context (SPC) in order to prevent replay attacks. If not specified default server challenge of 0 is assumed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessionserverplaybackcontextoptionserverchallenge?language=objc)
     pub static AVContentKeySessionServerPlaybackContextOptionServerChallenge:
         &'static AVContentKeySessionServerPlaybackContextOption;
 }
@@ -65,34 +83,72 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Creates a new instance of AVContentKeySession to manage a collection of media content keys.
+        ///
+        /// Parameter `keySystem`: A valid key system for retrieving keys.
+        ///
+        /// Returns: A new AVContentKeySession.
+        ///
+        /// This method returns an AVContentKeySession instance that is capable of managing collection of media content keys corresponding to the input keySystem. An NSInvalidArgumentException will be raised if the value of keySystem is unsupported.
         #[method_id(@__retain_semantics Other contentKeySessionWithKeySystem:)]
         pub unsafe fn contentKeySessionWithKeySystem(
             key_system: &AVContentKeySystem,
         ) -> Retained<Self>;
 
+        /// Creates a new instance of AVContentKeySession to manage a collection of media content keys.
+        ///
+        /// Parameter `keySystem`: A valid key system for retrieving keys.
+        ///
+        /// Parameter `storageURL`: URL to a writable directory that the session will use to facilitate expired session reports after abnormal session termination.
+        ///
+        /// Returns: A new AVContentKeySession.
+        ///
+        /// This method returns an AVContentKeySession instance that is capable of managing collection of media content keys corresponding to the input keySystem. An NSInvalidArgumentException will be raised if the value of keySystem is unsupported.
         #[method_id(@__retain_semantics Other contentKeySessionWithKeySystem:storageDirectoryAtURL:)]
         pub unsafe fn contentKeySessionWithKeySystem_storageDirectoryAtURL(
             key_system: &AVContentKeySystem,
             storage_url: &NSURL,
         ) -> Retained<Self>;
 
+        /// The receiver's delegate.
+        ///
+        /// The value of this property is an object conforming to the AVContentKeySessionDelegate protocol. The delegate is set using the setDelegate:queue: method.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVContentKeySessionDelegate>>>;
 
+        /// The storage URL provided when the AVContentKeySession was created. May be nil.
+        ///
+        /// URL to a writable directory; may be nil. The session will use this to facilitate expired session reports after abnormal session termination.
         #[method_id(@__retain_semantics Other storageURL)]
         pub unsafe fn storageURL(&self) -> Option<Retained<NSURL>>;
 
+        /// The key system used for retrieving keys
         #[method_id(@__retain_semantics Other keySystem)]
         pub unsafe fn keySystem(&self) -> Retained<AVContentKeySystem>;
 
+        /// Tells the receiver to treat the session as having been intentionally and normally expired.
+        ///
+        /// When an instance of AVContentKeySession receives an expire message, all of its associated objects conforming to the AVContentKeyRecipient protocol will become inoperable. Send this message only after you have finished operating on the media data.
         #[method(expire)]
         pub unsafe fn expire(&self);
 
+        /// An opaque identifier for the current content protection session.
+        ///
+        /// May be nil. Will call the delegate's contentKeySessionContentProtectionSessionIdentifierDidChange: when the identifier changes. The protection session ID is a unique string identifier generated by the AVContentKeySession that can be used by the application to identify content key session objects.
         #[method_id(@__retain_semantics Other contentProtectionSessionIdentifier)]
         pub unsafe fn contentProtectionSessionIdentifier(&self) -> Option<Retained<NSData>>;
 
+        /// Informs the receiver that it should attempt to instantiate a content decryption key using the specified initialization data.
+        ///
+        /// Parameter `identifier`: Container- and protocol-specific identifier to be used to obtain a key response. Either identifier or initializationData must be non-nil. Both can be non-nil, if the content protection protocol requires both.
+        ///
+        /// Parameter `initializationData`: Container- and protocol-specific data to be used to obtain a key response. Either identifier or initializationData must be non-nil. Both can be non-nil, if the content protection protocol requires both.
+        ///
+        /// Parameter `options`: Additional information necessary to obtain the key, or nil if none. See AVContentKeyRequest*Key below.
+        ///
+        /// May be used to generate an AVContentKeyRequest from request initialization data already in hand, without awaiting such data during the processing of media data of an associated recipient.
         #[method(processContentKeyRequestWithIdentifier:initializationData:options:)]
         pub unsafe fn processContentKeyRequestWithIdentifier_initializationData_options(
             &self,
@@ -101,6 +157,9 @@ extern_methods!(
             options: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
+        /// Informs the receiver that the already provided response data for an earlier AVContentKeyRequest will imminently expire.
+        ///
+        /// In response the receiver will invoke your delegate with a new content key request entreating it to renew the expiring response data, via -contentKeySession:didProvideRenewingContentKeyRequest:.
         #[method(renewExpiringResponseDataForContentKeyRequest:)]
         pub unsafe fn renewExpiringResponseDataForContentKeyRequest(
             &self,
@@ -108,6 +167,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Creates a secure server playback context (SPC) that the client could send to the key server to obtain an expiration date for the provided persistable content key data.
+        ///
+        /// Parameter `persistableContentKeyData`: Persistable content key data that was previously created using -[AVContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:] or obtained via AVContentKeySessionDelegate callback -contentKeySession:didUpdatePersistableContentKey:forContentKeyIdentifier:.
+        ///
+        /// Parameter `handler`: Once the secure token is ready, this block will be called with the token or an error describing the failure.
         #[method(makeSecureTokenForExpirationDateOfPersistableContentKey:completionHandler:)]
         pub unsafe fn makeSecureTokenForExpirationDateOfPersistableContentKey_completionHandler(
             &self,
@@ -116,6 +180,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Invalidates the persistable content key and creates a secure server playback context (SPC) that the client could send to the key server to verify the outcome of invalidation request.
+        ///
+        /// Parameter `persistableContentKeyData`: Persistable content key data that was previously created using -[AVContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:] or obtained via AVContentKeySessionDelegate callback -contentKeySession:didUpdatePersistableContentKey:forContentKeyIdentifier:.
+        ///
+        /// Parameter `options`: Additional information necessary to generate the server playback context, or nil if none. See AVContentKeySessionServerPlaybackContextOption for supported options.
+        ///
+        /// Parameter `handler`: Once the server playback context is ready, this block will be called with the data or an error describing the failure.
+        ///
+        /// Once invalidated, a persistable content key cannot be used to answer key requests during later playback sessions.
         #[method(invalidatePersistableContentKey:options:completionHandler:)]
         pub unsafe fn invalidatePersistableContentKey_options_completionHandler(
             &self,
@@ -127,6 +200,15 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Invalidates all persistable content keys associated with the application and creates a secure server playback context (SPC) that the client could send to the key server to verify the outcome of invalidation request.
+        ///
+        /// Parameter `appIdentifier`: An opaque identifier for the application. The contents of this identifier depend on the particular protocol in use by the entity that controls the use of the media data.
+        ///
+        /// Parameter `options`: Additional information necessary to generate the server playback context, or nil if none. See AVContentKeySessionServerPlaybackContextOption for supported options.
+        ///
+        /// Parameter `handler`: Once the server playback context is ready, this block will be called with the data or an error describing the failure.
+        ///
+        /// Once invalidated, persistable content keys cannot be used to answer key requests during later playback sessions.
         #[method(invalidateAllPersistableContentKeysForApp:options:completionHandler:)]
         pub unsafe fn invalidateAllPersistableContentKeysForApp_options_completionHandler(
             &self,
@@ -142,18 +224,25 @@ extern_methods!(
 extern_methods!(
     /// AVContentKeyRecipients
     unsafe impl AVContentKeySession {
+        /// Informs the receiver that the specified recipient will be used for the session.
+        ///
+        /// It is an error to add recipient to sessions that have received an expire message. It is also an error to add recipients after they have already begun to process media data (e.g. after an AVURLAsset has loaded the values of any of its keys). Such errors will result in NSInternalInconsistencyExceptions. Sending this message to an AVContentKeySession is atomic.
         #[method(addContentKeyRecipient:)]
         pub unsafe fn addContentKeyRecipient(
             &self,
             recipient: &ProtocolObject<dyn AVContentKeyRecipient>,
         );
 
+        /// Informs the receiver that the specified recipient will no longer be used.
+        ///
+        /// After the specified recipient is removed from the receiver it will become inoperable. Remove the recipient only after you have finished operating on the media data associated with it. Sending this message to an AVContentKeySession is atomic.
         #[method(removeContentKeyRecipient:)]
         pub unsafe fn removeContentKeyRecipient(
             &self,
             recipient: &ProtocolObject<dyn AVContentKeyRecipient>,
         );
 
+        /// The array of recipients of content keys currently associated with the AVContentKeySession.
         #[method_id(@__retain_semantics Other contentKeyRecipients)]
         pub unsafe fn contentKeyRecipients(
             &self,
@@ -164,12 +253,30 @@ extern_methods!(
 extern_methods!(
     /// AVContentKeySessionPendingExpiredSessionReports
     unsafe impl AVContentKeySession {
+        /// Provides "expired session reports" for prior AVContentKeySessions created with the specified app identifier that have expired either normally or abnormally.
+        ///
+        /// Parameter `appIdentifier`: An opaque identifier for the application. The contents of this identifier depend on the particular protocol in use by the entity that controls the use of the media data.
+        ///
+        /// Parameter `storageURL`: URL to a directory previously used with one or more instances of AVContentKeySession for the storage of expired session reports.
+        ///
+        /// Returns: An NSArray containing instances of NSData, each containing a pending expired session report as a property-list serialization of an NSDictionary object. The contents of expired session reports depend on the particular protocol in use by the entity that controls the use of the media data.
+        ///
+        /// Note that no reports for sessions still in progress will be included.
         #[method_id(@__retain_semantics Other pendingExpiredSessionReportsWithAppIdentifier:storageDirectoryAtURL:)]
         pub unsafe fn pendingExpiredSessionReportsWithAppIdentifier_storageDirectoryAtURL(
             app_identifier: &NSData,
             storage_url: &NSURL,
         ) -> Retained<NSArray<NSData>>;
 
+        /// Removes expired session reports for prior AVContentKeySessions from storage. Once they have been removed, they will no longer be available via subsequent invocations of +pendingExpiredSessionReportsWithAppIdentifier:.
+        ///
+        /// Parameter `expiredSessionReports`: An array of expired session reports to be discarded.
+        ///
+        /// Parameter `appIdentifier`: An opaque identifier for the application. The contents of this identifier depend on the particular protocol in use by the entity that controls the use of the media data.
+        ///
+        /// Parameter `storageURL`: URL to a writable folder.
+        ///
+        /// This method is most suitable for use only after the specified expired session reports have been sent to the entity that controls the use of the media data and the entity has acknowledged their receipt.
         #[method(removePendingExpiredSessionReports:withAppIdentifier:storageDirectoryAtURL:)]
         pub unsafe fn removePendingExpiredSessionReports_withAppIdentifier_storageDirectoryAtURL(
             expired_session_reports: &NSArray<NSData>,
@@ -179,23 +286,33 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestretryreason?language=objc)
+/// AVContentKeyRequestRetryReason string constants
+///
+/// Used to specify a reason for asking the client to retry a content key request.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestretryreason?language=objc)
 // NS_TYPED_ENUM
 pub type AVContentKeyRequestRetryReason = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestretryreasontimedout?language=objc)
+    /// Indicates that the content key request should be retried because the key response was not set soon enough either due the initial request/response was taking too long, or a lease was expiring in the meantime.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestretryreasontimedout?language=objc)
     pub static AVContentKeyRequestRetryReasonTimedOut: &'static AVContentKeyRequestRetryReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestretryreasonreceivedresponsewithexpiredlease?language=objc)
+    /// Indicates that the content key request should be retried because a key response with expired lease was set on the previous content key request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestretryreasonreceivedresponsewithexpiredlease?language=objc)
     pub static AVContentKeyRequestRetryReasonReceivedResponseWithExpiredLease:
         &'static AVContentKeyRequestRetryReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestretryreasonreceivedobsoletecontentkey?language=objc)
+    /// Indicates that the content key request should be retried because an obsolete key response was set on the previous content key request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestretryreasonreceivedobsoletecontentkey?language=objc)
     pub static AVContentKeyRequestRetryReasonReceivedObsoleteContentKey:
         &'static AVContentKeyRequestRetryReason;
 }
@@ -330,7 +447,9 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest?language=objc)
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVContentKeyRequest;
@@ -344,9 +463,13 @@ unsafe impl NSObjectProtocol for AVContentKeyRequest {}
 
 extern_methods!(
     unsafe impl AVContentKeyRequest {
+        /// This describes the state of the AVContentKeyRequest, value is one of AVContentKeyRequestStatus.
         #[method(status)]
         pub unsafe fn status(&self) -> AVContentKeyRequestStatus;
 
+        /// If the receiver's status is AVContentKeyRequestStatusFailed, this describes the error that caused the failure.
+        ///
+        /// The value of this property is an NSError that describes what caused the content key request to fail. If the receiver's status is not AVContentKeyRequestStatusFailed, the value of this property is nil.
         #[method_id(@__retain_semantics Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
@@ -369,6 +492,17 @@ extern_methods!(
         pub unsafe fn contentKey(&self) -> Option<Retained<AVContentKey>>;
 
         #[cfg(feature = "block2")]
+        /// Obtains a content key request data for a specific combination of application and content.
+        ///
+        /// Parameter `appIdentifier`: An opaque identifier for the application. The value of this identifier depends on the particular system used to provide the content key.
+        ///
+        /// Parameter `contentIdentifier`: An optional opaque identifier for the content. The value of this identifier depends on the particular system used to provide the content key.
+        ///
+        /// Parameter `options`: Additional information necessary to obtain the key, or nil if none. See AVContentKeyRequest*Key below.
+        ///
+        /// Parameter `handler`: Once the streaming content key request is prepared, this block will be called with the request data or an error describing the failure.
+        ///
+        /// If option AVContentKeyRequestProtocolVersionsKey is not specified the default protocol version of 1 is assumed.
         #[method(makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:)]
         pub unsafe fn makeStreamingContentKeyRequestDataForApp_contentIdentifier_options_completionHandler(
             &self,
@@ -378,12 +512,23 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
+        /// Informs the receiver to process the specified content key response.
+        ///
+        /// Parameter `keyResponse`: An instance of AVContentKeyResponse carrying a response to a content key request.
+        ///
+        /// After you receive an AVContentKeyRequest via -contentKeySession:didProvideContentKeyRequest: and after you invoke -[AVContentKeyRequest makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:] on that request, you must obtain a response to the request in accordance with the protocol in use by the entity that controls the use of the media data. This is the method you use to provide the content key response to make protected content available for processing. If obtaining the content key response fails, use -processContentKeyResponseError:.
         #[method(processContentKeyResponse:)]
         pub unsafe fn processContentKeyResponse(&self, key_response: &AVContentKeyResponse);
 
+        /// Informs the receiver that obtaining a content key response has failed, resulting in failure handling.
+        ///
+        /// Parameter `error`: An instance of NSError that describes the specific failure that occurred.
         #[method(processContentKeyResponseError:)]
         pub unsafe fn processContentKeyResponseError(&self, error: &NSError);
 
+        /// Informs the receiver to process a persistable content key request.
+        ///
+        /// When you receive an AVContentKeyRequest via -contentKeySession:didProvideContentKeyRequest: and you want the resulting key response to produce a key that can persist across multiple playback sessions, you must invoke -respondByRequestingPersistableContentKeyRequest on that AVContentKeyRequest in order to signal that you want to process an AVPersistableContentKeyRequest instead. If the underlying protocol supports persistable content keys, in response your delegate will receive an AVPersistableContentKeyRequest via -contentKeySession:didProvidePersistableContentKeyRequest:. NSInternalInconsistencyException will be raised, if you are attempting to create and use a persistable key but your AVContentKeySession delegate does not respond to contentKeySession:didProvidePersistableContentKeyRequest:.
         #[deprecated]
         #[method(respondByRequestingPersistableContentKeyRequest)]
         pub unsafe fn respondByRequestingPersistableContentKeyRequest(&self);
@@ -407,7 +552,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avpersistablecontentkeyrequest?language=objc)
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avpersistablecontentkeyrequest?language=objc)
     #[unsafe(super(AVContentKeyRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPersistableContentKeyRequest;
@@ -421,6 +568,17 @@ unsafe impl NSObjectProtocol for AVPersistableContentKeyRequest {}
 
 extern_methods!(
     unsafe impl AVPersistableContentKeyRequest {
+        /// Obtains a persistable content key from a context.
+        ///
+        /// Parameter `keyVendorResponse`: The response returned from the key vendor as a result of a request generated from makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:.
+        ///
+        /// Parameter `options`: Additional information necessary to obtain the persistable content key, or nil if none.
+        ///
+        /// Parameter `outError`: If obtaining the persistable content key fails, will be set to an instance of NSError describing the failure.
+        ///
+        /// Returns: The persistable content key data that may be stored offline to answer future loading requests of the same content key.
+        ///
+        /// The data returned from this method may be used to immediately satisfy an AVPersistableContentKeyRequest, as well as any subsequent requests for the same key url using processContentKeyResponse: method. When you receive an AVContentKeyRequest via -contentKeySession:didProvideContentKeyRequest: and you want to use existing persistent content key from storage, you must invoke -respondByRequestingPersistableContentKeyRequest on that AVContentKeyRequest in order to signal that you want to process an AVPersistableContentKeyRequest instead. If the underlying protocol supports persistable content keys, in response your delegate will receive an AVPersistableContentKeyRequest via -contentKeySession:didProvidePersistableContentKeyRequest:. You can set the persistent key from storage on the AVPersistableContentKeyRequest using processContentKeyResponse:.
         #[method_id(@__retain_semantics Other persistableContentKeyFromKeyVendorResponse:options:error:_)]
         pub unsafe fn persistableContentKeyFromKeyVendorResponse_options_error(
             &self,
@@ -450,7 +608,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyresponse?language=objc)
+    /// AVContentKeyResponse is used to represent the data returned from the key server when requesting a key for decrypting content.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVContentKeyResponse;
@@ -464,17 +626,41 @@ unsafe impl NSObjectProtocol for AVContentKeyResponse {}
 
 extern_methods!(
     unsafe impl AVContentKeyResponse {
+        /// Create an AVContentKeyResponse from the server response to a key request made when using FairPlayStreaming (FPS) as the method of key delivery.
+        ///
+        /// Parameter `keyResponseData`: The response from the FairPlayStreaming key server
+        ///
+        /// Returns: A new AVContentKeyResponse holding data from a FairPlayStreaming key server that is used to decrypt the content
+        ///
+        /// The object created by this method is typically used with an AVContentKeyRequest created by an AVContentKeySession using keySystem AVContentKeySystemFairPlayStreaming. It is passed to AVContentKeyRequest -processContentKeyResponse: in order to supply the decryptor with key data
         #[method_id(@__retain_semantics Other contentKeyResponseWithFairPlayStreamingKeyResponseData:)]
         pub unsafe fn contentKeyResponseWithFairPlayStreamingKeyResponseData(
             key_response_data: &NSData,
         ) -> Retained<Self>;
 
+        /// Create an AVContentKeyResponse from the key and IV when using AVContentKeySystemClearKey as the key system
+        ///
+        ///
+        /// Parameter `keyData`: The key used for decrypting content.
+        ///
+        /// Parameter `initializationVector`: The initialization vector used for decrypting content, or nil if initialization vector is available in the media to be decrypted
+        ///
+        /// Returns: A new AVContentKeyResponse holding Clear Key data.
+        ///
+        /// The object created by this method is typically used with an AVContentKeyRequest created by an AVContentKeySession using keySystem AVContentKeySystemClearKey. It is passed to AVContentKeyRequest -processContentKeyResponse: in order to supply the decryptor with key data.
         #[method_id(@__retain_semantics Other contentKeyResponseWithClearKeyData:initializationVector:)]
         pub unsafe fn contentKeyResponseWithClearKeyData_initializationVector(
             key_data: &NSData,
             initialization_vector: Option<&NSData>,
         ) -> Retained<Self>;
 
+        /// Create an AVContentKeyResponse from authorization token data when using AVContentKeySystemAuthorizationToken key system.
+        ///
+        /// Parameter `authorizationTokenData`: Data blob containing the authorization token.
+        ///
+        /// Returns: A new AVContentKeyResponse holding the authorization token data.
+        ///
+        /// The object created by this method is typically used with an AVContentKeyRequest created by an AVContentKeySession using keySystem AVContentKeySystemAuthorizationToken. It is passed to AVContentKeyRequest -processContentKeyResponse: in order to supply the authorization token data.
         #[method_id(@__retain_semantics Other contentKeyResponseWithAuthorizationTokenData:)]
         pub unsafe fn contentKeyResponseWithAuthorizationTokenData(
             authorization_token_data: &NSData,
@@ -494,13 +680,20 @@ extern_methods!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestprotocolversionskey?language=objc)
+    /// Specifies the versions of the content protection protocol supported by the application as an NSArray of one or more NSNumber objects.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestprotocolversionskey?language=objc)
     pub static AVContentKeyRequestProtocolVersionsKey: &'static NSString;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrecipient?language=objc)
+    /// Classes of objects that may require decryption keys for media data in order to enable processing, such as parsing or playback, conform to this protocol.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrecipient?language=objc)
     pub unsafe trait AVContentKeyRecipient {
+        /// Informs the receiver that an AVContentKey has been obtained as the result of an invocation of -[AVContentKeyRequest processContentKeyResponse:].
+        ///
+        /// The recipient may employ the AVContentKey for use with objects that support manual attachment of keys, such as CMSampleBuffer via an invocation of AVSampleBufferAttachContentKey.
         #[optional]
         #[method(contentKeySession:didProvideContentKey:)]
         unsafe fn contentKeySession_didProvideContentKey(
@@ -509,6 +702,9 @@ extern_protocol!(
             content_key: &AVContentKey,
         );
 
+        /// Indicates whether the receiver may require decryption keys for media data in order to enable processing.
+        ///
+        /// When the value of mayRequireContentKeysForMediaDataProcessing is YES, adding the receiver to an AVContentKeySession allows it to employ the session's already existing keys and also enables the handling of new key requests by the AVContentKeySession's delegate.
         #[method(mayRequireContentKeysForMediaDataProcessing)]
         unsafe fn mayRequireContentKeysForMediaDataProcessing(&self) -> bool;
     }
@@ -517,7 +713,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier?language=objc)
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVContentKeySpecifier;
@@ -531,6 +729,17 @@ unsafe impl NSObjectProtocol for AVContentKeySpecifier {}
 
 extern_methods!(
     unsafe impl AVContentKeySpecifier {
+        /// Creates a new instance of AVContentKeySpecifier.
+        ///
+        /// Parameter `keySystem`: A valid key system for content keys.
+        ///
+        /// Parameter `contentKeyIdentifier`: Container and protocol-specific key identifier.
+        ///
+        /// Parameter `options`: Additional information necessary to obtain the key, can be empty if none needed.
+        ///
+        /// Returns: A new AVContentKeySpecifier
+        ///
+        /// This method returns an AVContentKeySpecifier instance that represents a content key in a specific content key system.
         #[method_id(@__retain_semantics Other contentKeySpecifierForKeySystem:identifier:options:)]
         pub unsafe fn contentKeySpecifierForKeySystem_identifier_options(
             key_system: &AVContentKeySystem,
@@ -538,6 +747,17 @@ extern_methods!(
             options: &NSDictionary<NSString, AnyObject>,
         ) -> Retained<Self>;
 
+        /// Initialize an instance of AVContentKeySpecifier.
+        ///
+        /// Parameter `keySystem`: A valid key system for content keys.
+        ///
+        /// Parameter `contentKeyIdentifier`: Container and protocol-specific key identifier.
+        ///
+        /// Parameter `options`: Additional information necessary to obtain the key, can be empty if none needed.
+        ///
+        /// Returns: An instance of AVContentKeySpecifier
+        ///
+        /// This method returns an AVContentKeySpecifier instance that represents a content key in a specific content key system.
         #[method_id(@__retain_semantics Init initForKeySystem:identifier:options:)]
         pub unsafe fn initForKeySystem_identifier_options(
             this: Allocated<Self>,
@@ -546,9 +766,11 @@ extern_methods!(
             options: &NSDictionary<NSString, AnyObject>,
         ) -> Retained<Self>;
 
+        /// A valid key system for content keys.
         #[method_id(@__retain_semantics Other keySystem)]
         pub unsafe fn keySystem(&self) -> Retained<AVContentKeySystem>;
 
+        /// Container and protocol-specific key identifier.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<AnyObject>;
 
@@ -568,7 +790,16 @@ extern_methods!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalcontentprotectionstatus?language=objc)
+/// The constants can be used to derive whether or not we have established sufficient protection to display content protected by this AVContentKey on some set of attached displays.
+///
+///
+/// Indicates that the current protection status has not yet been discovered for the attached display(s).
+///
+/// Indicates that sufficient protection with the attached display(s) has been established, content protected by the associated AVContentKey will be eligible to be displayed on the display(s).
+///
+/// Indicates that sufficient protection with the attached display(s) has failed to be established, content protected by the associated AVContentKey will not be displayed.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalcontentprotectionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -591,7 +822,9 @@ unsafe impl RefEncode for AVExternalContentProtectionStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkey?language=objc)
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkey?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVContentKey;
@@ -608,9 +841,17 @@ extern_methods!(
         #[method_id(@__retain_semantics Other contentKeySpecifier)]
         pub unsafe fn contentKeySpecifier(&self) -> Retained<AVContentKeySpecifier>;
 
+        /// The external protection status for the AVContentKey based on all attached displays.
+        ///
+        /// This property is not key-value observable, instead the contentKeySession:externalProtectionStatusDidChangeForContentKey: delegate method should be used.
         #[method(externalContentProtectionStatus)]
         pub unsafe fn externalContentProtectionStatus(&self) -> AVExternalContentProtectionStatus;
 
+        /// Revokes the decryption context of the content key, and removes it from its associated AVContentKeySession.
+        ///
+        /// Once revoked, the AVContentKey is no longer eligible to be used with any media.
+        /// If the key is required again, or if the key is requested to be loaded by the application, a new AVContentKeyRequest will be dispatched to the delegate.
+        /// If there is media playback occurring which is dependent on the content key it will fail and may result in an error being generated with the playback halting.
         #[method(revoke)]
         pub unsafe fn revoke(&self);
     }
@@ -627,6 +868,15 @@ extern_methods!(
     }
 );
 
+/// Attaches an AVContentKey to a CMSampleBuffer for the purpose of content decryption.
+///
+/// Parameter `sbuf`: The sample buffer to which the content key is to be attached.
+///
+/// Parameter `contentKey`: The content key to be attached.
+///
+/// Parameter `outError`: If the result is NO and errorOut is non-NULL, the location referenced by errorOut receives an instance of NSError that describes the reason for failure to attach the content key.
+///
+/// The client is expected to attach AVContentKeys to CMSampleBuffers that have been created by the client for enqueueing with AVSampleBufferDisplayLayer or AVSampleBufferAudioRenderer, for which the AVContentKeySpecifier matches indications of suitability that are available to the client according to the content key system that's in use.
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe extern "C-unwind" fn AVSampleBufferAttachContentKey(

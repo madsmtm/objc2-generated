@@ -58,6 +58,9 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
+        /// It is acceptable to relate two records that have not yet been uploaded to the server. Those records must be uploaded to the server in the same operation if using an action other than `CKReferenceActionNone`.
+        ///
+        /// If a record references a record that does not exist on the server and is not in the current save operation it will result in an error if using an action other than `CKReferenceActionNone`.
         #[method_id(@__retain_semantics Init initWithRecordID:action:)]
         pub unsafe fn initWithRecordID_action(
             this: Allocated<Self>,

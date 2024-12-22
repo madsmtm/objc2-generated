@@ -9,14 +9,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenupresentationstyle?language=objc)
+/// When set as a value on `NSMenu.presentationStyle`, determines how
+/// the given menu is presented.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenupresentationstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMenuPresentationStyle(pub NSInteger);
 impl NSMenuPresentationStyle {
+    /// The default presentation style. Typically means the menu will
+    /// be presented as either a popup or pulldown menu, based on the
+    /// context.
     #[doc(alias = "NSMenuPresentationStyleRegular")]
     pub const Regular: Self = Self(0);
+    /// The menu marked as palette is to be displayed in place of the
+    /// menu item presenting it, with its items aligned horizontally.
     #[doc(alias = "NSMenuPresentationStylePalette")]
     pub const Palette: Self = Self(1);
 }
@@ -29,16 +37,31 @@ unsafe impl RefEncode for NSMenuPresentationStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuselectionmode?language=objc)
+/// When set as a value on `NSMenu.selectionMode`, determines how the
+/// menu manages selection states of the menu items that belong to
+/// the same selection group.
+///
+/// This does not apply to menu items that have distinct
+/// target/action values.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuselectionmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMenuSelectionMode(pub NSInteger);
 impl NSMenuSelectionMode {
+    /// The menu will determine the appropriate selection mode based
+    /// on the context and its contents.
     #[doc(alias = "NSMenuSelectionModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// The user will be allowed to select at most one menu item in
+    /// the same selection group at a time. A change in selection
+    /// will deselect any previously selected item.
     #[doc(alias = "NSMenuSelectionModeSelectOne")]
     pub const SelectOne: Self = Self(1);
+    /// The user can select multiple items in the menu. A change in
+    /// selection will not automatically deselect any previously
+    /// selected item in the same selection group.
     #[doc(alias = "NSMenuSelectionModeSelectAny")]
     pub const SelectAny: Self = Self(2);
 }
@@ -92,6 +115,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
@@ -140,6 +164,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other supermenu)]
         pub unsafe fn supermenu(&self) -> Option<Retained<NSMenu>>;
 
+        /// Setter for [`supermenu`][Self::supermenu].
         #[method(setSupermenu:)]
         pub unsafe fn setSupermenu(&self, supermenu: Option<&NSMenu>);
 
@@ -189,6 +214,7 @@ extern_methods!(
         pub unsafe fn itemArray(&self) -> Retained<NSArray<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
+        /// Setter for [`itemArray`][Self::itemArray].
         #[method(setItemArray:)]
         pub unsafe fn setItemArray(&self, item_array: &NSArray<NSMenuItem>);
 
@@ -236,6 +262,7 @@ extern_methods!(
         #[method(autoenablesItems)]
         pub unsafe fn autoenablesItems(&self) -> bool;
 
+        /// Setter for [`autoenablesItems`][Self::autoenablesItems].
         #[method(setAutoenablesItems:)]
         pub unsafe fn setAutoenablesItems(&self, autoenables_items: bool);
 
@@ -257,6 +284,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSMenuDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSMenuDelegate>>);
 
@@ -279,6 +307,7 @@ extern_methods!(
         pub unsafe fn minimumWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumWidth`][Self::minimumWidth].
         #[method(setMinimumWidth:)]
         pub unsafe fn setMinimumWidth(&self, minimum_width: CGFloat);
 
@@ -291,18 +320,21 @@ extern_methods!(
         pub unsafe fn font(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "NSFont")]
+        /// Setter for [`font`][Self::font].
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
         #[method(allowsContextMenuPlugIns)]
         pub unsafe fn allowsContextMenuPlugIns(&self) -> bool;
 
+        /// Setter for [`allowsContextMenuPlugIns`][Self::allowsContextMenuPlugIns].
         #[method(setAllowsContextMenuPlugIns:)]
         pub unsafe fn setAllowsContextMenuPlugIns(&self, allows_context_menu_plug_ins: bool);
 
         #[method(automaticallyInsertsWritingToolsItems)]
         pub unsafe fn automaticallyInsertsWritingToolsItems(&self) -> bool;
 
+        /// Setter for [`automaticallyInsertsWritingToolsItems`][Self::automaticallyInsertsWritingToolsItems].
         #[method(setAutomaticallyInsertsWritingToolsItems:)]
         pub unsafe fn setAutomaticallyInsertsWritingToolsItems(
             &self,
@@ -312,6 +344,7 @@ extern_methods!(
         #[method(showsStateColumn)]
         pub unsafe fn showsStateColumn(&self) -> bool;
 
+        /// Setter for [`showsStateColumn`][Self::showsStateColumn].
         #[method(setShowsStateColumn:)]
         pub unsafe fn setShowsStateColumn(&self, shows_state_column: bool);
 
@@ -320,6 +353,7 @@ extern_methods!(
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
         #[cfg(feature = "NSUserInterfaceLayout")]
+        /// Setter for [`userInterfaceLayoutDirection`][Self::userInterfaceLayoutDirection].
         #[method(setUserInterfaceLayoutDirection:)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
@@ -343,6 +377,10 @@ extern_methods!(
     /// NSPaletteMenus
     unsafe impl NSMenu {
         #[cfg(all(feature = "NSColor", feature = "block2"))]
+        /// Creates a palette menu displaying user-selectable color
+        /// tags using the provided array of colors and optional titles.
+        ///
+        /// Returns: An autoconfigured palette menu.
         #[method_id(@__retain_semantics Other paletteMenuWithColors:titles:selectionHandler:)]
         pub unsafe fn paletteMenuWithColors_titles_selectionHandler(
             colors: &NSArray<NSColor>,
@@ -352,6 +390,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSColor", feature = "NSImage", feature = "block2"))]
+        /// Creates an palette menu displaying user-selectable color tags
+        /// using the provided template image, tinted using the specified
+        /// array of colors.
+        ///
+        /// Optionally allows observing changes to the selection state in
+        /// the compact menu. The block is invoked after the selection
+        /// has been updated. Currently selected items can be retrieved
+        /// from the `selectedItems` property.
+        ///
+        ///
+        /// Returns: An autoconfigured palette menu.
         #[method_id(@__retain_semantics Other paletteMenuWithColors:titles:templateImage:selectionHandler:)]
         pub unsafe fn paletteMenuWithColors_titles_templateImage_selectionHandler(
             colors: &NSArray<NSColor>,
@@ -361,23 +410,44 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// The presentation style of the menu.
+        ///
+        ///
+        /// Note: This property is not respected if the menu is the main
+        /// menu of the app.
         #[method(presentationStyle)]
         pub unsafe fn presentationStyle(&self) -> NSMenuPresentationStyle;
 
+        /// Setter for [`presentationStyle`][Self::presentationStyle].
         #[method(setPresentationStyle:)]
         pub unsafe fn setPresentationStyle(&self, presentation_style: NSMenuPresentationStyle);
 
+        /// The selection mode of the menu.
+        ///
+        /// Note the selection mode only has effect on menu items that
+        /// belong to the same selection group. A selection group consists
+        /// of the items with the same target/action.
         #[method(selectionMode)]
         pub unsafe fn selectionMode(&self) -> NSMenuSelectionMode;
 
+        /// Setter for [`selectionMode`][Self::selectionMode].
         #[method(setSelectionMode:)]
         pub unsafe fn setSelectionMode(&self, selection_mode: NSMenuSelectionMode);
 
         #[cfg(feature = "NSMenuItem")]
+        /// The menu items that are selected.
+        ///
+        /// An item is selected when its state is `NSControl.StateValue.on`.
+        ///
+        ///
+        /// Note: This property is settable. Setting `selectedItems` will
+        /// select any items that are contained in the provided array, and
+        /// deselect any previously selected items that are not in the array.
         #[method_id(@__retain_semantics Other selectedItems)]
         pub unsafe fn selectedItems(&self) -> Retained<NSArray<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
+        /// Setter for [`selectedItems`][Self::selectedItems].
         #[method(setSelectedItems:)]
         pub unsafe fn setSelectedItems(&self, selected_items: &NSArray<NSMenuItem>);
     }
@@ -573,6 +643,7 @@ extern_methods!(
         #[method(menuChangedMessagesEnabled)]
         pub unsafe fn menuChangedMessagesEnabled(&self) -> bool;
 
+        /// Setter for [`menuChangedMessagesEnabled`][Self::menuChangedMessagesEnabled].
         #[deprecated]
         #[method(setMenuChangedMessagesEnabled:)]
         pub unsafe fn setMenuChangedMessagesEnabled(&self, menu_changed_messages_enabled: bool);

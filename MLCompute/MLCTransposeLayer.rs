@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctransposelayer?language=objc)
+    /// A transpose layer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctransposelayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -21,10 +23,23 @@ unsafe impl NSObjectProtocol for MLCTransposeLayer {}
 extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCTransposeLayer {
+        /// Permutes the dimensions according to 'dimensions'.
+        ///
+        /// The returned tensor's dimension i will correspond to dimensions[i].
         #[deprecated]
         #[method_id(@__retain_semantics Other dimensions)]
         pub unsafe fn dimensions(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Create a transpose layer
+        ///
+        /// Parameter `dimensions`: NSArray
+        /// <NSNumber
+        /// *> representing the desired ordering of dimensions
+        /// The dimensions array specifies the input axis source for each output axis, such that the
+        /// K'th element in the dimensions array specifies the input axis source for the K'th axis in the
+        /// output.  The batch dimension which is typically axis 0 cannot be transposed.
+        ///
+        /// Returns: A new transpose layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDimensions:)]
         pub unsafe fn layerWithDimensions(dimensions: &NSArray<NSNumber>)

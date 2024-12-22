@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkframeinfo?language=objc)
+    /// A WKFrameInfo object contains information about a frame on a webpage.
+    ///
+    /// An instance of this class is a transient, data-only object;
+    /// it does not uniquely identify a frame across multiple delegate method
+    /// calls.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkframeinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -27,18 +33,23 @@ unsafe impl NSObjectProtocol for WKFrameInfo {}
 
 extern_methods!(
     unsafe impl WKFrameInfo {
+        /// A Boolean value indicating whether the frame is the main frame
+        /// or a subframe.
         #[method(isMainFrame)]
         pub unsafe fn isMainFrame(&self) -> bool;
 
+        /// The frame's current request.
         #[method_id(@__retain_semantics Other request)]
         pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "WKSecurityOrigin")]
+        /// The frame's current security origin.
         #[method_id(@__retain_semantics Other securityOrigin)]
         pub unsafe fn securityOrigin(&self) -> Retained<WKSecurityOrigin>;
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// The web view of the webpage that contains this frame.
         #[method_id(@__retain_semantics Other webView)]
         pub unsafe fn webView(&self) -> Option<Retained<WKWebView>>;
     }

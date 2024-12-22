@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcreshapelayer?language=objc)
+    /// A reshape layer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcreshapelayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -21,9 +23,15 @@ unsafe impl NSObjectProtocol for MLCReshapeLayer {}
 extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCReshapeLayer {
+        /// The target shape.
         #[method_id(@__retain_semantics Other shape)]
         pub unsafe fn shape(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Creates a reshape layer with the shape you specify.
+        ///
+        /// Parameter `shape`: An array that contains the sizes of each dimension.
+        ///
+        /// Returns: A new reshape layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithShape:)]
         pub unsafe fn layerWithShape(shape: &NSArray<NSNumber>) -> Option<Retained<Self>>;

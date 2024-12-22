@@ -7,12 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidiplayercompletionhandler?language=objc)
+/// Generic callback block.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidiplayercompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type AVMIDIPlayerCompletionHandler = *mut block2::Block<dyn Fn()>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidiplayer?language=objc)
+    /// A player for music file formats (MIDI, iMelody).
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidiplayer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIPlayer;
@@ -22,6 +26,11 @@ unsafe impl NSObjectProtocol for AVMIDIPlayer {}
 
 extern_methods!(
     unsafe impl AVMIDIPlayer {
+        /// Create a player with the contents of the file specified by the URL.
+        ///
+        /// 'bankURL' should contain the path to a SoundFont2 or DLS bank to be used
+        /// by the MIDI synthesizer.  For OSX it can be set to nil for the default,
+        /// but for iOS it must always refer to a valid bank file.
         #[method_id(@__retain_semantics Init initWithContentsOfURL:soundBankURL:error:_)]
         pub unsafe fn initWithContentsOfURL_soundBankURL_error(
             this: Allocated<Self>,
@@ -29,6 +38,11 @@ extern_methods!(
             bank_url: Option<&NSURL>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// Create a player with the contents of the data object
+        ///
+        /// 'bankURL' should contain the path to a SoundFont2 or DLS bank to be used
+        /// by the MIDI synthesizer.  For OSX it can be set to nil for the default,
+        /// but for iOS it must always refer to a valid bank file.
         #[method_id(@__retain_semantics Init initWithData:soundBankURL:error:_)]
         pub unsafe fn initWithData_soundBankURL_error(
             this: Allocated<Self>,
@@ -36,31 +50,47 @@ extern_methods!(
             bank_url: Option<&NSURL>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// Get ready to play the sequence by prerolling all events
+        ///
+        /// Happens automatically on play if it has not already been called, but may produce a delay in startup.
         #[method(prepareToPlay)]
         pub unsafe fn prepareToPlay(&self);
 
         #[cfg(feature = "block2")]
+        /// Play the sequence.
         #[method(play:)]
         pub unsafe fn play(&self, completion_handler: AVMIDIPlayerCompletionHandler);
 
+        /// Stop playing the sequence.
         #[method(stop)]
         pub unsafe fn stop(&self);
 
+        /// The length of the currently loaded file in seconds.
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
+        /// Indicates whether or not the player is playing
         #[method(isPlaying)]
         pub unsafe fn isPlaying(&self) -> bool;
 
+        /// The playback rate of the player
+        ///
+        /// 1.0 is normal playback rate.  Rate must be > 0.0.
         #[method(rate)]
         pub unsafe fn rate(&self) -> c_float;
 
+        /// Setter for [`rate`][Self::rate].
         #[method(setRate:)]
         pub unsafe fn setRate(&self, rate: c_float);
 
+        /// The current playback position in seconds
+        ///
+        /// Setting this positions the player to the specified time.  No range checking on the time value is done.
+        /// This can be set while the player is playing, in which case playback will resume at the new time.
         #[method(currentPosition)]
         pub unsafe fn currentPosition(&self) -> NSTimeInterval;
 
+        /// Setter for [`currentPosition`][Self::currentPosition].
         #[method(setCurrentPosition:)]
         pub unsafe fn setCurrentPosition(&self, current_position: NSTimeInterval);
     }

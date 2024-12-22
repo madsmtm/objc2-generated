@@ -105,6 +105,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other string)]
         pub unsafe fn string(&self) -> Retained<NSString>;
 
+        /// Setter for [`string`][Self::string].
         #[method(setString:)]
         pub unsafe fn setString(&self, string: &NSString);
 
@@ -132,48 +133,56 @@ extern_methods!(
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTextDelegate>>>;
 
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTextDelegate>>);
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        /// Setter for [`isEditable`][Self::isEditable].
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
         #[method(isSelectable)]
         pub unsafe fn isSelectable(&self) -> bool;
 
+        /// Setter for [`isSelectable`][Self::isSelectable].
         #[method(setSelectable:)]
         pub unsafe fn setSelectable(&self, selectable: bool);
 
         #[method(isRichText)]
         pub unsafe fn isRichText(&self) -> bool;
 
+        /// Setter for [`isRichText`][Self::isRichText].
         #[method(setRichText:)]
         pub unsafe fn setRichText(&self, rich_text: bool);
 
         #[method(importsGraphics)]
         pub unsafe fn importsGraphics(&self) -> bool;
 
+        /// Setter for [`importsGraphics`][Self::importsGraphics].
         #[method(setImportsGraphics:)]
         pub unsafe fn setImportsGraphics(&self, imports_graphics: bool);
 
         #[method(isFieldEditor)]
         pub unsafe fn isFieldEditor(&self) -> bool;
 
+        /// Setter for [`isFieldEditor`][Self::isFieldEditor].
         #[method(setFieldEditor:)]
         pub unsafe fn setFieldEditor(&self, field_editor: bool);
 
         #[method(usesFontPanel)]
         pub unsafe fn usesFontPanel(&self) -> bool;
 
+        /// Setter for [`usesFontPanel`][Self::usesFontPanel].
         #[method(setUsesFontPanel:)]
         pub unsafe fn setUsesFontPanel(&self, uses_font_panel: bool);
 
         #[method(drawsBackground)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
+        /// Setter for [`drawsBackground`][Self::drawsBackground].
         #[method(setDrawsBackground:)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
@@ -182,6 +191,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
@@ -191,6 +201,7 @@ extern_methods!(
         #[method(selectedRange)]
         pub unsafe fn selectedRange(&self) -> NSRange;
 
+        /// Setter for [`selectedRange`][Self::selectedRange].
         #[method(setSelectedRange:)]
         pub unsafe fn setSelectedRange(&self, selected_range: NSRange);
 
@@ -202,6 +213,7 @@ extern_methods!(
         pub unsafe fn font(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "NSFont")]
+        /// Setter for [`font`][Self::font].
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
@@ -210,18 +222,21 @@ extern_methods!(
         pub unsafe fn textColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`textColor`][Self::textColor].
         #[method(setTextColor:)]
         pub unsafe fn setTextColor(&self, text_color: Option<&NSColor>);
 
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
+        /// Setter for [`alignment`][Self::alignment].
         #[method(setAlignment:)]
         pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
 
         #[method(baseWritingDirection)]
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
+        /// Setter for [`baseWritingDirection`][Self::baseWritingDirection].
         #[method(setBaseWritingDirection:)]
         pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
@@ -238,6 +253,7 @@ extern_methods!(
         pub unsafe fn maxSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`maxSize`][Self::maxSize].
         #[method(setMaxSize:)]
         pub unsafe fn setMaxSize(&self, max_size: NSSize);
 
@@ -246,18 +262,21 @@ extern_methods!(
         pub unsafe fn minSize(&self) -> NSSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minSize`][Self::minSize].
         #[method(setMinSize:)]
         pub unsafe fn setMinSize(&self, min_size: NSSize);
 
         #[method(isHorizontallyResizable)]
         pub unsafe fn isHorizontallyResizable(&self) -> bool;
 
+        /// Setter for [`isHorizontallyResizable`][Self::isHorizontallyResizable].
         #[method(setHorizontallyResizable:)]
         pub unsafe fn setHorizontallyResizable(&self, horizontally_resizable: bool);
 
         #[method(isVerticallyResizable)]
         pub unsafe fn isVerticallyResizable(&self) -> bool;
 
+        /// Setter for [`isVerticallyResizable`][Self::isVerticallyResizable].
         #[method(setVerticallyResizable:)]
         pub unsafe fn setVerticallyResizable(&self, vertically_resizable: bool);
 

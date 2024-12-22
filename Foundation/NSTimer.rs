@@ -54,6 +54,10 @@ extern_methods!(
         ) -> Retained<NSTimer>;
 
         #[cfg(all(feature = "NSDate", feature = "block2"))]
+        /// Creates and returns a new NSTimer object initialized with the specified block object. This timer needs to be scheduled on a run loop (via -[NSRunLoop addTimer:]) before it will fire.
+        /// - parameter:  timeInterval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
+        /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
+        /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
         #[method_id(@__retain_semantics Other timerWithTimeInterval:repeats:block:)]
         pub unsafe fn timerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
@@ -62,6 +66,10 @@ extern_methods!(
         ) -> Retained<NSTimer>;
 
         #[cfg(all(feature = "NSDate", feature = "block2"))]
+        /// Creates and returns a new NSTimer object initialized with the specified block object and schedules it on the current run loop in the default mode.
+        /// - parameter:  ti    The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
+        /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
+        /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
         #[method_id(@__retain_semantics Other scheduledTimerWithTimeInterval:repeats:block:)]
         pub unsafe fn scheduledTimerWithTimeInterval_repeats_block(
             interval: NSTimeInterval,
@@ -70,6 +78,11 @@ extern_methods!(
         ) -> Retained<NSTimer>;
 
         #[cfg(all(feature = "NSDate", feature = "block2"))]
+        /// Initializes a new NSTimer object using the block as the main body of execution for the timer. This timer needs to be scheduled on a run loop (via -[NSRunLoop addTimer:]) before it will fire.
+        /// - parameter:  fireDate   The time at which the timer should first fire.
+        /// - parameter:  interval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
+        /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
+        /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
         #[method_id(@__retain_semantics Init initWithFireDate:interval:repeats:block:)]
         pub unsafe fn initWithFireDate_interval_repeats_block(
             this: Allocated<Self>,
@@ -99,6 +112,7 @@ extern_methods!(
         pub unsafe fn fireDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
+        /// Setter for [`fireDate`][Self::fireDate].
         #[method(setFireDate:)]
         pub unsafe fn setFireDate(&self, fire_date: &NSDate);
 
@@ -111,6 +125,7 @@ extern_methods!(
         pub unsafe fn tolerance(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
+        /// Setter for [`tolerance`][Self::tolerance].
         #[method(setTolerance:)]
         pub unsafe fn setTolerance(&self, tolerance: NSTimeInterval);
 

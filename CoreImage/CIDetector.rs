@@ -7,7 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetector?language=objc)
+    /// Detects features in images.
+    ///
+    /// This class potentially holds onto a lot of state. Hence it may be beneficial from a performance perspective to re-use the same CIDetector instance. Specifying a CIContext when creating a detector may have an impact on performance since this context may be used when analyzing an image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetector?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIDetector;
@@ -18,6 +22,18 @@ unsafe impl NSObjectProtocol for CIDetector {}
 extern_methods!(
     unsafe impl CIDetector {
         #[cfg(feature = "CIContext")]
+        /// Returns a new detector instance of the given type.
+        ///
+        /// The type is used to specify the detection intent.
+        /// This will return value if the detector type is not supported.
+        ///
+        /// The context argument specifies the CIContext to be used to operate on the image. May be nil.
+        ///
+        /// If the input image to -featuresInImage: is the output of a CoreImage operation, it may improve performance to specify the same context that was used to operate on that image.
+        ///
+        /// The detector may do image processing in this context and if the image is on the GPU and the specified context is a GPU context this may avoid additional upload to / download from the GPU. If the input image is on the CPU (or the output from a CPU based context) specifying a GPU based context (or vice versa) may reduce performance.
+        ///
+        /// The options parameter lets you optinally specify a accuracy / performance tradeoff. Can be nil or an empty dictionary.
         #[method_id(@__retain_semantics Other detectorOfType:context:options:)]
         pub unsafe fn detectorOfType_context_options(
             r#type: &NSString,
@@ -26,10 +42,15 @@ extern_methods!(
         ) -> Option<Retained<CIDetector>>;
 
         #[cfg(all(feature = "CIFeature", feature = "CIImage"))]
+        /// Returns an array of CIFeature instances in the given image.
+        /// The array is sorted by confidence, highest confidence first.
         #[method_id(@__retain_semantics Other featuresInImage:)]
         pub unsafe fn featuresInImage(&self, image: &CIImage) -> Retained<NSArray<CIFeature>>;
 
         #[cfg(all(feature = "CIFeature", feature = "CIImage"))]
+        /// Returns an array of CIFeature instances in the given image.
+        /// The array is sorted by confidence, highest confidence first.
+        /// The options dictionary can contain a CIDetectorImageOrientation key value.
         #[method_id(@__retain_semantics Other featuresInImage:options:)]
         pub unsafe fn featuresInImage_options(
             &self,

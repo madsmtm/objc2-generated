@@ -13,11 +13,35 @@ use crate::*;
 pub type CTRubyAnnotationRef = *const c_void;
 
 extern "C-unwind" {
+    /// Returns the CFType of the ruby annotation object
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRubyAnnotationGetTypeID() -> CFTypeID;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment?language=objc)
+/// These constants specify how to align the ruby annotation and the base text relative to each other when they don't have the same length.
+///
+///
+/// CoreText will determine the alignment.
+///
+///
+/// The ruby text is aligned with the start edge of the base text.
+///
+///
+/// The ruby text is centered within the width of the base text. If the ruby text is wider than the base text the base text is centered in the width of the ruby text.
+///
+///
+/// The ruby text is aligned with the end edge of the base text.
+///
+///
+/// If the width of the ruby text is less than the width of the base text, the ruby text is evenly distributed over the width of the base text, with the first letter of the ruby text aligning with the first letter of the base text and the last letter of the ruby text aligning with the last letter of the base text. If the width of the base text is less than the width of the ruby text, the base text is evenly distributed over the width of the ruby text.
+///
+///
+/// If the width of the ruby text is less than the width of the base text, the ruby text is evenly distributed over the width of the base text, with a certain amount of space, usually half the inter-character width of the ruby text, before the first and after the last character. If the width of the base text is less than the width of the ruby text, the base text is similarly aligned to the width of the ruby text.
+///
+///
+/// If the ruby text is not adjacent to a line edge it is aligned as with kCTRubyAlignmentAuto. If it is adjacent to a line edge the end of ruby text adjacent to the line edge is aligned to the line edge. This is only relevant if the width of the ruby text is greater than the width of the base text; otherwise alignment is as with kCTRubyAlignmentAuto.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -42,7 +66,21 @@ unsafe impl RefEncode for CTRubyAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang?language=objc)
+/// These constants specify whether, and on which side, ruby text is allowed to overhang adjacent text if it is wider than the base text.
+///
+///
+/// The ruby text can overhang adjacent text on both sides.
+///
+///
+/// The ruby text can overhang the text that proceeds it.
+///
+///
+/// The ruby text can overhang the text that follows it.
+///
+///
+/// The ruby text cannot overhang the proceeding or following text.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -64,7 +102,21 @@ unsafe impl RefEncode for CTRubyOverhang {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition?language=objc)
+/// These constants specify the position of the ruby text with respect to the base text.
+///
+///
+/// The ruby text is positioned before the base text; i.e. above horizontal text and to the right of vertical text.
+///
+///
+/// The ruby text is positioned after the base text; i.e. below horizontal text and to the left of vertical text.
+///
+///
+/// The ruby text is positioned to the right of the base text whether it is horizontal or vertical. This is the way that Bopomofo annotations are attached to Chinese text in Taiwan.
+///
+///
+/// The ruby text follows the base text with no special styling.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -88,18 +140,57 @@ unsafe impl RefEncode for CTRubyPosition {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrubyannotationsizefactorattributename?language=objc)
+    /// Specifies the size of the annotation text as a percent of the size of the base text.
+    ///
+    ///
+    /// Value must be a CFNumberRef.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrubyannotationsizefactorattributename?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTRubyAnnotationSizeFactorAttributeName: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrubyannotationscaletofitattributename?language=objc)
+    /// Treat the size specified in kCTRubyAnnotationSizeFactorAttributeName as the maximum
+    /// scale factor, when the base text size is smaller than annotation text size, we will
+    /// try to scale the annotation font size down so that it will fit the base text without
+    /// overhang or adding extra padding between base text.
+    ///
+    ///
+    /// Value must be a CFBooleanRef. Default is false.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrubyannotationscaletofitattributename?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCTRubyAnnotationScaleToFitAttributeName: CFStringRef;
 }
 
 extern "C-unwind" {
+    /// Creates an immutable ruby annotation object.
+    ///
+    ///
+    /// Using this function to create a ruby annotation object with more precise
+    /// control of the annotation text.
+    ///
+    ///
+    /// Parameter `alignment`: Specifies how the ruby text and the base text should be aligned relative to each other.
+    ///
+    ///
+    /// Parameter `overhang`: Specifies how the ruby text can overhang adjacent characters.
+    ///
+    ///
+    /// Parameter `position`: The position of the annotation text.
+    ///
+    ///
+    /// Parameter `string`: A string without any formatting, its format will be derived from the attrs specified below.
+    ///
+    ///
+    /// Parameter `attributes`: A attribute dictionary to combine with the string specified above. If you don't specify
+    /// kCTFontAttributeName, the font used by the Ruby annotation will be deduced from the base
+    /// text, with a size factor specified by a CFNumberRef value keyed by
+    /// kCTRubyAnnotationSizeFactorAttributeName.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTRubyAnnotation object.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRubyAnnotationCreateWithAttributes(
         alignment: CTRubyAlignment,
@@ -111,23 +202,68 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an immutable copy of a ruby annotation object.
+    ///
+    ///
+    /// Parameter `rubyAnnotation`: The ruby annotation that you wish to copy.
+    ///
+    ///
+    /// Returns: If the "rubyAnnotation" reference is valid, then this
+    /// function will return valid reference to an immutable
+    /// CTRubyAnnotation object that is a copy of the one passed into
+    /// "rubyAnnotation".
     pub fn CTRubyAnnotationCreateCopy(ruby_annotation: CTRubyAnnotationRef) -> CTRubyAnnotationRef;
 }
 
 extern "C-unwind" {
+    /// Get the alignment value of a ruby annotation object.
+    ///
+    ///
+    /// Parameter `rubyAnnotation`: The ruby annotation object.
+    ///
+    ///
+    /// Returns: If the "rubyAnnotation" reference is valid, then this
+    /// function will return its alignment. Otherwise it will return kCTRubyAlignmentInvalid.
     pub fn CTRubyAnnotationGetAlignment(ruby_annotation: CTRubyAnnotationRef) -> CTRubyAlignment;
 }
 
 extern "C-unwind" {
+    /// Get the overhang value of a ruby annotation object.
+    ///
+    ///
+    /// Parameter `rubyAnnotation`: The ruby annotation object.
+    ///
+    ///
+    /// Returns: If the "rubyAnnotation" reference is valid, then this
+    /// function will return its overhang value. Otherwise it will return kCTRubyOverhangInvalid.
     pub fn CTRubyAnnotationGetOverhang(ruby_annotation: CTRubyAnnotationRef) -> CTRubyOverhang;
 }
 
 extern "C-unwind" {
+    /// Get the size factor of a ruby annotation object.
+    ///
+    ///
+    /// Parameter `rubyAnnotation`: The ruby annotation object.
+    ///
+    ///
+    /// Returns: If the "rubyAnnotation" reference is valid, then this
+    /// function will return its sizeFactor. Otherwise it will return 0.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRubyAnnotationGetSizeFactor(ruby_annotation: CTRubyAnnotationRef) -> CGFloat;
 }
 
 extern "C-unwind" {
+    /// Get the ruby text for a particular position in a ruby annotation.
+    ///
+    ///
+    /// Parameter `rubyAnnotation`: The ruby annotation object.
+    ///
+    ///
+    /// Parameter `position`: The position for which you want to get the ruby text.
+    ///
+    ///
+    /// Returns: If the "rubyAnnotation" reference and the position are valid, then this
+    /// function will return a CFStringRef for the text. Otherwise it will return NULL.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRubyAnnotationGetTextForPosition(
         ruby_annotation: CTRubyAnnotationRef,

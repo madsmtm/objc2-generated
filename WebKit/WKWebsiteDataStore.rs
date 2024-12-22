@@ -8,7 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatastore?language=objc)
+    /// A WKWebsiteDataStore represents various types of data that a website might
+    /// make use of. This includes cookies, disk and memory caches, and persistent data such as WebSQL,
+    /// IndexedDB databases, and local storage.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatastore?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -26,6 +30,10 @@ extern_methods!(
         #[method_id(@__retain_semantics Other defaultDataStore)]
         pub unsafe fn defaultDataStore(mtm: MainThreadMarker) -> Retained<WKWebsiteDataStore>;
 
+        /// Returns a new non-persistent data store.
+        ///
+        /// If a WKWebView is associated with a non-persistent data store, no data will
+        /// be written to the file system. This is useful for implementing "private browsing" in a web view.
         #[method_id(@__retain_semantics Other nonPersistentDataStore)]
         pub unsafe fn nonPersistentDataStore(mtm: MainThreadMarker)
             -> Retained<WKWebsiteDataStore>;
@@ -36,13 +44,20 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Whether the data store is persistent or not.
         #[method(isPersistent)]
         pub unsafe fn isPersistent(&self) -> bool;
 
+        /// Returns a set of all available website data types.
         #[method_id(@__retain_semantics Other allWebsiteDataTypes)]
         pub unsafe fn allWebsiteDataTypes(mtm: MainThreadMarker) -> Retained<NSSet<NSString>>;
 
         #[cfg(all(feature = "WKWebsiteDataRecord", feature = "block2"))]
+        /// Fetches data records containing the given website data types.
+        ///
+        /// Parameter `dataTypes`: The website data types to fetch records for.
+        ///
+        /// Parameter `completionHandler`: A block to invoke when the data records have been fetched.
         #[method(fetchDataRecordsOfTypes:completionHandler:)]
         pub unsafe fn fetchDataRecordsOfTypes_completionHandler(
             &self,
@@ -51,6 +66,13 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "WKWebsiteDataRecord", feature = "block2"))]
+        /// Removes website data of the given types for the given data records.
+        ///
+        /// Parameter `dataTypes`: The website data types that should be removed.
+        ///
+        /// Parameter `dataRecords`: The website data records to delete website data for.
+        ///
+        /// Parameter `completionHandler`: A block to invoke when the website data for the records has been removed.
         #[method(removeDataOfTypes:forDataRecords:completionHandler:)]
         pub unsafe fn removeDataOfTypes_forDataRecords_completionHandler(
             &self,
@@ -60,6 +82,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Removes all website data of the given types that has been modified since the given date.
+        ///
+        /// Parameter `dataTypes`: The website data types that should be removed.
+        ///
+        /// Parameter `date`: A date. All website data modified after this date will be removed.
+        ///
+        /// Parameter `completionHandler`: A block to invoke when the website data has been removed.
         #[method(removeDataOfTypes:modifiedSince:completionHandler:)]
         pub unsafe fn removeDataOfTypes_modifiedSince_completionHandler(
             &self,
@@ -69,12 +98,22 @@ extern_methods!(
         );
 
         #[cfg(feature = "WKHTTPCookieStore")]
+        /// Returns the cookie store representing HTTP cookies in this website data store.
         #[method_id(@__retain_semantics Other httpCookieStore)]
         pub unsafe fn httpCookieStore(&self) -> Retained<WKHTTPCookieStore>;
 
+        /// Get identifier for a data store.
+        ///
+        /// Returns nil for default and non-persistent data store .
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSUUID>>;
 
+        /// Get a persistent data store.
+        ///
+        /// Parameter `identifier`: An identifier that is used to uniquely identify the data store.
+        ///
+        /// If a data store with this identifier does not exist yet, it will be created. Throws exception if identifier
+        /// is 0.
         #[method_id(@__retain_semantics Other dataStoreForIdentifier:)]
         pub unsafe fn dataStoreForIdentifier(
             identifier: &NSUUID,
@@ -82,6 +121,14 @@ extern_methods!(
         ) -> Retained<WKWebsiteDataStore>;
 
         #[cfg(feature = "block2")]
+        /// Delete a persistent data store.
+        ///
+        /// Parameter `identifier`: An identifier that is used to uniquely identify the data store.
+        ///
+        /// Parameter `completionHandler`: A block to invoke with optional error when the operation completes.
+        ///
+        /// This should be called when the data store is not used any more. Returns error if removal fails
+        /// to complete. WKWebView using the data store must be released before removal.
         #[method(removeDataStoreForIdentifier:completionHandler:)]
         pub unsafe fn removeDataStoreForIdentifier_completionHandler(
             identifier: &NSUUID,
@@ -90,6 +137,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Fetch all data stores identifiers.
+        ///
+        /// Parameter `completionHandler`: A block to invoke with an array of identifiers when the operation completes.
+        ///
+        /// Default or non-persistent data store do not have an identifier.
         #[method(fetchAllDataStoreIdentifiers:)]
         pub unsafe fn fetchAllDataStoreIdentifiers(
             completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<NSUUID>>)>,

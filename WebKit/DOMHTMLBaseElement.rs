@@ -81,6 +81,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other href)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
+        /// Setter for [`href`][Self::href].
         #[deprecated]
         #[method(setHref:)]
         pub unsafe fn setHref(&self, href: Option<&NSString>);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
+        /// Setter for [`target`][Self::target].
         #[deprecated]
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&NSString>);

@@ -37,6 +37,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
+        /// Creates a record ID in the default zone
         #[method_id(@__retain_semantics Init initWithRecordName:)]
         pub unsafe fn initWithRecordName(
             this: Allocated<Self>,

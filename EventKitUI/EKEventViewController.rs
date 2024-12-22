@@ -69,6 +69,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn EKEventViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -76,22 +77,40 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-event-kit")]
+        /// Specifies the event to view.
+        ///
+        /// You must set this prior to displaying the view controller.
         #[method_id(@__retain_semantics Other event)]
         pub unsafe fn event(&self) -> Option<Retained<EKEvent>>;
 
         #[cfg(feature = "objc2-event-kit")]
+        /// Setter for [`event`][Self::event].
         #[method(setEvent:)]
         pub unsafe fn setEvent(&self, event: Option<&EKEvent>);
 
+        /// Determines whether Edit button can be shown.
+        ///
+        /// Note that even if this is enabled, the edit button may not appear if this event
+        /// is in a read-only calendar, such as a subscribed calendar. It may also not appear
+        /// if the event was not created by the current user (i.e. it's an event they were
+        /// invited to). And lastly, if the event was never saved, the edit button will not
+        /// appear.
         #[method(allowsEditing)]
         pub unsafe fn allowsEditing(&self) -> bool;
 
+        /// Setter for [`allowsEditing`][Self::allowsEditing].
         #[method(setAllowsEditing:)]
         pub unsafe fn setAllowsEditing(&self, allows_editing: bool);
 
+        /// Determines whether event can be shown in calendar day view preview.
+        ///
+        /// This option only affects calendar invites at present. If the event is an invite,
+        /// and this option is set, a table cell will appear that allows the user to preview
+        /// the event along with their other events for the day.
         #[method(allowsCalendarPreview)]
         pub unsafe fn allowsCalendarPreview(&self) -> bool;
 
+        /// Setter for [`allowsCalendarPreview`][Self::allowsCalendarPreview].
         #[method(setAllowsCalendarPreview:)]
         pub unsafe fn setAllowsCalendarPreview(&self, allows_calendar_preview: bool);
     }
@@ -129,9 +148,31 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventviewdelegate?language=objc)
+    /// View controller to view event detail.
+    ///
+    /// You can use this view controller to display the details of an event. You
+    /// can also optionally choose to allow the user to edit the event by displaying
+    /// an edit button. While you can use this view controller to display events that
+    /// have not been saved, the edit button will not appear in this situation. If
+    /// you have pushed this view controller onto a navigation controller stack, and
+    /// the underlying event gets deleted, this controller will remove itself from
+    /// the stack and clear its event property.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventviewdelegate?language=objc)
     pub unsafe trait EKEventViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-ui-kit")]
+        /// Called to let delegate know that an action has occurred that should cause the
+        /// controller to be dismissed.
+        ///
+        /// If the user taps a button which deletes the event, or responds to an invite, this
+        /// method is called on the delegate so that the delegate can decide to dismiss
+        /// the view controller. When presented in a popover, it also reports when the Done
+        /// button is pressed.
+        ///
+        ///
+        /// Parameter `controller`: the controller in question
+        ///
+        /// Parameter `action`: the action that is triggering the dismissal
         #[method(eventViewController:didCompleteWithAction:)]
         unsafe fn eventViewController_didCompleteWithAction(
             &self,

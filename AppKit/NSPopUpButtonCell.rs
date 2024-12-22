@@ -134,36 +134,42 @@ extern_methods!(
         pub unsafe fn menu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
+        /// Setter for [`menu`][Self::menu].
         #[method(setMenu:)]
         pub unsafe fn setMenu(&self, menu: Option<&NSMenu>);
 
         #[method(pullsDown)]
         pub unsafe fn pullsDown(&self) -> bool;
 
+        /// Setter for [`pullsDown`][Self::pullsDown].
         #[method(setPullsDown:)]
         pub unsafe fn setPullsDown(&self, pulls_down: bool);
 
         #[method(autoenablesItems)]
         pub unsafe fn autoenablesItems(&self) -> bool;
 
+        /// Setter for [`autoenablesItems`][Self::autoenablesItems].
         #[method(setAutoenablesItems:)]
         pub unsafe fn setAutoenablesItems(&self, autoenables_items: bool);
 
         #[method(preferredEdge)]
         pub unsafe fn preferredEdge(&self) -> NSRectEdge;
 
+        /// Setter for [`preferredEdge`][Self::preferredEdge].
         #[method(setPreferredEdge:)]
         pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
 
         #[method(usesItemFromMenu)]
         pub unsafe fn usesItemFromMenu(&self) -> bool;
 
+        /// Setter for [`usesItemFromMenu`][Self::usesItemFromMenu].
         #[method(setUsesItemFromMenu:)]
         pub unsafe fn setUsesItemFromMenu(&self, uses_item_from_menu: bool);
 
         #[method(altersStateOfSelectedItem)]
         pub unsafe fn altersStateOfSelectedItem(&self) -> bool;
 
+        /// Setter for [`altersStateOfSelectedItem`][Self::altersStateOfSelectedItem].
         #[method(setAltersStateOfSelectedItem:)]
         pub unsafe fn setAltersStateOfSelectedItem(&self, alters_state_of_selected_item: bool);
 
@@ -282,6 +288,7 @@ extern_methods!(
         #[method(arrowPosition)]
         pub unsafe fn arrowPosition(&self) -> NSPopUpArrowPosition;
 
+        /// Setter for [`arrowPosition`][Self::arrowPosition].
         #[method(setArrowPosition:)]
         pub unsafe fn setArrowPosition(&self, arrow_position: NSPopUpArrowPosition);
     }

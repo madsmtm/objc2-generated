@@ -157,6 +157,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
+        /// Setter for [`CGPath`][Self::CGPath].
         #[method(setCGPath:)]
         pub unsafe fn setCGPath(&self, cg_path: CGPathRef);
 
@@ -185,6 +186,7 @@ extern_methods!(
         pub unsafe fn defaultMiterLimit() -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`defaultMiterLimit`][Self::defaultMiterLimit].
         #[method(setDefaultMiterLimit:)]
         pub unsafe fn setDefaultMiterLimit(default_miter_limit: CGFloat);
 
@@ -193,24 +195,28 @@ extern_methods!(
         pub unsafe fn defaultFlatness() -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`defaultFlatness`][Self::defaultFlatness].
         #[method(setDefaultFlatness:)]
         pub unsafe fn setDefaultFlatness(default_flatness: CGFloat);
 
         #[method(defaultWindingRule)]
         pub unsafe fn defaultWindingRule() -> NSWindingRule;
 
+        /// Setter for [`defaultWindingRule`][Self::defaultWindingRule].
         #[method(setDefaultWindingRule:)]
         pub unsafe fn setDefaultWindingRule(default_winding_rule: NSWindingRule);
 
         #[method(defaultLineCapStyle)]
         pub unsafe fn defaultLineCapStyle() -> NSLineCapStyle;
 
+        /// Setter for [`defaultLineCapStyle`][Self::defaultLineCapStyle].
         #[method(setDefaultLineCapStyle:)]
         pub unsafe fn setDefaultLineCapStyle(default_line_cap_style: NSLineCapStyle);
 
         #[method(defaultLineJoinStyle)]
         pub unsafe fn defaultLineJoinStyle() -> NSLineJoinStyle;
 
+        /// Setter for [`defaultLineJoinStyle`][Self::defaultLineJoinStyle].
         #[method(setDefaultLineJoinStyle:)]
         pub unsafe fn setDefaultLineJoinStyle(default_line_join_style: NSLineJoinStyle);
 
@@ -219,6 +225,7 @@ extern_methods!(
         pub unsafe fn defaultLineWidth() -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`defaultLineWidth`][Self::defaultLineWidth].
         #[method(setDefaultLineWidth:)]
         pub unsafe fn setDefaultLineWidth(default_line_width: CGFloat);
 
@@ -279,24 +286,28 @@ extern_methods!(
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`lineWidth`][Self::lineWidth].
         #[method(setLineWidth:)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
         #[method(lineCapStyle)]
         pub unsafe fn lineCapStyle(&self) -> NSLineCapStyle;
 
+        /// Setter for [`lineCapStyle`][Self::lineCapStyle].
         #[method(setLineCapStyle:)]
         pub unsafe fn setLineCapStyle(&self, line_cap_style: NSLineCapStyle);
 
         #[method(lineJoinStyle)]
         pub unsafe fn lineJoinStyle(&self) -> NSLineJoinStyle;
 
+        /// Setter for [`lineJoinStyle`][Self::lineJoinStyle].
         #[method(setLineJoinStyle:)]
         pub unsafe fn setLineJoinStyle(&self, line_join_style: NSLineJoinStyle);
 
         #[method(windingRule)]
         pub unsafe fn windingRule(&self) -> NSWindingRule;
 
+        /// Setter for [`windingRule`][Self::windingRule].
         #[method(setWindingRule:)]
         pub unsafe fn setWindingRule(&self, winding_rule: NSWindingRule);
 
@@ -305,6 +316,7 @@ extern_methods!(
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`miterLimit`][Self::miterLimit].
         #[method(setMiterLimit:)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
@@ -313,6 +325,7 @@ extern_methods!(
         pub unsafe fn flatness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`flatness`][Self::flatness].
         #[method(setFlatness:)]
         pub unsafe fn setFlatness(&self, flatness: CGFloat);
 

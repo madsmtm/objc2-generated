@@ -16,7 +16,15 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositionperframehdrdisplaymetadatapolicy?language=objc)
+/// Configures policy for per frame HDR display metadata
+///
+/// Determines what HDR display metadata should be attached to the rendered frame.
+///
+/// Default.  Pass the HDR metadata through, if present on the composed frame.
+///
+/// AVVideoComposition may generate HDR metadata and attach it to the rendered frame.  HDR metadata generation is influenced by the color space of the rendered frame, device, and HDR metadata format platform support.  Any previously attached HDR metadata of the same metadata format will be overwritten.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositionperframehdrdisplaymetadatapolicy?language=objc)
 // NS_TYPED_ENUM
 pub type AVVideoCompositionPerFrameHDRDisplayMetadataPolicy = NSString;
 
@@ -33,7 +41,12 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocomposition?language=objc)
+    /// The AVVideoCompositionRenderContext class defines the context within which custom compositors render new output pixels buffers.
+    ///
+    ///
+    /// An instance of AVVideoCompositionRenderContext provides size and scaling information and offers a service for efficiently providing pixel buffers from a managed pool of buffers.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocomposition?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoComposition;
@@ -56,6 +69,21 @@ unsafe impl NSObjectProtocol for AVVideoComposition {}
 extern_methods!(
     unsafe impl AVVideoComposition {
         #[cfg(feature = "AVAsset")]
+        /// Returns a new instance of AVVideoComposition with values and instructions suitable for presenting the video tracks of the specified asset according to its temporal and geometric properties and those of its tracks.
+        ///
+        /// Parameter `asset`: An instance of AVAsset. Ensure that the duration and tracks properties of the asset are already loaded before invoking this method.
+        ///
+        /// Returns: An instance of AVVideoComposition.
+        ///
+        /// The returned AVVideoComposition will have instructions that respect the spatial properties and timeRanges of the specified asset's video tracks.
+        /// It will also have the following values for its properties:
+        ///
+        /// - If the asset has exactly one video track, the original timing of the source video track will be used. If the asset has more than one video track, and the nominal frame rate of any of video tracks is known, the reciprocal of the greatest known nominalFrameRate will be used as the value of frameDuration. Otherwise, a default framerate of 30fps is used.
+        /// - If the specified asset is an instance of AVComposition, the renderSize will be set to the naturalSize of the AVComposition; otherwise the renderSize will be set to a value that encompasses all of the asset's video tracks.
+        /// - A renderScale of 1.0.
+        /// - A nil animationTool.
+        ///
+        /// If the specified asset has no video tracks, this method will return an AVVideoComposition instance with an empty collection of instructions.
         #[deprecated = "Use videoCompositionWithPropertiesOfAsset:completionHandler: instead"]
         #[method_id(@__retain_semantics Other videoCompositionWithPropertiesOfAsset:)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset(
@@ -63,6 +91,21 @@ extern_methods!(
         ) -> Retained<AVVideoComposition>;
 
         #[cfg(all(feature = "AVAsset", feature = "block2"))]
+        /// Vends a new instance of AVVideoComposition with values and instructions suitable for presenting the video tracks of the specified asset according to its temporal and geometric properties and those of its tracks.
+        ///
+        /// Parameter `asset`: An instance of AVAsset.
+        ///
+        /// Parameter `completionHandler`: A block that is invoked when the new video composition has finished being created.  If the `videoComposition` parameter is nil, the `error` parameter describes the failure that occurred.
+        ///
+        /// The new AVVideoComposition will have instructions that respect the spatial properties and timeRanges of the specified asset's video tracks.
+        /// It will also have the following values for its properties:
+        ///
+        /// - If the asset has exactly one video track, the original timing of the source video track will be used. If the asset has more than one video track, and the nominal frame rate of any of video tracks is known, the reciprocal of the greatest known nominalFrameRate will be used as the value of frameDuration. Otherwise, a default framerate of 30fps is used.
+        /// - If the specified asset is an instance of AVComposition, the renderSize will be set to the naturalSize of the AVComposition; otherwise the renderSize will be set to a value that encompasses all of the asset's video tracks.
+        /// - A renderScale of 1.0.
+        /// - A nil animationTool.
+        ///
+        /// If the specified asset has no video tracks, this method will return an AVVideoComposition instance with an empty collection of instructions.
         #[method(videoCompositionWithPropertiesOfAsset:completionHandler:)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_completionHandler(
             asset: &AVAsset,
@@ -141,6 +184,41 @@ extern_methods!(
             feature = "AVVideoCompositing",
             feature = "block2"
         ))]
+        /// Returns a new instance of AVVideoComposition with values and instructions that will apply the specified handler block to video frames represented as instances of CIImage.
+        ///
+        /// Parameter `asset`: An instance of AVAsset. For best performance, ensure that the duration and tracks properties of the asset are already loaded before invoking this method.
+        ///
+        /// Returns: An instance of AVVideoComposition.
+        ///
+        /// The returned AVVideoComposition will cause the specified handler block to be called to filter each frame of the asset's first enabled video track. The handler block should use the properties of the provided AVAsynchronousCIImageFilteringRequest and respond using finishWithImage:context: with a "filtered" new CIImage (or the provided source image for no affect). In the event of an error, respond to the request using finishWithError:. The error can be observed via AVPlayerItemFailedToPlayToEndTimeNotification, see AVPlayerItemFailedToPlayToEndTimeErrorKey in notification payload.
+        ///
+        /// NOTE: The returned AVVideoComposition's properties are private and support only CIFilter-based operations. Mutations are not supported, either in the values of properties of the AVVideoComposition itself or in its private instructions. If rotations or other transformations are desired, they must be accomplished via the application of CIFilters during the execution of your specified handler.
+        ///
+        /// The video composition will also have the following values for its properties:
+        ///
+        /// - The original timing of the asset's first enabled video track will be used.
+        /// - A renderSize that encompasses the asset's first enabled video track respecting the track's preferredTransform.
+        /// - A renderScale of 1.0.
+        ///
+        /// The default CIContext has the following properties:
+        ///
+        /// - iOS: Device RGB color space
+        /// - macOS: sRGB color space
+        ///
+        /// Example usage:
+        ///
+        /// playerItem.videoComposition = [AVVideoComposition videoCompositionWithAsset:srcAsset applyingCIFiltersWithHandler:
+        /// ^(AVAsynchronousCIImageFilteringRequest *request)
+        /// {
+        /// NSError *err = nil;
+        /// CIImage *filtered = myRenderer(request,
+        /// &err
+        /// );
+        /// if (filtered)
+        /// [request finishWithImage:filtered context:nil];
+        /// else
+        /// [request finishWithError:err];
+        /// }];
         #[deprecated = "Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler: instead"]
         #[method_id(@__retain_semantics Other videoCompositionWithAsset:applyingCIFiltersWithHandler:)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler(
@@ -153,6 +231,48 @@ extern_methods!(
             feature = "AVVideoCompositing",
             feature = "block2"
         ))]
+        /// Vends a new instance of AVVideoComposition with values and instructions that will apply the specified handler block to video frames represented as instances of CIImage.
+        ///
+        /// Parameter `asset`: An instance of AVAsset.
+        ///
+        /// Parameter `completionHandler`: A block that is invoked when the new video composition has finished being created.  If the `videoComposition` parameter is nil, the `error` parameter describes the failure that occurred.
+        ///
+        /// The new AVVideoComposition will cause the specified handler block to be called to filter each frame of the asset's first enabled video track. The handler block should use the properties of the provided AVAsynchronousCIImageFilteringRequest and respond using finishWithImage:context: with a "filtered" new CIImage (or the provided source image for no affect). In the event of an error, respond to the request using finishWithError:. The error can be observed via AVPlayerItemFailedToPlayToEndTimeNotification, see AVPlayerItemFailedToPlayToEndTimeErrorKey in notification payload.
+        ///
+        /// NOTE: The returned AVVideoComposition's properties are private and support only CIFilter-based operations. Mutations are not supported, either in the values of properties of the AVVideoComposition itself or in its private instructions. If rotations or other transformations are desired, they must be accomplished via the application of CIFilters during the execution of your specified handler.
+        ///
+        /// The video composition will also have the following values for its properties:
+        ///
+        /// - The original timing of the asset's first enabled video track will be used.
+        /// - A renderSize that encompasses the asset's first enabled video track respecting the track's preferredTransform.
+        /// - A renderScale of 1.0.
+        ///
+        /// The default CIContext has the following properties:
+        ///
+        /// - iOS: Device RGB color space
+        /// - macOS: sRGB color space
+        ///
+        /// Example usage:
+        ///
+        /// [AVVideoComposition videoCompositionWithAsset:srcAsset applyingCIFiltersWithHandler:
+        /// ^(AVAsynchronousCIImageFilteringRequest *request)
+        /// {
+        /// NSError *err = nil;
+        /// CIImage *filtered = myRenderer(request,
+        /// &err
+        /// );
+        /// if (filtered)
+        /// [request finishWithImage:filtered context:nil];
+        /// else
+        /// [request finishWithError:err];
+        /// } completionHandler:
+        /// ^(AVVideoComposition * _Nullable videoComposition, NSError * _Nullable error)
+        /// {
+        /// if (videoComposition != nil) {
+        /// playerItem.videoComposition = videoComposition
+        /// else {
+        /// // handle error
+        /// }];
         #[method(videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler(
             asset: &AVAsset,
@@ -189,6 +309,21 @@ extern_methods!(
         pub unsafe fn videoComposition() -> Retained<AVMutableVideoComposition>;
 
         #[cfg(feature = "AVAsset")]
+        /// Returns a new instance of AVMutableVideoComposition with values and instructions suitable for presenting the video tracks of the specified asset according to its temporal and geometric properties and those of its tracks.
+        ///
+        /// Parameter `asset`: An instance of AVAsset. For best performance, ensure that the duration and tracks properties of the asset are already loaded before invoking this method.
+        ///
+        /// Returns: An instance of AVMutableVideoComposition.
+        ///
+        /// The returned AVMutableVideoComposition will have instructions that respect the spatial properties and timeRanges of the specified asset's video tracks. The client can set sourceTrackIDForFrameTiming to kCMPersistentTrackID_Invalid and frameDuration to an appropriate value in order to specify the maximum output frame rate independent of the source track timing.
+        /// It will also have the following values for its properties:
+        ///
+        /// - If the asset has exactly one video track, the original timing of the source video track will be used. If the asset has more than one video track, and the nominal frame rate of any of video tracks is known, the reciprocal of the greatest known nominalFrameRate will be used as the value of frameDuration. Otherwise, a default framerate of 30fps is used.
+        /// - If the specified asset is an instance of AVComposition, the renderSize will be set to the naturalSize of the AVComposition; otherwise the renderSize will be set to a value that encompasses all of the asset's video tracks.
+        /// - A renderScale of 1.0.
+        /// - A nil animationTool.
+        ///
+        /// If the specified asset has no video tracks, this method will return an AVMutableVideoComposition instance with an empty collection of instructions.
         #[deprecated = "Use videoCompositionWithPropertiesOfAsset:completionHandler: instead"]
         #[method_id(@__retain_semantics Other videoCompositionWithPropertiesOfAsset:)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset(
@@ -196,6 +331,21 @@ extern_methods!(
         ) -> Retained<AVMutableVideoComposition>;
 
         #[cfg(all(feature = "AVAsset", feature = "block2"))]
+        /// Vends a new instance of AVMutableVideoComposition with values and instructions suitable for presenting the video tracks of the specified asset according to its temporal and geometric properties and those of its tracks.
+        ///
+        /// Parameter `asset`: An instance of AVAsset.
+        ///
+        /// Parameter `completionHandler`: A block that is invoked when the new video composition has finished being created.  If the `videoComposition` parameter is nil, the `error` parameter describes the failure that occurred.
+        ///
+        /// The new AVMutableVideoComposition will have instructions that respect the spatial properties and timeRanges of the specified asset's video tracks. The client can set sourceTrackIDForFrameTiming to kCMPersistentTrackID_Invalid and frameDuration to an appropriate value in order to specify the maximum output frame rate independent of the source track timing.
+        /// It will also have the following values for its properties:
+        ///
+        /// - If the asset has exactly one video track, the original timing of the source video track will be used. If the asset has more than one video track, and the nominal frame rate of any of video tracks is known, the reciprocal of the greatest known nominalFrameRate will be used as the value of frameDuration. Otherwise, a default framerate of 30fps is used.
+        /// - If the specified asset is an instance of AVComposition, the renderSize will be set to the naturalSize of the AVComposition; otherwise the renderSize will be set to a value that encompasses all of the asset's video tracks.
+        /// - A renderScale of 1.0.
+        /// - A nil animationTool.
+        ///
+        /// If the specified asset has no video tracks, this method will return an AVMutableVideoComposition instance with an empty collection of instructions.
         #[method(videoCompositionWithPropertiesOfAsset:completionHandler:)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_completionHandler(
             asset: &AVAsset,
@@ -205,6 +355,20 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVAsset")]
+        /// Returns a new instance of AVMutableVideoComposition with values and instructions suitable for presenting the video tracks of the specified asset according to its temporal and geometric properties and those of its tracks, and also overrides default properties with those from a prototypeInstruction.
+        ///
+        /// Parameter `asset`: An instance of AVAsset. For best performance, ensure that the duration and tracks properties of the asset are already loaded before invoking this method.
+        ///
+        /// Parameter `prototypeInstruction`: Custom instructions that the client can choose to override.
+        ///
+        /// Returns: An instance of AVMutableVideoComposition.
+        ///
+        /// Also see videoCompositionWithPropertiesOfAsset:.
+        /// The returned AVVideoComposition will have instructions that respect the spatial properties and timeRanges of the specified asset's video tracks. Anything not pertaining to spatial layout and timing, such as background color for their composition or post-processing behaviors, is eligible to be specified via a prototype instruction.
+        /// Example: To add a background color,
+        /// myPrototypeInstruction = [[AVMutableVideoCompositionInstruction alloc] init];
+        /// myPrototypeInstruction.backgroundColor = myCGColorRef; // Do not use constant CGColorRef colors here.
+        /// myVideoComposition = [AVVideoComposition videoCompositionWithPropertiesOfAsset:myAsset prototypeInstruction:myPrototypeInstruction];
         #[deprecated = "Use videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler: instead"]
         #[method_id(@__retain_semantics Other videoCompositionWithPropertiesOfAsset:prototypeInstruction:)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_prototypeInstruction(
@@ -213,6 +377,27 @@ extern_methods!(
         ) -> Retained<AVMutableVideoComposition>;
 
         #[cfg(all(feature = "AVAsset", feature = "block2"))]
+        /// Vends a new instance of AVMutableVideoComposition with values and instructions suitable for presenting the video tracks of the specified asset according to its temporal and geometric properties and those of its tracks, and also overrides default properties with those from a prototypeInstruction.
+        ///
+        /// Parameter `asset`: An instance of AVAsset.
+        ///
+        /// Parameter `prototypeInstruction`: Custom instructions that the client can choose to override.
+        ///
+        /// Parameter `completionHandler`: A block that is invoked when the new video composition has finished being created.  If the `videoComposition` parameter is nil, the `error` parameter describes the failure that occurred.
+        ///
+        /// Also see videoCompositionWithPropertiesOfAsset:completionHandler:.
+        /// The new AVMutableVideoComposition will have instructions that respect the spatial properties and timeRanges of the specified asset's video tracks. Anything not pertaining to spatial layout and timing, such as background color for their composition or post-processing behaviors, is eligible to be specified via a prototype instruction.
+        /// Example: To add a background color,
+        /// myPrototypeInstruction = [[AVMutableVideoCompositionInstruction alloc] init];
+        /// myPrototypeInstruction.backgroundColor = myCGColorRef; // Do not use constant CGColorRef colors here.
+        /// myVideoComposition = [AVVideoComposition videoCompositionWithPropertiesOfAsset:myAsset prototypeInstruction:myPrototypeInstruction completionHandler:^(AVMutableVideoComposition * _Nullable myVideoComposition, NSError * _Nullable error) {
+        /// if (myVideoComposition != nil) {
+        /// // use myVideoComposition
+        /// }
+        /// else {
+        /// // handle error
+        /// }
+        /// }];
         #[method(videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler:)]
         pub unsafe fn videoCompositionWithPropertiesOfAsset_prototypeInstruction_completionHandler(
             asset: &AVAsset,
@@ -227,6 +412,7 @@ extern_methods!(
         pub unsafe fn customVideoCompositorClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "AVVideoCompositing")]
+        /// Setter for [`customVideoCompositorClass`][Self::customVideoCompositorClass].
         #[method(setCustomVideoCompositorClass:)]
         pub unsafe fn setCustomVideoCompositorClass(
             &self,
@@ -238,6 +424,7 @@ extern_methods!(
         pub unsafe fn frameDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`frameDuration`][Self::frameDuration].
         #[method(setFrameDuration:)]
         pub unsafe fn setFrameDuration(&self, frame_duration: CMTime);
 
@@ -246,6 +433,7 @@ extern_methods!(
         pub unsafe fn sourceTrackIDForFrameTiming(&self) -> CMPersistentTrackID;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`sourceTrackIDForFrameTiming`][Self::sourceTrackIDForFrameTiming].
         #[method(setSourceTrackIDForFrameTiming:)]
         pub unsafe fn setSourceTrackIDForFrameTiming(
             &self,
@@ -257,12 +445,14 @@ extern_methods!(
         pub unsafe fn renderSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`renderSize`][Self::renderSize].
         #[method(setRenderSize:)]
         pub unsafe fn setRenderSize(&self, render_size: CGSize);
 
         #[method(renderScale)]
         pub unsafe fn renderScale(&self) -> c_float;
 
+        /// Setter for [`renderScale`][Self::renderScale].
         #[method(setRenderScale:)]
         pub unsafe fn setRenderScale(&self, render_scale: c_float);
 
@@ -273,6 +463,7 @@ extern_methods!(
         ) -> Retained<NSArray<ProtocolObject<dyn AVVideoCompositionInstructionProtocol>>>;
 
         #[cfg(feature = "AVVideoCompositing")]
+        /// Setter for [`instructions`][Self::instructions].
         #[method(setInstructions:)]
         pub unsafe fn setInstructions(
             &self,
@@ -283,6 +474,7 @@ extern_methods!(
         pub unsafe fn animationTool(&self)
             -> Option<Retained<AVVideoCompositionCoreAnimationTool>>;
 
+        /// Setter for [`animationTool`][Self::animationTool].
         #[method(setAnimationTool:)]
         pub unsafe fn setAnimationTool(
             &self,
@@ -292,6 +484,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other sourceSampleDataTrackIDs)]
         pub unsafe fn sourceSampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`sourceSampleDataTrackIDs`][Self::sourceSampleDataTrackIDs].
         #[method(setSourceSampleDataTrackIDs:)]
         pub unsafe fn setSourceSampleDataTrackIDs(
             &self,
@@ -317,18 +510,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other colorPrimaries)]
         pub unsafe fn colorPrimaries(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`colorPrimaries`][Self::colorPrimaries].
         #[method(setColorPrimaries:)]
         pub unsafe fn setColorPrimaries(&self, color_primaries: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other colorYCbCrMatrix)]
         pub unsafe fn colorYCbCrMatrix(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`colorYCbCrMatrix`][Self::colorYCbCrMatrix].
         #[method(setColorYCbCrMatrix:)]
         pub unsafe fn setColorYCbCrMatrix(&self, color_y_cb_cr_matrix: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other colorTransferFunction)]
         pub unsafe fn colorTransferFunction(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`colorTransferFunction`][Self::colorTransferFunction].
         #[method(setColorTransferFunction:)]
         pub unsafe fn setColorTransferFunction(&self, color_transfer_function: Option<&NSString>);
 
@@ -337,6 +533,7 @@ extern_methods!(
             &self,
         ) -> Retained<AVVideoCompositionPerFrameHDRDisplayMetadataPolicy>;
 
+        /// Setter for [`perFrameHDRDisplayMetadataPolicy`][Self::perFrameHDRDisplayMetadataPolicy].
         #[method(setPerFrameHDRDisplayMetadataPolicy:)]
         pub unsafe fn setPerFrameHDRDisplayMetadataPolicy(
             &self,
@@ -353,6 +550,39 @@ extern_methods!(
             feature = "AVVideoCompositing",
             feature = "block2"
         ))]
+        /// Returns a new instance of AVMutableVideoComposition with values and instructions that will apply the specified handler block to video frames represented as instances of CIImage.
+        ///
+        /// Parameter `asset`: An instance of AVAsset. For best performance, ensure that the duration and tracks properties of the asset are already loaded before invoking this method.
+        ///
+        /// Returns: An instance of AVMutableVideoComposition.
+        ///
+        /// The returned AVMutableVideoComposition will cause the specified handler block to be called to filter each frame of the asset's first enabled video track. The handler block should use the properties of the provided AVAsynchronousCIImageFilteringRequest and respond using finishWithImage:context: with a "filtered" new CIImage (or the provided source image for no affect). In the event of an error, respond to the request using finishWithError:. The error can be observed via AVPlayerItemFailedToPlayToEndTimeNotification, see AVPlayerItemFailedToPlayToEndTimeErrorKey in notification payload. The client can set sourceTrackIDForFrameTiming to kCMPersistentTrackID_Invalid and frameDuration to an appropriate value in order to specify the maximum output frame rate independent of the source track timing.
+        ///
+        /// The video composition will also have the following values for its properties:
+        ///
+        /// - The original timing of the asset's first enabled video track will be used.
+        /// - A renderSize that encompasses the asset's first enabled video track respecting the track's preferredTransform.
+        /// - A renderScale of 1.0.
+        ///
+        /// The default CIContext has the following properties:
+        ///
+        /// - iOS: Device RGB color space
+        /// - macOS: sRGB color space
+        ///
+        /// Example usage:
+        ///
+        /// playerItem.videoComposition = [AVMutableVideoComposition videoCompositionWithAsset:srcAsset applyingCIFiltersWithHandler:
+        /// ^(AVAsynchronousCIImageFilteringRequest *request)
+        /// {
+        /// NSError *err = nil;
+        /// CIImage *filtered = myRenderer(request,
+        /// &err
+        /// );
+        /// if (filtered)
+        /// [request finishWithImage:filtered context:nil];
+        /// else
+        /// [request finishWithError:err];
+        /// }];
         #[deprecated = "Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler: instead"]
         #[method_id(@__retain_semantics Other videoCompositionWithAsset:applyingCIFiltersWithHandler:)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler(
@@ -365,6 +595,46 @@ extern_methods!(
             feature = "AVVideoCompositing",
             feature = "block2"
         ))]
+        /// Vends a new instance of AVMutableVideoComposition with values and instructions that will apply the specified handler block to video frames represented as instances of CIImage.
+        ///
+        /// Parameter `asset`: An instance of AVAsset.
+        ///
+        /// Parameter `completionHandler`: A block that is invoked when the new video composition has finished being created.  If the `videoComposition` parameter is nil, the `error` parameter describes the failure that occurred.
+        ///
+        /// The new AVMutableVideoComposition will cause the specified handler block to be called to filter each frame of the asset's first enabled video track. The handler block should use the properties of the provided AVAsynchronousCIImageFilteringRequest and respond using finishWithImage:context: with a "filtered" new CIImage (or the provided source image for no affect). In the event of an error, respond to the request using finishWithError:. The error can be observed via AVPlayerItemFailedToPlayToEndTimeNotification, see AVPlayerItemFailedToPlayToEndTimeErrorKey in notification payload. The client can set sourceTrackIDForFrameTiming to kCMPersistentTrackID_Invalid and frameDuration to an appropriate value in order to specify the maximum output frame rate independent of the source track timing.
+        ///
+        /// The video composition will also have the following values for its properties:
+        ///
+        /// - The original timing of the asset's first enabled video track will be used.
+        /// - A renderSize that encompasses the asset's first enabled video track respecting the track's preferredTransform.
+        /// - A renderScale of 1.0.
+        ///
+        /// The default CIContext has the following properties:
+        ///
+        /// - iOS: Device RGB color space
+        /// - macOS: sRGB color space
+        ///
+        /// Example usage:
+        ///
+        /// [AVMutableVideoComposition videoCompositionWithAsset:srcAsset applyingCIFiltersWithHandler:
+        /// ^(AVAsynchronousCIImageFilteringRequest *request)
+        /// {
+        /// NSError *err = nil;
+        /// CIImage *filtered = myRenderer(request,
+        /// &err
+        /// );
+        /// if (filtered)
+        /// [request finishWithImage:filtered context:nil];
+        /// else
+        /// [request finishWithError:err];
+        /// } completionHandler:
+        /// ^(AVMutableVideoComposition * _Nullable videoComposition, NSError * _Nullable error)
+        /// {
+        /// if (videoComposition != nil) {
+        /// playerItem.videoComposition = videoComposition
+        /// else {
+        /// // handle error
+        /// }];
         #[method(videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:)]
         pub unsafe fn videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler(
             asset: &AVAsset,
@@ -483,6 +753,7 @@ extern_methods!(
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`timeRange`][Self::timeRange].
         #[method(setTimeRange:)]
         pub unsafe fn setTimeRange(&self, time_range: CMTimeRange);
 
@@ -491,6 +762,7 @@ extern_methods!(
         pub unsafe fn backgroundColor(&self) -> CGColorRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: CGColorRef);
 
@@ -499,6 +771,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSArray<AVVideoCompositionLayerInstruction>>;
 
+        /// Setter for [`layerInstructions`][Self::layerInstructions].
         #[method(setLayerInstructions:)]
         pub unsafe fn setLayerInstructions(
             &self,
@@ -508,12 +781,14 @@ extern_methods!(
         #[method(enablePostProcessing)]
         pub unsafe fn enablePostProcessing(&self) -> bool;
 
+        /// Setter for [`enablePostProcessing`][Self::enablePostProcessing].
         #[method(setEnablePostProcessing:)]
         pub unsafe fn setEnablePostProcessing(&self, enable_post_processing: bool);
 
         #[method_id(@__retain_semantics Other requiredSourceSampleDataTrackIDs)]
         pub unsafe fn requiredSourceSampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
 
+        /// Setter for [`requiredSourceSampleDataTrackIDs`][Self::requiredSourceSampleDataTrackIDs].
         #[method(setRequiredSourceSampleDataTrackIDs:)]
         pub unsafe fn setRequiredSourceSampleDataTrackIDs(
             &self,
@@ -648,6 +923,7 @@ extern_methods!(
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Setter for [`trackID`][Self::trackID].
         #[method(setTrackID:)]
         pub unsafe fn setTrackID(&self, track_id: CMPersistentTrackID);
 
@@ -704,7 +980,14 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositioncoreanimationtool?language=objc)
+    /// An AVVideoComposition object represents an immutable video composition.
+    ///
+    ///
+    /// A video composition describes, for any time in the aggregate time range of its instructions, the number and IDs of video tracks that are to be used in order to produce a composed video frame corresponding to that time. When AVFoundation's built-in video compositor is used, the instructions an AVVideoComposition contain can specify a spatial transformation, an opacity value, and a cropping rectangle for each video source, and these can vary over time via simple linear ramping functions.
+    ///
+    /// A client can implement their own custom video compositor by implementing the AVVideoCompositing protocol; a custom video compositor is provided with pixel buffers for each of its video sources during playback and other operations and can perform arbitrary graphical operations on them in order to produce visual output.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositioncoreanimationtool?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoCompositionCoreAnimationTool;
@@ -716,6 +999,18 @@ extern_methods!(
     unsafe impl AVVideoCompositionCoreAnimationTool {
         #[cfg(all(feature = "objc2-core-media", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
+        /// Add a Core Animation layer to the video composition
+        ///
+        /// Include a Core Animation layer as an individual track input in video composition.
+        /// This layer should not come from, or be added to, another layer tree.
+        /// trackID should not match any real trackID in the source. Use -[AVAsset unusedTrackID]
+        /// to obtain a trackID that's guaranteed not to coincide with the trackID of any track of the asset.
+        /// AVVideoCompositionInstructions should reference trackID where the rendered animation should be included.
+        /// For best performance, no transform should be set in the AVVideoCompositionLayerInstruction for this trackID.
+        /// Be aware that on iOS, CALayers backing a UIView usually have their content flipped (as defined by the
+        /// -contentsAreFlipped method). It may be required to insert a CALayer with its geometryFlipped property set
+        /// to YES in the layer hierarchy to get the same result when attaching a CALayer to a AVVideoCompositionCoreAnimationTool
+        /// as when using it to back a UIView.
         #[method_id(@__retain_semantics Other videoCompositionCoreAnimationToolWithAdditionalLayer:asTrackID:)]
         pub unsafe fn videoCompositionCoreAnimationToolWithAdditionalLayer_asTrackID(
             layer: &CALayer,
@@ -724,6 +1019,15 @@ extern_methods!(
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
+        /// Compose the composited video frames with the Core Animation layer
+        ///
+        /// Place composited video frames in videoLayer and render animationLayer
+        /// to produce the final frame. Normally videoLayer should be in animationLayer's sublayer tree.
+        /// The animationLayer should not come from, or be added to, another layer tree.
+        /// Be aware that on iOS, CALayers backing a UIView usually have their content flipped (as defined by the
+        /// -contentsAreFlipped method). It may be required to insert a CALayer with its geometryFlipped property set
+        /// to YES in the layer hierarchy to get the same result when attaching a CALayer to a AVVideoCompositionCoreAnimationTool
+        /// as when using it to back a UIView.
         #[method_id(@__retain_semantics Other videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:inLayer:)]
         pub unsafe fn videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer_inLayer(
             video_layer: &CALayer,
@@ -732,6 +1036,15 @@ extern_methods!(
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
+        /// Compose the composited video frames with the Core Animation layer
+        ///
+        /// Duplicate the composited video frames in each videoLayer and render animationLayer
+        /// to produce the final frame. Normally videoLayers should be in animationLayer's sublayer tree.
+        /// The animationLayer should not come from, or be added to, another layer tree.
+        /// Be aware that on iOS, CALayers backing a UIView usually have their content flipped (as defined by the
+        /// -contentsAreFlipped method). It may be required to insert a CALayer with its geometryFlipped property set
+        /// to YES in the layer hierarchy to get the same result when attaching a CALayer to a AVVideoCompositionCoreAnimationTool
+        /// as when using it to back a UIView.
         #[method_id(@__retain_semantics Other videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers:inLayer:)]
         pub unsafe fn videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers_inLayer(
             video_layers: &NSArray<CALayer>,
@@ -761,6 +1074,9 @@ extern_methods!(
         pub unsafe fn unusedTrackID(&self) -> CMPersistentTrackID;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
+        /// Loads a track ID that will not collide with any existing track
+        ///
+        /// Parameter `completionHandler`: A block that is invoked when loading is complete, vending the track ID or an error.
         #[method(findUnusedTrackIDWithCompletionHandler:)]
         pub unsafe fn findUnusedTrackIDWithCompletionHandler(
             &self,
@@ -773,6 +1089,18 @@ extern_methods!(
     /// AVVideoCompositionValidation
     unsafe impl AVVideoComposition {
         #[cfg(all(feature = "AVAsset", feature = "objc2-core-media"))]
+        /// Indicates whether the timeRanges of the receiver's instructions conform to the requirements described for them immediately above (in connection with the instructions property) and also whether all of the layer instructions have a value for trackID that corresponds either to a track of the specified asset or to the receiver's animationTool.
+        ///
+        /// Parameter `asset`: Pass a reference to an AVAsset if you wish to validate the timeRanges of the instructions against the duration of the asset and the trackIDs of the layer instructions against the asset's tracks. Pass nil to skip that validation. Clients should ensure that the keys
+        /// "
+        /// tracks" and @"duration" are already loaded on the AVAsset before validation is attempted.
+        ///
+        /// Parameter `timeRange`: A CMTimeRange.  Only those instructions with timeRanges that overlap with the specified timeRange will be validated. To validate all instructions that may be used for playback or other processing, regardless of timeRange, pass CMTimeRangeMake(kCMTimeZero, kCMTimePositiveInfinity).
+        ///
+        /// Parameter `validationDelegate`: Indicates an object implementing the AVVideoCompositionValidationHandling protocol to receive information about troublesome portions of a video composition during processing of -isValidForAsset:. May be nil.
+        ///
+        /// In the course of validation, the receiver will invoke its validationDelegate with reference to any trouble spots in the video composition.
+        /// An exception will be raised if the delegate modifies the receiver's array of instructions or the array of layerInstructions of any AVVideoCompositionInstruction contained therein during validation.
         #[deprecated = "Use isValidForTracks:assetDuration:timeRange:validationDelegate: instead"]
         #[method(isValidForAsset:timeRange:validationDelegate:)]
         pub unsafe fn isValidForAsset_timeRange_validationDelegate(
@@ -783,6 +1111,18 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "AVAsset", feature = "block2", feature = "objc2-core-media"))]
+        /// Determines whether the timeRanges of the receiver's instructions conform to the requirements described for them immediately above (in connection with the instructions property) and also whether all of the layer instructions have a value for trackID that corresponds either to a track of the specified asset or to the receiver's animationTool.
+        ///
+        /// Parameter `asset`: Pass a reference to an AVAsset if you wish to validate the timeRanges of the instructions against the duration of the asset and the trackIDs of the layer instructions against the asset's tracks. Pass nil to skip that validation.
+        ///
+        /// Parameter `timeRange`: A CMTimeRange.  Only those instructions with timeRanges that overlap with the specified timeRange will be validated. To validate all instructions that may be used for playback or other processing, regardless of timeRange, pass CMTimeRangeMake(kCMTimeZero, kCMTimePositiveInfinity).
+        ///
+        /// Parameter `validationDelegate`: Indicates an object implementing the AVVideoCompositionValidationHandling protocol to receive information about troublesome portions of a video composition during processing of -determineValidityForAsset:. May be nil.
+        ///
+        /// Parameter `completionHandler`: A block that is invoked when a determination is made about whether the video composition is valid.  If the `isValid` parameter is NO, either the video composition is not valid, in which case the `error` parameter will be nil, or the answer could not be determined, in which case the `error` parameter will be non-nil and describe the failure that occurred.
+        ///
+        /// In the course of validation, the receiver will invoke its validationDelegate with reference to any trouble spots in the video composition.
+        /// An exception will be raised if the delegate modifies the receiver's array of instructions or the array of layerInstructions of any AVVideoCompositionInstruction contained therein during validation.
         #[deprecated]
         #[method(determineValidityForAsset:timeRange:validationDelegate:completionHandler:)]
         pub unsafe fn determineValidityForAsset_timeRange_validationDelegate_completionHandler(
@@ -794,6 +1134,18 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "AVAssetTrack", feature = "objc2-core-media"))]
+        /// Indicates whether the timeRanges of the receiver's instructions conform to the requirements described for them immediately above (in connection with the instructions property) and also whether all of the layer instructions have a value for trackID that corresponds either to a track of the specified asset or to the receiver's animationTool.
+        ///
+        /// Parameter `tracks`: Pass a reference to an AVAsset's tracks if you wish to validate the trackIDs of the layer instructions against the asset's tracks. Pass nil to skip that validation. This method throws an exception if the tracks are not all from the same asset.
+        ///
+        /// Parameter `duration`: Pass an AVAsset if you wish to validate the timeRanges of the instructions against the duration of the asset. Pass kCMTimeInvalid to skip that validation.
+        ///
+        /// Parameter `timeRange`: A CMTimeRange.  Only those instructions with timeRanges that overlap with the specified timeRange will be validated. To validate all instructions that may be used for playback or other processing, regardless of timeRange, pass CMTimeRangeMake(kCMTimeZero, kCMTimePositiveInfinity).
+        ///
+        /// Parameter `validationDelegate`: Indicates an object implementing the AVVideoCompositionValidationHandling protocol to receive information about troublesome portions of a video composition during processing of -isValidForAsset:. May be nil.
+        ///
+        /// In the course of validation, the receiver will invoke its validationDelegate with reference to any trouble spots in the video composition.
+        /// An exception will be raised if the delegate modifies the receiver's array of instructions or the array of layerInstructions of any AVVideoCompositionInstruction contained therein during validation.
         #[method(isValidForTracks:assetDuration:timeRange:validationDelegate:)]
         pub unsafe fn isValidForTracks_assetDuration_timeRange_validationDelegate(
             &self,
@@ -808,6 +1160,9 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositionvalidationhandling?language=objc)
     pub unsafe trait AVVideoCompositionValidationHandling: NSObjectProtocol {
+        /// Invoked by an instance of AVVideoComposition when validating an instance of AVVideoComposition, to report a key that has an invalid value.
+        ///
+        /// Returns: An indication of whether the AVVideoComposition should continue validation in order to report additional problems that may exist.
         #[optional]
         #[method(videoComposition:shouldContinueValidatingAfterFindingInvalidValueForKey:)]
         unsafe fn videoComposition_shouldContinueValidatingAfterFindingInvalidValueForKey(
@@ -817,6 +1172,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Invoked by an instance of AVVideoComposition when validating an instance of AVVideoComposition, to report a timeRange that has no corresponding video composition instruction.
+        ///
+        /// Returns: An indication of whether the AVVideoComposition should continue validation in order to report additional problems that may exist.
         #[optional]
         #[method(videoComposition:shouldContinueValidatingAfterFindingEmptyTimeRange:)]
         unsafe fn videoComposition_shouldContinueValidatingAfterFindingEmptyTimeRange(
@@ -826,6 +1184,11 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "AVVideoCompositing")]
+        /// Invoked by an instance of AVVideoComposition when validating an instance of AVVideoComposition, to report a video composition instruction with a timeRange that's invalid, that overlaps with the timeRange of a prior instruction, or that contains times earlier than the timeRange of a prior instruction.
+        ///
+        /// Use CMTIMERANGE_IS_INVALID, defined in CMTimeRange.h, to test whether the timeRange itself is invalid. Refer to headerdoc for AVVideoComposition.instructions for a discussion of how timeRanges for instructions must be formulated.
+        ///
+        /// Returns: An indication of whether the AVVideoComposition should continue validation in order to report additional problems that may exist.
         #[optional]
         #[method(videoComposition:shouldContinueValidatingAfterFindingInvalidTimeRangeInInstruction:)]
         unsafe fn videoComposition_shouldContinueValidatingAfterFindingInvalidTimeRangeInInstruction(
@@ -837,6 +1200,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(all(feature = "AVAsset", feature = "AVVideoCompositing"))]
+        /// Invoked by an instance of AVVideoComposition when validating an instance of AVVideoComposition, to report a video composition layer instruction with a trackID that does not correspond either to the trackID used for the composition's animationTool or to a track of the asset specified in -[AVVideoComposition isValidForAsset:timeRange:delegate:].
+        ///
+        /// Returns: An indication of whether the AVVideoComposition should continue validation in order to report additional problems that may exist.
         #[optional]
         #[method(videoComposition:shouldContinueValidatingAfterFindingInvalidTrackIDInInstruction:layerInstruction:asset:)]
         unsafe fn videoComposition_shouldContinueValidatingAfterFindingInvalidTrackIDInInstruction_layerInstruction_asset(

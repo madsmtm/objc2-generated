@@ -13,10 +13,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UICellConfigurationDragState(pub NSInteger);
 impl UICellConfigurationDragState {
+    /// The cell is not associated with a drag session.
     #[doc(alias = "UICellConfigurationDragStateNone")]
     pub const None: Self = Self(0);
+    /// The cell is being lifted, before has joined a drag session.
     #[doc(alias = "UICellConfigurationDragStateLifting")]
     pub const Lifting: Self = Self(1);
+    /// The cell is part of an active drag session.
     #[doc(alias = "UICellConfigurationDragStateDragging")]
     pub const Dragging: Self = Self(2);
 }
@@ -35,10 +38,14 @@ unsafe impl RefEncode for UICellConfigurationDragState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UICellConfigurationDropState(pub NSInteger);
 impl UICellConfigurationDropState {
+    /// The cell is not associated with a drag session.
     #[doc(alias = "UICellConfigurationDropStateNone")]
     pub const None: Self = Self(0);
+    /// A drag session is active and may perform a drop in the cell's container, but the cell itself
+    /// is not the drop target.
     #[doc(alias = "UICellConfigurationDropStateNotTargeted")]
     pub const NotTargeted: Self = Self(1);
+    /// The cell is the drop target for a drag session.
     #[doc(alias = "UICellConfigurationDropStateTargeted")]
     pub const Targeted: Self = Self(2);
 }
@@ -86,36 +93,42 @@ extern_methods!(
         #[method(isEditing)]
         pub unsafe fn isEditing(&self) -> bool;
 
+        /// Setter for [`isEditing`][Self::isEditing].
         #[method(setEditing:)]
         pub unsafe fn setEditing(&self, editing: bool);
 
         #[method(isExpanded)]
         pub unsafe fn isExpanded(&self) -> bool;
 
+        /// Setter for [`isExpanded`][Self::isExpanded].
         #[method(setExpanded:)]
         pub unsafe fn setExpanded(&self, expanded: bool);
 
         #[method(isSwiped)]
         pub unsafe fn isSwiped(&self) -> bool;
 
+        /// Setter for [`isSwiped`][Self::isSwiped].
         #[method(setSwiped:)]
         pub unsafe fn setSwiped(&self, swiped: bool);
 
         #[method(isReordering)]
         pub unsafe fn isReordering(&self) -> bool;
 
+        /// Setter for [`isReordering`][Self::isReordering].
         #[method(setReordering:)]
         pub unsafe fn setReordering(&self, reordering: bool);
 
         #[method(cellDragState)]
         pub unsafe fn cellDragState(&self) -> UICellConfigurationDragState;
 
+        /// Setter for [`cellDragState`][Self::cellDragState].
         #[method(setCellDragState:)]
         pub unsafe fn setCellDragState(&self, cell_drag_state: UICellConfigurationDragState);
 
         #[method(cellDropState)]
         pub unsafe fn cellDropState(&self) -> UICellConfigurationDropState;
 
+        /// Setter for [`cellDropState`][Self::cellDropState].
         #[method(setCellDropState:)]
         pub unsafe fn setCellDropState(&self, cell_drop_state: UICellConfigurationDropState);
     }
@@ -126,6 +139,7 @@ extern_methods!(
     #[cfg(feature = "UIViewConfigurationState")]
     unsafe impl UICellConfigurationState {
         #[cfg(feature = "UITraitCollection")]
+        /// Returns a new instance with the specified trait collection.
         #[method_id(@__retain_semantics Init initWithTraitCollection:)]
         pub unsafe fn initWithTraitCollection(
             this: Allocated<Self>,

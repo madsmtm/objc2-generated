@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcontactsprescription?language=objc)
+    /// An object representing a contacts prescription
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcontactsprescription?language=objc)
     #[unsafe(super(HKVisionPrescription, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -80,6 +82,7 @@ extern_methods!(
             feature = "HKContactsLensSpecification",
             feature = "HKLensSpecification"
         ))]
+        /// The right eye lens specification
         #[method_id(@__retain_semantics Other rightEye)]
         pub unsafe fn rightEye(&self) -> Option<Retained<HKContactsLensSpecification>>;
 
@@ -87,9 +90,11 @@ extern_methods!(
             feature = "HKContactsLensSpecification",
             feature = "HKLensSpecification"
         ))]
+        /// The left eye lens specification
         #[method_id(@__retain_semantics Other leftEye)]
         pub unsafe fn leftEye(&self) -> Option<Retained<HKContactsLensSpecification>>;
 
+        /// The prescribed brand after contact lens fitting
         #[method_id(@__retain_semantics Other brand)]
         pub unsafe fn brand(&self) -> Retained<NSString>;
 
@@ -98,6 +103,19 @@ extern_methods!(
             feature = "HKDevice",
             feature = "HKLensSpecification"
         ))]
+        /// Parameter `rightEyeSpecification`: The right eye specification
+        ///
+        /// Parameter `leftEyeSpecification`: The left eye specification
+        ///
+        /// Parameter `brand`: The prescribed brand after contact lens fitting
+        ///
+        /// Parameter `dateIssued`: The date the prescription was issued
+        ///
+        /// Parameter `expirationDate`: The date the prescription expires
+        ///
+        /// Parameter `device`: The device that generated the sample
+        ///
+        /// Parameter `metadata`: The metadata for the sample
         #[method_id(@__retain_semantics Other prescriptionWithRightEyeSpecification:leftEyeSpecification:brand:dateIssued:expirationDate:device:metadata:)]
         pub unsafe fn prescriptionWithRightEyeSpecification_leftEyeSpecification_brand_dateIssued_expirationDate_device_metadata(
             right_eye_specification: Option<&HKContactsLensSpecification>,

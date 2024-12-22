@@ -24,6 +24,7 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn UITextDropDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`textDropDelegate`][Self::textDropDelegate].
         #[method(setTextDropDelegate:)]
         unsafe fn setTextDropDelegate(
             &self,

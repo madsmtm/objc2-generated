@@ -9,7 +9,11 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscribbleinteraction?language=objc)
+    /// An interaction that allows customizing the behavior of Scribble on text input views, or suppress it entirely in specific cases.
+    /// By default, Scribble allows the user to enter text by handwriting directly into any view that implements UITextInput and is editable. In apps with customized text fields, you can use UIScribbleInteraction's delegate callbacks to optimize the UI for a better writing experience. For example, you might want to hide custom placeholders when writing begins, or request delaying focusing the field if it moves when gaining focus.
+    /// In some cases it is necessary to suppress Scribble, for example if a text view also supports drawing with Apple Pencil. You may also need to suppress Scribble in views that handle Pencil events directly, like a drawing canvas, since nearby text fields could take over the Pencil events for writing.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscribbleinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -35,14 +39,17 @@ extern_methods!(
             delegate: &ProtocolObject<dyn UIScribbleInteractionDelegate>,
         ) -> Retained<Self>;
 
+        /// The delegate for the interaction, specified on init.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIScribbleInteractionDelegate>>>;
 
+        /// : Indicates if the user is actively writing. It will be set to YES in between calls to scribbleInteractionWillBeginWriting: and scribbleInteractionDidFinishWriting:
         #[method(isHandlingWriting)]
         pub unsafe fn isHandlingWriting(&self) -> bool;
 
+        /// A readonly class property that indicates the user is likely to use Apple Pencil and Scribble to enter text instead of the keyboard. In this case it is recommended to adjust the layout of UI elements that are not optimal for direct handwriting input. For example, small or resizable text fields that expect more than a few words could be made taller and reserve some whitespace at the bottom.
         #[method(isPencilInputExpected)]
         pub unsafe fn isPencilInputExpected(mtm: MainThreadMarker) -> bool;
     }
@@ -54,6 +61,15 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Allows the delegate to prevent Scribble from starting at a specific location in the view. If not implemented, defaults to YES.
+        /// You can use this callback to temporarily suppress Scribble in text input views if your app supports drawing over text or other special interaction when using Apple Pencil. In cases like this, it's recommended to provide a UI affordance for the user to toggle between drawing and handwriting.
+        /// This callback can also return NO for views that handle Pencil events directly, like a drawing canvas, since nearby text fields could take over the Pencil events for writing.
+        ///
+        /// Parameter `interaction`: The interaction asking if it can begin handling user input.
+        ///
+        /// Parameter `location`: The location in the interaction's view coordinate system.
+        ///
+        /// Returns: Return NO to disallow writing at the specified location.
         #[optional]
         #[method(scribbleInteraction:shouldBeginAtLocation:)]
         unsafe fn scribbleInteraction_shouldBeginAtLocation(
@@ -62,6 +78,12 @@ extern_protocol!(
             location: CGPoint,
         ) -> bool;
 
+        /// Allow the delegate to delay focusing (making first responder) the text input view. Normally, Scribble will focus the target input as soon as the user begins writing, but if you return YES from this callback, it will wait until the user makes a brief pause. This is useful in cases where the text input view will shift or transform when becoming first responder, which can be disruptive to a user trying to handwrite into it.
+        /// Wherever possible it is preferable to adjust the UI behavior to avoid the layout changes, and only use delayed focus as a last resort, since transcription will happen all at once instead of incrementally.
+        ///
+        /// Parameter `interaction`: The interaction asking about delaying focus.
+        ///
+        /// Returns: Return YES to delay focusing the text input.
         #[optional]
         #[method(scribbleInteractionShouldDelayFocus:)]
         unsafe fn scribbleInteractionShouldDelayFocus(
@@ -69,10 +91,16 @@ extern_protocol!(
             interaction: &UIScribbleInteraction,
         ) -> bool;
 
+        /// Will be called when the user begins writing into the interaction's view. This call will always be paired with a corresponding call to scribbleInteractionDidFinishWriting:. It is recommended to use this call to hide custom placeholders or other UI elements that can interfere with writing.
+        ///
+        /// Parameter `interaction`: The interaction notifying about writing state changes.
         #[optional]
         #[method(scribbleInteractionWillBeginWriting:)]
         unsafe fn scribbleInteractionWillBeginWriting(&self, interaction: &UIScribbleInteraction);
 
+        /// Will be called when the user finished writing into the interaction's view, after the last word has been transcribed and committed.
+        ///
+        /// Parameter `interaction`: The interaction notifying about writing state changes.
         #[optional]
         #[method(scribbleInteractionDidFinishWriting:)]
         unsafe fn scribbleInteractionDidFinishWriting(&self, interaction: &UIScribbleInteraction);

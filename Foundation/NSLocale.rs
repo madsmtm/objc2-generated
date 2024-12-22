@@ -93,6 +93,7 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the identifier for the language part of the locale. For example, returns "en-US" for "en_US@rg=gbzzzz"  locale.
         #[method_id(@__retain_semantics Other languageIdentifier)]
         pub unsafe fn languageIdentifier(&self) -> Retained<NSString>;
 
@@ -109,6 +110,9 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
+        /// Returns the region code of the locale.
+        /// If the `rg` subtag is present, the value of the subtag will be used. For example,  returns "GB" for "en_US@rg=gbzzzz" locale.
+        /// If the `localeIdentifier` doesn’t contain a region, returns `nil`.
         #[method_id(@__retain_semantics Other regionCode)]
         pub unsafe fn regionCode(&self) -> Option<Retained<NSString>>;
 

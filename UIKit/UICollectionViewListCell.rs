@@ -132,38 +132,55 @@ extern_methods!(
     ))]
     unsafe impl UICollectionViewListCell {
         #[cfg(feature = "UIListContentConfiguration")]
+        /// Returns a default list content configuration for the cell's style.
         #[method_id(@__retain_semantics Other defaultContentConfiguration)]
         pub unsafe fn defaultContentConfiguration(&self) -> Retained<UIListContentConfiguration>;
 
+        /// Defines the level of indentation for this cell. This is set automatically when using a hierarchical data source.
         #[method(indentationLevel)]
         pub unsafe fn indentationLevel(&self) -> NSInteger;
 
+        /// Setter for [`indentationLevel`][Self::indentationLevel].
         #[method(setIndentationLevel:)]
         pub unsafe fn setIndentationLevel(&self, indentation_level: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The width of an indentation level. The overall indentation will be indentationWidth * indentationLevel.
         #[method(indentationWidth)]
         pub unsafe fn indentationWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`indentationWidth`][Self::indentationWidth].
         #[method(setIndentationWidth:)]
         pub unsafe fn setIndentationWidth(&self, indentation_width: CGFloat);
 
+        /// Defines whether accessories on the leading side are indented as well. If NO, only the content view will be indented.
+        /// Defaults to YES.
         #[method(indentsAccessories)]
         pub unsafe fn indentsAccessories(&self) -> bool;
 
+        /// Setter for [`indentsAccessories`][Self::indentsAccessories].
         #[method(setIndentsAccessories:)]
         pub unsafe fn setIndentsAccessories(&self, indents_accessories: bool);
 
         #[cfg(feature = "UICellAccessory")]
+        /// All the accessories that should be decorating the cell. The order and whether an accessory is
+        /// rendered on the leading or trailing side of the cell is defined by the system.
         #[method_id(@__retain_semantics Other accessories)]
         pub unsafe fn accessories(&self) -> Retained<NSArray<UICellAccessory>>;
 
         #[cfg(feature = "UICellAccessory")]
+        /// Setter for [`accessories`][Self::accessories].
         #[method(setAccessories:)]
         pub unsafe fn setAccessories(&self, accessories: &NSArray<UICellAccessory>);
 
         #[cfg(feature = "UILayoutGuide")]
+        /// When used in a section that supports separators, this guide can be used to adjust the preferred
+        /// insets of the separators. To align the separators to your content, add constraints to the leading
+        /// or trailing anchors of this layout guide. When a system-provided content configuration is applied
+        /// to the cell, the separator will be automatically aligned to the primary text in the content view.
+        ///
+        /// See: UICollectionLayoutListConfiguration
         #[method_id(@__retain_semantics Other separatorLayoutGuide)]
         pub unsafe fn separatorLayoutGuide(&self) -> Retained<UILayoutGuide>;
     }

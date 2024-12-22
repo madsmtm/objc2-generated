@@ -8,7 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefibootloader?language=objc)
+    /// Boot loader configuration for booting guest operating systems expecting an EFI ROM.
+    ///
+    /// You must use a VZGenericPlatformConfiguration in conjunction with the EFI boot loader.
+    /// It is invalid to use it with any other platform configuration.
+    ///
+    /// See: VZGenericPlatformConfiguration
+    ///
+    /// See: VZVirtualMachineConfiguration.platform.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefibootloader?language=objc)
     #[unsafe(super(VZBootLoader, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZBootLoader")]
@@ -33,10 +42,12 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZEFIVariableStore")]
+        /// The EFI variable store.
         #[method_id(@__retain_semantics Other variableStore)]
         pub unsafe fn variableStore(&self) -> Option<Retained<VZEFIVariableStore>>;
 
         #[cfg(feature = "VZEFIVariableStore")]
+        /// Setter for [`variableStore`][Self::variableStore].
         #[method(setVariableStore:)]
         pub unsafe fn setVariableStore(&self, variable_store: Option<&VZEFIVariableStore>);
     }

@@ -106,6 +106,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other applicationUsername)]
         pub unsafe fn applicationUsername(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`applicationUsername`][Self::applicationUsername].
         #[deprecated = "Create a Product.PurchaseOption.appAccountToken to use in Product.purchase(confirmIn:options:)"]
         #[method(setApplicationUsername:)]
         pub unsafe fn setApplicationUsername(&self, application_username: Option<&NSString>);
@@ -116,6 +117,7 @@ extern_methods!(
         pub unsafe fn paymentDiscount(&self) -> Option<Retained<SKPaymentDiscount>>;
 
         #[cfg(feature = "SKPaymentDiscount")]
+        /// Setter for [`paymentDiscount`][Self::paymentDiscount].
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
         #[method(setPaymentDiscount:)]
         pub unsafe fn setPaymentDiscount(&self, payment_discount: Option<&SKPaymentDiscount>);
@@ -124,6 +126,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other productIdentifier)]
         pub unsafe fn productIdentifier(&self) -> Retained<NSString>;
 
+        /// Setter for [`productIdentifier`][Self::productIdentifier].
         #[deprecated = "Use Product.purchase(confirmIn:options:)"]
         #[method(setProductIdentifier:)]
         pub unsafe fn setProductIdentifier(&self, product_identifier: &NSString);
@@ -132,6 +135,7 @@ extern_methods!(
         #[method(quantity)]
         pub unsafe fn quantity(&self) -> NSInteger;
 
+        /// Setter for [`quantity`][Self::quantity].
         #[deprecated = "Create a Product.PurchaseOption.quantity to use in Product.purchase(confirmIn:options:)"]
         #[method(setQuantity:)]
         pub unsafe fn setQuantity(&self, quantity: NSInteger);
@@ -140,6 +144,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other requestData)]
         pub unsafe fn requestData(&self) -> Option<Retained<NSData>>;
 
+        /// Setter for [`requestData`][Self::requestData].
         #[deprecated = "Create Product.PurchaseOption.custom values to use in Product.purchase(confirmIn:options:)"]
         #[method(setRequestData:)]
         pub unsafe fn setRequestData(&self, request_data: Option<&NSData>);
@@ -148,6 +153,7 @@ extern_methods!(
         #[method(simulatesAskToBuyInSandbox)]
         pub unsafe fn simulatesAskToBuyInSandbox(&self) -> bool;
 
+        /// Setter for [`simulatesAskToBuyInSandbox`][Self::simulatesAskToBuyInSandbox].
         #[deprecated = "Create a Product.PurchaseOption.simulatesAskToBuyInSandbox to use in Product.purchase(confirmIn:options:)"]
         #[method(setSimulatesAskToBuyInSandbox:)]
         pub unsafe fn setSimulatesAskToBuyInSandbox(&self, simulates_ask_to_buy_in_sandbox: bool);

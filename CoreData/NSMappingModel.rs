@@ -44,6 +44,7 @@ extern_methods!(
         pub unsafe fn entityMappings(&self) -> Option<Retained<NSArray<NSEntityMapping>>>;
 
         #[cfg(feature = "NSEntityMapping")]
+        /// Setter for [`entityMappings`][Self::entityMappings].
         #[method(setEntityMappings:)]
         pub unsafe fn setEntityMappings(&self, entity_mappings: Option<&NSArray<NSEntityMapping>>);
 

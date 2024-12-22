@@ -29,6 +29,8 @@ extern_methods!(
         pub unsafe fn decisionApplyingAction(action: &MEMessageAction) -> Retained<Self>;
 
         #[cfg(feature = "MEMessageAction")]
+        /// Creates an
+        /// `MEMessageActionDecision`with multiple actions. Conflicting actions will be ignored.
         #[method_id(@__retain_semantics Other decisionApplyingActions:)]
         pub unsafe fn decisionApplyingActions(actions: &NSArray<MEMessageAction>)
             -> Retained<Self>;

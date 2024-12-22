@@ -8,7 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciplugin?language=objc)
+    /// The CIPlugIn class is responsible for loading Image Units.
+    ///
+    /// The implementation of the CIPlugIn objects is private.
+    /// An application can, however, call the 2 public class method to load plug-ins.
+    ///
+    /// Loading executable CIFilter plugins is deprecated starting in macOS 10.15.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciplugin?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIPlugIn;
@@ -18,13 +25,19 @@ unsafe impl NSObjectProtocol for CIPlugIn {}
 
 extern_methods!(
     unsafe impl CIPlugIn {
+        /// This call will scan for plugins with the extension .plugin in
+        /// /Library/Graphics/Image Units
+        /// ~Library/Graphics/Image Units
+        /// If called more than once, newly added plug-ins will be loaded but you cannot remove a plug-in and its filters.
         #[deprecated]
         #[method(loadAllPlugIns)]
         pub unsafe fn loadAllPlugIns();
 
+        /// Same as loadAllPlugIns does not load filters that contain executable code.
         #[method(loadNonExecutablePlugIns)]
         pub unsafe fn loadNonExecutablePlugIns();
 
+        /// Loads a plug-in specified by its URL.
         #[deprecated]
         #[method(loadPlugIn:allowNonExecutable:)]
         pub unsafe fn loadPlugIn_allowNonExecutable(
@@ -32,6 +45,8 @@ extern_methods!(
             allow_non_executable: bool,
         );
 
+        /// Loads a plug-in specified by its URL.
+        /// If allowExecutableCode is NO, filters containing executable code will not be loaded. If YES, any kind of filter will be loaded.
         #[deprecated]
         #[method(loadPlugIn:allowExecutableCode:)]
         pub unsafe fn loadPlugIn_allowExecutableCode(
@@ -39,6 +54,8 @@ extern_methods!(
             allow_executable_code: bool,
         );
 
+        /// Loads a non-executable plug-in specified by its URL.
+        /// If the filters containing executable code, it will not be loaded.
         #[method(loadNonExecutablePlugIn:)]
         pub unsafe fn loadNonExecutablePlugIn(url: Option<&NSURL>);
     }

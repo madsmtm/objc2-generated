@@ -451,36 +451,83 @@ extern "C-unwind" {
     ) -> CFStringRef;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebufferref?language=objc)
+/// Base type for all CoreVideo image buffers
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebufferref?language=objc)
 #[cfg(feature = "CVBuffer")]
 pub type CVImageBufferRef = CVBufferRef;
 
 extern "C-unwind" {
+    /// Returns the full encoded dimensions of a CVImageBuffer.  For example, for an NTSC DV frame this would be 720x480
+    ///
+    /// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the encoded size from.
+    ///
+    /// Returns: A CGSize returning the full encoded size of the buffer
+    /// Returns zero size if called with a non-CVImageBufferRef type or NULL.
     #[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
     pub fn CVImageBufferGetEncodedSize(image_buffer: CVImageBufferRef) -> CGSize;
 }
 
 extern "C-unwind" {
+    /// Returns the nominal output display size (in square pixels) of a CVImageBuffer.
+    /// For example, for an NTSC DV frame this would be 640x480
+    ///
+    /// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the display size from.
+    ///
+    /// Returns: A CGSize returning the nominal display size of the buffer
+    /// Returns zero size if called with a non-CVImageBufferRef type or NULL.
     #[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
     pub fn CVImageBufferGetDisplaySize(image_buffer: CVImageBufferRef) -> CGSize;
 }
 
 extern "C-unwind" {
+    /// Returns the source rectangle of a CVImageBuffer that represents the clean aperture
+    /// of the buffer in encoded pixels.    For example, an NTSC DV frame would return a CGRect with an
+    /// origin of 8,0 and a size of 704,480.
+    /// Note that the origin of this rect always the lower left    corner.   This is the same coordinate system as
+    /// used by CoreImage.
+    ///
+    /// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the display size from.
+    ///
+    /// Returns: A CGSize returning the nominal display size of the buffer
+    /// Returns zero rect if called with a non-CVImageBufferRef type or NULL.
     #[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
     pub fn CVImageBufferGetCleanRect(image_buffer: CVImageBufferRef) -> CGRect;
 }
 
 extern "C-unwind" {
+    /// Returns whether the image is flipped vertically or not.
+    ///
+    /// Parameter `imageBuffer`: target
+    ///
+    /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left.
     #[cfg(feature = "CVBuffer")]
     pub fn CVImageBufferIsFlipped(image_buffer: CVImageBufferRef) -> Boolean;
 }
 
 extern "C-unwind" {
+    /// Returns the color space of a CVImageBuffer.
+    ///
+    /// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the color space from.
+    ///
+    /// Returns: A CGColorSpaceRef representing the color space of the buffer.
+    /// Returns NULL if called with a non-CVImageBufferRef type or NULL.
     #[cfg(all(feature = "CVBuffer", feature = "objc2-core-graphics"))]
     pub fn CVImageBufferGetColorSpace(image_buffer: CVImageBufferRef) -> CGColorSpaceRef;
 }
 
 extern "C-unwind" {
+    /// Attempts to synthesize a CGColorSpace from an image buffer's attachments.
+    ///
+    /// Parameter `attachments`: A CFDictionary of attachments for an image buffer, obtained using CVBufferCopyAttachments().
+    ///
+    /// Returns: A CGColorSpaceRef representing the color space of the buffer.
+    /// Returns NULL if the attachments dictionary does not contain the information required to synthesize a CGColorSpace.
+    ///
+    /// To generate a CGColorSpace, the attachments dictionary should include values for either:
+    /// 1. kCVImageBufferICCProfile
+    /// 2. kCVImageBufferColorPrimariesKey, kCVImageBufferTransferFunctionKey, and kCVImageBufferYCbCrMatrixKey (and possibly kCVImageBufferGammaLevelKey)
+    /// The client is responsible for releasing the CGColorSpaceRef when it is done with it (CGColorSpaceRelease() or CFRelease())
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
     pub fn CVImageBufferCreateColorSpaceFromAttachments(
         attachments: CFDictionaryRef,
@@ -512,13 +559,26 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferregionofinterestkey?language=objc)
+    /// Specifies region of interest that image statistics cover.
+    ///
+    /// This value should be a CGRect dictionary created by CGRectCreateDictionaryRepresentation(). The origin in the CGRect represents the x,y coordinate within the CVPixelBuffer where region of interest is located.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferregionofinterestkey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCVImageBufferRegionOfInterestKey: CFStringRef;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferlogtransferfunctionkey?language=objc)
+    /// Indicates that the transfer function or gamma of the content is a log format and identifies the specific log curve.
+    ///
+    /// The value is a CFString holding fully specified reverse DNS identifier.
+    /// Content captured in Apple Log will have this key set to kCVImageBufferLogTransferFunction_AppleLog.
+    ///
+    /// Indicates the Apple Log identifier.
+    ///
+    /// You can download the Apple Log Profile White Paper from the Apple Developer Downloads website.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferlogtransferfunctionkey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCVImageBufferLogTransferFunctionKey: CFStringRef;
 }

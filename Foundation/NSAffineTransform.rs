@@ -126,6 +126,7 @@ extern_methods!(
         pub unsafe fn transformStruct(&self) -> NSAffineTransformStruct;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`transformStruct`][Self::transformStruct].
         #[method(setTransformStruct:)]
         pub unsafe fn setTransformStruct(&self, transform_struct: NSAffineTransformStruct);
     }

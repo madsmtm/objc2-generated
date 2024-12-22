@@ -96,6 +96,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pinTintColor)]
         pub unsafe fn pinTintColor(&self) -> Option<Retained<NSColor>>;
 
+        /// Setter for [`pinTintColor`][Self::pinTintColor].
         #[method(setPinTintColor:)]
         pub unsafe fn setPinTintColor(&self, pin_tint_color: Option<&NSColor>);
 
@@ -103,6 +104,7 @@ extern_methods!(
         #[method(animatesDrop)]
         pub unsafe fn animatesDrop(&self) -> bool;
 
+        /// Setter for [`animatesDrop`][Self::animatesDrop].
         #[deprecated]
         #[method(setAnimatesDrop:)]
         pub unsafe fn setAnimatesDrop(&self, animates_drop: bool);
@@ -111,6 +113,7 @@ extern_methods!(
         #[method(pinColor)]
         pub unsafe fn pinColor(&self) -> MKPinAnnotationColor;
 
+        /// Setter for [`pinColor`][Self::pinColor].
         #[deprecated = "Use pinTintColor instead"]
         #[method(setPinColor:)]
         pub unsafe fn setPinColor(&self, pin_color: MKPinAnnotationColor);

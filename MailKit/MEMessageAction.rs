@@ -73,7 +73,9 @@ unsafe impl RefEncode for MEMessageActionFlag {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction?language=objc)
+    /// An action that can be performed on a mail message.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEMessageAction;
@@ -87,24 +89,31 @@ unsafe impl NSSecureCoding for MEMessageAction {}
 
 extern_methods!(
     unsafe impl MEMessageAction {
+        /// Moves the mail message to the user's trash mailbox for the account.
         #[method_id(@__retain_semantics Other moveToTrashAction)]
         pub unsafe fn moveToTrashAction() -> Retained<MEMessageAction>;
 
+        /// Moves the mail message to the user's archive mailbox for the account.
         #[method_id(@__retain_semantics Other moveToArchiveAction)]
         pub unsafe fn moveToArchiveAction() -> Retained<MEMessageAction>;
 
+        /// Moves the mail message to the user's junk mailbox for the account.
         #[method_id(@__retain_semantics Other moveToJunkAction)]
         pub unsafe fn moveToJunkAction() -> Retained<MEMessageAction>;
 
+        /// Marks the mail message as read.
         #[method_id(@__retain_semantics Other markAsReadAction)]
         pub unsafe fn markAsReadAction() -> Retained<MEMessageAction>;
 
+        /// Marks the mail  message as unread.
         #[method_id(@__retain_semantics Other markAsUnreadAction)]
         pub unsafe fn markAsUnreadAction() -> Retained<MEMessageAction>;
 
+        /// Marks the message as flagged with the provided color.
         #[method_id(@__retain_semantics Other flagActionWithFlag:)]
         pub unsafe fn flagActionWithFlag(flag: MEMessageActionFlag) -> Retained<Self>;
 
+        /// Adds a color to the message when shown in the message list.
         #[method_id(@__retain_semantics Other setBackgroundColorActionWithColor:)]
         pub unsafe fn setBackgroundColorActionWithColor(
             color: MEMessageActionMessageColor,

@@ -116,6 +116,7 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn PHLivePhotoViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -123,48 +124,61 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-photos")]
+        /// Live photo displayed in the receiver.
         #[method_id(@__retain_semantics Other livePhoto)]
         pub unsafe fn livePhoto(&self) -> Option<Retained<PHLivePhoto>>;
 
         #[cfg(feature = "objc2-photos")]
+        /// Setter for [`livePhoto`][Self::livePhoto].
         #[method(setLivePhoto:)]
         pub unsafe fn setLivePhoto(&self, live_photo: Option<&PHLivePhoto>);
 
+        /// The mode in which the receiver will display its content. Defaults to PHLivePhotoViewContentModeAspectFit.
         #[method(contentMode)]
         pub unsafe fn contentMode(&self) -> PHLivePhotoViewContentMode;
 
+        /// Setter for [`contentMode`][Self::contentMode].
         #[method(setContentMode:)]
         pub unsafe fn setContentMode(&self, content_mode: PHLivePhotoViewContentMode);
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// The rectangle, in the unit coordinate space, that defines the portion of the Live Photo contents that should be displayed. In this coordinate system, the point `{0.0,0.0}` refers to the upper left corner of the Live Photo, and `{1.0,1.0}` refers to the bottom right corner.
         #[method(contentsRect)]
         pub unsafe fn contentsRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`contentsRect`][Self::contentsRect].
         #[method(setContentsRect:)]
         pub unsafe fn setContentsRect(&self, contents_rect: CGRect);
 
+        /// The audio volume during playback
         #[method(audioVolume)]
         pub unsafe fn audioVolume(&self) -> c_float;
 
+        /// Setter for [`audioVolume`][Self::audioVolume].
         #[method(setAudioVolume:)]
         pub unsafe fn setAudioVolume(&self, audio_volume: c_float);
 
+        /// Indicates whether the audio of the Live Photo is muted.
         #[method(isMuted)]
         pub unsafe fn isMuted(&self) -> bool;
 
+        /// Setter for [`isMuted`][Self::isMuted].
         #[method(setMuted:)]
         pub unsafe fn setMuted(&self, muted: bool);
 
+        /// The following methods allow the client to manually trigger playback. If the live photo is changed during playback, it will be immediately interrupted.
         #[method(startPlaybackWithStyle:)]
         pub unsafe fn startPlaybackWithStyle(&self, playback_style: PHLivePhotoViewPlaybackStyle);
 
         #[method(stopPlayback)]
         pub unsafe fn stopPlayback(&self);
 
+        /// Stops live photo playback. If animated is NO, the photo is immediately displayed.
         #[method(stopPlaybackAnimated:)]
         pub unsafe fn stopPlaybackAnimated(&self, animated: bool);
 
+        /// Directly access the livePhotoBadge in cases where it should be added to a different place in the view hierarchy and not the live photo view. This can be useful when the live photo view is added to a scroll view.
         #[method_id(@__retain_semantics Other livePhotoBadgeView)]
         pub unsafe fn livePhotoBadgeView(&self) -> Option<Retained<NSView>>;
     }

@@ -10,7 +10,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectedpoint?language=objc)
+    /// VNDetectedPoint is a VNPoint with a confidence value.
+    ///
+    /// It should be noted that VNDetectedPoint is not intended as an overall replacement of CGPoint, NSPoint or vec2, but is used by observations that detect points of interest.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectedpoint?language=objc)
     #[unsafe(super(VNPoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNGeometry")]
@@ -55,13 +59,18 @@ extern_methods!(
         pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
+        /// The confidence in the accuracy of the location, in the range of [0.0, 1.0].
         #[method(confidence)]
         pub unsafe fn confidence(&self) -> VNConfidence;
     }
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpoint?language=objc)
+    /// An extension of VNDetectedPoint that associates an identifier to the point.
+    ///
+    /// It should be noted that VNRecognizedPoint is not intended as an overall replacement of CGPoint, NSPoint or vec2, but is used by observations that recognize labeled points of interest.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpoint?language=objc)
     #[unsafe(super(VNDetectedPoint, VNPoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNGeometry")]
@@ -89,6 +98,9 @@ extern_methods!(
     #[cfg(feature = "VNGeometry")]
     unsafe impl VNRecognizedPoint {
         #[cfg(feature = "VNTypes")]
+        /// The is the identifier that provides context as to the kind of point that was recognized.
+        ///
+        /// The string is defined by the model that recognized the point. Usually these are technical labels that are not localized and not meant to be used directly to be presented to an end user in the UI.
         #[method_id(@__retain_semantics Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<VNRecognizedPointKey>;
     }

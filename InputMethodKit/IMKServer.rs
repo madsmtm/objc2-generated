@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkserver?language=objc)
+    /// This class manages input sessions.
+    ///
+    /// An input method should create one and only one of these objects.  An IMKServer creates an NSConnection that can be connected to by input clients.  After a connection has been made an IMKServer manages communication between the client and the input method.  For each communication session the IMKServer will create an IMKInputController class as well as delegate classes for that controller.  Each controller object then serves as a proxy for the input session on the client side.  This means that input methods do not have to concern themselves with managing client sessions.  A given controller will only receive communication from a single session.
+    ///
+    /// IMKServer's also will manage a basic candidate window for an input method.  See IMKCandidates.h to understand how to create a candidate window and associate the candidate window with the IMKServer object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkserver?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IMKServer;
@@ -17,6 +23,9 @@ unsafe impl NSObjectProtocol for IMKServer {}
 
 extern_methods!(
     unsafe impl IMKServer {
+        /// Create a IMKServer from information in the bundle's Info.plist.
+        ///
+        /// This method will look into the info.plist for a controller class and delegate class.  The class names will be loaded, no classes will be instantiated.  Additionally, an NSConnection will be allocated and registered with the name parameter.
         #[method_id(@__retain_semantics Init initWithName:bundleIdentifier:)]
         pub unsafe fn initWithName_bundleIdentifier(
             this: Allocated<Self>,
@@ -24,6 +33,9 @@ extern_methods!(
             bundle_identifier: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
+        /// Creates an IMKServer using the parameters.
+        ///
+        /// This method creates an IMKServer object without attempting to examine the bundle instead the class names provided as parameters are used to create input controller objects and delegate objects.
         #[method_id(@__retain_semantics Init initWithName:controllerClass:delegateClass:)]
         pub unsafe fn initWithName_controllerClass_delegateClass(
             this: Allocated<Self>,
@@ -32,12 +44,23 @@ extern_methods!(
             delegate_class_id: Option<&AnyClass>,
         ) -> Option<Retained<Self>>;
 
+        /// Returns an NSBundle for the input method.
+        ///
+        /// If the IMKServer contains a bundle identifier the NSBundle is created from that.  Otherwise, the bundle  is created for the main bundle.  The returned NSBundle is an autoreleased object.
         #[method_id(@__retain_semantics Other bundle)]
         pub unsafe fn bundle(&self) -> Option<Retained<NSBundle>>;
 
+        /// Call this before terminating a palette IM.
+        ///
+        /// Palettes need to be able to terminate.  When this method is called the IMKServer will notify each client of the palette that
+        /// the palette is about to terminate.  The palette can terminate safely if a value of YES is returned.  If the caller of this method is not
+        /// an input method of type palette an exception will be thrown.
+        ///
+        /// If the method returns NO the palette should not terminate.
         #[method(paletteWillTerminate)]
         pub unsafe fn paletteWillTerminate(&self) -> bool;
 
+        /// Returns a BOOL indicating whether or not the last key press was a dead key.
         #[method(lastKeyEventWasDeadKey)]
         pub unsafe fn lastKeyEventWasDeadKey(&self) -> bool;
     }

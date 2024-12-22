@@ -30,6 +30,7 @@ unsafe impl NSObjectProtocol for CXCallObserver {}
 extern_methods!(
     unsafe impl CXCallObserver {
         #[cfg(feature = "CXCall")]
+        /// Retrieve the current call list, blocking on initial state retrieval if necessary
         #[method_id(@__retain_semantics Other calls)]
         pub unsafe fn calls(&self) -> Retained<NSArray<CXCall>>;
     }

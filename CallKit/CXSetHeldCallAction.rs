@@ -55,6 +55,7 @@ extern_methods!(
         #[method(isOnHold)]
         pub unsafe fn isOnHold(&self) -> bool;
 
+        /// Setter for [`isOnHold`][Self::isOnHold].
         #[method(setOnHold:)]
         pub unsafe fn setOnHold(&self, on_hold: bool);
     }

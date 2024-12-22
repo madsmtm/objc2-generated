@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencoder?language=objc)
+    /// Methods in this protocol can be used by a mail app extension to encode messages.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencoder?language=objc)
     pub unsafe trait MEMessageEncoder: NSObjectProtocol {
         #[cfg(all(
             feature = "MEComposeContext",
@@ -15,6 +17,15 @@ extern_protocol!(
             feature = "MEOutgoingMessageEncodingStatus",
             feature = "block2"
         ))]
+        /// This is invoked while a message is being composed. This will be be invoked each time the sending address or the list of recipients changes. The supplied
+        /// `message`will contain the email address of the sender, the recipient email addresses, and
+        /// the message data being sent.  The completion handler should be called with the current encoding status of the message indicating whether the message is able to be signed, encrypted, both or neither. The result will also contain any error that occured, including a list of any recipients whose encryption keys are expected and missing.
+        ///
+        /// Parameter `message`: - The outgoing message to apply any security mechanisms on.
+        ///
+        /// Parameter `composeContext`: -
+        /// `MEComposeContext`instance which corresponds to the
+        /// `message`being composed.
         #[method(getEncodingStatusForMessage:composeContext:completionHandler:)]
         unsafe fn getEncodingStatusForMessage_composeContext_completionHandler(
             &self,
@@ -29,6 +40,20 @@ extern_protocol!(
             feature = "MEMessageEncodingResult",
             feature = "block2"
         ))]
+        /// This is invoked when an outgoing message is sent. The supplied
+        /// `message`will contain the email address of the sender, the recipient email addresses, and
+        /// the message data being sent. The completion handler should be called with the
+        /// `result`of applying any encoding if needed based on
+        /// `shouldSign`and
+        /// `shouldEncrypt.`If the
+        /// `result`is not encrypted or signed and does not have  any errors, it is assumed the message did not need a signature or encryption applied. In this case the
+        /// `data`for the result will be ignored.
+        ///
+        /// Parameter `message`: - The outgoing message to apply any security mechanisms on.
+        ///
+        /// Parameter `composeContext`: -
+        /// `MEComposeContext`instance which corresponds to the
+        /// `message`being composed.
         #[method(encodeMessage:composeContext:completionHandler:)]
         unsafe fn encodeMessage_composeContext_completionHandler(
             &self,

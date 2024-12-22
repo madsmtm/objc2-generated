@@ -11,12 +11,15 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlevent?language=objc)
     pub unsafe trait MTLEvent: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
+        /// The device this event can be used with. Will be nil when the event is shared across devices (i.e. MTLSharedEvent).
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
+        /// A string to help identify this object.
         #[method_id(@__retain_semantics Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
     }
@@ -25,7 +28,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedeventlistener?language=objc)
+    /// This class provides a simple interface for handling the dispatching of MTLSharedEvent notifications from Metal.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedeventlistener?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSharedEventListener;
@@ -81,6 +86,7 @@ extern_protocol!(
         #[method(signaledValue)]
         unsafe fn signaledValue(&self) -> u64;
 
+        /// Setter for [`signaledValue`][Self::signaledValue].
         #[method(setSignaledValue:)]
         unsafe fn setSignaledValue(&self, signaled_value: u64);
     }

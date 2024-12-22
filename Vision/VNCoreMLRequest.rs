@@ -10,7 +10,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vncoremlmodel?language=objc)
+    /// The VNCoreMLModel uses an CoreML based model and prepares it for use with VNCoreMLRequests.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncoremlmodel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNCoreMLModel;
@@ -24,24 +26,35 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-ml")]
+        /// Create a model container to be used with VNCoreMLRequest based on a Core ML model. This can fail if the model is not supported. Examples for a model that is not supported is a model that does not take an image as any of its inputs.
+        ///
+        ///
+        /// Parameter `model`: The MLModel from CoreML to be used.
+        ///
+        ///
+        /// Parameter `error`: Returns the error code and description, if the model is not supported.
         #[method_id(@__retain_semantics Other modelForMLModel:error:_)]
         pub unsafe fn modelForMLModel_error(
             model: &MLModel,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
+        /// The name of the MLFeatureValue that Vision will set from the VNRequestHandler. Vision will use the first input it finds by default but it can be set to another featureName instead.
         #[method_id(@__retain_semantics Other inputImageFeatureName)]
         pub unsafe fn inputImageFeatureName(&self) -> Retained<NSString>;
 
+        /// Setter for [`inputImageFeatureName`][Self::inputImageFeatureName].
         #[method(setInputImageFeatureName:)]
         pub unsafe fn setInputImageFeatureName(&self, input_image_feature_name: &NSString);
 
         #[cfg(feature = "objc2-core-ml")]
+        /// An optional object conforming to the MLFeatureProvider protocol that is used by the model during the predict call to support inputs that are not supplied by Vision. Vision will provide the image for the inputImageFeatureName from the the VNRequestHandler. A feature provider is necessary for models that have more than one input and require those parameters to be set. Models that only have one image input will not use the feature provider as that input will be set by Vision.
         #[method_id(@__retain_semantics Other featureProvider)]
         pub unsafe fn featureProvider(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MLFeatureProvider>>>;
 
         #[cfg(feature = "objc2-core-ml")]
+        /// Setter for [`featureProvider`][Self::featureProvider].
         #[method(setFeatureProvider:)]
         pub unsafe fn setFeatureProvider(
             &self,
@@ -59,7 +72,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vncoremlrequest?language=objc)
+    /// The VNCoreMLRequest uses a VNCoreMLModel, that is based on a CoreML MLModel object, to run predictions with that model. Depending on the model the returned
+    /// observation is either a VNClassificationObservation for classifier models, VNPixelBufferObservations for image-to-image models, VNRecognizedObjectObservation for object recognition models or VNCoreMLFeatureValueObservation for everything else. All -[VNObservation confidence] values are forwarded from relevant models as is, and do not conform to a common [0, 1] range rule
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncoremlrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -80,6 +96,7 @@ unsafe impl NSObjectProtocol for VNCoreMLRequest {}
 extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNCoreMLRequest {
+        /// The model from CoreML wrapped in a VNCoreMLModel.
         #[method_id(@__retain_semantics Other model)]
         pub unsafe fn model(&self) -> Retained<VNCoreMLModel>;
 
@@ -88,17 +105,29 @@ extern_methods!(
         pub unsafe fn imageCropAndScaleOption(&self) -> VNImageCropAndScaleOption;
 
         #[cfg(feature = "VNTypes")]
+        /// Setter for [`imageCropAndScaleOption`][Self::imageCropAndScaleOption].
         #[method(setImageCropAndScaleOption:)]
         pub unsafe fn setImageCropAndScaleOption(
             &self,
             image_crop_and_scale_option: VNImageCropAndScaleOption,
         );
 
+        /// Create a new request with a model.
+        ///
+        ///
+        /// Parameter `model`: The VNCoreMLModel to be used.
         #[method_id(@__retain_semantics Init initWithModel:)]
         pub unsafe fn initWithModel(this: Allocated<Self>, model: &VNCoreMLModel)
             -> Retained<Self>;
 
         #[cfg(feature = "block2")]
+        /// Create a new request with a model.
+        ///
+        ///
+        /// Parameter `model`: The VNCoreMLModel to be used.
+        ///
+        ///
+        /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
         #[method_id(@__retain_semantics Init initWithModel:completionHandler:)]
         pub unsafe fn initWithModel_completionHandler(
             this: Allocated<Self>,

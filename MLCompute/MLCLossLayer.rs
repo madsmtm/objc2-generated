@@ -7,7 +7,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclosslayer?language=objc)
+    /// A loss layer
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclosslayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]
@@ -22,21 +24,35 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCLossLayer {
         #[cfg(feature = "MLCLossDescriptor")]
+        /// The loss descriptor
         #[deprecated]
         #[method_id(@__retain_semantics Other descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MLCLossDescriptor>;
 
         #[cfg(feature = "MLCTensor")]
+        /// The loss label weights tensor
         #[deprecated]
         #[method_id(@__retain_semantics Other weights)]
         pub unsafe fn weights(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCLossDescriptor")]
+        /// Create a loss layer
+        ///
+        /// Parameter `lossDescriptor`: The loss descriptor
+        ///
+        /// Returns: A new loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDescriptor:)]
         pub unsafe fn layerWithDescriptor(loss_descriptor: &MLCLossDescriptor) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCLossDescriptor", feature = "MLCTensor"))]
+        /// Create a MLComputeLoss layer
+        ///
+        /// Parameter `lossDescriptor`: The loss descriptor
+        ///
+        /// Parameter `weights`: The loss label weights tensor
+        ///
+        /// Returns: A new loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other layerWithDescriptor:weights:)]
         pub unsafe fn layerWithDescriptor_weights(
@@ -45,6 +61,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `labelSmoothing`: Label smoothing value
+        ///
+        /// Parameter `classCount`: Number of classes
+        ///
+        /// Parameter `weight`: A scalar floating point value
+        ///
+        /// Returns: A new softmax cross entropy loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other softmaxCrossEntropyLossWithReductionType:labelSmoothing:classCount:weight:)]
         pub unsafe fn softmaxCrossEntropyLossWithReductionType_labelSmoothing_classCount_weight(
@@ -55,6 +82,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `labelSmoothing`: Label smoothing value
+        ///
+        /// Parameter `classCount`: Number of classes
+        ///
+        /// Parameter `weights`: The loss label weights tensor
+        ///
+        /// Returns: A new softmax cross entropy loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other softmaxCrossEntropyLossWithReductionType:labelSmoothing:classCount:weights:)]
         pub unsafe fn softmaxCrossEntropyLossWithReductionType_labelSmoothing_classCount_weights(
@@ -65,6 +103,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `labelSmoothing`: Label smoothing value
+        ///
+        /// Parameter `classCount`: Number of classes
+        ///
+        /// Parameter `weight`: A scalar floating point value
+        ///
+        /// Returns: A new categorical cross entropy loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other categoricalCrossEntropyLossWithReductionType:labelSmoothing:classCount:weight:)]
         pub unsafe fn categoricalCrossEntropyLossWithReductionType_labelSmoothing_classCount_weight(
@@ -75,6 +124,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `labelSmoothing`: Label smoothing value
+        ///
+        /// Parameter `classCount`: Number of classes
+        ///
+        /// Parameter `weights`: The loss label weights tensor
+        ///
+        /// Returns: A new categorical cross entropy loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other categoricalCrossEntropyLossWithReductionType:labelSmoothing:classCount:weights:)]
         pub unsafe fn categoricalCrossEntropyLossWithReductionType_labelSmoothing_classCount_weights(
@@ -85,6 +145,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `labelSmoothing`: Label smoothing value
+        ///
+        /// Parameter `weight`: A scalar floating-point value
+        ///
+        /// Returns: A new sigmoid cross entropy loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other sigmoidCrossEntropyLossWithReductionType:labelSmoothing:weight:)]
         pub unsafe fn sigmoidCrossEntropyLossWithReductionType_labelSmoothing_weight(
@@ -94,6 +163,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `labelSmoothing`: Label smoothing value
+        ///
+        /// Parameter `weights`: The loss label weights tensor
+        ///
+        /// Returns: A new sigmoid cross entropy loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other sigmoidCrossEntropyLossWithReductionType:labelSmoothing:weights:)]
         pub unsafe fn sigmoidCrossEntropyLossWithReductionType_labelSmoothing_weights(
@@ -103,6 +181,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `epsilon`: The epsilon parameter
+        ///
+        /// Parameter `weight`: A scalar floating-point value
+        ///
+        /// Returns: A new log loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other logLossWithReductionType:epsilon:weight:)]
         pub unsafe fn logLossWithReductionType_epsilon_weight(
@@ -112,6 +199,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `epsilon`: The epsilon parameter
+        ///
+        /// Parameter `weights`: The loss label weights tensor
+        ///
+        /// Returns: A new log loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other logLossWithReductionType:epsilon:weights:)]
         pub unsafe fn logLossWithReductionType_epsilon_weights(
@@ -121,6 +217,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `delta`: The delta parameter
+        ///
+        /// Parameter `weight`: A scalar floating-point value
+        ///
+        /// Returns: A new huber loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other huberLossWithReductionType:delta:weight:)]
         pub unsafe fn huberLossWithReductionType_delta_weight(
@@ -130,6 +235,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `delta`: The delta parameter
+        ///
+        /// Parameter `weights`: The loss label weights tensor
+        ///
+        /// Returns: A new huber loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other huberLossWithReductionType:delta:weights:)]
         pub unsafe fn huberLossWithReductionType_delta_weights(
@@ -139,6 +253,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `weight`: A scalar floating-point value
+        ///
+        /// Returns: A new L1 i.e. mean absolute error loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other meanAbsoluteErrorLossWithReductionType:weight:)]
         pub unsafe fn meanAbsoluteErrorLossWithReductionType_weight(
@@ -147,6 +268,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `weights`: The loss label weights tensor
+        ///
+        /// Returns: A new L1 i.e. mean absolute error loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other meanAbsoluteErrorLossWithReductionType:weights:)]
         pub unsafe fn meanAbsoluteErrorLossWithReductionType_weights(
@@ -155,6 +283,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `weight`: A scalar floating-point value
+        ///
+        /// Returns: A new L2 i.e. mean squared error loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other meanSquaredErrorLossWithReductionType:weight:)]
         pub unsafe fn meanSquaredErrorLossWithReductionType_weight(
@@ -163,6 +298,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `weights`: The loss label weights tensor
+        ///
+        /// Returns: A new L2 i.e. mean squared error loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other meanSquaredErrorLossWithReductionType:weights:)]
         pub unsafe fn meanSquaredErrorLossWithReductionType_weights(
@@ -171,6 +313,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `weight`: A scalar floating-point value
+        ///
+        /// Returns: A new hinge loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other hingeLossWithReductionType:weight:)]
         pub unsafe fn hingeLossWithReductionType_weight(
@@ -179,6 +328,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `weights`: The loss label weights tensor
+        ///
+        /// Returns: A new hinge loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other hingeLossWithReductionType:weights:)]
         pub unsafe fn hingeLossWithReductionType_weights(
@@ -187,6 +343,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `weight`: A scalar floating-point value
+        ///
+        /// Returns: A new cosine distance loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other cosineDistanceLossWithReductionType:weight:)]
         pub unsafe fn cosineDistanceLossWithReductionType_weight(
@@ -195,6 +358,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes"))]
+        /// Create a loss layer
+        ///
+        /// Parameter `reductionType`: The reduction type to use
+        ///
+        /// Parameter `weights`: The loss label weights tensor
+        ///
+        /// Returns: A new cosine distance loss layer.
         #[deprecated]
         #[method_id(@__retain_semantics Other cosineDistanceLossWithReductionType:weights:)]
         pub unsafe fn cosineDistanceLossWithReductionType_weights(

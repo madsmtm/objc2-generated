@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzsingledirectoryshare?language=objc)
+    /// Directory share for a single directory.
+    ///
+    /// This directory share exposes a single directory from the host file system to the guest.
+    ///
+    /// See: VZDirectorySharingDeviceConfiguration
+    ///
+    /// See: VZSharedDirectory
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzsingledirectoryshare?language=objc)
     #[unsafe(super(VZDirectoryShare, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZDirectoryShare")]
@@ -20,6 +28,9 @@ extern_methods!(
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZSingleDirectoryShare {
         #[cfg(feature = "VZSharedDirectory")]
+        /// Initialize the directory share with a directory on the host.
+        ///
+        /// Parameter `directory`: Directory to share.
         #[method_id(@__retain_semantics Init initWithDirectory:)]
         pub unsafe fn initWithDirectory(
             this: Allocated<Self>,
@@ -27,6 +38,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "VZSharedDirectory")]
+        /// Directory on the host to share.
         #[method_id(@__retain_semantics Other directory)]
         pub unsafe fn directory(&self) -> Retained<VZSharedDirectory>;
     }

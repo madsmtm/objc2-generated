@@ -6,34 +6,50 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdirectionpadelement?language=objc)
+    /// An object conforming to
+    /// `GCDirectionPadElement`represents a four-way
+    /// directional control element.
+    ///
+    /// A direction pad element contains a common grouping of 2 axis inputs, which can
+    /// also be interpreted as 2 sets of mutually exclusive button pairs. Only one
+    /// button in each pair, {up, down} and {left, right}, can be pressed at any
+    /// given time.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdirectionpadelement?language=objc)
     #[cfg(feature = "GCPhysicalInputElement")]
     pub unsafe trait GCDirectionPadElement: GCPhysicalInputElement {
         #[cfg(feature = "GCAxis2DInput")]
+        /// The x,y position of the dpad input.
         #[method_id(@__retain_semantics Other xyAxes)]
         unsafe fn xyAxes(&self) -> Retained<ProtocolObject<dyn GCAxis2DInput>>;
 
         #[cfg(feature = "GCAxisInput")]
+        /// The horizontal/x-component of the dpad input.
         #[method_id(@__retain_semantics Other xAxis)]
         unsafe fn xAxis(&self) -> Retained<ProtocolObject<dyn GCAxisInput>>;
 
         #[cfg(feature = "GCAxisInput")]
+        /// The vertical/y-component of the dpad input.
         #[method_id(@__retain_semantics Other yAxis)]
         unsafe fn yAxis(&self) -> Retained<ProtocolObject<dyn GCAxisInput>>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
+        /// The positive y-component of the dpad input.
         #[method_id(@__retain_semantics Other up)]
         unsafe fn up(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
+        /// The negative y-component of the dpad input.
         #[method_id(@__retain_semantics Other down)]
         unsafe fn down(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
+        /// The negative x-component of the dpad input.
         #[method_id(@__retain_semantics Other left)]
         unsafe fn left(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
+        /// The positive x-component of the dpad input.
         #[method_id(@__retain_semantics Other right)]
         unsafe fn right(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
     }

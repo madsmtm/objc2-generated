@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlstateconstraint?language=objc)
+    /// Constraint of a state feature value.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlstateconstraint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLStateConstraint;
@@ -21,10 +23,12 @@ unsafe impl NSSecureCoding for MLStateConstraint {}
 
 extern_methods!(
     unsafe impl MLStateConstraint {
+        /// The shape of the state buffer.
         #[method_id(@__retain_semantics Other bufferShape)]
         pub unsafe fn bufferShape(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "MLMultiArray")]
+        /// The data type of scalars in the state buffer.
         #[method(dataType)]
         pub unsafe fn dataType(&self) -> MLMultiArrayDataType;
     }

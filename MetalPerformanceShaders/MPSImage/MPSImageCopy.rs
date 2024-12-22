@@ -9,7 +9,16 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagecopytomatrix?language=objc)
+    /// The MPSImageCopyToMatrix copies image data to a MPSMatrix.
+    /// The image data is stored in a row of a matrix.  The dataLayout
+    /// specifies the order in which the feature channels in the MPSImage
+    /// get stored in the matrix.  If MPSImage stores a batch of images,
+    /// the images are copied into multiple rows, one row per image.
+    ///
+    /// The number of elements in a row in the matrix must be >= image width *
+    /// image height * number of featureChannels in the image.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagecopytomatrix?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -36,15 +45,24 @@ unsafe impl NSSecureCoding for MPSImageCopyToMatrix {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSImageCopyToMatrix {
+        /// The origin, relative to [0, 0] in the destination matrix, at which to
+        /// start writing results.  This property is modifiable and defaults
+        /// to [0, 0] at initialization time.  If a different origin is desired
+        /// then this should be modified prior to encoding the kernel.  The z
+        /// value must be 0.
         #[method(destinationMatrixOrigin)]
         pub unsafe fn destinationMatrixOrigin(&self) -> MTLOrigin;
 
+        /// Setter for [`destinationMatrixOrigin`][Self::destinationMatrixOrigin].
         #[method(setDestinationMatrixOrigin:)]
         pub unsafe fn setDestinationMatrixOrigin(&self, destination_matrix_origin: MTLOrigin);
 
+        /// The index of the destination matrix in the batch.  This property is
+        /// modifiable and defaults to 0 at initialization time.
         #[method(destinationMatrixBatchIndex)]
         pub unsafe fn destinationMatrixBatchIndex(&self) -> NSUInteger;
 
+        /// Setter for [`destinationMatrixBatchIndex`][Self::destinationMatrixBatchIndex].
         #[method(setDestinationMatrixBatchIndex:)]
         pub unsafe fn setDestinationMatrixBatchIndex(
             &self,
@@ -52,10 +70,23 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSImage")]
+        /// The data layout to use
+        ///
+        /// Returns the data layout.  When copying from a MPSImage to a MPSMatrix, this
+        /// describes the order in which the image values are stored in the buffer associated
+        /// with the MPSMatrix.
+        /// Default: MPSDataLayoutFeatureChannelsxHeightxWidth
         #[method(dataLayout)]
         pub unsafe fn dataLayout(&self) -> MPSDataLayout;
 
         #[cfg(feature = "MPSImage")]
+        /// Initialize a MPSMatrixCopy object on a device
+        ///
+        /// Parameter `device`: The device the kernel will run on
+        ///
+        /// Parameter `dataLayout`: The data layout
+        ///
+        /// Returns: A valid MPSMatrixCopy object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:dataLayout:)]
         pub unsafe fn initWithDevice_dataLayout(
             this: Allocated<Self>,
@@ -63,6 +94,19 @@ extern_methods!(
             data_layout: MPSDataLayout,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -71,6 +115,21 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSMatrix"))]
+        /// Encode a kernel that copies a MPSImage to a MPSMatrix into a command buffer
+        /// using a MTLComputeCommandEncoder.
+        ///
+        /// The kernel copies feature channels from sourceImage to the buffer
+        /// associated with destinationMatrix.  The kernel will not begin to execute until
+        /// after the command buffer has been enqueued and committed.
+        ///
+        /// NOTE: The destinationMatrix.dataType must match the feature channel data type in sourceImage.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer.
+        ///
+        /// Parameter `sourceImage`: A valid MPSImage describing the image to copy from.
+        ///
+        /// Parameter `destinationMatrix`: A valid MPSMatrix or MPSTemporaryMatrix object describing the matrix to copy to.
         #[method(encodeToCommandBuffer:sourceImage:destinationMatrix:)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_destinationMatrix(
             &self,
@@ -80,6 +139,24 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSMatrix", feature = "MPSNDArray"))]
+        /// Encode a kernel that copies a MPSImageBatch to a MPSMatrix into a command buffer
+        /// using a MTLComputeCommandEncoder.
+        ///
+        /// The kernel copies feature channels from sourceImage to the buffer
+        /// associated with destinationMatrix.  The kernel will not begin to execute until
+        /// after the command buffer has been enqueued and committed.
+        /// Each image will be copied to its own row in the matrix, starting with row
+        /// destinationMatrixOrigin.x.
+        ///
+        /// NOTE: The destinationMatrix.dataType must match the feature channel data type in sourceImage.
+        /// NOTE: All the images in the source batch should be of the same size and have numberOfImages = 1.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer.
+        ///
+        /// Parameter `sourceImages`: A valid MPSImageBatch describing the images to copy from.
+        ///
+        /// Parameter `destinationMatrix`: A valid MPSMatrix or MPSTemporaryMatrix object describing the matrix to copy to.
         #[method(encodeBatchToCommandBuffer:sourceImages:destinationMatrix:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationMatrix(
             &self,
@@ -94,12 +171,27 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSImageCopyToMatrix {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: a pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -121,7 +213,10 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopytoimage?language=objc)
+    /// The MPSMatrixCopyToImage copies matrix data to a MPSImage.
+    /// The operation is the reverse of MPSImageCopyToMatrix.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopytoimage?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSKernel")]
@@ -148,23 +243,45 @@ unsafe impl NSSecureCoding for MPSMatrixCopyToImage {}
 extern_methods!(
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSMatrixCopyToImage {
+        /// The origin, relative to [0, 0] in the source matrix.
+        /// This property is modifiable and defaults
+        /// to [0, 0] at initialization time.  If a different origin is desired
+        /// then this should be modified prior to encoding the kernel.  The z
+        /// value must be 0.
         #[method(sourceMatrixOrigin)]
         pub unsafe fn sourceMatrixOrigin(&self) -> MTLOrigin;
 
+        /// Setter for [`sourceMatrixOrigin`][Self::sourceMatrixOrigin].
         #[method(setSourceMatrixOrigin:)]
         pub unsafe fn setSourceMatrixOrigin(&self, source_matrix_origin: MTLOrigin);
 
+        /// The index of the source matrix in the batch.  This property is
+        /// modifiable and defaults to 0 at initialization time.
         #[method(sourceMatrixBatchIndex)]
         pub unsafe fn sourceMatrixBatchIndex(&self) -> NSUInteger;
 
+        /// Setter for [`sourceMatrixBatchIndex`][Self::sourceMatrixBatchIndex].
         #[method(setSourceMatrixBatchIndex:)]
         pub unsafe fn setSourceMatrixBatchIndex(&self, source_matrix_batch_index: NSUInteger);
 
         #[cfg(feature = "MPSImage")]
+        /// The data layout to use
+        ///
+        /// Returns the data layout.  When copying from a MPSMatrix to a MPSImage, this
+        /// describes the order in which the image values are to be stored in the buffer associated
+        /// with the MPSMatrix.
+        /// Default: MPSDataLayoutFeatureChannelsxHeightxWidth
         #[method(dataLayout)]
         pub unsafe fn dataLayout(&self) -> MPSDataLayout;
 
         #[cfg(feature = "MPSImage")]
+        /// Initialize a MPSMatrixCopyToImage object on a device
+        ///
+        /// Parameter `device`: The device the kernel will run on
+        ///
+        /// Parameter `dataLayout`: The data layout
+        ///
+        /// Returns: A valid MPSMatrixCopyToImage object or nil, if failure.
         #[method_id(@__retain_semantics Init initWithDevice:dataLayout:)]
         pub unsafe fn initWithDevice_dataLayout(
             this: Allocated<Self>,
@@ -172,6 +289,19 @@ extern_methods!(
             data_layout: MPSDataLayout,
         ) -> Retained<Self>;
 
+        /// NSSecureCoding compatability
+        ///
+        /// While the standard NSSecureCoding/NSCoding method
+        /// -initWithCoder: should work, since the file can't
+        /// know which device your data is allocated on, we
+        /// have to guess and may guess incorrectly.  To avoid
+        /// that problem, use initWithCoder:device instead.
+        ///
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSKernel
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSKernel
+        ///
+        /// Returns: A new MPSKernel object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -180,6 +310,21 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSMatrix"))]
+        /// Encode a kernel that copies a MPSMatrix to a MPSImage into a command buffer
+        /// using a MTLComputeCommandEncoder.
+        ///
+        /// The kernel copies feature channels from sourceMatrix to the destinationImage.
+        /// The kernel will not begin to execute until
+        /// after the command buffer has been enqueued and committed.
+        ///
+        /// NOTE: The sourceMatrix.dataType must match the feature channel data type in destinationImage.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer.
+        ///
+        /// Parameter `sourceMatrix`: A valid MPSMatrix or MPSTemporaryMatrix object describing the source matrix.
+        ///
+        /// Parameter `destinationImage`: A valid MPSImage describing the image to copy to.
         #[method(encodeToCommandBuffer:sourceMatrix:destinationImage:)]
         pub unsafe fn encodeToCommandBuffer_sourceMatrix_destinationImage(
             &self,
@@ -189,6 +334,24 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSMatrix", feature = "MPSNDArray"))]
+        /// Encode a kernel that copies a MPSMatrix to a MPSImageBatch into a command buffer
+        /// using a MTLComputeCommandEncoder.
+        ///
+        /// The kernel copies feature channels from sourceImage to the buffer
+        /// associated with destinationMatrix.  The kernel will not begin to execute until
+        /// after the command buffer has been enqueued and committed.
+        /// Each image will be copied to its own row in the matrix, starting with row
+        /// destinationMatrixOrigin.x.
+        ///
+        /// NOTE: The destinationMatrix.dataType must match the feature channel data type in sourceImage.
+        /// NOTE: All the images in the source batch should be of the same size and have numberOfImages = 1.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer.
+        ///
+        /// Parameter `sourceMatrix`: A valid MPSMatrix or MPSTemporaryMatrix object describing the source matrix.
+        ///
+        /// Parameter `destinationImages`: A valid MPSImageBatch describing the images to copy to.
         #[method(encodeBatchToCommandBuffer:sourceMatrix:destinationImages:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceMatrix_destinationImages(
             &self,
@@ -203,12 +366,27 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(feature = "MPSKernel")]
     unsafe impl MPSMatrixCopyToImage {
+        /// Standard init with default properties per filter type
+        ///
+        /// Parameter `device`: The device that the filter will be used on. May not be NULL.
+        ///
+        /// Returns: a pointer to the newly initialized object. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

@@ -7,17 +7,46 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodsessiondefault?language=objc)
+    /// is the default type of ODSessionRef used if there is no need to create a specific reference
+    ///
+    /// is the default type of ODSessionRef used if there is no need to create a specific reference
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodsessiondefault?language=objc)
     #[cfg(feature = "CFOpenDirectory")]
     pub static kODSessionDefault: ODSessionRef;
 }
 
 extern "C-unwind" {
+    /// Standard GetTypeID function support for CF-based objects
+    ///
+    /// Returns the typeID for ODSession objects
+    ///
+    /// Returns: a valid CFTypeID for the ODSession object
     #[cfg(feature = "objc2-core-foundation")]
     pub fn ODSessionGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
+    /// Creates an ODSession object to be passed to ODNode functions
+    ///
+    /// Creates an ODSession object to be passed to ODNode functions.
+    ///
+    /// Parameter `allocator`: a memory allocator to use for this object
+    ///
+    /// Parameter `options`: a CFDictionary of options associated with this ODSession.  This is typically NULL
+    /// unless caller needs to proxy to another host.
+    ///
+    /// If proxy is required then a dictionary with keys should be:
+    /// Key                             Value
+    /// kODSessionProxyAddress        CFString(hostname or IP)
+    /// kODSessionProxyPort           CFNumber(IP port, should not be set as it will default)
+    /// kODSessionProxyUsername       CFString(username)
+    /// kODSessionProxyPassword       CFString(password)
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a valid ODSessionRef object or NULL if it cannot be created. Pass reference to CFErrorRef to
+    /// get error details
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODSessionCreate(
         allocator: CFAllocatorRef,
@@ -27,6 +56,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the node names that are registered on this ODSession
+    ///
+    /// Returns the node names that are registered on this ODSession
+    ///
+    /// Parameter `allocator`: a memory allocator to use for this object
+    ///
+    /// Parameter `session`: an ODSessionRef, either kODSessionDefault or a valid ODSessionRef can be passed
+    ///
+    /// Parameter `error`: an optional CFErrorRef reference for error details
+    ///
+    /// Returns: a valid CFArrayRef of node names that can be opened on the session reference
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODSessionCopyNodeNames(
         allocator: CFAllocatorRef,

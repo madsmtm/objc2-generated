@@ -9,7 +9,26 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixfullyconnected?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// Applies a fully connected neural network layer by performing a
+    /// a matrix multiplication, adding a bias vector, scaling, and applying a
+    /// neuron activation function.
+    ///
+    ///
+    /// A MPSMatrixFullyConnected object computes:
+    ///
+    /// y = neuron(alpha * x * W + bias)
+    ///
+    /// y is the output matrix, x and W are input matrices corresponding
+    /// to a collection of input vectors and weights respectively, and bias
+    /// is a vector which is broadcast and accumulated to each row
+    /// of the product.  alpha is a scale factor applied to the product.
+    ///
+    /// neuron() is a pointwise function applied to the intermediate result.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixfullyconnected?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -36,40 +55,95 @@ unsafe impl NSSecureCoding for MPSMatrixFullyConnected {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixFullyConnected {
+        /// The number of input vectors which make up the input array.  This
+        /// is equivalent to the number of rows to consider from the primary
+        /// source matrix.
+        /// This property is modifiable and defaults to NSUIntegerMax.  At encode
+        /// time the larger of this property or the available number of inputs is
+        /// used.  The value of NSUIntegerMax thus indicates that all available input
+        /// rows (beginning at primarySourceMatrixOrigin.x) should be considered.
         #[method(sourceNumberOfFeatureVectors)]
         pub unsafe fn sourceNumberOfFeatureVectors(&self) -> NSUInteger;
 
+        /// Setter for [`sourceNumberOfFeatureVectors`][Self::sourceNumberOfFeatureVectors].
         #[method(setSourceNumberOfFeatureVectors:)]
         pub unsafe fn setSourceNumberOfFeatureVectors(
             &self,
             source_number_of_feature_vectors: NSUInteger,
         );
 
+        /// The input size to to use in the operation.  This is equivalent to the
+        /// number of columns and the number of rows in the primary (input array) and
+        /// secondary (weight array) source matrices respectively.
+        /// This property is modifiable and defaults to NSUIntegerMax.  At encode
+        /// time the larger of this property or the available input size is used.
+        /// The value of NSUIntegerMax thus indicates that all available
+        /// columns in the input array (beginning at primarySourceMatrixOrigin.y) and all
+        /// available rows in the weight array (beginning at secondarySourceMatrixOrigin.x)
+        /// should be considered.
+        /// Note: The value used in the operation will be
+        /// MIN(MIN(inputMatrix.columns - primarySourceMatrixOrigin.y,
+        /// weightMatrix.rows - secondarySourceMatrixOrigin.x),
+        /// sourceInputFeatureChannels)
         #[method(sourceInputFeatureChannels)]
         pub unsafe fn sourceInputFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`sourceInputFeatureChannels`][Self::sourceInputFeatureChannels].
         #[method(setSourceInputFeatureChannels:)]
         pub unsafe fn setSourceInputFeatureChannels(
             &self,
             source_input_feature_channels: NSUInteger,
         );
 
+        /// The output size to to use in the operation.  This is equivalent to the
+        /// number of columns to consider in the weight array, or the secondary source matrix.
+        /// This property is modifiable and defaults to NSUIntegerMax.  At encode
+        /// time the larger of this property or the available output size is used.
+        /// The value of NSUIntegerMax thus indicates that all available
+        /// columns in the weight array (beginning at secondarySourceMatrixOrigin.y)
+        /// should be considered.
         #[method(sourceOutputFeatureChannels)]
         pub unsafe fn sourceOutputFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`sourceOutputFeatureChannels`][Self::sourceOutputFeatureChannels].
         #[method(setSourceOutputFeatureChannels:)]
         pub unsafe fn setSourceOutputFeatureChannels(
             &self,
             source_output_feature_channels: NSUInteger,
         );
 
+        /// The scale factor to apply to the product.  Specified in double
+        /// precision.  Will be converted to the appropriate precision in the
+        /// implementation subject to rounding and/or clamping as necessary.
+        /// Defaults to 1.0 at initialization time.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_double;
 
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: c_double);
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Specifies a neuron activation function to be used.
+        ///
+        ///
+        /// This method can be used to add a neuron activation funtion of given type with
+        /// associated scalar parameters A, B, and C that are shared across all output values.
+        /// Note that this method can only be used to specify neurons which are specified by three (or fewer)
+        /// parameters shared across all output values (or channels, in CNN nomenclature). It is an error to call
+        /// this method for neuron activation functions like MPSCNNNeuronTypePReLU,
+        /// which require per-channel parameter values. For those kind of neuron activation functions,
+        /// use appropriate setter functions.  An MPSMatrixFullyConnected kernel is initialized
+        /// with a default neuron function of MPSCNNNeuronTypeNone.
+        ///
+        ///
+        /// Parameter `neuronType`: Type of neuron activation function. For full list see MPSCNNNeuronType.h
+        ///
+        /// Parameter `parameterA`: parameterA of neuron activation that is shared across all output values.
+        ///
+        /// Parameter `parameterB`: parameterB of neuron activation that is shared across all output values.
+        ///
+        /// Parameter `parameterC`: parameterC of neuron activation that is shared across all output values.
         #[method(setNeuronType:parameterA:parameterB:parameterC:)]
         pub unsafe fn setNeuronType_parameterA_parameterB_parameterC(
             &self,
@@ -80,15 +154,19 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNNeuronType")]
+        /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronType)]
         pub unsafe fn neuronType(&self) -> MPSCNNNeuronType;
 
+        /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronParameterA)]
         pub unsafe fn neuronParameterA(&self) -> c_float;
 
+        /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronParameterB)]
         pub unsafe fn neuronParameterB(&self) -> c_float;
 
+        /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronParameterC)]
         pub unsafe fn neuronParameterC(&self) -> c_float;
 
@@ -99,6 +177,35 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a MPSMatrixFullyConnected object to a command buffer.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        ///
+        /// Parameter `inputMatrix`: A valid MPSMatrix object which specifies the input array.
+        ///
+        ///
+        /// Parameter `weightMatrix`: A valid MPSMatrix object which specifies the weight array.
+        ///
+        ///
+        /// Parameter `biasVector`: A valid MPSVector object which specifies the bias values, or
+        /// a null object to indicate that no bias is to be applied.
+        ///
+        ///
+        /// Parameter `resultMatrix`: A valid MPSMatrix object which specifies the output array.
+        ///
+        ///
+        /// Encodes the operation to the specified command buffer.  resultMatrix
+        /// must be large enough to hold a
+        /// MIN(sourceNumberOfInputs,
+        /// inputMatrix.rows - primarySourceMatrixOrigin.x)
+        /// x
+        /// MIN(sourceOutputFeatureChannels,
+        /// weightMatrix.columns - secondarySourceMatrixOrigin.y) array.
+        ///
+        /// The bias vector must contain at least
+        /// MIN(sourceOutputFeatureChannels, weightMatrix.columns - secondarySourceMatrixOrigin.y) elements.
         #[method(encodeToCommandBuffer:inputMatrix:weightMatrix:biasVector:resultMatrix:)]
         pub unsafe fn encodeToCommandBuffer_inputMatrix_weightMatrix_biasVector_resultMatrix(
             &self,
@@ -109,6 +216,15 @@ extern_methods!(
             result_matrix: &MPSMatrix,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSMatrixFullyConnected
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSMatrixFullyConnected object.
+        ///
+        /// Returns: A new MPSMatrixFullyConnected object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -116,6 +232,18 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Make a copy of this kernel for a new device -
+        ///
+        /// See: MPSKernel
+        ///
+        /// Parameter `zone`: The NSZone in which to allocate the object
+        ///
+        /// Parameter `device`: The device for the new MPSKernel. If nil, then use
+        /// self.device.
+        ///
+        /// Returns: A pointer to a copy of this MPSKernel. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -129,6 +257,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixFullyConnected {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -150,7 +286,23 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixfullyconnectedgradient?language=objc)
+    /// Dependencies: This depends on Metal.framework.
+    ///
+    ///
+    /// Computes the gradient of the fully connected layer with respect
+    /// to either the weights and bias terms or the input feature vectors.
+    ///
+    ///
+    /// An MPSMatrixFullyConnectedGradient kernel may be used to compute
+    /// the gradients corresponding to a MPSMatrixFullyConnected kernel.
+    /// The properties, input, and weight data must match those values
+    /// used in the forward computation.
+    /// This kernel does not compute the gradient of any non-identity
+    /// activation function which may have been applied in the forward
+    /// kernel.  Such a kernel must be expressed using both MPSMatrixFullyConnected
+    /// and MPSMatrixNeuron if a gradient is to be computed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixfullyconnectedgradient?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -177,36 +329,61 @@ unsafe impl NSSecureCoding for MPSMatrixFullyConnectedGradient {}
 extern_methods!(
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixFullyConnectedGradient {
+        /// The number of input vectors which make up the input array.
+        /// This is equivalent to the number of rows in both the input
+        /// matrix and the source gradient matrix.
+        ///
+        /// This value should be equal to the corresponding value in the
+        /// forward fully connected kernel.
         #[method(sourceNumberOfFeatureVectors)]
         pub unsafe fn sourceNumberOfFeatureVectors(&self) -> NSUInteger;
 
+        /// Setter for [`sourceNumberOfFeatureVectors`][Self::sourceNumberOfFeatureVectors].
         #[method(setSourceNumberOfFeatureVectors:)]
         pub unsafe fn setSourceNumberOfFeatureVectors(
             &self,
             source_number_of_feature_vectors: NSUInteger,
         );
 
+        /// The number of feature channels in the output of the forward
+        /// fully connected layer.
+        /// This is equivalent to the number of columns in both the weight
+        /// matrix and the source gradient matrix.
+        ///
+        /// This value should be equal to the corresponding value in the
+        /// forward fully connected kernel.
         #[method(sourceOutputFeatureChannels)]
         pub unsafe fn sourceOutputFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`sourceOutputFeatureChannels`][Self::sourceOutputFeatureChannels].
         #[method(setSourceOutputFeatureChannels:)]
         pub unsafe fn setSourceOutputFeatureChannels(
             &self,
             source_output_feature_channels: NSUInteger,
         );
 
+        /// The number of feature channels in the input to the forward
+        /// fully connected layer.
+        /// This is equivalent to the number of columns in the input matrix.
+        ///
+        /// This value should be equal to the corresponding value in the
+        /// forward fully connected kernel.
         #[method(sourceInputFeatureChannels)]
         pub unsafe fn sourceInputFeatureChannels(&self) -> NSUInteger;
 
+        /// Setter for [`sourceInputFeatureChannels`][Self::sourceInputFeatureChannels].
         #[method(setSourceInputFeatureChannels:)]
         pub unsafe fn setSourceInputFeatureChannels(
             &self,
             source_input_feature_channels: NSUInteger,
         );
 
+        /// Scale factor to apply to the product.  This value should be equal
+        /// to the corresponding value in the forward fully connected kernel.
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_double;
 
+        /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: c_double);
 
@@ -217,6 +394,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a MPSMatrixFullyConnectedGradient object to a command buffer and
+        /// produce the gradient of the loss function with respect to the input data.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        ///
+        /// Parameter `gradientMatrix`: A valid MPSMatrix object which specifies the input gradient.
+        ///
+        ///
+        /// Parameter `weightMatrix`: A valid MPSMatrix object which specifies the weight array.
+        ///
+        ///
+        /// Parameter `resultGradientForDataMatrix`: A valid MPSMatrix object which specifies the result gradient.
+        ///
+        ///
+        /// This operation computes the resulting gradient of the loss function with respect
+        /// to the forward kernel's input data.  weightMatrix should contain the same values
+        /// used to compute the result of the forward kernel.
         #[method(encodeGradientForDataToCommandBuffer:gradientMatrix:weightMatrix:resultGradientForDataMatrix:)]
         pub unsafe fn encodeGradientForDataToCommandBuffer_gradientMatrix_weightMatrix_resultGradientForDataMatrix(
             &self,
@@ -227,6 +423,32 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSMatrix")]
+        /// Encode a MPSMatrixFullyConnectedGradient object to a command buffer and
+        /// produce the gradient of the loss function with respect to the weight matrix
+        /// and bias vector.
+        ///
+        ///
+        /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded kernel.
+        ///
+        ///
+        /// Parameter `gradientMatrix`: A valid MPSMatrix object which specifies the input gradient.
+        ///
+        ///
+        /// Parameter `inputMatrix`: A valid MPSMatrix object which specifies the input array.
+        ///
+        ///
+        /// Parameter `resultGradientForWeightMatrix`: A valid MPSMatrix object which specifies the resulting gradients
+        /// with respect to the weights.
+        ///
+        ///
+        /// Parameter `resultGradientForBiasVector`: A valid MPSVector object which specifies the resulting gradients
+        /// with respect to the bias terms.  If NULL these values will not be
+        /// returned.
+        ///
+        ///
+        /// This operation computes the resulting gradient of the loss function with respect
+        /// to the forward kernel's weight data.  inputMatrix should contain the same values
+        /// used to compute the result of the forward kernel.
         #[method(encodeGradientForWeightsAndBiasToCommandBuffer:gradientMatrix:inputMatrix:resultGradientForWeightMatrix:resultGradientForBiasVector:)]
         pub unsafe fn encodeGradientForWeightsAndBiasToCommandBuffer_gradientMatrix_inputMatrix_resultGradientForWeightMatrix_resultGradientForBiasVector(
             &self,
@@ -237,6 +459,15 @@ extern_methods!(
             result_gradient_for_bias_vector: Option<&MPSVector>,
         );
 
+        /// NSSecureCoding compatability
+        ///
+        /// See
+        /// MPSKernel#initWithCoder.
+        /// Parameter `aDecoder`: The NSCoder subclass with your serialized MPSMatrixFullyConnectedGradient
+        ///
+        /// Parameter `device`: The MTLDevice on which to make the MPSMatrixFullyConnectedGradient object.
+        ///
+        /// Returns: A new MPSMatrixFullyConnected object, or nil if failure.
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -244,6 +475,18 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
+        /// Make a copy of this kernel for a new device -
+        ///
+        /// See: MPSKernel
+        ///
+        /// Parameter `zone`: The NSZone in which to allocate the object
+        ///
+        /// Parameter `device`: The device for the new MPSKernel. If nil, then use
+        /// self.device.
+        ///
+        /// Returns: A pointer to a copy of this MPSKernel. This will fail, returning
+        /// nil if the device is not supported. Devices must be
+        /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
         #[method_id(@__retain_semantics Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -257,6 +500,14 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixFullyConnectedGradient {
+        /// Called by NSCoder to decode MPSKernels
+        ///
+        /// This isn't the right interface to decode a MPSKernel, but
+        /// it is the one that NSCoder uses. To enable your NSCoder
+        /// (e.g. NSKeyedUnarchiver) to set which device to use
+        /// extend the object to adopt the MPSDeviceProvider
+        /// protocol. Otherwise, the Metal system default device
+        /// will be used.
         #[method_id(@__retain_semantics Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

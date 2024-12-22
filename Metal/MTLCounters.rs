@@ -7,7 +7,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter?language=objc)
+/// Common counters that, when present, are expected to have similar meanings across
+/// different implementations.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter?language=objc)
 // NS_TYPED_ENUM
 pub type MTLCommonCounter = NSString;
 
@@ -86,7 +89,12 @@ extern "C" {
     pub static MTLCommonCounterRenderTargetWriteCycles: &'static MTLCommonCounter;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterset?language=objc)
+/// Common counter set names.
+///
+/// Each of these common counter sets has a defined structure type.  Implementations
+/// may omit some of the counters from these sets.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterset?language=objc)
 // NS_TYPED_ENUM
 pub type MTLCommonCounterSet = NSString;
 
@@ -185,7 +193,9 @@ unsafe impl RefEncode for MTLCounterResultStatistic {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounter?language=objc)
+    /// A descriptor for a single counter.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounter?language=objc)
     pub unsafe trait MTLCounter: NSObjectProtocol {
         #[method_id(@__retain_semantics Other name)]
         unsafe fn name(&self) -> Retained<NSString>;
@@ -195,11 +205,19 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterset?language=objc)
+    /// A collection of MTLCounters that the device can capture in
+    /// a single pass.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterset?language=objc)
     pub unsafe trait MTLCounterSet: NSObjectProtocol {
         #[method_id(@__retain_semantics Other name)]
         unsafe fn name(&self) -> Retained<NSString>;
 
+        /// The counters array contains all the counters that will be written
+        /// when a counter sample is collected.  Counters that do not appear in this array
+        /// will not be written to the resolved buffer when the samples are resolved, even if
+        /// they appear in the corresponding resolved counter structure.  Instead
+        /// MTLCounterErrorValue will be written in the resolved buffer.
         #[method_id(@__retain_semantics Other counters)]
         unsafe fn counters(&self) -> Retained<NSArray<ProtocolObject<dyn MTLCounter>>>;
     }
@@ -208,7 +226,9 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebufferdescriptor?language=objc)
+    /// Object to represent the counter state.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebufferdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCounterSampleBufferDescriptor;
@@ -227,26 +247,32 @@ extern_methods!(
         #[method_id(@__retain_semantics Other counterSet)]
         pub unsafe fn counterSet(&self) -> Option<Retained<ProtocolObject<dyn MTLCounterSet>>>;
 
+        /// Setter for [`counterSet`][Self::counterSet].
         #[method(setCounterSet:)]
         pub unsafe fn setCounterSet(&self, counter_set: Option<&ProtocolObject<dyn MTLCounterSet>>);
 
         #[method_id(@__retain_semantics Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
+        /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
         #[cfg(feature = "MTLResource")]
+        /// MTLStorageModeShared and MTLStorageModePrivate may be used.
         #[method(storageMode)]
         pub unsafe fn storageMode(&self) -> MTLStorageMode;
 
         #[cfg(feature = "MTLResource")]
+        /// Setter for [`storageMode`][Self::storageMode].
         #[method(setStorageMode:)]
         pub unsafe fn setStorageMode(&self, storage_mode: MTLStorageMode);
 
+        /// counter sample buffer.
         #[method(sampleCount)]
         pub unsafe fn sampleCount(&self) -> NSUInteger;
 
+        /// Setter for [`sampleCount`][Self::sampleCount].
         #[method(setSampleCount:)]
         pub unsafe fn setSampleCount(&self, sample_count: NSUInteger);
     }
@@ -264,18 +290,33 @@ extern_methods!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffer?language=objc)
+    /// The Counter Sample Buffer contains opaque counter samples as well
+    /// as state needed to request a sample from the API.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffer?language=objc)
     pub unsafe trait MTLCounterSampleBuffer: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
+        /// to use the sample buffer with this device.
         #[method_id(@__retain_semantics Other device)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
+        /// property of the descriptor that is used to create the sample buffer.
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Retained<NSString>;
 
         #[method(sampleCount)]
         unsafe fn sampleCount(&self) -> NSUInteger;
 
+        /// Resolve the counters from the sample buffer to an NSData containing
+        /// the counter values.  This may only be used with sample buffers that have
+        /// MTLStorageModeShared.
+        ///
+        /// Parameter `range`: The range of indices in the sample buffer to resolve.
+        ///
+        /// Returns: The resolved samples.
+        ///
+        /// Samples that encountered an error during resolve will be set to
+        /// MTLCounterErrorValue.
         #[method_id(@__retain_semantics Other resolveCounterRange:)]
         unsafe fn resolveCounterRange(&self, range: NSRange) -> Option<Retained<NSData>>;
     }
@@ -284,11 +325,21 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountererrordomain?language=objc)
+    /// NSErrors raised when creating a counter sample buffer.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountererrordomain?language=objc)
     pub static MTLCounterErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror?language=objc)
+/// There wasn't enough memory available to allocate the counter sample buffer.
+///
+///
+/// Invalid parameter passed while creating counter sample buffer.
+///
+///
+/// There was some other error in allocating the counter sample buffer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

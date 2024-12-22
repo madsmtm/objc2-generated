@@ -24,18 +24,21 @@ unsafe impl NSObjectProtocol for NSColorPickerTouchBarItem {}
 extern_methods!(
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSColorPickerTouchBarItem {
+        /// Creates a bar item containing a button with the standard color picker icon that invokes the color picker.
         #[method_id(@__retain_semantics Other colorPickerWithIdentifier:)]
         pub unsafe fn colorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Creates a bar item containing a button with the standard text color picker icon that invokes the color picker. Should be used when the item is used for picking text colors.
         #[method_id(@__retain_semantics Other textColorPickerWithIdentifier:)]
         pub unsafe fn textColorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
+        /// Creates a bar item containing a button with the standard stroke color picker icon that invokes the color picker. Should be used when the item is used for picking stroke colors.
         #[method_id(@__retain_semantics Other strokeColorPickerWithIdentifier:)]
         pub unsafe fn strokeColorPickerWithIdentifier(
             identifier: &NSTouchBarItemIdentifier,
@@ -55,20 +58,25 @@ extern_methods!(
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
+        /// Whether or not the picker should allow picking a color with non-1.0 alpha. Defaults to `!NSColor.ignoresAlpha`.
         #[method(showsAlpha)]
         pub unsafe fn showsAlpha(&self) -> bool;
 
+        /// Setter for [`showsAlpha`][Self::showsAlpha].
         #[method(setShowsAlpha:)]
         pub unsafe fn setShowsAlpha(&self, shows_alpha: bool);
 
         #[cfg(feature = "NSColorSpace")]
+        /// Controls the color spaces that the receiver is able to produce. If a color outside of the allowed spaces are displayed or selected, it will first be converted to the first color space in the array. `nil` signifies any color space is allowed. Empty array is an invalid value and will raise an exception if set. Defaults to `nil`.
         #[method_id(@__retain_semantics Other allowedColorSpaces)]
         pub unsafe fn allowedColorSpaces(&self) -> Option<Retained<NSArray<NSColorSpace>>>;
 
         #[cfg(feature = "NSColorSpace")]
+        /// Setter for [`allowedColorSpaces`][Self::allowedColorSpaces].
         #[method(setAllowedColorSpaces:)]
         pub unsafe fn setAllowedColorSpaces(
             &self,
@@ -76,16 +84,20 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSColorList")]
+        /// The color list displayed in the list color picker. Defaults to the standard system color list. Setting a custom color list will disable the additional tints/shades that appear on long-press.
         #[method_id(@__retain_semantics Other colorList)]
         pub unsafe fn colorList(&self) -> Option<Retained<NSColorList>>;
 
         #[cfg(feature = "NSColorList")]
+        /// Setter for [`colorList`][Self::colorList].
         #[method(setColorList:)]
         pub unsafe fn setColorList(&self, color_list: Option<&NSColorList>);
 
+        /// The localized string labelling this item during user customization. The default value is the localized string of "Color Picker".
         #[method_id(@__retain_semantics Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
+        /// Setter for [`customizationLabel`][Self::customizationLabel].
         #[method(setCustomizationLabel:)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
@@ -93,18 +105,22 @@ extern_methods!(
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
+        /// Setter for [`action`][Self::action].
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
+        /// Enables or disabled the color picker. If it is currently being shown in a popover, it will be dismissed.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
+        /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
     }

@@ -7,30 +7,42 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachinestate?language=objc)
+/// Execution state of the virtual machine.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachinestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct VZVirtualMachineState(pub NSInteger);
 impl VZVirtualMachineState {
+    /// Initial state before the virtual machine is started.
     #[doc(alias = "VZVirtualMachineStateStopped")]
     pub const Stopped: Self = Self(0);
+    /// Running virtual machine.
     #[doc(alias = "VZVirtualMachineStateRunning")]
     pub const Running: Self = Self(1);
+    /// A started virtual machine is paused. This state can only be transitioned from VZVirtualMachineStatePausing.
     #[doc(alias = "VZVirtualMachineStatePaused")]
     pub const Paused: Self = Self(2);
+    /// The virtual machine has encountered an internal error.
     #[doc(alias = "VZVirtualMachineStateError")]
     pub const Error: Self = Self(3);
+    /// The virtual machine is configuring the hardware and starting.
     #[doc(alias = "VZVirtualMachineStateStarting")]
     pub const Starting: Self = Self(4);
+    /// The virtual machine is being paused. This is the intermediate state between VZVirtualMachineStateRunning and VZVirtualMachineStatePaused.
     #[doc(alias = "VZVirtualMachineStatePausing")]
     pub const Pausing: Self = Self(5);
+    /// The virtual machine is being resumed. This is the intermediate state between VZVirtualMachineStatePaused and VZVirtualMachineStateRunning.
     #[doc(alias = "VZVirtualMachineStateResuming")]
     pub const Resuming: Self = Self(6);
+    /// The virtual machine is being stopped. This is the intermediate state between VZVirtualMachineStateRunning and VZVirtualMachineStateStop.
     #[doc(alias = "VZVirtualMachineStateStopping")]
     pub const Stopping: Self = Self(7);
+    /// The virtual machine is being saved. This is the intermediate state between VZVirtualMachineStatePaused and VZVirtualMachineStatePaused.
     #[doc(alias = "VZVirtualMachineStateSaving")]
     pub const Saving: Self = Self(8);
+    /// The virtual machine is being restored. This is the intermediate state between VZVirtualMachineStateStopped and either VZVirtualMachineStatePaused on success or VZVirtualMachineStateStopped on failure.
     #[doc(alias = "VZVirtualMachineStateRestoring")]
     pub const Restoring: Self = Self(9);
 }
@@ -44,7 +56,25 @@ unsafe impl RefEncode for VZVirtualMachineState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine?language=objc)
+    /// VZVirtualMachine represents the entire state of a single virtual machine.
+    ///
+    /// A Virtual Machine is the emulation of a complete hardware machine of the same architecture as the real hardware machine.
+    /// When executing the Virtual Machine, the Virtualization framework uses certain hardware resources and emulates others to provide isolation
+    /// and great performance.
+    ///
+    /// The definition of a virtual machine starts with its configuration. This is done by setting up a VZVirtualMachineConfiguration object.
+    /// Once configured, the virtual machine can be started with [VZVirtualMachine startWithCompletionHandler:].
+    ///
+    /// To install macOS on a virtual machine, configure a new virtual machine with a suitable VZMacPlatformConfiguration, then use a VZMacOSInstaller
+    /// to install the restore image on it.
+    ///
+    /// Creating a virtual machine using the Virtualization framework requires the app to have the "com.apple.security.virtualization" entitlement.
+    ///
+    /// See also: VZVirtualMachineConfiguration
+    ///
+    /// See also: VZMacOSInstaller
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtualMachine;
@@ -61,19 +91,33 @@ extern_methods!(
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtualMachineConfiguration")]
+        /// Initialize the virtual machine.
+        ///
+        /// This initializer uses the main queue to operate the virtual machine. Every call must be done on the main queue and the callbacks are invoked
+        /// on the main queue.
+        ///
+        /// Parameter `configuration`: The configuration of the virtual machine.
+        /// The configuration must be valid. Validation can be performed at runtime with [VZVirtualMachineConfiguration validateWithError:].
+        /// The configuration is copied by the initializer.
         #[method_id(@__retain_semantics Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &VZVirtualMachineConfiguration,
         ) -> Retained<Self>;
 
+        /// Indicate whether or not virtualization is available.
+        ///
+        /// If virtualization is unavailable, no VZVirtualMachineConfiguration will validate.
+        /// The validation error of the VZVirtualMachineConfiguration provides more information about why virtualization is unavailable.
         #[method(isSupported)]
         pub unsafe fn isSupported() -> bool;
 
+        /// Execution state of the virtual machine.
         #[method(state)]
         pub unsafe fn state(&self) -> VZVirtualMachineState;
 
         #[cfg(feature = "VZVirtualMachineDelegate")]
+        /// The virtual machine delegate.
         #[method_id(@__retain_semantics Other delegate)]
         pub unsafe fn delegate(
             &self,
@@ -81,57 +125,124 @@ extern_methods!(
 
         #[cfg(feature = "VZVirtualMachineDelegate")]
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn VZVirtualMachineDelegate>>,
         );
 
+        /// Return YES if the machine is in a state that can be started.
+        ///
+        /// See: -[VZVirtualMachine startWithCompletionHandler:].
+        ///
+        /// See: -[VZVirtualMachine state]
         #[method(canStart)]
         pub unsafe fn canStart(&self) -> bool;
 
+        /// Return YES if the machine is in a state that can be stopped.
+        ///
+        /// See: -[VZVirtualMachine stopWithCompletionHandler:]
+        ///
+        /// See: -[VZVirtualMachine state]
         #[method(canStop)]
         pub unsafe fn canStop(&self) -> bool;
 
+        /// Return YES if the machine is in a state that can be paused.
+        ///
+        /// See: -[VZVirtualMachine pauseWithCompletionHandler:]
+        ///
+        /// See: -[VZVirtualMachine state]
         #[method(canPause)]
         pub unsafe fn canPause(&self) -> bool;
 
+        /// Return YES if the machine is in a state that can be resumed.
+        ///
+        /// See: -[VZVirtualMachine resumeWithCompletionHandler:]
+        ///
+        /// See: -[VZVirtualMachine state]
         #[method(canResume)]
         pub unsafe fn canResume(&self) -> bool;
 
+        /// Returns whether the machine is in a state where the guest can be asked to stop.
+        ///
+        /// See: -[VZVirtualMachine requestStopWithError:]
+        ///
+        /// See: -[VZVirtualMachine state]
         #[method(canRequestStop)]
         pub unsafe fn canRequestStop(&self) -> bool;
 
         #[cfg(feature = "VZConsoleDevice")]
+        /// Return the list of console devices configured on this virtual machine. Return an empty array if no console device is configured.
+        ///
+        /// See: VZVirtioConsoleDeviceConfiguration
+        ///
+        /// See: VZVirtualMachineConfiguration
         #[method_id(@__retain_semantics Other consoleDevices)]
         pub unsafe fn consoleDevices(&self) -> Retained<NSArray<VZConsoleDevice>>;
 
         #[cfg(feature = "VZDirectorySharingDevice")]
+        /// Return the list of directory sharing devices configured on this virtual machine. Return an empty array if no directory sharing device is configured.
+        ///
+        /// See: VZVirtioFileSystemDeviceConfiguration
+        ///
+        /// See: VZVirtualMachineConfiguration
         #[method_id(@__retain_semantics Other directorySharingDevices)]
         pub unsafe fn directorySharingDevices(&self)
             -> Retained<NSArray<VZDirectorySharingDevice>>;
 
         #[cfg(feature = "VZGraphicsDevice")]
+        /// Return the list of graphics devices configured on this virtual machine. Return an empty array if no graphics device is configured.
+        ///
+        /// See: VZGraphicsDeviceConfiguration
+        ///
+        /// See: VZVirtualMachineConfiguration
         #[method_id(@__retain_semantics Other graphicsDevices)]
         pub unsafe fn graphicsDevices(&self) -> Retained<NSArray<VZGraphicsDevice>>;
 
         #[cfg(feature = "VZMemoryBalloonDevice")]
+        /// Return the list of memory balloon devices configured on this virtual machine. Return an empty array if no memory balloon device is configured.
+        ///
+        /// See: VZVirtioTraditionalMemoryBalloonDeviceConfiguration
+        ///
+        /// See: VZVirtualMachineConfiguration
         #[method_id(@__retain_semantics Other memoryBalloonDevices)]
         pub unsafe fn memoryBalloonDevices(&self) -> Retained<NSArray<VZMemoryBalloonDevice>>;
 
         #[cfg(feature = "VZNetworkDevice")]
+        /// Return the list of network devices configured on this virtual machine. Return an empty array if no network device is configured.
+        ///
+        /// See: VZVirtioNetworkDeviceConfiguration
+        ///
+        /// See: VZVirtualMachineConfiguration
         #[method_id(@__retain_semantics Other networkDevices)]
         pub unsafe fn networkDevices(&self) -> Retained<NSArray<VZNetworkDevice>>;
 
         #[cfg(feature = "VZSocketDevice")]
+        /// Return the list of socket devices configured on this virtual machine. Return an empty array if no socket device is configured.
+        ///
+        /// See: VZVirtioSocketDeviceConfiguration
+        ///
+        /// See: VZVirtualMachineConfiguration
         #[method_id(@__retain_semantics Other socketDevices)]
         pub unsafe fn socketDevices(&self) -> Retained<NSArray<VZSocketDevice>>;
 
         #[cfg(feature = "VZUSBController")]
+        /// Return the list of USB controllers configured on this virtual machine. Return an empty array if no USB controller is configured.
+        ///
+        /// See: VZUSBControllerConfiguration
+        ///
+        /// See: VZVirtualMachineConfiguration
         #[method_id(@__retain_semantics Other usbControllers)]
         pub unsafe fn usbControllers(&self) -> Retained<NSArray<VZUSBController>>;
 
         #[cfg(feature = "block2")]
+        /// Start a virtual machine.
+        ///
+        /// Start a virtual machine that is in either Stopped or Error state.
+        ///
+        /// Parameter `completionHandler`: Block called after the virtual machine has been successfully started or on error.
+        /// The error parameter passed to the block is nil if the start was successful.
         #[method(startWithCompletionHandler:)]
         pub unsafe fn startWithCompletionHandler(
             &self,
@@ -139,6 +250,16 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "VZVirtualMachineStartOptions", feature = "block2"))]
+        /// Start a virtual machine with options.
+        ///
+        /// Start a virtual machine that is in either Stopped or Error state.
+        ///
+        /// Parameter `options`: Options used to control how the virtual machine is started.
+        ///
+        /// Parameter `completionHandler`: Block called after the virtual machine has been successfully started or on error.
+        /// The error parameter passed to the block is nil if the start was successful.
+        ///
+        /// See also: VZMacOSVirtualMachineStartOptions
         #[method(startWithOptions:completionHandler:)]
         pub unsafe fn startWithOptions_completionHandler(
             &self,
@@ -147,6 +268,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Stop a virtual machine.
+        ///
+        /// Stop a virtual machine that is in either Running or Paused state.
+        ///
+        /// Parameter `completionHandler`: Block called after the virtual machine has been successfully stopped or on error.
+        /// The error parameter passed to the block is nil if the stop was successful.
+        ///
+        /// This is a destructive operation. It stops the virtual machine without giving the guest a chance to stop cleanly.
+        ///
+        /// See also: -[VZVirtualMachine requestStopWithError:]
         #[method(stopWithCompletionHandler:)]
         pub unsafe fn stopWithCompletionHandler(
             &self,
@@ -154,6 +285,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Pause a virtual machine.
+        ///
+        /// Pause a virtual machine that is in Running state.
+        ///
+        /// Parameter `completionHandler`: Block called after the virtual machine has been successfully paused or on error.
+        /// The error parameter passed to the block is nil if the pause was successful.
         #[method(pauseWithCompletionHandler:)]
         pub unsafe fn pauseWithCompletionHandler(
             &self,
@@ -161,6 +298,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Resume a virtual machine.
+        ///
+        /// Resume a virtual machine that is in the Paused state.
+        ///
+        /// Parameter `completionHandler`: Block called after the virtual machine has been successfully resumed or on error.
+        /// The error parameter passed to the block is nil if the resumption was successful.
         #[method(resumeWithCompletionHandler:)]
         pub unsafe fn resumeWithCompletionHandler(
             &self,
@@ -168,6 +311,33 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Restore a virtual machine.
+        ///
+        /// Restore a stopped virtual machine to a state previously saved to file through `saveMachineStateToURL:completionHandler:`.
+        ///
+        /// If the file cannot be read, or contains otherwise invalid contents, this operation will fail with a `VZErrorRestore` error.
+        /// If the virtual machine is not in the stopped state, this operation will fail with a `VZErrorInvalidVirtualMachineStateTransition` error.
+        /// If the virtual machine cannot be started due to an internal error, this operation will fail with a `VZErrorInternal` error.
+        /// The `VZVirtualMachineConfiguration` must also support restoring, which can be checked with  `-[VZVirtualMachineConfiguration validateSaveRestoreSupportWithError:]`.
+        ///
+        /// If this operation fails, the virtual machine state is unchanged.
+        /// If successful, the virtual machine is restored and placed in the paused state.
+        ///
+        /// Parameter `saveFileURL`: URL to file containing saved state of a suspended virtual machine.
+        /// The file must have been generated by `saveMachineStateToURL:completionHandler:` on the same host.
+        /// Otherwise, this operation will fail with a `VZErrorRestore` error indicating a permission denied failure reason.
+        ///
+        /// The virtual machine must also be configured compatibly with the state contained in the file.
+        /// If the `VZVirtualMachineConfiguration` is not compatible with the content of the file, this operation will fail with a `VZErrorRestore` error indicating an invalid argument failure reason.
+        ///
+        /// Files generated with `saveMachineStateToURL:completionHandler:` on a software version that is newer than the current version will also be rejected with an invalid argument failure reason.
+        /// In some cases, `restoreMachineStateFromURL:completionHandler:` can fail if a software update has changed the host in a way that would be incompatible with the previous format.
+        /// In this case, an invalid argument error will be surfaced. In most cases, the virtual machine should be restarted with `startWithCompletionHandler:`.
+        ///
+        /// Parameter `completionHandler`: Block called after the virtual machine has been successfully started or on error.
+        /// The error parameter passed to the block is nil if the restore was successful.
+        ///
+        /// See: -[VZVirtualMachineConfiguration validateSaveRestoreSupportWithError:]
         #[method(restoreMachineStateFromURL:completionHandler:)]
         pub unsafe fn restoreMachineStateFromURL_completionHandler(
             &self,
@@ -176,6 +346,25 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
+        /// Save a virtual machine.
+        ///
+        /// Save a paused virtual machine to file.
+        /// The contents of this file can be used later to restore the state of the paused virtual machine.
+        ///
+        /// If the virtual machine is not paused, this operation will fail with a `VZErrorInvalidVirtualMachineState` error.
+        /// If the virtual machine cannot be saved, this operation will fail with a `VZErrorSave` error.
+        /// The `VZVirtualMachineConfiguration` must also support saving, which can be checked with  `-[VZVirtualMachineConfiguration validateSaveRestoreSupportWithError:]`.
+        ///
+        /// If this operation fails, the virtual machine state is unchanged.
+        /// If successful, the file is written out and the virtual machine state is unchanged.
+        ///
+        /// Parameter `saveFileURL`: URL to location where the saved state of the virtual machine is to be written.
+        /// Each file is protected by an encryption key that is tied to the host on which it is created.
+        ///
+        /// Parameter `completionHandler`: Block called after the virtual machine has been successfully saved or on error.
+        /// The error parameter passed to the block is nil if the save was successful.
+        ///
+        /// See: -[VZVirtualMachineConfiguration validateSaveRestoreSupportWithError:]
         #[method(saveMachineStateToURL:completionHandler:)]
         pub unsafe fn saveMachineStateToURL_completionHandler(
             &self,
@@ -183,6 +372,15 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
 
+        /// Request that the guest turns itself off.
+        ///
+        /// Parameter `error`: If not nil, assigned with the error if the request failed.
+        ///
+        /// Returns: YES if the request was made successfully.
+        ///
+        /// The -[VZVirtualMachineDelegate guestDidStopVirtualMachine:] delegate method is invoked when the guest has turned itself off.
+        ///
+        /// See also: -[VZVirtualMachineDelegate guestDidStopVirtualMachine:].
         #[method(requestStopWithError:_)]
         pub unsafe fn requestStopWithError(&self) -> Result<(), Retained<NSError>>;
     }

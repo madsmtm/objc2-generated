@@ -214,12 +214,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other text)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`text`][Self::text].
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other attributedText)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
+        /// Setter for [`attributedText`][Self::attributedText].
         #[method(setAttributedText:)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
@@ -228,6 +230,7 @@ extern_methods!(
         pub unsafe fn textColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
+        /// Setter for [`textColor`][Self::textColor].
         #[method(setTextColor:)]
         pub unsafe fn setTextColor(&self, text_color: Option<&UIColor>);
 
@@ -236,6 +239,7 @@ extern_methods!(
         pub unsafe fn font(&self) -> Option<Retained<UIFont>>;
 
         #[cfg(feature = "UIFont")]
+        /// Setter for [`font`][Self::font].
         #[method(setFont:)]
         pub unsafe fn setFont(&self, font: Option<&UIFont>);
 
@@ -244,12 +248,14 @@ extern_methods!(
         pub unsafe fn textAlignment(&self) -> NSTextAlignment;
 
         #[cfg(feature = "NSText")]
+        /// Setter for [`textAlignment`][Self::textAlignment].
         #[method(setTextAlignment:)]
         pub unsafe fn setTextAlignment(&self, text_alignment: NSTextAlignment);
 
         #[method(borderStyle)]
         pub unsafe fn borderStyle(&self) -> UITextBorderStyle;
 
+        /// Setter for [`borderStyle`][Self::borderStyle].
         #[method(setBorderStyle:)]
         pub unsafe fn setBorderStyle(&self, border_style: UITextBorderStyle);
 
@@ -258,6 +264,7 @@ extern_methods!(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
+        /// Setter for [`defaultTextAttributes`][Self::defaultTextAttributes].
         #[method(setDefaultTextAttributes:)]
         pub unsafe fn setDefaultTextAttributes(
             &self,
@@ -267,12 +274,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other placeholder)]
         pub unsafe fn placeholder(&self) -> Option<Retained<NSString>>;
 
+        /// Setter for [`placeholder`][Self::placeholder].
         #[method(setPlaceholder:)]
         pub unsafe fn setPlaceholder(&self, placeholder: Option<&NSString>);
 
         #[method_id(@__retain_semantics Other attributedPlaceholder)]
         pub unsafe fn attributedPlaceholder(&self) -> Option<Retained<NSAttributedString>>;
 
+        /// Setter for [`attributedPlaceholder`][Self::attributedPlaceholder].
         #[method(setAttributedPlaceholder:)]
         pub unsafe fn setAttributedPlaceholder(
             &self,
@@ -282,12 +291,14 @@ extern_methods!(
         #[method(clearsOnBeginEditing)]
         pub unsafe fn clearsOnBeginEditing(&self) -> bool;
 
+        /// Setter for [`clearsOnBeginEditing`][Self::clearsOnBeginEditing].
         #[method(setClearsOnBeginEditing:)]
         pub unsafe fn setClearsOnBeginEditing(&self, clears_on_begin_editing: bool);
 
         #[method(adjustsFontSizeToFitWidth)]
         pub unsafe fn adjustsFontSizeToFitWidth(&self) -> bool;
 
+        /// Setter for [`adjustsFontSizeToFitWidth`][Self::adjustsFontSizeToFitWidth].
         #[method(setAdjustsFontSizeToFitWidth:)]
         pub unsafe fn setAdjustsFontSizeToFitWidth(&self, adjusts_font_size_to_fit_width: bool);
 
@@ -296,6 +307,7 @@ extern_methods!(
         pub unsafe fn minimumFontSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Setter for [`minimumFontSize`][Self::minimumFontSize].
         #[method(setMinimumFontSize:)]
         pub unsafe fn setMinimumFontSize(&self, minimum_font_size: CGFloat);
 
@@ -303,6 +315,7 @@ extern_methods!(
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITextFieldDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
+        /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(
             &self,
@@ -314,6 +327,7 @@ extern_methods!(
         pub unsafe fn background(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`background`][Self::background].
         #[method(setBackground:)]
         pub unsafe fn setBackground(&self, background: Option<&UIImage>);
 
@@ -322,6 +336,7 @@ extern_methods!(
         pub unsafe fn disabledBackground(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
+        /// Setter for [`disabledBackground`][Self::disabledBackground].
         #[method(setDisabledBackground:)]
         pub unsafe fn setDisabledBackground(&self, disabled_background: Option<&UIImage>);
 
@@ -331,6 +346,7 @@ extern_methods!(
         #[method(allowsEditingTextAttributes)]
         pub unsafe fn allowsEditingTextAttributes(&self) -> bool;
 
+        /// Setter for [`allowsEditingTextAttributes`][Self::allowsEditingTextAttributes].
         #[method(setAllowsEditingTextAttributes:)]
         pub unsafe fn setAllowsEditingTextAttributes(&self, allows_editing_text_attributes: bool);
 
@@ -339,6 +355,7 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
+        /// Setter for [`typingAttributes`][Self::typingAttributes].
         #[method(setTypingAttributes:)]
         pub unsafe fn setTypingAttributes(
             &self,
@@ -348,30 +365,35 @@ extern_methods!(
         #[method(clearButtonMode)]
         pub unsafe fn clearButtonMode(&self) -> UITextFieldViewMode;
 
+        /// Setter for [`clearButtonMode`][Self::clearButtonMode].
         #[method(setClearButtonMode:)]
         pub unsafe fn setClearButtonMode(&self, clear_button_mode: UITextFieldViewMode);
 
         #[method_id(@__retain_semantics Other leftView)]
         pub unsafe fn leftView(&self) -> Option<Retained<UIView>>;
 
+        /// Setter for [`leftView`][Self::leftView].
         #[method(setLeftView:)]
         pub unsafe fn setLeftView(&self, left_view: Option<&UIView>);
 
         #[method(leftViewMode)]
         pub unsafe fn leftViewMode(&self) -> UITextFieldViewMode;
 
+        /// Setter for [`leftViewMode`][Self::leftViewMode].
         #[method(setLeftViewMode:)]
         pub unsafe fn setLeftViewMode(&self, left_view_mode: UITextFieldViewMode);
 
         #[method_id(@__retain_semantics Other rightView)]
         pub unsafe fn rightView(&self) -> Option<Retained<UIView>>;
 
+        /// Setter for [`rightView`][Self::rightView].
         #[method(setRightView:)]
         pub unsafe fn setRightView(&self, right_view: Option<&UIView>);
 
         #[method(rightViewMode)]
         pub unsafe fn rightViewMode(&self) -> UITextFieldViewMode;
 
+        /// Setter for [`rightViewMode`][Self::rightViewMode].
         #[method(setRightViewMode:)]
         pub unsafe fn setRightViewMode(&self, right_view_mode: UITextFieldViewMode);
 
@@ -415,18 +437,21 @@ extern_methods!(
         #[method_id(@__retain_semantics Other inputView)]
         pub unsafe fn inputView(&self) -> Option<Retained<UIView>>;
 
+        /// Setter for [`inputView`][Self::inputView].
         #[method(setInputView:)]
         pub unsafe fn setInputView(&self, input_view: Option<&UIView>);
 
         #[method_id(@__retain_semantics Other inputAccessoryView)]
         pub unsafe fn inputAccessoryView(&self) -> Option<Retained<UIView>>;
 
+        /// Setter for [`inputAccessoryView`][Self::inputAccessoryView].
         #[method(setInputAccessoryView:)]
         pub unsafe fn setInputAccessoryView(&self, input_accessory_view: Option<&UIView>);
 
         #[method(clearsOnInsertion)]
         pub unsafe fn clearsOnInsertion(&self) -> bool;
 
+        /// Setter for [`clearsOnInsertion`][Self::clearsOnInsertion].
         #[method(setClearsOnInsertion:)]
         pub unsafe fn setClearsOnInsertion(&self, clears_on_insertion: bool);
     }
@@ -451,6 +476,7 @@ extern_methods!(
             feature = "UIMenuElement",
             feature = "objc2-core-foundation"
         ))]
+        /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
         #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
@@ -515,6 +541,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other interactionState)]
         pub unsafe fn interactionState(&self) -> Retained<AnyObject>;
 
+        /// Setter for [`interactionState`][Self::interactionState].
         #[method(setInteractionState:)]
         pub unsafe fn setInteractionState(&self, interaction_state: &AnyObject);
     }
@@ -593,6 +620,18 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
+        /// Asks the delegate for the menu to be shown for the specified text range.
+        ///
+        ///
+        /// Parameter `textField`: The text field requesting the menu.
+        ///
+        /// Parameter `range`: The characters range for which the menu is presented for.
+        ///
+        /// Parameter `suggestedActions`: The actions and commands that the system suggests.
+        ///
+        ///
+        /// Returns: Return a UIMenu describing the desired menu hierarchy. Return
+        /// `nil`to present the default system menu.
         #[optional]
         #[method_id(@__retain_semantics Other textField:editMenuForCharactersInRange:suggestedActions:)]
         unsafe fn textField_editMenuForCharactersInRange_suggestedActions(
@@ -608,6 +647,12 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
+        /// Called when the text field is about to present the edit menu.
+        ///
+        ///
+        /// Parameter `textField`: The text field displaying the menu.
+        ///
+        /// Parameter `animator`: Appearance animator. Add animations to this object to run them alongside the appearance transition.
         #[optional]
         #[method(textField:willPresentEditMenuWithAnimator:)]
         unsafe fn textField_willPresentEditMenuWithAnimator(
@@ -622,6 +667,12 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
+        /// Called when the text field is about to dismiss the edit menu.
+        ///
+        ///
+        /// Parameter `textField`: The text field displaying the menu.
+        ///
+        /// Parameter `animator`: Dismissal animator. Add animations to this object to run them alongside the dismissal transition.
         #[optional]
         #[method(textField:willDismissEditMenuWithAnimator:)]
         unsafe fn textField_willDismissEditMenuWithAnimator(

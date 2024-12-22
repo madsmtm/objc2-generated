@@ -12,7 +12,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessorcadence?language=objc)
+    /// An object that defines the cadence at which the video stream is processed.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessorcadence?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorCadence;
@@ -42,7 +44,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessorframeratecadence?language=objc)
+    /// An object that defines a frame-based cadence for processing the video stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessorframeratecadence?language=objc)
     #[unsafe(super(VNVideoProcessorCadence, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorFrameRateCadence;
@@ -81,7 +85,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessortimeintervalcadence?language=objc)
+    /// An object that defines a time-based cadence for processing the video stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessortimeintervalcadence?language=objc)
     #[unsafe(super(VNVideoProcessorCadence, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorTimeIntervalCadence;
@@ -122,7 +128,9 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessorrequestprocessingoptions?language=objc)
+    /// Options applied to a request's processing of the video.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessorrequestprocessingoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorRequestProcessingOptions;
@@ -138,9 +146,13 @@ unsafe impl NSObjectProtocol for VNVideoProcessorRequestProcessingOptions {}
 
 extern_methods!(
     unsafe impl VNVideoProcessorRequestProcessingOptions {
+        /// The cadence at which the request should be performed.
+        ///
+        /// If this property is not defined, then every frame will be processed.
         #[method_id(@__retain_semantics Other cadence)]
         pub unsafe fn cadence(&self) -> Option<Retained<VNVideoProcessorCadence>>;
 
+        /// Setter for [`cadence`][Self::cadence].
         #[method(setCadence:)]
         pub unsafe fn setCadence(&self, cadence: Option<&VNVideoProcessorCadence>);
     }
@@ -158,7 +170,11 @@ extern_methods!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessor?language=objc)
+    /// A controller object that is used to perform one or more requests on a video stream.
+    ///
+    /// VNVideoProcessor handles the video decoding and buffer management, feeding the buffers to the associated requests at the best desired frame rate.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessor;
@@ -171,10 +187,28 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// Creates a VNVideoProcessor to be used for performing requests against a video asset specified by it's URL.
+        ///
+        ///
+        /// Parameter `videoURL`: A URL pointing at a video asset on which the requests will be performed. The video format has to be supported by AVFoundation.
         #[method_id(@__retain_semantics Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, video_url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "VNRequest")]
+        /// Add a VNRequest with the specified processing options to be performed on the video.
+        ///
+        /// This method can be called either before calling -analyzeTimeRange:error: or from within one of the already associated request's completion handlers.
+        ///
+        ///
+        /// Parameter `request`: The VNRequest to be added to the processing pipeline. If added from within a completionHandler, it will be processed on the same frame that is currently being processed.
+        ///
+        /// Parameter `processingOptions`: The options applied to the request's processing of the video.
+        ///
+        /// Parameter `error`: Returns an error that happened during scheduling of the requests. Check individual requests results and errors for their respective success and failures. This parameter is optional.
+        ///
+        /// Returns: Returns true if the request added to the processing pipeline.
+        ///
+        /// Note: The VNRequest must have completion handler set otherwise no results can be returned.
         #[method(addRequest:processingOptions:error:_)]
         pub unsafe fn addRequest_processingOptions_error(
             &self,
@@ -192,6 +226,16 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "VNRequest")]
+        /// Remove a VNRequest from the video processor, which means it won't be performed anymore.
+        ///
+        /// This method can be called either before calling -analyzeTimeRange:error: or from within one of the already associated request's completion handlers.
+        ///
+        ///
+        /// Parameter `request`: The VNRequest to be removed from the processing pipeline.
+        ///
+        /// Parameter `error`: Returns an error that happened during processing of the request, such as if the request was not found in the processing queue. This parameter is optional.
+        ///
+        /// Returns: Returns true if the request was found and removed from the processing pipeline.
         #[method(removeRequest:error:_)]
         pub unsafe fn removeRequest_error(
             &self,
@@ -199,6 +243,18 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-media")]
+        /// Processes the video over the specified time range.
+        ///
+        /// This call is synchronous and only returns after the video is processed through its duration or an error prevented the processing.
+        ///
+        ///
+        /// Parameter `timeRange`: Start and duration of the timerange within video to process. If the duration is longer than the video (e.g., kCMTimeIndefinite) the processing stops at the end of the video.
+        ///
+        /// Parameter `error`: Returns an error that happened during the starting of the processing queue (for instance if the time range is not valid for the video asset). This parameter is optional.
+        ///
+        /// Returns: Returns true if all requests were scheduled and performed. Check individual requests results and errors for their respective success and failures.
+        ///
+        /// Note: The intersection of the CMTimeRangeMake(start, duration) and CMTimeRangeMake(kCMTimeZero, asset.duration) will determine the timerange of the video to process
         #[method(analyzeTimeRange:error:_)]
         pub unsafe fn analyzeTimeRange_error(
             &self,
@@ -213,6 +269,7 @@ extern_methods!(
             time_range: CMTimeRange,
         ) -> Result<(), Retained<NSError>>;
 
+        /// Cancel the processing of the video. This can return before the last request has completed.
         #[method(cancel)]
         pub unsafe fn cancel(&self);
     }

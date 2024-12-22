@@ -9,7 +9,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagedynamicrange?language=objc)
+/// Values that can be used to enable or constrain display of High Dynamic Range (HDR) content in NSImageViews. Displaying HDR content in an NSImageView requires that the assigned NSImage has HDR content in the ITU-R 2100 color space and also that the output device has Extended Dynamic Range (EDR) capabilities.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagedynamicrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -17,10 +19,13 @@ pub struct NSImageDynamicRange(pub NSInteger);
 impl NSImageDynamicRange {
     #[doc(alias = "NSImageDynamicRangeUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// Restrict the image content dynamic range to the standard range regardless of the actual range of the image content.
     #[doc(alias = "NSImageDynamicRangeStandard")]
     pub const Standard: Self = Self(0);
+    /// Allow constrained HDR image content. Useful when mixing HDR and SDR content.
     #[doc(alias = "NSImageDynamicRangeConstrainedHigh")]
     pub const ConstrainedHigh: Self = Self(1);
+    /// Allow image content to use extended dynamic range if it has high dynamic range content.
     #[doc(alias = "NSImageDynamicRangeHigh")]
     pub const High: Self = Self(2);
 }
@@ -115,6 +120,11 @@ extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSImageView {
         #[cfg(feature = "NSImage")]
+        /// Creates a non-editable image view containing the provided image. The image is scaled proportionally down to fit the view, and is centered within the view.
+        ///
+        /// Parameter `image`: The image to display within the view.
+        ///
+        /// Returns: An initialized image view.
         #[method_id(@__retain_semantics Other imageViewWithImage:)]
         pub unsafe fn imageViewWithImage(image: &NSImage, mtm: MainThreadMarker) -> Retained<Self>;
 
@@ -123,12 +133,14 @@ extern_methods!(
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`image`][Self::image].
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         #[method(isEditable)]
         pub unsafe fn isEditable(&self) -> bool;
 
+        /// Setter for [`isEditable`][Self::isEditable].
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
@@ -137,6 +149,7 @@ extern_methods!(
         pub unsafe fn imageAlignment(&self) -> NSImageAlignment;
 
         #[cfg(feature = "NSImageCell")]
+        /// Setter for [`imageAlignment`][Self::imageAlignment].
         #[method(setImageAlignment:)]
         pub unsafe fn setImageAlignment(&self, image_alignment: NSImageAlignment);
 
@@ -145,6 +158,7 @@ extern_methods!(
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
         #[cfg(feature = "NSCell")]
+        /// Setter for [`imageScaling`][Self::imageScaling].
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
@@ -153,14 +167,17 @@ extern_methods!(
         pub unsafe fn imageFrameStyle(&self) -> NSImageFrameStyle;
 
         #[cfg(feature = "NSImageCell")]
+        /// Setter for [`imageFrameStyle`][Self::imageFrameStyle].
         #[method(setImageFrameStyle:)]
         pub unsafe fn setImageFrameStyle(&self, image_frame_style: NSImageFrameStyle);
 
         #[cfg(feature = "NSImage")]
+        /// Specifies a combination of point size, weight, and scale to use when sizing and displaying symbol images. If a symbol configuration isn't provided, the image view uses a default size, weight, and scale provided by the system. The default value is `nil`.
         #[method_id(@__retain_semantics Other symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Retained<NSImageSymbolConfiguration>>;
 
         #[cfg(feature = "NSImage")]
+        /// Setter for [`symbolConfiguration`][Self::symbolConfiguration].
         #[method(setSymbolConfiguration:)]
         pub unsafe fn setSymbolConfiguration(
             &self,
@@ -168,45 +185,54 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSColor")]
+        /// A tint color to be used when rendering template image content. This color may be combined with other effects to produce a theme-appropriate rendition of the template image. A nil value indicates the standard set of effects without color modification. The default value is nil.
         #[method_id(@__retain_semantics Other contentTintColor)]
         pub unsafe fn contentTintColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
+        /// Setter for [`contentTintColor`][Self::contentTintColor].
         #[method(setContentTintColor:)]
         pub unsafe fn setContentTintColor(&self, content_tint_color: Option<&NSColor>);
 
         #[method(animates)]
         pub unsafe fn animates(&self) -> bool;
 
+        /// Setter for [`animates`][Self::animates].
         #[method(setAnimates:)]
         pub unsafe fn setAnimates(&self, animates: bool);
 
         #[method(allowsCutCopyPaste)]
         pub unsafe fn allowsCutCopyPaste(&self) -> bool;
 
+        /// Setter for [`allowsCutCopyPaste`][Self::allowsCutCopyPaste].
         #[method(setAllowsCutCopyPaste:)]
         pub unsafe fn setAllowsCutCopyPaste(&self, allows_cut_copy_paste: bool);
 
+        /// Default preferred image dynamic range. Defaults to `NSImageDynamicRangeConstrainedHigh` on macOS 14 and higher, `NSImageDynamicRangeStandard` otherwise. Set to another value to change the default for all subsequently created `NSImageView`s in your app.
         #[method(defaultPreferredImageDynamicRange)]
         pub unsafe fn defaultPreferredImageDynamicRange(
             mtm: MainThreadMarker,
         ) -> NSImageDynamicRange;
 
+        /// Setter for [`defaultPreferredImageDynamicRange`][Self::defaultPreferredImageDynamicRange].
         #[method(setDefaultPreferredImageDynamicRange:)]
         pub unsafe fn setDefaultPreferredImageDynamicRange(
             default_preferred_image_dynamic_range: NSImageDynamicRange,
             mtm: MainThreadMarker,
         );
 
+        /// Preferred dynamic range when displaying an image in the receiving image view.
         #[method(preferredImageDynamicRange)]
         pub unsafe fn preferredImageDynamicRange(&self) -> NSImageDynamicRange;
 
+        /// Setter for [`preferredImageDynamicRange`][Self::preferredImageDynamicRange].
         #[method(setPreferredImageDynamicRange:)]
         pub unsafe fn setPreferredImageDynamicRange(
             &self,
             preferred_image_dynamic_range: NSImageDynamicRange,
         );
 
+        /// Resolved dynamic range based on fully resolved image content. Note: this will return `NSImageDynamicRangeUnspecified` if the image view has not or can not resolve the content (either because it has no resolvable image content or has not resolved because the image view hasn't displayed.)
         #[method(imageDynamicRange)]
         pub unsafe fn imageDynamicRange(&self) -> NSImageDynamicRange;
     }

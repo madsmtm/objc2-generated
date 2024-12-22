@@ -7,7 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel?language=objc)
+/// The level of the log entry.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -39,6 +41,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogstate?language=objc)
     pub unsafe trait MTLLogState: NSObjectProtocol {
         #[cfg(feature = "block2")]
+        /// Add a function block to handle log message output.
+        /// In the absence of any handlers, log messages go through the default handler.
         #[method(addLogHandler:)]
         unsafe fn addLogHandler(
             &self,
@@ -68,15 +72,20 @@ unsafe impl NSObjectProtocol for MTLLogStateDescriptor {}
 
 extern_methods!(
     unsafe impl MTLLogStateDescriptor {
+        /// level indicates the minimum level of the logs that will be printed.
+        /// All the logs with level less than given level will be skipped on the GPU Side.
         #[method(level)]
         pub unsafe fn level(&self) -> MTLLogLevel;
 
+        /// Setter for [`level`][Self::level].
         #[method(setLevel:)]
         pub unsafe fn setLevel(&self, level: MTLLogLevel);
 
+        /// bufferSize indicates the size of the buffer where GPU will store the logging content from shaders. Minimum value is 1KB
         #[method(bufferSize)]
         pub unsafe fn bufferSize(&self) -> NSInteger;
 
+        /// Setter for [`bufferSize`][Self::bufferSize].
         #[method(setBufferSize:)]
         pub unsafe fn setBufferSize(&self, buffer_size: NSInteger);
     }
@@ -98,7 +107,9 @@ extern "C" {
     pub static MTLLogStateErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogstateerror?language=objc)
+/// NSErrors raised when creating a logstate.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogstateerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

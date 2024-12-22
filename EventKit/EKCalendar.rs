@@ -13,7 +13,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendar?language=objc)
+    /// The EKCalendar class represents a calendar for events.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendar?language=objc)
     #[unsafe(super(EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "EKObject")]
@@ -31,6 +33,15 @@ extern_methods!(
         pub unsafe fn calendarWithEventStore(event_store: &EKEventStore) -> Retained<EKCalendar>;
 
         #[cfg(all(feature = "EKEventStore", feature = "EKTypes"))]
+        /// Creates a new autoreleased calendar that may contain the given entity type.
+        ///
+        /// You can only create calendars that accept either reminders or events via our API.
+        /// However, other servers might allow mixing the two (though it is not common).
+        ///
+        ///
+        /// Parameter `entityType`: The entity type that this calendar may support.
+        ///
+        /// Parameter `eventStore`: The event store in which to create this calendar.
         #[method_id(@__retain_semantics Other calendarForEntityType:eventStore:)]
         pub unsafe fn calendarForEntityType_eventStore(
             entity_type: EKEntityType,
@@ -38,54 +49,86 @@ extern_methods!(
         ) -> Retained<EKCalendar>;
 
         #[cfg(feature = "EKSource")]
+        /// The source representing the 'account' this calendar belongs to.
+        /// This is only settable when initially creating a calendar and then
+        /// effectively read-only after that. That is, you can create a calendar,
+        /// but you cannot move it to another source.
+        ///
+        /// This will be nil for new calendars until you set it.
         #[method_id(@__retain_semantics Other source)]
         pub unsafe fn source(&self) -> Option<Retained<EKSource>>;
 
         #[cfg(feature = "EKSource")]
+        /// Setter for [`source`][Self::source].
         #[method(setSource:)]
         pub unsafe fn setSource(&self, source: Option<&EKSource>);
 
+        /// A unique identifier for the calendar. It is not sync-proof in that a full
+        /// sync will lose this identifier, so you should always have a back up plan for dealing
+        /// with a calendar that is no longer fetchable by this property, e.g. by title, type, color, etc.
+        /// Use [EKEventStore calendarWithIdentifier:] to look up the calendar by this value.
         #[method_id(@__retain_semantics Other calendarIdentifier)]
         pub unsafe fn calendarIdentifier(&self) -> Retained<NSString>;
 
+        /// The title of the calendar.
         #[method_id(@__retain_semantics Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
+        /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "EKTypes")]
+        /// The type of the calendar as a EKCalendarType. This is actually based on
+        /// what source the calendar is in, as well as whether it is a subscribed calendar.
+        ///
+        /// CalDAV subscribed calendars have type EKCalendarTypeCalDAV with isSubscribed = YES.
         #[method(type)]
         pub unsafe fn r#type(&self) -> EKCalendarType;
 
+        /// Represents whether you can this add, remove, or modify items in this calendar.
         #[method(allowsContentModifications)]
         pub unsafe fn allowsContentModifications(&self) -> bool;
 
+        /// YES if this calendar is a subscribed calendar.
         #[method(isSubscribed)]
         pub unsafe fn isSubscribed(&self) -> bool;
 
+        /// If this is set to YES, it means you cannot modify any attributes of
+        /// the calendar or delete it. It does NOT imply that you cannot add events
+        /// or reminders to the calendar.
         #[method(isImmutable)]
         pub unsafe fn isImmutable(&self) -> bool;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Returns the calendar color as a CGColorRef.
+        ///
+        /// This will be nil for new calendars until you set it.
         #[method(CGColor)]
         pub unsafe fn CGColor(&self) -> CGColorRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`CGColor`][Self::CGColor].
         #[method(setCGColor:)]
         pub unsafe fn setCGColor(&self, cg_color: CGColorRef);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Returns the calendar color as a NSColor.
+        ///
+        /// This will be nil for new calendars until you set it.
         #[method_id(@__retain_semantics Other color)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
+        /// Setter for [`color`][Self::color].
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: Option<&NSColor>);
 
         #[cfg(feature = "EKTypes")]
+        /// Returns a bitfield of supported event availabilities, or EKCalendarEventAvailabilityNone
+        /// if this calendar does not support setting availability on an event.
         #[method(supportedEventAvailabilities)]
         pub unsafe fn supportedEventAvailabilities(&self) -> EKCalendarEventAvailabilityMask;
 

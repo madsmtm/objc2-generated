@@ -109,24 +109,28 @@ extern_methods!(
         #[method(alphaMode)]
         pub unsafe fn alphaMode(&self) -> CIRenderDestinationAlphaMode;
 
+        /// Setter for [`alphaMode`][Self::alphaMode].
         #[method(setAlphaMode:)]
         pub unsafe fn setAlphaMode(&self, alpha_mode: CIRenderDestinationAlphaMode);
 
         #[method(isFlipped)]
         pub unsafe fn isFlipped(&self) -> bool;
 
+        /// Setter for [`isFlipped`][Self::isFlipped].
         #[method(setFlipped:)]
         pub unsafe fn setFlipped(&self, flipped: bool);
 
         #[method(isDithered)]
         pub unsafe fn isDithered(&self) -> bool;
 
+        /// Setter for [`isDithered`][Self::isDithered].
         #[method(setDithered:)]
         pub unsafe fn setDithered(&self, dithered: bool);
 
         #[method(isClamped)]
         pub unsafe fn isClamped(&self) -> bool;
 
+        /// Setter for [`isClamped`][Self::isClamped].
         #[method(setClamped:)]
         pub unsafe fn setClamped(&self, clamped: bool);
 
@@ -135,6 +139,7 @@ extern_methods!(
         pub unsafe fn colorSpace(&self) -> CGColorSpaceRef;
 
         #[cfg(feature = "objc2-core-graphics")]
+        /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
         pub unsafe fn setColorSpace(&self, color_space: CGColorSpaceRef);
 
@@ -143,12 +148,14 @@ extern_methods!(
         pub unsafe fn blendKernel(&self) -> Option<Retained<CIBlendKernel>>;
 
         #[cfg(feature = "CIKernel")]
+        /// Setter for [`blendKernel`][Self::blendKernel].
         #[method(setBlendKernel:)]
         pub unsafe fn setBlendKernel(&self, blend_kernel: Option<&CIBlendKernel>);
 
         #[method(blendsInDestinationColorSpace)]
         pub unsafe fn blendsInDestinationColorSpace(&self) -> bool;
 
+        /// Setter for [`blendsInDestinationColorSpace`][Self::blendsInDestinationColorSpace].
         #[method(setBlendsInDestinationColorSpace:)]
         pub unsafe fn setBlendsInDestinationColorSpace(
             &self,

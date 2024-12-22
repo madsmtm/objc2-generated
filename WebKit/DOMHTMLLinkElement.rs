@@ -81,6 +81,7 @@ extern_methods!(
         #[method(disabled)]
         pub unsafe fn disabled(&self) -> bool;
 
+        /// Setter for [`disabled`][Self::disabled].
         #[deprecated]
         #[method(setDisabled:)]
         pub unsafe fn setDisabled(&self, disabled: bool);
@@ -89,6 +90,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other charset)]
         pub unsafe fn charset(&self) -> Retained<NSString>;
 
+        /// Setter for [`charset`][Self::charset].
         #[deprecated]
         #[method(setCharset:)]
         pub unsafe fn setCharset(&self, charset: Option<&NSString>);
@@ -97,6 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other href)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
+        /// Setter for [`href`][Self::href].
         #[deprecated]
         #[method(setHref:)]
         pub unsafe fn setHref(&self, href: Option<&NSString>);
@@ -105,6 +108,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other hreflang)]
         pub unsafe fn hreflang(&self) -> Retained<NSString>;
 
+        /// Setter for [`hreflang`][Self::hreflang].
         #[deprecated]
         #[method(setHreflang:)]
         pub unsafe fn setHreflang(&self, hreflang: Option<&NSString>);
@@ -113,6 +117,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other media)]
         pub unsafe fn media(&self) -> Retained<NSString>;
 
+        /// Setter for [`media`][Self::media].
         #[deprecated]
         #[method(setMedia:)]
         pub unsafe fn setMedia(&self, media: Option<&NSString>);
@@ -121,6 +126,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rel)]
         pub unsafe fn rel(&self) -> Retained<NSString>;
 
+        /// Setter for [`rel`][Self::rel].
         #[deprecated]
         #[method(setRel:)]
         pub unsafe fn setRel(&self, rel: Option<&NSString>);
@@ -129,6 +135,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other rev)]
         pub unsafe fn rev(&self) -> Retained<NSString>;
 
+        /// Setter for [`rev`][Self::rev].
         #[deprecated]
         #[method(setRev:)]
         pub unsafe fn setRev(&self, rev: Option<&NSString>);
@@ -137,6 +144,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other target)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
+        /// Setter for [`target`][Self::target].
         #[deprecated]
         #[method(setTarget:)]
         pub unsafe fn setTarget(&self, target: Option<&NSString>);
@@ -145,6 +153,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
+        /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
