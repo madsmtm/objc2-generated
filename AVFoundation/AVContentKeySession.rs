@@ -627,11 +627,19 @@ extern_methods!(
     }
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-media")]
-    pub fn AVSampleBufferAttachContentKey(
-        sbuf: CMSampleBufferRef,
-        content_key: &AVContentKey,
-        out_error: *mut *mut NSError,
-    ) -> Bool;
+#[cfg(feature = "objc2-core-media")]
+#[inline]
+pub unsafe extern "C-unwind" fn AVSampleBufferAttachContentKey(
+    sbuf: CMSampleBufferRef,
+    content_key: &AVContentKey,
+    out_error: *mut *mut NSError,
+) -> bool {
+    extern "C-unwind" {
+        fn AVSampleBufferAttachContentKey(
+            sbuf: CMSampleBufferRef,
+            content_key: &AVContentKey,
+            out_error: *mut *mut NSError,
+        ) -> Bool;
+    }
+    unsafe { AVSampleBufferAttachContentKey(sbuf, content_key, out_error) }.as_bool()
 }

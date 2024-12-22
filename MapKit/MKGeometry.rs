@@ -229,16 +229,31 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    pub fn MKMapRectContainsPoint(rect: MKMapRect, point: MKMapPoint) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn MKMapRectContainsPoint(rect: MKMapRect, point: MKMapPoint) -> bool {
+    extern "C-unwind" {
+        fn MKMapRectContainsPoint(rect: MKMapRect, point: MKMapPoint) -> Bool;
+    }
+    unsafe { MKMapRectContainsPoint(rect, point) }.as_bool()
 }
 
-extern "C-unwind" {
-    pub fn MKMapRectContainsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn MKMapRectContainsRect(rect1: MKMapRect, rect2: MKMapRect) -> bool {
+    extern "C-unwind" {
+        fn MKMapRectContainsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
+    }
+    unsafe { MKMapRectContainsRect(rect1, rect2) }.as_bool()
 }
 
-extern "C-unwind" {
-    pub fn MKMapRectIntersectsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn MKMapRectIntersectsRect(
+    rect1: MKMapRect,
+    rect2: MKMapRect,
+) -> bool {
+    extern "C-unwind" {
+        fn MKMapRectIntersectsRect(rect1: MKMapRect, rect2: MKMapRect) -> Bool;
+    }
+    unsafe { MKMapRectIntersectsRect(rect1, rect2) }.as_bool()
 }
 
 extern "C-unwind" {
@@ -246,8 +261,12 @@ extern "C-unwind" {
     pub fn MKCoordinateRegionForMapRect(rect: MKMapRect) -> MKCoordinateRegion;
 }
 
-extern "C-unwind" {
-    pub fn MKMapRectSpans180thMeridian(rect: MKMapRect) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn MKMapRectSpans180thMeridian(rect: MKMapRect) -> bool {
+    extern "C-unwind" {
+        fn MKMapRectSpans180thMeridian(rect: MKMapRect) -> Bool;
+    }
+    unsafe { MKMapRectSpans180thMeridian(rect) }.as_bool()
 }
 
 extern "C-unwind" {

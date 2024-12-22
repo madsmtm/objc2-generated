@@ -383,22 +383,43 @@ unsafe impl RefEncode for NSWindowDepth {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn NSBestDepth(
-        color_space: &NSColorSpaceName,
-        bps: NSInteger,
-        bpp: NSInteger,
-        planar: Bool,
-        exact_match: *mut Bool,
-    ) -> NSWindowDepth;
+#[inline]
+pub unsafe extern "C-unwind" fn NSBestDepth(
+    color_space: &NSColorSpaceName,
+    bps: NSInteger,
+    bpp: NSInteger,
+    planar: bool,
+    exact_match: *mut Bool,
+) -> NSWindowDepth {
+    extern "C-unwind" {
+        fn NSBestDepth(
+            color_space: &NSColorSpaceName,
+            bps: NSInteger,
+            bpp: NSInteger,
+            planar: Bool,
+            exact_match: *mut Bool,
+        ) -> NSWindowDepth;
+    }
+    unsafe { NSBestDepth(color_space, bps, bpp, Bool::new(planar), exact_match) }
 }
 
-extern "C-unwind" {
-    pub fn NSPlanarFromDepth(depth: NSWindowDepth) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn NSPlanarFromDepth(depth: NSWindowDepth) -> bool {
+    extern "C-unwind" {
+        fn NSPlanarFromDepth(depth: NSWindowDepth) -> Bool;
+    }
+    unsafe { NSPlanarFromDepth(depth) }.as_bool()
 }
 
-extern "C-unwind" {
-    pub fn NSColorSpaceFromDepth(depth: NSWindowDepth) -> *mut NSColorSpaceName;
+#[inline]
+pub unsafe extern "C-unwind" fn NSColorSpaceFromDepth(
+    depth: NSWindowDepth,
+) -> Option<Retained<NSColorSpaceName>> {
+    extern "C-unwind" {
+        fn NSColorSpaceFromDepth(depth: NSWindowDepth) -> *mut NSColorSpaceName;
+    }
+    let ret = unsafe { NSColorSpaceFromDepth(depth) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {
@@ -608,10 +629,15 @@ extern "C-unwind" {
     pub fn NSEraseRect(rect: NSRect);
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
-    #[deprecated = "Use -[NSBitmapImageRep colorAtX:y:] to interrogate pixel values.  If necessary, use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view hierarchy into an NSBitmapImageRep."]
-    pub fn NSReadPixel(passed_point: NSPoint) -> *mut NSColor;
+#[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
+#[deprecated = "Use -[NSBitmapImageRep colorAtX:y:] to interrogate pixel values.  If necessary, use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view hierarchy into an NSBitmapImageRep."]
+#[inline]
+pub unsafe extern "C-unwind" fn NSReadPixel(passed_point: NSPoint) -> Option<Retained<NSColor>> {
+    extern "C-unwind" {
+        fn NSReadPixel(passed_point: NSPoint) -> *mut NSColor;
+    }
+    let ret = unsafe { NSReadPixel(passed_point) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {

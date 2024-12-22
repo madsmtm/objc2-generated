@@ -83,19 +83,33 @@ extern "C" {
     pub static GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion;
 }
 
-extern "C-unwind" {
-    #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-    pub fn GCExtendedGamepadSnapshotDataFromNSData(
-        snapshot_data: *mut GCExtendedGamepadSnapshotData,
-        data: Option<&NSData>,
-    ) -> Bool;
+#[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn GCExtendedGamepadSnapshotDataFromNSData(
+    snapshot_data: *mut GCExtendedGamepadSnapshotData,
+    data: Option<&NSData>,
+) -> bool {
+    extern "C-unwind" {
+        fn GCExtendedGamepadSnapshotDataFromNSData(
+            snapshot_data: *mut GCExtendedGamepadSnapshotData,
+            data: Option<&NSData>,
+        ) -> Bool;
+    }
+    unsafe { GCExtendedGamepadSnapshotDataFromNSData(snapshot_data, data) }.as_bool()
 }
 
-extern "C-unwind" {
-    #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-    pub fn NSDataFromGCExtendedGamepadSnapshotData(
-        snapshot_data: *mut GCExtendedGamepadSnapshotData,
-    ) -> *mut NSData;
+#[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSDataFromGCExtendedGamepadSnapshotData(
+    snapshot_data: *mut GCExtendedGamepadSnapshotData,
+) -> Option<Retained<NSData>> {
+    extern "C-unwind" {
+        fn NSDataFromGCExtendedGamepadSnapshotData(
+            snapshot_data: *mut GCExtendedGamepadSnapshotData,
+        ) -> *mut NSData;
+    }
+    let ret = unsafe { NSDataFromGCExtendedGamepadSnapshotData(snapshot_data) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdatav100?language=objc)
@@ -148,17 +162,31 @@ unsafe impl RefEncode for GCExtendedGamepadSnapShotDataV100 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-    pub fn GCExtendedGamepadSnapShotDataV100FromNSData(
-        snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
-        data: Option<&NSData>,
-    ) -> Bool;
+#[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn GCExtendedGamepadSnapShotDataV100FromNSData(
+    snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
+    data: Option<&NSData>,
+) -> bool {
+    extern "C-unwind" {
+        fn GCExtendedGamepadSnapShotDataV100FromNSData(
+            snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
+            data: Option<&NSData>,
+        ) -> Bool;
+    }
+    unsafe { GCExtendedGamepadSnapShotDataV100FromNSData(snapshot_data, data) }.as_bool()
 }
 
-extern "C-unwind" {
-    #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-    pub fn NSDataFromGCExtendedGamepadSnapShotDataV100(
-        snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
-    ) -> *mut NSData;
+#[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSDataFromGCExtendedGamepadSnapShotDataV100(
+    snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
+) -> Option<Retained<NSData>> {
+    extern "C-unwind" {
+        fn NSDataFromGCExtendedGamepadSnapShotDataV100(
+            snapshot_data: *mut GCExtendedGamepadSnapShotDataV100,
+        ) -> *mut NSData;
+    }
+    let ret = unsafe { NSDataFromGCExtendedGamepadSnapShotDataV100(snapshot_data) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }

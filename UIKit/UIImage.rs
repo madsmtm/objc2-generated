@@ -577,15 +577,37 @@ extern_category!(
     unsafe impl CIImageUIKitAdditions for CIImage {}
 );
 
-extern "C-unwind" {
-    pub fn UIImagePNGRepresentation(image: &UIImage) -> *mut NSData;
+#[inline]
+pub unsafe extern "C-unwind" fn UIImagePNGRepresentation(
+    image: &UIImage,
+) -> Option<Retained<NSData>> {
+    extern "C-unwind" {
+        fn UIImagePNGRepresentation(image: &UIImage) -> *mut NSData;
+    }
+    let ret = unsafe { UIImagePNGRepresentation(image) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn UIImageJPEGRepresentation(image: &UIImage, compression_quality: CGFloat) -> *mut NSData;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn UIImageJPEGRepresentation(
+    image: &UIImage,
+    compression_quality: CGFloat,
+) -> Option<Retained<NSData>> {
+    extern "C-unwind" {
+        fn UIImageJPEGRepresentation(image: &UIImage, compression_quality: CGFloat) -> *mut NSData;
+    }
+    let ret = unsafe { UIImageJPEGRepresentation(image, compression_quality) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    pub fn UIImageHEICRepresentation(image: &UIImage) -> *mut NSData;
+#[inline]
+pub unsafe extern "C-unwind" fn UIImageHEICRepresentation(
+    image: &UIImage,
+) -> Option<Retained<NSData>> {
+    extern "C-unwind" {
+        fn UIImageHEICRepresentation(image: &UIImage) -> *mut NSData;
+    }
+    let ret = unsafe { UIImageHEICRepresentation(image) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }

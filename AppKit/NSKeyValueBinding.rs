@@ -87,8 +87,12 @@ extern "C" {
     pub static NSNotApplicableMarker: &'static AnyObject;
 }
 
-extern "C-unwind" {
-    pub fn NSIsControllerMarker(object: Option<&AnyObject>) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn NSIsControllerMarker(object: Option<&AnyObject>) -> bool {
+    extern "C-unwind" {
+        fn NSIsControllerMarker(object: Option<&AnyObject>) -> Bool;
+    }
+    unsafe { NSIsControllerMarker(object) }.as_bool()
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindinginfokey?language=objc)

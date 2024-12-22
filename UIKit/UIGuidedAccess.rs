@@ -116,11 +116,21 @@ unsafe impl RefEncode for UIGuidedAccessAccessibilityFeature {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "block2")]
-    pub fn UIGuidedAccessConfigureAccessibilityFeatures(
-        features: UIGuidedAccessAccessibilityFeature,
-        enabled: Bool,
-        completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
-    );
+#[cfg(feature = "block2")]
+#[inline]
+pub unsafe extern "C-unwind" fn UIGuidedAccessConfigureAccessibilityFeatures(
+    features: UIGuidedAccessAccessibilityFeature,
+    enabled: bool,
+    completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+) {
+    extern "C-unwind" {
+        fn UIGuidedAccessConfigureAccessibilityFeatures(
+            features: UIGuidedAccessAccessibilityFeature,
+            enabled: Bool,
+            completion: &block2::Block<dyn Fn(Bool, *mut NSError)>,
+        );
+    }
+    unsafe {
+        UIGuidedAccessConfigureAccessibilityFeatures(features, Bool::new(enabled), completion)
+    }
 }

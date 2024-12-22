@@ -6,7 +6,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    #[cfg(feature = "MLComputeDeviceProtocol")]
-    pub fn MLAllComputeDevices() -> NonNull<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>;
+#[cfg(feature = "MLComputeDeviceProtocol")]
+#[inline]
+pub unsafe extern "C-unwind" fn MLAllComputeDevices(
+) -> Retained<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>> {
+    extern "C-unwind" {
+        fn MLAllComputeDevices() -> NonNull<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>;
+    }
+    let ret = unsafe { MLAllComputeDevices() };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }

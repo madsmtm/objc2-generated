@@ -322,44 +322,98 @@ extern "C" {
     pub static UIOffsetZero: UIOffset;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSStringFromCGPoint(point: CGPoint) -> NonNull<NSString>;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromCGPoint(point: CGPoint) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromCGPoint(point: CGPoint) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromCGPoint(point) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSStringFromCGVector(vector: CGVector) -> NonNull<NSString>;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromCGVector(vector: CGVector) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromCGVector(vector: CGVector) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromCGVector(vector) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSStringFromCGSize(size: CGSize) -> NonNull<NSString>;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromCGSize(size: CGSize) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromCGSize(size: CGSize) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromCGSize(size) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSStringFromCGRect(rect: CGRect) -> NonNull<NSString>;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromCGRect(rect: CGRect) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromCGRect(rect: CGRect) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromCGRect(rect) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSStringFromCGAffineTransform(transform: CGAffineTransform) -> NonNull<NSString>;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromCGAffineTransform(
+    transform: CGAffineTransform,
+) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromCGAffineTransform(transform: CGAffineTransform) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromCGAffineTransform(transform) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSStringFromUIEdgeInsets(insets: UIEdgeInsets) -> NonNull<NSString>;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromUIEdgeInsets(
+    insets: UIEdgeInsets,
+) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromUIEdgeInsets(insets: UIEdgeInsets) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromUIEdgeInsets(insets) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSStringFromDirectionalEdgeInsets(insets: NSDirectionalEdgeInsets) -> NonNull<NSString>;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromDirectionalEdgeInsets(
+    insets: NSDirectionalEdgeInsets,
+) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromDirectionalEdgeInsets(insets: NSDirectionalEdgeInsets) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromDirectionalEdgeInsets(insets) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSStringFromUIOffset(offset: UIOffset) -> NonNull<NSString>;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromUIOffset(offset: UIOffset) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromUIOffset(offset: UIOffset) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromUIOffset(offset) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {

@@ -96,34 +96,71 @@ extern_methods!(
     }
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSUserName() -> NonNull<NSString>;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSUserName() -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSUserName() -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSUserName() };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSFullUserName() -> NonNull<NSString>;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSFullUserName() -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSFullUserName() -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSFullUserName() };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSHomeDirectory() -> NonNull<NSString>;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSHomeDirectory() -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSHomeDirectory() -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSHomeDirectory() };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSHomeDirectoryForUser(user_name: Option<&NSString>) -> *mut NSString;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSHomeDirectoryForUser(
+    user_name: Option<&NSString>,
+) -> Option<Retained<NSString>> {
+    extern "C-unwind" {
+        fn NSHomeDirectoryForUser(user_name: Option<&NSString>) -> *mut NSString;
+    }
+    let ret = unsafe { NSHomeDirectoryForUser(user_name) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSTemporaryDirectory() -> NonNull<NSString>;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSTemporaryDirectory() -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSTemporaryDirectory() -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSTemporaryDirectory() };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSOpenStepRootDirectory() -> NonNull<NSString>;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSOpenStepRootDirectory() -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSOpenStepRootDirectory() -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSOpenStepRootDirectory() };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssearchpathdirectory?language=objc)
@@ -192,11 +229,23 @@ unsafe impl RefEncode for NSSearchPathDomainMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "NSArray", feature = "NSString"))]
-    pub fn NSSearchPathForDirectoriesInDomains(
-        directory: NSSearchPathDirectory,
-        domain_mask: NSSearchPathDomainMask,
-        expand_tilde: Bool,
-    ) -> NonNull<NSArray<NSString>>;
+#[cfg(all(feature = "NSArray", feature = "NSString"))]
+#[inline]
+pub unsafe extern "C-unwind" fn NSSearchPathForDirectoriesInDomains(
+    directory: NSSearchPathDirectory,
+    domain_mask: NSSearchPathDomainMask,
+    expand_tilde: bool,
+) -> Retained<NSArray<NSString>> {
+    extern "C-unwind" {
+        fn NSSearchPathForDirectoriesInDomains(
+            directory: NSSearchPathDirectory,
+            domain_mask: NSSearchPathDomainMask,
+            expand_tilde: Bool,
+        ) -> NonNull<NSArray<NSString>>;
+    }
+    let ret = unsafe {
+        NSSearchPathForDirectoriesInDomains(directory, domain_mask, Bool::new(expand_tilde))
+    };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }

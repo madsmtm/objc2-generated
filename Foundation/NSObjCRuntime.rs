@@ -21,9 +21,15 @@ pub type NSExceptionName = NSString;
 #[cfg(feature = "NSString")]
 pub type NSRunLoopMode = NSString;
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSStringFromSelector(a_selector: Sel) -> NonNull<NSString>;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromSelector(a_selector: Sel) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromSelector(a_selector: Sel) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromSelector(a_selector) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {
@@ -31,9 +37,15 @@ extern "C-unwind" {
     pub fn NSSelectorFromString(a_selector_name: &NSString) -> Sel;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSStringFromClass(a_class: &AnyClass) -> NonNull<NSString>;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromClass(a_class: &AnyClass) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromClass(a_class: &AnyClass) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromClass(a_class) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {
@@ -41,14 +53,27 @@ extern "C-unwind" {
     pub fn NSClassFromString(a_class_name: &NSString) -> Option<&'static AnyClass>;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSStringFromProtocol(proto: &AnyProtocol) -> NonNull<NSString>;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromProtocol(proto: &AnyProtocol) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromProtocol(proto: &AnyProtocol) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromProtocol(proto) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSProtocolFromString(namestr: &NSString) -> *mut AnyProtocol;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSProtocolFromString(
+    namestr: &NSString,
+) -> Option<Retained<AnyProtocol>> {
+    extern "C-unwind" {
+        fn NSProtocolFromString(namestr: &NSString) -> *mut AnyProtocol;
+    }
+    let ret = unsafe { NSProtocolFromString(namestr) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {

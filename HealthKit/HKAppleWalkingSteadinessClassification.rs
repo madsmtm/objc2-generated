@@ -28,25 +28,52 @@ unsafe impl RefEncode for HKAppleWalkingSteadinessClassification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "HKQuantity")]
-    pub fn HKAppleWalkingSteadinessClassificationForQuantity(
-        value: &HKQuantity,
-        classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
-        error_out: *mut *mut NSError,
-    ) -> Bool;
+#[cfg(feature = "HKQuantity")]
+#[inline]
+pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessClassificationForQuantity(
+    value: &HKQuantity,
+    classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
+    error_out: *mut *mut NSError,
+) -> bool {
+    extern "C-unwind" {
+        fn HKAppleWalkingSteadinessClassificationForQuantity(
+            value: &HKQuantity,
+            classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
+            error_out: *mut *mut NSError,
+        ) -> Bool;
+    }
+    unsafe {
+        HKAppleWalkingSteadinessClassificationForQuantity(value, classification_out, error_out)
+    }
+    .as_bool()
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "HKQuantity")]
-    pub fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
-        classification: HKAppleWalkingSteadinessClassification,
-    ) -> NonNull<HKQuantity>;
+#[cfg(feature = "HKQuantity")]
+#[inline]
+pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
+    classification: HKAppleWalkingSteadinessClassification,
+) -> Retained<HKQuantity> {
+    extern "C-unwind" {
+        fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
+            classification: HKAppleWalkingSteadinessClassification,
+        ) -> NonNull<HKQuantity>;
+    }
+    let ret = unsafe { HKAppleWalkingSteadinessMinimumQuantityForClassification(classification) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "HKQuantity")]
-    pub fn HKAppleWalkingSteadinessMaximumQuantityForClassification(
-        classification: HKAppleWalkingSteadinessClassification,
-    ) -> NonNull<HKQuantity>;
+#[cfg(feature = "HKQuantity")]
+#[inline]
+pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMaximumQuantityForClassification(
+    classification: HKAppleWalkingSteadinessClassification,
+) -> Retained<HKQuantity> {
+    extern "C-unwind" {
+        fn HKAppleWalkingSteadinessMaximumQuantityForClassification(
+            classification: HKAppleWalkingSteadinessClassification,
+        ) -> NonNull<HKQuantity>;
+    }
+    let ret = unsafe { HKAppleWalkingSteadinessMaximumQuantityForClassification(classification) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }

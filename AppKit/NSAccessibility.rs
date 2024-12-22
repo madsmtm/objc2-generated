@@ -173,25 +173,51 @@ extern "C-unwind" {
     pub fn NSAccessibilityPointInView(parent_view: &NSView, point: NSPoint) -> NSPoint;
 }
 
-extern "C-unwind" {
-    pub fn NSAccessibilitySetMayContainProtectedContent(flag: Bool) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn NSAccessibilitySetMayContainProtectedContent(flag: bool) -> bool {
+    extern "C-unwind" {
+        fn NSAccessibilitySetMayContainProtectedContent(flag: Bool) -> Bool;
+    }
+    unsafe { NSAccessibilitySetMayContainProtectedContent(Bool::new(flag)) }.as_bool()
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSAccessibilityConstants")]
-    pub fn NSAccessibilityRoleDescription(
-        role: &NSAccessibilityRole,
-        subrole: Option<&NSAccessibilitySubrole>,
-    ) -> *mut NSString;
+#[cfg(feature = "NSAccessibilityConstants")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSAccessibilityRoleDescription(
+    role: &NSAccessibilityRole,
+    subrole: Option<&NSAccessibilitySubrole>,
+) -> Option<Retained<NSString>> {
+    extern "C-unwind" {
+        fn NSAccessibilityRoleDescription(
+            role: &NSAccessibilityRole,
+            subrole: Option<&NSAccessibilitySubrole>,
+        ) -> *mut NSString;
+    }
+    let ret = unsafe { NSAccessibilityRoleDescription(role, subrole) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    pub fn NSAccessibilityRoleDescriptionForUIElement(element: &AnyObject) -> *mut NSString;
+#[inline]
+pub unsafe extern "C-unwind" fn NSAccessibilityRoleDescriptionForUIElement(
+    element: &AnyObject,
+) -> Option<Retained<NSString>> {
+    extern "C-unwind" {
+        fn NSAccessibilityRoleDescriptionForUIElement(element: &AnyObject) -> *mut NSString;
+    }
+    let ret = unsafe { NSAccessibilityRoleDescriptionForUIElement(element) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSAccessibilityConstants")]
-    pub fn NSAccessibilityActionDescription(action: &NSAccessibilityActionName) -> *mut NSString;
+#[cfg(feature = "NSAccessibilityConstants")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSAccessibilityActionDescription(
+    action: &NSAccessibilityActionName,
+) -> Option<Retained<NSString>> {
+    extern "C-unwind" {
+        fn NSAccessibilityActionDescription(action: &NSAccessibilityActionName) -> *mut NSString;
+    }
+    let ret = unsafe { NSAccessibilityActionDescription(action) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {
@@ -204,22 +230,52 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    pub fn NSAccessibilityUnignoredAncestor(element: &AnyObject) -> *mut AnyObject;
+#[inline]
+pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredAncestor(
+    element: &AnyObject,
+) -> Option<Retained<AnyObject>> {
+    extern "C-unwind" {
+        fn NSAccessibilityUnignoredAncestor(element: &AnyObject) -> *mut AnyObject;
+    }
+    let ret = unsafe { NSAccessibilityUnignoredAncestor(element) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    pub fn NSAccessibilityUnignoredDescendant(element: &AnyObject) -> *mut AnyObject;
+#[inline]
+pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredDescendant(
+    element: &AnyObject,
+) -> Option<Retained<AnyObject>> {
+    extern "C-unwind" {
+        fn NSAccessibilityUnignoredDescendant(element: &AnyObject) -> *mut AnyObject;
+    }
+    let ret = unsafe { NSAccessibilityUnignoredDescendant(element) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    pub fn NSAccessibilityUnignoredChildren(original_children: &NSArray) -> NonNull<NSArray>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildren(
+    original_children: &NSArray,
+) -> Retained<NSArray> {
+    extern "C-unwind" {
+        fn NSAccessibilityUnignoredChildren(original_children: &NSArray) -> NonNull<NSArray>;
+    }
+    let ret = unsafe { NSAccessibilityUnignoredChildren(original_children) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    pub fn NSAccessibilityUnignoredChildrenForOnlyChild(
-        original_child: &AnyObject,
-    ) -> NonNull<NSArray>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildrenForOnlyChild(
+    original_child: &AnyObject,
+) -> Retained<NSArray> {
+    extern "C-unwind" {
+        fn NSAccessibilityUnignoredChildrenForOnlyChild(
+            original_child: &AnyObject,
+        ) -> NonNull<NSArray>;
+    }
+    let ret = unsafe { NSAccessibilityUnignoredChildrenForOnlyChild(original_child) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {

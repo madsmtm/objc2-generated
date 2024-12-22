@@ -41,12 +41,22 @@ extern "C" {
     pub static AXMFiHearingDeviceStreamingEarDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn AXSupportsBidirectionalAXMFiHearingDeviceStreaming() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn AXSupportsBidirectionalAXMFiHearingDeviceStreaming() -> bool {
+    extern "C-unwind" {
+        fn AXSupportsBidirectionalAXMFiHearingDeviceStreaming() -> Bool;
+    }
+    unsafe { AXSupportsBidirectionalAXMFiHearingDeviceStreaming() }.as_bool()
 }
 
-extern "C-unwind" {
-    pub fn AXMFiHearingDevicePairedUUIDs() -> NonNull<NSArray<NSUUID>>;
+#[inline]
+pub unsafe extern "C-unwind" fn AXMFiHearingDevicePairedUUIDs() -> Retained<NSArray<NSUUID>> {
+    extern "C-unwind" {
+        fn AXMFiHearingDevicePairedUUIDs() -> NonNull<NSArray<NSUUID>>;
+    }
+    let ret = unsafe { AXMFiHearingDevicePairedUUIDs() };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C" {

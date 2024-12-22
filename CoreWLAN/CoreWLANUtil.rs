@@ -108,7 +108,15 @@ extern "C-unwind" {
     pub fn CWKeychainDeletePassword(ssid_data: CFDataRef) -> OSStatus;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CWNetwork")]
-    pub fn CWMergeNetworks(networks: &NSSet<CWNetwork>) -> NonNull<NSSet<CWNetwork>>;
+#[cfg(feature = "CWNetwork")]
+#[inline]
+pub unsafe extern "C-unwind" fn CWMergeNetworks(
+    networks: &NSSet<CWNetwork>,
+) -> Retained<NSSet<CWNetwork>> {
+    extern "C-unwind" {
+        fn CWMergeNetworks(networks: &NSSet<CWNetwork>) -> NonNull<NSSet<CWNetwork>>;
+    }
+    let ret = unsafe { CWMergeNetworks(networks) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }

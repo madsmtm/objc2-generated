@@ -102,8 +102,14 @@ extern "C" {
     pub static kCLLocationCoordinate2DInvalid: CLLocationCoordinate2D;
 }
 
-extern "C-unwind" {
-    pub fn CLLocationCoordinate2DIsValid(coord: CLLocationCoordinate2D) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn CLLocationCoordinate2DIsValid(
+    coord: CLLocationCoordinate2D,
+) -> bool {
+    extern "C-unwind" {
+        fn CLLocationCoordinate2DIsValid(coord: CLLocationCoordinate2D) -> Bool;
+    }
+    unsafe { CLLocationCoordinate2DIsValid(coord) }.as_bool()
 }
 
 extern "C-unwind" {

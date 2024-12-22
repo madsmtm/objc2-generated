@@ -15,7 +15,11 @@ extern "C-unwind" {
     pub fn MPVolumeSettingsAlertHide();
 }
 
-extern "C-unwind" {
-    #[deprecated = "Use MPVolumeView to present volume controls."]
-    pub fn MPVolumeSettingsAlertIsVisible() -> Bool;
+#[deprecated = "Use MPVolumeView to present volume controls."]
+#[inline]
+pub unsafe extern "C-unwind" fn MPVolumeSettingsAlertIsVisible() -> bool {
+    extern "C-unwind" {
+        fn MPVolumeSettingsAlertIsVisible() -> Bool;
+    }
+    unsafe { MPVolumeSettingsAlertIsVisible() }.as_bool()
 }

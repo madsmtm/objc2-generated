@@ -483,20 +483,48 @@ extern "C" {
     pub static NSFileContentsPboardType: &'static NSPasteboardType;
 }
 
-extern "C-unwind" {
-    pub fn NSCreateFilenamePboardType(file_type: &NSString) -> *mut NSPasteboardType;
+#[inline]
+pub unsafe extern "C-unwind" fn NSCreateFilenamePboardType(
+    file_type: &NSString,
+) -> Option<Retained<NSPasteboardType>> {
+    extern "C-unwind" {
+        fn NSCreateFilenamePboardType(file_type: &NSString) -> *mut NSPasteboardType;
+    }
+    let ret = unsafe { NSCreateFilenamePboardType(file_type) };
+    unsafe { Retained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    pub fn NSCreateFileContentsPboardType(file_type: &NSString) -> *mut NSPasteboardType;
+#[inline]
+pub unsafe extern "C-unwind" fn NSCreateFileContentsPboardType(
+    file_type: &NSString,
+) -> Option<Retained<NSPasteboardType>> {
+    extern "C-unwind" {
+        fn NSCreateFileContentsPboardType(file_type: &NSString) -> *mut NSPasteboardType;
+    }
+    let ret = unsafe { NSCreateFileContentsPboardType(file_type) };
+    unsafe { Retained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    pub fn NSGetFileType(pboard_type: &NSPasteboardType) -> *mut NSString;
+#[inline]
+pub unsafe extern "C-unwind" fn NSGetFileType(
+    pboard_type: &NSPasteboardType,
+) -> Option<Retained<NSString>> {
+    extern "C-unwind" {
+        fn NSGetFileType(pboard_type: &NSPasteboardType) -> *mut NSString;
+    }
+    let ret = unsafe { NSGetFileType(pboard_type) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    pub fn NSGetFileTypes(pboard_types: &NSArray<NSPasteboardType>) -> *mut NSArray<NSString>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSGetFileTypes(
+    pboard_types: &NSArray<NSPasteboardType>,
+) -> Option<Retained<NSArray<NSString>>> {
+    extern "C-unwind" {
+        fn NSGetFileTypes(pboard_types: &NSArray<NSPasteboardType>) -> *mut NSArray<NSString>;
+    }
+    let ret = unsafe { NSGetFileTypes(pboard_types) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C" {

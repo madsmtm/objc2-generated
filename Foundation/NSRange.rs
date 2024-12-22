@@ -24,9 +24,15 @@ extern "C-unwind" {
     pub fn NSIntersectionRange(range1: NSRange, range2: NSRange) -> NSRange;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSStringFromRange(range: NSRange) -> NonNull<NSString>;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromRange(range: NSRange) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromRange(range: NSRange) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromRange(range) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {

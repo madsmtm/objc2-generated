@@ -7,8 +7,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    pub fn AXPrefersHorizontalTextLayout() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn AXPrefersHorizontalTextLayout() -> bool {
+    extern "C-unwind" {
+        fn AXPrefersHorizontalTextLayout() -> Bool;
+    }
+    unsafe { AXPrefersHorizontalTextLayout() }.as_bool()
 }
 
 extern "C" {
@@ -16,8 +20,12 @@ extern "C" {
     pub static AXPrefersHorizontalTextLayoutDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn AXAnimatedImagesEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn AXAnimatedImagesEnabled() -> bool {
+    extern "C-unwind" {
+        fn AXAnimatedImagesEnabled() -> Bool;
+    }
+    unsafe { AXAnimatedImagesEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -25,12 +33,20 @@ extern "C" {
     pub static AXAnimatedImagesEnabledDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn AXAssistiveAccessEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn AXAssistiveAccessEnabled() -> bool {
+    extern "C-unwind" {
+        fn AXAssistiveAccessEnabled() -> Bool;
+    }
+    unsafe { AXAssistiveAccessEnabled() }.as_bool()
 }
 
-extern "C-unwind" {
-    pub fn AXPrefersNonBlinkingTextInsertionIndicator() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn AXPrefersNonBlinkingTextInsertionIndicator() -> bool {
+    extern "C-unwind" {
+        fn AXPrefersNonBlinkingTextInsertionIndicator() -> Bool;
+    }
+    unsafe { AXPrefersNonBlinkingTextInsertionIndicator() }.as_bool()
 }
 
 extern "C" {

@@ -51,16 +51,30 @@ extern "C-unwind" {
     pub fn UIGraphicsBeginImageContext(size: CGSize);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "Replace usage of UIGraphicsBeginImageContextWithOptions with UIGraphicsImageRenderer."]
-    pub fn UIGraphicsBeginImageContextWithOptions(size: CGSize, opaque: Bool, scale: CGFloat);
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated = "Replace usage of UIGraphicsBeginImageContextWithOptions with UIGraphicsImageRenderer."]
+#[inline]
+pub unsafe extern "C-unwind" fn UIGraphicsBeginImageContextWithOptions(
+    size: CGSize,
+    opaque: bool,
+    scale: CGFloat,
+) {
+    extern "C-unwind" {
+        fn UIGraphicsBeginImageContextWithOptions(size: CGSize, opaque: Bool, scale: CGFloat);
+    }
+    unsafe { UIGraphicsBeginImageContextWithOptions(size, Bool::new(opaque), scale) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "UIImage")]
-    #[deprecated = "Replace usage of UIGraphicsGetImageFromCurrentImageContext with UIGraphicsImageRendererContext.currentImage."]
-    pub fn UIGraphicsGetImageFromCurrentImageContext() -> *mut UIImage;
+#[cfg(feature = "UIImage")]
+#[deprecated = "Replace usage of UIGraphicsGetImageFromCurrentImageContext with UIGraphicsImageRendererContext.currentImage."]
+#[inline]
+pub unsafe extern "C-unwind" fn UIGraphicsGetImageFromCurrentImageContext(
+) -> Option<Retained<UIImage>> {
+    extern "C-unwind" {
+        fn UIGraphicsGetImageFromCurrentImageContext() -> *mut UIImage;
+    }
+    let ret = unsafe { UIGraphicsGetImageFromCurrentImageContext() };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {
@@ -68,13 +82,21 @@ extern "C-unwind" {
     pub fn UIGraphicsEndImageContext();
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn UIGraphicsBeginPDFContextToFile(
-        path: &NSString,
-        bounds: CGRect,
-        document_info: Option<&NSDictionary>,
-    ) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFContextToFile(
+    path: &NSString,
+    bounds: CGRect,
+    document_info: Option<&NSDictionary>,
+) -> bool {
+    extern "C-unwind" {
+        fn UIGraphicsBeginPDFContextToFile(
+            path: &NSString,
+            bounds: CGRect,
+            document_info: Option<&NSDictionary>,
+        ) -> Bool;
+    }
+    unsafe { UIGraphicsBeginPDFContextToFile(path, bounds, document_info) }.as_bool()
 }
 
 extern "C-unwind" {

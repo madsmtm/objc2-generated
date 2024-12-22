@@ -37,8 +37,15 @@ unsafe impl RefEncode for HKStateOfMindValenceClassification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn HKStateOfMindValenceClassificationForValence(valence: c_double) -> *mut NSNumber;
+#[inline]
+pub unsafe extern "C-unwind" fn HKStateOfMindValenceClassificationForValence(
+    valence: c_double,
+) -> Option<Retained<NSNumber>> {
+    extern "C-unwind" {
+        fn HKStateOfMindValenceClassificationForValence(valence: c_double) -> *mut NSNumber;
+    }
+    let ret = unsafe { HKStateOfMindValenceClassificationForValence(valence) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindlabel?language=objc)

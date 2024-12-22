@@ -86,8 +86,14 @@ extern "C" {
     pub static UIContentSizeCategoryNewValueKey: &'static NSString;
 }
 
-extern "C-unwind" {
-    pub fn UIContentSizeCategoryIsAccessibilityCategory(category: &UIContentSizeCategory) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIContentSizeCategoryIsAccessibilityCategory(
+    category: &UIContentSizeCategory,
+) -> bool {
+    extern "C-unwind" {
+        fn UIContentSizeCategoryIsAccessibilityCategory(category: &UIContentSizeCategory) -> Bool;
+    }
+    unsafe { UIContentSizeCategoryIsAccessibilityCategory(category) }.as_bool()
 }
 
 extern "C-unwind" {

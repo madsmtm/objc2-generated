@@ -960,45 +960,103 @@ extern_methods!(
     }
 );
 
-extern "C-unwind" {
-    #[cfg(all(
-        feature = "NSGraphics",
-        feature = "NSImage",
-        feature = "objc2-core-foundation"
-    ))]
-    pub fn NSDrawThreePartImage(
-        frame: NSRect,
-        start_cap: Option<&NSImage>,
-        center_fill: Option<&NSImage>,
-        end_cap: Option<&NSImage>,
-        vertical: Bool,
-        op: NSCompositingOperation,
-        alpha_fraction: CGFloat,
-        flipped: Bool,
-    );
+#[cfg(all(
+    feature = "NSGraphics",
+    feature = "NSImage",
+    feature = "objc2-core-foundation"
+))]
+#[inline]
+pub unsafe extern "C-unwind" fn NSDrawThreePartImage(
+    frame: NSRect,
+    start_cap: Option<&NSImage>,
+    center_fill: Option<&NSImage>,
+    end_cap: Option<&NSImage>,
+    vertical: bool,
+    op: NSCompositingOperation,
+    alpha_fraction: CGFloat,
+    flipped: bool,
+) {
+    extern "C-unwind" {
+        fn NSDrawThreePartImage(
+            frame: NSRect,
+            start_cap: Option<&NSImage>,
+            center_fill: Option<&NSImage>,
+            end_cap: Option<&NSImage>,
+            vertical: Bool,
+            op: NSCompositingOperation,
+            alpha_fraction: CGFloat,
+            flipped: Bool,
+        );
+    }
+    unsafe {
+        NSDrawThreePartImage(
+            frame,
+            start_cap,
+            center_fill,
+            end_cap,
+            Bool::new(vertical),
+            op,
+            alpha_fraction,
+            Bool::new(flipped),
+        )
+    }
 }
 
-extern "C-unwind" {
-    #[cfg(all(
-        feature = "NSGraphics",
-        feature = "NSImage",
-        feature = "objc2-core-foundation"
-    ))]
-    pub fn NSDrawNinePartImage(
-        frame: NSRect,
-        top_left_corner: Option<&NSImage>,
-        top_edge_fill: Option<&NSImage>,
-        top_right_corner: Option<&NSImage>,
-        left_edge_fill: Option<&NSImage>,
-        center_fill: Option<&NSImage>,
-        right_edge_fill: Option<&NSImage>,
-        bottom_left_corner: Option<&NSImage>,
-        bottom_edge_fill: Option<&NSImage>,
-        bottom_right_corner: Option<&NSImage>,
-        op: NSCompositingOperation,
-        alpha_fraction: CGFloat,
-        flipped: Bool,
-    );
+#[cfg(all(
+    feature = "NSGraphics",
+    feature = "NSImage",
+    feature = "objc2-core-foundation"
+))]
+#[inline]
+pub unsafe extern "C-unwind" fn NSDrawNinePartImage(
+    frame: NSRect,
+    top_left_corner: Option<&NSImage>,
+    top_edge_fill: Option<&NSImage>,
+    top_right_corner: Option<&NSImage>,
+    left_edge_fill: Option<&NSImage>,
+    center_fill: Option<&NSImage>,
+    right_edge_fill: Option<&NSImage>,
+    bottom_left_corner: Option<&NSImage>,
+    bottom_edge_fill: Option<&NSImage>,
+    bottom_right_corner: Option<&NSImage>,
+    op: NSCompositingOperation,
+    alpha_fraction: CGFloat,
+    flipped: bool,
+) {
+    extern "C-unwind" {
+        fn NSDrawNinePartImage(
+            frame: NSRect,
+            top_left_corner: Option<&NSImage>,
+            top_edge_fill: Option<&NSImage>,
+            top_right_corner: Option<&NSImage>,
+            left_edge_fill: Option<&NSImage>,
+            center_fill: Option<&NSImage>,
+            right_edge_fill: Option<&NSImage>,
+            bottom_left_corner: Option<&NSImage>,
+            bottom_edge_fill: Option<&NSImage>,
+            bottom_right_corner: Option<&NSImage>,
+            op: NSCompositingOperation,
+            alpha_fraction: CGFloat,
+            flipped: Bool,
+        );
+    }
+    unsafe {
+        NSDrawNinePartImage(
+            frame,
+            top_left_corner,
+            top_edge_fill,
+            top_right_corner,
+            left_edge_fill,
+            center_fill,
+            right_edge_fill,
+            bottom_left_corner,
+            bottom_edge_fill,
+            bottom_right_corner,
+            op,
+            alpha_fraction,
+            Bool::new(flipped),
+        )
+    }
 }
 
 extern_methods!(

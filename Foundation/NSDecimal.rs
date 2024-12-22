@@ -136,10 +136,19 @@ extern "C-unwind" {
     ) -> NSCalculationError;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSDecimalString(
-        dcm: NonNull<NSDecimal>,
-        locale: Option<&AnyObject>,
-    ) -> NonNull<NSString>;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSDecimalString(
+    dcm: NonNull<NSDecimal>,
+    locale: Option<&AnyObject>,
+) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSDecimalString(
+            dcm: NonNull<NSDecimal>,
+            locale: Option<&AnyObject>,
+        ) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSDecimalString(dcm, locale) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }

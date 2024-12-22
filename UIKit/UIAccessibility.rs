@@ -18,12 +18,21 @@ extern "C-unwind" {
     pub fn UIAccessibilityConvertFrameToScreenCoordinates(rect: CGRect, view: &UIView) -> CGRect;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "UIBezierPath", feature = "UIResponder", feature = "UIView"))]
-    pub fn UIAccessibilityConvertPathToScreenCoordinates(
-        path: &UIBezierPath,
-        view: &UIView,
-    ) -> NonNull<UIBezierPath>;
+#[cfg(all(feature = "UIBezierPath", feature = "UIResponder", feature = "UIView"))]
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityConvertPathToScreenCoordinates(
+    path: &UIBezierPath,
+    view: &UIView,
+) -> Retained<UIBezierPath> {
+    extern "C-unwind" {
+        fn UIAccessibilityConvertPathToScreenCoordinates(
+            path: &UIBezierPath,
+            view: &UIView,
+        ) -> NonNull<UIBezierPath>;
+    }
+    let ret = unsafe { UIAccessibilityConvertPathToScreenCoordinates(path, view) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axboolreturnblock?language=objc)
@@ -820,11 +829,18 @@ extern_category!(
     unsafe impl NSObjectUIAccessibility for NSObject {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "UIAccessibilityConstants")]
-    pub fn UIAccessibilityFocusedElement(
-        assistive_technology_identifier: Option<&UIAccessibilityAssistiveTechnologyIdentifier>,
-    ) -> *mut AnyObject;
+#[cfg(feature = "UIAccessibilityConstants")]
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityFocusedElement(
+    assistive_technology_identifier: Option<&UIAccessibilityAssistiveTechnologyIdentifier>,
+) -> Option<Retained<AnyObject>> {
+    extern "C-unwind" {
+        fn UIAccessibilityFocusedElement(
+            assistive_technology_identifier: Option<&UIAccessibilityAssistiveTechnologyIdentifier>,
+        ) -> *mut AnyObject;
+    }
+    let ret = unsafe { UIAccessibilityFocusedElement(assistive_technology_identifier) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern_category!(
@@ -1147,8 +1163,12 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsVoiceOverRunning() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsVoiceOverRunning() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsVoiceOverRunning() -> Bool;
+    }
+    unsafe { UIAccessibilityIsVoiceOverRunning() }.as_bool()
 }
 
 extern "C" {
@@ -1161,8 +1181,12 @@ extern "C" {
     pub static UIAccessibilityVoiceOverStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsMonoAudioEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsMonoAudioEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsMonoAudioEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityIsMonoAudioEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1170,8 +1194,12 @@ extern "C" {
     pub static UIAccessibilityMonoAudioStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsClosedCaptioningEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsClosedCaptioningEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsClosedCaptioningEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityIsClosedCaptioningEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1180,8 +1208,12 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsInvertColorsEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsInvertColorsEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsInvertColorsEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityIsInvertColorsEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1189,8 +1221,12 @@ extern "C" {
     pub static UIAccessibilityInvertColorsStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsGuidedAccessEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsGuidedAccessEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsGuidedAccessEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityIsGuidedAccessEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1198,8 +1234,12 @@ extern "C" {
     pub static UIAccessibilityGuidedAccessStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsBoldTextEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsBoldTextEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsBoldTextEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityIsBoldTextEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1207,8 +1247,12 @@ extern "C" {
     pub static UIAccessibilityBoldTextStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityButtonShapesEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityButtonShapesEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityButtonShapesEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityButtonShapesEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1217,8 +1261,12 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsGrayscaleEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsGrayscaleEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsGrayscaleEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityIsGrayscaleEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1226,8 +1274,12 @@ extern "C" {
     pub static UIAccessibilityGrayscaleStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsReduceTransparencyEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsReduceTransparencyEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsReduceTransparencyEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityIsReduceTransparencyEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1236,8 +1288,12 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsReduceMotionEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsReduceMotionEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsReduceMotionEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityIsReduceMotionEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1245,8 +1301,12 @@ extern "C" {
     pub static UIAccessibilityReduceMotionStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityPrefersCrossFadeTransitions() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityPrefersCrossFadeTransitions() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityPrefersCrossFadeTransitions() -> Bool;
+    }
+    unsafe { UIAccessibilityPrefersCrossFadeTransitions() }.as_bool()
 }
 
 extern "C" {
@@ -1255,8 +1315,12 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsVideoAutoplayEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsVideoAutoplayEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsVideoAutoplayEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityIsVideoAutoplayEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1264,8 +1328,12 @@ extern "C" {
     pub static UIAccessibilityVideoAutoplayStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityDarkerSystemColorsEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityDarkerSystemColorsEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityDarkerSystemColorsEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityDarkerSystemColorsEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1274,8 +1342,12 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsSwitchControlRunning() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsSwitchControlRunning() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsSwitchControlRunning() -> Bool;
+    }
+    unsafe { UIAccessibilityIsSwitchControlRunning() }.as_bool()
 }
 
 extern "C" {
@@ -1283,8 +1355,12 @@ extern "C" {
     pub static UIAccessibilitySwitchControlStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsSpeakSelectionEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsSpeakSelectionEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsSpeakSelectionEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityIsSpeakSelectionEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1293,8 +1369,12 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsSpeakScreenEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsSpeakScreenEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsSpeakScreenEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityIsSpeakScreenEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1302,8 +1382,12 @@ extern "C" {
     pub static UIAccessibilitySpeakScreenStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsShakeToUndoEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsShakeToUndoEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsShakeToUndoEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityIsShakeToUndoEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1311,8 +1395,12 @@ extern "C" {
     pub static UIAccessibilityShakeToUndoDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsAssistiveTouchRunning() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsAssistiveTouchRunning() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsAssistiveTouchRunning() -> Bool;
+    }
+    unsafe { UIAccessibilityIsAssistiveTouchRunning() }.as_bool()
 }
 
 extern "C" {
@@ -1321,8 +1409,12 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityShouldDifferentiateWithoutColor() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityShouldDifferentiateWithoutColor() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityShouldDifferentiateWithoutColor() -> Bool;
+    }
+    unsafe { UIAccessibilityShouldDifferentiateWithoutColor() }.as_bool()
 }
 
 extern "C" {
@@ -1331,8 +1423,12 @@ extern "C" {
         &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityIsOnOffSwitchLabelsEnabled() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityIsOnOffSwitchLabelsEnabled() -> bool {
+    extern "C-unwind" {
+        fn UIAccessibilityIsOnOffSwitchLabelsEnabled() -> Bool;
+    }
+    unsafe { UIAccessibilityIsOnOffSwitchLabelsEnabled() }.as_bool()
 }
 
 extern "C" {
@@ -1340,12 +1436,19 @@ extern "C" {
     pub static UIAccessibilityOnOffSwitchLabelsDidChangeNotification: &'static NSNotificationName;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "block2")]
-    pub fn UIAccessibilityRequestGuidedAccessSession(
-        enable: Bool,
-        completion_handler: &block2::Block<dyn Fn(Bool)>,
-    );
+#[cfg(feature = "block2")]
+#[inline]
+pub unsafe extern "C-unwind" fn UIAccessibilityRequestGuidedAccessSession(
+    enable: bool,
+    completion_handler: &block2::Block<dyn Fn(Bool)>,
+) {
+    extern "C-unwind" {
+        fn UIAccessibilityRequestGuidedAccessSession(
+            enable: Bool,
+            completion_handler: &block2::Block<dyn Fn(Bool)>,
+        );
+    }
+    unsafe { UIAccessibilityRequestGuidedAccessSession(Bool::new(enable), completion_handler) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityhearingdeviceear?language=objc)

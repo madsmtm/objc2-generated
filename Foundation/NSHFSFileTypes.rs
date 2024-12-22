@@ -4,9 +4,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSFileTypeForHFSTypeCode(hfs_file_type_code: OSType) -> *mut NSString;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSFileTypeForHFSTypeCode(
+    hfs_file_type_code: OSType,
+) -> Option<Retained<NSString>> {
+    extern "C-unwind" {
+        fn NSFileTypeForHFSTypeCode(hfs_file_type_code: OSType) -> *mut NSString;
+    }
+    let ret = unsafe { NSFileTypeForHFSTypeCode(hfs_file_type_code) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {
@@ -14,7 +21,14 @@ extern "C-unwind" {
     pub fn NSHFSTypeCodeFromFileType(file_type_string: Option<&NSString>) -> OSType;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSHFSTypeOfFile(full_file_path: Option<&NSString>) -> *mut NSString;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSHFSTypeOfFile(
+    full_file_path: Option<&NSString>,
+) -> Option<Retained<NSString>> {
+    extern "C-unwind" {
+        fn NSHFSTypeOfFile(full_file_path: Option<&NSString>) -> *mut NSString;
+    }
+    let ret = unsafe { NSHFSTypeOfFile(full_file_path) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }

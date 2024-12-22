@@ -222,10 +222,18 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorTextAnimation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn UIWritingToolsCoordinatorTextAnimationDebugDescription(
-        animation_type: UIWritingToolsCoordinatorTextAnimation,
-    ) -> NonNull<NSString>;
+#[inline]
+pub unsafe extern "C-unwind" fn UIWritingToolsCoordinatorTextAnimationDebugDescription(
+    animation_type: UIWritingToolsCoordinatorTextAnimation,
+) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn UIWritingToolsCoordinatorTextAnimationDebugDescription(
+            animation_type: UIWritingToolsCoordinatorTextAnimation,
+        ) -> NonNull<NSString>;
+    }
+    let ret = unsafe { UIWritingToolsCoordinatorTextAnimationDebugDescription(animation_type) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern_protocol!(

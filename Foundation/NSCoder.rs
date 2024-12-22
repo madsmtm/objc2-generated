@@ -342,9 +342,16 @@ extern_methods!(
     }
 );
 
-extern "C-unwind" {
-    #[deprecated = "Not supported"]
-    pub fn NXReadNSObjectFromCoder(decoder: &NSCoder) -> *mut NSObject;
+#[deprecated = "Not supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn NXReadNSObjectFromCoder(
+    decoder: &NSCoder,
+) -> Option<Retained<NSObject>> {
+    extern "C-unwind" {
+        fn NXReadNSObjectFromCoder(decoder: &NSCoder) -> *mut NSObject;
+    }
+    let ret = unsafe { NXReadNSObjectFromCoder(decoder) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern_methods!(

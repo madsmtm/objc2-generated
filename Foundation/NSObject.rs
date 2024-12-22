@@ -82,40 +82,71 @@ extern_category!(
     unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "NSZone")]
-    pub fn NSAllocateObject(
-        a_class: &AnyClass,
-        extra_bytes: NSUInteger,
-        zone: *mut NSZone,
-    ) -> NonNull<AnyObject>;
+#[cfg(feature = "NSZone")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSAllocateObject(
+    a_class: &AnyClass,
+    extra_bytes: NSUInteger,
+    zone: *mut NSZone,
+) -> Retained<AnyObject> {
+    extern "C-unwind" {
+        fn NSAllocateObject(
+            a_class: &AnyClass,
+            extra_bytes: NSUInteger,
+            zone: *mut NSZone,
+        ) -> NonNull<AnyObject>;
+    }
+    let ret = unsafe { NSAllocateObject(a_class, extra_bytes, zone) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {
     pub fn NSDeallocateObject(object: &AnyObject);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSZone")]
-    #[deprecated = "Not supported"]
-    pub fn NSCopyObject(
-        object: &AnyObject,
-        extra_bytes: NSUInteger,
-        zone: *mut NSZone,
-    ) -> NonNull<AnyObject>;
+#[cfg(feature = "NSZone")]
+#[deprecated = "Not supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSCopyObject(
+    object: &AnyObject,
+    extra_bytes: NSUInteger,
+    zone: *mut NSZone,
+) -> Retained<AnyObject> {
+    extern "C-unwind" {
+        fn NSCopyObject(
+            object: &AnyObject,
+            extra_bytes: NSUInteger,
+            zone: *mut NSZone,
+        ) -> NonNull<AnyObject>;
+    }
+    let ret = unsafe { NSCopyObject(object, extra_bytes, zone) };
+    unsafe { Retained::from_raw(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSZone")]
-    pub fn NSShouldRetainWithZone(an_object: &AnyObject, requested_zone: *mut NSZone) -> Bool;
+#[cfg(feature = "NSZone")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSShouldRetainWithZone(
+    an_object: &AnyObject,
+    requested_zone: *mut NSZone,
+) -> bool {
+    extern "C-unwind" {
+        fn NSShouldRetainWithZone(an_object: &AnyObject, requested_zone: *mut NSZone) -> Bool;
+    }
+    unsafe { NSShouldRetainWithZone(an_object, requested_zone) }.as_bool()
 }
 
 extern "C-unwind" {
     pub fn NSIncrementExtraRefCount(object: &AnyObject);
 }
 
-extern "C-unwind" {
-    pub fn NSDecrementExtraRefCountWasZero(object: &AnyObject) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn NSDecrementExtraRefCountWasZero(object: &AnyObject) -> bool {
+    extern "C-unwind" {
+        fn NSDecrementExtraRefCountWasZero(object: &AnyObject) -> Bool;
+    }
+    unsafe { NSDecrementExtraRefCountWasZero(object) }.as_bool()
 }
 
 extern "C-unwind" {

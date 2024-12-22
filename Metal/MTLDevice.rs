@@ -35,12 +35,24 @@ unsafe impl RefEncode for MTLIOCompressionMethod {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn MTLCreateSystemDefaultDevice() -> *mut ProtocolObject<dyn MTLDevice>;
+#[inline]
+pub extern "C-unwind" fn MTLCreateSystemDefaultDevice(
+) -> Option<Retained<ProtocolObject<dyn MTLDevice>>> {
+    extern "C-unwind" {
+        fn MTLCreateSystemDefaultDevice() -> *mut ProtocolObject<dyn MTLDevice>;
+    }
+    let ret = unsafe { MTLCreateSystemDefaultDevice() };
+    unsafe { Retained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    pub fn MTLCopyAllDevices() -> NonNull<NSArray<ProtocolObject<dyn MTLDevice>>>;
+#[inline]
+pub extern "C-unwind" fn MTLCopyAllDevices() -> Retained<NSArray<ProtocolObject<dyn MTLDevice>>> {
+    extern "C-unwind" {
+        fn MTLCopyAllDevices() -> NonNull<NSArray<ProtocolObject<dyn MTLDevice>>>;
+    }
+    let ret = unsafe { MTLCopyAllDevices() };
+    unsafe { Retained::from_raw(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationname?language=objc)

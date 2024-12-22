@@ -21,17 +21,24 @@ extern "C-unwind" {
     pub fn CVMetalTextureGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(all(
-        feature = "CVBuffer",
-        feature = "CVImageBuffer",
-        feature = "objc2",
-        feature = "objc2-metal"
-    ))]
-    #[cfg(not(target_os = "watchos"))]
-    pub fn CVMetalTextureGetTexture(
-        image: CVMetalTextureRef,
-    ) -> *mut ProtocolObject<dyn MTLTexture>;
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "objc2",
+    feature = "objc2-metal"
+))]
+#[cfg(not(target_os = "watchos"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CVMetalTextureGetTexture(
+    image: CVMetalTextureRef,
+) -> Option<Retained<ProtocolObject<dyn MTLTexture>>> {
+    extern "C-unwind" {
+        fn CVMetalTextureGetTexture(
+            image: CVMetalTextureRef,
+        ) -> *mut ProtocolObject<dyn MTLTexture>;
+    }
+    let ret = unsafe { CVMetalTextureGetTexture(image) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
 extern "C-unwind" {

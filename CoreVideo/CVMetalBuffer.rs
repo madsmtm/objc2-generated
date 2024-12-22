@@ -21,8 +21,15 @@ extern "C-unwind" {
     pub fn CVMetalBufferGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CVBuffer", feature = "objc2", feature = "objc2-metal"))]
-    #[cfg(not(target_os = "watchos"))]
-    pub fn CVMetalBufferGetBuffer(buffer: CVMetalBufferRef) -> *mut ProtocolObject<dyn MTLBuffer>;
+#[cfg(all(feature = "CVBuffer", feature = "objc2", feature = "objc2-metal"))]
+#[cfg(not(target_os = "watchos"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CVMetalBufferGetBuffer(
+    buffer: CVMetalBufferRef,
+) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>> {
+    extern "C-unwind" {
+        fn CVMetalBufferGetBuffer(buffer: CVMetalBufferRef) -> *mut ProtocolObject<dyn MTLBuffer>;
+    }
+    let ret = unsafe { CVMetalBufferGetBuffer(buffer) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }

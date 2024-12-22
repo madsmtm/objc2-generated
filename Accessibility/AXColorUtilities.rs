@@ -8,7 +8,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-graphics")]
-    pub fn AXNameFromColor(color: CGColorRef) -> NonNull<NSString>;
+#[cfg(feature = "objc2-core-graphics")]
+#[inline]
+pub unsafe extern "C-unwind" fn AXNameFromColor(color: CGColorRef) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn AXNameFromColor(color: CGColorRef) -> NonNull<NSString>;
+    }
+    let ret = unsafe { AXNameFromColor(color) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }

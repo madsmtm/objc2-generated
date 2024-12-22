@@ -167,29 +167,52 @@ extern "C" {
 
 // TODO: pub fn NSEdgeInsetsMake(top: CGFloat,left: CGFloat,bottom: CGFloat,right: CGFloat,) -> NSEdgeInsets;
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSEqualPoints(a_point: NSPoint, b_point: NSPoint) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSEqualPoints(a_point: NSPoint, b_point: NSPoint) -> bool {
+    extern "C-unwind" {
+        fn NSEqualPoints(a_point: NSPoint, b_point: NSPoint) -> Bool;
+    }
+    unsafe { NSEqualPoints(a_point, b_point) }.as_bool()
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSEqualSizes(a_size: NSSize, b_size: NSSize) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSEqualSizes(a_size: NSSize, b_size: NSSize) -> bool {
+    extern "C-unwind" {
+        fn NSEqualSizes(a_size: NSSize, b_size: NSSize) -> Bool;
+    }
+    unsafe { NSEqualSizes(a_size, b_size) }.as_bool()
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSEqualRects(a_rect: NSRect, b_rect: NSRect) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSEqualRects(a_rect: NSRect, b_rect: NSRect) -> bool {
+    extern "C-unwind" {
+        fn NSEqualRects(a_rect: NSRect, b_rect: NSRect) -> Bool;
+    }
+    unsafe { NSEqualRects(a_rect, b_rect) }.as_bool()
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSIsEmptyRect(a_rect: NSRect) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSIsEmptyRect(a_rect: NSRect) -> bool {
+    extern "C-unwind" {
+        fn NSIsEmptyRect(a_rect: NSRect) -> Bool;
+    }
+    unsafe { NSIsEmptyRect(a_rect) }.as_bool()
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSEdgeInsetsEqual(a_insets: NSEdgeInsets, b_insets: NSEdgeInsets) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSEdgeInsetsEqual(
+    a_insets: NSEdgeInsets,
+    b_insets: NSEdgeInsets,
+) -> bool {
+    extern "C-unwind" {
+        fn NSEdgeInsetsEqual(a_insets: NSEdgeInsets, b_insets: NSEdgeInsets) -> Bool;
+    }
+    unsafe { NSEdgeInsetsEqual(a_insets, b_insets) }.as_bool()
 }
 
 extern "C-unwind" {
@@ -233,39 +256,77 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSPointInRect(a_point: NSPoint, a_rect: NSRect) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSPointInRect(a_point: NSPoint, a_rect: NSRect) -> bool {
+    extern "C-unwind" {
+        fn NSPointInRect(a_point: NSPoint, a_rect: NSRect) -> Bool;
+    }
+    unsafe { NSPointInRect(a_point, a_rect) }.as_bool()
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSMouseInRect(a_point: NSPoint, a_rect: NSRect, flipped: Bool) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSMouseInRect(
+    a_point: NSPoint,
+    a_rect: NSRect,
+    flipped: bool,
+) -> bool {
+    extern "C-unwind" {
+        fn NSMouseInRect(a_point: NSPoint, a_rect: NSRect, flipped: Bool) -> Bool;
+    }
+    unsafe { NSMouseInRect(a_point, a_rect, Bool::new(flipped)) }.as_bool()
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSContainsRect(a_rect: NSRect, b_rect: NSRect) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSContainsRect(a_rect: NSRect, b_rect: NSRect) -> bool {
+    extern "C-unwind" {
+        fn NSContainsRect(a_rect: NSRect, b_rect: NSRect) -> Bool;
+    }
+    unsafe { NSContainsRect(a_rect, b_rect) }.as_bool()
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect) -> bool {
+    extern "C-unwind" {
+        fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect) -> Bool;
+    }
+    unsafe { NSIntersectsRect(a_rect, b_rect) }.as_bool()
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
-    pub fn NSStringFromPoint(a_point: NSPoint) -> NonNull<NSString>;
+#[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromPoint(a_point: NSPoint) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromPoint(a_point: NSPoint) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromPoint(a_point) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
-    pub fn NSStringFromSize(a_size: NSSize) -> NonNull<NSString>;
+#[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromSize(a_size: NSSize) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromSize(a_size: NSSize) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromSize(a_size) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
-    pub fn NSStringFromRect(a_rect: NSRect) -> NonNull<NSString>;
+#[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromRect(a_rect: NSRect) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromRect(a_rect: NSRect) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromRect(a_rect) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {

@@ -50,10 +50,24 @@ extern "C" {
     pub static GCInputRightBumper: Option<&'static GCInputButtonName>;
 }
 
-extern "C-unwind" {
-    pub fn GCInputBackLeftButton(position: NSInteger) -> *mut GCInputButtonName;
+#[inline]
+pub unsafe extern "C-unwind" fn GCInputBackLeftButton(
+    position: NSInteger,
+) -> Option<Retained<GCInputButtonName>> {
+    extern "C-unwind" {
+        fn GCInputBackLeftButton(position: NSInteger) -> *mut GCInputButtonName;
+    }
+    let ret = unsafe { GCInputBackLeftButton(position) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    pub fn GCInputBackRightButton(position: NSInteger) -> *mut GCInputButtonName;
+#[inline]
+pub unsafe extern "C-unwind" fn GCInputBackRightButton(
+    position: NSInteger,
+) -> Option<Retained<GCInputButtonName>> {
+    extern "C-unwind" {
+        fn GCInputBackRightButton(position: NSInteger) -> *mut GCInputButtonName;
+    }
+    let ret = unsafe { GCInputBackRightButton(position) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }

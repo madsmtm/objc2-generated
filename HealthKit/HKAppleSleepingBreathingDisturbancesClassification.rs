@@ -26,16 +26,33 @@ unsafe impl RefEncode for HKAppleSleepingBreathingDisturbancesClassification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "HKQuantity")]
-    pub fn HKAppleSleepingBreathingDisturbancesClassificationForQuantity(
-        value: &HKQuantity,
-    ) -> *mut NSNumber;
+#[cfg(feature = "HKQuantity")]
+#[inline]
+pub unsafe extern "C-unwind" fn HKAppleSleepingBreathingDisturbancesClassificationForQuantity(
+    value: &HKQuantity,
+) -> Option<Retained<NSNumber>> {
+    extern "C-unwind" {
+        fn HKAppleSleepingBreathingDisturbancesClassificationForQuantity(
+            value: &HKQuantity,
+        ) -> *mut NSNumber;
+    }
+    let ret = unsafe { HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "HKQuantity")]
-    pub fn HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(
-        classification: HKAppleSleepingBreathingDisturbancesClassification,
-    ) -> NonNull<HKQuantity>;
+#[cfg(feature = "HKQuantity")]
+#[inline]
+pub unsafe extern "C-unwind" fn HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(
+    classification: HKAppleSleepingBreathingDisturbancesClassification,
+) -> Retained<HKQuantity> {
+    extern "C-unwind" {
+        fn HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(
+            classification: HKAppleSleepingBreathingDisturbancesClassification,
+        ) -> NonNull<HKQuantity>;
+    }
+    let ret = unsafe {
+        HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(classification)
+    };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }

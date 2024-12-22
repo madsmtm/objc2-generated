@@ -34,8 +34,16 @@ extern "C" {
         &'static NIAlgorithmConvergenceStatusReason;
 }
 
-extern "C-unwind" {
-    pub fn NIAlgorithmConvergenceStatusReasonDescription(
-        reason: &NIAlgorithmConvergenceStatusReason,
-    ) -> NonNull<NSString>;
+#[inline]
+pub unsafe extern "C-unwind" fn NIAlgorithmConvergenceStatusReasonDescription(
+    reason: &NIAlgorithmConvergenceStatusReason,
+) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NIAlgorithmConvergenceStatusReasonDescription(
+            reason: &NIAlgorithmConvergenceStatusReason,
+        ) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NIAlgorithmConvergenceStatusReasonDescription(reason) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }

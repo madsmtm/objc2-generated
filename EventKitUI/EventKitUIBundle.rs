@@ -5,6 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    pub fn EventKitUIBundle() -> *mut NSBundle;
+#[inline]
+pub unsafe extern "C-unwind" fn EventKitUIBundle() -> Option<Retained<NSBundle>> {
+    extern "C-unwind" {
+        fn EventKitUIBundle() -> *mut NSBundle;
+    }
+    let ret = unsafe { EventKitUIBundle() };
+    unsafe { Retained::retain_autoreleased(ret) }
 }

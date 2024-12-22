@@ -29,9 +29,16 @@ extern "C" {
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }
 
-extern "C-unwind" {
-    pub fn ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports(
-    ) -> NonNull<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
+#[inline]
+pub unsafe extern "C-unwind" fn ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports(
+) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>> {
+    extern "C-unwind" {
+        fn ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports(
+        ) -> NonNull<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
+    }
+    let ret = unsafe { ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports() };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern_class!(

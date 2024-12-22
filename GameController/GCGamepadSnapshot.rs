@@ -95,17 +95,31 @@ unsafe impl RefEncode for GCGamepadSnapShotDataV100 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
-    pub fn GCGamepadSnapShotDataV100FromNSData(
-        snapshot_data: *mut GCGamepadSnapShotDataV100,
-        data: Option<&NSData>,
-    ) -> Bool;
+#[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn GCGamepadSnapShotDataV100FromNSData(
+    snapshot_data: *mut GCGamepadSnapShotDataV100,
+    data: Option<&NSData>,
+) -> bool {
+    extern "C-unwind" {
+        fn GCGamepadSnapShotDataV100FromNSData(
+            snapshot_data: *mut GCGamepadSnapShotDataV100,
+            data: Option<&NSData>,
+        ) -> Bool;
+    }
+    unsafe { GCGamepadSnapShotDataV100FromNSData(snapshot_data, data) }.as_bool()
 }
 
-extern "C-unwind" {
-    #[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
-    pub fn NSDataFromGCGamepadSnapShotDataV100(
-        snapshot_data: *mut GCGamepadSnapShotDataV100,
-    ) -> *mut NSData;
+#[deprecated = "GCGamepad has been deprecated, use GCExtendedGamepad instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn NSDataFromGCGamepadSnapShotDataV100(
+    snapshot_data: *mut GCGamepadSnapShotDataV100,
+) -> Option<Retained<NSData>> {
+    extern "C-unwind" {
+        fn NSDataFromGCGamepadSnapShotDataV100(
+            snapshot_data: *mut GCGamepadSnapShotDataV100,
+        ) -> *mut NSData;
+    }
+    let ret = unsafe { NSDataFromGCGamepadSnapShotDataV100(snapshot_data) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }

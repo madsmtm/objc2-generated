@@ -10,12 +10,20 @@ extern "C-unwind" {
     pub fn NSDefaultMallocZone() -> NonNull<NSZone>;
 }
 
-extern "C-unwind" {
-    pub fn NSCreateZone(
-        start_size: NSUInteger,
-        granularity: NSUInteger,
-        can_free: Bool,
-    ) -> NonNull<NSZone>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSCreateZone(
+    start_size: NSUInteger,
+    granularity: NSUInteger,
+    can_free: bool,
+) -> NonNull<NSZone> {
+    extern "C-unwind" {
+        fn NSCreateZone(
+            start_size: NSUInteger,
+            granularity: NSUInteger,
+            can_free: Bool,
+        ) -> NonNull<NSZone>;
+    }
+    unsafe { NSCreateZone(start_size, granularity, Bool::new(can_free)) }
 }
 
 extern "C-unwind" {
@@ -27,9 +35,15 @@ extern "C-unwind" {
     pub fn NSSetZoneName(zone: *mut NSZone, name: &NSString);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSString")]
-    pub fn NSZoneName(zone: *mut NSZone) -> NonNull<NSString>;
+#[cfg(feature = "NSString")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSZoneName(zone: *mut NSZone) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSZoneName(zone: *mut NSZone) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSZoneName(zone) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {

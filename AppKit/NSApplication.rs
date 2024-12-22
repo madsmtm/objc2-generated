@@ -1310,25 +1310,47 @@ extern "C-unwind" {
     pub fn NSApplicationMain(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int;
 }
 
-extern "C-unwind" {
-    pub fn NSApplicationLoad() -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn NSApplicationLoad() -> bool {
+    extern "C-unwind" {
+        fn NSApplicationLoad() -> Bool;
+    }
+    unsafe { NSApplicationLoad() }.as_bool()
 }
 
-extern "C-unwind" {
-    pub fn NSShowsServicesMenuItem(item_name: &NSString) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn NSShowsServicesMenuItem(item_name: &NSString) -> bool {
+    extern "C-unwind" {
+        fn NSShowsServicesMenuItem(item_name: &NSString) -> Bool;
+    }
+    unsafe { NSShowsServicesMenuItem(item_name) }.as_bool()
 }
 
-extern "C-unwind" {
-    pub fn NSSetShowsServicesMenuItem(item_name: &NSString, enabled: Bool) -> NSInteger;
+#[inline]
+pub unsafe extern "C-unwind" fn NSSetShowsServicesMenuItem(
+    item_name: &NSString,
+    enabled: bool,
+) -> NSInteger {
+    extern "C-unwind" {
+        fn NSSetShowsServicesMenuItem(item_name: &NSString, enabled: Bool) -> NSInteger;
+    }
+    unsafe { NSSetShowsServicesMenuItem(item_name, Bool::new(enabled)) }
 }
 
 extern "C-unwind" {
     pub fn NSUpdateDynamicServices();
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "NSPasteboard")]
-    pub fn NSPerformService(item_name: &NSString, pboard: Option<&NSPasteboard>) -> Bool;
+#[cfg(feature = "NSPasteboard")]
+#[inline]
+pub unsafe extern "C-unwind" fn NSPerformService(
+    item_name: &NSString,
+    pboard: Option<&NSPasteboard>,
+) -> bool {
+    extern "C-unwind" {
+        fn NSPerformService(item_name: &NSString, pboard: Option<&NSPasteboard>) -> Bool;
+    }
+    unsafe { NSPerformService(item_name, pboard) }.as_bool()
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsserviceprovidername?language=objc)

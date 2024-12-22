@@ -54,8 +54,14 @@ use objc2_metal::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    pub fn MPSSupportsMTLDevice(device: Option<&ProtocolObject<dyn MTLDevice>>) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn MPSSupportsMTLDevice(
+    device: Option<&ProtocolObject<dyn MTLDevice>>,
+) -> bool {
+    extern "C-unwind" {
+        fn MPSSupportsMTLDevice(device: Option<&ProtocolObject<dyn MTLDevice>>) -> Bool;
+    }
+    unsafe { MPSSupportsMTLDevice(device) }.as_bool()
 }
 
 extern "C-unwind" {
@@ -96,6 +102,13 @@ unsafe impl RefEncode for MPSDeviceOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn MPSGetPreferredDevice(options: MPSDeviceOptions) -> *mut ProtocolObject<dyn MTLDevice>;
+#[inline]
+pub unsafe extern "C-unwind" fn MPSGetPreferredDevice(
+    options: MPSDeviceOptions,
+) -> Option<Retained<ProtocolObject<dyn MTLDevice>>> {
+    extern "C-unwind" {
+        fn MPSGetPreferredDevice(options: MPSDeviceOptions) -> *mut ProtocolObject<dyn MTLDevice>;
+    }
+    let ret = unsafe { MPSGetPreferredDevice(options) };
+    unsafe { Retained::retain_autoreleased(ret) }
 }

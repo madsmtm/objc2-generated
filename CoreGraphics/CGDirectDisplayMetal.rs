@@ -8,14 +8,21 @@ use objc2_metal::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    #[cfg(all(
-        feature = "CGDirectDisplay",
-        feature = "objc2",
-        feature = "objc2-metal"
-    ))]
-    #[cfg(not(target_os = "watchos"))]
-    pub fn CGDirectDisplayCopyCurrentMetalDevice(
-        display: CGDirectDisplayID,
-    ) -> *mut ProtocolObject<dyn MTLDevice>;
+#[cfg(all(
+    feature = "CGDirectDisplay",
+    feature = "objc2",
+    feature = "objc2-metal"
+))]
+#[cfg(not(target_os = "watchos"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDirectDisplayCopyCurrentMetalDevice(
+    display: CGDirectDisplayID,
+) -> Option<Retained<ProtocolObject<dyn MTLDevice>>> {
+    extern "C-unwind" {
+        fn CGDirectDisplayCopyCurrentMetalDevice(
+            display: CGDirectDisplayID,
+        ) -> *mut ProtocolObject<dyn MTLDevice>;
+    }
+    let ret = unsafe { CGDirectDisplayCopyCurrentMetalDevice(display) };
+    unsafe { Retained::from_raw(ret) }
 }

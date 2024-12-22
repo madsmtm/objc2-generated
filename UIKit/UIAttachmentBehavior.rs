@@ -66,9 +66,13 @@ extern "C" {
     pub static UIFloatRangeInfinite: UIFloatRange;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn UIFloatRangeIsInfinite(range: UIFloatRange) -> Bool;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn UIFloatRangeIsInfinite(range: UIFloatRange) -> bool {
+    extern "C-unwind" {
+        fn UIFloatRangeIsInfinite(range: UIFloatRange) -> Bool;
+    }
+    unsafe { UIFloatRangeIsInfinite(range) }.as_bool()
 }
 
 // TODO: pub fn UIFloatRangeMake(minimum: CGFloat,maximum: CGFloat,) -> UIFloatRange;

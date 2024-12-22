@@ -542,8 +542,14 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    pub fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(video_path: &NSString) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(
+    video_path: &NSString,
+) -> bool {
+    extern "C-unwind" {
+        fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(video_path: &NSString) -> Bool;
+    }
+    unsafe { UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(video_path) }.as_bool()
 }
 
 extern "C-unwind" {

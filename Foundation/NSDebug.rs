@@ -20,8 +20,12 @@ extern "C" {
     pub static NSDeallocateZombies: Bool;
 }
 
-extern "C-unwind" {
-    pub fn NSIsFreedObject(an_object: Option<&AnyObject>) -> Bool;
+#[inline]
+pub unsafe extern "C-unwind" fn NSIsFreedObject(an_object: Option<&AnyObject>) -> bool {
+    extern "C-unwind" {
+        fn NSIsFreedObject(an_object: Option<&AnyObject>) -> Bool;
+    }
+    unsafe { NSIsFreedObject(an_object) }.as_bool()
 }
 
 extern "C-unwind" {

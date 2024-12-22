@@ -33,8 +33,14 @@ extern "C" {
 
 // TODO: pub fn GCPoint2Equal(point1: GCPoint2,point2: GCPoint2,) -> bool;
 
-extern "C-unwind" {
-    pub fn NSStringFromGCPoint2(point: GCPoint2) -> NonNull<NSString>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSStringFromGCPoint2(point: GCPoint2) -> Retained<NSString> {
+    extern "C-unwind" {
+        fn NSStringFromGCPoint2(point: GCPoint2) -> NonNull<NSString>;
+    }
+    let ret = unsafe { NSStringFromGCPoint2(point) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern_category!(
