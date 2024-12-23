@@ -10,7 +10,7 @@ use crate::*;
 extern_class!(
     /// A class representing the structure of a model.
     ///
-    /// ```
+    /// ```text
     /// // Load the model structure.
     /// [MLModelStructure loadContentsOfURL:modelURL completionHandler:^(MLModelStructure * _Nullable modelStructure, NSError * _Nullable error) {
     /// if (!modelStructure) {

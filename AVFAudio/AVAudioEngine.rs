@@ -222,7 +222,7 @@ extern_methods!(
         /// externally to the engine, but are not usable until they are attached to the engine via
         /// this method. Thus the idiom, without ARC, is:
         ///
-        /// ```
+        /// ```text
         /// // when building engine:
         /// AVAudioNode *_player;    // member of controller class (for example)
         /// ...
@@ -862,7 +862,7 @@ extern "C" {
     ///
     /// Register for this notification on your engine instances, as follows:
     ///
-    /// ```
+    /// ```text
     /// [[NSNotificationCenter defaultCenter] addObserver: myObject
     /// selector:
     /// sel!(handleInterruption:)

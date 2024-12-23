@@ -290,7 +290,7 @@ extern "C" {
     /// Register for this notification on the shared AVAudioUnitComponentManager instance,
     /// as follows:
     ///
-    /// ```
+    /// ```text
     /// [[NSNotificationCenter defaultCenter] addObserver: myObject
     /// selector:
     /// sel!(registrationsChanged:)

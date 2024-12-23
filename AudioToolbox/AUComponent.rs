@@ -589,7 +589,7 @@ extern "C" {
     /// the extension process. (This may be null if there is no such component instance.).
     /// For example:
     ///
-    /// ```
+    /// ```text
     /// [[NSNotificationCenter defaultCenter]
     /// addObserverForName:(NSString *)kAudioComponentInstanceInvalidationNotification
     /// object:nil queue:nil usingBlock:^(NSNotification *note) {

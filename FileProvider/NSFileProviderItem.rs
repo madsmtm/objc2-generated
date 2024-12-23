@@ -805,7 +805,7 @@ extern_protocol!(
         ///
         /// Here is a sample extension Info.plist:
         ///
-        /// ```
+        /// ```text
         /// <key
         /// >NSExtension
         /// </key

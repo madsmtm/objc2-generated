@@ -10,7 +10,7 @@ use crate::*;
 /// A GCHapticsLocality represents the locations of haptic actuators on a controller. You can create a haptic engine with a given
 /// GCHapticsLocality, and any patterns you send to that engine will play on all specified actuators.
 ///
-/// ```
+/// ```text
 /// CHHapticEngine *engine = [controller.haptics createEngineWithLocality:GCHapticsLocalityDefault];
 /// ```
 ///

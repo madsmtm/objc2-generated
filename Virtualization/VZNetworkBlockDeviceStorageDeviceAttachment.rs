@@ -30,7 +30,7 @@ extern_class!(
     /// For more information about the NBD URL format, see https://github.com/NetworkBlockDevice/nbd/blob/master/doc/uri.md.
     ///
     /// An example use of this API is:
-    /// ```
+    /// ```text
     /// NSURL *url = [[NSURL alloc] initWithString:
     /// "
     /// nbd://localhost:10809/myDisk"]

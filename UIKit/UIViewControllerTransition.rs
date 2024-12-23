@@ -32,7 +32,7 @@ extern_methods!(
         /// Consider an interface where a user may tap a cell representing a city to present a detail view.
         /// In the detail view, they may swipe left or right to go to the next city in the list. When the detail view
         /// is dismissed, it should un-zoom to the currently selected city rather than the one that was first selected.
-        /// ```
+        /// ```text
         /// cityViewController.preferredTransition = .zoom { context in
         /// let displayed = context.displayedViewController as! CityViewController
         /// let source = context.sourceViewController as! CityListViewController

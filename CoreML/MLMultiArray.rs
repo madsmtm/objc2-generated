@@ -57,7 +57,7 @@ extern_class!(
     /// use `[640, 32, 1]` as the `strides`. Then, the scalar at (1, 10, 15) is stored at `640 * 1 + 32 * 10 + 1 * 15`, or
     /// 975th scalar in the storage. In general, the scalar offset for coordinates `index` and strides `strides` is:
     ///
-    /// ```
+    /// ```text
     /// scalarOffset = sum_d index[d]*strides[d]
     /// ```
     ///
@@ -94,7 +94,7 @@ extern_methods!(
         /// Strides.
         ///
         /// It defines the offset of the scalar of a given coordinate index in the storage, which is:
-        /// ```
+        /// ```text
         /// scalarOffset = sum_d index[d]*strides[d]
         /// ```
         #[method_id(@__retain_semantics Other strides)]

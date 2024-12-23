@@ -18,7 +18,7 @@ extern_class!(
     /// The disk passed to this attachment needs to be handled with caution.
     ///
     /// An example use of this API is:
-    /// ```
+    /// ```text
     /// NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:
     /// "
     /// /dev/rdisk42"];

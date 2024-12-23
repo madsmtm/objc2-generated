@@ -13,7 +13,7 @@ extern_class!(
     /// The application can use the plan to estimate the necessary cost and
     /// resources of the model before running the predictions.
     ///
-    /// ```
+    /// ```text
     /// // Load the compute plan of an ML Program model.
     /// [MLComputePlan loadContentsOfURL:modelURL configuration:configuration completionHandler:^(MLComputePlan * _Nullable computePlan, NSError * _Nullable error) {
     /// if (!computePlan) {
