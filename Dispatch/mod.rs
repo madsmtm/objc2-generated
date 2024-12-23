@@ -2147,8 +2147,6 @@ extern "C" {
     pub fn dispatch_once(predicate: NonNull<dispatch_once_t>, block: dispatch_block_t);
 }
 
-// TODO: pub fn _dispatch_once(predicate: NonNull<dispatch_once_t>,block: dispatch_block_t,);
-
 extern "C" {
     pub fn dispatch_once_f(
         predicate: NonNull<dispatch_once_t>,
@@ -2156,8 +2154,6 @@ extern "C" {
         function: dispatch_function_t,
     );
 }
-
-// TODO: pub fn _dispatch_once_f(predicate: NonNull<dispatch_once_t>,context: *mut c_void,function: dispatch_function_t,);
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_data_empty?language=objc)
